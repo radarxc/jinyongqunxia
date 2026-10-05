@@ -1,0 +1,80 @@
+id: bld_kit_yuan_north_casino
+file: bld_kit_yuan_north_casino.png
+category: building-map
+style: default
+subject: 元北方无名博戏堂（原创扩展）
+prompt: 'Use case: historical-scene. Asset type: one standalone realistic Yuan northern-China map sprite. Original game reconstruction, not exact monument. Photoreal hand-made grey tile, buff earthen plaster, brown timber, stone; same restrained realistic detail density as Song map kit, no toy look. CRITICAL orthographic2:1 dimetric camera yaw45 pitch30; ground axes slopes+0.5/-0.5 precisely, all parallel edges remain parallel, verticals vertical, no perspective. Thin FLAT rectangular ground apron, visible LEFT/FRONT/RIGHT ground corners; no thick slab. Transparent RGBA background, whole object with 10% transparent margin, upper-left light and very short lower-right contact shadow. No text, lettering, people, animals, signs, flags, UI, watermark, modern objects, sky, scenery, checkerboard, Qing architecture, elaborate gold dragons. Subject: a small unnamed gambling den external building in Yuan northern China; gameplay-original casino, a sober one-storey merchant hall with a tiny recessed side court, open front wooden doorway shows one plain low wooden gaming table and stools, NO readable tiles/cards/symbols. Closed gray gable tile roof with little curvature, thick buff earth plaster walls, wooden lattice shutters, blank muted ocher cloth awning. NO ornate palace roofs or lush vegetation. Footprint10x8, ground rectangle near square, long LEFT-FRONT edge10 and FRONT-RIGHT edge8, ratio1.25. Most important base angles: both diagonals are26.565deg from horizontal, not30deg. Ground rectangular apron thin and obvious. Use Song reference only for realistic texture density; distinct smaller building.'
+negative: 文字、伪字、人物、现代物、天空、地平线、棋盘格、背景建筑、大阴影、厚地台、清式宫廷装饰、透视消失点、裁切。
+references:
+- {path: assets/default/baseline/building-map/bld_kit_song_southern_yamen.png, role: 宋基线材质细节参考, sha256: 4a255313b6c1c776a046158f4cadb26c008500f41c304277889aea66c0b00fb0}
+historical_references:
+- {title: 品读 | 永乐宫的建筑——杜仙洲, url: 'https://sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 元代木构、单檐庑殿/歇山、平缓屋面、土坯墙和砖裙的形制母题；文中明确部分梁架清修，不能整体倒推元貌。}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:31:46.846215+00:00'
+created_time_basis: 生成后归档时间，非工具披露服务端时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f428-0a78-7231-a1a3-a08a593b4c13/exec-e26a74ea-a687-49db-b067-11803a25fef2.png
+size: 704x576
+sha256: 6aa0f431ea121ca60d757bb3a62ab081b84b860827326d626f6598a326d13776
+status: candidate
+building:
+  type: bld_kit_yuan_north_casino
+  footprint: [10, 8]
+  anchor: [363.8453, 327.6333]
+  era: yuan_north
+footprint_m: [10, 8]
+entrance: {edge: S, offset_cells: 4}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [576, 288]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  source_archive: sources/bld_kit_yuan_north_casino.png
+  source_size: [1402, 1122]
+  source_sha256: dc63ca635a66b6b4228f56857c0fb7f40b9b5626500b65d3b460c39707da6352
+  crop_box: [0, 20, 1396, 1100]
+  uniform_scale_requested: 0.45569620253164556
+  resized_size: [636, 492]
+  rounded_effective_scale: [0.45558739255014324, 0.45555555555555555]
+  paste_offset: [34, 42]
+  steps: [crop to alpha>0 bbox, uniform LANCZOS resize; round dimensions to pixels, paste without mask into transparent canvas; no warp/repaint/flip/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [92, 597]
+    front: [821, 981]
+    right: [1356, 697]
+  source_axis_slopes: [0.5267489711934157, -0.5308411214953271]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.3626168224299064
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.0900934579439252
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  final_corners_px:
+    left: [75.914, 304.8556]
+    front: [408.0372, 479.7889]
+    right: [651.7765, 350.4111]
+  precision_note: 人工读可见底面左/前/右角，±3px；锚取左右角中点；非图片中心，非3D测绘。
+pixel_qa:
+  mode: RGBA
+  size: [704, 576]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 293224
+  alpha_partial_pixels: 111404
+  alpha_opaque_pixels: 876
+  alpha_near_opaque_pixels: 106344
+  alpha_nonzero_bbox: [34, 56, 655, 534]
+  transparent_margins_px: [34, 56, 49, 42]
+  border_alpha_max: 0
+candidate_count: 1
+source_record: sources/bld_kit_yuan_north_casino.json
+notes: 小型博戏堂以朴素商业建筑承接赌场玩法，不作为史实赌场复原；檐角仍带宋基线轻微曲率。
+png_rotations_available: [0]
+allowRotation: false
+anchor_px: [363.8453, 327.6333]
+footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}

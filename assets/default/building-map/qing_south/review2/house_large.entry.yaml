@@ -1,0 +1,79 @@
+id: bld_kit_qing_south_house_large
+file: bld_kit_qing_south_house_large.png
+category: building-map
+style: default
+subject: 清初至清中江南·大民居（匿名原创组合，细部待考）
+prompt: 'Use case: sketch-to-render. Convert the exact box geometry in the reference to ONE detailed Qing Jiangnan TWO STOREY HOUSE sprite. LOCK the cuboid''s footprint,
+  screen shape and both ground edge lines; preserve the three bottom corner positions and edge slopes. The box front is 7 units wide and side 6 units deep. Ground
+  edges slope +0.5 and -0.5 (26.565 degrees). Do not replace this with a generic isometric camera. Texture front and side as white limeplastered walls, dark brown
+  timber door and modest lattice windows, upper timber balcony on front only, grey tiled traditional gable roof rising above the box, restrained raised fire-protection
+  gable ends. Realistic ancient Chinese materials in muted grey beige brown, fine restrained detailed texture. Thin natural stone foundation follows the existing
+  bottom edges with three clearly visible corners, no thick base. Preserve the geometry more strongly than architectural ornament. Camera remains orthographic and
+  upright verticals. Upper-left light and a short subtle shadow to lower right. Entire building in frame with transparent margin. Replace white background with true
+  RGBA transparency. No drawing outlines or diagram style, no text, people, vegetation, modern objects or watermark.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、强透视、金黄屋顶泛化
+references:
+- file: assets/default/building-map/qing_south/review2/house_large_blockguide.png
+  sha256: 3d643c15119f9172fd1de56c336741789fddd5b817f7fe54f6ac8b11c618f93f
+  role: 本轮生成输入：正交几何引导图；不参与成品合成
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:01:22.002724+00:00'
+created_time_basis: copy2保留源PNG mtime，非服务端生成时间回执
+source_path: /Users/bytedance/.codex/generated_images/01a0f450-2399-77a1-9948-02b42503786e/exec-a4fdc12d-3c21-4b34-ac0d-50ea759b98e6.png
+source_sha256: dff33f6886ee326812cc277481619e4b8141b86c9d84fe4410d9f7800df26b0d
+size: 608x576
+sha256: 13e14d41d777e37e0028b281746933513914b6b67697e5e9bf14945f4df4df0d
+status: candidate
+building:
+  type: bld_kit_qing_south_house_large
+  footprint:
+  - 7
+  - 6
+  anchor:
+  - 313.6715
+  - 402.0036
+  era: qing_south
+footprint_m:
+- 7
+- 6
+entrance:
+  edge: S
+  offset_cells: 3
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 416
+  - 208
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_house_large.yaml
+source_record: review2/house_large.selected.request.json
+candidate_count: 2
+geometry_qa:
+  source_corners_px:
+    left:
+    - 190
+    - 862
+    front:
+    - 710
+    - 1109
+    right:
+    - 1094
+    - 911
+  source_axis_slopes:
+  - 0.475
+  - -0.515625
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.3541666666666667
+  expected_width_depth_ratio: 1.1666666666666667
+  ratio_relative_error: 0.1607142857142858
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 原尺寸及6倍局部view_image人工读取可见石基角；±3源px；隐藏后角未实测。guide理论点不参与实测。
+notes: 第2轮返修：双轴通过，宽深比仍超10%；选第二候选保留真实残差。新源图及RGBA浅底预览已view_image；灰瓦粉墙深木、左上光和短右下影完整，无文字人物水印。单视图candidate，非release。

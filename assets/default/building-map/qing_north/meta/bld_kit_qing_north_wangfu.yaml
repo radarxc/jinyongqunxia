@@ -1,0 +1,83 @@
+id: bld_kit_qing_north_wangfu
+status: candidate
+building:
+  type: bld_kit_qing_north_wangfu
+  footprint: [22, 18]
+  anchor: [782.5017, 566.7179]
+  era: qing_north
+anchor_px: [782.5017, 566.7179]
+footprint_m: [22, 18]
+footprint_note: design/22 §3.4 清初王府骨架22×18；不是24×20宫殿模块；绿琉璃/彩画等级细部待考。
+logical_footprint_polygon_px:
+- [142.50170000000003, 534.7179]
+- [846.5017, 886.7179]
+- [1422.5017, 598.7179]
+- [718.5017, 246.7179]
+collision_polygon_m:
+- [0, 0]
+- [22, 0]
+- [22, 18]
+- [0, 18]
+collision_note: 全footprint硬碰撞代理；非实测墙体，院内走区另行细化。
+occluder_proxy_px:
+- [141, 31]
+- [1427, 31]
+- [1427, 901]
+- [141, 901]
+occluder_note: alpha>=192包围框仅用于离线代理统计，未修改输出alpha。
+actual_height_m: null
+height_note: 单图不能推出可靠实高，待实测/建模。
+entrance: {edge: S, offset_cells: 10}
+entrance_note: S边中点代理，非门洞精确实测。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_north_wangfu.png, view_note: 目标视角；实际误差见geometry_qa}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [1280, 640]
+  ground_width_px: 1280
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
+geometry_qa:
+  source_corners_px:
+    left: [124, 538]
+    front: [840, 907]
+    right: [1421, 604]
+  source_axis_slopes: [0.5153631284916201, -0.5215146299483648]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2323580034423407
+  expected_width_depth_ratio: 1.2222222222222223
+  ratio_relative_error: 0.008292911907369582
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 本轮独立人工读真实墙脚L/F/R，±3px；后角L+R-F推算；底心(L+R)/2。未仿射或非等比纠偏。
+pixel_qa:
+  mode: RGBA
+  size: [1489, 1016]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 879909
+  alpha_partial_pixels: 632490
+  alpha_opaque_pixels: 425
+  alpha_near_opaque_pixels: 610489
+  alpha_nonzero_bbox: [20, 20, 1469, 996]
+  transparent_margins_px: [20, 20, 20, 20]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_wangfu__revision2_c2.png
+  source_sha256: b1ae69fc1c13c941f7fc1400321c834aa5b97b803bc91098e9c0255d371ae8d6
+  source_size: [1536, 1024]
+  crop_box: [0, 17, 1468, 1006]
+  uniform_scale_requested: 0.9868928296067849
+  resized_size: [1449, 976]
+  rounded_effective_scale: [0.9870572207084468, 0.9868554095045501]
+  paste_offset: [20, 20, 1469, 996]
+  final_file: bld_kit_qing_north_wangfu.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+  anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
+release_ready: false

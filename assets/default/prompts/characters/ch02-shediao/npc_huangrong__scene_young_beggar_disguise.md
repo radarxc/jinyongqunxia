@@ -13,18 +13,63 @@ scene_key: young_beggar_disguise
 scene_title: 小乞丐·初入江湖
 stage: 第7回，离开桃花岛后、初遇郭靖时；尚未结识洪七公，更未接受帮主传承。
 references:
-- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-  use: 已实际查看并核对manifest哈希的female王语嫣基线，仅作温润肤色、低饱和女装与冷暖色卡；不继承王语嫣的脸、年龄外貌、发饰、衣装、站姿或旧人物水墨笔法，原approved状态不改。
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  use: 已实际查看的新萧峰写实样图，PNG SHA256=4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922，manifest realism_revision=user_character_realism_20261001，candidate不变。仅参考自然肤质、连续人体光影体积、完整布料和清楚轮廓的绘制品质；绝不借用男性脸、胡须、眉骨、下颌、体型、深色衣装、掌势、龙影或少室山背景，不让女性男性化。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际查看的用户图，仅参考背景淡墨山水、空间晕染与留白；完全忽略图中人物、面容、发饰、首饰、衣装、体态及人物笔法，背景墨痕与纸纹不得侵入人物本体。
-status: ready
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_huangrong__ch02_youth_bangzhu_base.resume3.png", "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型", "sha256": "7c802d17d03504fdb6176f951dffd87b7a32f9e90c293a409c7ab4e8b776567f"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "666c32c038ad578287862a4843af5bd60c7bb45fda4e56743c6a52f4499f8ae6"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "16b4e092106f3f26946dd3c18bebda4d76c088e70e01a97f31b8265d42bca958"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae"}
+status: candidate
 scene_revision: user_scenes_20261001
 realism_revision: user_character_realism_20261001
+redo_reason: "作者 10-02 晚：复合基线风格精修"
+reference_upload:
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_huangrong__ch02_youth_bangzhu_base.resume3.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/huangrong_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg"
+composite_job: por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.resume3
 ---
 
 # 黄蓉 · 人物写实修正
+
+## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.resume3`；实际上传顺序见frontmatter，末两张为female项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
+同一黄蓉成年青年身份，乔装小乞儿的早期阶段，必须成年人身体与自然骨相，不能画幼童。旧灰褐帽巾、宽松而完整的补缀布衣、灰裤布鞋，脸上少量尘痕但眼神清灵狡黠。手中普通竹杖、腰边布囊，绝不是此时尚未取得的打狗棒。完整全身侧身回望，背景为北地街市酒肆外薄雪、木栏和暖灯，无可读招牌。姿态自在活泼，不乞讨卖惨。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
+
+> 2026-10-02 重要人物立绘重审（A 组，`tools/agents/reports/REVIEW-portraits-A-ch00-04.md`）：**整体重出（随基础图）**。黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定。
+> 上传参考只按 frontmatter `reference_upload`（共 1 张，按顺序上传）；frontmatter 的 `references` 与本节以下内容是旧出图管线的历史记录，不再用于出图。
+
+```text
+生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+【场景背景】北地食肆或客栈门口：淡淡的门框与桌凳。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+【人物与场景】黄蓉，《射雕英雄传》，小乞丐·初入江湖。阶段：第7回，离开桃花岛后、初遇郭靖时；尚未结识洪七公，更未接受帮主传承。
+【身份参考】随提示词上传的第 1 张图是黄蓉本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（圆润饱满的鹅蛋脸、下巴圆而小巧，一双灵动的大眼睛黑白分明、眼波流转、眼尾微微上挑，眉毛细长弯弯如蛾眉，鼻梁小巧挺直，嘴唇饱满、嘴角天生上翘带着俏皮狡黠的笑意，肌肤白皙透亮、两颊自然红润，妆容清淡；古灵精怪、聪明伶俐）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
+【衣装】扮成小乞丐的男装：灰褐粗布短衣、深灰长裤、窄布腰带、朴素布鞋，黑发收进一顶无装饰的软布帽；衣服旧但完整。脸颊上抹了一点浅灰的煤灰（只在局部，五官清楚）。
+【动作与神情】站在食肆门边，身体轻巧侧转，主动打量画外的来客；右手轻扶旧衣襟，左手松垂，眼神明亮机灵——一眼看得出是个乔装的姑娘。
+【器物】双手空着；没有打狗棒、包袱或佩剑；金环藏在帽里不露出。
+【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
+【画风基线】上传的参考图里，最后一张是本项目的立绘画风基线（只上传了一张时就是它）：只参考它的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；不要照搬基线图里那个人的长相、年龄、发型、服饰和姿势。
+```
+
+---
+
+以下为 2026-10-02 之前的历史提示词与说明，仅作历史保留。
 
 ## 人物与阶段
 
@@ -77,3 +122,8 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.prepared.json`。
+
+## 原著依据
+
+- 《射雕英雄传》第七回 比武招亲：“头上歪戴着一顶黑黝黝的破皮帽，脸上手上全是黑煤”；https://www.xuges.com/wuxia/jinyong/sdyxz/049.htm
+- AR-82 返修约束（本节优先于历史提示词）：只在黄蓉头顶戴一顶歪戴黑黝黝的破皮帽，盖住发髻。额头、脸颊和双手加明显但自然的黑煤污，保持原脸五官和表情、骨相不变，不换脸。灰破男装、竹杖、身形与背景完全原样。

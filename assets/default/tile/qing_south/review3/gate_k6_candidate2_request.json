@@ -1,0 +1,8 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: precise-object-edit. A tiny production geometry correction to this already finished realistic Qing Jiangnan gate. PRESERVE EVERYTHING: viewpoint, roof, all materials, overall outer silhouette, outer front left foundation(120,831), outer front right foundation(804,1174), rear right foundation(1075,1038) on1254x1254 source, and ground axes +0.5/-0.5. ONLY widen the inner clear arch passage by about2.5percent horizontally along its front face, retaining arched outline and same height. Left inner arch ground contact currently(257,898): move to(252,896). Right inner arch ground contact currently(658,1101): move to(663,1104). Remove a tiny width of stone from each inner jamb to create410-412pixel clear span versus684pixel outside frontage. Its map dimensions must be outside width10, depth4, clear passage6, both piers2. Maintain all front-face edges slope+0.5 and side-face slope-0.5. Do not change outer size, roof, depth or tilt. Keep original detailed fine grey-blue stone and bricks, charcoal Chinese roof tiles, restrained reddish carved timber, upper-left lighting. No new text, people, adornments or slabs. Preserve genuinely transparent RGBA outside and in tunnel opening. No floor in opening, no shadow cloud, no reframe or crop, no checkerboard, no diagram. Tiny inner-jamb width change only.",
+  "referenced_image_paths": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_south/assets/default/tile/qing_south/review3/gate_k6_candidate1.png"
+  ],
+  "transparent_background": true
+}

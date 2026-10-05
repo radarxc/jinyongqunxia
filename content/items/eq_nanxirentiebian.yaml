@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_nanxirentiebian
+name: 南希仁铁扁担
+kind: weapon
+sub: staff
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《射雕英雄传》·南希仁所持扁担；材质 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/nanxirentiebian
+text:
+  desc: 外观：乌铁扁担约一百五十厘米，中段微弓、两端上翘并留绳槽。 待运行时投影：sect=sect_jiangnanqiguai。
+  lore: 《射雕英雄传》中南希仁以扁担为兵，长条器身适合双手横扫、下压和挑架，朴拙招势与樵夫身份相合。扁担是否通体为铁仍 （待考：核南希仁交战情节）；尺寸、布握带与定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 60
+      qiAffinity: 100

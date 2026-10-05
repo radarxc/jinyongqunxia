@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_mingqinghuahewenwan
+name: 明青花荷纹碗
+kind: collectible
+sub: porcelain
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingqinghuahewenwan
+text:
+  desc: 外观：白釉青花小碗，舒展荷叶纹。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 以明代青花日用器背景设计荷纹碗，取普通窑作品相作初阶礼物。宜赠商贾或文士，具体窑户、年代内细型及取得均为（原创扩展）；不称御窑真品，不使用晚清繁饰。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

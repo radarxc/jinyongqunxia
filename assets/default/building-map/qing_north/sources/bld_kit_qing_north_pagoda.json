@@ -1,0 +1,23 @@
+{
+  "id": "bld_kit_qing_north_pagoda",
+  "prompt": "Classic 2:1 ISOMETRIC GAME MAP GEOMETRY with realistic architectural textures, not pixel-art. Create one isolated transparent sprite of a northern Chinese five-tier gray BRICK Buddhist pagoda with octagonal tapering shaft, corbelled masonry tier cornices and small simple finial, standing on a thin SQUARE stone footing, no Tibetan stupa form. Exact orthographic45-degree azimuth30-degree elevation, both ground axes slope precisely 1 vertical unit per 2 horizontal units, front-left edge+0.5 and front-right edge-0.5. The rectangular base is 7 meters east-west by 7 meters north-south, projected front-left edge 7 units and front-right edge 7 units. South entrance faces lower-left. Draw the entire thin rectangular base with clear left/front/right corners, correct2:1 diamond form, no tall pedestal. Northern China early-to-mid Qing original historical-game module. Warm-neutral soft top-left lighting; tiny contact shadow only. Fine gray tile and gray brick material details, restrained realism matching a Song-era city-building kit. TRUE TRANSPARENT ALPHA BACKGROUND; no glow, halo, mist, shadows around silhouette, no floor, no backdrop. Keep complete silhouette comfortably inside canvas with15% fully transparent margin all sides. No visible writing, numbers, guides, modern elements, people, scenery or checkerboard. Asset bld_kit_qing_north_pagoda.",
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "transparent_background": true,
+  "receipt": {
+    "output_hint": "Generated images are saved to /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b as /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-51e7d194-815f-47f2-8f52-d000e6764dd7.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_data_note": "原回执image_url为PNG data URL；为避免重复base64，图像字节已原样归档为同名PNG。output_hint原文完整保存。"
+  },
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-51e7d194-815f-47f2-8f52-d000e6764dd7.png",
+  "references": [],
+  "candidate_number": 2,
+  "selected": true,
+  "candidate_count": 2,
+  "archive_file": "bld_kit_qing_north_pagoda.png",
+  "source_sha256": "edb9af96ecfbd37618fb6392d0fd8a9bbb85ba645fb784288d8d8b60ba9537a6",
+  "source_size": [
+    1295,
+    1214
+  ]
+}

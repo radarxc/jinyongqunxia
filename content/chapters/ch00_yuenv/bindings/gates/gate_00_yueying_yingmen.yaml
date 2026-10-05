@@ -1,0 +1,7 @@
+schemaVersion: region-gate.v1
+gateId: gate_00_yueying_yingmen
+chapter: ch00_yuenv
+expression:
+  flag: fl_00_baiyuan_merged
+lockedTextKey: quest.q_00_main_c_02.objective.merge
+note: C02 白猿三路汇合、进入 C03 时开放营门，使范蠡可达；传功仍由 dialogue 双演示条件限制。锁定提示复用既有汇合目标文本，专用文案交 ch00a。

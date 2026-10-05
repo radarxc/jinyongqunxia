@@ -1,0 +1,27 @@
+{
+  "source": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-af939ac8-6d00-4d92-b96f-0286d48f3072.png",
+  "prompt": "Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: A Ming Jiangnan princely residence main-hall module, one formal large main hall, muted burgundy and chestnut timber, restrained ochre rank accents, white lime gable infill, dark charcoal grey clay-tiled hip-and-gable roof, simple brown brackets, pale stone main steps and low porch platform. REDUCE green/gold painted beam decoration strongly from reference. No Forbidden-City yellow roof, lush Qing polychrome, huge red wall, side buildings or statues. Keep same building shape and composition as supplied reference. Target logical ground footprint22 by18, simple unraised stone rectangle, slope±0.5. Generic original module, not exact historical palace. Final transparent image only.",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png",
+  "candidate_count": 2,
+  "source_sha256": "f4fcf676b673589c56853bdbd3237e5b1d59dbe4acc2467a3503392aa47fce1b",
+  "source_size_px": [
+    1420,
+    1108
+  ],
+  "source_mode": "RGBA",
+  "source_alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_index": 1,
+  "selected": false,
+  "selection_note": "2选1：第二候选主殿基座两轴更近目标；宫殿模块等级与具体年代细部待考",
+  "tool": "image_gen built-in",
+  "transparent_background": true,
+  "explicit_image_inputs": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png"
+  ],
+  "image_model": "not_exposed_by_tool",
+  "image_effort": "not_exposed_by_tool",
+  "raw_view_image_inspected": true
+}

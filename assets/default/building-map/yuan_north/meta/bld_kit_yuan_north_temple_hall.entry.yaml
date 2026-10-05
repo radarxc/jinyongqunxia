@@ -1,0 +1,84 @@
+id: bld_kit_yuan_north_temple_hall
+file: bld_kit_yuan_north_temple_hall.png
+category: building-map
+style: default
+subject: 元北方寺观殿堂（永乐宫木构母题，原创扩展）
+prompt: 'Use case: sketch-to-render. Render exactly ONE Yuan northern China wooden temple hall. Treat input diagram as strict ground projection guide. Replace box with realistic architectural asset, respecting this base silhouette precisely. Footprint is14m by11m, NEARLY SQUARE, depth79% of width. Camera orthographic yaw45 elevation30, ground directions slope+0.5/-0.5; all horizontal lines parallel to these axes and vertical columns vertical. Ground LEFT(168,740), FRONT(840,1076), RIGHT(1368,812), hidden BACK(696,476) on1536x1280. Left-front=(672,336), front-right=(528,-264). Preserve these proportions, camera and silhouette. Main hall is a compact deep Yuan timber structure with single-eave low-pitched HIP roof, grey clay roof tiles, restrained aged red-brown columns and bracket sets, faint muted blue-green painted beams, tan plaster side walls. Front has five bays, open dark central entrance with NO statue, windows wood lattice. Deep side facade. Stone steps at front lead to low hall podium INSIDE the outer footprint. Outer footprint is a paper-thin stone paving apron with crisp visible ground corners, no massive diorama base. Authentic realistic Song/Jin/Yuan continuation of timber architecture, natural rough wood grain and hand-made tiles, muted earth colors, no Qing elaboration or golden roofs. Strong readable ground corner geometry, symmetric orthographic axes, no perspective convergence. Clean cutout PNG alpha, completely transparent empty background: NO haze NO glow NO backdrop NO vignette NO gradient NO color outside subject; only tiny dark translucent contact shadow lower right, natural upper-left key light. Keep entire roof and ground inside image with margin. Replace all drawing lines with textured realistic materials. No wireframe, text, labels, people, figures, scenery, watermark, sky. One standalone building.'
+negative: 文字、伪字、人物、现代物、天空、地平线、棋盘格、背景建筑、大阴影、厚地台、清式宫廷装饰、透视消失点、裁切。
+references:
+- {path: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_temple_hall.repair2.guide.png, sha256: 30d5a58d4fb6e35c0faafc9beae56b98b65cc5a6d90af1db2ef4541855f86dc1, role: 本轮image_gen几何引导；已view_image；仅生成参考，不作为成品拼贴}
+historical_references:
+- {title: 品读 | 永乐宫的建筑——杜仙洲, url: 'https://sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 元代木构、单檐庑殿/歇山、平缓屋面、土坯墙和砖裙的形制母题；文中明确部分梁架清修，不能整体倒推元貌。}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T21:58:33.501793+00:00'
+created_time_basis: 本轮原图归档时间，非工具披露服务端时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f44f-4a86-7490-86fe-6d498f37d931/exec-5fac307c-7d63-4343-acd9-63aaff6646c8.png
+size: 928x768
+sha256: 84b85b39098498d912e68acd2ce997cc6482c65132367de798590f90d06eaae4
+status: candidate
+building:
+  type: bld_kit_yuan_north_temple_hall
+  footprint: [14, 11]
+  anchor: [466.8324, 480.5]
+  era: yuan_north
+footprint_m: [14, 11]
+entrance: {edge: S, offset_cells: 6}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [800, 400]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  source_size: [1374, 1145]
+  crop_box: [0, 19, 1360, 1097]
+  uniform_scale_requested: 0.6294256490952006
+  resized_size: [856, 679]
+  rounded_effective_scale: [0.6294117647058823, 0.6298701298701299]
+  paste_offset: [36, 44]
+  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer rounding, paste without alpha mask into transparent RGBA canvas]
+  source_archive: sources/bld_kit_yuan_north_temple_hall.repair2.v01.png
+  source_sha256: 0427f8b4348760d5aa81bec3b7bd440c7cecd7da737ccb1473c5c3522804f962
+geometry_qa:
+  source_corners_px:
+    left: [49, 677]
+    front: [745, 1034]
+    right: [1320, 747]
+  anchor_source_px: [684.5, 712.0]
+  source_axis_slopes: [0.5129310344827587, -0.4991304347826087]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2104347826086956
+  expected_width_depth_ratio: 1.2727272727272727
+  ratio_relative_error: 0.048944099378882
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  final_corners_px:
+    left: [66.8412, 458.4545]
+    front: [504.9118, 683.3182]
+    right: [866.8235, 502.5455]
+  edge_fit_slopes: [0.5137431652, -0.5024892431]
+  precision_note: 人工读取地面外沿L/F/R三点±3px；背角L+R-F推定；锚点(L+R)/2；alpha>200底边长段拟合复核，非屋檐/阴影读点。
+pixel_qa:
+  mode: RGBA
+  size: [928, 768]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 428811
+  alpha_partial_pixels: 282959
+  alpha_opaque_pixels: 934
+  alpha_near_opaque_pixels: 266745
+  alpha_nonzero_bbox: [36, 44, 892, 723]
+  transparent_margins_px: [36, 44, 36, 45]
+  border_alpha_max: 0
+candidate_count: 1
+source_record: sources/bld_kit_yuan_north_temple_hall.repair2.v01.json
+notes: 本轮首候选纠正地面双轴为+0.51293/-0.49913；14×11宽深比实测1.21043，误差4.89%在建议±10%内。庑殿灰瓦、红木柱与淡彩画沿用宋金/元木构母题，非具名殿宇复原；保持candidate。
+png_rotations_available: [0]
+allowRotation: false
+anchor_px: [466.8324, 480.5]
+footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}
+selected_candidate: 1
+repair_round: 2

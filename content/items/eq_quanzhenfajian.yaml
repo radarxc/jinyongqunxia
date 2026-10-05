@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_quanzhenfajian
+name: 全真法剑
+kind: weapon
+sub: sword
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 全真 · design/17 §5.4；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/quanzhenfajian
+text:
+  desc: 外观：修长直剑约七十五厘米，黄铜一字镡、深木柄青绦、黑漆鞘与北斗七星状无字铜钉。 待运行时投影：sect=sect_quanzhen。
+  lore: 全真门人斋醮与护山皆可持用的法剑，剑身修长，运使讲究守中、连贯与内息相随。剑鞘铜钉仅取北斗意象而无文字；器名、来历与形制为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 80
+      qiAffinity: 100

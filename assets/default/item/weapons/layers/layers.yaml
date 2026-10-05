@@ -1,0 +1,1587 @@
+version: 1
+category: weapons
+items:
+- item: eq_bawangqiang
+  sourceSha256: 2b4e4766e368dcd905e7974cef14f2663523f10e906f4bc0bc0abf7e7d05b0a0
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: spear
+    axisRatio: 1376.513866
+    rotationDeg: -43.299845
+    lengthM: 2.6
+    gripRatio: 0.16
+    fitScale: 0.54545455
+    grip:
+    - 78
+    - 620
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_bawangqiang__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 158
+    - 790
+    pivot:
+    - 78
+    - 620
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_bawangqiang__weapon_R.png
+    sourceRect:
+    - 158
+    - 0
+    - 158
+    - 790
+    pivot:
+    - 78
+    - 620
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_bawangqiang__weapon_R.png
+    sourceRect:
+    - 316
+    - 0
+    - 158
+    - 790
+    pivot:
+    - 78
+    - 620
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_bawangqiang__weapon_R.png
+    sha256: bdd5ecec856c3ff923295e7dd4ece21795468b9f979ec02007404f5b530d47a3
+- item: eq_biyudao
+  sourceSha256: a5fab8b75e4edf85ee355fa46267b6733ffa66e25f5ba0f81a8e9b34617d95a0
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: blade
+    axisRatio: 4.472309
+    rotationDeg: -147.523113
+    lengthM: 0.92
+    gripRatio: 0.2
+    fitScale: 0.26818182
+    grip:
+    - 72
+    - 215
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_biyudao__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 166
+    - 290
+    pivot:
+    - 72
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_biyudao__weapon_R.png
+    sourceRect:
+    - 166
+    - 0
+    - 166
+    - 290
+    pivot:
+    - 72
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_biyudao__weapon_R.png
+    sourceRect:
+    - 332
+    - 0
+    - 166
+    - 290
+    pivot:
+    - 72
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_biyudao__weapon_R.png
+    sha256: 8b21122ea70a53156c9154bf66bb90fe043b1e764d92430eacee9917c3c6d3df
+- item: eq_chanzhang
+  sourceSha256: 579d7cb73a2304c9989cb87280f1ff88f76618302f4ed5e9d9c42044a00bfc0e
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: staff
+    axisRatio: 288.062869
+    rotationDeg: 24.501649
+    lengthM: 1.7
+    gripRatio: 0.28
+    fitScale: 0.4298419
+    grip:
+    - 64
+    - 355
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_chanzhang__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 134
+    - 522
+    pivot:
+    - 64
+    - 355
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_chanzhang__weapon_R.png
+    sourceRect:
+    - 134
+    - 0
+    - 134
+    - 522
+    pivot:
+    - 64
+    - 355
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_chanzhang__weapon_R.png
+    sourceRect:
+    - 268
+    - 0
+    - 134
+    - 522
+    pivot:
+    - 64
+    - 355
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_chanzhang__weapon_R.png
+    sha256: 1c7e82c5ad3c9bb22de56982a67bcd9947653a35134f719936df3fef60ebbfc3
+- item: eq_dagoubang
+  sourceSha256: 621ff0c724e0145269ed21e85deba7a2c72c985a9b2997d6fecc567efa713f56
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: staff
+    axisRatio: 1198.426281
+    rotationDeg: 136.583559
+    lengthM: 1.7
+    gripRatio: 0.28
+    fitScale: 0.39689781
+    grip:
+    - 50
+    - 355
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_dagoubang__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 102
+    - 522
+    pivot:
+    - 50
+    - 355
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_dagoubang__weapon_R.png
+    sourceRect:
+    - 102
+    - 0
+    - 102
+    - 522
+    pivot:
+    - 50
+    - 355
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_dagoubang__weapon_R.png
+    sourceRect:
+    - 204
+    - 0
+    - 102
+    - 522
+    pivot:
+    - 50
+    - 355
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_dagoubang__weapon_R.png
+    sha256: 8ef1d75cac064ffe25f6c37e907e03237ce64e5c30fbc7fab5c4af6e7b5a828b
+- item: eq_dandao
+  sourceSha256: 87587d74fa2862516465c4bef4d528ddc6545c2f4535667ff50ef596aa8f8c14
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: blade
+    axisRatio: 117.026704
+    rotationDeg: 52.048129
+    lengthM: 0.92
+    gripRatio: 0.2
+    fitScale: 0.20068027
+    grip:
+    - 36
+    - 215
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_dandao__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 102
+    - 290
+    pivot:
+    - 36
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_dandao__weapon_R.png
+    sourceRect:
+    - 102
+    - 0
+    - 102
+    - 290
+    pivot:
+    - 36
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_dandao__weapon_R.png
+    sourceRect:
+    - 204
+    - 0
+    - 102
+    - 290
+    pivot:
+    - 36
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_dandao__weapon_R.png
+    sha256: 1cd21570924131efb3755eb0838ce212120ff5fd76e9717186e2af6003ffa470
+- item: eq_duanbi
+  sourceSha256: c8c82a40abafa3092dc6953dfdc291f8d7c04b4c620fecf256188d7fcd8f719c
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: dagger
+    axisRatio: 3.636086
+    rotationDeg: -141.648369
+    lengthM: 0.42
+    gripRatio: 0.18
+    fitScale: 0.10516066
+    grip:
+    - 48
+    - 105
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_duanbi__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 78
+    - 142
+    pivot:
+    - 48
+    - 105
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_duanbi__weapon_R.png
+    sourceRect:
+    - 78
+    - 0
+    - 78
+    - 142
+    pivot:
+    - 48
+    - 105
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_duanbi__weapon_R.png
+    sourceRect:
+    - 156
+    - 0
+    - 78
+    - 142
+    pivot:
+    - 48
+    - 105
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_duanbi__weapon_R.png
+    sha256: 44d973f3f943d74d3a00eeed4d75d02397103b3a65227e4d4b3d28b3889e73c3
+- item: eq_huaqiang
+  sourceSha256: 2c856347b3cd7535f766ebf9cc68fc3eb1d2fbe523df51957fe14f7822953d89
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: spear
+    axisRatio: 434.379303
+    rotationDeg: 44.018388
+    lengthM: 2.55
+    gripRatio: 0.16
+    fitScale: 0.60295476
+    grip:
+    - 81
+    - 609
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_huaqiang__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 184
+    - 776
+    pivot:
+    - 81
+    - 609
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_huaqiang__weapon_R.png
+    sourceRect:
+    - 184
+    - 0
+    - 184
+    - 776
+    pivot:
+    - 81
+    - 609
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_huaqiang__weapon_R.png
+    sourceRect:
+    - 368
+    - 0
+    - 184
+    - 776
+    pivot:
+    - 81
+    - 609
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_huaqiang__weapon_R.png
+    sha256: b53a536a002488a7fe0808566f9b5e6ff20587c2d6688b2c4f8302aeec63bd37
+- item: eq_jindi
+  sourceSha256: 1c967dea760f3ab2acac7350d4d097dc30abede76ca08c44db71fe7554b25c6b
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: flute
+    axisRatio: 287.934153
+    rotationDeg: 63.833186
+    lengthM: 0.65
+    gripRatio: 0.18
+    fitScale: 0.17965368
+    grip:
+    - 31
+    - 156
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_jindi__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 208
+    pivot:
+    - 31
+    - 156
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_jindi__weapon_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 208
+    pivot:
+    - 31
+    - 156
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_jindi__weapon_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 208
+    pivot:
+    - 31
+    - 156
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_jindi__weapon_R.png
+    sha256: c3abf762ca1def25c517d7cad9ca272187e801643ae8760d586329adc86c7e18
+- item: eq_jinshejian
+  sourceSha256: d5e77eb25d79d813f482f039de24194355498a8bd0c246e02f49c5bb636685b7
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: sword
+    axisRatio: 165.513623
+    rotationDeg: 45.291855
+    lengthM: 1.0
+    gripRatio: 0.18
+    fitScale: 0.27497315
+    grip:
+    - 48
+    - 238
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_jinshejian__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 100
+    - 314
+    pivot:
+    - 48
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_jinshejian__weapon_R.png
+    sourceRect:
+    - 100
+    - 0
+    - 100
+    - 314
+    pivot:
+    - 48
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_jinshejian__weapon_R.png
+    sourceRect:
+    - 200
+    - 0
+    - 100
+    - 314
+    pivot:
+    - 48
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_jinshejian__weapon_R.png
+    sha256: cb98f754cfad6e0f5368d70b0d32da44a940b0eaed6157d80c18b4af1d05fc38
+- item: eq_junzijian
+  sourceSha256: e6a6ee4fdb5fe123bf9e02c3fc46983e928fb08d0ca1eb68159d3320e952faaf
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: sword
+    axisRatio: 9.81001
+    rotationDeg: -143.598066
+    lengthM: 1.0
+    gripRatio: 0.18
+    fitScale: 0.29663963
+    grip:
+    - 66
+    - 238
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_junzijian__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 148
+    - 314
+    pivot:
+    - 66
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_junzijian__weapon_R.png
+    sourceRect:
+    - 148
+    - 0
+    - 148
+    - 314
+    pivot:
+    - 66
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_junzijian__weapon_R.png
+    sourceRect:
+    - 296
+    - 0
+    - 148
+    - 314
+    pivot:
+    - 66
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_junzijian__weapon_R.png
+    sha256: 7e884928befc1095f0a27b1116658456733d96b78b57457b2628ba8380f420a4
+- item: eq_libiegou
+  sourceSha256: 78dd54c42b6323cbc229b720513dac2ed9919919811129122d029dd06380ad3c
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: hook
+    axisRatio: 7.069133
+    rotationDeg: 40.516811
+    lengthM: 0.85
+    gripRatio: 0.24
+    fitScale: 0.2
+    grip:
+    - 84
+    - 190
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_libiegou__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 160
+    - 268
+    pivot:
+    - 84
+    - 190
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_libiegou__weapon_R.png
+    sourceRect:
+    - 160
+    - 0
+    - 160
+    - 268
+    pivot:
+    - 84
+    - 190
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_libiegou__weapon_R.png
+    sourceRect:
+    - 320
+    - 0
+    - 160
+    - 268
+    pivot:
+    - 84
+    - 190
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_libiegou__weapon_R.png
+    sha256: 259fd10e05e6150ff0c45d1abd41da563714b93b4c20befac57f2e3ceb4b4c8c
+- item: eq_liehuoqi
+  sourceSha256: 630b059297a7c73a7b98e7a4965c6d8df6f38d5d843db2998fbb8c55adc18a54
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: spear
+    axisRatio: 3.994503
+    rotationDeg: 6.356872
+    lengthM: 1.8
+    gripRatio: 0.12
+    fitScale: 0.5
+    grip:
+    - 60
+    - 450
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_liehuoqi__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 282
+    - 552
+    pivot:
+    - 60
+    - 450
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_liehuoqi__weapon_R.png
+    sourceRect:
+    - 282
+    - 0
+    - 282
+    - 552
+    pivot:
+    - 60
+    - 450
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_liehuoqi__weapon_R.png
+    sourceRect:
+    - 564
+    - 0
+    - 282
+    - 552
+    pivot:
+    - 60
+    - 450
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_liehuoqi__weapon_R.png
+    sha256: 4e89f0bc8adb1354ecdb83d3373dccf032a7f762af8cd1306346ea3a3927df6d
+- item: eq_longquanjian
+  sourceSha256: faa19930515dd212aa2b68de7a0102e480098a361ea4b756d9c7b21dc6a0da3f
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: sword
+    axisRatio: 324.750593
+    rotationDeg: -44.033247
+    lengthM: 1.0
+    gripRatio: 0.18
+    fitScale: 0.20463629
+    grip:
+    - 42
+    - 237
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_longquanjian__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 86
+    - 312
+    pivot:
+    - 42
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_longquanjian__weapon_R.png
+    sourceRect:
+    - 86
+    - 0
+    - 86
+    - 312
+    pivot:
+    - 42
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_longquanjian__weapon_R.png
+    sourceRect:
+    - 172
+    - 0
+    - 86
+    - 312
+    pivot:
+    - 42
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_longquanjian__weapon_R.png
+    sha256: 9df9a7a14ed2d747632f906d6d47b4c4a71f4e2790fa076b6d0fe56ec4e192ef
+- item: eq_qimeigun
+  sourceSha256: 6dcb647a8fa0ebd4705f03bac052e02b85bf42455c041505a6780c8e6272e7c8
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: staff
+    axisRatio: 811.039986
+    rotationDeg: 48.612701
+    lengthM: 1.7
+    gripRatio: 0.28
+    fitScale: 0.41428571
+    grip:
+    - 51
+    - 354
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_qimeigun__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 104
+    - 520
+    pivot:
+    - 51
+    - 354
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_qimeigun__weapon_R.png
+    sourceRect:
+    - 104
+    - 0
+    - 104
+    - 520
+    pivot:
+    - 51
+    - 354
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_qimeigun__weapon_R.png
+    sourceRect:
+    - 208
+    - 0
+    - 104
+    - 520
+    pivot:
+    - 51
+    - 354
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_qimeigun__weapon_R.png
+    sha256: 4626fc7613efe1bbac71998445ec756e9a2748e747999ae7c8fac01e52e98d72
+- item: eq_qinggangjian
+  sourceSha256: e118d6ddb21d65471513012fd8f07306cef6b54915ff9d5edd884947b2c7cfe6
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: sword
+    axisRatio: 243.661928
+    rotationDeg: -43.496316
+    lengthM: 1.0
+    gripRatio: 0.18
+    fitScale: 0.22775801
+    grip:
+    - 45
+    - 237
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_qinggangjian__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 92
+    - 312
+    pivot:
+    - 45
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_qinggangjian__weapon_R.png
+    sourceRect:
+    - 92
+    - 0
+    - 92
+    - 312
+    pivot:
+    - 45
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_qinggangjian__weapon_R.png
+    sourceRect:
+    - 184
+    - 0
+    - 92
+    - 312
+    pivot:
+    - 45
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_qinggangjian__weapon_R.png
+    sha256: b2b867376b76c0b9e86243426f16d7c223ac39731ba887cc404e3f6d4cf02187
+- item: eq_ruanbian
+  sourceSha256: 15346cebf6216ed5f1680be9ceccae2656c07732ce713ffbf637c3b953f58d02
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: whip
+    axisRatio: 1.691197
+    rotationDeg: 0.0
+    lengthM: 0.42
+    gripRatio: 0.1
+    fitScale: 0.17618271
+    grip:
+    - 130
+    - 117
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_ruanbian__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 204
+    - 150
+    pivot:
+    - 130
+    - 117
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_ruanbian__weapon_R.png
+    sourceRect:
+    - 204
+    - 0
+    - 204
+    - 150
+    pivot:
+    - 130
+    - 117
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_ruanbian__weapon_R.png
+    sourceRect:
+    - 408
+    - 0
+    - 204
+    - 150
+    pivot:
+    - 130
+    - 117
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_ruanbian__weapon_R.png
+    sha256: b1cc3fe034d4bad4858f82d5e0f97df66e92650a40b122b9c25067e67a980c81
+- item: eq_sanjiegun
+  sourceSha256: 3c51d4ddf700fa5a32e6ec61dc6186df54442f198adb47847aad4f5a7e9e4a9d
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: whip
+    axisRatio: 1.258802
+    rotationDeg: 0.0
+    lengthM: 0.42
+    gripRatio: 0.1
+    fitScale: 0.135
+    grip:
+    - 88
+    - 112
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_sanjiegun__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 136
+    - 140
+    pivot:
+    - 88
+    - 112
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_sanjiegun__weapon_R.png
+    sourceRect:
+    - 136
+    - 0
+    - 136
+    - 140
+    pivot:
+    - 88
+    - 112
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_sanjiegun__weapon_R.png
+    sourceRect:
+    - 272
+    - 0
+    - 136
+    - 140
+    pivot:
+    - 88
+    - 112
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_sanjiegun__weapon_R.png
+    sha256: 04b2c52ca62d442a65305eb5a1e555b50ca2372d4af147adbadaf1e320c7e6d9
+- item: eq_shunvjian
+  sourceSha256: dbb4baee0e26b2fff2c064bbb89cceaa9ce4dae47fa3cb5360510c722756c88a
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: sword
+    axisRatio: 204.114025
+    rotationDeg: -45.035931
+    lengthM: 1.0
+    gripRatio: 0.18
+    fitScale: 0.26750261
+    grip:
+    - 48
+    - 238
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_shunvjian__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 314
+    pivot:
+    - 48
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_shunvjian__weapon_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 314
+    pivot:
+    - 48
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_shunvjian__weapon_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 314
+    pivot:
+    - 48
+    - 238
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_shunvjian__weapon_R.png
+    sha256: fd3d253baf1e1c591705a42949511b6ad47db008d7b576b5bac4a7e4e7d142a2
+- item: eq_tiedan
+  sourceSha256: 6fcdbac688bc528979e03c27e218dbb3b6ed161d8b74089875dc1a3ceadda650
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: token
+    axisRatio: 4.488801
+    rotationDeg: -103.586269
+    lengthM: 0.2
+    gripRatio: 0.5
+    fitScale: 0.06597671
+    grip:
+    - 31
+    - 37
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_tiedan__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 64
+    - 76
+    pivot:
+    - 31
+    - 37
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_tiedan__weapon_R.png
+    sourceRect:
+    - 64
+    - 0
+    - 64
+    - 76
+    pivot:
+    - 31
+    - 37
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_tiedan__weapon_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 64
+    - 76
+    pivot:
+    - 31
+    - 37
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_tiedan__weapon_R.png
+    sha256: 02a62031eaf5784eb3905766b8b7618108c55d5e60ef346b9998ab13640570b8
+- item: eq_tulongdao
+  sourceSha256: 699510f23e522352344e547690ff6c5d1809d5d821779005c455a88d0d2a9f1c
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: blade
+    axisRatio: 81.603972
+    rotationDeg: -46.936995
+    lengthM: 1.25
+    gripRatio: 0.22
+    fitScale: 0.33298647
+    grip:
+    - 57
+    - 283
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_tulongdao__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 116
+    - 388
+    pivot:
+    - 57
+    - 283
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_tulongdao__weapon_R.png
+    sourceRect:
+    - 116
+    - 0
+    - 116
+    - 388
+    pivot:
+    - 57
+    - 283
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_tulongdao__weapon_R.png
+    sourceRect:
+    - 232
+    - 0
+    - 116
+    - 388
+    pivot:
+    - 57
+    - 283
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_tulongdao__weapon_R.png
+    sha256: 1ff748c9458a0a1b0f1565fbed49d65f7ca24eb7f66ece36f394a9fd116ceb6f
+- item: eq_xuantiejian
+  sourceSha256: 21560cb35d6d32a3a4f4217d666f2171760ba397b559ab6a4792fe751d90ae90
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: blade
+    axisRatio: 89.295727
+    rotationDeg: 134.278183
+    lengthM: 1.5
+    gripRatio: 0.22
+    fitScale: 0.32323232
+    grip:
+    - 65
+    - 338
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_xuantiejian__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 128
+    - 462
+    pivot:
+    - 65
+    - 338
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_xuantiejian__weapon_R.png
+    sourceRect:
+    - 128
+    - 0
+    - 128
+    - 462
+    pivot:
+    - 65
+    - 338
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_xuantiejian__weapon_R.png
+    sourceRect:
+    - 256
+    - 0
+    - 128
+    - 462
+    pivot:
+    - 65
+    - 338
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_xuantiejian__weapon_R.png
+    sha256: c2bed98111d21296d8a0dcc017c7a8e57a2dc890484e44eaadb4683454246814
+- item: eq_xuedao
+  sourceSha256: 8bb1c811ec354e9aba0726a91fb7ebe59991ca307c9ee1f9a4612ac50b6e1bc3
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: blade
+    axisRatio: 109.701603
+    rotationDeg: 49.774344
+    lengthM: 0.92
+    gripRatio: 0.2
+    fitScale: 0.23529412
+    grip:
+    - 39
+    - 215
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_xuedao__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 94
+    - 290
+    pivot:
+    - 39
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_xuedao__weapon_R.png
+    sourceRect:
+    - 94
+    - 0
+    - 94
+    - 290
+    pivot:
+    - 39
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_xuedao__weapon_R.png
+    sourceRect:
+    - 188
+    - 0
+    - 94
+    - 290
+    pivot:
+    - 39
+    - 215
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_xuedao__weapon_R.png
+    sha256: 6eed01b6a71db2b115addf7afb6c2397d3aa5b108317c6c1995455f78d48d3aa
+- item: eq_yanlingdao
+  sourceSha256: df60ee16ee21787521ad4de18344b094a101a2b95ef58c73abeba41c1fa31843
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: blade
+    axisRatio: 10.930683
+    rotationDeg: -142.156639
+    lengthM: 0.92
+    gripRatio: 0.2
+    fitScale: 0.28263473
+    grip:
+    - 46
+    - 214
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_yanlingdao__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 126
+    - 290
+    pivot:
+    - 46
+    - 214
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_yanlingdao__weapon_R.png
+    sourceRect:
+    - 126
+    - 0
+    - 126
+    - 290
+    pivot:
+    - 46
+    - 214
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_yanlingdao__weapon_R.png
+    sourceRect:
+    - 252
+    - 0
+    - 126
+    - 290
+    pivot:
+    - 46
+    - 214
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_yanlingdao__weapon_R.png
+    sha256: d843063d5fb74ba66e59d11c8bb0a662d863d7599ee4dae65ec6dc23cd5186b3
+- item: eq_yitianjian
+  sourceSha256: 7e2df349badedf270de07b644101b27522c56d62dfeb2bc130eb2bc466312997
+  toolVersion: 1
+  palette: []
+  build:
+    subtype: sword
+    axisRatio: 156.708012
+    rotationDeg: -45.618522
+    lengthM: 1.0
+    gripRatio: 0.18
+    fitScale: 0.20333598
+    grip:
+    - 48
+    - 237
+  layers:
+  - slot: weapon_R
+    view: front34
+    file: eq_yitianjian__weapon_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 96
+    - 312
+    pivot:
+    - 48
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: back34
+    file: eq_yitianjian__weapon_R.png
+    sourceRect:
+    - 96
+    - 0
+    - 96
+    - 312
+    pivot:
+    - 48
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: weapon_R
+    view: side
+    file: eq_yitianjian__weapon_R.png
+    sourceRect:
+    - 192
+    - 0
+    - 96
+    - 312
+    pivot:
+    - 48
+    - 237
+    scale: 1.0
+    zOrder: 15.25
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_yitianjian__weapon_R.png
+    sha256: 5bdccaa25dc957827dfc1b0c2c89a6d87ab62dd132fb6114ce190bfb9fae3c96

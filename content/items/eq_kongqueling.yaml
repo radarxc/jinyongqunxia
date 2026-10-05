@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_kongqueling
+name: 孔雀翎
+kind: hidden
+sub: gun
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 古龙《七种武器·孔雀翎》
+price: auto
+flags:
+- unique
+assets:
+  icon: item/kongqueling
+text:
+  desc: 外观：黄金与青铜复合圆筒机括，端面如收拢孔雀尾。
+  lore: 古龙《七种武器·孔雀翎》中的著名暗器，本文作非商业致敬。圆筒机关须由专门法门施用，开合后一次尽发；黄金青铜外观、具体尺度与每战次数为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: gun
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 120
+      hardness: 70
+      qiAffinity: 100
+      skillRef: sk_kongquelingfa

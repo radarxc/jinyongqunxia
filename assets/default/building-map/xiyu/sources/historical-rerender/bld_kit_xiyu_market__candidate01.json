@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_market",
+  "generated_at": "2026-10-01T10:13:24.976740+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_market__candidate01.png",
+  "sha256": "62d0024d34c49993e9334625f27b6c94aa3ae3ff91f2fc4077dd52d8d7c485e5",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_market__geometry-lock.png",
+      "sha256": "f157b8df221d3aa86445a206ee866d5a205af988e5b141c38382275f05fa5b0a",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/market_4058.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Sunday_market_Kashgar_IGP4058.jpg",
+      "detail": "只取木器、铜器、陶器和悬挂密度；吉他、现代棚顶、灯具与文字排除。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/market_rakes.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Hand-made_rakes_for_sale._Kashgar_market._2011.jpg",
+      "detail": "只取木柄农具的捆扎陈列与低位摊陈；车辆、钢棚和现代包装排除。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Sunday_market_Kashgar_IGP4058.jpg — 只取木器、铜器、陶器和悬挂密度；吉他、现代棚顶、灯具与文字排除。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Hand-made_rakes_for_sale._Kashgar_market._2011.jpg — 只取木柄农具的捆扎陈列与低位摊陈；车辆、钢棚和现代包装排除。\n\nAsset-specific production prompt:\nUse case: sketch-to-render. This input is an exact orthographic production geometry blockout, NOT a mood image. Materialize it as a realistic hand-crafted ancient southern Xinjiang oasis-town map sprite. Preserve the input camera, framing, every major outer boundary and especially the three lowest footprint corners PIXEL EXACTLY. Do NOT rotate, re-project, tilt, enlarge, narrow, or reposition the blockout. Its ground axes are exactly +0.5 and -0.5 slopes, yaw45 elevation30, required for grid assembly. Add fine weathered ochre adobe, local pale stone foundation, honest timber grain and carved wood screens. Restrained highly detailed realistic historic strategy-game art; no plastic/toy look. Upper-left light, tiny lower-right contact shadow. Keep real transparent RGBA outside silhouette. No text, numbers, guide marks, border, watermark, people, animals, modern objects, landscape, or thick floating display slab. Ground is a flat thin contact surface. All new detail stays WITHIN the guide silhouette. Footprint front-to-side lengths exactly 5:4. Make this exact four-post rectangular geometry into one oasis bazaar stall. Top plane is taut woven tan awning with small muted rust geometric woven strips; retain exact awning plane orientation and size. Plain timber posts, small pots, copper bowls, folded rugs on low counter beneath within footprint. Ground remains thin rectangular contact surface. Lowest vertices left(208,580), front(830,891), right(1328,642).\n\nRequired historical detail summary: 低矮素木/芦苇遮棚，货品以陶罐、铜器、绳索、织物为主；无招牌文字。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

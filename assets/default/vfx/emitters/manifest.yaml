@@ -1,0 +1,822 @@
+- id: vfx_emitter_palm
+  file: palm/source_palm.png
+  category: vfx/emitter
+  style: default
+  subject: 共用掌面发出方；朴素宋式灰褐袖；不绑定具体人物或书界
+  prompt: |-
+    Use case: precise-object-edit.
+    Edit this emitter plate. Preserve exactly one adult five-finger hand, warm natural skin, grey-brown plain Song-style hemp sleeve, pose and native transparent background. Improve TWO compositing requirements:
+    1) Rotate the open palm plane about its upright axis about 35 degrees so its outward normal points diagonally toward the screen RIGHT while still showing palm lines and palm pads clearly. In screen projection the emission direction is horizontal right [1,0]. The hand should read as actively pushing to the right rather than presenting a flat palm directly at the viewer. Keep thumb plus four fingers individually readable and natural.
+    2) Reframe the complete isolated hand, wrist and SHORT sleeve smaller, centered with 100 pixels transparent clearance at every canvas edge on a square image. No part of sleeve, wrist, palm or finger may touch the canvas border. The cuff and sleeve end must both lie fully inside frame. Do not crop the sleeve on the left.
+    Keep the whole active palm wide and visible. No effect is drawn. No arrows or coordinate marks. This is only a pose demonstration, not a claim about original text handedness. Refine any coloured silhouette fringe into clean native-alpha edges; preserve skin and fabric colour.
+    Avoid: missing or extra fingers, fused fingers, abnormal joints, detached wrist, long nails, modern sleeve, weapon, dragon, gold glow, energy, smoke, magic, ground shadow, text, numbers, logo, border, checkerboard artwork, white or paper background.
+  negative: missing or extra fingers, fused fingers, abnormal joints, detached wrist, long nails, modern sleeve, weapon, dragon, gold glow, energy, smoke, magic, ground shadow, text, numbers, logo, border, checkerboard artwork, white or paper background
+  references:
+  - assets/default/baseline/vfx/mv_xianglong18_kanglong/emitter/source_palm.png
+  tool: byte-for-byte copy; upstream built-in image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-09-30T08:28:18.577440+00:00'
+  source_path: assets/default/baseline/vfx/mv_xianglong18_kanglong/emitter/source_palm.png
+  size: 1254x1254
+  sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+  status: candidate
+  notes:
+  - 本任务逐字节复制现有样例，不重新生成、不处理alpha。
+  - 继承原EmitterPlate；本次目视确认并复测指端截面。
+  - 存在 alpha=1 的远处极低透明孤立噪点，以及边缘 alpha=1–2 的少量彩色像素；alpha>1 实体边界四周余量至少203px。保留工具原 alpha，本段不修像素。
+  - 真实掌势、左右手与原著关系（待考）；仅姿态示意，不声称精确手势书证或解剖母版。
+  - 尺寸未遵循请求的1024²，按真实1254²登记；第二段不得误写512²或1024²。
+  - 工具 view_image 返回 application/octet-stream MIME 会使直送 image() 的预览几乎全黑；把 data URL MIME 声明改成 image/png（未改PNG字节）即可正常查看。
+  - 原始生成请求与编辑输入链见 assets/default/baseline/vfx/manifest.yaml 对应 sources[role=emitter]；references 是本任务复制来源。
+  emitter_type: palm
+  emitter_plate: palm/emitter-plate.yaml
+  model_scope: 继承上游执行配置，不是图像后端实测型号
+  original_generation_source: /Users/bytedance/.codex/generated_images/01a0f16a-fdcf-73f2-84e7-87884d97e2e6/exec-ce2b6469-7def-4f51-9a8e-3e724081c57f.png
+  candidate_count: 0
+  reused_count: 1
+  selected_candidate: existing baseline
+  rejections: []
+  measurement:
+    emit_point_px:
+    - 850
+    - 704
+    direction:
+    - 1
+    - 0
+    emission_width_px: 320
+    method: 沿用并目视复核有效掌面：x=850，y=[544,864)，320=864−544，中心y=(544+864)/2=704；排除手指与腕袖，不用整手alpha包围盒。
+  image_integrity:
+    mode: RGBA
+    bytes: 626765
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1319143
+    alpha_partial_pixels: 252629
+    alpha_ge128_bbox_half_open:
+    - 262
+    - 260
+    - 982
+    - 1048
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_finger
+  file: finger/source_finger.png
+  category: vfx/emitter
+  style: default
+  subject: 共用单指发出方；朴素宋明风格浅灰白布袖；沿用大理样例，不绑定具体人物或书界
+  prompt: |-
+    Use case: stylized-concept.
+    Asset type: isolated transparent RGBA finger emitter plate for a Chinese wuxia game.
+    Primary request: exactly one anatomically convincing adult human hand with wrist and a short plain light grey-white cloth sleeve, simple historical Dali/Song-era Chinese costume feeling without court decoration. The index finger is extended STRAIGHT HORIZONTALLY TO THE RIGHT, its tip is the only intended future energy source. The middle, ring and little fingers are naturally curled into the lower palm, their three distinct knuckle/finger forms readable. The thumb rests naturally across the upper side of those curled fingers. There must be exactly five digits total: index, middle, ring, little, thumb; no duplicate fingers. Short natural nails. Three-quarter side view shows enough of the palm and curled fingers to understand anatomy. This is a pose demonstration, not a claim about original-text handedness.
+    Composition: square 1024 x 1024. Entire hand, attached wrist and short sleeve fully inside canvas, at least 100 px transparent margin everywhere. Sleeve at lower-left, natural wrist leads into hand in center, fingertip near (800,480), pointing precisely horizontal right [1,0]. Do not label coordinates or paint the source. Index-tip cross-section about 28 px. The sleeve's far end is fully visible inside canvas, not cut at border.
+    Style/medium: polished realistic wuxia game concept painting, natural warm skin tones, physically readable anatomical joints, clean non-ink digital paint and subtle textile texture. All skin, sleeve and contours use controlled realistic shading: absolutely no Chinese ink brushwork, paper texture, watery bleed or calligraphic marks. Neutral diffuse soft illumination, no glow.
+    Scene/backdrop: genuine transparent background, native RGBA with clean fine alpha edges. No painted backdrop or cast ground shadow.
+    Avoid: second hand, six fingers, missing digits, fused digits, dislocated joints, broken or detached wrist, crooked beam direction, claw fingers, long nail, crystal nail, weapon, energy, beam, detached qi blade, halo, gold glow, smoke, watercolor, ink wash, paper, modern clothing, armor, jewellery, court decoration, Qing horse-hoof cuffs, Japanese kimono, text, arrows, anchor marks, watermark, logo, border, checkerboard artwork, white background, grey background, cropped sleeve or fingers.
+  negative: second hand, six fingers, missing digits, fused digits, dislocated joints, broken or detached wrist, crooked beam direction, claw fingers, long nail, crystal nail, weapon, energy, beam, detached qi blade, halo, gold glow, smoke, watercolor, ink wash, paper, modern clothing, armor, jewellery, court decoration, Qing horse-hoof cuffs, Japanese kimono, text, arrows, anchor marks, watermark, logo, border, checkerboard artwork, white background, grey background, cropped sleeve or fingers
+  references:
+  - assets/default/baseline/vfx/sk_liumai/emitter/source_finger.png
+  tool: byte-for-byte copy; upstream built-in image_gen
+  model: gpt-6-astra
+  effort: ultra
+  created: '2026-09-30T08:30:08.125047+00:00'
+  source_path: assets/default/baseline/vfx/sk_liumai/emitter/source_finger.png
+  size: 1254x1254
+  sha256: 09b23637489db1342a22f252ef3b209b1afacf4e168c9648ff0e51cf1957cbd9
+  status: candidate
+  notes:
+  - 本任务逐字节复制现有样例，不重新生成、不处理alpha。
+  - 继承原EmitterPlate；本次目视确认并复测指端截面。
+  - 存在 alpha=1 的远处極低透明孤立噪点（左边框也有）；alpha>1 主体边界四周余量至少52px。边缘有极低透明彩色像素，未程序处理。
+  - 提示要求100px边距未精确遵循，但主轮廓仍满足32px建议；后续缩放/构图以真实边界为准。
+  - 尺寸未遵循请求的1024²，按真实1254²登记。
+  - 原著左右手/指法关系（待考）；仅一指线性束发出方模板，不宣称完成六式或六束并发。
+  - 工具 view_image 返回 application/octet-stream MIME 导致预览几乎全黑；将 data URL MIME 声明为 image/png（不改字节）后已正常检查。
+  - 原始生成请求与编辑输入链见 assets/default/baseline/vfx/manifest.yaml 对应 sources[role=emitter]；references 是本任务复制来源。
+  emitter_type: finger
+  emitter_plate: finger/emitter-plate.yaml
+  model_scope: 继承上游执行配置，不是图像后端实测型号
+  original_generation_source: /Users/bytedance/.codex/generated_images/01a0f16a-fdcf-73f2-84e7-87884d97e2e6/exec-359350b9-4d62-4894-a6b3-d45d958f72fc.png
+  candidate_count: 0
+  reused_count: 1
+  selected_candidate: existing baseline
+  rejections: []
+  measurement:
+    emit_point_px:
+    - 1178
+    - 468
+    direction:
+    - 1
+    - 0
+    emission_width_px: 43
+    method: 沿用并复测：指尖(1178,468) alpha=217；内侧x=1165处alpha>=128连续区间y=447..489，43=489−447+1。
+  image_integrity:
+    mode: RGBA
+    bytes: 686558
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1258200
+    alpha_partial_pixels: 313499
+    alpha_ge128_bbox_half_open:
+    - 55
+    - 397
+    - 1179
+    - 1097
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_fist
+  file: fist/source_fist.png
+  category: vfx/emitter
+  style: default
+  subject: 写实握拳前伸手臂、朴素灰布袖；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Edit this one emitter source cutout. Preserve the same photorealistic clenched punching fist, skin, five folded fingers, outside thumb, rough gray linen sleeve, rightward punch direction and upper-left lighting. Change only framing and sleeve extent: the WHOLE silhouette must now fit comfortably inside a 1254x1254 square with at least 120 pixels completely transparent empty space on EVERY edge. Zoom out so hand-and-short-forearm spans only 850 pixels horizontally. Reconstruct the left end of the sleeve as a short loose cloth cuff/segment that ends naturally INSIDE the frame at x≈150, with no skin stump visible. Do not let the sleeve touch or crop any image border. Position all visible pixels within x=150..1100 and y=300..950. Transparent alpha background, preserve genuine transparency and clean edges. No new body parts, no second hand, no face, no extra fingers, no text, no watermark, no glow, no effects, no cast shadow. This is an isolated small source cutout centered in a large
+    empty transparent square, not a close-up filling the frame.'
+  negative: no face, torso, extra limbs, extra or missing fingers, modern hardware, named weapon, text, watermark, background, checkerboard, cast shadow, aura, smoke or VFX
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-emitters/assets/default/vfx/emitters/fist/source_fist.png
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:17:56.532569+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-c4e61a23-140a-430e-a6e6-b004f5d493ba.png
+  size: 1254x1254
+  sha256: 1bf48d8ceb545772d8261c306c096e2a31b40ce304b96167a7a979888676ca2b
+  status: candidate
+  notes:
+  - 宋明语境普通造型（原创扩展），不绑定书界、人物或名器；没有精确断代/原著手势书证。
+  - 选中内置工具原件逐字节复制；保留alpha，无后处理。
+  - 第2候选编辑时 references 路径内是候选1；该路径现已替换为选中图，原输入字节由 generation_history.reference_snapshot 追溯。
+  - 现行schema缺真实类型枚举，category:palm仅兼容编码；按本条emitter_type/ID选图，待上游增列fist/leg后迁移。
+  emitter_type: fist
+  emitter_plate: fist/emitter-plate.yaml
+  model_scope: 内置工具未披露独立图像后端型号或推理强度。
+  candidate_count: 2
+  reused_count: 0
+  selected_candidate: 2
+  rejections:
+  - 袖端或裤管触画幅边；第二候选将完整主体收进透明画幅。
+  measurement:
+    method: 拳面视觉中心取扫描列x=1050（中心x=1050.5），alpha>=128连续y=464..736；宽=736−464+1=273，截面中心y=(464+737)/2=600.5。
+    emit_point_px:
+    - 1050.5
+    - 600.5
+    direction:
+    - 1
+    - 0
+    emission_width_px: 273
+  visual_review: 已逐张 view_image 自查并纠正查看器 MIME；拳指结构可辨，投掷手无暗器，竹管持握合理且右口可见，腿鞋结构可辨；四边不裁主体。保留原生alpha，细轮廓有少量低alpha彩边，未进行白底色键或后处理。
+  generation_history:
+  - candidate: 1
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-25a399b2-e614-4e92-a0f2-d6975e3ae29c.png
+    prompt: 'Use case: product-mockup. Asset type: reusable transparent RGBA emitter plate for a Chinese wuxia game; one isolated photographic limb cutout, square 1024x1024. Primary request: a realistic adult human forearm in a plain loose gray-brown woven linen sleeve, extending from lower left toward the right, hand clenched into one anatomically correct fist in a forward punch. Show the side and a little top of the fist so the four curled fingers and the thumb folded safely outside are understandable. The leading knuckle plane faces directly right (+x); knuckles centered around (800,500), forearm entering from (180,700); leave generous clear transparent margin on all sides. Skin has realistic pores, creases and fingernails, fabric simple unadorned Chinese historical common clothing, compatible with Song-to-Ming wuxia; no specific historical attribution. Lighting: soft studio light from upper left, consistent photographic realism. Scene/backdrop: genuinely transparent background encoded
+      by alpha, clean isolated edges, no ground or cast shadow, no checkerboard painted into pixels. Constraints: exactly one normal hand with five fingers naturally folded, no face, torso, second arm, jewelry, text, watermark, aura, glow, smoke, sparks or any effect; no weapon; no black or white background. No cartoon, illustration, ornate costume, modern fasteners. This is a source limb plate, not a finished VFX.'
+    references: []
+    selected: false
+    rejection: 袖端或裤管触画幅边；第二候选将完整主体收进透明画幅。
+  - candidate: 2
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-c4e61a23-140a-430e-a6e6-b004f5d493ba.png
+    prompt: 'Edit this one emitter source cutout. Preserve the same photorealistic clenched punching fist, skin, five folded fingers, outside thumb, rough gray linen sleeve, rightward punch direction and upper-left lighting. Change only framing and sleeve extent: the WHOLE silhouette must now fit comfortably inside a 1254x1254 square with at least 120 pixels completely transparent empty space on EVERY edge. Zoom out so hand-and-short-forearm spans only 850 pixels horizontally. Reconstruct the left end of the sleeve as a short loose cloth cuff/segment that ends naturally INSIDE the frame at x≈150, with no skin stump visible. Do not let the sleeve touch or crop any image border. Position all visible pixels within x=150..1100 and y=300..950. Transparent alpha background, preserve genuine transparency and clean edges. No new body parts, no second hand, no face, no extra fingers, no text, no watermark, no glow, no effects, no cast shadow. This is an isolated small source cutout centered in a
+      large empty transparent square, not a close-up filling the frame.'
+    references:
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-emitters/assets/default/vfx/emitters/fist/source_fist.png
+    reference_snapshot:
+      source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-25a399b2-e614-4e92-a0f2-d6975e3ae29c.png
+      sha256: 9907b5a23c4f65479a5a89b2491cd8d294bccd71ab64ee2c68284365cd3b6e26
+    selected: true
+  image_integrity:
+    mode: RGBA
+    bytes: 639465
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1313928
+    alpha_partial_pixels: 257419
+    alpha_ge128_bbox_half_open:
+    - 128
+    - 464
+    - 1163
+    - 919
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_sword
+  file: sword/source_sword.png
+  category: vfx/emitter
+  style: default
+  subject: 持普通直剑的写实手与素布袖；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Use case: historical-scene. Asset type: reusable rightward sword-hand emitter plate for a Chinese wuxia game, one square 1254x1254 image or equivalent square resolution. Primary request: a realistic adult human hand and short forearm emerging from a plain muted gray linen sleeve at lower left, firmly gripping a plain traditional Chinese straight double-edged jian sword. Exactly one anatomically correct hand, five digits with fingers naturally wrapping the hilt and thumb in opposition; hidden digits may be occluded by grip. The sword has a simple dark wood hilt, modest undecorated iron crossguard, straight symmetric steel blade with central ridge, simple pointed tip; generic Song-Ming visual vocabulary, no named famous weapon or ornament. Composition: whole hand, sleeve cuff and whole sword visible without clipping; blade held horizontally from left to right, tip around x=1120,y=530 in the square canvas, pointing exactly right. Leave clear transparent breathing room on all sides.
+    Style: photorealistic skin creases, ordinary natural cloth and practical steel, matching realistic cutout hand asset; no face, no torso. Soft upper-left light and believable local shading on material. Scene/backdrop: genuinely transparent RGBA alpha everywhere outside the single hand/sleeve/sword silhouette, clean sharp anti-aliased edges, no shadow on invisible ground. No background, no checkerboard pixels, no panel, no border, no text, no labels, no watermark, no qi, no glow, no trails, no particles, no energy, no duplicated hand, no extra fingers, no floating weapon, no injury. Candidate 2 correction: reduce subject size so the complete sleeve end is rounded off fully inside the canvas with at least 60 pixels of transparent margin at LEFT and RIGHT. The sword steel edges must be straight continuous geometric edges with no white clouds or debris along the edge. Blade length about 650 pixels, hand at x=320, tip x=1150. Transparent pixels meet the real material edge directly. Do not
+    draw any white fringe or silhouette outline. Treat as an extremely clean studio catalogue cutout, not a pasted photograph.'
+  negative: No background, checkerboard pixels, face, body, extra fingers, extra hands, text, watermark, qi, glow, particles, motion trails, white fringe or debris.
+  references: []
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:13:23.498812+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-f0ff-7e93-b32c-3bd6bb3f5377/exec-fa95ef08-f79e-41eb-8805-d00a06e90f2a.png
+  size: 1254x1254
+  sha256: 85245a416ce4d344542475cc9c943ce67f404f8485564ee5f798a169ad0f96e2
+  status: candidate
+  notes:
+  - 通用宋明风格视觉近似（原创扩展），未声称名器或精确断代考据。
+  - None; selected tool output copied byte-for-byte.
+  - 候选2剑背仍可见少量白色细边/碎边，最终美术验收待作者确认。
+  - alpha>=128主体至右侧边距24 px，低于32 px建议，但主体未裁断。
+  emitter_type: sword
+  emitter_plate: sword/emitter-plate.yaml
+  model_scope: 内置图像工具未披露独立后端型号或推理强度；未将README执行配置冒充实测。
+  candidate_count: 2
+  reused_count: 0
+  selected_candidate: 2
+  rejections:
+  - 候选1袖端触左画幅边缘，剑背有较明显白色残边；候选2完整容纳袖端且残边更少。
+  measurement:
+    threshold: alpha >= 128; original pixels, no edits
+    anchor: 兵器最右端高覆盖像素列；以像素中心(x+0.5,y+0.5)计算该列轮廓中点
+    reference_section_x: 1213
+    reference_y_inclusive:
+    - 616
+    - 628
+    width_formula: 628 - 616 + 1 = 13
+    note: 尖端数学顶点近零宽，源截面使用尖端后16 px的局部参考截面（原创扩展）；横向视觉发力方向统一[1,0]。
+    emit_point_px:
+    - 1229.5
+    - 622
+    direction:
+    - 1
+    - 0
+    emission_width_px: 13
+  visual_review:
+    view_image: true
+    anatomy: 单手五指，四指自然环握，拇指对握；未见额外手指。
+    grip: 手与兵器握持关系成立。
+    lighting: 左上光源，写实肤质与朴素灰布袖。
+    caveats:
+    - 候选2剑背仍可见少量白色细边/碎边，最终美术验收待作者确认。
+    - alpha>=128主体至右侧边距24 px，低于32 px建议，但主体未裁断。
+  generation_history:
+  - candidate: 1
+    source_path: /Users/bytedance/.codex/generated_images/01a0f427-f0ff-7e93-b32c-3bd6bb3f5377/exec-d301ebdd-df58-44fa-9e60-a36e96d77ca3.png
+    prompt: 'Use case: historical-scene. Asset type: reusable rightward sword-hand emitter plate for a Chinese wuxia game, one square 1254x1254 image or equivalent square resolution. Primary request: a realistic adult human hand and short forearm emerging from a plain muted gray linen sleeve at lower left, firmly gripping a plain traditional Chinese straight double-edged jian sword. Exactly one anatomically correct hand, five digits with fingers naturally wrapping the hilt and thumb in opposition; hidden digits may be occluded by grip. The sword has a simple dark wood hilt, modest undecorated iron crossguard, straight symmetric steel blade with central ridge, simple pointed tip; generic Song-Ming visual vocabulary, no named famous weapon or ornament. Composition: whole hand, sleeve cuff and whole sword visible without clipping; blade held horizontally from left to right, tip around x=1120,y=530 in the square canvas, pointing exactly right. Leave clear transparent breathing room on all sides.
+      Style: photorealistic skin creases, ordinary natural cloth and practical steel, matching realistic cutout hand asset; no face, no torso. Soft upper-left light and believable local shading on material. Scene/backdrop: genuinely transparent RGBA alpha everywhere outside the single hand/sleeve/sword silhouette, clean sharp anti-aliased edges, no shadow on invisible ground. No background, no checkerboard pixels, no panel, no border, no text, no labels, no watermark, no qi, no glow, no trails, no particles, no energy, no duplicated hand, no extra fingers, no floating weapon, no injury.'
+    selected: false
+    references: []
+  - candidate: 2
+    source_path: /Users/bytedance/.codex/generated_images/01a0f427-f0ff-7e93-b32c-3bd6bb3f5377/exec-fa95ef08-f79e-41eb-8805-d00a06e90f2a.png
+    prompt: 'Use case: historical-scene. Asset type: reusable rightward sword-hand emitter plate for a Chinese wuxia game, one square 1254x1254 image or equivalent square resolution. Primary request: a realistic adult human hand and short forearm emerging from a plain muted gray linen sleeve at lower left, firmly gripping a plain traditional Chinese straight double-edged jian sword. Exactly one anatomically correct hand, five digits with fingers naturally wrapping the hilt and thumb in opposition; hidden digits may be occluded by grip. The sword has a simple dark wood hilt, modest undecorated iron crossguard, straight symmetric steel blade with central ridge, simple pointed tip; generic Song-Ming visual vocabulary, no named famous weapon or ornament. Composition: whole hand, sleeve cuff and whole sword visible without clipping; blade held horizontally from left to right, tip around x=1120,y=530 in the square canvas, pointing exactly right. Leave clear transparent breathing room on all sides.
+      Style: photorealistic skin creases, ordinary natural cloth and practical steel, matching realistic cutout hand asset; no face, no torso. Soft upper-left light and believable local shading on material. Scene/backdrop: genuinely transparent RGBA alpha everywhere outside the single hand/sleeve/sword silhouette, clean sharp anti-aliased edges, no shadow on invisible ground. No background, no checkerboard pixels, no panel, no border, no text, no labels, no watermark, no qi, no glow, no trails, no particles, no energy, no duplicated hand, no extra fingers, no floating weapon, no injury. Candidate 2 correction: reduce subject size so the complete sleeve end is rounded off fully inside the canvas with at least 60 pixels of transparent margin at LEFT and RIGHT. The sword steel edges must be straight continuous geometric edges with no white clouds or debris along the edge. Blade length about 650 pixels, hand at x=320, tip x=1150. Transparent pixels meet the real material edge directly. Do not
+      draw any white fringe or silhouette outline. Treat as an extremely clean studio catalogue cutout, not a pasted photograph.'
+    selected: true
+    references: []
+  image_integrity:
+    mode: RGBA
+    bytes: 280005
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1459943
+    alpha_partial_pixels: 112089
+    alpha_ge128_bbox_half_open:
+    - 36
+    - 499
+    - 1230
+    - 803
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_sabre
+  file: sabre/source_sabre.png
+  category: vfx/emitter
+  style: default
+  subject: 持普通单刀的写实手与素布袖；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Use case: historical-scene. Asset type: reusable rightward sabre-hand emitter plate for Chinese wuxia game. Produce one SQUARE 1254x1254 or equivalent square image with true TRANSPARENT RGBA alpha background. Primary request: exactly one realistic adult hand and short forearm in a plain muted gray linen sleeve, firmly gripping a generic traditional Chinese single-edged curved dao sabre, plausible plain Song-Ming common weapon style. Five anatomically correct digits wrapping a simple cord-bound wood hilt, opposing thumb; fingers may naturally occlude one another. A simple small unornamented iron guard, one practical steel blade with a nearly straight back and gentle curve to a pointed tip; no named weapon, no fantastical decoration. Composition: compact whole isolated subject centered, must fit entirely within x=100..1150 and y=360..880 with generous fully transparent margin on ALL four sides. Sleeve at left, hand left of center, sabre extends horizontally right, tip at x=1130,y=540
+    points right, not upward. The whole sleeve end is visible, no body/face/shoulder. Photorealistic skin creases, plain cloth weave, muted metal reflections, soft upper-left illumination. The blade edge must be smooth continuous steel meeting transparent pixels directly, no white cutout debris. No extra hands, no extra digits, no missing fingers, no floating grip, no background, no checkerboard, no floor, no cast ground shadow, no white fringe, no outline, no text, no watermark, no qi effects, no glow, no particles, no motion trails. Candidate 2: PRIORITY is a perfectly clean alpha silhouette. Draw dark weathered STEEL, no white edge highlight; no white regions immediately outside the blade lower edge. All silhouette edges connect directly to transparent empty pixels. Make the object 20 percent smaller than a full-width asset, blade tip no farther right than 1100/1254 pixels. Show a slightly curved practical single-edged Chinese dao rather than a strongly hooked blade, tip still directed
+    RIGHT. Sleeve left boundary x>=100. This is one isolated hand with a sword-like Chinese dao and nothing else.'
+  negative: No background, checkerboard pixels, face, body, extra fingers, extra hands, text, watermark, qi, glow, particles, motion trails, white fringe or debris.
+  references: []
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:15:41.911415+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-f0ff-7e93-b32c-3bd6bb3f5377/exec-9a35000c-7734-4479-8f85-fef2ba56cbf2.png
+  size: 1254x1254
+  sha256: fc3bd27fd10d41e4321f2d14b447ea6e0dcd975dff6220f4258469770f69d9ad
+  status: candidate
+  notes:
+  - 通用宋明风格视觉近似（原创扩展），未声称名器或精确断代考据。
+  - None; selected tool output copied byte-for-byte.
+  - 候选2刀刃下缘中段仍有可见白色碎边，不能声称边缘完全干净；状态保留candidate。
+  - 刀尖视觉位置朝右上，但本图预设向右发力，direction=[1,0]不等同刀刃切线。
+  emitter_type: sabre
+  emitter_plate: sabre/emitter-plate.yaml
+  model_scope: 内置图像工具未披露独立后端型号或推理强度；未将README执行配置冒充实测。
+  candidate_count: 2
+  reused_count: 0
+  selected_candidate: 2
+  rejections:
+  - 候选1刀刃下缘白色残边较明显，且右侧留白不足；候选2留白和边缘有所改善。
+  measurement:
+    threshold: alpha >= 128; original pixels, no edits
+    anchor: 兵器最右端高覆盖像素列；以像素中心(x+0.5,y+0.5)计算该列轮廓中点
+    reference_section_x: 1176
+    reference_y_inclusive:
+    - 610
+    - 633
+    width_formula: 633 - 610 + 1 = 24
+    note: 尖端数学顶点近零宽，源截面使用尖端后16 px的局部参考截面（原创扩展）；横向视觉发力方向统一[1,0]。
+    emit_point_px:
+    - 1192.5
+    - 606
+    direction:
+    - 1
+    - 0
+    emission_width_px: 24
+  visual_review:
+    view_image: true
+    anatomy: 单手五指，四指自然环握，拇指对握；未见额外手指。
+    grip: 手与兵器握持关系成立。
+    lighting: 左上光源，写实肤质与朴素灰布袖。
+    caveats:
+    - 候选2刀刃下缘中段仍有可见白色碎边，不能声称边缘完全干净；状态保留candidate。
+    - 刀尖视觉位置朝右上，但本图预设向右发力，direction=[1,0]不等同刀刃切线。
+  generation_history:
+  - candidate: 1
+    source_path: /Users/bytedance/.codex/generated_images/01a0f427-f0ff-7e93-b32c-3bd6bb3f5377/exec-6f5432ea-9dde-498c-885f-033107352afa.png
+    prompt: 'Use case: historical-scene. Asset type: reusable rightward sabre-hand emitter plate for Chinese wuxia game. Produce one SQUARE 1254x1254 or equivalent square image with true TRANSPARENT RGBA alpha background. Primary request: exactly one realistic adult hand and short forearm in a plain muted gray linen sleeve, firmly gripping a generic traditional Chinese single-edged curved dao sabre, plausible plain Song-Ming common weapon style. Five anatomically correct digits wrapping a simple cord-bound wood hilt, opposing thumb; fingers may naturally occlude one another. A simple small unornamented iron guard, one practical steel blade with a nearly straight back and gentle curve to a pointed tip; no named weapon, no fantastical decoration. Composition: compact whole isolated subject centered, must fit entirely within x=100..1150 and y=360..880 with generous fully transparent margin on ALL four sides. Sleeve at left, hand left of center, sabre extends horizontally right, tip at x=1130,y=540
+      points right, not upward. The whole sleeve end is visible, no body/face/shoulder. Photorealistic skin creases, plain cloth weave, muted metal reflections, soft upper-left illumination. The blade edge must be smooth continuous steel meeting transparent pixels directly, no white cutout debris. No extra hands, no extra digits, no missing fingers, no floating grip, no background, no checkerboard, no floor, no cast ground shadow, no white fringe, no outline, no text, no watermark, no qi effects, no glow, no particles, no motion trails.'
+    selected: false
+    references: []
+  - candidate: 2
+    source_path: /Users/bytedance/.codex/generated_images/01a0f427-f0ff-7e93-b32c-3bd6bb3f5377/exec-9a35000c-7734-4479-8f85-fef2ba56cbf2.png
+    prompt: 'Use case: historical-scene. Asset type: reusable rightward sabre-hand emitter plate for Chinese wuxia game. Produce one SQUARE 1254x1254 or equivalent square image with true TRANSPARENT RGBA alpha background. Primary request: exactly one realistic adult hand and short forearm in a plain muted gray linen sleeve, firmly gripping a generic traditional Chinese single-edged curved dao sabre, plausible plain Song-Ming common weapon style. Five anatomically correct digits wrapping a simple cord-bound wood hilt, opposing thumb; fingers may naturally occlude one another. A simple small unornamented iron guard, one practical steel blade with a nearly straight back and gentle curve to a pointed tip; no named weapon, no fantastical decoration. Composition: compact whole isolated subject centered, must fit entirely within x=100..1150 and y=360..880 with generous fully transparent margin on ALL four sides. Sleeve at left, hand left of center, sabre extends horizontally right, tip at x=1130,y=540
+      points right, not upward. The whole sleeve end is visible, no body/face/shoulder. Photorealistic skin creases, plain cloth weave, muted metal reflections, soft upper-left illumination. The blade edge must be smooth continuous steel meeting transparent pixels directly, no white cutout debris. No extra hands, no extra digits, no missing fingers, no floating grip, no background, no checkerboard, no floor, no cast ground shadow, no white fringe, no outline, no text, no watermark, no qi effects, no glow, no particles, no motion trails. Candidate 2: PRIORITY is a perfectly clean alpha silhouette. Draw dark weathered STEEL, no white edge highlight; no white regions immediately outside the blade lower edge. All silhouette edges connect directly to transparent empty pixels. Make the object 20 percent smaller than a full-width asset, blade tip no farther right than 1100/1254 pixels. Show a slightly curved practical single-edged Chinese dao rather than a strongly hooked blade, tip still directed
+      RIGHT. Sleeve left boundary x>=100. This is one isolated hand with a sword-like Chinese dao and nothing else.'
+    selected: true
+    references: []
+  image_integrity:
+    mode: RGBA
+    bytes: 328472
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1453322
+    alpha_partial_pixels: 118503
+    alpha_ge128_bbox_half_open:
+    - 76
+    - 516
+    - 1193
+    - 753
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_staff
+  file: staff/source_staff.png
+  category: vfx/emitter
+  style: default
+  subject: 持素木棍的写实手臂与素布袖；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Use case: precise-object-edit. Edit target: the supplied RGBA staff-and-hand asset. Make exactly the following composition correction: zoom out the entire hand, forearm, sleeve and wooden staff by about 15%, so the complete grey-beige sleeve termination has a natural short rounded contour INSIDE the left edge with at least 70 pixels of fully transparent margin; likewise leave at least 70 pixels between staff endpoint and right edge. Keep the wooden staff horizontal pointing right, keep its endpoint at mid-height, keep the natural five-finger grip and realistic hand, plain coarse linen sleeve, worn plain wood, upper-left soft light. Everything else remains unchanged. The object is an isolated prop cutout, not a person''s arm continuing off-screen. Square canvas, genuinely transparent alpha background. No background, aura, energy, cast shadow, face, extra hand, extra fingers, lettering or border.'
+  negative: extra hands, extra or fused fingers, broken grip, bent staff, metal tips, jewelry, text, watermark, logo, frame, floor, scenery, image borders, fake checkerboard, translucent body.
+  references:
+  - /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-e59d05af-22d9-4cc1-b021-b0e5108254c2.png
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:13:59.922096+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-43b1d91b-4118-4a80-95ea-c90ffc7e9c8e.png
+  size: 1254x1254
+  sha256: 9aa2df24aba7a0eccd1dc17f94b2a161ab26e887b30aca6bd370c94d9ebed739
+  status: candidate
+  notes:
+  - 原生 RGBA；保留生成结果全部原字节，未色键、裁切、缩放或重编码。
+  - 8px 边框 alpha>1 像素数=0；alpha=1/255低透明残色保留原生输出。
+  - 宋明语境普通造型（原创扩展）；未作名器或精确断代声明。
+  emitter_type: staff
+  emitter_plate: staff/emitter-plate.yaml
+  model_scope: 内置图像工具未披露独立后端型号或推理强度；未将README执行配置冒充实测。
+  candidate_count: 2
+  reused_count: 0
+  selected_candidate: 2
+  rejections:
+  - 候选1袖部触及左画幅边；候选2缩小且袖部完整收进画幅。
+  measurement:
+    method: 棍端可见最右列 x=1189，alpha>=128 的 y=638..651，中心(1189.5,(638+652)/2)=(1189.5,645)。端面完整发出截面取紧邻圆头 x=1165 的 y=619..672，宽673−619=54px；方向沿近水平棍轴向右。
+    emit_point_px:
+    - 1189.5
+    - 645
+    direction:
+    - 1
+    - 0
+    emission_width_px: 54
+  visual_review: 可辨拇指与四个屈指，手部环握木棍；圆头向右，朴素灰麻袖与木质表面，完整入框。 已逐张调用 view_image；工具显示的 RGBA 半透明边缘存在显示异常，结合 image_gen 原始回显审查五指结构、握持、方向、完整轮廓及只读像素统计；不声称完成真实播放器黑/灰/白合成验收。
+  generation_history:
+  - candidate: 1
+    prompt: 'Use case: historical-scene. Asset type: reusable martial-arts emitter plate, one square 1254x1254 or 1024x1024 true RGBA PNG. Primary request: an isolated realistic adult human hand and forearm gripping a plain straight wooden staff, the staff extending horizontally to the RIGHT with the complete rounded right endpoint clearly visible, about x=88%, y=47%. Natural anatomically correct single hand, five digits with normal occlusion around the staff, plausible thumb and firm grip. Only the necessary hand, forearm and sleeve plus one staff. Neutral warm skin, detailed lifelike knuckles, plain loose grey-beige coarse linen sleeve from lower left. Common simple unadorned Chinese wooden staff suitable for Song–Ming visual language, restrained worn wood texture, not a famous weapon. Side three-quarter view with horizontal rightward staff axis; retain adequate space around all outer edges including sleeve termination, nothing cut off by canvas. Match a realistic studio cutout game asset
+      with no face or body. Soft upper-left key light, clean sharp silhouette, no cast shadow. Scene/backdrop: entirely genuinely transparent alpha background, no background color or checker pattern. No martial energy, glow, aura, stroke or effects. Avoid: extra hands, extra or fused fingers, broken grip, bent staff, metal tips, jewelry, text, watermark, logo, frame, floor, scenery, image borders, fake checkerboard, translucent body.'
+    selected: false
+    references: []
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-e59d05af-22d9-4cc1-b021-b0e5108254c2.png
+  - candidate: 2
+    prompt: 'Use case: precise-object-edit. Edit target: the supplied RGBA staff-and-hand asset. Make exactly the following composition correction: zoom out the entire hand, forearm, sleeve and wooden staff by about 15%, so the complete grey-beige sleeve termination has a natural short rounded contour INSIDE the left edge with at least 70 pixels of fully transparent margin; likewise leave at least 70 pixels between staff endpoint and right edge. Keep the wooden staff horizontal pointing right, keep its endpoint at mid-height, keep the natural five-finger grip and realistic hand, plain coarse linen sleeve, worn plain wood, upper-left soft light. Everything else remains unchanged. The object is an isolated prop cutout, not a person''s arm continuing off-screen. Square canvas, genuinely transparent alpha background. No background, aura, energy, cast shadow, face, extra hand, extra fingers, lettering or border.'
+    selected: true
+    references:
+    - /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-e59d05af-22d9-4cc1-b021-b0e5108254c2.png
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-43b1d91b-4118-4a80-95ea-c90ffc7e9c8e.png
+  image_integrity:
+    mode: RGBA
+    bytes: 376277
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1435241
+    alpha_partial_pixels: 136731
+    alpha_ge128_bbox_half_open:
+    - 75
+    - 507
+    - 1190
+    - 855
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_spear
+  file: spear/source_spear.png
+  category: vfx/emitter
+  style: default
+  subject: 持普通木杆铁枪的写实手与素布袖；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Use case: historical-scene. Asset type: reusable SPEAR emitter plate for a Chinese wuxia game. One square 1254x1254 PNG, true transparent RGBA background. A single realistic adult hand and forearm in a plain muted gray linen sleeve, firmly and naturally gripping a plain brown hardwood spear shaft; the shaft extends from left to right to one simple pointed iron spearhead. Generic practical traditional Chinese Song-Ming common spear appearance, compact leaf-shaped steel spearhead with narrow socket, no tassel, no fancy decoration, no famous named weapon. The full hand has exactly five anatomically correct digits wrapped around the shaft with an opposing thumb, grip contact plausible. Sleeve forearm enters diagonally from lower left but the sleeve edge is fully inside image. Shaft is absolutely horizontal, spearhead pointed right at x=1080,y=575; show necessary shaft only with a natural blunt left end around x=280 and spearhead front half of the weapon. Keep entire silhouette inside
+    x=120..1100,y=400..850; do not fill image width. Photorealistic practical materials: human skin creases, coarse gray plain cloth, dark brown wood, slightly dark matte steel with restrained highlights. Soft upper-left illumination. Clean continuous silhouette with direct transition to transparent empty pixels; no white outline, no fringe, no white debris beyond any edge. No body, no face, no background, no checkerboard pixels, no floor, no ground shadow, no text, no watermarks, no magic, no glow, no energy, no trails, no particles, no extra hands, no extra fingers, no detached fingers, no floating grip.'
+  negative: No background, checkerboard pixels, face, body, extra fingers, extra hands, text, watermark, qi, glow, particles, motion trails, white fringe or debris.
+  references: []
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:16:54.826480+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f427-f0ff-7e93-b32c-3bd6bb3f5377/exec-0920b921-e0dd-426a-a93e-a7e82318f95f.png
+  size: 1254x1254
+  sha256: 6714888985b70cf5008d85d88c5b6f27039bd9ca3d5f9d235cb09b3c34bd036e
+  status: candidate
+  notes:
+  - 通用宋明风格视觉近似（原创扩展），未声称名器或精确断代考据。
+  - None; selected tool output copied byte-for-byte.
+  - alpha>=128主体至右侧边距28 px，低于32 px建议，但枪尖未裁断。
+  - 边缘有细小低alpha彩色像素；保留原生透明输出，未套用白底抠图或重绘。
+  emitter_type: spear
+  emitter_plate: spear/emitter-plate.yaml
+  model_scope: 内置图像工具未披露独立后端型号或推理强度；未将README执行配置冒充实测。
+  candidate_count: 1
+  reused_count: 0
+  selected_candidate: 1
+  rejections: []
+  measurement:
+    threshold: alpha >= 128; original pixels, no edits
+    anchor: 兵器最右端高覆盖像素列；以像素中心(x+0.5,y+0.5)计算该列轮廓中点
+    reference_section_x: 1209
+    reference_y_inclusive:
+    - 574
+    - 588
+    width_formula: 588 - 574 + 1 = 15
+    note: 尖端数学顶点近零宽，源截面使用尖端后16 px的局部参考截面（原创扩展）；横向视觉发力方向统一[1,0]。
+    emit_point_px:
+    - 1225.5
+    - 581.5
+    direction:
+    - 1
+    - 0
+    emission_width_px: 15
+  visual_review:
+    view_image: true
+    anatomy: 单手五指，四指自然环握，拇指对握；未见额外手指。
+    grip: 手与兵器握持关系成立。
+    lighting: 左上光源，写实肤质与朴素灰布袖。
+    caveats:
+    - alpha>=128主体至右侧边距28 px，低于32 px建议，但枪尖未裁断。
+    - 边缘有细小低alpha彩色像素；保留原生透明输出，未套用白底抠图或重绘。
+  generation_history:
+  - candidate: 1
+    source_path: /Users/bytedance/.codex/generated_images/01a0f427-f0ff-7e93-b32c-3bd6bb3f5377/exec-0920b921-e0dd-426a-a93e-a7e82318f95f.png
+    prompt: 'Use case: historical-scene. Asset type: reusable SPEAR emitter plate for a Chinese wuxia game. One square 1254x1254 PNG, true transparent RGBA background. A single realistic adult hand and forearm in a plain muted gray linen sleeve, firmly and naturally gripping a plain brown hardwood spear shaft; the shaft extends from left to right to one simple pointed iron spearhead. Generic practical traditional Chinese Song-Ming common spear appearance, compact leaf-shaped steel spearhead with narrow socket, no tassel, no fancy decoration, no famous named weapon. The full hand has exactly five anatomically correct digits wrapped around the shaft with an opposing thumb, grip contact plausible. Sleeve forearm enters diagonally from lower left but the sleeve edge is fully inside image. Shaft is absolutely horizontal, spearhead pointed right at x=1080,y=575; show necessary shaft only with a natural blunt left end around x=280 and spearhead front half of the weapon. Keep entire silhouette inside
+      x=120..1100,y=400..850; do not fill image width. Photorealistic practical materials: human skin creases, coarse gray plain cloth, dark brown wood, slightly dark matte steel with restrained highlights. Soft upper-left illumination. Clean continuous silhouette with direct transition to transparent empty pixels; no white outline, no fringe, no white debris beyond any edge. No body, no face, no background, no checkerboard pixels, no floor, no ground shadow, no text, no watermarks, no magic, no glow, no energy, no trails, no particles, no extra hands, no extra fingers, no detached fingers, no floating grip.'
+    selected: true
+    references: []
+  image_integrity:
+    mode: RGBA
+    bytes: 445605
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1412247
+    alpha_partial_pixels: 159508
+    alpha_ge128_bbox_half_open:
+    - 40
+    - 522
+    - 1226
+    - 1023
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_whip
+  file: whip/source_whip.png
+  category: vfx/emitter
+  style: default
+  subject: 持普通软鞭的写实手与素布袖；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Use case: historical-scene. Asset type: reusable martial-arts emitter plate, one square 1254x1254 true RGBA PNG. Primary request: an isolated realistic adult human hand and forearm gripping a plain short wooden handle of a single braided leather whip; the flexible lash emerges from the handle, follows one gentle shallow curve across the middle of the canvas, and the tapering last segment and visible terminal TIP POINT HORIZONTALLY TO THE RIGHT. Do not coil it into a circle. Hand at x≈34%, handle points toward right. Tip near x≈88%, y≈45%, the final 12% of the lash almost horizontal. Natural anatomically correct single hand with five digits and plausible firm wrapped grip, thumb resting over index/middle fingers with natural occlusion. Only one hand, the necessary forearm, sleeve and one whip, not a complete person. Realistic warm skin and knuckles, plain loose grey-beige coarse linen sleeve lower left, no decoration. Plain utilitarian old Chinese whip with dark-brown braided leather
+    and simple wood handle, no famous weapon or magic. Soft upper-left light, detailed lifelike studio cutout, consistent realism with martial-arts hand plates. Fit the ENTIRE OBJECT inside the square, including rounded left sleeve termination, at least 65 pixels of fully transparent margin on all four sides, no element touches any image edge. No face or body. Scene/backdrop: genuinely transparent alpha, no background color or checker pattern; no cast shadow. Avoid: extra hands, extra/fused fingers, broken grip, a second whip, lasso, coiled rope, metal chain, modern hardware, jewelry, text, watermark, logo, frame, floor, scenery, glow, aura, martial energy, effects, image borders, fake checkerboard, translucent subject.'
+  negative: extra hands, extra/fused fingers, broken grip, a second whip, lasso, coiled rope, metal chain, modern hardware, jewelry, text, watermark, logo, frame, floor, scenery, glow, aura, martial energy, effects, image borders, fake checkerboard, translucent subject.
+  references: []
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:15:07.396273+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-160b7f8b-6825-4d7b-a019-b6c2d247e18e.png
+  size: 1254x1254
+  sha256: 7e76a41ba40a8decfb44e2d82397063258db1f9f16872a16c0ade105eb352fac
+  status: candidate
+  notes:
+  - 原生 RGBA；保留生成结果全部原字节，未色键、裁切、缩放或重编码。
+  - 8px 边框 alpha>1 像素数=0；alpha=1/255低透明残色保留原生输出。
+  - 宋明语境普通造型（原创扩展）；未作名器或精确断代声明。
+  emitter_type: whip
+  emitter_plate: whip/emitter-plate.yaml
+  model_scope: 内置图像工具未披露独立后端型号或推理强度；未将README执行配置冒充实测。
+  candidate_count: 1
+  reused_count: 0
+  selected_candidate: 1
+  rejections: []
+  measurement:
+    method: 鞭梢最右实心列 x=1220，y=602..603，点(1220.5,(602+604)/2)=(1220.5,603)。临近尖端、尚有连续源截面的 x=1210 上 y=601..605，宽606−601=5px；终段近水平向右。
+    emit_point_px:
+    - 1220.5
+    - 603
+    direction:
+    - 1
+    - 0
+    emission_width_px: 5
+  visual_review: 单手五指自然环握短木柄，软鞭只有一条，末端向右，无第二只手、额外手指或武学效果。 已逐张调用 view_image；工具显示的 RGBA 半透明边缘存在显示异常，结合 image_gen 原始回显审查五指结构、握持、方向、完整轮廓及只读像素统计；不声称完成真实播放器黑/灰/白合成验收。
+  generation_history:
+  - candidate: 1
+    prompt: 'Use case: historical-scene. Asset type: reusable martial-arts emitter plate, one square 1254x1254 true RGBA PNG. Primary request: an isolated realistic adult human hand and forearm gripping a plain short wooden handle of a single braided leather whip; the flexible lash emerges from the handle, follows one gentle shallow curve across the middle of the canvas, and the tapering last segment and visible terminal TIP POINT HORIZONTALLY TO THE RIGHT. Do not coil it into a circle. Hand at x≈34%, handle points toward right. Tip near x≈88%, y≈45%, the final 12% of the lash almost horizontal. Natural anatomically correct single hand with five digits and plausible firm wrapped grip, thumb resting over index/middle fingers with natural occlusion. Only one hand, the necessary forearm, sleeve and one whip, not a complete person. Realistic warm skin and knuckles, plain loose grey-beige coarse linen sleeve lower left, no decoration. Plain utilitarian old Chinese whip with dark-brown braided
+      leather and simple wood handle, no famous weapon or magic. Soft upper-left light, detailed lifelike studio cutout, consistent realism with martial-arts hand plates. Fit the ENTIRE OBJECT inside the square, including rounded left sleeve termination, at least 65 pixels of fully transparent margin on all four sides, no element touches any image edge. No face or body. Scene/backdrop: genuinely transparent alpha, no background color or checker pattern; no cast shadow. Avoid: extra hands, extra/fused fingers, broken grip, a second whip, lasso, coiled rope, metal chain, modern hardware, jewelry, text, watermark, logo, frame, floor, scenery, glow, aura, martial energy, effects, image borders, fake checkerboard, translucent subject.'
+    selected: true
+    references: []
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-160b7f8b-6825-4d7b-a019-b6c2d247e18e.png
+  image_integrity:
+    mode: RGBA
+    bytes: 314425
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1465635
+    alpha_partial_pixels: 106526
+    alpha_ge128_bbox_half_open:
+    - 30
+    - 500
+    - 1221
+    - 904
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_fan
+  file: fan/source_fan.png
+  category: vfx/emitter
+  style: default
+  subject: 持展开素折扇的写实手与素布袖；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Use case: historical-scene. Asset type: reusable martial-arts emitter plate, one square 1254x1254 true RGBA PNG. Primary request: isolated lifelike adult human hand and forearm holding one partly opened plain traditional Chinese folding fan. The fan is rotated so that its wooden pivot is to the LEFT, its spread semicircular beige paper outer edge faces RIGHT, and the midpoint of that outer edge is the rightmost point near x=87%, y=50%; imagine the fan as a right-pointing half-disc. Bamboo ribs radiate toward the right from the pivot, simple undecorated pale parchment paper, no painting or lettering, no tassel, no jewelry or metal ornaments. Natural five-finger hand with plausible thumb and opposing fingers lightly but firmly grasping the fan''s short wooden base/pivot at x≈47%, y≈50%; the fingers are outside, not piercing paper. Necessary forearm and plain loose grey-beige coarse linen sleeve extend down-left. Realistic warm skin, knuckles, nails, fine skin texture, restrained
+    faithful materials, simple Song–Ming visual vocabulary rather than a named artifact. Side three-quarter view, whole unfolded fan silhouette legible, its outer curved edge facing exactly right. Soft upper-left studio light, sharp clean cutout. Entire sleeve and fan fit inside square with a naturally rounded sleeve termination and at least 70 pixels of empty alpha margin on ALL sides. No face, torso, scenery or floor. Scene/backdrop: genuinely transparent alpha background, no background color or checker pattern and no cast shadow. Avoid: extra hands, extra or fused fingers, broken grip, fan pointed upward, folded closed fan, a second fan, lace, contemporary materials, painted calligraphy, text, watermark, logo, frame, floor, glow, aura, martial energy, effects, borders, fake checkerboard, translucent subject.'
+  negative: extra hands, extra or fused fingers, broken grip, fan pointed upward, folded closed fan, a second fan, lace, contemporary materials, painted calligraphy, text, watermark, logo, frame, floor, glow, aura, martial energy, effects, borders, fake checkerboard, translucent subject.
+  references: []
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:16:35.571338+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-00e0f1e6-d211-4dbf-8fee-56126b15b596.png
+  size: 1254x1254
+  sha256: b2f3bff525286760f741e7438ced641adacd5345a498c2cef46259dbc65f8871
+  status: candidate
+  notes:
+  - 原生 RGBA；保留生成结果全部原字节，未色键、裁切、缩放或重编码。
+  - 8px 边框 alpha>1 像素数=0；alpha=1/255低透明残色保留原生输出。
+  - 宋明语境普通造型（原创扩展）；未作名器或精确断代声明。
+  emitter_type: fan
+  emitter_plate: fan/emitter-plate.yaml
+  model_scope: 内置图像工具未披露独立后端型号或推理强度；未将README执行配置冒充实测。
+  candidate_count: 1
+  reused_count: 0
+  selected_candidate: 1
+  rejections: []
+  measurement:
+    method: 扇沿中点按整个有效外弧的y投影定位：上端y=68，下端y=1008，中心y=(68+1009)/2=538.5；该高度右侧可见扇沿取x=1205.5，向右。emission_width取整个外弧对垂直方向的投影1009−68=941px，不把最右一列104px的局部接线误当整扇发出宽度。
+    emit_point_px:
+    - 1205.5
+    - 538.5
+    direction:
+    - 1
+    - 0
+    emission_width_px: 941
+  visual_review: 拇指横压扇根，余指绕握可辨；竹骨素纸折扇扇沿朝右，未画题字、名器或能量。 已逐张调用 view_image；工具显示的 RGBA 半透明边缘存在显示异常，结合 image_gen 原始回显审查五指结构、握持、方向、完整轮廓及只读像素统计；不声称完成真实播放器黑/灰/白合成验收。
+  generation_history:
+  - candidate: 1
+    prompt: 'Use case: historical-scene. Asset type: reusable martial-arts emitter plate, one square 1254x1254 true RGBA PNG. Primary request: isolated lifelike adult human hand and forearm holding one partly opened plain traditional Chinese folding fan. The fan is rotated so that its wooden pivot is to the LEFT, its spread semicircular beige paper outer edge faces RIGHT, and the midpoint of that outer edge is the rightmost point near x=87%, y=50%; imagine the fan as a right-pointing half-disc. Bamboo ribs radiate toward the right from the pivot, simple undecorated pale parchment paper, no painting or lettering, no tassel, no jewelry or metal ornaments. Natural five-finger hand with plausible thumb and opposing fingers lightly but firmly grasping the fan''s short wooden base/pivot at x≈47%, y≈50%; the fingers are outside, not piercing paper. Necessary forearm and plain loose grey-beige coarse linen sleeve extend down-left. Realistic warm skin, knuckles, nails, fine skin texture, restrained
+      faithful materials, simple Song–Ming visual vocabulary rather than a named artifact. Side three-quarter view, whole unfolded fan silhouette legible, its outer curved edge facing exactly right. Soft upper-left studio light, sharp clean cutout. Entire sleeve and fan fit inside square with a naturally rounded sleeve termination and at least 70 pixels of empty alpha margin on ALL sides. No face, torso, scenery or floor. Scene/backdrop: genuinely transparent alpha background, no background color or checker pattern and no cast shadow. Avoid: extra hands, extra or fused fingers, broken grip, fan pointed upward, folded closed fan, a second fan, lace, contemporary materials, painted calligraphy, text, watermark, logo, frame, floor, glow, aura, martial energy, effects, borders, fake checkerboard, translucent subject.'
+    selected: true
+    references: []
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-28a0-74c1-a671-c269f3e1cd3a/exec-00e0f1e6-d211-4dbf-8fee-56126b15b596.png
+  image_integrity:
+    mode: RGBA
+    bytes: 1314510
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1012201
+    alpha_partial_pixels: 558460
+    alpha_ge128_bbox_half_open:
+    - 48
+    - 68
+    - 1207
+    - 1178
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_throw
+  file: throw/source_throw.png
+  category: vfx/emitter
+  style: default
+  subject: 写实双指离手投掷姿态、浅布袖，不画暗器；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Edit this single transparent emitter cutout. Preserve this exact realistic five-finger throwing-release gesture, with index and middle fingers extended toward the right and no projectile; preserve upper-left lighting, skin, plain off-white linen sleeve and direction. Change ONLY the framing and sleeve length: zoom out to show the ENTIRE silhouette as an isolated short-sleeved forearm cutout, fully within the square 1254x1254 canvas, with at least 120px empty TRANSPARENT margin on every edge. Reconstruct a clean rounded LEFT/BOTTOM cloth sleeve endpoint INSIDE the frame, never touching the image edge, no skin stump. Scale the subject to occupy only x=180..1070,y=280..980. The image must have a large transparent border all around. No extra body parts, no second hand, no projectile or effect. Genuine transparent alpha, clean edges. Preserve the hand anatomy; no text or watermark.'
+  negative: no face, torso, extra limbs, extra or missing fingers, modern hardware, named weapon, text, watermark, background, checkerboard, cast shadow, aura, smoke or VFX
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-emitters/assets/default/vfx/emitters/throw/source_throw.png
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:20:33.504737+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-c5a591fa-df09-4f08-9f2e-0163b6935de0.png
+  size: 1254x1254
+  sha256: 751b9bfcde27347333a155395d86ff2d2b8959e1f3527e516562862048917ce3
+  status: candidate
+  notes:
+  - 宋明语境普通造型（原创扩展），不绑定书界、人物或名器；没有精确断代/原著手势书证。
+  - 选中内置工具原件逐字节复制；保留alpha，无后处理。
+  - 第2候选编辑时 references 路径内是候选1；该路径现已替换为选中图，原输入字节由 generation_history.reference_snapshot 追溯。
+  emitter_type: throw
+  emitter_plate: throw/emitter-plate.yaml
+  model_scope: 内置工具未披露独立图像后端型号或推理强度。
+  candidate_count: 2
+  reused_count: 0
+  selected_candidate: 2
+  rejections:
+  - 袖端或裤管触画幅边；第二候选将完整主体收进透明画幅。
+  measurement:
+    method: 领先中指尖alpha>=128最右列x=1169、y=414..423，以像素中心计尖端[1169.5,419]，向右12px得离手点[1181.5,419]。近端扫描列x=1140，y=407..446，宽=446−407+1=40；12px是空中视觉偏移，不是玩法射程。
+    emit_point_px:
+    - 1181.5
+    - 419
+    direction:
+    - 1
+    - 0
+    emission_width_px: 40
+  visual_review: 已逐张 view_image 自查并纠正查看器 MIME；拳指结构可辨，投掷手无暗器，竹管持握合理且右口可见，腿鞋结构可辨；四边不裁主体。保留原生alpha，细轮廓有少量低alpha彩边，未进行白底色键或后处理。
+  generation_history:
+  - candidate: 1
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-9ba6750a-cc57-46f4-afef-13e3ba2db573.png
+    prompt: 'Use case: product-mockup. Asset type: reusable transparent RGBA emitter plate for a Chinese wuxia game, square 1254x1254. Primary request: one realistic adult human hand at the instant after flicking a small thrown object toward the right, but absolutely no object is drawn. Forearm extends from lower left, dressed in plain loose off-white linen sleeve; wrist and full hand are visible. Index and middle fingers extended right together but slightly separated, fingertips roughly aligned near right side, ring and little fingers naturally half curled toward palm, thumb relaxed visibly beside hand. Anatomically correct five digits. View from side and slight palm side so release gesture is readable, not a pointing gun. Fingertips point horizontally right (+x); leave large transparent margins especially right of fingertips; sleeve ends within image around x=100 rather than clipped. Photographic skin pores, crease and nail detail, plain historical common clothing compatible with Song-Ming
+      wuxia without ornament or modern hardware. Light softly from upper left. Scene/backdrop: genuine alpha transparency; crisp clean cutout, no physical background or cast shadow, no checkerboard baked in. Avoid: projectile, darts, needles, weapon, text, watermark, jewelry, extra fingers, missing fingers, extra hand or limb, face, torso, aura, glow, energy, particles, smoke, cartoon, decorative symbols. This is one source hand cutout, not a finished VFX.'
+    references: []
+    selected: false
+    rejection: 袖端或裤管触画幅边；第二候选将完整主体收进透明画幅。
+  - candidate: 2
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-c5a591fa-df09-4f08-9f2e-0163b6935de0.png
+    prompt: 'Edit this single transparent emitter cutout. Preserve this exact realistic five-finger throwing-release gesture, with index and middle fingers extended toward the right and no projectile; preserve upper-left lighting, skin, plain off-white linen sleeve and direction. Change ONLY the framing and sleeve length: zoom out to show the ENTIRE silhouette as an isolated short-sleeved forearm cutout, fully within the square 1254x1254 canvas, with at least 120px empty TRANSPARENT margin on every edge. Reconstruct a clean rounded LEFT/BOTTOM cloth sleeve endpoint INSIDE the frame, never touching the image edge, no skin stump. Scale the subject to occupy only x=180..1070,y=280..980. The image must have a large transparent border all around. No extra body parts, no second hand, no projectile or effect. Genuine transparent alpha, clean edges. Preserve the hand anatomy; no text or watermark.'
+    references:
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-emitters/assets/default/vfx/emitters/throw/source_throw.png
+    reference_snapshot:
+      source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-9ba6750a-cc57-46f4-afef-13e3ba2db573.png
+      sha256: bf59ffb732b5911aefe0fc20fedf79b80746d48ab86f7a34e6b477105848d60c
+    selected: true
+  image_integrity:
+    mode: RGBA
+    bytes: 503939
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1337227
+    alpha_partial_pixels: 234774
+    alpha_ge128_bbox_half_open:
+    - 105
+    - 350
+    - 1170
+    - 1019
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_instrument
+  file: instrument/source_instrument.png
+  category: vfx/emitter
+  style: default
+  subject: 写实单手持素竹管乐器，右侧管口可辨；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Edit this single transparent bamboo flute plus hand emitter cutout. Preserve the same plain bamboo flute pointing horizontally right, the visible open right tube mouth, natural five-digit supporting grip, realistic skin and gray-brown cloth sleeve, upper-left light. Change only framing and sleeve length: zoom out to fit ENTIRE flute and short forearm/sleeve inside a square 1254x1254 with at least 120 pixels completely empty TRANSPARENT margin at EVERY image edge. Shorten sleeve into a neat isolated loose cloth segment ending well inside lower-left canvas; no visible skin stump, no clipped limb. Target entire silhouette x=150..1100,y=350..980. Do not crop flute or sleeve. Preserve genuine alpha, clean contours. No face, mouth, torso, second hand, new fingers, ornament, text, watermark, glow, music symbols or effects. One small isolated source cutout inside a large transparent square.'
+  negative: no face, torso, extra limbs, extra or missing fingers, modern hardware, named weapon, text, watermark, background, checkerboard, cast shadow, aura, smoke or VFX
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-emitters/assets/default/vfx/emitters/instrument/source_instrument.png
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:19:18.087704+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-05846baa-2261-4a99-baf8-576c9929d073.png
+  size: 1254x1254
+  sha256: c9015201275d21c92278dee0aa2514c121ef89801d240e86aa2cf3c0350f355c
+  status: candidate
+  notes:
+  - 宋明语境普通造型（原创扩展），不绑定书界、人物或名器；没有精确断代/原著手势书证。
+  - 选中内置工具原件逐字节复制；保留alpha，无后处理。
+  - 第2候选编辑时 references 路径内是候选1；该路径现已替换为选中图，原输入字节由 generation_history.reference_snapshot 追溯。
+  emitter_type: instrument
+  emitter_plate: instrument/emitter-plate.yaml
+  model_scope: 内置工具未披露独立图像后端型号或推理强度。
+  candidate_count: 2
+  reused_count: 0
+  selected_candidate: 2
+  rejections:
+  - 袖端或裤管触画幅边；第二候选将完整主体收进透明画幅。
+  measurement:
+    method: 管口椭圆中心目视标定[1137,547]；左侧轴心[200,521]至管口差[937,26]，单位化为[0.9996152427470851,0.027737456042074934]。沿垂直于该方向、经过[1130,547]的截面以最近像素采样，alpha>=128的t=-42..42，宽85px。
+    emit_point_px:
+    - 1137
+    - 547
+    direction:
+    - 0.9996152427470851
+    - 0.027737456042074934
+    emission_width_px: 85
+  visual_review: 已逐张 view_image 自查并纠正查看器 MIME；拳指结构可辨，投掷手无暗器，竹管持握合理且右口可见，腿鞋结构可辨；四边不裁主体。保留原生alpha，细轮廓有少量低alpha彩边，未进行白底色键或后处理。
+  generation_history:
+  - candidate: 1
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-29febe86-3bf9-412e-8e48-fa3fa1b2b666.png
+    prompt: 'Use case: product-mockup. Asset type: reusable transparent RGBA source emitter cutout for a Chinese wuxia game; one square 1254x1254 image. Primary request: one realistic adult human hand and forearm, wearing a plain gray-brown linen sleeve, gently holding one plain tan bamboo flute, with its unobstructed open right tube end clearly visible and pointing horizontally to the right (+x). A simple historically inspired Chinese bamboo pipe flute with a few finger holes and natural bamboo nodes, not a named magical instrument; no lacquer ornament, no metal keys, no tassels. Position bamboo horizontally at mid-height, right open tube end near x=1050,y=560; sleeve from lower left, hand under the left-middle of the flute. Close three-quarter side view gives a small ellipse of the right open bore and an anatomically believable grip: four fingers curl around the tube while thumb supports its underside, with natural occlusion. Include entire necessary tube silhouette and all visible hand
+      structure, generous transparent empty margin around everything. Photographic realism matching realistic hand source plates: natural skin pores, fingernails, woven fabric; soft light from upper left. Scene/backdrop: genuinely transparent alpha with clean cutout edges, no background or ground shadow, no checkerboard baked into pixels. Avoid: face, mouth, torso, second hand, extra limbs, extra digits, missing thumb, modern concert flute hardware, fancy mythical instrument, calligraphy, text, watermark, aura, glowing music notes, smoke, all VFX. Source plate only.'
+    references: []
+    selected: false
+    rejection: 袖端或裤管触画幅边；第二候选将完整主体收进透明画幅。
+  - candidate: 2
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-05846baa-2261-4a99-baf8-576c9929d073.png
+    prompt: 'Edit this single transparent bamboo flute plus hand emitter cutout. Preserve the same plain bamboo flute pointing horizontally right, the visible open right tube mouth, natural five-digit supporting grip, realistic skin and gray-brown cloth sleeve, upper-left light. Change only framing and sleeve length: zoom out to fit ENTIRE flute and short forearm/sleeve inside a square 1254x1254 with at least 120 pixels completely empty TRANSPARENT margin at EVERY image edge. Shorten sleeve into a neat isolated loose cloth segment ending well inside lower-left canvas; no visible skin stump, no clipped limb. Target entire silhouette x=150..1100,y=350..980. Do not crop flute or sleeve. Preserve genuine alpha, clean contours. No face, mouth, torso, second hand, new fingers, ornament, text, watermark, glow, music symbols or effects. One small isolated source cutout inside a large transparent square.'
+    references:
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-emitters/assets/default/vfx/emitters/instrument/source_instrument.png
+    reference_snapshot:
+      source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-29febe86-3bf9-412e-8e48-fa3fa1b2b666.png
+      sha256: 028205ca55b0de0e2498657b8dcdf3a39a459d82699734c99536847ce1231f06
+    selected: true
+  image_integrity:
+    mode: RGBA
+    bytes: 600610
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1329571
+    alpha_partial_pixels: 241956
+    alpha_ge128_bbox_half_open:
+    - 124
+    - 421
+    - 1160
+    - 1091
+    border_8px_alpha_gt1_pixels: 0
+- id: vfx_emitter_leg
+  file: leg/source_leg.png
+  category: vfx/emitter
+  style: default
+  subject: 写实踢出小腿、朴素灰布裤与素布鞋；宋明通用视觉候选，不绑定书界或人物
+  prompt: 'Edit this single transparent kicking lower-leg cutout. Preserve the same rightward horizontal kick, realistic plain gray-brown cloth trousers, dark gray simple Chinese cloth shoe with layered cloth sole, anatomy and upper-left lighting. Change only framing and trouser length: zoom out so the ENTIRE silhouette, including left trouser endpoint, fits inside square 1254x1254 with at least 120px fully empty TRANSPARENT margin on EVERY side. Reconstruct a natural rounded cloth-only endpoint at the left of a short isolated trouser segment, no exposed skin stump. Place all visible cloth and shoe inside x=150..1100,y=370..890. No component may touch image borders. A short isolated lower-leg-and-shoe source cutout centered amid large transparent empty space. Preserve genuine alpha, clean edges. No second leg, extra shoe, torso, hand, modern laces, logos, text, watermark or effects.'
+  negative: no face, torso, extra limbs, extra or missing fingers, modern hardware, named weapon, text, watermark, background, checkerboard, cast shadow, aura, smoke or VFX
+  references:
+  - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-emitters/assets/default/vfx/emitters/leg/source_leg.png
+  tool: built-in image_gen
+  model: not-reported
+  effort: not-exposed
+  created: '2026-09-30T21:19:57.129292+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-47de8390-98d6-476d-9af0-97525c5fb535.png
+  size: 1254x1254
+  sha256: c512548e8d011a8950a17066b3508aaaec3796b8a5697f1eb7218d97923291d0
+  status: candidate
+  notes:
+  - 宋明语境普通造型（原创扩展），不绑定书界、人物或名器；没有精确断代/原著手势书证。
+  - 选中内置工具原件逐字节复制；保留alpha，无后处理。
+  - 第2候选编辑时 references 路径内是候选1；该路径现已替换为选中图，原输入字节由 generation_history.reference_snapshot 追溯。
+  - 现行schema缺真实类型枚举，category:palm仅兼容编码；按本条emitter_type/ID选图，待上游增列fist/leg后迁移。
+  emitter_type: leg
+  emitter_plate: leg/emitter-plate.yaml
+  model_scope: 内置工具未披露独立图像后端型号或推理强度。
+  candidate_count: 2
+  reused_count: 0
+  selected_candidate: 2
+  rejections:
+  - 袖端或裤管触画幅边；第二候选将完整主体收进透明画幅。
+  measurement:
+    method: 鞋尖alpha>=128最右列x=1163、y=686..693；像素中心口径锚点[1163.5,(686+694)/2]=[1163.5,690]。近鞋尖x=1140，y=644..717，宽=717−644+1=74；向右为踢出方向。
+    emit_point_px:
+    - 1163.5
+    - 690
+    direction:
+    - 1
+    - 0
+    emission_width_px: 74
+  visual_review: 已逐张 view_image 自查并纠正查看器 MIME；拳指结构可辨，投掷手无暗器，竹管持握合理且右口可见，腿鞋结构可辨；四边不裁主体。保留原生alpha，细轮廓有少量低alpha彩边，未进行白底色键或后处理。
+  generation_history:
+  - candidate: 1
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-20206076-619d-46b1-817e-59e7f328bb9d.png
+    prompt: 'Use case: product-mockup. Asset type: reusable transparent RGBA limb emitter source plate for a Chinese wuxia game, single square image 1254x1254. Primary request: one realistic human lower leg extended in a martial-arts forward kick horizontally toward the right, wearing plain loose gray-brown woven cloth trousers and a simple dark gray Chinese cloth shoe with thin layered cloth sole. Ankle is straight with foot pointed toward right (+x); shoe toe is the rightmost point. Show side profile of the entire cloth shoe and enough lower leg to read the kick, trouser leg coming from lower left, no other body parts. Cloth shoe plain unbranded, round low toe, no modern laces, no rubber athletic sole, no boot armor, no decorations. Historically inspired common clothing compatible with Song-Ming wuxia without claiming specific exact reconstruction. Realistic photographic woven cloth and natural folds, soft upper-left studio lighting matching photographic hand cutout assets. Composition:
+      clean isolated limb, shoe centered near x=900,y=620; visible pant cuff and trouser segment left of shoe, generous transparent space on all sides. Scene/backdrop: genuine alpha-transparent background, clean silhouette, no ground, cast shadow or checkerboard painted in. Avoid: extra leg, second foot, detached shoe, impossible ankle, bare toes, hands, face, torso, text, watermark, aura, motion lines, glow, smoke, sparks, any magical or action effect, cartoon rendering. This is a calm frozen source limb plate only.'
+    references: []
+    selected: false
+    rejection: 袖端或裤管触画幅边；第二候选将完整主体收进透明画幅。
+  - candidate: 2
+    source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-47de8390-98d6-476d-9af0-97525c5fb535.png
+    prompt: 'Edit this single transparent kicking lower-leg cutout. Preserve the same rightward horizontal kick, realistic plain gray-brown cloth trousers, dark gray simple Chinese cloth shoe with layered cloth sole, anatomy and upper-left lighting. Change only framing and trouser length: zoom out so the ENTIRE silhouette, including left trouser endpoint, fits inside square 1254x1254 with at least 120px fully empty TRANSPARENT margin on EVERY side. Reconstruct a natural rounded cloth-only endpoint at the left of a short isolated trouser segment, no exposed skin stump. Place all visible cloth and shoe inside x=150..1100,y=370..890. No component may touch image borders. A short isolated lower-leg-and-shoe source cutout centered amid large transparent empty space. Preserve genuine alpha, clean edges. No second leg, extra shoe, torso, hand, modern laces, logos, text, watermark or effects.'
+    references:
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/VFX-emitters/assets/default/vfx/emitters/leg/source_leg.png
+    reference_snapshot:
+      source_path: /Users/bytedance/.codex/generated_images/01a0f428-691f-72e1-8be0-655cd6444de2/exec-20206076-619d-46b1-817e-59e7f328bb9d.png
+      sha256: 44e3776f58ef8213db595632bb25b6ec74ddfd55189610ecb4059276face06fa
+    selected: true
+  image_integrity:
+    mode: RGBA
+    bytes: 610252
+    alpha_min: 0
+    alpha_max: 255
+    alpha_zero_pixels: 1329096
+    alpha_partial_pixels: 242809
+    alpha_ge128_bbox_half_open:
+    - 99
+    - 477
+    - 1164
+    - 825
+    border_8px_alpha_gt1_pixels: 0

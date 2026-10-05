@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_tangshuangtaotiao
+name: 糖霜桃条
+kind: food
+sub: food
+grade: 5
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》黄蓉所点宋代果品；据宋人食单化用
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_juqi:1battle
+assets:
+  icon: item/tangshuangtaotiao
+text:
+  desc: 外观：粉金桃脯细条覆白糖霜，盛青瓷小碟。
+  lore: 《射雕英雄传》中黄蓉所点的宋代果品，借宋人食单将桃脯切条覆糖霜。宜以青瓷小碟佐茶；具体形制与聚气膳食效果属于原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 16

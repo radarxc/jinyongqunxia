@@ -1,0 +1,72 @@
+kind: EffectSet
+version: 1
+asset_id: vfx_sk_zuoyouhubo__fenxin_base01
+size_px:
+- 768
+- 512
+color_space: srgb
+alpha_mode: straight
+style: ink
+direction:
+- 1
+- 0
+reference_length_px: 621
+root_width_px: 196
+blend: screen
+source:
+  mode: grid
+  files:
+  - source_sheet.png
+  rects:
+  - file_index: 0
+    rect_px:
+    - 0
+    - 0
+    - 768
+    - 512
+  - file_index: 0
+    rect_px:
+    - 768
+    - 0
+    - 768
+    - 512
+  - file_index: 0
+    rect_px:
+    - 0
+    - 512
+    - 768
+    - 512
+  - file_index: 0
+    rect_px:
+    - 768
+    - 512
+    - 768
+    - 512
+  keying:
+    method: white_key
+    white_cutoff_8bit: 250
+    opaque_luma: 0.2
+    key_full_8bit: 64
+    epsilon: 0.00392156862745098
+    dewhite: true
+frames:
+- file: frame_000.png
+  anchor_px:
+  - 112
+  - 241
+  phase: 0
+- file: frame_001.png
+  anchor_px:
+  - 112
+  - 239
+  phase: 0.38888888888888884
+- file: frame_002.png
+  anchor_px:
+  - 112
+  - 239
+  phase: 0.7
+- file: frame_003.png
+  anchor_px:
+  - 112
+  - 247
+  phase: 1

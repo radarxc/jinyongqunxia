@@ -13,20 +13,72 @@ scene_key: shengjing
 scene_title: 盛京宫墙夜行
 stage: 潜入盛京与玉真子周旋阶段，青年；刺杀皇太极未由他完成。
 references:
-- path: assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_child_scene_huashan.png
-  use: 待本角色首场 por_npc_yuanchengzhi__ch07_child_scene_huashan 新写实PNG生成、保存后，由根任务核验manifest realism_revision=user_character_realism_20261001、当前PNG哈希和实际view_image查看，才可注册或使用。本记录不声称已查看该新身份图；旧同路径文件存在也不满足依赖。届时只保持同人物核心身份与写实人物质量，本场年龄成长、伤残、衣服、发式、动作、器物和背景另绘。
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  use: 已实际view_image查看并核验新版萧峰首样，manifest realism_revision=user_character_realism_20261001，SHA-256 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922；仅参考人物自然皮肤、完整体积、连续光影及连贯衣料的渲染质量。绝不复用萧峰面孔、男性形象、年龄、胡须、体型、衣服、姿态或龙影，不作为本角色身份。
-- path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
-  use: 已实际view_image查看并校验可读的同性别项目基线；仅用低饱和色卡，不参考人物身份、面孔、体型、年龄、发饰、衣装、姿态、武器或人物笔触，完全忽略碎墨、纸纹和旧衣渲染，不改基线审批。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际view_image查看并校验可读的用户王语嫣水墨参考；仅用于背景淡墨、山水层次与留白，完全忽略其中人物、脸、皮肤、服装、发饰和体态，墨迹纸纹不可进入新人物。
-status: ready
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yuanchengzhi__ch07_youth_jinshe_base.resume3.png", "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型", "sha256": "2ebb49847a1bbbdd4cfc1b7c788a4574b1a7c39e54a9ce648906d65c5c1f9f7a"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "08b4f27cdbe6fe84dedea5b341b1324baf4836d1a42f2128cd5d9bb9e0480f64"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "10844ec70a080a83900547d3bb342a0cb6e287672f6b310a8099808cb8574fc1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff"}
+status: candidate
+redo_reason: "作者 10-02 晚：复合基线风格精修"
+reference_upload:
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_yuanchengzhi__ch07_youth_jinshe_base.resume3.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/yuanchengzhi_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg"
 scene_revision: user_scenes_20261001
 realism_revision: user_character_realism_20261001
+composite_job: por_npc_yuanchengzhi__ch07_youth_scene_shengjing.resume3
 ---
 
 # 袁承志 · 人物写实修正
+
+## AR-82 当前定稿要求
+
+只在袁承志自身左眉上方（画面右眉）加淡小旧刀疤，其他五官与神情不变。本图手中为金蛇剑剑鞘，没有露出剑刃；完整剑鞘、鞘尖及其纹饰逐像素保留，不在鞘尖添叉。原著金蛇剑的双叉蛇舌尖只用于出鞘剑身。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
+## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_yuanchengzhi__ch07_youth_scene_shengjing.resume3`；实际上传顺序见frontmatter，末两张为male项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
+承担家国之志、潜行盛京时期，成年同脸更沉毅。深青右衽窄袖劲装、灰黑冬披风、束发与防滑便靴；金蛇剑收在明显异形剑鞘内，身体微转警惕远方。背景冬夜城墙和远处宫阙、墙脚残雪，保留潜行环境；不把大炮放在殿门前暗示确切地理。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
+
+> 2026-10-02 立绘审核（B 组，见 `tools/agents/reports/REVIEW-portraits-B-ch05-09.md`）：**整体重出（随基础立绘）**（P1）。现图是飘逸长发的偶像小生脸，与原著忠厚稳重不符；以新出的袁承志基础立绘为身份参考重画。
+>
+> 参考上传：`assets/default/character/male/ch07/por_npc_yuanchengzhi__ch07_youth_jinshe_base.png`。
+>
+> 依据与待考：场景事实沿用原场景稿（阶段、动作、器物）；画面细节为原创扩展。
+>
+> 本节是新的出图依据：把下面代码块原样粘贴给 Gemini（有参考上传的先上传图片）。下方原有段落只作历史保留，不再交给出图。
+
+```text
+生成一张 2:3 竖幅单人全身剧情场景图。
+
+上传的图片是袁承志本人的基础立绘，作为身份参考：保持同一张脸（脸型、眉眼、鼻子、嘴、肤色、发际线）和同样的成年年龄、体型，让人一眼认出是同一个人；不要照搬参考图的站姿、构图和背景，服饰、动作和场景按下文。
+
+画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+人物：袁承志，《碧血剑》男主角，约二十岁的成年青年男子，高大结实、方正偏长的脸、浓黑平直的眉、沉稳坦诚的眼神，健康麦色皮肤。
+场景「盛京宫墙夜行」：潜入盛京清宫、与玉真子周旋的时期。人物独自在宫墙转角的墙根下停步，肩身略转而脸朝向观者、清楚可辨；左手靠在腰侧连鞘的金蛇剑上，尚未拔剑。衣装：深青色束袖夜行便衣、深灰长裤与无反光布靴，黑发束好，头脸没有遮盖；不要清兵辫装或官服。背景：盛京宫墙转角、层层屋檐与一弯淡月，建筑缩在一侧、大片留白；不要照搬北京故宫正门。
+
+构图：竖幅 2:3，单人全身剧情场景图，人物是画面主体，从头顶到双脚完整入画（坐姿也要看得见头、身体、双手、双腿和双脚）；场景用浅淡的写实水墨笔法画出，留白充足，背景不能压过人物、不能侵入人物轮廓。画面里只有这一个人物。
+
+排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要偶像小生脸和飘逸长发；不要换成另一张脸。汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。
+【画风基线】上传的参考图里，最后一张是本项目的立绘画风基线（只上传了一张时就是它）：只参考它的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；不要照搬基线图里那个人的长相、年龄、发型、服饰和姿势。
+```
 
 ## 人物与阶段
 
@@ -76,3 +128,9 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_yuanchengzhi__ch07_youth_scene_shengjing.prepared.json`。
+
+## 原著依据
+
+- 《碧血剑》三《经年亲剑铗，长日对楸枰》：“小小疤痕”（https://xuges.com/WUXIA/jinyong/bxj/013.htm）
+- 《碧血剑》四《矫矫金蛇剑，翩翩美少年》：“剑尖竟有两叉”（https://xuges.com/WUXIA/jinyong/bxj/020.htm）
+- AR-82 返修约束：只在袁承志自身左眉上方（画面右眉）加淡小旧刀疤，其他五官与神情不变。本图手中为金蛇剑剑鞘，没有露出剑刃；完整剑鞘、鞘尖及其纹饰逐像素保留，不在鞘尖添叉。原著金蛇剑的双叉蛇舌尖只用于出鞘剑身。

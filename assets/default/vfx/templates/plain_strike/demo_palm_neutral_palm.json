@@ -1,0 +1,175 @@
+{
+  "kind": "TemplateComposition",
+  "version": 1,
+  "template": {
+    "mode": "plain_strike",
+    "nature": "neutral",
+    "delivery": "palm",
+    "shape": "wave",
+    "color": "#F4F4F4",
+    "params": {
+      "duration_s": 0.32
+    }
+  },
+  "canvas_px": [
+    1024,
+    512
+  ],
+  "background": "#282623",
+  "emit_at_px": [
+    300,
+    256
+  ],
+  "angle_deg": 0,
+  "emitter_scale": 0.20733652312599682,
+  "scale": [
+    1,
+    0.3330854228644283
+  ],
+  "length_px": 240,
+  "range_hex": 0,
+  "pixels_per_hex": 100,
+  "rhythm": {
+    "charge_s": 0.0576,
+    "release_s": 0.0384,
+    "sustain_s": 0.0,
+    "dissipate_s": 0.22399999999999998
+  },
+  "transition": {
+    "interpolation": "crossfade",
+    "scale_from": 1,
+    "drift_fraction": 0,
+    "brightness": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "directional_mask": {
+      "enabled": false,
+      "softness": 0.08
+    }
+  },
+  "output": {
+    "fps": 20,
+    "optional_animation": "none",
+    "peak_phase": 0.18,
+    "loop": true,
+    "loop_gap_s": 0.5,
+    "html_max_bytes": 3000000,
+    "preview_size_px": [
+      1024,
+      512
+    ]
+  },
+  "effect": {
+    "kind": "EffectSet",
+    "version": 1,
+    "asset_id": "vfx_template_plain_strike_wave",
+    "size_px": [
+      724,
+      724
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "style": "plain_strike",
+    "direction": [
+      1,
+      0
+    ],
+    "reference_length_px": 500,
+    "root_width_px": 80,
+    "blend": "normal",
+    "source": {
+      "mode": "grid",
+      "files": [
+        "source_sheet.png"
+      ],
+      "rects": [
+        {
+          "file_index": 0,
+          "rect_px": [
+            0,
+            0,
+            724,
+            724
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            724,
+            0,
+            724,
+            724
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            1448,
+            0,
+            724,
+            724
+          ]
+        }
+      ],
+      "keying": {
+        "method": "white_key",
+        "white_cutoff_8bit": 250,
+        "opaque_luma": 0.2,
+        "key_full_8bit": 25,
+        "epsilon": 0.00392156862745098,
+        "dewhite": true
+      }
+    },
+    "frames": [
+      {
+        "file": "frame_000.png",
+        "anchor_px": [
+          82,
+          360
+        ],
+        "phase": 0.0
+      },
+      {
+        "file": "frame_001.png",
+        "anchor_px": [
+          82,
+          360
+        ],
+        "phase": 0.5
+      },
+      {
+        "file": "frame_002.png",
+        "anchor_px": [
+          82,
+          360
+        ],
+        "phase": 1.0
+      }
+    ]
+  },
+  "emitter": {
+    "kind": "EmitterPlate",
+    "version": 1,
+    "file": "source_palm.png",
+    "size_px": [
+      1254,
+      1254
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "category": "palm",
+    "emit_point_px": [
+      850,
+      704
+    ],
+    "direction": [
+      1,
+      0
+    ],
+    "emission_width_px": 320
+  }
+}

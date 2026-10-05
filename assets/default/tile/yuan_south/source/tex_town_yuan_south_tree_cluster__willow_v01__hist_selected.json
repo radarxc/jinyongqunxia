@@ -1,0 +1,37 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "1f6f5038-73f8-4440-9b1e-9596c47f4563",
+  "request_id": "16c814d7-fa79-440e-8355-f19315107023",
+  "generation_id": "f509ce2c-83fe-48fb-ab42-9120b369cb14",
+  "created_unix": 1790840207,
+  "elapsed_seconds": 34.986,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. A sparse 3m by3m Jiangnan waterside willow cluster: one mature leaning trunk plus one slim secondary trunk, pollarded and irregular branching, long fine drooping leaves in muted dusty green, exposed weathered bark and airy crown gaps following Yuan literati-painting vegetation rhythm; no ground island, pot or water.",
+  "references": [
+    {
+      "kind": "style_geometry_reference",
+      "file": "tex_town_song_southern_tree_cluster__willow_v01.png",
+      "note": "宋基线透明精灵，只约束相机、透明裁切与写实密度"
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018",
+      "detail_used": "倪瓒画中疏林、斜干与江南岸植层次",
+      "downloaded_and_viewed": true
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285",
+      "detail_used": "倪瓒画中疏林、斜干与江南岸植层次",
+      "downloaded_and_viewed": true
+    }
+  ],
+  "output_sha256": "b46f21380951d7b00c1a466799299733a5f5cc984df99ea7430ef73c8987458c",
+  "selected_asset_file": "tex_town_yuan_south_tree_cluster__willow_v01.png",
+  "selected_asset_sha256": "f3baf0ffa56f730beca4d223cb1698465bd283c990d5e7a1540efe0adbe99a35",
+  "normalization": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ]
+}

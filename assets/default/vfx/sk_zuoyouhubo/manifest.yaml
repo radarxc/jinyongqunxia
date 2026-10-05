@@ -1,0 +1,194 @@
+# 左右互搏：3 张模型原料 + 2 招独立合成；均待审批。
+assets:
+- id: vfx_sk_zuoyouhubo__family_base01
+  file: effect/family/source_sheet.png
+  size: 1536x1024
+  sha256: 020bfcc111113b0c7c37a7cd3727ef53c6123d3a93c314531b6ff9847e9f8d89
+  category: vfx
+  style: default
+  subject: 左右互搏 · 共用家族：折弧与圆弧双路气劲；射雕 / 神雕语境，具体视觉为原创扩展。
+  skill: sk_zuoyouhubo
+  role: effect_source
+  nature: neutral
+  delivery: inner
+  prompt: |-
+    Use case: stylized-concept.
+    Asset type: production VFX sprite sheet for a Chinese wuxia game, Left-Right Mutual Combat / 左右互搏. Original visualization, not a quotation of any novel.
+    Create ONE landscape 1536 x 1024 PNG with exactly FOUR frames in a strict 2-column by 2-row grid, each invisible cell 768 x 512 pixels. Reading order: upper-left, upper-right, lower-left, lower-right. Pure flat white #FFFFFF background, absolutely no paper texture, no grid, no frame borders, no labels, no text.
+    Each frame shows the SAME compact right-facing energy motif with stable silhouette and identical root placement. Local root is x=112,y=256 in each cell; a soft broad vertical root about 96 pixels high, not a needle. All effects fit within x=72..686 and y=70..442, all margins pure white. All four phases retain the full underlying motif at almost identical dimensions: faint gathering, fully formed peak, sustained peak with softly changing ink wisps, fading residual motif. No detached projectiles. The four frames must have separate ample clean white gutters.
+    Style: elegant translucent Chinese ink-wash breath and dry-brush wisps, spacious negative space, silver-gray and neutral charcoal details. Neutral nature means uncolored pearly-gray, NOT golden, red or cyan. On the white source use clearly distinguishable mid-light gray #A0A3A5 with darker gray #555B60 slender structural strokes, and gray translucent washes; do NOT paint pure-white or near-white highlights. The negative white gaps are background and will be keyed away. No dense black blobs, no lightning, no fire, no fantasy runes, no photoreal scene, no hands, no limbs, no people, no weapons, no hard cast shadow, no watermark.
+    Subject: family vocabulary of two independent parallel qi ribbons sharing one short broad soft root. Upper ribbon takes an angular folded arc, lower ribbon a gentle rounded arc; they open to the right, intertwine lightly without forming a closed circular emblem. Suggest two coordinated intentions, with similar visual weight and breathing empty space. Thin broken gray contour, fine ink filaments, restrained mist. Compact local palm aura, not a long laser.
+  negative: 文字、编号、网格、边框、纸纹、烧入背景、纯白实心高光、金赤青主色、人物、手臂、兵器、额外命中段、长距离光束。
+  references: []
+  tool: Codex 内置 image_gen
+  model: image_gen（工具未返回底层模型标识）
+  effort: 内置工具默认（未显式设置）
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_zuoyouhubo/codex-home/generated_images/01a103e7-57a2-76b2-a5df-651797fa0d10/exec-fea473ec-c79c-404c-b127-bde0e57a8f98.png
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/family/effect-set.yaml
+  notes: （原创扩展）中性素白意象以可抠的灰色母版、screen 合成表现；无原著可见颜色断言。4 帧 / 2×2，逐帧根部校正。每套 1 候选选 1，未用代码绘制造型。全套原著边界、量法与建议偏差见 README.md。
+  file_integrity:
+  - {file: effect/family/effect-set.yaml, bytes: 983, sha256: 30a2fddd94b917cfafe8624f443cc0c30e813d5c4a2f2a86bfc669243a849dac}
+  - {file: effect/family/frame_000.png, bytes: 218771, sha256: 65d26ebdc746261ad1efed3a71f6ed5607005859b0c123a646ddde917942ec74}
+  - {file: effect/family/frame_001.png, bytes: 267927, sha256: 727801a5090ffbd808745e67f72f796d91bf681df934be926e81abeee47b959a}
+  - {file: effect/family/frame_002.png, bytes: 268902, sha256: c4fe3817cc22ec963a778e385d50eb6f97cecb670cdc169e3674a51c4c407da7}
+  - {file: effect/family/frame_003.png, bytes: 225149, sha256: 7d4c759f21dd784d549c4573013a796b5d51ec17d911492bb210127712c875d5}
+  - {file: effect/family/preview_black.png, bytes: 769068, sha256: d70eb040dc879b3b6f9f2ac7c2cdee850de8d94d4540f068bde00b25fb581a37}
+  - {file: effect/family/preview_gray.png, bytes: 687858, sha256: aa31f62e4fc8d8a77baf3cacb526ceda7dc411776ac7d4ae93fc9d1e30b8b3c7}
+  - {file: effect/family/preview_white.png, bytes: 665511, sha256: 4ffd3259cea906d2107879b8e628b2938d7ac36de6dd652e55ac26e3b15f5b85}
+  - {file: effect/family/quality.json, bytes: 1027, sha256: e8564715dfa065657915d9239ae6fe15342f762c47d0b6390af931fa966359ea}
+  - {file: source_requests.json, bytes: 6824, sha256: 8689048996c924969a5a071f1e008ed1885f8075dac76358fd23e9612a58e5a3}
+  - {file: provenance.json, bytes: 1400, sha256: 6745801184067d08ce8c1009cc3cd4c08d1ea7473f8dded1524d760657c8ef9b}
+- id: vfx_sk_zuoyouhubo__fenxin_base01
+  file: effect/mv_zuoyouhubo_fenxin/source_sheet.png
+  size: 1536x1024
+  sha256: 73fb204cc32cbd064f44151cd9ff315324c052581cf3e2d71d39d1144074bbf8
+  category: vfx
+  style: default
+  subject: 左右互搏 · 分心二用：方圆分流；射雕 / 神雕语境，具体视觉为原创扩展。
+  skill: sk_zuoyouhubo
+  role: effect_source
+  nature: neutral
+  delivery: inner
+  prompt: |-
+    Use case: stylized-concept.
+    Asset type: production VFX sprite sheet for a Chinese wuxia game, Left-Right Mutual Combat / 左右互搏. Original visualization, not a quotation of any novel.
+    Create ONE landscape 1536 x 1024 PNG with exactly FOUR frames in a strict 2-column by 2-row grid, each invisible cell 768 x 512 pixels. Reading order: upper-left, upper-right, lower-left, lower-right. Pure flat white #FFFFFF background, absolutely no paper texture, no grid, no frame borders, no labels, no text.
+    Each frame shows the SAME compact right-facing energy motif with stable silhouette and identical root placement. Local root is x=112,y=256 in each cell; a soft broad vertical root about 96 pixels high, not a needle. All effects fit within x=72..686 and y=70..442, all margins pure white. All four phases retain the full underlying motif at almost identical dimensions: faint gathering, fully formed peak, sustained peak with softly changing ink wisps, fading residual motif. No detached projectiles. The four frames must have separate ample clean white gutters.
+    Style: elegant translucent Chinese ink-wash breath and dry-brush wisps, spacious negative space, silver-gray and neutral charcoal details. Neutral nature means uncolored pearly-gray, NOT golden, red or cyan. On the white source use clearly distinguishable mid-light gray #A0A3A5 with darker gray #555B60 slender structural strokes, and gray translucent washes; do NOT paint pure-white or near-white highlights. The negative white gaps are background and will be keyed away. No dense black blobs, no lightning, no fire, no fantasy runes, no photoreal scene, no hands, no limbs, no people, no weapons, no hard cast shadow, no watermark.
+    Subject: unique ultimate "Divided Attention": from a broad shared root at the left, upper current draws an OPEN squared arch with soft calligraphic corners while lower current draws an OPEN rounded loop; both curl out toward the right. Their paths remain distinct and readable, equal weight, spacious hollow interiors, thin silver-gray feathered ink strokes, a few curling hairs of mist. This square-versus-circle motif is inspired by simultaneous independent hand movements, not a literal diagram or lettering. No geometric outline rendered as a rigid perfect vector, no solid medallion.
+  negative: 文字、编号、网格、边框、纸纹、烧入背景、纯白实心高光、金赤青主色、人物、手臂、兵器、额外命中段、长距离光束。
+  references: []
+  tool: Codex 内置 image_gen
+  model: image_gen（工具未返回底层模型标识）
+  effort: 内置工具默认（未显式设置）
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_zuoyouhubo/codex-home/generated_images/01a103e7-57a2-76b2-a5df-651797fa0d10/exec-ee9aa570-eba0-43f7-8e9b-8e5858f55e9d.png
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/mv_zuoyouhubo_fenxin/effect-set.yaml
+  notes: （原创扩展）中性素白意象以可抠的灰色母版、screen 合成表现；无原著可见颜色断言。4 帧 / 2×2，逐帧根部校正。每套 1 候选选 1，未用代码绘制造型。全套原著边界、量法与建议偏差见 README.md。
+  file_integrity:
+  - {file: effect/mv_zuoyouhubo_fenxin/effect-set.yaml, bytes: 983, sha256: e077d2eb1ef6b4f35e9761b0cb19c99907eebfbd52c36346ea0136a3a02b0838}
+  - {file: effect/mv_zuoyouhubo_fenxin/frame_000.png, bytes: 265264, sha256: 33d66c1d59fbbfcc896b4d84704a6f6fb9cf80b2922e52ee056ad18a175c6ce5}
+  - {file: effect/mv_zuoyouhubo_fenxin/frame_001.png, bytes: 311559, sha256: 6cc6a2798a223f60bc6bb5662dc5ba81d9afb0dd3da9929f64d8fecd0fd0c164}
+  - {file: effect/mv_zuoyouhubo_fenxin/frame_002.png, bytes: 310887, sha256: b319b9531c8a805ffb942bfaa37896b799b672058be18e866192abbd339490fe}
+  - {file: effect/mv_zuoyouhubo_fenxin/frame_003.png, bytes: 279257, sha256: ef1302d3373f7a4590d5ddb1642e11ea22f49f03ce1d313bae0434727b1a94b3}
+  - {file: effect/mv_zuoyouhubo_fenxin/preview_black.png, bytes: 937123, sha256: 68865dac1337a566a6a14c7ba57f8085d42c2001d9923abab528d9f179200bba}
+  - {file: effect/mv_zuoyouhubo_fenxin/preview_gray.png, bytes: 828056, sha256: de679d4eb048a6a094d1507f172ac45da5e0fd1797c3e3cc81ac8719960460a8}
+  - {file: effect/mv_zuoyouhubo_fenxin/preview_white.png, bytes: 788512, sha256: be79a29fcc049f1b733616f0c59777b39c47d6e2bc4b6b0c24371b16c6294800}
+  - {file: effect/mv_zuoyouhubo_fenxin/quality.json, bytes: 1029, sha256: df8278d2450d99e1f1a3d60f23abb80a80c1b019d83c351477c68a73b0a8664f}
+- id: vfx_sk_zuoyouhubo__quanli_base01
+  file: effect/mv_zuoyouhubo_quanli/source_sheet.png
+  size: 1536x1024
+  sha256: 593389b08b067f54ecc3d4fcfad737caeed51b94349ea9cd850badfb4c388d20
+  category: vfx
+  style: default
+  subject: 左右互搏 · 双手全力：并行双涌；射雕 / 神雕语境，具体视觉为原创扩展。
+  skill: sk_zuoyouhubo
+  role: effect_source
+  nature: neutral
+  delivery: inner
+  prompt: |-
+    Use case: stylized-concept.
+    Asset type: production VFX sprite sheet for a Chinese wuxia game, Left-Right Mutual Combat / 左右互搏. Original visualization, not a quotation of any novel.
+    Create ONE landscape 1536 x 1024 PNG with exactly FOUR frames in a strict 2-column by 2-row grid, each invisible cell 768 x 512 pixels. Reading order: upper-left, upper-right, lower-left, lower-right. Pure flat white #FFFFFF background, absolutely no paper texture, no grid, no frame borders, no labels, no text.
+    Each frame shows the SAME compact right-facing energy motif with stable silhouette and identical root placement. Local root is x=112,y=256 in each cell; a soft broad vertical root about 96 pixels high, not a needle. All effects fit within x=72..686 and y=70..442, all margins pure white. All four phases retain the full underlying motif at almost identical dimensions: faint gathering, fully formed peak, sustained peak with softly changing ink wisps, fading residual motif. No detached projectiles. The four frames must have separate ample clean white gutters.
+    Style: elegant translucent Chinese ink-wash breath and dry-brush wisps, spacious negative space, silver-gray and neutral charcoal details. Neutral nature means uncolored pearly-gray, NOT golden, red or cyan. On the white source use clearly distinguishable mid-light gray #A0A3A5 with darker gray #555B60 slender structural strokes, and gray translucent washes; do NOT paint pure-white or near-white highlights. The negative white gaps are background and will be keyed away. No dense black blobs, no lightning, no fire, no fantasy runes, no photoreal scene, no hands, no limbs, no people, no weapons, no hard cast shadow, no watermark.
+    Subject: unique ultimate "Both Hands at Full Strength": a powerful compact DOUBLE rolling surge from the common broad root, two equal upper-and-lower rounded pressure lobes pushing to the right together. More substantial than the family ribbons but still airy and hollow: layered silver-gray crescent fronts, energetic tapered ink filaments, visible gap separating the two surges, subtle trailing wisps connecting all the way to the broad root. Do not depict actual fists or palms, do not create a single projectile. Match all four silhouettes closely; fading frame keeps both lobes.
+  negative: 文字、编号、网格、边框、纸纹、烧入背景、纯白实心高光、金赤青主色、人物、手臂、兵器、额外命中段、长距离光束。
+  references: []
+  tool: Codex 内置 image_gen
+  model: image_gen（工具未返回底层模型标识）
+  effort: 内置工具默认（未显式设置）
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_zuoyouhubo/codex-home/generated_images/01a103e7-57a2-76b2-a5df-651797fa0d10/exec-b2e66dee-7bd5-44d3-8fe2-8b5b2be504e8.png
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  effect_set: effect/mv_zuoyouhubo_quanli/effect-set.yaml
+  notes: （原创扩展）中性素白意象以可抠的灰色母版、screen 合成表现；无原著可见颜色断言。4 帧 / 2×2，逐帧根部校正。每套 1 候选选 1，未用代码绘制造型。全套原著边界、量法与建议偏差见 README.md。
+  file_integrity:
+  - {file: effect/mv_zuoyouhubo_quanli/effect-set.yaml, bytes: 983, sha256: 35f80cec51db5701bcdc2cb334f979fa1fd6934330664fb05edd32adcfda4202}
+  - {file: effect/mv_zuoyouhubo_quanli/frame_000.png, bytes: 308960, sha256: 4295868d8acdfc7830c2424e32a8954dfd6707467b4d0bdf4a387d6c4fb6a163}
+  - {file: effect/mv_zuoyouhubo_quanli/frame_001.png, bytes: 359562, sha256: e7afe6d93e97238d4c2a03dc1a2bd75e4a03ee2458dc4a2f8896ebca7d22027c}
+  - {file: effect/mv_zuoyouhubo_quanli/frame_002.png, bytes: 352812, sha256: 3c7273f87bfce617550a94377da11271d40b050d5936835d455eb86929250507}
+  - {file: effect/mv_zuoyouhubo_quanli/frame_003.png, bytes: 314232, sha256: cc5ed5be6e8e4eb189c6d9f5803edb65bdb3ab63a64ab639374c0c327c0d658a}
+  - {file: effect/mv_zuoyouhubo_quanli/preview_black.png, bytes: 1073013, sha256: f16f0019d1c9c1cb89143e49e095548852d464aa4f9ec330e0a1b978ab5421b1}
+  - {file: effect/mv_zuoyouhubo_quanli/preview_gray.png, bytes: 956998, sha256: 89fa3a0cab12d5eb1a5e66e9169ddd9bd517bc3979b61fd1a696ff0dbf77c7b0}
+  - {file: effect/mv_zuoyouhubo_quanli/preview_white.png, bytes: 916067, sha256: 83479f7850b2957d2665e95bff2198845056b7dc7ceedee82c2917c57a9c00df}
+  - {file: effect/mv_zuoyouhubo_quanli/quality.json, bytes: 1029, sha256: d83c4116fbf47958c9777ac78b61e2e2d3b4488fd37c8675418e3bba72c554f0}
+- id: vfx_mv_zuoyouhubo_fenxin__base01
+  file: moves/mv_zuoyouhubo_fenxin/peak.png
+  category: vfx
+  style: default
+  subject: 左右互搏 · 分心二用绝招入口局部意象；射雕 / 神雕语境（原创扩展）。
+  skill: sk_zuoyouhubo
+  move: mv_zuoyouhubo_fenxin
+  ultimate: true
+  projection: false
+  nature: neutral
+  delivery: inner
+  pipeline: two-part
+  effect_set: effect/mv_zuoyouhubo_fenxin/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  code: moves/mv_zuoyouhubo_fenxin/demo.html
+  prompt: 派生合成，不重新生图。按 design/23 §4–§6 把 effect/mv_zuoyouhubo_fenxin 四帧与共享 palm 逐字节引用合成；1536×1024，根部 [736,536]，向右 0°，局部长度 288 px，wave 0.15+0.20+0.40+0.15=0.90 s，峰值 0.35/0.90。原始完整 image_gen 提示词见对应原料条目及 source_requests.json。
+  negative: 不复制或重抠掌图；不新增射程、范围档位、命中或伤害事件；不绘制原料造型。
+  references:
+  - effect/mv_zuoyouhubo_fenxin/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + build_demo.py（Three.js r186）
+  model: 不适用：代码合成；原料来自内置 image_gen
+  effort: 不适用：确定性派生
+  created: '2026-10-03'
+  source_path: moves/mv_zuoyouhubo_fenxin/composition.yaml
+  size: 1536x1024
+  sha256: 0e67ea4875884fcd8c03b76de88e57c245b092dc3c580de28a8f87310e0796ef
+  status: candidate
+  notes: 图鉴两招均 ultimate:true；入口 projection:false，实际范围依所选两招。本单掌演示只表示入口，运行时由真实双手挂点分别播放所选原招；family 保留为共用语汇，此处使用各自绝招套。range_hex:0 是局部预览，非图鉴射程。浏览器 / 真机待实测。
+  file_integrity:
+  - {file: moves/mv_zuoyouhubo_fenxin/composition.json, bytes: 3338, sha256: 76d3ac36b199e471cfa2a19692a0c9491c6b675ecff362d26072e98af3d7d787}
+  - {file: moves/mv_zuoyouhubo_fenxin/composition.yaml, bytes: 1089, sha256: d2cfbce7c340d6f8307b5fae54ed352e1ae3b8bda8696b6dbaf65f10c3fef81f}
+  - {file: moves/mv_zuoyouhubo_fenxin/demo.html, bytes: 1525177, sha256: a6b2eb6129119b0c106b1969ddad89507a43ad694a22291a301c7d9814a50cce}
+  - {file: moves/mv_zuoyouhubo_fenxin/peak.png, bytes: 234396, sha256: 0e67ea4875884fcd8c03b76de88e57c245b092dc3c580de28a8f87310e0796ef}
+- id: vfx_mv_zuoyouhubo_quanli__base01
+  file: moves/mv_zuoyouhubo_quanli/peak.png
+  category: vfx
+  style: default
+  subject: 左右互搏 · 双手全力绝招入口局部意象；射雕 / 神雕语境（原创扩展）。
+  skill: sk_zuoyouhubo
+  move: mv_zuoyouhubo_quanli
+  ultimate: true
+  projection: false
+  nature: neutral
+  delivery: inner
+  pipeline: two-part
+  effect_set: effect/mv_zuoyouhubo_quanli/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  code: moves/mv_zuoyouhubo_quanli/demo.html
+  prompt: 派生合成，不重新生图。按 design/23 §4–§6 把 effect/mv_zuoyouhubo_quanli 四帧与共享 palm 逐字节引用合成；1536×1024，根部 [736,536]，向右 0°，局部长度 360 px，wave 0.15+0.20+0.40+0.15=0.90 s，峰值 0.35/0.90。原始完整 image_gen 提示词见对应原料条目及 source_requests.json。
+  negative: 不复制或重抠掌图；不新增射程、范围档位、命中或伤害事件；不绘制原料造型。
+  references:
+  - effect/mv_zuoyouhubo_quanli/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + build_demo.py（Three.js r186）
+  model: 不适用：代码合成；原料来自内置 image_gen
+  effort: 不适用：确定性派生
+  created: '2026-10-03'
+  source_path: moves/mv_zuoyouhubo_quanli/composition.yaml
+  size: 1536x1024
+  sha256: e484fa7ae04bfa7e643831e22c70bcc7e19cea7ba8dceadc28350e63cb0163e7
+  status: candidate
+  notes: 图鉴两招均 ultimate:true；入口 projection:false，实际范围依所选两招。本单掌演示只表示入口，运行时由真实双手挂点分别播放所选原招；family 保留为共用语汇，此处使用各自绝招套。range_hex:0 是局部预览，非图鉴射程。浏览器 / 真机待实测。
+  file_integrity:
+  - {file: moves/mv_zuoyouhubo_quanli/composition.json, bytes: 3338, sha256: 215f90ae572ace80c9a909d51d7d42f5c61ca2c2d79b18f4b07fab7cdea368b9}
+  - {file: moves/mv_zuoyouhubo_quanli/composition.yaml, bytes: 1091, sha256: ac56512af6f6db56a478d854ce107eac5640880fef083c6b4be9f31f85092a8f}
+  - {file: moves/mv_zuoyouhubo_quanli/demo.html, bytes: 1725061, sha256: 00123d00fdc6c9ca7858f6e6095ef1a248e90ed1806234c3239f1adf3803c9c0}
+  - {file: moves/mv_zuoyouhubo_quanli/peak.png, bytes: 302583, sha256: e484fa7ae04bfa7e643831e22c70bcc7e19cea7ba8dceadc28350e63cb0163e7}

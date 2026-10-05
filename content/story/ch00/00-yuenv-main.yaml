@@ -1,0 +1,102 @@
+schemaVersion: story.v1
+chapterId: ch00_yuenv
+lineId: main
+kind: main
+titleKey: story.ch00.main.title
+eraLayer: ch00
+startNodeId: n_opening
+sideHooks: []
+source:
+  document: docs/design/story/00-yuenv.md
+  anchors: ["§0.2", "§1", "§2", "§4"]
+  note: 序章编排与玩家介入均为原创扩展；原著人物情节只取待考大意
+nodes:
+  - id: n_opening
+    type: dialogue
+    titleKey: story.ch00.main.opening
+    completeOn: dialogue/completed
+    payload: {ink: {storyId: story_ch00_main, knot: modern_opening}}
+    sourceRef: design/story/00 §2.2
+  - id: n_mode_intro
+    type: dialogue
+    titleKey: story.ch00.main.prologue_mode
+    completeOn: dialogue/completed
+    payload: {ink: {storyId: story_ch00_main, knot: prologue_mode}}
+    sourceRef: design/story/00 §2.1
+  - id: n_mode
+    type: choice
+    titleKey: story.ch00.choice.dc_00_01
+    completeOn: story/choiceCommitted
+    payload:
+      decisionId: dc_00_01
+      options:
+        - {key: full, textKey: story.ch00.dc00_01.full}
+        - {key: summary, textKey: story.ch00.dc00_01.summary}
+        - {key: skip, textKey: story.ch00.dc00_01.skip}
+    sourceRef: design/story/00 §2.1
+  - id: n_c01
+    type: quest
+    titleKey: quest.q_00_main_c_01.title
+    completeOn: quest/succeeded
+    payload: {questId: q_00_main_c_01}
+    sourceRef: design/story/00 §1.3
+  - id: n_c02
+    type: quest
+    titleKey: quest.q_00_main_c_02.title
+    completeOn: quest/succeeded
+    payload: {questId: q_00_main_c_02}
+    sourceRef: design/story/00 §1.4
+  - id: n_c03
+    type: quest
+    titleKey: quest.q_00_main_c_03.title
+    completeOn: quest/succeeded
+    payload: {questId: q_00_main_c_03}
+    sourceRef: design/story/00 §1.5
+  - id: n_c04
+    type: quest
+    titleKey: quest.q_00_main_c_04.title
+    completeOn: quest/succeeded
+    payload: {questId: q_00_main_c_04}
+    sourceRef: design/story/00 §1.6
+  - id: n_summary
+    type: dialogue
+    titleKey: story.ch00.main.skip_summary
+    completeOn: dialogue/completed
+    payload: {ink: {storyId: story_ch00_main, knot: skip_summary}}
+    sourceRef: design/story/00 §2.3
+  - id: n_skip_direct
+    type: dialogue
+    titleKey: story.ch00.main.skip_direct
+    completeOn: dialogue/completed
+    payload: {ink: {storyId: story_ch00_main, knot: skip_direct}}
+    sourceRef: design/story/00 §2.1
+  - id: n_full_complete
+    type: end
+    titleKey: story.ch00.main.full_complete
+    completeOn: immediate
+    payload: {endingTags: [full, first_sleep_to_baima]}
+    sourceRef: design/story/00 §1.6
+  - id: n_summary_complete
+    type: end
+    titleKey: story.ch00.main.summary_complete
+    completeOn: immediate
+    payload: {endingTags: [summary, first_sleep_to_baima]}
+    sourceRef: design/story/00 §2.3
+  - id: n_skip_complete
+    type: end
+    titleKey: story.ch00.main.skip_complete
+    completeOn: immediate
+    payload: {endingTags: [skip, first_sleep_to_baima]}
+    sourceRef: design/story/00 §2.1
+edges:
+  - {id: e_opening_mode_intro, from: n_opening, to: n_mode_intro, trigger: auto, priority: 0}
+  - {id: e_mode_intro_mode, from: n_mode_intro, to: n_mode, trigger: auto, priority: 0}
+  - {id: e_mode_full, from: n_mode, to: n_c01, trigger: choice, choiceKey: full, priority: 30}
+  - {id: e_mode_summary, from: n_mode, to: n_summary, trigger: choice, choiceKey: summary, priority: 20}
+  - {id: e_mode_skip, from: n_mode, to: n_skip_direct, trigger: choice, choiceKey: skip, priority: 10}
+  - {id: e_c01_c02, from: n_c01, to: n_c02, trigger: auto, priority: 0}
+  - {id: e_c02_c03, from: n_c02, to: n_c03, trigger: auto, priority: 0}
+  - {id: e_c03_c04, from: n_c03, to: n_c04, trigger: auto, priority: 0}
+  - {id: e_c04_complete, from: n_c04, to: n_full_complete, trigger: auto, priority: 0}
+  - {id: e_summary_complete, from: n_summary, to: n_summary_complete, trigger: auto, priority: 0}
+  - {id: e_skip_complete, from: n_skip_direct, to: n_skip_complete, trigger: auto, priority: 0}

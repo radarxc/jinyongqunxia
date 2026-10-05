@@ -1,0 +1,340 @@
+# 先天功：三张原料 + 三招静态峰值与 Three.js 演示；全部 candidate。
+- id: vfx_sk_xiantiangong__family_base01
+  file: effect/family/source_sheet.png
+  size: 1536x1024
+  sha256: 4128551ce0bbf9e3b34bfb850849c9250d879dc8e2081cb918f2c306562d0cc8
+  category: vfx
+  style: default
+  subject: 射雕书界 / 南宋；先天功家族：赤色连源气带（原创扩展）
+  prompt: 'Use case: stylized-concept
+
+    Asset type: white-background four-keyframe VFX sprite sheet for a Chinese wuxia game, Xiantian Gong family; an original
+    visual interpretation, not a claimed depiction from a novel.
+
+    Create one 1536x1024 landscape image with exactly four equal 768x512 cells in a clean 2x2 arrangement, read left to right
+    then top to bottom. No visible grid or cell labels. Strictly pure white #FFFFFF background, no paper texture.
+
+    Each cell shows the same elegant warm vermilion-red internal-qi aura flowing toward the right: a broad soft root at local
+    (100,256), three translucent coiling red ink wisps threading into one gently arched breath, tapering near (650,256). It
+    must read as cultivated internal energy, not physical fire, a sword, a laser, blood, or a dragon. Wispy calligraphic ink
+    with real empty gaps, delicate warm coral edges and a restrained cinnabar core. Keep the broad root visibly connected
+    through every frame.
+
+    Four animation stages: gathering, fully formed peak, soft sustained breath, fading wisps. Root position stays identical.
+    Peak and sustained shapes should be close enough to crossfade cleanly. All colored marks stay inside local x=65..700,y=95..417,
+    with at least 40px pure white margins; no particle can cross a cell boundary. The left root is about 90px tall at x=100;
+    the energy is longer than it is tall.
+
+    Palette: cinnabar, vermilion, dark warm red, transparent-looking coral washes; red is the game''s yang nature convention,
+    not a novel color claim. No white or near-white painted highlights within the effect.
+
+    No people, hands, weapons, scenery, symbols, writing, watermarks, borders, shadows, checkerboard, neon bloom, or opaque
+    flat discs. Only the four energy frames on white.'
+  negative: 人物、掌图、兵器、背景纹理、文字、水印、网格、棋盘格、硬阴影、实体火焰、纯白实心高光
+  references: []
+  tool: 内置 image_gen
+  model: image_gen（后端模型未回传）
+  effort: 工具未回传
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_xiantiangong/codex-home/generated_images/01a10405-f95c-7e43-a2e8-3c4ada72dfe2/exec-25f8751f-bb87-4141-a60e-ca0fc336afd6.png
+  status: candidate
+  pipeline: two-part
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 1 候选选 1；原图逐字节保留。4 帧 / 2×2 / 单帧 768×512；yang 赤色与造型为原创扩展。cut_frames.py 以 white_key 64 去白；原著边界和测量见 README。
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 997
+    sha256: 247daaabc5e036e9a88b2fe863d7f9231f4af8882810217c19552174725c4228
+  - file: effect/family/frame_000.png
+    bytes: 173645
+    sha256: 9037fdfc7410f7110ff9a07410f56872c47be4d95bdc80ee332717a89c2f41d7
+  - file: effect/family/frame_001.png
+    bytes: 186295
+    sha256: 90dbd50ff5048587b0bb715798a61d69fb50c91f3682468cceb9c6b77b248cf7
+  - file: effect/family/frame_002.png
+    bytes: 180893
+    sha256: dd7666040065d78ecc4c0ef95e964fdaddcccec1f3a9c92dab06e6b224e79638
+  - file: effect/family/frame_003.png
+    bytes: 167811
+    sha256: f72310067088a9b84e3b20790a8cc8ca2cd4160607b1168266286cbfcc9bbc6a
+  - file: effect/family/preview_black.png
+    bytes: 608089
+    sha256: 9549d69ec4eb55e0178ce45940f708638000c1f9530085474e40b7a02fe1cd37
+  - file: effect/family/preview_gray.png
+    bytes: 561521
+    sha256: 4c9dcdd750a217335bdd809f9211a5eb7725a437098c29eb635d70bf65dd9b5a
+  - file: effect/family/preview_white.png
+    bytes: 519248
+    sha256: 0a17dc6043d056e7355df905f28cd49358b3542480480976cd81c5421b68650e
+  - file: effect/family/prompt.txt
+    bytes: 1727
+    sha256: b2489d5cba36edad6f215e4dab2c807801130319c4c575cb87c6bae949c87b22
+  - file: effect/family/quality.json
+    bytes: 1032
+    sha256: ba436e9de9a031e3c494b2cb0349fc61de54ed4789fefdf11b8e88995846591a
+- id: vfx_sk_xiantiangong__gangqi_base01
+  file: effect/mv_xiantiangong_gangqi/source_sheet.png
+  size: 1536x1024
+  sha256: 0292f8df1da1e3dc39ade6b668887699516e7d1b2bbe03699d6144b4d8fb9c3a
+  category: vfx
+  style: default
+  subject: 射雕书界 / 南宋；先天罡气：三层护体弧面（原创扩展）
+  prompt: 'Use case: stylized-concept
+
+    Asset type: white-background four-keyframe VFX sprite sheet for a Chinese wuxia game, Xiantian Gangqi protective internal-qi
+    aura. Entire visual is an original interpretation.
+
+    Create one 1536x1024 landscape image with exactly four equal 768x512 cells in a clean 2x2 arrangement, left to right then
+    top to bottom. Pure white #FFFFFF background, absolutely no texture, labels or grid.
+
+    Every cell depicts the same compact protective red qi shell: a broad translucent root on the left at local (210,256),
+    unfurling toward the right into three nested upright crescent membranes, a rounded protective bow rather than an attacking
+    beam. The aura is open and airy, with deep empty spaces between the curved membranes. Each membrane resembles a curved
+    sweep of cinnabar ink in clear water, with delicate scarlet threads that fold back toward the root. Concentrate color
+    along the right-facing arcs; keep the left root diffuse, so a hand can remain visible underneath. The outer bow reaches
+    local x=600, top y=82, bottom y=430. All root wisps remain inside x=150..650,y=60..452. The actual root cross-section
+    at x=210 is about 130px tall. No hard shield object and no solid disc.
+
+    Four animation stages: gathering shell, fully formed three-membrane peak, sustained shell with subtly flowing edges, fading
+    shell. Maintain the identical root and comparable silhouettes in all cells for smooth crossfade; the last frame remains
+    partially visible. No dramatic expansion between cells.
+
+    Style: refined Chinese wuxia ink-wash energy, vermilion and warm dark-red accents with translucent coral edges, very sparse
+    flecks. Game yang-red convention; no canonical novel color claim. No pure-white or near-white painted highlights inside
+    the colored marks.
+
+    No people, hands, weapons, dragon, animal, fire, lightning, runes, religious diagrams, writing, watermark, border, shadow,
+    paper texture, checkerboard, neon beam or 3D glass. Keep at least 40px pure-white safety margins in every cell. Only the
+    four energy frames on white.'
+  negative: 人物、掌图、兵器、背景纹理、文字、水印、网格、棋盘格、硬阴影、实体火焰、纯白实心高光
+  references: []
+  tool: 内置 image_gen
+  model: image_gen（后端模型未回传）
+  effort: 工具未回传
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_xiantiangong/codex-home/generated_images/01a10405-f95c-7e43-a2e8-3c4ada72dfe2/exec-59b3fef1-d0a5-4fcd-af95-31ba04bfd5d5.png
+  status: candidate
+  pipeline: two-part
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 1 候选选 1；原图逐字节保留。4 帧 / 2×2 / 单帧 768×512；yang 赤色与造型为原创扩展。cut_frames.py 以 white_key 64 去白；原著边界和测量见 README。
+  file_integrity:
+  - file: effect/mv_xiantiangong_gangqi/effect-set.yaml
+    bytes: 1015
+    sha256: 4cd60620ec6808deedbae92ec89af3c532bb7e03d7869128e9371f330616ac7b
+  - file: effect/mv_xiantiangong_gangqi/frame_000.png
+    bytes: 300314
+    sha256: 389e28a87684b36d7d349bc0e9fa6a9873f72d0ee8d019f16addf2354a3683d7
+  - file: effect/mv_xiantiangong_gangqi/frame_001.png
+    bytes: 318863
+    sha256: 213adea84dedf8b3303d7a6e67bbaa1a94a0b21eed56ac6346804d71f25d011c
+  - file: effect/mv_xiantiangong_gangqi/frame_002.png
+    bytes: 302429
+    sha256: dfa3c4c1703917ba207521a600d4366798bd87c6024778ec1381eb0966c63c36
+  - file: effect/mv_xiantiangong_gangqi/frame_003.png
+    bytes: 278074
+    sha256: ed7042b036213a545f48abcc20e0ddb04e1b003c1aa41cc4b15e9e81e35bcba0
+  - file: effect/mv_xiantiangong_gangqi/preview_black.png
+    bytes: 1001911
+    sha256: b77dc6f55890ee2701cdd26e2e81327388a89b2eb427b5b2d95c84388fb189f8
+  - file: effect/mv_xiantiangong_gangqi/preview_gray.png
+    bytes: 924827
+    sha256: 46892e9df716703940adb98aa52dfb0bbab84c72100b19c380dad6970a3c31cc
+  - file: effect/mv_xiantiangong_gangqi/preview_white.png
+    bytes: 874327
+    sha256: 7aaa2ef53f0b452ce7580e762f82f733738d9be0a1f09def26b39155486071e7
+  - file: effect/mv_xiantiangong_gangqi/prompt.txt
+    bytes: 2033
+    sha256: 4dda850fe78b38b91020ba664ce482d73a881a9aec8abdd82561525d806d097e
+  - file: effect/mv_xiantiangong_gangqi/quality.json
+    bytes: 1031
+    sha256: f16b22e5035036a60ad78c4af0e211f1880735c8173af92844e17950ee4c0aa4
+- id: vfx_sk_xiantiangong__wuqi_base01
+  file: effect/mv_xiantiangong_wuqi/source_sheet.png
+  size: 1536x1024
+  sha256: 83cb75a52eb78955ccfa91d9fd76a8304930f138012c866591486e65249ff429
+  category: vfx
+  style: default
+  subject: 射雕书界 / 南宋；五气朝元：五股归元旋卷（原创扩展）
+  prompt: 'Use case: stylized-concept
+
+    Asset type: white-background four-keyframe VFX sprite sheet for a Chinese wuxia game, Wuqi Chaoyuan of Xiantian Gong.
+    Original visual based on the move name, not a claimed novel depiction.
+
+    Create one 1536x1024 landscape image with exactly four equal 768x512 cells in a clean 2x2 arrangement, read left to right
+    then top to bottom. Pure white #FFFFFF background; no grid, labels or texture.
+
+    Every cell contains a compact internal-qi circulation field made of exactly five main vermilion ribbons. All five begin
+    softly at the same broad diffuse root at local (200,256), flow a short distance toward the right, then curl around one
+    airy empty center at about (435,256), visually gathering toward one source. The five clearly separated calligraphic ribbons
+    create an open fivefold whorl with no enclosing hard circle. Keep openings and white gaps so the qi feels immaterial.
+    The five outer curves remain inside local x=145..645,y=70..442; root cross-section at x=200 is about 130px tall. This
+    is a local around-body energy surge, not five missiles or a long-range beam. The left root must stay visible and connected,
+    not become an isolated floating emblem.
+
+    Four animation stages: five strands gathering, complete five-strand peak, subtly flowing sustained whorl, fading five-strand
+    remnants. Root stays identical and the silhouette stays close between peak and sustain; partially visible final frame.
+    Do not introduce more major ribbons.
+
+    Style: elegant wuxia ink washes suspended in water, deep cinnabar and warm vermilion with translucent coral wisps, sharp
+    brush filaments alternating with empty spaces. Red is the game''s yang convention. No rainbow colors, pure-white painted
+    highlights, opaque central orb, solid disc or physical flame.
+
+    No person, hand, weapon, dragon, flower, animal, scenery, religious symbol, diagram, letters, watermark, border, shadow,
+    paper texture, checkerboard or neon bloom. Keep at least 40px pure-white safety margins per cell. Only the four energy
+    frames on white.'
+  negative: 人物、掌图、兵器、背景纹理、文字、水印、网格、棋盘格、硬阴影、实体火焰、纯白实心高光
+  references: []
+  tool: 内置 image_gen
+  model: image_gen（后端模型未回传）
+  effort: 工具未回传
+  created: '2026-10-03'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_xiantiangong/codex-home/generated_images/01a10405-f95c-7e43-a2e8-3c4ada72dfe2/exec-f2e7072d-f128-4e02-9c4c-7203121b6509.png
+  status: candidate
+  pipeline: two-part
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 1 候选选 1；原图逐字节保留。4 帧 / 2×2 / 单帧 768×512；yang 赤色与造型为原创扩展。cut_frames.py 以 white_key 64 去白；原著边界和测量见 README。
+  file_integrity:
+  - file: effect/mv_xiantiangong_wuqi/effect-set.yaml
+    bytes: 1013
+    sha256: 61b51bb3e1282873bff1a80b74c7c649ace9cbc3ca6461f243f81bb16ae36dbb
+  - file: effect/mv_xiantiangong_wuqi/frame_000.png
+    bytes: 264147
+    sha256: 86a26518b058cc44a813224d3fb36dfa0b5aac67c4d258c33c8c95bc65595344
+  - file: effect/mv_xiantiangong_wuqi/frame_001.png
+    bytes: 299272
+    sha256: 41c4a695f9f61547d926da3f57794a836d24b7fe1c0e010221b2fc5457b86ba7
+  - file: effect/mv_xiantiangong_wuqi/frame_002.png
+    bytes: 314755
+    sha256: 4ceb234a97351a62a7de73eda9922a740b62f6df85353fd9b5d946e77d6677ce
+  - file: effect/mv_xiantiangong_wuqi/frame_003.png
+    bytes: 279284
+    sha256: 765b224574d0240c450684d43b15516b97279c3fecc9533d82d30b1ac7cfb432
+  - file: effect/mv_xiantiangong_wuqi/preview_black.png
+    bytes: 983350
+    sha256: 889023ed9e39f08d2ce6d1f09c1d8ff5455e41aa8f1db28c22a03d92dd000324
+  - file: effect/mv_xiantiangong_wuqi/preview_gray.png
+    bytes: 925152
+    sha256: e7f407f52e7d6d0a604190590a5b13e0f59ddc07b0b47c294399c3ece4eb0d6e
+  - file: effect/mv_xiantiangong_wuqi/preview_white.png
+    bytes: 879963
+    sha256: ae1a528d899c84026ca482bb1e7ade445f414f632cfffd111b80f06394bda0bf
+  - file: effect/mv_xiantiangong_wuqi/prompt.txt
+    bytes: 2021
+    sha256: 3191d6e0d5bf3db3c8b55762fa51709a17e18848990d96fd31cb5ba0ebd5363e
+  - file: effect/mv_xiantiangong_wuqi/quality.json
+    bytes: 1030
+    sha256: e644332037859e2b7986162657bad7c87927a53316b7b579fb008cb57ac1ecb5
+- id: vfx_mv_xiantiangong_gangqi__base01
+  file: moves/mv_xiantiangong_gangqi/peak.png
+  size: 1536x1024
+  sha256: 3e5d85c965da85a2db27600d105d44dbdd0b79a434d69697019ea94a9186aae3
+  category: vfx
+  style: default
+  subject: 射雕书界 / 南宋；先天功·先天罡气（原创扩展）
+  prompt: 以 effect/mv_xiantiangong_gangqi/effect-set.yaml 的四帧原料与共用 palm，按 moves/mv_xiantiangong_gangqi/composition.yaml 合成；完整原料提示词见对应原料条目。
+  negative: 不重画发出方；不生成整图动画帧；不增加 projection、射程、命中格或伤害事件
+  references:
+  - effect/mv_xiantiangong_gangqi/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 非模型：现有 Python / Three.js 合成
+  effort: 确定性派生
+  created: '2026-10-03'
+  source_path: assets/default/vfx/sk_xiantiangong/moves/mv_xiantiangong_gangqi/composition.yaml
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_xiantiangong_gangqi/demo.html
+  move_ref: mv_xiantiangong_gangqi
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_xiantiangong_gangqi/effect-set.yaml
+  length_px: 270
+  duration_s: 0.9
+  notes: 共用 palm 仅相对引用，未复制。所有图片与脚本内联，仅保留指定 Three.js r186 importmap。range_hex=0 为自身局部示意；本长度不是玩法射程或完整周身 AoE。
+  file_integrity:
+  - file: moves/mv_xiantiangong_gangqi/composition.json
+    bytes: 3415
+    sha256: f8f861fb04ebd86a279b68e79876f9c4c5fce4d4b9064699e119ae9938b706ca
+  - file: moves/mv_xiantiangong_gangqi/composition.yaml
+    bytes: 878
+    sha256: daccc6f6f691906a3cc0ef822d0284453dcbab5c9a1581362c862f7d153cc4b6
+  - file: moves/mv_xiantiangong_gangqi/demo.html
+    bytes: 2047886
+    sha256: e745bb476cbbc935584f28f072ddf7fae3d0e0eb500b2eb40b790a6f470b258b
+- id: vfx_mv_xiantiangong_wuqi__base01
+  file: moves/mv_xiantiangong_wuqi/peak.png
+  size: 1536x1024
+  sha256: da107b6bf5423ca2a4a946f0f673a5028b0f101125366ca545432c700f47bdc8
+  category: vfx
+  style: default
+  subject: 射雕书界 / 南宋；先天功·五气朝元（原创扩展）
+  prompt: 以 effect/mv_xiantiangong_wuqi/effect-set.yaml 的四帧原料与共用 palm，按 moves/mv_xiantiangong_wuqi/composition.yaml 合成；完整原料提示词见对应原料条目。
+  negative: 不重画发出方；不生成整图动画帧；不增加 projection、射程、命中格或伤害事件
+  references:
+  - effect/mv_xiantiangong_wuqi/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 非模型：现有 Python / Three.js 合成
+  effort: 确定性派生
+  created: '2026-10-03'
+  source_path: assets/default/vfx/sk_xiantiangong/moves/mv_xiantiangong_wuqi/composition.yaml
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_xiantiangong_wuqi/demo.html
+  move_ref: mv_xiantiangong_wuqi
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_xiantiangong_wuqi/effect-set.yaml
+  length_px: 315
+  duration_s: 0.9
+  notes: 共用 palm 仅相对引用，未复制。所有图片与脚本内联，仅保留指定 Three.js r186 importmap。range_hex=0 为自身局部示意；本长度不是玩法射程或完整周身 AoE。
+  file_integrity:
+  - file: moves/mv_xiantiangong_wuqi/composition.json
+    bytes: 3405
+    sha256: ea9ae0cfc22a10c6c5d6d49cd89b32ccd52f71efadd7b12208c0a761b69cc5dd
+  - file: moves/mv_xiantiangong_wuqi/composition.yaml
+    bytes: 870
+    sha256: 2bb255e6e1054cf3b580fcac74ce99a849ed6e18add28335923b4c0510fd2be5
+  - file: moves/mv_xiantiangong_wuqi/demo.html
+    bytes: 1947932
+    sha256: 2aeacfcaf90556044a3e80f97abcfd18e54dbf4ac726d15c82e58d9004f0e397
+- id: vfx_mv_xiantiangong_yiqi__base01
+  file: moves/mv_xiantiangong_yiqi/peak.png
+  size: 1536x1024
+  sha256: 7d21b2ec084ef5440eb2fe6a882168b950c8643055408264952579932fbfbf64
+  category: vfx
+  style: default
+  subject: 射雕书界 / 南宋；先天功·一炁贯虹（原创扩展）
+  prompt: 以 effect/family/effect-set.yaml 的四帧原料与共用 palm，按 moves/mv_xiantiangong_yiqi/composition.yaml 合成；完整原料提示词见对应原料条目。
+  negative: 不重画发出方；不生成整图动画帧；不增加 projection、射程、命中格或伤害事件
+  references:
+  - effect/family/effect-set.yaml
+  - ../emitters/palm/emitter-plate.yaml
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 非模型：现有 Python / Three.js 合成
+  effort: 确定性派生
+  created: '2026-10-03'
+  source_path: assets/default/vfx/sk_xiantiangong/moves/mv_xiantiangong_yiqi/composition.yaml
+  status: candidate
+  pipeline: two-part
+  code: moves/mv_xiantiangong_yiqi/demo.html
+  move_ref: mv_xiantiangong_yiqi
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  length_px: 540
+  duration_s: 0.6
+  notes: 共用 palm 仅相对引用，未复制。所有图片与脚本内联，仅保留指定 Three.js r186 importmap。ranged 1–3 不等于外放；离体真气依据待考。
+  file_integrity:
+  - file: moves/mv_xiantiangong_yiqi/composition.json
+    bytes: 3370
+    sha256: 4c4c3248740f8f3e98a28329f75eb66244f2671a920c9307ec08e363fa282507
+  - file: moves/mv_xiantiangong_yiqi/composition.yaml
+    bytes: 851
+    sha256: 41571631683a652af1840a065d56bbc0ce078151d30d05000d21a8b33754769d
+  - file: moves/mv_xiantiangong_yiqi/demo.html
+    bytes: 1488781
+    sha256: 426673f6fa1a01b37b180ef64d85f18cb2ee1e16e3acd30b48808c4f559154fb

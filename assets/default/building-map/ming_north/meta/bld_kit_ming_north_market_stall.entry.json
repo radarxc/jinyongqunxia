@@ -1,0 +1,54 @@
+{
+  "id": "bld_kit_ming_north_market_stall",
+  "subject": "明代北方府城·市场棚（原创扩展）",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated game building sprite for tianshu default, Ming dynasty northern Chinese prefectural city architectural kit, original anonymous composite, not a reconstruction of a named monument. Realistic ancient Chinese architecture, same natural material realism and detail density as the attached Song stable reference; reference is style ONLY, change architecture to northern Ming gray brick and gray clay tile, modest timber, restrained hard-gable yingshan roof with straight compact eaves. Orthographic 2:1 dimetric projection, yaw 45 degrees, pitch 30 degrees, NO perspective convergence. East ground axis projects down-right at slope +0.5; north ground axis up-right at slope -0.5; vertical posts stay vertical. Thin almost-flat footprint pad with clearly visible left, front, right corners, not a pedestal. Footprint proportions refer to ground axes, NOT canvas proportions. Main light from SCREEN UPPER LEFT; short soft contact shadow toward lower right. Entire object and base uncut, generous transparent margins. TRUE TRANSPARENT RGBA background, no opaque background or painted checkerboard. No people, animals, writing, pseudo-glyphs, signs, numbers, modern objects, palace ornament on common buildings, Qing imperial decoration, fantasy, neighboring buildings, sky, water, scenery, thick diorama plinth, broad shadows, tilt shift, toy plastic, cropping. Asset bld_kit_ming_north_market_stall. One tiny 3 by 2 metre market stall with four plain wooden posts, low beige linen canopy stretched over simple timber frame, a wooden front counter holding two woven baskets of grain and folded cloth, rough gray brick flat paving base. No building behind, no tile-roof house, no shop sign. Ground width-to-depth axes ratio 3:2. Front faces screen lower-left. Keep the ground edges at precisely +0.5/-0.5 slopes.",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_stable",
+      "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_stable.png",
+      "sha256": "da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28",
+      "role": "仅材质/细节密度参考；不继承宋屋型",
+      "status": "candidate"
+    }
+  ],
+  "created": "2026-09-30T21:12:06.313Z",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-22c7cf6e-29d1-47d9-9570-6ea71de013d0.png",
+  "file": "bld_kit_ming_north_market_stall.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "256x256",
+  "sha256": "a9c5cc6dcab321396a743c28cb8be32a600895c04c245d5056c5e91c40e20018",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_market_stall",
+    "footprint": [
+      3,
+      2
+    ],
+    "anchor": [
+      127.1883,
+      150.0518
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    3,
+    2
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 1.5
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_market_stall.png",
+  "source_sha256": "a8f661b6c99ae08862b2963e2a24cf59674a0d08472a3d20eeb2afc8978f17c1",
+  "meta": "meta/bld_kit_ming_north_market_stall.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "source_record": "sources/bld_kit_ming_north_market_stall.json"
+}

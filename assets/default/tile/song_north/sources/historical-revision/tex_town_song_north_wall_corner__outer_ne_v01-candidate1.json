@@ -1,0 +1,21 @@
+{
+  "created": 1790835550,
+  "background": "transparent",
+  "output_format": "png",
+  "quality": "medium",
+  "size": "1254x1254",
+  "usage": {
+    "input_tokens": 2136,
+    "input_tokens_details": {
+      "image_tokens": 1639,
+      "text_tokens": 497
+    },
+    "output_tokens": 2058,
+    "output_tokens_details": {
+      "image_tokens": 2058,
+      "text_tokens": 0
+    },
+    "total_tokens": 4194
+  },
+  "generation_id": "14db126f-3220-4699-b8f7-d974c3c1ab71"
+}

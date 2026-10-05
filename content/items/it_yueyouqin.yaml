@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yueyouqin
+name: 越地幽弦琴
+kind: collectible
+sub: qin
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yueyouqin
+text:
+  desc: 外观：早期小型木质弦器，长方共鸣体略收腰。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,musician,collector]}; giftValue=1; provenance=expanded。
+  lore: 春秋早期琴的考古材料只能支持弦器方向，不能套用成熟唐宋琴制。本件是越地乐工制器的（原创扩展），宜赠乐人；弦数及岳山结构（待考），确定前不称出土器精确复原。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

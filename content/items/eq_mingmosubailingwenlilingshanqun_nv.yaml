@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_mingmosubailingwenlilingshanqun_nv
+name: 明末素白绫纹立领衫裙·女
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters:
+- ch07_bixue
+origin: canonExpanded
+canonRef: 明末；出现书界 ch07；（原创扩展）；形制／色系依据：故宫董进《图说明代宫廷服饰（九）——后妃吉服与便服》 https://img.dpm.org.cn/Uploads/File/2020/04/27/u5ea6aea86025c.pdf；崇祯阶段主色排行和低立领细节（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingmosubailingwenlilingshanqun_nv
+text:
+  desc: 外观：明末女款，主色素白。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=female。
+  lore: （原创扩展）依明末衫裙语汇演成素白女式立领衫裙，低立领斜襟长衫与前后裙门、侧褶长裙合为一件外衣。克制绫织暗纹缘落领袖及裙缘，着装先理顺布纽与裙带；低领细节、水红偏色及素白常服实证（待考），同档换色同值。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 48

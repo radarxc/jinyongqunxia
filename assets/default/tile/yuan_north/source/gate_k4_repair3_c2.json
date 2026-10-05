@@ -1,0 +1,14 @@
+{
+  "repair_round": 3,
+  "candidate": "k4_c2",
+  "prompt": "Use case: precise-object-edit. Add finely detailed real aged rammed-earth, timber and gray clay roofing materials to this EXACT reference shape. This is only a SURFACE TEXTURE edit. Keep the exact existing silhouette, all face boundaries, all corners, all base pixels, all proportions and the 1536x1024 framing. Preserve the deliberately shallow 2:1 diamond view; do not adopt standard isometric. Both ground axes remain +0.500 and -0.500. Piers remain vertical-sided rectangular prisms WITHOUT any bulging bevel or protruding foundation. Footprint8x4m, two piers2x4m each, empty passage4x4m. Leftmost foot(300,665), left opening foot(428,729), right opening foot(684,857), frontmost foot(812,921), rightmost foot(1068,793). Do not move these vertices even one pixel. Open passage ground and outside must remain alpha=0; there is NO ground platform. Keep roof simple, shallow pitch and restrained Yuan character. Natural tiny grey individual tiles on the provided slopes, warm fine grain brown timber with small simple lattice shutters on the provided upper wall, fine horizontal rammed earth strata in pale ochre on the provided piers. Moderate realistic detail consistent with ancient Chinese game map building sprites; upper left light, darker right-facing planes. Genuine transparency with no haze, glow, halo, cast shadow, backdrop, floor or additional structure. No text, humans, labels, outlines or grid. Keep shape literally pixel aligned with reference. No compositional changes, no camera adjustment, no resizing.",
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46f-ac3d-7492-8311-f5489c237652/exec-d9c29de0-bb66-4c02-9723-786462ad46c1.png",
+  "model": "not disclosed",
+  "seed": "not disclosed",
+  "references": [
+    "source/gate_k4_repair2_geometry.png"
+  ],
+  "note": "精确简模仅作生成参考，成品未用warp、各向异性缩放或重绘。"
+}

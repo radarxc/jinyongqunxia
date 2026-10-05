@@ -1,0 +1,43 @@
+{
+  "key": "biaoju",
+  "id": "bld_kit_mongol_biaoju",
+  "footprint": [
+    14,
+    11
+  ],
+  "subject": "商队护运货栈木栅院",
+  "candidates": [
+    {
+      "number": 1,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-93958656-a4b3-47ca-b9d8-ca148e0da2a3.png",
+      "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_biaoju. Footprint exactly 14m east-west x 11m north-south. In projection the left-to-front ground edge's horizontal run must be 1.2727272727272727 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: A Mongolian caravan freight and escort compound, fenced rectangular earth yard, one single-story timber warehouse with plain gray tile gable roof along rear, one small felt ger, wooden crates and bundled goods, a short empty hitching rail. Low timber stockade and open gate on south. Original fictional escort business, no historical Chinese biaoju sign, no flags. Clean cutout, no visible haze or backdrop. Front left ground edge and front right ground edge both inclined 26.565 degrees from horizontal. Their horizontal run ratio14:11. Make courtyard low, uncluttered, and ground corners unmistakable.",
+      "archive": "sources/bld_kit_mongol_biaoju__c01.png",
+      "sha256": "1a05760880eeafbfca2c1bebb93afa7cf00c92081c16a4cd46281a678518ee6a",
+      "selected": false,
+      "reference_inputs": []
+    },
+    {
+      "number": 2,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-458f41c6-45aa-4ea4-ae04-ec4be815d172.png",
+      "prompt": "Edit the reference Song caravan courtyard sprite into a Mongol-Yuan steppe caravan freight and escort yard, footprint14m east-west by11m north-south. Keep exactly the original camera and ground border projection, orthographic yaw45 elevation30, 2:1 axes +/-0.5, upper-left light and short lower-right shadow, clean alpha edge, restrained miniature realistic ancient illustration detail. Replace plaster enclosing walls with low simple timber palisade and plain open wooden south gate. Keep one broad plain timber warehouse at rear with simple gray tile gable roof; replace left wing with a round cream felt Mongolian ger, remove right gatehouse, trees and wagon. Add a few crates, tied freight bundles, and one short empty hitching rail inside yard. Earth surface, simple historical wood and felt materials, no decorative greenery. Clean true RGBA isolated sprite with generous transparent margins. No people, animals, signs, text, flags, modern details, background, haze or glow. This is original game escort-business adaptation, not a historical biaoju reconstruction.",
+      "archive": "sources/bld_kit_mongol_biaoju__c02.png",
+      "sha256": "3ad1a2d5b8d6a3e9a2becee6581a50015c66cace75fd3f120e50e977c9c78ffd",
+      "selected": true,
+      "reference_inputs": [
+        "assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png"
+      ]
+    }
+  ],
+  "chosen": 2,
+  "ref": "assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_biaoju.png",
+      "sha256": "d0d40ee51f57b354316add817e10429bb8aca6b107102892f04851c0bc458042",
+      "role": "宋基线地域变体编辑参考；已view_image；不继承宋年代"
+    }
+  ],
+  "source_viewed": true,
+  "final_viewed": true,
+  "view_note": "两张源候选与规格化成品均已逐张view_image；2026-09-30；成品无实物裁切、无棕色背景，几何偏差保留。"
+}

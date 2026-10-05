@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_yunjinhechang
+name: 云锦鹤氅
+kind: armor
+sub: clothing
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yunjinhechang
+text:
+  desc: 外观：银灰云锦长氅叠置，鹤羽仅作抽象暗纹。 待运行时投影：resMindPp=4; wis=2。
+  lore: 云锦鹤氅由退隐织师以银灰羽纹暗织，披着重在挡风与守仪，不宜缠斗时敞袖。江湖传其旧主从不留名，只在客栈替落难书生结过账。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 67

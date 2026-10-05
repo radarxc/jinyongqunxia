@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_ningbijian
+name: 凝碧剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《书剑恩仇录》·张召重；来历与流转 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/ningbijian
+text:
+  desc: 外观：碧青冷光直剑，刃约七十五厘米。
+  lore: 《书剑恩仇录》中张召重佩凝碧剑，剑锋异常锐利，宜以迅疾直刺和削切破开寻常兵刃。此剑来历、流转与碧色表现仍 （待考：核修订版原文），装具为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 80
+      qiAffinity: 100

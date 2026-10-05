@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_yinkexijinlongbian
+name: 尹克西金龙鞭
+kind: weapon
+sub: whip
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《神雕侠侣》·尹克西所持金龙鞭；宝石装饰 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/yinkexijinlongbian
+text:
+  desc: 外观：金褐多节软鞭约两米，短柄包深色皮、铜节刻抽象鳞线并嵌少量暗色圆钉。
+  lore: 《神雕侠侣》中尹克西持金龙鞭，软鞭可绕过正面架势抽击或缠拿，出招后须顺圆势收回。原著是否详述宝石与节箍仍 （待考：核尹克西交战情节）；鳞线装具、尺度和定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 52
+      qiAffinity: 100

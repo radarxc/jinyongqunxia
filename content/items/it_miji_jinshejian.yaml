@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_jinshejian
+name: 金蛇秘笈原本
+kind: manual
+sub: original
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《碧血剑》·夏雪宜遗留金蛇秘笈
+price: null
+flags: []
+assets:
+  icon: item/miji_jinshejian
+text:
+  desc: 外观：明末薄黄竹纸线装册，墨绿丝线、黑布包角。
+  lore: 《碧血剑》中夏雪宜遗下金蛇秘笈。册内武学须结合其奇险路数研读，切勿把器械用法与身法拆开死记；竹纸、绿线和洞藏潮斑为 （原创扩展装帧），江湖人多因金蛇郎君之名争寻此本。
+extension:
+  type: manual
+  value:
+    skill: sk_jinshejian
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jinshejian
+      readWis: 60
+      maxLayer: 10
+      cultivation: 4000

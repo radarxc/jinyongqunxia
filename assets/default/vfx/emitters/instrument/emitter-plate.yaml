@@ -1,0 +1,12 @@
+# type=instrument；锚点取右端管口中心，为音功视觉源点，不是对真实乐器声学发声机制的定义。
+# 实测（原创扩展）：管口椭圆中心目视标定[1137,547]；左侧轴心[200,521]至管口差[937,26]，单位化为[0.9996152427470851,0.027737456042074934]。沿垂直于该方向、经过[1130,547]的截面以最近像素采样，alpha>=128的t=-42..42，宽85px。
+kind: EmitterPlate
+version: 1
+file: source_instrument.png
+size_px: [1254, 1254]
+color_space: srgb
+alpha_mode: straight
+category: instrument
+emit_point_px: [1137, 547]
+direction: [0.9996152427470851, 0.027737456042074934]
+emission_width_px: 85

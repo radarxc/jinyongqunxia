@@ -1,0 +1,8 @@
+{
+  "asset": "bld_kit_xiyu_guardhouse",
+  "prompt": "Use case: precise-object-edit. IMAGE1 is edit target, IMAGE2 is reference ONLY for its correct city-map camera. Preserve simple low adobe guardhouse, flat roof, doorway and reed mats. Reduce external baked shadow to very short contact shadow. Make ground front slope0.50 and side slope-0.50. Make IMAGE1 a strict orthographic yaw45 elevation30 2:1 dimetric sprite on rectangular ground7m by5m. Ground diagonal axes screen slopes +0.5 and -0.5, no vanishing points, all verticals upright. Front entrance faces screen LOWER LEFT. Match IMAGE2 camera, do not copy its stable building or objects. Keep realistic historic southern Xinjiang architecture, worn ochre adobe/brick, existing restrained colors and fine detail density. Entire isolated asset and contact shadow inside frame,15% empty transparent padding each side, TRUE transparent RGBA background. Upper-left light and only tiny lower-right contact shadow. No people, letters, text, landscape, thick diorama base, halo or modern objects.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-4c9df474-3077-4291-b746-de5098a6fd0b.png",
+  "candidate": 2,
+  "edit_target": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-18555698-8d71-4ee1-ba66-5285c72b5b3b.png",
+  "camera_reference": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-de9b1647-4e92-4de0-8549-a70945b5a9f9.png"
+}

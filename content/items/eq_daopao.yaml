@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_daopao
+name: 青布道袍
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/daopao
+text:
+  desc: 外观：青灰宽袖道袍平展，黑边与布扣。 待运行时投影：effRes=2xG。
+  lore: 青布道袍依宋元道门常服演成，宽袖便于礼仪，动手前须以布扣收束。山中道人多珍惜其耐磨领缘，俗客只凭衣装仍瞒不过门规盘问。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 48

@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_jiangyaozhu
+name: 江瑶柱
+kind: material
+sub: ingredient
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 宋代豪宴菜名有“鹿肚酿江瑶”；贝柱干货珍贵
+price: auto
+flags: []
+assets:
+  icon: item/jiangyaozhu
+text:
+  desc: 外观：淡金干贝柱八枚盛小瓷盏，圆柱纤维清楚 （原创扩展）。
+  lore: 宋代豪宴菜名已有“鹿肚酿江瑶”的海味语境，本件取八枚淡金干贝柱。需泡发后提鲜，少量便足；海商与大酒楼才有稳定存货。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di9
+    materialGrade: 7
+    rare: false
+    ingredientKind: fish
+    attributes:
+      version: 2

@@ -1,0 +1,41 @@
+{
+  "id": "tex_town_yuan_north_bridge_deck__w4_l8_r000_v01",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source": "/private/tmp/yuan_hist/bridge_deck__w4_l8_r000_v01_c1.png",
+  "source_sha256": "eeb0a38d32324a6e1c6d108b60168e99b6f2b8e4c78cac603c1cce388a922b16",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/tile/yuan_north/tex_town_yuan_north_bridge_deck__w4_l8_r000_v01.png",
+  "final_sha256": "38f0c71a918c2d4cd739f86a00a77039aa603be60e2323b6549905405ea118fc",
+  "processing": {
+    "source_size": [
+      1639,
+      960
+    ],
+    "crop_box": [
+      56,
+      0,
+      1605,
+      960
+    ],
+    "uniform_scale": 0.25112976113621693,
+    "resized_size": [
+      389,
+      241
+    ],
+    "canvas_size": [
+      480,
+      320
+    ],
+    "paste_offset": [
+      45,
+      39
+    ],
+    "alpha_cleanup": "none"
+  },
+  "references": [
+    "waning_01.jpg",
+    "lugou_01.jpg"
+  ],
+  "detail": "a complete small single-span stone arch bridge within the locked w4_l8 footprint: dressed grey limestone voussoirs, one clearly open segmental arch with transparent void beneath, shallow hump of worn stone slabs, low solid stone parapets with plain cap blocks, compact abutments and subtle tooling/weathering; no ornate lions, water or banks",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

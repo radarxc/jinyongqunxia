@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_gaizhuangfa
+name: 改装法抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_gaizhuangfa
+text:
+  desc: 外观：清代茶褐线装册，四眼红线。
+  lore: 伶人与行商把衣着改换、面色修饰和身份破绽抄成茶褐小册，技艺与载体属 （原创扩展）。研读须对照布样与颜料试做，先学观察再动手；抄本只到八层，不能保证瞒过熟人。
+extension:
+  type: manual
+  value:
+    skill: sk_gaizhuangfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_gaizhuangfa
+      readWis: 30
+      maxLayer: 8
+      cultivation: 800

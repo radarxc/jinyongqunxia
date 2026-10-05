@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_shigao
+name: 石膏
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/shigao
+text:
+  desc: 外观：药用纤维状矿块砸成白色半透明碎片，丝绢光泽。
+  lore: 中原、关中、河东晋中、齐鲁、荆襄与巴蜀矿层四季可得，无物候门槛。白色纤维矿片须由药师辨识，本作仅作疏内伤的矿物辅材。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: shiGao
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 2

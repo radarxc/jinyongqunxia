@@ -1,11 +1,11 @@
 # 门派武学补录 · 书界 12《书剑恩仇录》
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的书界补录册；仅定义《书剑恩仇录》首领配装确实缺少的铁胆庄家传与袁士霄传承武学，以及本次来源扩展登记。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16、`docs/00-canon.md` §3–§5/§9/§12/§13/§16/§18、`docs/decisions/rulings-v1.md`、`design/05`、`design/21`、`design/chapters/12-shujian.md`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16/27、`docs/00-canon.md` §3–§5/§9/§12/§13/§16/§18、`docs/decisions/rulings-v1.md`、`design/03` v2、`design/05`、`design/21`、`design/chapters/12-shujian.md`。
 > **引用而不重定义**：字段、层数、招式与内功预算见 `design/05`；经脉路线、护体内劲、外放与调息算法见 `design/21`；穴位拓扑见 `design/15`；Buff 本体见 `design/06`；任务、人物、门派时代与既有武学分别见 `design/chapters/12`、`design/18`、`design/17` 与既有十一册图鉴。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**须以三联 / 广州修订版逐字核对；**（待核实）**为尚未联网确认的技术事实；**（待实测）**为需战斗回放验证；**【建议值】**为待唯一归属文档确认的数值。
 > **覆盖声明**：本册不改写 `skills-qianlong.md` 或 `skills-general.md`。三门新增武学均可由主角与其他满足条件者正常习得；没有首领专用、敌方专用或不可获得条目。
-> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：首领所缺武学补录（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 ---
 
@@ -51,7 +51,8 @@
 | 字段 | 值 |
 |---|---|
 | 基础 | `category:inner`；`subType:inner`；`grade:7`；`origin:expanded`；`sect:null`；`lineage:周氏铁胆庄家传`；`sourceChapters:[ch12_shujian]`；`nature:yang`；`wOut/wIn:0.25/0.75`；`moveSlots:4` |
-| reqs | `attrs:{con:35,wil:35}`；`aptitude:{apInner:30}`；`prereq:[{skill:sk_zhuangxingong,layer:5}]`；`hard:[prereq]` |
+| reqs | `attrs:{bre:45,wil:35}`；`aptitude:{apInner:30}`；`prereq:[{skill:sk_zhuangxingong,layer:5}]`；`hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `mpMaxPct:26,hpMaxPct:16,attrs:{con:5,str:2,wil:3},mpRegen:2.0,stats:{defOut:8,resMind:7}`；`26+16+2×(5+2+3)+5×2.0=72` |
 | inner／经脉 | `meridians:[mer_dumai,mer_yangwei]`；`breathProfileRef:txp_tiedanzhuangxinfa`；`innerGuard:{enabled:true,reflectBp:0}`；地阶护体 III，仅作显示档 |
 | 层数要点 | `layerStats:null`；1 重立桩、3 重沉肩、5 重守户；**7 重绝招铁胆守庄**；10 重守正 |
@@ -75,7 +76,8 @@
 | 字段 | 值 |
 |---|---|
 | 基础 | `category:unarmed`；`subType:fist`；`grade:7`；`origin:expanded`；`sect:null`；`lineage:周氏铁胆庄家传`；`sourceChapters:[ch12_shujian]`；`nature:yang`；`wOut/wIn:0.70/0.30`；`moveSlots:4` |
-| reqs | `attrs:{str:35,con:35}`；`aptitude:{apFist:30}`；`prereq:[{skill:sk_tiedanzhuangxinfa,layer:5}]`；`hard:[prereq]` |
+| reqs | `attrs:{str:45,con:35}`；`aptitude:{apFist:30}`；`prereq:[{skill:sk_tiedanzhuangxinfa,layer:5}]`；`hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
 | layerStats / 层数 | `hit:[3,8],pierce:[2,7]`，10 重合计 `8+7=15`；1 重迎门、3 重拦身、5 重护庄；**7 重绝招铁胆镇门**；10 重守中 |
 | setTags / conflicts / special | `[]` / 无 / `{fusible:true}`；徒手拳路，不把名器 `eq_tiedan` 作为武器前置 |
 | 习得途径 | 先修铁胆庄心法 5 重，再由周仲英指点或研读周氏拳谱；取得谱本须完成误会收束与庄民保护目标。主角及其他满足条件者均可学 |
@@ -105,7 +107,8 @@
 | 字段 | 值 |
 |---|---|
 | 基础 | `category:inner`；`subType:inner`；`grade:9`；`origin:expanded`；`sect:sect_honghuahui`；`lineage:天池怪侠袁士霄→陈家洛`；`sourceChapters:[ch12_shujian]`；`nature:harmony`；`wOut/wIn:0.15/0.85`；`moveSlots:4` |
-| reqs | `attrs:{con:45,wil:45,wis:40}`；`aptitude:{apInner:40}`；`prereq:[{skill:sk_honghuaxinfa,layer:7}]`；`hard:[prereq]` |
+| reqs | `attrs:{bre:55,wis:45}`；`aptitude:{apInner:40}`；`prereq:[{skill:sk_honghuaxinfa,layer:7}]`；`hard:[prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1,wis:1}},{layer:6,attrs:{bre:2,wis:1}},{layer:9,attrs:{bre:2,wis:1}}]` |
 | inner.contribution | `mpMaxPct:34,hpMaxPct:20,attrs:{con:6,wil:5,wis:3},mpRegen:2.5,stats:{defOut:8,resMind:7}`；`34+20+2×(6+5+3)+5×2.5=94.5` |
 | inner / 经脉 | `meridians:[mer_renmai,mer_dumai]`；`breathProfileRef:txp_tianchishengong`；`innerGuard:{enabled:true,reflectBp:0}`；地阶护体 III，仅作显示档 |
 | 层数要点 | `layerStats:null`；1 重守息、3 重百家归一、5 重静观；**7 重第一绝招天池守一**；**9 重第二绝招百花归元**；10 重神完气足 |
@@ -214,6 +217,7 @@
 | SJ-BL-V09 | 外放字段 | 九招全部显式 `projection:false` 且 `projectionSpreadSteps:null`；不存在漏登记的离体伤害 / 控制 |
 | SJ-BL-V10 | 可习得性 | 三门新武学均有非敌专途径；`sk_baizhanxinfa` 只扩展来源，不复制定义 |
 | SJ-BL-V11 | 原著标注 | 三门、全部新招名与取得流程均标原创扩展；未核实事实标待考，不写伪引文或回目 |
+| SJ-BL-V12 | 属性 v2 门槛与永久加成 | 三门按类别 × 品阶带取值，资质为 `5×grade−5`；3/6/9 重 `trainingAttrs` 均合法，单次 ≤4、单门 ≤12 |
 
 ### 7.2 最小测试向量
 

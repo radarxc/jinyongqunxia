@@ -1,0 +1,1 @@
+{"input_compensation_only": true, "L": [128, 570], "F": [793.1111111111111, 925.5555555555555], "R": [1408, 641.1111111111111], "B": [742.8888888888889, 285.55555555555554], "reason": "prior guide output moved front corner +46px; input guide attempts compensate; final judged independently"}

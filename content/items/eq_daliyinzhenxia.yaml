@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_daliyinzhenxia
+name: 大理银针匣
+kind: hidden
+sub: needle
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/daliyinzhenxia
+text:
+  desc: 外观：素银扁匣开启，十枚半掌长细针平行嵌于深红毡槽。 待运行时投影：ammoMul=1.020; hiddenHit=4.2。
+  lore: （原创扩展）大理医者把十枚半掌银针分置深红毡槽，平日可作针具，遇险才用来防身，仅天龙大理节点原生投放。针尖同向便于清点，完好者可消毒收回。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: needle
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 40
+      qiAffinity: 100

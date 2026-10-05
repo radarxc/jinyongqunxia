@@ -1,0 +1,14 @@
+# 发出方图池；生成插画（原创扩展），制作元数据见 ../manifest.yaml。
+kind: EmitterPlate
+version: 1
+file: source_spear.png
+size_px: [1254, 1254]
+color_space: srgb
+alpha_mode: straight
+category: weapon_hand
+# alpha >= 128 的最右兵器尖端；按像素中心 (x+0.5,y+0.5) 取该列轮廓中点。
+emit_point_px: [1225.5, 581.5]
+# 表现发力方向向右；刀尖方向不由弯曲刀刃切线推导。
+direction: [1, 0]
+# 尖端内移 16 px 的有效截面：x=1209，y=574..588（含端点）。
+emission_width_px: 15

@@ -1,0 +1,15 @@
+{
+  "id": "bld_kit_qing_north_restaurant",
+  "subject": "酒楼茶肆",
+  "footprint": [
+    12,
+    9
+  ],
+  "prompt": "Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Realistic traditional Chinese game sprite with fine natural weathered masonry, small tiled roofs, calm muted palette and believable structure. Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Absolutely NO ambient halo, NO glow, NO gradient floor or background of any kind. Alpha0 everywhere outside the exact object silhouette and its tiny contact shadow. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A two-storey northern tea house and restaurant, grey-brick enclosed lower walls, dark timber fine lattice windows upstairs, main grey tiled hard-gable roof with modest side wing, open front threshold reveals a few small wooden tea tables and ceramic teapots inside. No gilding, no courtyard mansion, no signboards. Footprint 12m east-west by9m north-south. CRITICAL spacious transparent framing, whole building occupies only central 75% of canvas; cropped eaves forbidden; transparent cutout no aura.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-ff497a64-5357-4fbc-a27b-c10e301acddf.png",
+  "references": [],
+  "created": "2026-09-30T21:20:02.351Z",
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "review": "2候选选1；第1候选矩形底边清晰，第2候选平面凹凸且偏轴。"
+}

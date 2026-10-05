@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_wuzhousuqin
+name: 武周素漆琴
+kind: collectible
+sub: qin
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wuzhousuqin
+text:
+  desc: 外观：黑褐素漆长琴，朴素弧面与平底。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,musician,collector]}; giftValue=1; provenance=expanded。
+  lore: 给武周乐工设计的日常七弦琴，依据唐琴时代背景而非现存盛唐名琴。宜赠初学琴的乐人；细部和名称为（原创扩展），不把开元以后制作的名琴提前放入白马书界。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

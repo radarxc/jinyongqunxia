@@ -1,0 +1,95 @@
+id: bld_kit_xiyu_yamen
+file: bld_kit_xiyu_yamen.png
+category: building-map
+style: default
+subject: 西域匿名官署围院；土木平顶与砖券门（原创扩展，年代形制待考）
+prompt: Finish this exact 3D blockout as an ancient Xinjiang local administration courtyard. Bottom corners EXACTLY left(168,560),front(854,903),right(1368,646); preserve camera and
+  silhouette. No zoom,recenter,elongate sides or change proportions. Front16 units, side12 units. Both ground axes slopes±0.5, no perspective. Realistic tan adobe/brick perimeter wall,
+  central timber front gate in left-facing long wall; three low flat-roof buildings around court, rear main office with simple wood-pillared porch and lattice doors, symmetric low side
+  offices, paved court with a few clay pots. Upper-left light and tiny lower-right contact shadow. Finely detailed historical strategy-game textures, fine wood grain and plaster chips,
+  no cartoon/plastic. Entire opaque asset within frame, genuine transparent RGBA background. No halo,vignette,scenery,words,people,modern object or thick plinth. Exact graybox ground
+  geometry highest priority. Right ground edge rises ONLY one pixel per two pixels right.
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: assets/default/baseline/building-map/bld_kit_song_southern_yamen.png, role: 写实材质、细节与官署功能参考；不沿用宋式屋顶, sha256: 4a255313b6c1c776a046158f4cadb26c008500f41c304277889aea66c0b00fb0}
+- {file: sources/bld_kit_xiyu_yamen_round2_geometry.png, sha256: 80b9a429bb1e485461315d6e59dde89f07bb8ecc38cbd4cd5a2cf6d153db7d0b, role: 第2轮精确占地灰盒生成参照；不作为成品}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:09:12.721982+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-8f4f9ee5-19be-47b0-8349-7cfe0fe651fa.png
+size: 1152x800
+sha256: ae462fac408ed1544bbb53403a57fb463d2e7e77552a0a5fb3373c636f0d3154
+status: candidate
+notes: 第2轮按登记占地重出；源图及成品逐张view_image、灰底alpha检查。材质与地域功能保持；仅裁切、等比缩放、透明扩边。当前测量见geometry_qa。当前底角测量通过，仍需总装实测。
+building:
+  type: bld_kit_xiyu_yamen
+  footprint: &id001
+  - 16
+  - 12
+  anchor: [559.5631, 431.6573]
+  era: xiyu
+footprint_m: *id001
+footprint_basis: design/22 §3.4 bld_kit_yuan_yamen 16×12骨架，仅地域外观替换
+entrance:
+  edge: S
+  offset_cells: 7
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 896
+  - 448
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available:
+- 0
+allowRotation: false
+metadata: meta/bld_kit_xiyu_yamen.yaml
+candidate_count: 2
+processing:
+  source_archive: sources/bld_kit_xiyu_yamen_round2_candidate2.png
+  source_sha256: 28c1294fb0f4b733c9d71a3c007d5b1e512a9172c55db388a6e37066615eaa50
+  source_size: [1536, 1024]
+  crop_box: [65, 32, 1516, 1024]
+  uniform_scale_requested: 0.7308319738988581
+  resized_size: [1060, 725]
+  rounded_effective_scale: [0.7305306685044797, 0.7308467741935484]
+  paste_offset: [46, 37]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [155, 529]
+    front: [852, 885]
+    right: [1381, 615]
+  source_anchor_px: [768.0, 572.0]
+  source_axis_slopes: [0.5107604017216643, -0.5103969754253308]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.3333333333333333
+  source_width_depth_ratio: 1.3175803402646502
+  ratio_relative_error: 0.011814744801512345
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 灰底view_image人工底角定位并用源alpha>200边界核对，约±4px；后角遮挡，非3D实测
+  footprint_is_logical: true
+  release_note: 第2轮重出；当前底角测量通过；约±4px人工精度，仍须总装实测。
+pixel_qa:
+  mode: RGBA
+  size: [1152, 800]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 604024
+  alpha_partial_pixels: 316540
+  alpha_near_opaque_pixels: 309067
+  alpha_nonzero_bbox: [46, 39, 1106, 762]
+  transparent_margins_px: [46, 39, 46, 38]
+  border_alpha_max: 0
+source_record: sources/bld_kit_xiyu_yamen_round2_candidate2.json
+selected_candidate: 2
+selection_note: 本轮最多两候选择一；历史源图及调用记录保留，未做透视或非等比修正。
+visual_qa: {checked_with: view_image original and normalized final plus neutral-gray alpha composite, no_pixel_repainting: true}
+repair_round: 2
+repair_history: {round1_source_archive: sources/bld_kit_xiyu_yamen.png, round1_source_record: sources/bld_kit_xiyu_yamen.json, round1_candidate_count: 2, round1_selected_candidate: 2,
+  round1_geometry_axis_pass: false, round1_geometry_ratio_pass: true}

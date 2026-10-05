@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_linpijian
+name: 鳞片护肩
+kind: armor
+sub: shoulder
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/linpijian
+text:
+  desc: 外观：小铁鳞覆深蓝布底的一对护肩，片缘磨亮 （原创扩展）。 待运行时投影：defOutK=0.025; resBleedPp=3。
+  lore: （原创扩展）军伍匠人把小铁鳞缀在深蓝布底上，裁成左右一对，片缘磨圆以免割破衣袖。护肩适合抬臂格开斜劈，镖局常把退役鳞甲拆片改制此物。
+extension:
+  type: equipment
+  value:
+    slot: shoulder
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 4
+      block: 6

@@ -1,0 +1,1 @@
+{"source_size": [1536, 1024], "corners": {"left": [180, 579], "front": [866, 941], "right": [1376, 667]}, "visual_review": "返修第2轮逐张view_image；本轮2候选选第2；灰瓦白墙木石质感与宋基线接近，完整无字无人。占地比例改善，但双轴仍超±0.03，保持candidate并明确未通过几何验收。", "final_review": "本轮成品已view_image逐张复查，透明留边充足，轴斜率残差如geometry_qa记录。"}

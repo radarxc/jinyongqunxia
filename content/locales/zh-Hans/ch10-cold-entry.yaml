@@ -1,0 +1,34 @@
+ch10:
+  coldEntry:
+    eraTitle: 长安二年（702）·西州以北
+    titleCard: 第一卷·白马啸西风
+    sceneName: 风蚀废驿
+    westwardJourney:
+      accessibilityLabel: 西行过场，54 秒，可整段跳过
+      skipLabel: 跳过西行过场
+      frameChangbai: 雪压洞门，再开时已过千年。
+      frameGuanzhong: 关中道上，旧雪化作车辙里的泥。
+      frameHexi: 军粮车沿河西驿路西去，你随队换程。
+      frameXizhou: 粟特商队的驼铃穿过风沙，西州的残墙终于露出地平线。
+      closing: 城国已亡，城与人仍在。
+    interact:
+      waterSkin: 水囊压在石块下，囊口扎紧；这是废驿里的补给点，不收入背包。
+      eraInscription: 长安二年（702）·西州以北。字痕新旧相叠，最清楚的一行刚刻不久。
+      oldSaddle: 旧鞍裂了两道口子，鞍带缠着一根褪色黄线。此刻只有风沙旧痕，没有书页回应。
+      tangMarks: 墙上几道唐军行旅刻痕记录了水、风向和归队日；没有可取走的物件。
+      northRoad: 北侧碎石路已被塌墙封死，从这里无法通往庭州。
+      eastGateLocked: 木栅外的东路尚暗；先听完院里的话。
+      eastGateOpen: 风向标转向东南，木栅后的路亮了起来。
+      brazier: 火盆尚暖。你饮水、整束衣囊，基础生存状态在此补满一次。
+    npc:
+      shenQinghe: 沈青禾
+      liWenxiu: 李文秀
+      unnamedPostman: 无名驿卒
+      liWenxiuVisual: 成年视觉代理·牵白马
+flow:
+  ch10:
+    wake:
+      "000": {title: 洞门再开, body: 雪压洞门，再开时已过千年。}
+      "001": {title: 关中道, body: 关中道上，旧雪化作车辙里的泥。}
+      "002": {title: 河西驿路, body: 军粮车沿河西驿路西去，你随队换程。}
+      "003": {title: 西州以北, body: 粟特商队的驼铃穿过风沙，废驿的残墙终于露出地平线。}

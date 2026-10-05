@@ -1,0 +1,58 @@
+id: bld_kit_qing_south_biaoju
+status: candidate
+selected_candidate: 1
+candidate_count: 1
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 15 by 12 cell private armed escort bureau compound, an original functional adaptation of a Jiangnan merchant residence. Preserve enclosed court, south gate and hall masses. Grey-tile low hard-gable roofs, plain ridges, white lime walls over blue-grey brick, heavy dark timber plank gate with iron studs, simple one-step brackets, three-bay hall, straight lattice windows, thin stone base. Security comes from high firewalls, narrow side windows and stout gate, not battlements. One blank horizontal board with
+  no glyphs; no weapons, flags or people.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/review2/buildings_b/biaoju.guide.png
+  sha256: 698a887dc38353d61ca327c19062c896614e9abf6e8f3269316c974fc037c2d6
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Entrance_and_yard_of_a_yamen.jpg?width=1600
+  sha256: 6ea99763a8b809f1d0ab9320299a598bac2fea3fb98024cd07a68bb2ae78d316
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+  sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:02.229223+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_archive: history/selected-sources/biaoju.png
+source_sha256: efc7162e4e28e3cfc05f6ed4a351dead92e50192590dd79517a997858ba6c9d9
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1536
+  - 1024
+  crop_box:
+  - 99
+  - 78
+  - 1455
+  - 972
+  isotropic_scale: 0.610738255033557
+  resized_size:
+  - 828
+  - 546
+  paste_offset:
+  - 154
+  - 155
+  - 982
+  - 701
+  final_size:
+  - 1088
+  - 832
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/biaoju.png
+  source_sha256: efc7162e4e28e3cfc05f6ed4a351dead92e50192590dd79517a997858ba6c9d9
+  forbidden_transforms_used: false
+notes: 轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+record_path: history/records/biaoju.yaml

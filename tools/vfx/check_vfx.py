@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""校验外放素材 YAML、实际 PNG 与自包含 HTML；失败返回非零。"""
+"""校验外放素材 YAML、实际 PNG 与单文件 Three.js HTML；失败返回非零。"""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("yaml", nargs="*", type=Path, help="EffectSet/EmitterPlate/Composition YAML")
     parser.add_argument("--root", type=Path, help="同一素材套件根目录，默认每个入口 YAML 的父目录")
-    parser.add_argument("--html", nargs="+", type=Path, default=[], help="自包含 HTML 文件（可多选）")
+    parser.add_argument("--html", nargs="+", type=Path, default=[], help="单文件 Three.js HTML 文件（可多选）")
     parser.add_argument("--self-test", action="store_true", help="运行 tools/vfx 的全部单元测试")
     args = parser.parse_args(argv)
     if not args.yaml and not args.html and not args.self_test:
@@ -42,11 +42,11 @@ def main(argv: list[str] | None = None) -> int:
                 result["quality"] = quality
             if data["kind"] == "Composition":
                 try:
-                    from .compose import Renderer
+                    from .compose import PeakRenderer
                 except ImportError:
-                    from compose import Renderer
-                # Renderer 使用可见像素检查全部帧及阶段极值的几何越界。
-                Renderer(path, suite_root=args.root)
+                    from compose import PeakRenderer
+                # PeakRenderer 使用可见像素检查全部帧及阶段极值的几何越界。
+                PeakRenderer(path, suite_root=args.root)
                 result["geometry_checked"] = True
             print(json.dumps(result, ensure_ascii=False))
         except (VFXError, OSError) as exc:

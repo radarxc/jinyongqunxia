@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_jiuzhuanhuanhundan
+name: 九转还魂丹
+kind: pill
+sub: medicine
+grade: 10
+stack: 9
+chapters: any
+origin: expanded
+price: null
+flags:
+- uniqueUse
+use:
+  context: battle
+  action: consume
+  target: self
+  effects:
+  - op: revive
+    params:
+      valueBp: 3000
+  battleLimit:
+    perBattle: 1
+    cooldown: 2
+assets:
+  icon: item/jiuzhuanhuanhundan
+text:
+  desc: 外观：朱红丹丸一枚置九瓣金边漆盒，温润药光。
+  lore: 九瓣漆盒只藏一枚朱红丹丸，是本作天材骰中的保命奇药。须在倒地前服下，药力仅护本场一次，不能兼作疗伤、解毒或经脉辅助；江湖遂称一丸抵一命。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healOuter: 0

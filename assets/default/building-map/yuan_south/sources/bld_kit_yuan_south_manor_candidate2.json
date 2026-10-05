@@ -1,0 +1,29 @@
+{
+  "key": "manor_v2",
+  "id": "bld_kit_yuan_south_manor",
+  "prompt": "Use case: precise-object-edit. Keep the Yuan Jiangnan manor asset exactly the same style and structures, but correct the ground footprint width:depth ratio to16:13 (1.23077), instead of current roughly1.4. Extend depth slightly and shorten front width, retaining exact orthographic2:1, equal +0.5/-0.5 ground slopes. On1536x1024 canvas thin rectangle ground corners LEFT(170,550), FRONT(778,854), RIGHT(1272,607), BACK(664,303). These four points specify only the ground foundation plane, not rooftops; no visible guide lines or point marks. Preserve visible whole low perimeter walls, modest front gate, three halls, central plum tree, grey tiled roofs, cream plaster, dark timber, pale stone paving, same subdued Song-derived realistic materials and fine texture. Light from upper-left, short very faint lower-right contact shadow, no outer grey glow. Camera yaw45/elevation30 no perspective convergence, vertical columns. True transparent RGBA, all silhouette complete with generous clear margins; no text, people, signs, new structures, scenery, thick base or modern items.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-84eb89ca-3ba5-4ecb-83db-642467ab6417.png",
+  "source_archive": "sources/bld_kit_yuan_south_manor_candidate2.png",
+  "source_sha256": "37d9a9e6c14eadbc321f31f8527445deffa18f864dd0fd36238a7583b9935525",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:38:44.758516+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [
+    {
+      "path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-a905cce2-620e-43a3-bf7e-e88d9f26ee34.png",
+      "sha256": "b35b36e7fd5051c041e9f5eb271142f77cc00bb50c98d6d910940ff85e7bd025",
+      "status": "candidate",
+      "role": "已view_image；定向投影修正参考，不代表原图严格几何通过"
+    }
+  ],
+  "selection_status": "rejected",
+  "selection_reason": "第2张出现大范围黄灰晕，拒选；第1张材质与基线一致、轮廓完整。",
+  "view_image_reviewed": true
+}

@@ -1,0 +1,8 @@
+schemaVersion: inkmeta.v1
+storyId: story_ch10_cold_entry
+chapter: ch10_baima
+region: rg_xiyu_beijiang
+entryKnots: [westward_journey, fengshi_first_talk, title_card]
+readFlags: []
+commands: [dialogue/speaker, flag/set, world/openEntrance, save/autosave, ui/showTitleCard]
+npcs: [npc_shenqinghe10, npc_liwenxiu, npc_postman_tang_xiyu]

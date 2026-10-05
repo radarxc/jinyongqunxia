@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_mingguangkai
+name: 明光铠
+kind: armor
+sub: officialArmor
+grade: 8
+stack: 1
+chapters:
+- ch10_baima
+origin: canonExpanded
+canonRef: 唐；出现书界 ch10；（原创扩展）；名称据《唐六典》卷16《卫尉寺·武库》 https://www.shidianguji.com/book/SK1116/chapter/1jzwu02dg5y5i；形制据国博赵永《铁甲征衣》，隋青瓷武士俑 https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_33154.shtml的隋武士俑；702年细部（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingguangkai
+text:
+  desc: 外观：唐代通用款，主色铁灰。 待运行时投影：Q_load=10; defInK=0.07; defOutK=0.28; mov=-1; resCCPp=2xG; tough=2xG。
+  lore: （原创扩展）明光铠据《唐六典》甲名与隋武士俑演成唐代铁灰重甲，镜护、盆领、披膊和长甲裙连成一领。穿用先查系片，镜护只作自然反光；702年细部（待考），不赋予神光、免疫或官身。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 77

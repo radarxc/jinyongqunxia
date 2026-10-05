@@ -1,0 +1,46 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_nanjing"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "江宁县（702年推定）"
+historical_year: 702
+era_kit: "song_southern"
+seed: 70210013
+design_intent: {"prosperity": "tang_county_candidate", "notes": ["复原依据：history/city_nanjing__tang_702.md；按文字推定县城，未取得可见同期平面图。", "唐代县城在西州城西、冶城以东；不复制六朝/南唐/明清都城，不按名录capital扩大成160格。", "宋基线仅替代素材形制；全量候选不改变chapters/10十城开放名单。"]}
+grid: {"width": 96, "height": 96, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -48, "r_min": 1, "q_slot_count": 131, "r_slot_count": 96, "q_band_slots": [66, 65], "r_band_slots": [96], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 12, "z": 12}, {"x": 78, "z": 12}, {"x": 78, "z": 84}, {"x": 12, "z": 84}]}, "inside_margin_cells": 2, "basis": "图名：江宁县城（推定）；src_jiangning/src_topology只支持县治及相对方位，四边、门数、周长均为同年代县城一般格局推定（原创扩展）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 44, "z": 12}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 44, "z": 84}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：北门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 12, "z": 48}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：西门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 78, "z": 48}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 44, "z": 12}, {"x": 44, "z": 84}], "surface": "dirt_road", "priority": 100, "basis": "图名：县城南北街；线位和宽5格（推定）（原创扩展）。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 12, "z": 48}, {"x": 78, "z": 48}], "surface": "dirt_road", "priority": 80, "basis": "图名：县城横街；线位和宽5格（推定）（原创扩展）。"}
+rivers:
+  - {"id": "yundu_edge", "width_cells": 3, "points": [{"x": 90, "z": 4}, {"x": 89, "z": 48}, {"x": 91, "z": 92}], "flow": "south", "navigable": false, "basis": "图名：运渎方向水道；据src_topology的城东水系关系，702年线位、距离、宽度均（推定）（待考）；县城与水道间的西州城超出本县城范围。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 16, "z": 54}, "max": {"x": 38, "z": 80}}}, "priority": 100, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：县署院落（推定）；位置、座数（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 50, "z": 16}, "max": {"x": 74, "z": 42}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：商旅补给区；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 16, "z": 16}, "max": {"x": 38, "z": 42}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_shrine"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：民居坊地；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 50, "z": 54}, "max": {"x": 74, "z": 80}}}, "priority": 85, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_guardhouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：守舍仓储（推定）；非具名驿站，功能位置（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_houses", "zone_service"], "count": {"min": 4, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_houses"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地疏草；未据物候证据增加树种。", "basis": "疏草密度（原创扩展）【建议值】，不作702年植被复原。"}
+sources:
+  - {"key": "src_jiangning", "kind": "academic", "title": "CHGIS江宁县沿革", "url": "https://tgaz.fudan.edu.cn/tgaz/placename/hvd_40539", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "curl正文已读；记录本身为590–619层，注释述633迁还/635复名；不把点坐标当城墙。"}
+  - {"key": "src_topology", "kind": "academic", "title": "张学锋：六朝建康城的研究、发掘与复原", "url": "https://m.thepaper.cn/newsDetail_forward_31120700", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "正文已读；仅取唐县城与西州城/冶城/运渎关系，图10下载超时；唐中期关系前推702年仍待考。"}

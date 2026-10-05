@@ -1,0 +1,59 @@
+{
+  "id": "bld_kit_song_southern_shop_1f",
+  "type": "bld_kit_song_southern_shop_1f",
+  "w": 6,
+  "h": 5,
+  "subject": "单层商铺·药铺",
+  "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 6 by 5 one-metre cells, ratio 6:5. Subject: One single-storey Southern Song Lin'an apothecary shop, limewashed plaster and dark timber, grey tiled simple gable roof, open wooden counter facing southwest, wicker herb baskets, ceramic medicine jars and bundles of dried herbs, no lettering or labels.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-64355e27-4af7-48c8-a044-41c2688a0b66.png",
+  "source_sha256": "8957c6daf5af7ffbbd40aaff4189ed58cc3633ac799c895b8b7402f08265c223",
+  "created": "2026-09-30",
+  "visual_review": "原图已 view_image original：单体完整，宋式灰瓦木构白墙，入口朝左下，左上主光与短接触影，边缘清楚、无字无人无现代物。原图透明留白偏紧，交 root 加边。严格底面双轴与占地比例存在生成残差；交 root 记录实际投影与候选审批，不能称精确通过。",
+  "candidate_count": 1,
+  "ground_edges_source_px": [
+    [
+      [
+        64,
+        756
+      ],
+      [
+        716,
+        1088
+      ]
+    ],
+    [
+      [
+        716,
+        1088
+      ],
+      [
+        1322,
+        790
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      64,
+      756
+    ],
+    "front": [
+      716,
+      1088
+    ],
+    "right": [
+      1322,
+      790
+    ]
+  },
+  "source_dimensions": [
+    1382,
+    1138
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ]
+}

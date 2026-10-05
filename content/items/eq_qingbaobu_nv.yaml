@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: eq_qingbaobu_nv
+name: 清绣边包髻·女
+kind: armor
+sub: headwear
+grade: 3
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch10_baima
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 汉女包头 / 包髻 · 清（清代风俗图像）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingbaobu_nv
+text:
+  desc: 外观：女款靛蓝绸包髻巾独立打结陈列，不画人头假发。 待运行时投影：cha=1; wearer=female。
+  lore: （原创扩展）据清代汉女包头风俗意象重构，靛蓝长巾折成低髻轮廓，窄绣折枝花并插素银簪。日常劳作时收拢头发，赴集则把绣边翻在外侧，朴素又整洁。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

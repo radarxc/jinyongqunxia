@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_mantuoluo
+name: 曼陀罗花
+kind: material
+sub: herb
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 有毒本草；毒性，供剧情 / 暗器 / 解毒设定；与情花是否同物 （待核实）
+price: auto
+flags: []
+assets:
+  icon: item/mantuoluo
+text:
+  desc: 外观：药用花干燥成黄褐漏斗状皱片，花萼仍在。
+  lore: 江淮、浙闽、江西、岭南、广西与云滇黔暖地夏秋六至十月花开。黄褐漏斗状干花须双层密封，本作只作昏睡毒材；与情花是否同物仍待核实。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di9
+    materialGrade: 7
+    rare: false
+    herbFamily: manTuoLuo
+    ageYears: 0
+    attributes:
+      version: 2

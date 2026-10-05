@@ -1,0 +1,269 @@
+{
+  "id": "bld_kit_tubo_manor",
+  "w": 15,
+  "h": 12,
+  "subject": "藏式大院（原创地域同功能替换）",
+  "prompt": "Use case: historical-scene. Asset type: one realistic historical Tibetan plateau city-map building sprite, original regional functional adaptation for a Chinese wuxia game. Input image 1 is a STYLE REFERENCE ONLY: match its restrained natural material detail, visual density and age, NOT its Chinese tiled roof style or building shape. Build NEW Tibetan stone architecture. Clear rugged stone courses, lightly weathered white or ochre plaster, thick gently battered walls, flat earthen parapet roof, small dark timber windows with black trapezoidal surrounds and modest red-brown timber cornices. Natural warm-neutral light from SCREEN UPPER LEFT and only a small soft contact shadow to lower right. TRUE TRANSPARENT RGBA background. Not a complete city scene. Camera strict orthographic 2:1 dimetric, yaw 45 degrees, pitch 30 degrees, all verticals vertical, all parallel edges stay parallel, both ground axes slope EXACTLY +0.5 and -0.5. Clear thin rectangular stone contact perimeter with no thick plinth, unobscured left/front/right ground corners. Generous transparent margins all around. No people, text, pseudo-writing, painted script, readable signs, modern objects, landscape, sky, distant buildings, grid, labels, watermark, checkerboard, white background, tourism replicas, floating island, toy diorama, perspective convergence, long shadows. No named real temple or Potala Palace copy and no claim of exact reconstruction of any century. Single complete 1536x1024 image.  Absolute no external ambient halo or glow. Outside silhouette fully transparent alpha=0. A comfortable secular Tibetan manor courtyard. Two-storey white stone main dwelling behind, flat roof parapets, black framed small windows, warm brown carved timber gallery facing courtyard, low side wings, modest stone enclosure and stout front wood gate. Courtyard has a simple storage jar and a small plain woven canopy only. No golden roof, religious shrine, people or lettering. No copy of a known building. Ground footprint exactly 15 by 12 metres, front length:right depth=1.25. Visible thin stone contact corners LEFT(168,520), FRONT(834.6666666666666,853.3333333333333), RIGHT(1368,586.6666666666666), BACK(701.3333333333333,253.33333333333337). Avoid squared plan. Ground corners unobscured. Entrance faces front-left; strict equal +0.5/-0.5 slopes on both axes.",
+  "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_yamen",
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "仅材质和细节密度参考；非藏地形制",
+      "status": "candidate",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-24f5e6bb-cfdd-4ad4-9636-7f720e830b26.png",
+  "created": "2026-09-30T22:16:30.556Z",
+  "candidate_count": 1,
+  "tool": "functions.exec · image_gen",
+  "model": "image_gen（工具未公开底层模型版本）",
+  "effort": "未公开",
+  "status": "candidate",
+  "source_corners_px": {
+    "left": [
+      110,
+      567
+    ],
+    "front": [
+      857,
+      931
+    ],
+    "right": [
+      1476,
+      616
+    ]
+  },
+  "visual_review": "原图已 view_image；可见左右前底面角点，石砌白墙平顶、黑框窗、木门和入口完整；无伪字/人物/现代元素；地域功能替换属原创扩展。",
+  "rejected": [],
+  "source_archive": "sources/bld_kit_tubo_manor.png",
+  "source_sha256": "1cea1173b06bcefbab5b23f40f1f4183ece8cef447786857aabc7784768796d1",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "size": [
+      1536,
+      1024
+    ],
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "alpha_zero_pixels": 912801,
+    "alpha_partial_pixels": 660063,
+    "alpha_near_opaque_pixels": 643067,
+    "alpha_opaque_pixels": 0,
+    "alpha_nonzero_bbox": [
+      0,
+      17,
+      1522,
+      1024
+    ],
+    "transparent_margins_px": [
+      0,
+      17,
+      14,
+      0
+    ],
+    "border_alpha_max": 1
+  },
+  "processing": {
+    "source_archive": "sources/bld_kit_tubo_manor.png",
+    "source_sha256": "1cea1173b06bcefbab5b23f40f1f4183ece8cef447786857aabc7784768796d1",
+    "source_size": [
+      1536,
+      1024
+    ],
+    "crop_box": [
+      0,
+      17,
+      1522,
+      1024
+    ],
+    "uniform_scale_requested": 0.6325036603221084,
+    "resized_size": [
+      963,
+      637
+    ],
+    "rounded_effective_scale": [
+      0.6327201051248358,
+      0.6325719960278053
+    ],
+    "paste_offset": [
+      32,
+      32,
+      995,
+      669
+    ],
+    "target_canvas": [
+      1027,
+      701
+    ],
+    "final_file": "bld_kit_tubo_manor.png",
+    "steps": [
+      "crop alpha>0 bounding box",
+      "uniform LANCZOS resize, nearest-integer dimensions",
+      "paste without mask onto transparent RGBA; no repaint, warp, alpha threshold, flip or rotation"
+    ]
+  },
+  "geometry_qa": {
+    "source_corners_px": {
+      "left": [
+        110,
+        567
+      ],
+      "front": [
+        857,
+        931
+      ],
+      "right": [
+        1476,
+        616
+      ]
+    },
+    "source_axis_slopes": [
+      0.48728246318607765,
+      -0.5088852988691438
+    ],
+    "axis_tolerance": 0.03,
+    "axis_pass": true,
+    "source_width_depth_ratio": 1.2067851373182552,
+    "expected_width_depth_ratio": 1.25,
+    "ratio_relative_error": 0.034571890145395856,
+    "ratio_tolerance_suggestion": 0.1,
+    "ratio_pass": true,
+    "measurement_uncertainty_source_px": 3,
+    "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      1027,
+      701
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 456050,
+    "alpha_partial_pixels": 262949,
+    "alpha_near_opaque_pixels": 257196,
+    "alpha_opaque_pixels": 928,
+    "alpha_nonzero_bbox": [
+      32,
+      32,
+      995,
+      669
+    ],
+    "transparent_margins_px": [
+      32,
+      32,
+      32,
+      32
+    ],
+    "border_alpha_max": 0
+  },
+  "manifest_entry": {
+    "id": "bld_kit_tubo_manor",
+    "subject": "藏式大院（原创地域同功能替换）",
+    "prompt": "Use case: historical-scene. Asset type: one realistic historical Tibetan plateau city-map building sprite, original regional functional adaptation for a Chinese wuxia game. Input image 1 is a STYLE REFERENCE ONLY: match its restrained natural material detail, visual density and age, NOT its Chinese tiled roof style or building shape. Build NEW Tibetan stone architecture. Clear rugged stone courses, lightly weathered white or ochre plaster, thick gently battered walls, flat earthen parapet roof, small dark timber windows with black trapezoidal surrounds and modest red-brown timber cornices. Natural warm-neutral light from SCREEN UPPER LEFT and only a small soft contact shadow to lower right. TRUE TRANSPARENT RGBA background. Not a complete city scene. Camera strict orthographic 2:1 dimetric, yaw 45 degrees, pitch 30 degrees, all verticals vertical, all parallel edges stay parallel, both ground axes slope EXACTLY +0.5 and -0.5. Clear thin rectangular stone contact perimeter with no thick plinth, unobscured left/front/right ground corners. Generous transparent margins all around. No people, text, pseudo-writing, painted script, readable signs, modern objects, landscape, sky, distant buildings, grid, labels, watermark, checkerboard, white background, tourism replicas, floating island, toy diorama, perspective convergence, long shadows. No named real temple or Potala Palace copy and no claim of exact reconstruction of any century. Single complete 1536x1024 image.  Absolute no external ambient halo or glow. Outside silhouette fully transparent alpha=0. A comfortable secular Tibetan manor courtyard. Two-storey white stone main dwelling behind, flat roof parapets, black framed small windows, warm brown carved timber gallery facing courtyard, low side wings, modest stone enclosure and stout front wood gate. Courtyard has a simple storage jar and a small plain woven canopy only. No golden roof, religious shrine, people or lettering. No copy of a known building. Ground footprint exactly 15 by 12 metres, front length:right depth=1.25. Visible thin stone contact corners LEFT(168,520), FRONT(834.6666666666666,853.3333333333333), RIGHT(1368,586.6666666666666), BACK(701.3333333333333,253.33333333333337). Avoid squared plan. Ground corners unobscured. Entrance faces front-left; strict equal +0.5/-0.5 slopes on both axes.",
+    "negative": "人物、文字、伪字、经文、标牌、水印、现代材料、旅游重建外观、布达拉宫具名外观、汉式灰瓦覆盖全建筑、背景风景、浮岛、厚底座、透视汇聚、裁切、右侧主光、长阴影、伪透明棋盘格。",
+    "references": [
+      {
+        "id": "bld_kit_song_dali_yamen",
+        "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+        "role": "仅材质和细节密度参考；非藏地形制",
+        "status": "candidate",
+        "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+      }
+    ],
+    "tool": "functions.exec · image_gen",
+    "model": "image_gen（工具未公开底层模型版本）",
+    "effort": "未公开",
+    "created": "2026-09-30T22:16:30.556Z",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f45a-1fa3-7060-88a7-5bb8c3b76e09/exec-24f5e6bb-cfdd-4ad4-9636-7f720e830b26.png",
+    "status": "candidate",
+    "file": "bld_kit_tubo_manor.png",
+    "category": "building-map",
+    "style": "default",
+    "size": "1027x701",
+    "sha256": "b0a9fc98829d6728d69c36f96f5abb72bbc2b712e96b176065dbd001e272beb2",
+    "notes": "原图已 view_image；可见左右前底面角点，石砌白墙平顶、黑框窗、木门和入口完整；无伪字/人物/现代元素；地域功能替换属原创扩展。 单45°视图；未通过城市拼接和作者审批。",
+    "building": {
+      "type": "bld_kit_tubo_manor",
+      "footprint": [
+        15,
+        12
+      ],
+      "anchor": [
+        533.747,
+        395.4126
+      ],
+      "era": "tubo"
+    },
+    "footprint_m": [
+      15,
+      12
+    ],
+    "entrance": {
+      "edge": "S",
+      "offset_cells": 7.5
+    },
+    "projection_contract": {
+      "tile_px": [
+        64,
+        32
+      ],
+      "ground_bbox_px": [
+        864,
+        432
+      ],
+      "ground_width_px": 864,
+      "light": "screen_upper_left",
+      "shadow": "screen_lower_right_contact_only"
+    },
+    "meta": "meta/bld_kit_tubo_manor.yaml",
+    "anchor_px": [
+      533.747,
+      395.4126
+    ],
+    "source_copy": "sources/bld_kit_tubo_manor.png",
+    "source_sha256": "1cea1173b06bcefbab5b23f40f1f4183ece8cef447786857aabc7784768796d1",
+    "candidate_count": 1,
+    "geometry_qa": {
+      "source_corners_px": {
+        "left": [
+          110,
+          567
+        ],
+        "front": [
+          857,
+          931
+        ],
+        "right": [
+          1476,
+          616
+        ]
+      },
+      "source_axis_slopes": [
+        0.48728246318607765,
+        -0.5088852988691438
+      ],
+      "axis_tolerance": 0.03,
+      "axis_pass": true,
+      "source_width_depth_ratio": 1.2067851373182552,
+      "expected_width_depth_ratio": 1.25,
+      "ratio_relative_error": 0.034571890145395856,
+      "ratio_tolerance_suggestion": 0.1,
+      "ratio_pass": true,
+      "measurement_uncertainty_source_px": 3,
+      "precision_note": "人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。"
+    },
+    "metadata": "meta/bld_kit_tubo_manor.yaml"
+  },
+  "final_visual_review": "已逐张view_image成品透明PNG及临时灰底alpha合成；主体完整、无实际外围棕色光晕；源alpha保持，未阈值抠图。"
+}

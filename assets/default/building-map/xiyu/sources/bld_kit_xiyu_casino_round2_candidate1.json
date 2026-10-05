@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_xiyu_casino",
+  "candidate": 1,
+  "args": {
+    "referenced_image_paths": [
+      "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-xiyu/assets/default/building-map/xiyu/sources/bld_kit_xiyu_casino_round2_geometry.png"
+    ],
+    "transparent_background": true,
+    "prompt": "Use case sketch-to-render. Retexture this EXACT orthographic graybox into a highly detailed realistic ancient Xinjiang courtyard gaming house map sprite. Preserve exact silhouette, camera, scale, and bottom corner positions; width10 depth8, both ground axes slopes+0.5/-0.5. Bottom corners L168,560; front834.67,893.33; right1368,626.67. Apply finely textured yellow adobe, yellow brick footings, flat earthen/timber roofs, carved lattice timber doors and windows. Two simple low empty wooden game tables inside courtyard, rugs and low cushions without writing, timber arcade on back sides. Main entrance in left-facing wall. Original regional synthesis, not a real monument. Highly detailed realistic historical strategy game illustration, weathered small grain and tiny chips; NOT cartoon or plastic. Graybox edges are architectural alignment guides, render them naturally without outlines. Upper-left light, short lower-right contact shadow. True transparent RGBA background with fully opaque building; do not add vignette, halo, scenery, colored backdrop, ground outside footprint, text, labels, people or modern objects."
+  },
+  "path": "/Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-ef336e69-ddbe-4350-a078-2eaadaca47ad.png",
+  "tool": "built-in image_gen",
+  "repair_round": 2
+}

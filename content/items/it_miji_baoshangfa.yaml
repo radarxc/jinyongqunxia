@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_baoshangfa
+name: 包伤法抄本
+kind: manual
+sub: copy
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_baoshangfa
+text:
+  desc: 外观：清代灰白线装小册，红线双订。
+  lore: 军医与镖队将清创、压迫和包扎次序抄成灰白小册，医术和载体属 （原创扩展）。研读须先辨伤口轻重，再用净布练结法；夹页布痕便于比样，抄本只到八层。
+extension:
+  type: manual
+  value:
+    skill: sk_baoshangfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_baoshangfa
+      readWis: 25
+      maxLayer: 8
+      cultivation: 600

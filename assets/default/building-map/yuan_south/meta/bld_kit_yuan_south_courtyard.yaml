@@ -1,0 +1,62 @@
+id: bld_kit_yuan_south_courtyard
+status: candidate
+building:
+  type: bld_kit_yuan_south_courtyard
+  footprint:
+  - 10
+  - 8
+  anchor: &id001
+  - 330.7259
+  - 281.0382
+  era: yuan
+anchor_px: *id001
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】design/22 §3.3同功能项
+entrance:
+  edge: S
+  offset_cells: 5
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+historical_details:
+- 院落/廊屋关系
+- 江南疏院植被层次
+generation_id: 22e1ba43-7ecf-42c8-afe6-982d016028d6
+source_record: sources/hist_courtyard_selected.json
+source_archive: sources/hist_courtyard_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+pixel_qa:
+  mode: RGBA
+  size:
+  - 656
+  - 480
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 225672
+  alpha_partial_pixels: 88593
+  alpha_opaque_pixels: 615
+  alpha_nonzero_bbox:
+  - 65
+  - 73
+  - 590
+  - 444
+  transparent_margins_px:
+  - 65
+  - 73
+  - 66
+  - 36
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 院落/廊屋关系；江南疏院植被层次；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

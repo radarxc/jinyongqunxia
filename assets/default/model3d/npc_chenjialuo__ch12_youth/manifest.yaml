@@ -1,0 +1,76 @@
+- id: npc_chenjialuo__ch12_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 陈家洛（书剑恩仇录 ch12 · 后期青年）· 空手 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 3d52b7b9-e961-43c6-8551-b5d75e49f9e2
+    url: https://studio.tripo3d.ai/workspace/generate/3d52b7b9-e961-43c6-8551-b5d75e49f9e2
+    generate_op: d9a1f51f-dede-4e3d-bae8-6c1b9ebc2cfd（image_to_model）
+    rig_op: af5a6f01-e0db-419f-b200-3b11206383a7
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch12/threeview/por_npc_chenjialuo__ch12_youth_late_apose_slim.png
+    sha256: 8a526b090ffa6ad8e201c64f56803f1f87e9b9e1ef883574e049ff2c1240ddb9
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: c5ab915391b2575620ed9df4275e9ac2391696ad34905aa56b4120d6ef4dfdbe
+  size_bytes: 6015044
+  joints: 65
+  triangles: 95642
+  vertices: 53409
+  animations: []
+  textures:
+  - image/jpeg 396064 B
+  - image/jpeg 1631627 B
+  - image/jpeg 612828 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T19:07:15-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，白长袍 + 黑色团纹马甲，清代剃额、辫子在背后；书已去掉。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 0db0e26b。
+- id: npc_chenjialuo__ch12_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 陈家洛（书剑恩仇录 ch12 · 后期青年）· 空手 A 字版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 3d52b7b9-e961-43c6-8551-b5d75e49f9e2
+    url: https://studio.tripo3d.ai/workspace/generate/3d52b7b9-e961-43c6-8551-b5d75e49f9e2
+    generate_op: d9a1f51f-dede-4e3d-bae8-6c1b9ebc2cfd（image_to_model）
+    rig_op: af5a6f01-e0db-419f-b200-3b11206383a7
+  size: 600x778
+  sha256: b3080a1dcba91f78e4edb41a22594ab7159ca53d943ebbf54c904a626e43559e
+  size_bytes: 153404
+  created: '2026-10-03T22:34:21-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

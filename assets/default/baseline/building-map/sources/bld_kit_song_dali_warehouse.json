@@ -1,0 +1,88 @@
+{
+  "id": "bld_kit_song_dali_warehouse",
+  "type": "bld_kit_song_dali_warehouse",
+  "w": 9,
+  "h": 7,
+  "subject": "1093年大理国仓屋（建筑细部待考）",
+  "prompt": "Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation 30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT. Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10% empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop, ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people, no modern objects, no logos, no border, no watermark, no tourism-era decoration. A plain sturdy freight warehouse, single-story high-volume timber and plaster building with gray tiled gabled roof, broad south wooden loading doors partly open, small groups of sacks and ceramic storage jars just under eaves, low stone sill. Footprint 9m east-west by7m north-south, no extra yard outside.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_house",
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png",
+      "sha256": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+      "role": "本批候选相机与材质参考（非作者approved）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-0c0ca334-6a35-49b4-a102-55d0a90925fd.png",
+  "source_sha256": "87060cd54f290051360658e7dab3f6abf5f9480f68ad7409c84244ad13dfcce3",
+  "created": "2026-09-30T08:38:02.412905+00:00",
+  "visual_review": "已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。",
+  "candidate_count": 2,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-eded7299-059c-422e-8283-9d368db7ef9f.png",
+      "prompt": "undefinedA plain sturdy freight warehouse, single-story high-volume timber and plaster building with gray tiled gabled roof, broad south wooden loading doors partly open, small groups of sacks and ceramic storage jars just under eaves, low stone sill. Footprint 9m east-west by7m north-south, no extra yard outside.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "38b4fc9e5258bee23660a04d772f253c2484d5acd26d67c177785fc1b73c6e62"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        310,
+        582
+      ],
+      [
+        949,
+        872
+      ]
+    ],
+    [
+      [
+        949,
+        872
+      ],
+      [
+        1483,
+        637
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      310,
+      582
+    ],
+    "front": [
+      949,
+      872
+    ],
+    "right": [
+      1483,
+      637
+    ]
+  },
+  "projection_review": "手动可见底面点±3px估计；两轴斜率0.4538/-0.4401；两轴dx比639/534=1.1966，目录w/h=1.2857。仅裁切/等比缩放不会改变这些残差。",
+  "status": "candidate",
+  "source_size": [
+    1774,
+    887
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 957350,
+    "partial_pixels": 615637,
+    "opaque_pixels": 551,
+    "bbox": [
+      296,
+      26,
+      1507,
+      875
+    ]
+  }
+}

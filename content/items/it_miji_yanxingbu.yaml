@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_yanxingbu
+name: 雁行步原本
+kind: manual
+sub: original
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_yanxingbu
+text:
+  desc: 外观：明代浅青经折小谱，月白硬纸护面。
+  lore: 旅人把斜行换位与长途省力的步法绘成浅青经折原稿，身法和载体属 （原创扩展）。研读须沿窄长图序连看落足，先在平地练稳再加速；折口轻磨显示此本常被展开比步。
+extension:
+  type: manual
+  value:
+    skill: sk_yanxingbu
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yanxingbu
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

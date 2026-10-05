@@ -1,0 +1,83 @@
+id: bld_kit_qing_north_yamen
+status: candidate
+building:
+  type: bld_kit_qing_north_yamen
+  footprint: [17, 13]
+  anchor: &id001 [505.102, 368.2925]
+  era: qing_north
+anchor_px: *id001
+footprint_m: [17, 13]
+footprint_note: design/22 §3.4 清初衙署骨架17×13；单体为原创扩展。
+logical_footprint_polygon_px:
+- [25.102, 336.2925]
+- [569.102, 608.2925]
+- [985.102, 400.2925]
+- [441.102, 128.2925]
+collision_polygon_m:
+- [0, 0]
+- [17, 0]
+- [17, 13]
+- [0, 13]
+collision_note: 全footprint硬碰撞代理；非实测墙体，院内走区另行细化。
+occluder_proxy_px:
+- [25, 49]
+- [987, 49]
+- [987, 633]
+- [25, 633]
+occluder_note: alpha>=192包围框仅用于离线代理统计，未修改输出alpha。
+actual_height_m: null
+height_note: 单图不能推出可靠实高，待实测/建模。
+entrance: {edge: S, offset_cells: 8}
+entrance_note: S边中点代理，非门洞精确实测。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_north_yamen.png, view_note: 目标视角；实际误差见geometry_qa}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [960, 480]
+  ground_width_px: 960
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
+geometry_qa:
+  source_corners_px:
+    left: [120, 544]
+    front: [857, 919]
+    right: [1420, 586]
+  source_axis_slopes: [0.508819538670285, -0.5914742451154529]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.3090586145648313
+  expected_width_depth_ratio: 1.3076923076923077
+  ratio_relative_error: 0.00104482290251795
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面三角点，±3px不确定性；底面中心取(L+R)/2。后角为L+R−F推算，非3D测绘；未以变形纠偏。
+pixel_qa:
+  mode: RGBA
+  size: [1039, 696]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 411868
+  alpha_partial_pixels: 310968
+  alpha_opaque_pixels: 308
+  alpha_near_opaque_pixels: 300773
+  alpha_nonzero_bbox: [20, 20, 1019, 676]
+  transparent_margins_px: [20, 20, 20, 20]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_yamen.png
+  source_sha256: bc3d016d785a1dd50505e01a903742124fc175dc7f170a43a307639269c9d6d7
+  source_size: [1536, 1024]
+  crop_box: [113, 93, 1466, 982]
+  uniform_scale_requested: 0.7384615384615385
+  resized_size: [999, 656]
+  rounded_effective_scale: [0.738359201773836, 0.7379077615298087]
+  paste_offset: [20, 20]
+  final_file: bld_kit_qing_north_yamen.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+  anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
+release_ready: false

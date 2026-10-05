@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_shinianrenshen
+name: 十年人参
+kind: material
+sub: herb
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/shinianrenshen
+text:
+  desc: 外观：根体稍粗、须根繁密，黄麻绳束。
+  lore: 辽东、关外老林或参圃的十年参，仍在秋八至十月采收，根体与须纹较普通参更密。药师多留作静服养气，根骨增益须计永久预算，不能反复堆叠。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan3
+    materialGrade: 6
+    rare: false
+    herbFamily: renShen
+    ageYears: 10
+    attributes:
+      version: 2
+      restoreQi: 10
+      con: 1

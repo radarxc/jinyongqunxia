@@ -1,0 +1,40 @@
+schemaVersion: npc.v1
+id: npc_duanyu
+identity: {name: 段誉, aliases: [], origin: fictional, sourceWorks: [天龙八部]}
+lifespan:
+  born: {kind: unknown, ageBand: youth, note: 生年待考}
+  died: null
+appearances:
+  - key: tianlong_main
+    chapterId: ch01_tianlong
+    years: {from: 1093, to: 1094, approx: true}
+    displayName: 段誉
+    presenceMode: living
+    combatEligible: true
+    ageBand: youth
+    sects: [{sectId: sect_dali, rank: L4, relation: heir}]
+    location: {cityId: city_dali, placeKey: wuliang_route}
+    contentLayer: mainline
+    recruitment:
+      difficulty: D5
+      questRef: q_01_faction_01
+      gateRef: q_01_faction_01#recruit_gate
+      valueGateRefs: [q_01_faction_01#respect_choice]
+      mainlineGateRef: q_01_main_c_02#complete
+      windowKeys: [c02_to_finale]
+      canonicalConsequenceRef: q_01_faction_01#dali_duty
+      fallbackAllianceRef: q_01_faction_01#alliance
+      lockWarningRef: q_01_faction_01#lock_warning
+      fateRuleRef: null
+    build:
+      pipeline: full
+      templateRole: tmpl_elite
+      cultivationBand: 48
+      portrayal: dali_heir
+      skills: [{skillId: sk_beiming, trueLayer: 6}]
+      unregisteredSkills: []
+    ai: {tier: ai_expert, personality: pers_yizhe}
+recruitment: {everRecruitable: true, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [dali, compassionate], comboCandidateRefs: []}
+crossBook: {enabled: false, reunionQuestByChapter: {}, legacy: {skillRefs: [sk_beiming], itemRefs: [], heirNpcRefs: []}}
+sources: [{kind: novel, work: 天龙八部, locator: 无量山至大理归国；回目待考}]

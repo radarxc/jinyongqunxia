@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_baoyulihuading
+name: 暴雨梨花钉
+kind: hidden
+sub: gun
+grade: 10
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 古龙《楚留香传奇》；具体篇目、制作者与构造 （待考）
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/baoyulihuading
+text:
+  desc: 外观：银灰扁平机括匣，端面多孔、铜簧结构闭合。 待运行时投影：aoe=cone; onHit=bf_liuxue。
+  lore: 古龙作品中的暴雨梨花钉在此作非商业致敬；（待考：核具体篇目、制作者与构造）。本文按前臂长闭合钉匣表现，一启多钉齐发，弹药耗尽且可能造成流血。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: gun
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 120
+      hardness: 75
+      qiAffinity: 100

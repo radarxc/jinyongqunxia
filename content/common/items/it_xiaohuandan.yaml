@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_xiaohuandan
+name: 小还丹
+kind: tonic
+sub: tonic
+grade: 5
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: field
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 750
+  - op: applyBuff
+    params:
+      value: bf_huichun
+assets:
+  icon: item/xiaohuandan
+text:
+  desc: 名录投影：补品·疗伤；grade=5; healPct=7.5%; buff=bf_huichun。外观：深棕丸药六枚，素黄瓷瓶与木塞，寺院药房质朴感 （原创扩展）
+  short: 小还丹
+extension:
+  type: generic
+  value: {}

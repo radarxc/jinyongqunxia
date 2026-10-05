@@ -1,0 +1,41 @@
+{
+  "placement_attempts": 31,
+  "parcels": 13,
+  "city_id": "city_dali",
+  "road_cells": 1290,
+  "buildings": 36,
+  "building_types": {
+    "bld_kit_song_dali_casino": 1,
+    "bld_kit_song_dali_courtyard": 3,
+    "bld_kit_song_dali_guardhouse": 1,
+    "bld_kit_song_dali_house": 5,
+    "bld_kit_song_dali_inn": 1,
+    "bld_kit_song_dali_manor": 1,
+    "bld_kit_song_dali_market_stall": 10,
+    "bld_kit_song_dali_restaurant": 1,
+    "bld_kit_song_dali_shop": 4,
+    "bld_kit_song_dali_shrine": 2,
+    "bld_kit_song_dali_stable": 1,
+    "bld_kit_song_dali_temple_hall": 1,
+    "bld_kit_song_dali_wangfu": 1,
+    "bld_kit_song_dali_yamen": 1,
+    "bld_lm_ch01_chongshengsi_pagoda": 1,
+    "bld_lm_ch01_chongshengsi_pagoda_small": 2
+  },
+  "water_cells": 526,
+  "lake_cells": {
+    "erhai_edge": 250
+  },
+  "source_bridges": 1,
+  "assembled_bridges": 1,
+  "merged_bridge_groups": [],
+  "planning_walkable": 3532,
+  "runtime_hex_walkable": 2525,
+  "road_components": 1,
+  "required_components": 1,
+  "complete": true,
+  "missing_required": {},
+  "decorations": 915,
+  "generation_seconds": 1.349,
+  "layout_sha256": "999880225ef40ad4e080946a98d9749b88110ac6657d19fa512ccc774ff30c72"
+}

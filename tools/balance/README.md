@@ -82,6 +82,26 @@ AR-16 接入后的当前预期为 `All 47 checks passed; known deviations: 0.`�
 
 `damage_sim.py` 直接复用同目录 `meridian_flow_sim.py` 的标准化 Profile 和纯函数，避免复制 21 的曲线。调用 `damage_pipeline` 时可传双方 Profile、攻击路线长度与可选防守路线长度；不传则双方为标准档、攻击 2 段、无防守路线，因此旧报表严格零漂移。`settle_direct` 只有在 `inner_guard_enabled=True` 时才于护盾后启用护体内劲，并将内劲耗内后的余额交给 `mpGuard`。
 
+`meridian_flow_sim.py` 同时维护两条明确分离的验证路径：
+
+- `meridian_flow_golden.json` 是 `fixtureVersion=2 / rulesProtocol=2 / rngProtocol=1` 的迁移前录像，只由 Core 的 `legacy-protocol2-replay.ts` 回放；它不证明生产 runtime 正确。
+- `meridian_flow_golden_v3.json` 是 `fixtureVersion=3 / rulesProtocol=3 / rngProtocol=2` 的生产门禁。Python 以独立的 fluxCap 1–64、逐 tick 管线实现生成，Core 测试直接构造 `MeridianFlowRuntime`，并对路线 trace、质量、CT、四单位隔离和 battle RNG 状态逐字段比较。曲线、护体、速度、控制投影、归一化和五档 TTK 也由生产函数对拍。
+- v3 工件中的 `breath.supportedByProductionRuntime=false` 是显式缺口记录：Python 保留设计参考向量，当前 Core 尚无 `regulateBreath`，测试不得把该字段假装成已覆盖。防守和移动路线可推进、预览，但生产提交入口仍只接受攻击路线。
+
+常态验证只读两份工件：
+
+```bash
+python3 tools/balance/meridian_flow_sim.py --check
+pnpm --filter @tianshu/core test
+```
+
+只有规则变更经过评审后，人工执行一次下列命令重录 **v3**；它不会覆盖旧 v2 文件。提交前必须把新 `vectorSha256` 同步到生产 golden 测试的硬锁常量。CI 禁止调用写入模式。
+
+```bash
+python3 tools/balance/meridian_flow_sim.py --write-golden
+python3 tools/balance/meridian_flow_sim.py --check
+```
+
 经脉规则或 golden 变更后应连续运行：
 
 ```bash
@@ -127,7 +147,40 @@ python3 tools/balance/boss_pacing.py --chapter 2 --kind boss \
 
 ```bash
 python3 tools/balance/boss_pacing.py --json /tmp/boss-units.json
+python3 tools/balance/boss_pacing.py --report --json /tmp/boss-units.json
 python3 tools/balance/boss_pacing.py --check
 ```
 
 Boss / 精英窗口分别为 12–25 / 6–10 轮。超窗时优先把血量与防御倍率乘积调到工具推荐值或用阶段机制减总耐久，不得压低主运经脉；多人战按整场总耐久 / 目标计。静态估算不模拟路线风险与行动表，生产仍须固定 RNG 回放。
+
+### 稳定报告与书界数值引用
+
+`--report` 输出 `schema="tianshu.boss-pacing.report"`、`schemaVersion=1` 的 JSON 对象；未传该开关时保留原 JSON 数组输出。直接参数和 `--json` 批量输入均可用，`--report` 与 `--check` 互斥。报告保持输入顺序，键排序、UTF-8 字符、两空格缩进及结尾换行固定，无时间戳或机器绝对路径；同一代码和输入重复运行可逐字节比较。`sourceSha256` 登记四个模型源文件的摘要，代码或注释变化都会改变摘要，便于追溯版本。
+
+每条 `units` 包含完整已解析 `input`（含七参、里程碑、攻防路线段数与两个耐久倍率）、原样 `result`、两位小数 `estimatedRoundsDisplay` 及 `windowStatus=below/within/above`。其中 `input` 可单独保存后作为 `--json` 输入复算；不能把整个报告直接当成输入。顶层与各结果都带 `estimateOnly=true`。
+
+书界引用数值金标准时按以下约定比较，不能用四舍五入后的表格数值推导是否过窗：
+
+| 对拍对象 | 规则 | 依据 / 边界 |
+|---|---|---|
+| 整数 bp、布尔字段 | 精确相等 | 经脉整数模型保持原值 |
+| 原始浮点结果 | `abs(a-b) ≤ max(1e-9, 1e-12×max(abs(a),abs(b)))` | 仅对拍同一模型和输入的计算结果；不是平衡误差预算 |
+| 文档两位小数轮数 | 与 `estimatedRoundsDisplay` 字符串一致 | 按十进制 `ROUND_HALF_UP`；显示舍入误差至多 `0.005` 轮，`18.9149609→18.91`、`18.915→18.92` |
+| Boss / 精英过窗 | 用未舍入的 `estimatedRounds` 比较闭区间 `[12,25]` / `[6,10]` | 容差不扩大窗口；例如 `25.004` 显示 `25.00` 仍是 `above` |
+
+报告只包裹 `design/21` §11.9.2 的既有 `R0×10000²/(A×D)×H` 模型，没有新增乘区、调参或修改推荐倍率。代表路线假设合法且完全完成；`practiceBp` 只留作审计，静态模型不处理风险 / RNG、实际行动顺序、调息、辅运贡献或具名整场回放。书界采用 error 级静态数值对拍时应保存完整输入与源摘要，再按上述容差比较；生产节奏仍以固定 RNG 回放验收。
+
+## 常态 CI 与只报告项
+
+截至 2026-09-30，四个规定 `--check` 均通过，`damage_sim.py` 为 47 项、已知偏差 0；`boss_pacing.py --check` 还覆盖报告输入往返、稳定序列化、十进制舍入及两类窗口上下边界。当前任务只验证命令，没有修改写集外的 CI 配置。
+
+| 命令 / 模式 | 当前性质 | 纳入常态 CI 的条件 |
+|---|---|---|
+| `damage_sim.py --check` | 严格退出码门禁；公式与 42 遭遇模板回归 | 可立即作为必过命令；上游数值变更时先同步归属文档，再有据更新模型 |
+| `meridian_flow_sim.py --check` | 严格退出码门禁；整数曲线、性质与 golden 回归 | 可立即作为必过命令；不得刷新 golden 来掩盖未裁定变更 |
+| `boss_pacing.py --check` | 严格退出码门禁；中性、回拉公式及报告契约回归 | 可立即作为必过命令；不等于自动扫描书界所有具名单位 |
+| `projection_sim.py --check` | 严格退出码门禁；外放范围、耗内与唯一 Z5M | 可立即作为必过命令；图鉴逐招合规由 lint 与生产构建另验 |
+| `damage_sim.py --report`、`projection_sim.py --report` | 只报告，供文档生成 / 对拍 | 可保存 CI 产物；需要版本化输入与明确比较规则后才可追加数值门禁 |
+| `boss_pacing.py` 默认 / `--report` | 只报告；即使 `windowStatus=above` 也退出 0 | 收口任务维护逐单位完整夹具、来源和例外后，可独立按容差对拍；完整节奏须有 `BattleReplayV1` |
+
+四项 `--check` 的“通过”只证明工具内的既定回归通过；不会把文档里的生产阻断、待实测回放或图鉴债务自动清零。

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_haifengbu
+name: 海风步全本
+kind: manual
+sub: full
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_haifengbu
+text:
+  desc: 外观：北宋白麻纸横卷，青绫隔水、素木轴。
+  lore: 海边行者将迎风转身与湿石落足绘成横卷，步法、谱本与传承皆属 （原创扩展）。研读须沿卷连续观察重心变化，再在平缓岸边试走；盐霜旧痕提示此法重适地，不是逐风炫技。
+extension:
+  type: manual
+  value:
+    skill: sk_haifengbu
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_haifengbu
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

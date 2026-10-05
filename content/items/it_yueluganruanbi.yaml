@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yueluganruanbi
+name: 越地苇管软毫笔
+kind: collectible
+sub: stationery
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yueluganruanbi
+text:
+  desc: 外观：浅黄细苇管一支，短而柔的黑褐毫束。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,collector]}; giftValue=2; provenance=expanded。
+  lore: 以先秦书写活动构想轻便的苇管笔，材料组合尚未取得越地实物佐证。可由书吏支线作为酬礼送给文士；命名、造型和工艺等级均为（原创扩展），不能宣称春秋名笔。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 36

@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_nansongbenbailingwenbiantaodai_nv
+name: 南宋本白绫纹编绦带·女
+kind: armor
+sub: belt
+grade: 6
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 南宋；出现书界 ch02/ch03；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；中国丝绸博物馆，南宋黄昇墓紫褐色罗印金彩绘花边单衣 https://www.chinasilkmuseum.com/gskt/info_319.aspx?itemid=31584；黄昇墓包袱随葬衣物仅作实物裁形依据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongbenbailingwenbiantaodai_nv
+text:
+  desc: 外观：南宋女款，细编绦束裙。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: （原创扩展）据南宋腰绦语汇演成本白女式编绦带，细编绦与双结收束裙腰，不嵌中央玉环。克制绫织暗纹缘用于绦身与端缘；步行前整好结头，具体编法为原创，不另算从属佩件属性。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9

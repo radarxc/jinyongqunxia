@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_nangbing
+name: 馕饼
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 西域、回疆行旅主食；清代名目与形制 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: meal
+    params:
+      value: bf_wenzhong:1battle
+assets:
+  icon: item/nangbing
+text:
+  desc: 外观：宽圆薄馕一张折放粗布上，中央针纹无文字。
+  lore: 西域与回疆行旅四季所携的宽圆烤饼，厚边耐放，可掰开配肉汤食用。清代名目与各书界形制尚待核对。（待考：核名称沿革与年代） （原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 12

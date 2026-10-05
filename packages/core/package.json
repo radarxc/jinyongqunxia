@@ -1,0 +1,41 @@
+{
+  "name": "@tianshu/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./session": "./src/entries/session.ts",
+    "./state": "./src/entries/state.ts",
+    "./inventory-runtime": "./src/entries/inventory-runtime.ts",
+    "./kernel": "./src/entries/kernel.ts",
+    "./projection": "./src/entries/projection.ts",
+    "./clock": "./src/entries/clock.ts",
+    "./worldmap": "./src/entries/worldmap.ts",
+    "./town": "./src/entries/town.ts",
+    "./inventory": "./src/entries/inventory.ts",
+    "./story": "./src/entries/story.ts",
+    "./dialogue-command": "./src/entries/dialogue-command.ts",
+    "./quest": "./src/entries/quest.ts",
+    "./difficulty": "./src/entries/difficulty.ts",
+    "./chapter": "./src/entries/chapter.ts",
+    "./region-command": "./src/entries/region-command.ts",
+    "./region": "./src/world/index.ts",
+    "./region-runtime": "./src/entries/region-runtime.ts",
+    "./battle": "./src/battle/index.ts",
+    "./dialogue": "./src/dialogue/index.ts",
+    "./dialogue-projection": "./src/entries/dialogue-projection.ts"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "test": "vitest run src",
+    "test:performance": "vitest run packages/core/bench --root ../..",
+    "bench": "vitest bench packages/core/bench/meridian-flow.bench.ts packages/core/bench/combat.bench.ts --root ../.. --run",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@tianshu/data": "workspace:*",
+    "@tianshu/shared": "workspace:*",
+    "inkjs": "2.4.0"
+  }
+}

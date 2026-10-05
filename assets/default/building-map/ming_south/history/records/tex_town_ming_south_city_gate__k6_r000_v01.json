@@ -1,0 +1,58 @@
+{
+  "id": "tex_town_ming_south_city_gate__k6_r000_v01",
+  "candidate": 2,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan Ming city gate with six-unit clear passage. Strong historical construction detail: broad blue-grey fired-brick gate platform on granite footings; radiating brick voussoirs around one wide shallow round arch; repaired lime joints, low parapet; complete low grey-tile guard hall above; true empty tunnel.\n\nPreserve the guide's logical footprint 10 by 4, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result. Gate geometry: front division exactly 2:6:2 units; central 6-unit arch and tunnel fully transparent, with no door, floor or dark back wall.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/tile/ming_south/tex_town_ming_south_city_gate__k6_r000_v01.png",
+  "refs": [
+    "gate1",
+    "gate2"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/gate_zhonghua_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/gate_zhonghua_2.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/tex_town_ming_south_city_gate__k6_r000_v01-c2/generated_images/01a0f705-c986-7693-b05e-5f76c63abcc8/exec-460a443f-d918-4a74-a8ae-c7c81a118a4d.png"
+  ],
+  "selected_candidate": 2,
+  "candidate_count": 2,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/tex_town_ming_south_city_gate__k6_r000_v01.png",
+  "guide_sha256": "5e5fdee8c4722cf5229af9c9f324e415c2cb4ad9f40ba9b62f74a9bcdf6724ec",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_city_gate__k6_r000_v01.png",
+  "selected_source_sha256": "6c8f2f6c0d35fd08e6cf5340a7894effa54ecd2fc2fb1c18aeccf29137bd0be7",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      217,
+      3,
+      1359,
+      982
+    ],
+    "guide_bbox": [
+      20,
+      20,
+      518,
+      456
+    ],
+    "uniform_scale": 0.436077057793345,
+    "resized_size": [
+      498,
+      427
+    ],
+    "paste_offset": [
+      20,
+      29
+    ],
+    "canvas_size": [
+      538,
+      477
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/tile/ming_south/tex_town_ming_south_city_gate__k6_r000_v01.png",
+  "final_sha256": "0a292ea5f2c66996280cf7d1954b39ac441b463b5202e846ec2be194309c9c25",
+  "finalized_at": "2026-10-01T10:42:42.802543+00:00"
+}

@@ -1,0 +1,91 @@
+{
+  "id": "bld_kit_ming_north_house_small",
+  "subject": "明代北方小民居，7×6格，青灰砖硬山灰瓦（原创扩展；细部待考）",
+  "footprint": [
+    7,
+    6
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-c2cda13e-3e23-4f49-b9fd-ad864b3f4279.png",
+  "prompt": "Convert this exact solid block into a THREE-bay northern Ming ordinary small house. Preserve exact footprint shape of the reference; DO NOT widen its front. Light front wall must have width560 pixels horizontally; dark side wall480pixels. Foundation corners on1536x1024: L200,610 F760,890 R1240,650 B680,370. Edges slopes+0.5/-0.5 exactly; nearly square7-by6m footprint. Add realistic finely detailed aged grey brick textures, central plain brown wood door flanked by two lattice windows, dark grey clay hard-gable pitched roof above box. Roof ridge parallel to frontage, masonry end gables flush with verge. One storey, modest northern Chinese architecture, small subdued finials. Thin grey flagstone apron and visible full L/F/R corners. Realistic hand-painted game building, fine brick and roof texture density; soft upper-left light, mild short right shadow. Exact geometry is critical. All ground axes parallel to box. Fully transparent RGBA exterior alpha0, solid building alpha255. No scenery, ambient glow, thick plinth, people, text, signs, guide marks, or any modern object. Complete asset with roomy margins.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; reviewed with view_image before generation"
+    },
+    {
+      "path": "assets/default/building-map/ming_north/sources/bld_kit_ming_north_house_small_r2_guide.png",
+      "sha256": "9d45a5b01f1053dd5ea8e46cd07738493bbdfb72f9c4025e6f5470b12d8eb272",
+      "role": "精确几何导引，仅作image_gen输入；最终图未经仿射纠偏"
+    }
+  ],
+  "created": "2026-09-30T22:10:19.380570+00:00",
+  "created_time_basis": "本轮所选候选接收后登记时间",
+  "points": {
+    "L": [
+      199,
+      613.3549
+    ],
+    "F": [
+      781.0055,
+      915.543
+    ],
+    "R": [
+      1272,
+      656.2307
+    ]
+  },
+  "footprint_basis": "design/22 §3.4 bld_kit_ming_house 7×6；地域同构 ID",
+  "visual_review": "原目标、几何导引及所选原图均逐张view_image；灰砖硬山、灰瓦木窗、左上光、完整轮廓与透明留边。基脚实测+0.51922/-0.52814；比例1.18536，目标1.16667。",
+  "candidate_count": 2,
+  "historical_sources": [
+    {
+      "title": "本市明确二环路以内老城房屋修缮标准",
+      "url": "https://www.beijing.gov.cn/zhengce/zcjd/202004/t20200426_1882617.html",
+      "accessed": "2026-09-30",
+      "use": "地域青灰材质与避免江南白墙；非明代逐项复原证据"
+    }
+  ],
+  "measurement_uncertainty_source_px": 3,
+  "source_point_semantics": "逐图视检定位基脚左右外缘x，alpha>200下缘取x251..699/951..1249线性拟合；F为两可见直边交点；不含透明阴影。",
+  "revision": 2,
+  "selected_candidate": 2,
+  "original_size": [
+    1536,
+    1024
+  ],
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "98f7105d2ab64af69deaccd9e9bc835a6cf10c2aa8c88d0dba13358912c4ac5a",
+  "revision_history": [
+    {
+      "revision": 1,
+      "source_sha256": "9d4a0f91b80631b082e523399fe93ed4d0ae6a105e4c35d0420d67cebfe5256b",
+      "final_sha256": "82ddc076bc6bf6129a202abd35299301cc75daa21577a1b04c6642372d3412a0",
+      "record_sha256": "dd9aa47b6455aa797141fb6d6f8bf77f36f0a466f787f7681755508dd50e626f",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-bcffcb40-51a8-4fb2-8ef4-522354e88567.png",
+      "candidate_count": 2
+    }
+  ],
+  "candidate_count_basis": "仅本轮 revision=2；前轮次数见 revision_history",
+  "repair_record": "sources/bld_kit_ming_north_house_small_r2_candidates.json",
+  "selection_reason": "在本轮2候选中选择双轴和宽深整体残差较低者；残差如实保留。",
+  "measurement_fit_ranges_x": [
+    [
+      251,
+      699
+    ],
+    [
+      951,
+      1249
+    ]
+  ],
+  "measurement_fit_slopes": [
+    0.5192185014317529,
+    -0.5281367421606699
+  ],
+  "final_view_image_reviewed": true,
+  "final_visual_review": "已逐张view_image成品；屋檐、薄基脚完整，透明留边与灰砖灰瓦细节可读；未修改投影，仅裁切等比缩放补透明边。残差见meta。"
+}

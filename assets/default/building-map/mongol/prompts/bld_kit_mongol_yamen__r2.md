@@ -1,0 +1,12 @@
+# 第2轮投影返修：bld_kit_mongol_yamen
+
+## 候选1（未采用）
+
+Generate one Yuan-Mongol government assembly courtyard sprite, matching attached materials and subject: Chinese plain gray tiled timber hall, ONE small cream Mongolian felt ger, simple timber palisade enclosing flat packed earth, plain gateway. Keep rustic realistic ancient city-map miniature, neutral beige brown gray, upper-left light. Precise ORTHOGRAPHIC DIMETRIC 2:1 camera. Adjust camera azimuth so both base axes have EQUAL slope magnitude 0.500 (26.565 degrees to horizontal), no perspective. Rectangle footprint WIDTH16 and DEPTH12. In image, WIDTH is left-to-front edge and must be 4/3 length of front-to-right edge. HARD geometry: on 1536x1024 image use LEFT ground corner(96,530), FRONT ground corner(864,914), RIGHT ground corner(1440,626), BACK ground corner(672,242). Palisade ground line and every hall horizontal edge align these axes, vertical posts remain vertical. Render three front corners unmistakably, no diagonal gate projection outside court. Whole roof and all structure within transparent margins. True RGBA transparent outside courtyard, no background haze/halo, no labels/grid/people/animals/text/flags. Thin earth contact surface only, no plinth. Regenerate geometry; do not retain reference's asymmetric edge angles.
+
+## 候选2（采用）
+
+Targeted camera correction of attached Yuan Mongol administrative court. Preserve all buildings, palisade, one ger, texture/style/materials. Current first attempt's base edges are TOO STEEP, about0.56; make both floor slopes0.500, flatten floor diagonal angles slightly, keep vertical building scale. Correct entire architecture consistently, orthographic2:1 dimetric yaw45/pitch30, NO PERSPECTIVE. Footprint16 wide12 deep. In a1536x1024 canvas arrange precise ground corners LEFT(80,546), FRONT(848,930), RIGHT(1424,642), BACK(656,258). Width edge left-to-front length768x384, depth front-to-right576x-288, ratio4/3. Main gate on long front-left edge. No thick plinth, simple crisp thin rectangular earth court and readable near corners. Gray-tiled simple timber hall and beige round felt ger inside wood palisade. Whole asset complete with transparent padding; upper-left light, short lower-right shadow. True RGBA alpha-zero background, no ambient halo/vignette/fog, no text/grid/people/animals/flags/modern objects. Keep weathered realistic ancient Chinese-steppe city-sprite style.
+
+第2轮返修采用候选2；轴率0.55838/-0.56044；宽深比1.23705，目标1.33333；轴率/比例检查分别False/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。
+内置image_gen，transparent_background=true；源图及传入图已按字节归档。

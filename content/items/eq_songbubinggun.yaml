@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_songbubinggun
+name: 宋军步棍
+kind: weapon
+sub: staff
+grade: 3
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·宋；天龙起可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/songbubinggun
+text:
+  desc: 外观：枣木齐眉棍约一百七十厘米，根梢近等粗、两端火烤硬化并包铁箍。
+  lore: 宋境步卒以枣木制成的齐眉长棍，两端火烤后再包窄铁箍，耐反复格挡与撞击。双手持棍可扫、压、点，营中也易削木补配；器名、军中配置和形制均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - long
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 42
+      qiAffinity: 100

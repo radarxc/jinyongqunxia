@@ -1,0 +1,9 @@
+# 作者 2026-09-30：玄级外放随内力性质着色；此处为唯一制作色板。
+# harmony / neutral：作者 2026-09-30 确认「调和 / 中性两种内力的外放气颜色默认淡金 / 素白」；具体色值可再调。
+version: 1
+color_space: srgb
+colors:
+  yin: '#5FB5B0'
+  yang: '#D9483B'
+  harmony: '#E8D6A3'
+  neutral: '#F4F4F4'

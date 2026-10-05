@@ -1,0 +1,33 @@
+{
+  "placement_attempts": 96,
+  "parcels": 90,
+  "city_id": "city_beijing",
+  "road_cells": 3576,
+  "buildings": 83,
+  "building_types": {
+    "bld_kit_song_dali_courtyard": 9,
+    "bld_kit_song_dali_guardhouse": 1,
+    "bld_kit_song_dali_house": 32,
+    "bld_kit_song_dali_inn": 2,
+    "bld_kit_song_dali_market_stall": 22,
+    "bld_kit_song_dali_shop": 12,
+    "bld_kit_song_dali_shrine": 1,
+    "bld_kit_song_dali_stable": 1,
+    "bld_kit_song_dali_warehouse": 2,
+    "bld_kit_song_dali_yamen": 1
+  },
+  "water_cells": 0,
+  "lake_cells": {},
+  "source_bridges": 0,
+  "assembled_bridges": 0,
+  "merged_bridge_groups": [],
+  "planning_walkable": 13000,
+  "runtime_hex_walkable": 10284,
+  "road_components": 1,
+  "required_components": 1,
+  "complete": true,
+  "missing_required": {},
+  "decorations": 384,
+  "generation_seconds": 3.5491,
+  "layout_sha256": "0101776b42eff6109e828c457dd644768d606fc7ee90450615efadd1d2c31476"
+}

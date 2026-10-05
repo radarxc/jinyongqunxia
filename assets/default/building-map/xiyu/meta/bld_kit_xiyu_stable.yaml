@@ -1,0 +1,85 @@
+id: bld_kit_xiyu_stable
+file: bld_kit_xiyu_stable.png
+category: building-map
+style: default
+subject: 西域回部城镇·商队马厩（原创扩展；各年代细部待考）
+prompt: 'Use case: historical-scene. ONE isolated realistic city-map sprite of a southern Xinjiang oasis caravan stable, a generic original building for
+  historic Kashgar/Hotan/Yarkand. Flat-roof adobe rear store and long open stable shed with rough poplar poles, reed mat and earth roof, wooden stall dividers
+  and troughs, a little stacked hay, small enclosed exercise yard, no animals or people. Rectangle9m east-west by7m north-south; south front gate faces
+  screen LOWER LEFT. Camera STRICTLY orthographic yaw45 elevation30; ground rectangle edges at +/-26.565degrees on screen, so EXACT2:1 dimetric slopes+0.5,-0.5,
+  no perspective. Front edge length9/7 times other edge. Flat thin rectangular dirt footprint with clear left/front/right ground corners, no raised plinth.
+  Fine weathered ochre mudbrick and dark timber textures, restrained realism and density consistent with Song city-kit game sprites, no cartoon. TRUE transparent
+  RGBA, entire building centered within15% transparent margin on all sides. Upper-left light, short lower-right contact shadow only, no scenic background,
+  no ambient halo, no modern object, writing, letters, signs, watermark, Chinese tiled roof, religious ornament.'
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references: []
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T22:15:20.337319+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-de9b1647-4e92-4de0-8549-a70945b5a9f9.png
+size: 640x448
+sha256: cf710cdbb7c4d0223a44be442c1aab6c1a76805fb914a309b14cb6abc912920b
+status: candidate
+notes: 逐张view_image检查原图与灰底QA：主体完整，真实RGBA，入口左下、左上光、右下接触影，无文字／人物／现代物。西域通用地域语汇的原创扩展；非具名古迹复原，不证明各年代细部皆相同（待考）。占地按同功能骨架；仅等比缩放，剩余投影／比例误差见geometry_qa，不能视为严密拼接准出。
+building:
+  type: bld_kit_xiyu_stable
+  footprint: &id001 [9, 7]
+  anchor: [310.0638, 249.3223]
+  era: xiyu
+footprint_m: *id001
+footprint_basis: design/22 §3.3 stable 9×7
+entrance: {edge: S, offset_cells: 4}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available: [0]
+allowRotation: false
+metadata: meta/bld_kit_xiyu_stable.yaml
+candidate_count: 1
+processing:
+  source_archive: sources/bld_kit_xiyu_stable.png
+  source_sha256: 623dc97485979aa860167f3e9e88d89a73d1649779f667e6e468ecbb5e098855
+  source_size: [1536, 1024]
+  crop_box: [55, 8, 1536, 1024]
+  uniform_scale_requested: 0.37730287398673545
+  resized_size: [559, 383]
+  rounded_effective_scale: [0.37744767049291017, 0.37696850393700787]
+  paste_offset: [40, 32]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [92, 547]
+    front: [849, 930]
+    right: [1449, 622]
+  source_anchor_px: [770.5, 584.5]
+  source_axis_slopes: [0.5059445178335535, -0.5133333333333333]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.2857142857142858
+  source_width_depth_ratio: 1.2616666666666667
+  ratio_relative_error: 0.018703703703703778
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 人工读取可见底面角点，约±4px；后角遮挡，非3D实测
+  footprint_is_logical: true
+  release_note: 原始角点目测误差约±4px；严格2:1与实际长宽比未同时通过者仅候选使用。
+pixel_qa:
+  mode: RGBA
+  size: [640, 448]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 183009
+  alpha_partial_pixels: 102914
+  alpha_near_opaque_pixels: 95934
+  alpha_nonzero_bbox: [51, 32, 599, 405]
+  transparent_margins_px: [51, 32, 41, 43]
+  border_alpha_max: 0
+source_record: sources/bld_kit_xiyu_stable.json
+selected_candidate: 1
+selection_note: 首候选双轴及占地比例通过建议公差，未追加第二候选。
+visual_qa: {checked_with: view_image original plus neutral-gray composite, qa_only_composite: meta/stable-qa.jpg, no_pixel_repainting: true}
+style_review_references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_biaoju.png, sha256: 928e60e61ff9c0d14f9691b22486b599f181e3b4f52b86182f9b0be3daa76161, role: 已view_image阅图的写实材质／细节密度参照；首候选未作图像输入}

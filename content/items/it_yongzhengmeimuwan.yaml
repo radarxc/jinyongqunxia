@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_yongzhengmeimuwan
+name: 雍正珐琅彩梅牡碗
+kind: collectible
+sub: porcelain
+grade: 11
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H23](#src-h23)；准入：仅连城、鸳鸯、书剑、飞狐、雪山；雍正器旧藏，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yongzhengmeimuwan
+text:
+  desc: 外观：白釉浅碗，珐琅彩梅枝与牡丹。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=4; provenance=history。
+  lore: 雍正珐琅彩梅花牡丹纹碗有明确馆藏断代，适合清中期旧藏馈赠。宜赠瓷器藏家，宫廷器流出须有授权剧情；取得为（原创扩展），默认乾隆书界可候选，鹿鼎阶段禁止。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 84

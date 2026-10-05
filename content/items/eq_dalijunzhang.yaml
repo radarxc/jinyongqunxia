@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_dalijunzhang
+name: 大理军杖
+kind: weapon
+sub: staff
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·大理；仅天龙大理节点原生可得 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/dalijunzhang
+text:
+  desc: 外观：深红木长杖约一百七十厘米，银色素面圆首与尾鐏、藤条握段。
+  lore: 大理军伍节点所制长杖，以深红硬木配素银圆首和尾鐏，双手换握时藤条可防滑。用法重压、拦、点，适合城门值守；花叶铜箍、器名、配发制度与全部流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags:
+    - long
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 56
+      qiAffinity: 100

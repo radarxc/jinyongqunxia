@@ -1,0 +1,12 @@
+# type=fist；现行 schema v1 未列 fist，暂以 palm 兼容身体发劲类；不是把拳解释为掌。需上游扩展枚举后迁移。
+# 实测（原创扩展）：拳面视觉中心取扫描列x=1050（中心x=1050.5），alpha>=128连续y=464..736；宽=736−464+1=273，截面中心y=(464+737)/2=600.5。
+kind: EmitterPlate
+version: 1
+file: source_fist.png
+size_px: [1254, 1254]
+color_space: srgb
+alpha_mode: straight
+category: palm
+emit_point_px: [1050.5, 600.5]
+direction: [1, 0]
+emission_width_px: 273

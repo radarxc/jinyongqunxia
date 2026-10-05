@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: it_tianxiangyulu
+name: 天香玉露羹
+kind: food
+sub: food
+grade: 10
+stack: 9
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2800
+  - op: meal
+    params:
+      value: bf_huichun,bf_huinei:3battle
+assets:
+  icon: item/tianxiangyulu
+text:
+  desc: 外观：羊脂玉碗盛半透明淡金羹，莲子与花瓣可辨。 待运行时投影：uniqueBatch=true。
+  lore: 以莲子、花露和清甜珍材慢煨成淡金清羹，只供固定雅宴。须温饮并避浓酒杂味；传说倦伤者饮后经络渐舒，此疗效属本作设定。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healInner: 6
+      stamina: 28

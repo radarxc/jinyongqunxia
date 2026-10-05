@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_dandao
+name: 单刀
+kind: weapon
+sub: blade
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/dandao
+text:
+  desc: 外观：宋元朴素窄背微弧刀，木柄麻缠。 待运行时投影：mainK=1.05。
+  lore: 这是江湖行脚最常见的窄背单刀，微弧刃便于近身劈砍，麻缠木柄在雨天也不易脱手。镖局趟子手与乡勇多取其易学耐用，具体流传为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 45
+      qiAffinity: 100

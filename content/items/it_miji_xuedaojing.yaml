@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_xuedaojing
+name: 血刀经原本
+kind: manual
+sub: original
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《连城诀》·逐页图谱所载血刀门内功外功总诀
+price: auto
+flags: []
+assets:
+  icon: item/miji_xuedaojing
+text:
+  desc: 外观：清代暗红布面线装册，黑麻线。
+  lore: 《连城诀》中的血刀经逐页图谱载有内外功总诀。读者须按页次合练吐纳与刀路，抽掉任一部分都难成体系；暗红布面与题签属 （原创扩展装帧），门外人所得往往只是零散招图。
+extension:
+  type: manual
+  value:
+    skill: sk_xuedaojing
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xuedaojing
+      readBre: 55
+      maxLayer: 10
+      cultivation: 3500

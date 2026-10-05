@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_yingzhaoshou
+name: 鹰爪手抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_yingzhaoshou
+text:
+  desc: 外观：元代深蓝包背小册，黑麻护脊。
+  lore: 天鹰教擒拿手法被转录成掌中小册，招图、载体与羽纹均属 （原创扩展）。研读须从扣腕、封肘和步位逐层练习，不能拿同伴关节硬试；抄本只到八层，仍需教中师授纠偏。
+extension:
+  type: manual
+  value:
+    skill: sk_yingzhaoshou
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yingzhaoshou
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

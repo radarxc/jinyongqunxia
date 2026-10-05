@@ -1,0 +1,15 @@
+{
+  "id": "bld_kit_qing_north_market_stall",
+  "subject": "市场棚",
+  "footprint": [
+    3,
+    2
+  ],
+  "prompt": "Use case: historical-scene. Generate ONE isolated Qing northern Chinese architectural game sprite on TRUE RGBA transparent background. Realistic matte grey-brick, grey-tile, aged dark wood with fine detail and restrained natural colors. One small northern market stall, four plain weathered timber posts, slightly sagging unbleached linen canopy, simple wooden table and shallow baskets with grains and vegetables, thin earth rectangle only; no tiled building, no signage. Footprint3m east-west by2m north-south. CORRECT CAMERA is orthographic 2:1 dimetric. BOTH ground axes have identical absolute slope one vertical pixel per TWO horizontal pixels. The visible front/SOUTH edge runs from left corner diagonally DOWN RIGHT with slope EXACT +0.5. The visible right/EAST edge runs from front corner UP RIGHT with slope EXACT -0.5. No perspective. Width:depth is 3:2. South facade faces lower left. Do NOT make the right side steeper or longer than specified. Whole thin base rectangular parallelogram has all front,left,right vertices clear. Topmost roof below top margin. No text or signboards, people, background, thick pedestal, scenery, floor, sky, halo, glow, watermark. Light upper left and tiny contact shadow lower-right. Generous transparent padding. Match realistic sober historical game sprites, not cartoon or toy.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-81811afc-afb7-47d2-8030-aaf0fd43bc46.png",
+  "references": [],
+  "created": "2026-09-30T21:26:26.732Z",
+  "candidate_count": 2,
+  "review": "2候选选2；面向及宽深关系改善，逐张view_image，仍记录轴率残差。",
+  "selected_candidate": 2
+}

@@ -1,0 +1,93 @@
+id: bld_kit_xiyu_courtyard
+file: bld_kit_xiyu_courtyard.png
+category: building-map
+style: default
+subject: 西域喀什/和田/叶尔羌 土墙葡萄架内庭院落（原创扩展）；具体年代细部（待考）
+prompt: 'Use case: sketch-to-render. This input is an exact orthographic production geometry blockout, NOT a mood image. Materialize it as a realistic hand-crafted ancient southern Xinjiang
+  oasis-town map sprite. Preserve the input camera, framing, every major outer boundary and especially the three lowest footprint corners PIXEL EXACTLY. Do NOT rotate, re-project, tilt,
+  enlarge, narrow, or reposition the blockout. Its ground axes are exactly +0.5 and -0.5 slopes, yaw45 elevation30, required for grid assembly. Add fine weathered ochre adobe, local
+  pale stone foundation, honest timber grain and carved wood screens. Restrained highly detailed realistic historic strategy-game art; no plastic/toy look. Upper-left light, tiny lower-right
+  contact shadow. Keep real transparent RGBA outside silhouette. No text, numbers, guide marks, border, watermark, people, animals, modern objects, landscape, or thick floating display
+  slab. Ground is a flat thin contact surface. All new detail stays WITHIN the guide silhouette. Footprint front-to-side lengths exactly 10:8. Preserve this low wall enclosed court and
+  single rear flat-roof house. Add wooden south gate precisely in existing gap, latticed rear-room doors, small timber grape pergola entirely inside court, tiny jars, low parapets. Keep
+  court mainly empty. Lowest vertices left(208,580), front(830,891), right(1328,642).'
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: sources/round2/courtyard_guide.png, sha256: b618e291448a620957af7f6e11f2dd851533b5a7590585aa8ad19bf2efced487, role: '本轮精确2:1实心灰盒，唯一相机与布局参考'}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:00:17.042195+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-1f8f-70e0-a288-c172cd21b383/exec-61304907-440d-4f02-ad91-be52e87fe436.png
+size: 768x544
+sha256: 41db9ce63708340bc957ce3f9e233ec4c08ed3d6b7f5aa4dd208b7e8d1f752d7
+status: candidate
+notes: 合入前审核第1轮返修：精确10×8实心灰盒重出；原图与灰底alpha合成经view_image复查。首候选三底角及独立长直段OLS均进既有公差；第二候选为背景清理尝试，合成后确认首张背景本已透明，保留首张。仅裁切、等比缩放及透明扩边；地域内庭母题不变，非具名古迹复原。
+building:
+  type: bld_kit_xiyu_courtyard
+  footprint: [10, 8]
+  anchor: [395.1334, 310.7872]
+  era: xiyu
+footprint_m: [10, 8]
+footprint_basis: design/22 §3.3 courtyard10×8同功能映射
+entrance:
+  edge: S
+  offset_cells: 4
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 576
+  - 288
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available:
+- 0
+allowRotation: false
+metadata: meta/bld_kit_xiyu_courtyard.yaml
+candidate_count: 2
+selected_candidate: 1
+generation_round: 合入前审核第1轮返修
+processing:
+  source_archive: sources/round2/courtyard_candidate1.png
+  source_sha256: dd37a74e671b4babeebc6ee31acef98cc30a581c31e356a2016077df00a9fd60
+  source_size: [1536, 1024]
+  crop_box: [0, 9, 1514, 1024]
+  uniform_scale_requested: 0.4546172059984215
+  resized_size: [688, 461]
+  rounded_effective_scale: [0.45442536327608984, 0.4541871921182266]
+  paste_offset: [40, 41]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [148, 576]
+    front: [831, 930]
+    right: [1415, 630]
+  source_anchor_px: [781.5, 603.0]
+  source_axis_slopes: [0.5183016105417276, -0.5136986301369864]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.25
+  source_width_depth_ratio: 1.1695205479452055
+  ratio_relative_error: 0.06438356164383552
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 人工读取可见底面角点，约±4px；后角遮挡，非3D实测
+  source_axis_ols_slopes: [0.508406255, -0.516850218]
+  source_axis_ols_x_intervals:
+  - [200, 740]
+  - [920, 1330]
+  corner_basis: 可见外包络；局部退台不改变逻辑占地；OLS独立拟合长直底边
+pixel_qa:
+  mode: RGBA
+  size: [768, 544]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 277571
+  alpha_partial_pixels: 139402
+  alpha_near_opaque_pixels: 131835
+  alpha_nonzero_bbox: [102, 53, 710, 479]
+  transparent_margins_px: [102, 53, 58, 65]
+  border_alpha_max: 0
+source_record: sources/round2/courtyard_record.json

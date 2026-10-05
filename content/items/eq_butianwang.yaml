@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_butianwang
+name: 补天网
+kind: weapon
+sub: exotic
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/butianwang
+text:
+  desc: 外观：深褐麻绳网折叠平铺，展开尺度约两米见方。 待运行时投影：exoticKind=misc。
+  lore: 猎户把反复补结的麻绳网改成江湖捕缚器，缘边铅坠帮助网面展开，可罩住肢体或缠住兵刃。用后须逐结检查，遇火与利刃尤其脆弱；名称、来历和战斗用法均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 25
+      qiAffinity: 100

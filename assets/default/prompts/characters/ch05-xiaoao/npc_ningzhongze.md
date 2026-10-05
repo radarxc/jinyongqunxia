@@ -19,6 +19,12 @@ realism_revision: user_identity_pose_20261001
 
 # 宁中则 · 人物写实修正
 
+## AR-82 当前定稿要求
+
+只将上身温灰紫上衣的布料主色改为素青色（柔和青蓝）；衣形、衣缘、褶皱、腰带、下裙、剑、双手、头脸与发髻保持原样。对应健在华山行剑基础阶段的青衫，不声称全书从不换衣。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
 ## 人物与阶段
 
 - subject_id：npc_ningzhongze
@@ -74,3 +80,8 @@ FINAL CHECK: one 宁中则 with distinct TEXT-DEFINED ORIGINAL FACE; MATURE MOTH
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_ningzhongze__ch05_prime_huashan_base.prepared.json`。
+
+## 原著依据
+
+- 《笑傲江湖》九《邀客》：“一身青衫化成了一片青影”（https://xuges.com/WUXIA/jinyong/xajh/066.htm）
+- AR-82 返修约束：只将上身温灰紫上衣的布料主色改为素青色（柔和青蓝）；衣形、衣缘、褶皱、腰带、下裙、剑、双手、头脸与发髻保持原样。对应健在华山行剑基础阶段的青衫，不声称全书从不换衣。

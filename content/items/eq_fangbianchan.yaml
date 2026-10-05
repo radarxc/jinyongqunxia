@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_fangbianchan
+name: 方便铲
+kind: weapon
+sub: exotic
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 佛门行脚器意象；兵器定型年代 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/fangbianchan
+text:
+  desc: 外观：一端新月铲刃、一端环形月牙刃，深木杆约一百八十厘米。 待运行时投影：exoticKind=misc。
+  lore: 取佛门行脚器意象设计的双端长铲，一端推掘，一端以月牙刃拦拿，转身运使须给两端留足空间。此兵器形制的定型年代仍 （待考：核传统器械资料）；尺寸、装具和流传为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 55
+      qiAffinity: 100

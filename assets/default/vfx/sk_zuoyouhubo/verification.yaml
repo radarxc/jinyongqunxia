@@ -1,0 +1,21 @@
+review_date: '2026-10-03'
+source_images_reviewed: 3
+three_background_contact_sheets_reviewed: 9
+peak_images_reviewed: 2
+browser_verified: false
+source_frames:
+- {set: family, frame: 0, anchor: [128, 246], visible_margin_px: 62, source_border_min_rgb: 253, source_border_below_key_ratio: 0.0}
+- {set: family, frame: 1, anchor: [128, 241], visible_margin_px: 62, source_border_min_rgb: 253, source_border_below_key_ratio: 0.0}
+- {set: family, frame: 2, anchor: [128, 241], visible_margin_px: 62, source_border_min_rgb: 253, source_border_below_key_ratio: 0.0}
+- {set: family, frame: 3, anchor: [128, 244], visible_margin_px: 63, source_border_min_rgb: 253, source_border_below_key_ratio: 0.0}
+- {set: mv_zuoyouhubo_fenxin, frame: 0, anchor: [112, 241], visible_margin_px: 33, source_border_min_rgb: 253, source_border_below_key_ratio: 0.0}
+- {set: mv_zuoyouhubo_fenxin, frame: 1, anchor: [112, 239], visible_margin_px: 34, source_border_min_rgb: 253, source_border_below_key_ratio: 0.0}
+- {set: mv_zuoyouhubo_fenxin, frame: 2, anchor: [112, 239], visible_margin_px: 31, source_border_min_rgb: 246, source_border_below_key_ratio: 3.85485197368421e-05}
+- {set: mv_zuoyouhubo_fenxin, frame: 3, anchor: [112, 247], visible_margin_px: 36, source_border_min_rgb: 253, source_border_below_key_ratio: 0.0}
+- {set: mv_zuoyouhubo_quanli, frame: 0, anchor: [112, 233], visible_margin_px: 33, source_border_min_rgb: 253, source_border_below_key_ratio: 0.0}
+- {set: mv_zuoyouhubo_quanli, frame: 1, anchor: [112, 234], visible_margin_px: 30, source_border_min_rgb: 217, source_border_below_key_ratio: 0.00046258223684210524}
+- {set: mv_zuoyouhubo_quanli, frame: 2, anchor: [112, 235], visible_margin_px: 15, source_border_min_rgb: 66, source_border_below_key_ratio: 0.005987870065789474}
+- {set: mv_zuoyouhubo_quanli, frame: 3, anchor: [112, 234], visible_margin_px: 26, source_border_min_rgb: 210, source_border_below_key_ratio: 0.00021844161184210526}
+compositions:
+- {move: mv_zuoyouhubo_fenxin, visible_bounds_px: [371.95, 228.65, 1025.855072463768, 758.3000000000001], safe_margin_px: 228.65, blank_fraction_lower_bound: 0.7798024357920108, html_bytes: 1525177, texture_scale: 1.0}
+- {move: mv_zuoyouhubo_quanli, visible_bounds_px: [371.95, 228.65, 1096.0000000000002, 758.3000000000001], safe_margin_px: 228.65, blank_fraction_lower_bound: 0.7561816644668579, html_bytes: 1725061, texture_scale: 1.0}

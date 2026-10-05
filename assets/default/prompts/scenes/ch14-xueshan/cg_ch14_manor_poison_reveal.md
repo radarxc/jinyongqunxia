@@ -1,0 +1,74 @@
+---
+asset_id: cg_ch14_manor_poison_reveal
+name: 雪庄辨伪
+book: ch14_xueshan
+characters:
+- npc_miaoruolan
+- npc_pingasi
+- npc_baoshu
+reference_upload:
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_base.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch14/por_npc_baoshu__ch14_elder_base.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+output: assets/default/scene/ch14/cg_ch14_manor_poison_reveal.png
+manifest: assets/default/scene/ch14/manifest.yaml
+size: 1536x1024
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
+references:
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_base.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch14/por_npc_miaoruolan__ch14_youth_scene_manor_stop_fight.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch14/por_npc_baoshu__ch14_elder_base.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  use: 项目画风基线
+generation_job: cg_ch14_manor_poison_reveal.retry3.r1
+generation_attempts: 1
+title_text: 雪庄辨伪
+title_method: generated
+identity_revision: 使用本轮新复合base及对应新阶段立绘
+title_verified: 逐字放大核验：雪 / 庄 / 辨 / 伪；原生正确
+---
+
+## Gemini 提示词
+
+```text
+【AR-82 当前原著约束，覆盖后文冲突旧描述】只将画面右边宝树手下的黑铁念珠小环改为数十颗约48颗小黑铁珠的长串，珠子明显缩小，长串从原握珠位置垂出两三道自然弧，黑黝黝铁质。握珠手位置不动。宝树衣物、脸、双手原皮肤与手指保持；苗若兰、苗人凤、桌子烛火、其余背景、题字雪庄辨伪及印全部逐像素不变。
+【AR-82 原文摘句】《雪山飞狐》第十章：“数十颗铁珠忽然上下左右，分打胡苗二人的要害”
+
+生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+第1张参考：苗若兰本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+第2张参考：苗若兰·山庄止争阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+第3张参考：宝树本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+【场面】雪夜山庄木厅，成年苗若兰淡绿皮袄鹅黄裙侧坐凝神，独臂平阿四穿粗布旧衣立堂前讲述，宝树僧衣在对面紧绷；一只旧布包在桌边作旧案象征。炉火将熄、窗外雪影，全景压抑而清晰；苗用新阶段，宝树可现有S图，平阿四ch14为A只能文字。不要现代法庭或证物陈列台。平阿四苍老，仅缺右臂，右空袖折掖腰带，左手完整；宝树剃光僧头，灰赭厚僧袍暗褐袈裟。
+【剧情边界】第5–7回口述旧案与揭露宝树身份；站位、布包和灯火为原创扩展构图，口述准确顺序待考。story/14第182–193行；https://zh.wikipedia.org/wiki/雪山飞狐 目标三联/广州修订版逐字校勘仍待考。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「雪」「庄」「辨」「伪」，合成「雪庄辨伪」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+```
+
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。
+
+
+## 原著依据
+
+- AR-82 同步依据：《雪山飞狐》第十章：“数十颗铁珠忽然上下左右，分打胡苗二人的要害”；执行：只将画面右边宝树手下的黑铁念珠小环改为数十颗约48颗小黑铁珠的长串，珠子明显缩小，长串从原握珠位置垂出两三道自然弧，黑黝黝铁质。握珠手位置不动。宝树衣物、脸、双手原皮肤与手指保持；苗若兰、苗人凤、桌子烛火、其余背景、题字雪庄辨伪及印全部逐像素不变。
+
+
+## AR-82 当前返修约束
+
+只将画面右边宝树手下的黑铁念珠小环改为数十颗约48颗小黑铁珠的长串，珠子明显缩小，长串从原握珠位置垂出两三道自然弧，黑黝黝铁质。握珠手位置不动。宝树衣物、脸、双手原皮肤与手指保持；苗若兰、苗人凤、桌子烛火、其余背景、题字雪庄辨伪及印全部逐像素不变。
+
+以本节及原著依据为当前要求，历史提示词与本节冲突时按本节执行；保留作者选定脸、原画质感与对应剧情阶段。

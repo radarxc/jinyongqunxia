@@ -1,0 +1,107 @@
+{
+  "id": "bld_kit_song_southern_manor",
+  "type": "bld_kit_song_southern_manor",
+  "w": 16,
+  "h": 13,
+  "subject": "山庄 / 大院",
+  "prompt": "Use case: precise-object-edit. Material and object replacement only, ABSOLUTELY KEEP EXACT reference contour, composition and isometric camera. Preserve all four ground corners, all wall-base lines, roof lines, and gate location. Turn this compound into a Southern Song domestic wealthy manor: remove cargo cart, cargo boxes, crates and bags; make courtyard warm stone paths with one leafy broadleaf tree in middle and a few bamboo clumps by the rear; rear and side structures become residential rooms with timber lattices. Do not add new wings, do not widen/deepen/rotate existing compound. All massing and the entire rectangular base must remain identical to reference. Same natural muted grey clay tile, weathered brown wood, cream plaster and stone. Upper-left light, short down-right shadow. The correct reference ground axes have slopes+.5/- .5, preserve them. Footprint16x13 logical cells, existing shape is already within tolerance so don't change shape. Output true RGBA transparent background with10% margin and full eaves. No text, numbers, symbols, watermark, people, modern items, fancy imperial roof decorations. Same physical shape, solely furnishings/landscaping/use change.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.png",
+      "role": "本轮未获审批候选，投影/材质参考",
+      "sha256": "921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-1c8e60a8-68aa-445b-98c0-b84470a8f77e.png",
+  "source_sha256": "ada2ec5d2bcc838fddc6edaf2b043bb310bf4c23de24ce4398012f767daf2ac0",
+  "created": "2026-09-30T10:51:22.671435+00:00",
+  "visual_review": "第2次运行返修：内置image_gen真实重出主体；逐张view_image及64×32占地叠图，宽深关系和两轴目视协调，左上光、暖灰瓦木石、宋意象，无文字人物现代物；无裁切。严格几何数值见geometry_qa；不将轻微告警当成已通过。",
+  "candidate_count": 4,
+  "ground_edges_source_px": [
+    [
+      [
+        41,
+        524
+      ],
+      [
+        849,
+        921
+      ]
+    ],
+    [
+      [
+        849,
+        921
+      ],
+      [
+        1490,
+        590
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      41,
+      524
+    ],
+    "front": [
+      849,
+      921
+    ],
+    "right": [
+      1490,
+      590
+    ]
+  },
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-581b11cf-29fd-43b6-a91f-8cc6980f5b86.png",
+      "source_sha256": "e3100e2335cb69a1ed3057984f55dd76b0904cc5059fd905c1af42e8f853df3b",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_pre_review2.png",
+      "selection": "rejected_review1",
+      "reason": "合入审核判退：可见底面比例或双轴方向不合登记占地。",
+      "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 16 x 13 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 16 units, up-right edge 13 units, horizontal ratio 1.2308. Subject: One prosperous Southern Song Jiangnan scholar-gentry manor compound, dignified cream-plaster walls and dark timber halls with simple grey-tile roofs, a generous central court, main hall at back and side corridors, one small planted ornamental tree inside, southwest-facing gateway; restrained refined architecture, no forbidden palace decoration.",
+      "references": []
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-42c714ff-9283-439b-b501-518ef404ba24.png",
+      "source_sha256": "3a96dba1d38330566274984f034f25e919a43636b110037af661fe961e6fec3e",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_review2_try1.png",
+      "prompt": "Use case: historical-scene. ONE realistic Southern Song Lin'an wealthy country manor sprite built ON the exact rectangle shown by reference image. Reference is geometric underlay only; retain exact corner directions, proportions and positions.1536x1024 canvas: LEFT(150,540), FRONT(822,876), RIGHT(1368,603), BACK(696,267). Exact orthographic2:1 isometric, ground LEFT-FRONT16 units and FRONT-RIGHT13 units, horizontal ratio672/546=1.23077, BOTH edge slopes exactly+.5 and-.5. All parallel walls and roofs follow those same axes. Wealthy yet restrained low timber main hall at rear, low side wing, offwhite plaster courtyard walls, grey handmade tile, natural stone paths and a planted tree in open inner court, front gate centered on LEFT-FRONT wall. Modest Song roof details, weathered realistic materials, muted grey warm brown cream and leafy green. Upper-left sunlight, small down-right contact shadow. Clear continuous thin flat ground contour along the two front edges, no big stair extension at gateway, no thick pedestal. No visible guide lines or guide text, remove white backdrop to genuine transparent alpha. Full eaves complete inside image and reserve transparent margin. No people, no text/watermark/signboards, no modern objects, no fantasy/Ming/Qing ornament. Preserve template shape precisely.",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_manor_guide.png",
+          "role": "geometry guide：自制占地轮廓QA图，非生成资产",
+          "sha256": "93c9c681bbeb77b0074d3f4358a9ce648ae628e38d6ed9ebb04e5eb90453abd0"
+        }
+      ],
+      "reason": "右轴偏浅约-.42，门位错到右侧，未选。",
+      "selection": "rejected_review2"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-b9113f93-a7ae-469d-9c2a-53e68c038e65.png",
+      "source_sha256": "3eea96e5a45d9452a1d2670b68328a04ff4dc69c4c8bbe08034e3bc11a752ad9",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_review2_try2.png",
+      "prompt": "Use case: precise-object-edit. Use the provided successful isometric escort compound as the geometric and material basis; convert it into a Southern Song wealthy manor. PRESERVE the reference ground contour and camera projection exactly: same left, front, right footprint corner coordinates and both wall base edge slopes. Do not turn the compound. Remove ALL cart, crates, cargo. Replace earth yard with restrained stone paths and courtyard planting with one broadleaf tree and bamboo near side wall. Wooden rear hall and side wing become domestic residential architecture, warm grey tiles and cream plaster, weathered brown wood. Keep gate on the front-facing screen lower-left facade at the SAME location as reference. Exact 2:1 orthographic projection and upper-left light unchanged; ground footprint ratio16/13=1.23077, close to reference14/11=1.2727 so only very slightly shorten the lower-left wall if necessary. True transparent alpha background, complete eaves and 10% clear margins, no text or people or modern objects or watermark. Preserve both visible bottom wall edges parallel to +/-0.5 slopes; do not make rightward edge shallower.",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.png",
+          "role": "本轮未获审批候选，投影/材质参考",
+          "sha256": "921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca"
+        }
+      ],
+      "reason": "右轴偏陡约-.57，未选。",
+      "selection": "rejected_review2"
+    }
+  ],
+  "review2_overlay": "review2/bld_kit_song_southern_manor_overlay.png"
+}

@@ -9,69 +9,119 @@ tier: S
 output: assets/default/character/female/ch12/por_npc_liyuanzhi__ch12_youth_disguised_base.png
 manifest: assets/default/character/female/ch12/manifest.yaml
 references:
-- path: .agents/coord/imagegen-reference/user_wangyuyan_background_only_20261002.png
-  use: 唯一图片输入，已实际view_image：root由用户原背景派生的不含人物纯背景，仅取暖浅灰纸底、极淡远山与宽阔留白。没有面孔、人体、衣服或道具可供身份借用；人物颜色、柔和光线、年龄和具体骨相全部依本稿文字。派生内部参考不是用户原图、不是approved；背景水墨不得侵入写实人物或器物。
-status: ready
-realism_revision: user_identity_pose_20261001
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: approved，当前工作副本 manifest 已批准；仅拟参考纸底、光线、笔触与设色，不沿用面容、体型、服饰或道具
+status: new
+redo_reason: "书剑重要女角尚无立绘；补出女扮男装的俊俏小公子，原设计「保守年轻外观」改为明确成年。"
+reference_upload:
+- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+codex_prompt_rev: 2026-10-02
 ---
 
-# 李沅芷 · 人物写实修正
+<!-- full-coverage-import:current-policy:v1 -->
+> 本稿按用户“全部男女角色先出齐”的授权导入，仅为待生成的基础提示词，不表示图片完成或审批。
+> 当前生产以[人物写实、背景水墨](../../../../../.agents/coord/portrait-generation/REALISTIC-CHARACTERS-20261001.md)与[宽松自查及项目基线授权](../../../../../.agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md)为准；优先于下文旧纸底、精确占高和 approved 参考门槛。身份、年龄、伤残侧别及阶段器物仍须核对；保留参考与输出实际 candidate 状态，不自动批准。
+> 正文暂保留原稿供考据。实际生成前必须重新读取最新 INDEX、人物稿和上述规范，由 prepare 重写完整实际提示词，并实际查看、按顺序传入本机绝对路径参考；不能直接提交下文含旧规范的提示词。保存真实 PNG、核验 manifest 后才更新本行完成标记。
+<!-- /full-coverage-import:current-policy:v1 -->
 
-## 人物与阶段
 
-- subject_id：npc_liyuanzhi
-- book：ch12_shujian
-- gender：female
-- age_variant：youth
+# 李沅芷 · 《书剑恩仇录》（ch12）
 
-## 本轮人物写实规范
+## Gemini 提示词
 
-首次独立原创面貌：李沅芷；青年女性youth，确岁未核，采取保守年轻外观与轻捷身形；不强调成人曲线，不成人化或性感化。 正面端正、头颈竖直、双眼水平；人物完整写实，背景极淡水墨。先1张独立candidate，原始PNG native 2:3；均candidate待用户审核。唯一图片输入为无人纯背景；人物本人由具体原创文字脸锚建立，不借其他人物palette。
+> 2026-10-02 Codex 人物线 2 号（AR-31）：在审核组稿上补一行「经典形象」（借鉴公认经典造型的发式、装束、配色、标志道具与气质，只写文字，不写演员名、不上传剧照），并补去 AI 化要求。本轮出图用下面第一个代码块；审核组原稿保留在其后的「审核组原稿」小节作历史。
 
-人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+```text
+生成一张 2:3 竖幅全身人物立绘。
+人物：李沅芷，金庸《书剑恩仇录》中武当派陆菲青的女弟子、提督之女，机灵古怪，此时女扮男装游历西北。
+经典形象：要一眼认出是女扮男装的李沅芷——黑缎瓜皮帽、淡青长袍、腰佩玉佩与长剑，翩翩小公子模样，细看眉眼俏丽灵动、分明是美丽的女子。
+年龄与体态：约二十岁的成年女子，身材轻捷苗条，约七头身，成年女性比例。
+脸与五官：女子扮成的俊俏小公子：瓜子脸但下颌有骨感；眉毛故意描得略粗略平，仍看得出秀气；一双明亮灵动的眼睛，眼角微挑，带一点狡黠和嗔意；鼻子小巧挺直；嘴唇饱满；皮肤白皙细腻，耳垂上留着一个细小的耳洞痕迹；没有喉结，没有胡须。异样的英俊风流，风姿翩翩。
+发式：长发全部盘起藏进一顶黑缎小帽（瓜皮帽）里，帽后垂下一条整齐的辫子；前额没有剃。
+服饰：淡青色窄袖长袍，素白里领，交领右衽（穿着者左襟压右襟），窄腰带上挂一块小玉佩，深色裤，黑布靴；官宦人家公子的讲究打扮。
+兵器与道具：左腰佩一柄普通中式长剑，完全入鞘，剑鞘精致；腰侧挂一个小小的针囊。
+姿态与神情：一手轻搭剑柄，一手背在身后，故作老成地站着，神情俏皮。
+画风：写实手绘古风人物插画，画风与上传的画风基线图一致：精细写实的数字手绘插画，笔触细腻柔和、边缘干净；不是油画，没有厚涂笔触和画布纹理；不是照片，不是三维渲染，不是动漫或游戏 CG。人物要像真实存在的人：皮肤看得见毛孔、细纹、晒痕和轻微色斑，五官与脸型有自然的左右不对称，不磨皮；衣料看得出织物的经纬、自然的褶皱和穿用后的轻微旧化，但衣服完整，没有破洞碎布。整体低饱和、沉稳的设色；柔和自然的漫射光从左上方照来，不用舞台光和强轮廓光。
+背景：暖浅灰色纸底，远处只有极淡的水墨远山和薄雾，大面积留白；人物轮廓清楚、与背景明显分开（便于后期抠图），墨色不压到人物身上，脚下只有很淡的接触阴影。
+构图：2:3 竖幅，单人全身，自然站姿，平视镜头，头部端正不歪；从头顶到鞋底完整入画，四周留出余白；双手完整，兵器和道具的两端都在画面内。
+不要：任何文字、字母、签名、印章、水印、边框；第二个人物、活的动物、分格、多视角、头像特写；幼态、童颜、娃娃脸、大头小身、儿童身材；网红脸、锥子脸、大眼滤镜、过度对称、塑料皮肤、蜡像感、过度精修、偶像化打光；任何真实演员或明星的长相；现代服饰和物品；日式服饰、日本刀；汉服交领左衽、整幅画面左右镜像；多余或缺失的手指、手与器物粘连；发光特效、血迹；浓妆、性感化或暴露的衣着；男性化的粗犷脸、喉结、胡须；女装裙钗；童颜。
+质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+【画风基线】上传的参考图里，最后一张是本项目的立绘画风基线（只上传了一张时就是它）：只参考它的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；不要照搬基线图里那个人的长相、年龄、发型、服饰和姿势。
+```
 
-本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_liyuanzhi__ch12_youth_disguised_base/prompt-e4b8f39781fd28faa20abb9499196d3d0067a732ce9ad2de15287346d00e456a.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+### 审核组原稿（AR-30，2026-10-02，留作历史）
+
+> 2026-10-02 重要人物重审（C 组，判定：补出）：本轮出图只用下面这一段，不上传参考图。下文旧稿（人物要点 / 提示词 / 排除项 / 质检要点）只作历史与考据保留，不再用于出图。
+
+```text
+生成一张 2:3 竖幅全身人物立绘。
+人物：李沅芷，金庸《书剑恩仇录》中武当派陆菲青的女弟子、提督之女，机灵古怪，此时女扮男装游历西北。
+年龄与体态：约二十岁的成年女子，身材轻捷苗条，约七头身，成年女性比例。
+脸与五官：女子扮成的俊俏小公子：瓜子脸但下颌有骨感；眉毛故意描得略粗略平，仍看得出秀气；一双明亮灵动的眼睛，眼角微挑，带一点狡黠和嗔意；鼻子小巧挺直；嘴唇饱满；皮肤白皙细腻，耳垂上留着一个细小的耳洞痕迹；没有喉结，没有胡须。异样的英俊风流，风姿翩翩。
+发式：长发全部盘起藏进一顶黑缎小帽（瓜皮帽）里，帽后垂下一条整齐的辫子；前额没有剃。
+服饰：淡青色窄袖长袍，素白里领，交领右衽（穿着者左襟压右襟），窄腰带上挂一块小玉佩，深色裤，黑布靴；官宦人家公子的讲究打扮。
+兵器与道具：左腰佩一柄普通中式长剑，完全入鞘，剑鞘精致；腰侧挂一个小小的针囊。
+姿态与神情：一手轻搭剑柄，一手背在身后，故作老成地站着，神情俏皮。
+画风：写实手绘古风人物插画，画风与上传的画风基线图一致：精细写实的数字手绘插画，笔触细腻柔和、边缘干净；不是油画，没有厚涂笔触和画布纹理；不是照片，不是三维渲染，不是动漫或游戏 CG。人物要像真实存在的人：皮肤看得见毛孔、细纹、晒痕和轻微色斑，五官与脸型有自然的左右不对称，不磨皮；衣料看得出织物的经纬、自然的褶皱和穿用后的轻微旧化，但衣服完整，没有破洞碎布。整体低饱和、沉稳的设色；柔和自然的漫射光从左上方照来，不用舞台光和强轮廓光。
+背景：暖浅灰色纸底，远处只有极淡的水墨远山和薄雾，大面积留白；人物轮廓清楚、与背景明显分开（便于后期抠图），墨色不压到人物身上，脚下只有很淡的接触阴影。
+构图：2:3 竖幅，单人全身，自然站姿，平视镜头，头部端正不歪；从头顶到鞋底完整入画，四周留出余白；双手完整，兵器和道具的两端都在画面内。
+不要：任何文字、字母、签名、印章、水印、边框；第二个人物、活的动物、分格、多视角、头像特写；幼态、童颜、娃娃脸、大头小身、儿童身材；网红脸、锥子脸、大眼滤镜、过度对称、塑料皮肤、蜡像感、过度精修、偶像化打光；任何真实演员或明星的长相；现代服饰和物品；日式服饰、日本刀；汉服交领左衽、整幅画面左右镜像；多余或缺失的手指、手与器物粘连；发光特效、血迹；浓妆、性感化或暴露的衣着；男性化的粗犷脸、喉结、胡须；女装裙钗；童颜。
+【画风基线】上传的参考图里，最后一张是本项目的立绘画风基线（只上传了一张时就是它）：只参考它的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；不要照搬基线图里那个人的长相、年龄、发型、服饰和姿势。
+```
+
+**出图自查**：一眼能看出是女扮男装的成年女子；瓜皮帽 + 帽后辫子 + 淡青长袍；长剑入鞘、针囊。
+
+**依据与待考**：男装「异样的英俊风流，风姿翩翩，容颜秀雅，俊目含嗔」、女装「肌肤胜雪，星眼如波」据百科转述（待逐字核）；耳洞破绽与玉佩为原创扩展。
+
+---
+
+## 人物要点
+
+| 项 | 内容 | 依据 |
+|---|---|---|
+| 身份与阶段 | 青年女子，陆菲青弟子，取西北游历、女扮男装的小公子阶段 | 名录本人物行；story/12 §2.3；chapters/12 §8.2 |
+| 项目已登记事实 | 武当传承、柔云剑与芙蓉金针线，易装游历；性别仍为female | 名录 / 章节 / 图鉴；玩法配置不等于原著装束 |
+| 年龄与体貌 | 清秀机敏、常作少年公子打扮，使用长剑，易装不改变女性身份 | 原著概括（待考）；名录年龄须与下文边界合读 |
+| 服饰与发式 | 乾隆汉地少年公子式淡青窄袖长袍、素白里领、窄腰带、深色裤和布靴；小瓜皮帽收住本人长发，帽下可见规整后辫造型；女性易装不剃去真实前额头发，不画宋式高髻或女式大头饰 | tech/07 §2.7；经典锚点之外均（原创扩展） |
+| 兵器与标志物 | 一柄普通中式直身双刃剑完整入鞘佩于腰侧；腰旁一小针囊代表师门暗器，不露浮空金针，针法资格依原剧情，不声称此时已取得玩家奖励实物 | 名录；chapters/12 §8.2、§9.5；针囊形制（原创扩展）；具体形制美术补足（原创扩展） |
+| 气质与姿态 | 小巧瓜子脸但下颌自然圆润、灵活眉眼、略带狡黠的浅笑、轻捷身形，约6.5–7头身；精确年龄未核，不强调成人曲线；一手轻搭剑鞘、另一手虚拢在身前，重心轻偏、肩颈放松，眼神聪慧而坦然 | 具体脸型、比例、神态落实与站姿（原创扩展） |
+
+依据分层：项目事实只取上表归属文件；原著概括均保留（待考）；脸型细节、衣装选款、配色与摆姿不冒充原著明文。
+
+阶段与年龄边界：名录写青年但具体年龄未核，默认保守的年轻外观；youth_disguised只表示本次易装阶段。日后女装须保留同一面容，不从此图推断全书衣装。
+
+考据定位：《书剑恩仇录》三联/广州修订版，核对本条所选阶段的体貌、衣饰、兵器及出场先后；不据影视形象补证。
+
+补充查证线索：无新增外部材料；依据以上仓库条目，指定版本逐字核对尚未完成。
+
+参考与交付：frontmatter 列的是后续拟输入路径，本任务未调用出图；引用状态以该路径所在工作副本 manifest 的 status 为准。
+
+规格边界：纸底候选按本任务保留不透明背景；tech/07 §1.3 的正式 RGBA 母版及 §5.2 后续处理另行验收，不把提示词 ready 当成图片获批。
 
 ## 提示词
 
 ```text
-POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes lie on a HORIZONTAL line. Keep the head centered over the torso, neck aligned with the body, chin neutral, gaze directly forward and camera level. NO head tilt, NO Dutch angle, no head leaning toward a shoulder, no rolled camera and no coquettish angled face. Ignore every reference image’s head angle, side-glance and body turn. Preserve natural facial asymmetry without tilting the head.
-
-Create a refined REALISTIC hand-painted Chinese wuxia character illustration: a clear and individually designed face, believable natural age, continuous skin and anatomy, readable eyes and hands, soft connected lighting, complete opaque tailored garments, intact seams and a clean silhouette. Clothing has a few broad weight-bearing folds, fine restrained material variation and real gravity. Ink wash and paper texture belong only to the pale background, never inside the figure. This is a newly composed illustration, not a photograph, movie screenshot, 3D model or collage. Natural age lines are continuous skin anatomy, not dirt, cracks or dry-brush flecks.
-
-THIS IS THE FIRST ORIGINAL IDENTITY IMAGE FOR THIS SUBJECT. No input supplies an identity, face, person, body, costume, prop or pose. Image 1 is the ONLY input: a person-free background derived from the user background, used ONLY for pale warm paper, extremely faint distant ink-wash mountains and open space. Establish this person solely from the specific written age, facial structure, expression, body, costume and stage below. Do not invent an identity-source claim or import another person’s face. The person remains fully realistic, intact and opaque; ink wash is confined to the background.
-
-CHARACTER AND STAGE: 李沅芷 / npc_liyuanzhi, por_npc_liyuanzhi__ch12_youth_disguised_base.
-《书剑恩仇录》ch12，陆菲青弟子李沅芷，取西北游历、女扮男装的小公子阶段。主体仍为female，易装仅改变衣着发式，不变成成年男子，也不推定全书永远男装。 本项目书界主线年代为1753–1759年、清乾隆；前史人物严格以其生前回忆阶段为准，不把回忆像当作现时活体。
-
-AGE AND ORIGINAL FACE IDENTITY:
-青年女性youth，确岁未核，采取保守年轻外观与轻捷身形；不强调成人曲线，不成人化或性感化。 独立小巧而自然圆润下颌的瓜子脸，上额较开阔、面颊年轻柔软，下脸稍收但下巴不尖。细而有力的眉略带轻挑弧度，正常大小的杏眼眼尾清楚、间距自然，双眼平视明亮机敏。鼻梁短直、鼻尖小而圆，鼻翼与面宽协调；嘴较小、上唇有清楚唇弓而不过薄，下唇稍丰满，闭口浅笑略狡黠。脸上不浓妆、不胡须、不模糊性别，清秀女子以少年公子衣装易装；区别于骆冰成熟饱满的成年脸、关明梅老年骨相及王语嫣模板。神态靠目光与嘴角，头颈始终端正。
-
-CLOTHING AND HAIR:
-乾隆汉地少年公子式淡青窄袖长袍、素白里领、窄布腰带、深色长裤与平底布靴；袍襟向人物右侧严整合拢，汉式交领如可见为左襟压右襟。小瓜皮帽把本人长发收住，帽下后方有规整编辫造型，但女性本人前额头发没有真的剃去，帽沿自然收发而非画光秃剃額。无宋式高髻、女式大头饰或宫装；衣袍连续完整、宽松端庄不透明，不紧勒或显露束胸，少量宽缓重力褶。
-
-POSE, EQUIPMENT AND STRUCTURE:
-正面轻捷而稳定站立，双脚自然少量错开、肩颈放松，头颈竖直在躯干中线上、眼线水平看前方。穿着者左腰一柄普通中式直身双刃剑完整入足长朴素剑鞘，剑柄—小横剑格—鞘口—鞘尾同轴，两条短挂带接腰带；左手轻搭鞘口外侧不遮挂点。右手空着于腹前自然虚拢，腰旁另有一个闭合小针囊代表师门暗器，不撒金针、不浮空发光，不把容器当玩家已经获得奖励的证明。剑鞘、针囊、双手双靴全部入画，不添令牌文字。
-
-ORIGINAL CHARACTER COLOR AND LIGHT:
-淡青公子袍与素白里领用低饱和清浅层次，柔和左上漫射光清楚表现年轻柔软面颊、短直鼻和圆润小下巴。明亮机敏目光与克制浅笑保留，女性易装不变男子、不添加成人曲线或浓妆。
-
-COMPOSITION AND DELIVERY: one person, one view, full body from head to both shoes, both hands, entire hem and all specified prop endpoints comfortably inside the frame. Upright frontal head and body, relaxed level shoulders, believable grounded weight, neutral eye-level perspective. Vertical native 2:3 PNG, target 2048×3072, with natural margins; accept the tool’s actual native 2:3 size and record it truthfully. Preserve original PNG bytes, metadata and tool provenance; no upscaling, cropping or re-encoding to pretend compliance. Opaque warm pale-grey background with only extremely light distant ink-wash mountain/mist suggestions, generous empty space and a modest soft contact shadow. Background never erodes skin, clothes, shoes or equipment. No narrative scene, recognizable temple, building, other person or action effect. Soft upper-left diffuse light makes the face, hand joints, cloth and materials continuous and clearly readable. FAST1 production: first generate ONE candidate. Request another only for a serious identity, structural or readability failure. Every result remains candidate for user review, never automatically approved.
-
-FACT BOUNDARIES: 本图人物身份、年龄与剧情阶段沿当前本地角色稿、名录及故事事件。所选配角在当前已下载原版游戏语料中没有可靠本人头像配对，不等于断言所有版本从无头像。唯一输入为不含人物的派生纯背景参考；独立脸型五官、服色裁制与具体静态展示是原创美术，原稿待考照留，不冒称已逐字核对小说或实际观察到本人图片。项目基线原candidate/approved状态不变。
-
-完整排除项：不要 head tilt、Dutch angle、头歪向肩、头部中线偏斜、双眼高低倾斜、倾斜镜头、仰头、俯首藏眼、明显侧脸、侧身回眸、斜脸卖萌或高耸单肩。不要复制任何参考人物的脸、年龄、体型、发型、服装、姿势或身份，不要统一年轻模板脸、网红尖下巴、动漫大眼、丰唇滤镜、浓妆、塑料磨皮、摄影写真、三维模型、截图或拼贴。不要将老人和中年人年轻化，真实年龄纹理不能变成龟裂或污渍。不要人物本体碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、断裂衣摆、破洞、毛边、碎布条、无依据尘污和过密细碎褶；不要用雾或墨迹藏住人体轮廓。不要现代服饰、拉链、腕表、运动鞋、数码物件、塑料饰品、高跟鞋、时代族群混搭、晚清大拉翅、唐式齐胸裙、无依据官服补子或飞鱼服。汉式交领不要左衽，不水平镜像。不要和服、日式前结宽腰带、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻甲、赛博或蒸汽朋克。不要新增无依据兵器、发光武器、光翼、龙形能量、法阵、粒子特效、强逆光或泛光。不要多人物、多视角、分格、头像插框、额外肢体、多指、粘手、错接手腕、手物融合、悬空装备、失重衣带、重复武器、断裂器物、过短刀剑鞘或裁断头足器物端点。不要裸露、透衣、性感化、夸张健美肌肉、血腥特写、恶搞或丑化。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书信字符或新增装饰水印；保留工具原有溯源信息。 清代发式依本角色文字，回部民间及女性易装不机械套汉地男子剃额留辫。 不要画成成年男性、胡须、真实剃额或浓重女妆；不要现代男装西服、裙装宫装、性感束胸外露、网红脸；不要仙剑光效、撒针阵列或刻有文字的令牌。
-
-FINAL POSE CHECK: 李沅芷 is FRONT-FACING. Keep forehead–nose–chin vertically aligned, both eyes horizontally level, neck naturally upright and centered above the torso, shoulders relaxed and camera level. NO head tilt. NO Dutch angle. Ignore all input head angles. Preserve this person's own written age and face anchors; No input supplies a face.
+Use case: stylized-concept。Asset type: 《金庸群侠传·天书录》default 风格包，女性武侠人物单人全身立绘基础候选，目标 2048×3072、2:3 PNG。题材：李沅芷，npc_liyuanzhi；青年女子，陆菲青弟子，取西北游历、女扮男装的小公子阶段。书界：《书剑恩仇录》ch12_shujian，清乾隆，主线项目年代 1753–1759；前史人物以本条明确的回忆阶段为准。参考图：assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png（approved，当前工作副本 manifest 已批准；仅拟参考纸底、光线、笔触与设色，不沿用面容、体型、服饰或道具）；它仅为后续生成时拟载入的同性别风格参考，本人物必须有独立的面容与身份。人物与经典锚点：清秀机敏、常作少年公子打扮，使用长剑，易装不改变女性身份（原著概括，待三联/广州修订版逐字核对，待考）；小巧瓜子脸但下颌自然圆润、灵活眉眼、略带狡黠的浅笑、轻捷身形，约6.5–7头身；精确年龄未核，不强调成人曲线（原创扩展的具体骨相与比例落实）。服装与发式：乾隆汉地少年公子式淡青窄袖长袍、素白里领、窄腰带、深色裤和布靴；小瓜皮帽收住本人长发，帽下可见规整后辫造型；女性易装不剃去真实前额头发，不画宋式高髻或女式大头饰（经典锚点之外的裁制、配色、饰件细节为原创扩展）；凡汉式交领均右衽，即穿着者左襟压右襟，不水平镜像。动作与兵器道具：一柄普通中式直身双刃剑完整入鞘佩于腰侧；腰旁一小针囊代表师门暗器，不露浮空金针，针法资格依原剧情，不声称此时已取得玩家奖励实物；一手轻搭剑鞘、另一手虚拢在身前，重心轻偏、肩颈放松，眼神聪慧而坦然（具体持法和站姿为原创扩展）；手物连接、兵器承重与悬挂点可信，器物端点完整，刀剑鞘足以容纳刀剑。构图：竖幅 2:3，单人完整全身，平视近正面轻侧、中性透视；人物占画高约 88–92%，头顶、双足、现存手部、兵器端点与衣带全部入画，四周留净空；尊重既有伤残，不补回缺失肢体。画法与光线：武侠，女性偏美丽，细墨线与柔和层染，真实而温润的骨相肤质，保留本人的年龄感和面部特征，低饱和设色，自然衣褶与清楚剪影，柔和左上主光，脸、手和识别物清晰。背景：统一不透明暖浅灰纸底、极淡纸纹和脚下轻微接触阴影，无场景、无文字。排除项：不要文字、伪字、题款、签名、印章、logo、装饰水印；不去除或伪造工具自带的溯源标识。不要真人演员脸、明星相貌、剧照构图、影视或游戏独创造型，不复制具体画作，不使用画师姓名作风格词。不要现代服装、拉链、腕表、运动鞋、高跟鞋、塑料饰品、数码物件、民国旗袍或中山装。不要动漫大眼、统一偶像脸、网红锥子脸、丰唇滤镜、浓妆磨皮、塑料皮肤、摄影写真或三维模型渲染感。不要日式服饰、日本刀、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻铠甲、赛博或蒸汽朋克。不要时代或族群混搭、汉式交领左衽、水平镜像、晚清大拉翅、无依据的官阶补子或夸张冠冕。不要多余人物、多余肢体、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、无受力点的飘带。不要断裂弯曲剑刃、柄鞘错轴、容不下刀剑的短鞘、重复兵器、遮住关键识别物或裁断头足及器物端点。不要血腥特写、裸露、透明衣料、性感化、恶搞丑化、畸形健美肌肉；保留人物原有伤残、年龄与体型。不要发光兵器、法阵、光翼、龙形能量、粒子气功、强逆光、强泛光、复杂山水建筑、分格或多视图。不要画成成年男性、胡须、真实剃额或浓重女妆；不要现代男装西服、裙装宫装、性感束胸外露、网红脸；不要仙剑光效、撒针阵列或刻有文字的令牌。
 ```
 
 ## 排除项
 
-不要 head tilt、Dutch angle、头歪向肩、头部中线偏斜、双眼高低倾斜、倾斜镜头、仰头、俯首藏眼、明显侧脸、侧身回眸、斜脸卖萌或高耸单肩。不要复制任何参考人物的脸、年龄、体型、发型、服装、姿势或身份，不要统一年轻模板脸、网红尖下巴、动漫大眼、丰唇滤镜、浓妆、塑料磨皮、摄影写真、三维模型、截图或拼贴。不要将老人和中年人年轻化，真实年龄纹理不能变成龟裂或污渍。不要人物本体碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、断裂衣摆、破洞、毛边、碎布条、无依据尘污和过密细碎褶；不要用雾或墨迹藏住人体轮廓。不要现代服饰、拉链、腕表、运动鞋、数码物件、塑料饰品、高跟鞋、时代族群混搭、晚清大拉翅、唐式齐胸裙、无依据官服补子或飞鱼服。汉式交领不要左衽，不水平镜像。不要和服、日式前结宽腰带、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻甲、赛博或蒸汽朋克。不要新增无依据兵器、发光武器、光翼、龙形能量、法阵、粒子特效、强逆光或泛光。不要多人物、多视角、分格、头像插框、额外肢体、多指、粘手、错接手腕、手物融合、悬空装备、失重衣带、重复武器、断裂器物、过短刀剑鞘或裁断头足器物端点。不要裸露、透衣、性感化、夸张健美肌肉、血腥特写、恶搞或丑化。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书信字符或新增装饰水印；保留工具原有溯源信息。 清代发式依本角色文字，回部民间及女性易装不机械套汉地男子剃额留辫。 不要画成成年男性、胡须、真实剃额或浓重女妆；不要现代男装西服、裙装宫装、性感束胸外露、网红脸；不要仙剑光效、撒针阵列或刻有文字的令牌。
+- 不要文字、伪字、题款、签名、印章、logo、装饰水印；不去除或伪造工具自带的溯源标识。
+- 不要真人演员脸、明星相貌、剧照构图、影视或游戏独创造型，不复制具体画作，不使用画师姓名作风格词。
+- 不要现代服装、拉链、腕表、运动鞋、高跟鞋、塑料饰品、数码物件、民国旗袍或中山装。
+- 不要动漫大眼、统一偶像脸、网红锥子脸、丰唇滤镜、浓妆磨皮、塑料皮肤、摄影写真或三维模型渲染感。
+- 不要日式服饰、日本刀、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻铠甲、赛博或蒸汽朋克。
+- 不要时代或族群混搭、汉式交领左衽、水平镜像、晚清大拉翅、无依据的官阶补子或夸张冠冕。
+- 不要多余人物、多余肢体、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、无受力点的飘带。
+- 不要断裂弯曲剑刃、柄鞘错轴、容不下刀剑的短鞘、重复兵器、遮住关键识别物或裁断头足及器物端点。
+- 不要血腥特写、裸露、透明衣料、性感化、恶搞丑化、畸形健美肌肉；保留人物原有伤残、年龄与体型。
+- 不要发光兵器、法阵、光翼、龙形能量、粒子气功、强逆光、强泛光、复杂山水建筑、分格或多视图。
+- 不要画成成年男性、胡须、真实剃额或浓重女妆；不要现代男装西服、裙装宫装、性感束胸外露、网红脸；不要仙剑光效、撒针阵列或刻有文字的令牌。
 
 ## 质检要点
 
-- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
-- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
-- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
-- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_liyuanzhi__ch12_youth_disguised_base.prepared.json`。
+- frontmatter仍为female；易装通过服装表达，不改变五官性别或剃头。
+- 年龄未定时保留年轻感，完整得体、不成人化性感化。
+- 清代小公子衣装语汇明确，帽、发辫连接可信。
+- 普通入鞘直剑与小针囊可辨，无未经授艺的神奇针光。
+- 与骆冰、霍青桐不同的机敏气质，不借男性基线脸。

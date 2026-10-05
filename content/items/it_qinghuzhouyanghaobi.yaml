@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_qinghuzhouyanghaobi
+name: 清湖州羊毫笔
+kind: collectible
+sub: stationery
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinghuzhouyanghaobi
+text:
+  desc: 外观：细长素竹管毛笔，洁白羊毫根深尖浅。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 据湖笔工艺传统设计清代常用羊毫笔，适合赠书吏与文士作日用。具体配毫与清初可用型式仍由工艺考证筛选，作坊及取得为（原创扩展）；不使用现代商品名称或包装。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

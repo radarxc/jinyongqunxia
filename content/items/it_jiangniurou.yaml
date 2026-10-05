@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_jiangniurou
+name: 酱牛肉
+kind: dish
+sub: dish
+grade: 2
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: meal
+    params:
+      value: bf_waigong_sheng:2battle
+assets:
+  icon: item/jiangniurou
+text:
+  desc: 外观：深红褐薄片整齐码盘，青花粗瓷盘。
+  lore: 江湖酒馆把酱煮牛肉晾定后切成薄片，青花粗瓷一盘即可下饭。它不指向某段原著，四季皆可点；店小二常以“切一盘熟肉”招呼赶路客。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 11

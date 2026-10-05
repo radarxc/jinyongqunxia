@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_songqingyuanlingpao_nan
+name: 宋青圆领袍·男
+kind: armor
+sub: clothing
+grade: 3
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 圆领袍 · 宋（《宋史·舆服志》）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songqingyuanlingpao_nan
+text:
+  desc: 外观：男款青色圆领大袖袍单件平展，右侧暗系、下施素横襕。 待运行时投影：wearer=male。
+  lore: 据《宋史·舆服志》的圆领袍制演成，青色细布与素横襕供低阶吏士日常当值。袖身宽阔，执笔前需拢袖；退役后常被改作婚丧礼服。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 34

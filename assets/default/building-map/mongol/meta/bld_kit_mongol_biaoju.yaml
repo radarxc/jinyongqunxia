@@ -1,0 +1,47 @@
+id: bld_kit_mongol_biaoju
+status: candidate
+building: {"type": "bld_kit_mongol_biaoju", "footprint": [14, 11], "anchor": &id001 [431.7302, 316.5228], "era": "mongol"}
+anchor_px: [431.7302, 316.5228]
+footprint_m:
+- 14
+- 11
+collision_polygon_m:
+- - 0
+  - 0
+- - 14
+  - 0
+- - 14
+  - 11
+- - 0
+  - 11
+collision_note: 基线全footprint代理；院内行走与纯阴影须下游区分。
+entrance:
+  edge: S
+  offset_cells: 6
+entrance_note: 目录代理，非门洞实测。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+height_m: null
+height_note: 没有真实高度/GLB，不从图高杜撰。
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_mongol_biaoju.png
+  angles_note: 提示词请求值；实际轴偏差见geometry_qa
+projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [800, 400], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": true, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+geometry_qa: {"source_corners_px": {"left": [36, 530], "front": [872, 959], "right": [1519, 619]}, "source_anchor_px": [777.5, 574.5], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.5131578947368421, -0.5255023183925811], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.2921174652241112, "expected_width_depth_ratio": 1.2727272727272727, "ratio_relative_error": 0.015235151247515955, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [31.6188, 292.5286], "front": [482.7221, 523.8432], "right": [831.8416, 340.5169]}, "observed_ground_height_px": 414.6409}
+pixel_qa: {"mode": "RGBA", "size": [864, 544], "alpha_extrema": [0, 255], "alpha_zero_pixels": 280639, "alpha_partial_pixels": 188267, "alpha_opaque_pixels": 1110, "alpha_near_opaque_pixels": 184888, "alpha_nonzero_bbox": [30, 17, 833, 526], "transparent_margins_px": [30, 17, 31, 18], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_biaoju__r2_c02.png", "source_size": [1536, 1024], "source_sha256": "ceee9627146341499fdf3e1f9109682f410b1b39153ccc2f0c5eebd190e3fcb4", "crop_box": [33, 19, 1523, 963], "uniform_scale_requested": 0.5394470667565745, "resized_size": [804, 509], "rounded_effective_scale": [0.5395973154362416, 0.5391949152542372], "paste_offset": [30, 17], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+source_pixel_qa: {"alpha_extrema": [0, 254], "border_note": "源图低alpha晕完整保留，未阈值去除；成品透明pad；不得把隐藏RGB晕判作不透明背景。"}
+candidate_count: 2
+selected_candidate: "run2-c2"
+release_ready: false
+notes: "第2轮返修采用候选2；轴率0.51316/-0.52550；宽深比1.29212，目标1.27273；轴率/比例检查分别True/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"

@@ -1,0 +1,219 @@
+- id: cg_ch12_iron_gall_storm
+  file: cg_ch12_iron_gall_storm.png
+  category: scene
+  style: default
+  subject: 铁胆释嫌（ch12_shujian）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是陈家洛的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中陈家洛的脸改成与身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+
+    【要对齐的部分】陈家洛的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；神态：躬身致意，神情诚恳谦和；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【陈家洛的基线脸】基线里的陈家洛二十二三岁，温文俊秀的世家公子：脸型是饱满年轻的方圆脸、两颊丰润不凹陷、下颌方正圆润；浓黑平直的眉；眼睛有神、双眼皮、眼神温和沉稳、带书卷气；鼻梁挺直；嘴唇端正；肤色白净；完全无须；清代发式（剃光前额、脑后辫子）。不要长脸、凹颊、高颧骨、显老。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「铁胆释嫌」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】陈家洛是画面中间躬身拱手、披灰褐斗篷、剃发留辫的青年（从左数第 2 个人）；左边的年轻女子骆冰、右边戴帽的白须老者周仲英，脸一律不改。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/male/ch12/por_npc_chenjialuo__ch12_youth_late_base.png
+    sha256: 64ecfc59797ae92fe9f43baa21edace56167c4177358557dd95ae9cf0e6d9f60
+    use: 对脸基线：作者 AR-56 定下的 por_npc_chenjialuo__ch12_youth_late_base（陈家洛），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch12/cg_ch12_iron_gall_storm.png
+    sha256: a6f66a3943786d3ae22dc9fcd4b2dc2971570adad51746b332662224355c48c7
+    use: 待改原图（AR-57 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_iron_gall_storm.a6f66a39.png
+  tool: codex exec · image_gen（AR-57 主角对脸返修 · 12 号出图员：剧情插图图像编辑，上传目标人物基线脸部特写 + 待改插图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T18:50:27-0700
+  source_path: .agents/coord/_handoff/gem/codex_w25/out/cg_ch12_iron_gall_storm.s1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: ac4b8ae5adde6d34134049f0ca583cd2586797909f9141d276a87b47252be73f
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「铁胆释嫌」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_chenjialuo__ch12_youth_late_base（编辑结果只取陈家洛头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_iron_gall_storm.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_iron_gall_storm.a6f66a39.png
+    sha256: a6f66a3943786d3ae22dc9fcd4b2dc2971570adad51746b332662224355c48c7
+    entry: .agents/coord/_handoff/gem/codex_w25/replaced/cg_ch12_iron_gall_storm.a6f66a39.entry.yaml
+- id: cg_ch12_liuhetower_oath
+  file: cg_ch12_liuhetower_oath.png
+  category: scene
+  style: default
+  subject: 六和盟誓（ch12_shujian）
+  prompt: '【AR-53 / AR-91 图像编辑】第1张是作者批准的新base脸部身份参考，第2张是待改图局部头部裁块。以第2张为底只改指定人物的脸与必要须式，不重新构图。只输出修改后的1:1方图1024×1024，保留第2张全部取景、头部位置、大小、角度与方向。
+
+    【具体人物与阶段】画面右侧坐着、手抵下巴的乾隆。照新base约45岁的丰满面容、骨相、眉眼鼻唇、八字髭与短须，保留凝神思索的侧向角度和严肃神情。六和塔会盟为微服私会，保留原便帽、红褐锦袍和金袖，不复制base朝冠或明黄龙袍；抵下巴的手及陈家洛逐像素不变。
+
+    【保留】仅将目标头部内的五官与须式对齐第1张，年龄按上述阶段；头颈位置大小、发式头饰（上述有明确要求时遵照）、光源方向色温和柔和手绘笔触全部保持。衣领、衣服、体态、手势、道具、背景、画面里其他人的脸和身体、题字不可改变。不要把第1张的姿勢光照直接贴进去。
+
+    【不要】照片质感、塑料皮肤、模板偶像脸、镜像、文字、水印、新增人物、改变头部位置大小、改变衣物或帽子。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/male/ch12/por_npc_qianlong__ch12_prime_palace_base.png
+    sha256: deabce7ebb324425cf1ac97af132f8e265dabf282c3328b00d0706c279b95614
+    use: AR-91作者批准新base，只取本人脸；年龄服饰按场景
+  - path: .agents/coord/_lines/hist-ingest2/originals/cg_ch12_liuhetower_oath.png
+    sha256: a62135947aea35ebca11aafd349df7b3adddbbbcdb2c25cb2eaffa2c25185001
+    use: 入库前原图；非目标头部区域逐像素保留
+  tool: codex exec · image_gen（AR-53 / AR-91 头部裁块编辑；限定蒙版局部合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T09:47:48-07:00'
+  source_path: .agents/coord/_lines/hist-ingest2/aligned/cg_ch12_liuhetower_oath.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 38d942d64287887a06b4ab88aaad4dcba1b0b6874a81cdc72cdb184404f48ea4
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「六和盟誓」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_chenjialuo__ch12_youth_late_base（编辑结果只取陈家洛头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-73 / AR-89 / AR-91 照历史画像，作者批准入库；AR-53 只合成乾隆头部，原服饰体态和其他人物及题字逐像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_liuhetower_oath.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_lines/hist-ingest2/originals/cg_ch12_liuhetower_oath.png
+    sha256: a62135947aea35ebca11aafd349df7b3adddbbbcdb2c25cb2eaffa2c25185001
+  head_composite_jobs:
+  - ar91_hist2_cg_ch12_liuhetower_oath_npc_qianlong_r1
+  head_composite_validation:
+    changed_pixels: 10982
+    outside_head_masks_changed: 0
+    evidence: .agents/coord/_lines/hist-ingest2/ar91_hist2_cg_ch12_liuhetower_oath_npc_qianlong_r1.merge.json
+- id: cg_ch12_qingtong_breaks_formation
+  file: cg_ch12_qingtong_breaks_formation.png
+  category: scene
+  style: default
+  subject: 黑水奇谋（ch12_shujian）
+  prompt: 'Use case: compositing
+
+    【任务】AR-91 霍青桐 E 版身份对齐。这是图像编辑，只输出一张与图2完全相同取景的1024×1024面部局部PNG，不重新创作整幅画。
+
+    【输入】图1是作者已选定并入库的霍青桐 E 版脸部，唯一身份基准；图2是待改原图的头部方形裁块，是实际编辑目标。
+
+    【只改脸】把图2霍青桐的面部五官、骨相轮廓与肤色改为图1同一人：秀窄年轻的椭圆脸、柔润下巴；清亮杏眼略大、略拱英气眉线；秀直挺拔鼻梁与柔秀鼻尖；自然含蓄唇峰和柔润下唇；十八九岁的白皙回部女侠，适度西域立体轮廓。参考关咏荷神韵已经化在 E 版，不再用照片。去掉法令纹与老化痕迹，身份与 E 一致但保持图2的现场光色。
+
+    【保留神态】原图侧转约四分之三、朝画面右方注视战局：严肃凝神、英气沉着、有决断，眉眼略收紧、双唇闭合。严格保留原有侧转角度、朝右的视线、眉眼张力和指挥战斗时的严肃神态，不照抄基线正面神态，不添加微笑，不改为正面脸。
+
+    【保持】图2头的位置、大小、倾斜、朝向和透视绝对不变。保持头发、发际、帽子、翠羽、耳饰、辫子、颈部、衣领、衣物、背景及露出的所有其他人和物。不要重画上述部分。脸与头不能整体缩放。原图的光源方向、自然色温和阴影强度不变，保持原图柔和手绘笔触，面部边缘融入周围。
+
+    【画风】写实手绘古风插画，薄层淡彩、自然柔和线条；不要照片式打光与毛孔，不要塑料磨皮、3D或动漫，不要网红模板脸。
+
+    【不要】无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。'
+  negative: 无新文字、水印、边框、分格或第二个人，不镜像，不改头饰或发型，不复制 E 基线服饰，不添加微笑。只交单张局部PNG。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_huoqingtong__ch12_youth_early_base.png
+    sha256: 93f02e773f8dfb82139215b87166b855b3611100ee611af18664ecfe7ca3bcbb
+    use: 对脸基线：作者审核通过的 por_npc_huoqingtong__ch12_youth_early_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch12/cg_ch12_qingtong_breaks_formation.png
+    sha256: 3e21b379f93928c1f833aab273e8d37998bc59119251ef53cac3a23c42369c02
+    use: 待对齐原图；保留原神态与一切非面部像素；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch12_qingtong_breaks_formation.3e21b379.png
+  tool: codex exec · image_gen（AR-91 E 定脸；头部裁块编辑 + 原位置面部蒙版局部合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T09:22:21-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/cg_ch12_qingtong_breaks_formation.ar91e_face1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: a620d1f17c1a3499909b574a68d32ba9c2545e298cea216549a221cd61649ed8
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「黑水奇谋」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_huoqingtong__ch12_youth_early_base（编辑结果只取霍青桐头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-86 / AR-91 参考关咏荷，作者选 E；AR-53 / AR-84 仅合成霍青桐面部，保留原神态，其他人物、服饰、场景与题字逐像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_qingtong_breaks_formation.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch12_qingtong_breaks_formation.3e21b379.png
+    sha256: 3e21b379f93928c1f833aab273e8d37998bc59119251ef53cac3a23c42369c02
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch12_qingtong_breaks_formation.3e21b379.entry.yaml
+- id: cg_ch12_kasili_enters_palace
+  file: cg_ch12_kasili_enters_palace.png
+  category: scene
+  style: default
+  subject: 孤影入宫（ch12_shujian）
+  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的喀丝丽新 base 脸部特写（参考古力娜扎，作者选B）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
+
+    【身份】明确成为第1张的同一位喀丝丽：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
+
+    【剧情神态与造型】保留被俘入宫的孤立、悲伤而清醒和原有侧向目光；原图宫门冷影与左侧日光。
+
+    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
+
+    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
+
+    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
+  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    sha256: fbf08c4442a5b7dde945e9ea2473aaa26e7904e5a5a583346221e1f7d58eb60f
+    use: 对脸基线：作者审核通过的 por_npc_kasili__ch12_youth_prepalace_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch12/cg_ch12_kasili_enters_palace.png
+    sha256: 8d8147285bb75aeded08baf4097801e916d0467a4db0f01f590cca0d6428387b
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch12_kasili_enters_palace.8d814728.png
+  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:12:27-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/cg_ch12_kasili_enters_palace.ar86_kasili1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: ac1b64353e2a6d57152886a0f968a4b5e69a687c39ab5674b4e9069b1e7e0221
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「孤影入宫」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（第 1 次（s1）改动太小、仍是长脸窄眼，加重提示重出 s2 入选；编辑结果只取喀丝丽头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：喀丝丽头部局部合成，对齐作者新 base（AR-73 参考古力娜扎，AR-86 选B）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_kasili_enters_palace.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch12_kasili_enters_palace.8d814728.png
+    sha256: 8d8147285bb75aeded08baf4097801e916d0467a4db0f01f590cca0d6428387b
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch12_kasili_enters_palace.8d814728.entry.yaml
+- id: cg_ch12_palace_warning
+  file: cg_ch12_palace_warning.png
+  category: scene
+  style: default
+  subject: 宫墙急信（ch12_shujian）
+  prompt: '【任务】Use case: compositing / identity-preserve。第1张是作者按 AR-73 / AR-86 选定的喀丝丽新 base 脸部特写（参考古力娜扎，作者选B）；第2张是待改原图的放大方形头部裁块。请以第2张为底，仅把目标人物的面部五官骨相对齐第1张身份，输出相同取景的1:1方图。
+
+    【身份】明确成为第1张的同一位喀丝丽：脸型轮廓、眉眼距离、眼型、鼻形、唇形与五官比例都要对齐。不是只改妆容。根据第2张的视角与表情转绘新脸，保留自然的不对称与手绘笔触。
+
+    【剧情神态与造型】保留宫中示警时侧身回望、忧虑警觉的眼神和闭唇神态；原图冷窗光与灯火色温。
+
+    【保持】以第2张为准：面部在画面的坐标、大小、头部朝向和角度、表情情绪、眼神方向、发式和所有头饰、耳饰、衣领、衣服、手势、背景、其他人物与物件、原光线方向、亮暗关系、色温与画风逐项保持。只取第1张身份，不搬基线的姿势、神态、服装或光线。输出的画面边缘保持与第2张完全一致，方便局部羽化合成。
+
+    【质感】项目写实手绘古风插画。脸部的笔触、清晰度、光影与第2张自然相融，裁图经过放大有柔和感，不要锐化、照片脸、磨皮或塑料高光。
+
+    【不要】不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。'
+  negative: 不要水平镜像；不要新增文字、水印、人物、装饰；不要改头身比例或重新构图；不要抹去剧情中的忧虑、哀伤、痛苦、恳切或警觉；不要把受伤场景画成微笑。
+  references:
+  - path: assets/default/character/female/ch12/por_npc_kasili__ch12_youth_prepalace_base.png
+    sha256: fbf08c4442a5b7dde945e9ea2473aaa26e7904e5a5a583346221e1f7d58eb60f
+    use: 对脸基线：作者审核通过的 por_npc_kasili__ch12_youth_prepalace_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch12/cg_ch12_palace_warning.png
+    sha256: 36f915a8684e04670253e3fe004e88b3655458f62ca021b450968f168834f551
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch12_palace_warning.36f915a8.png
+  tool: codex exec · image_gen（codex_w32 现有 runner；AR-86 裁块改脸 + AR-53 头部局部羽化合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T00:12:54-0700
+  source_path: .agents/coord/_handoff/gem/codex_w32/out/cg_ch12_palace_warning.ar86_kasili1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: e874f7d28404717ee291eba1a1d53439ab28173b7f3cdd3ff297e8ecdc6d2580
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「宫墙急信」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_kasili__ch12_youth_prepalace_base（编辑结果只取喀丝丽头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-53 / AR-75 / AR-86：喀丝丽头部局部合成，对齐作者新 base（AR-73 参考古力娜扎，AR-86 选B）；保留原神态、光线方向、发式和题字；同图其他人及头部蒙版外像素不变
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch12_palace_warning.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch12_palace_warning.36f915a8.png
+    sha256: 36f915a8684e04670253e3fe004e88b3655458f62ca021b450968f168834f551
+    entry: .agents/coord/_handoff/gem/codex_w32/replaced/cg_ch12_palace_warning.36f915a8.entry.yaml

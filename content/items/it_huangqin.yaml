@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_huangqin
+name: 黄芩
+kind: material
+sub: herb
+grade: 5
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/huangqin
+text:
+  desc: 外观：药用根斜切成黄褐薄片，老根中空暗棕。
+  lore: 燕京直隶、中原、关中、晋中、齐鲁、辽西与东北，春三至五月或秋九十月采根。本作按黄褐切片辨货，作疏内伤辅材，不写现实配方。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan6
+    materialGrade: 5
+    rare: false
+    herbFamily: huangQin
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 3

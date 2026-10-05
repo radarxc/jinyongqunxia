@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_maqianzi
+name: 马钱子
+kind: material
+sub: herb
+grade: 8
+stack: 999
+chapters: any
+origin: canon
+canonRef: 有毒本草；毒性，供剧情 / 暗器 / 解毒设定
+price: auto
+flags: []
+assets:
+  icon: item/maqianzi
+text:
+  desc: 外观：药用成熟种子呈灰绿扁圆纽扣状，表面密生银毛。
+  lore: 闽地、岭南、广西与云滇黔林中秋冬八月至翌年一月果熟，按明代以后药名保守投放。银毛扁种须锁盒，本作只作剧毒素材，不给现实操作。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di6
+    materialGrade: 8
+    rare: false
+    herbFamily: maQianZi
+    ageYears: 0
+    attributes:
+      version: 2

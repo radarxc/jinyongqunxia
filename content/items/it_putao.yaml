@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_putao
+name: 葡萄
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 汉以后传入，西域与河西书界常见
+price: auto
+flags: []
+assets:
+  icon: item/putao
+text:
+  desc: 外观：紫青葡萄一串置白瓷盘，果粒半透明。
+  lore: 汉以后传入的藤果，在西域与河西书界尤常见，夏末秋初成串成熟。可鲜食、晒干或酿酒；商旅以果粉完整、蒂梗尚青为佳。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: fruit
+    attributes:
+      version: 2

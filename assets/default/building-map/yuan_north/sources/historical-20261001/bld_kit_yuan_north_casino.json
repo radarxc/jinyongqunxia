@@ -1,0 +1,135 @@
+{
+  "id": "bld_kit_yuan_north_casino",
+  "repair_round": 6,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "selected_source": "/private/tmp/KIT-yuan_north-hist-repair6/generated/casino_c1.png",
+  "source_sha256": "8fb4409389ea82b3884d78342f803047f90ddbe9f3b08c1b63d0be9d0ab47c13",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_casino.png",
+  "final_sha256": "1ebe279ac754c6c9d6dd0a26c528bc4250760da0a638b74c3c4d173207ab208b",
+  "generation": {
+    "tool": "Codex images/edits via built-in image generation backend",
+    "model": "gpt-image-2",
+    "generation_id": "8d5604eb-5992-4d06-845b-aaf963651e09",
+    "turn_id": "b8b80a47-243b-4140-9ac1-b2e86014b8a3",
+    "created_unix": 1790924302,
+    "settings": {
+      "background": "transparent",
+      "output_format": "png",
+      "quality": "medium",
+      "size": "1500x1049"
+    },
+    "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/casino.txt"
+  },
+  "input_files": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_casino.png",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/qingming_shop_1f.jpg",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/longchi_06.jpg"
+  ],
+  "input_sha256": [
+    "eccaec5a6757286183df14a12a0a850b87b937d606d56439fa78dc80d71e073c",
+    "251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8",
+    "06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6"
+  ],
+  "generation_attempts": [
+    {
+      "candidate": 1,
+      "selected": true,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/casino_c1.png",
+      "output_sha256": "8fb4409389ea82b3884d78342f803047f90ddbe9f3b08c1b63d0be9d0ab47c13",
+      "generation_id": "8d5604eb-5992-4d06-845b-aaf963651e09",
+      "turn_id": "b8b80a47-243b-4140-9ac1-b2e86014b8a3",
+      "created_unix": 1790924302,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/casino.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1500x1049"
+      },
+      "input_files": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_casino.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/qingming_shop_1f.jpg",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/longchi_06.jpg"
+      ],
+      "input_sha256": [
+        "eccaec5a6757286183df14a12a0a850b87b937d606d56439fa78dc80d71e073c",
+        "251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8",
+        "06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "file": "qingming_shop_1f.jpg",
+      "url": "https://img.jiguzuo.com/guohua/changjuan/202511/9cadde09ad1fbfdb0a0a44f4e0679383.jpg",
+      "sha256": "251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "《清明上河图》可辨铺面局部：开放柜台、可卸板门、遮棚支撑和街市尺度；不复制人物、文字或构图。"
+    },
+    {
+      "file": "longchi_06.jpg",
+      "url": "https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan06-1500x1133.jpg",
+      "sha256": "06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "王振鹏《龙池竞渡图》06可辨建筑局部：柱网、瓦垄、木构榫接、斗拱层级和石台基；仅取构造语汇。"
+    }
+  ],
+  "historical_detail": "无名博戏堂（原创扩展）：三开间木构铺面、可卸板门、低石槛、深出檐灰筒板瓦、柱网、直棂窗与灰砖墙脚；古画只支撑同时代铺面/大木语汇。",
+  "processing": {
+    "source_size": [
+      1500,
+      1049
+    ],
+    "crop_box": [
+      111,
+      100,
+      1443,
+      973
+    ],
+    "uniform_scale": 0.41291291291291293,
+    "resized_size": [
+      550,
+      360
+    ],
+    "canvas_size": [
+      640,
+      448
+    ],
+    "paste_offset": [
+      45,
+      44
+    ],
+    "alpha_cleanup": "source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      640,
+      448
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 171172,
+    "alpha_partial_pixels": 114573,
+    "alpha_opaque_pixels": 975,
+    "alpha_nonzero_bbox": [
+      45,
+      44,
+      595,
+      404
+    ],
+    "transparent_margins_px": [
+      45,
+      44,
+      45,
+      44
+    ],
+    "border_alpha_max": 0
+  },
+  "visual_review": "参考图、入选原图与规格化成品均经 view_image；构造、左上光、透明边通过目检；保留 candidate。"
+}

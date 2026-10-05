@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_zhayangwei
+name: 炸羊尾
+kind: dish
+sub: dish
+grade: 6
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《鹿鼎记》·韦小宝京师点菜场景
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1700
+  - op: meal
+    params:
+      value: bf_yuhan:2battle
+assets:
+  icon: item/zhayangwei
+text:
+  desc: 外观：金黄酥炸羊尾块六枚置白瓷盘，椒盐小碟从属。
+  lore: 《鹿鼎记》中韦小宝在京师点过炸羊尾，本作按京师四季酒楼菜投放。本件为六枚金黄酥块，椒盐只作从属小碟，宜出锅即食；数值为原创投影。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 17

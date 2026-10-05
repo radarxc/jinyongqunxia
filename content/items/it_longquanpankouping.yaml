@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_longquanpankouping
+name: 龙泉青釉盘口瓶
+kind: collectible
+sub: porcelain
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H19](#src-h19)；准入：神雕主体；南宋成熟粉青阶段，禁射雕早段
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/longquanpankouping
+text:
+  desc: 外观：粉青釉盘口长颈瓶，丰肩圆腹。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=history。
+  lore: 据宋龙泉青釉盘口瓶形制选入，以南宋成熟粉青工艺作为投放约束。适合赠藏家或文士作陈设；具体流传和获赠为（原创扩展），不提前出现在缺乏工艺证据的早段。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

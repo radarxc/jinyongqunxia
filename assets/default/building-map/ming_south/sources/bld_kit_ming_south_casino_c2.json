@@ -1,0 +1,27 @@
+{
+  "source": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-c20f52c2-3f31-4696-b302-ab6088dfeb24.png",
+  "prompt": "Use case: precise-object-edit. EDIT this transparent Ming Jiangnan game building to correct ONLY projection and retain all architectural details, white plaster, charcoal grey tiles, chestnut timber, texture detail and upper-left light. Strict 2:1 ORTHOGRAPHIC DIMETRIC, camera yaw45 elevation30. The visible ground rectangle must have slopes exactly+0.500 and-0.500; lower the camera elevation slightly versus supplied source, reduce the visible courtyard/ground depth. Front corner remains lowest ground vertex; ground long diagonal must be twice the equivalent square's height. No perspective. Preserve entrance on screen-lower-left face, all buildings and eaves intact, generous transparent margins. No thick plinth, no additional objects, no text, no background or halo. Preserve true alpha. Logical footprint 10 by8. Output final transparent PNG only.",
+  "ref": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-f5043abf-0665-4f6e-858a-329921cdee52.png",
+  "candidate_count": 2,
+  "source_sha256": "aef62c00c2783a856fa65613407e3a0e3406e4f160469bb8cd4d620f202ba553",
+  "source_size_px": [
+    1536,
+    1024
+  ],
+  "source_mode": "RGBA",
+  "source_alpha_extrema": [
+    0,
+    254
+  ],
+  "candidate_index": 2,
+  "selected": true,
+  "selection_note": "2选1：第二候选右轴更近目标，左轴仍超建议容差；外观与桌具仅表示游戏赌场",
+  "tool": "image_gen built-in",
+  "transparent_background": true,
+  "explicit_image_inputs": [
+    "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-f5043abf-0665-4f6e-858a-329921cdee52.png"
+  ],
+  "image_model": "not_exposed_by_tool",
+  "image_effort": "not_exposed_by_tool",
+  "raw_view_image_inspected": true
+}

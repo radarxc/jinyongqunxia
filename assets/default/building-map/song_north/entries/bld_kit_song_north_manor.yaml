@@ -1,0 +1,78 @@
+id: bld_kit_song_north_manor
+file: bld_kit_song_north_manor.png
+category: building-map
+style: default
+subject: 北宋中原 山庄/大院（原创扩展；建筑细部待考）
+prompt: 'Image 1 is the current game asset and is binding only for ID, subject, overall footprint silhouette, entrance direction, exact camera,
+  transparent margins and canvas occupancy. Images 2 and 3 are historical references; take only documented form, proportion, structure, material
+  and aging, never their composition, scenery or text. Redraw one isolated production sprite for Northern Song northern-central plains, Kaifeng/Luoyang
+  context circa 1093; anonymous gameplay module, not a named-building reconstruction. Preserve orthographic yaw 45 degrees and elevation about
+  30 degrees, exact 2:1 dimetric ground axes, vertical columns, parallel edges, entrance toward screen lower-left, upper-left light, short lower-right
+  contact shadow, genuine RGBA transparency, and the current asset''s occupied size.
+
+
+  Historical detail contract: low restrained Song roof curvature and measured rafter rise, no dramatic Qing upturn; dark-grey fired-clay pan tiles
+  with round cover tiles, individually legible eave courses, simple ridge tiles, appropriate plain ridge ends or small chiwen only when specified,
+  never dense Qing beast processions. Show the stated bracket tier/projection, column grid, stone column plinths, low masonry/rammed-earth platform,
+  exposed rafter ends, beam joinery, straight square-lattice or plank doors/windows. Walls are warm-grey lime plaster over rammed earth/adobe
+  with rough grey-brick or local stone footing; matte weathered timber, low saturation, only restrained iron-red/ochre traces on protected high-rank
+  woodwork. No southern horse-head walls, glass, fantasy joinery or imperial yellow glaze.
+
+
+  No people, readable writing, signs, calligraphy, flags, modern objects, scene background, sky, vegetation beyond the footprint, thick display
+  plinth, opaque ground island, white halo, checkerboard, watermark, perspective convergence, crop, or copied reference text.
+
+
+  Specific subject: A 16x13 elite but non-imperial walled manor courtyard: five-bay main hall on a low brick-and-stone terrace, two lower side
+  halls and plain gate around a packed court; grey-tile hip-gable roofs, small plain chiwen on main ridge, one bracket tier with two restrained
+  projections, clear column grid and stone plinths, muted red-brown timber.'
+negative: 文字、水印、现代元素、人物、场景背景、厚底座、塑料感、清式重彩、黄琉璃宫顶、透视汇聚
+references:
+- url: https://commons.wikimedia.org/wiki/File:Song-Imperial-Garden1.jpg
+  used_detail: 北宋界画中的殿阁、桥亭、院落和水岸关系
+- url: https://commons.wikimedia.org/wiki/File:20250118_Longxing_Temple_-_Mani_Hall_01.jpg
+  used_detail: 北方宋代殿堂低缓屋面、抱厦、柱网与铺作尺度
+tool: Codex image edit endpoint
+model: gpt-image-2
+created: '2026-09-30'
+size: 1008x704
+sha256: 0afa858d2767c05054e3dd1621e6586afa53cf62b2b419bdb8b37ded7b9bdc6b
+status: candidate
+building:
+  type: bld_kit_song_north_manor
+  footprint:
+  - 16
+  - 13
+  anchor:
+  - 502.2111
+  - 398.7405
+  era: song_north
+footprint_m:
+- 16
+- 13
+anchor_px:
+- 502.2111
+- 398.7405
+allowRotation: false
+views:
+- S
+entrance:
+  edge: S
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 928
+  - 464
+  camera_target: yaw45 pitch30 orthographic 2:1
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+candidate_count: 1
+selected_candidate: 1
+notes: 主厅侧屋围院、低台基、石柱础、克制鸱尾。 已逐张view_image源候选与规格化成品；参考图仅取形制/材质/构造，不复制构图。
+historical_revision:
+  source_archive: sources/historical-revision/bld_kit_song_north_manor-candidate1.png
+  generation_record: sources/historical-revision/bld_kit_song_north_manor-candidate1.json
+  prompt_record: sources/historical-revision/bld_kit_song_north_manor-candidate1.prompt.txt
+  specification: 斜45度、俯仰约30度、2:1、左上光、真RGBA；按旧alpha包围框等比规格化，未非等比变形。

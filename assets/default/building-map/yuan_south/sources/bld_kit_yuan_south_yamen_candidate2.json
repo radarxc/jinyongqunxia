@@ -1,0 +1,29 @@
+{
+  "key": "yamen_v2",
+  "id": "bld_kit_yuan_south_yamen",
+  "prompt": "Use case: precise-object-edit. Edit this reference Song Jiangnan yamen into an anonymous late Yuan Jiangnan road-prefecture office sprite. Preserve EXACT ground plane, perimeter footprint16x12, entrance position, camera, building height, roof direction, outline and foundation geometry from reference. Ground orthographic2:1 yaw45 elevation30, ground axes slope+.5/-.5. Only make central hall columns a subdued deeper red-brown and replace courtyard trees with low empty paving inside existing wall; preserve modest hall size and hearing drum. Keep all other detailed grey tiles, cream plaster, dark timber, low stone footing. Do not expand or remodel the compound. Material realism, density and lighting match this reference. Transparent RGBA, light upper left short subtle shadow lower right, absolutely no outer grey glow or backdrop. Complete all roof tips and base inside canvas, generous clear margin, no cropping. No words signs flags human figures modern objects Qing imperial decoration yellow roofs or tall horse-head walls. This is original game artwork not an exact named historical site.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-f5a51adf-e052-4da0-9755-24f8cc2d9a81.png",
+  "source_archive": "sources/bld_kit_yuan_south_yamen_candidate2.png",
+  "source_sha256": "ccb76ff4f0207a38d2a5f03ade6c1306f1d91c850b9c75c19ae7c4b52d30693c",
+  "source_size": [
+    1505,
+    1045
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:37:08.711247+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_yamen.png",
+      "sha256": "4a255313b6c1c776a046158f4cadb26c008500f41c304277889aea66c0b00fb0",
+      "status": "candidate",
+      "role": "已view_image；材质、密度与受控编辑参考，不代表严格几何已通过"
+    }
+  ],
+  "selection_status": "selected_candidate",
+  "selection_reason": "第1张两轴严重不对称且外灰晕；第2张保留宋基线外观、完整轮廓，几何告警仍登记。",
+  "view_image_reviewed": true
+}

@@ -1,0 +1,15 @@
+{
+  "id": "courtyard",
+  "prompt": "Use case: precise-object-edit. Input is edit target. Keep this exact anonymous late Yuan Jiangnan courtyard architectural identity, every material, grey roof tile color, plaster, timber and realistic fine texture. Correct ONLY overall orthographic camera and rectangular ground footprint so the TWO visible ground edges slope exactly +0.50 and -0.50, a 2:1 dimetric grid; current image has steeper slopes about +/-0.58. The front ground corner should be clearly visible, NOT steep true-isometric30-degree screen lines. Both axes equivalent pitch, vertical pillars stay vertical. Parcel 10 by 8 meters, ratio east-west edge / north-south edge 1.25. Front entrance remains lower left. The wide front-facing ground edge left-to-front must be 25 percent longer in horizontal span than front-to-right edge. Not a square. All building and thin ground pad fully visible with generous transparent margin. Do not add facade ornaments, garden, new objects, scenery or text. Upper-left light, minimal lower-right short contact shadow; no large shadow, no haze or ground glow. TRUE transparent background RGBA, retain opacity of solid surfaces. One sprite only.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-c0dcca10-ade5-463d-b612-98b2c28df5b2.png",
+  "reference": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-fe50da9e-3067-4e7d-bcfc-bb241b866861.png",
+  "source_archive": "sources/bld_kit_yuan_south_courtyard.v2.png",
+  "source_sha256": "713229e30c2761b326bd704953ffb792acdde6d55da68831138ad5de348ddede",
+  "source_size": [
+    1402,
+    1122
+  ],
+  "created": "2026-09-30T22:32:49.874451+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "reference_sha256": "85966bea4290e8a7c4e597f7807e2112e347e63100cf6161c5d8eabcaf66bef0"
+}

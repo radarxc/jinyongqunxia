@@ -1,0 +1,45 @@
+{
+  "id": "bld_kit_ming_north_wangfu",
+  "subject": "明代北方府城：王府殿院模块（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    22,
+    18
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82e-74c3-9466-90640f7d6631/exec-37b99b52-8011-4380-9adf-d1e26214d282.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated reusable building sprite for tianshu default building-map, Ming dynasty northern Chinese prefectural city (Beijing/Datong/Xian regional vocabulary), anonymous original period-inspired design, not a measured heritage reconstruction. Input image is STYLE reference only: match its restrained realistic material detail, fine grey clay roof tiles, weathered masonry and natural matte wood, and same detail density. Change architecture to Ming north as specified. Orthographic 2:1 dimetric ground projection, camera yaw45 elevation30, east axis down-right slope +0.5 and north up-right slope -0.5; parallel ground edges, vertical posts, no perspective convergence. South entrance on screen lower-left edge. Complete building on thin rectangular ground-contact footprint with readable left, front, right corners, footprint axis ratio as specified, no thick pedestal, no soil island. Neutral soft light from SCREEN UPPER LEFT, short soft contact shadow only toward lower-right. TRUE transparent RGBA background and generous blank alpha0 margins all four sides; no skyline, no surrounding scenery. No people, writing, Chinese pseudo-glyphs, text, plaques, signs, banners, watermark, grid, modern fittings, plastic render, cartoon, ink wash, oversaturation, dense lanterns, white halo or baked checkerboard. Only building and its own footprint; include all eaves and base corners uncropped. Asset ID bld_kit_ming_north_wangfu. Footprint 22 metres east-west by 18 metres north-south. A princely residence ceremonial module, one single-eaved hip-and-gable principal hall, two subordinate hard-gabled wings and a modest southern gate around a large rectangular axial courtyard. Dark green glazed tiles only on main hall, grey clay tiles on wings, muted cinnabar posts, grey brick/red-ochre plaster enclosing walls, limited desaturated blue-green beam pattern, no gold mass, no bright yellow imperial roofing, no extravagant double-eave Forbidden City copy. Thin stone foundations. Principal hall ROOF is distinctly HIP-AND-GABLE, not the reference's gabled roof. Side wing roofs proper YINGSHAN hard-gabled, masonry flush gable ends. Exact ground axes rise/run 1:2; no steep 30 degree ground diagonals.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+    }
+  ],
+  "created": "2026-09-30T21:30:20.251Z",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "points": {
+    "L": [
+      149,
+      531
+    ],
+    "F": [
+      840,
+      926
+    ],
+    "R": [
+      1430,
+      600
+    ]
+  },
+  "footprint_basis": "design/22 §3.4 明代对应骨架；本套件地域命名",
+  "visual_review": "原图已view_image：完整轮廓、灰砖灰瓦、克制木色；左上受光，短影右下。手工三角读点；具体明代细部待考。",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "selection_reason": "首候选形态材质可供审图；几何残差如实记录。",
+  "original_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "88bb242d4078e2a16b6a07b74b5b2dd82c10eadc56ac3ebeb200dfd9a800533d",
+  "final_visual_review": "已逐张view_image成品：全轮廓与透明留边完整；底面、屋檐及缩放后细节可读；几何与形制限制仍见visual_review/meta。"
+}

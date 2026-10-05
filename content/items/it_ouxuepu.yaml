@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_ouxuepu
+name: 《呕血谱》
+kind: collectible
+sub: antique
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B14](#src-b14)；准入：仅笑傲；梅庄物权结算后
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/ouxuepu
+text:
+  desc: 外观：一本合拢薄棋谱，旧灰纸书衣。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,collector],npcOverrides:{npc_heibaizi:favored}}; giftValue=3; provenance=book; tags=[chessbook]。
+  lore: 《笑傲江湖》梅庄故事以《呕血谱》引黑白子关注，沿用原有棋艺收益。适合馈赠好弈的文士，故事传说不等同史实棋谱；任务物权结清后转赠，装帧为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    study:
+      art: chess
+      value: 8
+    appraise:
+      art: art
+      dc: 60

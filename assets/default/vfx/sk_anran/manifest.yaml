@@ -1,0 +1,1197 @@
+assets:
+- id: vfx_sk_anran__family_base01
+  file: effect/family/source_sheet.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / family 白底四帧原料（原创扩展：阴青水墨）
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for sk_anran (Melancholy
+    Palm), ONLY disembodied energy, not a person or hand. Exactly four sequential frames in a perfectly regular 2-column
+    by 2-row sheet, canvas 1536x1024, each cell 768x512. Pure solid white #FFFFFF background everywhere outside painted
+    energy, no paper texture. No grid lines, borders, labels, letters, symbols, shadows, landscape, character, anatomy,
+    weapons, dragons, or literal animals. Read frames top-left, top-right, bottom-left, bottom-right: gathering, release,
+    full strength, dissipating. Keep the same shape identity and the broad emission root at local (128,256) in EVERY
+    cell, direction right. Energy extends to local x=650, with at least 48 pixels of clean white clearance at all edges;
+    no overlap between cells. Broad open root approximately 110 pixels high, softly transparent at its left base so it
+    will join a palm in later compositing; do not draw the palm. Keep each frame''s main center axis and silhouette nearly
+    the same, vary density, wisps and intensity without translating. Palette muted deep blue-green teal and desaturated
+    cyan with charcoal ink, watery translucent layered Chinese ink-wash, dry-brush gaps as holes, fine dissolving edges.
+    No white painted highlights, no neon bloom, no solid 3D objects. A continuous low forward palm-pressure sweep with
+    wide root, NOT a narrow laser or missile.
+
+    Primary request: the reusable family vocabulary of sorrowful palm wind: a broad low rolling ink-pressure fan sweeping
+    right, layered like one curling sleeve-shaped gust, a dark teal central fold surrounded by pale translucent cyan
+    wisps. Restrained, melancholy, full of empty spaces. No literal sleeve.'
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: built-in image_gen
+  model: built-in image_gen (underlying image model not disclosed)
+  effort: not exposed
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f47c-141d-71d1-a110-8faff69f7d51/exec-5b855cf0-6f3e-464e-b507-9a9fb6cbbf97.png
+  size: 1536x1024
+  sha256: f964117f5067c93648a97539a6fd78cd4f1a29482d4f9a5721deec2f6f26edb2
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 原著意境沿用 skills-daojia §4.3；青色与造型为原创扩展。原著招名/版本（待考）。白底原件逐字节保存，cut_frames.py 切帧，透明帧为 straight alpha。
+  files:
+  - effect/family/effect-set.yaml
+  - effect/family/frame_000.png
+  - effect/family/frame_001.png
+  - effect/family/frame_002.png
+  - effect/family/frame_003.png
+  - effect/family/preview_black.png
+  - effect/family/preview_gray.png
+  - effect/family/preview_white.png
+  - effect/family/quality.json
+  - effect/family/source_sheet.png
+  - source_requests.json
+  - measurements.json
+  - move_notes.json
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 960
+    sha256: bd7af99abe08873d29629c3524f3564159b7014121f8b8d4f441fa2bcedd1f03
+  - file: effect/family/frame_000.png
+    bytes: 182719
+    sha256: 6dd806c1949da3ee1e4395b10816b3940e20079bfe36911098a1dd4bdd5ec4b0
+  - file: effect/family/frame_001.png
+    bytes: 308644
+    sha256: 1756f0c1ed0a66fff12a209d2aa5f59b21d001fad1fe457c7a6587586177bd65
+  - file: effect/family/frame_002.png
+    bytes: 472893
+    sha256: 9053a0e1911a9bb401df3f6525bde8b130b17069b47727f09fdba14aa597ff1e
+  - file: effect/family/frame_003.png
+    bytes: 264889
+    sha256: 5c311735439ef7ecec8af8271d93cbc1c8e5693d14f6702a06f54462bd16379f
+  - file: effect/family/preview_black.png
+    bytes: 985777
+    sha256: 0d5a610ba93b9c5ee6bde38a527605f8bf62825853f5edcaebce608dae869f2e
+  - file: effect/family/preview_gray.png
+    bytes: 888969
+    sha256: 5a090a590b34fe907b42641d6446e41d32bd1cbec8cd886c864df9528c97b220
+  - file: effect/family/preview_white.png
+    bytes: 929024
+    sha256: cf61042fc00055636cb902b23989f7eda995683a96fe6ccc83c0dba717204d56
+  - file: effect/family/quality.json
+    bytes: 1032
+    sha256: afc40d950399999d7df9c1b9ba03d2293bd67c72cacef363561f3ae6d92cfebe
+  - file: effect/family/source_sheet.png
+    bytes: 1725122
+    sha256: f964117f5067c93648a97539a6fd78cd4f1a29482d4f9a5721deec2f6f26edb2
+  - file: source_requests.json
+    bytes: 11749
+    sha256: 66c168285002b1fbcda9a88b1a611c471a5a79339c6b988a4a2e6d29d8977d17
+  - file: measurements.json
+    bytes: 2003
+    sha256: 0451d77aebfc06e32adfbe8ab946d047b426d16b4a87d554c16c9c7377518223
+  - file: move_notes.json
+    bytes: 4676
+    sha256: e4facca1084a5d946e4a6628d17f871801def95883856ebaa3f889fbffbdac39
+- id: vfx_mv_anran_daimu__effect_base01
+  file: effect/mv_anran_daimu/source_sheet.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / mv_anran_daimu 白底四帧原料（原创扩展：阴青水墨）
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for sk_anran (Melancholy
+    Palm), ONLY disembodied energy, not a person or hand. Exactly four sequential frames in a perfectly regular 2-column
+    by 2-row sheet, canvas 1536x1024, each cell 768x512. Pure solid white #FFFFFF background everywhere outside painted
+    energy, no paper texture. No grid lines, borders, labels, letters, symbols, shadows, landscape, character, anatomy,
+    weapons, dragons, or literal animals. Read frames top-left, top-right, bottom-left, bottom-right: gathering, release,
+    full strength, dissipating. Keep the same shape identity and the broad emission root at local (128,256) in EVERY
+    cell, direction right. Energy extends to local x=650, with at least 48 pixels of clean white clearance at all edges;
+    no overlap between cells. Broad open root approximately 110 pixels high, softly transparent at its left base so it
+    will join a palm in later compositing; do not draw the palm. Keep each frame''s main center axis and silhouette nearly
+    the same, vary density, wisps and intensity without translating. Palette muted deep blue-green teal and desaturated
+    cyan with charcoal ink, watery translucent layered Chinese ink-wash, dry-brush gaps as holes, fine dissolving edges.
+    No white painted highlights, no neon bloom, no solid 3D objects. A continuous low forward palm-pressure sweep with
+    wide root, NOT a narrow laser or missile.
+
+    Primary request: unique ultimate Dai Ruo Mu Ji (still as wood), an ORIGINAL visual metaphor, not literal novel depiction:
+    an unnaturally still, compact blunt palm-pressure seal, broad upright oval front crossed by a few short angular ink
+    striations like tense wood grain, rooted in a broad low cyan gust. The force gathers in silence then releases; smoky
+    broken edges. NO chicken, tree, glyph, fist or actual handprint. Keep the energy intangible and paper-thin, not a
+    solid stone slab.'
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: built-in image_gen
+  model: built-in image_gen (underlying image model not disclosed)
+  effort: not exposed
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f47c-141d-71d1-a110-8faff69f7d51/exec-b4bafade-e510-4af2-9e75-4d94dc3a12c9.png
+  size: 1536x1024
+  sha256: 7a57ba05d96e8ad48141e26c6c1b0be2544c147aa9d4d7d8b016f99687fcc6b6
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 原著意境沿用 skills-daojia §4.3；青色与造型为原创扩展。原著招名/版本（待考）。白底原件逐字节保存，cut_frames.py 切帧，透明帧为 straight alpha。
+  files:
+  - effect/mv_anran_daimu/effect-set.yaml
+  - effect/mv_anran_daimu/frame_000.png
+  - effect/mv_anran_daimu/frame_001.png
+  - effect/mv_anran_daimu/frame_002.png
+  - effect/mv_anran_daimu/frame_003.png
+  - effect/mv_anran_daimu/preview_black.png
+  - effect/mv_anran_daimu/preview_gray.png
+  - effect/mv_anran_daimu/preview_white.png
+  - effect/mv_anran_daimu/quality.json
+  - effect/mv_anran_daimu/source_sheet.png
+  file_integrity:
+  - file: effect/mv_anran_daimu/effect-set.yaml
+    bytes: 966
+    sha256: 18ab8c824735b0d0633e89a1b031fe6c2369d292fd4e567ce7bf42752874ee9f
+  - file: effect/mv_anran_daimu/frame_000.png
+    bytes: 375117
+    sha256: 3cdbd0d48f6351ae05a822c0fea033cbd16d2d34023191dc5f35e5f44f6df8b4
+  - file: effect/mv_anran_daimu/frame_001.png
+    bytes: 432378
+    sha256: adbba2561ba933b2365db0036a29de7ff82ff775bafd3762e0985341362fa873
+  - file: effect/mv_anran_daimu/frame_002.png
+    bytes: 567735
+    sha256: 09c7b37f3477166d0715f99dde58fd880e91f858b7e8d35d2dbeecc52d849181
+  - file: effect/mv_anran_daimu/frame_003.png
+    bytes: 395045
+    sha256: f3d87cc1313ac199d9da5d90aef7ac69dd636b0427a1c72447bf05149ae94e0b
+  - file: effect/mv_anran_daimu/preview_black.png
+    bytes: 1424208
+    sha256: 3db95bad3fd5bf5fbdb3dbddf86f3451e5b6f8ddb3e9b8f66892485c5b68f1c8
+  - file: effect/mv_anran_daimu/preview_gray.png
+    bytes: 1332128
+    sha256: acd26f2f1daf77e7ff319ad65d5c90b6ba3b01e4e4e67a77265e2d90e4ad436c
+  - file: effect/mv_anran_daimu/preview_white.png
+    bytes: 1387135
+    sha256: c24578d5c4edecdea31210da695ea30c971f48e5b39d01c79221b0da198c3422
+  - file: effect/mv_anran_daimu/quality.json
+    bytes: 1033
+    sha256: 5aefc3f2bda8adb7680b9567b7f52df98183c42c741986e7db8704b93ded803b
+  - file: effect/mv_anran_daimu/source_sheet.png
+    bytes: 2121861
+    sha256: 7a57ba05d96e8ad48141e26c6c1b0be2544c147aa9d4d7d8b016f99687fcc6b6
+- id: vfx_mv_anran_xiangru__effect_base01
+  file: effect/mv_anran_xiangru/source_sheet.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / mv_anran_xiangru 白底四帧原料（原创扩展：阴青水墨）
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for sk_anran (Melancholy
+    Palm), ONLY disembodied energy, not a person or hand. Exactly four sequential frames in a perfectly regular 2-column
+    by 2-row sheet, canvas 1536x1024, each cell 768x512. Pure solid white #FFFFFF background everywhere outside painted
+    energy, no paper texture. No grid lines, borders, labels, letters, symbols, shadows, landscape, character, anatomy,
+    weapons, dragons, or literal animals. Read frames top-left, top-right, bottom-left, bottom-right: gathering, release,
+    full strength, dissipating. Keep the same shape identity and the broad emission root at local (128,256) in EVERY
+    cell, direction right. Energy extends to local x=650, with at least 48 pixels of clean white clearance at all edges;
+    no overlap between cells. Broad open root approximately 110 pixels high, softly transparent at its left base so it
+    will join a palm in later compositing; do not draw the palm. Keep each frame''s main center axis and silhouette nearly
+    the same, vary density, wisps and intensity without translating. Palette muted deep blue-green teal and desaturated
+    cyan with charcoal ink, watery translucent layered Chinese ink-wash, dry-brush gaps as holes, fine dissolving edges.
+    No white painted highlights, no neon bloom, no solid 3D objects. A continuous low forward palm-pressure sweep with
+    wide root, NOT a narrow laser or missile.
+
+    Primary request: unique ultimate Xiang Ru Fei Fei (wandering imagination), an ORIGINAL visual metaphor: exactly five
+    faint interwoven curved cyan ink filaments, all connected to one broad emission root, drifting in a shallow fan and
+    folding back into a forward palm-wind crest. A layered dreamy gust with translucent gaps, NOT five separate bullets
+    or five hit indicators. Same coherent silhouette in every frame.'
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: built-in image_gen
+  model: built-in image_gen (underlying image model not disclosed)
+  effort: not exposed
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f47c-141d-71d1-a110-8faff69f7d51/exec-d02c1896-ce7d-4b5c-ade9-cdf0c7209d44.png
+  size: 1536x1024
+  sha256: 31c42452714c5129a0ac0af8cdc2673388f7300f157586f0eb9bec3ee689026a
+  status: candidate
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 原著意境沿用 skills-daojia §4.3；青色与造型为原创扩展。原著招名/版本（待考）。白底原件逐字节保存，cut_frames.py 切帧，透明帧为 straight alpha。
+  files:
+  - effect/mv_anran_xiangru/effect-set.yaml
+  - effect/mv_anran_xiangru/frame_000.png
+  - effect/mv_anran_xiangru/frame_001.png
+  - effect/mv_anran_xiangru/frame_002.png
+  - effect/mv_anran_xiangru/frame_003.png
+  - effect/mv_anran_xiangru/preview_black.png
+  - effect/mv_anran_xiangru/preview_gray.png
+  - effect/mv_anran_xiangru/preview_white.png
+  - effect/mv_anran_xiangru/quality.json
+  - effect/mv_anran_xiangru/source_sheet.png
+  file_integrity:
+  - file: effect/mv_anran_xiangru/effect-set.yaml
+    bytes: 968
+    sha256: 75a3ca9e88d65b4d7381a34e29cb6559ac30d0804cdebf5465362eb2f2ec6319
+  - file: effect/mv_anran_xiangru/frame_000.png
+    bytes: 403849
+    sha256: b4045c61427b4203b83c918044a098e454502eff46e6b23a0ece3a1a9879662d
+  - file: effect/mv_anran_xiangru/frame_001.png
+    bytes: 439123
+    sha256: e102851abd4de63b080555b8629634f72c87386be3f8d2fe5a8485c83d8e88c5
+  - file: effect/mv_anran_xiangru/frame_002.png
+    bytes: 494259
+    sha256: aab033e934c98f99b8d0d3b0da0af5b3eaef7bfb6e436cb0ce7bb76f21db7858
+  - file: effect/mv_anran_xiangru/frame_003.png
+    bytes: 406953
+    sha256: 9c7c48929a59fcd13cdf26b556f033e2ce56dd87b8c1902576d1202975318bf4
+  - file: effect/mv_anran_xiangru/preview_black.png
+    bytes: 1383937
+    sha256: 2a822f036d389260d64e3e00c9df8d888fc537ef0aaab0c03bde94f147aa3586
+  - file: effect/mv_anran_xiangru/preview_gray.png
+    bytes: 1237965
+    sha256: bbd9c114a9fd10d0db7a0fad14b10403ac342f77f0d948fb660e8d52fc9a52d9
+  - file: effect/mv_anran_xiangru/preview_white.png
+    bytes: 1312773
+    sha256: 222a632068a38881c9c070d863f4f406f4bd2fab4b7f420cef76c2d04ec88335
+  - file: effect/mv_anran_xiangru/quality.json
+    bytes: 1033
+    sha256: 28c6553e02bb58cf3d80aa3a256dc63f5f7c02c0f7af628ba675f577fee5eec4
+  - file: effect/mv_anran_xiangru/source_sheet.png
+    bytes: 2093192
+    sha256: 31c42452714c5129a0ac0af8cdc2673388f7300f157586f0eb9bec3ee689026a
+- id: vfx_mv_anran_xiaohun__effect_base01
+  file: effect/mv_anran_xiaohun/source_sheet.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / mv_anran_xiaohun 白底四帧原料（原创扩展：阴青水墨）
+  prompt: 'Use case: stylized-concept. Asset type: Chinese wuxia game VFX source sprite sheet for sk_anran (Melancholy
+    Palm), ONLY disembodied energy, not a person or hand. Exactly four sequential frames in a perfectly regular 2-column
+    by 2-row sheet, canvas 1536x1024, each cell 768x512. Pure solid white #FFFFFF background everywhere outside painted
+    energy, no paper texture. No grid lines, borders, labels, letters, symbols, shadows, landscape, character, anatomy,
+    weapons, dragons, or literal animals. Read frames top-left, top-right, bottom-left, bottom-right: gathering, release,
+    full strength, dissipating. Keep the same shape identity and the broad emission root at local (128,256) in EVERY
+    cell, direction right. Energy extends to local x=650, with at least 48 pixels of clean white clearance at all edges;
+    no overlap between cells. Broad open root approximately 110 pixels high, softly transparent at its left base so it
+    will join a palm in later compositing; do not draw the palm. Keep each frame''s main center axis and silhouette nearly
+    the same, vary density, wisps and intensity without translating. Palette muted deep blue-green teal and desaturated
+    cyan with charcoal ink, watery translucent layered Chinese ink-wash, dry-brush gaps as holes, fine dissolving edges.
+    No white painted highlights, no neon bloom, no solid 3D objects. A continuous low forward palm-pressure sweep with
+    wide root, NOT a narrow laser or missile.
+
+    Primary request: unique ultimate An Ran Xiao Hun, an ORIGINAL visual metaphor of parting and dissipating spirit:
+    a broad weighty teal palm-pressure surge made of two parted curling ink folds enclosing an empty crescent-shaped
+    hollow; the leading edge breaks into a few sparse ash-like cyan motes. Sorrowful, powerful but restrained, no literal
+    ghosts, faces, skulls or people. Continuous source-root connection.
+
+    CORRECTION FOR CANDIDATE 2: Prioritize clean isolation above size. Leave a very wide EMPTY WHITE gutter between rows
+    and columns. In EVERY 768x512 cell, ALL painted marks including pale wisps and scattered specks must be entirely
+    inside x=100..650, y=110..390. Thus root center is now (128,256), root no taller than 110. Do not enlarge the peak
+    frame. Four small isolated identical-size gusts, no marks near any panel boundary. The lower-left strongest frame
+    MUST fit this same central bounding box. White margins are mandatory. Keep the two parted curling folds and crescent
+    hollow.'
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: built-in image_gen
+  model: built-in image_gen (underlying image model not disclosed)
+  effort: not exposed
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f47c-141d-71d1-a110-8faff69f7d51/exec-c573361a-a30d-4f71-8620-604cdd11d1cc.png
+  size: 1536x1024
+  sha256: 26b30bd8d5d38ef2c43421ec10e4a6011d21ec6b61455d791093c20fec8c6f4b
+  status: candidate
+  candidate_count: 2
+  selected_candidate: 2
+  notes: 原著意境沿用 skills-daojia §4.3；青色与造型为原创扩展。原著招名/版本（待考）。白底原件逐字节保存，cut_frames.py 切帧，透明帧为 straight alpha。 首选上下格串帧已淘汰；完整弃选提示词与路径见
+    source_requests.json。
+  files:
+  - effect/mv_anran_xiaohun/effect-set.yaml
+  - effect/mv_anran_xiaohun/frame_000.png
+  - effect/mv_anran_xiaohun/frame_001.png
+  - effect/mv_anran_xiaohun/frame_002.png
+  - effect/mv_anran_xiaohun/frame_003.png
+  - effect/mv_anran_xiaohun/preview_black.png
+  - effect/mv_anran_xiaohun/preview_gray.png
+  - effect/mv_anran_xiaohun/preview_white.png
+  - effect/mv_anran_xiaohun/quality.json
+  - effect/mv_anran_xiaohun/source_sheet.png
+  file_integrity:
+  - file: effect/mv_anran_xiaohun/effect-set.yaml
+    bytes: 968
+    sha256: 8b014f1ca402e2bd3c67611296cbe12139ad1b20d864eca30d1f4fe5728a1abd
+  - file: effect/mv_anran_xiaohun/frame_000.png
+    bytes: 178297
+    sha256: 2caa5dae4b3546a4fe1352bb6f159283cce742df3f76e844d3faf2fc36adcf9b
+  - file: effect/mv_anran_xiaohun/frame_001.png
+    bytes: 191861
+    sha256: 2674f2ba229af94a9fc4ad57fa3857da282f71e2646bd5c7e3b2cf3c0ad6cd98
+  - file: effect/mv_anran_xiaohun/frame_002.png
+    bytes: 239893
+    sha256: f6140e11ef4a32a266c68816bcbbd7a048739aea62d3ffc2f89b529a99012cd4
+  - file: effect/mv_anran_xiaohun/frame_003.png
+    bytes: 187068
+    sha256: 23c9654578a024354c8575ccc79ce377618b7a9dd63964d1fda1fe4cd7c5eb34
+  - file: effect/mv_anran_xiaohun/preview_black.png
+    bytes: 646093
+    sha256: 4c24b395246669d27025b7cca9f049b6d5105d7e143168b2cb28165dc2d9e409
+  - file: effect/mv_anran_xiaohun/preview_gray.png
+    bytes: 589092
+    sha256: 2b5c884944fd60a99d7c8f67faa6fbf4d6e1bd9c86eb1668f1fe2e267bd93a75
+  - file: effect/mv_anran_xiaohun/preview_white.png
+    bytes: 608669
+    sha256: 15ae75c885e217a67cf93228d3dd002f63dd20fe82e42cf2abcf493b4a51748e
+  - file: effect/mv_anran_xiaohun/quality.json
+    bytes: 1029
+    sha256: 1987498b990e251d83309a45d9867646eb545dab7df378bce3cc50a13fc6d9d8
+  - file: effect/mv_anran_xiaohun/source_sheet.png
+    bytes: 1432320
+    sha256: 26b30bd8d5d38ef2c43421ec10e4a6011d21ec6b61455d791093c20fec8c6f4b
+- id: vfx_mv_anran_daimu__base01
+  file: moves/mv_anran_daimu/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 呆若木鸡（绝招；非外放）
+  prompt: 程序合成：呆若木鸡，复用 effect/mv_anran_daimu 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=0°，节奏=wave；峰值 phase=0.5。图鉴单目标1格近身；不改玩法。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_daimu/composition.yaml
+  size: 1536x1024
+  sha256: 476516c8219eeb03dcd3ffc4f2536865f81b919ca5bbc61f9350eaaa6cd7a689
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_daimu
+  pipeline: two-part
+  code: moves/mv_anran_daimu/demo.html
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_anran_daimu/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴单目标1格近身；不改玩法。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_daimu/composition.yaml
+  - moves/mv_anran_daimu/composition.json
+  - moves/mv_anran_daimu/peak.png
+  - moves/mv_anran_daimu/demo.html
+  file_integrity:
+  - file: moves/mv_anran_daimu/composition.yaml
+    bytes: 943
+    sha256: 524bbfc6078253c02f1604e1722a79fcbb19899766e552e1755bbdaed40d2349
+  - file: moves/mv_anran_daimu/composition.json
+    bytes: 3314
+    sha256: 33ce16427711a0f0cad83badabbebe3cf5be8422175b66c023783dcd573b13ce
+  - file: moves/mv_anran_daimu/peak.png
+    bytes: 292540
+    sha256: 476516c8219eeb03dcd3ffc4f2536865f81b919ca5bbc61f9350eaaa6cd7a689
+  - file: moves/mv_anran_daimu/demo.html
+    bytes: 2566169
+    sha256: c7705a2168436b5d16aac23dccaaeb45ac107cf39cac7e81886006ed481cb1ce
+- id: vfx_mv_anran_daoxing__base01
+  file: moves/mv_anran_daoxing/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 倒行逆施（普通招；非外放）
+  prompt: 程序合成：倒行逆施，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=-12°，节奏=pulse；峰值 phase=0.5。图鉴仅给aoe_behind r2，未显式给range；range_hex=1仅为绕背后接触示意【建议值】，不将r2当作射程。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_daoxing/composition.yaml
+  size: 1536x1024
+  sha256: 7b5e6f2b7257517313d959d0fa36fe00eedc9c7dea9f91af237d18628d83d5a3
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_daoxing
+  pipeline: two-part
+  code: moves/mv_anran_daoxing/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴仅给aoe_behind r2，未显式给range；range_hex=1仅为绕背后接触示意【建议值】，不将r2当作射程。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_daoxing/composition.yaml
+  - moves/mv_anran_daoxing/composition.json
+  - moves/mv_anran_daoxing/peak.png
+  - moves/mv_anran_daoxing/demo.html
+  file_integrity:
+  - file: moves/mv_anran_daoxing/composition.yaml
+    bytes: 1005
+    sha256: 47104bf9588c3b4d72232d73174bb2759dd79fbfbccc4ed2866dc37bb190b106
+  - file: moves/mv_anran_daoxing/composition.json
+    bytes: 3304
+    sha256: 452d519b2b1613dc4cd1b8e39c251753e6d8f885d280ccba65768310df379e45
+  - file: moves/mv_anran_daoxing/peak.png
+    bytes: 348819
+    sha256: 7b5e6f2b7257517313d959d0fa36fe00eedc9c7dea9f91af237d18628d83d5a3
+  - file: moves/mv_anran_daoxing/demo.html
+    bytes: 2101223
+    sha256: 23cb3b1df13858273ddb88a9888904d2f482087b53589007b52b93da870959df
+- id: vfx_mv_anran_feiqin__base01
+  file: moves/mv_anran_feiqin/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 废寝忘食（普通招；非外放）
+  prompt: 程序合成：废寝忘食，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=0°，节奏=pulse；峰值 phase=0.5。图鉴单目标1格近身；不改玩法。 几何与节奏真值为本招
+    composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_feiqin/composition.yaml
+  size: 1536x1024
+  sha256: d55571c7c7a3485d86402337dc42377f5140d2699a061e5ea8be53ce6dc7c0ea
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_feiqin
+  pipeline: two-part
+  code: moves/mv_anran_feiqin/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴单目标1格近身；不改玩法。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_feiqin/composition.yaml
+  - moves/mv_anran_feiqin/composition.json
+  - moves/mv_anran_feiqin/peak.png
+  - moves/mv_anran_feiqin/demo.html
+  file_integrity:
+  - file: moves/mv_anran_feiqin/composition.yaml
+    bytes: 935
+    sha256: 59135dddeb613856efd312af133594f3539d8595fd1bbc722adaff76541de70e
+  - file: moves/mv_anran_feiqin/composition.json
+    bytes: 3300
+    sha256: a9372c27b223b631be693e12fc06b65565c307dd708a0237f430c1557028af4c
+  - file: moves/mv_anran_feiqin/peak.png
+    bytes: 342648
+    sha256: d55571c7c7a3485d86402337dc42377f5140d2699a061e5ea8be53ce6dc7c0ea
+  - file: moves/mv_anran_feiqin/demo.html
+    bytes: 2094215
+    sha256: 8db5998cc61bb4f6c7dc43b976428ad4c0942621d6371128f091a51921327626
+- id: vfx_mv_anran_guxing__base01
+  file: moves/mv_anran_guxing/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 孤形只影（普通招；非外放）
+  prompt: 程序合成：孤形只影，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=-5°，节奏=pulse；峰值 phase=0.5。图鉴单目标1格近身；不改玩法。 几何与节奏真值为本招
+    composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_guxing/composition.yaml
+  size: 1536x1024
+  sha256: 174b8cae26bb8d58e107c7686ea60ff42115661b85c8821a76b7f2153eb4d9f8
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_guxing
+  pipeline: two-part
+  code: moves/mv_anran_guxing/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴单目标1格近身；不改玩法。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_guxing/composition.yaml
+  - moves/mv_anran_guxing/composition.json
+  - moves/mv_anran_guxing/peak.png
+  - moves/mv_anran_guxing/demo.html
+  file_integrity:
+  - file: moves/mv_anran_guxing/composition.yaml
+    bytes: 936
+    sha256: 29a9472a28be3eb6431444bcf166aabc6832630b3b5070c8204fea63d6ac6241
+  - file: moves/mv_anran_guxing/composition.json
+    bytes: 3301
+    sha256: a467337afa1c591adf07c2163b783063dbb7b34bfd83f6b6700ab8f17ff181eb
+  - file: moves/mv_anran_guxing/peak.png
+    bytes: 346504
+    sha256: 174b8cae26bb8d58e107c7686ea60ff42115661b85c8821a76b7f2153eb4d9f8
+  - file: moves/mv_anran_guxing/demo.html
+    bytes: 2100168
+    sha256: 44456e2b98df0f957a323b0b9f00c30204e0948b50e0fc03edffe020397311f8
+- id: vfx_mv_anran_libucongxin__base01
+  file: moves/mv_anran_libucongxin/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 力不从心（普通招；非外放）
+  prompt: 程序合成：力不从心，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=160px，方向=0°，节奏=pulse；峰值 phase=0.5。自指架势掌边凝劲；不展示尚未触发的反击。range_hex=0为自指示意。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_libucongxin/composition.yaml
+  size: 1536x1024
+  sha256: 5df79ace6f7f03b8981065b5b6d6cae8bc2f43a2b777e6b4dd62f42ea7ee6706
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_libucongxin
+  pipeline: two-part
+  code: moves/mv_anran_libucongxin/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 自指架势掌边凝劲；不展示尚未触发的反击。range_hex=0为自指示意。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_libucongxin/composition.yaml
+  - moves/mv_anran_libucongxin/composition.json
+  - moves/mv_anran_libucongxin/peak.png
+  - moves/mv_anran_libucongxin/demo.html
+  file_integrity:
+  - file: moves/mv_anran_libucongxin/composition.yaml
+    bytes: 976
+    sha256: 12a32e09ebf2b72689fdccc63c136ef7a74074d95e49d4a45c5d2eb14ed600a9
+  - file: moves/mv_anran_libucongxin/composition.json
+    bytes: 3313
+    sha256: 49a0fae71637d050b5969d41795ed538e3e0c99345067902e913806841f0d584
+  - file: moves/mv_anran_libucongxin/peak.png
+    bytes: 249231
+    sha256: 5df79ace6f7f03b8981065b5b6d6cae8bc2f43a2b777e6b4dd62f42ea7ee6706
+  - file: moves/mv_anran_libucongxin/demo.html
+    bytes: 2017612
+    sha256: dedf6a2912f35850a51019c5be079e9e4fdca7a9d83f615ee01e408427cd7dfc
+- id: vfx_mv_anran_liushen__base01
+  file: moves/mv_anran_liushen/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 六神不安（普通招；非外放）
+  prompt: 程序合成：六神不安，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=0°，节奏=pulse；峰值 phase=0.5。自身周边范围中的单个掌劲片段；最终六邻命中由Core安排，不以单张图推导整圈。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_liushen/composition.yaml
+  size: 1536x1024
+  sha256: 3c0b26430bdee1284e5d2ee91ff4e164d46bf05dbf5fe9373fcc5e318d5417ff
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_liushen
+  pipeline: two-part
+  code: moves/mv_anran_liushen/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 自身周边范围中的单个掌劲片段；最终六邻命中由Core安排，不以单张图推导整圈。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_liushen/composition.yaml
+  - moves/mv_anran_liushen/composition.json
+  - moves/mv_anran_liushen/peak.png
+  - moves/mv_anran_liushen/demo.html
+  file_integrity:
+  - file: moves/mv_anran_liushen/composition.yaml
+    bytes: 987
+    sha256: e06b78a00ede4cffeaa3a8924ef153e5e4ea42e6bcda7a8202547b67d393a4ff
+  - file: moves/mv_anran_liushen/composition.json
+    bytes: 3304
+    sha256: aed1d560fa69c090b5bd7a8f02f70bbd8f276687c442c99eb6a4da65338483e9
+  - file: moves/mv_anran_liushen/peak.png
+    bytes: 369383
+    sha256: 3c0b26430bdee1284e5d2ee91ff4e164d46bf05dbf5fe9373fcc5e318d5417ff
+  - file: moves/mv_anran_liushen/demo.html
+    bytes: 2115043
+    sha256: 974c3e7a5590a66fdd3d83ba7dba4cbde9f3363831a5cc1fb7c6e17feb54cc82
+- id: vfx_mv_anran_mianwu__base01
+  file: moves/mv_anran_mianwu/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 面无人色（普通招；非外放）
+  prompt: 程序合成：面无人色，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=-6°，节奏=pulse；峰值 phase=0.5。图鉴单目标1格近身；不改玩法。 几何与节奏真值为本招
+    composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_mianwu/composition.yaml
+  size: 1536x1024
+  sha256: 8627519f9fb697c304f66567841b5e5c14fae2bed0f0945800b1d534d88adcec
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_mianwu
+  pipeline: two-part
+  code: moves/mv_anran_mianwu/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴单目标1格近身；不改玩法。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_mianwu/composition.yaml
+  - moves/mv_anran_mianwu/composition.json
+  - moves/mv_anran_mianwu/peak.png
+  - moves/mv_anran_mianwu/demo.html
+  file_integrity:
+  - file: moves/mv_anran_mianwu/composition.yaml
+    bytes: 936
+    sha256: 730d55213a9079a205c40f79c222a8382b5329b8c5eea2a9d3a4ae808a00873e
+  - file: moves/mv_anran_mianwu/composition.json
+    bytes: 3301
+    sha256: 12865a617ddc1c72e2428f3f60563fc58faa007821bafed69474ede09f058d75
+  - file: moves/mv_anran_mianwu/peak.png
+    bytes: 346849
+    sha256: 8627519f9fb697c304f66567841b5e5c14fae2bed0f0945800b1d534d88adcec
+  - file: moves/mv_anran_mianwu/demo.html
+    bytes: 2100248
+    sha256: 072a98d84c32ec4ff28603971014d94bf302d9f992463811413eba6f18ead3df
+- id: vfx_mv_anran_paihuai__base01
+  file: moves/mv_anran_paihuai/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 徘徊空谷（普通招；非外放）
+  prompt: 程序合成：徘徊空谷，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=8°，节奏=pulse；峰值 phase=0.5。图鉴1–3是冲刺距离；本图只演示到位后的接触掌劲，后撤交运行时。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_paihuai/composition.yaml
+  size: 1536x1024
+  sha256: 137d80f689e7bc0bb7740375425f062094bdd88757d7ab0c593cbc40f4f2b56b
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_paihuai
+  pipeline: two-part
+  code: moves/mv_anran_paihuai/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴1–3是冲刺距离；本图只演示到位后的接触掌劲，后撤交运行时。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_paihuai/composition.yaml
+  - moves/mv_anran_paihuai/composition.json
+  - moves/mv_anran_paihuai/peak.png
+  - moves/mv_anran_paihuai/demo.html
+  file_integrity:
+  - file: moves/mv_anran_paihuai/composition.yaml
+    bytes: 968
+    sha256: 222902e62c7efa5578dfedc72a91d97bd6b5bc35eeef7346676ad765fadc365f
+  - file: moves/mv_anran_paihuai/composition.json
+    bytes: 3302
+    sha256: dfd61a3864eda84afa41596248cc01425488c3192b981958af40a3b5e0ab3c76
+  - file: moves/mv_anran_paihuai/peak.png
+    bytes: 347544
+    sha256: 137d80f689e7bc0bb7740375425f062094bdd88757d7ab0c593cbc40f4f2b56b
+  - file: moves/mv_anran_paihuai/demo.html
+    bytes: 2100105
+    sha256: 1566b65b41c70d95357f984c2aeab293e4411c4c6d6138c786feb20f4f86cdc1
+- id: vfx_mv_anran_qiongtu__base01
+  file: moves/mv_anran_qiongtu/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 穷途末路（普通招；非外放）
+  prompt: 程序合成：穷途末路，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=0°，节奏=pulse；峰值 phase=0.5。图鉴单目标1格近身；不改玩法。 几何与节奏真值为本招
+    composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_qiongtu/composition.yaml
+  size: 1536x1024
+  sha256: d55571c7c7a3485d86402337dc42377f5140d2699a061e5ea8be53ce6dc7c0ea
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_qiongtu
+  pipeline: two-part
+  code: moves/mv_anran_qiongtu/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴单目标1格近身；不改玩法。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_qiongtu/composition.yaml
+  - moves/mv_anran_qiongtu/composition.json
+  - moves/mv_anran_qiongtu/peak.png
+  - moves/mv_anran_qiongtu/demo.html
+  file_integrity:
+  - file: moves/mv_anran_qiongtu/composition.yaml
+    bytes: 937
+    sha256: 53c6aec8c88af6492c0c5fd4de1af87d2c7069a69baac94e74e2fa19d49efad5
+  - file: moves/mv_anran_qiongtu/composition.json
+    bytes: 3302
+    sha256: cd35223328a88c5633053c79219f1ba4ae23a49481cc23626ca711f292fe9ad4
+  - file: moves/mv_anran_qiongtu/peak.png
+    bytes: 342648
+    sha256: d55571c7c7a3485d86402337dc42377f5140d2699a061e5ea8be53ce6dc7c0ea
+  - file: moves/mv_anran_qiongtu/demo.html
+    bytes: 2094217
+    sha256: 4694acf3e1a8a8e8d5785384a2dfd85a52cf507f533b18823ff3862fd9b8b1fb
+- id: vfx_mv_anran_qiren__base01
+  file: moves/mv_anran_qiren/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 杞人忧天（普通招；非外放）
+  prompt: 程序合成：杞人忧天，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=-20°，节奏=pulse；峰值 phase=0.5。图鉴1–3是跃击选点距离；本图只演示到位后1格接触掌劲。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_qiren/composition.yaml
+  size: 1536x1024
+  sha256: 9498cb22652e9b766f6624562fcbd830bd354c9e260567c9a064187b1ceaa86f
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_qiren
+  pipeline: two-part
+  code: moves/mv_anran_qiren/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴1–3是跃击选点距离；本图只演示到位后1格接触掌劲。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_qiren/composition.yaml
+  - moves/mv_anran_qiren/composition.json
+  - moves/mv_anran_qiren/peak.png
+  - moves/mv_anran_qiren/demo.html
+  file_integrity:
+  - file: moves/mv_anran_qiren/composition.yaml
+    bytes: 952
+    sha256: 677774f0b046eb9228a0ba93ee6740a7534fc52aae7eb08821308c897b54a7ce
+  - file: moves/mv_anran_qiren/composition.json
+    bytes: 3300
+    sha256: 6669672ed166966a04aeba6f15c92f3b6218d90ccb98ffcc5602d21f7272e783
+  - file: moves/mv_anran_qiren/peak.png
+    bytes: 354047
+    sha256: 9498cb22652e9b766f6624562fcbd830bd354c9e260567c9a064187b1ceaa86f
+  - file: moves/mv_anran_qiren/demo.html
+    bytes: 2103767
+    sha256: 79111376e6dc166f7b77bcfcc6ce2c41e6a85c87a1fe7c38495b61c842ffccc2
+- id: vfx_mv_anran_tuoni__base01
+  file: moves/mv_anran_tuoni/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 拖泥带水（普通招；非外放）
+  prompt: 程序合成：拖泥带水，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=12°，节奏=pulse；峰值 phase=0.5。图鉴2段由动作事件同步；四张原料帧不是伤害段。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_tuoni/composition.yaml
+  size: 1536x1024
+  sha256: ed91bc4e8775f6d2fad554d8e01664d2ead78339bb83719f3cdcd9d7cfc79d59
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_tuoni
+  pipeline: two-part
+  code: moves/mv_anran_tuoni/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴2段由动作事件同步；四张原料帧不是伤害段。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_tuoni/composition.yaml
+  - moves/mv_anran_tuoni/composition.json
+  - moves/mv_anran_tuoni/peak.png
+  - moves/mv_anran_tuoni/demo.html
+  file_integrity:
+  - file: moves/mv_anran_tuoni/composition.yaml
+    bytes: 940
+    sha256: 9b9266a27babd049eec323035e963cdf5f65eb43c36ab1cf3ea4d6b20a781ac8
+  - file: moves/mv_anran_tuoni/composition.json
+    bytes: 3299
+    sha256: d377a703c10f86da12a03241dd5f452b9d784780b4b9948dd75647081feab32c
+  - file: moves/mv_anran_tuoni/peak.png
+    bytes: 349021
+    sha256: ed91bc4e8775f6d2fad554d8e01664d2ead78339bb83719f3cdcd9d7cfc79d59
+  - file: moves/mv_anran_tuoni/demo.html
+    bytes: 2102598
+    sha256: b229db489f2efa48df33395d5bd190936f6cd09b54f7b5460e77e39d3fe9789a
+- id: vfx_mv_anran_wuzhong__base01
+  file: moves/mv_anran_wuzhong/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 无中生有（普通招；非外放）
+  prompt: 程序合成：无中生有，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=0°，节奏=pulse；峰值 phase=0.5。图鉴单目标1格近身；不改玩法。 几何与节奏真值为本招
+    composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_wuzhong/composition.yaml
+  size: 1536x1024
+  sha256: d55571c7c7a3485d86402337dc42377f5140d2699a061e5ea8be53ce6dc7c0ea
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_wuzhong
+  pipeline: two-part
+  code: moves/mv_anran_wuzhong/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴单目标1格近身；不改玩法。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_wuzhong/composition.yaml
+  - moves/mv_anran_wuzhong/composition.json
+  - moves/mv_anran_wuzhong/peak.png
+  - moves/mv_anran_wuzhong/demo.html
+  file_integrity:
+  - file: moves/mv_anran_wuzhong/composition.yaml
+    bytes: 937
+    sha256: 30a65f9af604b26bf8eaae6d19fb1aeb29dfac00365b359ab98f59519f28476d
+  - file: moves/mv_anran_wuzhong/composition.json
+    bytes: 3302
+    sha256: d69feba0802b2d72edd39325e075a166f5b492a377121f15084e185c2660894a
+  - file: moves/mv_anran_wuzhong/peak.png
+    bytes: 342648
+    sha256: d55571c7c7a3485d86402337dc42377f5140d2699a061e5ea8be53ce6dc7c0ea
+  - file: moves/mv_anran_wuzhong/demo.html
+    bytes: 2094217
+    sha256: 01429b5e4caeaf6dcce383a67869b531403dfc7191bc6d2192642e8f634a17d6
+- id: vfx_mv_anran_xiangru__base01
+  file: moves/mv_anran_xiangru/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 想入非非（绝招；非外放）
+  prompt: 程序合成：想入非非，复用 effect/mv_anran_xiangru 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=-5°，节奏=wave；峰值 phase=0.5。图鉴1–2、5段随机落点；本图选1格单片段，飘带数不定义目标数或命中次数。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_xiangru/composition.yaml
+  size: 1536x1024
+  sha256: 630973eddfe8b349f8578a3eda7e1864e79f93b3dc561a1f0db61f186b8eb43d
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_xiangru
+  pipeline: two-part
+  code: moves/mv_anran_xiangru/demo.html
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_anran_xiangru/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴1–2、5段随机落点；本图选1格单片段，飘带数不定义目标数或命中次数。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_xiangru/composition.yaml
+  - moves/mv_anran_xiangru/composition.json
+  - moves/mv_anran_xiangru/peak.png
+  - moves/mv_anran_xiangru/demo.html
+  file_integrity:
+  - file: moves/mv_anran_xiangru/composition.yaml
+    bytes: 993
+    sha256: 4b34825961a7f55ed77d896b2da08d140008b40bcb3d440d5bc762d2682d691d
+  - file: moves/mv_anran_xiangru/composition.json
+    bytes: 3324
+    sha256: a196a9a6b162953e4b4af8eef2dd090d87007d3bca158561412c2f34b7884a42
+  - file: moves/mv_anran_xiangru/peak.png
+    bytes: 294092
+    sha256: 630973eddfe8b349f8578a3eda7e1864e79f93b3dc561a1f0db61f186b8eb43d
+  - file: moves/mv_anran_xiangru/demo.html
+    bytes: 2607215
+    sha256: 0dcb6781a6c00d8ab69a586cc873bebd310079894b6b80dd3fc8b1cf34103348
+- id: vfx_mv_anran_xiaohun__base01
+  file: moves/mv_anran_xiaohun/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 黯然销魂（绝招；非外放）
+  prompt: 程序合成：黯然销魂，复用 effect/mv_anran_xiaohun 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=0°，节奏=wave；峰值 phase=0.5。原创扩展总汇招；掌风形态不是原著原色描写，也不拆出17次新伤害。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_xiaohun/composition.yaml
+  size: 1536x1024
+  sha256: 06412d392cff1405ddaac5c7fb499b5a5379fa55fb6fd27d7904fa2faec14957
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_xiaohun
+  pipeline: two-part
+  code: moves/mv_anran_xiaohun/demo.html
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_anran_xiaohun/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 原创扩展总汇招；掌风形态不是原著原色描写，也不拆出17次新伤害。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_xiaohun/composition.yaml
+  - moves/mv_anran_xiaohun/composition.json
+  - moves/mv_anran_xiaohun/peak.png
+  - moves/mv_anran_xiaohun/demo.html
+  file_integrity:
+  - file: moves/mv_anran_xiaohun/composition.yaml
+    bytes: 981
+    sha256: b0dccd7f316566e853ca4a7d05e8bf5aaf83bd0b01f2967420c754e1e23324df
+  - file: moves/mv_anran_xiaohun/composition.json
+    bytes: 3323
+    sha256: 1696da4c59c444446c21ac23c2c214c45d479a487534f2be62a0da73944fe43a
+  - file: moves/mv_anran_xiaohun/peak.png
+    bytes: 275347
+    sha256: 06412d392cff1405ddaac5c7fb499b5a5379fa55fb6fd27d7904fa2faec14957
+  - file: moves/mv_anran_xiaohun/demo.html
+    bytes: 1530622
+    sha256: e9fc758cfd6d0153eeed022899afb617cfde94732cc3089597cfc7ecbed82ff9
+- id: vfx_mv_anran_xingshi__base01
+  file: moves/mv_anran_xingshi/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 行尸走肉（普通招；非外放）
+  prompt: 程序合成：行尸走肉，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=4°，节奏=pulse；峰值 phase=0.5。图鉴3段由动作事件同步；四张原料帧不是伤害段。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_xingshi/composition.yaml
+  size: 1536x1024
+  sha256: c210c8a109408e0da466568ff6abf6c63144b08b38addf4c20e43b1e97fa170a
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_xingshi
+  pipeline: two-part
+  code: moves/mv_anran_xingshi/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴3段由动作事件同步；四张原料帧不是伤害段。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_xingshi/composition.yaml
+  - moves/mv_anran_xingshi/composition.json
+  - moves/mv_anran_xingshi/peak.png
+  - moves/mv_anran_xingshi/demo.html
+  file_integrity:
+  - file: moves/mv_anran_xingshi/composition.yaml
+    bytes: 943
+    sha256: 8087358e4790b19d0da08d5fc662d3e7570952286e385ebf7d26af29207a95eb
+  - file: moves/mv_anran_xingshi/composition.json
+    bytes: 3302
+    sha256: 4df4a2e0ffc19395190b8b570f7b901f51ec6950b7fe858bc1ca3e6104539b09
+  - file: moves/mv_anran_xingshi/peak.png
+    bytes: 346475
+    sha256: c210c8a109408e0da466568ff6abf6c63144b08b38addf4c20e43b1e97fa170a
+  - file: moves/mv_anran_xingshi/demo.html
+    bytes: 2099313
+    sha256: da0771818fa90a7e5d932db9419d2908cb685eb2ac1be1f34e55f7c6a11398d1
+- id: vfx_mv_anran_xinjing__base01
+  file: moves/mv_anran_xinjing/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 心惊肉跳（普通招；非外放）
+  prompt: 程序合成：心惊肉跳，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=-8°，节奏=pulse；峰值 phase=0.5。图鉴单目标1格近身；不改玩法。 几何与节奏真值为本招
+    composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_xinjing/composition.yaml
+  size: 1536x1024
+  sha256: 6ef768b7e111641b98d771890289943405a94d55aabfface24c09383a7ea4bef
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_xinjing
+  pipeline: two-part
+  code: moves/mv_anran_xinjing/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴单目标1格近身；不改玩法。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_xinjing/composition.yaml
+  - moves/mv_anran_xinjing/composition.json
+  - moves/mv_anran_xinjing/peak.png
+  - moves/mv_anran_xinjing/demo.html
+  file_integrity:
+  - file: moves/mv_anran_xinjing/composition.yaml
+    bytes: 938
+    sha256: a47ff34217fd46823a3b0ed7eaa11dea526375c4333165fad293cd221cc396b8
+  - file: moves/mv_anran_xinjing/composition.json
+    bytes: 3303
+    sha256: b576d5b26d7ff4cc3c3f3b9addabc71aac321289947ad483b19bf593eb99c122
+  - file: moves/mv_anran_xinjing/peak.png
+    bytes: 347738
+    sha256: 6ef768b7e111641b98d771890289943405a94d55aabfface24c09383a7ea4bef
+  - file: moves/mv_anran_xinjing/demo.html
+    bytes: 2100598
+    sha256: 7a237d5c91b1c06212433184b04420aa4c4a6b023546749cc3d7e495119cc86a
+- id: vfx_mv_anran_yinhen__base01
+  file: moves/mv_anran_yinhen/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 饮恨吞声（普通招；非外放）
+  prompt: 程序合成：饮恨吞声，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=192px，方向=0°，节奏=pulse；峰值 phase=0.5。自指护体蓄力的掌边局部；不新增攻击或飞行弹体。range_hex=0为自指示意。
+    几何与节奏真值为本招 composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_yinhen/composition.yaml
+  size: 1536x1024
+  sha256: c2072a442bd28cf7927adae0a3e40166424ac867c05d5733a6ff4ca7d6ff4e49
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_yinhen
+  pipeline: two-part
+  code: moves/mv_anran_yinhen/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 自指护体蓄力的掌边局部；不新增攻击或飞行弹体。range_hex=0为自指示意。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_yinhen/composition.yaml
+  - moves/mv_anran_yinhen/composition.json
+  - moves/mv_anran_yinhen/peak.png
+  - moves/mv_anran_yinhen/demo.html
+  file_integrity:
+  - file: moves/mv_anran_yinhen/composition.yaml
+    bytes: 974
+    sha256: efd06492311b33fe893461e564d71ffa96abf009c830fc33c5c2ca90f5542689
+  - file: moves/mv_anran_yinhen/composition.json
+    bytes: 3302
+    sha256: 02ef4621fc7360a8b2422774384b52dd9a6fe55bfa8f6cd16c48e31f234a6298
+  - file: moves/mv_anran_yinhen/peak.png
+    bytes: 273889
+    sha256: c2072a442bd28cf7927adae0a3e40166424ac867c05d5733a6ff4ca7d6ff4e49
+  - file: moves/mv_anran_yinhen/demo.html
+    bytes: 2038677
+    sha256: 46bea7902b41b041d6cb26d059e1abe9f7837c074bf3764a665f5583149f8fec
+- id: vfx_mv_anran_yongren__base01
+  file: moves/mv_anran_yongren/peak.png
+  category: vfx
+  style: default
+  subject: 神雕书界 / 黯然销魂掌 / 庸人自扰（普通招；非外放）
+  prompt: 程序合成：庸人自扰，复用 effect/family 与共享 palm；阴青近身掌劲（原创扩展），L=256px，方向=-12°，节奏=pulse；峰值 phase=0.5。图鉴单目标1格近身；不改玩法。 几何与节奏真值为本招
+    composition.yaml；不再次调用图像生成。
+  negative: 无文字、水印、棋盘格、纸纹、真人肖像；不新增角色、兵器、判定范围或伤害段。
+  references: []
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: not applicable (deterministic composition)
+  effort: not applicable
+  created: '2026-09-30'
+  source_path: moves/mv_anran_yongren/composition.yaml
+  size: 1536x1024
+  sha256: 7b5e6f2b7257517313d959d0fa36fe00eedc9c7dea9f91af237d18628d83d5a3
+  status: candidate
+  skill_ref: sk_anran
+  move_ref: mv_anran_yongren
+  pipeline: two-part
+  code: moves/mv_anran_yongren/demo.html
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_dependency:
+    file: ../emitters/palm/source_palm.png
+    sha256: f0e83e6586baae3f7ece37510fcec6b9c75d3401a217bffd703bb4bb0f07322c
+    config: ../emitters/palm/emitter-plate.yaml
+    config_sha256: 049c508a57d728b3b814a6cbc5201414023e3e1f1a7b8e20346084f7c0654e13
+  notes: 图鉴单目标1格近身；不改玩法。 candidate仅为素材候选；非Core事件录制；浏览器/真机待实测。
+  files:
+  - moves/mv_anran_yongren/composition.yaml
+  - moves/mv_anran_yongren/composition.json
+  - moves/mv_anran_yongren/peak.png
+  - moves/mv_anran_yongren/demo.html
+  file_integrity:
+  - file: moves/mv_anran_yongren/composition.yaml
+    bytes: 939
+    sha256: 1b614928463acd1c28b8fa11f3c34ccc2d2e40cedbb0dba6671f382e54a8f0af
+  - file: moves/mv_anran_yongren/composition.json
+    bytes: 3304
+    sha256: ebbe266751a4dc6a02026f232baef070fcd0dda9c1a7420344bb4517e5a884b3
+  - file: moves/mv_anran_yongren/peak.png
+    bytes: 348819
+    sha256: 7b5e6f2b7257517313d959d0fa36fe00eedc9c7dea9f91af237d18628d83d5a3
+  - file: moves/mv_anran_yongren/demo.html
+    bytes: 2101223
+    sha256: e91517a4d1e1b786a9fef743a9be7d28298af75a798847bcd5c0d953070eba1a

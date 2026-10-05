@@ -1,0 +1,126 @@
+{
+  "id": "bld_kit_song_dali_yamen",
+  "type": "bld_kit_song_dali_yamen",
+  "w": 14,
+  "h": 11,
+  "subject": "1093年大理国官署衙门（建筑细部待考）",
+  "prompt": "Use case: precise-object-edit. Edit target: the attached Dali government compound map sprite. Preserve realistic gray tiles, timber, cream earth walls, empty court, gate, restrained vegetation, lighting upper left, RGBA transparent background. Redraw the entire compound with corrected rectangular plan, not a square plan. Camera is ORTHOGRAPHIC 2:1 dimetric, verticals vertical, BOTH horizontal ground axes slopes +0.5 and -0.5. The entrance-facing edge from screen LEFT ground corner to FRONT ground corner has length 14 units; edge FRONT to screen RIGHT ground corner is 11 units, ratio 14/11=1.273. This must be clear in the ground perimeter and all walls and roofs. On a 1536x1024 transparent canvas, use exactly these thin ground contact corners: LEFT (168,535), FRONT (840,871), RIGHT (1368,607), BACK (696,271). Thus from LEFT to FRONT is vector (+672,+336), from FRONT to RIGHT is (+528,-264). Front corner is visibly RIGHT of ground horizontal center, not centered. Build the gate front wall along LEFT-to-FRONT; right wall along FRONT-to-RIGHT. Leave these ground corners unobstructed, keep all buildings inside footprint and roofs complete with generous padding. The floor is a thin rhomboid earth-and-stone contact patch, not a thick base. Entire building architecture must match the new projection and rectangle; do not merely change transparent canvas. No grid lines, no guidelines, no text, no watermarks, no people, no modern items. Generate one repaired building.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_yamen_pre_review2",
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_yamen_pre_review2.png",
+      "sha256": "34ccf4cea9c97099ebe597beb96333f3e83f29bc6deb4a21c1a2f156159bf698",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-9ceff76d-be33-453a-8b93-af1b2dd90179.png",
+  "source_sha256": "802ce940f9f5a67cbf5d5b28123937d6290936228c1e2d05855c3a8b2664cb3c",
+  "created": "2026-09-30T10:50:01.562579+00:00",
+  "visual_review": "已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。衙门由近方底面重绘为14×11，两边投影协调。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。",
+  "candidate_count": 4,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-230d926d-443e-4ffe-9a96-a0769b31d3a6.png",
+      "prompt": "undefinedA dignified modest Dali government compound: single-story rear timber hall with broad gray tiled roof, open beaten-earth forecourt, low side service wings, restrained earth-red posts and plain cream walls, south entrance pavilion integrated in low perimeter wall. No text or official plaques, no flag. Footprint 14m east-west by11m north-south.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "6e6feb3de46a8aa5924d543af5e5cb0b60e0306ade03076caad0bd781db05231"
+    },
+    {
+      "phase": "review2",
+      "attempt": 2,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_yamen_review2_attempt02.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-9088ac9a-8dd3-498c-87c3-ba7654f71d4b.png",
+      "source_sha256": "81ba3448aeb89c706a78c545b9af801b949e0567f51c914eaf569ca727230a7b",
+      "reason": "右侧边缘达到画布边界，主体留边不足，淘汰",
+      "prompt": "Use case: precise-object-edit. Correct the supplied Dali yamen city-map sprite. KEEP its building design, materials, footprint ratio 14:11, lighting upper left. Need a clean standalone game sprite on TRUE TRANSPARENT RGBA with absolutely ZERO ambient glowing halo, ZERO gradient or shadows outside the thin ground contact rectangle. Make the building and ground fully OPAQUE, background alpha=0. The previous image has a smoky hazy aura around it: REMOVE that aura entirely. Orthographic 2:1 dimetric. BOTH ground axes must have absolute slope exactly 0.5. On 1536x1024 canvas, ground polygon should be LEFT (128,530), FRONT (844.8,888.4), RIGHT (1408,606.8), BACK (691.2,248.4). The front-left wall is 14 units and front-right wall 11 units. Ground front corner is right of ground center, and the right wall should rise slightly less steeply than in input. Align wall feet and roofs to this corrected view. Generous transparent margins. No text, labels, grid, persons, modern objects, watermark. Only one building, all roofs uncut."
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        102,
+        540
+      ],
+      [
+        861,
+        932
+      ]
+    ],
+    [
+      [
+        861,
+        932
+      ],
+      [
+        1463,
+        613
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      102,
+      540
+    ],
+    "front": [
+      861,
+      932
+    ],
+    "right": [
+      1463,
+      613
+    ]
+  },
+  "projection_review": "返修2人工读取实际接地底边点±3px；轴斜率0.516469/-0.529900；水平投影比1.260797，目录w/h=1.272727；独立64×32网格叠图复核，不以理想角点替代实测。",
+  "status": "candidate",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      254
+    ],
+    "transparent_pixels": 947992,
+    "partial_pixels": 624872,
+    "opaque_pixels": 0,
+    "bbox": [
+      65,
+      32,
+      1470,
+      984
+    ]
+  },
+  "candidate_history": [
+    {
+      "phase": "pre_review2",
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_yamen_pre_review2.png",
+      "source_record": "sources/rejected/bld_kit_song_dali_yamen_pre_review2.json",
+      "source_sha256": "34ccf4cea9c97099ebe597beb96333f3e83f29bc6deb4a21c1a2f156159bf698",
+      "reason": "合入前审核点名底面宽深比例或两轴不协调，见返修意见；原图和记录逐字节保留。"
+    },
+    {
+      "phase": "review2",
+      "attempt": 1,
+      "status": "selected",
+      "source_archive": "sources/bld_kit_song_dali_yamen.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-9ceff76d-be33-453a-8b93-af1b2dd90179.png",
+      "source_sha256": "802ce940f9f5a67cbf5d5b28123937d6290936228c1e2d05855c3a8b2664cb3c",
+      "reason": "本轮入选，几何残差见projection_review及meta"
+    },
+    {
+      "phase": "review2",
+      "attempt": 2,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_yamen_review2_attempt02.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-9088ac9a-8dd3-498c-87c3-ba7654f71d4b.png",
+      "source_sha256": "81ba3448aeb89c706a78c545b9af801b949e0567f51c914eaf569ca727230a7b",
+      "reason": "右侧边缘达到画布边界，主体留边不足，淘汰"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "bld_kit_ming_north_inn",
+  "subject": "明代北方客栈，12×9格，灰砖硬山二层客舍附小院（原创扩展；细部待考）",
+  "prompt": "Use case: sketch-to-render. Make this exact flat shape into one Ming northern Chinese inn property in realistic ancient Chinese hand-painted map art. Preserve shape's outer perimeter and keep its corners EXACTLY where they are, especially front point(800,900) and right point(1250,675). DO NOT enlarge or shift footprint. It is a12by9m rectangle in true2:1orthographic dimetric perspective. Front edge runs600right300down; right edge runs450right225up, slopes exactly plus/minus0.5. Set a believable two-storey grey-brick hard-gable grey-tile guest house with plain wood lattices and balcony within this polygon, a short attached wing and tiny rear courtyard. Build vertically upward; all architecture axes parallel to template edges. Thin stone apron following the template exactly, sharply visible left/front/right corners. Moderately weathered grey brick, subdued grey roof, brown wood, fine subtle texture, no stylized cartoon. Opaque architecture and paving on genuinely transparent alpha0 exterior. No background tint, glow or atmosphere. Upper-left natural light with minimal lower-right contact shadow confined to floor shape. No signs, people, text, modern objects, thick plinth, steps outside footprint or cut edges. Canvas1536x1024; left(200,600), front(800,900), right(1250,675), back(650,375). Highest priority EXACT polygon silhouette; buildings must conform to it.",
+  "references": [
+    {
+      "path": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_inn/r3_guide.png",
+      "sha256": "34aa9934ba9ad57a0cbf541dfaab82222e0682820b757c990ab65560aba748db",
+      "role": "image_gen精确几何参考；已view_image；非成品绘制"
+    }
+  ],
+  "created": "2026-09-30T22:43:17.953803+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46f-22f6-7223-b480-2d9dc63984cb/exec-275fcfee-2315-4eeb-bc3a-0e5666672fba.png",
+  "file": "bld_kit_ming_north_inn.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "736x512",
+  "sha256": "838abad981c2dbd7c2ef8b5d683d7d490ca0115cc35e155bed17a8ac8859831e",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_inn",
+    "footprint": [
+      12,
+      9
+    ],
+    "anchor": [
+      367.6798,
+      301.8085
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    12,
+    9
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 6.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_inn.png",
+  "source_sha256": "e1a3ac58127b347688210c3f3b56bc0c028b6195c699c29cd5237f547d060302",
+  "meta": "meta/bld_kit_ming_north_inn.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；第3轮底面双轴与宽深实测达标；仅原向单视图；拼接（待实测）。",
+  "candidate_count": 2,
+  "source_record": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_inn/revision.json",
+  "revision": 3,
+  "selected_candidate": 1,
+  "candidate_count_basis": "仅本轮 revision=3；旧轮记录归档于 previous_sources 文件",
+  "repair_record": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_inn/revision.json"
+}

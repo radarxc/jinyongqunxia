@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_tangjixingtaoyan
+name: 唐箕形陶砚
+kind: collectible
+sub: stationery
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H29](#src-h29)；准入：白马702—703；须核早期箕形砚断代
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangjixingtaoyan
+text:
+  desc: 外观：灰褐陶质箕形砚，前低后高。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,collector]}; giftValue=2; provenance=history。
+  lore: 故宫文房资料列有唐箕形陶砚，可据以构建朴素的文房礼物。宜送书吏与行旅文士；具体实物能否早至武周仍（待考），暂按同类器候选，取得与品相为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

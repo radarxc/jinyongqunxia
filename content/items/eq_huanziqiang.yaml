@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_huanziqiang
+name: 环子枪
+kind: weapon
+sub: spear
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·北宋（《武经总要》卷十三“环子枪”） （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/huanziqiang
+text:
+  desc: 外观：菱形枪锋下设小铁环，白蜡长杆约二点三米。
+  lore: 环子枪名见《武经总要》，本文以枪锋下的小铁环标识其制式。白蜡杆富韧性，适合拦拿、抖杆与直扎；环的尺寸、全枪比例、磨损和玩法品阶均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 42
+      qiAffinity: 100

@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_hanshasheying
+name: 含沙射影
+kind: hidden
+sub: gun
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《碧血剑》归属 （待考：核何铁手一脉与器物形制）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/hanshasheying
+text:
+  desc: 外观：乌木掌心机匣，黄铜细孔成扇面排列。 待运行时投影：aoe=cone; poisonCoat=true; range=3。
+  lore: （待考：核《碧血剑》中持有者、器形与施用情节）。当前按掌心乌木机匣处理，扇面细孔用来近距散射，机关须闭合保养；锥形范围与涂毒均属玩法原创扩展。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: gun
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 45
+      qiAffinity: 100

@@ -1,0 +1,33 @@
+{
+  "placement_attempts": 34,
+  "parcels": 21,
+  "city_id": "city_nanjing",
+  "road_cells": 973,
+  "buildings": 29,
+  "building_types": {
+    "bld_kit_song_dali_courtyard": 1,
+    "bld_kit_song_dali_guardhouse": 1,
+    "bld_kit_song_dali_house": 12,
+    "bld_kit_song_dali_inn": 1,
+    "bld_kit_song_dali_market_stall": 6,
+    "bld_kit_song_dali_shop": 4,
+    "bld_kit_song_dali_shrine": 1,
+    "bld_kit_song_dali_stable": 1,
+    "bld_kit_song_dali_warehouse": 1,
+    "bld_kit_song_dali_yamen": 1
+  },
+  "water_cells": 282,
+  "lake_cells": {},
+  "source_bridges": 0,
+  "assembled_bridges": 0,
+  "merged_bridge_groups": [],
+  "planning_walkable": 3538,
+  "runtime_hex_walkable": 2654,
+  "road_components": 1,
+  "required_components": 1,
+  "complete": true,
+  "missing_required": {},
+  "decorations": 89,
+  "generation_seconds": 1.1113,
+  "layout_sha256": "cf50e96ffaf6b16dd716db67f226c89098cafd525fa153c13adffd3e51da8828"
+}

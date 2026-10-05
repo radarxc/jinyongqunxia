@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_pirutiejia
+name: 皮绒贴甲
+kind: armor
+sub: innerArmor
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/pirutiejia
+text:
+  desc: 外观：深褐软皮短背心，内衬灰绒、细密缝线。 待运行时投影：resBleedPp=2。
+  lore: 皮绒贴甲以软皮夹灰绒缝成，穿在贴身中衣之外，可缓冲擦割并减少伤口崩裂。镖师常在长途后重抹皮脂，旧甲若发硬便不再可靠。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 22

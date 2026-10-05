@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_zhamabu
+name: 扎马步抄本
+kind: manual
+sub: copy
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_zhamabu
+text:
+  desc: 外观：清代灰白线装小册，粗麻双订。
+  lore: 武馆把站桩、呼吸和逐日加时的方法抄成掌心册页，功法与载体属 （原创扩展）。研读须先正膝胯，再守匀息，不可硬熬到姿势变形；汗渍见其贴身使用，抄本止于八层。
+extension:
+  type: manual
+  value:
+    skill: sk_zhamabu
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_zhamabu
+      readBre: 20
+      maxLayer: 8
+      cultivation: 400

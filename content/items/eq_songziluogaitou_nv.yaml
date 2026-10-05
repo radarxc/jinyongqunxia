@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_songziluogaitou_nv
+name: 宋紫罗盖头·女
+kind: armor
+sub: headwear
+grade: 4
+stack: 1
+chapters:
+- ch01_tianlong
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 盖头 · 宋（《清波杂志》所述唐帷帽遗制）· 出现书界 ch01/ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songziluogaitou_nv
+text:
+  desc: 外观：女款方幅淡紫罗盖头独立折叠陈列，不画人头。 待运行时投影：resMindPp=2; wearer=female。
+  lore: （原创扩展）据宋人笔记所述旧制意象重构，淡紫方幅罗帛四缘缀细绦，两角有小坠。出行时覆首蔽尘，风大则束在肩下；半透明材质仍需另配发巾。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7

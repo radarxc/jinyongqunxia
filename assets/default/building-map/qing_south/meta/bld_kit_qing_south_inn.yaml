@@ -1,0 +1,133 @@
+id: bld_kit_qing_south_inn
+status: candidate
+building:
+  type: bld_kit_qing_south_inn
+  footprint:
+  - 12
+  - 9
+  anchor:
+  - 479.2533
+  - 405.2702
+  era: qing_south
+anchor_px:
+- 479.2533
+- 405.2702
+footprint_m:
+- 12
+- 9
+footprint_source: design/22 §3.3 bld_kit_song_southern_inn
+logical_footprint_polygon_px:
+- - 143.25330000000002
+  - 381.2702
+- - 527.2533000000001
+  - 573.2701999999999
+- - 815.2533000000001
+  - 429.2702
+- - 431.2533
+  - 237.2702
+occluder_proxy_px:
+- 144
+- 153
+- 815
+- 582
+occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+entrance:
+  edge: S
+  offset_cells: 5
+entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
+collision_polygon_m:
+- - 0
+  - 0
+- - 12
+  - 0
+- - 12
+  - 9
+- - 0
+  - 9
+collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_inn.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+release_ready: false
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 672
+  - 336
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 960
+  - 736
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 565341
+  alpha_partial_pixels: 140365
+  alpha_opaque_pixels: 854
+  alpha_nonzero_bbox:
+  - 204
+  - 151
+  - 753
+  - 584
+  transparent_margins_px:
+  - 204
+  - 151
+  - 207
+  - 152
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 81
+  - 248
+  - 1220
+  - 1147
+  isotropic_scale: 0.48164627363737483
+  resized_size:
+  - 549
+  - 433
+  paste_offset:
+  - 204
+  - 151
+  - 753
+  - 584
+  final_size:
+  - 960
+  - 736
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/inn.png
+  source_sha256: a4b876146e659dd7d0ff6262406ab7fac229de428695c02249429cc842edec95
+  forbidden_transforms_used: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+final_review: 成品960×736，仅裁切等比缩小并透明留边；最终像素和可见三角详见pixel_qa/geometry_qa。 已逐张view_image(original)复查：屋檐、基脚完整，透明留白充足，无新增文字人物。
+source_request: history/records/inn.yaml
+source_measure: review2/inn.measure.json

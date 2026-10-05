@@ -1,11 +1,11 @@
 # 武学补录图鉴 · 书界 14《雪山飞狐》（`skills-bulu-14-xueshan`）
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 的书界补录图鉴。本文只定义书界 14 首领缺口中新建的个人散承武学，并登记本界对既有武学的来源扩展请求。
-> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16、`docs/00-canon.md` §3–§5/§9/§12/§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/05`、`design/21`、`design/catalog/npcs-ch14-xueshan.md`。
+> **上游**：`docs/decisions/author-decisions.md`、`docs/decisions/author-requirements.md` AR-14/15/16/27、`docs/00-canon.md` §3–§5/§9/§12/§13/§16/§18、`docs/decisions/rulings-v1.md`、`docs/decisions/ultimate-counts-tianzhong-dizhong.md`、`design/03` v2、`design/05`、`design/21`、`design/catalog/npcs-ch14-xueshan.md`。
 > **引用而不重定义**：武学字段、预算与招式公式见 `design/05`；经脉路线、外放、护体内劲与调息见 `design/21`；穴位见 `design/15`；Buff 见 `design/06`；既有乾隆医毒、军伍与通行武学分别见 `skills-qianlong.md`、`skills-general.md`。
 > **覆盖声明**：本文不修改现有门派图鉴。胡家、苗家、天龙门与药王门的缺口由主书界 13 负责；本文只为无门派的宝树 / 阎基补两门个人散承；清廷军伍来源扩展已由通行册落实。
 > **标注约定**：**（原创扩展）**为原著没有的武学、招名或机制；**（待考）**为尚须按三联 / 广州修订版逐字核对的原著事实；**【建议值】**为等待归属文档确认但可先生产的数值。
-> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：首领武学补录与替补替换（2026-09-28）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 ---
 
@@ -53,7 +53,8 @@
 | sourceChapters | `[ch14_xueshan]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0/1` · 4 |
 | meridians | `[mer_zushaoyin,mer_zutaiyin,mer_zujueyin,mer_renmai]` **【建议值】**；绝招末段为护背跨督脉，见显式路线 |
-| reqs | `attrs {con:42,wis:45,wil:38}`；`aptitude {apInner:40}`；`skills {med:35,poi:45}`；`prereq [{skill:sk_yaowangtuna,layer:5}]`；`hard:[prereq,skills.poi]`；个人来源可按下列 `reqsOverride` 解除药王吐纳前置 |
+| reqs | `attrs {bre:45,wis:35}`；`aptitude {apInner:30}`；`skills {med:35,poi:45}`；`prereq [{skill:sk_yaowangtuna,layer:5}]`；`hard:[prereq,skills.poi]`；个人来源可按下列 `reqsOverride` 解除药王吐纳前置 |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1,wis:1}},{layer:9,attrs:{bre:1,wis:1}}]` |
 | inner.contribution | `{mpMaxPct:26,hpMaxPct:16,attrs:{con:4,wis:3,wil:3},mpRegen:2.0}`；`IP=26+16+2×(4+3+3)+5×2.0=72` |
 | inner.stats | `{resPoison:9,effRes:6}`，合计 15；不是无条件毒免 |
 | layerStats / 层数 | `null`；1 重敛息，3 重辨息，5 重藏锋，**7 重绝招藏锋护命**，10 重息隐 |
@@ -92,7 +93,8 @@
 | 图鉴体系关系 | 与 `skills-qianlong.md` 共用医毒能力与基础护手前置，但并非该册任何门派的同门武学；来源归属仅为宝树 / 阎基个人散承 |
 | sourceChapters | `[ch14_xueshan]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.55/0.45` · 4；`aptitude:apFist` |
-| reqs | `attrs {agi:40,wis:45}`；`aptitude {apFist:40}`；`skills {med:30,poi:45}`；`prereq [{skill:sk_yaowanghushou,layer:5}]`；`hard:[prereq,skills.poi]`；个人来源可按下列 `reqsOverride` 解除药王护手前置 |
+| reqs | `attrs {str:45,agi:35}`；`aptitude {apFist:30}`；`skills {med:30,poi:45}`；`prereq [{skill:sk_yaowanghushou,layer:5}]`；`hard:[prereq,skills.poi]`；个人来源可按下列 `reqsOverride` 解除药王护手前置 |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `{effHit:[3,8],hit:[2,7]}`，合计 15（地阶上限） |
 | 层数要点 | 1 重探脉，3 重扣腕，5 重藏毒，**7 重绝招翻掌错脉**，10 重掌随脉转 |
 | setTags / conflicts | `[]` / 毒与点穴各走 `design/06` 的叠层、品阶及免疫规则；不自动穿透护体 |
@@ -171,6 +173,7 @@
 | XSBL-T06 | 满层运行 `txp_cangfengxingqi` | `reliefBp=2000`、`repairUnits=468`、战外倍率 `15000 bp` |
 | XSBL-T07 | 未持合法毒物触发 `ps_cuomaifanzhang_cangdu` | 不生成涂毒状态，也不凭空创建消耗品 |
 | XSBL-T08 | 非宝树来源角色学习两门武学 | 满足医毒 / 属性 / 前置即可正常习得；不要求成为 Boss，不授药王门身份 |
+| XSBL-T09 | 属性 v2 门槛与永久加成 | 两门地下武学按内功 / 拳掌主次带取值，资质为 `5×7−5=30`；各有 3/6/9 重 `trainingAttrs`，单次 ≤4、单门 ≤12 |
 
 ## 待决事项 / 依赖
 

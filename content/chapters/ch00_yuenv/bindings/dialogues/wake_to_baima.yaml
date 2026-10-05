@@ -1,0 +1,10 @@
+schemaVersion: region-dialogue.v1
+chapter: ch00_yuenv
+sceneId: sc_00_changbai_cave
+anchorId: wake_to_baima
+storyId: story_ch00_main
+entryKey: wake_to_baima
+condition:
+  all:
+    - {flag: fl_00_first_sleep_committed}
+    - {not: {flag: fl_00_wake_baima}}

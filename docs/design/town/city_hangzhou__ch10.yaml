@@ -1,0 +1,58 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_hangzhou"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "杭州州城与钱唐县城（702年推定）"
+historical_year: 702
+era_kit: "tang"
+seed: 3477345072
+design_intent: {"prosperity": "tang_702_research_candidate", "notes": ["复原依据：history/city_hangzhou__tang_702.md；AR-26的702–703年为原创扩展，覆盖名录旧年代。", "州城在南侧凤凰山东麓、县城在北侧宝石山麓；采用双城说，不能套南宋皇城外郭。", "压缩拓扑不是真实地籍；唐套件缺项回退宋基线，具体替代写manifest；不据贴片证明历史建筑。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [96, 96, 27], "r_band_slots": [96, 64], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "zhou_south", "role": "division", "polygon": {"points": [{"x": 38, "z": 12}, {"x": 142, "z": 12}, {"x": 142, "z": 72}, {"x": 38, "z": 72}]}, "inside_margin_cells": 2, "basis": "图名：南部州城（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "county_north", "role": "division", "polygon": {"points": [{"x": 38, "z": 90}, {"x": 142, "z": 90}, {"x": 142, "z": 148}, {"x": 38, "z": 148}]}, "inside_margin_cells": 2, "basis": "图名：北部县城（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+gates:
+  - {"id": "zhou_south_south", "side": "south", "at": {"x": 90, "z": 12}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "zhou_south", "basis": "图名：南部州城南门（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zhou_south_north", "side": "north", "at": {"x": 90, "z": 72}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "zhou_south", "basis": "图名：南部州城北门（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zhou_south_west", "side": "west", "at": {"x": 38, "z": 42}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "zhou_south_ew", "primary": false, "wall_ref": "zhou_south", "basis": "图名：南部州城西门（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zhou_south_east", "side": "east", "at": {"x": 142, "z": 42}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "zhou_south_ew", "primary": false, "wall_ref": "zhou_south", "basis": "图名：南部州城东门（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "county_north_south", "side": "south", "at": {"x": 90, "z": 90}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "county_north_ns", "primary": false, "wall_ref": "county_north", "basis": "图名：北部县城南门（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "county_north_north", "side": "north", "at": {"x": 90, "z": 148}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "county_north_ns", "primary": false, "wall_ref": "county_north", "basis": "图名：北部县城北门（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "county_north_west", "side": "west", "at": {"x": 38, "z": 119}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "county_north_ew", "primary": false, "wall_ref": "county_north", "basis": "图名：北部县城西门（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "county_north_east", "side": "east", "at": {"x": 142, "z": 119}, "width_cells": 5, "asset_type": "tex_town_tang_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "county_north_ew", "primary": false, "wall_ref": "county_north", "basis": "图名：北部县城东门（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 90, "z": 12}, {"x": 90, "z": 72}], "surface": "dirt_road", "priority": 100, "basis": "图名：主纵街（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zhou_south_ew", "class": "secondary", "width_cells": 5, "points": [{"x": 38, "z": 42}, {"x": 142, "z": 42}], "surface": "dirt_road", "priority": 80, "basis": "图名：南部州城横街（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "county_north_ns", "class": "secondary", "width_cells": 5, "points": [{"x": 90, "z": 90}, {"x": 90, "z": 148}], "surface": "dirt_road", "priority": 80, "basis": "图名：北部县城纵街（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "county_north_ew", "class": "secondary", "width_cells": 5, "points": [{"x": 38, "z": 119}, {"x": 142, "z": 119}], "surface": "dirt_road", "priority": 80, "basis": "图名：北部县城横街（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "between_cities", "class": "secondary", "width_cells": 5, "points": [{"x": 90, "z": 72}, {"x": 90, "z": 90}], "surface": "dirt_road", "priority": 80, "basis": "图名：城间通路（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+rivers: []
+lakes:
+  - {"id": "regional_lake", "polygon": {"points": [{"x": 0, "z": 12}, {"x": 3, "z": 8}, {"x": 22, "z": 8}, {"x": 26, "z": 15}, {"x": 26, "z": 144}, {"x": 23, "z": 152}, {"x": 2, "z": 152}, {"x": 0, "z": 147}]}, "basis": "图名：西湖东岸（岸线推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+bridges: []
+zones:
+  - {"id": "zone_zhou_south_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 42, "z": 46}, "max": {"x": 86, "z": 68}}}, "priority": 100, "density": 0.48, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：南部州城官署院落（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zone_zhou_south_market", "kind": "market", "geometry": {"rect": {"min": {"x": 94, "z": 16}, "max": {"x": 138, "z": 38}}}, "priority": 90, "density": 0.48, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：南部州城市肆（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zone_zhou_south_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 42, "z": 16}, "max": {"x": 86, "z": 38}}}, "priority": 50, "density": 0.48, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_shrine"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：南部州城民居（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zone_zhou_south_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 94, "z": 46}, "max": {"x": 138, "z": 68}}}, "priority": 80, "density": 0.48, "allowed_building_types": ["bld_kit_song_dali_warehouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：南部州城仓驿（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zone_county_north_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 42, "z": 123}, "max": {"x": 86, "z": 144}}}, "priority": 100, "density": 0.48, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北部县城官署院落（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zone_county_north_market", "kind": "market", "geometry": {"rect": {"min": {"x": 94, "z": 94}, "max": {"x": 138, "z": 115}}}, "priority": 90, "density": 0.48, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北部县城市肆（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zone_county_north_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 42, "z": 94}, "max": {"x": 86, "z": 115}}}, "priority": 50, "density": 0.48, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_shrine"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北部县城民居（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+  - {"id": "zone_county_north_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 94, "z": 123}, "max": {"x": 138, "z": 144}}}, "priority": 80, "density": 0.48, "allowed_building_types": ["bld_kit_song_dali_warehouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北部县城仓驿（推定）；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_zhou_south_office", "zone_county_north_office"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_zhou_south_office", "zone_county_north_office"], "count": {"min": 0, "max": 2}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_zhou_south_houses", "zone_zhou_south_service", "zone_county_north_houses", "zone_county_north_service"], "count": {"min": 8, "max": 28}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_zhou_south_market", "zone_county_north_market"], "count": {"min": 2, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_zhou_south_market", "zone_county_north_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_zhou_south_market", "zone_county_north_market"], "count": {"min": 4, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_zhou_south_service", "zone_county_north_service"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_zhou_south_service", "zone_county_north_service"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_zhou_south_houses", "zone_county_north_houses"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不推算历史人口，不自动开营生。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "空地草簇；植被种类与密度不作为唐代物候证据", "basis": "图名：空地植被；src_history 仅约束年代与相对关系；坐标、尺度、形制（推定）（原创扩展）。"}
+sources:
+  - {"key": "src_history", "kind": "academic", "title": "郑嘉励：山中的杭州史", "url": "https://hznews.hangzhou.com.cn/wghz/content/2021-12/07/content_8112285_0.htm", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已看后世图；仅作比较，不能描摹为702墙线。州城在南侧凤凰山东麓、县城在北侧宝石山麓；采用双城说，不能套南宋皇城外郭。"}

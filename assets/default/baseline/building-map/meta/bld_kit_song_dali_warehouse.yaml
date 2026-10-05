@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_warehouse
+status: candidate
+building:
+  type: bld_kit_song_dali_warehouse
+  footprint: [9, 7]
+  anchor: &id001 [333.3159, 324.9806]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [9, 7]
+logical_footprint_polygon_px:
+- [77.3159, 308.9806]
+- [365.3159, 452.9806]
+- [589.3159, 340.9806]
+- [301.3159, 196.98059999999998]
+collision_polygon_m:
+- [0, 0]
+- [9, 0]
+- [9, 7]
+- [0, 7]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [74, 72]
+- [598, 72]
+- [598, 440]
+- [74, 440]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 6.45
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 4}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_warehouse.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [512, 256]
+  ground_width_px: 512
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [310, 582]
+    front: [949, 872]
+    right: [1483, 637]
+  source_axis_slopes: [0.4538341158059468, -0.4400749063670412]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.196629213483146
+  expected_width_depth_ratio: 1.2857142857142858
+  ratio_relative_error: 0.06928838951310878
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [672, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 226064
+  alpha_partial_pixels: 117106
+  alpha_opaque_pixels: 894
+  alpha_near_opaque_pixels: 114733
+  alpha_nonzero_bbox: [71, 70, 600, 441]
+  transparent_margins_px: [71, 70, 72, 71]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_warehouse.png
+  source_sha256: 87060cd54f290051360658e7dab3f6abf5f9480f68ad7409c84244ad13dfcce3
+  source_size: [1774, 887]
+  crop_box: [296, 26, 1507, 875]
+  uniform_scale_requested: 0.43648763853367434
+  resized_size: [529, 371]
+  rounded_effective_scale: [0.43682906688687034, 0.4369846878680801]
+  paste_offset: [71, 70]
+  final_file: bld_kit_song_dali_warehouse.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

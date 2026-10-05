@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_labazhou
+name: 腊八粥
+kind: food
+sub: food
+grade: 9
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《侠客行》·侠客岛
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: permMaxPct
+    params:
+      mpMaxBp: 200
+  - op: sxpGrant
+    params:
+      pctNextBp: 3500
+assets:
+  icon: item/labazhou
+text:
+  desc: 外观：深褐药粥盛厚青石碗，谷粒草叶可辨。
+  lore: 《侠客行》中侠客岛以异草熬制腊八粥，练武者须趁热服食方得其益。青石碗所盛只在腊八节期的岛上固定节点出现；永久内力与修为数值属本作扩展。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      qiCultivation: 3500
+      stamina: 24

@@ -1,0 +1,44 @@
+schemaVersion: npc.v1
+id: npc_postman_tang_xiyu
+identity:
+  name: 无名驿卒
+  aliases: []
+  origin: expanded
+  sourceWorks: [天书录原创扩展]
+lifespan:
+  born: {kind: unknown, ageBand: mature, note: 原创无名驿卒；精确生年不设定}
+  died: null
+  explicitAliveAt:
+    - {chapterId: ch10_baima, from: 702, to: 703, source: 唐代白马开局配置（原创扩展）}
+appearances:
+  - key: xiyu_postman_cold_entry
+    chapterId: ch10_baima
+    years: {from: 702, to: 703, approx: false}
+    displayName: 无名驿卒
+    presenceMode: living
+    combatEligible: false
+    ageBand: mature
+    sects: []
+    location: {cityId: null, placeKey: sc_10_fengshi_feiyi}
+    contentLayer: commoner
+    recruitment:
+      difficulty: D1
+      questRef: null
+      gateRef: null
+      windowKeys: []
+    build:
+      pipeline: full
+      templateRole: tmpl_normal
+      cultivationBand: 1
+      portrayal: tang_xiyu_postman
+      skills: []
+      unregisteredSkills: []
+    ai: {tier: ai_basic, personality: pers_jinshen}
+recruitment: {everRecruitable: false, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [postman, commoner], comboCandidateRefs: []}
+crossBook:
+  enabled: false
+  reunionQuestByChapter: {}
+  legacy: {skillRefs: [], itemRefs: [], heirNpcRefs: []}
+sources:
+  - {kind: expanded, locator: "ch10 冷入口无名驿卒（原创扩展）"}

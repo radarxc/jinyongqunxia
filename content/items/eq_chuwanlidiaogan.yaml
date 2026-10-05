@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_chuwanlidiaogan
+name: 褚万里铁钓竿
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·褚万里使用钓竿；材质与钩线细节 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/chuwanlidiaogan
+text:
+  desc: 外观：深竹长竿约二米，前细后粗、尾端包铁。 待运行时投影：exoticKind=hook。
+  lore: 《天龙八部》中褚万里以钓竿为兵，长竿可点、挑，钩线则牵带对手兵刃，讲究收放有度。所谓铁钓竿的材质和钩线细节仍 （待考：核褚万里交战情节）；铜轮、尺度与定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 45
+      qiAffinity: 100

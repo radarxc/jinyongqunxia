@@ -1,0 +1,151 @@
+{
+  "id": "bld_kit_song_dali_wharf",
+  "type": "bld_kit_song_dali_wharf",
+  "w": 8,
+  "h": 4,
+  "subject": "1093年大理国小河埠（原创建筑概化，细部待考）",
+  "prompt": "Sketch-to-render. Convert the supplied precise quadrilateral INTO a thin old stone river wharf game sprite; keep its four outline corners and all edge slopes EXACTLY the same as diagram. Shape is an8m by4m rectangle on2:1 dimetric city grid, LEFT(168,430), FRONT(968,830), RIGHT(1368,630), BACK(568,230). Width/depth2.0, BOTH axes slopes+0.5/-0.5. This geometry is mandatory. Replace flat gray fill with realistic weathered gray stone paving slabs of a1093 Dali riverside landing, and remove blue border. Surface stays in that exact plane. Add only two low timber mooring posts with coiled coarse rope near the long lower-left edge, one small inset three-step landing within the same rectangle. Slab edge only20px thick, nearly flush to ground. Rear long edge from BACK to RIGHT must be perfectly straight and unobstructed for riverbank attachment. Upper-left lighting, gentle weathering and moss in a few joints. Opaque natural stone surface, genuine transparent RGBA background outside shape; no white background, colored lines, water, shore, grass, extra terrain, people, text, modern objects, logos or watermark. All margins spacious. Preserve exact geometry of supplied silhouette.",
+  "negative": "文字、现代元素、人物、房屋、瓦顶、水面、船只、景观背景、厚悬空底座、裁切",
+  "references": [
+    {
+      "id": "dali_wharf_projection_guide",
+      "file": "assets/default/baseline/building-map/review2/dali_wharf_projection_guide.png",
+      "sha256": "68d705f4acd167d2f3bfd0d6646eb4b7e8c551483826d84f16769c1342720ceb",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-bb3ec924-107d-4356-a8bc-baae4955ba1f.png",
+  "source_sha256": "97855d41aec5b6f3659301eb5c80f2708076aa123896f54bfa26e775b634e628",
+  "created": "2026-09-30T10:50:01.659051+00:00",
+  "visual_review": "已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。河埠恢复8×4宽深关系，双轴协调；接岸背侧长边直且无遮挡，台阶内嵌，不越矩形边界。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。",
+  "candidate_count": 6,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-3aea544e-1e3c-4078-b335-8bc2819e0d65.png",
+      "prompt": "undefinedOne small functional river landing asset only: narrow low gray stone embankment platform at back, short broad stone steps descending toward front south LOWER LEFT, small weathered wood landing edge and two simple mooring posts, one coiled natural rope. No water surface, no boat, no landscape, no buildings. Flat rectangular 8m east-west by4m north-south footprint, no tall plinth or floating cliff.",
+      "reason": "目检：没有背景，但低视角且地面两轴斜率不符合本批相机",
+      "source_sha256": "c7fce7d459cd16b5fcfaefd8249e7155ff4e3d49ba3a1eee979eb17d3bc172c9"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-244945c1-48e7-4a3d-8587-8553efb6aad6.png",
+      "prompt": "Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation 30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT. Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10% empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop, ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people, no modern objects, no logos, no border, no watermark, no tourism-era decoration. One small functional river landing asset only: narrow low gray stone embankment platform at back, short broad stone steps descending toward front south LOWER LEFT, small weathered wood landing edge and two simple mooring posts, one coiled natural rope. No water surface, no boat, no landscape, no buildings. Flat rectangular 8m east-west by4m north-south footprint, no tall plinth or floating cliff.",
+      "reason": "目检：参考图约束过强，河埠带了整座屋；主体类型错误",
+      "source_sha256": "b9ed4950e9bdd5f3b49b00b2a1ad7178f1d018d12ae422a13b03abbf82a3afe3"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-f86620f6-68a8-4da6-bf3c-a4d9c0cb297b.png",
+      "prompt": "New isolated game map sprite: ONE SMALL RIVER LANDING in Dali kingdom1093, purely a low stone quay with short steps and simple mooring posts. NO BUILDING, NO HOUSE, NO TILE ROOF, NO SHELTER. A rectangular low weathered gray stone quay8m east-west by4m north-south, a narrow flush timber edge along south water-facing side, two short plain wooden mooring posts and one coiled hemp rope, broad shallow stone steps descend toward south-screen LOWER LEFT. No water or boat included. Readable complete thin footprint, no tall cliff or floating plinth. Exact orthographic camera yaw45 elevation30, 2:1 dimetric ground projection, east-west edge slopes+0.5 and north-south edge-0.5; east-west edge twice the screen run of north-south edge. Rectangular footprint must be2:1 in local ground dimensions, not a square. Realistic restrained Song-era stone and weathered timber materials. Light screen upper left, short soft contact shadow lower right. TRUE TRANSPARENT RGBA background, whole subject centered in1536x1024 canvas with15% transparent margin. No writing, numbers, signs, flags, people, trees, sky, landscape, scenery, ambient glow, gradients, modern items, border, watermark, logo.",
+      "reason": "目检：独立石河埠，但长边与8×4目录的东西轴方向相反",
+      "source_sha256": "ddf1674a0845be7dbe3bf91ee5dfa33ad279dee387d46be2d1817505c08da973"
+    },
+    {
+      "phase": "review2",
+      "attempt": 1,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wharf_review2_attempt01.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-c0f05fea-ff9d-485c-be7f-6e6c05604e7a.png",
+      "source_sha256": "21285886a3451d644eb5752644d76bc0b1665bf48d6b487d70b93af1c8d6f6c4",
+      "reason": "宽深比例已近2.0但两轴约+0.523/-0.427仍不协调，淘汰",
+      "prompt": "Use case: precise-object-edit. Edit supplied Dali stone river wharf into a clean 2:1 dimetric city-map sprite with accurate 8 by 4 metre rectangle. Preserve worn gray stone slabs, two low wooden mooring bollards with ropes, understated old Dali 1093 materials, stone step inset along waterside. Correct its shallow ground projection: BOTH axes must be +0.5 and -0.5, orthographic 45 yaw and 30 elevation, NOT perspective. Ground polygon top corners on a 1536x1024 canvas: LEFT(168,430), FRONT(968,830), RIGHT(1368,630), BACK(568,230). Thus long waterside LEFT->FRONT=(800,400), short FRONT->RIGHT=(400,-200), ratio exactly 2.0. Thin slab vertical thickness 22 pixels, not a tall plinth. Keep the rear edge BACK->RIGHT straight and unobstructed for fitting into a riverbank; no rocks, vines, plants or props hanging over that edge. Clearly expose all four rectangle corners and both docking front edges. All stone slab joints follow those same +0.5/-0.5 ground axes. Upper-left light and short contact shadows only. TRUE transparent RGBA, fully opaque wharf, no water, no surrounding terrain, no aura, no background. Generous padding, entire object visible. No persons, boats, text, modern objects, grid or watermark. One asset."
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        51,
+        411
+      ],
+      [
+        1029,
+        928
+      ]
+    ],
+    [
+      [
+        1029,
+        928
+      ],
+      [
+        1487,
+        688
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      51,
+      411
+    ],
+    "front": [
+      1029,
+      928
+    ],
+    "right": [
+      1487,
+      688
+    ]
+  },
+  "projection_review": "返修2人工读取实际接地底边点±3px；轴斜率0.528630/-0.524017；水平投影比2.135371，目录w/h=2.000000；独立64×32网格叠图复核，不以理想角点替代实测。",
+  "status": "candidate",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      254
+    ],
+    "transparent_pixels": 1062750,
+    "partial_pixels": 510114,
+    "opaque_pixels": 0,
+    "bbox": [
+      0,
+      21,
+      1494,
+      1024
+    ]
+  },
+  "candidate_history": [
+    {
+      "phase": "pre_review2",
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wharf_pre_review2.png",
+      "source_record": "sources/rejected/bld_kit_song_dali_wharf_pre_review2.json",
+      "source_sha256": "1fa5d799253334194fd2a433fbf041ea47a48adff2bd126dd39038f9d09c2e2c",
+      "reason": "合入前审核点名底面宽深比例或两轴不协调，见返修意见；原图和记录逐字节保留。"
+    },
+    {
+      "phase": "review2",
+      "attempt": 1,
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_wharf_review2_attempt01.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-c0f05fea-ff9d-485c-be7f-6e6c05604e7a.png",
+      "source_sha256": "21285886a3451d644eb5752644d76bc0b1665bf48d6b487d70b93af1c8d6f6c4",
+      "reason": "宽深比例已近2.0但两轴约+0.523/-0.427仍不协调，淘汰"
+    },
+    {
+      "phase": "review2",
+      "attempt": 2,
+      "status": "selected",
+      "source_archive": "sources/bld_kit_song_dali_wharf.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-bb3ec924-107d-4356-a8bc-baae4955ba1f.png",
+      "source_sha256": "97855d41aec5b6f3659301eb5c80f2708076aa123896f54bfa26e775b634e628",
+      "reason": "本轮入选，几何残差见projection_review及meta"
+    }
+  ],
+  "shore_connection_review": {
+    "rear_top_edge_source_px": [
+      [
+        510,
+        158
+      ],
+      [
+        1486,
+        674
+      ]
+    ],
+    "note": "接岸长直边为背侧同一石面边，端点可见；投影斜率516/976=0.528689；保留约20px台缘高度，拼接由TOWN-assemble用接岸边而非阴影bbox判断。"
+  }
+}

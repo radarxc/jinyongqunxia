@@ -1,0 +1,7 @@
+schemaVersion: event.v1
+id: ev_build_world
+chapterId: ch01_tianlong
+event: fixture/world
+once: true
+actions:
+  - {op: flag/set, flagId: fl_build_world, value: true}

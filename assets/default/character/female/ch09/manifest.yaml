@@ -1,0 +1,426 @@
+- id: por_npc_zhujue__ch09_f_base
+  file: por_npc_zhujue__ch09_f_base.png
+  category: character/female
+  style: default
+  subject: 主角（女）· 本作清初·康熙（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】主角（女）：本作原创的穿越者，此刻身处《连城诀》清初·康熙（约 1705–1712 年，项目原创定年）；荆州一带的汉地普通江湖旅人，不是僧人或囚徒。本图是她在这一时代的基础立绘，不代表特定门派或结局。
+
+    【身份参考】随提示词上传的第 1 张图是主角本人（序章 ch00 新版定稿）：保持同一个人——脸型、眉形、眼睛、鼻子、嘴、右眼下的小痣、肤色、体型和年龄都不变；只把服饰、发式和道具换成下文的本时代版本。不要照搬图中的衣服、姿势和背景。
+
+    【本人面容（十五个时代统一，不能变）】约二十八岁的现代中国女青年，原创面孔，不像任何演员或书中其他人物。略长的鹅蛋脸，颧骨清楚，下颌利落而不尖；眉毛偏浓、平直，眉尾微微上扬（不是细柳眉、不是挑眉）；深棕色细长杏眼、内双，眼神清醒专注；鼻梁秀直、鼻头略圆；唇形清楚、上唇略薄，嘴角平；右眼外下方一颗清楚可见的浅褐色小痣（全书标志）；暖中性肤色带一点日晒，皮肤有真实纹理，素面不施浓妆。中等偏高的个子，肩背舒展、腰背挺直，四肢有行动的力量（约 7 头身）；乌黑直发、发量浓密。是成熟有主见的成年女子：沉静、可靠、带一点好奇，既不柔弱也不妩媚。
+
+    【主角标志】发髻上系一根褪色的朱红细绳，露出短短的绳头——每个时代都保留这根红绳。
+
+    【服饰】旧青色汉族交领右衽夹袄，铁灰素裙，深褐窄布带、厚布平底鞋；头发全部收成紧实低髻，素木簪固定，髻根系朱红细绳。
+
+    【道具】左腰用两根短系带挂一柄普通的中国腰刀，完整入微弯的窄木鞘，朴素小护手与木柄，无纹饰；刀不出鞘。
+
+    【姿态与神情】下颌微收、视线平稳，衣着带轻微行旅磨痕但精神不萎顿，神情思索而不苦。成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要明星脸或模特式五官；不要与书中男女主角撞脸；不要具名神兵、门派徽记、官服；不要年龄变小或变老。不要跨时代混搭的发式和服饰；不要像赵敏、王语嫣、黄蓉、小龙女等书中女角。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 5f491550d73ea5daf2a29eb618568c208d226d296da1e5d7fc3a37774c7f85e5
+    use: 身份参考（本轮新出的主角（女）· 春秋末·越国 por_npc_zhujue__ch00_f_base）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w1/staging/por_npc_zhujue__ch00_f_base.jpg
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:58:47-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhujue__ch09_f_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 14051cf6ea82ca7d95d9e219946a127aec66b00c523ed4e36da1aad5284a3421
+  status: candidate
+  notes: 立绘重审重出（AR-30）；随女主 ch00 新锚点统一重出：现图的脸与 ch00 不一致，改为同一张原创脸，服饰沿用本时代设定；codex 出图（1 号出图员，AR-31）；主角时代图：上传本轮新出的 ch00 锚点作唯一身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_shuisheng__ch09_youth_travel_base
+  file: por_npc_shuisheng__ch09_youth_travel_base.png
+  category: character/female
+  style: default
+  subject: 水笙（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传 3 张参考图。第 1 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。剧照与下文文字不一致的地方（年龄、所处阶段、帽饰与衣装细节、手中器物），以下文文字为准；画中人一律是成年人。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】水笙，《连城诀》女主角，江南大侠“冷月剑”水岱的女儿；与表哥汪啸风骑马同行、尚未被血刀老祖劫走的时期。
+
+    【年龄与体态】外观约二十岁的成年年轻女子，身材高挑匀称，体态轻健，成人比例。
+
+    【经典造型】要一眼认出是水笙——一身白衣、左肩一朵红绸大花、腰佩长剑，俏丽明艳、骄傲爽朗的名门侠女；美丽出众。
+
+    【面容】脸以剧照为底子——保留剧照里这个角色的脸型、眉眼、鼻唇的比例关系和神气，画成成年人；俏丽明艳的鹅蛋脸，下颌线清楚；眉毛舒展而微挑；眼睛明亮，神情骄傲爽朗，带着名门侠女的自信和一点任性；鼻梁挺秀；嘴唇饱满；肤色健康，有真实的皮肤纹理。
+
+    【发式】黑发挽成利落的发髻，插一支细银簪，两鬓各编一条细辫垂到胸前，其余头发收拢在背后。
+
+    【服饰】一身白色的交领窄袖短袄（右衽）与白色长裙（内穿长裤），左肩衣上缀一朵红绸大花，腰系浅青细布带，软底布鞋。
+
+    【道具与姿态】腰间左侧佩一柄连鞘长剑，左手扶着剑柄；右手自然垂下；站姿轻盈，抬眼直视前方。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、台标、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、日式服饰或日本刀、发光特效、法阵或能量光。不要照片或照片修图的质感，不要照搬剧照的构图、光影、背景和姿势，不要剧照里的字幕、台标和水印。不要少女幼态；不要网红脸；不要和戚芳、凌霜华同一张脸。清初汉族女子仍穿明式袄裙：汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。不要照搬剧照里手拿的白花。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: .agents/coord/imagegen-reference/identity-20261001/liancheng/shuisheng_2004_shuchang_pnkds_20261002.jpg
+    sha256: 4492e4806edb67fbd2561258e7a9ed7e4fa795fa8beb56da9007aad2a34d6f60
+    use: 经典影视版剧照（2004 年《连城诀》电视剧，AR-32）：借鉴发型、服饰、配色、标志道具、气质与面部特征，重绘为项目画风，不照搬照片
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w6/staging/still_shuisheng_1.jpg（长边 1024 JPEG）
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线（只取画风、光线、质感与背景，不取长相；AR-31 / AR-32）
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg（缩小版 JPEG，DISK_RULE）
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线（只取画风、光线、质感与背景，不取长相；AR-31 / AR-32）
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg（缩小版 JPEG，DISK_RULE）
+  tool: codex exec · image_gen（AR-32：经典影视剧照 1 张 + 同性别基线 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T11:00:43-0700
+  source_path: .agents/coord/gemini_originals/por_npc_shuisheng__ch09_youth_travel_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 01c0b749f95587a998949a714ae63f75c75c9b90eceedbda58968e62406b6de3
+  status: candidate
+  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：2004 年《连城诀》电视剧；job por_npc_shuisheng__ch09_youth_travel_base__t1
+- id: por_npc_qifang__ch09_youth_mother_base
+  file: por_npc_qifang__ch09_youth_mother_base.png
+  category: character/female
+  style: default
+  subject: 戚芳（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传 4 张参考图。第 1–2 张参考图是该角色经典影视造型的剧照：借鉴其发型、服饰、配色、标志道具、气质和面部特征，让人一眼认出是这个角色；但必须重新绘制成项目画风，不要照片质感，不要照搬剧照的构图、光影、背景和姿势，也不要做成照片修图。剧照与下文文字不一致的地方（年龄、所处阶段、帽饰与衣装细节、手中器物），以下文文字为准；画中人一律是成年人。最后两张是本项目画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实美人。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。肌肤细腻自然，看得见极细的肤理和自然的左右不对称，不磨皮、不油亮、不打粉；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，干净完整；整体设色低饱和、雅致；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】戚芳，《连城诀》女主角，戚长发之女、狄云的师妹和青梅竹马；已嫁入荆州万家、做了母亲，牵挂女儿的时期。
+
+    【年龄与体态】约二十四五岁的年轻母亲，身材匀称健康、成人比例，有乡间长大的结实与利落。
+
+    【经典造型】要一眼认出是戚芳——湘西乡下长大的俏丽姑娘，如今是年轻母亲：豆绿袄、低髻木簪、怀抱给女儿的小布衣，温柔而有心事；美丽质朴，不是愁苦相。
+
+    【面容】脸以剧照为底子——保留剧照里这个角色的脸型、眉眼、鼻唇的比例关系和神气，画成成年人；照两张剧照里的脸：圆润的脸庞、面颊饱满，一双大而圆的明亮眼睛，下巴小而圆；肤色是湘西乡下长大的健康微黑，颊上有自然红晕；眉毛平而浓；眼睛明亮有神，眼神温柔里透着牵挂与隐忧；鼻子圆润；嘴唇丰厚，嘴角带一点乡下姑娘的倔强；皮肤有真实质感与细纹。本是爽朗俏丽的乡下姑娘，如今多了心事。
+
+    【发式】已婚妇人的低髻，一支素木簪。
+
+    【服饰】豆绿色交领袄（右衽）、暖米色长裙、窄腰带、平底布鞋；衣料比乡下时细致些，但朴素不华贵。
+
+    【道具与姿态】双手抱着一件折好的小女孩布衣（给女儿空心菜的）；正面站立，神情温柔而有心事。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、台标、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、日式服饰或日本刀、发光特效、法阵或能量光。不要照片或照片修图的质感，不要照搬剧照的构图、光影、背景和姿势，不要剧照里的字幕、台标和水印。不要惊恐瞪眼的表情；不要照片感；不要贵妇凤冠；不要抱着婴儿或第二个人。清初汉族女子仍穿明式袄裙：汉式交领一律右衽（穿着者左襟压右襟），不要左衽、不要水平镜像。不要照搬剧照里的紫色发带和惊慌神情；不要白皙瓷肌，不要瓜子脸、尖下巴的标准美女模板脸。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: .agents/coord/imagegen-reference/identity-20261001/liancheng/qifang_2004_hemeitian_baike_b812_20261002.jpg
+    sha256: 4da6b01247d5d9a53c111b89e20e9504f7aeb1be36d12e74a8adc6041b50d2ac
+    use: 经典影视版剧照（2004 年《连城诀》电视剧，AR-32）：借鉴发型、服饰、配色、标志道具、气质与面部特征，重绘为项目画风，不照搬照片
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w6/staging/still_qifang_1.jpg（长边 1024 JPEG）
+  - path: .agents/coord/imagegen-reference/identity-20261001/liancheng/qifang_2004_hemeitian_sina20260608_01.jpg
+    sha256: d988ade015f072ac0ea2381d3e61759c95bc6f89aa9ce8f0e4a09cf9ae2a1a81
+    use: 经典影视版剧照（2004 年《连城诀》电视剧，AR-32）：借鉴发型、服饰、配色、标志道具、气质与面部特征，重绘为项目画风，不照搬照片；上传前裁切 (0.0, 0.335, 1.0, 0.665)
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w6/staging/still_qifang_2.jpg（长边 1024 JPEG）
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线（只取画风、光线、质感与背景，不取长相；AR-31 / AR-32）
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg（缩小版 JPEG，DISK_RULE）
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线（只取画风、光线、质感与背景，不取长相；AR-31 / AR-32）
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg（缩小版 JPEG，DISK_RULE）
+  tool: codex exec · image_gen（AR-32：经典影视剧照 2 张 + 同性别基线 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T11:21:31-0700
+  source_path: .agents/coord/gemini_originals/por_npc_qifang__ch09_youth_mother_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: ede3331b5673781e0f61ceccc3f3a89800ac9f3981d24097c9ccad195b5cb927
+  status: candidate
+  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：2004 年《连城诀》电视剧；第 2 次出图：第 1 次脸偏通用美女模板、不像剧照，改写脸型描写后重出；job por_npc_qifang__ch09_youth_mother_base__t2
+- id: por_npc_lingshuanghua__ch09_youth_scarred_base
+  file: por_npc_lingshuanghua__ch09_youth_scarred_base.png
+  category: character/female
+  style: default
+  subject: 凌霜华（ch09_liancheng）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
+
+    只在现有原脸部表面增为十七八道横竖交错、明显已愈合的毁容刀疤：额头、双颊、鼻旁、下颌与下巴均有旧疤，不可只在左颊加几根浅细线。手绘真实凹凸愈合疤痕，明显但无新鲜血口。原身份脸型与五官位置、眉眼鼻唇、肤色、表情、年龄原样保留，只叠加疤痕质感，不改其余头发衣服花盆。
+
+    【原著依据】《连城诀》三《人淡如菊》：“又横又竖的划上了十七八刀”（https://xuges.com/WUXIA/jinyong/lcj/020.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/character/female/ch09/por_npc_lingshuanghua__ch09_youth_scarred_base.png
+    sha256: 95e19308db3c2927ff532feefeff3b630d54ae55bebdc89e185cda639ba32d45
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lingshuanghua__ch09_youth_scarred_base.95e19308.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:39:59-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_25_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 0317db7ca3c1fc4c35f32664df2f57ef87a19c94d7a3955b650f0ecaaf4235f2
+  status: candidate
+  notes: AR-32 补记修改 B 补做（9 号出图员）：作者 10-02 17:20：只用文字与两张基线重出，刀疤改在她自己的左颊（画面上是观者右侧），不要镜像；其余沿用现有文字。上一版疤画在她的右颊。文字 + 两张同性别基线；只用文字；r1；AR-58 神态（各书配角）·10 号出图员：温柔恬静的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变；AR-82 原著核对返修：凌霜华毁容阶段补十七八道横竖旧疤
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lingshuanghua__ch09_youth_scarred_base.95e19308.png
+    sha256: 95e19308db3c2927ff532feefeff3b630d54ae55bebdc89e185cda639ba32d45
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lingshuanghua__ch09_youth_scarred_base.95e19308.entry.yaml
+- id: por_npc_taohong__ch09_youth_wanfu_base
+  file: por_npc_taohong__ch09_youth_wanfu_base.png
+  category: character/female
+  style: default
+  subject: 桃红（ch09_liancheng）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（桃红的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改桃红的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+
+    【人物】桃红：万府内宅的年轻女子，约二十岁，身不由己、曾被逼作伪证，温顺而心怯。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温顺讨好的浅笑：嘴角带一点讨好的笑，眼神略带怯意。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch09/por_npc_taohong__ch09_youth_wanfu_base.png
+    sha256: e91740965530d51921311395012c7b2234ce5ebe54fa0267c42d8528bf886cd4
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_taohong__ch09_youth_wanfu_base.e9174096.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6.1-sol
+  created: 2026-10-03T20:53:26-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_taohong__ch09_youth_wanfu_base.x1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: b4dc7eb9076102d0fd741c28828a4d43bf847f9b4e5d74319fe851f0d07118a3
+  status: candidate
+  notes: ART-cast-fill-b：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；1张候选；未获作者批准。；AR-58 神态（各书配角）·10 号出图员：温顺讨好的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  tier: A
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_taohong__ch09_youth_wanfu_base.e9174096.png
+    sha256: e91740965530d51921311395012c7b2234ce5ebe54fa0267c42d8528bf886cd4
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_taohong__ch09_youth_wanfu_base.e9174096.entry.yaml
+- id: por_npc_shuisheng__ch09_youth_scene_yuyi
+  file: por_npc_shuisheng__ch09_youth_scene_yuyi.png
+  category: character/female
+  style: default
+  subject: 水笙·雪谷缀羽（ch09_liancheng）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的水笙立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中水笙的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的水笙二十岁上下：柔和饱满的鹅蛋脸、两颊圆润、颧骨不突出、下巴小巧圆润；眉毛细长柔和；一双明亮的杏眼、双眼皮、眼神温柔；鼻子小巧挺直；唇形小巧、嘴角带一点温柔的笑意；肤色白净，脸上没有雀斑；清秀温婉的大家闺秀。
+
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+
+    【本张另外要求】（作者 AR-53 / AR-56 总审：现在还是凌晨精修版的长脸、高颧骨、窄杏眼、带雀斑，显成熟，明显不像新基线）把脸改成基线的柔和鹅蛋脸、两颊圆润、颧骨不突出、杏眼明亮、脸上没有雀斑，年轻温婉；表情方向照原图。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_travel_base.png
+    sha256: 01c0b749f95587a998949a714ae63f75c75c9b90eceedbda58968e62406b6de3
+    use: 对脸基线：作者审核通过的 por_npc_shuisheng__ch09_youth_travel_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_scene_yuyi.png
+    sha256: 76b3c446f3035bd0fc2395b18ad7089fb720a86e93b184877ca081720cf1401b
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_yuyi.76b3c446.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T18:24:40-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_shuisheng__ch09_youth_scene_yuyi.e1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 9158cc38c40213dbe7e78108867879adc7d7b5f69f96c1e301e8480d339a87bf
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。；AR-44 对脸精修，基线 = por_npc_shuisheng__ch09_youth_travel_base（AR-53 / AR-56 总审返修：对齐 AR-56 新基准）
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_shuisheng__ch09_youth_scene_yuyi.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_yuyi.76b3c446.png
+    sha256: 76b3c446f3035bd0fc2395b18ad7089fb720a86e93b184877ca081720cf1401b
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_yuyi.76b3c446.entry.yaml
+- id: por_npc_shuisheng__ch09_youth_scene_xianghou
+  file: por_npc_shuisheng__ch09_youth_scene_xianghou.png
+  category: character/female
+  style: default
+  subject: 水笙·雪谷相候（ch09_liancheng）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的水笙立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中水笙的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的水笙二十岁上下：柔和饱满的鹅蛋脸、两颊圆润、颧骨不突出、下巴小巧圆润；眉毛细长柔和；一双明亮的杏眼、双眼皮、眼神温柔；鼻子小巧挺直；唇形小巧、嘴角带一点温柔的笑意；肤色白净，脸上没有雀斑；清秀温婉的大家闺秀。
+
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+
+    【本张另外要求】（作者 AR-53 / AR-56 总审：现在还是凌晨精修版的长脸、高颧骨、窄杏眼、带雀斑，显成熟，明显不像新基线）把脸改成基线的柔和鹅蛋脸、两颊圆润、颧骨不突出、杏眼明亮、脸上没有雀斑，年轻温婉；表情方向照原图。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_travel_base.png
+    sha256: 01c0b749f95587a998949a714ae63f75c75c9b90eceedbda58968e62406b6de3
+    use: 对脸基线：作者审核通过的 por_npc_shuisheng__ch09_youth_travel_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_scene_xianghou.png
+    sha256: a388d2e10beeb456f184b14011427eadf6f0315d87597fa0636cdb7ea4e1a2dc
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_xianghou.a388d2e1.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T18:24:41-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_shuisheng__ch09_youth_scene_xianghou.e1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 079f5305dde409e0fc5500340d7dfbb613d5871e3172f60f471e8243031226e8
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。；AR-44 对脸精修，基线 = por_npc_shuisheng__ch09_youth_travel_base（AR-53 / AR-56 总审返修：对齐 AR-56 新基准）
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_shuisheng__ch09_youth_scene_xianghou.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_xianghou.a388d2e1.png
+    sha256: a388d2e10beeb456f184b14011427eadf6f0315d87597fa0636cdb7ea4e1a2dc
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_xianghou.a388d2e1.entry.yaml
+- id: por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword
+  file: por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.png
+  category: character/female
+  style: default
+  subject: 戚芳·麻溪学剑（ch09_liancheng）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是作者审核通过的戚芳立绘（身份基线）；第 2 张是同一张基线图的脸部特写（看清五官细节用）；第 3 张参考图是待改原图。请以第 3 张待改原图为底稿，只把画中戚芳的脸改成与身份基线是同一个人，然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 3 张原图一致。
+
+    【要对齐基线的部分】脸型与骨相、额头与发际线、眉形与眉眼间距、眼型与眼神、鼻梁与鼻头、颧骨、嘴型与唇厚、下颌与下巴、胡须的形状与疏密、肤色与年龄感。要让人一眼看出两张图里是同一个人。基线里的戚芳二十出头：圆润的鹅蛋脸、两颊饱满、下巴圆润不尖；眉毛自然、眉头微蹙带一点愁绪；一双圆而大的眼睛、眼神质朴；鼻子小巧；嘴唇饱满；健康的肤色；朴实的湘西乡下姑娘，温和、略带愁容。
+
+    【原图保持不变】除脸以外，第 3 张原图的一切都保留：取景与构图、人物在画面中的位置和大小、头部朝向与角度、身体姿势、手势与手中器物、服装的款式颜色与褶皱、道具、背景场景、光线方向与色调、纸底与水墨处理、笔触与画风。表情保留原图的情绪方向，只是换成基线这张脸来做这个表情。
+
+    【本张另外要求】（AR-53 / AR-56 总审轻微：脸比基线略窄长、下巴略尖）脸型改成基线的圆润鹅蛋脸、两颊饱满、下巴圆润；眉眼保持。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸、少年身材）；不要网红脸、磨皮、照片质感；衣襟保持右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch09/por_npc_qifang__ch09_youth_mother_base.png
+    sha256: ede3331b5673781e0f61ceccc3f3a89800ac9f3981d24097c9ccad195b5cb927
+    use: 对脸基线：作者审核通过的 por_npc_qifang__ch09_youth_mother_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch09/por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.png
+    sha256: 3ed49e243afec06c4ed08e1006c061d52e761d730c8043151f46657e23cab2c4
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.3ed49e24.png
+  tool: codex exec · image_gen（AR-44 对脸精修：图像编辑，上传基线全身 + 基线脸部特写 + 待改原图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T18:24:42-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.e1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f23051ca40de306b365851f8221036a8958fe62a08b0f047bf46871eee2c3a56
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。；AR-44 对脸精修，基线 = por_npc_qifang__ch09_youth_mother_base（AR-53 / AR-56 总审返修：对齐 AR-56 新基准）
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.3ed49e24.png
+    sha256: 3ed49e243afec06c4ed08e1006c061d52e761d730c8043151f46657e23cab2c4
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.3ed49e24.entry.yaml
+- id: por_npc_qifang__ch09_youth_scene_wanfu_poetry_butterfly
+  file: por_npc_qifang__ch09_youth_scene_wanfu_poetry_butterfly.png
+  category: character/female
+  style: default
+  subject: 戚芳·诗页双蝶（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【主角】戚芳；湘西乡间的爽朗善良、对旧情与亲人的牵挂、已为人母而有独立选择；折叠小童衣象征母亲身份。原创成年新脸：较圆润鹅蛋脸、柔和但成熟的下颌、微弧眉、眼尾平缓的杏眼、鼻头圆润与自然小嘴、暖麦肤色，温柔中有忧思；不复制演员、不画惊恐瞪眼，明显区别水笙利落长脸。
+
+    【本期】诗页双蝶；成年已婚后期，同一新脸成熟温柔而心事沉重；低髻素簪、灰蓝右衽长袄外搭深褐无袖坎肩、暗米长裙布鞋；手捧摊开的旧诗书，书页不出现可读字，只夹两枚彩纸蝴蝶，未受伤、不捧童衣、不拿剑。
+
+    【阶段背景】荆州万府楼上窗边与暗木书桌，隔壁墙面沉静，夜灯照亮纸蝶而非惊悚鬼影。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
+
+    【考据边界】第十章《唐诗选辑》中诗书夹两只花纸蝶；https://www.99csw.com/book/2174/63769.htm 为2026-10-03核验的网络正文。发现真相之前的单人余韵、灰蓝服色、站姿和灯火为（原创扩展构图）；成年化制作适配；三联/广州修订版纸本逐字（待考）。；配色、镜头、成人化、具体站姿是（原创扩展）；所引章回仅作情节定位，三联／广州修订版对应回目与字句待纸本终校（待考）。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch09/por_npc_qifang__ch09_youth_mother_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/female/ch09/por_npc_qifang__ch09_youth_mother_base.png
+    sha256: 3a3ba68c673e6fb89432c6e5f486a98c2dea799239c2f0f1dfa1abf566b3d330
+    uploaded_sha256: 3a3ba68c673e6fb89432c6e5f486a98c2dea799239c2f0f1dfa1abf566b3d330
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: .agents/coord/imagegen-reference/identity-20261001/liancheng/qifang_2004_hemeitian_baike_b812_20261002.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_qifang__ch09_youth_mother_base_still0.jpg
+    sha256: 4da6b01247d5d9a53c111b89e20e9504f7aeb1be36d12e74a8adc6041b50d2ac
+    uploaded_sha256: 23e899ab15f3d593b53c006bcf6d7e2e002357dbdd6c89465fec34f17bf39f67
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/author-20261002/linghuchong_game_cover_wuyuejianpai.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_qifang__ch09_youth_mother_base_game.jpg
+    sha256: c81b4af6e1db5d5be88098a15842a4874f8bdebc87477a7bdf4c41da84b4415f
+    uploaded_sha256: 1dbcee0ba1079c3a943da69b67439cb10c627585bb67f755514f52a2a073bb23
+    use: 经典游戏绘画风格
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    uploaded_sha256: cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    uploaded_sha256: f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T02:33:36-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_qifang__ch09_youth_scene_wanfu_poetry_butterfly.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 62be6ecd6304a0e70f9e9cbffa56d9b7299e6413b83a87c5321a873ecda6fef7
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_qifang__ch09_youth_scene_wanfu_poetry_butterfly.retry3.r1
+  quality_retries: 0
+  history: []

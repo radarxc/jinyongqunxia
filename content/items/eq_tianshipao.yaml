@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_tianshipao
+name: 天师袍
+kind: armor
+sub: clothing
+grade: 8
+stack: 1
+chapters:
+- ch04_yitian
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tianshipao
+text:
+  desc: 外观：元通用款，主色紫褐。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG。
+  lore: （原创扩展）天师袍为元代天师道系仪服候选，紫褐右衽长仪袍配完整内衫，窄金织缘与小云纹收束袍面。收存时理顺襟缘，不画符咒文字；修订版同名原著物待考，默认原创轻衣，穿着不授门派身份或法术抗性。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 62

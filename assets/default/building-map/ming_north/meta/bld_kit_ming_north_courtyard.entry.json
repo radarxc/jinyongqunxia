@@ -1,0 +1,55 @@
+{
+  "id": "bld_kit_ming_north_courtyard",
+  "subject": "明代北方府城：北方合院（原创扩展）；具体构件断代（待考）。",
+  "prompt": "Replace this rectangular block with an accurately aligned grey-brick Chinese Ming northern courtyard compound. Keep its two vertical side faces as courtyard wall locations, hollow out its center into an enclosed courtyard, add three small grey tiled hard-gable residential wings inside it and a front central wood gate. Fine realistic weathered brick/tile/wood game sprite texture, subdued color, sunlight from upper-left, no people. Most important: DO NOT change the block's silhouette at ground level, front vertex or axis angles. Ground silhouette must remain identical to reference. Left ground vertex(180,590), front(820,910), right(1332,654). The front-right base line must be exactly512px across256px up, angle26.565 degrees. Front-left is640px across320px down, ALSO26.565 degrees. No30degree isometric; precisely2:1dimetric. Width/depth=10/8. Place architecture inside this footprint, neat thin stone apron, corners and bottom outline exactly as block. Remove solid block cap, and no thick pedestal. Keep full roofs in frame. 1536x1024 transparent RGBA canvas, totally transparent background, no halo or scenery, no guides or text. Exact geometry before ornament.",
+  "references": [
+    {
+      "path": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_courtyard/r3_block_guide.png",
+      "sha256": "9167994ffa9595dcb7e7607468be850944aef60be464a10c51d82137fbc7f5b2",
+      "role": "image_gen精确几何参考；已view_image；非成品绘制"
+    }
+  ],
+  "created": "2026-09-30T22:43:17.924925+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46f-22f6-7223-b480-2d9dc63984cb/exec-0a105c29-93b8-4b9e-b5b2-13c8cb089450.png",
+  "file": "bld_kit_ming_north_courtyard.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "640x512",
+  "sha256": "a986e4bde85d0e4b101e49a9f7e647b6caf6ca3023b0447ff636f08330ddc97a",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_courtyard",
+    "footprint": [
+      10,
+      8
+    ],
+    "anchor": [
+      320.0,
+      294.9137
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    10,
+    8
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 5.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_courtyard.png",
+  "source_sha256": "76bdadccb176a3b018f8c80f87c49f86c5f86c321ebe325431ac558474bbc277",
+  "meta": "meta/bld_kit_ming_north_courtyard.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；第3轮底面双轴与宽深实测达标；仅原向单视图；拼接（待实测）。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "source_record": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_courtyard/revision.json",
+  "revision": 3,
+  "candidate_count_basis": "仅本轮 revision=3；旧轮记录归档于 previous_sources 文件",
+  "repair_record": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_courtyard/revision.json"
+}

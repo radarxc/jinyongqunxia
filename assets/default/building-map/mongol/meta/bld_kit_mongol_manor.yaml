@@ -1,0 +1,47 @@
+id: bld_kit_mongol_manor
+status: candidate
+building: {"type": "bld_kit_mongol_manor", "footprint": [16, 13], "anchor": &id001 [548.869, 382.5473], "era": "mongol"}
+anchor_px: [548.869, 382.5473]
+footprint_m:
+- 16
+- 13
+collision_polygon_m:
+- - 0
+  - 0
+- - 16
+  - 0
+- - 16
+  - 13
+- - 0
+  - 13
+collision_note: 基线全footprint代理；院内行走与纯阴影须下游区分。
+entrance:
+  edge: S
+  offset_cells: 7
+entrance_note: 目录代理，非门洞实测。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+height_m: null
+height_note: 没有真实高度/GLB，不从图高杜撰。
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_mongol_manor.png
+  angles_note: 提示词请求值；实际轴偏差见geometry_qa
+projection_contract: {"tile_px": [64, 32], "ground_bbox_px": [928, 464], "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "camera_requested": {"yaw_deg": 45, "pitch_deg": 30}, "measured_geometry_pass": false, "ground_bbox_semantics": "64×32网格目标包围框，非实际底面测量"}
+geometry_qa: {"source_corners_px": {"left": [85, 519], "front": [880, 915], "right": [1475, 590]}, "source_anchor_px": [780.0, 554.5], "hidden_back_corner_method": "back = left + right - front；后角推算，前方三角人工读点。", "source_axis_slopes": [0.4981132075471698, -0.5462184873949579], "axis_tolerance": 0.03, "axis_pass": false, "source_width_depth_ratio": 1.3361344537815125, "expected_width_depth_ratio": 1.2307692307692308, "ratio_relative_error": 0.08560924369747891, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 4, "precision_note": "人工逐张view_image读取源PNG真实可见底角，约±4px；未用目标坐标代填。", "final_measured_corners_px": {"left": [84.7614, 358.8445], "front": [615.6471, 623.247], "right": [1012.9766, 406.25]}, "observed_ground_height_px": 481.3994}
+pixel_qa: {"mode": "RGBA", "size": [1056, 704], "alpha_extrema": [0, 255], "alpha_zero_pixels": 489703, "alpha_partial_pixels": 252820, "alpha_opaque_pixels": 901, "alpha_near_opaque_pixels": 247781, "alpha_nonzero_bbox": [28, 24, 1027, 680], "transparent_margins_px": [28, 24, 29, 24], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_manor__r2_c01.png", "source_size": [1536, 1024], "source_sha256": "2eda268648b0629e413e5c0c3cda2e309e4fef48707762e61d3d1c8a4f261687", "crop_box": [0, 16, 1496, 1000], "uniform_scale_requested": 0.6676258992805756, "resized_size": [999, 657], "rounded_effective_scale": [0.6677807486631016, 0.6676829268292683], "paste_offset": [28, 23], "steps": ["只裁alpha>0包围框外透明空白", "一次等比LANCZOS；整数宽高量化误差单列", "无mask粘贴至透明RGBA画布；不改颜色/alpha、不warp、不补画"], "anchor_formula": "(source_anchor-crop_origin)*rounded_effective_scale+paste_offset"}
+source_pixel_qa: {"alpha_extrema": [0, 254], "border_note": "源图低alpha晕完整保留，未阈值去除；成品透明pad；不得把隐藏RGB晕判作不透明背景。"}
+candidate_count: 2
+selected_candidate: "run2-c1"
+release_ready: false
+notes: "第2轮返修采用候选1；轴率0.49811/-0.54622；宽深比1.33613，目标1.23077；轴率/比例检查分别False/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。"

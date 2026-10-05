@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_jianyaotuhaozhan
+name: 建窑兔毫盏
+kind: collectible
+sub: porcelain
+grade: 3
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H18](#src-h18)；准入：天龙1093—1094；普通同类器
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jianyaotuhaozhan
+text:
+  desc: 外观：黑褐釉小盏，口沿褐黄兔毫下垂。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=history。
+  lore: 宋人茶书已记建盏与兔毫特征，可支持天龙窗口的同类茶器。取普通品相作初阶礼物，适合赠文士茶客；具体窑户和购买为（原创扩展），不把普通盏虚称御用稀世器。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

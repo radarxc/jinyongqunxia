@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_pijia
+name: 皮甲
+kind: armor
+sub: officialArmor
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用；（原创扩展）；复用design/10既有皮甲基底，本轮补名录行；皮甲语汇据《周礼·冬官考工记·函人》 https://zh.wikisource.org/zh-hans/周禮/冬官考工記；具体兽材与越地制式（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/pijia
+text:
+  desc: 外观：通用款，主色深褐。 待运行时投影：defInK=0.1; defOutK=0.2。
+  lore: （原创扩展）复用既有皮甲基底，深褐皮札以革带联缀，短甲内铺麻丝衬里。肩护随整甲穿脱，日常须整理系带而不附赠官身；具体兽材与越地制式仍（待考），不宣称常用犀皮，也不按重甲重复加负重。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: medium
+    matFamily: leather
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 42

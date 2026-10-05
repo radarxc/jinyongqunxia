@@ -7,6 +7,7 @@ import io
 import json
 import math
 import re
+import subprocess
 from functools import lru_cache
 from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
@@ -449,78 +450,118 @@ def collect_quality(path: str | Path, suite_root: str | Path | None = None) -> d
     return {"frames": result, "advisory": True, "manual_review": "棋盘格、造型、真实掌面与根部宽度"}
 
 
+THREE_URL = 'https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.min.js'
+
+
 def _embedded_reference(value: str, field: str) -> None:
     value = value.strip()
-    if value.startswith("#") or value.startswith("data:image/webp;base64,"):
+    if value.startswith('#') or re.match(r'data:image/(?:png|webp);base64,', value):
         return
-    raise VFXError(f"HTML {field}：要求内嵌 WebP 或本页锚点，拒绝 {value[:100]!r}")
+    raise VFXError(f'HTML {field}：要求内嵌 PNG/WebP 或本页锚点，拒绝 {value[:100]!r}')
 
 
 class _HTMLCheck(HTMLParser):
     def handle_starttag(self, tag: str, attrs: list) -> None:
         attributes = dict(attrs)
-        if tag in ("iframe", "frame", "object", "embed", "base"):
-            raise VFXError(f"HTML：演示不允许 <{tag}> 外部文档容器")
-        if tag == "meta" and attributes.get("http-equiv", "").lower() == "refresh":
-            raise VFXError("HTML：禁止 meta refresh 导航")
-        if tag == "script" and "src" in attributes:
-            raise VFXError("HTML：脚本必须直接内嵌")
+        if tag in ('iframe', 'frame', 'object', 'embed', 'base'):
+            raise VFXError(f'HTML：演示不允许 <{tag}> 外部文档容器')
+        if tag == 'meta' and attributes.get('http-equiv', '').lower() == 'refresh':
+            raise VFXError('HTML：禁止 meta refresh 导航')
+        if tag == 'script' and 'src' in attributes:
+            raise VFXError('HTML：脚本必须直接内嵌')
         for key, value in attrs:
-            if key in ("srcset", "action", "formaction", "ping", "manifest", "srcdoc"):
-                raise VFXError(f"HTML：不允许资源/导航属性 {key}")
-            if key in ("src", "href", "poster", "background", "xlink:href", "data"):
-                _embedded_reference(value or "", f"{tag}.{key}")
+            if key.startswith('on'):
+                raise VFXError('HTML：事件逻辑必须放在可校验的内联脚本中')
+            if key in ('srcset', 'action', 'formaction', 'ping', 'manifest', 'srcdoc'):
+                raise VFXError(f'HTML：不允许资源/导航属性 {key}')
+            if key in ('src', 'href', 'poster', 'background', 'xlink:href', 'data'):
+                _embedded_reference(value or '', f'{tag}.{key}')
 
     handle_startendtag = handle_starttag
 
 
 def check_html(path: str | Path, max_bytes: int = 3_000_000) -> dict:
-    """静态资源与常见联网 API 检查，不宣称能证明任意 JavaScript 不联网。"""
+    """验唯一 Three.js importmap、嵌入图像、预算及脚本语法；不代替浏览器验收。"""
     path = Path(path)
-    if type(max_bytes) is not int or max_bytes < 1 or max_bytes > 3_000_000:
-        raise VFXError("HTML max_bytes 必须为 1–3000000；不能提高硬上限")
+    if type(max_bytes) is not int or not 1 <= max_bytes <= 3_000_000:
+        raise VFXError('HTML max_bytes 必须为 1–3000000；不能提高硬上限')
     try:
         raw = path.read_bytes()
-        content = raw.decode("utf-8")
+        content = raw.decode('utf-8')
     except (OSError, UnicodeError) as exc:
-        raise VFXError(f"{path}：HTML 无法读取：{exc}") from exc
+        raise VFXError(f'{path}：HTML 无法读取：{exc}') from exc
     if len(raw) > max_bytes:
-        raise VFXError(f"{path}：HTML {len(raw)} bytes 超过上限 {max_bytes}")
-    if re.search(r"(?:https?|ftp|file|wss?):\s*(?:/|\\)", content, re.I):
-        raise VFXError(f"{path}：HTML 含外部 URL")
+        raise VFXError(f'{path}：HTML {len(raw)} bytes 超过上限 {max_bytes}')
+    parser = _HTMLCheck(convert_charrefs=True)
+    parser.feed(content)
+    parser.close()
+    scripts = list(re.finditer(r'<script\b([^>]*)>(.*?)</script\s*>', content, re.I | re.S))
+    maps, checked = 0, 0
+    scanned = content
+    for script in scripts:
+        attrs, code = script.group(1), script.group(2)
+        kind = re.search(r'\btype\s*=\s*([\'"])(.*?)\1', attrs, re.I)
+        kind = kind.group(2).lower() if kind else 'text/javascript'
+        if kind in ('importmap', 'application/json'):
+            try:
+                data = json.loads(code)
+            except ValueError as exc:
+                raise VFXError(f'{path}：内嵌 JSON 无效：{exc}') from exc
+            if kind == 'importmap':
+                if data != {'imports': {'three': THREE_URL}}:
+                    raise VFXError('HTML：importmap 仅允许锁定 r186 的 three 地址')
+                maps += 1
+                scanned = scanned.replace(script.group(0), '', 1)
+            continue
+        if kind not in ('module', 'text/javascript', 'application/javascript'):
+            raise VFXError(f'HTML：不支持的 script 类型 {kind}')
+        try:
+            checked_result = subprocess.run(
+                ['node', '--check', '--input-type=' + ('module' if kind == 'module' else 'commonjs')],
+                input=code, text=True, capture_output=True, check=False)
+        except OSError as exc:
+            raise VFXError(f'HTML：无法运行 node --check：{exc}') from exc
+        if checked_result.returncode:
+            raise VFXError(f'HTML：内联脚本语法错误：{checked_result.stderr.strip()}')
+        # All runtime modules are concatenated. Only the pinned bare three import survives.
+        imports = re.findall(r'\bimport\s+[^;\n]+', code)
+        for declaration in imports:
+            if not re.fullmatch(r'import\s+\*\s+as\s+THREE\s+from\s+[\'"]three[\'"]', declaration):
+                raise VFXError(f'HTML：只允许 import * as THREE from three：{declaration}')
+        checked += 1
+    if maps != 1 or checked < 1:
+        raise VFXError('HTML：必须有且仅有一个 three importmap，并含内联播放器脚本')
+    if re.search(r'(?:https?|ftp|file|wss?):\s*(?:/|\\)', scanned, re.I):
+        raise VFXError(f'{path}：HTML 含 importmap 之外的外部 URL')
+    # The sole dynamic import resolves through the already validated importmap.
+    scanned = re.sub(r"\bimport\(\s*(['\"])three\1\s*\)", '', scanned)
     forbidden = (
-        r"\b(?:fetch|XMLHttpRequest|WebSocket|EventSource|importScripts|sendBeacon|"
-        r"Worker|SharedWorker)\s*\(", r"\bserviceWorker\b", r"\bimport\s*(?:\(|[{'\"])",
-        r"\b(?:window\s*\.\s*open|location\s*\.\s*(?:assign|replace))\s*\(",
-        r"\blocation(?:\s*\.\s*href)?\s*=", r"\b(?:eval|Function)\s*\(",
-        r"@import\b", r"\bfrom\s*['\"][./]",
+        r'\b(?:fetch|XMLHttpRequest|WebSocket|EventSource|importScripts|sendBeacon|Worker|SharedWorker)\s*\(',
+        r'\bserviceWorker\b', r'\bimport\s*\(', r'\bexport\b[^;\n]*\bfrom\b',
+        r'\b(?:window\s*\.\s*open|location\s*\.\s*(?:assign|replace))\s*\(',
+        r'\blocation(?:\s*\.\s*href)?\s*=', r'\b(?:eval|Function)\s*\(', r'@import\b',
     )
     for pattern in forbidden:
-        if re.search(pattern, content, re.I):
-            raise VFXError(f"{path}：HTML 含联网/动态代码/外部资源入口 {pattern}")
-    for match in re.finditer(r"\.(?:src|href|poster)\s*=\s*(['\"])(.*?)\1", content, re.S):
-        _embedded_reference(match.group(2), "JavaScript 资源赋值")
-    if re.search(r"\bdata:(?!image/webp;base64,)(?=[a-z])", content, re.I):
-        raise VFXError(f"{path}：仅支持 WebP data URI")
-    parser = _HTMLCheck(convert_charrefs=True)
-    try:
-        parser.feed(content)
-        parser.close()
-    except VFXError as exc:
-        raise VFXError(f"{path}：{exc}") from exc
-    for match in re.finditer(r"\burl\s*\(\s*(['\"]?)(.*?)\1\s*\)", content, re.I | re.S):
-        _embedded_reference(match.group(2), "CSS url")
-    embedded = re.findall(r"data:image/webp;base64,([A-Za-z0-9+/=]+)", content)
+        if re.search(pattern, scanned, re.I):
+            raise VFXError(f'{path}：HTML 含额外联网/动态代码入口 {pattern}')
+    for match in re.finditer(r'\.(?:src|href|poster)\s*=\s*([\'"])(.*?)\1', scanned, re.S):
+        _embedded_reference(match.group(2), 'JavaScript 资源赋值')
+    for match in re.finditer(r'\burl\s*\(\s*([\'"]?)(.*?)\1\s*\)', scanned, re.I | re.S):
+        _embedded_reference(match.group(2), 'CSS url')
+    if re.search(r'\bdata:(?!image/(?:png|webp);base64,)(?=[a-z])', scanned, re.I):
+        raise VFXError(f'{path}：仅支持 PNG/WebP data URI')
+    embedded = re.findall(r'data:image/(png|webp);base64,([A-Za-z0-9+/=]+)', scanned)
     if not embedded:
-        raise VFXError(f"{path}：未找到内嵌 WebP 帧")
-    for encoded in set(embedded):
+        raise VFXError(f'{path}：未找到内嵌图像')
+    for image_kind, encoded in set(embedded):
         try:
             binary = base64.b64decode(encoded, validate=True)
             with Image.open(io.BytesIO(binary)) as image:
-                if image.format != "WEBP":
-                    raise VFXError(f"{path}：data URI 不是实际 WebP 图像")
+                if image.format.lower() != image_kind:
+                    raise VFXError(f'{path}：data URI 格式与实际图像不符')
                 image.load()
         except (ValueError, OSError, UnidentifiedImageError) as exc:
-            raise VFXError(f"{path}：内嵌 WebP 无效：{exc}") from exc
-    return {"bytes": len(raw), "embedded_webp_images": len(embedded),
-            "unique_webp_images": len(set(embedded)), "static_only": True}
+            raise VFXError(f'{path}：内嵌图像无效：{exc}') from exc
+    return {'bytes': len(raw), 'embedded_images': len(embedded),
+            'unique_images': len(set(embedded)), 'inline_scripts_checked': checked,
+            'only_external_dependency': THREE_URL, 'browser_verified': False}

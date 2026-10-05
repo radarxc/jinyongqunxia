@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_liehuoqi
+name: 烈火旗
+kind: weapon
+sub: exotic
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·明教五行旗 （待考：核旗本体是否直接作为兵器及原著形制）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/liehuoqi
+text:
+  desc: 外观：深红窄幅战旗连乌木长杆与小型铜矛头，旗面无字。 待运行时投影：exoticKind=misc; onHit=bf_zhuoshao:20%。
+  lore: 《倚天屠龙记》有明教烈火旗，但旗本体是否如此直接作兵仍 （待考：核五行旗战斗情节）。本作以枪头刺挑、旗面扰敌，贯注内力后附灼烧，均属 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 72
+      qiAffinity: 110
+      qiEffect: bf_zhuoshao

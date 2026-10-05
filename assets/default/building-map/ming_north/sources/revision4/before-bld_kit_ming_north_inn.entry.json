@@ -1,0 +1,60 @@
+{
+  "id": "bld_kit_ming_north_inn",
+  "subject": "明代北方客栈，12×9格，灰砖硬山二层客舍附小院（原创扩展；细部待考）",
+  "prompt": "Use case: sketch-to-render. Transform this exact block into ONE northern Ming town INN, two-storey guest house with a short attached lower side wing and a tiny interior yard behind it. Grey brick walls, hard-gable grey clay roofs with solid flush masonry gables, brown timber upper balcony rails, plain timber double entrance and lattice windows on light left-front facade. No signs or lettering. Realistic finely detailed historical painted game asset, natural muted stone/tile/wood colors. Keep all footprint corners EXACTLY where the guide places them: L200,610 F800,910 R1250,685 B650,385 on1536x1024 canvas. Whole property12m width9m depth, width600px depth450px. Bottom two edges exact slopes+0.5 and-0.5. Do not widen, zoom or change camera; all horizontal edges parallel guide axes, strict orthographic dimetric2:1. Build upward from guide, trim away rear part of volume for tiny yard but preserve external footprint. Thin grey flagstone apron with clear L/F/R outer corners. Architecture fully inside base and canvas with transparent margins. Upper-left light, short soft contact shadow lower right. Opaque building, true RGBA transparent exterior. No people, text, labels, guide lines, thick plinth, scenery, modern items, dramatic upward-curled eaves or baked checkerboard. Keep guest house modest and believable.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; viewed before generation"
+    },
+    {
+      "path": "assets/default/building-map/ming_north/sources/bld_kit_ming_north_inn_r2_guide.png",
+      "sha256": "1f8b5faedb531601c30dcb1d28a5695ffcbc6190a016ca56ae555ab8cbe11079",
+      "role": "精确几何导引，仅作image_gen输入；最终图未经仿射纠偏"
+    }
+  ],
+  "created": "2026-09-30T22:10:19.444035+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-8603-7d32-a4a9-8c7789f39090/exec-62fd5bf8-0a98-4704-abdc-88d4187bbb08.png",
+  "file": "bld_kit_ming_north_inn.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "No text, modern objects, people, scenery, opaque background, clipped roofs.",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "736x576",
+  "sha256": "eba0c1133a0971aaca529f5565efdc10927252840de060536c146e076e0b500b",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_inn",
+    "footprint": [
+      12,
+      9
+    ],
+    "anchor": [
+      368.0,
+      374.8653
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    12,
+    9
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 6.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_inn.png",
+  "source_sha256": "409233e5c3e82507812effff5bbd035f613aa8dbd2688ee723dc0301dce1234f",
+  "meta": "meta/bld_kit_ming_north_inn.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "source_record": "sources/bld_kit_ming_north_inn.json",
+  "revision": 2,
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "candidate_count_basis": "仅本轮 revision=2；前轮次数见 revision_history",
+  "repair_record": "sources/bld_kit_ming_north_inn_r2_candidates.json"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "bld_kit_ming_north_inn",
+  "subject": "明代北方客栈，12×9格，灰砖硬山二层客舍附小院（原创扩展；细部待考）",
+  "footprint": [
+    12,
+    9
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-e0bb2f94-90be-4678-ab66-04606c50a383.png",
+  "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric 2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point. Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay concave and convex roof tiles, low subtle ridge terminals, solid masonry gable ends flush with verge eaves, not overhanging timber gables, EXPOSED GREY BRICK ALL walls, NO white or cream plaster, subdued dark timber lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky, horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly ONE asset. Subject: ONE northern Ming travelers' INN module, footprint12m wide by9m deep, compact rectangular two-storey brick and timber inn with short attached side wing enclosing a tiny interior working yard, no external large courtyard wall. Lower-left entrance is broad plain double door under modest porch, upper timber guest-room balcony with closely spaced lattice doors; one tall plain hitching post and a water jar placed tightly beside doorway, no horse or person. Grey brick walls throughout, grey tiled roofs flush with masonry gable ends. Main big roof and lower wing roof simple with restrained ridges. No pagoda silhouette, no white plaster, no shop counter, no public sign. Thin floor apron perimeter visible, width/depth horizontal edge spans ratio12:9; projected ground edges26.565 degrees to horizontal, slope+.5 and-.5. Hard-gable roof constraint: reference must NOT dictate roof silhouette: proper NORTH CHINESE YINGSHAN hard-gabled roofs, flush grey-brick triangular gable walls rising to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. Original historical game asset, anonymous inn not a named restoration. Geometry refinement: wider frontage and less deep side wing. Must be rectangular overall12 wide to9 deep, not a square. Show ground FRONT corner slightly right of canvas center: left-to-front horizontal span600px, front-to-right450px. The front ground corner should be60px lower than right ground corner? No: each rise is HALF its edge horizontal span, so left-to-front delta600,+300 and front-to-right delta450,-225. No annotation. Keep shallow ground slopes0.5 and no perspective convergence. For an approximate square1254canvas aim ground LEFT=(90,800), FRONT=(690,1100), RIGHT=(1140,875), BACK=(540,575); invisible back may be occluded. Treat footprint edges as thin clean paving perimeter. No extra scenery.",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+      "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7",
+      "role": "style only; viewed before generation"
+    }
+  ],
+  "created": "2026-09-30T21:24:19Z",
+  "created_time_basis": "接收后登记时间",
+  "points": {
+    "L": [
+      58,
+      783
+    ],
+    "F": [
+      689,
+      1142
+    ],
+    "R": [
+      1239,
+      848
+    ]
+  },
+  "footprint_basis": "【建议值】design/22 §3.3 宋南方客栈12×9同功能占地；明骨架未列客栈",
+  "visual_review": "两候选原图均经view_image，第二候选入选；灰砖瓦顶、二层木廊、小侧院、门前拴马柱和水缸，无人无字。硬山轮廓克制，左上光且完整透明边。第二稿宽深比约1.147，目标1.333，误差13.955%；双轴+.569/-.535超容差，保留candidate并明确不可当严格拼接已通过。 成品已单独view_image：缩放后材质清楚、屋檐/台基完整、透明留边保留；与原图保持同一比例。",
+  "candidate_count": 2,
+  "rejected_candidate": {
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-183f-7ff3-a5e9-5a982695f883/exec-cde844b1-fc40-439b-b0b9-d787285b5c3e.png",
+    "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, ONE isolated reusable game building cutout, true RGBA transparent background. Image 1 is a STYLE REFERENCE ONLY: match its realistic historical painted material quality, crisp detailed grey roof tiles, believable aged masonry and wood, natural muted colors and detail density. Do not copy its building or old camera inaccuracies. This is a new Ming-era northern Chinese prefectural-town building, original game design, NOT restoration of a named monument. Camera MUST be orthographic dimetric 2:1 ground projection, yaw 45 degrees elevation 30 degrees: ground edges exact +0.5 and -0.5 slopes, all verticals upright, no vanishing point. Main frontage faces screen lower left. Ground footprint must be a thin flat rectangular apron with clearly visible straight left-to-front and front-to-right edges, front base corner visible, no thick pedestal or surrounding street. Entire eaves, ground edge and short shadow fully inside square frame with 10 percent transparent margins. Sunlight screen upper left, short soft contact shadow screen lower right. Northern Ming hard-gable YINGSHAN roof: restrained straight ridge, grey clay concave and convex roof tiles, low subtle ridge terminals, solid masonry gable ends flush with verge eaves, not overhanging timber gables, EXPOSED GREY BRICK ALL walls, NO white or cream plaster, subdued dark timber lattice doors/windows; no Qing imperial decoration. No written characters, signboards, lettering, symbols, people, background scenery, sky, horizon, mountains, labels, watermark, checkerboard, opaque floor, exaggerated curved eaves, cartoon or toy-like stylization. Generate exactly ONE asset. Subject: ONE northern Ming travelers' INN module, footprint12m wide by9m deep, compact rectangular two-storey brick and timber inn with short attached side wing enclosing a tiny interior working yard, no external large courtyard wall. Lower-left entrance is broad plain double door under modest porch, upper timber guest-room balcony with closely spaced lattice doors; one tall plain hitching post and a water jar placed tightly beside doorway, no horse or person. Grey brick walls throughout, grey tiled roofs flush with masonry gable ends. Main big roof and lower wing roof simple with restrained ridges. No pagoda silhouette, no white plaster, no shop counter, no public sign. Thin floor apron perimeter visible, width/depth horizontal edge spans ratio12:9; projected ground edges26.565 degrees to horizontal, slope+.5 and-.5. Hard-gable roof constraint: reference must NOT dictate roof silhouette: proper NORTH CHINESE YINGSHAN hard-gabled roofs, flush grey-brick triangular gable walls rising to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. Original historical game asset, anonymous inn not a named restoration.",
+    "reason": "首稿底面近正方形而目标12×9；第二稿宽深比例有所改善"
+  },
+  "final_view_image_reviewed": true,
+  "measurement_uncertainty_source_px": 3,
+  "source_point_semantics": "人工读取薄地面铺装外缘L/F/R，不含投影影子；后角依平行四边形推定，中心为(L+R)/2。"
+}

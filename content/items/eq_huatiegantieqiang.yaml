@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_huatiegantieqiang
+name: 花铁干铁枪
+kind: weapon
+sub: spear
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《连城诀》·花铁干使用铁枪
+price: auto
+flags:
+- unique
+assets:
+  icon: item/huatiegantieqiang
+text:
+  desc: 外观：通长约二点二米，枪头与细杆均为乌铁。
+  lore: 《连城诀》中“中平无敌”花铁干以铁枪为兵，长枪既能中线直刺，也可凭铁杆承受拨压。通体金属使其坚重，换手比木杆更费力；具体长度、四棱锋、红缨和玩法定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 80
+      qiAffinity: 100

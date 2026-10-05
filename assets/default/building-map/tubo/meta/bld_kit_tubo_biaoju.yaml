@@ -1,0 +1,74 @@
+id: bld_kit_tubo_biaoju
+status: candidate
+building:
+  type: bld_kit_tubo_biaoju
+  footprint: [14, 11]
+  anchor: &id001 [462.9669, 368.0406]
+  era: tubo
+anchor_px: *id001
+footprint_m: [14, 11]
+entrance: {edge: S, offset_cells: 7.0}
+entrance_note: S边中点为规划默认，非实际门洞像素；运行时待实测。
+collision_polygon_m:
+- [0, 0]
+- [14, 0]
+- [14, 11]
+- [0, 11]
+collision_note: 规划整占地代理，不含阴影；院内行走细化待实测。
+actual_height_m: null
+height_note: 未做三维量测；不可把PNG轮廓当作精确高度。
+occluder_proxy_px: [32, 32, 891, 595]
+occluder_note: alpha非零包围框仅作离线保守代理。
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_tubo_biaoju.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [800, 400]
+  ground_width_px: 800
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [112, 570]
+    front: [878, 970]
+    right: [1475, 668]
+  source_axis_slopes: [0.5221932114882507, -0.5058626465661642]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2830820770519262
+  expected_width_depth_ratio: 1.2727272727272727
+  ratio_relative_error: 0.008135917683656402
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+pixel_qa:
+  mode: RGBA
+  size: [923, 627]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 307767
+  alpha_partial_pixels: 269651
+  alpha_near_opaque_pixels: 265829
+  alpha_opaque_pixels: 1303
+  alpha_nonzero_bbox: [32, 32, 891, 595]
+  transparent_margins_px: [32, 32, 32, 32]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_tubo_biaoju.png
+  source_sha256: 510b95584227acce3db7ab42907c0a25695fc6b93d6630a510b96e2fc571550e
+  source_size: [1536, 1024]
+  crop_box: [59, 46, 1523, 1006]
+  uniform_scale_requested: 0.586940572267058
+  resized_size: [859, 563]
+  rounded_effective_scale: [0.5867486338797814, 0.5864583333333333]
+  paste_offset: [32, 32, 891, 595]
+  target_canvas: [923, 627]
+  final_file: bld_kit_tubo_biaoju.png
+  steps: [crop alpha>0 bounding box, 'uniform LANCZOS resize, nearest-integer dimensions', 'paste without mask onto transparent RGBA; no repaint, warp, alpha threshold,
+      flip or rotation']
+release_ready: false
+visual_review: 原图已 view_image；按墙身接地线人工量点，避开外挑散石饰边。平顶石砌货栈、袋捆和箱体辨功能，无文字/人物/现代元素。与宋基线材质密度协调，真实RGBA须保留alpha。
+historical_note: 原创地域功能组合；非任何具名实物或全年代复原。

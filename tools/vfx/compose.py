@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Compose source-aligned VFX layers without moving the emitter (design/23)."""
+"""按 Composition 仅生成一张静态 peak.png；动效由 Three.js 执行。"""
 
 from __future__ import annotations
 
 import argparse
 import bisect
-import json
 import math
-import os
-import re
 import sys
 from pathlib import Path
 
@@ -51,12 +48,8 @@ def _visible_bounds(rgba: np.ndarray, matrix: np.ndarray,
     return np.concatenate((points.min(axis=0) - radius, points.max(axis=0) + radius))
 
 
-class Renderer:
-    """Retain raw layers so animation applies its envelope exactly once.
-
-    ``render(..., animated=False)`` creates un-enveloped inspection keyframes.
-    ``animated=True`` samples source layers and applies the configured rhythm.
-    """
+class PeakRenderer:
+    """检查所有原料的几何边界，仅采样配置中的一个静态峰值。"""
 
     def __init__(self, composition_path: str | Path, suite_root: str | Path | None = None):
         self.path = Path(composition_path).resolve()
@@ -149,117 +142,86 @@ class Renderer:
         return {"visible_bounds_px": [*low.tolist(), *high.tolist()],
                 "safe_margin_px": safe, "blank_fraction_lower_bound": blank}
 
-    def sample_effect(self, phase: float) -> np.ndarray:
-        """Sample root-aligned premultiplied source layers, without envelope."""
-        if not math.isfinite(phase) or not 0 <= phase <= 1:
-            raise VFXError("采样 phase 必须是 [0,1] 内的有限数")
-        current = max(0, bisect.bisect_right(self.phases, phase) - 1)
-        if current == len(self.frames) - 1:
-            return self.frames[current].copy()
-        if self.composition["transition"]["interpolation"] == "hold":
-            return self.frames[current].copy()
-        weight = ((phase - self.phases[current])
-                  / (self.phases[current + 1] - self.phases[current]))
-        return (1 - weight) * self.frames[current] + weight * self.frames[current + 1]
-
-    def envelope(self, phase: float) -> tuple[float, float, float, float]:
-        """Return effect opacity, root scale, forward drift in px, and gain."""
-        if not math.isfinite(phase) or not 0 <= phase <= 1:
-            raise VFXError("采样 phase 必须是 [0,1] 内的有限数")
+    def render_peak(self) -> Image.Image:
+        """静态缩略图按与网页相同的相位、预乘插值和推进遮罩采样。"""
+        phase = self.composition['output']['peak_phase']
+        transition = self.composition['transition']
+        index = max(0, bisect.bisect_right(self.phases, phase) - 1)
+        layer = self.frames[index].copy()
+        if index + 1 < len(self.frames) and transition['interpolation'] == 'crossfade':
+            weight = (phase - self.phases[index]) / (self.phases[index + 1] - self.phases[index])
+            layer = (1 - weight) * layer + weight * self.frames[index + 1]
         time = phase * self.duration
-        charge, dissipate_start, end = self.boundaries[1], self.boundaries[3], self.duration
-        transition = self.composition["transition"]
-        alpha, scale, drift = 1.0, 1.0, 0.0
+        charge, dissipate, end = self.boundaries[1], self.boundaries[3], self.duration
+        alpha, scale, drift, reveal, erase = 1.0, 1.0, 0.0, 1.0, 0.0
         if charge > 0 and time < charge:
             progress = _smooth(time / charge)
-            alpha = progress
-            scale = transition["scale_from"] + (1 - transition["scale_from"]) * progress
-        if end > dissipate_start and time >= dissipate_start:
-            progress = _smooth((time - dissipate_start) / (end - dissipate_start))
-            alpha = 1 - progress
-            drift = transition["drift_fraction"] * self.length * progress
-        # bisect_right selects the last value at coincident phase boundaries.
-        index = min(4, bisect.bisect_right(self.boundaries, time) - 1)
-        gains = transition["brightness"]
-        gain = gains[index]
-        if index < 4:
-            weight = ((time - self.boundaries[index])
-                      / (self.boundaries[index + 1] - self.boundaries[index]))
-            gain += weight * (gains[index + 1] - gains[index])
-        return float(alpha), float(scale), float(drift), float(gain)
-
-    def render(self, phase: float, animated: bool = True) -> Image.Image:
-        layer = self.sample_effect(phase)
-        alpha, scale, drift, gain = self.envelope(phase) if animated else (1, 1, 0, 1)
-        if alpha == 0:
-            return from_premultiplied(self.background)
-        # min(P*g,a) equals a*clamp(g*C); gain never touches the emitter.
+            alpha, reveal = progress, progress
+            scale = transition['scale_from'] + (1 - transition['scale_from']) * progress
+        if end > dissipate and time >= dissipate:
+            erase = _smooth((time - dissipate) / (end - dissipate))
+            alpha = 1 - erase
+            drift = transition['drift_fraction'] * self.length * erase
+        if time >= end:
+            alpha, erase = 0.0, 1.0
+        boundary = min(4, bisect.bisect_right(self.boundaries, time) - 1)
+        gain = transition['brightness'][boundary]
+        if boundary < 4:
+            fraction = ((time - self.boundaries[boundary])
+                        / (self.boundaries[boundary + 1] - self.boundaries[boundary]))
+            gain += fraction * (transition['brightness'][boundary + 1] - gain)
         layer[..., :3] = np.minimum(layer[..., :3] * gain, layer[..., 3:4])
+        mask_config = transition.get('directional_mask', {})
+        if mask_config.get('enabled', False):
+            y, x = np.mgrid[:layer.shape[0], :layer.shape[1]]
+            direction = np.asarray(self.effect['direction'])
+            along = ((x + 0.5 - self.anchor[0]) * direction[0]
+                     + (y + 0.5 - self.anchor[1]) * direction[1])
+            along /= self.effect['reference_length_px']
+            softness = mask_config['softness']
+            def smooth_array(value):
+                value = np.clip(value, 0, 1)
+                return value * value * (3 - 2 * value)
+            mask = np.ones(along.shape)
+            if reveal < 1:
+                mask *= 1 - smooth_array((along - reveal + softness / 2) / softness)
+            if erase > 0:
+                mask *= smooth_array((along - erase + softness / 2) / softness)
+            layer *= mask[..., None]
         layer *= alpha
         matrix = self.matrix * scale
         offset = self.emit_at + drift * self.direction - matrix @ self.anchor
         effect = warp(layer, matrix, offset, self.size)
-        return from_premultiplied(blend(self.background, effect, self.effect["blend"]))
+        return from_premultiplied(blend(self.background, effect, self.effect['blend']))
 
 
-def export_keyframes(renderer: Renderer, output: str | Path) -> dict:
-    output = Path(output).resolve()
-    names = [f"key_{index:03d}.png" for index in range(len(renderer.phases))]
-    previous = output / "keyframes.json"
-    stale = []
-    if previous.exists():
-        try:
-            old = json.loads(previous.read_text(encoding="utf-8"))
-            own = (old.get("sampling") == "layered_keyframes_without_envelope"
-                   and (output / old["composition"]).resolve() == renderer.path)
-            if own:
-                stale = [output / row["file"] for row in old["frames"]
-                         if re.fullmatch(r"key_\d{3}\.png", row["file"])
-                         and row["file"] not in names]
-        except (OSError, ValueError, TypeError, KeyError, AttributeError) as error:
-            raise VFXError(f"已有 keyframes.json 无法安全读取：{error}") from error
-    planned = [output / name for name in names] + [previous] + stale
-    for target in planned:
-        if any(target.resolve() == source.resolve()
-               or (target.exists() and source.exists() and target.samefile(source))
-               for source in renderer.input_paths):
-            raise VFXError(f"关键帧输出会覆盖原料：{target}")
-    output.mkdir(parents=True, exist_ok=True)
-    records = []
-    for filename, phase in zip(names, renderer.phases):
-        renderer.render(phase, animated=False).save(output / filename)
-        records.append({"file": filename, "phase": phase})
-    for target in stale:
-        if target.exists():
-            target.unlink()
-    manifest = {
-        "version": 1,
-        "composition": Path(os.path.relpath(renderer.path, output)).as_posix(),
-        "sampling": "layered_keyframes_without_envelope",
-        "frames": records,
-        "geometry": renderer.geometry_report,
-    }
-    (output / "keyframes.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return manifest
+def write_peak(composition: str | Path, output: str | Path | None = None,
+               suite_root: str | Path | None = None) -> Path:
+    renderer = PeakRenderer(composition, suite_root)
+    target = Path(output).resolve() if output else renderer.path.with_name('peak.png')
+    if target.suffix.lower() != '.png':
+        raise VFXError('静态峰值必须输出 PNG')
+    for source in renderer.input_paths:
+        if target == source or (target.exists() and target.samefile(source)):
+            raise VFXError(f'峰值输出会覆盖原料：{target}')
+    target.parent.mkdir(parents=True, exist_ok=True)
+    renderer.render_peak().save(target)
+    return target
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("composition", type=Path, help="Composition YAML")
-    parser.add_argument("--output", type=Path, help="关键帧目录，默认 Composition 同级 frames/")
-    parser.add_argument("--root", type=Path, help="素材套件根目录，默认 Composition 所在目录")
+    parser.add_argument('composition', type=Path, help='Composition YAML')
+    parser.add_argument('--output', type=Path, help='静态 PNG，默认同级 peak.png')
+    parser.add_argument('--root', type=Path, help='素材套件根目录，默认 Composition 所在目录')
     args = parser.parse_args(argv)
     try:
-        renderer = Renderer(args.composition, args.root)
-        output = args.output or args.composition.parent / "frames"
-        manifest = export_keyframes(renderer, output)
-        print(f"已输出 {len(manifest['frames'])} 个关键帧：{output}")
+        print(f'已输出静态峰值：{write_peak(args.composition, args.output, args.root)}')
     except (VFXError, OSError, ValueError) as error:
-        print(f"合成失败：{error}", file=sys.stderr)
+        print(f'静态预览失败：{error}', file=sys.stderr)
         return 1
     return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

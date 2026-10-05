@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_yinyangruanlun
+name: 阴阳软刃轮
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yinyangruanlun
+text:
+  desc: 外观：一黑一白两枚钢环并置，直径约四十厘米。 待运行时投影：exoticKind=wheel。
+  lore: 一黑一白两枚钢环成对使用，内圈握位便于翻转，浅弧外刃可切入也可借圆势卸开来兵。所谓阴阳仅指配色与左右呼应，不附术法；器名、结构、练法和流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 58
+      qiAffinity: 100

@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_changbingyueyachan
+name: 长柄月牙铲
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 传统长兵；具体年代 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/changbingyueyachan
+text:
+  desc: 外观：单端宽月牙钢铲接深木杆，通长约一百九十厘米。 待运行时投影：exoticKind=misc。
+  lore: 宽月牙钢铲接在深木长杆上，外撇铲肩可推压或架开兵刃，刃口则适合横切，回势比枪矛更慢。此类长柄月牙铲的具体年代仍 （待考：核兵器资料）；比例、铜箍和投放为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 57
+      qiAffinity: 100

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_caoxie
+name: 麻编草鞋
+kind: armor
+sub: shoes
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/caoxie
+text:
+  desc: 外观：一双黄麻草鞋，粗绳鞋带、轻微磨损。 待运行时投影：defOutK=0.05; qinggong=7.5。
+  lore: 麻编草鞋以黄麻绳和编底制成，湿地行走前须重系鞋带，磨穿后也容易就地修补。挑夫说好草鞋不在新，而在鞋底已顺着脚掌压实。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
+      agi: 1

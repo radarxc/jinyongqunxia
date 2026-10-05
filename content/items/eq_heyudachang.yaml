@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_heyudachang
+name: 鹤羽大氅
+kind: armor
+sub: cape
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/heyudachang
+text:
+  desc: 外观：银灰大氅，羽纹织物与白绒窄边。 待运行时投影：resColdPp=6; wis=2。
+  lore: （原创扩展）银灰织物只以暗纹摹鹤羽，领缘缀窄白绒，并未取用真实羽翼。大氅宽阔御寒，适合雪地静候；隐士相赠的传闻很多，却没有哪一件能说清主人。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

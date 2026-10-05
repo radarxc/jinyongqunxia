@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_qulingfengmanaobei
+name: 曲灵风旧藏玛瑙杯
+kind: collectible
+sub: antique
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B12](#src-b12)；准入：射雕；原文核准及旧藏归属结算后
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qulingfengmanaobei
+text:
+  desc: 外观：红褐条带玛瑙杯，低圈足。 待运行时投影：eraRange=[song_south]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=book。
+  lore: 《射雕英雄传》曲灵风旧藏候选中的玛瑙杯，具体物名待核修订版密室情节。旧藏归属结清后可赠爱杯藏家；不得把宫中失物流入商店，杯型与玩家取得为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

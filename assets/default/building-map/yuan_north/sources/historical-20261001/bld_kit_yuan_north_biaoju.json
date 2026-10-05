@@ -1,0 +1,135 @@
+{
+  "id": "bld_kit_yuan_north_biaoju",
+  "repair_round": 6,
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "selected_source": "/private/tmp/KIT-yuan_north-hist-repair6/generated/biaoju_c1.png",
+  "source_sha256": "b272e21f52a62282932d6a15e80759c10d476918c510c69b6ac5ea5cfc0a077d",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_biaoju.png",
+  "final_sha256": "a67f3048c296f680bd5504236d67b3409aeafe3b3e2fc583e111284e60e25498",
+  "generation": {
+    "tool": "Codex images/edits via built-in image generation backend",
+    "model": "gpt-image-2",
+    "generation_id": "99d0e7fa-5a51-401e-82ba-f9b2558e906c",
+    "turn_id": "c42be57d-774e-40df-8d96-6014471e36df",
+    "created_unix": 1790924297,
+    "settings": {
+      "background": "transparent",
+      "output_format": "png",
+      "quality": "medium",
+      "size": "1457x1079"
+    },
+    "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/biaoju.txt"
+  },
+  "input_files": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_biaoju.png",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_1.png",
+    "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_3.png"
+  ],
+  "input_sha256": [
+    "d2d2e4bdd9678538abb02f5dc8aee8b4cc82f25003733692d72bb6d8c0c53e79",
+    "02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662",
+    "00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3"
+  ],
+  "generation_attempts": [
+    {
+      "candidate": 1,
+      "selected": true,
+      "output_file": "/private/tmp/KIT-yuan_north-hist-repair6/generated/biaoju_c1.png",
+      "output_sha256": "b272e21f52a62282932d6a15e80759c10d476918c510c69b6ac5ea5cfc0a077d",
+      "generation_id": "99d0e7fa-5a51-401e-82ba-f9b2558e906c",
+      "turn_id": "c42be57d-774e-40df-8d96-6014471e36df",
+      "created_unix": 1790924297,
+      "prompt_file": "/private/tmp/KIT-yuan_north-hist-repair6/prompts/biaoju.txt",
+      "settings": {
+        "background": "transparent",
+        "output_format": "png",
+        "quality": "medium",
+        "size": "1457x1079"
+      },
+      "input_files": [
+        "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_biaoju.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_1.png",
+        "/private/tmp/KIT-yuan_north-hist-repair6/refs/jishi_3.png"
+      ],
+      "input_sha256": [
+        "d2d2e4bdd9678538abb02f5dc8aee8b4cc82f25003733692d72bb6d8c0c53e79",
+        "02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662",
+        "00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "file": "jishi_1.png",
+      "url": "http://sx.people.com.cn/NMediaFile/2021/1025/LOCAL202110251056000479181413354.png",
+      "sha256": "02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "高平姬氏民居院落照片：低举折硬山灰瓦、夯土/土坯墙与灰砖防潮裙；只作北方民居材料和尺度类比。"
+    },
+    {
+      "file": "jishi_3.png",
+      "url": "http://sx.people.com.cn/NMediaFile/2021/1025/LOCAL202110251103000545126112312.png",
+      "sha256": "00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3",
+      "accessed": "2026-10-01",
+      "role": "实际作为入选候选的 image generation 输入。",
+      "used": "高平姬氏民居正立面照片：灰筒板瓦、圆椽头、木柱枋、厚板门、方格窗和灰砖墙脚；避开照片中的现代器物与文字。"
+    }
+  ],
+  "historical_detail": "护运货栈（原创扩展）：低举折硬山灰筒板瓦、圆椽头、夯土/土坯墙与灰砖防潮裙、粗木柱枋、厚板门及方格窗；照片仅作北方民居形制类比。",
+  "processing": {
+    "source_size": [
+      1457,
+      1079
+    ],
+    "crop_box": [
+      72,
+      84,
+      1387,
+      1019
+    ],
+    "uniform_scale": 0.5642585551330799,
+    "resized_size": [
+      742,
+      528
+    ],
+    "canvas_size": [
+      864,
+      640
+    ],
+    "paste_offset": [
+      61,
+      56
+    ],
+    "alpha_cleanup": "source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp"
+  },
+  "pixel_qa": {
+    "mode": "RGBA",
+    "size": [
+      864,
+      640
+    ],
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "alpha_zero_pixels": 329614,
+    "alpha_partial_pixels": 222436,
+    "alpha_opaque_pixels": 910,
+    "alpha_nonzero_bbox": [
+      61,
+      56,
+      803,
+      584
+    ],
+    "transparent_margins_px": [
+      61,
+      56,
+      61,
+      56
+    ],
+    "border_alpha_max": 0
+  },
+  "visual_review": "参考图、入选原图与规格化成品均经 view_image；构造、左上光、透明边通过目检；保留 candidate。"
+}

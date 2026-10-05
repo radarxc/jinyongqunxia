@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_sanqi
+name: 三七
+kind: material
+sub: herb
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/sanqi
+text:
+  desc: 外观：药用根切成灰黄厚片，断面放射纹清楚。
+  lore: 广西、云滇黔与大理苍山温湿药圃秋冬十至十二月收根，按明代以后药名保守投放。灰黄厚片是高效护创素材，本作不开放野采滥挖。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan3
+    materialGrade: 6
+    rare: false
+    herbFamily: sanQi
+    ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 9

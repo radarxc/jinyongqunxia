@@ -1,0 +1,17 @@
+{
+  "name": "manor",
+  "attempt": 1,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-42c714ff-9283-439b-b501-518ef404ba24.png",
+  "prompt": "Use case: historical-scene. ONE realistic Southern Song Lin'an wealthy country manor sprite built ON the exact rectangle shown by reference image. Reference is geometric underlay only; retain exact corner directions, proportions and positions.1536x1024 canvas: LEFT(150,540), FRONT(822,876), RIGHT(1368,603), BACK(696,267). Exact orthographic2:1 isometric, ground LEFT-FRONT16 units and FRONT-RIGHT13 units, horizontal ratio672/546=1.23077, BOTH edge slopes exactly+.5 and-.5. All parallel walls and roofs follow those same axes. Wealthy yet restrained low timber main hall at rear, low side wing, offwhite plaster courtyard walls, grey handmade tile, natural stone paths and a planted tree in open inner court, front gate centered on LEFT-FRONT wall. Modest Song roof details, weathered realistic materials, muted grey warm brown cream and leafy green. Upper-left sunlight, small down-right contact shadow. Clear continuous thin flat ground contour along the two front edges, no big stair extension at gateway, no thick pedestal. No visible guide lines or guide text, remove white backdrop to genuine transparent alpha. Full eaves complete inside image and reserve transparent margin. No people, no text/watermark/signboards, no modern objects, no fantasy/Ming/Qing ornament. Preserve template shape precisely.",
+  "reason": "右轴偏浅约-.42，门位错到右侧，未选。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_manor_guide.png",
+      "role": "geometry guide：自制占地轮廓QA图，非生成资产",
+      "sha256": "93c9c681bbeb77b0074d3f4358a9ce648ae628e38d6ed9ebb04e5eb90453abd0"
+    }
+  ],
+  "id": "bld_kit_song_southern_manor",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_review2_try1.png",
+  "source_sha256": "3a96dba1d38330566274984f034f25e919a43636b110037af661fe961e6fec3e"
+}

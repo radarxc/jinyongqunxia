@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_fengshitoushu
+name: 风石投术简谱
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_fengshitoushu
+text:
+  desc: 外观：春秋细竹简十枚，麻绳单编。
+  lore: 越地猎户把顺风投石的选料、握法和提前量刻成十枚细简，技法与载体属 （原创扩展）。研读须用圆钝石对空靶校腕，先辨风再出手；石粉灰痕是历次比样留下的实用痕迹。
+extension:
+  type: manual
+  value:
+    skill: sk_fengshitoushu
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_fengshitoushu
+      readWis: 20
+      maxLayer: 10
+      cultivation: 500

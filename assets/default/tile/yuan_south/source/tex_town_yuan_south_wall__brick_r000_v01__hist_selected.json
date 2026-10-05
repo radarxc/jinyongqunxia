@@ -1,0 +1,37 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "be8faccb-a6b0-4e9b-b1bf-a3e2e63d479d",
+  "request_id": "bbfabc9f-e83c-47ad-9c8a-33d4635d6e5c",
+  "generation_id": "5218461b-62c4-49d8-ad63-a1608cc89b83",
+  "created_unix": 1790840222,
+  "elapsed_seconds": 31.578,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan map-compositing sprite. IMAGE 1 is only the exact geometry, camera and output-transparency example: preserve its orientation and modular function, clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight and restrained realistic Southern Song baseline detail; do not retain anachronistic decoration. IMAGES 2-3 are historical evidence for masonry, timber, vegetation or bridge construction only. Solid object fully opaque; exterior true alpha-zero transparent. No aura, vignette, glow, haze, fog, translucent backdrop, floor plane, scenery, people, text, signs, watermark, modern items, Qing ornament, fantasy details or cropped edges. One repeatable straight 1m by1m by3m city-wall column: blue-grey small-brick facing in staggered bond over compacted earth core, pale lime mortar, a few dark local stone blocks at the damp base, broad plain flat top, four clean vertical cut edges. No crenellations, coping roof or projecting plinth.",
+  "references": [
+    {
+      "kind": "style_geometry_reference",
+      "file": "tex_town_song_southern_wall__brick_r000_v01.png",
+      "note": "宋基线透明精灵，只约束相机、透明裁切与写实密度"
+    },
+    {
+      "kind": "historical_image",
+      "url": "http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml",
+      "detail_used": "盘门小青砖错缝、石质水脚与厚墙体",
+      "downloaded_and_viewed": true
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "detail_used": "盘门小青砖错缝、石质水脚与厚墙体",
+      "downloaded_and_viewed": true
+    }
+  ],
+  "output_sha256": "3eb4234ef8c60c4b62e7b869fd5320fca2dfa0717cee3be7950460b90c44afca",
+  "selected_asset_file": "tex_town_yuan_south_wall__brick_r000_v01.png",
+  "selected_asset_sha256": "837134e33b2cefeb35848a98f2386141db76401e80f911e028ab097016459c06",
+  "normalization": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ]
+}

@@ -1,0 +1,12 @@
+# 第2轮投影返修：bld_kit_mongol_biaoju
+
+## 候选1（未采用）
+
+Edit this Mongol caravan freight yard sprite while preserving the visual style, brown palisade, one timber gray-tiled warehouse, one cream felt ger, crates and empty hitching rail. Reconstruct ONLY camera geometry for exact orthographic 2:1 dimetric projection. 14 wide by 11 deep rectangular flat ground. Camera yaw45/elevation30. Both projected ground axes slope exactly plus or minus0.500; verticals stay vertical. Front LEFT-to-FRONT edge represents14 width, FRONT-to-RIGHT edge represents11 depth, ratio14/11. In 1536x1024 image set LEFT(168,514), FRONT(840,850), RIGHT(1368,586), BACK(696,250). A clean thin flat rectangle, no irregular earth outline, no thick diorama block. Ground base corners must be readable. Align wall bottoms and roof eaves to these same axes. Entire asset centered with generous transparent margins. Fine hand-painted realistic ancient miniature, retain beige brown gray texture density, upper-left sunlight, very small lower-right contact shadow, true transparent RGBA background. No people, animals, lettering, flags, logos, haze, vignette, modern details or decorative additions.
+
+## 候选2（采用）
+
+Precise geometry correction. Attached caravan yard currently ground diagonals slightly too steep. Flatten only the ground-camera elevation about8 percent so both ground boundary slopes become +0.500 and -0.500, orthographic2:1 dimetric, vertical poles remain upright. Base footprint14m wide11m deep. On1536x1024 canvas ground corners LEFT(70,550), FRONT(854,942), RIGHT(1470,634), BACK(686,242): width horizontal784 versus depth616, ratio14/11. All four base edges straight parallel; frontmost ground corner clear, thin rectangular earth contact sheet. Reconstruct palisade and roof projections consistently with ground. Preserve Mongol caravan yard composition: one cream felt ger left, one gray-tiled wood warehouse at back, bundles/crates, simple open front wood gateway and empty hitching rail. No other objects. Preserve intricate restrained realistic weathered ancient sprite style. Upper-left light, minimal lower-right contact shadow. Entire isolated sprite on actual transparent RGBA; no glow/vignette/fog, thick pedestal, grid, letters, people, animals, flags or modern architecture.
+
+第2轮返修采用候选2；轴率0.51316/-0.52550；宽深比1.29212，目标1.27273；轴率/比例检查分别True/True。保持candidate；历史细部（待考），功能布局（原创扩展）；尚未总装验收。
+内置image_gen，transparent_background=true；源图及传入图已按字节归档。

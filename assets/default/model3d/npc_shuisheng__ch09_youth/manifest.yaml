@@ -1,0 +1,76 @@
+- id: npc_shuisheng__ch09_youth__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 水笙（连城诀 ch09 · 行旅青年）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: ec747681-44ea-4dad-aa95-c2aad8215023
+    url: https://studio.tripo3d.ai/workspace/generate/ec747681-44ea-4dad-aa95-c2aad8215023
+    generate_op: 6ca6e0ae-e248-4ff4-91b9-4d8e5e198cbd（image_to_model） → Free Retry 04422ef5-12e6-44fd-a20d-3097eb1b5390（选用）
+    rig_op: 5d45599e-821e-45b2-80f7-7b5305a1fea0
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch09/threeview/por_npc_shuisheng__ch09_youth_travel_apose_slim.png
+    sha256: e2418e0a354d5fa5c5f738ed40fd54e3b5e945b065795b654c1e1907970d79be
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: e9a3c3b83a0af9c56f89237f2405952fbead6777e6dabae4b4e3d5f8c2c9b4d0
+  size_bytes: 5447120
+  joints: 65
+  triangles: 95302
+  vertices: 56184
+  animations: []
+  textures:
+  - image/jpeg 301009 B
+  - image/jpeg 994364 B
+  - image/jpeg 634898 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T18:54:47-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/背完整，白衣 + 红花襟饰。已知瑕疵：后发偏灰褐浅色（Free Retry 一次后仍在，选用 retry 版），不是肉色。自动绑骨一次成功（JS 核对关节：Hips 0.51–0.57、双手外展、脚 0.055–0.08）。参考图提交 f03c16a0。
+- id: npc_shuisheng__ch09_youth__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 水笙（连城诀 ch09 · 行旅青年）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: ec747681-44ea-4dad-aa95-c2aad8215023
+    url: https://studio.tripo3d.ai/workspace/generate/ec747681-44ea-4dad-aa95-c2aad8215023
+    generate_op: 6ca6e0ae-e248-4ff4-91b9-4d8e5e198cbd（image_to_model） → Free Retry 04422ef5-12e6-44fd-a20d-3097eb1b5390（选用）
+    rig_op: 5d45599e-821e-45b2-80f7-7b5305a1fea0
+  size: 600x778
+  sha256: 02a6522a7154efaea42550fc90fff778c5e136e64b93067b51fa6bf9fc0611d5
+  size_bytes: 101296
+  created: '2026-10-03T22:34:24-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

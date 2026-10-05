@@ -1,0 +1,39 @@
+- id: por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim
+  file: por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.png
+  category: character/male/tripo_ref
+  style: default
+  subject: 袁承志 窄轮廓空手 A 字姿势全身参考（与 por_npc_yuanchengzhi__ch07_youth_jinshe_base 同脸，束袖、窄下摆、去兵器道具）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    本次是原图局部放大裁图，输出同样的正方形裁图；不要生成全身，不要扩大场景。
+
+    只在人物自身左眉上方（画面右侧眉毛上方）皮肤加一处小而淡的已愈旧刀疤，几毫米尺度、清晰可见但不夸张，不是新鲜血口。现有双眉形、眉毛、眼睛、鼻、嘴、脸型和其余五官绝不改变。不改发丝、头饰、服装和其他内容。
+
+    【原著依据】《碧血剑》三《经年亲剑铗，长日对楸枰》：“小小疤痕”（https://xuges.com/WUXIA/jinyong/bxj/013.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/character/male/ch07/threeview/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.png
+    sha256: d96bad5e8ef67bace5c1c7c18f61c438a6956bb24d693a9053010eafb5a4cbbc
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.d96bad5e.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-04T02:45:55-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_28_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 1e5dc86565b9bb8d007d60f77159efe19f710260b408bd17cef71ade57636718
+  status: candidate
+  notes: 绑骨用的窄轮廓空手 A 字参考（AR-56：作者 17:02 定基线后 Tripo 要求兵器道具全去掉、双臂离身约 30°、宽袖收窄）；依据 por_npc_yuanchengzhi__ch07_youth_jinshe_base（同脸同服色）；AR-82 原著核对返修：袁承志自身左眉补小旧刀疤
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.d96bad5e.png
+    sha256: d96bad5e8ef67bace5c1c7c18f61c438a6956bb24d693a9053010eafb5a4cbbc
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_yuanchengzhi__ch07_youth_jinshe_apose_slim.d96bad5e.entry.yaml

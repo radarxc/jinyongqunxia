@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_gumuqinggong
+name: 古墓轻功图谱
+kind: manual
+sub: full
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_gumuqinggong
+text:
+  desc: 外观：南宋白绢折页图谱，灰绫包首。
+  lore: 古墓派轻功被绘成白绢折页图谱，载体、题签与流传均属 （原创扩展）。研读要连续展开脚位，配合狭窄石室练转折与收势；传人讲究轻灵无声，不以一味蹿高夸示功力。
+extension:
+  type: manual
+  value:
+    skill: sk_gumuqinggong
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_gumuqinggong
+      readWis: 55
+      maxLayer: 10
+      cultivation: 3500

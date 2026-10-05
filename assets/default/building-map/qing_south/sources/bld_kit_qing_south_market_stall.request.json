@@ -1,0 +1,12 @@
+{
+  "id": "bld_kit_qing_south_market_stall",
+  "subject": "市场棚",
+  "footprint": [
+    3,
+    2
+  ],
+  "prompt": "Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780, an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline's realistic matte materials, muted palette, fine restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background, object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles, dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette or detached scenery. Single standalone asset only.  IMPORTANT: ground edges have slope +0.5 and -0.5, NOT30-degree isometric lines. Exact width/depth footprint edge ratio is specified, do not enlarge the front facade at expense of depth. Subject: ONE small open market stall, four thin weathered wooden posts supporting a simple faded beige woven-fabric canopy, timber counter holding shallow woven baskets and small ceramic jars, no house, no street, no extra stalls. Ground 3:2 width:depth, thin rectangular stone/earth footprint. No bright colors. Footprint 3m east-west by 2m north-south.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-550cb2a7-5429-43c5-977b-9fdab408de18.png",
+  "reference": "assets/default/baseline/building-map/bld_kit_song_southern_market_stall.png",
+  "candidate_count": 1
+}

@@ -1,0 +1,1270 @@
+- id: bld_kit_qing_south_house_small
+  review2_record: review2/house_small.review.json
+  file: bld_kit_qing_south_house_small.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·小民居（匿名原创组合，细部待考）
+  prompt: 'Act as a narrow image-rendering worker. Do not edit or create any repository files and do not run shell commands. Use the built-in image_gen tool exactly once, using all three attached images as reference inputs, and then return only the generated image path. Create ONE historically grounded early-to-mid Qing Jiangnan small commoner house asset. The first attached image is a mandatory geometry guide: preserve its exact 6x5 footprint, 2:1 orthographic dimetric camera, yaw 45 degrees, pitch 30 degrees, ground axes slopes +0.5 and -0.5, south entrance on the lower-left-facing facade, full silhouette and visible base edges. The other attached images are historical/formal references only: use their architectural form, proportions, materials and construction details, not their composition. Architecture: single-storey three-bay modest timber frame; low straight hard-gable roof with restrained Jiangnan roof curvature and shallow Qing roof lift; small dark-grey unglazed clay butterfly
+    tiles with distinct ridge cap and simple plain ridge ends, no yellow glazed tile, no fantasy ornaments; exposed dark chestnut eave purlins and very simple bracket blocks with zero or one shallow projection, not palace dougong; white lime-plastered brick walls with mottled weathering and grey-brick lower course; raised plain stepped fire gables only slightly above roof; one recessed plank door and two fine square lattice windows on the lower-left facade; thin worn granite threshold and narrow stone foundation, no thick diorama base. Muted grey, ivory and dark-brown palette, realistic historical game asset at fine Song-baseline detail density. Upper-left daylight, short soft lower-right contact shadow. True transparent RGBA outside the object, generous transparent margins, no white background, haze, glow, text, plaque, people, plants, modern objects, symbols or watermark. Output a single candidate, uncropped.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review3/houses/house_small.guide.png
+    sha256: 000174cf9ae161e2db4af8af9d3fd32ab4013c84cd947539b7c7a8f97be92f58
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Master_of_Nets_Garden_1.jpg?width=1600
+    sha256: cd5e0d1ad8b84c7525418996b1808dadbe8b78bce7cca58c151a0a5fe69774f9
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:01.251970+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/house_small.png
+  source_sha256: b6b6b4fc78ae47f2300f65e962deaa2676e5f744ce6d29e33256ab82e807d0dc
+  size: 512x512
+  sha256: 6939b9d25233d0eb0be5518f85ea8cdba7d83e94cb358964794ce7f78fd64aff
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_house_small
+    footprint:
+    - 6
+    - 5
+    anchor:
+    - 263.5089
+    - 298.8751
+    era: qing_south
+  footprint_m:
+  - 6
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 2
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 352
+    - 176
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_house_small.yaml
+  source_record: history/records/house_small.yaml
+  candidate_count: 2
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+  selected_candidate: 2
+  review3_record: review3/houses/house_small.measure.json
+- id: bld_kit_qing_south_house_large
+  file: bld_kit_qing_south_house_large.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·大民居（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a large two-storey 7 by 6 cell urban dwelling. Use a low-lift hard-gable roof with dense paired pan-and-cover grey tiles, a plain tile ridge with restrained ridge-end ornaments and no imperial beasts, short eaves on simple single-step timber beam-and-bracket supports, three-bay dark timber facade, white lime infill, blue-grey brick damp-proof foot course and thin stone sill. Upper floor has compact straight lattice windows behind a timber rail, not a projecting balcony. Slightly raised white fire-gable
+    shoulders, restrained local carving, visibly hand-laid old materials.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review3/houses/house_large.guide.png
+    sha256: add2418bbec8672d50751f6dc84707704c52415484fda97927a712dce3301db5
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Master_of_Nets_Garden_1.jpg?width=1600
+    sha256: cd5e0d1ad8b84c7525418996b1808dadbe8b78bce7cca58c151a0a5fe69774f9
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:01.334302+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/house_large.png
+  source_sha256: d54e765bfa90d3ace04522856d9e34c9d52b82c588ac58fb273e803ab2d20803
+  size: 512x544
+  sha256: db024f4c0ab8156544d67b64ed5363e6faf4d3a30ea41317f92770dad096719b
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_house_large
+    footprint:
+    - 7
+    - 6
+    anchor:
+    - 251.2051
+    - 324.8095
+    era: qing_south
+  footprint_m:
+  - 7
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 3
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 416
+    - 208
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_house_large.yaml
+  source_record: history/records/house_large.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+  selected_candidate: 1
+  review3_record: review3/houses/house_large.measure.json
+- id: bld_kit_qing_south_courtyard
+  file: bld_kit_qing_south_courtyard.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·院落（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a compact 10 by 8 cell Jiangnan domestic courtyard compound. Preserve the guide courtyard void and exact perimeter masses. One three-bay main hall and lower side wings around a small stone-paved inner court, with a modest south gate. All roofs are low-lift hard-gable grey-tile roofs with plain ridges; simple one-step bracket and beam ends, white limewashed gable walls above blue-grey brick foot courses, dark timber column rhythm, straight geometric lattice screens, thin stone thresholds. Add a restrained
+    clear-brick gate surround inspired by Suzhou houses, no garden scenery.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review3/houses/courtyard.guide.png
+    sha256: fe6596014340b2269a7a8a55780a628f0b98613f1d1002cf544573ff9a3ce1d0
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Master_of_Nets_Garden_1.jpg?width=1600
+    sha256: cd5e0d1ad8b84c7525418996b1808dadbe8b78bce7cca58c151a0a5fe69774f9
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:01.485582+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/courtyard.png
+  source_sha256: 340b3e0404d4bc496711486ee45549039bada5483c0c5d4e6f563aace2e313dd
+  size: 672x512
+  sha256: 18b5e8f7d0618856a3969c4bf921d867a0223903cb7f4de6fb9338e7baf5b0d2
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_courtyard
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 343.7164
+    - 296.1718
+    era: qing_south
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 4
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 576
+    - 288
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_courtyard.yaml
+  source_record: history/records/courtyard.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+  selected_candidate: 1
+  review3_record: review3/houses/courtyard.measure.json
+- id: bld_kit_qing_south_shop_1f
+  file: bld_kit_qing_south_shop_1f.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·单层商铺（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a one-storey 7 by 5 cell Qing Suzhou street shop. Low hard-gable roof with close-set grey pan-and-cover tiles, plain ridge, slight eave curvature only. Three narrow bays under a shallow continuous eave, front made of dark removable timber shutters and geometric lattice doors on a low stone threshold; simple exposed beam ends and one-step supports, no ornate multi-tier dougong. White side firewall with blue-grey brick base, weathered wood, a tiny unlettered cloth awning rolled up. No readable shop
+    sign.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/shop_1f_guide.png
+    sha256: 68b871251b5baaac663ab56140ef7184dc41c9fbd782aa2f25fd62ff15c87f7d
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+    sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+    sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:01.557224+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/shop_1f.png
+  source_sha256: 84dc2f6bfafd8f22a60161f1151b680afa08953848b80755a83d46a6fe4b4c73
+  size: 576x576
+  sha256: 7e7941931d657af834e6842a97b3d778f2c5d4ba6b1ada59fb7b46c24e0bec90
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_shop_1f
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 304.7367
+    - 311.535
+    era: qing_south
+  footprint_m:
+  - 7
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 3
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 384
+    - 192
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_shop_1f.yaml
+  source_record: history/records/shop_1f.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+  selected_candidate: 1
+- id: bld_kit_qing_south_shop_2f
+  file: bld_kit_qing_south_shop_2f.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·两层商铺（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a dense two-storey 8 by 6 cell Qing Suzhou street shop. Low hard-gable grey tiled roof, plain tile ridge with restrained ends, white fire-gable side walls, blue-grey brick lower course. Three-bay timber storefront below with removable shutters and lattice doors; upper level has closely spaced straight lattice windows and a flush timber guard rail, no projecting balcony. Shallow continuous eave on simple single-step timber brackets, no palace dougong. Muted worn materials, no readable sign.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/shop_2f_guide.png
+    sha256: f61d5a038f31a609408f4dc41e38e7724bfdecdcb34164f14492b662cfe9d997
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+    sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+    sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:01.644840+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/shop_2f.png
+  source_sha256: 46f4c837b0e4394b689dc5af57222ddda4ad0128206cb01ac108186178a2ac5e
+  size: 672x672
+  sha256: 10d1f10e7e434d0093aa4bb2a0c320fc2fb6b925f3bc2bb5b8475b91cf109b35
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_shop_2f
+    footprint:
+    - 8
+    - 6
+    anchor:
+    - 355.1339
+    - 377.6107
+    era: qing_south
+  footprint_m:
+  - 8
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 3
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 448
+    - 224
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_shop_2f.yaml
+  source_record: history/records/shop_2f.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+  selected_candidate: 1
+- id: bld_kit_qing_south_inn
+  file: bld_kit_qing_south_inn.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·客栈（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 12 by 9 cell Jiangnan inn compound. Preserve guide masses and courtyard. A two-storey street-facing timber guest house with lower side/rear service wings around a small open court; south entrance under a shallow covered eave. Low-lift hard-gable roofs with dense grey pan-and-cover tiles and plain ridges, white fire-gable walls, blue-grey brick foot courses, dark timber bays, straight lattice guest windows, simple one-step eave brackets. A modest blank hanging board shape may exist but it must contain
+    no glyphs. Restrained busy-town wear, no props or people.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/inn_guide.png
+    sha256: f61d5a038f31a609408f4dc41e38e7724bfdecdcb34164f14492b662cfe9d997
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+    sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+    sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:01.719850+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/inn.png
+  source_sha256: a4b876146e659dd7d0ff6262406ab7fac229de428695c02249429cc842edec95
+  size: 960x736
+  sha256: 4315f837d23613372111e5dfabcb4d07dbb51ab650b66ad046afdf6119c6d945
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_inn
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 479.2533
+    - 405.2702
+    era: qing_south
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 672
+    - 336
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_inn.yaml
+  source_record: history/records/inn.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+  selected_candidate: 1
+- id: bld_kit_qing_south_restaurant
+  file: bld_kit_qing_south_restaurant.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·酒楼茶肆（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 12 by 9 cell two-storey Jiangnan restaurant built around a compact court or rear service wing, preserving guide masses. Grey-tile low-lift hard-gable roofs, plain ridges, white fire-gable walls and blue-grey brick bases. Open three-bay lower dining frontage behind removable timber shutters, upper straight-lattice windows with flush timber rail, shallow continuous eaves carried on simple single-step brackets. Include one restrained blank cloth canopy with no lettering. No tower, stage, palace roof
+    or lantern clutter.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review3/halls/restaurant.guide.png
+    sha256: 2b6622ec79f7072c33f2b57353bdc21abbfdb3702ae5f043b3d98a1d1549f606
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+    sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+    sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:01.884737+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/restaurant.png
+  source_sha256: c8bfdc60ce7c4e7cfc68577ec0d3af2377b5e4f2109bc97025796d29b46469a8
+  size: 928x576
+  sha256: 1b18a83cbf40524a0bc9a54ad3b5fb9838d978c0e8255ed618ae273bba8ce24e
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_restaurant
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 494.9016
+    - 322.4197
+    era: qing_south
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 672
+    - 336
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_restaurant.yaml
+  source_record: history/records/restaurant.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+  selected_candidate: 1
+- id: bld_kit_qing_south_market_stall
+  file: bld_kit_qing_south_market_stall.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·市场棚（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: one tiny 3 by 2 cell temporary Qing Suzhou street market stall. A simple four-post dark bamboo-or-timber frame, low counter made of plain boards, and a slightly sagging muted indigo-grey woven cloth awning tied by visible cords; pegged mortise joints, no masonry, roof tile, dougong, sign or merchandise. Keep exact compact footprint and transparent gaps between posts. Historically restrained street fixture, no person and no readable marks.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/history/guides/market_stall.png
+    sha256: 2bca5af3123233e7ea09c560635a4006c280cf188641ad78932f2a6a95c82efb
+    role: 本轮生成输入：覆盖前同ID候选，仅作登记几何、相机、尺度和风格引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+    sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+    sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:01.925465+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/market_stall.png
+  source_sha256: 8cb13a2d3a948bfd2a7737a730f3d242a028a942ff886806451973a305769001
+  size: 512x512
+  sha256: 5c9af9f642f277f33038d416b3b5eae4fc6bf8ef0a8af234f82e2904e522465a
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_market_stall
+    footprint:
+    - 3
+    - 2
+    anchor:
+    - 254.583
+    - 290.231
+    era: qing_south
+  footprint_m:
+  - 3
+  - 2
+  entrance:
+    edge: S
+    offset_cells: 1
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 160
+    - 80
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_market_stall.yaml
+  source_record: history/records/market_stall.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+  selected_candidate: 1
+- id: bld_kit_qing_south_yamen
+  file: bld_kit_qing_south_yamen.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南官署衙门（原创扩展；地方细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 17 by 13 cell Jiangnan county yamen compound. Preserve axial outer gate, courtyard and main hall hierarchy from guide. Grey-tile hard-gable and restrained hip-and-gable roofs, moderate roof lift, plain ridges with only small non-imperial end ornaments, no glazed yellow. Main hall has five-bay red-brown columns on a low dressed-stone platform, grey brick infill and straight lattice doors; simple two-step local bracket sets under eaves, not palace-scale. White service-wing walls, blue-grey brick foot
+    courses, a red-brown instrument gate, stone drum bases without statues. No plaque text, flags or people.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review3/halls/yamen.guide.png
+    sha256: d2bed63157a66c3fa853ad1258bd767ddd33fe3b45ba025967253321b5ae06ad
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Entrance_and_yard_of_a_yamen.jpg?width=1600
+    sha256: 6ea99763a8b809f1d0ab9320299a598bac2fea3fb98024cd07a68bb2ae78d316
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Examination_hall.jpg?width=1600
+    sha256: 3066f5057f9314df9c4bf4e8d159919282eb5bfc3408ac0ce76a6eb933c69abc
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:02.076681+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/yamen.png
+  size: 1120x768
+  sha256: 92d62037f5895e4f31cbd8b42bddc48ac008296b24af3bbe892b6767af438ea2
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_yamen
+    footprint:
+    - 17
+    - 13
+    anchor:
+    - 571.2727
+    - 434.0909
+    era: qing_south
+  footprint_m:
+  - 17
+  - 13
+  footprint_source: design/22 §3.4 bld_kit_qing_early_yamen
+  entrance:
+    edge: S
+    offset_cells: 8.5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 960
+    - 480
+    ground_width_px: 960
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_yamen.yaml
+  source_record: history/records/yamen.yaml
+  source_sha256: c30eb89d89538ff1a8bafb45c4d274f29d1db886ae16a17ed611e500cdf28119
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_biaoju
+  file: bld_kit_qing_south_biaoju.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南镖局／货栈院落（原创扩展）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 15 by 12 cell private armed escort bureau compound, an original functional adaptation of a Jiangnan merchant residence. Preserve enclosed court, south gate and hall masses. Grey-tile low hard-gable roofs, plain ridges, white lime walls over blue-grey brick, heavy dark timber plank gate with iron studs, simple one-step brackets, three-bay hall, straight lattice windows, thin stone base. Security comes from high firewalls, narrow side windows and stout gate, not battlements. One blank horizontal board
+    with no glyphs; no weapons, flags or people.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/buildings_b/biaoju.guide.png
+    sha256: 698a887dc38353d61ca327c19062c896614e9abf6e8f3269316c974fc037c2d6
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Entrance_and_yard_of_a_yamen.jpg?width=1600
+    sha256: 6ea99763a8b809f1d0ab9320299a598bac2fea3fb98024cd07a68bb2ae78d316
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:02.229223+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/biaoju.png
+  size: 1088x832
+  sha256: 6ce847120a789eeca9aa109c1032f9dc2c5d4704681ce6dc2284982de8cd9ceb
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_biaoju
+    footprint:
+    - 15
+    - 12
+    anchor:
+    - 568.6144
+    - 485.0214
+    era: qing_south
+  footprint_m:
+  - 15
+  - 12
+  footprint_source: design/22 §3.4 bld_kit_qing_early_biaoju
+  entrance:
+    edge: S
+    offset_cells: 7.5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 864
+    - 432
+    ground_width_px: 864
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_biaoju.yaml
+  source_record: history/records/biaoju.yaml
+  source_sha256: efc7162e4e28e3cfc05f6ed4a351dead92e50192590dd79517a997858ba6c9d9
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_casino
+  file: bld_kit_qing_south_casino.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南匿名赌场外观（原创扩展）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 10 by 8 cell discreet Qing Jiangnan gambling house, an original use inside an ordinary two-storey merchant dwelling. Low hard-gable grey-tile roof, plain ridge, white fire gables, blue-grey brick base, dark timber three-bay frontage with closely screened lattice windows and stout shut doors, shallow eave on single-step supports. Slightly more enclosed than the shop, no symbols, dice, money, lantern spectacle or readable sign. Respectable worn street architecture, not a fantasy den.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/history/guides/casino.png
+    sha256: 8e31d81c205a441fa0fe9afd7bdf029f01cb25aeccb42b8a98e52168ce0345fc
+    role: 本轮生成输入：覆盖前同ID候选，仅作登记几何、相机、尺度和风格引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+    sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Master_of_Nets_Garden_1.jpg?width=1600
+    sha256: cd5e0d1ad8b84c7525418996b1808dadbe8b78bce7cca58c151a0a5fe69774f9
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:02.308220+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/casino.png
+  size: 800x576
+  sha256: 60c757a5b505d777e1179370a4bf46925b06ce620af22e97549099c891c40c90
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_casino
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 399.8031
+    - 319.0048
+    era: qing_south
+  footprint_m:
+  - 10
+  - 8
+  footprint_source: design/22 §3.3 bld_kit_song_southern_casino同构占地
+  entrance:
+    edge: S
+    offset_cells: 5.0
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 576
+    - 288
+    ground_width_px: 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_casino.yaml
+  source_record: history/records/casino.yaml
+  source_sha256: 9db57e835252f768635290fbc95cac0b76e3b86a183099f7ba054c2f289f6589
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：清苏州沿街窄开间；灰瓦硬山与白色封火山墙、可卸木排门、直棂窗、低石槛、浅连续檐和无字布篷。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_manor
+  file: bld_kit_qing_south_manor.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南山庄大院（原创扩展）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a wealthy 16 by 13 cell Jiangnan gentry manor. Preserve multiple axial courts and side wings. Main reception hall three bays wide and nine-purlin in spirit, with low hard-gable grey-tile roof, plain ridge, white firewalls and blue-grey brick bases. Dark timber column frames, straight lattice screens, thin dressed-stone platforms; modest one- to two-step local bracket sets and exposed flat beams. South gate has restrained clear-brick relief surround and shallow double-sided brick carving inspired by
+    Suzhou residences, but no palace imagery. No garden plants.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/buildings_b/manor.guide.png
+    sha256: 94a22df7b70367d25cb5b20f2cc1513b2cf31382ed7e4acbcdb841e4c44e243f
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Master_of_Nets_Garden_1.jpg?width=1600
+    sha256: cd5e0d1ad8b84c7525418996b1808dadbe8b78bce7cca58c151a0a5fe69774f9
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:02.464103+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/manor.png
+  size: 1248x928
+  sha256: 3c42a144a285965ca982f868affaa514ed58b190a866e8dbdd0d7762017070b5
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_manor
+    footprint:
+    - 16
+    - 13
+    anchor:
+    - 608.7401
+    - 537.7825
+    era: qing_south
+  footprint_m:
+  - 16
+  - 13
+  footprint_source: design/22 §3.3 bld_kit_song_southern_manor同构占地
+  entrance:
+    edge: S
+    offset_cells: 8.0
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 928
+    - 464
+    ground_width_px: 928
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_manor.yaml
+  source_record: history/records/manor.yaml
+  source_sha256: d94d1a0ebdf98fe37c477fe342996c1aa3316d13dca645aaaeb53fc8c87a8cfe
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_wangfu
+  file: bld_kit_qing_south_wangfu.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南王府殿院模块（原创扩展；具体等级细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a large 22 by 18 cell regional princely residence adapted to Jiangnan materials. Preserve deep axial sequence of gate, courts, principal five-bay hall and side ranges. Status shown by larger dressed-stone platform, red-brown main columns, restrained hip-and-gable principal roof with grey tiles, small ridge-end ornaments and a few sober non-imperial ridge figures; secondary roofs hard-gabled. Two-step bracket sets under main eaves, simpler supports elsewhere. White lime and blue-grey brick enclosure,
+    dark lattice screens, restrained Su-style beam painting in faded mineral green/red only. No Forbidden-City yellow roof, dragon motifs or vast plaza.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/buildings_b/wangfu.guide.png
+    sha256: c33f0311bbcbf64c73be352c5a5e9ba51a67f7f41850c2b5bbf532a37872a161
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Entrance_and_yard_of_a_yamen.jpg?width=1600
+    sha256: 6ea99763a8b809f1d0ab9320299a598bac2fea3fb98024cd07a68bb2ae78d316
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:02.612585+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/wangfu.png
+  size: 1632x1216
+  sha256: 55608aa0b0d4c74dbbea09d5301f582a66e03052063705cf89c8129f8d098ca3
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_wangfu
+    footprint:
+    - 22
+    - 18
+    anchor:
+    - 871.3858
+    - 658.1031
+    era: qing_south
+  footprint_m:
+  - 22
+  - 18
+  footprint_source: design/22 §3.4 bld_kit_qing_early_wangfu
+  entrance:
+    edge: S
+    offset_cells: 11.0
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 1280
+    - 640
+    ground_width_px: 1280
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_wangfu.yaml
+  source_record: history/records/wangfu.yaml
+  source_sha256: 3577a5025e4ef971325b59ea1e3e51449d4c4b8e0e552e6e4c6bf96ce340c4bd
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：轴线门院厅序；灰瓦硬山/克制歇山、素脊小脊饰、低石台；红褐柱网、青砖填墙、直棂门窗及一至二跳短出斗拱。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_temple_hall
+  file: bld_kit_qing_south_temple_hall.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南佛寺殿堂（原创扩展）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: one 14 by 11 cell Jiangnan temple main hall, an original Qing-period composite rather than a reconstruction of Xuanmiao Guan. Five visible bays, single-eave hip-and-gable grey pan-and-cover tile roof with moderate lift, gently curving eaves, plain ridge and restrained chiwen-like ridge ends plus only a very small sober ridge-figure row. Red-brown columns on individual stone bases and low stone platform, two-step bracket clusters with short projection, dark straight lattice doors. Faded restrained
+    green/red beam painting under eaves only; white-grey side walls, no yellow glazed tiles, giant sculpture, incense or plaque text.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review3/halls/temple_hall.guide.png
+    sha256: 478866ac4b5f3b549c438f8f4084d195b9cde9ff47bc39c553172e97eee528c0
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Suzhou_Xuanmiao_Guan_2015.04.23_17-53-17.jpg/1920px-Suzhou_Xuanmiao_Guan_2015.04.23_17-53-17.jpg
+    sha256: a3fe8d9f58bff0bf3e4f04b4b137286839e1839e42e77d03a2b16e4e7135992e
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。
+  - url: https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Suzhou_Xuanmiao_Guan_2015.04.23_18-02-22.jpg/1920px-Suzhou_Xuanmiao_Guan_2015.04.23_18-02-22.jpg
+    sha256: 42887af954e8aaa0b53686345baa76d8aa2f25dcdc9ec9a3283899acc5948260
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:02.776139+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/temple_hall.png
+  size: 1024x736
+  sha256: b4107e3796533278bca901b1354167d7eecd547197fa6fb3a5b7670237742d4f
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_temple_hall
+    footprint:
+    - 14
+    - 11
+    anchor:
+    - 548.6248
+    - 445.3051
+    era: qing_south
+  footprint_m:
+  - 14
+  - 11
+  footprint_source: design/22 §3.4 bld_kit_ming_temple_hall同构占地
+  entrance:
+    edge: S
+    offset_cells: 7.0
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 800
+    - 400
+    ground_width_px: 800
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_temple_hall.yaml
+  source_record: history/records/temple_hall.yaml
+  source_sha256: 35be31412f81b0bff4e583075882354ea94a7f8fc282f84acb9131588d07c0c7
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_pagoda
+  file: bld_kit_qing_south_pagoda.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南楼阁式佛塔意象（原创扩展；非六和塔复原）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a slender 7 by 7 cell Jiangnan multi-storey pagoda, period-inspired and not a literal reconstruction. Preserve guide height and square base. Seven visually legible diminishing storeys: blue-grey brick central shaft on dressed-stone base, shallow timber eaves at each level with dense dark-grey tiles, moderate eave curve, small plain ridge corners and tiny bells implied without clutter. Each level has simple arched or rectangular openings and restrained timber rail detail. Bracket support is a compact
+    single-step corbel layer per eave, not ornate palace dougong. Strong taper, no golden finial glow; complete top finial and base within margin.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/c/pagoda.guide.png
+    sha256: 9e4bdb49677fa2c7bba02f65b63e5f3874e07299a94bd58d43219a2769fe0549
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/North_temple_pagoda%2C_Soochow_%28NYPL_Hades-2359185-4043541%29.jpg?width=1600
+    sha256: 7cf638ce473c71c663501056feef3c9cc4afa4d8533b45493f6686bfc4ecbccb
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090905_Suzhou_North_Temple_Pagoda_4611.jpg?width=1600
+    sha256: 792d6cccf4288a68d09fc96e6a821ae6c7a19896b93555aa3d6c92cb4f429d0f
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:02.912030+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/pagoda.png
+  size: 928x800
+  sha256: 45bfee7f0d6dcf0e95cc42ae29f9169f92e5b28d921ebd9b97f0c07a09a3ec69
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_pagoda
+    footprint:
+    - 7
+    - 7
+    anchor:
+    - 500.7287
+    - 555.6167
+    era: qing_south
+  footprint_m:
+  - 7
+  - 7
+  footprint_source: design/22 §3.3 bld_kit_song_southern_pagoda同构占地
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 448
+    - 224
+    ground_width_px: 448
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_pagoda.yaml
+  source_record: history/records/pagoda.yaml
+  source_sha256: b63d45bdcb5dc4f06bbdadd6680036819e21bd778f61908c007ff728b239e365
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：玄妙观照片取五间柱网、灰瓦歇山、缓和翼角、短出斗拱与克制梁枋彩画；北寺塔照片取逐层收分、砖塔心与密檐。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_guardhouse
+  file: bld_kit_qing_south_guardhouse.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南城门守舍（原创扩展）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right
+    contact shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a compact 7 by 5 cell urban guardhouse inside a Jiangnan gate precinct. One-storey three-bay blue-grey brick and dark timber building on rough dressed-stone footings, low hard-gable grey-tile roof with plain ridge and almost no upturn. Deep central plank door, narrow lattice side windows, simple exposed beam ends and one-step eave supports, no formal dougong, no battlements on the building. Weathered defensive utility, no weapons, guards, banners or text.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/c/guardhouse.guide.png
+    sha256: 334338eae56b8b31d7d1d2dd18d95b63e5a64b100ec32820517b33fcf9ceff20
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5933.jpg?width=1600
+    sha256: aff1a916076e3955b14f7c2dbc594280df405fbc4f9a36a774271f281d6e123f
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5941.jpg?width=1600
+    sha256: 14a8ce8eac475a8ad072ee35ec1877324cbccc3d527eae080af81d492b56f67e
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:03.062927+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/guardhouse.png
+  size: 576x512
+  sha256: 5f9756bd348ed26fce840b826fd36811fd4e465e3ea0c2e9910d3c3922a153a6
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_guardhouse
+    footprint:
+    - 7
+    - 5
+    anchor:
+    - 296.5115
+    - 293.6497
+    era: qing_south
+  footprint_m:
+  - 7
+  - 5
+  footprint_source: design/22 §3.3 bld_kit_song_southern_guardhouse同构占地
+  entrance:
+    edge: S
+    offset_cells: 3.5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 384
+    - 192
+    ground_width_px: 384
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_guardhouse.yaml
+  source_record: history/records/guardhouse.yaml
+  source_sha256: 5d14601bb1c1e9858c635c1fe4e7a58642462593454e83ec569ef7775c0e8558
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_stable
+  file: bld_kit_qing_south_stable.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南马厩（原创扩展）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan asset, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+    shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber. Show roof lift and curvature, ridge treatment, tile method, beam bearing, column grid, foundation, openings and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 9 by 7 cell functional Jiangnan stable, historically cautious original extension because no same-region surviving stable image was available. Preserve guide shed and court. One long low hard-gable shed with grey pan-and-cover tiles and plain ridge, deep open south aisle on stout unpainted timber posts, very simple beam-and-purlin bearing with no dougong, white rear wall over blue-grey brick damp course, rough dressed-stone threshold, several dark timber half-height stall partitions and small high ventilation openings. No horses, hay, tack, carts or loose props. Fine
+    joinery and drainage curb imply function.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review3/stable/block-guide.png
+    sha256: e5265344d97b1ab12a0ccd3ecb0a7536bf3eb44d06b65a488c2ab5d16f7976e9
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Changmen_street_in_Suzhou.jpg?width=1800
+    sha256: 2033acfaaaa9005d1ed0e3c7996a6b676f13dc3d0d59cd30cda3b34c7426d601
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+    sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:03.220009+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/stable.png
+  size: 640x448
+  sha256: 550e39ead21f3c580610b1cbf02903510e6ccdb38c9e202609bba5bc23b90414
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_stable
+    footprint:
+    - 9
+    - 7
+    anchor:
+    - 333.9648
+    - 254.0291
+    era: qing_south
+  footprint_m:
+  - 9
+  - 7
+  footprint_source: design/22 §3.3 bld_kit_song_southern_stable同构占地
+  entrance:
+    edge: S
+    offset_cells: 4.5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 512
+    - 256
+    ground_width_px: 512
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_stable.yaml
+  source_record: history/records/stable.yaml
+  source_sha256: d5d71222c5de605b3a08d1bccf9cb478c754fd399b2782e1df0b2048a253e471
+  candidate_count: 1
+  selected_candidate: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。同地域马厩/马具参考下载失败；实际只以阊门街图和吴氏接待厅取街屋柱网、开敞檐廊及材质，功能构造为原创扩展。
+- id: bld_kit_qing_south_warehouse
+  selected_candidate: 1
+  file: bld_kit_qing_south_warehouse.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·仓屋（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan asset, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+    shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber. Show roof lift and curvature, ridge treatment, tile method, beam bearing, column grid, foundation, openings and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a 10 by 8 cell Jiangnan granary or warehouse. Long low hard-gable range on a raised rough stone moisture-resistant base, dense grey pan-and-cover tile roof with plain ridge, substantial white fire-gable end walls and blue-grey clear-brick lower walls. Repeated heavy vertical-board double doors with timber lintels, tiny high ventilation slots, simple purlin-and-beam eave bearing without decorative dougong. Materials draw from later Fuyi Granary only for masonry, doors and ventilation; do not claim literal reconstruction. No goods or people.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/c/warehouse.guide.png
+    sha256: bf6ab9db1dc74e01075bd6985b8bf0294b7d7036c47ec2fbb1726cfc3d4622d9
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Fuyi_Granary%2C_2021-01-30_03.jpg?width=1600
+    sha256: decb52d0fd6c1d82ddda4db5961260289baad170f15466ad0989c3677d0569e5
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。后世富义仓仅取青砖墙、厚板门、高位通风孔、石质防潮台与灰瓦硬山做材料证据，不声称复原。
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Fuyi_Granary%2C_2021-01-30_05.jpg?width=1600
+    sha256: c7cb47059790f1ecb42464bb26412733555a9c2c6726fba5d961f700c7a901d6
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。后世富义仓仅取青砖墙、厚板门、高位通风孔、石质防潮台与灰瓦硬山做材料证据，不声称复原。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:03.372719+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/warehouse.png
+  source_sha256: 7a59c8fb385e051a9f54e93e4fc3647912ce7a4e3e529043597a7e9093c5b580
+  size: 864x672
+  sha256: 28bf173b7d563b331a32517181d0ebe823ba4ee46bf40018b11ee9dfa35881f7
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_warehouse
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 458.5052
+    - 386.9572
+    era: qing_south
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 4
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 576
+    - 288
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_warehouse.yaml
+  source_record: history/records/warehouse.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：后世富义仓仅取青砖墙、厚板门、高位通风孔、石质防潮台与灰瓦硬山做材料证据，不声称复原。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。
+- id: bld_kit_qing_south_wharf
+  selected_candidate: 1
+  file: bld_kit_qing_south_wharf.png
+  category: building-map
+  style: default
+  subject: 清初至清中江南·码头河埠（匿名原创组合，细部待考）
+  prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan asset, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+    shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber. Show roof lift and curvature, ridge treatment, tile method, beam bearing, column grid, foundation, openings and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: one 10 by 4 cell Qing Jiangnan canal wharf module, no building roof. Preserve long shoreline footprint and steps. Carefully hand-laid blue-grey brick retaining wall on rough granite foundation courses, a central flight of worn rectangular granite water steps descending through the wall, two plain square mooring stones or bollards integrated into the coping, small drainage opening, patched lime mortar and waterline discoloration. Top surface is narrow large stone slabs only, not a broad ground tile. Clean modular ends, no boat, water, goods, people, railing, pavilion or
+    modern hardware.'
+  negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+  references:
+  - file: assets/default/building-map/qing_south/review2/c/wharf.guide.png
+    sha256: 36ba6010390b6f91627738579fae48c8c54159c677a56c4812f71853411ff4c0
+    role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+  - url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Xu_Yang_-_Commerce_on_the_water.jpg?width=1800
+    sha256: b499b90f126ba2bd1033d7d5efad279b6ef7321eadf3163853f9d8d6ab7b356a
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。古画水运取临水驳岸语汇，1984 吴门桥照片取旧花岗石砌块与磨损；生成青砖石基驳岸、石级、系缆石和泄水孔。
+  - url: https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Approach_to_Wumen_Bridge_at_Suzhou_1984.jpg/1920px-Approach_to_Wumen_Bridge_at_Suzhou_1984.jpg
+    sha256: 5a39c26da2dfb6f6e9ad3a7b7d1349ddd97de7759f5de783e7798eafaf34f4ea
+    accessed: '2026-10-01'
+    role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。古画水运取临水驳岸语汇，1984 吴门桥照片取旧花岗石砌块与磨损；生成青砖石基驳岸、石级、系缆石和泄水孔。
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-10-01T08:24:03.526038+00:00'
+  created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+  source_path: history/selected-sources/wharf.png
+  source_sha256: e55d05a0269b8e5796056e7e80c0b1cd2916dbd8af35bd8edee0eaab3d5b3c6c
+  size: 736x512
+  sha256: cb67b1bd1cbb1e4b3293c76fa6ab884e70416edf9afa4c6eccfaeca52b4d053b
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  building:
+    type: bld_kit_qing_south_wharf
+    footprint:
+    - 10
+    - 4
+    anchor:
+    - 381.5588
+    - 289.3848
+    era: qing_south
+  footprint_m:
+  - 10
+  - 4
+  entrance:
+    edge: S
+    offset_cells: 4
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 448
+    - 224
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  metadata: meta/bld_kit_qing_south_wharf.yaml
+  source_record: history/records/wharf.yaml
+  candidate_count: 1
+  geometry_qa:
+    status: 待实测
+    registered_footprint_preserved: true
+    normalization_only: true
+    note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+  notes: 2026-10-01 历史图片输入重出：古画水运取临水驳岸语汇，1984 吴门桥照片取旧花岗石砌块与磨损；生成青砖石基驳岸、石级、系缆石和泄水孔。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。

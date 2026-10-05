@@ -1,0 +1,76 @@
+- id: npc_xuzhu__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 虚竹（天龙八部 ch01 · 灵鹫宫主人青年）· A 字参考版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 1995ecb7-ef0d-44d7-86fa-f218163a97b3
+    url: https://studio.tripo3d.ai/workspace/generate/1995ecb7-ef0d-44d7-86fa-f218163a97b3
+    generate_op: 25d45772-7abb-4f20-b996-36d62c9d5d85（image_to_model）
+    rig_op: eb25bf93-d9ad-4130-a7de-836e050a682a
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch01/threeview/por_npc_xuzhu__ch01_youth_lingjiu_apose.png
+    sha256: 268f29f40d9f54f13812fff785b05dba262a398b9a7beb93a40a82df5e25986b
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  sha256: 0a6e191b4dec90149266602d44fb69f89f3c919b1fa32b33f189bc2b31c17b8f
+  size_bytes: 5948784
+  joints: 65
+  triangles: 94274
+  vertices: 53991
+  animations: []
+  textures:
+  - image/jpeg 505589 B
+  - image/jpeg 1444293 B
+  - image/jpeg 602403 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T14:41:52-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，光头僧相、灰褐长袍可辨识；自动绑骨一次成功（Hips y0.53、头顶骨端 1.025 略高出头顶 0.979 属正常、双手外展 y0.50、脚 0.067）。
+- id: npc_xuzhu__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 虚竹（天龙八部 ch01 · 灵鹫宫主人青年）· A 字参考版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 1995ecb7-ef0d-44d7-86fa-f218163a97b3
+    url: https://studio.tripo3d.ai/workspace/generate/1995ecb7-ef0d-44d7-86fa-f218163a97b3
+    generate_op: 25d45772-7abb-4f20-b996-36d62c9d5d85（image_to_model）
+    rig_op: eb25bf93-d9ad-4130-a7de-836e050a682a
+  size: 600x778
+  sha256: c0831e127a53df20b322f03fd402b90065ea1c5c0dc248fa50fe90e269d94004
+  size_bytes: 208461
+  created: '2026-10-03T22:34:25-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

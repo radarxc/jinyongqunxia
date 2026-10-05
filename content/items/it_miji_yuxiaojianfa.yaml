@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_yuxiaojianfa
+name: 玉箫剑法谱
+kind: manual
+sub: full
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_yuxiaojianfa
+text:
+  desc: 外观：南宋青碧蝴蝶装册，白绢包角。
+  lore: 桃花岛玉箫剑法被整理成细长谱册，实体与编次为 （原创扩展）。图页把箫意般的节奏融进剑路，研读须兼顾身法与变化；岛外传闻只说招式清雅，却少有人能读懂其中机巧。
+extension:
+  type: manual
+  value:
+    skill: sk_yuxiaojianfa
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yuxiaojianfa
+      readWis: 50
+      maxLayer: 10
+      cultivation: 3000

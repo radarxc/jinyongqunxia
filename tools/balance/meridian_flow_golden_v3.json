@@ -1,0 +1,2924 @@
+{
+  "fixtureVersion": 3,
+  "inputs": {
+    "reference": {
+      "meanFlowBp": 10000,
+      "meanFluxCap": 16,
+      "releasedQi": 192,
+      "routeQualityBp": 10000
+    },
+    "ticksBeforeCommit": [
+      12,
+      15,
+      11,
+      10
+    ],
+    "units": [
+      {
+        "activeRouteId": "mfr_golden_v3_attack",
+        "kind": "hero",
+        "nodes": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          }
+        ],
+        "practiceBp": 9000,
+        "productionPerTick": 16,
+        "qiSpeedBp": 10000,
+        "routes": [
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "attack",
+            "routeId": "mfr_golden_v3_attack",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_04",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_05",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_06",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_07",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_08",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_09",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_10",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_11",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              }
+            ]
+          },
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "defense",
+            "routeId": "mfr_golden_v3_defense",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_04",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_05",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              }
+            ]
+          },
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "movement",
+            "routeId": "mfr_golden_v3_movement",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              }
+            ]
+          }
+        ],
+        "unitId": "hero",
+        "unitIndex": 0
+      },
+      {
+        "activeRouteId": "mfr_golden_v3_attack",
+        "kind": "normal",
+        "nodes": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          }
+        ],
+        "practiceBp": 6200,
+        "productionPerTick": 8,
+        "qiSpeedBp": 8000,
+        "routes": [
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "attack",
+            "routeId": "mfr_golden_v3_attack",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_04",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_05",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_06",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_07",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_08",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_09",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_10",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_11",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              }
+            ]
+          },
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "defense",
+            "routeId": "mfr_golden_v3_defense",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_04",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_05",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              }
+            ]
+          },
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "movement",
+            "routeId": "mfr_golden_v3_movement",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              }
+            ]
+          }
+        ],
+        "unitId": "enemy_normal",
+        "unitIndex": 1
+      },
+      {
+        "activeRouteId": "mfr_golden_v3_attack",
+        "kind": "elite",
+        "nodes": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          }
+        ],
+        "practiceBp": 7500,
+        "productionPerTick": 20,
+        "qiSpeedBp": 11000,
+        "routes": [
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "attack",
+            "routeId": "mfr_golden_v3_attack",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_04",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_05",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_06",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_07",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_08",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_09",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_10",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_11",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              }
+            ]
+          },
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "defense",
+            "routeId": "mfr_golden_v3_defense",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_04",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_05",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              }
+            ]
+          },
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "movement",
+            "routeId": "mfr_golden_v3_movement",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              }
+            ]
+          }
+        ],
+        "unitId": "enemy_elite",
+        "unitIndex": 2
+      },
+      {
+        "activeRouteId": "mfr_golden_v3_attack",
+        "kind": "boss",
+        "nodes": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          }
+        ],
+        "practiceBp": 8600,
+        "productionPerTick": 28,
+        "qiSpeedBp": 12500,
+        "routes": [
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "attack",
+            "routeId": "mfr_golden_v3_attack",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_04",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_05",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_06",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_07",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_08",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_09",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_10",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              },
+              {
+                "acupointRef": "ap_golden_v3_11",
+                "lengthUnit": 1,
+                "riskBp": 120,
+                "segmentCt": 60
+              }
+            ]
+          },
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "defense",
+            "routeId": "mfr_golden_v3_defense",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_04",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              },
+              {
+                "acupointRef": "ap_golden_v3_05",
+                "lengthUnit": 1,
+                "riskBp": 80,
+                "segmentCt": 70
+              }
+            ]
+          },
+          {
+            "previewReference": {
+              "meanFlowBp": 10000,
+              "meanFluxCap": 16,
+              "releasedQi": 192,
+              "routeQualityBp": 10000
+            },
+            "purpose": "movement",
+            "routeId": "mfr_golden_v3_movement",
+            "steps": [
+              {
+                "acupointRef": "ap_golden_v3_00",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_01",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_02",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              },
+              {
+                "acupointRef": "ap_golden_v3_03",
+                "lengthUnit": 1,
+                "riskBp": 60,
+                "segmentCt": 55
+              }
+            ]
+          }
+        ],
+        "unitId": "enemy_boss",
+        "unitIndex": 3
+      }
+    ]
+  },
+  "masterSeed": 20260927,
+  "outputs": {
+    "battleRng": {
+      "afterAllCommits": [
+        1262968578,
+        392504407,
+        909596247,
+        2630245268
+      ],
+      "before": [
+        2903084003,
+        3130773150,
+        2717155283,
+        2630245226
+      ],
+      "segments": [
+        {
+          "after": [
+            2220677454,
+            3687379073,
+            1232836969,
+            2630245238
+          ],
+          "before": [
+            2903084003,
+            3130773150,
+            2717155283,
+            2630245226
+          ],
+          "unitId": "hero"
+        },
+        {
+          "after": [
+            984775958,
+            1097094186,
+            1397734665,
+            2630245248
+          ],
+          "before": [
+            2220677454,
+            3687379073,
+            1232836969,
+            2630245238
+          ],
+          "unitId": "enemy_normal"
+        },
+        {
+          "after": [
+            500186245,
+            2344304750,
+            3763825247,
+            2630245256
+          ],
+          "before": [
+            984775958,
+            1097094186,
+            1397734665,
+            2630245248
+          ],
+          "unitId": "enemy_elite"
+        },
+        {
+          "after": [
+            1262968578,
+            392504407,
+            909596247,
+            2630245268
+          ],
+          "before": [
+            500186245,
+            2344304750,
+            3763825247,
+            2630245256
+          ],
+          "unitId": "enemy_boss"
+        }
+      ]
+    },
+    "breath": {
+      "ct": 1000,
+      "grade": 12,
+      "layer": 10,
+      "mpCostBp": 0,
+      "nodes": [
+        {
+          "acupointRef": "ap_golden_v3_breath_a",
+          "backlogAfter": 22,
+          "backlogBefore": 30,
+          "ruptureAfter": 283,
+          "ruptureBefore": 900,
+          "sealLevel": 4,
+          "stagnationAfterBp": 3500,
+          "stagnationBeforeBp": 6000
+        },
+        {
+          "acupointRef": "ap_golden_v3_breath_b",
+          "backlogAfter": 9,
+          "backlogBefore": 12,
+          "ruptureAfter": 0,
+          "ruptureBefore": 300,
+          "sealLevel": 2,
+          "stagnationAfterBp": 1500,
+          "stagnationBeforeBp": 4000
+        },
+        {
+          "acupointRef": "ap_golden_v3_breath_c",
+          "backlogAfter": 0,
+          "backlogBefore": 9,
+          "ruptureAfter": 483,
+          "ruptureBefore": 1100,
+          "sealLevel": 0,
+          "stagnationAfterBp": 500,
+          "stagnationBeforeBp": 3000
+        }
+      ],
+      "reliefBp": 2500,
+      "repairUnits": 617,
+      "scope": 3,
+      "supportedByProductionRuntime": false
+    },
+    "commits": {
+      "boss": {
+        "attackerStrengthBp": 12954,
+        "attempted": 12,
+        "baseMeridianAttackBp": 12900,
+        "blockedAt": null,
+        "blockedNode": null,
+        "circulationBp": 10000,
+        "circulationDamageBp": 13500,
+        "completed": 12,
+        "flowCt": 720,
+        "meridianAttackBp": 17415,
+        "profile": {
+          "completionBp": 8400,
+          "flowBp": 9600,
+          "qiBp": 14583,
+          "widthBp": 18000
+        },
+        "releasedQi": 280,
+        "routeCarryCap": 384,
+        "routeId": "mfr_golden_v3_attack",
+        "routeQualityBp": 8400,
+        "routeTravelTicks": 10,
+        "trace": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "effectiveFlowBp": 9600,
+            "fluxCap": 32,
+            "incoming": 28,
+            "jamChanceBp": 295,
+            "jammed": false,
+            "passed": 28
+          }
+        ],
+        "unitId": "enemy_boss"
+      },
+      "elite": {
+        "attackerStrengthBp": 8074,
+        "attempted": 8,
+        "baseMeridianAttackBp": 8966,
+        "blockedAt": 7,
+        "blockedNode": "ap_golden_v3_07",
+        "circulationBp": 10000,
+        "circulationDamageBp": 13500,
+        "completed": 7,
+        "flowCt": 480,
+        "meridianAttackBp": 12104,
+        "profile": {
+          "completionBp": 4374,
+          "flowBp": 9000,
+          "qiBp": 4000,
+          "widthBp": 15000
+        },
+        "releasedQi": 60,
+        "routeCarryCap": 288,
+        "routeId": "mfr_golden_v3_attack",
+        "routeQualityBp": 4374,
+        "routeTravelTicks": 11,
+        "trace": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "effectiveFlowBp": 9000,
+            "fluxCap": 24,
+            "incoming": 20,
+            "jamChanceBp": 432,
+            "jammed": false,
+            "passed": 20
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "effectiveFlowBp": 9000,
+            "fluxCap": 24,
+            "incoming": 20,
+            "jamChanceBp": 432,
+            "jammed": false,
+            "passed": 20
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "effectiveFlowBp": 9000,
+            "fluxCap": 24,
+            "incoming": 20,
+            "jamChanceBp": 432,
+            "jammed": false,
+            "passed": 20
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "effectiveFlowBp": 9000,
+            "fluxCap": 24,
+            "incoming": 20,
+            "jamChanceBp": 432,
+            "jammed": false,
+            "passed": 20
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "effectiveFlowBp": 9000,
+            "fluxCap": 24,
+            "incoming": 20,
+            "jamChanceBp": 432,
+            "jammed": false,
+            "passed": 20
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "effectiveFlowBp": 9000,
+            "fluxCap": 24,
+            "incoming": 20,
+            "jamChanceBp": 432,
+            "jammed": false,
+            "passed": 20
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "effectiveFlowBp": 9000,
+            "fluxCap": 24,
+            "incoming": 20,
+            "jamChanceBp": 432,
+            "jammed": false,
+            "passed": 20
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "effectiveFlowBp": 9000,
+            "fluxCap": 24,
+            "incoming": 20,
+            "jamChanceBp": 432,
+            "jammed": true,
+            "passed": 8
+          }
+        ],
+        "unitId": "enemy_elite"
+      },
+      "hero": {
+        "attackerStrengthBp": 10000,
+        "attempted": 12,
+        "baseMeridianAttackBp": 10000,
+        "blockedAt": null,
+        "blockedNode": null,
+        "circulationBp": 10000,
+        "circulationDamageBp": 13500,
+        "completed": 12,
+        "flowCt": 720,
+        "meridianAttackBp": 13500,
+        "profile": {
+          "completionBp": 10000,
+          "flowBp": 10000,
+          "qiBp": 10000,
+          "widthBp": 10000
+        },
+        "releasedQi": 192,
+        "routeCarryCap": 192,
+        "routeId": "mfr_golden_v3_attack",
+        "routeQualityBp": 10000,
+        "routeTravelTicks": 12,
+        "trace": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "effectiveFlowBp": 10000,
+            "fluxCap": 16,
+            "incoming": 16,
+            "jamChanceBp": 495,
+            "jammed": false,
+            "passed": 16
+          }
+        ],
+        "unitId": "hero"
+      },
+      "normal": {
+        "attackerStrengthBp": 5350,
+        "attempted": 10,
+        "baseMeridianAttackBp": 7442,
+        "blockedAt": 9,
+        "blockedNode": "ap_golden_v3_09",
+        "circulationBp": 10000,
+        "circulationDamageBp": 13500,
+        "completed": 9,
+        "flowCt": 600,
+        "meridianAttackBp": 10046,
+        "profile": {
+          "completionBp": 4500,
+          "flowBp": 8000,
+          "qiBp": 4000,
+          "widthBp": 5000
+        },
+        "releasedQi": 12,
+        "routeCarryCap": 96,
+        "routeId": "mfr_golden_v3_attack",
+        "routeQualityBp": 4500,
+        "routeTravelTicks": 15,
+        "trace": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": false,
+            "passed": 6
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "effectiveFlowBp": 8000,
+            "fluxCap": 8,
+            "incoming": 6,
+            "jamChanceBp": 595,
+            "jammed": true,
+            "passed": 2
+          }
+        ],
+        "unitId": "enemy_normal"
+      }
+    },
+    "control": {
+      "grapple1": {
+        "actionLocked": false,
+        "agiBp": 9500,
+        "evadeBp": 9500,
+        "level": 1,
+        "moveBp": 10000,
+        "recoveryAdd": 50,
+        "strBp": 9500,
+        "weaponLocked": false
+      },
+      "grapple9": {
+        "actionLocked": true,
+        "agiBp": 0,
+        "evadeBp": 0,
+        "level": 9,
+        "moveBp": 0,
+        "recoveryAdd": 0,
+        "strBp": 0,
+        "weaponLocked": true
+      },
+      "point1": {
+        "breathLocked": false,
+        "flowPenaltyBp": 500,
+        "innerLocked": false,
+        "level": 1,
+        "mpCostAddBp": 300
+      },
+      "point9": {
+        "breathLocked": true,
+        "flowPenaltyBp": 10000,
+        "innerLocked": true,
+        "level": 9,
+        "mpCostAddBp": 0
+      }
+    },
+    "defense": {
+      "anchor20000": 5500,
+      "attacker": {
+        "completionBp": 10000,
+        "flowBp": 10000,
+        "qiBp": 10000,
+        "widthBp": 10000
+      },
+      "damageAfter": 936,
+      "damageBefore": 1000,
+      "defender": {
+        "completionBp": 9500,
+        "flowBp": 12500,
+        "qiBp": 13000,
+        "widthBp": 12500
+      },
+      "meridianDefenseBp": 9361,
+      "routeLength": 6
+    },
+    "normalization": {
+      "profile": {
+        "completionBp": 7500,
+        "flowBp": 8000,
+        "qiBp": 7500,
+        "widthBp": 7500
+      },
+      "raw": [
+        144,
+        12,
+        8000,
+        7500
+      ],
+      "standard": [
+        192,
+        16,
+        10000,
+        10000
+      ],
+      "strengthBp": 7625
+    },
+    "outwardQi": {
+      "attackQiBonus": 600,
+      "baseCancelled": 1206,
+      "cancelled": 1050,
+      "damageBeforeMpGuard": 150,
+      "eligibleIncoming": 1050,
+      "outwardQi": 3012,
+      "projectionReady": true,
+      "qiBonusCancelled": 600,
+      "zoneProjectionThreshold": 190,
+      "zoneQi": 380,
+      "zoneQiSpent": 133
+    },
+    "snapshots": {
+      "boss": {
+        "activeRouteId": "mfr_golden_v3_attack",
+        "acupointOccupancies": [],
+        "dantianQi": 0,
+        "foreignQi": [],
+        "grappleLevel": 0,
+        "grappleRemaining": 0,
+        "grappleSource": null,
+        "kind": "boss",
+        "nodes": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "backlog": 0,
+            "flowBp": 9600,
+            "fluxCap": 32,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          }
+        ],
+        "routes": [
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_attack",
+            "totalQi": 0,
+            "windowTicks": 0
+          },
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_defense",
+            "totalQi": 0,
+            "windowTicks": 0
+          },
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_movement",
+            "totalQi": 0,
+            "windowTicks": 0
+          }
+        ],
+        "redirectedQi": 0,
+        "redirectedQiExpiresAtOwnAction": null,
+        "rulesProtocol": 3,
+        "schema": "meridian-flow-state.v2",
+        "stateVersion": 12,
+        "tick": 10,
+        "unitId": "enemy_boss",
+        "unitIndex": 3
+      },
+      "elite": {
+        "activeRouteId": "mfr_golden_v3_attack",
+        "acupointOccupancies": [],
+        "dantianQi": 0,
+        "foreignQi": [],
+        "grappleLevel": 0,
+        "grappleRemaining": 0,
+        "grappleSource": null,
+        "kind": "elite",
+        "nodes": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 20,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 20,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 20,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 20,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 20,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 20,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 20,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "backlog": 12,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 20,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 2250
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "backlog": 0,
+            "flowBp": 9000,
+            "fluxCap": 24,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          }
+        ],
+        "routes": [
+          {
+            "pipelineQi": [
+              20,
+              20,
+              20,
+              20,
+              20,
+              20,
+              20,
+              20,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_attack",
+            "totalQi": 160,
+            "windowTicks": 0
+          },
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_defense",
+            "totalQi": 0,
+            "windowTicks": 0
+          },
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_movement",
+            "totalQi": 0,
+            "windowTicks": 0
+          }
+        ],
+        "redirectedQi": 0,
+        "redirectedQiExpiresAtOwnAction": null,
+        "rulesProtocol": 3,
+        "schema": "meridian-flow-state.v2",
+        "stateVersion": 13,
+        "tick": 11,
+        "unitId": "enemy_elite",
+        "unitIndex": 2
+      },
+      "hero": {
+        "activeRouteId": "mfr_golden_v3_attack",
+        "acupointOccupancies": [],
+        "dantianQi": 0,
+        "foreignQi": [],
+        "grappleLevel": 0,
+        "grappleRemaining": 0,
+        "grappleSource": null,
+        "kind": "hero",
+        "nodes": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "backlog": 0,
+            "flowBp": 10000,
+            "fluxCap": 16,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          }
+        ],
+        "routes": [
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_attack",
+            "totalQi": 0,
+            "windowTicks": 0
+          },
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_defense",
+            "totalQi": 0,
+            "windowTicks": 0
+          },
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_movement",
+            "totalQi": 0,
+            "windowTicks": 0
+          }
+        ],
+        "redirectedQi": 0,
+        "redirectedQiExpiresAtOwnAction": null,
+        "rulesProtocol": 3,
+        "schema": "meridian-flow-state.v2",
+        "stateVersion": 14,
+        "tick": 12,
+        "unitId": "hero",
+        "unitIndex": 0
+      },
+      "normal": {
+        "activeRouteId": "mfr_golden_v3_attack",
+        "acupointOccupancies": [],
+        "dantianQi": 6,
+        "foreignQi": [],
+        "grappleLevel": 0,
+        "grappleRemaining": 0,
+        "grappleSource": null,
+        "kind": "normal",
+        "nodes": [
+          {
+            "acupointRef": "ap_golden_v3_00",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_01",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_02",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_03",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_04",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_05",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_06",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_07",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_08",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_09",
+            "backlog": 4,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 6,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 2250
+          },
+          {
+            "acupointRef": "ap_golden_v3_10",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          },
+          {
+            "acupointRef": "ap_golden_v3_11",
+            "backlog": 0,
+            "flowBp": 8000,
+            "fluxCap": 8,
+            "inFlightQi": 0,
+            "lengthUnit": 1,
+            "opened": true,
+            "ruptureDamage": 0,
+            "sealLevel": 0,
+            "stagnationBp": 0
+          }
+        ],
+        "routes": [
+          {
+            "pipelineQi": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_attack",
+            "totalQi": 78,
+            "windowTicks": 0
+          },
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_defense",
+            "totalQi": 0,
+            "windowTicks": 0
+          },
+          {
+            "pipelineQi": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "routeId": "mfr_golden_v3_movement",
+            "totalQi": 0,
+            "windowTicks": 0
+          }
+        ],
+        "redirectedQi": 0,
+        "redirectedQiExpiresAtOwnAction": null,
+        "rulesProtocol": 3,
+        "schema": "meridian-flow-state.v2",
+        "stateVersion": 17,
+        "tick": 15,
+        "unitId": "enemy_normal",
+        "unitIndex": 1
+      }
+    },
+    "speed": {
+      "equal": {
+        "multBp": 10000,
+        "profile": {
+          "completionBp": 10000,
+          "flowBp": 10000,
+          "qiBp": 10000,
+          "widthBp": 10000
+        }
+      },
+      "masterVsMob": {
+        "multBp": 7893,
+        "profile": {
+          "completionBp": 6000,
+          "flowBp": 6000,
+          "qiBp": 5000,
+          "widthBp": 5500
+        }
+      },
+      "strongOneTier": {
+        "multBp": 11020,
+        "profile": {
+          "completionBp": 9500,
+          "flowBp": 12500,
+          "qiBp": 13000,
+          "widthBp": 12500
+        }
+      },
+      "strongTwoTiers": {
+        "multBp": 12239,
+        "profile": {
+          "completionBp": 10000,
+          "flowBp": 15500,
+          "qiBp": 17000,
+          "widthBp": 16000
+        }
+      },
+      "weakOneTier": {
+        "multBp": 9125,
+        "profile": {
+          "completionBp": 8000,
+          "flowBp": 8500,
+          "qiBp": 8000,
+          "widthBp": 8500
+        }
+      }
+    },
+    "ttk": {
+      "equal": {
+        "attackMultBp": 10000,
+        "attackerStrengthBp": 10000,
+        "baseDamage": 849,
+        "damage": 849,
+        "defenderStrengthBp": 10000,
+        "targetHp": 3970,
+        "teamEquivBp": 10000,
+        "ttkActions": 5,
+        "ttkBeforeActions": 5
+      },
+      "masterVsMob": {
+        "attackMultBp": 18265,
+        "attackerStrengthBp": 14975,
+        "baseDamage": 849,
+        "damage": 1550,
+        "defenderStrengthBp": 5575,
+        "targetHp": 2200,
+        "teamEquivBp": 10000,
+        "ttkActions": 2,
+        "ttkBeforeActions": 3
+      },
+      "strongOneTier": {
+        "attackMultBp": 12053,
+        "attackerStrengthBp": 12050,
+        "baseDamage": 950,
+        "damage": 1145,
+        "defenderStrengthBp": 10000,
+        "targetHp": 8000,
+        "teamEquivBp": 10000,
+        "ttkActions": 7,
+        "ttkBeforeActions": 9
+      },
+      "strongTwoTiers": {
+        "attackMultBp": 14456,
+        "attackerStrengthBp": 14975,
+        "baseDamage": 2574,
+        "damage": 3720,
+        "defenderStrengthBp": 10000,
+        "targetHp": 170773,
+        "teamEquivBp": 31000,
+        "ttkActions": 15,
+        "ttkBeforeActions": 22
+      },
+      "weakOneTier": {
+        "attackMultBp": 9157,
+        "attackerStrengthBp": 8250,
+        "baseDamage": 849,
+        "damage": 777,
+        "defenderStrengthBp": 10000,
+        "targetHp": 3970,
+        "teamEquivBp": 10000,
+        "ttkActions": 6,
+        "ttkBeforeActions": 5
+      }
+    }
+  },
+  "rngProtocol": 2,
+  "rulesProtocol": 3,
+  "vectorSha256": "be7dcad8f03edc48b8f08b86c40f1a204b94e8ec261bbdea625591f5711a7143"
+}

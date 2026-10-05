@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_shenmen13
+name: 神门十三剑抄本
+kind: manual
+sub: copy
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shenmen13
+text:
+  desc: 外观：元代墨蓝包背图册，白麻护脊。
+  lore: 武当神门十三剑被转录为带朱点的图册，载体为 （原创扩展）。研读先辨腕脉落点，再用木剑校准角度和分寸，不以伤人为试招；抄本只支持八层，仍须师长纠正细微剑路。
+extension:
+  type: manual
+  value:
+    skill: sk_shenmen13
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shenmen13
+      readWis: 45
+      maxLayer: 8
+      cultivation: 2000

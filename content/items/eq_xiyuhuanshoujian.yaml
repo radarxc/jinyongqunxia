@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_xiyuhuanshoujian
+name: 西域环首剑
+kind: weapon
+sub: sword
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·西域；白马（唐）起仅西域商旅/军镇可得，具体年代 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/xiyuhuanshoujian
+text:
+  desc: 外观：全长约八十五厘米，窄直钢刃、短椭圆镡、角片夹柄与圆环首。
+  lore: 西域商旅与军镇场景中的窄直佩剑，环首可系腕绳，角片夹柄耐风沙磨损，适合骑行携带后下马刺削。此组合的具体年代仍 （待考：核西域出土剑形）；投放与装具为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 56
+      qiAffinity: 100

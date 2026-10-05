@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yueqingtongxiangpan
+name: 越地青铜香草盘
+kind: collectible
+sub: bronze
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yueqingtongxiangpan
+text:
+  desc: 外观：薄壁浅青铜盘，短圈足。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 以盛放香草的日用盘补足低阶馈赠，不假定春秋已有后世宣德炉样式。可送喜清洁陈设的宾客与商贾；使用场景、器名及越地流转为（原创扩展），也不提供炼药功能。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 12

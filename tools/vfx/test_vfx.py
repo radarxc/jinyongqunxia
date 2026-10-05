@@ -14,23 +14,15 @@ import unittest
 import numpy as np
 from PIL import Image
 
-from animate import animate, sample_times
-from compose import Renderer
+from build_demo import build_demo
+from compose import PeakRenderer, write_peak
 from cut_frames import cut_effect, quality_metrics, white_to_rgba
 from imaging import blend, from_premultiplied, srgb_decode, srgb_encode, to_premultiplied
-from make_placeholder import KEYING, fixture_configs, reference_quality, write_fixture
+from _test_fixture import KEYING, fixture_configs, reference_quality, write_fixture
 from validation import VFXError, check_html, load_yaml, save_yaml, validate_document, validate_schema
 
 
 class KeyingTests(unittest.TestCase):
-    def test_floating_duration_does_not_duplicate_endpoint(self):
-        duration = 0.1 + 0.2 + 0.3
-        times = sample_times(duration, 20)
-        self.assertEqual(len(times), 13)
-        self.assertEqual(times[-1], duration)
-        self.assertEqual(times.count(duration), 1)
-        self.assertTrue(all(left < right for left, right in zip(times, times[1:])))
-
     def test_threshold_and_white_reconstruction(self):
         colors = [(255, 255, 255), (250, 250, 250), (249, 249, 249),
                   (240, 240, 240), (128, 128, 128), (201, 164, 92)]
@@ -164,7 +156,7 @@ class FixtureTests(unittest.TestCase):
         grid_pixels = [np.asarray(Image.open(self.root / "effect" / frame["file"]))
                        for frame in self.effect["frames"]]
         single = copy.deepcopy(self.effect)
-        source = Image.open(self.root / "effect/source_placeholder.png")
+        source = Image.open(self.root / "effect/source_test.png")
         single["source"]["mode"] = "singles"
         single["source"]["files"] = [f"single_{i}.png" for i in range(4)]
         for index, rect in enumerate(single["source"]["rects"]):
@@ -177,7 +169,7 @@ class FixtureTests(unittest.TestCase):
         validate_document(self.path, suite_root=self.root)
 
     def test_preview_collision_never_overwrites_white_source(self):
-        source = self.root / "effect/source_placeholder.png"
+        source = self.root / "effect/source_test.png"
         protected = source.with_name("preview_black.png")
         source.rename(protected)
         before = protected.read_bytes()
@@ -237,50 +229,6 @@ class FixtureTests(unittest.TestCase):
                     validate_document(self.effect_path, suite_root=self.root)
         original.save(frame_path)
 
-    def test_crossfade_self_preserves_alpha_and_root_alignment(self):
-        pixel = Image.new("RGBA", (320, 160))
-        pixel.paste((201, 164, 92, 128), (48, 70, 80, 90))
-        for index, frame in enumerate(self.effect["frames"]):
-            shifted = Image.new("RGBA", pixel.size)
-            shifted.paste(pixel, (index * 3, 0))
-            shifted.save(self.root / "effect" / frame["file"])
-            frame["anchor_px"][0] += index * 3
-        save_yaml(self.effect_path, self.effect)
-        renderer = Renderer(self.path, suite_root=self.root)
-        first, middle = renderer.sample_effect(0), renderer.sample_effect(0.5)
-        np.testing.assert_allclose(first, middle, atol=1e-6)
-        np.testing.assert_array_equal(renderer.render(0, animated=False),
-                                      renderer.render(1, animated=False))
-
-    def test_clock_envelope_peak_and_emitter_are_independent(self):
-        renderer = Renderer(self.path, suite_root=self.root)
-        self.assertAlmostEqual(renderer.duration, 0.6)
-        self.assertEqual(renderer.envelope(0)[0], 0)
-        self.assertEqual(renderer.envelope(1)[0], 0)
-        self.assertAlmostEqual(renderer.envelope(0.5)[0], 1)
-        self.assertAlmostEqual(renderer.envelope(0.5)[1], 1)
-        self.assertAlmostEqual(renderer.envelope(0.5)[2], 0)
-        self.assertAlmostEqual(renderer.envelope(1)[2], 6.4)
-        first, final = np.asarray(renderer.render(0)), np.asarray(renderer.render(1))
-        np.testing.assert_array_equal(first, final)
-        # Grey wrist stays still while effect brightness/scale/drift vary.
-        for phase in (0.08, 0.5, 0.95):
-            np.testing.assert_array_equal(np.asarray(renderer.render(phase))[188:204, 98:112],
-                                          first[188:204, 98:112])
-
-    def test_hold_and_coincident_rhythm_boundaries(self):
-        self.composition["transition"].update(interpolation="hold",
-                                               brightness=[0.1, 0.2, 0.3, 0.8, 0.9])
-        self.composition["rhythm"].update(charge_s=0, release_s=0, sustain_s=0.5)
-        save_yaml(self.path, self.composition)
-        renderer = Renderer(self.path, suite_root=self.root)
-        np.testing.assert_array_equal(renderer.sample_effect(0), renderer.sample_effect(0.32))
-        self.assertFalse(np.array_equal(renderer.sample_effect(0),
-                                        renderer.sample_effect(1 / 3)))
-        self.assertEqual(renderer.envelope(0)[0], 1)
-        self.assertEqual(renderer.envelope(0)[1], 1)
-        self.assertAlmostEqual(renderer.envelope(0)[3], 0.3)
-
     def test_render_direction_and_reference_length(self):
         image = Image.new("RGBA", (320, 160))
         image.paste((255, 0, 0, 255), (79, 79, 81, 81))
@@ -292,8 +240,8 @@ class FixtureTests(unittest.TestCase):
             with self.subTest(angle=angle):
                 self.composition["angle_deg"] = angle
                 save_yaml(self.path, self.composition)
-                renderer = Renderer(self.path, suite_root=self.root)
-                result = np.asarray(renderer.render(0.5, animated=False))
+                renderer = PeakRenderer(self.path, suite_root=self.root)
+                result = np.asarray(renderer.render_peak())
                 y, x = np.where((result[:, :, 0] > 50) & (result[:, :, 1] == 0))
                 expected = np.array([160, 200]) + 32 * np.array([
                     math.cos(math.radians(angle)), math.sin(math.radians(angle))])
@@ -323,54 +271,99 @@ class FixtureTests(unittest.TestCase):
         self.composition["emit_at_px"] = [639, 200]
         save_yaml(self.path, self.composition)
         with self.assertRaises(VFXError):
-            Renderer(self.path, suite_root=self.root)
-
-    def test_animate_end_to_end_timing_and_embedded_html(self):
-        frames = self.root / "frames"
-        frames.mkdir()
-        renderer = Renderer(self.path, suite_root=self.root)
-        for index, phase in enumerate(renderer.phases):
-            renderer.render(phase, animated=False).save(frames / f"key_{index:03d}.png")
-        animate(self.path, frames_dir=frames, output_dir=self.root,
-                html_name="demo.html", optional_animation="apng")
-        paths = sorted(frames.glob("frame_*.png"))
-        self.assertEqual(len(paths), 13)
-        first, final = Image.open(paths[0]), Image.open(paths[-1])
-        np.testing.assert_array_equal(first, final)
-        np.testing.assert_array_equal(Image.open(self.root / "peak.png"),
-                                      renderer.render(self.composition["output"]["peak_phase"]))
-        html = check_html(self.root / "demo.html")
-        self.assertLessEqual(html["bytes"], 3000000)
-        self.assertGreater(html["embedded_webp_images"], 1)
-        payload = (self.root / "demo.html").read_text(encoding="utf-8")
-        self.assertIn("data:image/webp;base64,", payload)
-        self.assertIn("prefers-reduced-motion", payload)
-        self.assertIn("requestAnimationFrame", payload)
-        match = re.search(r'<script id="vfx-data" type="application/json">(.*?)</script>',
-                          payload, re.S)
-        self.assertIsNotNone(match)
-        embedded = json.loads(match.group(1))
-        self.assertEqual(len(embedded["frames"]), 13)
-        self.assertAlmostEqual(embedded["times"][-1], 0.6)
-        self.assertAlmostEqual(embedded["duration"] + embedded["gap"], 1)
-        output = json.loads((self.root / "animation.json").read_text(encoding="utf-8"))
-        self.assertIsInstance(output, dict)
-        self.assertEqual(len(output["times_s"]), 13)
-        self.assertAlmostEqual(sum(output["frame_durations_s"]), 1)
-        animations = list(self.root.glob("*.apng"))
-        self.assertEqual(len(animations), 1)
-        with Image.open(animations[0]) as animation:
-            self.assertGreater(animation.n_frames, 1)
-            duration = 0
-            for index in range(animation.n_frames):
-                animation.seek(index)
-                duration += animation.info.get("duration", 0)
-            self.assertAlmostEqual(duration, 1000, delta=2)
+            PeakRenderer(self.path, suite_root=self.root)
 
     def test_missing_source_never_becomes_synthetic_fallback(self):
         (self.root / "effect/frame_000.png").unlink()
         with self.assertRaises(VFXError):
-            animate(self.path, output_dir=self.root)
+            build_demo(self.path)
+
+    def test_static_peak_is_only_composed_output_and_protects_sources(self):
+        target = write_peak(self.path)
+        with Image.open(target) as image:
+            self.assertEqual(image.size, (640, 400))
+            np.testing.assert_array_equal(image, PeakRenderer(self.path).render_peak())
+        self.assertFalse((self.root / 'frames').exists())
+        with self.assertRaises(VFXError):
+            write_peak(self.path, self.root / 'effect/frame_000.png')
+
+    def test_peak_crossfade_aligns_different_roots(self):
+        reference = None
+        for shifted in (False, True):
+            for index, frame in enumerate(self.effect['frames']):
+                shift = index * 3 if shifted else 0
+                image = Image.new('RGBA', (320, 160))
+                image.paste((201, 164, 92, 128), (48 + shift, 70, 80 + shift, 90))
+                image.save(self.root / 'effect' / frame['file'])
+                frame['anchor_px'] = [48 + shift, 80]
+            save_yaml(self.effect_path, self.effect)
+            result = np.asarray(PeakRenderer(self.path).render_peak())
+            if reference is None:
+                reference = result
+            else:
+                np.testing.assert_array_equal(result, reference)
+
+    def test_peak_at_duration_without_dissipate_is_emitter_only(self):
+        self.composition['rhythm']['dissipate_s'] = 0
+        self.composition['output']['peak_phase'] = 1
+        save_yaml(self.path, self.composition)
+        renderer = PeakRenderer(self.path)
+        np.testing.assert_array_equal(renderer.render_peak(), from_premultiplied(renderer.background))
+
+    def test_peak_directional_mask_and_full_visibility(self):
+        self.composition['output']['peak_phase'] = 0.025 / 0.6
+        self.composition['transition']['directional_mask'] = {'enabled': False, 'softness': 0.08}
+        save_yaml(self.path, self.composition)
+        unmasked = np.asarray(PeakRenderer(self.path).render_peak())
+        self.composition['transition']['directional_mask']['enabled'] = True
+        save_yaml(self.path, self.composition)
+        masked = np.asarray(PeakRenderer(self.path).render_peak())
+        self.assertFalse(np.array_equal(masked, unmasked))
+        self.composition['output']['peak_phase'] = 0.25 / 0.6
+        save_yaml(self.path, self.composition)
+        masked = np.asarray(PeakRenderer(self.path).render_peak())
+        self.composition['transition']['directional_mask']['enabled'] = False
+        save_yaml(self.path, self.composition)
+        np.testing.assert_array_equal(masked, PeakRenderer(self.path).render_peak())
+
+    def test_build_embeds_only_source_layers_and_exports_metadata(self):
+        result = build_demo(self.path)
+        self.assertLessEqual(result['bytes'], 3000000)
+        self.assertEqual(result['source_frames'], 4)
+        self.assertEqual(result['inline_scripts_checked'], 1)
+        self.assertFalse((self.root / 'frames').exists())
+        self.assertFalse((self.root / 'animation.json').exists())
+        document = json.loads((self.root / 'composition.json').read_text())
+        self.assertEqual(document['effect'], self.effect)
+        self.assertEqual(document['emitter']['size_px'], [128, 128])
+        content = (self.root / 'demo.html').read_text()
+        payload = json.loads(re.search(r'<script id="vfx-data" type="application/json">(.*?)</script>',
+                                       content, re.S).group(1))
+        self.assertEqual(len(payload['effectFrames']), 4)
+        self.assertNotIn('times', payload)
+        self.assertIn('prefers-reduced-motion', content)
+        self.assertIn('createVfxPlayer(THREE', content)
+        self.assertEqual(check_html(self.root / 'demo.html')['unique_images'], 6)
+
+    def test_build_rejects_retired_optional_animation(self):
+        self.composition['output']['optional_animation'] = 'apng'
+        save_yaml(self.path, self.composition)
+        with self.assertRaisesRegex(VFXError, 'optional_animation'):
+            build_demo(self.path)
+
+    def test_html_rejects_extra_dependency_and_invalid_inline_script(self):
+        build_demo(self.path)
+        path = self.root / 'demo.html'
+        original = path.read_text()
+        mutations = [original.replace("const THREE = await import('three');", 'const = ;'),
+                     original.replace("const THREE = await import('three');", "import x from 'other';"),
+                     original.replace('</body>', '<img src="https://host/x.png"></body>'),
+                     original.replace('@0.186.1/', '@0.185.0/')]
+        for payload in mutations:
+            with self.subTest(payload=payload[:50]):
+                path.write_text(payload)
+                with self.assertRaises(VFXError):
+                    check_html(path)
 
 
 class HtmlTests(unittest.TestCase):

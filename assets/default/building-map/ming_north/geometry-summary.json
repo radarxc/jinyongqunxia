@@ -1,0 +1,21 @@
+[
+{"id": "bld_kit_ming_north_biaoju", "slopes": [0.50995, -0.50457], "ratio_relative_error": 0.03427, "warning": false},
+{"id": "bld_kit_ming_north_casino", "slopes": [0.515493, -0.520369], "ratio_relative_error": 0.021085, "warning": false, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_courtyard", "slopes": [0.5211839515661909, -0.5271637653826268], "ratio_relative_error": 0.015202244939901632, "warning": false, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_guardhouse", "slopes": [0.52543, -0.52553], "ratio_relative_error": 0.0525, "warning": false},
+{"id": "bld_kit_ming_north_house_large", "slopes": [0.51674, -0.50759], "ratio_relative_error": 0.01365, "warning": false},
+{"id": "bld_kit_ming_north_house_small", "slopes": [0.51922, -0.52814], "ratio_relative_error": 0.01602, "warning": false},
+{"id": "bld_kit_ming_north_inn", "slopes": [0.5278210846950694, -0.52], "ratio_relative_error": 0.03184233316114726, "warning": false, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_manor", "slopes": [0.532328, -0.586184], "ratio_relative_error": 0.048068, "warning": true, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_market_stall", "slopes": [0.52598, -0.49364], "ratio_relative_error": 0.07718, "warning": false},
+{"id": "bld_kit_ming_north_pagoda", "slopes": [0.484512, -0.488331], "ratio_relative_error": 0.00859, "warning": false, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_restaurant", "slopes": [0.50891, -0.50924], "ratio_relative_error": 0.04979, "warning": false},
+{"id": "bld_kit_ming_north_shop_1f", "slopes": [0.51962, -0.5191], "ratio_relative_error": 0.02247, "warning": false},
+{"id": "bld_kit_ming_north_shop_2f", "slopes": [0.520639, -0.520639], "ratio_relative_error": 0.020756, "warning": false, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_stable", "slopes": [0.522409, -0.495164], "ratio_relative_error": 0.037482, "warning": false, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_temple_hall", "slopes": [0.511282, -0.504388], "ratio_relative_error": 0.015051, "warning": false, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_wangfu", "slopes": [0.520046, -0.520046], "ratio_relative_error": 0.008376, "warning": false, "revision": 3, "scope": "底面外轮廓与占地比例；非完整3D投影验收"},
+{"id": "bld_kit_ming_north_warehouse", "slopes": [0.51223, -0.4939], "ratio_relative_error": 0.03388, "warning": false},
+{"id": "bld_kit_ming_north_wharf", "slopes": [0.52615, -0.49107], "ratio_relative_error": 0.05046, "warning": false},
+{"id": "bld_kit_ming_north_yamen", "slopes": [0.50388, -0.58175], "ratio_relative_error": 0.15478, "warning": true}
+]

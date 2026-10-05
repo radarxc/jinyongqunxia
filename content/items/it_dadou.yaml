@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_dadou
+name: 大豆
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 中国古老豆类，豆酱、豆豉、豆腐原料
+price: auto
+flags: []
+assets:
+  icon: item/dadou
+text:
+  desc: 外观：淡黄大豆盛粗陶碗，圆粒饱满。
+  lore: 中国栽培已久的豆类，秋收后晒干入仓，可制豆酱、豆豉与豆腐。本件一升圆粒不能直接当成品食用；作坊主最看重干燥无虫。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_liangshi_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: grain
+    attributes:
+      version: 2

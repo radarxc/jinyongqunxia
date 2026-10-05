@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_luobingyuanyangdao
+name: 骆冰鸳鸯短刀
+kind: weapon
+sub: blade
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《书剑恩仇录》·“鸳鸯刀”骆冰；是否明确成对持刀及形制 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/luobingyuanyangdao
+text:
+  desc: 外观：一长一短两柄柳叶短刀并置，刃约五十五与四十五厘米。 待运行时投影：sect=sect_honghuahui。
+  lore: 《书剑恩仇录》中骆冰有“鸳鸯刀”之称；是否明确成对持刀及长短形制仍 （待考：核骆冰交战情节）。本作设一长一短相互牵护，近身连续换线；装具、配对规则和定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 72
+      qiAffinity: 100

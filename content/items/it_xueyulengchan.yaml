@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_xueyulengchan
+name: 雪域冷膳
+kind: food
+sub: food
+grade: 10
+stack: 9
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2800
+  - op: meal
+    params:
+      value: bf_yuhan,bf_jiangu:3battle
+assets:
+  icon: item/xueyulengchan
+text:
+  desc: 外观：银白薄切冻肉配青玉冰盘，藏地香料细点。 待运行时投影：uniqueBatch=true。
+  lore: 雪域冬祭前以香料腌藏的薄切冻肉，只在高原固定席面成批取用。入口前略回温，不可反复冻融；山口向导说它最能撑过漫长风雪。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 28

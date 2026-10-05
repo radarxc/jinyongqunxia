@@ -1,0 +1,56 @@
+{
+  "type":"map", "version":"1.12", "tiledversion":"1.12.2",
+  "orientation":"orthogonal", "renderorder":"right-down", "infinite":false,
+  "width":10, "height":8, "tilewidth":48, "tileheight":48,
+  "nextlayerid":5, "nextobjectid":6, "backgroundcolor":"#171e28",
+  "properties":[
+    {"name":"schemaVersion","type":"string","value":"region-map.v1"},
+    {"name":"regionId","type":"string","value":"rg_dongbei"},
+    {"name":"sceneId","type":"string","value":"sc_00_changbai_cave"},
+    {"name":"chapterScope","type":"string","value":"ch00_yuenv"},
+    {"name":"eraLayer","type":"string","value":"ch00"}
+  ],
+  "tilesets":[
+    {"firstgid":1,"source":"../../../tiled/tilesets/terrain.tsj"},
+    {"firstgid":49,"source":"../../../tiled/tilesets/height.tsj"}
+  ],
+  "layers":[
+    {"id":1,"type":"tilelayer","name":"terrain","x":0,"y":0,"width":10,"height":8,"opacity":1,"visible":true,"data":[
+      0,0,43,43,43,43,43,43,43,0,
+      0,43,38,38,38,19,19,38,43,43,
+      43,38,38,38,38,38,38,38,38,43,
+      43,21,21,38,38,38,38,38,38,43,
+      43,21,21,38,38,38,38,38,38,43,
+      43,43,38,38,38,38,38,38,43,0,
+      0,43,38,38,38,38,38,38,43,0,
+      0,43,43,43,43,43,43,43,0,0
+    ]},
+    {"id":2,"type":"tilelayer","name":"height","x":0,"y":0,"width":10,"height":8,"opacity":0,"visible":false,"data":[
+      0,0,50,50,50,50,50,50,50,0,
+      0,50,49,49,49,49,49,49,50,50,
+      50,49,49,49,49,49,49,49,49,50,
+      50,49,49,49,49,49,49,49,49,50,
+      50,49,49,49,49,49,49,49,49,50,
+      50,50,49,49,49,49,49,49,50,0,
+      0,50,49,49,49,49,49,49,50,0,
+      0,50,50,50,50,50,50,50,0,0
+    ]},
+    {"id":3,"type":"tilelayer","name":"deco","x":0,"y":0,"width":10,"height":8,"opacity":1,"visible":true,"data":[
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0
+    ]},
+    {"id":4,"type":"objectgroup","name":"objects","x":0,"y":0,"opacity":1,"visible":true,"draworder":"topdown","objects":[
+      {"id":1,"name":"snowfall_entry","type":"PlayerSpawn","x":144,"y":192,"width":0,"height":0,"rotation":0,"visible":true,"point":true,"properties":[{"name":"safe","type":"bool","value":true},{"name":"entry","type":"bool","value":true},{"name":"facing","type":"int","value":0}]},
+      {"id":2,"name":"safe_snowfall_entry","type":"Trigger","x":144,"y":192,"width":96,"height":96,"rotation":0,"visible":true,"properties":[{"name":"action","type":"string","value":"save/autosave"},{"name":"once","type":"bool","value":true},{"name":"autosave","type":"bool","value":true},{"name":"safe","type":"bool","value":true}]},
+      {"id":3,"name":"first_sleep_allocation","type":"Trigger","x":240,"y":144,"width":48,"height":96,"rotation":0,"visible":true,"properties":[{"name":"action","type":"string","value":"dialogue/start"},{"name":"textKey","type":"string","value":"quest.q_00_main_c_04.objective.allocation"},{"name":"once","type":"bool","value":false},{"name":"autosave","type":"bool","value":true},{"name":"safe","type":"bool","value":true}]},
+      {"id":4,"name":"wake_to_baima","type":"Trigger","x":288,"y":240,"width":0,"height":0,"rotation":0,"visible":true,"point":true,"properties":[{"name":"action","type":"string","value":"dialogue/start"},{"name":"once","type":"bool","value":false},{"name":"autosave","type":"bool","value":true},{"name":"safe","type":"bool","value":true}]},
+      {"id":5,"name":"camera_changbai_cave","type":"CameraHint","x":144,"y":192,"width":0,"height":0,"rotation":0,"visible":true,"point":true,"properties":[{"name":"yawDeg","type":"int","value":45},{"name":"zoom","type":"float","value":1.25},{"name":"allowRotation","type":"bool","value":false},{"name":"boundsQ","type":"int","value":0},{"name":"boundsR","type":"int","value":0},{"name":"boundsWidth","type":"int","value":10},{"name":"boundsHeight","type":"int","value":8}]}
+    ]}
+  ]
+}

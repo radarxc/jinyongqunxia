@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_gaochangqixianqin
+name: 高昌旧藏七弦琴
+kind: collectible
+sub: qin
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B13](#src-b13)；准入：白马；旧藏归属结算后，原文形制待考
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/gaochangqixianqin
+text:
+  desc: 外观：深褐木质七弦琴，完整窄长琴身。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,musician,collector]}; giftValue=2; provenance=book。
+  lore: 《白马啸西风》高昌迷宫器用候选中的七弦琴，须核修订版列举及保存状态。章节合法分配后可赠乐人，不能以它抵替高昌牺牲物；具体琴式、品相与取得为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

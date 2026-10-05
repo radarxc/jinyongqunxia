@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_tianlongjian
+name: 天龙门剑谱原本
+kind: manual
+sub: original
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《雪山飞狐》·南北宗轮值交接的天龙门剑谱；本作映射 sk_tianlongjian
+price: auto
+flags: []
+assets:
+  icon: item/miji_tianlongjian
+text:
+  desc: 外观：清代靛蓝布面线装册，四眼白线、黑布包角。
+  lore: 《雪山飞狐》中天龙门南北宗轮值交接剑谱；本作将其映射为 sk_tianlongjian。持谱者须按门中次序校练身步与剑路，不得省去基础；靛蓝布面形制为 （原创扩展），磨痕见证历代掌门传递。
+extension:
+  type: manual
+  value:
+    skill: sk_tianlongjian
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tianlongjian
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

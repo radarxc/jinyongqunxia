@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_wuhuduandandao
+name: 五虎断门刀民间谱
+kind: manual
+sub: full
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuhuduandandao
+text:
+  desc: 外观：明代深赭线装图册，四眼黑线。
+  lore: 民间武馆把刚猛刀路汇成深赭全谱，招式、虎纹和册本皆属 （原创扩展）。研读须先稳腰马，再练劈门与封路，不应被“五虎”名号催得一味猛进；教头常以收刀是否守身验其火候。
+extension:
+  type: manual
+  value:
+    skill: sk_wuhuduandandao
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wuhuduandandao
+      readWis: 35
+      maxLayer: 10
+      cultivation: 1600

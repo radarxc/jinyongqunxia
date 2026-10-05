@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_guardhouse
+footprint_m:
+- 6
+- 5
+footprint_basis: 【建议值】沿宋大理guardhouse同功能6×5；design/22 §3.4未细分此项。
+anchor_px:
+- 207.1218
+- 256.0333
+entrance:
+  edge: S
+  offset_cells: 3.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 6
+  - 0
+- - 6
+  - 5
+- - 0
+  - 5
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 255
+  - 750
+  F:
+  - 771
+  - 1036
+  R:
+  - 1187
+  - 823
+source_anchor_px:
+- 721.0
+- 786.5
+target_ground_span_px: 352
+geometry:
+  crop_box:
+  - 250
+  - 167
+  - 1194
+  - 1067
+  uniform_scale: 0.3776824034334764
+  scaled_size:
+  - 357
+  - 340
+  canvas_size:
+  - 416
+  - 384
+  paste_offset:
+  - 29
+  - 22
+  - 386
+  - 362
+  raster_scales:
+  - 0.3781779661016949
+  - 0.37777777777777777
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 90236
+  alpha_partial_pixels: 68817
+  alpha_opaque_pixels: 691
+  alpha_bbox:
+  - 29
+  - 22
+  - 386
+  - 362
+  rectangular_trim_removed_nonzero: 113
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.55426
+  - -0.51202
+  source_ratio_relative_error: 0.03365
+  geometry_warning: true
+  visual_review: 已view_image候选1及2。选候选2：小型灰砖硬山守舍，木门窗与兵器架，区别于城门楼；无人无字，前底边斜率残差仍保留，需拼接前复核。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_view_image_review: 已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。
+source_sha256: 4dbb293a44d5ccf1619dcdf394e19e3bbad21acc6ab95e29922d0cfde112340b
+sha256: 02393a164d39efbc7105d59073291458a420e467436aee0026f5fec5761479e6

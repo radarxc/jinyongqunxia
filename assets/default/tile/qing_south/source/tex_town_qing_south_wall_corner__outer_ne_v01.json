@@ -1,0 +1,22 @@
+{
+  "key": "corner",
+  "id": "tex_town_qing_south_wall_corner__outer_ne_v01",
+  "kind": "wall_corner",
+  "variant": "outer_ne_v01",
+  "footprint": [
+    2,
+    2
+  ],
+  "subject": "清初至清中江南青砖石基城墙外角（原创扩展）",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_south/assets/default/baseline/tile/tex_town_song_southern_wall__brick_r000_v01.png",
+  "source_anchor": [
+    634,
+    808
+  ],
+  "source_ground_width": 1046,
+  "height_m": 3,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-a2030174-01c6-4614-8c20-39b5755d1d16.png",
+  "prompt": "Use case: historical-scene. ONE isolated outer corner module of a grey-blue brick Jiangnan city wall during early-to-mid Qing 1660–1780. Input reference is a material/detail-density reference only. L-shaped footprint confined to 2 by 2 cells, each leg thickness one cell, two short walls meet at right angle. Low plain crenellations, grey brick over dressed grey stone footings. Wall height target 3 meters. Orthographic yaw45 elevation30, exact 2:1 ground projection: all horizontal edge slopes precisely +0.5 or -0.5, verticals upright, no perspective. Clearly visible two exterior wall faces forming a symmetrical corner facing viewer. No roof or tower. Restrained realistic game asset matching approved Song kit fine grain, low-saturation blue-grey masonry. Upper-left illumination; minimal contact shadow only at bottom. True transparent RGBA with invisible backdrop, no white/grey glow, no haze, no broad shadow, no pedestal or floor. Complete silhouette and generous transparent margins. ONE sprite only; no sheet, text, labels, people, vegetation, modern objects, colored grid or checkerboard. Original period-inspired construction, not a named monument replica.",
+  "created": "2026-09-30",
+  "attempts": 1
+}

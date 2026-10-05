@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_baituodujing
+name: 白驼毒经残本
+kind: manual
+sub: partial
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_baituodujing
+text:
+  desc: 外观：南宋西域皮纸折册，墨绿细绳双系。
+  lore: 借白驼山用毒背景扩写成残经，经名、夹药草的皮纸载体与流传均属 （原创扩展）。残页教人辨气味、药性与施解先后，须结合实物谨慎参看，江湖上多有错认草叶而自伤者。
+extension:
+  type: manual
+  value:
+    skill: sk_baituodujing
+    maxLayer: 8
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_baituodujing
+      readWis: 35
+      maxLayer: 8
+      cultivation: 1280

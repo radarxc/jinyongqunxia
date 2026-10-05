@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_duandashou
+name: 短打手抄本
+kind: manual
+sub: copy
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_duandashou
+text:
+  desc: 外观：清代土黄线装小册，黑麻双订。
+  lore: 武馆把贴身短打与拿腕封肘之法抄成掌心小册，招法和载体属 （原创扩展）。研读须先明关节方向，再以慢势和同伴互校；指印油痕来自教习随手翻示，来源最高八层。
+extension:
+  type: manual
+  value:
+    skill: sk_duandashou
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_duandashou
+      readWis: 30
+      maxLayer: 8
+      cultivation: 960

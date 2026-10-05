@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_gaibangzhubang
+name: 丐帮竹杖
+kind: weapon
+sub: staff
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 丐帮 · design/17 §8.1；非帮主打狗棒的帮众法杖 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/gaibangzhubang
+text:
+  desc: 外观：深青老竹杖约齐眉长，天然竹节、根部短铁箍与布条修补。 待运行时投影：sect=sect_gaibang。
+  lore: 丐帮弟子共用的老竹杖，与帮主信物打狗棒严格区分。竹节天然，既可行路支身，也能贴地扫腿、横架护伴；铁箍、修补布条与制度均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 55
+      qiAffinity: 100

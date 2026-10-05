@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_mingluwangshiqin
+name: 明末潞王式琴
+kind: collectible
+sub: qin
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/mingluwangshiqin
+text:
+  desc: 外观：朱黑相间旧漆七弦长琴，肩腰端整。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,musician,collector]}; giftValue=4; provenance=expanded。
+  lore: 以明末藩府制琴方向设计精制琴，潞王相关年代与具体形制须专门核实。宜赠乐人藏家，默认只投碧血终段；式样、制作谱系与流转为（原创扩展），不冒充某张纪年真器。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

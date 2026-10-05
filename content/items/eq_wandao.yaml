@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_wandao
+name: 元蒙骑刀
+kind: weapon
+sub: blade
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·元蒙骑兵 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/wandao
+text:
+  desc: 外观：狭长弧刃便于马上挥斩，刃约七十五厘米。
+  lore: 为元蒙骑兵场景复原的浅弧长刀，斜柄与双挂环鞘便于马上抽取，挥斩后也易顺势收刀。它偏重骑战机动而非厚刃硬磕，具体军伍配发与装具为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 53
+      qiAffinity: 100

@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_wuyinglv
+name: 无影履
+kind: armor
+sub: shoes
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/wuyinglv
+text:
+  desc: 外观：墨青缎面软履，银灰窄边、极薄鞋底。 待运行时投影：eva=6; qinggong=25。
+  lore: 无影履以墨青缎面、银灰窄边和极薄复底制成，贴足而少声，最宜暗处变向。江湖夸它踏雪无痕，其实只因落步轻巧，并无隐身神异。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 14
+      agi: 4

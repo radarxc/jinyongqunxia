@@ -1,0 +1,54 @@
+{
+  "id": "bld_kit_ming_north_manor",
+  "subject": "明代北方府城：山庄大院（原创扩展）；具体构件断代（待考）。",
+  "prompt": "Use case: sketch-to-render. Texture and detail this precisely modeled courtyard blockout into a Ming northern China merchant manor. Keep exact outer foundation silhouette, camera and building shapes of input. The geometry is locked: 16 wide by13 deep rectangle, front visible edge1.23077 times side edge, all horizontal architecture axes slope +0.500 or -0.500, rise1 per run2. Preserve foundation corners L188,610 F828,930 R1348,670 B708,350 on1536x1152canvas. Add intricate grey brick masonry, brown wooden lattice doors, grey semicylindrical roof tiles on HARD GABLED roofs, subtle weathering, small courtyard shrubs. Central front door, hall behind, two side wings exactly as input arrangement. Thin stone paving only, not a thick elevated slab. Fine realistic antique Chinese strategy-map painting, warm upper-left natural light. Retain camera and proportions even while adding tiles and detail. All stairs contained inside footprint. Output true transparent RGBA outside building and paving, no backdrop glow, fog, vignette, writing, labels, people, watermark or modern items.",
+  "references": [
+    {
+      "path": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_manor/geometry-guide.png",
+      "sha256": "1b9579ed07a9045d07d22cbce087954136510c96396883895c6fc72c2e71116c",
+      "role": "精确2:1体块几何参考；仅作image_gen输入；已view_image"
+    }
+  ],
+  "created": "2026-09-30T22:35:04.774257+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46e-f804-7962-b399-b98ec1ba7a28/exec-44ebd5e2-88bd-4b9f-a49e-c62a0e72514c.png",
+  "file": "bld_kit_ming_north_manor.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "992x768",
+  "sha256": "afc5e1b4af80df2ea1c6a63ae164d01e07d12ea456f515443673a7fd47398bb5",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_manor",
+    "footprint": [
+      16,
+      13
+    ],
+    "anchor": [
+      494.7195,
+      483.7726
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    16,
+    13
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 8.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_manor.png",
+  "source_sha256": "39811c2ea188c006368d25e7191b544a7bb2d37a16b1c6e0823d8ebee503a2f2",
+  "meta": "meta/bld_kit_ming_north_manor.yaml",
+  "notes": "（原创扩展）第3轮原图底轴[0.532601, -0.586484]；成品底轴[0.532328, -0.586184]。manor安全裁边会伤墙基，保留未裁候选并标几何未通过。仅原向单视图；拼接（待实测）。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "source_record": "sources/bld_kit_ming_north_manor.json",
+  "revision": 3,
+  "repair_record": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_manor/revision.json"
+}

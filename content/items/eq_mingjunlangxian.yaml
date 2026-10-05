@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_mingjunlangxian
+name: 明军狼筅
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·明；笑傲起军阵节点可得（《纪效新书》《练兵实纪》）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingjunlangxian
+text:
+  desc: 外观：保留多层侧枝的长竹筅通长约三米，枝端包小铁尖且全部朝外。 待运行时投影：exoticKind=misc。
+  lore: 依据明代兵书所述带侧枝毛竹制作的狼筅，层层枝梢用于遮护队列、拨开长兵，须双手协同推进。枝端小铁尖和画面尺度服务静物辨识；具体尺寸、装具与投放为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 40
+      qiAffinity: 100

@@ -1,0 +1,28 @@
+{
+  "id": "bld_kit_yuan_north_stable",
+  "title": "马厩",
+  "footprint": [
+    8,
+    6
+  ],
+  "type": "bld_kit_yuan_north_stable",
+  "reference": "assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_stable.png",
+  "prompt": "Use case: precise-object-edit. Re-render this single Yuan northern China building sprite to correct its CAMERA and rectangular ground proportions. Keep the same muted realistic matte materials, age, fine details, upper-left light, short lower-right shadow and anonymous Yuan subject. The current ground is too steep. Replace projection with exact orthographic DIMETRIC yaw45 pitch30, NOT standard 35.264 isometric. Both ground diagonals are shallower: exact screen slopes +0.5 and -0.5, screen angle 26.565 degrees. Footprint is 8m by 6m. From the leftmost ground corner to the bottom/front ground corner, horizontal run must be 1.3333 times the horizontal run from bottom/front to rightmost ground corner. Keep all parallel lines parallel; make this thin ground-contact rectangle very clear, not a thick raised base. Build the walls and roofs upright above that corrected plane. The source image angles must NOT be preserved. TRUE RGBA TRANSPARENT background, alpha0 outside object; 10 percent empty margin every side, whole roof and base visible. No text, grid, dimensions, labels, people or additional surroundings.",
+  "candidate_count": 2,
+  "selection_note": "未入选；第二候选双轴偏浅或比例较首版更差。",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f982-78b2-9d92-dec5a0b0cec9/exec-11903340-95b0-4a34-9b87-4b2b9fdd489b.png",
+  "source_corners_px": {
+    "left": [
+      134,
+      629
+    ],
+    "front": [
+      841,
+      1013
+    ],
+    "right": [
+      1456,
+      749
+    ]
+  }
+}

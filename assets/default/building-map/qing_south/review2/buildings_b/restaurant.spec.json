@@ -1,0 +1,26 @@
+{
+  "selected": 2,
+  "files": [
+    "exec-32776664-3828-4257-9323-b33dab90741a.png",
+    "exec-38261147-1c6b-40eb-af2f-04f72f8261e5.png"
+  ],
+  "corners": [
+    [
+      180,
+      579
+    ],
+    [
+      866,
+      941
+    ],
+    [
+      1376,
+      667
+    ]
+  ],
+  "prompts": [
+    "Use case: sketch-to-render. EDIT TARGET is first image: it is a flat stone footprint, 12m wide by9m deep, strict 2:1 orthographic map camera. KEEP EXACTLY its ground polygon, shape and positions. Add a two-storey Qing Jiangnan teahouse building on this footprint. Second image is ONLY the visual style reference, not layout or camera. Preserve realistic weathered white plaster gray small roof tiles dark wood columns fine lattice windows and bamboo blinds, two-storey open dining veranda with tiny tea tables and cups, no people or text. Front veranda on lower-left-facing long side. Reference's overly narrow depth and steep front slope MUST NOT be copied. Geometry first: thin rectangular footprint has corners left128,574; front859,940; right1408,666; rear677,300. Every horizontal architectural edge follows the first image axes slopes +0.500 and -0.500. Keep all three front footprint corners and thin straight boundaries clearly visible around building, steps within footprint. Replace guide texture with realistic gray stone paving, no grid outlines. Transparent RGBA outside, isolated asset, full roof uncropped, generous top margins; upper-left light and small lower-right contact shadow. Gray roofs, no colored fantasy ornaments, no signs, modern elements, watermarks, thick plinths. Do not move, resize or rotate the first image ground pad when adding the structure.",
+    "Use case sketch-to-render. Turn this exact blockout into a realistic Qing Jiangnan two-storey restaurant/teahouse city map sprite. Preserve the exact orthographic camera and ground-footprint parallelogram, entire building positioning and verticals. Material rendering must follow this camera, not reinterpret the camera. Exact ground edges slopes plus0.5 and minus0.5, long left-to-front edge:front-to-right edge=12:9. Keep the footprint 12 by9. Add dark gray tiled pitched hip-gabled roof, off-white limewashed brick side walls, dark carved wooden columns, lattice balcony along lower-left facade, two storeys of open dining veranda with little wooden tables and tea bowls. Fine realistic matte weathered roof tiles, stone, wood materials, muted palette same density as detailed ancient Chinese map sprites. Replace all block surfaces with architecture; solid realistic building not a model block. No writing, signage, people, modern things, logo or watermark. Steps stay inside the thin stone pad, clear visible three ground corners exactly unchanged. Full roof entirely inside image, true transparent alpha background outside, illumination upper left and small lower-right contact shadow only. No thick foundation plinth. Ground floor is the same exact plane as the supplied image, do not tip it, do not make it more diamond shaped."
+  ],
+  "generated_dir": "/Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31"
+}

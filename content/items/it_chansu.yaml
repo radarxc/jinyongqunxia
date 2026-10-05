@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_chansu
+name: 蟾酥
+kind: material
+sub: herb
+grade: 7
+stack: 999
+chapters: any
+origin: canon
+canonRef: 动物性有毒本草；毒性，供剧情 / 暗器 / 解毒设定
+price: auto
+flags: []
+assets:
+  icon: item/chansu
+text:
+  desc: 外观：药用干燥物呈棕褐扁饼碎片，表面微亮。
+  lore: 中原、齐鲁、江淮、江南、荆湖与岭南湿地夏秋五至九月可见，月份仍待核实。本作仅以旧药中的棕褐干片表现受控毒材，不设计伤害性取材。（待核实） （原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di9
+    materialGrade: 7
+    rare: false
+    herbFamily: chanSu
+    ageYears: 0
+    attributes:
+      version: 2

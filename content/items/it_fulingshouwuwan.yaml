@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_fulingshouwuwan
+name: 茯苓首乌丸
+kind: pill
+sub: medicine
+grade: 6
+stack: 99
+chapters: any
+origin: canonExpanded
+canonRef: 金庸作品 （待考：核具体书名、使用人物与药效）
+price: auto
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 425
+  - op: mpPct
+    params:
+      valueBp: 1020
+assets:
+  icon: item/fulingshouwuwan
+text:
+  desc: 外观：乌木小匣盛棕黑蜜丸，可见茯苓粉霜。
+  lore: 茯苓粉霜覆在棕黑蜜丸表面，以乌木小匣隔潮保存。静服兼顾回气与轻伤调养，不作急救解毒；具体出自何书、何人曾用尚待逐字核对。（待考：核书名、人物与药效） （原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      restoreQi: 10
+      healOuter: 4

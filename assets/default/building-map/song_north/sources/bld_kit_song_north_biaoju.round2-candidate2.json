@@ -1,0 +1,18 @@
+{
+  "round": 2,
+  "candidate": 2,
+  "prompt": "Use case: sketch-to-render. Image 1 is the EXACT footprint/camera guide. Image 2 is MATERIAL/STYLE ONLY, with a WRONG camera that must NOT be copied. Render a Northern Song cargo warehouse courtyard on precisely the quadrilateral of image1. Lock all four ground corners and slopes of image1. Replace its grey fill with realistic packed-earth court and build low earth-plaster boundary walls EXACTLY ALONG its edges, grey tiled main warehouse behind court, one small grey-tiled storage shed on the right, plain gate centered in front wall. The front and side visible base edges must stay on the guide: front down-right at +0.5, side up-right at -0.5, lengths 14:11. Preserve generous front courtyard. Match image2 realistic matte grey tiles, weathered warm wood, rough warm-grey plaster, small wooden cart and two cargo bundles, sober northern ancient-Chinese architectural detail. This is a rectangular 14x11m plan in orthographic 45yaw/30pitch, no perspective. Treat image1 as spatial constraint: DO NOT flatten or steepen either ground edge. Ground-contact corners LEFT(128,510),FRONT(845,868),RIGHT(1408,586),BACK(691,228) in 1536x1152 output. All heights extend vertically upward from this footprint. Very thin ground strip, no thick pedestal. Delete every guide stroke and white background; deliver only the building courtyard as actual transparent RGBA. No text, lines, labels, white background, scenery, figures, watermark or saturated edge pixels. Upper-left light, restrained short lower-right contact shadow. Entire structure visible with clear margins.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44c-b43c-7ff1-980b-8ad0bc87cfb7/exec-6c0a4322-6b5a-4989-9b11-94be9d6462ad.png",
+  "references": [
+    "assets/default/building-map/song_north/sources/bld_kit_song_north_biaoju.round2-geometry-guide.png",
+    "assets/default/building-map/song_north/bld_kit_song_north_biaoju.png"
+  ],
+  "source_sha256": "26fe5f47b2fe4729b8940de9235e2b6dd16fb2062de75abae98b280b6ac914e9",
+  "reference_sha256": {
+    "assets/default/building-map/song_north/sources/bld_kit_song_north_biaoju.round2-geometry-guide.png": "0d46c27d8b824239412f43ef53d3f225d97f20b505c83bb7730ff8b4ad8909d6",
+    "assets/default/building-map/song_north/bld_kit_song_north_biaoju.png": "a8f8aba5ebfd0d1022b6a7895a140ad5d917fd2c78274e62f3f8d4a6a906b407"
+  },
+  "tool": "built-in image_gen",
+  "selected": false,
+  "assessment": "见buildings-round2-review.json；未修复全部几何问题，不替换原成品。"
+}

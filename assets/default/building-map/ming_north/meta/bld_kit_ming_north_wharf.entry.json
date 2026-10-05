@@ -1,0 +1,53 @@
+{
+  "id": "bld_kit_ming_north_wharf",
+  "subject": "明代北方府城·河埠（原创扩展）",
+  "prompt": "Use case: sketch-to-render. Turn this EXACT parallelogram into a thin paved Ming northern Chinese river landing stone platform. Keep the precise existing outer silhouette, composition and footprint at pixel positions left168,472 rear568,272 right1368,672 front968,872 on this 1536x1024 canvas. The diagonals must stay exactly at +/-0.5 slope. DO NOT lengthen or narrow the shape. This is an 8 by 4 metre rectangle in 2:1 orthographic dimetric projection. Add finely realistic weathered gray stone block paving entirely INSIDE the shape, very low single-course stone edging going UP from that outline by20pixels, a small low rectangular wooden loading deck on the right HALF, two simple wooden mooring posts and two rope coils. No steps outside the outline. Preserve blank truly TRANSPARENT background, ZERO alpha throughout padding, no glow, halo or gradients anywhere outside the object, OPAQUE material within object. Natural light upper-left and short contact shadow lower-right. Period realistic game map sprite detail, not icon, no outline drawing, no text, no numbers, no grid lines, no people, no river, no boat, no scenery. Geometry of supplied silhouette must not change.",
+  "references": [
+    {
+      "file": "assets/default/building-map/ming_north/sources/revision2/wharf-ground-guide.png",
+      "role": "精确底面几何输入；非成品替代",
+      "sha256": "906ef25be0e2b1f6d2b0232e693e818f93672effeed2b4256c07f4b68b3f5254"
+    }
+  ],
+  "created": "2026-09-30T22:05:00.875896+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44d-7517-7262-be86-045e8b9601cd/exec-d0f036d7-69b0-4201-b8d1-c476113a71c0.png",
+  "file": "bld_kit_ming_north_wharf.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "448x256",
+  "sha256": "05be329eb32d98b5f77aee4635a22beff8a6e5e7240627436a7c2663af019f1b",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_wharf",
+    "footprint": [
+      8,
+      4
+    ],
+    "anchor": [
+      223.3402,
+      135.8072
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    8,
+    4
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 4.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_wharf.png",
+  "source_sha256": "4b1ba99a39736dbb048d8a9d1b4ad6f11e2ce4c7ac4458e1b07c21280ea90285",
+  "meta": "meta/bld_kit_ming_north_wharf.yaml",
+  "notes": "（原创扩展）匿名明代北方意象；仅原向单视图；底面跨度等比标定，斜率/宽深残差见meta；拼接（待实测）。",
+  "revision": 2,
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "source_record": "sources/bld_kit_ming_north_wharf.json"
+}

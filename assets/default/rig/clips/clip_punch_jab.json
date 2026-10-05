@@ -1,0 +1,248 @@
+{
+  "durationMs": 1083,
+  "events": [
+    {
+      "frame": 13,
+      "type": "hit"
+    },
+    {
+      "frame": 33,
+      "type": "end"
+    }
+  ],
+  "fps": 30,
+  "frameCount": 34,
+  "id": "clip_punch_jab",
+  "importer": {
+    "mapping": "ue66",
+    "version": "1.0.0"
+  },
+  "loop": false,
+  "mainHand": "R",
+  "nativeSpeedMmps": 0,
+  "restPose": {
+    "jointMm": [
+      [
+        0,
+        917,
+        -50
+      ],
+      [
+        0,
+        1315,
+        -5
+      ],
+      [
+        0,
+        1476,
+        -40
+      ],
+      [
+        0,
+        1569,
+        5
+      ],
+      [
+        192,
+        1441,
+        -65
+      ],
+      [
+        466,
+        1441,
+        -70
+      ],
+      [
+        739,
+        1441,
+        -65
+      ],
+      [
+        857,
+        1441,
+        -45
+      ],
+      [
+        -192,
+        1441,
+        -65
+      ],
+      [
+        -466,
+        1441,
+        -70
+      ],
+      [
+        -739,
+        1441,
+        -65
+      ],
+      [
+        -857,
+        1441,
+        -45
+      ],
+      [
+        89,
+        932,
+        1
+      ],
+      [
+        89,
+        532,
+        -1
+      ],
+      [
+        89,
+        104,
+        -36
+      ],
+      [
+        89,
+        15,
+        113
+      ],
+      [
+        -89,
+        932,
+        1
+      ],
+      [
+        -89,
+        532,
+        -1
+      ],
+      [
+        -89,
+        104,
+        -36
+      ],
+      [
+        -89,
+        15,
+        113
+      ]
+    ],
+    "jointOrder": [
+      "pelvis",
+      "chest",
+      "neck",
+      "head",
+      "shoulder_L",
+      "elbow_L",
+      "wrist_L",
+      "grip_L",
+      "shoulder_R",
+      "elbow_R",
+      "wrist_R",
+      "grip_R",
+      "hip_L",
+      "knee_L",
+      "ankle_L",
+      "toe_L",
+      "hip_R",
+      "knee_R",
+      "ankle_R",
+      "toe_R"
+    ]
+  },
+  "rootMotion": "inPlace",
+  "schema": "tianshu-clip.v1",
+  "skeleton": "tianshu_humanoid.v1",
+  "source": {
+    "animation": "Punch_Jab",
+    "license": "CC0-1.0",
+    "pack": "human-base-animations.glb",
+    "sha256": "406eb0a8dc4ab366e623b79b6e3005a4951392e1bda78ae39c1099d31147733c",
+    "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-app/79f3f61a9852ef70234a5a4a7c13ed87f7a71833/static/animations/human-base-animations.glb"
+  },
+  "tracks": {
+    "bones": [
+      "torso",
+      "head",
+      "shoulder_span",
+      "hip_span",
+      "upper_arm_L",
+      "upper_arm_R",
+      "forearm_L",
+      "forearm_R",
+      "hand_L",
+      "hand_R",
+      "thigh_L",
+      "thigh_R",
+      "shin_L",
+      "shin_R",
+      "foot_L",
+      "foot_R"
+    ],
+    "directionI16": "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",
+    "encoding": "base64-le",
+    "facingYawCdegI16": {
+      "chest": "nQifCKoIxAjzCD4JIREEF4sZSxncGEsYrxcBFzcWRxUNFJMS7xA4D4oNIQwWC1wK3Ql2CS0J9gjOCLQIpQifCJ0InQg=",
+      "head": "7gPvA/UDBQQgBEwEXQnRDDIOCQ7DDWgNBg2YDBkMggu/CtgJ2AjQB9AG/AVfBfIEqARsBEEEIQQLBPsD8gPvA+4D7gM=",
+      "pelvis": "8gTyBPUE+gQEBRQFmgdqCIEIbwhVCDQIDwjmB7YHgAc7B+0GlwY/BuoFpAVvBUsFMQUdBQ8FBAX8BPcE9ATzBPIE8gQ="
+    },
+    "lengthRatioU16": "rn//f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3+uf/9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f69//3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/sn//f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3+2f/9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f71//3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/N4D/f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3+CgP9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f56A/3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/nID/f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3+agP9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f5aA/3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/koD/f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3+NgP9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f4eA/3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/foD/f6CH/3//f/9//3//f/9//3//f/9//3//f/9//39xgP9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f2CA/3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/SoD/f6CH/3//f/9//3//f/9//3//f/9//3//f/9//38wgP9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//fxSA/3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/+X//f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3/kf/9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f9V//3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/yn//f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3/Cf/9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f7t//3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/tn//f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3+zf/9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f7B//3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/r3//f6CH/3//f/9//3//f/9//3//f/9//3//f/9//3+uf/9/oIf/f/9//3//f/9//3//f/9//3//f/9//3//f65//3+gh/9//3//f/9//3//f/9//3//f/9//3//f/9/rn//f6CH/3//f/9//3//f/9//3//f/9//3//f/9//38=",
+    "rootMmI16": "EgCk/xwAEgCk/xwAEgCk/xwAEgCk/x0AEgCk/x0AEgCk/x4ADgCm/08ACwCm/1sACACm/1sABwCm/1sABgCm/1kABQCm/1cABgCm/1EABwCm/0gACQCm/zwADACm/y8ADwCl/yMAEgCl/xoAFACl/xQAFgCl/xAAFwCl/w0AGACl/w0AGQCl/w0AGQCl/w0AGQCl/w4AGACk/w8AFwCk/xEAFgCk/xMAFQCk/xYAFACk/xgAEwCk/xoAEgCk/xsAEgCk/xwAEgCk/xwA"
+  },
+  "unmappedSourceJoints": [
+    "Armature",
+    "Mannequin",
+    "ball_leaf_l",
+    "ball_leaf_r",
+    "clavicle_l",
+    "clavicle_r",
+    "head_leaf",
+    "index_01_l",
+    "index_01_r",
+    "index_02_l",
+    "index_02_r",
+    "index_03_l",
+    "index_03_r",
+    "index_04_leaf_l",
+    "index_04_leaf_r",
+    "middle_02_l",
+    "middle_02_r",
+    "middle_03_l",
+    "middle_03_r",
+    "middle_04_leaf_l",
+    "middle_04_leaf_r",
+    "pinky_01_l",
+    "pinky_01_r",
+    "pinky_02_l",
+    "pinky_02_r",
+    "pinky_03_l",
+    "pinky_03_r",
+    "pinky_04_leaf_l",
+    "pinky_04_leaf_r",
+    "ring_01_l",
+    "ring_01_r",
+    "ring_02_l",
+    "ring_02_r",
+    "ring_03_l",
+    "ring_03_r",
+    "ring_04_leaf_l",
+    "ring_04_leaf_r",
+    "spine_01",
+    "spine_02",
+    "thumb_01_l",
+    "thumb_01_r",
+    "thumb_02_l",
+    "thumb_02_r",
+    "thumb_03_l",
+    "thumb_03_r",
+    "thumb_04_leaf_l",
+    "thumb_04_leaf_r"
+  ],
+  "viewHints": {
+    "anatomicalSides": true,
+    "minForeshortenBp": 4500,
+    "nearSide": "L",
+    "yawAssistMaxCdeg": 3000
+  },
+  "weapon": {
+    "gripJoint": "grip_R",
+    "hand": "R",
+    "tipDirectionI16": "uzb/bqogujb9brMgtDbybuMgpTbXblYhhzambiYiUzZZbm8jYyTpYqJIYQjXVZNeVfjBT9Fj6fl3UFtjr/y5UXRiewB/UwNhrAR8VSdfNAmeV9tcBw7TWRpaGxMNXNxWhBg9XhJT6B1LYNhO/SIrYk9KhyfWY6tFWStIZSlBHC6FZjU92i+zZ8s58TDZaLk2ujH7acIziDIOa6swXTMGbJAtJjTebI8q3zSUbb8nhTUnbjolEzaUbhcjdTbVbqshqTb1buwguzb/bqog"
+  }
+}

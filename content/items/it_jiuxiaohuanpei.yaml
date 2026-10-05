@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_jiuxiaohuanpei
+name: 九霄环佩琴
+kind: collectible
+sub: qin
+grade: 11
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H35](#src-h35)；准入：天龙终段；盛唐旧器的架空授权流转，唯一
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jiuxiaohuanpei
+text:
+  desc: 外观：深栗红漆伏羲式七弦长琴，圆浑肩腰。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,musician,collector]}; giftValue=4; provenance=history。
+  lore: 公开研究将九霄环佩琴置于盛唐，故不进入武周白马窗口。此处只设北宋旧藏的架空获赠机会，宜送乐人；琴的历史身份与游戏流传分开，后一部分属于（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 84

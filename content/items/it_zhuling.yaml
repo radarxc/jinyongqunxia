@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_zhuling
+name: 猪苓
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/zhuling
+text:
+  desc: 外观：药用菌核切成灰白不规则厚片，外皮黑褐。
+  lore: 秦巴、河东晋中、荆襄、巴蜀与东北山林地下，夏秋七至十月可寻成熟菌核。灰白厚片由药师辨真伪，本作归作疏内伤辅材。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: zhuLing
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 2

@@ -1,0 +1,173 @@
+schemaVersion: meridian-topology.v1
+id: ev_common_meridians_extra8
+event: content/meridianTopologyCatalog
+group: extra8
+meridians:
+  - id: mer_renmai
+    name: 任脉
+    points:
+      - id: ap_renmai_huiyin
+        name: 会阴
+      - id: ap_renmai_qugu
+        name: 曲骨
+      - id: ap_renmai_zhongji
+        name: 中极
+      - id: ap_renmai_guanyuan
+        name: 关元
+      - id: ap_renmai_shimen
+        name: 石门
+      - id: ap_renmai_qihai
+        name: 气海
+      - id: ap_renmai_yinjiao
+        name: 阴交
+      - id: ap_renmai_shenque
+        name: 神阙
+      - id: ap_renmai_shuifen
+        name: 水分
+      - id: ap_renmai_zhongwan
+        name: 中脘
+      - id: ap_renmai_danzhong
+        name: 膻中
+      - id: ap_renmai_chengjiang
+        name: 承浆
+  - id: mer_dumai
+    name: 督脉
+    points:
+      - id: ap_dumai_changqiang
+        name: 长强
+      - id: ap_dumai_yaoshu
+        name: 腰俞
+      - id: ap_dumai_yaoyangguan
+        name: 腰阳关
+      - id: ap_dumai_mingmen
+        name: 命门
+      - id: ap_dumai_jizhong
+        name: 脊中
+      - id: ap_dumai_zhiyang
+        name: 至阳
+      - id: ap_dumai_shendao
+        name: 神道
+      - id: ap_dumai_shenzhu
+        name: 身柱
+      - id: ap_dumai_baihui
+        name: 百会
+      - id: ap_dumai_shangxing
+        name: 上星
+      - id: ap_dumai_shuigou
+        name: 水沟
+      - id: ap_dumai_yinjiao
+        name: 龈交
+  - id: mer_chongmai
+    name: 冲脉
+    points:
+      - id: ap_chongmai_qichong
+        name: 气冲
+      - id: ap_chongmai_henggu
+        name: 横骨
+      - id: ap_chongmai_dahe
+        name: 大赫
+      - id: ap_chongmai_qixue
+        name: 气穴
+      - id: ap_chongmai_siman
+        name: 四满
+      - id: ap_chongmai_zhongzhu
+        name: 中注
+      - id: ap_chongmai_huangshu
+        name: 肓俞
+      - id: ap_chongmai_shangqu
+        name: 商曲
+      - id: ap_chongmai_shiguan
+        name: 石关
+      - id: ap_chongmai_yindu
+        name: 阴都
+      - id: ap_chongmai_futonggu
+        name: 腹通谷
+      - id: ap_chongmai_youmen
+        name: 幽门
+  - id: mer_daimai
+    name: 带脉
+    points:
+      - id: ap_daimai_daimai
+        name: 带脉
+      - id: ap_daimai_wushu
+        name: 五枢
+      - id: ap_daimai_weidao
+        name: 维道
+      - id: ap_daimai_zulinqi
+        name: 足临泣
+      - id: ap_daimai_zhangmen
+        name: 章门
+      - id: ap_daimai_jingmen
+        name: 京门
+  - id: mer_yinqiao
+    name: 阴跷脉
+    points:
+      - id: ap_yinqiao_zhaohai
+        name: 照海
+      - id: ap_yinqiao_jiaoxin
+        name: 交信
+      - id: ap_yinqiao_jingming
+        name: 睛明
+      - id: ap_yinqiao_sanyinjiao
+        name: 三阴交
+      - id: ap_yinqiao_lieque
+        name: 列缺
+      - id: ap_yinqiao_lougu
+        name: 漏谷
+  - id: mer_yangqiao
+    name: 阳跷脉
+    points:
+      - id: ap_yangqiao_shenmai
+        name: 申脉
+      - id: ap_yangqiao_pucan
+        name: 仆参
+      - id: ap_yangqiao_fuyang
+        name: 跗阳
+      - id: ap_yangqiao_juliao
+        name: 居髎
+      - id: ap_yangqiao_naoshu
+        name: 臑俞
+      - id: ap_yangqiao_jianyu
+        name: 肩髃
+      - id: ap_yangqiao_jugu
+        name: 巨骨
+      - id: ap_yangqiao_dicang
+        name: 地仓
+      - id: ap_yangqiao_juliao_wei
+        name: 巨髎
+  - id: mer_yinwei
+    name: 阴维脉
+    points:
+      - id: ap_yinwei_zhubin
+        name: 筑宾
+      - id: ap_yinwei_fushe
+        name: 府舍
+      - id: ap_yinwei_daheng
+        name: 大横
+      - id: ap_yinwei_fuai
+        name: 腹哀
+      - id: ap_yinwei_qimen
+        name: 期门
+      - id: ap_yinwei_tiantu
+        name: 天突
+      - id: ap_yinwei_lianquan
+        name: 廉泉
+  - id: mer_yangwei
+    name: 阳维脉
+    points:
+      - id: ap_yangwei_jinmen
+        name: 金门
+      - id: ap_yangwei_yangjiao
+        name: 阳交
+      - id: ap_yangwei_tianliao
+        name: 天髎
+      - id: ap_yangwei_jianjing
+        name: 肩井
+      - id: ap_yangwei_benshen
+        name: 本神
+      - id: ap_yangwei_toulinqi
+        name: 头临泣
+      - id: ap_yangwei_yamen
+        name: 哑门
+      - id: ap_yangwei_fengfu
+        name: 风府

@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_qingchengsongfengjian
+name: 青城松风剑
+kind: weapon
+sub: sword
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 青城 · design/17 §6.5；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/qingchengsongfengjian
+text:
+  desc: 外观：青灰直剑约七十厘米，松枝形小护手、深绿丝缠柄、竹节纹黑鞘。 待运行时投影：sect=sect_qingcheng。
+  lore: 青城门人所用的轻灵直剑，转腕时取松枝随风之意，宜连刺、回削而不宜与重兵角力。松枝护手和竹节鞘只作门派识别；器名、来历与形制为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 76
+      qiAffinity: 100

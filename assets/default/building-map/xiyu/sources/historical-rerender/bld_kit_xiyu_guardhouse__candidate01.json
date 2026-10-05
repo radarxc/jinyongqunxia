@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_guardhouse",
+  "generated_at": "2026-10-01T10:11:07.713833+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_guardhouse__candidate01.png",
+  "sha256": "7b41a8546cbf70760d293a14374ecb7e7dc56466d2e358f3a16ffdb9c52630ac",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_guardhouse__geometry-lock.png",
+      "sha256": "b5fa2604539f9c641a95532a8fc689e4194787dd0e6f9144ab6938d9426bc58d",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/city_wall_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg",
+      "detail": "1915年城墙内侧厚泥抹面、低女儿墙、方孔和土阶。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/yarkand_kashgar_gate.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg",
+      "detail": "1932年叶尔羌城墙厚体量、垛口节奏与城楼关系；不照搬中式楼亭。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年城墙内侧厚泥抹面、低女儿墙、方孔和土阶。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg — 1932年叶尔羌城墙厚体量、垛口节奏与城楼关系；不照搬中式楼亭。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. IMAGE1 is edit target, IMAGE2 is reference ONLY for its correct city-map camera. Preserve simple low adobe guardhouse, flat roof, doorway and reed mats. Reduce external baked shadow to very short contact shadow. Make ground front slope0.50 and side slope-0.50. Make IMAGE1 a strict orthographic yaw45 elevation30 2:1 dimetric sprite on rectangular ground7m by5m. Ground diagonal axes screen slopes +0.5 and -0.5, no vanishing points, all verticals upright. Front entrance faces screen LOWER LEFT. Match IMAGE2 camera, do not copy its stable building or objects. Keep realistic historic southern Xinjiang architecture, worn ochre adobe/brick, existing restrained colors and fine detail density. Entire isolated asset and contact shadow inside frame,15% empty transparent padding each side, TRUE transparent RGBA background. Upper-left light and only tiny lower-right contact shadow. No people, letters, text, landscape, thick diorama base, halo or modern objects.\n\nRequired historical detail summary: 守舍应是依厚土墙附建的低矮平顶房，门窗小而深；禁用瓦顶门房。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

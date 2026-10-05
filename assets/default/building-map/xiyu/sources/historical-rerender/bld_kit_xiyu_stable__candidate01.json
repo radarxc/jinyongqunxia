@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_stable",
+  "generated_at": "2026-10-01T10:15:41.390421+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_stable__candidate01.png",
+  "sha256": "661e4dfb785fd98eeaf9252443223701798c89821e64016d8c4c9870a8cdd94f",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_stable__geometry-lock.png",
+      "sha256": "cf710cdbb7c4d0223a44be442c1aab6c1a76805fb914a309b14cb6abc912920b",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/caravanserai_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg",
+      "detail": "1915年驿站土墙、宽深檐棚和承重木柱。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/tuman_su_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_Tuman_Su_at_Kashgar.jpg",
+      "detail": "1915年马匹尺度、土质渠岸和简易木桩；不复制人物。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg — 1915年驿站土墙、宽深檐棚和承重木柱。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:The_Tuman_Su_at_Kashgar.jpg — 1915年马匹尺度、土质渠岸和简易木桩；不复制人物。\n\nAsset-specific production prompt:\nUse case: historical-scene. ONE isolated realistic city-map sprite of a southern Xinjiang oasis caravan stable, a generic original building for historic Kashgar/Hotan/Yarkand. Flat-roof adobe rear store and long open stable shed with rough poplar poles, reed mat and earth roof, wooden stall dividers and troughs, a little stacked hay, small enclosed exercise yard, no animals or people. Rectangle9m east-west by7m north-south; south front gate faces screen LOWER LEFT. Camera STRICTLY orthographic yaw45 elevation30; ground rectangle edges at +/-26.565degrees on screen, so EXACT2:1 dimetric slopes+0.5,-0.5, no perspective. Front edge length9/7 times other edge. Flat thin rectangular dirt footprint with clear left/front/right ground corners, no raised plinth. Fine weathered ochre mudbrick and dark timber textures, restrained realism and density consistent with Song city-kit game sprites, no cartoon. TRUE transparent RGBA, entire building centered within15% transparent margin on all sides. Upper-left light, short lower-right contact shadow only, no scenic background, no ambient halo, no modern object, writing, letters, signs, watermark, Chinese tiled roof, religious ornament.\n\nRequired historical detail summary: 马厩应是土墙围栏加深檐素木棚，槽具和拴马桩克制，无瓦脊与精细彩画。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

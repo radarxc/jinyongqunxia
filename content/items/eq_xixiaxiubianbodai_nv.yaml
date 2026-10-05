@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_xixiaxiubianbodai_nv
+name: 西夏绣边帛带·女
+kind: armor
+sub: belt
+grade: 2
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 女供养人束带 · 西夏（榆林窟第29窟、武威西夏墓图像）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xixiaxiubianbodai_nv
+text:
+  desc: 外观：女款赭黄帛带作松弧陈列，蓝黑几何窄绣边、布结与两端短穗。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=female。
+  lore: 据榆林窟与武威西夏墓图像的束带语汇演成，赭黄帛带以布结收束，蓝黑窄绣边便于辨认衣层。两端短穗与配色细节均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

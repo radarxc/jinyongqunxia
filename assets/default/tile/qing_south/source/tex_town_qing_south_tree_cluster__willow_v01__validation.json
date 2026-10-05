@@ -1,0 +1,26 @@
+{
+  "id": "tex_town_qing_south_tree_cluster__willow_v01",
+  "mode": "RGBA",
+  "size": [
+    240,
+    167
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "transparent_ratio": 0.6262,
+  "anchor_px": [
+    125,
+    146
+  ],
+  "source_bbox": [
+    0,
+    17,
+    1515,
+    1038
+  ],
+  "attempts": 1,
+  "selected_attempt": 1,
+  "reference_sha256": "6a5c425cadf4f8641331c57aa9fb39138fa9989e890152b0ea10a234e5c8913b"
+}

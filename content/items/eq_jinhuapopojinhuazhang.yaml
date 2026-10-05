@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_jinhuapopojinhuazhang
+name: 金花婆婆金花杖
+kind: weapon
+sub: staff
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·金花婆婆持杖；杖名、金花机括 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jinhuapopojinhuazhang
+text:
+  desc: 外观：深木曲首杖约一百二十厘米，杖头嵌三朵小型黄铜花片、银箍与铁鐏清楚。 待运行时投影：sect=sect_mingjiao。
+  lore: 《倚天屠龙记》中金花婆婆持杖行动，曲首长杖可点穴、拦架，也能借地稳身。是否有“金花杖”专名及花片机关仍 （待考：核金花婆婆相关情节）；黄铜花饰、尺寸和定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 68
+      qiAffinity: 100

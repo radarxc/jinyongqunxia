@@ -1,0 +1,29 @@
+{
+  "id": "bld_kit_yuan_north_restaurant",
+  "title": "酒楼茶肆",
+  "footprint": [
+    12,
+    9
+  ],
+  "type": "bld_kit_yuan_north_restaurant",
+  "reference": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+  "prompt": "Use case: historical-scene. Create ONE new Yuan northern China map-building variant of the supplied Song sprite, circa 1271–1368 Dadu / Datong / Kaifeng. Reference is ONLY the realistic weathered matte timber, grey clay tile, plaster texture, muted earth palette and density of detail; replace regional subject, retain coherent game-sprite scale. Realistic ancient architectural asset, no toy plastic or ink painting. Orthographic camera yaw45 elevation30, EXACT 2:1 dimetric ground axes slopes +0.5 and -0.5; no perspective convergence, vertical pillars vertical. The visible SOUTH facade points lower-left. Flat thin rectangular contact footprint, clearly show left/front/right ground corners; back corner may be hidden. Footprint is 12 by 9 one-metre cells, visible front-facing ground edge runs down-right with length proportional to 12, other ground edge goes up-right proportional to 9. No thick diorama pedestal. A northern two storey wine tavern and tea house, main rectangular dark timber building with grey tiled roof, shallow eave curvature, plain timber upper balcony, tan plaster side walls, open ground floor with small plain tables and jars beneath the eave. Entirely anonymous no signs. Northern Yuan period concept, not a measured reconstruction. Avoid Ming-Qing ornate ridge figures, Qing imperial color schemes, horse-head firewalls, modern tourism facades and bright glazed tiles on common buildings. Light screen upper left, short soft contact shadow lower right only. Fully isolated on TRUE transparent RGBA alpha0 background. Keep whole roof and contact plane inside image with 10 percent transparent margin on ALL sides. No text, no watermark, no people, no sky, no environmental background, no checkerboard, no grid or annotations. One sprite only, never a sheet. IMPORTANT CAMERA CORRECTION: Do NOT inherit the reference ground angles. This is a TRUE 30 degree elevation dimetric view, NOT conventional 35.264 degree isometric. Ground edges must be shallower than the reference, exactly one pixel rise per TWO pixels run (26.565 degrees on screen), never 30 degrees on screen. No perspective shortening.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f982-78b2-9d92-dec5a0b0cec9/exec-84d48b3b-2ec6-4de9-89df-2f72d5a7a9fd.png",
+  "source_corners_px": {
+    "left": [
+      85,
+      803
+    ],
+    "front": [
+      721,
+      1144
+    ],
+    "right": [
+      1175,
+      910
+    ]
+  },
+  "candidate_count": 2,
+  "selection_note": "两候选选首版：第二版双轴过浅；首版酒楼功能、材质与占地比更稳，左轴仍略超差。",
+  "selected_candidate": 1
+}

@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_ziweiruanjian
+name: 紫薇软剑
+kind: weapon
+sub: sword
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·独孤剑冢石刻所述弃剑
+price: auto
+flags:
+- unique
+assets:
+  icon: item/ziweiruanjian
+text:
+  desc: 外观：紫灰窄薄软刃自然微垂，刃约八十厘米。
+  lore: 《神雕侠侣》剑冢石刻记紫薇软剑为独孤求败三十岁前所用，因误伤义士而弃于深谷。软刃宜借腕势绕架，寻回与误伤玩法为 （原创扩展），不可轻率挥使。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags:
+    - soft
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 92
+      hardness: 50
+      qiAffinity: 100

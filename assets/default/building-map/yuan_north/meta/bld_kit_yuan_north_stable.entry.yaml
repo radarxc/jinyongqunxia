@@ -1,0 +1,89 @@
+id: bld_kit_yuan_north_stable
+file: bld_kit_yuan_north_stable.png
+category: building-map
+style: default
+subject: 元代北方·马厩；匿名建筑组合（原创扩展），具体细部（待考）。
+prompt: 'Use case: sketch-to-render. Image1 is a mandatory architectural geometry template. Image2 shows only required realistic material/style, NOT camera. Replace the flat colors of Image1 with detailed natural textures to create one Yuan northern China horse stable, four open timber bays with hay, simple feeding troughs, no animals; pale earthen side gable and weathered dark timber posts. Footprint 8 by6 metres. Preserve Image1 exact base rectangle, roof pitch, parallel edges, vertical walls, composition and shallow projection. Camera must be shallower than Image2. Do not turn it into conventional isometric. Every ridge, straight eave and stone base course parallel to ground edges. A gently curved grey clay-tile northern Chinese gable roof, no ornate ridge animals or Ming-Qing decoration. Naturalistic high detail matte aged timber, weathered clay tiles, subdued beige grey brown palette. Keep crisp exact rectangular ground corners and thin flush paving footing, no thick diorama pedestal. Upper-left light with only tiny lower-right contact shadow. True transparent RGBA outside object. No halo, no glow, no haze, no background or scene. Whole sprite inside transparent margins. No text, no figures, no modern elements, no annotations. Geometry has priority; Image1 screen-space shape is fixed, only replace flat materials.'
+negative: 现代元素、人物、文字、景观背景、厚底座、塑料质感、明清官式彩画、裁边、假透明、透视汇聚
+references:
+- {path: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_stable.repair3.guide.png, sha256: 4cd61eb36d9ced55078070ef41ee9af5f716ec43c38459f63a7e62842ce187a8, role: 本轮几何引导}
+- {path: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_stable.repair3.reference.png, sha256: 887e603930b094046fc8d2167fd009307d01e4401918a9977c9ef09ae613cbcd, role: 本轮编辑前材质参考}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:42:06.631905+00:00'
+created_time_basis: 本轮入库时间，非服务端回执时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f470-f0a6-7100-b07b-0577601e3585/exec-cc35e88b-b648-4f04-90cd-c1ae8a8ed581.png
+size: 608x608
+sha256: 6a614d302d33d04187535be275dffd8fa4ef36df53d084cecf798ec795b006d4
+status: candidate
+building:
+  type: bld_kit_yuan_north_stable
+  footprint: [8, 6]
+  anchor: [341.4886, 365.56]
+  era: yuan_north
+anchor_px: [341.4886, 365.56]
+footprint_m: [8, 6]
+footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+entrance: {edge: S, offset_cells: 3}
+png_rotations_available: [0]
+allowRotation: false
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [448, 224]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+source_archive: sources/bld_kit_yuan_north_stable.repair3.v01.png
+source_sha256: f52f6c1de22a1e6175d752d953f2d2597abaac863a8981038f40d28af3e0fed9
+source_record: sources/bld_kit_yuan_north_stable.repair3.v01.json
+processing:
+  source_size: [1536, 1024]
+  crop_box: [0, 9, 1361, 984]
+  uniform_scale_requested: 0.38654012079378774
+  resized_size: [526, 377]
+  rounded_effective_scale: [0.38648052902277735, 0.38666666666666666]
+  paste_offset: [41, 115]
+  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer rounding, paste without alpha mask into transparent RGBA canvas]
+geometry_qa:
+  source_corners_px:
+    left: [198, 590]
+    front: [898, 953]
+    right: [1357, 724]
+  anchor_source_px: [777.5, 657]
+  source_axis_slopes: [0.5185714285714286, -0.4989106753812636]
+  edge_fit_slopes: [0.5193365584695164, -0.5006822142144172]
+  edge_fit_ranges_x:
+  - [300, 836]
+  - [966, 1270]
+  edge_fit_intercepts: [485.8846187744169, 1402.6479613933575]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.5250544662309369
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.14379084967320277
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 4
+  final_corners_px:
+    left: [117.5231, 339.6533]
+    front: [388.0595, 480.0133]
+    right: [565.4541, 391.4667]
+  precision_note: 实际源PNG可见薄地面L/F/R角人工读点±4px；alpha>200逐列最下点长段线性拟合复核；背角不可见，不用引导坐标代替测量。锚点(L+R)/2。
+pixel_qa:
+  mode: RGBA
+  size: [608, 608]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 284461
+  alpha_partial_pixels: 84307
+  alpha_opaque_pixels: 896
+  alpha_near_opaque_pixels: 81834
+  alpha_nonzero_bbox: [115, 150, 567, 483]
+  transparent_margins_px: [115, 150, 41, 125]
+  border_alpha_max: 0
+candidate_count: 2
+selected_candidate: 1
+notes: 本轮两候选选第一：双轴拟合+.51934/-.50068通过；宽深比仍偏大，超过10%建议容差，未解决。第二候选双轴失败；保留candidate，未warp。
+historical_basis:
+- {url: 'https://www.sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 仅元代殿堂木构/土坯墙砖裙/筒板瓦与木门母题；不能证明匿名民居原貌。}
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}
+repair_round: 3

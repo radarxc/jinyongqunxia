@@ -1,0 +1,29 @@
+COMMAND python3 tools/town/gen_layout.py docs/design/town/city_kaifeng__ch10.yaml -o /tmp/CITY-layouts-all/recheck/city_kaifeng__ch10.yaml
+{"assembled_bridges": 0, "building_types": {"bld_kit_song_dali_courtyard": 3, "bld_kit_song_dali_guardhouse": 1, "bld_kit_song_dali_house": 20, "bld_kit_song_dali_inn": 1, "bld_kit_song_dali_market_stall": 10, "bld_kit_song_dali_shop": 6, "bld_kit_song_dali_shrine": 1, "bld_kit_song_dali_stable": 1, "bld_kit_song_dali_warehouse": 1, "bld_kit_song_dali_yamen": 1}, "buildings": 45, "city_id": "city_kaifeng", "complete": true, "decorations": 102, "generation_seconds": 1.6942, "lake_cells": {}, "layout_sha256": "cccbd1a398bb3d487d87bb7fdf8ab90bf1f04bd92ddfff596ba7716e0c42d85e", "merged_bridge_groups": [], "missing_required": {}, "parcels": 29, "placement_attempts": 54, "planning_walkable": 5630, "required_components": 1, "road_cells": 1535, "road_components": 1, "runtime_hex_walkable": 4321, "source_bridges": 0, "water_cells": 800}
+
+COMMAND python3 tools/town/check_town.py docs/design/town/city_kaifeng__ch10.yaml assets/default/town/city_kaifeng__ch10/layout.yaml --strict-assets
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_dirt_road: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_rammed_earth: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=60: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=120: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=124: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=126: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=127: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=135: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=195: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=199: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=207: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=223: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=231: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=247: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=252: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+WARNING TOWN_ASSET_SUBSTITUTION assets.tiles: tex_town_song_southern_riverbank mask=253: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+town check: 0 errors, 22 warnings
+
+PASS: regenerated layout byte-identical; source/render/manifest/reference files consistent.

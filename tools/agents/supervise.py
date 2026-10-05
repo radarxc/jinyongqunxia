@@ -23,18 +23,22 @@ GPT CLI（Codex，gpt-6-astra，推理强度 ultra / xhigh）。本脚本不做�
       HOLD-REVIEWS（审核轮数用尽仍 FAIL）、HOLD-RUNS（执行次数用尽）、
       HOLD-VALIDATE（同一条调度器校验失败连续出现两次：多半是校验命令或写集之外的文件有问题，
       执行器修不了，等协调者看 .agents/logs/<ID>/last_failure.md）、ERROR（流程性错误）。
-退出码：0 = READY / MERGED，1 = HOLD-*，2 = ERROR。
+退出码：0 = READY / MERGED，1 = HOLD-*，2 = ERROR，3 = 同一任务已有驱动。
 """
 from __future__ import annotations
 
 import argparse
 import datetime as _dt
+import errno
+import fcntl
 import json
 import os
 import re
 import subprocess
 import sys
 import time
+import tempfile
+import shutil
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -108,6 +112,28 @@ def log(tid: str, msg: str) -> None:
     with open(cdir(tid) / "supervise.log", "a", encoding="utf-8") as f:
         f.write(line + "\n")
     print(line, flush=True)
+
+
+def acquire_driver_lock(tid: str):
+    """抢占任务驱动锁；返回的文件对象必须在整个 worker 生命周期内保持打开。"""
+    lock = open(cdir(tid) / "supervise.lock", "a+", encoding="utf-8")
+    try:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError as exc:
+        if exc.errno not in (errno.EACCES, errno.EAGAIN):
+            lock.close()
+            raise
+        lock.seek(0)
+        owner = lock.read()
+        match = re.search(r"(?m)^pid=(\d+)$", owner)
+        lock.close()
+        log(tid, f"已有驱动 pid={match.group(1) if match else '?'}，本次退出")
+        return None
+    lock.seek(0)
+    lock.truncate()
+    lock.write(f"pid={os.getpid()}\nstarted={now()}\n")
+    lock.flush()
+    return lock
 
 
 def set_status(tid: str, state: str, **kw) -> None:
@@ -227,7 +253,93 @@ def summary(tid: str) -> str:
             f"审核={rf.relative_to(ROOT) if rf else '—'}（{verdict}）| {stat} | {st.get('detail', '')}")
 
 
-def worker(a) -> int:
+def rebase_before_rework(tid: str) -> bool:
+    """每次 finish 失败至多调用一次；预演含未提交产物，不改真实索引或引用。"""
+    if S.is_running(ROOT, tid):
+        log(tid, "rebase-before-rework: 执行器仍在跑，不挪基点")
+        return False
+    wt = ROOT / ".agents" / "wt" / tid
+    base = (S.LockedState(ROOT / ".agents/state.json").get(tid) or {}).get("base")
+    script = ROOT / ".agents/coord/_handoff/rebase_task.py"
+    if not base or not wt.is_dir() or not script.is_file():
+        log(tid, "rebase-before-rework: 缺基点、工作区或 rebase_task.py，沿用返修")
+        return False
+
+    def git(*args, env=None, input=None):
+        return subprocess.run(["git", "--no-optional-locks", *args], cwd=wt, env=env, input=input,
+                              capture_output=True, text=True, encoding="utf-8", errors="replace")
+
+    rc, out = sh(["git", "rev-parse", "HEAD"])
+    head = out.strip()
+    if rc or base == head:
+        log(tid, "rebase-before-rework: 基点未落后，不挪")
+        return False
+    if git("merge-base", "--is-ancestor", base, head).returncode != 0:
+        log(tid, "rebase-before-rework: 基点与集成 HEAD 非祖先关系，沿用返修")
+        return False
+    try:
+        dirty = git("status", "--porcelain").stdout.strip()
+        count = git("rev-list", "--count", f"{base}..HEAD")
+        # 交接脚本仅支持一个 finish 提交或一个未提交快照。
+        if count.returncode or int(count.stdout.strip()) + bool(dirty) != 1:
+            log(tid, "rebase-before-rework: 产物无法表示为一个任务提交，沿用返修")
+            return False
+        tip = git("rev-parse", "HEAD").stdout.strip()
+        if dirty:
+            # 复制索引保留稀疏检出的 skip-worktree 位，避免把缺图当删除。
+            with tempfile.TemporaryDirectory(prefix="tianshu-rebase-index-") as td:
+                index = git("rev-parse", "--git-path", "index").stdout.strip()
+                src = Path(index) if Path(index).is_absolute() else wt / index
+                dest = Path(td) / "index"
+                # 保留索引 mtime：否则同一秒改写的等长文件可能绕过 Git 的 racy 检查。
+                shutil.copy2(src, dest)
+                env = {**os.environ, "GIT_INDEX_FILE": str(dest),
+                       "GIT_AUTHOR_NAME": "ops-preview", "GIT_AUTHOR_EMAIL": "ops@local",
+                       "GIT_COMMITTER_NAME": "ops-preview", "GIT_COMMITTER_EMAIL": "ops@local"}
+                add = git("add", "-A", env=env)
+                tree = git("write-tree", env=env)
+                if add.returncode or tree.returncode:
+                    log(tid, "rebase-before-rework: 快照预演失败，沿用返修")
+                    return False
+                commit = git("commit-tree", tree.stdout.strip(), "-p", base, env=env,
+                             input="ops preview (unreferenced)\n")
+                if commit.returncode:
+                    log(tid, "rebase-before-rework: 无法构造预演提交，沿用返修")
+                    return False
+                tip = commit.stdout.strip()
+        preview = git("merge-tree", "--write-tree", "--name-only", f"--merge-base={base}", head, tip)
+        if preview.returncode:
+            files = preview.stdout.split("\n\n", 1)[0].splitlines()[1:]
+            log(tid, "rebase-before-rework: 预演冲突 / 失败，不挪；冲突文件：" +
+                ("、".join(files) or preview.stderr.strip()[:400] or "无法识别"))
+            return False
+        if S.is_running(ROOT, tid):
+            log(tid, "rebase-before-rework: 预演后执行器在跑，不挪")
+            return False
+        rc, out = sh([PY, str(script), tid, "--new-base", head])
+        log(tid, f"rebase-before-rework: {base[:12]} → {head[:12]} rc={rc}: " +
+            " / ".join(out.strip().splitlines()[-3:])[:600])
+        if rc or "带冲突标记 0 个" not in out:
+            return False
+        return True
+    except (OSError, ValueError) as exc:
+        log(tid, f"rebase-before-rework: 预演不可用（{exc}），沿用返修")
+        return False
+
+
+def validate_with_rebase(tid: str) -> tuple:
+    """保持原校验命令 / 超时；第二次失败直接回到原返修逻辑，不递归。"""
+    rc, out = step("finish", tid, "--no-commit", timeout=3600)
+    log(tid, f"finish --no-commit rc={rc}: " + (out.strip().splitlines() or [""])[0][:300])
+    if rc == 1 and rebase_before_rework(tid):
+        log(tid, "rebase-before-rework: 挪基点完成，重校验一次")
+        rc, out = step("finish", tid, "--no-commit", timeout=3600)
+        log(tid, f"finish --no-commit (after rebase) rc={rc}: " +
+            (out.strip().splitlines() or [""])[0][:300])
+    return rc, out
+
+
+def _worker(a) -> int:
     tid = a.id
     runs, reviews = 0, 0
     note = None
@@ -268,9 +380,8 @@ def worker(a) -> int:
                 return 2
         if phase == "validate":
             set_status(tid, "RUNNING", runs=runs, reviews=reviews, detail="validating")
-            rc, out = step("finish", tid, "--no-commit", timeout=3600)
+            rc, out = validate_with_rebase(tid)
             head = (out.strip().splitlines() or [""])[0][:300]
-            log(tid, f"finish --no-commit rc={rc}: {head}")
             if rc == 0:
                 phase = "review"
             elif rc == 1:
@@ -318,6 +429,8 @@ def worker(a) -> int:
                 break
             rf = latest_review(tid)
             note = compose_rework(tid, rf, reviews, a)
+            # 2026-10-03 协调者：审核 FAIL 后立刻改状态，免得一直挂着 reviewing，被出图线的 busy.sh 误当成在审
+            set_status(tid, "RUNNING", runs=runs, reviews=reviews, detail="审核 FAIL，返修排队中")
             phase = "start"
             continue
     # 校验通过 + 审核 PASS（或 --no-review）
@@ -331,11 +444,35 @@ def worker(a) -> int:
                 if rc == 0:
                     set_status(tid, "MERGED", runs=runs, reviews=reviews, detail="已合入")
                     return 0
-                time.sleep(120)
+                # 2026-10-03 协调者：cherry-pick 冲突是真冲突，重试无用，直接交协调者挪基点。
+                if "cherry-pick 失败" in out:
+                    break
+                # 2026-10-03 协调者：出图线频繁入库，集成分支常有几秒的未提交窗口；不再干等 120 秒，
+                # 改为每 2 秒看一次工作树，干净了立即重试（最多等 120 秒）。
+                t_wait = time.time()
+                while time.time() - t_wait < 120:
+                    dirty = subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=ROOT,
+                                           capture_output=True, text=True).stdout.strip()
+                    if not dirty:
+                        break
+                    time.sleep(2)
         set_status(tid, "READY", runs=runs, reviews=reviews, detail="auto-merge 未成功，待协调者手动 finish + merge")
         return 0
     set_status(tid, "READY", runs=runs, reviews=reviews, detail="校验与审核通过，待协调者准出（finish + merge）")
     return 0
+
+
+def worker(a) -> int:
+    lock = acquire_driver_lock(a.id)
+    if lock is None:
+        return 3
+    try:
+        return _worker(a)
+    except Exception as e:  # noqa: BLE001  未预期错误也须在持锁期间落状态，避免与新驱动交错
+        set_status(a.id, "ERROR", detail=f"驱动脚本异常：{type(e).__name__}: {e}")
+        raise
+    finally:
+        lock.close()
 
 
 def attach(tid: str) -> int:
@@ -392,23 +529,18 @@ def main() -> int:
         return 0
     if a.attach:
         return attach(a.id)
-    st = get_status(a.id)
-    if not a.worker and st.get("state") == "RUNNING" and st.get("pid") and proc_alive(int(st["pid"])):
-        print(f"{a.id} 已有驱动进程在跑（pid {st['pid']}），改为接入等待")
-        return attach(a.id)
     if a.detach and not a.worker:
         argv = [PY, str(Path(__file__).resolve())] + [x for x in sys.argv[1:] if x != "--detach"] + ["--worker"]
-        out = open(cdir(a.id) / "supervise.out", "a", encoding="utf-8")
-        p = subprocess.Popen(argv, cwd=str(ROOT), stdin=subprocess.DEVNULL, stdout=out, stderr=subprocess.STDOUT,
-                             start_new_session=True)
-        set_status(a.id, "RUNNING", pid=p.pid, detail="detached worker started")
-        time.sleep(2)
-        return attach(a.id)
-    try:
-        return worker(a)
-    except Exception as e:  # noqa: BLE001  任何未预期错误都落到状态文件，便于协调者接手
-        set_status(a.id, "ERROR", detail=f"驱动脚本异常：{type(e).__name__}: {e}")
-        raise
+        with open(cdir(a.id) / "supervise.out", "a", encoding="utf-8") as out:
+            p = subprocess.Popen(argv, cwd=str(ROOT), stdin=subprocess.DEVNULL, stdout=out,
+                                 stderr=subprocess.STDOUT, start_new_session=True)
+        # 父进程不写状态、不持锁；等子进程写出自己的 pid 后再 attach，避免读到上轮终态。
+        while p.poll() is None:
+            if get_status(a.id).get("pid") == p.pid:
+                return attach(a.id)
+            time.sleep(0.05)
+        return p.returncode
+    return worker(a)
 
 
 if __name__ == "__main__":

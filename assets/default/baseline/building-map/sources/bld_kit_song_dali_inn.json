@@ -1,0 +1,88 @@
+{
+  "id": "bld_kit_song_dali_inn",
+  "type": "bld_kit_song_dali_inn",
+  "w": 10,
+  "h": 8,
+  "subject": "1093年大理国客栈（建筑细部待考）",
+  "prompt": "Use case: historical-scene. Generate ONE isolated 2:1 dimetric city-map building sprite for a historical wuxia game, Dali kingdom in 1093. This is a map sprite NOT an illustration scene. Use supplied image only as matching material and 45-degree MAP CAMERA reference. Orthographic yaw 45 degrees, camera elevation 30 degrees. The two horizontal ground axes on the screen MUST slope +0.5 and -0.5 exactly (one pixel rise per two pixels run). South entrance faces LOWER LEFT. Vertical posts stay vertical. Thin rectangular ground footprint with visible front/left/right corners, no thick plinth. Centered whole sprite with at least10% empty transparent padding on all sides. TRUE TRANSPARENT RGBA background, absolutely NO mountains, sky, horizon, trees outside the footprint, gradient backdrop, ambient halo or ground outside rectangle. Realistic weathered gray tiles, dark timber, pale earth plaster and dull stone matching reference material, restrained Song-period silhouette. Light from screen UPPER LEFT, short soft contact shadow toward LOWER RIGHT. NO WRITING AT ALL, no banners/boards with characters, no people, no modern objects, no logos, no border, no watermark, no tourism-era decoration. A modest two-story travelers' inn, timber balcony facing south, restrained gray tiled gabled roofs, small sheltered ground-floor entrance and side service yard with clay jars, simple stone footing. Footprint 10m east-west by8m north-south.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_house",
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_house.png",
+      "sha256": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+      "role": "本批候选相机与材质参考（非作者approved）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-fa183f27-1533-4d66-bc9d-a60d4640dbc0.png",
+  "source_sha256": "aa810b2b3d4536cea432972f2497fd7a2a38092f7f3d98b5c3119e810de01aeb",
+  "created": "2026-09-30T08:29:19.644040+00:00",
+  "visual_review": "已逐张view_image(detail=original)：主体完整可辨，无文字、水印、人或现代物，南门朝左下，左上光；灰瓦木构与本批材质一致（独立摊棚为布木）。原图有低alpha外缘，终图需扩透明余白。底面视角与占地比例仍有残差，未标精确通过，见点位和projection_review。历史细部待考。",
+  "candidate_count": 2,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-ce5c0d43-739f-4da4-ab37-7706effff0bd.png",
+      "prompt": "undefinedA modest two-story travelers' inn, timber balcony facing south, restrained gray tiled gabled roofs, small sheltered ground-floor entrance and side service yard with clay jars, simple stone footing. Footprint 10m east-west by8m north-south.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "12517d363a511969d83bf07eb39772fb3433c26a912254d851f3d16145e3b924"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        278,
+        563
+      ],
+      [
+        932,
+        883
+      ]
+    ],
+    [
+      [
+        932,
+        883
+      ],
+      [
+        1526,
+        622
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      278,
+      563
+    ],
+    "front": [
+      932,
+      883
+    ],
+    "right": [
+      1526,
+      622
+    ]
+  },
+  "projection_review": "手动可见底面点±3px估计；两轴斜率0.4893/-0.4394；两轴dx比654/594=1.1010，目录w/h=1.2500。仅裁切/等比缩放不会改变这些残差。",
+  "status": "candidate",
+  "source_size": [
+    1774,
+    887
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "transparent_pixels": 936499,
+    "partial_pixels": 636532,
+    "opaque_pixels": 507,
+    "bbox": [
+      156,
+      0,
+      1677,
+      887
+    ]
+  }
+}

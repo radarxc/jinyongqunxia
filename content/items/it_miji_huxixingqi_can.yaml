@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_huxixingqi_can
+name: 呼吸行气残本
+kind: manual
+sub: partial
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_huxixingqi_can
+text:
+  desc: 外观：唐代经折残册，灰麻纸护面。
+  lore: 山野散人记录的呼吸行气法只余烟熏残册，心法、载体与散佚均属 （原创扩展）。研读须辨清折痕处断句，按短周天缓练，不可强补缺文；现存篇幅只支持七层修习。
+extension:
+  type: manual
+  value:
+    skill: sk_huxixingqi
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_huxixingqi
+      readBre: 20
+      maxLayer: 7
+      cultivation: 350

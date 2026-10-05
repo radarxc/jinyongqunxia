@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_qingcai_doufu_xiaoyufan
+name: 青菜豆腐小鱼饭
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·程英照料杨过，备青菜豆腐、鸡蛋小鱼与米饭
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_ruiyi:2battle
+assets:
+  icon: item/qingcai_doufu_xiaoyufan
+text:
+  desc: 外观：青菜豆腐、煎蛋小鱼三碟配一碗米饭，竹筷陶器。 待运行时投影：party=4。
+  lore: 《神雕侠侣》中程英照料杨过，备青菜豆腐、鸡蛋小鱼与米饭。本件合为二人小席，应趁热同食；供餐人数与锐意膳食效果均属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

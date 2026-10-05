@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: eq_qingqingbufengpi_nv
+name: 清青布风披·女
+kind: armor
+sub: cape
+grade: 1
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch10_baima
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 民间风披 · 清（清代风俗画）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingqingbufengpi_nv
+text:
+  desc: 外观：女款灰青粗布风披单件完整铺展，圆领、右开襟布结、无袖直摆及膝。 待运行时投影：defOutK=0.025; hpMaxK=0.005; wearer=female。
+  lore: （原创扩展）据清代汉女行旅衣着意象裁成灰青粗布风披，右襟布结，无袖直摆及膝。补缀并不妨使用，赶集或访亲皆可披；洗后要重压领口才服帖。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3

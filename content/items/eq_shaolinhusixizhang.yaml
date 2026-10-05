@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_shaolinhusixizhang
+name: 少林护寺锡杖
+kind: weapon
+sub: staff
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 少林 · design/17 §5.1；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/shaolinhusixizhang
+text:
+  desc: 外观：黄铜轮形杖首带六枚闭合小环，深檀长杆约一百八十厘米、铁尾鐏。 待运行时投影：sect=sect_shaolin。
+  lore: 少林护寺僧持用的重型锡杖，轮形杖首与六环可在巡夜时示警，遇敌则以长杆封门、钝首压阵。此件不对应原著具名兵器，来历与形制均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: staff
+    hands: 2
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 78
+      qiAffinity: 100

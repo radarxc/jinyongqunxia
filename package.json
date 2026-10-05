@@ -1,0 +1,47 @@
+{
+  "name": "tianshu",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=9 <10"
+  },
+  "scripts": {
+    "dev": "pnpm --filter ./apps/game dev",
+    "build": "pnpm --filter ./apps/game build",
+    "lint": "eslint . --max-warnings 0 && pnpm --filter @tianshu/core lint",
+    "typecheck": "vue-tsc -b --pretty false",
+    "test": "vitest run $(find packages apps tools -type f \\( -name '*.test.ts' -o -name '*.test.mjs' \\) ! -path 'packages/render/src/rig/performance.test.ts' ! -path 'packages/core/bench/battle-session.performance.test.ts' ! -path 'packages/core/bench/combat.performance.test.ts' ! -path 'packages/platform/src/storage/storage.performance.test.ts') --config vitest.workspace.ts",
+    "test:perf": "vitest run packages/render/src/rig/performance.test.ts packages/core/bench/battle-session.performance.test.ts packages/core/bench/combat.performance.test.ts packages/platform/src/storage/storage.performance.test.ts --config vitest.workspace.ts --no-file-parallelism",
+    "check:perf": "node -e \"const o=require('os');console.log('loadavg',o.loadavg().map(n=>n.toFixed(2)).join(' '),'cpus',o.cpus().length)\" && pnpm test:perf",
+    "content:validate": "tsx packages/data/scripts/validate-content.ts",
+    "content:build": "tsx packages/data/scripts/build-content.ts",
+    "content:compile-story": "tsx tools/content/compile_story.ts",
+    "content:test-compile-story": "tsx tools/content/test_compile_story.ts",
+    "size": "pnpm build && node tools/perf/check_size.mjs && node apps/game/scripts/check-dev-chunks.mjs",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm content:validate && pnpm content:test-compile-story && pnpm content:compile-story && pnpm size",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/node": "22.20.4",
+    "@vitejs/plugin-vue": "6.0.9",
+    "@vue/devtools-api": "8.2.1",
+    "@vue/test-utils": "2.5.1",
+    "eslint": "9.39.5",
+    "eslint-plugin-boundaries": "7.2.0",
+    "eslint-plugin-vue": "10.11.1",
+    "happy-dom": "20.14.5",
+    "prettier": "3.9.9",
+    "tsx": "4.20.6",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.0",
+    "vite": "8.3.1",
+    "vitest": "5.0.3",
+    "vue-eslint-parser": "10.4.1",
+    "vue-tsc": "3.3.11"
+  }
+}

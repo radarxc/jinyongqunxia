@@ -1,0 +1,248 @@
+{
+  "durationMs": 458,
+  "events": [
+    {
+      "frame": 6,
+      "type": "hit"
+    },
+    {
+      "frame": 14,
+      "type": "end"
+    }
+  ],
+  "fps": 30,
+  "frameCount": 15,
+  "id": "clip_sword_regular_a",
+  "importer": {
+    "mapping": "ue66",
+    "version": "1.0.0"
+  },
+  "loop": false,
+  "mainHand": "R",
+  "nativeSpeedMmps": 0,
+  "restPose": {
+    "jointMm": [
+      [
+        0,
+        917,
+        -50
+      ],
+      [
+        0,
+        1315,
+        -5
+      ],
+      [
+        0,
+        1476,
+        -40
+      ],
+      [
+        0,
+        1569,
+        5
+      ],
+      [
+        192,
+        1441,
+        -65
+      ],
+      [
+        466,
+        1441,
+        -70
+      ],
+      [
+        739,
+        1441,
+        -65
+      ],
+      [
+        857,
+        1441,
+        -45
+      ],
+      [
+        -192,
+        1441,
+        -65
+      ],
+      [
+        -466,
+        1441,
+        -70
+      ],
+      [
+        -739,
+        1441,
+        -65
+      ],
+      [
+        -857,
+        1441,
+        -45
+      ],
+      [
+        89,
+        932,
+        1
+      ],
+      [
+        89,
+        532,
+        -1
+      ],
+      [
+        89,
+        104,
+        -36
+      ],
+      [
+        89,
+        15,
+        113
+      ],
+      [
+        -89,
+        932,
+        1
+      ],
+      [
+        -89,
+        532,
+        -1
+      ],
+      [
+        -89,
+        104,
+        -36
+      ],
+      [
+        -89,
+        15,
+        113
+      ]
+    ],
+    "jointOrder": [
+      "pelvis",
+      "chest",
+      "neck",
+      "head",
+      "shoulder_L",
+      "elbow_L",
+      "wrist_L",
+      "grip_L",
+      "shoulder_R",
+      "elbow_R",
+      "wrist_R",
+      "grip_R",
+      "hip_L",
+      "knee_L",
+      "ankle_L",
+      "toe_L",
+      "hip_R",
+      "knee_R",
+      "ankle_R",
+      "toe_R"
+    ]
+  },
+  "rootMotion": "inPlace",
+  "schema": "tianshu-clip.v1",
+  "skeleton": "tianshu_humanoid.v1",
+  "source": {
+    "animation": "Sword_Regular_A",
+    "license": "CC0-1.0",
+    "pack": "human-base-animations.glb",
+    "sha256": "406eb0a8dc4ab366e623b79b6e3005a4951392e1bda78ae39c1099d31147733c",
+    "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-app/79f3f61a9852ef70234a5a4a7c13ed87f7a71833/static/animations/human-base-animations.glb"
+  },
+  "tracks": {
+    "bones": [
+      "torso",
+      "head",
+      "shoulder_span",
+      "hip_span",
+      "upper_arm_L",
+      "upper_arm_R",
+      "forearm_L",
+      "forearm_R",
+      "hand_L",
+      "hand_R",
+      "thigh_L",
+      "thigh_R",
+      "shin_L",
+      "shin_R",
+      "foot_L",
+      "foot_R"
+    ],
+    "directionI16": "+PxZf34MBvCWa3pDoIZlA4LXcoP7/4XiZjGTjdnix+V/k1/BjRfth5Al699BiNsfi/rRlydKYe5knGxOFhLRi5MyKeQahYvp1xF2gb343wXkhyjUHPWjvoJtBbSjvpxPZvZ3fXAXt+WyYiVNXIq5/Z/Nb4OD/a7iMkfXlVv5ZPOJlKC7Bx2UkOg319yOhWYMF/bFnqZSKOUKk5A9iBLvi64yCdHgifQO+BD/iWvR/BdmiobTmftFuZZq2cAnvsVZiOpPdxQp/NQBUC1a8pPq+MK7loOM+N/iQk1Gol0onga7mVGzmwL3mTxNbuCMhsvmnNJMpRNO0Nxth6IYrRQxipItmssjmUo3cQ6BnyitVx+2jlfNyAUGsMRj39B1validd1GbOI6ZsU/N3tjpKE1/JmpA4TW8YzjByUInpVJRRWVoiCrRcivmf40ye/lkhK/96NeqhMYoeDehQfqJBrShtwf19KRsl1b2gjPvGuT+RhSj6jIeRAgpqNZe+JKvSxpEtNKX7JIXbySH/pn1qznBNSer4Su6fblzPLgkeM/rBhfqzKjCqfPpKTzJwBFpLymmpySwfTMTu4Dj4fGcCNFhQIIqN/a0lJz0f5Y16OGOQrdic/PDBmonj9PkPI3vvlsDc5QVU1RoLzOD61rRK6VCN+dqoXo31HsNt/Ni34qGQ+3sKmcF6eCucTE5ABLrVGesayb3r+kHv2gleC4bC3wiizn1OpR8EF9GPL04+SDr/uUgtXm3RzymhBJdgGjvgpu+utYZ9FIeetkLx1104Pk6j3paIym0YsdF0dbuLdOF9HpjGXhBrpjqLo9Gr5Lkh8C4Jprux8mmcvOi6ILMUZbnOvYdgzA2x96zt1ryueQ39nMkz/H3DZcoXVCHwrDu9Frz/UHd/Qt/xR8WRNZ3q2r2PJZ27I/zaJYkXvC7mrjFyT7q5BZfCmPyKZrJycX3HN0igpi1Tt4Bi292uBxoFTmsI3JayU7u0NlEtlbqzyo4Lj6rTS8iFKKrA0z8xfGtX1l3+0Tex4eWRk9c5oxXxYQ7+J8MOz12EZ4NUGi68KTQnxtGJ0S4Grp7lREKmFAUGkWOV6OA49W3WE+UVIOQVXwwFO47x0LqQZZr+ETnPu1KqkowPa6iGP3tYsfnhr0tfRkDexYe8gbHRLket4euVnyAj1bLRmJ5xd7kg/B3mKFi04+Rla3/3pi+vki/CU2b0jNVHWZEqkvsR6TaOG8GFLRyMWuRA73qMNcU+xCmKi336pBwMe4fGssvRYTxBu/vE5pz++3e44ckBP0ezYZZGu7BHxFzy2U6pV1mfgO2vyFIjbARhekzH4F+I4PHg7pbEK+93v6EPoaxAMkYyGvQk63y0Gpvwv6py5cDfWvlha40andwIK5sGyjvkERQRyjvlxqZfSKe2kf1hURfKwWZnRDAjI1bjiu6H5wtee4266HTSO8QGCXVX/68nj/OQBsaPu18X7mC04LafOoXaypsE6WzvinHhVOpMVW0/etk0+83Z/0xI3DrGyevkgRXRyfvlJqlvQqfOocJxm8ejQaZ1SU9IxfpRGI5MN79wlvy7mLKGu2FyK+0nzV6E4QPEVaTSG1I3zFAhMfxjo2SQCpBWDnwX/Gk/lll3xJpAnwj+jCqqtQwMq3cWVfvako8A6TtFNmOPUYfigTfhflc/swX8Ho685tr6ZA6hBZATy6ohvApR4FpahUwVUwuDo+yF7U1fpKhlJz1J5XDW+P5lY611NtoT8UrdCWiuYSHB3Khw/fcuY1pnGoaTsguw1a6euorelf+PxZf34MBvCWa3pDoIZlA4LXcoP7/4XiZjGTjdnix+V/k1/BjRfth5Al699BiNsfi/rRlydKYe5knGxOFhLRi5MyKeQahYvp1xF2gb343wXkhyjUHPWjvoJtBbSjvpxP",
+    "encoding": "base64-le",
+    "facingYawCdegI16": {
+      "chest": "NQcOCZsMmBBQE50TDwRo7eDYdMuKxkjDpsxy6DUH",
+      "head": "uAAtAFz/m/7K/WX8avhS89btA+ki5yzkHeeu8rgA",
+      "pelvis": "NAUsBSYFDAWoBJIDZvrg7H/gVNiH1HDSrdl07jQF"
+    },
+    "lengthRatioU16": "8YH/f/F//3//f/9//3//f/9//3//f/9//3//f/9//3/qgf9/iYL/f/9//3//f/9//3//f/9//3//f/9//3//f1uB/3+8hv9//3//f/9//3//f/9//3//f/9//3//f/9/FYD/f/qK/3//f/9//3//f/9//3//f/9//3//f/9//3+Tfv9/MY7/f/9//3//f/9//3//f/9//3//f/9//3//f6F9/3/Qj/9//3//f/9//3//f/9//3//f/9//3//f/9/ZYD/f1qN/3//f/9//3//f/9//3//f/9//3//f/9//38Ugf9/Non/f/9//3//f/9//3//f/9//3//f/9//3//fzCB/38Bhf9//3//f/9//3//f/9//3//f/9//3//f/9/fIH/f3+C/3//f/9//3//f/9//3//f/9//3//f/9//3+Vgf9/JIP/f/9//3//f/9//3//f/9//3//f/9//3//f46B/3++hP9//3//f/9//3//f/9//3//f/9//3//f/9/qIH/fwyF/3//f/9//3//f/9//3//f/9//3//f/9//3/bgf9/I4P/f/9//3//f/9//3//f/9//3//f/9//3//f/GB/3/xf/9//3//f/9//3//f/9//3//f/9//3//f/9/",
+    "rootMmI16": "BADT/+T//v+2/1kA8/9//9cA6f87/1YB4//3/tEB5P/D/kEC6P+5/oYC6f+y/r0C6v+t/usC6/+p/g8D6f+p/iED5v+o/hcD6v/b/oYC9v9T/0ABBADT/+T/"
+  },
+  "unmappedSourceJoints": [
+    "Armature",
+    "Mannequin",
+    "ball_leaf_l",
+    "ball_leaf_r",
+    "clavicle_l",
+    "clavicle_r",
+    "head_leaf",
+    "index_01_l",
+    "index_01_r",
+    "index_02_l",
+    "index_02_r",
+    "index_03_l",
+    "index_03_r",
+    "index_04_leaf_l",
+    "index_04_leaf_r",
+    "middle_02_l",
+    "middle_02_r",
+    "middle_03_l",
+    "middle_03_r",
+    "middle_04_leaf_l",
+    "middle_04_leaf_r",
+    "pinky_01_l",
+    "pinky_01_r",
+    "pinky_02_l",
+    "pinky_02_r",
+    "pinky_03_l",
+    "pinky_03_r",
+    "pinky_04_leaf_l",
+    "pinky_04_leaf_r",
+    "ring_01_l",
+    "ring_01_r",
+    "ring_02_l",
+    "ring_02_r",
+    "ring_03_l",
+    "ring_03_r",
+    "ring_04_leaf_l",
+    "ring_04_leaf_r",
+    "spine_01",
+    "spine_02",
+    "thumb_01_l",
+    "thumb_01_r",
+    "thumb_02_l",
+    "thumb_02_r",
+    "thumb_03_l",
+    "thumb_03_r",
+    "thumb_04_leaf_l",
+    "thumb_04_leaf_r"
+  ],
+  "viewHints": {
+    "anatomicalSides": true,
+    "minForeshortenBp": 4500,
+    "nearSide": "L",
+    "yawAssistMaxCdeg": 3000
+  },
+  "weapon": {
+    "gripJoint": "grip_R",
+    "hand": "R",
+    "tipDirectionI16": "Ye5knGxOKOUKk5A90Nxth6IYoeDehQfqTu4Dj4fGHv2gleC4mcvOi6ILBi292uBx3WE+UVIOsR6TaOG8xAMkYyGvafOoXaypxjo2SQCpDW+P5lY6Ye5knGxO"
+  }
+}

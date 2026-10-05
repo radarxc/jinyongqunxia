@@ -9,69 +9,119 @@ tier: S
 output: assets/default/character/female/ch12/por_npc_luobing__ch12_youth_recovered_base.png
 manifest: assets/default/character/female/ch12/manifest.yaml
 references:
-- path: .agents/coord/imagegen-reference/user_wangyuyan_background_only_20261002.png
-  use: 唯一图片输入，已实际view_image：root由用户原背景派生的不含人物纯背景，仅取暖浅灰纸底、极淡远山与宽阔留白。没有面孔、人体、衣服或道具可供身份借用；人物颜色、柔和光线、年龄和具体骨相全部依本稿文字。派生内部参考不是用户原图、不是approved；背景水墨不得侵入写实人物或器物。
-status: ready
-realism_revision: user_identity_pose_20261001
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: approved，当前工作副本 manifest 已批准；仅拟参考纸底、光线、笔触与设色，不沿用面容、体型、服饰或道具
+status: new
+redo_reason: "红花会十一当家尚无立绘；按原著「肤色白腻、星眼流波、明艳爽朗、一长一短双刀加飞刀」补出。"
+reference_upload:
+- assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+codex_prompt_rev: 2026-10-02
 ---
 
-# 骆冰 · 人物写实修正
+<!-- full-coverage-import:current-policy:v1 -->
+> 本稿按用户“全部男女角色先出齐”的授权导入，仅为待生成的基础提示词，不表示图片完成或审批。
+> 当前生产以[人物写实、背景水墨](../../../../../.agents/coord/portrait-generation/REALISTIC-CHARACTERS-20261001.md)与[宽松自查及项目基线授权](../../../../../.agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md)为准；优先于下文旧纸底、精确占高和 approved 参考门槛。身份、年龄、伤残侧别及阶段器物仍须核对；保留参考与输出实际 candidate 状态，不自动批准。
+> 正文暂保留原稿供考据。实际生成前必须重新读取最新 INDEX、人物稿和上述规范，由 prepare 重写完整实际提示词，并实际查看、按顺序传入本机绝对路径参考；不能直接提交下文含旧规范的提示词。保存真实 PNG、核验 manifest 后才更新本行完成标记。
+<!-- /full-coverage-import:current-policy:v1 -->
 
-## 人物与阶段
 
-- subject_id：npc_luobing
-- book：ch12_shujian
-- gender：female
-- age_variant：youth
+# 骆冰 · 《书剑恩仇录》（ch12）
 
-## 本轮人物写实规范
+## Gemini 提示词
 
-首次独立原创面貌：骆冰；明确青年成年女性youth；肩腰结实、有练武者力量，成熟神态而非少女，完整端庄衣装不强化胸腰曲线。 正面端正、头颈竖直、双眼水平；人物完整写实，背景极淡水墨。先1张独立candidate，原始PNG native 2:3；均candidate待用户审核。唯一图片输入为无人纯背景；人物本人由具体原创文字脸锚建立，不借其他人物palette。
+> 2026-10-02 Codex 人物线 2 号（AR-31）：在审核组稿上补一行「经典形象」（借鉴公认经典造型的发式、装束、配色、标志道具与气质，只写文字，不写演员名、不上传剧照），并补去 AI 化要求。本轮出图用下面第一个代码块；审核组原稿保留在其后的「审核组原稿」小节作历史。
 
-人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+```text
+生成一张 2:3 竖幅全身人物立绘。
+人物：骆冰，金庸《书剑恩仇录》红花会十一当家，外号「鸳鸯刀」，文泰来的妻子，江南女子，救出丈夫后。
+经典形象：要一眼认出是「鸳鸯刀」骆冰——绛红短袄、墨青长裙、一长一短双刀、腰挂飞刀囊，左颊酒窝、笑意明艳爽朗；美丽大方的江南少妇。
+年龄与体态：约二十六岁的成年少妇，身材匀称，肩腰结实，有练武的力量，约七头身。
+脸与五官：圆润的鹅蛋脸；弯弯的柳叶眉；一双明亮灵活的杏眼，眼波流动、带着笑；鼻梁秀挺，鼻头小巧；嘴唇丰润，笑时露出整齐洁白的牙齿，左颊有一个浅浅的酒窝；肤色白腻细致，两颊自然红润。明艳、爽朗、大方，是成熟女子的美。
+发式：乌黑的头发挽成已婚妇人的发髻，插一支素银簪。汉族女子发式。
+服饰：低饱和的绛红色窄袖短袄，交领右衽（穿着者左襟压右襟），墨青色长裙，裙内长裤，平底布靴；衣料厚实不透。
+兵器与道具：左手握一柄较长的中式单刀，右手握一柄较短的中式单刀，刀尖分向两侧下方；腰侧挂一长一短两只刀鞘；腰带上挂一只小皮囊，露出几柄小飞刀的刀柄。
+姿态与神情：半侧身站立，笑容明朗，眼里带着保护同伴的警觉。
+画风：写实手绘古风人物插画，画风与上传的画风基线图一致：精细写实的数字手绘插画，笔触细腻柔和、边缘干净；不是油画，没有厚涂笔触和画布纹理；不是照片，不是三维渲染，不是动漫或游戏 CG。人物要像真实存在的人：皮肤看得见毛孔、细纹、晒痕和轻微色斑，五官与脸型有自然的左右不对称，不磨皮；衣料看得出织物的经纬、自然的褶皱和穿用后的轻微旧化，但衣服完整，没有破洞碎布。整体低饱和、沉稳的设色；柔和自然的漫射光从左上方照来，不用舞台光和强轮廓光。
+背景：暖浅灰色纸底，远处只有极淡的水墨远山和薄雾，大面积留白；人物轮廓清楚、与背景明显分开（便于后期抠图），墨色不压到人物身上，脚下只有很淡的接触阴影。
+构图：2:3 竖幅，单人全身，自然站姿，平视镜头，头部端正不歪；从头顶到鞋底完整入画，四周留出余白；双手完整，兵器和道具的两端都在画面内。
+不要：任何文字、字母、签名、印章、水印、边框；第二个人物、活的动物、分格、多视角、头像特写；幼态、童颜、娃娃脸、大头小身、儿童身材；网红脸、锥子脸、大眼滤镜、过度对称、塑料皮肤、蜡像感、过度精修、偶像化打光；任何真实演员或明星的长相；现代服饰和物品；日式服饰、日本刀；汉服交领左衽、整幅画面左右镜像；多余或缺失的手指、手与器物粘连；发光特效、血迹；浓妆、性感化或暴露的衣着；网红脸、柔弱娇怯；性感化；婚服；刀上刻字。
+质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+【画风基线】上传的参考图里，最后一张是本项目的立绘画风基线（只上传了一张时就是它）：只参考它的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；不要照搬基线图里那个人的长相、年龄、发型、服饰和姿势。
+```
 
-本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_luobing__ch12_youth_recovered_base/prompt-2cca8bac8e62b6c47d2600b44f728d3e78a7fb614e5e82bfd5b89e00e5bc9006.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+### 审核组原稿（AR-30，2026-10-02，留作历史）
+
+> 2026-10-02 重要人物重审（C 组，判定：补出）：本轮出图只用下面这一段，不上传参考图。下文旧稿（人物要点 / 提示词 / 排除项 / 质检要点）只作历史与考据保留，不再用于出图。
+
+```text
+生成一张 2:3 竖幅全身人物立绘。
+人物：骆冰，金庸《书剑恩仇录》红花会十一当家，外号「鸳鸯刀」，文泰来的妻子，江南女子，救出丈夫后。
+年龄与体态：约二十六岁的成年少妇，身材匀称，肩腰结实，有练武的力量，约七头身。
+脸与五官：圆润的鹅蛋脸；弯弯的柳叶眉；一双明亮灵活的杏眼，眼波流动、带着笑；鼻梁秀挺，鼻头小巧；嘴唇丰润，笑时露出整齐洁白的牙齿，左颊有一个浅浅的酒窝；肤色白腻细致，两颊自然红润。明艳、爽朗、大方，是成熟女子的美。
+发式：乌黑的头发挽成已婚妇人的发髻，插一支素银簪。汉族女子发式。
+服饰：低饱和的绛红色窄袖短袄，交领右衽（穿着者左襟压右襟），墨青色长裙，裙内长裤，平底布靴；衣料厚实不透。
+兵器与道具：左手握一柄较长的中式单刀，右手握一柄较短的中式单刀，刀尖分向两侧下方；腰侧挂一长一短两只刀鞘；腰带上挂一只小皮囊，露出几柄小飞刀的刀柄。
+姿态与神情：半侧身站立，笑容明朗，眼里带着保护同伴的警觉。
+画风：写实手绘古风人物插画，画风与上传的画风基线图一致：精细写实的数字手绘插画，笔触细腻柔和、边缘干净；不是油画，没有厚涂笔触和画布纹理；不是照片，不是三维渲染，不是动漫或游戏 CG。人物要像真实存在的人：皮肤看得见毛孔、细纹、晒痕和轻微色斑，五官与脸型有自然的左右不对称，不磨皮；衣料看得出织物的经纬、自然的褶皱和穿用后的轻微旧化，但衣服完整，没有破洞碎布。整体低饱和、沉稳的设色；柔和自然的漫射光从左上方照来，不用舞台光和强轮廓光。
+背景：暖浅灰色纸底，远处只有极淡的水墨远山和薄雾，大面积留白；人物轮廓清楚、与背景明显分开（便于后期抠图），墨色不压到人物身上，脚下只有很淡的接触阴影。
+构图：2:3 竖幅，单人全身，自然站姿，平视镜头，头部端正不歪；从头顶到鞋底完整入画，四周留出余白；双手完整，兵器和道具的两端都在画面内。
+不要：任何文字、字母、签名、印章、水印、边框；第二个人物、活的动物、分格、多视角、头像特写；幼态、童颜、娃娃脸、大头小身、儿童身材；网红脸、锥子脸、大眼滤镜、过度对称、塑料皮肤、蜡像感、过度精修、偶像化打光；任何真实演员或明星的长相；现代服饰和物品；日式服饰、日本刀；汉服交领左衽、整幅画面左右镜像；多余或缺失的手指、手与器物粘连；发光特效、血迹；浓妆、性感化或暴露的衣着；网红脸、柔弱娇怯；性感化；婚服；刀上刻字。
+【画风基线】上传的参考图里，最后一张是本项目的立绘画风基线（只上传了一张时就是它）：只参考它的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；不要照搬基线图里那个人的长相、年龄、发型、服饰和姿势。
+```
+
+**出图自查**：明艳爽朗的少妇，酒窝、白腻肤色；一长一短双刀 + 飞刀囊；与周绮、李沅芷不撞脸。
+
+**依据与待考**：「肤色白腻，面目俊美，皓腕似玉……星眼流波，皓齿排玉，明艳非常」「一长一短一对刀、擅放飞刀」据百科转述（待逐字核）；酒窝与衣色为原创扩展。
+
+---
+
+## 人物要点
+
+| 项 | 内容 | 依据 |
+|---|---|---|
+| 身份与阶段 | 青年成年女子，鸳鸯刀、红花会十一当家，文泰来之妻，取救夫后伤势稳定的同行阶段 | 名录本人物行；chapters/12 §8.2；story/12 §3.6 |
+| 项目已登记事实 | 双刀与飞刀画像，救夫主线；不改夫妻关系与会中接应关系 | 名录 / 章节 / 图鉴；玩法配置不等于原著装束 |
+| 年龄与体貌 | 爽朗温柔而有侠气，鸳鸯双刀一长一短，人物自身左手长刀、右手短刀，另有飞刀 | 原著概括（待考）；名录年龄须与下文边界合读 |
+| 服饰与发式 | 清代汉族江湖女子，低饱和绛红右衽窄袖短袄、墨青下裙内配便于行动的长裤、平底布靴；黑发收成紧凑发髻，一支素簪，无旗装大头饰 | tech/07 §2.7；经典锚点之外均（原创扩展） |
+| 兵器与标志物 | 左手长刀、右手短刀分别低垂，都是中式单刃刀；腰侧两副匹配长短的空鞘，另有闭合飞刀囊；这组为骆冰个人双刀，不使用 eq_yuanyangdao | 名录；story/12 营救段；左右长短与飞刀原著概括（待考）；具体形制美术补足（原创扩展） |
+| 气质与姿态 | 圆润鹅蛋脸、弯眉、明亮但不过大的杏眼、温和唇角，肩腰结实有练武感，约7头身；成年神态与周绮的直率少女感区分；半侧站立、肩颈放松，双刀向两侧下方分开，脸上淡淡笑意中有保护同伴的警觉 | 具体脸型、比例、神态落实与站姿（原创扩展） |
+
+依据分层：项目事实只取上表归属文件；原著概括均保留（待考）；脸型细节、衣装选款、配色与摆姿不冒充原著明文。
+
+阶段与年龄边界：青年取 youth 美术键；recovered 用于排除铁胆庄重伤时点。绛红衣色与发髻均为原创美术设计，不称原著固定红衣。
+
+考据定位：《书剑恩仇录》三联/广州修订版，核对本条所选阶段的体貌、衣饰、兵器及出场先后；不据影视形象补证。
+
+补充查证线索：[骆冰左右长短刀线索](https://icyfiredh.github.io/data/2570.html)，指定版本刀形、持法仍（待考）。
+
+参考与交付：frontmatter 列的是后续拟输入路径，本任务未调用出图；引用状态以该路径所在工作副本 manifest 的 status 为准。
+
+规格边界：纸底候选按本任务保留不透明背景；tech/07 §1.3 的正式 RGBA 母版及 §5.2 后续处理另行验收，不把提示词 ready 当成图片获批。
 
 ## 提示词
 
 ```text
-POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes lie on a HORIZONTAL line. Keep the head centered over the torso, neck aligned with the body, chin neutral, gaze directly forward and camera level. NO head tilt, NO Dutch angle, no head leaning toward a shoulder, no rolled camera and no coquettish angled face. Ignore every reference image’s head angle, side-glance and body turn. Preserve natural facial asymmetry without tilting the head.
-
-Create a refined REALISTIC hand-painted Chinese wuxia character illustration: a clear and individually designed face, believable natural age, continuous skin and anatomy, readable eyes and hands, soft connected lighting, complete opaque tailored garments, intact seams and a clean silhouette. Clothing has a few broad weight-bearing folds, fine restrained material variation and real gravity. Ink wash and paper texture belong only to the pale background, never inside the figure. This is a newly composed illustration, not a photograph, movie screenshot, 3D model or collage. Natural age lines are continuous skin anatomy, not dirt, cracks or dry-brush flecks.
-
-THIS IS THE FIRST ORIGINAL IDENTITY IMAGE FOR THIS SUBJECT. No input supplies an identity, face, person, body, costume, prop or pose. Image 1 is the ONLY input: a person-free background derived from the user background, used ONLY for pale warm paper, extremely faint distant ink-wash mountains and open space. Establish this person solely from the specific written age, facial structure, expression, body, costume and stage below. Do not invent an identity-source claim or import another person’s face. The person remains fully realistic, intact and opaque; ink wash is confined to the background.
-
-CHARACTER AND STAGE: 骆冰 / npc_luobing, por_npc_luobing__ch12_youth_recovered_base.
-《书剑恩仇录》ch12，鸳鸯刀、红花会十一当家骆冰，文泰来之妻。取救夫后伤势已经稳定、可持刀同行的阶段；排除铁胆庄重伤时点，不改夫妻关系。 本项目书界主线年代为1753–1759年、清乾隆；前史人物严格以其生前回忆阶段为准，不把回忆像当作现时活体。
-
-AGE AND ORIGINAL FACE IDENTITY:
-明确青年成年女性youth；肩腰结实、有练武者力量，成熟神态而非少女，完整端庄衣装不强化胸腰曲线。 独立圆润鹅蛋脸，上额与颧部宽度协调、面颊饱满自然，下颌较宽而柔和、下巴圆润有支撑。弯眉弧度舒展，明亮杏眼大小自然，上睑线清楚、目光平视警醒温暖，眉眼间距比李沅芷更舒展。鼻梁中等高且秀直，鼻头饱满而不尖、鼻翼自然；嘴宽适中、上唇较薄下唇有温润体积，浅浅微笑不露夸张齿列。成年面部体积和细腻肤质真实，不是周绮少女直率脸、李沅芷小巧易装脸，也不照搬王语嫣。爽朗侠气用稳定站姿与眼神表达，不歪头卖萌。
-
-CLOTHING AND HAIR:
-清代汉族江湖女子衣装：低饱和绛红右衽窄袖短袄，穿着者左襟压右襟；墨青完整下裙内配方便行动的长裤和平底布靴，窄布腰带承托武器。黑发收成紧凑而整洁的发髻，仅一支素簪，鬓发不遮面，无旗装大头饰。衣领严整、肩胸腰腹完全遮蔽，面料不透明、整片连续，少量宽缓褶，无新娘繁饰、纱衣、破损或血迹。
-
-POSE, EQUIPMENT AND STRUCTURE:
-端正正面站稳，头颈自然竖直、双眼水平，下巴中性、肩颈放松。人物自身左手（正面画面右侧）握较长的中式单刃刀，人物自身右手（画面左侧）握较短的中式单刃刀；两刀都已出鞘，低位朝各自外侧下方分开，刀尖离地且全入画，长度差明显，不水平镜像。各手牢握独立刀柄，拇指、指节、简洁刀格与刃根连接清楚；刀是轻微弧形单刃刀，绝非等长双剑。腰左右两副空鞘分别足够容纳相应长短刀，以短挂带真实接腰带，空鞘口可读，另有闭合飞刀囊独立挂点。只两柄持刀、两副空鞘和一闭合飞刀囊，不增刀刃、不抛飞刀。这是骆冰个人双刀，不使用他书eq_yuanyangdao，不刻仁者无敌文字。
-
-ORIGINAL CHARACTER COLOR AND LIGHT:
-低饱和绛红短袄与墨青下裙保留成熟侠女色调；柔和左上漫射光表现饱满鹅蛋脸、宽柔下颌、自然杏眼与成年骨肉。警醒温暖目光和浅笑端正，不能缩成年幼少女脸或夸张女性曲线。
-
-COMPOSITION AND DELIVERY: one person, one view, full body from head to both shoes, both hands, entire hem and all specified prop endpoints comfortably inside the frame. Upright frontal head and body, relaxed level shoulders, believable grounded weight, neutral eye-level perspective. Vertical native 2:3 PNG, target 2048×3072, with natural margins; accept the tool’s actual native 2:3 size and record it truthfully. Preserve original PNG bytes, metadata and tool provenance; no upscaling, cropping or re-encoding to pretend compliance. Opaque warm pale-grey background with only extremely light distant ink-wash mountain/mist suggestions, generous empty space and a modest soft contact shadow. Background never erodes skin, clothes, shoes or equipment. No narrative scene, recognizable temple, building, other person or action effect. Soft upper-left diffuse light makes the face, hand joints, cloth and materials continuous and clearly readable. FAST1 production: first generate ONE candidate. Request another only for a serious identity, structural or readability failure. Every result remains candidate for user review, never automatically approved.
-
-FACT BOUNDARIES: 本图人物身份、年龄与剧情阶段沿当前本地角色稿、名录及故事事件。所选配角在当前已下载原版游戏语料中没有可靠本人头像配对，不等于断言所有版本从无头像。唯一输入为不含人物的派生纯背景参考；独立脸型五官、服色裁制与具体静态展示是原创美术，原稿待考照留，不冒称已逐字核对小说或实际观察到本人图片。项目基线原candidate/approved状态不变。
-
-完整排除项：不要 head tilt、Dutch angle、头歪向肩、头部中线偏斜、双眼高低倾斜、倾斜镜头、仰头、俯首藏眼、明显侧脸、侧身回眸、斜脸卖萌或高耸单肩。不要复制任何参考人物的脸、年龄、体型、发型、服装、姿势或身份，不要统一年轻模板脸、网红尖下巴、动漫大眼、丰唇滤镜、浓妆、塑料磨皮、摄影写真、三维模型、截图或拼贴。不要将老人和中年人年轻化，真实年龄纹理不能变成龟裂或污渍。不要人物本体碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、断裂衣摆、破洞、毛边、碎布条、无依据尘污和过密细碎褶；不要用雾或墨迹藏住人体轮廓。不要现代服饰、拉链、腕表、运动鞋、数码物件、塑料饰品、高跟鞋、时代族群混搭、晚清大拉翅、唐式齐胸裙、无依据官服补子或飞鱼服。汉式交领不要左衽，不水平镜像。不要和服、日式前结宽腰带、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻甲、赛博或蒸汽朋克。不要新增无依据兵器、发光武器、光翼、龙形能量、法阵、粒子特效、强逆光或泛光。不要多人物、多视角、分格、头像插框、额外肢体、多指、粘手、错接手腕、手物融合、悬空装备、失重衣带、重复武器、断裂器物、过短刀剑鞘或裁断头足器物端点。不要裸露、透衣、性感化、夸张健美肌肉、血腥特写、恶搞或丑化。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书信字符或新增装饰水印；保留工具原有溯源信息。 清代发式依本角色文字，回部民间及女性易装不机械套汉地男子剃额留辫。 不要把双刀画成等长双剑，不能颠倒本版左长右短；不要《鸳鸯刀》天级宝刀铭文或仁者无敌字样；不要新娘装、清宫旗装、丰满性感化、透明衣料、重伤渗血或夫妇双人合影。
-
-FINAL POSE CHECK: 骆冰 is FRONT-FACING. Keep forehead–nose–chin vertically aligned, both eyes horizontally level, neck naturally upright and centered above the torso, shoulders relaxed and camera level. NO head tilt. NO Dutch angle. Ignore all input head angles. Preserve this person's own written age and face anchors; No input supplies a face.
+Use case: stylized-concept。Asset type: 《金庸群侠传·天书录》default 风格包，女性武侠人物单人全身立绘基础候选，目标 2048×3072、2:3 PNG。题材：骆冰，npc_luobing；青年成年女子，鸳鸯刀、红花会十一当家，文泰来之妻，取救夫后伤势稳定的同行阶段。书界：《书剑恩仇录》ch12_shujian，清乾隆，主线项目年代 1753–1759；前史人物以本条明确的回忆阶段为准。参考图：assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png（approved，当前工作副本 manifest 已批准；仅拟参考纸底、光线、笔触与设色，不沿用面容、体型、服饰或道具）；它仅为后续生成时拟载入的同性别风格参考，本人物必须有独立的面容与身份。人物与经典锚点：爽朗温柔而有侠气，鸳鸯双刀一长一短，人物自身左手长刀、右手短刀，另有飞刀（原著概括，待三联/广州修订版逐字核对，待考）；圆润鹅蛋脸、弯眉、明亮但不过大的杏眼、温和唇角，肩腰结实有练武感，约7头身；成年神态与周绮的直率少女感区分（原创扩展的具体骨相与比例落实）。服装与发式：清代汉族江湖女子，低饱和绛红右衽窄袖短袄、墨青下裙内配便于行动的长裤、平底布靴；黑发收成紧凑发髻，一支素簪，无旗装大头饰（经典锚点之外的裁制、配色、饰件细节为原创扩展）；凡汉式交领均右衽，即穿着者左襟压右襟，不水平镜像。动作与兵器道具：左手长刀、右手短刀分别低垂，都是中式单刃刀；腰侧两副匹配长短的空鞘，另有闭合飞刀囊；这组为骆冰个人双刀，不使用 eq_yuanyangdao；半侧站立、肩颈放松，双刀向两侧下方分开，脸上淡淡笑意中有保护同伴的警觉（具体持法和站姿为原创扩展）；手物连接、兵器承重与悬挂点可信，器物端点完整，刀剑鞘足以容纳刀剑。构图：竖幅 2:3，单人完整全身，平视近正面轻侧、中性透视；人物占画高约 88–92%，头顶、双足、现存手部、兵器端点与衣带全部入画，四周留净空；尊重既有伤残，不补回缺失肢体。画法与光线：武侠，女性偏美丽，细墨线与柔和层染，真实而温润的骨相肤质，保留本人的年龄感和面部特征，低饱和设色，自然衣褶与清楚剪影，柔和左上主光，脸、手和识别物清晰。背景：统一不透明暖浅灰纸底、极淡纸纹和脚下轻微接触阴影，无场景、无文字。排除项：不要文字、伪字、题款、签名、印章、logo、装饰水印；不去除或伪造工具自带的溯源标识。不要真人演员脸、明星相貌、剧照构图、影视或游戏独创造型，不复制具体画作，不使用画师姓名作风格词。不要现代服装、拉链、腕表、运动鞋、高跟鞋、塑料饰品、数码物件、民国旗袍或中山装。不要动漫大眼、统一偶像脸、网红锥子脸、丰唇滤镜、浓妆磨皮、塑料皮肤、摄影写真或三维模型渲染感。不要日式服饰、日本刀、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻铠甲、赛博或蒸汽朋克。不要时代或族群混搭、汉式交领左衽、水平镜像、晚清大拉翅、无依据的官阶补子或夸张冠冕。不要多余人物、多余肢体、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、无受力点的飘带。不要断裂弯曲剑刃、柄鞘错轴、容不下刀剑的短鞘、重复兵器、遮住关键识别物或裁断头足及器物端点。不要血腥特写、裸露、透明衣料、性感化、恶搞丑化、畸形健美肌肉；保留人物原有伤残、年龄与体型。不要发光兵器、法阵、光翼、龙形能量、粒子气功、强逆光、强泛光、复杂山水建筑、分格或多视图。不要把双刀画成等长双剑，不能颠倒本版左长右短；不要《鸳鸯刀》天级宝刀铭文或仁者无敌字样；不要新娘装、清宫旗装、丰满性感化、透明衣料、重伤渗血或夫妇双人合影。
 ```
 
 ## 排除项
 
-不要 head tilt、Dutch angle、头歪向肩、头部中线偏斜、双眼高低倾斜、倾斜镜头、仰头、俯首藏眼、明显侧脸、侧身回眸、斜脸卖萌或高耸单肩。不要复制任何参考人物的脸、年龄、体型、发型、服装、姿势或身份，不要统一年轻模板脸、网红尖下巴、动漫大眼、丰唇滤镜、浓妆、塑料磨皮、摄影写真、三维模型、截图或拼贴。不要将老人和中年人年轻化，真实年龄纹理不能变成龟裂或污渍。不要人物本体碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、斑驳模糊脸、断裂衣摆、破洞、毛边、碎布条、无依据尘污和过密细碎褶；不要用雾或墨迹藏住人体轮廓。不要现代服饰、拉链、腕表、运动鞋、数码物件、塑料饰品、高跟鞋、时代族群混搭、晚清大拉翅、唐式齐胸裙、无依据官服补子或飞鱼服。汉式交领不要左衽，不水平镜像。不要和服、日式前结宽腰带、日本刀、圆盘刀镡、菱形缠柄、欧式奇幻甲、赛博或蒸汽朋克。不要新增无依据兵器、发光武器、光翼、龙形能量、法阵、粒子特效、强逆光或泛光。不要多人物、多视角、分格、头像插框、额外肢体、多指、粘手、错接手腕、手物融合、悬空装备、失重衣带、重复武器、断裂器物、过短刀剑鞘或裁断头足器物端点。不要裸露、透衣、性感化、夸张健美肌肉、血腥特写、恶搞或丑化。不要文字、伪字、题款、签名、印章、标签、logo、器物铭文、书信字符或新增装饰水印；保留工具原有溯源信息。 清代发式依本角色文字，回部民间及女性易装不机械套汉地男子剃额留辫。 不要把双刀画成等长双剑，不能颠倒本版左长右短；不要《鸳鸯刀》天级宝刀铭文或仁者无敌字样；不要新娘装、清宫旗装、丰满性感化、透明衣料、重伤渗血或夫妇双人合影。
+- 不要文字、伪字、题款、签名、印章、logo、装饰水印；不去除或伪造工具自带的溯源标识。
+- 不要真人演员脸、明星相貌、剧照构图、影视或游戏独创造型，不复制具体画作，不使用画师姓名作风格词。
+- 不要现代服装、拉链、腕表、运动鞋、高跟鞋、塑料饰品、数码物件、民国旗袍或中山装。
+- 不要动漫大眼、统一偶像脸、网红锥子脸、丰唇滤镜、浓妆磨皮、塑料皮肤、摄影写真或三维模型渲染感。
+- 不要日式服饰、日本刀、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻铠甲、赛博或蒸汽朋克。
+- 不要时代或族群混搭、汉式交领左衽、水平镜像、晚清大拉翅、无依据的官阶补子或夸张冠冕。
+- 不要多余人物、多余肢体、多指、粘连手指、错接手腕、手物融合、悬空装备、失重衣料、无受力点的飘带。
+- 不要断裂弯曲剑刃、柄鞘错轴、容不下刀剑的短鞘、重复兵器、遮住关键识别物或裁断头足及器物端点。
+- 不要血腥特写、裸露、透明衣料、性感化、恶搞丑化、畸形健美肌肉；保留人物原有伤残、年龄与体型。
+- 不要发光兵器、法阵、光翼、龙形能量、粒子气功、强逆光、强泛光、复杂山水建筑、分格或多视图。
+- 不要把双刀画成等长双剑，不能颠倒本版左长右短；不要《鸳鸯刀》天级宝刀铭文或仁者无敌字样；不要新娘装、清宫旗装、丰满性感化、透明衣料、重伤渗血或夫妇双人合影。
 
 ## 质检要点
 
-- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
-- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
-- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
-- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_luobing__ch12_youth_recovered_base.prepared.json`。
+- 按人物自身方向核对左长刀、右短刀，不能水平镜像。
+- 双刀与两副空鞘均完整匹配，闭合飞刀囊另有挂点。
+- 非 eq_yuanyangdao，不因同名绰号借用他书神兵。
+- 青年成年女侠美丽而能战，服饰完全遮蔽、无性感化。
+- 恢复同行阶段，无伤重失力或渗血表现。

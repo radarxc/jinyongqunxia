@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_xianglong18_can
+name: 降龙十八掌残本
+kind: manual
+sub: partial
+grade: 12
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·丐帮降龙掌残传；实体 （原创扩展）
+price: null
+flags: []
+assets:
+  icon: item/miji_xianglong18_can
+text:
+  desc: 外观：元代旧黄包背残册，竹夹板护持。
+  lore: 《倚天屠龙记》所示丐帮降龙掌传承已残；将残传整理成册属 （原创扩展）。谱页只容有限层次，研读须以刚健掌理串联缺招；帮中老人常告诫，残谱不是凭空补全十八掌的捷径。
+extension:
+  type: manual
+  value:
+    skill: sk_xianglong18
+    maxLayer: 6
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xianglong18
+      readWis: 70
+      maxLayer: 6
+      cultivation: 3000

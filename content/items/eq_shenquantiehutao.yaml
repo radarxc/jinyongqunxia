@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_shenquantiehutao
+name: 神拳铁护套
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 神拳门 · design/17 §8.7；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/shenquantiehutao
+text:
+  desc: 外观：一对分指铁护套并置，覆盖拳背与指节、掌心留空。 待运行时投影：exoticKind=misc; sect=sect_shenquan。
+  lore: 神拳门弟子为护住拳背与指节而制的成对铁护套，掌心留空，仍可抓拿、运劲和攀握。铆片边缘必须磨圆以免自伤；器名、制度与结构均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 76
+      qiAffinity: 100

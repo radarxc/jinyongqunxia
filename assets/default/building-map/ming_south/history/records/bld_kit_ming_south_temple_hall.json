@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_temple_hall",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan Jiangnan temple hall. Strong historical construction detail: five-bay hall on low granite platform; low-pitch grey pan-and-cover tiled hipped-gable roof; plain ridge with restrained chiwen and two small beasts; two-layer short-projecting dougong, red-brown columns, straight lattice doors and subdued red-blue-green beam painting.\n\nPreserve the guide's logical footprint 14 by 11, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_temple_hall.png",
+  "refs": [
+    "temple1",
+    "temple2"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/temple_xuanmiao_1.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/temple_xuanmiao_2.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_temple_hall-c1/generated_images/01a0f6f7-d17e-71c1-8465-da9f25a7525e/exec-25ec7f86-189a-4eb7-9f22-a486c5951839.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_temple_hall.png",
+  "guide_sha256": "042ebd6c07b10ed9a4fcaeb8e8dddaae3235a4eaf215eb498e18d409878c4c35",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_temple_hall.png",
+  "selected_source_sha256": "2b2a4876e3ac5386e5d32765a2fc9b2675a2aba269d8084cc7781ddd80d26012",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      94,
+      44,
+      1466,
+      1012
+    ],
+    "guide_bbox": [
+      20,
+      20,
+      825,
+      605
+    ],
+    "uniform_scale": 0.5867346938775511,
+    "resized_size": [
+      805,
+      568
+    ],
+    "paste_offset": [
+      20,
+      37
+    ],
+    "canvas_size": [
+      847,
+      625
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_temple_hall.png",
+  "final_sha256": "13b16f0ab5ad6836647175fdfb0d4a18fe7b636bf26a0daa59812b61e4e2749e",
+  "finalized_at": "2026-10-01T10:42:42.079398+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "repair_round": 2,
+  "candidate": 1,
+  "tool": "image_gen built-in",
+  "prompt": "Use case: sketch-to-render. Retexture the supplied geometry blockout into ONE high-detail realistic ancient Chinese Yuan dynasty gate asset, fully transparent RGBA background. ABSOLUTE REQUIREMENT: trace and preserve the input geometry and framing exactly. This is texture replacement, not architecture redesign. Preserve the broad depth face, steep diagonal edge slopes +0.5/-0.5, vertical walls, and large central gap. Do not flatten or rotate the view. Orthographic dimetric 2:1. Keep pier ground vertices fixed at (236,633),(364,697),(620,569) on the left pier; right pier starts at(748,889),frontmost(876,953),rightmost(1132,825). Outer footprint10m x4m, piers exactly2m x4m x3m each, empty passage6m wide x4m deep. All ground and eave axes must keep26.565 degree slope. Keep base sides straight vertical with no taper or additional foundation, so ground geometry does not drift. Materials: piers pale buff rammed earth with fine visible compressed earth strata, subtle restrained grey stone edging. Upper hall brown timber, delicate natural wood grain, tiny lattice details and narrow timber rails. Roof render individual dark grey traditional Chinese curved clay tiles and restrained hipped-gable treatment, subtle curved ridge tips, no excessive decoration. Mature realistic game asset shading and fine surface detail, quiet grey/brown low saturation, upper-left light and darker right-facing walls. Keep opacity255 throughout solid objects; outside object and in open hole alpha0. No environment, floor, haze, glow, aura, drop shadow, colored backdrop, labels, text, watermarks, humans or objects. Do not draw a background: genuine transparency. The reference is only a geometric blocking guide; retain geometry but remove all flat polygon styling in favor of realistic fine materials. Output same1536x1024 framing. Ground anchor at684,729.",
+  "transparent_background": true,
+  "referenced_image_paths": [
+    "assets/default/tile/yuan_north/source/gate_k6_repair2_geometry.png"
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-87f8-7ce1-b32c-ae55ad02c328/exec-da7c63db-127a-44de-b0cc-bc0f3aefed06.png",
+  "selected": true
+}

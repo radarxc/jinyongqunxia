@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_chunqiusubaijingxiurushang_nv
+name: 春秋素白精绣襦裳·女
+kind: armor
+sub: clothing
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 春秋；（原创扩展）；形制／色系依据：《礼记·玉藻》 https://zh.wikisource.org/zh-hans/禮記/玉藻；越地具体制式与女性纁红主色（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/chunqiusubaijingxiurushang_nv
+text:
+  desc: 外观：春秋女款，主色素白。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=female。
+  lore: （原创扩展）据先秦衣裳语汇演成春秋素白襦裳，短襦与长裳分裁，以帛结收束裙腰。精织双丝细绣缘用于日常衣缘，行路前须整好下裳；越地裁片与女服用色仍（待考），同档换色不增加性能。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 67

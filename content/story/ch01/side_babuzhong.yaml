@@ -1,0 +1,31 @@
+schemaVersion: story.v1
+chapterId: ch01_tianlong
+lineId: side_babuzhong
+kind: side
+titleKey: story.ch01.side_babuzhong.title
+eraLayer: ch01
+startNodeId: n_babuzhong_intro
+trigger:
+  condition: {storyNode: {lineId: main, nodeId: n_xingzilin_merge, state: completed}}
+sideHooks: []
+source:
+  document: docs/design/chapters/01-tianlong.md
+  anchors: ["§8"]
+  note: 工程纵切片支线挂接样例，不新增原著结论
+nodes:
+  - id: n_babuzhong_intro
+    type: dialogue
+    titleKey: story.ch01.side_babuzhong.intro
+    completeOn: dialogue/completed
+    payload:
+      inlineLines:
+        - {speakerId: npc_duanyu, textKey: story.ch01.side_babuzhong.intro.duanyu}
+    sourceRef: design/chapters/01 §8
+  - id: n_resolved
+    type: end
+    titleKey: story.ch01.side_babuzhong.resolved
+    completeOn: immediate
+    payload: {endingTags: [side_complete]}
+    sourceRef: design/chapters/01 §8
+edges:
+  - {id: e_intro_resolved, from: n_babuzhong_intro, to: n_resolved, trigger: auto, priority: 0}

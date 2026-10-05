@@ -1,0 +1,17 @@
+{
+  "name": "yamen",
+  "attempt": 3,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-40800537-ace7-412e-a93b-3e644ddac19e.png",
+  "prompt": "Use case: precise-object-edit. Correct ONLY the perspective geometry of this Southern Song yamen compound, keep its architecture, wood/plaster/tile, drum, courtyard, plants, gate and upper-left light. The two ground axes MUST have exact equal steepness +0.5 and -0.5. Rebuild compound on exact thin base with LEFT(139,526), FRONT(868,890), RIGHT(1415,616). This moves the front ground corner left by30px and down8px, moves the right corner up16px. Ground width/depth16/12=1.333, not1.47. Every perimeter wall, beam and ground paving parallel to those adjusted axes, no perspective convergence. In particular steepen long front wall very slightly and shorten it in screen width while increasing short right side width. Actual structure must reproject, not just padding. Both front base borders visible, sharp plain stone foundation, no thick slab, no extra platform. Preserve full roof and minimum10% transparent margin, true transparent RGBA. No text/numbers/grid/watermark/people/modern objects. Precise2:1 isometric orthographic. Make this visibly geometrically consistent for grid placement.",
+  "reason": "编辑后左轴仍明显偏浅，未选。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try2.png",
+      "role": "本轮未获审批候选，投影/材质参考",
+      "sha256": "d5ce190895f5a59095021b0d2f51cb921e421cf29e9db543700f3aeacbaa5f9b"
+    }
+  ],
+  "id": "bld_kit_song_southern_yamen",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_yamen_review2_try3.png",
+  "source_sha256": "9ed4b9fc800c086919c38272c5e170a739444b3b99aaf2485cf533da0948515b"
+}

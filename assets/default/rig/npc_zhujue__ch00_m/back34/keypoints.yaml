@@ -1,0 +1,130 @@
+schema: tianshu-rig-keypoints.v1
+coordinates: source
+view: back34
+facing: L
+imageSize:
+- 256
+- 480
+detector: manual-prior
+detectorNote: disabled
+keypoints:
+  crown:
+    xy:
+    - 133
+    - 25
+    confidence: 0.55
+    source: silhouette-prior
+  neck:
+    xy:
+    - 129
+    - 86
+    confidence: 0.55
+    source: silhouette-prior
+  pelvis:
+    xy:
+    - 129
+    - 219
+    confidence: 0.55
+    source: silhouette-prior
+  hem:
+    xy:
+    - 129
+    - 321
+    confidence: 0.55
+    source: silhouette-prior
+  shoulder_L:
+    xy:
+    - 91
+    - 127
+    confidence: 0.55
+    source: silhouette-prior
+  shoulder_R:
+    xy:
+    - 173
+    - 127
+    confidence: 0.55
+    source: silhouette-prior
+  elbow_L:
+    xy:
+    - 67
+    - 201
+    confidence: 0.55
+    source: silhouette-prior
+  elbow_R:
+    xy:
+    - 195
+    - 201
+    confidence: 0.55
+    source: silhouette-prior
+  wrist_L:
+    xy:
+    - 50
+    - 258
+    confidence: 0.55
+    source: silhouette-prior
+  wrist_R:
+    xy:
+    - 205
+    - 258
+    confidence: 0.55
+    source: silhouette-prior
+  grip_L:
+    xy:
+    - 52
+    - 273
+    confidence: 0.55
+    source: silhouette-prior
+  grip_R:
+    xy:
+    - 199
+    - 270
+    confidence: 0.55
+    source: silhouette-prior
+  hip_L:
+    xy:
+    - 111
+    - 219
+    confidence: 0.42
+    source: bone-prior
+  hip_R:
+    xy:
+    - 147
+    - 219
+    confidence: 0.42
+    source: bone-prior
+  knee_L:
+    xy:
+    - 115
+    - 332
+    confidence: 0.42
+    source: bone-prior
+  knee_R:
+    xy:
+    - 162
+    - 332
+    confidence: 0.42
+    source: bone-prior
+  ankle_L:
+    xy:
+    - 109
+    - 434
+    confidence: 0.55
+    source: silhouette-prior
+  ankle_R:
+    xy:
+    - 173
+    - 437
+    confidence: 0.55
+    source: silhouette-prior
+  toe_L:
+    xy:
+    - 85
+    - 445
+    confidence: 0.55
+    source: silhouette-prior
+  toe_R:
+    xy:
+    - 166
+    - 445
+    confidence: 0.55
+    source: silhouette-prior

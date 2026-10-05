@@ -1,0 +1,43 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_xiamen"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "南安县属·厦门岛岸聚落（702年推定）"
+historical_year: 702
+era_kit: "tang"
+seed: 3833593738
+design_intent: {"prosperity": "tang_major_study_candidate", "notes": ["厦门地方志资料记隋唐属南安县，厦门筑城远晚至明代；702年取岛岸小聚落。", "岛岸早期聚落是否对应具体港湾待考；默认西岸避风登陆点，不建县署。", "复原依据：history/city_xiamen__tang_702.md；AR-26与基准v1.10的702–703覆盖名录旧清初带。", "major是本批资源画幅档位，不表示702年均为大城；所有地籍与数量（原创扩展）。", "era_kit=tang；唐贴片目录缺失，墙门与地表由工具回退宋基线；建筑显式借用song_southern，不代表唐式考据。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls: "none"
+gates: []
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 81, "z": 26}, {"x": 81, "z": 134}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北联系街；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+  - {"id": "cross_s", "class": "secondary", "width_cells": 5, "points": [{"x": 28, "z": 62}, {"x": 134, "z": 62}], "surface": "dirt_road", "priority": 70, "basis": "图名：南横街；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+  - {"id": "cross_n", "class": "secondary", "width_cells": 5, "points": [{"x": 28, "z": 98}, {"x": 134, "z": 98}], "surface": "dirt_road", "priority": 70, "basis": "图名：北横街；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+rivers: []
+lakes:
+  - {"id": "west_shore", "polygon": {"points": [{"x": 0, "z": 0}, {"x": 18, "z": 0}, {"x": 20, "z": 50}, {"x": 16, "z": 110}, {"x": 20, "z": 160}, {"x": 0, "z": 160}]}, "basis": "图名：岛西海湾；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+bridges: []
+water_gates: []
+zones:
+  - {"id": "zone_1", "kind": "market", "geometry": {"rect": {"min": {"x": 33, "z": 31}, "max": {"x": 76, "z": 58}}}, "priority": 100, "density": 0.38, "allowed_building_types": ["bld_kit_song_southern_shop_1f", "bld_kit_song_southern_market_stall", "bld_kit_song_southern_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：临路交易区；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+  - {"id": "zone_2", "kind": "residential", "geometry": {"rect": {"min": {"x": 86, "z": 31}, "max": {"x": 129, "z": 58}}}, "priority": 99, "density": 0.38, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f", "bld_kit_song_southern_warehouse", "bld_kit_song_southern_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民街坊；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+  - {"id": "zone_3", "kind": "residential", "geometry": {"rect": {"min": {"x": 33, "z": 66}, "max": {"x": 76, "z": 94}}}, "priority": 98, "density": 0.38, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民街坊；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+  - {"id": "zone_4", "kind": "residential", "geometry": {"rect": {"min": {"x": 86, "z": 66}, "max": {"x": 129, "z": 94}}}, "priority": 97, "density": 0.38, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民街坊；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+  - {"id": "zone_5", "kind": "residential", "geometry": {"rect": {"min": {"x": 33, "z": 102}, "max": {"x": 76, "z": 129}}}, "priority": 96, "density": 0.38, "allowed_building_types": ["bld_kit_song_southern_courtyard", "bld_kit_song_southern_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：乡聚院落；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+  - {"id": "zone_6", "kind": "residential", "geometry": {"rect": {"min": {"x": 86, "z": 102}, "max": {"x": 129, "z": 129}}}, "priority": 95, "density": 0.38, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_shop_1f"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：居民街坊；（推定）（原创扩展）；坐标、尺度与形制不是702年实测。；依据：src_xiamen。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_southern_shop_1f", "zone_refs": ["zone_1", "zone_2", "zone_3", "zone_4", "zone_6"], "count": {"min": 7, "max": 14}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_market_stall", "zone_refs": ["zone_1"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_inn", "zone_refs": ["zone_1"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_house", "zone_refs": ["zone_2", "zone_3", "zone_4", "zone_5", "zone_6"], "count": {"min": 14, "max": 36}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_courtyard", "zone_refs": ["zone_5"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_warehouse", "zone_refs": ["zone_2"], "count": {"min": 0, "max": 2}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+  - {"type": "bld_kit_song_southern_stable", "zone_refs": ["zone_2"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "各分区配额求和；建筑数用于通行与画面密度（原创扩展）【建议值】，不对应历史人口。"}
+vegetation: {"palette": ["prp_song_broadleaf", "prp_song_dali_grass"], "density": 0.018, "avoid_road_cells": 2, "cluster_rule": "空地少量阔叶与草簇；不以植被复原山体", "basis": "图名：空地植被；视觉密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_xiamen", "kind": "official_web", "title": "厦门历史建置沿革", "url": "https://xm.fjdsfzw.org.cn/2020-08-26/content_95528.html", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字；可信度B；只支持复原依据所列事实，不支持游戏坐标。"}

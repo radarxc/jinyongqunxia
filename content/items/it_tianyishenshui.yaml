@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: it_tianyishenshui
+name: 天一神水
+kind: poison
+sub: poison
+grade: 9
+stack: 99
+chapters: any
+origin: canonExpanded
+canonRef: 古龙《楚留香传奇·画眉鸟》·神水宫；药物细节 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+use:
+  context: both
+  action: dose
+  target: enemy
+  effects:
+  - op: applyBuff
+    params:
+      value: bf_judu
+assets:
+  icon: item/tianyishenshui
+text:
+  desc: 外观：密封白玉小瓶嵌入乌木护匣，银扣与深蓝软衬。 待运行时投影：noCraft=true。
+  lore: 《楚留香传奇·画眉鸟》神水宫奇毒，以白玉瓶嵌乌木护匣封存，绝不作寻常药散展示。案件经过与药物细节尚待核原文；本作仅设唯一封存节点，不开放配制。（待考） （原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healInner: 0

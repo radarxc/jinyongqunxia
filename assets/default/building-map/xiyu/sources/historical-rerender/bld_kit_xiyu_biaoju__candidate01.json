@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_biaoju",
+  "generated_at": "2026-10-01T10:11:12.011631+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_biaoju__candidate01.png",
+  "sha256": "3521a800872ca85bf0330d17303899185c62a486460630d0164156b6cf9d1eeb",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_biaoju__geometry-lock.png",
+      "sha256": "505b577eb432aefeecd96e3e26cbd723935d80075657d418f804a26405e79451",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/caravanserai_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg",
+      "detail": "1915年商队驿站的厚泥抹墙、圆木柱、横梁密椽与土层平顶；不复制人物和构图。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/city_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_City_of_Kashgar.jpg",
+      "detail": "1915年喀什密集低层平顶聚落与城郊绿洲尺度。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg — 1915年商队驿站的厚泥抹墙、圆木柱、横梁密椽与土层平顶；不复制人物和构图。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:The_City_of_Kashgar.jpg — 1915年喀什密集低层平顶聚落与城郊绿洲尺度。\n\nAsset-specific production prompt:\nRetexture this exact orthographic graybox into a highly detailed realistic ancient Xinjiang caravan goods compound game-map sprite. Preserve the exact silhouette and four ground corner positions. This is a texture-and-details pass, DO NOT change the camera, proportions, composition or bounding geometry. Both ground axes have slopes+0.5,-0.5 and width/depth14/11. Make warm weathered yellow adobe/earthen walls, flat timber-earth roofs on the back two sides, a small timber cargo arcade, a heavy wooden gate on the left-facing front wall, stacked sacks and a handcart in courtyard. Back roofs can be lowered but all roof edges must follow graybox axes. Keep bottom walls in exact graybox position; zero thick plinth. Realistic painterly textures with tiny chips, visible wood grain and beige mud plaster matching mature historical strategy game art. Light upper-left; short tight contact shadow lower-right only. TRUE TRANSPARENT background, no ground outside footprint, no backdrop, no halo, no vignette. No text, letters, numbers, human, modern object. Do not trace outline; fully rendered textured isolated architecture.\n\nRequired historical detail summary: 应保留围院货栈、土木平顶、外露椽头和简素柱廊；护运行功能与货物陈设仍属原创扩展。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

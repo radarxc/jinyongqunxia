@@ -1,0 +1,17 @@
+{
+  "name": "manor",
+  "attempt": 2,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-b9113f93-a7ae-469d-9c2a-53e68c038e65.png",
+  "prompt": "Use case: precise-object-edit. Use the provided successful isometric escort compound as the geometric and material basis; convert it into a Southern Song wealthy manor. PRESERVE the reference ground contour and camera projection exactly: same left, front, right footprint corner coordinates and both wall base edge slopes. Do not turn the compound. Remove ALL cart, crates, cargo. Replace earth yard with restrained stone paths and courtyard planting with one broadleaf tree and bamboo near side wall. Wooden rear hall and side wing become domestic residential architecture, warm grey tiles and cream plaster, weathered brown wood. Keep gate on the front-facing screen lower-left facade at the SAME location as reference. Exact 2:1 orthographic projection and upper-left light unchanged; ground footprint ratio16/13=1.23077, close to reference14/11=1.2727 so only very slightly shorten the lower-left wall if necessary. True transparent alpha background, complete eaves and 10% clear margins, no text or people or modern objects or watermark. Preserve both visible bottom wall edges parallel to +/-0.5 slopes; do not make rightward edge shallower.",
+  "reason": "右轴偏陡约-.57，未选。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_biaoju.png",
+      "role": "本轮未获审批候选，投影/材质参考",
+      "sha256": "921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca"
+    }
+  ],
+  "id": "bld_kit_song_southern_manor",
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_manor_review2_try2.png",
+  "source_sha256": "3eea96e5a45d9452a1d2670b68328a04ff4dc69c4c8bbe08034e3bc11a752ad9"
+}

@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_qilinzhen
+name: 麒麟镇纸
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qilinzhen
+text:
+  desc: 外观：一对长条青铜镇纸并置，各约三十五厘米。 待运行时投影：exoticKind=misc。
+  lore: 一对青铜镇纸平日压卷，遇敌时可握在掌中，以厚棱敲腕、压穴或成对封架。所谓麒麟只留卷云般脊线，不塑兽像，也无神异吉兆；器名、来历、战斗用法与流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

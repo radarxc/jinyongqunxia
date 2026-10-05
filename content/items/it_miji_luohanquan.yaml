@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_luohanquan
+name: 罗汉拳谱
+kind: manual
+sub: full
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》等·少林武学；载体 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_luohanquan
+text:
+  desc: 外观：北宋素黄蝴蝶装薄册，细线缝缀。
+  lore: 少林僧众将入门拳架绘成掌心小谱，供初学者逐势端正肩胯与吐纳。此册载体为 （原创扩展），寺内常以能否收住朴拙拳势，检验习者是否肯扎实打根基。
+extension:
+  type: manual
+  value:
+    skill: sk_luohanquan
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_luohanquan
+      readWis: 20
+      maxLayer: 10
+      cultivation: 500

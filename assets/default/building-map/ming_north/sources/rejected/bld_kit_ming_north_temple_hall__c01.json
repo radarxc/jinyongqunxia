@@ -1,0 +1,31 @@
+{
+  "id": "bld_kit_ming_north_temple_hall",
+  "subject": "明代北方府城：佛寺殿堂（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    14,
+    11
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82e-74c3-9466-90640f7d6631/exec-fdc8b3d3-d759-408f-b815-4dcaa29eddb1.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated reusable building sprite for tianshu default building-map, Ming dynasty northern Chinese prefectural city (Beijing/Datong/Xian regional vocabulary), anonymous original period-inspired design, not a measured heritage reconstruction. Input image is STYLE reference only: match its restrained realistic material detail, fine grey clay roof tiles, weathered masonry and natural matte wood, and same detail density. Change architecture to Ming north as specified. Orthographic 2:1 dimetric ground projection, camera yaw45 elevation30, east axis down-right slope +0.5 and north up-right slope -0.5; parallel ground edges, vertical posts, no perspective convergence. South entrance on screen lower-left edge. Complete building on thin rectangular ground-contact footprint with readable left, front, right corners, footprint axis ratio as specified, no thick pedestal, no soil island. Neutral soft light from SCREEN UPPER LEFT, short soft contact shadow only toward lower-right. TRUE transparent RGBA background and generous blank alpha0 margins all four sides; no skyline, no surrounding scenery. No people, writing, Chinese pseudo-glyphs, text, plaques, signs, banners, watermark, grid, modern fittings, plastic render, cartoon, ink wash, oversaturation, dense lanterns, white halo or baked checkerboard. Only building and its own footprint; include all eaves and base corners uncropped. Asset ID bld_kit_ming_north_temple_hall. Footprint 14 metres east-west by 11 metres north-south. ONE Buddhist temple hall inspired only by Ming Zhihua Temple's black-glazed roof and sober red timber palette, not a replica. Single-eaved hip-and-gable black-grey subtly glazed roof, five-bay hall, dark red wood lattice doors, restrained small brackets, subdued beam paint, low grey stone terrace with three central entrance steps; no surrounding temple compound, no pagoda, no text or statues outside. CHANGE THE REFERENCE SUBJECT COMPLETELY: a single free-standing enclosed hall only, no courtyard, no perimeter walls, no side wings, no gate. Rectangular terrace exactly width14 depth11. Three central steps face screen lower-left. Roof hip-and-gable, visible hipped side planes, glazed black not blue.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate"
+    }
+  ],
+  "created": "2026-09-30T21:30:20.335Z",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "footprint_basis": "design/22 §3.4 明代对应骨架；本套件地域命名",
+  "visual_review": "原图已view_image：独立黑灰瓦歇山殿、朱木，第二候选加深侧面；底面仍非精确14:11；不声称智化殿复原。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selection_reason": "第二候选改善硬山端墙/寺殿进深/砖塔形态；几何残差仍保留。",
+  "status": "rejected",
+  "reason": "底面过于狭长",
+  "source_sha256": "c0691598ee8fa2d317d6c96fbffe3890156ba5c017966204a60a525cb335742d",
+  "original_size": [
+    1536,
+    1024
+  ]
+}

@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_lubeiji
+name: 炉焙鸡
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canon
+canonRef: 宋元《吴氏中馈录》载鸡先煮、切块，以醋酒反复烹焙
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_jiangu:2battle
+assets:
+  icon: item/lubeiji
+text:
+  desc: 外观：酱褐鸡块盛带盖铜镟，醋酒收汁。
+  lore: 宋元《吴氏中馈录》载鸡先煮切块，再以醋酒反复烹焙。本件盛在带盖铜镟中保温，宜四人趁热取食；坚固膳食效果为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

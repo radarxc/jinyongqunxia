@@ -1,0 +1,27 @@
+{
+  "created": 1790831897,
+  "background": "transparent",
+  "output_format": "png",
+  "quality": "medium",
+  "size": "1278x1231",
+  "usage": {
+    "input_tokens": 1352,
+    "input_tokens_details": {
+      "image_tokens": 992,
+      "text_tokens": 360
+    },
+    "output_tokens": 1973,
+    "output_tokens_details": {
+      "image_tokens": 1973,
+      "text_tokens": 0
+    },
+    "total_tokens": 3325
+  },
+  "generation_id": "2f6cb6a2-6787-4d03-8357-42acbc793246",
+  "asset_id": "tex_town_mongol_city_gate__k6_r000_v01",
+  "round": 3,
+  "candidate": 2,
+  "prompt": "Edit the ONE supplied reference image into a production-ready medieval Mongolian camp gate sprite. PRESERVE the reference's exact outer footprint silhouette, four foot positions, bottom-edge directions, deep rectangular pier geometry, clear-passage proportions, orthographic camera, framing, and scale. This is a material-and-detail repaint, not a redesign.\n\nThe preserved ground contract is 10 cells wide by 4 cells deep: transparent passage 6 by 4; left pier 2 by 4; right pier 2 by 4. The visible long-axis and depth-axis bottom edges must retain the reference slopes, each with absolute screen slope 0.40–0.62. Full projected long-axis horizontal run divided by depth-axis run must remain within 2.25–2.75. The opening must occupy about 60% of the full front span. Keep every foot and both measurable bottom axes visible. No perspective convergence.\n\nREPAINT ONLY: replace grey roof tiles and ornate Chinese trim with a simple weathered brown timber plank gable roof, plain squared timber watch bridge and rails, ochre rammed-earth pier faces, dark timber frames, and rough stone footings. Restrained realistic medieval game-sprite detail, muted earth palette, soft upper-left light. No glazed tile, upturned eaves, statues, finials, inscriptions, flags, or decorative Chinese motifs.\n\nTrue RGBA. Outside silhouette and entire passage are alpha 0. Solid materials are opaque. No floor, terrain, cast shadow outside the object, glow, haze, backdrop, grid, text, labels, watermark, people, animals, plants, modern hardware, or extra wings. Keep one complete isolated gate with wide transparent margins.",
+  "reference_copy": "source/tex_town_mongol_city_gate__k6_r000_v01__r03_geometry_reference.png",
+  "source_copy": "source/tex_town_mongol_city_gate__k6_r000_v01__r03c2.png"
+}

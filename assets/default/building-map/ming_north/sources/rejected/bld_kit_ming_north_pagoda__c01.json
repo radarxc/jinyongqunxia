@@ -1,0 +1,32 @@
+{
+  "id": "bld_kit_ming_north_pagoda",
+  "subject": "明代北方府城：北方密檐砖塔（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    7,
+    7
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82e-74c3-9466-90640f7d6631/exec-d8902855-dd67-4425-ad8a-a12310523ac8.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated reusable building sprite for tianshu default building-map, Ming dynasty northern Chinese prefectural city (Beijing/Datong/Xian regional vocabulary), anonymous original period-inspired design, not a measured heritage reconstruction. Input image is STYLE reference only: match its restrained realistic material detail, fine grey clay roof tiles, weathered masonry and natural matte wood, and same detail density. Change architecture to Ming north as specified. Orthographic 2:1 dimetric ground projection, camera yaw45 elevation30, east axis down-right slope +0.5 and north up-right slope -0.5; parallel ground edges, vertical posts, no perspective convergence. South entrance on screen lower-left edge. Complete building on thin rectangular ground-contact footprint with readable left, front, right corners, footprint axis ratio as specified, no thick pedestal, no soil island. Neutral soft light from SCREEN UPPER LEFT, short soft contact shadow only toward lower-right. TRUE transparent RGBA background and generous blank alpha0 margins all four sides; no skyline, no surrounding scenery. No people, writing, Chinese pseudo-glyphs, text, plaques, signs, banners, watermark, grid, modern fittings, plastic render, cartoon, ink wash, oversaturation, dense lanterns, white halo or baked checkerboard. Only building and its own footprint; include all eaves and base corners uncropped. Asset ID bld_kit_ming_north_pagoda. Footprint 7 metres east-west by 7 metres north-south. ONE complete tall slender octagonal dense-eaves brick Buddhist pagoda, 9 diminishing closely spaced brick eave tiers, low octagonal masonry base within a square footprint, grey-tan weathered brick, small recessed blind niches, simple pointed finial. Ming northern Buddhist landmark motif inspired by dense-eave brick towers, anonymous original compressed game design, NOT exact Cishou Temple tower or a 13-tier reconstruction. No adjacent buildings, no courtyard, no huge stepped pedestal, no plants. Keep tower upright, full finial and base visible. Completely change the reference subject into the single brick tower, matching ONLY matte masonry material and fine realistic detail. Thin square foundation corners follow perfect diamond +/-0.5 axes. Render no other buildings at all. Full tower is tall in the image, NOT forced into a wide 2:1 canvas; 2:1 describes ground projection only.",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef",
+      "role": "style_reference",
+      "status": "candidate"
+    }
+  ],
+  "created": "2026-09-30T21:30:20.562Z",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "footprint_basis": "【建议值】design/22 §3.3 同功能院落10×8、山庄16×13；塔7×7借用§3.2千寻塔占地，不继承文物身份。",
+  "visual_review": "原图已view_image：八角砖塔，无瓷瓦层楼顶；密檐间距仍偏大，塔式只作意象；底面偏扁，残差记录。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selection_reason": "第二候选改善硬山端墙/寺殿进深/砖塔形态；几何残差仍保留。",
+  "status": "rejected",
+  "reason": "阁楼式层顶，不符合密檐砖塔方向",
+  "source_sha256": "f8a96a6a6044ec29cea6380a21535aee5961b68c1736ea1db0f6ce10af27a56a",
+  "original_size": [
+    1024,
+    1536
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_house_large",
+  "generated_at": "2026-10-01T10:13:21.533344+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_house_large__candidate01.png",
+  "sha256": "7d69bf36c9c52ee9d98f17e8ce4879facd9b9347a58c29038c343c1a0ebd416b",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_house_large__geometry-lock.png",
+      "sha256": "66552e4b89a6a4deae6452c35e4e56fe36f889505206ef5b3d29d7fcc44706d5",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/houses_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Kashgar_-_old_town_houses.jpg",
+      "detail": "高台民居密集叠置、平顶和悬挑木廊；现代钢窗、电线与新砖立面排除。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/city_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_City_of_Kashgar.jpg",
+      "detail": "1915年低层土屋聚落轮廓与平顶比例。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Kashgar_-_old_town_houses.jpg — 高台民居密集叠置、平顶和悬挑木廊；现代钢窗、电线与新砖立面排除。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:The_City_of_Kashgar.jpg — 1915年低层土屋聚落轮廓与平顶比例。\n\nAsset-specific production prompt:\nUse case: sketch-to-render. Transform ONLY the provided box wireframe into a highly detailed realistic historical western China oasis adobe two-level home. The wireframe is mandatory structural geometry, not a loose reference. Lock exact base corners left(250,620), front(830,910), right(1294,678), back(714,388), roof corners vertically290px above, canvas1536x1024. Rectangular footprint10x8; do not move or expand any walls away from this geometry. Both axes slope magnitude0.5, orthographic. The building occupies that box: low ochre adobe walls, two floors, flat earthen roof with low parapet, carved geometric wood lattice windows, a small second-floor wooden balcony on left-facing front wall, double wood door. Roof mostly flat, no raised roof lantern beyond the box. Fine realistic adobe/wood texture for a historical game, not a toy. Preserve exact box angles and proportions. Thin foundation at the wireframe ground edges, no thick raised plinth. Delete every wireframe line. No context, ground patch, figures, letters or graphics. Transparent RGBA background, warm upper-left illumination with tiny lower-right contact shadow. The composition must follow the input geometry.\n\nRequired historical detail summary: 二层只作局部木廊与挑梁，不做满立面现代阳台；土坯墙体要有厚度和不规则修补。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

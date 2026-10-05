@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuebeizhong
+name: 越地宝贝壳
+kind: collectible
+sub: antique
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuebeizhong
+text:
+  desc: 外观：一枚完整浅乳白海贝，背部温润拱起。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=expanded。
+  lore: 为越地远来货物支线设计的完整珍贝，强调海路来物而不冒称确切贡品。适合赠经营异货的商贾或藏家；品种、贸易路径和礼值均为（原创扩展），考证前不指定物种。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 52

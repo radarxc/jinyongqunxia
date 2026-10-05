@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_xixiayuanlvgongxie_nv
+name: 西夏缘履弓鞋·女
+kind: armor
+sub: shoes
+grade: 3
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 弓履 · 西夏（榆林窟第29窟女供养人像）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xixiayuanlvgongxie_nv
+text:
+  desc: 外观：女款赭红细布弓履一双并置，小幅翘头、薄底、青黑缘边与简素折枝绣。 待运行时投影：qinggong=7.5; wearer=female。
+  lore: 据榆林窟女供养人像的鞋履语汇演成，赭红细布、薄底和小幅翘头适合城镇日常。鞋楦保持成年足长，青黑缘边与折枝绣均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6
+      agi: 1

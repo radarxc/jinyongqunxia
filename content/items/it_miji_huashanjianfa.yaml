@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_huashanjianfa
+name: 华山剑法抄本
+kind: manual
+sub: copy
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_huashanjianfa
+text:
+  desc: 外观：明代青灰线装册，四眼白线。
+  lore: 华山气宗剑法在本作投影为门内抄本，纸本与编次属 （原创扩展）。研读要将基础剑路与运气节奏相配，用剑反复校正；书口手汗痕来自日常传习，并不代表可以绕过门派身份。
+extension:
+  type: manual
+  value:
+    skill: sk_huashanjianfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_huashanjianfa
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

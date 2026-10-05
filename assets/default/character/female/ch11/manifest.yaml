@@ -1,0 +1,282 @@
+- id: por_npc_renfeiyan__ch11_youth_road_base
+  file: por_npc_renfeiyan__ch11_youth_road_base.png
+  category: character/female
+  style: default
+  subject: 任飞燕 npc_renfeiyan ch11_yuanyang
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（任飞燕的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改任飞燕的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+
+    【人物】任飞燕：林玉龙之妻，约二十五岁，泼辣爽利，与丈夫一路打打闹闹却情深。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】泼辣娇嗔的笑：柳眉微挑，嘴角带笑，又俏又辣。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch11/por_npc_renfeiyan__ch11_youth_road_base.png
+    sha256: 5312f7370feb11955cab6a77e3566225448dcd8d0a4297b1f22c3727febf4875
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_renfeiyan__ch11_youth_road_base.5312f737.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-03T21:13:52-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_renfeiyan__ch11_youth_road_base.x1.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 5732c7b49242f0dc707882e766495dee2b23b181c7836b7a09e8de98602be269
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_character_realism_20261001
+  realism_revision: user_character_realism_20261001
+  counts_as_complete: true
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_renfeiyan__ch11_youth_road_base.5312f737.png
+    sha256: 5312f7370feb11955cab6a77e3566225448dcd8d0a4297b1f22c3727febf4875
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_renfeiyan__ch11_youth_road_base.5312f737.entry.yaml
+  request_log: .agents/coord/portrait-generation/realism-20261001/por_npc_renfeiyan__ch11_youth_road_base.requests.json
+  notes: 实际比较旧图与两张新版，选1。主要衣装升级已落实：原长红外袍改为臀部短袄，深茶裙裤独立清楚，动作更利落；本人五官低髻铜簪与成年女性身份保持。左手传统弓形弹丸弓有完整弦和小承弹兜，右侧单刀全收入鞘，没有第二刀或箭，四肢与靴子完整。1短袄略短、裙裤层次更适合行动。尚存偏差：脸颊和肩臂加厚幅度很小，表情仍偏冷静，右手依然靠近刀柄而不是完全只按鞘口，衣纹仍密、背景山水较明显。这些真实记录保留，不冒称全部体态目标已达到；按出齐优先的宽松标准保存candidate待用户终审。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-58 神态（各书配角）·10 号出图员：泼辣娇嗔的笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  source_size: 1024x1536
+- id: por_npc_yangfuren__ch11_base
+  file: por_npc_yangfuren__ch11_base.png
+  category: character/female
+  style: default
+  subject: 杨夫人 npc_yangfuren ch11_yuanyang prime；阶段以 assets/default/prompts/characters/ch11-yuanyang/npc_yangfuren.md 人物要点为准
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（杨夫人的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改杨夫人的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+
+    【人物】杨夫人：萧中慧生母，约四十五岁，温婉而坚韧。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温婉坚韧：目光坚定温和，嘴角带温婉的浅笑。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch11/por_npc_yangfuren__ch11_base.png
+    sha256: a69d345fb7d90e9a20ee48f6f2e8705fe08fcb8c36bb7cece49121b63ea83dd3
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_yangfuren__ch11_base.a69d345f.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-03T21:13:53-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_yangfuren__ch11_base.x1.png
+  size: 1024x1536
+  sha256: efd57955edbb11d6845ded235ade3f3d7996fc28bb7a20e6b0eb837e0369b205
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_relaxed_20260930
+  counts_as_complete: true
+  notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际查看：茶绿袄裙、素帕、双鞋完整，正常双手，清瘦忧虑母亲形象；占高约93.23–93.42%，中年纹理柔化，为非阻断偏差。 复用上轮原始候选，未新增生成；先前严格QC保留在 .agents/coord/portrait-generation/por_npc_yangfuren__ch11_base.qc.json。其他候选逐张淘汰原因及实际参考见历史请求和QC。 提示词 assets/default/prompts/characters/ch11-yuanyang/npc_yangfuren.md；tier A。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_yangfuren__ch11_base.requests.json。生成候选4张，入选第4张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/generated_images/exec-e3cbeb89-9288-4bf3-9bcf-de8db0b8323b.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用批准基线和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。；AR-58 神态（各书配角）·10 号出图员：温婉的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  source_size: 1024x1536
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_yangfuren__ch11_base.a69d345f.png
+    sha256: a69d345fb7d90e9a20ee48f6f2e8705fe08fcb8c36bb7cece49121b63ea83dd3
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_yangfuren__ch11_base.a69d345f.entry.yaml
+- id: por_npc_yuanfuren__ch11_prime_reunion_base
+  file: por_npc_yuanfuren__ch11_prime_reunion_base.png
+  category: character/female
+  style: default
+  subject: 袁夫人 npc_yuanfuren ch11_yuanyang prime；阶段以 assets/default/prompts/characters/ch11-yuanyang/npc_yuanfuren.md 人物要点为准
+  prompt: '编辑此图的袁夫人。最高优先级重画双手：此人物先天每手六指，是故事明示的正常个人体貌，不是应修掉的错误。每手保留原有拇指和四根长指，再从小指外侧根部生出一根短小枝指，长度为小指一半，具有自己的小指尖和指甲。左右手都如此，合计十二个可辨指尖。把双手放在腰胸间、掌心稍朝观者、自然舒展，手之间分开，袖口退至手腕，所有指尖完整可数；第六指紧邻小指，绝不长在拇指边，不分成第二只手掌，不夸大、不猎奇。她是40余岁的中年母亲，身形丰润适中，略长圆脸，眼周细纹与温润岁月感、克制惊喜神情，保留人物识别锚但不能画成少女。黑发带少许灰丝梳低圆后髻、小素银簪。衣服改成深藕灰闭合右衽袄，穿着者左襟盖右襟，向自身右边合拢，领袖严整，无披衣和大垂袖；暖灰褶裙止于踝上，两只素布软鞋都完全露出。保留细墨线和柔和层染、原配色、左上柔光、单人静立；整个人物在画布中均匀缩小，发丝最高点5%画高、鞋底最低点95%，目标完整人物90%画高，自然7头身。背景均匀不透明暖浅灰纸底，脚底轻微接触阴影，不画灰云。精确2:3全身PNG。
+
+    不要仍然每手仅五指，不要省略左右任一枝指，不要枝指在拇指旁，不要完整额外手掌或七指、手指融合或关节怪异；不要青年少女、高髻、长披发、宽袖对襟披衣、裙遮脚、武器、玉狮子、玉扳指、其他人物、强烈哭号、场景文字水印、裁边、水平镜像，不去除工具溯源。'
+  negative: 不要仍然每手仅五指，不要省略左右任一枝指，不要枝指在拇指旁，不要完整额外手掌或七指、手指融合或关节怪异；不要青年少女、高髻、长披发、宽袖对襟披衣、裙遮脚、武器、玉狮子、玉扳指、其他人物、强烈哭号、场景文字水印、裁边、水平镜像，不去除工具溯源。
+  references:
+  - path: generated_images/exec-d270786b-a478-447e-a474-9543fa7b7138.png
+    use: 编辑目标：袁夫人本角色候选2，只用于本角色局部返修，不作为其他角色基线 实际输入 SHA-256 a42cd625f4dd1762f1bb6f709e590511939971418e934ad9f3a7d01225bec2a2
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；项目默认 gpt-6-astra
+  effort: 待核实；项目默认 ultra
+  created: '2026-09-30T20:41:37.175336+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-594d0da3-8b03-4694-a1e1-360b9482285d.png
+  size: 1024x1536
+  sha256: 169e5b706a3ef9aa4cea4dad3c07ed1e757b547db98b22cb92682bc626635165
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_relaxed_20260930
+  counts_as_complete: true
+  notes: 作者本轮明确授权先出齐所有男女角色，采用宽松自查；现有男女基线及同人候选可用于生产而不改审批状态。详见 .agents/coord/portrait-generation/RELAXED-PRODUCTION-20260930.md。宽松可用不等于满足旧严格比例等标准。实际查看：两手指定短枝指可见、藕灰袄裙、灰丝与双鞋完整；占高约92.12–92.19%，面容较理想化。枝指属角色设定，不误判通用多指错误。 复用上轮原始候选，未新增生成；先前严格QC保留在 .agents/coord/portrait-generation/por_npc_yuanfuren__ch11_prime_reunion_base.qc.json。其他候选逐张淘汰原因及实际参考见历史请求和QC。 提示词 assets/default/prompts/characters/ch11-yuanyang/npc_yuanfuren.md；tier A。实际完整请求、候选来源与失败调用见 .agents/coord/portrait-generation/por_npc_yuanfuren__ch11_prime_reunion_base.requests.json。生成候选4张，入选第4张；仅入选图原字节复制，无裁切、镜像、重编码、放大、抠图或去标。实际模式RGB、尺寸1024×1536，不透明纸底；非2048×3072 RGBA正式母版。created为源PNG落盘mtime UTC。实际参考顺序：/Users/bytedance/Projects/jinyongqunxia/generated_images/exec-d270786b-a478-447e-a474-9543fa7b7138.png。实际输入角色按references登记；候选自身返修仅使用本角色既有候选，不作为其他角色基线。最初生成所用批准基线和用户风格图的完整上游链见请求记录。model/effort未取得执行配置凭据，保留待核实，不冒称底层成像模型。原著精确描写及服饰史版型仍待考，脸型服色等美术细化为原创扩展。宽松自查可用不等于旧严格标准通过或作者批准。
+- id: por_npc_zhujue__ch11_f_base
+  file: por_npc_zhujue__ch11_f_base.png
+  category: character/female
+  style: default
+  subject: 主角（女）· 清乾隆初（ch11_yuanyang）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】主角（女）：本作原创的穿越者，此刻身处《鸳鸯刀》清乾隆初（约 1740 年，项目原创定年）；清前中期汉地驿路的普通江湖旅人。本图是她在这一时代的基础立绘，不代表特定门派或结局。
+
+    【身份参考】随提示词上传的第 1 张图是主角本人（序章 ch00 新版定稿）：保持同一个人——脸型、眉形、眼睛、鼻子、嘴、右眼下的小痣、肤色、体型和年龄都不变；只把服饰、发式和道具换成下文的本时代版本。不要照搬图中的衣服、姿势和背景。
+
+    【本人面容（十五个时代统一，不能变）】约二十八岁的现代中国女青年，原创面孔，不像任何演员或书中其他人物。略长的鹅蛋脸，颧骨清楚，下颌利落而不尖；眉毛偏浓、平直，眉尾微微上扬（不是细柳眉、不是挑眉）；深棕色细长杏眼、内双，眼神清醒专注；鼻梁秀直、鼻头略圆；唇形清楚、上唇略薄，嘴角平；右眼外下方一颗清楚可见的浅褐色小痣（全书标志）；暖中性肤色带一点日晒，皮肤有真实纹理，素面不施浓妆。中等偏高的个子，肩背舒展、腰背挺直，四肢有行动的力量（约 7 头身）；乌黑直发、发量浓密。是成熟有主见的成年女子：沉静、可靠、带一点好奇，既不柔弱也不妩媚。
+
+    【主角标志】发髻上系一根褪色的朱红细绳，露出短短的绳头——每个时代都保留这根红绳。
+
+    【服饰】暖灰赭色汉族交领右衽窄袖袄，烟青素裙与麻白内领，平底布鞋；黑发盘成简洁低髻，素木簪固定，髻根系朱红细绳。
+
+    【道具】空手，不带刀剑、喜宴物件或成对信物。
+
+    【姿态与神情】嘴角带一点温和笑意，肩颈舒展、双足稳立，有能克制出手的从容。成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要明星脸或模特式五官；不要与书中男女主角撞脸；不要具名神兵、门派徽记、官服；不要年龄变小或变老。不要跨时代混搭的发式和服饰；不要像赵敏、王语嫣、黄蓉、小龙女等书中女角。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 5f491550d73ea5daf2a29eb618568c208d226d296da1e5d7fc3a37774c7f85e5
+    use: 身份参考（本轮新出的主角（女）· 春秋末·越国 por_npc_zhujue__ch00_f_base）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w1/staging/por_npc_zhujue__ch00_f_base.jpg
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:58:57-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhujue__ch11_f_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 673748a6ef96fc2bfcd1bad50a7ccdd7dbe6aecc46d15243be0e64eb455e4ba5
+  status: candidate
+  notes: 立绘重审重出（AR-30）；随女主 ch00 新锚点统一重出：现图的脸与 ch00 不一致，改为同一张原创脸，服饰沿用本时代设定；codex 出图（1 号出图员，AR-31）；主角时代图：上传本轮新出的 ch00 锚点作唯一身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_xiaozhonghui__ch11_youth_departure_base
+  file: por_npc_xiaozhonghui__ch11_youth_departure_base.png
+  category: character/female
+  style: default
+  subject: 萧中慧（ch11_yuanyang）
+  prompt: 'Use case: precise-object-edit
+
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑原图的局部裁图，输出相同构图、相同取景、相同位置尺度的一张完整正方形裁图，画布 1024×1024 正方形裁图。必须在原画上修改，不要重画成另一幅画。
+
+    【只改】萧中慧自己普通双刀的本人右手（画面左侧）刀刃必须显著短于左手刀：把图中的画面左侧那柄柳叶刀刀刃缩短到原长度约一半，刀柄和右手不动，删掉原长刀多出的刀尖并恢复纸底/衣摆。画面右侧长刀完全不动。普通钢刀，无神兵装饰。
+
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
+
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_05_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_departure_base.png
+    sha256: f777496232730ab8e985beb91b684ec466e026d56264d1a237e169e2606ec664
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_departure_base.f7774962.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:44:44-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_05_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 765c667779cbd0abc7cf9c26c8e9d5e4266bf95fb4013b213834f63d97bd3bf8
+  status: candidate
+  notes: 'AR-32 补记修改 A（9 号出图员）：作者 10-02（AR-32 补记第 6 条）：复查判定上一版有明显 AI 感（磨皮瓷肌、甜笑模板脸、略显稚气）；沿用文字做法，只加强成年骨相、英气与去 AI 化描写。文字 + 两张同性别基线；只用文字；r2；r1 仍偏磨皮模板脸，r2 合格；AR-82 原著核对返修：萧中慧普通双刀右短左长；依据：- AR-82 返修依据：《鸳鸯刀》转载第四节：“右手短刀”“左手长刀”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50466.html；执行：萧中慧自己的普通双刀：本人右手短刀、左手长刀，刀刃长度显著不同；尚未取得鸳鸯刀，不标神兵。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_departure_base.f7774962.png
+    sha256: f777496232730ab8e985beb91b684ec466e026d56264d1a237e169e2606ec664
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_departure_base.f7774962.entry.yaml
+- id: por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope
+  file: por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.png
+  category: character/female
+  style: default
+  subject: 萧中慧·松林断索之后（ch11_yuanyang）
+  prompt: 'Use case: precise-object-edit
+
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
+
+    【只改】本图明确是松林割索之后的单人场景取样，保持现站立姿态和双手位置。本人右手（画面左侧）普通柳叶刀刃缩短到原来的一半，左手（画面右侧）长刀不变，短刀刀口指向脚旁刚割断绊马索的断口；脚边现有两段断索仍清楚分开，断口呈刚切开纤维，让断索方向对应右手短刀的收势。不是鸳鸯宝刀。
+
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
+
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_06_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.png
+    sha256: 7a7265a8702d45408e28d6baf497d9ee0700326d522bdd103848a926f29c8512
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.7a7265a8.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:45:39-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_06_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 975868054f5d8a6bbff160c727867a29b85c0b3bebfcfe3dcd34c94b2873f536
+  status: candidate
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：右短左长并明确松林割索之后取样；依据：- AR-82 返修依据：《鸳鸯刀》转载第四节：“右手短刀”“左手长刀”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50466.html；执行：萧中慧自己的普通双刀：本人右手短刀、左手长刀，刀刃长度显著不同；尚未取得鸳鸯刀，不标神兵。 / - AR-82 返修依据：《鸳鸯刀》转载第二节：“俯身右手一刀割断了绊马索”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50464.html；执行：若此图用于松林割索事件，改为骑马俯身挥右手短刀、切开横拉绊索；如保留割索后站立的概念取样，标签明确“割索之后”，用刀势与断索方向加强事件提示。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）；AR-82 原著核对返修：场景标签明确为“松林断索之后”，沿用核对表允许的割索后站立取样'
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.7a7265a8.png
+    sha256: 7a7265a8702d45408e28d6baf497d9ee0700326d522bdd103848a926f29c8512
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_scene_pine_cut_rope.7a7265a8.entry.yaml
+- id: por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard
+  file: por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard.png
+  category: character/female
+  style: default
+  subject: 萧中慧·紫竹回护（ch11_yuanyang）
+  prompt: 'Use case: precise-object-edit
+
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
+
+    【只改】紫竹庵初合刀的萧中慧：主体上衣与左右袖明确蓝衫（柔和中蓝，保留月白衣领和灰裤），不保留灰白上衣、褐裙换装。去掉发髻原金钗和双颗大珍珠，它们林中已经赠人；只用一根普通素簪固定原发髻，发髻轮廓不变。本人右手持现有普通短刀，刀刃上挥护住画面左边缘袁冠南的肩头，身体稍侧护；只加入袁的局部肩背与向其肩袭来的卓天雄铁杖，袁脸不用入画。保持萧原头脸位置大小、五官、发丝和表情，场景仍紫竹庵石阶竹林门口，不能独自垂刀静立。
+
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
+
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_08_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/character/female/ch11/por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard.png
+    sha256: cd0186b246ca0529f2375f7ac46891faa092cb6c6380dde1e6cbbf98f33ee586
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard.cd0186b2.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:04:06-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_08_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 082d8df8c3999d1678f8ecef950ab9ec226f8fde2c06ad4d8115f575a646839c
+  status: candidate
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-57 主角对脸返修（12 号出图员），基线 = por_npc_xiaozhonghui__ch11_youth_departure_base（编辑结果只取头部区域羽化合成回原图，其余像素保持原图；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：萧中慧紫竹庵穿蓝衫、去已赠珠钗、挥短刀护袁肩；依据：- AR-82 返修依据：《鸳鸯刀》转载第三节：“从头上拔下一枚金钗”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50465.html；执行：紫竹庵阶段去掉先前赠出的金钗与珍珠，发髻以无描写的普通素簪固定；不得复用出发版珠钗。 / - AR-82 返修依据：《鸳鸯刀》转载第六节：“一位蓝衫姑娘”。；来源：https://www.kanunu8.com/book6/yuanyangdao/50468.html；执行：紫竹庵仍穿蓝衫；上衣主体明确蓝色，袖子同为蓝色；不自行改成灰白上衣、褐裙的换装。 / - AR-82 返修依据：《鸳鸯刀》紫竹庵合刀段：“抢着挥刀护住他的肩头”（转载第七节）。；来源：https://www.idushu.com/wx/yyd.html；执行：紫竹庵初合刀：短刀挥到袁冠南肩侧，身体侧护伤腿的袁；可用袁的局部肩背与来袭铁杖交代关系，主角仍为萧。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard.retry3.r2
+  quality_retries: 1
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard.cd0186b2.png
+    sha256: cd0186b246ca0529f2375f7ac46891faa092cb6c6380dde1e6cbbf98f33ee586
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_xiaozhonghui__ch11_youth_scene_zizhu_short_blade_guard.cd0186b2.entry.yaml

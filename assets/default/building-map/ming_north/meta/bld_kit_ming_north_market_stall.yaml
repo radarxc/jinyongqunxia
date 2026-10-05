@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_market_stall
+footprint_m:
+- 3
+- 2
+footprint_basis: 【建议值】沿宋大理market_stall同功能3×2；design/22 §3.4未细分此项。
+anchor_px:
+- 127.1883
+- 150.0518
+entrance:
+  edge: S
+  offset_cells: 1.5
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 3
+  - 0
+- - 3
+  - 2
+- - 0
+  - 2
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 241
+  - 615
+  F:
+  - 876
+  - 949
+  R:
+  - 1269
+  - 755
+source_anchor_px:
+- 755.0
+- 685.0
+target_ground_span_px: 160
+geometry:
+  crop_box:
+  - 234
+  - 106
+  - 1280
+  - 974
+  uniform_scale: 0.1556420233463035
+  scaled_size:
+  - 163
+  - 135
+  canvas_size:
+  - 256
+  - 256
+  paste_offset:
+  - 46
+  - 60
+  - 209
+  - 195
+  raster_scales:
+  - 0.15583173996175909
+  - 0.15552995391705068
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 53228
+  alpha_partial_pixels: 11773
+  alpha_opaque_pixels: 535
+  alpha_bbox:
+  - 46
+  - 60
+  - 209
+  - 195
+  rectangular_trim_removed_nonzero: 414
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.52598
+  - -0.49364
+  source_ratio_relative_error: 0.07718
+  geometry_warning: false
+  visual_review: 已view_image候选1及2。选候选1：布棚、货篮与折布功能可读，原图无文字人物，底面近3:2优于候选2；存在工具半透明光晕，仅按统一几何修边保留内部alpha。入口前无遮挡。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_view_image_review: 已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。
+source_sha256: a8f661b6c99ae08862b2963e2a24cf59674a0d08472a3d20eeb2afc8978f17c1
+sha256: a9c5cc6dcab321396a743c28cb8be32a600895c04c245d5056c5e91c40e20018

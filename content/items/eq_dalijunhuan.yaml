@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_dalijunhuan
+name: 大理护军铜环
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·大理；仅天龙大理节点原生可得 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/dalijunhuan
+text:
+  desc: 外观：一对前臂大的厚铜圆环并置，外缘四段钝棱、内圈缠深红皮条。 待运行时投影：exoticKind=wheel。
+  lore: 大理护军中少数善用奇门者所持成对铜环，内圈皮条便于转握，外缘钝棱可撞击、套拿并封住短兵。花叶细纹只作地方装具；器名、传授、军中配置与形制均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100

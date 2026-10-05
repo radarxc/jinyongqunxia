@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_nansongsubaijingxiuluoyuanlv_nv
+name: 南宋素白精绣罗缘履·女
+kind: armor
+sub: shoes
+grade: 9
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 南宋；出现书界 ch02/ch03；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；中国丝绸博物馆，南宋黄昇墓紫褐色罗印金彩绘花边单衣 https://www.chinasilkmuseum.com/gskt/info_319.aspx?itemid=31584；黄昇墓包袱随葬衣物仅作实物裁形依据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/nansongsubaijingxiuluoyuanlv_nv
+text:
+  desc: 外观：南宋女款，低帮罗面包边。 待运行时投影：defOutK=0.05; hpMaxK=0.01; qinggong=2.5xgUse; wearer=female。
+  lore: （原创扩展）据南宋女履语汇演成素白女式罗缘履，低帮罗面包边与短而微翘鞋头相接，成人平底一双。精织双丝细绣缘落鞋缘，穿用先理鞋口；具体裁形为原创，默认天足，轻功不再折算身法。
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12
+      agi: 0

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_gumuxinfa
+name: 古墓心法抄本
+kind: manual
+sub: copy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_gumuxinfa
+text:
+  desc: 外观：南宋月白蝴蝶装薄册，青丝缝缀。
+  lore: 古墓派入门心法被清抄在略带潮气的薄册中，载体和流传属 （原创扩展）。研读须在清静处察息守神，再依页次温养经脉；抄本仅达八层，借寒凉环境强催并不能替代本门指点。
+extension:
+  type: manual
+  value:
+    skill: sk_gumuxinfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_gumuxinfa
+      readBre: 30
+      maxLayer: 8
+      cultivation: 800

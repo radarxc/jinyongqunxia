@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_ming_north_stable",
+  "subject": "明代北方府城·马厩（原创扩展）",
+  "footprint": [
+    8,
+    6
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44d-7517-7262-be86-045e8b9601cd/exec-9180f490-968c-4caa-8308-5d6e3d589fe2.png",
+  "prompt": "Use case: sketch-to-render. Preserve this EXACT ground silhouette and paving grid shape. Add a compact nearly-SQUARE single-storey Ming north-China stable on the BACK THREE QUARTERS of the platform, keeping a wide open paving border on front and right so the exact entire outline stays clearly visible. This is8x6metres, NEAR SQUARE in plan; do not stretch it to a long narrow shed. Exact template ground edges sloping+0.500/-0.500, do not move the four corners. The short side is75percent of the long side. Four SMALL and NARROW open-front timber horse bays along left-facing front side, NO animals; deep gray-brick side wall extends along right-facing side nearly as long as facade. Deep hard-gabled gray clay-tiled YINGSHAN roof with flush masonry gables and straight simple eaves, no curling tips. Fine realistic gray masonry, wood grain, small tile detail. Turn grid into natural stone paving seams, not drawn lines. Opaque realistic ancient sprite, upper-left daylight, short lower-right contact shadow. Thin flat rectangular platform, no raised pedestal, full roof and all ground corners intact. Transparent RGBA background withalpha0padding, no scenery, text, signs, modern things or people. The platform shape is a geometric invariant; fit architecture inside it, never resize platform.",
+  "created": "2026-09-30T22:05:01.416183+00:00",
+  "references": [{"file": "assets/default/building-map/ming_north/sources/revision2/stable-grid-guide.png", "role": "精确底面几何输入；非成品替代", "sha256": "c60915e4e0f4dea63f8e3dc06c0143c1e2bbc9a9507e990784316ff83f7c083f"}],
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "points": {"L": [60, 680.8038778401021], "F": [684.3562428911255, 1047.181519883577], "R": [1200, 746.0266009074992]},
+  "footprint_basis": "【建议值】沿宋大理stable同功能8×6；design/22 §3.4未细分此项。",
+  "visual_review": "本轮已view_image原图及灰底合成；完整轮廓、左上光、北方灰砖/木石细节保留；源底边拟合斜率[0.58681, -0.58404]，宽深比例相对误差9.188%；不以目标值冒充实测。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "measurement_uncertainty_source_px": 2,
+  "source_size": [1254, 1254],
+  "source_sha256": "6d586e43547916542895f019983cd5d5c6197420ca9f387dbc6f14304936ce0b",
+  "tool": "built-in image_gen",
+  "model": "underlying model not disclosed",
+  "effort": "not exposed",
+  "final_view_image_review": "本轮成品已逐张view_image：完整轮廓、透明留白及灰砖木石纹理保留；几何残差以meta实测为准，未用非等比缩放。",
+  "revision": 2,
+  "previous_source_sha256": "842fa6fc93635046cd6d9961220ed5810c7d5a96eeffb46737744fe5a396ee98"
+}

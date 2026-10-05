@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_warehouse
+footprint_m:
+- 9
+- 7
+footprint_basis: 【建议值】沿宋大理warehouse同功能9×7；design/22 §3.4未细分此项。
+anchor_px:
+- 287.9465
+- 341.1691
+entrance:
+  edge: S
+  offset_cells: 4.5
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 9
+  - 0
+- - 9
+  - 7
+- - 0
+  - 7
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 176
+  - 710
+  F:
+  - 830
+  - 1045
+  R:
+  - 1322
+  - 802
+source_anchor_px:
+- 749.0
+- 756.0
+target_ground_span_px: 512
+geometry:
+  crop_box:
+  - 169
+  - 60
+  - 1327
+  - 1071
+  uniform_scale: 0.4467713787085515
+  scaled_size:
+  - 517
+  - 452
+  canvas_size:
+  - 576
+  - 512
+  paste_offset:
+  - 29
+  - 30
+  - 546
+  - 482
+  raster_scales:
+  - 0.4464594127806563
+  - 0.44708209693372897
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 157001
+  alpha_partial_pixels: 137065
+  alpha_opaque_pixels: 846
+  alpha_bbox:
+  - 30
+  - 31
+  - 546
+  - 482
+  rectangular_trim_removed_nonzero: 26
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.51223
+  - -0.4939
+  source_ratio_relative_error: 0.03388
+  geometry_warning: false
+  visual_review: 已view_image候选1及2。选候选2：灰砖实墙硬山仓屋，开门可见麻袋木箱，无漂浮杂点与文字人物；完整底面可测，单视角拼接待实测。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_view_image_review: 已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。
+source_sha256: f6577e97ca85d1859258a052ab950921828062009b84529aab8c27ab9a97e2f1
+sha256: f486abc6d0e0d6a308ee4ddb337562bd8613557eec33a151b4f121e3d2e28a89

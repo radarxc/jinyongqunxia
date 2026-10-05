@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yueyushiwen
+name: 越地玉石盟辞摹片
+kind: collectible
+sub: calligraphy
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yueyushiwen
+text:
+  desc: 外观：薄青灰石片一件，修边成长条。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,collector]}; giftValue=2; provenance=expanded。
+  lore: 参照先秦玉石盟书载体制作的习字摹片，并非越国出土盟书的复原。可赠研究古文字的藏家，不作为结盟凭证；侯马材料与越女窗口的对应（待考），器名和用途为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 36

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_shentuoxueshanzhang
+name: 神驼雪山掌遗谱
+kind: manual
+sub: partial
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_shentuoxueshanzhang
+text:
+  desc: 外观：南宋西域皮纸折册，棕皮护面、绿绳双系。
+  lore: 白驼山庄掌法在本作扩写为风沙磨旧的遗谱，名称细节、载体与散佚经过均属 （原创扩展）。研读须辨寒地步法与掌势配合，缺页处不可硬接；此来源最高只到八层。
+extension:
+  type: manual
+  value:
+    skill: sk_shentuoxueshanzhang
+    maxLayer: 8
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_shentuoxueshanzhang
+      readWis: 40
+      maxLayer: 8
+      cultivation: 1600

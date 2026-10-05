@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_fuling
+name: 茯苓
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/fuling
+text:
+  desc: 外观：药用菌核削皮切作白色方丁，外皮棕黑。
+  lore: 秦巴、闽赣、湖湘、巴蜀与云滇黔松林夏秋七至十月可得成熟菌核。药铺削皮切丁、分屉晾放，本作用它兼作回气与疏内伤辅材。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: fuLing
+    ageYears: 0
+    attributes:
+      version: 2
+      restoreQi: 6
+      healInner: 1

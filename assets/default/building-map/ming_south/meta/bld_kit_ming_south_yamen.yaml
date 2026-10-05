@@ -1,0 +1,109 @@
+id: bld_kit_ming_south_yamen
+footprint_m:
+- 16
+- 13
+footprint_origin: design/22 §3.4 冻结占地的江南同构变体
+skeleton_type: bld_kit_ming_yamen
+anchor_px:
+- 485.168
+- 325.391
+entrance:
+  side: S
+  offset_m: 8.0
+  status: 【建议值】门位由图像识别；待拼接实测
+projection_contract:
+  target: orthographic yaw45 pitch30; 64x32 px/m
+  provided_views:
+  - southwest_single_view
+  allowRotation: false
+  geometry_release_ready: false
+measurement:
+  method: 人工读取地面左/前/右角；后角被遮挡时由平行四边形推定，不使用alpha bbox猜锚点
+  uncertainty_source_px: 4
+  ground_lfr_source_px:
+  - - 80
+    - 641
+  - - 923
+    - 939
+  - - 1477
+    - 538
+  ground_lfr_final_px:
+  - - 21.313
+    - 359.62
+  - - 581.127
+    - 557.683
+  - - 949.023
+    - 291.162
+  ground_center_source_px:
+  - 778.5
+  - 589.5
+  source_slopes:
+  - 0.3534994068801898
+  - -0.723826714801444
+  slope_abs_errors:
+  - 0.14650059311981017
+  - 0.223826714801444
+  slope_tolerance_suggestion: 0.03
+  slope_check: false
+  observed_w_h_ratio: 1.5216606498194947
+  target_w_h_ratio: 1.2307692307692308
+  width_scale_target_px: 928
+  width_scale_actual_px: 927.7107496463932
+  depth_scale_target_px: 464
+  depth_observed_px: 464.58444714459296
+processing:
+  source_file: sources/bld_kit_ming_south_yamen_c2.png
+  source_path: /Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-5e234ab1-dd6e-4a88-9bcb-0e260efa8e24.png
+  source_sha256: 553102cf4ab36d8892683dee76e0c8cb27523af27d7fdd58e65091fd2350f246
+  source_size_px:
+  - 1536
+  - 1024
+  crop_box:
+  - 72
+  - 124
+  - 1486
+  - 947
+  crop_rule: alpha>=3 bbox expanded4 source px; retained pixels alpha unmodified
+  discarded_alpha_max: 1
+  requested_uniform_scale: 0.6642806012884753
+  rounded_effective_scale_xy:
+  - 0.6640735502121641
+  - 0.6646415552855407
+  resized_px:
+  - 939
+  - 547
+  canvas_px:
+  - 971
+  - 579
+  paste_offset_px:
+  - 16
+  - 16
+  final_sha256: 083dff6b911bce48955c4471d34d288f713e0efb58ff213ee8c8cc16c4f60324
+verification:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  zero_alpha_pixels: 267127
+  partial_alpha_pixels: 294271
+  opaque_pixels: 811
+  nonzero_alpha_bbox:
+  - 16
+  - 17
+  - 954
+  - 563
+  margins_px:
+  - 16
+  - 17
+  - 17
+  - 16
+  source_viewed: true
+  final_viewed: true
+  runtime_assembly_tested: false
+limitations:
+- 单视图candidate，不提供GLB、四向模型或经实测的碰撞/遮挡多边形
+- 底面宽度已标定；残余斜率、宽深比例和深度误差保留，不能声称严格2:1拼接已验收
+- 建筑为原创扩展；年代细部待考；门位/高度及遮挡待实测
+candidate_count: 2
+selected_candidate: 2
+selection_note: 2选1：第二候选边缘完整、地面轴偏差较第一候选略小；仍明显不达±0.03轴斜率要求，暂留candidate待返修

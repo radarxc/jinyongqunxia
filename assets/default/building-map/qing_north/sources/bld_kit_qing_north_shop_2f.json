@@ -1,0 +1,14 @@
+{
+  "id": "bld_kit_qing_north_shop_2f",
+  "subject": "两层商铺",
+  "footprint": [
+    8,
+    6
+  ],
+  "prompt": "Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Realistic traditional Chinese game sprite with fine natural weathered masonry, small tiled roofs, calm muted palette and believable structure. Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Absolutely NO ambient halo, NO glow, NO gradient floor or background of any kind. Alpha0 everywhere outside the exact object silhouette and its tiny contact shadow. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A compact two-storey northern street shop, grey brick lower level and enclosed dark wooden lattice-window upper level, sober grey tile gabled roof, little open goods counter with folded cloth and pottery, simple unlettered awning, no open wraparound Jiangnan balconies. Footprint 8m east-west by6m north-south. Background is truly fully transparent like a clean cutout product PNG, with NO glow or haze around the building.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-5a688bfc-c01b-4c8b-b7e4-6f9d98342bcb.png",
+  "references": [],
+  "created": "2026-09-30T21:17:46.546Z",
+  "candidate_count": 1,
+  "review": "逐张view_image；主体完整，材质灰砖灰瓦、无字无人；准确轴率与比例另量，保留candidate。"
+}

@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_tubotiejingangchu
+name: 吐蕃铁金刚杵
+kind: weapon
+sub: exotic
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域法兵·吐蕃；白马（唐）起藏边节点可得，战斗用途 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tubotiejingangchu
+text:
+  desc: 外观：通长约六十厘米，铸铁中握段配对称棱瓣圆钝首。 待运行时投影：exoticKind=pestle。
+  lore: 藏边法器意象改作护身短兵，铸铁棱瓣两端皆圆钝，可用中段单手握持进行点打与压腕。礼佛磨痕不等于原著器物，作为战斗装备的用途、尺寸、装具与流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags:
+    - blunt
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 60
+      qiAffinity: 100

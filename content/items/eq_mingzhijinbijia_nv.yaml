@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_mingzhijinbijia_nv
+name: 明织金比甲·女
+kind: armor
+sub: clothing
+grade: 7
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+- ch07_bixue
+origin: canonExpanded
+canonRef: 比甲 · 明（《明宪宗元宵行乐图》服饰研究）· 出现书界 ch05/ch06/ch07 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingzhijinbijia_nv
+text:
+  desc: 外观：女款方领对襟长比甲单件平展，无袖直身、两侧开衩。 待运行时投影：talk=2; wearer=female。
+  lore: 据明代人物图像中的比甲形制演成，无袖直身套在袄裙之外，既守礼又不碍双臂劳作。江南绸庄以织金折枝纹招揽士绅，本件流传经历为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 56

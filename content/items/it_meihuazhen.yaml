@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_meihuazhen
+name: 梅花针
+kind: ammo
+sub: needle
+grade: 6
+stack: 99
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: field
+  action: load
+  target: self
+  effects: []
+assets:
+  icon: item/meihuazhen
+text:
+  desc: 外观：五枚细钢针排成梅花但不带文字，蓝布针套。 待运行时投影：ammoMul=1.09; hiddenHit=5.1。
+  lore: （原创扩展）五枚半掌长细钢针收在蓝布针套中，施用时可依次夹指连发，并非必须排成花形。针细难寻，落地后不宜冒险摸索；“梅花”只是江湖人便于记数的雅称。
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 0
+      qiAffinity: 100

@@ -1,0 +1,49 @@
+{
+  "id": "bld_kit_ming_north_market_stall",
+  "subject": "明代北方府城·市场棚（原创扩展）",
+  "footprint": [
+    3,
+    2
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-22c7cf6e-29d1-47d9-9570-6ea71de013d0.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated game building sprite for tianshu default, Ming dynasty northern Chinese prefectural city architectural kit, original anonymous composite, not a reconstruction of a named monument. Realistic ancient Chinese architecture, same natural material realism and detail density as the attached Song stable reference; reference is style ONLY, change architecture to northern Ming gray brick and gray clay tile, modest timber, restrained hard-gable yingshan roof with straight compact eaves. Orthographic 2:1 dimetric projection, yaw 45 degrees, pitch 30 degrees, NO perspective convergence. East ground axis projects down-right at slope +0.5; north ground axis up-right at slope -0.5; vertical posts stay vertical. Thin almost-flat footprint pad with clearly visible left, front, right corners, not a pedestal. Footprint proportions refer to ground axes, NOT canvas proportions. Main light from SCREEN UPPER LEFT; short soft contact shadow toward lower right. Entire object and base uncut, generous transparent margins. TRUE TRANSPARENT RGBA background, no opaque background or painted checkerboard. No people, animals, writing, pseudo-glyphs, signs, numbers, modern objects, palace ornament on common buildings, Qing imperial decoration, fantasy, neighboring buildings, sky, water, scenery, thick diorama plinth, broad shadows, tilt shift, toy plastic, cropping. Asset bld_kit_ming_north_market_stall. One tiny 3 by 2 metre market stall with four plain wooden posts, low beige linen canopy stretched over simple timber frame, a wooden front counter holding two woven baskets of grain and folded cloth, rough gray brick flat paving base. No building behind, no tile-roof house, no shop sign. Ground width-to-depth axes ratio 3:2. Front faces screen lower-left. Keep the ground edges at precisely +0.5/-0.5 slopes.",
+  "created": "2026-09-30T21:12:06.313Z",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_stable",
+      "path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_stable.png",
+      "sha256": "da40c1c72f1e27b96c2a8da4d6ab0ac6f81474a6d0e049045d4ac9996eabac28",
+      "role": "仅材质/细节密度参考；不继承宋屋型",
+      "status": "candidate"
+    }
+  ],
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "points": {
+    "L": [
+      241,
+      615
+    ],
+    "F": [
+      876,
+      949
+    ],
+    "R": [
+      1269,
+      755
+    ]
+  },
+  "footprint_basis": "【建议值】沿宋大理market_stall同功能3×2；design/22 §3.4未细分此项。",
+  "visual_review": "已view_image候选1及2。选候选1：布棚、货篮与折布功能可读，原图无文字人物，底面近3:2优于候选2；存在工具半透明光晕，仅按统一几何修边保留内部alpha。入口前无遮挡。",
+  "candidate_count": 2,
+  "selected_candidate": 1,
+  "measurement_uncertainty_source_px": 4,
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_sha256": "a8f661b6c99ae08862b2963e2a24cf59674a0d08472a3d20eeb2afc8978f17c1",
+  "tool": "built-in image_gen",
+  "model": "underlying model not disclosed",
+  "effort": "not exposed",
+  "final_view_image_review": "已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。"
+}

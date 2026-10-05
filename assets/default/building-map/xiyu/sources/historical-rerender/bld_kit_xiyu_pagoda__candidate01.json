@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_pagoda",
+  "generated_at": "2026-10-01T10:13:21.392332+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_pagoda__candidate01.png",
+  "sha256": "b2983fea5c27489360d63cb3a9595707c78cbb860a25e8a4c6f45d3aa081ef51",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_pagoda__geometry-lock.png",
+      "sha256": "dbccb42155e29b78b7457489e0538b1d546efaab340dfd2060734f2927a493fd",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/minaret_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Emin_Khoja_Minaret.jpg",
+      "detail": "苏公塔收分砖塔、分段菱格/斜砌纹带、小券洞和素土色；具名古迹构图不复制。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/pagoda_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_Pagoda_of_Pan_Chao,_Kashgar.jpg",
+      "detail": "1915年喀什土台与异质木亭并存的历史层累；不把中式翘檐误作宣礼塔。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Emin_Khoja_Minaret.jpg — 苏公塔收分砖塔、分段菱格/斜砌纹带、小券洞和素土色；具名古迹构图不复制。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:The_Pagoda_of_Pan_Chao,_Kashgar.jpg — 1915年喀什土台与异质木亭并存的历史层累；不把中式翘檐误作宣礼塔。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. IMAGE1 is edit target, IMAGE2 is reference ONLY for its correct city-map camera. Preserve tall slender brick minaret and small calling-gallery; REMOVE thick base slab, replace with one thin flat brick ground plane. Square footprint must be a2:1 diamond. Make IMAGE1 a strict orthographic yaw45 elevation30 2:1 dimetric sprite on rectangular ground7m by7m. Ground diagonal axes screen slopes +0.5 and -0.5, no vanishing points, all verticals upright. Front entrance faces screen LOWER LEFT. Match IMAGE2 camera, do not copy its stable building or objects. Keep realistic historic southern Xinjiang architecture, worn ochre adobe/brick, existing restrained colors and fine detail density. Entire isolated asset and contact shadow inside frame,15% empty transparent padding each side, TRUE transparent RGBA background. Upper-left light and only tiny lower-right contact shadow. No people, letters, text, landscape, thick diorama base, halo or modern objects.\n\nRequired historical detail summary: 匿名砖砌邦克楼取收分塔身、几何砖饰与小券洞；不设斗拱、鸱吻、脊兽。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

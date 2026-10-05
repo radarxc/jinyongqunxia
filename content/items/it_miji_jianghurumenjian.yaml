@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_jianghurumenjian
+name: 江湖入门剑谱
+kind: manual
+sub: full
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_jianghurumenjian
+text:
+  desc: 外观：元代青灰包背册，蓝布护脊。
+  lore: 游方武师把通行剑架编成八寸厚纸全谱，剑法与载体皆属 （原创扩展）。研读从握剑、平刺和回锋学起，须在空地逐页校步；江湖流传虽广，各家手抄仍不应任意添招。
+extension:
+  type: manual
+  value:
+    skill: sk_jianghurumenjian
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_jianghurumenjian
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

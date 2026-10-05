@@ -1,0 +1,134 @@
+schema: tianshu-rig-keypoints.v1
+coordinates: source
+view: side
+facing: L
+imageSize:
+- 256
+- 480
+bodyProfile: female
+garmentProfile: ankle-robe
+detector: manual-prior+manual-fix
+detectorNote: Apple Vision compile timeout; arms corrected against separated side-profile
+  silhouettes. Hidden hips/knees retain female bone priors; supplemental side poses
+  1/2 corroborate knee region only.
+keypoints:
+  crown:
+    xy:
+    - 138
+    - 45
+    confidence: 0.55
+    source: silhouette-prior
+  neck:
+    xy:
+    - 123
+    - 104
+    confidence: 0.55
+    source: silhouette-prior
+  pelvis:
+    xy:
+    - 126
+    - 232
+    confidence: 0.55
+    source: silhouette-prior
+  hem:
+    xy:
+    - 126
+    - 431
+    confidence: 0.55
+    source: silhouette-prior
+  shoulder_L:
+    xy:
+    - 129
+    - 143
+    confidence: 0.75
+    source: manual-side-silhouette
+  shoulder_R:
+    xy:
+    - 125
+    - 143
+    confidence: 0.75
+    source: manual-side-silhouette
+  elbow_L:
+    xy:
+    - 176
+    - 209
+    confidence: 0.75
+    source: manual-side-silhouette
+  elbow_R:
+    xy:
+    - 81
+    - 211
+    confidence: 0.75
+    source: manual-side-silhouette
+  wrist_L:
+    xy:
+    - 192
+    - 250
+    confidence: 0.75
+    source: manual-side-silhouette
+  wrist_R:
+    xy:
+    - 64
+    - 251
+    confidence: 0.75
+    source: manual-side-silhouette
+  grip_L:
+    xy:
+    - 199
+    - 268
+    confidence: 0.75
+    source: manual-side-silhouette
+  grip_R:
+    xy:
+    - 57
+    - 269
+    confidence: 0.75
+    source: manual-side-silhouette
+  hip_L:
+    xy:
+    - 124
+    - 232
+    confidence: 0.42
+    source: bone-prior
+  hip_R:
+    xy:
+    - 128
+    - 232
+    confidence: 0.42
+    source: bone-prior
+  knee_L:
+    xy:
+    - 128
+    - 340
+    confidence: 0.42
+    source: bone-prior
+  knee_R:
+    xy:
+    - 132
+    - 340
+    confidence: 0.42
+    source: bone-prior
+  ankle_L:
+    xy:
+    - 137
+    - 437
+    confidence: 0.55
+    source: silhouette-prior
+  ankle_R:
+    xy:
+    - 141
+    - 437
+    confidence: 0.55
+    source: silhouette-prior
+  toe_L:
+    xy:
+    - 114
+    - 445
+    confidence: 0.55
+    source: silhouette-prior
+  toe_R:
+    xy:
+    - 118
+    - 445
+    confidence: 0.55
+    source: silhouette-prior

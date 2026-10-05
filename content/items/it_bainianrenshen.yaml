@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_bainianrenshen
+name: 百年人参
+kind: material
+sub: herb
+grade: 9
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/bainianrenshen
+text:
+  desc: 外观：粗壮分叉老参，深褐年纹。
+  lore: 辽东、关外封闭老林的固定稀有参株，秋八至十月方可取得；“百年”是武侠玩法夸饰。老参静服可充养内力并固根骨，每书界同族最多三份。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di3
+    materialGrade: 9
+    rare: false
+    herbFamily: renShen
+    ageYears: 100
+    attributes:
+      version: 2
+      qiCultivation: 3500
+      con: 1

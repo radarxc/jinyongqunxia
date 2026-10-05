@@ -1,0 +1,36 @@
+- id: town_city_yushu__ch10
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 结古一带所指治所（待考）·唐702年推定格局候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_yushu__ch10/layout.yaml -o assets/default/town/city_yushu__ch10/preview.jpg
+    --scale 0.25
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 1536x768
+  sha256: 0a9ee5e3ed92d06029d9df93e8cb28fef27ff0fa9dba0545af16cae3540debe9
+  status: candidate
+  references:
+  - docs/design/town/city_yushu__ch10.yaml
+  - docs/design/town/history/city_yushu__tang_702.md
+  - assets/default/tile/tubo/
+  - assets/default/building-map/tubo/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；候选态套件回退 18 项；详见下列 asset_substitutions
+  asset_substitutions: tex_town_tubo_city_gate -> tex_town_song_dali_city_gate__k5_r180_v01（era-kit-fallback:tex_town_tubo_city_gate->tex_town_song_dali_city_gate，1次）；tex_town_tubo_city_gate
+    -> tex_town_song_dali_city_gate__k5_r180_v01（gate-width:requested=4,source=5，1次）；tex_town_tubo_dirt_road -> tex_town_song_dali_dirt_road__v01（era-kit-fallback:tex_town_tubo_dirt_road->tex_town_song_dali_dirt_road，1次）；tex_town_tubo_dirt_road
+    -> tex_town_song_dali_dirt_road__v02（era-kit-fallback:tex_town_tubo_dirt_road->tex_town_song_dali_dirt_road，1次）；tex_town_tubo_dirt_road
+    -> tex_town_song_dali_dirt_road__v03（era-kit-fallback:tex_town_tubo_dirt_road->tex_town_song_dali_dirt_road，1次）；tex_town_tubo_dirt_road
+    -> tex_town_song_dali_dirt_road__v04（era-kit-fallback:tex_town_tubo_dirt_road->tex_town_song_dali_dirt_road，1次）；tex_town_tubo_rammed_earth
+    -> tex_town_song_dali_rammed_earth__v01（era-kit-fallback:tex_town_tubo_rammed_earth->tex_town_song_dali_rammed_earth，1次）；tex_town_tubo_rammed_earth
+    -> tex_town_song_dali_rammed_earth__v02（era-kit-fallback:tex_town_tubo_rammed_earth->tex_town_song_dali_rammed_earth，1次）；tex_town_tubo_rammed_earth
+    -> tex_town_song_dali_rammed_earth__v03（era-kit-fallback:tex_town_tubo_rammed_earth->tex_town_song_dali_rammed_earth，1次）；tex_town_tubo_rammed_earth
+    -> tex_town_song_dali_rammed_earth__v04（era-kit-fallback:tex_town_tubo_rammed_earth->tex_town_song_dali_rammed_earth，1次）；tex_town_tubo_road_edge
+    -> tex_town_song_southern_road_edge__e（era-kit-fallback:tex_town_tubo_road_edge->tex_town_song_southern_road_edge，1次）；tex_town_tubo_road_edge
+    -> tex_town_song_southern_road_edge__n（era-kit-fallback:tex_town_tubo_road_edge->tex_town_song_southern_road_edge，1次）；tex_town_tubo_road_edge
+    -> tex_town_song_southern_road_edge__ne（era-kit-fallback:tex_town_tubo_road_edge->tex_town_song_southern_road_edge，1次）；tex_town_tubo_road_edge
+    -> tex_town_song_southern_road_edge__nw（era-kit-fallback:tex_town_tubo_road_edge->tex_town_song_southern_road_edge，1次）；tex_town_tubo_road_edge
+    -> tex_town_song_southern_road_edge__s（era-kit-fallback:tex_town_tubo_road_edge->tex_town_song_southern_road_edge，1次）；tex_town_tubo_road_edge
+    -> tex_town_song_southern_road_edge__se（era-kit-fallback:tex_town_tubo_road_edge->tex_town_song_southern_road_edge，1次）；tex_town_tubo_road_edge
+    -> tex_town_song_southern_road_edge__sw（era-kit-fallback:tex_town_tubo_road_edge->tex_town_song_southern_road_edge，1次）；tex_town_tubo_road_edge
+    -> tex_town_song_southern_road_edge__w（era-kit-fallback:tex_town_tubo_road_edge->tex_town_song_southern_road_edge，1次）

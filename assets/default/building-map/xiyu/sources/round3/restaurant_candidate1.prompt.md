@@ -1,0 +1,7 @@
+Use the built-in image generation tool exactly once. Do not edit files or run shell commands.
+
+Image 1 is mandatory exact production geometry. Image 2 is material and regional style reference only. Replace the solid box in image 1 with an isolated two-storey Western Regions oasis teahouse. Preserve image 1 camera, canvas, framing, footprint, height, and every exterior boundary. The three visible foundation corners must stay at left (208,580), front (848,900), right (1328,660) on the 1536x1024 canvas. Both ground axes must stay exactly +0.5 and -0.5. Width:depth is 12:9. Orthographic yaw 45 degrees and elevation 30 degrees; verticals stay vertical; no perspective convergence.
+
+Use warm weathered ochre adobe, a flat timber-earth roof with low parapet entirely inside the box, carved timber screens, a ground-floor colonnade and second-floor balcony along the left-facing front wall, small tea tables inside the arcade, and restrained faded-red fabric shades. Do not change the outer foundation to make the arcade. Fine realistic historical strategy-game detail, matching image 2 and the approved Song building-map kit. Upper-left light and only a very short lower-right contact shadow.
+
+True transparent RGBA outside the building. No colored halo, vignette, ground patch, thick plinth, scenery, people, animals, text, signage, modern items, Chinese tiled roof, dome, or minaret. Do not retain guide outlines. Geometry fidelity is more important than ornament. Return only the generated image and its path.

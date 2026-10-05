@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: it_hanshui_siwan_fancai
+name: 汉水四碗饭菜
+kind: dish
+sub: dish
+grade: 5
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·汉水舟中鸡、肉、鱼、蔬四碗，周芷若喂张无忌
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_huichun:2battle
+assets:
+  icon: item/hanshui_siwan_fancai
+text:
+  desc: 外观：鸡肉、熟肉、河鱼、青蔬四只粗陶碗围一饭碗，舟中小几尺度 （原创扩展）。 待运行时投影：party=4。
+  lore: 《倚天屠龙记》汉水舟中有鸡、肉、鱼、蔬四碗，周芷若喂张无忌；本件随固定剧情投放，不另按四季刷新。须温热分食，外伤回复与供餐数值为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healOuter: 4
+      stamina: 16

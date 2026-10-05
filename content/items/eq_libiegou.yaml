@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_libiegou
+name: 离别钩
+kind: weapon
+sub: exotic
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 古龙《七种武器·离别钩》
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/libiegou
+text:
+  desc: 外观：乌钢弯钩配内刃，短柄皮缠。 待运行时投影：exoticKind=hook。
+  lore: 此器取自古龙《七种武器·离别钩》的非商业致敬，弯钩内刃可锁拿、牵带，也能借腕力突然回割。江湖上见其异形便知难以按常规剑路招架；形制与数值为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 76
+      qiAffinity: 100

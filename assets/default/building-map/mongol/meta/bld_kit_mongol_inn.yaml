@@ -1,0 +1,46 @@
+id: bld_kit_mongol_inn
+status: candidate
+building: {"type": "bld_kit_mongol_inn", "footprint": [10, 8], "anchor": [340.4785, 279.1682], "era": "mongol"}
+anchor_px: [340.4785, 279.1682]
+footprint_m:
+- 10
+- 8
+footprint_basis: 【建议值】复用design/22 §3.2 bld_kit_song_dali_inn；帐院客栈功能（原创扩展）
+measured_ground_polygon_px: [[52.4724, 274.1413], [358.0859, 426.6229], [628.4847, 284.195], [322.8712, 131.7134]]
+collision_polygon_m:
+- - 0
+  - 0
+- - 10
+  - 0
+- - 10
+  - 8
+- - 0
+  - 8
+collision_note: 全占地仅规划阻挡代理；毡帐/院落内可行走区域另需细化，不含阴影。
+entrance:
+  edge: S
+  offset_cells: 4
+entrance_note: 规划边中点代理，非门洞实测（待实测）
+height_m: null
+height_note: 未测量；不能由roof顶点与center直接反推整体高度。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg_requested: 45
+  pitch_deg_requested: 30
+  file: bld_kit_mongol_inn.png
+glb: null
+projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [576, 288], "ground_width_px": 576.0123, "ground_height_measured_px": 294.9095, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": true}
+geometry_qa: {"source_corners_px": {"left": [87, 566], "front": [816, 930], "right": [1461, 590], "rear_inferred": [732, 226]}, "source_anchor_px": [774.0, 578.0], "source_axis_slopes": [0.4993141289437586, -0.5271317829457365], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.130232558139535, "expected_width_depth_ratio": 1.25, "ratio_relative_error": 0.09581395348837207, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": ""}
+pixel_qa: {"mode": "RGBA", "size": [647, 512], "alpha_extrema": [0, 255], "alpha_zero_pixels": 242121, "alpha_partial_pixels": 88023, "alpha_opaque_pixels": 1120, "alpha_nonzero_bbox": [16, 112, 631, 430], "transparent_margins_px": [16, 112, 16, 82], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_inn__r2_c02.png", "source_sha256": "40d3b0ba8d4516e7c0928ac9b2878d6bcb1cc7e3bc88eb8725f931b711f4a57b", "source_size": [1536, 1024], "crop_box": [0, 19, 1467, 1024], "uniform_scale_requested": 0.4192139737991266, "resized_size": [615, 421], "rounded_effective_scale": [0.41922290388548056, 0.41890547263681593], "paste_offset": [16, 45], "final_file": "bld_kit_mongol_inn.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+selected_candidate: "run2-c2"
+visual_review: "第2轮返修采用本轮候选2；轴率0.49931/-0.52713；宽深比1.13023，目标1.25000；轴率/比例检查分别True/True。仍为candidate，非3D/四向及总装验收。"
+release_ready: false

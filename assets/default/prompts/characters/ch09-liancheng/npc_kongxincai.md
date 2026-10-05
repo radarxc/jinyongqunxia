@@ -9,8 +9,8 @@ tier: A
 output: assets/default/character/female/ch09/por_npc_kongxincai__ch09_child_protected_base.png
 manifest: assets/default/character/female/ch09/manifest.yaml
 references:
-  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_background_only_20261002.png
-    use: 唯一实际参考为root从用户水墨图派生的无人纯背景，已实际view并核SHA；仅取暖浅灰不透明纸底、极淡低对比水墨远山薄雾与留白。图中没有人物，不能提供面孔、年龄、性别、体型、衣饰、器物、姿势或人物色卡；本角色独立面容、正确年龄、完整写实身体及衣色完全按现有文字。墨迹和纸纹仅在人物轮廓外，不侵入皮肤、头发、衣料或器物。辅助图不等于原用户图，也不是approved资产，不转移审批。
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    use: 当前仓库 manifest 为 approved（已通过）；只参考纸底、光线、笔触和设色，不沿用脸、体型、服饰或道具
 status: ready
 ---
 

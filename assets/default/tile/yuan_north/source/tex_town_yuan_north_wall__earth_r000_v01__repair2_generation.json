@@ -1,0 +1,21 @@
+{
+  "id": "tex_town_yuan_north_wall__earth_r000_v01",
+  "repair_round": 2,
+  "tool": "image_gen (built-in)",
+  "model": "backend undisclosed",
+  "attempts_this_round": 2,
+  "selected": "second",
+  "prompt": "Use case: precise-object-edit. Add natural fine-grained rammed-earth texture to THIS EXACT SHAPE. Strict texture-only editing: do NOT change the source pixels' silhouettes or planar geometry. Output the SAME 1024x1536 framing with the shape in the SAME position, transparent beyond its silhouette. The source image is a dimensionally precise model for a game sprite. Its deliberately shallow diamond camera angle MUST stay exactly as drawn, including its diamond top: peak (512,256), left (256,384), near (512,512), right (768,384). Bottom left (256,1324.604), near (512,1452.604), right (768,1324.604). Keep these vertices. This is NOT standard isometric, do not change it to 0.577/0.66 slopes. Both slopes must remain 0.5/-0.5. Vertical wall height940.604 pixels unchanged. Make the wall a realistic medieval Yuan northern-China compacted sandy earth module, delicate horizontal rammed layers which recede along these exact planes, subtle weathering and small grains. Warm buff earth, left face illuminated, right darker, preserve face boundaries. NO brick, stone, roof, top coping, bevels, plinth, extra shapes, soil base, foliage, figures, letters. Absolutely NO halo, glow, blurred silhouette, or background shadow. Background entirely alpha=0, entire solid opaque alpha=255 with antialias only at contour. Preserve this clean sharp silhouette precisely; change only material appearance. One complete asset.",
+  "reference_image": "tex_town_yuan_north_wall__earth_r000_v01__repair2_guide.png",
+  "source_copy": "tex_town_yuan_north_wall__earth_r000_v01__repair2_source.png",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44f-794b-75c3-bb25-bb0001d0e036/exec-c1f23be8-64b5-47bb-a596-737e31bfd920.png",
+  "normalization": "PIL矩形裁切、严格等比LANCZOS缩小、8px透明补边；无warp、非等比缩放、合成改绘或alpha重绘",
+  "geometry_basis": "design/22 §1.2: 地面1m=(32,±16)px；垂高3m=3×16√6=117.5755px",
+  "validation": "源图alpha>128轮廓逐边回归；误差折算小于0.5px；逐图view_image；同尺度墙角+两臂各3直段组合预览验证",
+  "rejected": {
+    "candidate": "first",
+    "prompt": "Use case: precise-object-edit. Edit ONLY the surfaces of input image 1 (exact orthographic geometry guide) into a finely realistic Yuan northern Chinese rammed-earth city-wall modular sprite. Input image 2 is MATERIAL AND DETAIL-DENSITY reference only, never geometry. Preserve every silhouette vertex, every sharp straight edge, exact face boundary, image dimensions 768x1152, framing and alpha of input1. Treat the guide as locked geometry, add realistic warm sandy tamped earth thin strata and subtle grain to its three existing planes. Do not reshape, rotate, lengthen, shorten, broaden, round, bevel, add ground, or change camera. Its square bottom footprint is exactly1x1m and its height exactly3m. Exact screen ground slopes +0.5 and -0.5 (not steep isometric 0.577 or 0.66). Top vertices (384,192),(576,288),(384,384),(192,288); visible bottom vertices (192,993.45),(384,1089.45),(576,993.45). Vertical edge height705.45px. Retain these locations with pixel accuracy. Fine weathered layered earth with NO brick seams or stone, no coping, battlements, plinth, roof, people, objects or plants. Left visible wall plane lighter than right, upper-left light, minimal contact shadow only. No text, watermark, matte, checkerboard. Truly transparent RGBA background. One asset. This is a texture rendering edit, keep input1's precise 2:1 projected solid unchanged.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f44f-794b-75c3-bb25-bb0001d0e036/exec-6d27a80c-da5b-4924-a805-8f05c329d89f.png",
+    "reason": "双轴斜率约±0.58且垂高偏大；未用为成品"
+  }
+}

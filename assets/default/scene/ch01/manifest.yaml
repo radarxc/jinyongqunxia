@@ -1,0 +1,406 @@
+- id: cg_ch01_juxianzhuang_wine
+  file: cg_ch01_juxianzhuang_wine.png
+  category: scene
+  style: default
+  subject: 聚贤庄英雄宴（ch01_tianlong）
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是薛慕华定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里薛慕华头部一带的放大方图（插图局部）。请以最后一张为底稿，只把薛慕华改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
+
+    【画里是谁】聚贤庄英雄宴上，左后方站立的灰蓝长衫中年男子（薛慕华，神医「阎王敌」，约五十岁）。
+
+    【要改成什么】把他的脸改成基线这张脸：脸型更宽、两颊饱满，颧骨不要高耸，下颌宽；鼻子是基线那样鼻翼宽、鼻头厚的阔鼻；眉眼、嘴型、唇上短髭与颏下短须的样子与基线一致。
+
+    【原图保持】保留原图的发髻、皱眉凝视的严肃神情和头部角度。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
+
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+  references:
+  - path: assets/default/character/male/ch01/por_npc_xuemuhua__ch01_prime_juxian_base.png
+    sha256: 07e8eb5e329c44fdad29ed9dba81315872ea96bb5556698dc98770905d1a643f
+    use: 对脸基准：薛慕华的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_xuemuhua__ch01_prime_juxian_base.jpg）
+  - path: assets/default/scene/ch01/cg_ch01_juxianzhuang_wine.png
+    sha256: c00c8c61267444dd304deb34041b9e7cdad149b0f1159580d40acebd3af45464
+    use: 待改插图：只把薛慕华头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:08:30.098480-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_27_45_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 47f0b37c752a09e5d6921100a4ed6f2d1db4e24666c97aa36d7d12628d475dc0
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「聚贤绝交」，右上角竖排毛笔楷书；原生生成，已2倍放大逐字核对聚/贤/绝/交，无错字多字；未字体叠加、无朱印；视觉重出0次。使用本轮萧峰基础与聚贤庄阶段新图及既有S级阿朱；主角与S级以外均文字塑造；开战前护人与举酒为原创扩展构图，具体站位与修订版字句待考。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：薛慕华按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：已打开base及前后整图：定稿眉眼鼻颌同人，原怒意与侧光保留，无笑无接缝；其他人物、酒杯与题字头外逐像素不变
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.png
+    sha256: c00c8c61267444dd304deb34041b9e7cdad149b0f1159580d40acebd3af45464
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_juxianzhuang_wine.c00c8c61.entry.yaml
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_27_45_r1
+    before_sha256: 0c7140e280898c38b02e84e7f228535b16ac7793589c47a5cd782d375cb2623c
+    box:
+    - 607
+    - 155
+    - 715
+    - 287
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_27_45_r1.png
+    outside_changed_pixels: 0
+- id: cg_ch01_xingzilin_reveal
+  file: cg_ch01_xingzilin_reveal.png
+  category: scene
+  style: default
+  subject: 杏子林身世揭露（ch01_tianlong）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。本图为局部正方形裁图，输出同样正方形裁图，不画全身，不扩图。
+
+    【只改】只修改本裁图王语嫣的束发物：删除头顶金簪、白珠和所有粉红色系带，在同样位置仅用一根银灰色丝带系发，银色结及两条细长银色尾带。尾带须覆盖或替换原有粉红色尾带直到肩背；绝对不许留下旧粉红发带，不加新钗簪。耳坠不动，脸及衣服、背景、题字印章完全不动。
+
+    【原著依据】《天龙八部》第十五回 杏子林中 商略平生义：“立时便将他肩上四柄法刀拔了下来”；“创口中如喷泉般的鲜血立时便止”；https://www.xuges.com/wuxia/jinyong/tlbb/114.htm；《天龙八部》第十二回 从此醉：“用一根银色丝带轻轻挽住”；https://www.xuges.com/wuxia/jinyong/tlbb/087.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/44_cg_ch01_xingzilin_reveal.png
+    sha256: 1c348745fe0ed1d2f6a5a6c5b41f0d291f9ea3c4a718c7e34eb6832fd5b2ea79
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  - path: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
+    sha256: aa37f35be809f8d93fbf509f4f581dc6e8c9e3204a92f50a8b2c50ee66d4b8c8
+    use: 对脸基线：作者审核通过的 por_npc_azhu__ch01_youth_alive_base（阿朱），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T04:14:06.038919-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_44_r2.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 4626fcc6b02ff5b467ed9365e9174f97c94610359ccb367a162cd00bb16e7aab
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「杏林惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头悲愤与眼神下视，不抬头、不微笑。；质检：已打开对照：萧峰基准眉眼鼻颌已对齐，保留杏林低垂视线及沉重神态；不笑，光线接缝自然；周围众人与题字蒙版外零变化；AR-82 原著核对返修：杏林插图同步萧峰肩伤及王语嫣银带；AR-82 原著核对返修：杏林插图同步萧峰肩伤及王语嫣银带
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/44_cg_ch01_xingzilin_reveal.png
+    sha256: 1c348745fe0ed1d2f6a5a6c5b41f0d291f9ea3c4a718c7e34eb6832fd5b2ea79
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_31_45_r1
+    before_sha256: dddbedb6c4772a0f4844f8156d548536c66a3f23570ac1397a4fdf22a9714772
+    box:
+    - 636
+    - 117
+    - 754
+    - 292
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_31_45_r1.png
+    outside_changed_pixels: 0
+- id: cg_ch01_xiaojinghu_azhu
+  file: cg_ch01_xiaojinghu_azhu.png
+  category: scene
+  style: default
+  subject: 小镜湖青石桥（ch01_tianlong）
+  prompt: 'Use case: identity-preserve. Asset type: 小镜湖剧情插图阿朱头部局部表情修正，AR-81 / AR-90 作者01:41最新补充。
+
+    图1是唯一编辑底稿：作者认可r4中阿朱头部的原位正方形裁图。输出同样1024×1024裁图，头部位置、大小、倾角、脸部外轮廓、发际线和镜头完全一致。图2是作者AR-61选定阿朱base脸部，只参考五官身份与薄上唇，不复制图2甜笑、肤色、发式、姿态。
+
+    【最新作者口径，覆盖之前“不笑”】原著写“露出笑容”，不是眉目含情的笑，是“遗憾的笑”。她重伤临终，凄然一笑，带歉意、带不舍、带担心。嘴角只微微牵起，双唇轻合；眼里含泪、满是哀伤，眉头微蹙带忧。放不下萧峰、担心他的今后、遗憾不能相守，所有情绪都在这一丝凄然的笑里。主情绪是悲伤与歉意，笑幅很小。必须改掉图1眉目含情的甜笑。
+
+    【眉眼】目光仍望向图1左上方的萧峰；保持原来的眼型大小和视线角度，眼睛含泪，下眼睑湿润，疲惫、哀伤、不舍。内眉微收、眉头轻蹙带忧。眼睛不弯成月牙、不眯成笑眼，没有娇媚、挑逗、轻快或幸福。不加夸张哭脸。
+
+    【嘴唇】双唇轻合，不露牙；保留base自然唇峰与偏薄的上唇，嘴角只微微牵起，唇形克制。是勉力的、临终歉然的凄笑，不能甜笑、媚笑、开心浅笑、幸福依偎、脸颊含情鼓起或酒窝笑。
+
+    【身份】图1和图2是同一位阿朱；眼型大小、鼻梁鼻尖鼻翼、圆颊脸型、下巴、唇峰唇形与base一致，不变成厚唇或另一位美女；小痣保留。脸色苍白失血，嘴角一缕暗红血原样保留，不增加伤口。
+
+    【原图不变】只改阿朱表情，保留头部倾角、视线方向、脸部轮廓、湿发每束走向、耳朵、粉玉耳坠、发髻、灰色易容男袍、脖子长度位置、下颌到脖子的衔接、手绘笔触和雨夜冷光。图1左上萧峰那一点脸及衣物绝对不动。不要重排、镜像、转正脸、改妆容或发型、文字、水印、照片贴脸。
+
+    本版唯一表情细化：更虚弱克制的凄然一笑：嘴角只微微牵起，双唇轻合，上唇照base偏薄。眼睑疲惫但绝不笑眯，眼底满是哀伤与泪光，眉间轻蹙带忧；歉意、不舍、担心、不能相守的遗憾都在这一丝笑里。'
+  negative: 不要甜笑、娇媚、眉目含情、月牙笑眼、露齿；不要厚上唇、换脸、健康红润；不改萧峰、头发耳坠脖子、易容男袍、雨夜、构图与镜湖诀别题字。
+  references:
+  - path: .agents/coord/_lines/xiaojinghu-regen/best_candidate_r4.png
+    sha256: 85ac2610c23550e95ac97ad4f5bdb152ea8a53edbe78e51bcda107d946dbee32
+    use: 作者认可的整张重出r4；唯一构图、萧峰、男袍、雨夜、题字与像素保留底图
+  - path: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
+    sha256: aa37f35be809f8d93fbf509f4f581dc6e8c9e3204a92f50a8b2c50ee66d4b8c8
+    use: AR-61 B修眼稿；只取阿朱五官身份、眼型鼻形脸型唇形与偏薄上唇，不复制笑容
+  - path: .agents/coord/_lines/xiaojinghu-r5/refs/r4_azhu_head_edit.jpg
+    sha256: 09faa28ad7fbf75259e5782c3d62415eae706d01abb792d2da4e61050c51ffc4
+    use: 实际上传参考第1张：r4阿朱头部原位裁图，唯一编辑目标
+  - path: .agents/coord/_lines/xiaojinghu-r5/refs/azhu_base_face.jpg
+    sha256: bdb64f81526421e8cda8eb40e590cd7a6db4368a38faa9ae47b382294bed4496
+    use: 实际上传参考第2张：阿朱现行base脸部，只取五官身份
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84恢复后的萧峰现行base；与r4并排打开放大核对通过，保留r4、不搬旧构图脸
+  tool: codex_w30 runner · image_gen · AR-90 阿朱头部表情局部编辑；有界脸部蒙版向内羽化合回r4
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:58:36.477717-07:00'
+  source_path: .agents/coord/_lines/xiaojinghu-r5/candidates/r5_composite.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: ba7a8acde560acc29265490b1cb1909139ff52bb86527f9cb1b76109c74dd137
+  status: candidate
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「镜湖回生」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_azhu__ch01_youth_alive_base（作者返工「乔峰抱着阿朱」：按小镜湖青石桥情节重绘构图，乔峰半跪抱着中掌的阿朱，题字「镜湖回生」与夜雨石桥原样）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-75 小镜湖按原著重画；场景、动作、伤情、关系齐备；萧峰与阿朱对齐现行base，阿朱以AR-61 B修眼稿为准（作者AR-75要求按原著：雷雨夜青石桥；阿朱易容段正淳受掌后恢复本人，苍白失力、嘴角带血、伤重垂死；萧峰悲恸护抱。双人base与脸部对照已打开，阿朱基准为AR-61 B修眼稿。两候选视觉比较后选择B；题字按现图右上竖排毛笔与朱印惯例，内容改为镜湖诀别。）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；只改萧峰：保留俯头、湿发、泪痕、悲恸、急切关心阿朱的神态，鼻尖朝图右下，不抬头转正面；阿朱整个头部、苍白伤情、嘴角血与题字绝对不动。；质检：已实际打开base前后及接触边界蒙版：萧峰五官对齐恢复base，保留悲恸低头视线、泪痕、湿发冷光，无笑无接缝；多边形仅覆盖萧峰脸，阿朱头脸泪血耳坠及题字逐像素保留。以final-3c停止后最新git为底；AR-81 / AR-90 小镜湖：整张重出（r4）后阿朱改为不舍、遗憾、担心；作者01:41补充为“遗憾的笑”：临终凄然一笑，带歉意、不舍，哀伤泪眼、眉头微蹙带忧、双唇轻合、嘴角仅微牵，上唇偏薄、苍白与嘴角血保留。旧“不笑”r1-r3作废；新凄笑r4-r6逐张实际打开放大后选r5；下颌、脖子、湿发接缝自然，阿朱脸部蒙版外0像素变化。萧峰r4与AR-84现行base并排核对通过，照协调者01:41指示保留r4，不搬旧构图脸；已等canon-align本人有效结束行后入库。；题字诀别→回生；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  previous_revision:
+    png: .agents/coord/_lines/xiaojinghu-r5/backups/before_ingest_413f12d64518.png
+    sha256: 413f12d64518523caf7e16446cc8b2d2b5dc736d74f721865db4c876c5a8e8aa
+    entry: .agents/coord/_lines/xiaojinghu-r5/backups/before_ingest_413f12d64518.entry.yaml
+    git_commit: 6353ea26f372d6edb0b1c428992ed8557fecb42b
+  effort: xhigh
+  ar90_edit:
+    job: cg_ch01_xiaojinghu_azhu.ar90_expr_r5
+    author_update: 2026-10-04 01:41 遗憾的笑（覆盖先前不笑）
+    base_image: .agents/coord/_lines/xiaojinghu-regen/best_candidate_r4.png
+    base_sha256: 85ac2610c23550e95ac97ad4f5bdb152ea8a53edbe78e51bcda107d946dbee32
+    crop_box:
+    - 450
+    - 230
+    - 810
+    - 590
+    raw_crop: .agents/coord/_handoff/gem/codex_w30/out/cg_ch01_xiaojinghu_azhu.ar90_expr_r5.png
+    raw_crop_sha256: 048e6552ac72b4396ac77baeb14e02260fadc82ebfdbebb8b8d1682027a05d54
+    raw_crop_size:
+    - 1254
+    - 1254
+    mask: .agents/coord/_lines/xiaojinghu-r5/azhu_face_mask.png
+    inward_feather_px: 12
+    changed_pixels: 39598
+    outside_changed_pixels: 0
+    xiaofeng: r4与AR-84现行base并排核对通过，原样保留
+    canon_terminal_line: '[2026-10-04 01:57:04] 会话结束 rc=0：已完成并提交52张PNG、56处头部修改，含跨书10人统一。重叠文件6张已后补；2张背影保留，8张3D按AR-85搁置。  逐图质检及56次提交校验通过，蒙版外像素零变化。收件箱已追加【完成】，无未提交资产改动，未push。最后提交：`b6121d2d`。  [报告及15张逐人对照表](/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/canon-align/REPORT.md)'
+    previous_git_commit: 6353ea26f372d6edb0b1c428992ed8557fecb42b
+    comparison: .agents/coord/_lines/xiaojinghu-r5/xiaojinghu_r5.jpg
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch01_xiaojinghu_azhu_fixed.png", "before_sha256": "319cb81a0ea0a6965555afdb9d4c447efba3a9678e3ca80a3ca46f4843073dcb", "allowed_box": [[1388, 211, 1482, 291], [1388, 291, 1482, 375]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch01_xiaojinghu_azhu_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T02:04:39-07:00"}
+- id: cg_ch01_shaoshi_three_brothers
+  file: cg_ch01_shaoshi_three_brothers.png
+  category: scene
+  style: default
+  subject: 少室山群雄会（ch01_tianlong）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只将正中萧峰的灰旧袍改为玄黑色布衣与玄黑薄毡大氅，大氅随原掌势同方向翻起；原动作和构图不变。萧峰脸、头巾、双手、裤脚与鞋不动，左侧段誉、右侧虚竹、前景人物和剑、题字印章以及所有背景逐像素保持。
+
+    【原著依据】《天龙八部》第四十一回 燕云十八飞骑 奔腾如虎风烟举：“玄色薄毡大氅，里面玄色布衣”；https://www.xuges.com/wuxia/jinyong/tlbb/312.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/45_cg_ch01_shaoshi_three_brothers.png
+    sha256: 16d083d70b45af4146d0390c2c320110a4af80ee2de1ee562601786b73be7f88
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  - path: assets/default/character/male/ch01/por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion.png
+    sha256: 6e74951b1c8c57695f3420ee57dedc1d4d3e4a0ea6a503faac002728a7ee3d7c
+    use: 对脸基线：作者审核通过的 por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（虚竹），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:26:29.905781-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_45_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: cd39220bfc6f25d14efc9a6e8ef3a27a7460a0612110c491af4f4829d77d1dfa
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「少室同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：已打开对照：萧峰眉眼鼻颌与base同人，保留严肃戒备及原光向，闭口无笑；仅本头蒙版，段誉虚竹和题字原像素保留；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；；质检：已打开对照：虚竹对齐base同人五官，原认真神态闭口无笑，侧光和头顶边缘自然；第二头仅自身蒙版合成，保留已提交的萧峰头及段誉题字；AR-82 原著核对返修：少室三兄弟插图同步萧峰玄衣玄氅
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/45_cg_ch01_shaoshi_three_brothers.png
+    sha256: 16d083d70b45af4146d0390c2c320110a4af80ee2de1ee562601786b73be7f88
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_28_46_r1
+    before_sha256: 3d7f732623fe03b0bc52ff176ba2df9261e729160a7b6301e7aedc7ca2dced8f
+    box:
+    - 1060
+    - 192
+    - 1156
+    - 315
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_28_46_r1.png
+    outside_changed_pixels: 0
+- id: cg_ch01_wuliang_lingbo
+  file: cg_ch01_wuliang_lingbo.png
+  category: scene
+  style: default
+  subject: 无量山奇遇（ch01_tianlong）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是钟灵的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中钟灵的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：段誉无量山习得步法后的山道脱险概括（原创扩展构图，具体追逐人物与回次待考）。段誉居中青衫轻踏山石，面带惊奇，温雅成年书生；成年钟灵在右后岩边回望，绿青短衫长裙、肩头小貂；左前一名中年江湖帮众扑空收势。山岚掩映曲折路径，衣服自然，不画能量光，不画仙女玉像。
+
+    【要对齐的部分】钟灵各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「无量微步」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】钟灵是右后方岩边回望的成年姑娘（肩头伏着小貂）；只改她的脸，让她与基线是同一个人：圆润的脸、大眼睛、浓而略短的弯眉、圆润的鼻头。中间的段誉与左前的帮众一概不动。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/female/ch01/por_npc_zhongling__ch01_youth_diaoalive_base.png
+    sha256: 7baa010622384fdaa612474077fe8b79ff72806bc68a5569978eccc7be49966a
+    use: 对脸基线：作者审核通过的 por_npc_zhongling__ch01_youth_diaoalive_base（钟灵），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch01/cg_ch01_wuliang_lingbo.png
+    sha256: 7bf63441be82cfb3bc75e9210d86215b2837f6c6b5281db4d7457064a021369b
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_wuliang_lingbo.7bf63441.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T18:15:06-0700
+  source_path: .agents/coord/_handoff/gem/codex_w24/out/cg_ch01_wuliang_lingbo.s1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: c836f97d7de379a56aac9388336064a50acf7111ea07001347a70826a1345891
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「无量微步」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_zhongling__ch01_youth_diaoalive_base（AR-57/58：钟灵按作者 10-03 18:02 选定的新 base 对脸；画中段誉与帮众不动）
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_wuliang_lingbo.7bf63441.png
+    sha256: 7bf63441be82cfb3bc75e9210d86215b2837f6c6b5281db4d7457064a021369b
+    entry: .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch01_wuliang_lingbo.7bf63441.entry.yaml
+  effort: ultra
+- id: cg_ch01_zhenlong_break
+  file: cg_ch01_zhenlong_break.png
+  category: scene
+  style: default
+  subject: 珍珑棋局（ch01_tianlong）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只把大青石上独立木棋板移除，十九路棋盘直接刻在同一块大青石表面。双方各百余子（共两百余子）的错综密集黑白残局，不能只放几十子。三个人、原手指与白子、碗、石头周边、背景和题字朱印完全不动。
+
+    【原著依据】《天龙八部》第三十一回 输赢成败 又争由人算：“棋盘雕在一块大青石上”；“双方各已下了百余子”；https://www.xuges.com/wuxia/jinyong/tlbb/236.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/46_cg_ch01_zhenlong_break.png
+    sha256: d23a9f8afb3104ce7eb1ec0beb98642b9b1e8c485d52962a9b6766555a28ac66
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:56:08.746892-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_46_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 3ab06bf467c78eeb45014a7800d803229b558c08ac177f5e9f3e531dd5d1721e
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「珍珑破局」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion、por_npc_duanyu__ch01_youth_shizi_base；AR-44 对脸精修，基线 = por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：苏星河按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员）：苏星河重新贴回——同一 codex 输出，贴回区在方块边缘前渐隐，去掉上一版方块下沿的细接缝，其他人物与题字逐像素不变；AR-53 配角对齐（11 号出图员，总审 10-03 复核后第二次收拾）：苏星河两鬓散发拢到耳后、不再遮脸，胡须再修短成灰须，向本人默认基础立绘再靠一步；只合成目标人物头部，其他人物与题字逐像素不变；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；保留低头思考棋局的眼神与朝向，闭口不笑。；质检：实际打开base和前后：虚竹同人眉眼鼻唇，俯视落子原专注神态与光向保留，不笑；邻人和棋局题字均蒙版外零变化，接缝自然；AR-82 原著核对返修：珍珑插图去木板改直接青石刻盘密集残局；AR-82 原著核对返修：珍珑插图去木板改直接青石刻盘密集残局
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/46_cg_ch01_zhenlong_break.png
+    sha256: d23a9f8afb3104ce7eb1ec0beb98642b9b1e8c485d52962a9b6766555a28ac66
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_33_46_r1
+    before_sha256: ab247b0e3af789a375a20cd28c0db0d46b0d7eb3415fd4c4c1f634f2a7fe8632
+    box:
+    - 469
+    - 280
+    - 583
+    - 418
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_33_46_r1.png
+    outside_changed_pixels: 0
+- id: cg_ch01_songhe_wine_oath
+  file: cg_ch01_songhe_wine_oath.png
+  category: scene
+  style: default
+  subject: 松鹤豪饮（ch01_tianlong）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是萧峰的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是段誉的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中萧峰、段誉的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：无锡松鹤楼，萧峰与段誉饮酒初识。萧峰灰褐粗袍、魁伟豪爽；段誉青色长衫、温雅书卷气，二人隔朴素木桌各举陶酒碗，桌上酒坛和小菜。窗外水乡屋瓦、木栏、暖日斜照。只画饮酒相识，不把正式结拜移进酒楼；概括构图为原创扩展。
+
+    【要对齐的部分】萧峰、段誉各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「松鹤豪饮」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard.png
+    sha256: 26770d598a4d432c9cd44f97d4f69b943422e9dec02f03a906888a60967ee734
+    use: 对脸基线：作者审核通过的 por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard（萧峰），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png
+    sha256: b5f6a8f337ec3b14f7abeb8ee1bca5aa65aadf1fc67e6a5258b7f94563ba0a4a
+    use: 对脸基线：作者审核通过的 por_npc_duanyu__ch01_youth_shizi_base（段誉），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch01/cg_ch01_songhe_wine_oath.png
+    sha256: edd7ef2e6576b33a142c567a5b8e7af59f2807fd24376c78878e85023cf5e98d
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.png
+  - path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_gaibang_base.png
+    sha256: acfe990e0d0e4b2513bb953f50c29d18418ee915c8a2026056ede55b46b720dd
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:11:24.489822-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_29_45_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 21e05e34910564eaef5c944a004fa56380516057205742f02f0615415a1488f9
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「松鹤豪饮」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留原画侧向结义神态与暗室暖光，鼻尖朝图右。；质检：已打开base与改前后：侧转头向下五官仍为基准同人，严肃举杯神态、原光向与胡须自然无接缝；段誉酒器题字等头外逐像素保留
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.png
+    sha256: edd7ef2e6576b33a142c567a5b8e7af59f2807fd24376c78878e85023cf5e98d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch01_songhe_wine_oath.edd7ef2e.entry.yaml
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_29_45_r1
+    before_sha256: d20de21958d21fa8966d918f397297a3c7e8c1427cdfc9386da36fa6b5d9ddef
+    box:
+    - 276
+    - 207
+    - 446
+    - 381
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_29_45_r1.png
+    outside_changed_pixels: 0
+- id: cg_ch01_yanmen_life_for_life
+  file: cg_ch01_yanmen_life_for_life.png
+  category: scene
+  style: default
+  subject: AR-26“一命换一命”（ch01_tianlong）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。本图为局部正方形裁图，输出同样正方形裁图，不画全身，不扩图。
+
+    【只改】只将粉衣王语嫣后脑右上珠钗与粉色带尾，改为银色丝带轻挽长发，清楚银带结和细长银带尾，去掉钗针与珍珠饰。保留王语嫣长发、脸和原五官、耳坠、身体姿势及衣服。萧峰、段誉、虚竹、所有其他人、战场、题字和朱印逐像素不变。
+
+    【原著依据】《天龙八部》第十二回 从此醉：“用一根银色丝带轻轻挽住”；https://www.xuges.com/wuxia/jinyong/tlbb/087.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/56_cg_ch01_yanmen_life_for_life.png
+    sha256: 296c28eb71a5925ed06ef0e7253f39b7ab18e6738e21a83107664857e8841b47
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  - path: assets/default/character/female/ch01/por_npc_azhu__ch01_youth_alive_base.png
+    sha256: aa37f35be809f8d93fbf509f4f581dc6e8c9e3204a92f50a8b2c50ee66d4b8c8
+    use: 对脸基线：作者审核通过的 por_npc_azhu__ch01_youth_alive_base（阿朱），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:41:52.871692-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_56_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 9f4dc714c3bddd0a008ada120398fbb0aa1605d5c1155cf12d640b0e2f1f78ee
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「雁门换命」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaofeng__ch01_prime_scene_juxianzhuang_guard、por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base、por_npc_xuzhu__ch01_youth_scene_lingjiu_compassion（AR-53 总审返修：虚竹改回宽脸憨厚，段誉对齐基线）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（AR-53 总审返修：阿朱改回基线的圆颊大眼）；AR-44 对脸精修，基线 = por_npc_azhu__ch01_youth_alive_base（作者 17:45 选定阿朱新 base 后对齐）；AR-84 第二轮：萧峰五官对齐 por_npc_xiaofeng__ch01_prime_gaibang_base；AR-53 仅头部，AR-75 神态与光向保留；保留图1怒目、绷紧嘴唇、身体前倾与原有伤情，不新增血痕或伤势；周围少女的手和其他人物不得改变。；质检：已打开对照：萧峰眉眼鼻唇下颌为恢复base同人，保留受伤仰望、眉间紧张及夕照，闭口不笑；邻人的手脸衣饰及题字原像素不变，无可见接缝；AR-84 第二轮：虚竹五官对齐 por_npc_xuzhu__ch01_youth_lingjiu_base；AR-53 仅头部，AR-75 神态与光向保留；右后方和尚虚竹，保留焦急关切的神态；旁人不得改变。；质检：已打开对照：虚竹base同人眉眼鼻唇，保留俯身伸手的焦急眉目与侧上夕照；不笑、头颈接缝自然；只合成本头，保留已改萧峰以及其余人和题字；AR-82 原著核对返修：雁门插图同步王语嫣银带轻挽长发
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/56_cg_ch01_yanmen_life_for_life.png
+    sha256: 296c28eb71a5925ed06ef0e7253f39b7ab18e6738e21a83107664857e8841b47
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_32_46_r1
+    before_sha256: bca4f4dbdf6962c60aa39fcbf297d31f5e9aedd8c0201f7d204b021f2fac40b6
+    box:
+    - 1197
+    - 139
+    - 1292
+    - 267
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_32_46_r1.png
+    outside_changed_pixels: 0

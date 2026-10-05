@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_bumianpifeng
+name: 布面披风
+kind: armor
+sub: cape
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/bumianpifeng
+text:
+  desc: 外观：灰蓝短披风折叠平置，粗布哑光、木扣。 待运行时投影：defOutK=0.025; hpMaxK=0.005。
+  lore: （原创扩展）驿路裁缝用灰蓝粗布裁成及膝短披，只留木扣与系带，便于赶路时挡风尘。湿后须摊开阴干，江湖客多把它卷在鞍后，不当礼服穿用。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 3

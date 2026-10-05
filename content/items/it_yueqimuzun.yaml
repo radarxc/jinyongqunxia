@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yueqimuzun
+name: 越地漆木盛器
+kind: collectible
+sub: antique
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yueqimuzun
+text:
+  desc: 外观：暗朱黑漆木质圆口盛器，短腹圈足。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=2; provenance=expanded。
+  lore: 以越地器用背景设计轻质漆木礼器，漆色和器形并不冒称原著名物。护送工匠之后获赠，宜送商贾或藏家；当地漆木工艺细节尚（待考），纹样与流转均为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

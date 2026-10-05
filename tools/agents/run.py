@@ -31,6 +31,10 @@ import tempfile
 import threading
 import time
 from pathlib import Path
+try:
+    from .check_semaphore import check_environment
+except ImportError:  # 直接执行 tools/agents/run.py
+    from check_semaphore import check_environment
 
 HERE = Path(__file__).resolve().parent
 PROMPTS_DIR = HERE / "prompts"
@@ -153,6 +157,7 @@ class Task:
         self.priority = int(d.get("priority", 0))
         self.agent_args = list(d.get("agent_args", []))   # 追加给 CLI 的参数（如放开网络）
         self.full_checkout = bool(d.get("full_checkout", False))  # 强制全量检出（默认文档 / 代码任务稀疏检出，不含图片目录）
+        self.sparse_include = list(d.get("sparse_include", []))  # 2026-10-02 协调者：素材任务也用稀疏检出，只额外包含这些目录 / 文件模式（全量检出约 6 GB，磁盘不够）
         self.target: Task | None = None             # 审校任务的被审对象
         self.score = 0                              # 调度优先级：后继任务数 + priority
 
@@ -422,14 +427,26 @@ BINARY_EXT = (".png", ".jpg", ".jpeg", ".webp", ".gif", ".ico", ".pdf", ".ttf", 
               ".mp3", ".ogg", ".wav", ".mp4", ".webm", ".zip")
 
 
+def skip_worktree_paths(wt: Path) -> set:
+    """稀疏检出时没拉到磁盘上的文件（`git ls-files -t` 标 S，skip-worktree）。
+    它们不在磁盘上不是任务删的，git add -A 也不会把它们提交为删除。"""
+    p = git(["ls-files", "-t", "-z"], wt, check=False)
+    if p.returncode != 0:
+        return set()
+    return {e[2:] for e in p.stdout.split("\0") if e.startswith("S ")}
+
+
 def baseline_lines(wt: Path, t: Task, base: str) -> dict:
-    """任务开始时，写入范围内已有文件的行数（用于防截断检查）。"""
+    """任务开始时，写入范围内已有文件的行数（用于防截断检查）。
+    2026-10-03（素材线第三波，main 批）：稀疏检出没拉下来的文件（skip-worktree）不进基线，
+    否则删除检查会把它们误报为「文件被删除」（ART-cast-fill-c 只拉名单里新人的 PNG，同目录既有立绘全被误报）。"""
     out = {}
     if not t.writes:
         return out
+    skipped = skip_worktree_paths(wt)
     p = git(["ls-tree", "-r", "--name-only", "-z", base], wt, check=False)
     for rel in p.stdout.split("\0"):
-        if rel and matches_any(rel, t.writes):
+        if rel and rel not in skipped and matches_any(rel, t.writes):
             if rel.lower().endswith(BINARY_EXT):
                 out[rel] = -1  # 二进制素材只查是否被删除，不按行数比较（图片由 check_assets 校验）
                 continue
@@ -489,7 +506,7 @@ def validate(t: Task, wt: Path, baseline: dict, cfg: Config) -> list:
         argv = [sys.executable if a == "{python}" else a for a in cmd]
         shown = " ".join(cmd).replace("{python}", "python")
         try:
-            p = subprocess.run(argv, cwd=str(wt), capture_output=True, text=True,
+            p = subprocess.run(argv, cwd=str(wt), env=check_environment(), capture_output=True, text=True,
                                encoding="utf-8", errors="replace", timeout=900)
         except subprocess.TimeoutExpired:
             problems.append(f"校验命令超时：{shown}")

@@ -3,16 +3,16 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/05-gameplay-engine.md` |
-| 版本 | v1.7（经脉落地终审（2026-09-30）：AR-18 派生与正式回放缺口）；v1.6（经脉落地终审：NXT 音功判定点与大手印单伤害段同步，2026-09-29）；v1.5（经脉落地终审：音功 0 档特判与外放执行契约，2026-09-29）；v1.4（AR-16 外放预估、原子支付与回放同步；绝招候选时序对齐，2026-09-28）；v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
-| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03（冲穴）、AR-04（统一大地图与时代图层）、AR-05（资源与家丁）、AR-06（营生职位）、AR-07（门派职级与月钱）、AR-09（NPC 与跨书界同伴）、AR-12（六角战棋）、AR-13（跨年代传承）、AR-14（经脉运行、路线、绝招与擒拿点穴）、AR-16（外放范围与威力加持）、AR-17（音功 1 档起外放与大手印掌风外放） |
-| 上游基准 | `docs/00-canon.md` v1.6 §3–§5（成长、数值、节奏）、§8–§10（战斗、外放、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
-| 强依赖 | `tech/01` §3、§6、§8.3（架构、运行时、确定性 D1–D9）；`tech/03` §2、§6、§8（性能与 Worker）；`tech/04` §3、§5–§8（schema、经脉 / 外放配表、书界包、Ink 桥）；`tech/08` §3、§10（TSAV、迁移与录像）；`design/04`（Z0–Z10）；`design/05`（武学与外放静态字段）；`design/06` §2、§4–§6（Buff DSL）；`design/08`（地形）；`design/09` §2–§8、§13（战斗、范围与候选）；`design/11`（开放世界、时代层与世界时钟）；`design/12`（任务、门派流程）；`design/13`（成长与规则开关）；`design/15`（永久经脉与穴位）；`design/16`（资源与营生）；`design/17`（门派名录）；`design/18`（NPC/同伴）；`design/19`（全国地图）；`design/20`（跨年代传承）；`design/21` §4.4.1、§11–§12（战斗经脉、招式路线、控制、外放与音功分档） |
+| 版本 | v1.8（AR-26 / AR-28 长生诀、休眠、采集与高阶合同运行时，2026-10-02）；v1.7（经脉落地终审（2026-09-30）：AR-18 派生与正式回放缺口）；v1.6（经脉落地终审：NXT 音功判定点与大手印单伤害段同步，2026-09-29）；v1.5（经脉落地终审：音功 0 档特判与外放执行契约，2026-09-29）；v1.4（AR-16 外放预估、原子支付与回放同步；绝招候选时序对齐，2026-09-28）；v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
+| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03–AR-07、AR-09、AR-12–AR-14、AR-16–AR-18、AR-26、AR-28 |
+| 上游基准 | `docs/00-canon.md` v1.10 §3–§5（成长、数值、节奏）、§8–§10（战斗、外放、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
+| 强依赖 | `tech/01` §3、§6、§8.3；`tech/03` §2、§6、§8；`tech/04` §3、§5–§8；`tech/08` §3、§10；`design/02` §4.2–§4.6；`design/04`–`06`、`08`–`09`、`11`–`13`、`15`–`21`；`design/25` §2–§3、§7–§9、§12；`design/story/sleep-events` §2、§8；`design/story/changsheng-sidelines` §1.3、§9.1 |
 | 下游 | `apps/game` 的 `CoreHost`；`packages/ui`、`packages/render` 的只读投影与事件消费；`tools/balance`；`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | `packages/core` 的纯 TypeScript、无 DOM、确定性内部设计：状态、命令事务、探索 tick、六角格、战斗、伤害执行器、Buff/任务 DSL 运行时、AI、存档状态、录像与测试 |
 | 引用而不重定义 | 数值公式、武学内容、Buff 语义、地形规则、战斗平衡、任务剧情、NPC 事实、存档容器分别归上述设计/技术文档；本文只固定实现契约、执行顺序与确定性护栏 |
 | 标注约定 | **（待核实）**版本/API/限额未联网确认；**（待实测）**需真机或真账号验证；**【建议值】**等待上游定稿替换；**（原创扩展）**仅在涉及玩法内容提案时使用 |
-| 本次变更 | 经脉落地终审（2026-09-30）：复核 `commandPrefix` 与 `tech/01/08` 同域，接入 AR-18 共享出口 / 体段派生、秘籍奖励事务测试及具名 Boss `BattleReplayV1` 未落盘登记。保留 2026-09-29 的 F0 音功判定、`voice` 与大手印单伤害段同步记录 |
+| 本次变更 | AR-26 / AR-28（2026-10-02）：接入长生诀跨书状态与事件、休眠事件选择和 `BookSleepPlan` 幂等提交、螺旋事务字段，以及采集 / 遗迹 RNG、奖励收据和高阶合同并发锁；数值只引用归属设计 |
 
 > **结论先行（TL;DR）**
 >
@@ -29,9 +29,9 @@
 > 11. 任务 DSL、Ink、经营、门派、永久经脉与传承都只能产生意图，再由 core 校验；运行态逐项消费 `design/12`、`15`、`16`、`20`、`21` 的正式 schema 与事务规则，不在 core 重定义玩法。传承调度只用 `qiyu` RNG，阶段、材料、收据与 RNG 同事务。
 > 12. 当前周目跨书界永久状态包括冲穴/周天/九转与同伴履历；新周目仍按 `design/13` 重置其运行态，只保留账号级里程碑。资源点归属、普通库存、家丁、营生职位和当前门派身份默认随书眠清除；跨书同伴按 `design/18` 做健在判定，以离队快照为下限合并后世新增能力。
 > 13. AI 采用09的 Utility AI，Boss 用阶段状态机约束。固定工作预算和5/15/40/80ms调度预算并用，2倍超时取当前最优；AI选择可随设备变化，录像记录最终命令，core重放结果不变。
-> 14. 存档复用 `tech/08` 的 TSAV v1；`rulesProtocol=2` 的录像/检查点把按 `unitIndex` 排序的 `meridian-flow-state.v1` 与唯一四字 `battleRng` 一起纳入规范 hash，并与 Python golden 逐字段对拍。
+> 14. 存档复用 `tech/08` 的 TSAV v1；`rulesProtocol=3` 的录像/检查点把按 `unitIndex` 排序的 `meridian-flow-state.v2` 与唯一四字 `battleRng` 一起纳入规范 hash；协议 2 golden 只作为旧录像基线逐字段对拍。
 > 15. MVP 先交付单线程 core、六角战斗、伤害/Buff、任务基本式、存读档与录像；AI Worker、复杂世界周期以及经脉 / 经营 / 传承量产按 `tech/09` 阶段门和基线实测递进。
-> 16. 绝招轮换只存在于当前战斗：每单位、每门已装配武学记录 `ultimateCooldown: 0|1` 与 `lastUltimateMoveId`，战后丢弃且不写持久 `SkillState`；录像 / 内存检查点把它们纳入协议 2 状态哈希，降龙 `cdMinus` 只减招式自身 CD。
+> 16. 绝招轮换只存在于当前战斗：每单位、每门已装配武学记录 `ultimateCooldown: 0|1` 与 `lastUltimateMoveId`，战后丢弃且不写持久 `SkillState`；录像 / 内存检查点把它们纳入协议 3 状态哈希，降龙 `cdMinus` 只减招式自身 CD。
 > 17. AR-16 外放在 F0 由同一可用性查询冻结 `projectionStep`、射程、范围、额外耗内与 Profile 版本；预估零写入 / 零 RNG，F2 才与原招成本原子支付。命令、AI 候选、录像与 hash 都携带所选档；Z5M 只在既有位置二选一执行一次。
 > 18. AR-17 只给“深厚内力驱动且可主动控制伤敌音波”的招式静态外放资格；音功 0 档仍是基础音波（基础范围、零外放增耗、普通 Z5M），1 / 2 档才激活外放。静态 `DamageKind='projected'` 与护体内劲 40% 适用率暂不动态切换。
 > 19. `mv_dashouyin_dashouyin` 先执行非伤害跃迁，再于落点生成唯一掌风伤害段；只有掌风段走 `projected`、同一次外放 Z5M 与原 attack 路线，跃迁不产生第二伤害段、第二 Z5M 或第二路线提交。
@@ -54,6 +54,8 @@
 - [11. 经脉、资源、营生与门派运行时](#11-经脉资源营生与门派运行时)
 - [11.2 战斗经脉模拟模块](#112-战斗经脉模拟模块)
 - [11.7 跨年代传承运行时](#117-跨年代传承运行时)
+- [11.8 长生诀、休眠事件与书眠提交](#118-长生诀休眠事件与书眠提交)
+- [11.9 采集与遗迹奖励事务](#119-采集与遗迹奖励事务)
 - [12. NPC、同伴与年代状态](#12-npc同伴与年代状态)
 - [13. Utility AI 与 Worker](#13-utility-ai-与-worker)
 - [14. 存档、迁移、录像与重放](#14-存档迁移录像与重放)
@@ -89,7 +91,7 @@
 | E-17 | 存档 | GameState 负载交给 TSAV v1；纯迁移 + 内容 fixup | `tech/08` §3 |
 | E-18 | 录像 | 开局快照、命令、RNG、每 10 命令中间哈希 **【建议值】**、终局哈希 | `tech/08` §10；本文 §14 |
 | E-19 | 跨年代传承 | `legacy.v1` 只读 registry + 当前周目状态；`qiyu` RNG、稳定排序、双类配额收据和原子书眠 | `design/20` §2–§14；本文 §11.7 |
-| E-20 | 战斗经脉 | `rulesProtocol=2`；一独立行动单位一实例；Z4M / Z5M 与护体内劲按固定边界接入；模块只消费 Core 注入的全局 `battle` 流 | AR-14；`design/21` §4、§11–§12；本文 §7–§8、§11.2 |
+| E-20 | 战斗经脉 | `rulesProtocol=3`；一独立行动单位一实例；Z4M / Z5M 与护体内劲按固定边界接入；模块只消费 Core 注入的全局 `battle` 流 | AR-14；`design/21` §4、§11–§12；本文 §7–§8、§11.2 |
 | E-21 | 外放加持 | `projectionStep` 入命令 / AI / replay；`projectProjection` 纯查询，F2 原子付费；六角枚举复用 §6，Z5M 只选一条曲线；音功仅 1 档起令 `projectionBoostActive=true` | AR-16 / AR-17；`design/09` §5、`design/21` §4.4.1；本文 §6–§8、§11.2、§14 |
 
 ## 1. 目标、边界与依赖
@@ -275,6 +277,7 @@ export interface GameState {
   world: WorldState;
   battle: BattleState | null;
   dialogue: DialogueState | null;
+  bookSleep: BookSleepRuntimeState | null;
 }
 
 export interface MetaState {
@@ -305,6 +308,7 @@ export type RngStateJson = readonly [number, number, number, number];
 interface ProfileState {
   protagonist: PersistentCharacterState;
   progression: PersistentProgressionState;
+  changsheng: ChangshengRunState;                 // 当前周目跨书，见 §11.8
   createdMartialArts: CreatedMartialArtState[]; // 当前周目，作者决定 P08（G1）
   equippedTitleIds: TitleId[];                 // 0–2；第二枚仅按 design/13 的特例生效
   metaBridge: MetaBridgeState;                 // MetaProfile 的确定性规则投影与待提交意图
@@ -386,6 +390,7 @@ interface PartyState {
 | `profile.meridians` | 跨书界、当前周目永久 | 书眠全量保留；新周目按 `design/13` 重置运行态，只向 `MetaProfile` 写里程碑 | AR-03、`design/13` §6.1/§9.4 |
 | `profile.companionLedger` | 跨书界 | 保留快照与履历 | AR-09、`design/18` |
 | `profile.legacy` | 当前周目、跨书界 | 保留源状态、三卷、信物及调度 / 机会 / 校合收据；新周目重置 | AR-13、`design/20` §11 |
+| `profile.changsheng` | 当前周目、跨书界 | 保留层数、支线摘要、升层收据、真璧与书眠审计收据；转化高水位和成长资源不在此子树；新周目按 `design/13` 重置 | `design/02` §5.2、`design/03` §7、`design/13` §4.10、`design/25` §2、§7–§9、`story/changsheng-sidelines` §1.3、§9.1 |
 | `profile.flags/runFlags` | 账号授权事实/当前周目 | 两者均跨书保留；新周目仅从 `MetaProfile` 重建获 design/13 授权的 profile facts，并清空 runFlags | §10 **【建议值】** |
 | `chapter.flags/quests/npcs` | 当前书界 | 归档摘要后重建 | `design/12` §1、§11 |
 | `chapter.sects` | 当前书界 | 默认清除 | `design/12` §11.3、`design/16` §11 |
@@ -481,7 +486,7 @@ interface BattleUnitActionState {
 interface MeridianBattleUnitState {
   unitId: UnitId;
   unitIndex: number;
-  flow: MeridianFlowSnapshotV1;
+  flow: MeridianFlowSnapshotV2;
   activeDefense: { routeId: MeridianRouteId; qualityBp: number; expiresAtOwnAction: number; causeId: string|null } | null;
   movementProjection: { routeId: MeridianRouteId; qualityBp: number; speedBp: number; sealed: boolean; ruptured: boolean } | null;
   innerGuard: { enabled: boolean; routeId: MeridianRouteId; breakGuardBp: number; reflectBp: number } | null;
@@ -492,7 +497,7 @@ interface MeridianBattleUnitState {
 
 `BattleUnitState` 继承 `design/09` §13.1 的身份、unitIndex、阵营/控制、格位/朝向、CT/冻结/待移位、五资源、Buff、反击招、被擒/倒地、AI/仇恨与 flags，全部必须进入战斗快照。本文统一 optional 规则状态为显式 null/空数组，adapter 映射 `id→battleId`、`env→environment` 等字段，不维护两份值。道具以 `ItemUid` 选择实例、以 `ItemId` 累计次数和冷却。运劲实际效果进入资源/Buff，最近模式供后续查询。`revision` 在预测输入改变时递增；寻路 open set、可达格与动画不保存。
 
-`ultimateBySkill` 由入场时已装配武学生成，只存在于 `BattleState`、录像与同进程悔招 checkpoint；它不写回 profile 的持久 `SkillState`，`battle/finalize` 和离开战斗都直接丢弃。这样跨战斗不继承共享冷却或上次绝招，而协议 2 重放仍能逐命令复原轮换状态。
+`ultimateBySkill` 由入场时已装配武学生成，只存在于 `BattleState`、录像与同进程悔招 checkpoint；它不写回 profile 的持久 `SkillState`，`battle/finalize` 和离开战斗都直接丢弃。这样跨战斗不继承共享冷却或上次绝招，而协议 3 重放仍能逐命令复原轮换状态。
 
 ### 3.4 命令、事件与结果
 
@@ -517,7 +522,7 @@ type Command =
   | { readonly t: 'battle/finalize' }
   | { readonly t: 'rules/setDifficulty'; readonly difficulty: DifficultyId }
   | { readonly t: 'rules/setSwitch'; readonly id: RuleSwitchId; readonly enabled: boolean }
-  | { readonly t: 'chapter/bookSleep'; readonly carry: CarrySelection };
+  | { readonly t: 'chapter/bookSleep'; readonly plan: BookSleepPlan };
 
 interface DomainEvent<T extends string = string, P extends JsonValue = JsonValue> {
   readonly t: T;
@@ -669,11 +674,13 @@ export function chanceBp(rng: Rng, chance: number): boolean {
 |---|---|---|
 | `battle` | 命中、招架、暴击、浮动、战斗效果、撤退、经脉逐段卡住与合格自行解穴 | 战利品、AI tie-break、经脉单位子流 |
 | `loot` | 掉落表、奖励随机品质 | 战斗判定 |
-| `world` | Ink seed、世界事件、资源受扰、天气 | UI 装饰 |
+| `world` | Ink seed、世界事件、资源受扰、天气、普通采集候选 / 产量与遗迹刷新 / 守卫状态 | 遗迹 / 敌人战利品、UI 装饰 |
 | `ai` | 明确配置的等分候选破同分 | 模拟命中；AI 预测用期望值 |
 | `qiyu` | 奇遇池抽取 | 普通旅行事件 |
 
 新增流会改变存档 schema，不能临时用字符串创建。随机选择前必须把候选按稳定 ID 排序；权重累计使用整数，禁止浮点 alias table。
+
+采集严格使用 `world` 流，稳定键为 `chapterId/poiId/refreshIndex`；遗迹 / 敌人的随机奖励严格使用 `loot` 流，稳定来源键为 `chapterId/sitePoiRef/rewardNode/refreshIndex`。可能产出预览、窗口或工具拒绝、背包满、门禁失败和玩家取消均不得取得流句柄或推进游标；遗迹是否刷新、守卫是否回归仍只归 `world`。字段与来源规则见 `design/11` §4.3.3、§4.4.3。
 
 经脉模块不得接收 master seed、保存游标或从 `unitId` 派生子流。只有通过预检且准备提交的路线才拿到同一命令事务的 `tx.rng('battle')`：跨单位先服从战斗事件全序，同一条路线按 `steps[]` 顺序，每个实际到达并尝试的节点恰消费一个 `nextU32()%10000`；预检失败、未到达的后段与所有纯函数消费 0 次。调息只对“实际触及且达到自行解穴门槛”的穴位按 `ap_*` ASCII 序各抽一次。
 
@@ -787,6 +794,8 @@ interface GoldenReplayFixture {
 ```
 
 CI 在 Node/V8 与 Playwright WebKit/JSC 各执行同一 fixture，输出首个不同的命令、事件、RNG 五流及 JSON Pointer。fixture 与录像 runner 一样用 `appBuild+coreVersion+rulesProtocol+rngProtocol+contentHash` 锁定可执行工件和规则包；`coreBuild` 只保留为 `GameState.meta` 内部诊断组合值，不作为运输或夹具的第三套版本字段。官方 WebKit 带 Playwright 补丁，不等同真机 Safari；CI 锁 runner 版本/浏览器二进制，升级重跑旧 golden，只有经审阅的规则变更才重建预期值。iOS Safari 另做发布抽验（待实测）。
+
+旧经脉 golden 固定 `fixtureVersion=2`、`rulesProtocol=2`、`rngProtocol=1`；其概率抽样只使用 `nextU32() % 10000`，不依赖 `intInclusive`，因此无需因 RNG 主协议升级而重录。
 
 ### 4.7 确定性验收用例
 
@@ -1887,8 +1896,8 @@ interface MeridianFlowRuntimePort {
   applyGrapple(input: GrappleInput): GrappleChange;
   regulateBreath(profile: BreathProfile, mode: 'battle'|'rest', battleRng?: Rng): BreathResult;
   tick(input: MeridianTick): void;
-  snapshot(): MeridianFlowSnapshotV1;
-  restore(snapshot: MeridianFlowSnapshotV1): void;
+  snapshot(): MeridianFlowSnapshotV2;
+  restore(snapshot: MeridianFlowSnapshotV2): void;
 }
 ```
 
@@ -1898,7 +1907,7 @@ interface MeridianFlowRuntimePort {
 2. 主角 / 同伴逐穴读取永久投影，敌人应用 `routeOnly / schoolCore / fullTemplate`；
 3. 读取 `design/13` 外来压制、难度与规则开关结算后的 `effGrade/effLayer`，不得在实例内用真实品阶重算；
 4. 投影当前 `mpMax`、同级 STD、内功性质、周天 / 九转、装备与 Buff，所有派生量先钳制；
-5. 创建 `schema:'meridian-flow-state.v1'`、`rulesProtocol:2` 的零动态态；节点按 `ap_*` ASCII 序写入；
+5. 创建 `schema:'meridian-flow-state.v2'`、`rulesProtocol:3` 的零动态态；节点按 `ap_*` ASCII 序写入；
 6. 不传 seed、不复制 RNG；完成后才参与 §7.1 的经脉速度与首轮排序。
 
 模块调用必须处于一条 Core 命令事务内。外放招在 F0 先调纯 `projectProjection`：从静态 `projection/sonic` 与所选档唯一派生 `projectionBoostActive`，同时原样投影 `voice`，校验档位 / 总资源并冻结 Profile `stateVersion`、范围与模板；`design/09` 再从该冻结结果枚举目标格。此后不重判激活位。预检硬封路发生在资源支付前；通过后固定走 `design/21` §11.4 的 F1–F10：F1 冻结双方 Profile 与节点引用，F2 原子支付招式成本和外放增量，F3～F5 逐段提交，F6 二选一执行唯一 Z5M，F7 按静态 `DamageKind` 结算护体内劲，F8～F10 处理效果、`flowCt`、事件并提交状态与 RNG。途中卡住保留已付资源、实际尝试段 CT 与伤势；只有命令非法、P1 前被反应作废或引擎异常才整笔回滚。
@@ -1932,7 +1941,9 @@ interface EconomyRuntimeState {
 
 ### 11.4 营生职位与门派月钱
 
-职位只接受 `job_xingjiao | job_jiaotou | job_keqing`。合同状态直接用 `JobContractState`，职业聚合用 `EstateCareerState`；签约先检查场所时代、武艺 / 名望、期限和共享排班。行脚按单结算；教头可同时签多处，但日程块不得重叠；活动客卿在全存档至多一份。签 `job_keqing` 必须把“活动合同数为 0、`activeKeqingContractId` 为空、插入合同并设置该键”放在同一事务，结束时同事务清键；读档出现键与合同不一致或多份活动客卿即拒绝。
+职位只接受 `job_xingjiao | job_jiaotou | job_keqing | job_zuozhen`。武馆教练复用 `job_jiaotou`；`job_zuozhen` 只允许镖局。合同状态直接用 `JobContractState`，职业聚合用 `EstateCareerState`；签约先检查场所时代、武艺 / 名望、期限和共享排班。行脚按单结算；教头可同时签多处，但日程块不得重叠。活动 `job_keqing` 与 `job_zuozhen` 合计全存档至多一份；规则唯一见 `design/16` §8.2、§14.3、§15。
+
+签任一高阶合同必须在同一事务内对 `activeSeniorContractId` 做比较并设置：验证活动高阶合同数为 0 且键为空 → 插入合同 → 设置键。两个并发签约基于同一旧版本时，只允许第一个成功；后一个以版本 / 锁冲突拒绝，不得覆盖。结束高阶合同须同步清键。读档时 0 份活动合同要求键为空，1 份要求恰好反指，多于 1 份或悬空一律拒绝。旧 `activeKeqingContractId` 由纯迁移一对一写入新键并删除，迁移重复运行不得改变结果。
 
 门派身份使用 `design/12` §11.3 的 `sect-membership-state.v1`：当界唯一 `primarySectId`、至多一个 `rank5SectId`、各 `sect_*` 的 `status/rank/contribution` 与领取游标；门派公账使用 `design/16` 的 `SectLedger`，不把 L1–L5 称谓或晋升阈值复制进 core。月钱和月薪使用 30 游戏日的 `economyMonth`，仍须完成职责；空等到月末为 0。
 
@@ -1946,6 +1957,7 @@ interface EconomyRuntimeState {
 | E-02 | 保存后把设备日期改一年 | 资源、工资、月钱均不变 |
 | E-03 | 两点同周期受扰 | 按 point ID 消耗 RNG，重放一致 |
 | E-04 | 同时申请第二个客卿 | 原子拒绝，旧职位不变 |
+| E-04a | 同版本并发申请客卿与坐镇 | 恰一个提交成功；`activeSeniorContractId` 等于成功合同 |
 | E-05 | 书眠 | 经脉全保留；资源/家丁/职位/门派按默认清除 |
 | E-06 | effect ref 重建两次 | 永久加成不重复叠加 |
 | E-07 | 有活动传承挖掘订单后书眠 | 先取消订单并释放全部排班，缓存进度清零；传承匣与源 / 机会收据保留 |
@@ -2011,6 +2023,101 @@ interface LegacyCacheRuntimeState {
 合成调用 `design/20` §7 的门槛与事务。产物保留真实 `sourceGrade`；`learnSource=legacy_synthesis` 在当前完成书界额外应用 Canon v1.2 §3 的 `legacyWorldCap`：天龙至侠客 12，碧血 / 鹿鼎 / 连城 / 书剑 / 飞狐 / 雪山 10，白马 / 鸳鸯 9；`rule_wutiandao` 关闭该专用上限。进入下一界后改走普通外来规则。`legacyWorldCap` 不改真实品阶、普通本土习得或非传承来源。
 
 传承验收至少逐项实现 LEG-T01–T15，并额外跑 10,000 个业务 seed **（待实测）**：每个 seed 同时在 Node/V8 与 Playwright WebKit/JSC 重放书界调度、机会、强行校合和书眠；核对候选顺序、五流游标、两类配额收据、事件字节、终态 hash 与 39 源配额。发布候选另抽 30 份完整录像做跨引擎逐 checkpoint 一致性门禁；30 是与 `tech/08` / `tech/09` 对齐的**【建议值】**。
+
+### 11.8 长生诀、休眠事件与书眠提交
+
+#### 11.8.1 跨书状态与迁移
+
+以下字段名冻结为存档接口；层数效果、转化值和信物生命周期仍唯一见 `design/25` §2–§3、§5、§7–§9，转化公式见 `design/13` §4.10，支线摘要见 `design/story/changsheng-sidelines` §1.3、§9.1。
+
+```ts
+interface ChangshengRunState {
+  changshengLayer: number;                    // 1..9
+  changshengQuestState: Record<QuestId, {
+    status: StoryLineStatus; endingTag: string | null; proofMode: string | null;
+  }>;
+  changshengLayerReceipts: string[];          // 全序、去重
+  heshibiState: {
+    authentic: boolean; acquisitionReceiptId: string | null;
+    attuned: boolean; consumedForInsight: boolean;
+  };
+  bookSleepReceipts: BookSleepCommitReceipt[];
+}
+interface BookSleepRuntimeState {
+  phase: BookSleepPhase;
+  selectedEventId: string | null;
+  draft: BookSleepPlan | null;
+  committedPlanId: string | null;
+}
+```
+
+`ChangshengRunState` 不保存转化高水位或成长资源余额：`convertedSxp` 的唯一持久真值是 `design/02` §5.2 的 `FragmentRecord.convertedSxp`；外功转化原子累加到 `profile.protagonist.masteryXp[MasteryCategory]`，内功转化原子累加到 `profile.protagonist.trueEssence`，字段与消费唯一见 `design/03` §7。结算器可在 `CoreTransaction` 内持有 `conversionDeltas`，收据可保存结果投影供审计，但两者都不得独立写入或反向覆盖上述真值。`heshibiState` 不进入背包、装备、3+3、传承匣或当代资产清理集；`authentic=true` 必须能追到唯一 `acquisitionReceiptId`，否则读档进入修复而不开放第九层。
+
+两个领域事件正式冻结为：
+
+```ts
+type ChangshengProgressionEvent =
+  | DomainEvent<'progression/changshengLayerGranted', {
+      questId: QuestId; fromLayer: number; toLayer: number; receiptId: string;
+    }>
+  | DomainEvent<'progression/changshengNinthUnlocked', {
+      questId: QuestId; fromLayer: 8; toLayer: 9; receiptId: string;
+    }>;
+```
+
+二至八层只接受 `fromLayer == changshengLayer` 且 `toLayer == fromLayer + 1`；同一 `receiptId` 重放返回既有结果，不再升层或发事件，不允许补发多层。第九层事件须在同一事务写事件、收据、`changshengLayer=9`、`heshibiState.attuned=true` 与 `consumedForInsight=true`；任一步失败全回滚。条件与效果只读 `design/25` §2、§6 和 `story/changsheng-sidelines` §1.3、§9。
+
+存档迁移必须是版本化纯函数：缺少 `changshengQuestState`、`changshengLayerReceipts`、`heshibiState`、`bookSleepReceipts` 时，依次初始化为 `{}`、`[]`、四字段全否定 / 空收据的信物态、`[]`；尤其不得从当前章节、层数、旧草稿或已发生过书界切换反推历史 `BookSleepCommitReceipt`。已有 `changshengLayer` 原值保留。只在能追到正式任务完成事实和原收据时生成支线摘要，不从显示物品、任务标题或层数反推收据。旧档若层数大于 1 却无法证明逐层链，或真璧标真却无唯一取得收据，则保留原档、阻断相关奖励并进入数据修复；不得伪造收据“修好”。
+
+新增根状态 `GameState.bookSleep` 按 `design/02` §4.2、§4.5–§4.6 迁移。旧档既无 `bookSleepDraft` 也无已识别书眠阶段时默认 `null`。仅有合法 `bookSleepDraft` 而无阶段时，从无破坏性的 `BS_REVIEW` 恢复；仅有 `BS_SAVE/BS_REVIEW` 阶段时允许 `draft=null`，其余提交前阶段缺草稿则进入数据修复。处于 `BS_SAVE` 至 `BS_CONFIRM` 且资料齐全的旧档，把已校验草稿原样迁入 `draft`，保留原阶段，以旧选择或 `draft.sleepEventId` 写 `selectedEventId`，并令 `committedPlanId=null`；两者冲突则进入数据修复。处于 `BS_CINEMATIC/BS_WAKE` 的旧档，仅当既有原子提交完成标志或 `BookSleepResult.planId` 可验证时，清草稿、保留阶段并把该 ID 写入 `committedPlanId`，继续演出 / 苏醒而不重跑 `BS_COMMIT`，同时仍不补造审计收据。落在瞬时 `BS_COMMIT` 的旧档，有完成标志才规整为 `BS_CINEMATIC`；否则保留源档进入数据修复，不猜“已提交”或重新发奖。根状态成功构造后才删除旧字段；非法阶段、无效草稿或计划 ID 冲突均不得静默归零。
+
+若旧版曾在 `profile.changsheng` 写 `convertedSxp/epiphany/trueEssence`，逐项迁出后删除重复字段：仅在目标缺值且残篇 / 提交收据可验证时，把高水位写入对应 `FragmentRecord`；仅在角色目标缺值且收据能证明类别分配时，把外功结果写入相应 `masteryXp`，把内功结果写入角色 `trueEssence`。目标已有同值则只删重复字段；值冲突或顿悟缺类别分配时保留归属字段并进入修复，禁止求和、取大或猜分配。
+
+迁移幂等门禁对“无书眠数据、提交前草稿、提交后阶段、歧义 `BS_COMMIT`”四类 fixture 断言 `canonicalJson(M(parse(canonicalJson(M(old))))) === canonicalJson(M(old))`；第二次执行不得重排数组、补收据、改阶段或改计划 ID，规范序列化须逐字节不变。
+
+#### 11.8.2 休眠事件求值
+
+```ts
+interface SleepEventDef {
+  id: string; chapterId: ChapterId; nextChapterId: ChapterId; priority: number;
+  requires: ConditionExpr; entryKnot: string;
+  sleepScene: SceneRef | PlaceKey; wakeRef: SceneRef | PlaceKey;
+  cinematicBeats: CinematicBeat[]; outcomes: SleepOutcome[];
+  fallbackId: string | null;
+}
+```
+
+字段逐项消费 `design/story/sleep-events` §2.1；Core 不把剧情条件、镜头或地点改写成第二份规则。候选计算固定为：
+
+1. 先按显示书序表执行九层守卫；`changshengLayer=9` 且已到鹿鼎或后续时返回空集并进入 `design/25` §9 周游，不以稳定 `chNN` 数值比较先后。
+2. 对当前书事件执行 `requires`；只读查询，不取 RNG、不写事件。保底条件只能依赖当前天书、余韵和未提交事实。
+3. 合格项按 `priority` 降序、再按 `id` ASCII 升序稳定排列；优先级语义与建议数值只见 `sleep-events` §2.1–§2.2。
+4. 玩家选择后保存 `selectedEventId`，但在 `BS_COMMIT` 前均可撤销；选择本身不提交 `outcomes`。
+5. 若已选候选在重验时失效，只沿其 `fallbackId` 回同书保底；保底必须为 `null`，引用不得跨书、悬空或成环。
+
+事件 `outcomes` 仅能写事件选择、上游授权的 NPC / 结局事实与书眠请求；不得授天书、直接发转化资源或绕过计划校验。无候选或 fallback 失效属于内容错误，不得静默挑任意事件。
+
+#### 11.8.3 `BS_COMMIT` 原子边界
+
+`chapter/bookSleep` 只消费 `design/02` §4.6 已定义的 `BookSleepPlan`，不再接受未定义的 `CarrySelection`。计划中的 `sleepEventId`、`skills.martial`、`skills.inner`、`convert`、`equips`、`sleepAlloc` 和 `acknowledged` 都在提交时重新校验；3+3 容量、当前层转化和第九层免书眠规则只引用 `design/25` §2、§7–§9。
+
+幂等键唯一为 `BookSleepPlan.id`。首次成功写入不可变 `BookSleepCommitReceipt`，至少保存 `planId/sleepEventId/from/to/keptMartialIds/keptInnerIds/epiphanyGained/trueEssenceGained/resultHash`；其中 `kept*` 是 receipt 的结果投影，对应计划 `skills.martial/inner`，不改写上游 `BookSleepPlan`。重复提交同 ID 返回原结果，不再转化、发奖、清资产、切时代或推进五流。相同 ID 但计划规范字节不同必须拒绝。
+
+首次提交处于单一 `CoreTransaction`：冻结并重验计划与事件 → 逐门读取 `FragmentRecord.convertedSxp` 并按上游公式算出事务内 `conversionDeltas` → 原子生成 / 更新残篇高水位，并把外功 delta 按玩家确认分配写入 `profile.protagonist.masteryXp[MasteryCategory]`、内功 delta 写入 `profile.protagonist.trueEssence` → 执行同伴、经脉、传承、经济、门派钩子 → 清当代状态 → 切时代与苏醒入口 → 写收据、清草稿并进入 `BS_CINEMATIC/BS_WAKE`。`conversionDeltas` 提交后丢弃；收据中的 `epiphanyGained/trueEssenceGained` 只是由本次 delta 生成的不可变审计投影，不得作为余额、重建时加发或独立写回。收据、残篇、角色成长资源、技能 / 装备、RNG、事件、任务、资产清理与时代层要么全提交，要么全回滚；演出或素材加载失败只重试表现，不重跑提交。精确步骤与数值见 `design/02` §4.6、§5.2、`design/03` §7、`design/13` §4.10、`design/25` §8。
+
+#### 11.8.4 螺旋内力运行态
+
+螺旋能力只在 `changshengLayer=9` 时开放。每次行动 / 伤害事实保存 `spiralSpent/cancelMp/spiralDamageDealt` 三个非负整数，并带所属 `causeId`；它们是本次提交结果，不是可跨行动累积的第二资源。合法性、1:20、插入点、一次伤害事件只结算一次及经脉伤害解释全部引用 `design/25` §3、§12，Core 不在本节复制数值表。
+
+预览只返回拟投入、拟化解和预计结果，不扣 `mp`、不取 RNG、不写三字段。提交时在同一命令事务锁定双方承诺内力，原子扣除 `spiralSpent` 并生成 `cancelMp`；伤害落定后写 `spiralDamageDealt` 供既有伤害 / 经脉管线消费。资源不足、重复 `causeId`、层数不足或后续断言失败均不得留下半笔扣费或经脉伤害；多段共享同一事件的锁定结果。
+
+### 11.9 采集与遗迹奖励事务
+
+普通采集读取 `tech/04` §3.9.1 编译的 `GatherSpec`。合法提交前按 `chapterId/poiId/refreshIndex` 查询或冻结本轮候选；预览与拒绝零写入。成功采收在一个事务中推进 `world` 游标、写 `harvestedRefreshIndex`、扣工具耐久、增加库存 provenance lot、记经济收据并推进获授权任务；任何一步失败全回滚。重复收据返回原结果，同轮不得二次发物（见 `design/11` §4.3.3）。
+
+遗迹奖励读取 `tech/04` §3.9.2 掉落表，以 `chapterId/sitePoiRef/rewardNode/refreshIndex` 为稳定 `sourceId`。成功领取时在一个事务中推进 `loot` 游标、写固定 / 随机物品与钱的 provenance lot、写 `firstClearReceipt` / 唯一守卫、经济账与任务进度；首通重放只返回既有结果，不重抽或重复发放。遗迹刷新与守卫状态的 `world` 流不混入奖励事务的 `loot` 抽样；任一事务失败时两流均恢复。规则唯一见 `design/11` §4.4.3、`design/16` §12。
+
+最低验收矩阵：同一采集轮直采与“预览 / 取消十次后采”结果和游标相同；背包满失败后扩容再采与直采相同；同一首通收据重放百次只发一份；奖励写入后故障注入应使库存、钱、lot、收据、RNG 与任务全回滚；两个并发领取只允许一个提交成功。
 
 ## 12. NPC、同伴与年代状态
 
@@ -2157,7 +2264,7 @@ interface BattleSession {
 }
 ```
 
-`rulesProtocol=2` 时，`battle.meridianByUnit[].flow` 必须逐单位保存 `schema:'meridian-flow-state.v1'`、`rulesProtocol/unitId/unitIndex/kind/tick/stateVersion`、`grappleLevel/grappleSource/grappleRemaining` 与完整动态 `nodes`；外层同时保存会跨命令生效的 `activeDefense/movementProjection/innerGuard`。`BattleUnitActionState.ultimateBySkill` 也必须随 battle 保存 `ultimateCooldown / lastUltimateMoveId / freshTurnToken`，否则中间 hash 无法证明绝招轮换确定性。数组按 `unitIndex` 或 `skillId`，节点按 `ap_*` ASCII 升序。单位 snapshot 绝不复制 RNG；唯一 `battleRng` 仍只在 `BattleSession` 保存四个 uint32。
+`rulesProtocol=3` 时，`battle.meridianByUnit[].flow` 必须逐单位保存 `schema:'meridian-flow-state.v2'`、`rulesProtocol/unitId/unitIndex/kind/tick/stateVersion`、`grappleLevel/grappleSource/grappleRemaining` 与完整动态 `nodes`；外层同时保存会跨命令生效的 `activeDefense/movementProjection/innerGuard`。`BattleUnitActionState.ultimateBySkill` 也必须随 battle 保存 `ultimateCooldown / lastUltimateMoveId / freshTurnToken`，否则中间 hash 无法证明绝招轮换确定性。数组按 `unitIndex` 或 `skillId`，节点按 `ap_*` ASCII 升序。单位 snapshot 绝不复制 RNG；唯一 `battleRng` 仍只在 `BattleSession` 保存四个 uint32。
 
 外放选择属于命令事实：`skill` 与 `dual.a/b` 原样把 `projectionStep` 写入 `commands[].command`，即使为 0 也按调用方提交值规范化后记录；非外放招不得出现该字段。录像和 checkpoint 不保存“预览格集合”作为第二事实源，重放必须以锁定内容、规则版本、经脉 snapshot 与命令档位重新求 `maxProjectionStep / effectiveRange / spread / extraMpCost`。规范 command JSON（因此 replay hash）必须覆盖 `projectionStep`；只记录推导后的命中格、或重放时自动改成当前最高档，均应在首个命令处报差异。
 
@@ -2169,7 +2276,7 @@ battle 本地事件序与 acceptedOrdinal 也进入域；外层 GameState 的 ev
 
 重试/悔招保留命令历史：checkpoint 只含战斗规则片段与两流，不包含 checkpointStore 自身，避免递归快照。undo 恢复目标片段后扣当前 undoLeft，保留当前重试数/消耗账本，不从旧片段恢复次数；禁止无限悔招。restart 恢复入场快照并保留累计retry/assist，finalize前未写世界资源。完整录像按原序执行undo/retry，而不是删掉历史后拼接。
 
-经脉 checkpoint 恢复时先校验 schema / `rulesProtocol`、单位身份唯一性、节点排序与范围，再逐单位调用 `restore`；任一单位失败则候选战斗整体拒绝，不允许丢弃经脉态续跑。v1 的 `bonusCapBp/routeZ3Bp` 只能交旧 runner；v2 使用 `routeQualityBp`。没有明确迁移器的进行中 v1 战斗回到已登记战前检查点，战外永久经脉则从 `design/15` 事实重新投影。
+经脉 checkpoint 恢复时先校验 schema / `rulesProtocol`、单位身份唯一性、节点排序与范围，再逐单位调用 `restore`；任一单位失败则候选战斗整体拒绝，不允许丢弃经脉态续跑。`meridian-flow-state.v1` 仅供旧录像的旧 runner 读取，其中 `bonusCapBp/routeZ3Bp` 不得交给当前 runner；v2 使用 `routeQualityBp`。没有明确迁移器的进行中 v1 战斗回到已登记战前检查点，战外永久经脉则从 `design/15` 事实重新投影。
 
 运输仍是 `tech/08` 的 NDJSON.gz：压缩 ≤2 MiB、声明未压缩 ≤16 MiB；超限降级摘要而非截断录像。信封 schema 与 `BattleReplayV1.schema` 分开演进。
 
@@ -2297,7 +2404,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | 正式 schema 适配层 | `packages/data` 生成类型到 core handler / 状态组合的薄映射；不复制玩法定义 |
 | 传承调度收据 | 区分 `quota_full_before_batch` 与 `lottery_deferred` 的当前周目幂等事实；二者 RNG 消费语义不同 |
 | `MeridianFlowModule` | 每个可独立武学行动单位一份的战斗经脉动态实例；不拥有 RNG，消费 Core 事务端口 |
-| `meridian-flow-state.v1` | 单位级规范经脉快照；节点按 `ap_*` 排序，不含全局 RNG |
+| `meridian-flow-state.v2` | 当前 `rulesProtocol=3` 的单位级规范经脉快照；节点按 `ap_*` 排序，不含全局 RNG；v1 仅供旧录像的旧 runner 读取 |
 | `damageBeforeMpGuard` | 护体真气与护体内劲后、既有 `mpGuard` 前的剩余伤害；不是实际气血伤害 |
 | 经脉 golden | Python 慢模型生成、TypeScript 全字段消费的 `fixtureVersion=2/rulesProtocol=2` 跨语言契约 |
 | 绝招轮换态 | `BattleUnitActionState.ultimateBySkill` 中每单位、每门已装配武学的 `ultimateCooldown:0|1`、`lastUltimateMoveId` 与 `freshTurnToken`；仅属本战 |
@@ -2348,7 +2455,7 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `design/15` | 已定稿；使用 `MeridianProgress`、session 快照、keyed RNG 与 S0–S8 | 上游升 schema / 公式时按迁移版本重算派生奖励并重跑 V15-01～V15-15 |
 | `design/16` | 已定稿；使用资源、点、家丁、合同、家业、公账与 Estate DSL | 上游升 schema / 数值时迁移当界运行态并重跑 RES/BIZ/SLEEP 门禁 |
 | `design/20` | 已定稿；使用 `legacy.v1`、`LegacySourceState`、配额 / 机会 / 校合收据、书眠矩阵与 LEG-V/T | 上游升 schema / RNG 消费或生命周期时升规则与存档版本，并重跑 10,000 seeds 和跨引擎录像 |
-| `design/21` | v2.6 提供逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、外放档、`ProjectionInput.voice`、音功激活分支、大手印掌风边界、`meridian-flow-state.v1`、绝招路线约束与 golden | 路线数组、外放档 / 曲线、音功分支、大手印伤害段、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
+| `design/21` | v2.6 提供逐单位模块、路线 / 控制 / 调息档案、Z4M / Z5M、护体内劲、速度、外放档、`ProjectionInput.voice`、音功激活分支、大手印掌风边界、`meridian-flow-state.v2`、绝招路线约束与 golden | 路线数组、外放档 / 曲线、音功分支、大手印伤害段、取整点或 RNG 消费改变须升 `rulesProtocol`，保留旧 runner 并逐字段评审 golden |
 | `design/18` | 同伴快照、健在与重逢合并正式契约 | 内容考据修订需 legacy timeline 迁移 |
 | `tech/03/08` | 性能预算、TSAV、录像运输 | 真机实测和限额变化不得反写玩法结果 |
 
@@ -2377,8 +2484,8 @@ core 本身不能读 `performance.now()`；host 在 API 边界计时，记录命
 | `docs/design/15-*` | 经脉 | **已解决**：本文已接进度单位、冲穴公式、事件与 keyed RNG，保持当前周目跨书永久、新周目重置运行态 |
 | `docs/design/16-*` | 资源营生历史依赖文字 | **已解决（文档接口）**：该文 §17.2 已回写正式任务接口；运行时、旧档迁移与事务夹具仍待实施 |
 | `docs/design/18-npc-and-companions.md` | §7.3 | **已解决**：`level/innates` 已无重复声明；本轮补齐 `meridianProgress` 并由本文 §12.2 / §12.3 消费，事件命名沿正式契约 |
-| `docs/tech/08-backend-and-online.md` | TSAV / replay 版本表 | **已解决**：§3.5.1 / §10.2 已登记 `rulesProtocol=2` 与 `meridian-flow-state.v1` 的检查点兼容边界；旧 v1 战中档不得静默升级 |
-| `docs/tech/01-architecture.md` | Core 状态与确定性摘要 | **已解决**：已把 `BattleState.meridianByUnit`、唯一 battle RNG 注入、preview 零副作用与协议 2 hash 域纳入 §3.2.1、§3.6、§8.3 |
+| `docs/tech/08-backend-and-online.md` | TSAV / replay 版本表 | **已解决**：§3.5.1 / §10.2 已登记当前 `rulesProtocol=3` 与 `meridian-flow-state.v2`，并保留旧协议 2 / v1 录像的匹配 runner 兼容边界；旧 v1 战中档不得静默升级 |
+| `docs/tech/01-architecture.md` | Core 状态与确定性摘要 | **已解决**：已把 `BattleState.meridianByUnit`、唯一 battle RNG 注入、preview 零副作用与协议 3 hash 域纳入 §3.2.1、§3.6、§8.3 |
 | `TODO.md` / 协调任务 | Phase F 同步 | 登记 E2-S02–S05、E2-P01–P03；E2-S01 与 E2-S04 已解决，其余按实现实测 / 基准修订跟踪 |
 
 ### 开放问题（附默认值）

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuanyuheyezun
+name: 元式荷叶玉杯
+kind: collectible
+sub: jade
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanyuheyezun
+text:
+  desc: 外观：青白玉荷叶卷成浅杯，一侧短茎柄。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[collector]}; giftValue=2; provenance=expanded。
+  lore: 依据元玉荷莲题材和宋元玉杯研究设计荷叶杯，适合馈赠偏爱雅器的文士。具体杯式、石料品相和流传为（原创扩展）；不声称是已知宫廷藏杯，投放前须核元代细型。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

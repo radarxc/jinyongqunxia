@@ -1,0 +1,18 @@
+{
+  "id": "bld_kit_qing_north_courtyard",
+  "subject": "胡同院落",
+  "footprint": [
+    10,
+    8
+  ],
+  "prompt": "Use case: historical-scene. ONE isolated transparent sprite for a realistic historical Chinese town game. Early-to-mid Qing NORTH CHINA, anonymous Beijing/Shengjing/Jinan architectural concept, not a specific monument reconstruction. Match the attached Song asset ONLY for realistic material texture, fine detail density, restrained weathering, lighting and game sprite rendering; CHANGE architectural forms to Qing northern grey-brick, grey-tile and dark timber. Orthographic DIMETRIC, yaw45 elevation30, STRICT 2:1 ground plane, east ground axis screen lower-right slope +0.5 and north upper-right slope -0.5, parallel lines NO perspective convergence. South doorway faces screen lower-left. Draw a thin rectangular ground boundary, entire footprint with visible left, front and right corners, NO thick floating base. Keep the entire sprite and soft contact shadow inside generous 10% transparent margins. TRUE transparent RGBA background. Light from screen UPPER LEFT, short soft contact shadow lower-right. Grey fired brick, matte grey barrel tiles with straight sober ridges, northern hard-gable walls, dark brown wooden lattice windows, no Jiangnan whitewashed tourist style. No text, pseudo-writing, plaques, characters, people, flags, modern objects, sky, horizon, landscape, trees, water or road outside footprint, no saturated lighting, cartoon, plastic, borders or watermark. A compact single-storey siheyuan courtyard compound: grey brick perimeter, north main house, east/west wing rooms, small south gate, interior unobstructed courtyard with modest paving. Grey hard-gable tiled roofs, dark wood lattice windows and simple recessed brick entrance. Footprint 10m east-west by8m north-south.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-fa41-73b1-828f-31c33ab4f6ac/exec-e0c7139b-ad9c-4e9f-8358-3d231ae9e393.png",
+  "references": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_north/assets/default/baseline/building-map/bld_kit_song_dali_house.png"
+  ],
+  "created": "2026-09-30T21:14:34.081Z",
+  "candidate_count": 1,
+  "selected": false,
+  "rejection": "第一候选历史归档；第二候选院落构成更清楚，仍有几何偏差。",
+  "alpha_review_correction": "初看工具预览有光晕；RGBA采样及浅底合成确认轮廓外光晕RGB所在像素alpha=0，无实际背景污染。"
+}

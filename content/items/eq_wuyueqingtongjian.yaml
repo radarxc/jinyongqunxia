@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_wuyueqingtongjian
+name: 吴越青铜剑
+kind: weapon
+sub: sword
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·春秋；仅序章原生可得（国博吴王夫差剑形制参照）（原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/wuyueqingtongjian
+text:
+  desc: 外观：通长约六十厘米，青铜直脊双刃、窄凹字格、圆茎圆首。
+  lore: 参照吴王夫差剑的春秋青铜剑形制复原，用于序章展示吴越军器。短柄配直脊双刃，宜刺击并须防铜刃崩卷；品阶、麻缠握柄、无字纹样和投放均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 35
+      qiAffinity: 100

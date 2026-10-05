@@ -1,0 +1,37 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "826f24ac-5ad9-431c-81c7-91c8dbfcf4bb",
+  "request_id": "998f4fdb-b6a4-49f5-9dd2-12abfc77eb3b",
+  "generation_id": "07483c40-5355-4bd4-86b1-bc68bf6bf01c",
+  "created_unix": 1790839772,
+  "elapsed_seconds": 42.532,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. An 8m by6m two-storey street shop: open lower timber storefront and shutter counter, upper living loft with closely spaced straight lattice windows, deep grey-tiled gable eaves on simple bracket arms, dark timber and lime infill; no balcony plants or written sign.",
+  "references": [
+    {
+      "kind": "style_geometry_reference",
+      "file": "bld_kit_song_southern_shop_2f.png",
+      "note": "宋基线透明精灵，只约束相机、透明裁切与写实密度"
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "detail_used": "两层铺屋开间",
+      "downloaded_and_viewed": true
+    },
+    {
+      "kind": "historical_image",
+      "url": "http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html",
+      "detail_used": "深檐、格扇与灰瓦",
+      "downloaded_and_viewed": true
+    }
+  ],
+  "output_sha256": "5256581f6ebf29550b8ee61b57e0f1ae199153ed37ce720607eeddaa01862754",
+  "selected_asset_file": "bld_kit_yuan_south_shop_2f.png",
+  "selected_asset_sha256": "f2a639caf0693a620e62c3bf91381659e755df9ea89edc32546ee9f85619d8b0",
+  "normalization": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ]
+}

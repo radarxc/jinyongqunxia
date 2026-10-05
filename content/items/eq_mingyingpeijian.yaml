@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_mingyingpeijian
+name: 明营佩剑
+kind: weapon
+sub: sword
+grade: 4
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·明；笑傲起可得（国博明钢剑形制参照）（原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/mingyingpeijian
+text:
+  desc: 外观：全长约九十五厘米，精钢直脊双刃、外撇铁护手、深木丝缠柄与海棠形首。
+  lore: 参照明代钢剑形制配置的营伍佩剑，直脊双刃兼顾刺削，外撇护手便于封住来刃。军士讲究刃线匀直、鞘口严合；具体配发、装具与品阶均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 54
+      qiAffinity: 100

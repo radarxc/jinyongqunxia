@@ -30,6 +30,11 @@ python3 tools/lint/check_ids.py docs/design/06-buff-system.md docs/design/catalo
 `tools/lint/check_ids_baseline.json`；基线只保存第 1、4 类 ID，该参数拒绝路径参数，
 防止把局部扫描误写成全仓基线。没有基线或基线无效时，第 1、4 类均视为新增。
 
+2026-09-30 NAuF-lint 全量复核：111 文件、64,701 次出现、13,969 个定义；
+基线与实际债务均只有未定义 `sk_babuganchan` 1 项，旧 ID 0 项，无失效基线条目，
+因此未刷新基线。新增严格失败、冲突定义、近似名、套装不对称均为 0。
+此已知债务继续按既定默认禁用于生产，tech/04 §11 的登记交收口任务同步。
+
 运行单元测试：
 
 ```shell
@@ -347,7 +352,7 @@ python3 tools/agents/check_route_unique_for.py --all --strict-normal
 三条路线计入，并按作者决定作为掌招、外放招分别核对。局部扫描不含正式五绝册时
 不会注入这项跨文档例外。
 
-该开关当前只报告：违规不会改变退出码，也不会被原有 `--strict` 执行；`--details`
+`--delivery` 始终只报告：违规不会改变退出码，也不会被原有 `--strict` 执行；`--details`
 展开每条 `DELIVERY` 诊断。按册字段依次为 `delivery_routes`、`classified`、
 `checked_rules`、`violations`、`tail_violations`、`unclassified`；合计与 JSON 也显式
 包含 `tail_violations`，并增加 `palm_routes` / `palm_endpoint_matches` 统计最终绝招掌法路线与
@@ -368,27 +373,93 @@ python3 tools/agents/check_route_unique_for.py --all --strict-normal
 中 A 张显式填写 `inner.meridians`（显式 `[]` 也计入，并推导为 harmony），另列
 `inner_missing_meridians`（仅统计真正缺字段）与声明性质不等于主修
 经脉票的 `inner_nature_conflicts`；`--details` 逐条输出 `INNER_NATURE`。该审计和路线性质
-冲突都只报告，不改变 `--strict` 的退出码。黄阶一行卡也纳入，包括“内功（3 黄上·yin）”
+冲突默认都只报告，不改变 `--strict` 的退出码；独立门禁见下节。黄阶一行卡也纳入，包括“内功（3 黄上·yin）”
 与英文括号形式；前置武学 ID 不取得本卡字段的归属。2026-09-30 本次实测覆盖
 `inner_nature=265/265`（倚天 `18/18`、通行 `14/14`），缺字段及内功性质冲突均为 0。
 原 2026-09-29 迁移前基线 `147/254`、缺字段 107、性质冲突 56 保留作历史追溯；
 数字随图鉴补录而变化，文档迁移规则见 `design/05` §5.3.1。
 `--json --delivery` 顶层为 `audits` 与 `delivery`；并用多样性开关时再列 `diversity`。
 
-天、地阶既有“路线索引行”检查保持原样：只有该行自身带 `ap/CT/risk` 三元组时，
-未登记穴位及重复、段数、CT、风险等才按旧语义计入 `errors`。另按最终 signature 对
-天、地、玄上三档补做未登记穴位提示，均只加入 `warnings`，文本摘要为
-`未登记穴位提示`，JSON 字段为 `unregistered_acupoint_warnings`；同一穴位已被旧检查报错
-时不重复提示。玄上不运行其余路线严格检查。提示清零后由 NAu-final 统一转严格。
+### 已清零规则的独立门禁（NAuF-lint）
+
+```shell
+python3 tools/lint/check_skill_catalogs.py --delivery --details
+python3 tools/lint/check_skill_catalogs.py --delivery-strict --inner-nature-strict
+python3 tools/lint/check_skill_catalogs.py --delivery-strict --inner-nature-strict --json
+```
+
+两个严格开关均隐含 `--delivery`，可独立使用；它们不会启用或改写旧 `--strict`。
+JSON 在报告之外增加 `gates` 对象，各门禁值为固定规则名到命中数的映射；
+人读输出增加 `<name>_gate: errors=...`。任一所选门禁命中则退出 1。
+
+| 开关 | 固定失败范围 | 当前常态 CI 条件 |
+|---|---|---|
+| `--delivery-strict` | 掌、指（含具名指端）、拳 / 擒拿、腿、内功攻防 / 丹田、位移、外放；掌 / 指 / 拳 / 腿 / 兵器的末三段位置 | 这些规则全量清零且误报已复核，可纳入 |
+| `--inner-nature-strict` | 缺 `inner.meridians`、声明性质与主修经脉不符 | 当前 265/265 覆盖、两项均 0，可纳入 |
+
+端点门禁用代码常量 `DELIVERY_STRICT_RULES` 固定规则集合，不根据本次输入或局部
+扫描是否清零自动增删。兵器完全缺导引穴（`weapon`）仍有 1 项，路线性质冲突
+（`nature-conflict`）仍有 3 项；两者继续完整输出、暂不升严。未来清零且经内容复核后
+再显式扩大门禁并补回归。兵器端点已存在但不在末三段（`weapon-tail`）已清零，
+独立纳入当前门禁；不能把这两类合并隐藏债务。未分类路线仍只统计，不猜类型。
+
+本次 25 册实测：654 条绝招、32 条显式普通外放路线；末端缺失 1、位置 0、
+普通外放违规 0、路线性质冲突 3、内功缺字段 / 性质冲突 0/0。剩余条目为道家
+`mfr_bingpoyinzhen_shehun` 缺持械导引穴；倚天 `mfr_xuanmingxinfa_ningshuang`、
+天龙补录 `mfr_xianglongxinggong_tianxing`、笑傲补录 `mfr_huashanziqijue_yingfeng`
+体段性质冲突。图鉴修订后以重跑值为准，完整按册快照见
+`tools/agents/reports/NAuF-lint.md` §7。
+
+### 实际路线值与穴位门禁
+
+```shell
+python3 tools/lint/check_skill_catalogs.py --routes --details
+python3 tools/lint/check_skill_catalogs.py --routes-strict
+python3 tools/lint/check_skill_catalogs.py --acupoints-strict
+```
+
+旧路线索引行通常没有 `ap/CT/risk`，不能代表实际路线检查覆盖率。
+`route_checks.py` 现从最终实例的 steps 列读取逐段值，支持穴位 / CT / 风险三元组，
+以及逐段穴位 / 风险配独立 `N×CT` 计时列；五绝外部三路线读 21 YAML，收招读 05。
+只把实际步骤纳入检查，不把出口提示混入；穴位注册表仅取 15 §3 正式游戏归属表。
+缺步骤、损坏值与无法解析的目标明确报告，不能按空数组成功跳过。
+
+| 开关 | 范围与失败条件 | 当前常态 CI 条件 |
+|---|---|---|
+| `--routes` | 天 / 地实际段数 1–18、不重复、CT / 风险等长、CT 40–120、风险 0–1200、收招 700–1500（05 §4.1）、`recovery+ΣCT≤2000`；三档未登记 / 无法解析；只报告 | 始终可用于观察覆盖与新命中 |
+| `--routes-strict` | 同上全部问题导致退出 1；隐含 `--routes` | 当前七类全部清零，可纳入 |
+| `--acupoints-strict` | 天 / 地 / 玄上未登记穴位或无法解析导致退出 1；隐含 `--routes` | 已清零，可独立纳入；已开 `--routes-strict` 时可省略 |
+
+玄上只升严未登记穴位及解析完整性，不在本轮扩大 CT / 风险规则范围。
+各册输出 `天=已解析/目标`、`地=...`、`玄上=...` 及七类命中；JSON 增加
+`route_values`（实际路线、逐条命中、按册覆盖与合计 `counts`），严格参数再增加 `gates`。
+输入缺失 / 读取失败退出 2。2026-09-30 实测覆盖天 132、地 329、玄上 193，
+共 `132+329+193=654/654`；三档未登记均 0，天 / 地其余问题也均 0。
+
+原 `--strict` 的索引行错误与 `unregistered_acupoint_warnings` 仅为兼容旧调用保留；
+不因新增规则改变退出语义或三种既有 strict 输出。常态 CI 应显式增加实际路线门禁，
+不能再把旧索引行检查的 0 命中当作完整数值验收。
 
 人读模式的 `配额违规` / `重复步骤定义` 与 JSON 字段
 `ultimate_quota_violations` / `duplicate_step_definitions` 分别统计逐门配额错误和第二次
 及以后的步骤定义；JSON 的 `warnings` 保存非失败提示。错误在 `--strict` 下令进程退出
-`1`。图鉴路线尚未按 `design/21` §4.3.1–§4.3.4 全部改完前，应并行保留
-`--strict` 和只报告的 `--diversity`；精确重复清零后再启用 `--diversity-strict`。专项与
-全部 lint 测试分别可运行：
+`1`。当前跨武学绝招精确重复与 ≥80% 配对均为 0，`--diversity-strict` 可纳入常态
+CI；≥80% 非精确配对仍只报告并按 21 §4.3.4 第 4 条人工核理由。显式普通路线的
+4 对重复 / 182 对非精确高相似仍按 LINT-outlets 快照交内容任务，不能用绝招清零
+代替普通路线结论；`--strict-normal` 待该范围债务清零后纳入阻断。专项与全部测试：
 
 ```shell
 python3 -m unittest -v tools.lint.test_check_skill_catalogs
 python3 -m unittest discover -s tools/lint -p "test_*.py"
 ```
+
+建议常态调用（CI 配置本身由收口任务修改）：
+
+```shell
+python3 tools/lint/check_ids.py --strict
+python3 tools/lint/check_skill_catalogs.py --strict --diversity-strict --routes-strict --delivery-strict --inner-nature-strict
+```
+
+该组合保留全部报告，包括尚未升严的兵器缺导引穴与路线性质冲突。四个 balance
+`--check` 与 Boss 报告比较约定见 `tools/balance/README.md`；静态规划验收不替代
+生产构建或真机 / 固定 RNG 战斗回放。

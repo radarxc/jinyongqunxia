@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-09-30 09:16:14 UTC",
+  "checks": [
+    {
+      "command": "python3 tools/agents/check_assets.py assets/default/baseline/building-map --min 8 --max 40",
+      "exit_code": 0,
+      "output": "assets/default/baseline/building-map：图片 38 张，条目 38 条，问题 0 个\n"
+    },
+    {
+      "command": "python3 assets/default/baseline/building-map/verify.py",
+      "exit_code": 0,
+      "output": "{\n  \"entries\": 38,\n  \"file_alpha_hash_anchor_errors\": 0,\n  \"optical_geometry_residual_count\": 33,\n  \"residual_ids\": [\n    \"bld_kit_song_dali_courtyard\",\n    \"bld_kit_song_dali_shop\",\n    \"bld_kit_song_dali_inn\",\n    \"bld_kit_song_dali_restaurant\",\n    \"bld_kit_song_dali_market_stall\",\n    \"bld_kit_song_dali_yamen\",\n    \"bld_kit_song_dali_biaoju\",\n    \"bld_kit_song_dali_casino\",\n    \"bld_kit_song_dali_manor\",\n    \"bld_kit_song_dali_wangfu\",\n    \"bld_kit_song_dali_temple_hall\",\n    \"bld_kit_song_dali_shrine\",\n    \"bld_kit_song_dali_guardhouse\",\n    \"bld_kit_song_dali_stable\",\n    \"bld_kit_song_dali_warehouse\",\n    \"bld_kit_song_dali_wharf\",\n    \"bld_kit_song_southern_house\",\n    \"bld_kit_song_southern_courtyard\",\n    \"bld_kit_song_southern_shop_1f\",\n    \"bld_kit_song_southern_shop_2f\",\n    \"bld_kit_song_southern_inn\",\n    \"bld_kit_song_southern_restaurant\",\n    \"bld_kit_song_southern_yamen\",\n    \"bld_kit_song_southern_biaoju\",\n    \"bld_kit_song_southern_casino\",\n    \"bld_kit_song_southern_manor\",\n    \"bld_kit_song_southern_palace_hall\",\n    \"bld_kit_song_southern_temple_hall\",\n    \"bld_kit_song_southern_pagoda\",\n    \"bld_kit_song_southern_guardhouse\",\n    \"bld_kit_song_southern_stable\",\n    \"bld_kit_song_southern_wharf\",\n    \"bld_lm_ch02_linan_palace_gate\"\n  ]\n}\n"
+    },
+    {
+      "command": "python3 assets/default/baseline/building-map/verify.py --strict-geometry",
+      "exit_code": 1,
+      "output": "{\n  \"entries\": 38,\n  \"file_alpha_hash_anchor_errors\": 0,\n  \"optical_geometry_residual_count\": 33,\n  \"residual_ids\": [\n    \"bld_kit_song_dali_courtyard\",\n    \"bld_kit_song_dali_shop\",\n    \"bld_kit_song_dali_inn\",\n    \"bld_kit_song_dali_restaurant\",\n    \"bld_kit_song_dali_market_stall\",\n    \"bld_kit_song_dali_yamen\",\n    \"bld_kit_song_dali_biaoju\",\n    \"bld_kit_song_dali_casino\",\n    \"bld_kit_song_dali_manor\",\n    \"bld_kit_song_dali_wangfu\",\n    \"bld_kit_song_dali_temple_hall\",\n    \"bld_kit_song_dali_shrine\",\n    \"bld_kit_song_dali_guardhouse\",\n    \"bld_kit_song_dali_stable\",\n    \"bld_kit_song_dali_warehouse\",\n    \"bld_kit_song_dali_wharf\",\n    \"bld_kit_song_southern_house\",\n    \"bld_kit_song_southern_courtyard\",\n    \"bld_kit_song_southern_shop_1f\",\n    \"bld_kit_song_southern_shop_2f\",\n    \"bld_kit_song_southern_inn\",\n    \"bld_kit_song_southern_restaurant\",\n    \"bld_kit_song_southern_yamen\",\n    \"bld_kit_song_southern_biaoju\",\n    \"bld_kit_song_southern_casino\",\n    \"bld_kit_song_southern_manor\",\n    \"bld_kit_song_southern_palace_hall\",\n    \"bld_kit_song_southern_temple_hall\",\n    \"bld_kit_song_southern_pagoda\",\n    \"bld_kit_song_southern_guardhouse\",\n    \"bld_kit_song_southern_stable\",\n    \"bld_kit_song_southern_wharf\",\n    \"bld_lm_ch02_linan_palace_gate\"\n  ]\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_mingmobenbaijingxiubiangedai_nan
+name: 明末本白精绣编革带·男
+kind: armor
+sub: belt
+grade: 9
+stack: 1
+chapters:
+- ch07_bixue
+origin: canonExpanded
+canonRef: 明末；出现书界 ch07；（原创扩展）；形制／色系依据：故宫《明代帝后与宗室服饰述论》，引刘若愚《酌中志》卷20《饮食好尚纪略》 https://img.dpm.org.cn/Uploads/File/2019/12/15/u5df5edcb36fd7.pdf；故宫董进《图说明代宫廷服饰（九）——后妃吉服与便服》 https://img.dpm.org.cn/Uploads/File/2020/04/27/u5ea6aea86025c.pdf；崇祯阶段主色排行和低立领细节（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingmobenbaijingxiubiangedai_nan
+text:
+  desc: 外观：明末男款，主色本白。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: （原创扩展）明末本白男式编革带以细革条编成，环扣系结用于束腰。精织双丝细绣缘只落从属窄覆帛缘与端头，行前检查编条及环扣；本白柔革保留浅褐切面，具体配色为原创，不作白玉鞓带或现代针扣。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 12

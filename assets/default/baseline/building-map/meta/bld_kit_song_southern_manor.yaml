@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_manor
+status: candidate
+building:
+  type: bld_kit_song_southern_manor
+  footprint: [16, 13]
+  anchor: &id001 [619.3504, 440.6674]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [16, 13]
+logical_footprint_polygon_px:
+- [155.35040000000004, 416.6674]
+- [667.3504, 672.6674]
+- [1083.3504, 464.6674]
+- [571.3504, 208.6674]
+collision_polygon_m:
+- [0, 0]
+- [16, 0]
+- [16, 13]
+- [0, 13]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [155, 148]
+- [1083, 148]
+- [1083, 675]
+- [155, 675]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 7.47
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 7}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_manor.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [928, 464]
+  ground_width_px: 928
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [41, 524]
+    front: [849, 921]
+    right: [1490, 590]
+  source_axis_slopes: [0.49133663366336633, -0.516380655226209]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2605304212168487
+  expected_width_depth_ratio: 1.2307692307692308
+  ratio_relative_error: 0.024180967238689455
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [1216, 832]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 741904
+  alpha_partial_pixels: 268923
+  alpha_opaque_pixels: 885
+  alpha_near_opaque_pixels: 259994
+  alpha_nonzero_bbox: [129, 128, 1086, 704]
+  transparent_margins_px: [129, 128, 130, 128]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_manor.png
+  source_sha256: ada2ec5d2bcc838fddc6edaf2b043bb310bf4c23de24ce4398012f767daf2ac0
+  source_size: [1536, 1024]
+  crop_box: [0, 69, 1494, 968]
+  uniform_scale_requested: 0.6404416839199448
+  resized_size: [957, 576]
+  rounded_effective_scale: [0.6405622489959839, 0.6407119021134594]
+  paste_offset: [129, 128]
+  final_file: bld_kit_song_southern_manor.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

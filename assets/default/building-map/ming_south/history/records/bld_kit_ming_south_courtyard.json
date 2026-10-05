@@ -1,0 +1,58 @@
+{
+  "id": "bld_kit_ming_south_courtyard",
+  "candidate": 1,
+  "returncode": 0,
+  "prompt": "You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical images control form, construction, proportion and materials; do not copy either composition.\n\nSubject: one isolated Ming dynasty Jiangnan enclosed courtyard residence. Strong historical construction detail: main hall and two lower wings around a stone-paved tianjing; hard-gable grey tile roofs and restrained fire gables; white lime walls with grey-brick foot; straight lattice doors; thin granite thresholds and plain wall gate.\n\nPreserve the guide's logical footprint 10 by 8, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation 30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match the guide's restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.\n\nTRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero. Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output only the generated image result.",
+  "guide": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south-hist/assets/default/building-map/ming_south/bld_kit_ming_south_courtyard.png",
+  "refs": [
+    "domestic_wu",
+    "courtyard"
+  ],
+  "ref_paths": [
+    "/private/tmp/KIT-ming_south-hist-refs/refs/domestic_wu.jpg",
+    "/private/tmp/KIT-ming_south-hist-refs/refs/domestic_courtyard.jpg"
+  ],
+  "outputs": [
+    "/private/tmp/KIT-ming_south-hist-refs/codex-homes/bld_kit_ming_south_courtyard-c1/generated_images/01a0f6ef-9fa4-7f60-bf06-44062f7eb03d/exec-625d4b5e-1a76-48fa-9b61-6df75fd2bec7.png"
+  ],
+  "selected_candidate": 1,
+  "candidate_count": 1,
+  "guide_archive": "assets/default/building-map/ming_south/history/guides/bld_kit_ming_south_courtyard.png",
+  "guide_sha256": "1b03040ce1cfe3265a4c3c1c7929a46691314e1903a2b2086ee1bbaefa8ec505",
+  "selected_source_archive": "assets/default/building-map/ming_south/history/selected-sources/bld_kit_ming_south_courtyard.png",
+  "selected_source_sha256": "cdcc10ad067834b4630550cef96a074e7de24313a5a94e9a60e151c30fc01baa",
+  "normalization": {
+    "alpha_threshold_for_bbox": 2,
+    "source_bbox": [
+      47,
+      103,
+      1365,
+      1055
+    ],
+    "guide_bbox": [
+      21,
+      23,
+      606,
+      413
+    ],
+    "uniform_scale": 0.4096638655462185,
+    "resized_size": [
+      540,
+      390
+    ],
+    "paste_offset": [
+      44,
+      23
+    ],
+    "canvas_size": [
+      626,
+      507
+    ],
+    "horizontal_alignment": "guide bbox center",
+    "vertical_alignment": "guide bbox bottom",
+    "excluded": "no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite"
+  },
+  "final_file": "assets/default/building-map/ming_south/bld_kit_ming_south_courtyard.png",
+  "final_sha256": "30672b2fe8ab2e22f50b2917cbfcb6599bd41b382f12b0c2b637ab39c8fc8a03",
+  "finalized_at": "2026-10-01T10:42:40.378237+00:00"
+}

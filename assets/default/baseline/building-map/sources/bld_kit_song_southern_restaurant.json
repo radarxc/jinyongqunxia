@@ -1,0 +1,137 @@
+{
+  "id": "bld_kit_song_southern_restaurant",
+  "type": "bld_kit_song_southern_restaurant",
+  "w": 12,
+  "h": 9,
+  "subject": "酒楼 / 茶肆",
+  "prompt": "Use case: precise-object-edit. Keep this restaurant exactly: footprint width/depth relation, all architectural proportions, roof, balconies, dining tables, red cloth, texture, upper-left light, transparent background. Correct only the orthographic camera elevation: currently the two ground edges have slopes about +0.57 and -0.57; lower the camera elevation very slightly so BOTH ground edges become exactly +0.50 and -0.50 (a 2:1 diamond floor). Keep both axes symmetric, vertical pillars vertical, do not rotate yaw, do not change width relative to depth. Reproject the building and ground together. Complete floor rectangle and uncut eaves with transparent margins on every side. True transparent RGBA, no background, text, guides or people. This slight flattening of the two ground axes is the only change.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try3.png",
+      "sha256": "9972180c610e8d8a5a5765d729cb9459766258a0d0afab09363c17f2a343f849",
+      "role": "image_gen candidate: geometry/style reference or edit target; not author approved"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-035e1d48-3e59-4809-bc1f-daab26288e34.png",
+  "source_sha256": "cd2dc41963f836bbbaa2770943a15ace1e6efc87d4beee4d764c6473f54a03c8",
+  "created": "2026-09-30T10:49:55.670827+00:00",
+  "visual_review": "返修第2轮：已逐张view_image；底面宽深恢复，宋式灰瓦木构及商用/客栈陈设完整，无文字人物现代物，左上主光；底面接触角按可见地坪外缘读点并用alpha>=192轮廓复核。64×32网格叠图另存review2；细小轴向残差按geometry_qa如实登记，目视判断不等于严格几何通过。",
+  "candidate_count": 6,
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-1f06668e-8d90-4ad6-baf4-e0bbdf30b668.png",
+      "prompt": "Use case: background-extraction. This is a game sprite. Remove the ENTIRE background halo, colored mist, blurry glow, surrounding blurred silhouette and all backdrop pixels. Return ONLY the sharply bounded building or market stall including its thin paved footprint, on genuine fully transparent RGBA background. Outside its solid silhouette alpha MUST be zero, no glowing border or large shadows. Preserve the pictured structure, viewpoint, colors, texture, light, proportions and all architectural details exactly. Keep the entire structure uncut, add 10 percent empty transparent margins on all four sides. Do not add anything, do not add shadows, no white or black or checkerboard background.",
+      "selection": "unselected",
+      "reason": "误判透明像素RGB预览光晕而追加去背景；第二版更饱和，未改善投影，选首版。",
+      "source_sha256": "28cf9ab985f12aba0949762689df142abea919f651c0839d5434b20bbe624d2e",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_try2.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_pre_review2.png",
+          "sha256": "e3f1a78af1a865348b4d55b3cef1a2ef0c51df699dd7874ff24ffb1b0d6a4453",
+          "role": "edit target：本条首版候选PNG，未获作者审批"
+        }
+      ]
+    },
+    {
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_pre_review2.png",
+      "source_sha256": "e3f1a78af1a865348b4d55b3cef1a2ef0c51df699dd7874ff24ffb1b0d6a4453",
+      "source_record": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_pre_review2.json",
+      "selection": "rejected_by_review1",
+      "reason": "合入前审核点名：可见底面宽深比与登记占地明显不符；本轮重出。"
+    },
+    {
+      "key": "restaurant",
+      "prompt": "Use case: historical-scene. Convert this geometric guide into ONE photorealistic Southern Song Lin'an two-storey restaurant sprite. The guide polygon is the exact building's floor footprint and camera axes: preserve the lower-left long frontage and shorter lower-right depth, angle slopes ±0.5, width:depth=12:9. It is NOT square: down-right front facade is 33% longer than up-right side wall. This physical width-depth relation is mandatory. The front bottom corner must be right of center. Keep platform perfectly rectangular in orthographic 2:1 projection. A prosperous Song dynasty restaurant: broad warm dark timber front facade open on both floors, lattice balconies, bamboo blinds, wooden dining tables, ceramic wine jars, ivory plaster on the smaller sidewall, restrained grey ceramic tile roof. Realistic detailed ancient Chinese architecture, not cartoon. Only thin stone paving along perimeter, no tall pedestal. Align all floor and roof horizontal axes to the guide directions and keep posts vertical. Main sunlight comes upper left; contact shadow only lower right. Keep all walls, eaves and ground corners completely inside frame with plenty of empty space on every side. Replace white with genuinely transparent background alpha. No drawn grid lines, diagram, coordinates, text, letters, signboard, watermark, people, modern objects, excessive fantasy roof curls, Ming or Qing ornament, glow or background scenery. The guide is geometry-only: resulting image must be naturally textured historical game art.",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-f5396a91-686d-4190-aa4d-fe3c994ab2bd.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_restaurant_geometry_guide.png",
+          "sha256": "00fe557db1a270b6d948f0b96dae9814073018384f21ef9b6847ddc1b1403abb",
+          "role": "geometry-only construction guide; no asset pixels drawn by code"
+        }
+      ],
+      "source_sha256": "2b3251579a11c864b02de693409c24edca0b6ff1ad10676ae8d0187b844b73f5",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try1.png",
+      "selection": "unselected",
+      "reason": "几何引导版前立面过长，初读比例约1.6，相对12/9偏差明显，且alpha最大254，淘汰。"
+    },
+    {
+      "key": "restaurant2",
+      "prompt": "Use case: precise-object-edit. Correct ONLY the ground geometry of this Southern Song restaurant sprite. Keep exact visual quality, realistic gray tile, warm timber, ivory plaster, open dining balconies and wine jars. Current front facade is TOO LONG relative to the side. SHORTEN its long lower-left-facing frontage by 18 percent, keeping short lower-right side depth unchanged, and make the two axes slopes exactly +0.500 and -0.500. The foundation is a 12 by 9 metre rectangle: horizontal distance LEFT to FRONT divided by FRONT to RIGHT is 1.333333. Adjust actual roof/walls/floor proportions together, not canvas. Camera is orthographic 2:1 no convergence. All horizontal lines parallel these axes and vertical posts vertical. Preserve upper-left sunlight. Output true transparent RGBA with NO halo or diffuse background, short contact shadow only. All roof and floor corners uncut with 10% empty margin. No text, no characters, no grid or dimensions, no people or modern objects. Geometry correction must be clearly visible.",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-27e4236b-5c46-49d3-bc84-17d6e06952d2.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try1.png",
+          "sha256": "2b3251579a11c864b02de693409c24edca0b6ff1ad10676ae8d0187b844b73f5",
+          "role": "image_gen candidate: geometry/style reference or edit target; not author approved"
+        }
+      ],
+      "source_sha256": "fc9e7ac8624628d8b0821a8a996fe0702173254ec23f88d38b32fd826df43b2d",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try2.png",
+      "selection": "unselected",
+      "reason": "缩短前立面编辑未可靠修正，门前地坪出现凸出/阶梯轮廓且仍过长，alpha最大254，淘汰。"
+    },
+    {
+      "key": "restaurant3",
+      "prompt": "Use case: precise-object-edit. Turn this building into a prosperous Southern Song restaurant. PRESERVE THE EXISTING FOOTPRINT OUTLINE, PROPORTIONS, CAMERA ANGLES AND COMPLETE SILHOUETTE. Preserve floor corners and all perimeter directions. Replace closed ground-floor lattice wall panels with an open dining veranda along the lower-left-facing long facade, add several small plain wooden dining tables and ceramic wine jars; open upper balcony with bamboo blinds. Keep grey clay tile roof, ivory plaster side wall and warm timber, but make the restaurant distinctive with modest UNLETTERED dark red cloth pennants hanging under the eaves. Same realistic historic game artwork, muted wood and stone, upper-left light, short lower-right shadow. Maintain 2:1 orthographic camera, no perspective, whole silhouette uncut. Floor corresponds to a 12 x 9 rectangular map footprint: long front edge 4:3 to short side edge, very close to this reference's existing ratio; do not elongate into a narrow building and do not turn it square. True transparent background RGBA with no halo, no backdrop. No text or signage or numbers, people, modern objects, casino symbols, diagram or grid.",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-171f7cad-0698-42ae-aa3f-6502514d22c7.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_casino.png",
+          "sha256": "39931b243c4302c5af765d0ceb5bdd303412ff774381e8743f4358a9232b6724",
+          "role": "image_gen candidate: geometry/style reference or edit target; not author approved"
+        }
+      ],
+      "source_sha256": "9972180c610e8d8a5a5765d729cb9459766258a0d0afab09363c17f2a343f849",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_restaurant_review2_try3.png",
+      "selection": "unselected",
+      "reason": "已恢复长前短深；初读双轴约±.57整体偏陡，后续单独降低俯角版本更接近2:1，故改选第4次。"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        20,
+        885
+      ],
+      [
+        703,
+        1225
+      ]
+    ],
+    [
+      [
+        703,
+        1225
+      ],
+      [
+        1248,
+        935
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      20,
+      885
+    ],
+    "front": [
+      703,
+      1225
+    ],
+    "right": [
+      1248,
+      935
+    ]
+  },
+  "source_dimensions": [
+    1254,
+    1254
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ]
+}

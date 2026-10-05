@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_xunquanshu
+name: 训犬术全本
+kind: manual
+sub: full
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_xunquanshu
+text:
+  desc: 外观：明代黄竹纸线装册，粗麻四眼订。
+  lore: 猎户庄户把辨性情、口令和奖惩分寸编成黄竹纸手册，技艺与载体属 （原创扩展）。研读须先观察犬只反应，再以短时训练建立信任；封边泥爪印来自实用，不是凶兽传闻。
+extension:
+  type: manual
+  value:
+    skill: sk_xunquanshu
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xunquanshu
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

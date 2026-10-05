@@ -1,0 +1,17 @@
+coordinates: source
+keypoints:
+  wrist_R:
+  - 16
+  - 15
+  grip_R:
+  - 16
+  - 46
+source:
+  keypoints:
+  - wrist_R
+  - grip_R
+  inpaintedPct: 4.38
+  rejectedInpaintedPct: 0.0
+  jointCaps: wristOnly
+  standardFallback: false
+  lowConfidence: []

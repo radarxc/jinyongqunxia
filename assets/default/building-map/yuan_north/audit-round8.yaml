@@ -1,0 +1,33 @@
+audit_date: '2026-09-30'
+method: 26张成品五页总览逐图目视；斜率复核既有成品QA的底面L/F/R读点，取绝对值判断。
+accepted_abs_slope_range: [0.35, 0.70]
+expected_light_shadow: screen_upper_left_to_lower_right
+reverse_light_count: 0
+prohibited_content_count: 0
+assets:
+- {id: bld_kit_yuan_north_biaoju, axes: [0.531165, -0.543363], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_casino, axes: [0.526749, -0.530841], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_courtyard, axes: [0.520216, -0.503425], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_guardhouse, axes: [0.507491, -0.473461], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_house, axes: [0.551220, -0.480000], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_house_small, axes: [0.503737, -0.469697], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_inn, axes: [0.533654, -0.465157], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_manor, axes: [0.519118, -0.524436], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_market_stall, axes: [0.515599, -0.481236], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_pagoda, axes: [0.511952, -0.502970], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_restaurant, axes: [0.536164, -0.515419], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_shop_1f, axes: [0.519031, -0.512712], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_shop_2f, axes: [0.520958, -0.508230], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_stable, axes: [0.518571, -0.498911], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_temple_hall, axes: [0.512931, -0.499130], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_wangfu, axes: [0.541667, -0.567857], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_warehouse, axes: [0.534810, -0.513834], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_wharf, axes: [0.536285, -0.538462], range_pass: true, light: pass, prohibited: pass}
+- {id: bld_kit_yuan_north_yamen, axes: [0.519594, -0.540076], range_pass: true, light: pass, prohibited: pass}
+- {id: tex_town_yuan_north_city_gate__k4_r000_v01, axes: [0.501961, -0.505792], range_pass: true, light: pass, prohibited: pass}
+- {id: tex_town_yuan_north_city_gate__k6_r000_v01, axes: [0.501563, -0.503876], range_pass: true, light: pass, prohibited: pass}
+- {id: tex_town_yuan_north_wall__earth_r000_v01, axes: [0.503757, -0.504051], range_pass: true, light: pass, prohibited: pass}
+- {id: tex_town_yuan_north_wall_corner__outer_ne_v01, axes: [0.503706, -0.505462], range_pass: true, light: pass, prohibited: pass}
+- {id: tex_town_yuan_north_bridge_deck__w4_l8_r000_v01, axes: [0.528770, -0.470820], range_pass: true, light: pass, prohibited: pass}
+- {id: tex_town_yuan_north_tree_cluster__scholar_tree_v01, axes: null, range_pass: not_applicable, light: pass, prohibited: pass}
+- {id: tex_town_yuan_north_tree_cluster__oriental_arborvitae_v01, axes: null, range_pass: not_applicable, light: pass, prohibited: pass}

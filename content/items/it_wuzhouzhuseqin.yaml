@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_wuzhouzhuseqin
+name: 武周朱漆琴
+kind: collectible
+sub: qin
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wuzhouzhuseqin
+text:
+  desc: 外观：暗朱漆七弦长琴，内敛圆肩。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,musician,collector]}; giftValue=3; provenance=expanded。
+  lore: 为西行乐师设计的精工琴，以漆层与音材区分于普通素琴。修弦支线后可赠懂琴的文士，名与造型均为（原创扩展）；武周徽位细节（待考），不借后出的九霄环佩名号。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

@@ -1,0 +1,8 @@
+{
+  "asset": "bld_kit_xiyu_casino",
+  "prompt": "Use case: precise-object-edit. IMAGE1 is the building to correct. IMAGE2 is CAMERA/PROJECTION REFERENCE ONLY (do not copy stable subject). Preserve IMAGE1's realistic weathered southern Xinjiang architecture, material colors and building identity. Preserve secular gaming courtyard and two tiny boardgame tables. Do not add religious motifs. Correct camera to MATCH IMAGE2: orthographic45degree azimuth,30degree elevation, exact2:1 dimetric ground. BOTH visible ground edges must slope+0.5 and-0.5, no vanishing points. Footprint10m east-west by8m north-south with readable left/front/right ground corners and entrance facing screen lower left. No thick base. Keep entire isolated building within15% transparent margin on all sides; true transparent RGBA. Light upper left, only short contact shadow lower right. No text, people, background, halo, modern object or logo.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-060b052a-800b-44ac-9457-3d6a61805ceb.png",
+  "candidate": 2,
+  "edit_target": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-4c37312c-a92d-49bb-a42d-a7e2bee26a48.png",
+  "camera_reference": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-de9b1647-4e92-4de0-8549-a70945b5a9f9.png"
+}

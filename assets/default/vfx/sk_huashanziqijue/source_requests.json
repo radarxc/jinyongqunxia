@@ -1,0 +1,28 @@
+{
+  "skill": "sk_huashanziqijue",
+  "created": "2026-10-01",
+  "generation_note": "image_gen 两次入口均在生成前失败：默认 Codex app-server 报 Operation not permitted；临时 Codex 配置可启动但 workspace routing discovery 网络失败。三套候选由 make_sources.py 以 Pillow 降级生成，未伪称模型生成。",
+  "source_basis": "图鉴 §1.1：原著有华山气宗与紫霞神功，但华山紫气诀、五招、机制和可见视觉均为原创扩展。",
+  "color_basis": "武学名语义取紫罗兰，nature=yang 以赤金作暖边；未找到原著固定可见颜色。",
+  "common_brief": "纯白背景；2x2 四帧，单格 768x512；水墨意境、虚实透明；同一宽根向右；无人物、手、兵器、文字、符号、实体山景或新增判定。",
+  "requests": [
+    {
+      "asset_id": "vfx_sk_huashanziqijue__family_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "紫色气息带与克制峰脊弧线，赤金内芯，表现吐纳、运气和护体的共通语汇。"
+    },
+    {
+      "asset_id": "vfx_mv_huashanziqijue_yingfeng__effect_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "绝招独有：三层紫色角状峰脊与中央赤金脊线形成守势；不画实体山峰或盾牌。"
+    },
+    {
+      "asset_id": "vfx_mv_huashanziqijue_guiyuan__effect_base01",
+      "candidate_count": 1,
+      "selected_candidate": 1,
+      "brief": "绝招独有：两股紫气外展后回卷成开放归元旋环，细线回接同一根部；不画实体珠或法阵。"
+    }
+  ]
+}

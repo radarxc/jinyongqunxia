@@ -1,0 +1,44 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_jiuquan"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "肃州·酒泉县（702年推定）"
+historical_year: 702
+era_kit: "song_southern"
+seed: 1932191210
+design_intent: {"prosperity": "tang_regional_candidate", "notes": ["复原依据：history/city_jiuquan__tang_702.md；702–703年按作者AR-26覆盖cities.yaml旧清初年代（原创扩展）。", "宋代基线替代：南宋墙门/地表与大理土木建筑；不是唐代建筑复原；无清真寺、邦克楼、清制镖局。", "历史拓扑缩景；内城/宫区以分区表达，schema只支持一道外墙；正式场景与营生绑定留归属文档。"]}
+grid: {"width": 96, "height": 96, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -48, "r_min": 1, "q_slot_count": 131, "r_slot_count": 96, "q_band_slots": [66, 65], "r_band_slots": [96], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 18, "z": 8}, {"x": 78, "z": 8}, {"x": 78, "z": 88}, {"x": 18, "z": 88}]}, "inside_margin_cells": 2, "basis": "图名：外城；轮廓与门位按本城已读史料的关系概化（推定）；不把明清扩城轮廓回投唐代。；src_jiuquan仅证明古南门与明代扩城分期；本图不画明代东半城，东门（推定）。；依据：src_jiuquan"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 48, "z": 8}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：南门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 78, "z": 44}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：东门（推定）；沿用方位通名，坐标及门制（原创扩展），不用后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 48, "z": 8}, {"x": 48, "z": 84}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北通衢；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 22, "z": 44}, {"x": 78, "z": 44}], "surface": "dirt_road", "priority": 80, "basis": "图名：东西市街；坐标与路宽（推定）（原创扩展）；史料约束见本城复原依据。"}
+rivers: []
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 22, "z": 50}, "max": {"x": 42, "z": 84}}}, "priority": 100, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_guardhouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：官署坊区（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 54, "z": 12}, "max": {"x": 74, "z": 38}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_market_stall", "bld_kit_song_dali_inn", "bld_kit_song_dali_restaurant"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：商市与食宿（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_houses_ne", "kind": "residential", "geometry": {"rect": {"min": {"x": 54, "z": 50}, "max": {"x": 74, "z": 84}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_shrine", "bld_kit_song_dali_temple_hall", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：坊居与寺观（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+  - {"id": "zone_houses_sw", "kind": "residential", "geometry": {"rect": {"min": {"x": 22, "z": 12}, "max": {"x": 42, "z": 38}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_courtyard", "bld_kit_song_dali_shrine", "bld_kit_song_dali_temple_hall", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：坊居与寺观（推定）；分区边界、建筑座数（推定）（原创扩展）；不代表考古地籍。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office", "zone_houses_ne", "zone_houses_sw"], "count": {"min": 2, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_restaurant", "zone_refs": ["zone_market"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 6, "max": 24}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_temple_hall", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_houses_ne", "zone_houses_sw"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不使用茶花、竹林与热带树木", "basis": "旱地视觉密度（原创扩展）【建议值】；不作唐代物候证据。"}
+sources:
+  - {"key": "src_jiuquan", "kind": "academic", "title": "酒泉现存一座古城门 比兰亭序问世还早", "url": "https://gansu.gscn.com.cn/system/2021/06/24/012605192.shtml", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "仅文字；记者报道南门遗存、346重筑与明代扩城；未取得可验证的唐代尺寸。"}

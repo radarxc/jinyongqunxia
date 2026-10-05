@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_changqiang
+name: 素木长枪
+kind: weapon
+sub: spear
+grade: 3
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·宋明（《武经总要》素木枪） （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/changqiang
+text:
+  desc: 外观：柳叶枪头、素木通杆约二点五米，铁枪裤与短红缨。
+  lore: 素木枪名取《武经总要》所见名目，柳叶枪头、通杆和尾鐏组成最朴实的长兵。使用讲究枪杆贴身、前手定向、后手送劲；红缨、尺度及定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 45
+      qiAffinity: 100

@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_yamen
+status: candidate
+building:
+  type: bld_kit_song_southern_yamen
+  footprint: [16, 12]
+  anchor: &id001 [576.4266, 410.933]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [16, 12]
+logical_footprint_polygon_px:
+- [128.4266, 378.933]
+- [640.4266, 634.933]
+- [1024.4266, 442.933]
+- [512.4266, 186.933]
+collision_polygon_m:
+- [0, 0]
+- [16, 0]
+- [16, 12]
+- [0, 12]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [128, 139]
+- [1025, 139]
+- [1025, 645]
+- [128, 645]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 6.94
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 7}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_yamen.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [896, 448]
+  ground_width_px: 896
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [42, 520]
+    front: [847, 933]
+    right: [1492, 590]
+  source_axis_slopes: [0.5130434782608696, -0.5317829457364341]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.248062015503876
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.06395348837209303
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [1152, 800]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 670327
+  alpha_partial_pixels: 250387
+  alpha_opaque_pixels: 886
+  alpha_near_opaque_pixels: 243919
+  alpha_nonzero_bbox: [123, 118, 1028, 681]
+  transparent_margins_px: [123, 118, 124, 119]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_yamen.png
+  source_sha256: 7708d3c3cec6f07b4b2bd622375e62dd6131f3cff11a71ccda97abbc3491d3a1
+  source_size: [1536, 1024]
+  crop_box: [33, 81, 1498, 992]
+  uniform_scale_requested: 0.6179310344827587
+  resized_size: [905, 563]
+  rounded_effective_scale: [0.6177474402730375, 0.6180021953896817]
+  paste_offset: [123, 118]
+  final_file: bld_kit_song_southern_yamen.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

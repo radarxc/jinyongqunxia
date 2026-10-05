@@ -1,0 +1,25 @@
+schema_version: town.city_registry_patch.v1
+kind: CityRegistryPatch
+authority: docs/design/map/cities.yaml
+scope: TOOL-town-gaps-1
+chapter_overrides:
+  ch10:
+    title: 白马啸西风
+    year: 702
+    end_year: 703
+    era: 武周长安年间（广义唐代文化分期；原创扩展；原著年代待考）
+    band: tang_702
+city_additions:
+  - id: city_tingzhou
+    canonical_name: 庭州
+    display_name_ch10: 庭州 / 北庭
+    modern_anchor: 吉木萨尔县北庭故城遗址（待考）
+    region: rg_xiyu_beijiang
+    importance: major
+    ch10:
+      status: 军镇
+      open: true
+      note: 702年庭州升置北庭都护府；旧庭州与西延城的同期范围待考。
+notes:
+  - 本文件是白名单内的原子修正包，不是第二份城市总表；消费方仍以authority为准。
+  - 地图归属任务应把本修正合入权威表，并同步重绘jianghu-ch10.svg；合入前不生成庭州CitySpec。

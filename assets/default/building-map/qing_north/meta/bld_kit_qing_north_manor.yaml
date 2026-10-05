@@ -1,0 +1,83 @@
+id: bld_kit_qing_north_manor
+status: candidate
+building:
+  type: bld_kit_qing_north_manor
+  footprint: [16, 13]
+  anchor: [572.2096, 418.0878]
+  era: qing_north
+anchor_px: [572.2096, 418.0878]
+footprint_m: [16, 13]
+footprint_note: 16×13为同构功能件建议占地；大院组合为原创扩展。
+logical_footprint_polygon_px:
+- [108.20960000000002, 394.0878]
+- [620.2096, 650.0878]
+- [1036.2096000000001, 442.0878]
+- [524.2096, 186.08780000000002]
+collision_polygon_m:
+- [0, 0]
+- [16, 0]
+- [16, 13]
+- [0, 13]
+collision_note: 全footprint硬碰撞代理；非实测墙体，院内走区另行细化。
+occluder_proxy_px:
+- [109, 23]
+- [1036, 23]
+- [1036, 678]
+- [109, 678]
+occluder_note: alpha>=192包围框仅用于离线代理统计，未修改输出alpha。
+actual_height_m: null
+height_note: 单图不能推出可靠实高，待实测/建模。
+entrance: {edge: S, offset_cells: 7}
+entrance_note: S边中点代理，非门洞精确实测。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_north_manor.png, view_note: 目标视角；实际误差见geometry_qa}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [928, 464]
+  ground_width_px: 928
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  contract_note: 目标契约；实际源图投影误差见geometry_qa，不能据此宣称所有视角合格。
+geometry_qa:
+  source_corners_px:
+    left: [179, 517]
+    front: [851, 892]
+    right: [1377, 599]
+  source_axis_slopes: [0.5580357142857143, -0.5570342205323194]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.2775665399239544
+  expected_width_depth_ratio: 1.2307692307692308
+  ratio_relative_error: 0.03802281368821281
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 本轮独立人工读真实墙脚L/F/R，±3px；后角L+R-F推算；底心(L+R)/2。未仿射或非等比纠偏。
+pixel_qa:
+  mode: RGBA
+  size: [1060, 799]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 509595
+  alpha_partial_pixels: 336517
+  alpha_opaque_pixels: 828
+  alpha_near_opaque_pixels: 328195
+  alpha_nonzero_bbox: [20, 20, 1040, 779]
+  transparent_margins_px: [20, 20, 20, 20]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_manor__revision2_c1.png
+  source_sha256: 5168f5141e134569292ff5b1d04734725bcfb2339337911d8d79f281bff2c9cc
+  source_size: [1536, 1024]
+  crop_box: [65, 44, 1382, 1024]
+  uniform_scale_requested: 0.7746243739565943
+  resized_size: [1020, 759]
+  rounded_effective_scale: [0.7744874715261959, 0.7744897959183673]
+  paste_offset: [20, 20, 1040, 779]
+  final_file: bld_kit_qing_north_manor.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+  anchor_transform_note: 锚点按整数重采样尺寸对应的rounded_effective_scale分别作用于源X/Y；图像仍仅做一次名义等比缩放，差异来自像素取整。
+release_ready: false

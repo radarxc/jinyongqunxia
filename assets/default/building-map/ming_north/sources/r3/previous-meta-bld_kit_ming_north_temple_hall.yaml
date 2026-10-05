@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_temple_hall
+footprint_m:
+- 14
+- 11
+footprint_basis: design/22 §3.4 明代对应骨架；本套件地域命名
+anchor_px:
+- 425.1911
+- 434.8319
+entrance:
+  edge: S
+  offset_cells: 7.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 14
+  - 0
+- - 14
+  - 11
+- - 0
+  - 11
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 178
+  - 654
+  F:
+  - 862
+  - 975
+  R:
+  - 1353
+  - 737
+source_anchor_px:
+- 765.5
+- 695.5
+target_ground_span_px: 800
+geometry:
+  crop_box:
+  - 166
+  - 99
+  - 1385
+  - 1000
+  uniform_scale: 0.6808510638297872
+  scaled_size:
+  - 830
+  - 613
+  canvas_size:
+  - 864
+  - 672
+  paste_offset:
+  - 17
+  - 29
+  - 847
+  - 642
+  raster_scales:
+  - 0.6808859721082855
+  - 0.6803551609322974
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 288525
+  alpha_partial_pixels: 291428
+  alpha_opaque_pixels: 655
+  alpha_bbox:
+  - 19
+  - 31
+  - 847
+  - 642
+  rectangular_trim_removed_nonzero: 52
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.4693
+  - -0.48473
+  source_ratio_relative_error: 0.09456
+  geometry_warning: true
+  visual_review: 原图已view_image：独立黑灰瓦歇山殿、朱木，第二候选加深侧面；底面仍非精确14:11；不声称智化殿复原。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+  final_visual_review: 已逐张view_image成品：全轮廓与透明留边完整；底面、屋檐及缩放后细节可读；几何与形制限制仍见visual_review/meta。
+source_sha256: 68fb5dc26b295a1bdbbcdad0b9a0ee7db6b3b85e16dd521535fdacb567b8c417
+sha256: 3a0e5d4726cd74033568a90520f58b2059c07f6bda0744b87e2593d2a56b7db7

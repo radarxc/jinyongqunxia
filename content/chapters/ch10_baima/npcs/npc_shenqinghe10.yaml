@@ -1,0 +1,46 @@
+schemaVersion: npc.v1
+id: npc_shenqinghe10
+identity:
+  name: 沈青禾
+  aliases: []
+  origin: expanded
+  gender: male
+  sourceWorks: [白马啸西风, 天书录原创扩展]
+lifespan:
+  born: {kind: unknown, ageBand: mature, note: 原创人物；精确生年不设定}
+  died: null
+  explicitAliveAt:
+    - {chapterId: ch10_baima, from: 702, to: 703, source: 唐代白马开局配置（原创扩展）}
+appearances:
+  - key: baima_tang_merchant
+    chapterId: ch10_baima
+    years: {from: 702, to: 703, approx: false}
+    displayName: 沈青禾
+    presenceMode: living
+    combatEligible: true
+    ageBand: mature
+    sects: []
+    location: {cityId: null, placeKey: sc_10_fengshi_feiyi}
+    contentLayer: mainline
+    recruitment:
+      difficulty: D2
+      questRef: null
+      contractRef: cold_entry_short_contract
+      gateRef: null
+      windowKeys: [c01_after]
+    build:
+      pipeline: full
+      templateRole: tmpl_normal
+      cultivationBand: 8
+      portrayal: tang_medic_merchant
+      skills: []
+      unregisteredSkills: []
+    ai: {tier: ai_basic, personality: pers_yizhe}
+recruitment: {everRecruitable: true, allianceOnly: false, hardConflictWith: [], softConflictWith: []}
+bonds: {tags: [medic, merchant, interpreter], comboCandidateRefs: []}
+crossBook:
+  enabled: false
+  reunionQuestByChapter: {}
+  legacy: {skillRefs: [], itemRefs: [], heirNpcRefs: []}
+sources:
+  - {kind: expanded, locator: "docs/design/catalog/npcs-ch10-baima.md §2；原创药材商"}

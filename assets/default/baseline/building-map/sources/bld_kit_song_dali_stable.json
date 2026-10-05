@@ -1,0 +1,107 @@
+{
+  "id": "bld_kit_song_dali_stable",
+  "type": "bld_kit_song_dali_stable",
+  "w": 8,
+  "h": 6,
+  "subject": "1093年大理国马厩（建筑细部待考）",
+  "prompt": "Use case: precise-object-edit. Edit target: Dali gray-tile timber stable for an isometric city map. Preserve original open stalls, troughs, straw, timber columns, pale side wall, gray tile roof, realistic materials and upper-left lighting. Change the stable's plan from very narrow and elongated to a WIDER-DEPTH 8x6 rectangle (front facade width / side depth = 1.333). Camera ORTHOGRAPHIC exactly 45-degree yaw, 30-degree elevation, 2:1 ground projection. Both ground axes slope equally, +0.5 and -0.5 (not generic 30 degree isometric). Shorten the long facade and enlarge right side depth. On 1536x1024 canvas thin ground patch contact corners LEFT(152,540), FRONT(856,892), RIGHT(1384,628), BACK(680,276). Front stalls face screen lower-left. Ground front corner should be slightly right of center. Floor geometry exactly matches vectors(+704,+352) and(+528,-264). Roof ridge and eaves and all architectural horizontal edges follow these same two axes. Keep THREE wide stalls, no horses or people. Clean thin rectangular earth/stone footprint, not pedestal. True transparent RGBA background and opaque stable, generous transparent margins, all tips visible, no external terrain, text, logos, modern elements, watermark or guide/grid lines. ONE sprite.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_stable_pre_review2",
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_stable_pre_review2.png",
+      "sha256": "a2a8ef47484ee7dee826d363cf516774642387c6d9236f73ca77040280c84c9c",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-8bf0873a-77af-49f0-92d0-1a1d20a4b8a3.png",
+  "source_sha256": "ef41775055e6e23a6aa746f3cb92b27799315dff1d1914347ea7c9cf310fada3",
+  "created": "2026-09-30T10:50:01.630695+00:00",
+  "visual_review": "已逐张view_image检查原图与成品QA叠图；无文字、水印、现代物件和人物，完整RGBA透明留边；光源左上。马厩前宽/侧深恢复8×6比例，两轴协调但同向略陡，严格检查仍告警。仅裁切、等比LANCZOS缩放、透明扩边；历史细部与风格仍待作者审批。",
+  "candidate_count": 3,
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-6b019b14-9f77-47f0-8430-a32684311929.png",
+      "prompt": "undefinedA practical small horse stable, open south-facing timber stalls beneath a simple broad gray tiled roof, rough plank partitions, straw bedding, wooden trough and few bundles of fodder in back, compact dirt yard. No horses or people. Footprint 8m east-west by6m north-south.",
+      "reason": "公共提示读取失败，生成继承少林参考的山景与低视角；已逐张view_image原图确认淘汰",
+      "source_sha256": "8286f88d1dfa2f283fd8948185fa59b7d3f2ef5b998b09f2fa396df36ae58d11"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        182,
+        618
+      ],
+      [
+        892,
+        1002
+      ]
+    ],
+    [
+      [
+        892,
+        1002
+      ],
+      [
+        1443,
+        704
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      182,
+      618
+    ],
+    "front": [
+      892,
+      1002
+    ],
+    "right": [
+      1443,
+      704
+    ]
+  },
+  "projection_review": "返修2人工读取实际接地底边点±3px；轴斜率0.540845/-0.540835；水平投影比1.288566，目录w/h=1.333333；独立64×32网格叠图复核，不以理想角点替代实测。",
+  "status": "candidate",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      254
+    ],
+    "transparent_pixels": 836340,
+    "partial_pixels": 736524,
+    "opaque_pixels": 0,
+    "bbox": [
+      0,
+      19,
+      1458,
+      1006
+    ]
+  },
+  "candidate_history": [
+    {
+      "phase": "pre_review2",
+      "status": "rejected",
+      "source_archive": "sources/rejected/bld_kit_song_dali_stable_pre_review2.png",
+      "source_record": "sources/rejected/bld_kit_song_dali_stable_pre_review2.json",
+      "source_sha256": "a2a8ef47484ee7dee826d363cf516774642387c6d9236f73ca77040280c84c9c",
+      "reason": "合入前审核点名底面宽深比例或两轴不协调，见返修意见；原图和记录逐字节保留。"
+    },
+    {
+      "phase": "review2",
+      "attempt": 1,
+      "status": "selected",
+      "source_archive": "sources/bld_kit_song_dali_stable.png",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-8bf0873a-77af-49f0-92d0-1a1d20a4b8a3.png",
+      "source_sha256": "ef41775055e6e23a6aa746f3cb92b27799315dff1d1914347ea7c9cf310fada3",
+      "reason": "本轮入选，几何残差见projection_review及meta"
+    }
+  ]
+}

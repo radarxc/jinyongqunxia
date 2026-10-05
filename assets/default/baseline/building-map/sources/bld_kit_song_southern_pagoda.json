@@ -1,0 +1,59 @@
+{
+  "id": "bld_kit_song_southern_pagoda",
+  "type": "bld_kit_song_southern_pagoda",
+  "w": 7,
+  "h": 7,
+  "subject": "通用佛塔",
+  "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 7 x 7 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 7 units, up-right edge 7 units, horizontal ratio 1.0000. Subject: One Southern Song Jiangnan seven-level square Buddhist pagoda, pale grey brick core with restrained timber balconies and grey-tiled projecting eaves at each level, a slim metal finial, vertical elegant silhouette, a low square stone base with modest southwest-facing doorway and shallow steps; visible square ground footprint; full tower and finial uncut.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-099bdd9f-5c1d-4c63-bdd2-18b6d4235eac.png",
+  "source_sha256": "63b482f635acffba3eca1a90b01d18a992151915726c3d8a3d0ea83a24072cb6",
+  "created": "2026-09-30",
+  "visual_review": "已逐张 view_image original：主体及屋檐塔刹完整、左上照明、S门左下，宋代灰瓦木构 / 砖塔意象；无字无人无现代物，材质写实。RGB背景光晕处alpha=0；真透明。原图留白偏紧由root补边；宋代细部及殿堂屋脊造型待考。底面双轴、外包比例存在生成残差，不能称严格精确通过。",
+  "candidate_count": 1,
+  "ground_edges_source_px": [
+    [
+      [
+        164,
+        1339
+      ],
+      [
+        512,
+        1497
+      ]
+    ],
+    [
+      [
+        512,
+        1497
+      ],
+      [
+        857,
+        1340
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      164,
+      1339
+    ],
+    "front": [
+      512,
+      1497
+    ],
+    "right": [
+      857,
+      1340
+    ]
+  },
+  "source_dimensions": [
+    1024,
+    1536
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ]
+}

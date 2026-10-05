@@ -1,9 +1,9 @@
 # 门派武学图鉴 · 五岳剑派与日月神教（`skills-wuyue`）
 
-> **版本**：v1.2（审校 C1c.R；全局审计，2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）。
+> **版本**：v1.2（审校 C1c.R；全局审计，2026-09-27）；经脉系统落地（2026-09-27）；绝招数量调整（2026-09-27）；图鉴一致性审计（2026-09-28）；天中 / 地中绝招数统一（2026-09-28）；外放标记（2026-09-28）；绝招路线叙事化（2026-09-29）；经脉落地终审（2026-09-29）；路线叙事第三轮（2026-09-29）；阴阳性质落地 AR-18（2026-09-29）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 
 > **归属（基准 §18）**：`design/catalog/skills-*.md` 门派武学图鉴。本文件唯一收录笑傲书界的五岳剑派（华山气宗/剑宗、嵩山、泰山、南衡山、北恒山）、日月神教及梅庄四友、福威镖局与林家、青城派、五仙教，以及桃谷六仙、田伯光、不戒和尚等散人传承。
-> **上游**：`00-canon.md` §3–§5、§7、§9、§12–§13、§16、§20 与 v1.8；`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14–AR-18（含 2026-09-27／28 作者决定与 2026-09-29 新口径）；`decisions/author-decisions.md` P33；`decisions/rulings-v1.md` C14–C17、C22–C23 与 §3–§5；`design/17-sects-compendium.md` §1、§3、§6、§8–§9；`design/21` v2.7.2。
+> **上游**：`00-canon.md` §3–§5、§7、§9、§12–§13、§16、§20 与 v1.8；`decisions/author-requirements.md` AR-01–AR-03、AR-07–AR-08、AR-14–AR-18（含 2026-09-27／28 作者决定与 2026-09-29 新口径）；`decisions/author-decisions.md` P33；`decisions/rulings-v1.md` C14–C17、C22–C23 与 §3–§5；`design/17-sects-compendium.md` §1、§3、§6、§8–§9；`design/21` v2.7.2；`design/03` v2。
 > **引用而不重定义**：字段、层数、招式预算、内功贡献、代价型武学与“破 X”见 `design/05`；战斗经脉运行、招式路线、绝招、擒拿／点穴、调息、护体内劲与经脉乘区见 `design/21`；经脉、穴位、冲穴、周天与九转见 `design/15`；Buff 本体见 `design/06`；属性与技艺见 `design/03`；书界压制、残承与印证见 `design/02`；合击结算见 `design/09`；装备见 `design/10`；套装最终规则交 `design/07`。跨组只引用 `sk_yijinjing`、`sk_taijiquan`、`sk_taijijian`、`sk_dagou` 等 ID，不重复定义。
 > **标注约定**：**（原创扩展）** = 原著没有的内容；**（原创扩展命名）** = 原著有其人其事、但本作新拟武学或招式名；**（待考）** = 须以三联/广州修订版逐字核对；**【建议值】** = 依赖下游定稿。
 > **审校记录**：审校 C1c.R（2026-09-26）；复核天级锚点、招式 / 内功预算、Buff 外键、门派职级与装配可行性。经脉系统落地（2026-09-27）：按 AR-14 / `design/21` v2.0 补路线、轻功速度、调息与护体接口。经脉落地终审（2026-09-29）：按 Canon v1.6 / `design/21` v2.5 收口音功外放、出招末端、路线用途与正式实例口径。阴阳性质落地 AR-18（2026-09-29）：内功性质按主修经脉票数重算，路线性质仅取体段并同步调息、护体与路线门槛。
@@ -234,7 +234,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]`；神雕剑冢仅见剑意，不可习得本条目 |
 | nature · wOut/wIn · moveSlots | `neutral` · `0.80/0.20` · 5 |
 | weaponReq | `{category:sword, altCategories:{unlockLayer:9,categories:[staff,exotic],mult:0.90}}` |
-| reqs | `attrs:{wis:70}; aptitude:{apSword:50}; morality:{min:0}; hard:[morality]` |
+| reqs | `attrs:{agi:75,wis:65,wil:55}; aptitude:{apSword:55}; morality:{min:0}; hard:[morality]` |
+| trainingAttrs | `[{layer:3,attrs:{wis:2,agi:1}},{layer:6,attrs:{wis:3,agi:1}},{layer:9,attrs:{wis:3,agi:1}}]` |
 | layerStats | `counter:[5,15], hit:[1,5]`，合计 20（天阶上限） |
 | 层数要点 | 1 总诀/破剑/料敌 ｜ 2 破刀 ｜ 3 破枪/有进无退 ｜ 4 破鞭 ｜ 5 破索 ｜ 6 破掌 ｜ 7 第一绝招无招胜有招 ｜ 8 破箭 ｜ 9 第二绝招破箭/以物代剑 ｜ 10 第三绝招破气/无招大成；七门早层破式仍为普通招 |
 | setTags | `[set_dugu_jianzhong]`；前者补齐 `skills-daojia` 已列的跨组反向成员 |
@@ -275,7 +276,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]`；碧血只给 8 品残承（基准 §13“残承再遇”，**（原创扩展）**） |
 | nature / meridians | `harmony` / `[mer_renmai, mer_dumai]`（本作主修经脉；阴 1 / 阳 1，平票取调和） |
 | wOut/wIn · moveSlots | `0/1` · 4 |
-| reqs | `sect:{id:sect_huashan,rank:4}; prereq:[{skill:sk_huashanxinfa,layer:6}]; attrs:{con:50,wil:50}; aptitude:{apInner:50}; hard:[sect,prereq]` |
+| reqs | `sect:{id:sect_huashan,rank:4}; prereq:[{skill:sk_huashanxinfa,layer:6}]; attrs:{bre:55,wil:45}; aptitude:{apInner:40}; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `mpMaxPct:34, hpMaxPct:20, attrs:{con:6,wil:5,wis:3}, mpRegen:2.5`；`34+20+2×14+5×2.5=94.5` |
 | inner.stats | `resInjury:8, atkIn:7`，合计 15（地阶上限） |
 | 层数要点 | 1 紫气 ｜ 3 朝阳吐纳 ｜ 5 紫霞贯日/紫霞护体 ｜ 7 第一绝招霞映长空 ｜ 8 残承上限 ｜ 9 第二绝招紫霞贯日 ｜ 10 紫霞大成；早层两记运功招保留普通用途 |
@@ -306,7 +308,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `harmony` · `0.65/0.35` · 4 |
 | weaponReq | `{category:sword}` |
-| reqs | `sect:{id:sect_huashan,rank:4}; prereq:[{anyOf:[{skill:sk_huashanjianfa,layer:5},{skill:sk_kuangfengkuaijian,layer:6}]}]; attrs:{agi:45,wis:45}; aptitude:{apSword:45}; hard:[sect,prereq]` |
+| reqs | `sect:{id:sect_huashan,rank:4}; prereq:[{anyOf:[{skill:sk_huashanjianfa,layer:5},{skill:sk_kuangfengkuaijian,layer:6}]}]; attrs:{agi:50,wis:40}; aptitude:{apSword:35}; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `hit:[3,9], crit:[2,6]`，合计 15 |
 | 层数要点 | 1 第一青峰 ｜ 3 第二青峰 ｜ 7 三峰相济 ｜ 8 剑气相连 ｜ 9 第三青峰（第二绝招） ｜ 10 太岳圆成 |
 | setTags / conflicts | `[set_huashan_qijian]` / 无 |
@@ -331,12 +334,12 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质·外/内 | `reqs`（结构化） | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_huashanjianfa` 华山剑法 | 6玄上·兵器/剑·harmony·0.75/0.25 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanrumenjian,layer:4}]; hard:[sect,prereq]` | 白云出岫1.00；苍松迎客0.90；金雁横空 `mv_huashanjianfa_jinyan`（L7绝招，`ultimate:true`，突进2.90，8%/气势100/1200；`3−.10=2.90`） | `set_huashan_qijian` | 《笑傲江湖》华山门人所习；分式出处**（待考）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_yangwujian` 养吾剑 | 6玄上·兵器/剑·yang·0.65/0.35 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanjianfa,layer:5}]; hard:[sect,prereq]` | 养气0；浩然一剑 `mv_yangwujian_haoran`（L7绝招，`ultimate:true`，单体3.00，8%/气势100/1200；`3×1=3.00`）；守中0.90 | `set_huashan_qijian` | 《笑傲江湖》华山剑法名目；招效**（原创扩展）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_xiyijian` 希夷剑 | 5玄中·兵器/剑·harmony·0.80/0.20 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanrumenjian,layer:4}]; hard:[sect,prereq]` | 视之不见 1.05（命中后 `bf_polu` 30%）；听之不闻 0.90（不可反击） | — | 《笑傲江湖》华山剑招名目；细节**（待考）** |
-| `sk_yunvjian19` 玉女剑十九式 | 5玄中·兵器/剑·yin·0.80/0.20 | `sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanjianfa,layer:4}]; hard:[sect,prereq]` | 玉女投梭 1.05；弄玉吹箫 0.90（`bf_luanxin` 30%） | — | 《笑傲江湖》华山剑法；十九式与分式逐字**（待考）**，勿与古墓玉女剑混同 |
-| `sk_huashanxinfa` 华山心法 | 6玄上·内功·`yin`·0/1 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashantuna,layer:5}]; hard:[sect,prereq]` | 抱元0；气御剑 `mv_huashanxinfa_qiyujian`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，下一剑获`bf_ruiyi`；不走伤害预算） | `set_huashan_qijian` | **（原创扩展）**；`meridians:[mer_renmai]`（阴 1 / 阳 0）；IP `20+12+2×8+5×1.8=57`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_kuangfengkuaijian` 狂风快剑 | 6玄上·兵器/剑·neutral·0.90/0.10 | `sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanrumenjian,layer:5}]; hard:[sect,prereq]` | 狂风骤雨0.95；一剑快似一剑 `mv_kuangfengkuaijian_yijian`（L7绝招，`ultimate:true`，单体3.00，8%/气势100/1200，得`bf_lianzhao`；`3×1=3.00`） | `set_huashan_qijian` | 《笑傲江湖》·剑宗封不平所使，招名与段数**（待考）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_huashanjianfa` 华山剑法 | 6玄上·兵器/剑·harmony·0.75/0.25 | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanrumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 白云出岫1.00；苍松迎客0.90；金雁横空 `mv_huashanjianfa_jinyan`（L7绝招，`ultimate:true`，突进2.90，8%/气势100/1200；`3−.10=2.90`） | `set_huashan_qijian` | 《笑傲江湖》华山门人所习；分式出处**（待考）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_yangwujian` 养吾剑 | 6玄上·兵器/剑·yang·0.65/0.35 | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanjianfa,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 养气0；浩然一剑 `mv_yangwujian_haoran`（L7绝招，`ultimate:true`，单体3.00，8%/气势100/1200；`3×1=3.00`）；守中0.90 | `set_huashan_qijian` | 《笑傲江湖》华山剑法名目；招效**（原创扩展）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_xiyijian` 希夷剑 | 5玄中·兵器/剑·harmony·0.80/0.20 | `attrs:{agi:35,wis:30}; aptitude:{apSword:20}; sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanrumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 视之不见 1.05（命中后 `bf_polu` 30%）；听之不闻 0.90（不可反击） | — | 《笑傲江湖》华山剑招名目；细节**（待考）** |
+| `sk_yunvjian19` 玉女剑十九式 | 5玄中·兵器/剑·yin·0.80/0.20 | `attrs:{agi:35,wis:30}; aptitude:{apSword:20}; sect:{id:sect_huashan,rank:2}; prereq:[{skill:sk_huashanjianfa,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 玉女投梭 1.05；弄玉吹箫 0.90（`bf_luanxin` 30%） | — | 《笑傲江湖》华山剑法；十九式与分式逐字**（待考）**，勿与古墓玉女剑混同 |
+| `sk_huashanxinfa` 华山心法 | 6玄上·内功·`yin`·0/1 | `attrs:{bre:40,wil:35}; aptitude:{apInner:25}; sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashantuna,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` | 抱元0；气御剑 `mv_huashanxinfa_qiyujian`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，下一剑获`bf_ruiyi`；不走伤害预算） | `set_huashan_qijian` | **（原创扩展）**；`meridians:[mer_renmai]`（阴 1 / 阳 0）；IP `20+12+2×8+5×1.8=57`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_kuangfengkuaijian` 狂风快剑 | 6玄上·兵器/剑·neutral·0.90/0.10 | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_huashan,rank:3}; prereq:[{skill:sk_huashanrumenjian,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 狂风骤雨0.95；一剑快似一剑 `mv_kuangfengkuaijian_yijian`（L7绝招，`ultimate:true`，单体3.00，8%/气势100/1200，得`bf_lianzhao`；`3×1=3.00`） | `set_huashan_qijian` | 《笑傲江湖》·剑宗封不平所使，招名与段数**（待考）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
 
 抽样核算（6/6 门，≥30%）：华山剑法·白云出岫 `1.00`；养吾剑·浩然一剑 `1+0.12=1.12→1.10`；希夷剑 `1+0.12−0.03=1.09→1.10`（表取1.05，−0.04）；玉女剑 `1+0.12−0.03=1.09→1.10`；华山心法两招为支援 `power 0`；狂风骤雨 `AF 0.85×(1+0.24)−0.10=0.95`。
 
@@ -344,10 +347,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_huashanrumenjian` | 华山入门剑 | 华山 | 兵器/剑·3黄上 | 笑傲 | 标准刺 1.00、横削 0.85；剑资质教学 | 无 | **（原创扩展）** | `set_huashan_qijian` |
-| `sk_huashanjichuquan` | 华山基础拳 | 华山 | 拳脚/拳·2黄中 | 笑傲 | 单体 1.00；招架后得 `bf_wenzhong` 1 | 无 | **（原创扩展）** | — |
-| `sk_huashantuna` | 华山吐纳 | 华山 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_renmai]`（阴 1 / 阳 0）；IP `10+6+2×4+5×1.2=30` | 无 | **（原创扩展）** | `set_huashan_qijian` |
-| `sk_huashanxingbu` | 华山行步 | 华山 | 轻功·2黄中 | 笑傲 | 移动后闪避小增；`Q_skill=38`（03 §4.5） | 无 | **（原创扩展）** | — |
+| `sk_huashanrumenjian` | 华山入门剑 | 华山 | 兵器/剑·3黄上 | 笑傲 | 标准刺 1.00、横削 0.85；剑资质教学 | 无 | **（原创扩展）** | `set_huashan_qijian`；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_huashanjichuquan` | 华山基础拳 | 华山 | 拳脚/拳·2黄中 | 笑傲 | 单体 1.00；招架后得 `bf_wenzhong` 1 | 无 | **（原创扩展）** | —；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_huashantuna` | 华山吐纳 | 华山 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_renmai]`（阴 1 / 阳 0）；IP `10+6+2×4+5×1.2=30` | 无 | **（原创扩展）** | `set_huashan_qijian`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_huashanxingbu` | 华山行步 | 华山 | 轻功·2黄中 | 笑傲 | 移动后闪避小增；`Q_skill=38`（03 §4.5） | 无 | **（原创扩展）** | —；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 
 黄阶整体预算：标准单体、5%耗内、0冷却、1000收招为 `1.00`；4%耗内为 `1−0.05=0.95`；六向 120° r1 横扫 N=3，带1冷却为 `0.85×1.12=0.952→0.95`。本节四门只使用这三种模板或 `power 0` 支援，全部在 ±0.05。
 
@@ -374,7 +377,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature / meridians | `yin` / `[mer_daimai, mer_zujueyin]`（本作冲穴专精） |
 | wOut/wIn · moveSlots | `0/1` · 4 |
-| reqs | `sect:{id:sect_songshan,rank:4}; prereq:[{skill:sk_songyangxinfa,layer:6},{skill:sk_songshanjianfa,layer:6}]; attrs:{con:50,wil:55}; aptitude:{apInner:50}; hard:[sect,prereq]` |
+| reqs | `sect:{id:sect_songshan,rank:4}; prereq:[{skill:sk_songyangxinfa,layer:6},{skill:sk_songshanjianfa,layer:6}]; attrs:{bre:55,wil:45}; aptitude:{apInner:40}; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `mpMaxPct:34, hpMaxPct:20, attrs:{con:6,wil:6,wis:2}, mpRegen:2.5`；`34+20+2×14+5×2.5=94.5` |
 | inner.stats | `resCold:10, effHit:5`，合计 15 |
 | 层数要点 | 1 凝霜 ｜ 3 寒劲伏脉 ｜ 5 寒冰掌 ｜ 6 冰封经脉 ｜ 7 第一绝招寒潮封岳 ｜ 8 寒冰护体 ｜ 9 第二绝招冰封经脉 ｜ 10 冰心大成；早层两记攻击与护体仍为普通招 |
@@ -401,10 +405,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_songshanjianfa` 嵩山剑法 | 6玄上·兵器/剑·yang | `sect:{id:sect_songshan,rank:2}; prereq:[{skill:sk_songshanrumenjian,layer:4}]; hard:[sect,prereq]` | 万岳朝宗1.10；开门见山 `mv_songshanjianfa_kaimen`（L7绝招，`ultimate:true`，单体2.95，8%/气势100/1200，破甲40%；`3−.10×.40=2.96≈2.95`） | `set_songshan_hanbing` | 《笑傲江湖》·嵩山太保；分式名**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_songyangxinfa` 嵩阳心法 | 6玄上·内功·`yang` | `sect:{id:sect_songshan,rank:3}; prereq:[{skill:sk_songyangtuna,layer:5}]; hard:[sect,prereq]` | 嵩阳吐纳0；峻岳护体 `mv_songyangxinfa_junyue`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，守势；不走伤害预算） | `set_songshan_hanbing` | **（原创扩展）**；`meridians:[mer_dumai]`；IP `20+12+2×8+5×1.8=57`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_dayinyangshou` 大阴阳手 | 5玄中·拳脚/拳·harmony | `sect:{id:sect_songshan,rank:3}; prereq:[{skill:sk_songyangrumenzhang,layer:5}]; hard:[sect,prereq]` | 阴掌 1.10（寒气30%）；阳手 1.10（击退1） | `set_songshan_hanbing` | 《笑傲江湖》·乐厚号“大阴阳手”，武学是否正式具名**（待考）** |
-| `sk_songshanzhuangong` 嵩山桩功 | 4玄下·拳脚/拳·yang | `sect:{id:sect_songshan,rank:2}; prereq:[{skill:sk_songyangrumenzhang,layer:4}]; hard:[sect,prereq]` | 立岳 0（`bf_wenzhong`）；撞山 1.05（击退1） | — | **（原创扩展）** |
+| `sk_songshanjianfa` 嵩山剑法 | 6玄上·兵器/剑·yang | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_songshan,rank:2}; prereq:[{skill:sk_songshanrumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 万岳朝宗1.10；开门见山 `mv_songshanjianfa_kaimen`（L7绝招，`ultimate:true`，单体2.95，8%/气势100/1200，破甲40%；`3−.10×.40=2.96≈2.95`） | `set_songshan_hanbing` | 《笑傲江湖》·嵩山太保；分式名**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_songyangxinfa` 嵩阳心法 | 6玄上·内功·`yang` | `attrs:{bre:40,wil:35}; aptitude:{apInner:25}; sect:{id:sect_songshan,rank:3}; prereq:[{skill:sk_songyangtuna,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` | 嵩阳吐纳0；峻岳护体 `mv_songyangxinfa_junyue`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，守势；不走伤害预算） | `set_songshan_hanbing` | **（原创扩展）**；`meridians:[mer_dumai]`；IP `20+12+2×8+5×1.8=57`；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_dayinyangshou` 大阴阳手 | 5玄中·拳脚/拳·harmony | `attrs:{str:35,con:30}; aptitude:{apFist:20}; sect:{id:sect_songshan,rank:3}; prereq:[{skill:sk_songyangrumenzhang,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` | 阴掌 1.10（寒气30%）；阳手 1.10（击退1） | `set_songshan_hanbing` | 《笑傲江湖》·乐厚号“大阴阳手”，武学是否正式具名**（待考）** |
+| `sk_songshanzhuangong` 嵩山桩功 | 4玄下·拳脚/拳·yang | `attrs:{str:30,con:25}; aptitude:{apFist:15}; sect:{id:sect_songshan,rank:2}; prereq:[{skill:sk_songyangrumenzhang,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` | 立岳 0（`bf_wenzhong`）；撞山 1.05（击退1） | — | **（原创扩展）** |
 
 抽样核算（4/4）：万岳朝宗按六向 120° r1 的 N=3、AF=.85，`.85×(1+0.24+0.05)=1.0965→1.10`；开门见山 `1+0.24−0.04=1.20`，取1.15（−0.05）；阴掌 `1+0.12−0.03=1.09→1.10`，正式取1.10；撞山 `1+0.12−0.05=1.07→1.05`。
 
@@ -412,10 +416,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_songshanrumenjian` | 嵩山入门剑 | 嵩山 | 兵器/剑·3黄上 | 笑傲 | 单体1.00；六向横扫0.95 | 无 | **（原创扩展）** | `set_songshan_hanbing` |
-| `sk_songyangrumenzhang` | 嵩阳入门掌 | 嵩山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；击退式1.05 | 无 | **（原创扩展）** | — |
-| `sk_songyangtuna` | 嵩阳吐纳 | 嵩山 | 内功·3黄上·`yang` | 笑傲 | 回内；`meridians:[mer_dumai]`；IP `10+6+8+6=30` | 无 | **（原创扩展）** | `set_songshan_hanbing` |
-| `sk_songshanxingbu` | 嵩山行步 | 嵩山 | 轻功·2黄中 | 笑傲 | 上坡移动体力 −10%；`Q_skill=38` | 无 | **（原创扩展）** | — |
+| `sk_songshanrumenjian` | 嵩山入门剑 | 嵩山 | 兵器/剑·3黄上 | 笑傲 | 单体1.00；六向横扫0.95 | 无 | **（原创扩展）** | `set_songshan_hanbing`；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_songyangrumenzhang` | 嵩阳入门掌 | 嵩山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；击退式1.05 | 无 | **（原创扩展）** | —；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_songyangtuna` | 嵩阳吐纳 | 嵩山 | 内功·3黄上·`yang` | 笑傲 | 回内；`meridians:[mer_dumai]`；IP `10+6+8+6=30` | 无 | **（原创扩展）** | `set_songshan_hanbing`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_songshanxingbu` | 嵩山行步 | 嵩山 | 轻功·2黄中 | 笑傲 | 上坡移动体力 −10%；`Q_skill=38` | 无 | **（原创扩展）** | —；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 
 黄阶预算同 §2.6：标准单体1.00；六向横扫带1冷却0.95；击退式 `1+0.12−0.05=1.07→1.05`；支援为0。
 
@@ -442,7 +446,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `harmony` · `0.60/0.40` · 4 |
 | weaponReq | `{category:sword}` |
-| reqs | `sect:{id:sect_taishan,rank:4}; prereq:[{skill:sk_taishanjianfa,layer:6}]; skills:{formation:50}; attrs:{wis:55,agi:45}; aptitude:{apSword:45}; hard:[sect,prereq]`（`formation` 为软门槛） |
+| reqs | `sect:{id:sect_taishan,rank:4}; prereq:[{skill:sk_taishanjianfa,layer:6}]; skills:{formation:50}; attrs:{agi:50,wis:40}; aptitude:{apSword:35}; hard:[sect,prereq]`（`formation` 为软门槛） |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `hit:[4,10], pierce:[1,5]`，合计 15 |
 | 层数要点 | 1 望岳 ｜ 3 推位 ｜ 5 阴阳割昏晓 ｜ 7 造化钟神秀 ｜ 10 一算必中 |
 | setTags / conflicts | `[]` / 无 |
@@ -467,10 +472,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_taishanjianfa` 泰山剑法 | 6玄上·兵器/剑·harmony | `sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenjian,layer:4}]; hard:[sect,prereq]` | 石关回马1.00；东岳横云 `mv_taishanjianfa_dongyue`（L7绝招，`ultimate:true`，六向横扫2.55，8%/气势100/1200；N=3、AF=.85，`3×.85=2.55`） | `[]` | 《笑傲江湖》泰山门人剑术；分式**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_taishan18pan` 泰山十八盘 | 5玄中·轻功·neutral | `sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_shibanshanbu,layer:5}]; hard:[sect,prereq]` | 盘道0（连走3格得疾行）；回折0（换位） | `[]` | 泰山地名借作身法，武学**（原创扩展）**；`Q_skill=65` |
-| `sk_taishanxinfa` 泰山心法 | 5玄中·内功·`yang` | `sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_taishantuna,layer:5}]; hard:[sect,prereq]` | 镇岳0（固本）；观日0（回内） | `[]` | **（原创扩展）**；`meridians:[mer_zuyangming]`（阴 0 / 阳 1）；IP `17+10+14+7.5=48.5` |
-| `sk_taishanquan` 泰山拳 | 4玄下·拳脚/拳·yang | `sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenquan,layer:4}]; hard:[sect,prereq]` | 盘石1.00；落石1.05（击退1） | — | **（原创扩展）** |
+| `sk_taishanjianfa` 泰山剑法 | 6玄上·兵器/剑·harmony | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 石关回马1.00；东岳横云 `mv_taishanjianfa_dongyue`（L7绝招，`ultimate:true`，六向横扫2.55，8%/气势100/1200；N=3、AF=.85，`3×.85=2.55`） | `[]` | 《笑傲江湖》泰山门人剑术；分式**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_taishan18pan` 泰山十八盘 | 5玄中·轻功·neutral | `attrs:{agi:35,bre:30}; aptitude:{apLight:20}; sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_shibanshanbu,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` | 盘道0（连走3格得疾行）；回折0（换位） | `[]` | 泰山地名借作身法，武学**（原创扩展）**；`Q_skill=65` |
+| `sk_taishanxinfa` 泰山心法 | 5玄中·内功·`yang` | `attrs:{bre:35,wil:30}; aptitude:{apInner:20}; sect:{id:sect_taishan,rank:3}; prereq:[{skill:sk_taishantuna,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` | 镇岳0（固本）；观日0（回内） | `[]` | **（原创扩展）**；`meridians:[mer_zuyangming]`（阴 0 / 阳 1）；IP `17+10+14+7.5=48.5` |
+| `sk_taishanquan` 泰山拳 | 4玄下·拳脚/拳·yang | `attrs:{str:30,con:25}; aptitude:{apFist:15}; sect:{id:sect_taishan,rank:2}; prereq:[{skill:sk_taishanrumenquan,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` | 盘石1.00；落石1.05（击退1） | — | **（原创扩展）** |
 
 抽样核算（4/4）：石关回马1.00；东岳横云按 N=3、AF=.85，`.85×1.24=1.054→1.05`；两门支援0；盘石1.00；落石 `1+.12−.05=1.07→1.05`。
 
@@ -478,10 +483,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_taishanrumenjian` | 泰山入门剑 | 泰山 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；横削0.85 | 无 | **（原创扩展）** | `[]` |
-| `sk_taishanrumenquan` | 泰山入门拳 | 泰山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；守势 | 无 | **（原创扩展）** | — |
-| `sk_taishantuna` | 泰山吐纳 | 泰山 | 内功·3黄上·`yang` | 笑傲 | 回内；`meridians:[mer_zuyangming]`（阴 0 / 阳 1）；IP30 | 无 | **（原创扩展）** | `[]` |
-| `sk_shibanshanbu` | 石坂山步 | 泰山 | 轻功·2黄中 | 笑傲 | 山路移动体力−10%；`Q_skill=38` | 无 | **（原创扩展）** | — |
+| `sk_taishanrumenjian` | 泰山入门剑 | 泰山 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；横削0.85 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_taishanrumenquan` | 泰山入门拳 | 泰山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；守势 | 无 | **（原创扩展）** | —；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_taishantuna` | 泰山吐纳 | 泰山 | 内功·3黄上·`yang` | 笑傲 | 回内；`meridians:[mer_zuyangming]`（阴 0 / 阳 1）；IP30 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_shibanshanbu` | 石坂山步 | 泰山 | 轻功·2黄中 | 笑傲 | 山路移动体力−10%；`Q_skill=38` | 无 | **（原创扩展）** | —；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 
 黄阶整体采用标准单体1.00、六向横扫带1冷却0.95与支援0模板，预算误差均≤0.02。
 
@@ -508,7 +513,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.75/0.25` · 4 |
 | weaponReq | `{category:sword}` |
-| reqs | `sect:{id:sect_hengshan_nan,rank:4}; prereq:[{skill:sk_huifengluoyan,layer:6}]; attrs:{agi:50,wis:45}; aptitude:{apSword:45}; hard:[sect,prereq]` |
+| reqs | `sect:{id:sect_hengshan_nan,rank:4}; prereq:[{skill:sk_huifengluoyan,layer:6}]; attrs:{agi:50,wis:40}; aptitude:{apSword:35}; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `eva:[3,9], crit:[2,6]`，合计15 |
 | 层数要点 | 1 云起 ｜ 3 雾合 ｜ 7 云雾十三式 ｜ 9 百变（第二绝招） ｜ 10 曲尽剑藏 |
 | setTags / conflicts | `[]` / 无 |
@@ -537,7 +543,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | origin / sect / lineage | `canonExpanded` / `null` / 刘正风 × 曲洋 → 令狐冲、任盈盈所持曲谱 |
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `harmony` · `0.20/0.80` · 3 |
-| reqs | `skills:{music:50}; prereq:[{anyOf:[{skill:sk_hengshanxinfa,layer:5},{skill:sk_riyuexinfa,layer:5}]}]; attrs:{wil:45,cha:40}; hard:[prereq]`（music为软门槛） |
+| reqs | `skills:{music:50}; prereq:[{anyOf:[{skill:sk_hengshanxinfa,layer:5},{skill:sk_riyuexinfa,layer:5}]}]; attrs:{wis:40,agi:35}; hard:[prereq]`（music为软门槛） |
+| trainingAttrs | `[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
 | layerStats | `resMind:[2,6], effHit:[1,4]`，合计10 |
 | 层数要点 | 1 琴箫谱 ｜ 3 清音 ｜ 5 合奏 ｜ 7 天地同声 ｜ 10 笑傲江湖 |
 | setTags / conflicts | `[]` / 无 |
@@ -566,7 +573,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | origin / sect / lineage | `expanded` / `sect_hengshan_nan` / 衡山掌门一脉 |
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `neutral` · `0.30/0.70` · 4 |
-| reqs | `sect:{id:sect_hengshan_nan,rank:4}; prereq:[{skill:sk_hengshanqingbu,layer:5},{skill:sk_huifengluoyan,layer:5}]; attrs:{agi:50}; aptitude:{apLight:45}; hard:[sect,prereq]` |
+| reqs | `sect:{id:sect_hengshan_nan,rank:4}; prereq:[{skill:sk_hengshanqingbu,layer:5},{skill:sk_huifengluoyan,layer:5}]; attrs:{agi:55,bre:40}; aptitude:{apLight:35}; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 | layerStats / Q_skill | `eva:[4,10], spd:[1,5]`，合计15；`Q_skill=104`（地中十重，`QS(8)=104`，符合笑傲最高原生轻功地中） |
 | 层数要点 | 1 入雾 ｜ 3 回峰 ｜ 5 云隐 ｜ 7 雾锁千山 ｜ 10 云开 |
 | setTags / conflicts | `[]` / 无 |
@@ -591,19 +599,19 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_huifengluoyan` 回风落雁剑 | 6玄上·兵器/剑·yin | `sect:{id:sect_hengshan_nan,rank:3}; prereq:[{skill:sk_hengshanrumenjian,layer:4}]; hard:[sect,prereq]` | 回风0.95；落雁 `mv_huifengluoyan_luoyan`（L7绝招，`ultimate:true`，单体3.15，8%/气势100/1200，目标低血时可用；条件加成暂按加法记入 3.00 绝招基准，全图鉴加法／乘法写法待统一（`design/05` §4.2），`3.00+0.15=3.15`） | `[]` | 《笑傲江湖》·衡山剑法，招式细节**（待考）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_hengshanwushenjian` 衡山五神剑 | 5玄中·兵器/剑·harmony | `sect:{id:sect_hengshan_nan,rank:3}; prereq:[{skill:sk_hengshanrumenjian,layer:5}]; hard:[sect,prereq]` | 祝融剑1.00；芙蓉剑0.95（直线2） | `[]` | 《笑傲江湖》衡山剑法名目；五式细目**（待考）** |
-| `sk_hengshanxinfa` 衡山心法 | 5玄中·内功·`yin` | `sect:{id:sect_hengshan_nan,rank:2}; prereq:[{skill:sk_hengshantuna,layer:5}]; hard:[sect,prereq]` | 抚弦调息0（回内）；云心0（飘忽） | `[]` | **（原创扩展）**；`meridians:[mer_shoushaoyin]`；IP48.5 |
+| `sk_huifengluoyan` 回风落雁剑 | 6玄上·兵器/剑·yin | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_hengshan_nan,rank:3}; prereq:[{skill:sk_hengshanrumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 回风0.95；落雁 `mv_huifengluoyan_luoyan`（L7绝招，`ultimate:true`，单体3.15，8%/气势100/1200，目标低血时可用；条件加成暂按加法记入 3.00 绝招基准，全图鉴加法／乘法写法待统一（`design/05` §4.2），`3.00+0.15=3.15`） | `[]` | 《笑傲江湖》·衡山剑法，招式细节**（待考）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_hengshanwushenjian` 衡山五神剑 | 5玄中·兵器/剑·harmony | `attrs:{agi:35,wis:30}; aptitude:{apSword:20}; sect:{id:sect_hengshan_nan,rank:3}; prereq:[{skill:sk_hengshanrumenjian,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 祝融剑1.00；芙蓉剑0.95（直线2） | `[]` | 《笑傲江湖》衡山剑法名目；五式细目**（待考）** |
+| `sk_hengshanxinfa` 衡山心法 | 5玄中·内功·`yin` | `attrs:{bre:35,wil:30}; aptitude:{apInner:20}; sect:{id:sect_hengshan_nan,rank:2}; prereq:[{skill:sk_hengshantuna,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` | 抚弦调息0（回内）；云心0（飘忽） | `[]` | **（原创扩展）**；`meridians:[mer_shoushaoyin]`；IP48.5 |
 抽样核算（4/4，含 §5.3 重点紧凑卡）：回风 `AF.90×(1+.24)−.15=.97→.95`；落雁 `1+.12+.15=1.27→1.25`（须目标低血）；祝融1.00；芙蓉 `.85×1.12=.95`；衡山心法为支援0；《笑傲江湖》曲谱的伤害招见 §5.3 逐招核算。
 
 ### 5.6 衡山黄阶一行条目
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_hengshanrumenjian` | 衡山入门剑 | 南衡山 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；回削0.95 | 无 | **（原创扩展）** | `[]` |
-| `sk_hengshanrumenzhang` | 衡山入门掌 | 南衡山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；击退式1.05 | 无 | **（原创扩展）** | — |
-| `sk_hengshantuna` | 衡山吐纳 | 南衡山 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_shoushaoyin]`；IP30 | 无 | **（原创扩展）** | `[]` |
-| `sk_hengshanqingbu` | 衡山轻步 | 南衡山 | 轻功·2黄中 | 笑傲 | 移动2格后闪避+3；`Q_skill=38` | 无 | **（原创扩展）** | — |
+| `sk_hengshanrumenjian` | 衡山入门剑 | 南衡山 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；回削0.95 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_hengshanrumenzhang` | 衡山入门掌 | 南衡山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；击退式1.05 | 无 | **（原创扩展）** | —；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_hengshantuna` | 衡山吐纳 | 南衡山 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_shoushaoyin]`；IP30 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_hengshanqingbu` | 衡山轻步 | 南衡山 | 轻功·2黄中 | 笑傲 | 移动2格后闪避+3；`Q_skill=38` | 无 | **（原创扩展）** | —；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 
 黄阶均用标准单体、击退式或支援模板，整体预算误差≤0.03。
 
@@ -630,7 +638,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.65/0.35` · 4 |
 | weaponReq | `{category:sword}` |
-| reqs | `sect:{id:sect_hengshan_bei,rank:4}; prereq:[{skill:sk_hengshanbeijianfa,layer:6}]; attrs:{agi:45,wil:45}; aptitude:{apSword:40}; morality:{min:10}; hard:[sect,prereq,morality]` |
+| reqs | `sect:{id:sect_hengshan_bei,rank:4}; prereq:[{skill:sk_hengshanbeijianfa,layer:6}]; attrs:{agi:45,wis:35}; aptitude:{apSword:30}; morality:{min:10}; hard:[sect,prereq,morality]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `parry:[4,10], healRecv:[1,5]`，合计15 |
 | 层数要点 | 1 花开 ｜ 3 护蕊 ｜ 5 落英 ｜ 7 万花护生 ｜ 10 剑阵如莲 |
 | setTags / conflicts | `[]` / 无 |
@@ -655,10 +664,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_hengshanbeijianfa` 恒山剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenjian,layer:4}]; hard:[sect,prereq]` | 绵针1.00；守门户 `mv_hengshanbeijianfa_shoumenhu`（L7绝招，`ultimate:true`，单体2.90，8%/气势100/1200，自身守势；`3−.10=2.90`） | `[]` | 《笑傲江湖》恒山群尼剑术；分式**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_tianchangzhangfa` 天长掌法 | 5玄中·拳脚/拳·harmony | `sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenquan,layer:5}]; hard:[sect,prereq]` | 天长1.10；地久1.10（虚弱30%） | `[]` | 《笑傲江湖》恒山掌法名目**（待考）** |
-| `sk_hengshanbeixinfa` 恒山心法 | 5玄中·内功·`yin` | `sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeituna,layer:5}]; hard:[sect,prereq]` | 慈航0（回春）；守心0（定心） | `[]` | **（原创扩展）**；`meridians:[mer_shoutaiyin]`（阴 1 / 阳 0）；IP48.5 |
-| `sk_hengshanbeishenfa` 恒山身法 | 4玄下·轻功·neutral | `sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeibu,layer:5}]; hard:[sect,prereq]` | 回廊0（换位）；护阵0（友方援护） | — | **（原创扩展）**；`Q_skill=56` |
+| `sk_hengshanbeijianfa` 恒山剑法 | 6玄上·兵器/剑·yin | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 绵针1.00；守门户 `mv_hengshanbeijianfa_shoumenhu`（L7绝招，`ultimate:true`，单体2.90，8%/气势100/1200，自身守势；`3−.10=2.90`） | `[]` | 《笑傲江湖》恒山群尼剑术；分式**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_tianchangzhangfa` 天长掌法 | 5玄中·拳脚/拳·harmony | `attrs:{str:35,con:30}; aptitude:{apFist:20}; sect:{id:sect_hengshan_bei,rank:3}; prereq:[{skill:sk_hengshanbeirumenquan,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` | 天长1.10；地久1.10（虚弱30%） | `[]` | 《笑傲江湖》恒山掌法名目**（待考）** |
+| `sk_hengshanbeixinfa` 恒山心法 | 5玄中·内功·`yin` | `attrs:{bre:35,wil:30}; aptitude:{apInner:20}; sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeituna,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` | 慈航0（回春）；守心0（定心） | `[]` | **（原创扩展）**；`meridians:[mer_shoutaiyin]`（阴 1 / 阳 0）；IP48.5 |
+| `sk_hengshanbeishenfa` 恒山身法 | 4玄下·轻功·neutral | `attrs:{agi:30,bre:25}; aptitude:{apLight:15}; sect:{id:sect_hengshan_bei,rank:2}; prereq:[{skill:sk_hengshanbeibu,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` | 回廊0（换位）；护阵0（友方援护） | — | **（原创扩展）**；`Q_skill=56` |
 
 抽样核算（4/4）：绵针1.00；守门户为攻击 `1−0.10=0.90`；天长 `1+0.12=1.12→1.10`；地久 `1+0.12−.03=1.09→1.10`；内功与轻功支援为0。
 
@@ -666,10 +675,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_hengshanbeirumenjian` | 恒山入门剑 | 北恒山 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；守式0.90 | 无 | **（原创扩展）** | `[]` |
-| `sk_hengshanbeirumenquan` | 恒山入门拳 | 北恒山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；非致命收招 | 无 | **（原创扩展）** | — |
-| `sk_hengshanbeituna` | 恒山吐纳 | 北恒山 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_shoutaiyin]`（阴 1 / 阳 0）；IP30 | 无 | **（原创扩展）** | `[]` |
-| `sk_hengshanbeibu` | 恒山步 | 北恒山 | 轻功·2黄中 | 笑傲 | 相邻友方多时闪避+3；`Q_skill=38` | 无 | **（原创扩展）** | — |
+| `sk_hengshanbeirumenjian` | 恒山入门剑 | 北恒山 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；守式0.90 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_hengshanbeirumenquan` | 恒山入门拳 | 北恒山 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；非致命收招 | 无 | **（原创扩展）** | —；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_hengshanbeituna` | 恒山吐纳 | 北恒山 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_shoutaiyin]`（阴 1 / 阳 0）；IP30 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_hengshanbeibu` | 恒山步 | 北恒山 | 轻功·2黄中 | 笑傲 | 相邻友方多时闪避+3；`Q_skill=38` | 无 | **（原创扩展）** | —；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 
 黄阶整体预算沿 §2.6；守式按自身增益成本0.10由标准1.00降至0.90，其他攻击均为1.00，支援为0。
 
@@ -697,7 +706,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature / meridians | `harmony` / `[mer_chongmai, mer_daimai]`（本作主修经脉；两脉依 AR-18a 默认均不投票） |
 | wOut/wIn · moveSlots | `0/1` · 5 |
-| reqs | `sect:{id:sect_riyue,rank:4}; attrs:{con:55,wil:60}; aptitude:{apInner:55}; prereq:[{skill:sk_riyuexinfa,layer:6}]; morality:{max:50}; hard:[sect,prereq]`；梅庄铁板来源以 `reqsOverride:{sect:null}` 删除门派身份，不删除前置 |
+| reqs | `sect:{id:sect_riyue,rank:4}; attrs:{bre:70,wil:65,con:50}; aptitude:{apInner:50}; prereq:[{skill:sk_riyuexinfa,layer:6}]; morality:{max:50}; hard:[sect,prereq]`；梅庄铁板来源以 `reqsOverride:{sect:null}` 删除门派身份，不删除前置 |
+| trainingAttrs | `[{layer:3,attrs:{bre:2,wil:1}},{layer:6,attrs:{bre:3,wil:1}},{layer:9,attrs:{bre:2,wil:2}}]` |
 | inner.contribution | `mpMaxPct:48, hpMaxPct:29, attrs:{con:8,wil:8,wis:5}, mpRegen:3.3`；`48+29+2×21+5×3.3=135.5` |
 | inner.stats | `effHit:10, resInjury:10`，合计20（天阶上限） |
 | 层数要点 | 1 吸星真气 ｜ 3 吸星 ｜ 5 反吸 ｜ 6 散功 ｜ 7 第一绝招万流归海 ｜ 8 异种化解 ｜ 9 第二绝招散功 ｜ 10 任脉归流；吸星、反吸与化解保留普通运功职责 |
@@ -730,7 +740,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature / meridians | `yang` / `[mer_chongmai, mer_dumai]`（本作主修经脉；冲脉不投票、督脉投阳，阴 0 / 阳 1） |
 | wOut/wIn · moveSlots | `0/1` · 5 |
-| reqs | `vow:vow_duanchen; attrs:{agi:65,wil:55}; aptitude:{apInner:55}; hard:[vow]` |
+| reqs | `vow:vow_duanchen; attrs:{bre:65,agi:55,wil:55}; aptitude:{apInner:50}; hard:[vow]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1,agi:1}},{layer:6,attrs:{bre:2,agi:1}},{layer:9,attrs:{bre:1,agi:1}}]` |
 | inner.contribution | `mpMaxPct:48, hpMaxPct:29, attrs:{agi:10,wis:6,wil:5}, mpRegen:3.3`；`48+29+42+16.5=135.5` |
 | inner.stats | `spd:12, eva:8`，合计20 |
 | 层数要点 | 1 葵花真气 ｜ 3 飞针 ｜ 4 鬼魅 ｜ 6 刺目 ｜ 7 第一绝招万针归宗 ｜ 9 第二绝招刺目/针剑相通 ｜ 10 葵花极速；飞针与鬼魅行保留普通招 |
@@ -764,7 +775,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.75/0.25` · 4 |
 | weaponReq | `{category:sword}` |
-| reqs | `sect:{id:sect_riyue,rank:4}; prereq:[{skill:sk_riyuejianfa,layer:6},{skill:sk_riyuexinfa,layer:6}]; attrs:{agi:45,wil:40}; aptitude:{apSword:40}; hard:[sect,prereq]` |
+| reqs | `sect:{id:sect_riyue,rank:4}; prereq:[{skill:sk_riyuejianfa,layer:6},{skill:sk_riyuexinfa,layer:6}]; attrs:{agi:45,wis:35}; aptitude:{apSword:30}; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | layerStats | `hit:[3,9], eva:[2,6]`，合计15 |
 | 层数要点 | 1 崖影 ｜ 3 令旗 ｜ 5 夜袭 ｜ 7 黑木凌空 ｜ 10 十丈崖风 |
 | setTags / conflicts | `[set_riyue_heimu]` / 无 |
@@ -793,7 +805,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | origin / sect / lineage | `canonExpanded` / `sect_riyue` (`branch:meizhuang`) / 黄钟公 |
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.20/0.80` · 4 |
-| reqs | `skills:{music:60}; prereq:[{skill:sk_heimutuna,layer:4}]; attrs:{wil:50,wis:45}; hard:[prereq]`（music为软门槛） |
+| reqs | `aptitude:{apInner:35}; skills:{music:60}; prereq:[{skill:sk_heimutuna,layer:4}]; attrs:{wis:50,bre:40}; hard:[prereq]`（music为软门槛） |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
 | layerStats | `effHit:[4,10], resMind:[1,5]`，合计15 |
 | 层数要点 | 1 泛音 ｜ 3 乱弦 ｜ 7 七弦齐鸣 ｜ 9 无形剑气（第二绝招） ｜ 10 希声 |
 | setTags / conflicts | `[]` / 无 |
@@ -818,11 +831,11 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_riyuejianfa` 日月剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimuyarumenjian,layer:4}]; hard:[sect,prereq]` | 日升1.10；月落 `mv_riyuejianfa_yueluo`（L7绝招，`ultimate:true`，单体2.95，8%/气势100/1200，破绽40%；`3−.10×.40=2.96≈2.95`） | `set_riyue_heimu` | **（原创扩展）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_riyuexinfa` 日月心法 | 6玄上·内功·`harmony` | `sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimutuna,layer:5}]; hard:[sect,prereq]` | 黑木运气0；日月同辉 `mv_riyuexinfa_riyue`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，内劲提升；不走伤害预算） | `[set_riyue_heimu]` | **（原创扩展）**；`meridians:[mer_chongmai]`（依 AR-18a 默认不投票）；IP57；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_shigudaxuebi` 石鼓打穴笔法 | 5玄中·兵器/奇门（笔）·harmony | `skills:{art:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 落笔1.00；石鼓文0.95（点穴30%） | `[]` | 《笑傲江湖》·秃笔翁以书法入武；正式名与字帖细节**（待考）** |
-| `sk_pomopimajian` 泼墨披麻剑法 | 5玄中·兵器/剑·neutral | `skills:{art:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 泼墨1.05（六向横扫）；披麻1.00（连招） | `[]` | 《笑傲江湖》·丹青生剑法；招式细目**（待考）** |
-| `sk_xuantianzhi` 玄天指 | 5玄中·拳脚/指·yin | `skills:{chess:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]` | 落子1.00；封眼0.95（封穴30%） | `[]` | 《笑傲江湖》·黑白子武学；正式名与交手细节**（待考）** |
+| `sk_riyuejianfa` 日月剑法 | 6玄上·兵器/剑·yin | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimuyarumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 日升1.10；月落 `mv_riyuejianfa_yueluo`（L7绝招，`ultimate:true`，单体2.95，8%/气势100/1200，破绽40%；`3−.10×.40=2.96≈2.95`） | `set_riyue_heimu` | **（原创扩展）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_riyuexinfa` 日月心法 | 6玄上·内功·`harmony` | `attrs:{bre:40,wil:35}; aptitude:{apInner:25}; sect:{id:sect_riyue,rank:2}; prereq:[{skill:sk_heimutuna,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` | 黑木运气0；日月同辉 `mv_riyuexinfa_riyue`（L7支援绝招，`ultimate:true`，0，8%/气势100/1200，内劲提升；不走伤害预算） | `[set_riyue_heimu]` | **（原创扩展）**；`meridians:[mer_chongmai]`（依 AR-18a 默认不投票）；IP57；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_shigudaxuebi` 石鼓打穴笔法 | 5玄中·兵器/奇门（笔）·harmony | `attrs:{wis:35,agi:30}; aptitude:{apExotic:20}; skills:{art:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]; trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:2}},{layer:9,attrs:{wis:1}}]` | 落笔1.00；石鼓文0.95（点穴30%） | `[]` | 《笑傲江湖》·秃笔翁以书法入武；正式名与字帖细节**（待考）** |
+| `sk_pomopimajian` 泼墨披麻剑法 | 5玄中·兵器/剑·neutral | `attrs:{agi:35,wis:30}; aptitude:{apSword:20}; skills:{art:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 泼墨1.05（六向横扫）；披麻1.00（连招） | `[]` | 《笑傲江湖》·丹青生剑法；招式细目**（待考）** |
+| `sk_xuantianzhi` 玄天指 | 5玄中·拳脚/指·yin | `attrs:{agi:35,wis:30}; aptitude:{apFinger:20}; skills:{chess:45}; prereq:[{skill:sk_heimutuna,layer:4}]; hard:[prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 落子1.00；封眼0.95（封穴30%） | `[]` | 《笑傲江湖》·黑白子武学；正式名与交手细节**（待考）** |
 
 抽样核算（5/5）：日升 `1+.12=1.12→1.10`；月落 `1+.12−.04=1.08→1.10`（正式取1.10）；心法支援0；落笔1.00；石鼓文 `1−.20×.3=.94→.95`；泼墨按 N=3、AF=.85，`.85×1.24=1.054→1.05`；披麻 `1+.12−.10=1.02→1.00`；封眼 `.94→.95`。
 
@@ -830,10 +843,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_heimuyarumenjian` | 黑木崖入门剑 | 日月 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；追击式0.90 | 无 | **（原创扩展）** | `set_riyue_heimu` |
-| `sk_riyuejichuquan` | 日月基础拳 | 日月 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；低血时命中+3 | 无 | **（原创扩展）** | — |
-| `sk_heimutuna` | 黑木吐纳 | 日月 / 梅庄 | 内功·3黄上·`harmony` | 笑傲 | 回内；`meridians:[mer_chongmai]`（依 AR-18a 默认不投票）；IP30 | 无 | **（原创扩展）** | `[set_riyue_heimu]` |
-| `sk_shenjiaobu` | 神教步 | 日月 | 轻功·2黄中 | 笑傲 | 撤退成功率+5%；`Q_skill=38` | 无 | **（原创扩展）** | — |
+| `sk_heimuyarumenjian` | 黑木崖入门剑 | 日月 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；追击式0.90 | 无 | **（原创扩展）** | `set_riyue_heimu`；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_riyuejichuquan` | 日月基础拳 | 日月 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；低血时命中+3 | 无 | **（原创扩展）** | —；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_heimutuna` | 黑木吐纳 | 日月 / 梅庄 | 内功·3黄上·`harmony` | 笑傲 | 回内；`meridians:[mer_chongmai]`（依 AR-18a 默认不投票）；IP30 | 无 | **（原创扩展）** | `[set_riyue_heimu]`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_shenjiaobu` | 神教步 | 日月 | 轻功·2黄中 | 笑傲 | 撤退成功率+5%；`Q_skill=38` | 无 | **（原创扩展）** | —；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 
 黄阶整体采用标准单体1.00、带自身小增益0.90和支援0模板，预算误差≤0.03。
 
@@ -861,7 +874,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.55/0.45` · 5 |
 | weaponReq | `{category:sword}` |
-| reqs | `vow:vow_duanchen; attrs:{agi:60,wil:50}; aptitude:{apSword:50}; prereq:[{skill:sk_linjiajianfa,layer:5}]; hard:[vow,prereq]`；无誓约仅按05“有形无实”降为5品/5重 |
+| reqs | `vow:vow_duanchen; attrs:{agi:65,wis:45,wil:50}; aptitude:{apSword:45}; prereq:[{skill:sk_linjiajianfa,layer:5}]; hard:[vow,prereq]`；无誓约仅按05“有形无实”降为5品/5重 |
+| trainingAttrs | `[{layer:3,attrs:{agi:2,wis:1}},{layer:6,attrs:{agi:2,wis:1}},{layer:9,attrs:{agi:2,wis:1}}]` |
 | layerStats | `spd:[5,15], crit:[1,5]`，合计20 |
 | 层数要点 | 1 流星赶月 ｜ 3 花开见佛 ｜ 5 飞燕穿柳 ｜ 7 第一绝招群邪辟易 ｜ 9 第二绝招飞燕穿柳/鬼魅 ｜ 10 七十二路归一；两记早层剑式保留普通招 |
 | setTags / conflicts | `[set_linjia_bixie]` / 与 `sk_kuihua` 同源；不额外叠两份断尘代价 |
@@ -891,7 +905,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | origin / sect / lineage | `canonExpanded` / `sect_fuwei` / 林家镖局传承 |
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yang` · `0.75/0.25` · 4 |
-| reqs | `sect:{id:sect_fuwei,rank:3}; prereq:[{skill:sk_linjiashou,layer:6},{skill:sk_linjiarumenquan,layer:5}]; attrs:{str:45,con:40}; aptitude:{apFist:40}; hard:[sect,prereq]` |
+| reqs | `sect:{id:sect_fuwei,rank:3}; prereq:[{skill:sk_linjiashou,layer:6},{skill:sk_linjiarumenquan,layer:5}]; attrs:{str:45,con:35}; aptitude:{apFist:30}; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `parry:[3,9], crit:[2,6]`，合计15 |
 | 层数要点 | 1 托天 ｜ 3 翻掌 ｜ 5 掷碑 ｜ 7 翻天覆地 ｜ 10 镖路百战 |
 | setTags / conflicts | `[set_linjia_bixie]` / 无 |
@@ -916,8 +931,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_linjiajianfa` 林家剑法 | 5玄中·兵器/剑·neutral | `sect:{id:sect_fuwei,rank:2}; prereq:[{skill:sk_linjiarumenjian,layer:4}]; hard:[sect,prereq]` | 花开见佛0.95；流星赶月1.00（突进） | `set_linjia_bixie` | 《笑傲江湖》林家所传“辟邪剑法”招形；本文以此 ID 区分未得心法者 |
-| `sk_linjiashou` 林家手 | 4玄下·拳脚/擒拿·yang | `sect:{id:sect_fuwei,rank:2}; prereq:[{skill:sk_linjiarumenquan,layer:4}]; hard:[sect,prereq]` | 扣腕0.95（缴械25%）；护镖1.00 | `set_linjia_bixie` | **（原创扩展命名）** |
+| `sk_linjiajianfa` 林家剑法 | 5玄中·兵器/剑·neutral | `attrs:{agi:35,wis:30}; aptitude:{apSword:20}; sect:{id:sect_fuwei,rank:2}; prereq:[{skill:sk_linjiarumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 花开见佛0.95；流星赶月1.00（突进） | `set_linjia_bixie` | 《笑傲江湖》林家所传“辟邪剑法”招形；本文以此 ID 区分未得心法者 |
+| `sk_linjiashou` 林家手 | 4玄下·拳脚/擒拿·yang | `attrs:{str:30,agi:25}; aptitude:{apGrapple:15}; sect:{id:sect_fuwei,rank:2}; prereq:[{skill:sk_linjiarumenquan,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` | 扣腕0.95（缴械25%）；护镖1.00 | `set_linjia_bixie` | **（原创扩展命名）** |
 
 抽样核算（2/2）：花开见佛 `1−.05=.95`；流星赶月 `1+.12−.10=1.02→1.00`；扣腕 `1−.20×.25=.95`；护镖1.00。
 
@@ -925,10 +940,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_linjiarumenjian` | 林家入门剑 | 福威镖局 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；突进式0.90 | 无 | **（原创扩展）** | `set_linjia_bixie` |
-| `sk_linjiarumenquan` | 林家入门拳 | 福威镖局 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；护货时命中+3 | 无 | **（原创扩展）** | — |
-| `sk_biaojuxinfa` | 镖局心法 | 福威镖局 | 内功·3黄上·`yang` | 笑傲 | 回内；`meridians:[mer_zuyangming]`；IP30 | 无 | **（原创扩展）** | `set_linjia_bixie` |
-| `sk_tangzibu` | 趟子步 | 福威镖局 | 轻功·2黄中 | 笑傲 | 护送任务体力消耗−10%；`Q_skill=38` | 无 | **（原创扩展）** | — |
+| `sk_linjiarumenjian` | 林家入门剑 | 福威镖局 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；突进式0.90 | 无 | **（原创扩展）** | `set_linjia_bixie`；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_linjiarumenquan` | 林家入门拳 | 福威镖局 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；护货时命中+3 | 无 | **（原创扩展）** | —；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_biaojuxinfa` | 镖局心法 | 福威镖局 | 内功·3黄上·`yang` | 笑傲 | 回内；`meridians:[mer_zuyangming]`；IP30 | 无 | **（原创扩展）** | `set_linjia_bixie`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_tangzibu` | 趟子步 | 福威镖局 | 轻功·2黄中 | 笑傲 | 护送任务体力消耗−10%；`Q_skill=38` | 无 | **（原创扩展）** | —；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 
 黄阶整体用标准单体1.00、突进成本后0.90与支援0模板，预算误差≤0.02。
 
@@ -954,7 +969,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | origin / sect / lineage | `canonExpanded` / `sect_qingcheng` / 余沧海 |
 | sourceChapters | `[ch05_xiaoao]` |
 | nature · wOut/wIn · moveSlots | `yin` · `0.45/0.55` · 4 |
-| reqs | `sect:{id:sect_qingcheng,rank:4}; prereq:[{skill:sk_songfengjianfa,layer:6},{skill:sk_qingchengxinfa,layer:5}]; attrs:{str:40,wil:45}; aptitude:{apFist:40}; morality:{max:20}; hard:[sect,prereq]` |
+| reqs | `sect:{id:sect_qingcheng,rank:4}; prereq:[{skill:sk_songfengjianfa,layer:6},{skill:sk_qingchengxinfa,layer:5}]; attrs:{str:45,bre:35}; aptitude:{apFist:30}; morality:{max:20}; hard:[sect,prereq]` |
+| trainingAttrs | `[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,bre:1}},{layer:9,attrs:{str:1}}]` |
 | layerStats | `crit:[3,9], effHit:[2,6]`，合计15 |
 | 层数要点 | 1 透心 ｜ 3 震脉 ｜ 5 阴掌 ｜ 7 摧心断脉 ｜ 10 青城阴劲 |
 | setTags / conflicts | `[]` / 无 |
@@ -979,8 +995,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_songfengjianfa` 松风剑法 | 6玄上·兵器/剑·yin | `sect:{id:sect_qingcheng,rank:3}; prereq:[{skill:sk_qingchengrumenjian,layer:4}]; hard:[sect,prereq]` | 松涛1.00；风过青城 `mv_songfengjianfa_fengguoqingcheng`（L7绝招，`ultimate:true`，突进2.90，8%/气势100/1200；`3−.10=2.90`） | `[]` | 《笑傲江湖》青城派剑法；分式**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_qingchengxinfa` 青城心法 | 5玄中·内功·`yin` | `sect:{id:sect_qingcheng,rank:2}; prereq:[{skill:sk_qingchengtuna,layer:5}]; hard:[sect,prereq]` | 松息0（回内）；藏劲0（精准） | `[]` | **（原创扩展）**；`meridians:[mer_zujueyin]`；IP48.5 |
+| `sk_songfengjianfa` 松风剑法 | 6玄上·兵器/剑·yin | `attrs:{agi:40,wis:35}; aptitude:{apSword:25}; sect:{id:sect_qingcheng,rank:3}; prereq:[{skill:sk_qingchengrumenjian,layer:4}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` | 松涛1.00；风过青城 `mv_songfengjianfa_fengguoqingcheng`（L7绝招，`ultimate:true`，突进2.90，8%/气势100/1200；`3−.10=2.90`） | `[]` | 《笑傲江湖》青城派剑法；分式**（原创扩展命名）**；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_qingchengxinfa` 青城心法 | 5玄中·内功·`yin` | `attrs:{bre:35,wil:30}; aptitude:{apInner:20}; sect:{id:sect_qingcheng,rank:2}; prereq:[{skill:sk_qingchengtuna,layer:5}]; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` | 松息0（回内）；藏劲0（精准） | `[]` | **（原创扩展）**；`meridians:[mer_zujueyin]`；IP48.5 |
 
 抽样核算（2/2）：松涛1.00；风过青城 `1+.12−.10=1.02→1.00`；心法支援0。
 
@@ -988,10 +1004,10 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_qingchengrumenjian` | 青城入门剑 | 青城 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；回身0.95 | 无 | **（原创扩展）** | `[]` |
-| `sk_qingchengrumenquan` | 青城入门拳 | 青城 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；破绽20% | 无 | **（原创扩展）** | — |
-| `sk_qingchengtuna` | 青城吐纳 | 青城 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_zujueyin]`；IP30 | 无 | **（原创扩展）** | `[]` |
-| `sk_qingchengshanjingbu` | 青城山径步 | 青城 | 轻功·2黄中 | 笑傲 | 林地/山路移动消耗−10%；`Q_skill=38` | 无 | **（原创扩展）** | — |
+| `sk_qingchengrumenjian` | 青城入门剑 | 青城 | 兵器/剑·3黄上 | 笑傲 | 单刺1.00；回身0.95 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_qingchengrumenquan` | 青城入门拳 | 青城 | 拳脚/拳·2黄中 | 笑傲 | 单体1.00；破绽20% | 无 | **（原创扩展）** | —；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_qingchengtuna` | 青城吐纳 | 青城 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_zujueyin]`；IP30 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_qingchengshanjingbu` | 青城山径步 | 青城 | 轻功·2黄中 | 笑傲 | 林地/山路移动消耗−10%；`Q_skill=38` | 无 | **（原创扩展）** | —；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 
 黄阶整体按标准单体或支援模板；入门拳附破绽20%的显示倍率取 `1−.02=.98→1.00`，均在容差内。
 
@@ -1018,7 +1034,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 | sourceChapters | `[ch05_xiaoao]` |
 | nature / meridians | `harmony` / `[mer_zujueyin, mer_zushaoyang]`（阴 1 / 阳 1，平票取调和） |
 | wOut/wIn · moveSlots | `0/1` · 4 |
-| reqs | `sect:{id:sect_wuxian,rank:4}; prereq:[{skill:sk_wuxiandujing,layer:6},{skill:sk_wuxianduzhang,layer:6}]; skills:{poi:55,antidote:40}; attrs:{con:45,wis:45}; hard:[sect,prereq,skills.poi]` |
+| reqs | `aptitude:{apInner:30}; sect:{id:sect_wuxian,rank:4}; prereq:[{skill:sk_wuxiandujing,layer:6},{skill:sk_wuxianduzhang,layer:6}]; skills:{poi:55,antidote:40}; attrs:{bre:45,wil:35}; hard:[sect,prereq,skills.poi]` |
+| trainingAttrs | `[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
 | inner.contribution | `mpMaxPct:26, hpMaxPct:16, attrs:{con:4,wis:3,wil:3}, mpRegen:2.0`；`26+16+20+10=72` |
 | inner.stats | `resPoison:10, effHit:5`，合计15 |
 | 层数要点 | 1 辨毒 ｜ 3 以毒行气 ｜ 5 百毒护体 ｜ 7 万蛊朝宗 ｜ 10 毒中求生 |
@@ -1044,8 +1061,8 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_wuxianduzhang` 五仙毒掌 | 6玄上·拳脚/拳·yin | `sect:{id:sect_wuxian,rank:3}; prereq:[{skill:sk_wuxianrumenzhang,layer:4}]; skills:{poi:35}; hard:[sect,prereq]` | 蛇影掌0.90；回风毒雾 `mv_wuxianduzhang_huifengduwu`（L7绝招，`ultimate:true`，锥形1.95，8%/气势100/1200，中毒100%；N=4、AF=.80，`3×.80×.85−.10=1.94≈1.95`） | `[]` | **（原创扩展命名）**；据五仙教用毒传统；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_wuxiandujing` 五仙毒经 | 5玄中·杂学/毒·yin | `sect:{id:sect_wuxian,rank:2}; prereq:[{skill:sk_miaozhaidufa,layer:5}]; skills:{poi:40,antidote:30}; hard:[sect,prereq]` | 辨毒0（精准）；施毒0（下次攻击附普通中毒） | `[]` | **（原创扩展）** |
+| `sk_wuxianduzhang` 五仙毒掌 | 6玄上·拳脚/拳·yin | `attrs:{str:40,con:35}; aptitude:{apFist:25}; sect:{id:sect_wuxian,rank:3}; prereq:[{skill:sk_wuxianrumenzhang,layer:4}]; skills:{poi:35}; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` | 蛇影掌0.90；回风毒雾 `mv_wuxianduzhang_huifengduwu`（L7绝招，`ultimate:true`，锥形1.95，8%/气势100/1200，中毒100%；N=4、AF=.80，`3×.80×.85−.10=1.94≈1.95`） | `[]` | **（原创扩展命名）**；据五仙教用毒传统；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_wuxiandujing` 五仙毒经 | 5玄中·杂学/毒·yin | `attrs:{wis:35,agi:30}; sect:{id:sect_wuxian,rank:2}; prereq:[{skill:sk_miaozhaidufa,layer:5}]; skills:{poi:40,antidote:30}; hard:[sect,prereq]; trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` | 辨毒0（精准）；施毒0（下次攻击附普通中毒） | `[]` | **（原创扩展）** |
 
 抽样核算（2/2）：蛇影掌 `1−.10=.90`；毒雾按 N=4、AF=.80，`.80×1.24×.85−.10=.743→.75`；毒经支援0。
 
@@ -1053,9 +1070,9 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_wuxianrumenzhang` | 五仙入门掌 | 五仙 | 拳脚/拳·3黄上 | 笑傲 | 单体0.95；中毒30% | 无 | **（原创扩展）** | `[]` |
-| `sk_miaozhaidufa` | 苗寨毒法 | 五仙 | 杂学/毒·2黄中 | 笑傲 | 识别常见毒物；下次攻击中毒20% | 无 | **（原创扩展）** | `[]` |
-| `sk_wuxiantuna` | 五仙吐纳 | 五仙 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_zujueyin]`；IP30 | 无 | **（原创扩展）** | `[]` |
+| `sk_wuxianrumenzhang` | 五仙入门掌 | 五仙 | 拳脚/拳·3黄上 | 笑傲 | 单体0.95；中毒30% | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_miaozhaidufa` | 苗寨毒法 | 五仙 | 杂学/毒·2黄中 | 笑傲 | 识别常见毒物；下次攻击中毒20% | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{wis:25}}`；`trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
+| `sk_wuxiantuna` | 五仙吐纳 | 五仙 | 内功·3黄上·`yin` | 笑傲 | 回内；`meridians:[mer_zujueyin]`；IP30 | 无 | **（原创扩展）** | `[]`；`reqs {attrs:{bre:30},aptitude:{apInner:10}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
 
 黄阶攻击以标准1.00扣普通中毒成本0.03，取0.95；毒法、吐纳为支援0，预算合法。五仙教缺独立黄阶剑，但已有黄阶入门拳，满足门派约束。
 
@@ -1069,9 +1086,9 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID / 名称 | 品阶·类别·性质 | `reqs` | 招式（倍率＋一句效果） | `setTags` | 出处 |
 |---|---|---|---|---|---|
-| `sk_taoguliuxianshou` 桃谷六仙手 | 5玄中·拳脚/擒拿·neutral | `attrs:{str:35,agi:35}` | 六手齐拿1.05（缴械30%）；分筋1.10（骨伤30%） | `[]` | 《笑傲江湖》桃谷六仙合力擒人与撕扯敌手；武学名**（原创扩展命名）**，表现弱化暴烈细节 |
-| `sk_wanliduxing` 万里独行 | 6玄上·轻功·neutral | `attrs:{agi:45}; aptitude:{apLight:40}` | 远遁 `mv_wanliduxing_yuandun`（L7身法绝招，`ultimate:true`，0，8%/气势100/1200，`bf_dunzou`2；不走伤害预算）；掠影0 | `[]` | 田伯光绰号借作轻功名，**（原创扩展命名）**；`Q_skill=74`，与 `design/08` 对齐；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
-| `sk_bujiezhang` 不戒掌 | 5玄中·拳脚/拳·yang | `attrs:{str:40,con:35}; prereq:[{skill:sk_bujiecuquan,layer:5}]; hard:[prereq]` | 破门1.05（击退1）；大喝0.95（震慑50%） | `[]` | 《笑傲江湖》不戒和尚武力高强；武学名与招式均**（原创扩展命名）** |
+| `sk_taoguliuxianshou` 桃谷六仙手 | 5玄中·拳脚/擒拿·neutral | `aptitude:{apGrapple:20}; attrs:{str:35,agi:30}; trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` | 六手齐拿1.05（缴械30%）；分筋1.10（骨伤30%） | `[]` | 《笑傲江湖》桃谷六仙合力擒人与撕扯敌手；武学名**（原创扩展命名）**，表现弱化暴烈细节 |
+| `sk_wanliduxing` 万里独行 | 6玄上·轻功·neutral | `attrs:{agi:40,bre:35}; aptitude:{apLight:25}; trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` | 远遁 `mv_wanliduxing_yuandun`（L7身法绝招，`ultimate:true`，0，8%/气势100/1200，`bf_dunzou`2；不走伤害预算）；掠影0 | `[]` | 田伯光绰号借作轻功名，**（原创扩展命名）**；`Q_skill=74`，与 `design/08` 对齐；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}` |
+| `sk_bujiezhang` 不戒掌 | 5玄中·拳脚/拳·yang | `aptitude:{apFist:20}; attrs:{str:35,con:30}; prereq:[{skill:sk_bujiecuquan,layer:5}]; hard:[prereq]; trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` | 破门1.05（击退1）；大喝0.95（震慑50%） | `[]` | 《笑傲江湖》不戒和尚武力高强；武学名与招式均**（原创扩展命名）** |
 
 抽样核算（3/3）：六手齐拿 `1+.12−.20×.30=1.06→1.05`；分筋 `1+.12−.03=1.09→1.10`；万里独行为支援0；破门 `1+.12−.05=1.07→1.05`；大喝 `1−.10×.5=.95`。
 
@@ -1079,7 +1096,7 @@ IP = mpMaxPct + hpMaxPct + 2 × 属性点总和 + 5 × mpRegen
 
 | ID | 名称 | 门派 / 来源 | 类别 | 原生书界 | 核心效果 | 前置 | 出处或标注 | `setTags` |
 |---|---|---|---|---|---|---|---|---|
-| `sk_bujiecuquan` | 不戒粗拳 | 不戒和尚传承 | 拳脚/拳·3黄上 | 笑傲 | 单体1.00；击退式1.05 | 无 | **（原创扩展命名）** | `[]` |
+| `sk_bujiecuquan` | 不戒粗拳 | 不戒和尚传承 | 拳脚/拳·3黄上 | 笑傲 | 单体1.00；击退式1.05 | 无 | **（原创扩展命名）** | `[]`；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
 
 > 本节一门黄阶；其与九个组织条目合计恰为 36 门黄阶。桃谷六仙手直接由人物羁绊传授，不虚造一门原著未见的前置步法。
 
@@ -1646,6 +1663,8 @@ AR-01 核算：`4 : 12 : 36 : 36 = 1 : 3 : 9 : 9`，精确命中目标而非仅�
 | `sk_yijinjing` | `set_fangzheng`、`set_saodiseng`、`set_shaolin_damo`、`set_shaolin_jingang` |
 
 ## 17. 数据校验规则与测试用例
+
+- **属性 v2 校验**：本册 88 门正式武学均含按 `design/05` §7.3.1 重算的 `reqs.attrs`；全部显式 `ap*` 门槛按 `5×grade−5` 迁移；每门含顶层 `trainingAttrs`，层位恰为 3/6/9，单节点 1–4、单门总和 ≤12，属性只取 `str/con/bre/wis/agi/wil`。
 
 ### 17.1 构建期校验
 

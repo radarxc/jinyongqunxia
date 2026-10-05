@@ -1,0 +1,27 @@
+{
+  "source": "/Users/bytedance/.codex/generated_images/01a0f428-3f64-7f01-902a-b2b05b36280c/exec-05192c9f-7d46-47b7-808d-ec91c74d7700.png",
+  "prompt": "Use case: style-transfer. EDIT the supplied Southern Song map-building PNG into a Ming Jiangnan regional variant. Preserve its orthographic 45-degree camera, 30-degree elevation, 2:1 ground axes, footprint parallelogram silhouette, grounded scale, same fine realistic detail density, upper-left daylight, bottom-centre footprint anchor, all complete eaves and transparent margins. Preserve TRUE RGBA alpha outside silhouette; no ground halo. Change wall finish to chalk-white lime plaster, dark brown chestnut timber, simple straight-line Ming lattice windows, charcoal-grey clay tile roofs and restrained Jiangnan upward eave corners. Make an original derivative game asset, not a replica of a named historical building. No new text, signage, people, modern objects, backgrounds, sky, plinth, border, grid, checkerboard or watermarks. Keep all source clear margins. Subject: Ming Jiangnan modest stable building, one low white-plastered back wall and dark timber open-front three-bay shelter with dark grey clay tile pitched roof, straw bundles, simple low timber stall partitions and empty feeding troughs; no horses or people. Restrained working courtyard only within thin ground footprint 9 by 7. White lime wall more prominent than source, stout timber and simple roof. Target footprint9:7 and ground axes±0.5. Final transparent image only.",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_stable.png",
+  "candidate_count": 1,
+  "source_sha256": "0e4ec0f88da81e21191ccedd27bf82de8ffde37e5b5708c5e3bdc9c52814ed08",
+  "source_size_px": [
+    1467,
+    1072
+  ],
+  "source_mode": "RGBA",
+  "source_alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_index": 1,
+  "selected": true,
+  "selection_note": "首候选入选；空马厩不附带人物与马匹",
+  "tool": "image_gen built-in",
+  "transparent_background": true,
+  "explicit_image_inputs": [
+    "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_south/assets/default/baseline/building-map/bld_kit_song_southern_stable.png"
+  ],
+  "image_model": "not_exposed_by_tool",
+  "image_effort": "not_exposed_by_tool",
+  "raw_view_image_inspected": true
+}

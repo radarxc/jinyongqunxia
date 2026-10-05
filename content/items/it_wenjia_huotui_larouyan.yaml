@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_wenjia_huotui_larouyan
+name: 温家火腿腊肉宴
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《碧血剑》·温家款客上火腿、腊肉、肥鸡、鲜鱼
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_bidu:2battle
+assets:
+  icon: item/wenjia_huotui_larouyan
+text:
+  desc: 外观：火腿腊肉、整鸡、鲜鱼分盛四只明代瓷盘，四人宴份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《碧血剑》中温家款客上火腿、腊肉、肥鸡与鲜鱼。本件把四样合成明代四人宴席，须同席进食；避毒膳食效果与器皿形制属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

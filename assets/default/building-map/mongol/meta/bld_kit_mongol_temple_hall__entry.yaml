@@ -1,0 +1,44 @@
+id: bld_kit_mongol_temple_hall
+file: bld_kit_mongol_temple_hall.png
+category: building-map
+style: default
+subject: 13–14世纪蒙古草原/和林/上都语境：佛寺殿堂（原创扩展；非具名文物复原）
+prompt: 'Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 13 metres east-west by 10 metres north-south, axis lengths ratio 13:10. An anonymous modest Mongol-Yuan Buddhist timber temple hall, broad low grey-green clay tiled hipped gable roof, restrained upward eaves, matte dark red-brown columns and simple bracket sets, pale rammed-earth infill walls, wooden lattices, a central open south doorway, thin stone sill and three modest steps. Inspired only by Chinese timber construction and Buddhist temple evidence at Karakorum, NOT a reconstruction of the Great Hall, NOT a palace; no modern Erdene Zuu details.'
+negative: 无文字/人物/现代元素/厚地台/背景/伪透明/透视汇聚
+references: []
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T22:07:57.380837+00:00'
+created_time_basis: 源PNG文件mtime，不是服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-9f3a7534-0190-4ca2-81a2-5d7442802c8d.png
+size: 832x656
+sha256: 3912ea495a4a745745f85329742882e22194cfcd96f927112b2afbbc8f423ff0
+status: candidate
+building:
+  type: bld_kit_mongol_temple_hall
+  footprint: [13, 10]
+  anchor: [422.2028, 419.4592]
+  era: mongol
+footprint_m: [13, 10]
+footprint_basis: design/22 §3.3 temple_hall 13×10【建议值】
+entrance: {edge: S, offset_cells: 6}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [736, 368]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_mongol_temple_hall.yaml
+processing:
+  source_archive: sources/bld_kit_mongol_temple_hall__raw.png
+  source_sha256: e1518e1e06d4ce0c835a84c0b015baf2aa729584589ab835427b155375303fbe
+  source_size: [1430, 1100]
+  crop_box: [0, 9, 1408, 1100]
+  uniform_scale_requested: 0.5360524399126001
+  resized_size: [755, 585]
+  actual_scale_xy: [0.5362215909090909, 0.536205316223648]
+  paste_offset: [38, 35, 793, 620]
+  anchor_source_px: [716.5, 726.0]
+  alpha_edits: none
+  note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+notes: 仅原向单视图；锚点为底面中心代理；精确接缝/碰撞/遮挡待实测；底面严格几何见meta。

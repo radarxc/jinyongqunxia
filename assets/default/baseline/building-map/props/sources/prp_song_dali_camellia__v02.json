@@ -1,0 +1,68 @@
+{
+  "id": "prp_song_dali_camellia__v02",
+  "asset_id": "prp_song_dali_camellia",
+  "variant_key": "v02",
+  "subject": "1093年大理植物意象：山茶密花（原创扩展；物种及历史栽植待考）",
+  "prompt": "Use case: historical-scene. Generate ONE isolated botanical PROP SPRITE for a realistic ancient Dali kingdom1093 isometric game. Botanical silhouette is an original regional impression, not a claim of exact historical species. True transparent RGBA image; empty background and leaf gaps must be alpha0. Camera orthographic yaw45 degrees and elevation30 degrees, natural three-dimensional plant volume, upright stem. Realistic leaves and bark with muted natural color and fine material texture, softly lit from SCREEN UPPER LEFT. No cast shadow, no contact shadow, no ambient halo, no ground patch, no soil ball, no dirt, no stone base, no planter, no pot, no landscape, no architecture, no text, no letters, no watermarks, no people, no modern objects. Complete crown and all leaf tips must stay fully inside canvas with generous15% clear transparent margin. Plant is rooted at ONE small central origin on a horizontal contact line near lower-middle of canvas; bottom trunk/stems stop cleanly at the ground contact line, no exposed roots, soil or root ball, nothing and NO shadow extends below that line. This is one isolated plant object, not a scene or a cluster of separate plants. The lower quarter of the image is entirely transparent. A single camellia shrub, height1.5m, visual canopy diameter2m, glossy dark green oval foliage with many small muted crimson blossoms distributed densely but naturally. Branching from one low woody central stem. Rounded crown, leaves visible between flowers, no ornamental pot, no flower bed.",
+  "negative": "背景、地台、土团、盆器、景观、文字、水印、现代物、人物、地面投影、枝叶裁切、根线下实物",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-d53378c6-e3f7-4724-93e4-f7de5473ae80.png",
+  "source_sha256": "a9b3dbb1e2807398100b037d3ca6a7326d3e8921ccd1864615c0fbfd3e7cb4f9",
+  "root_source_px": [
+    653,
+    967
+  ],
+  "root_measurement": "view_image原图目读树干最下接触线并对照alpha>=32主体bbox，约±2px；不是全alpha噪点包围框下沿。",
+  "subject_alpha_bbox": [
+    27,
+    30,
+    1279,
+    970
+  ],
+  "source_size": [
+    1312,
+    1199
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "bbox": [
+      26,
+      17,
+      1298,
+      1199
+    ],
+    "transparent_pixels": 846743,
+    "partial_pixels": 726287,
+    "opaque_pixels": 58
+  },
+  "canvas": [
+    136,
+    131
+  ],
+  "anchor": [
+    68,
+    95
+  ],
+  "visual_bounds_m": {
+    "w": 2,
+    "d": 2,
+    "h": 1.5
+  },
+  "candidate_count": 1,
+  "rejections": [],
+  "visual_review": "已view_image(detail=original)，完整单株，无地台、土球、盆器或烘焙地面影；山茶疏花/密花可辨，叶隙有透明。真实根以下存在极低alpha远端噪点，需保留原图并只按主代理规则做纯矩形透明边修整。近似斜视，不宣称植物角度可精确测至度。",
+  "status": "candidate",
+  "alpha_bounds_proxy_root": [
+    653,
+    1199
+  ],
+  "alpha_below_measured_root": {
+    "max_alpha": 16,
+    "nonzero_pixels": 952
+  },
+  "created": "2026-09-30T09:24:50.488314+00:00"
+}

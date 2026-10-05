@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_mingduanluxia
+name: 明式短弩匣
+kind: hidden
+sub: bolt
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 明代弩具意象；笑傲起可得，具体军民使用 （待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingduanluxia
+text:
+  desc: 外观：黑木短弩约五十厘米，上置闭合矢槽、钢弓片与黄铜扳机。 待运行时投影：ammoMul=0.950; hiddenHit=3.3。
+  lore: （待考：核明代此类短弩的具体军民使用）。本文按弩具意象制黑木短弩，闭合矢槽容四支短矢，笑傲时代起投放；钢弓片须卸力存放，短矢按耗材补给。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: bolt
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 40
+      qiAffinity: 100

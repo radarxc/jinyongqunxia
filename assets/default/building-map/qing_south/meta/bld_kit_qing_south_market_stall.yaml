@@ -1,0 +1,131 @@
+id: bld_kit_qing_south_market_stall
+status: candidate
+building:
+  type: bld_kit_qing_south_market_stall
+  footprint:
+  - 3
+  - 2
+  anchor: &id001
+  - 254.583
+  - 290.231
+  era: qing_south
+anchor_px: *id001
+footprint_m:
+- 3
+- 2
+footprint_source: design/22 §3.3 bld_kit_song_southern_market_stall
+logical_footprint_polygon_px:
+- - 174.583
+  - 282.231
+- - 270.58299999999997
+  - 330.231
+- - 334.58299999999997
+  - 298.231
+- - 238.583
+  - 250.231
+occluder_proxy_px:
+- 175
+- 195
+- 334
+- 329
+occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+entrance:
+  edge: S
+  offset_cells: 1
+entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
+collision_polygon_m:
+- - 0
+  - 0
+- - 3
+  - 0
+- - 3
+  - 2
+- - 0
+  - 2
+collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_market_stall.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+release_ready: false
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 160
+  - 80
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 512
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 250595
+  alpha_partial_pixels: 10974
+  alpha_opaque_pixels: 575
+  alpha_nonzero_bbox:
+  - 182
+  - 193
+  - 336
+  - 332
+  transparent_margins_px:
+  - 182
+  - 193
+  - 176
+  - 180
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 309
+  - 336
+  - 985
+  - 945
+  isotropic_scale: 0.22824302134646962
+  resized_size:
+  - 154
+  - 139
+  paste_offset:
+  - 182
+  - 193
+  - 336
+  - 332
+  final_size:
+  - 512
+  - 512
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/market_stall.png
+  source_sha256: 8cb13a2d3a948bfd2a7737a730f3d242a028a942ff886806451973a305769001
+  forbidden_transforms_used: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+final_review: 成品512×512已view_image(original)复查：摊棚完整、货摊清晰；3×2占地地面投影仅160×80，画布透明留白按规范保留，不人为放大摊棚。
+source_request: history/records/market_stall.yaml
+source_measure: sources/bld_kit_qing_south_market_stall.measure.json

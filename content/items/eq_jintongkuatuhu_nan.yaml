@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_jintongkuatuhu_nan
+name: 金铜銙吐鹘·男
+kind: armor
+sub: belt
+grade: 3
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 吐鹘束带 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jintongkuatuhu_nan
+text:
+  desc: 外观：男款黑色粗革吐鹘带盘成一圈，素铜方銙前小后大、方扣与双铊尾完整。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据《金史·舆服志》的吐鹘带语汇演成，黑色粗革配前小后大的素铜方銙，供普通武人束袍骑行。没有春水纹与佩刀，日常以油脂防革面开裂。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

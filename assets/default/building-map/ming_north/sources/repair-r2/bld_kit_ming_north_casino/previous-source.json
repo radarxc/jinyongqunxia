@@ -1,0 +1,50 @@
+{
+  "id": "bld_kit_ming_north_casino",
+  "subject": "明代北方府城·赌场（原创扩展）",
+  "footprint": [
+    10,
+    8
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-af189fe9-399b-42fb-a079-08b7b1f87f90.png",
+  "prompt": "Use case: precise-object-edit. Correct this single Ming northern Chinese building sprite. Preserve its purpose, anonymous details and realistic material density, but use proper NORTH CHINESE YINGSHAN hard-gabled roof: flush grey-brick triangular gable walls rise all the way to ridge at both ends, NO overhanging eaves at gable ends, no upward-curled corner tips. The input is material reference, do NOT retain its roof silhouette. Deliver true TRANSPARENT RGBA, with completely empty fully transparent padding at least 12% image width/height on ALL FOUR SIDES. Remove ALL glow, haze, vignette, gradient and ground shadow beyond the thin rectangular footprint; all empty pixels alpha ZERO. Natural light stays upper-left. Correct ground geometry to precise 2:1 dimetric: left-to-front edge EXACTLY +0.500 slope, front-to-right edge EXACTLY -0.500; 26.565 degrees to horizontal, NOT standard 30-degree ground-edge isometric. Camera orthographic yaw45 pitch30, vertical columns vertical. Thin gray brick flat ground pad, no thick plinth. No people, animals, modern objects, text, characters, labels, watermark, backdrop or new props. This is a modest gambling house, keep exactly two wood tables with small unmarked ivory counters and bowls in the open front bays, no modern cards. Footprint must be TEN units along left-to-front edge and EIGHT units front-to-right: axis ratio 10:8, DEEP nearly-square, not a long thin shed. Entire roof and all ground corners uncut.",
+  "created": "2026-09-30T21:20:27.355Z",
+  "references": [
+    {
+      "id": "bld_kit_ming_north_casino_c01",
+      "path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-968cab66-43fd-4c30-a11b-c36959c22fda.png",
+      "archived_path": "assets/default/building-map/ming_north/sources/rejected/bld_kit_ming_north_casino_c01.png",
+      "sha256": "71cef0000d9a056027ac1a97cba2caff0bf988f5bcdac98638635b4c6f235234",
+      "role": "编辑目标，校正硬山屋型、底面投影及透明边缘；原图已view_image",
+      "status": "rejected"
+    }
+  ],
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "points": {
+    "L": [
+      70,
+      674
+    ],
+    "F": [
+      810,
+      1086
+    ],
+    "R": [
+      1340,
+      833
+    ]
+  },
+  "footprint_basis": "【建议值】沿宋临安casino同功能10×8；design/22 §3.4未细分此项。",
+  "visual_review": "已view_image候选1及2。选候选2：灰砖硬山端墙形成完整山面，两张赌桌与筹码明确，无现代扑克/人物/文字；前底边斜率仍偏陡，宽深比也存在残差，标几何warning，未用变形纠正。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "measurement_uncertainty_source_px": 4,
+  "source_size": [
+    1402,
+    1122
+  ],
+  "source_sha256": "9c2f5ed416353272b645b2fa661f24d51d2d9aea34e3c1c9aa4a4ddd453c90e1",
+  "tool": "built-in image_gen",
+  "model": "underlying model not disclosed",
+  "effort": "not exposed",
+  "final_view_image_review": "已逐张view_image规范化成品；主体完整、灰砖木构细节可读、透明边距保留；几何warning与单视图能力限制沿用。"
+}

@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_longzhaoshou
+name: 龙爪手秘本
+kind: manual
+sub: full
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《倚天屠龙记》·少林龙爪手；载体 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/miji_longzhaoshou
+text:
+  desc: 外观：元代暗金棕包背薄册，黑布护脊。
+  lore: 《倚天屠龙记》有少林龙爪手，这部秘本载体为 （原创扩展）。册中把指力、擒拿与步位合看，研读者须先辨虚实再扣关节；少林门内相传，爪势贵准，不贵留下骇人抓痕。
+extension:
+  type: manual
+  value:
+    skill: sk_longzhaoshou
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_longzhaoshou
+      readWis: 50
+      maxLayer: 10
+      cultivation: 3000

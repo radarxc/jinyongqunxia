@@ -1,0 +1,20 @@
+schemaVersion: move.v1
+id: mv_taizuchangquan_qianli
+name: 千里横行
+skillId: sk_taizuchangquan
+unlock: 3
+kind: attack
+ultimate: false
+target: enemy
+range: {min: 1, max: 3}
+shape: {tpl: aoe_cone, r: 1, angle: 120, dirCount: 6}
+delivery: melee
+hTol: 2
+powerBp: 10000
+referencePowerBp: 10000
+wInBp: 2000
+mpCost: 32
+recovery: 1000
+hitZone: body
+autoTargetCap: 3
+friendlyFire: none

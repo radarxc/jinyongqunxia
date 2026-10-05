@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_qingzhugenruyi
+name: 清竹根如意
+kind: collectible
+sub: antique
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H53](#src-h53)；准入：清代六书；同类旧作或同期作，具体根形为扩展
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingzhugenruyi
+text:
+  desc: 外观：一柄棕黄竹根如意，天然节瘤顺势雕成灵芝头。 待运行时投影：eraRange=[qing]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=history。
+  lore: 公开如意展资料指出竹木如意在明末清初盛行，可作清代文房清玩的历史类型。宜赠文士藏家，具体根形与取得为（原创扩展）；不伪托雕刻名家，也不因灵芝外形生成药效。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

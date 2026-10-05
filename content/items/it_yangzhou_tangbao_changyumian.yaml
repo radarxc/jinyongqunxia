@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_yangzhou_tangbao_changyumian
+name: 扬州汤包长鱼面
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canonExpanded
+canonRef: 《鹿鼎记》·韦小宝自称肚里装满扬州汤包、长鱼面；是否为当席实食 （待考）
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_wenzhong,bf_juqi:2battle
+assets:
+  icon: item/yangzhou_tangbao_changyumian
+text:
+  desc: 外观：薄皮汤包四只与酱褐长鱼面一碗同置竹木托，清初扬州四人份 （原创扩展）。 待运行时投影：party=4。
+  lore: 《鹿鼎记》中韦小宝提到扬州汤包、长鱼面，是否为当席实食仍待核。（待考：核语境） 本作按扬州四季食肆投放，合为四人热席；双增益属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

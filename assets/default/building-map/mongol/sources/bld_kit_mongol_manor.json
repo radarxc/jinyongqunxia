@@ -1,0 +1,43 @@
+{
+  "key": "manor",
+  "id": "bld_kit_mongol_manor",
+  "footprint": [
+    16,
+    13
+  ],
+  "subject": "贵族毡帐围院（原创扩展）",
+  "candidates": [
+    {
+      "number": 1,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-83a0c633-2025-402b-b9c4-192f17833983.png",
+      "prompt": "Use case: historical-scene. Create ONE transparent city-map building sprite for tianshu default Mongolian steppe kit, inspired by 13th-14th century Karakorum and Xanadu. Realistic ancient architectural illustration, fine tactile weathered materials, restrained natural beige felt, earth brown, gray and muted timber colors, detailed like the established Song kit, neither low-poly nor cute. Orthographic yaw45 degrees, elevation30 degrees, exact 2:1 dimetric ground plane; east ground edges slope +0.5 down-right and north edges slope -0.5 up-right. Parallel lines remain parallel, vertical posts upright, no perspective convergence. South entrance faces screen lower-left. Natural warm-neutral light from screen upper-left, only short soft contact shadow screen lower-right. Keep entire asset and shadow within generous transparent margins on every side. Real RGBA transparent background, no checkerboard or matte. Ground footprint is a thin rectangular contact area, not a thick diorama pedestal; show front, left and right ground corners clearly for measurement. No people, animals, writing, signboards, symbols, watermark, border, flags, modern objects, landscape, sky, background scenery, saturated tourism decoration, modern steel chimney, Qing yellow tiles or dragon ridge. Asset ID bld_kit_mongol_manor. Footprint exactly 16m east-west x 13m north-south. In projection the left-to-front ground edge's horizontal run must be 1.2307692307692308 times the front-to-right edge's horizontal run. The bottom footprint is a parallelogram, not a square unless these dimensions require it. Subject: A Mongolian noble family's enclosed ger household: one large off-white felt ger behind and two smaller off-white felt gers flanking an open packed-earth courtyard, weathered low wooden palisade, broad simple south gateway, tiny wooden storage lean-to. Only three gers and one small lean-to. Restrained brown textile bands, timber doors and rope tensioning; no gold, no ornate tourism motifs. Cleanly isolated architectural game asset. No background haze or gradient. Footprint exactly16:13, two visible front ground edges must make equal26.565-degree angles with horizontal. Entire compound including shadow should fit inside image, no clipping.",
+      "archive": "sources/bld_kit_mongol_manor__c01.png",
+      "sha256": "c591b3e73ec63b6146e41e42939ef2001244688d682595aabf800fcffb943dfd",
+      "selected": false,
+      "reference_inputs": []
+    },
+    {
+      "number": 2,
+      "path": "/Users/bytedance/.codex/generated_images/01a0f45a-3fee-7821-94b3-a12cdf76a8a6/exec-5e88319e-8b10-43d9-9c45-7fadf3f01ed9.png",
+      "prompt": "Edit this architectural sprite into a Mongolian noble ger household. Keep precisely the SAME camera, courtyard footprint16x13, footprint front/left/right corner positions and ground edge slopes, fine ancient realism and upper-left light. Replace the three tiled buildings with three cream-white wool-felt Mongolian gers: large rear ger and two smaller gers. Replace plaster walls and gatehouse with low plain wooden palisade and simple wooden gate. Replace lush trees with only a few tiny dry steppe tufts, and paving with earth. Add one tiny timber storage lean-to. Gers have round wooden lattice frames, shallow conical felt roofs, restrained brown bands, tie ropes and plain wooden doors. Entire asset isolated on true transparent RGBA with generous clear margins, no halo or scenery. Do not rotate camera or deform footprint. No people, text, modern ornament, flags, gold or fairy-tale decoration. Original fictional game manor informed by traditional Mongolian ger materials, not a specific historical reconstruction.",
+      "archive": "sources/bld_kit_mongol_manor__c02.png",
+      "sha256": "df7dd5a4559386700ea7156925746ac8e663cccc3f45cb38d3d6d416f6d53134",
+      "selected": true,
+      "reference_inputs": [
+        "assets/default/baseline/building-map/bld_kit_song_southern_manor.png"
+      ]
+    }
+  ],
+  "chosen": 2,
+  "ref": "assets/default/baseline/building-map/bld_kit_song_southern_manor.png",
+  "references": [
+    {
+      "file": "assets/default/baseline/building-map/bld_kit_song_southern_manor.png",
+      "sha256": "393cee0a325af7b793f3dec4c28a1f0e50679eef19fa2c3d70f479b2a837c994",
+      "role": "宋基线地域变体编辑参考；已view_image；不继承宋年代"
+    }
+  ],
+  "source_viewed": true,
+  "final_viewed": true,
+  "view_note": "两张源候选与规格化成品均已逐张view_image；2026-09-30；成品无实物裁切、无棕色背景，几何偏差保留。"
+}

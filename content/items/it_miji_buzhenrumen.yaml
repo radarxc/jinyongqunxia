@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_buzhenrumen
+name: 布阵入门全本
+kind: manual
+sub: full
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_buzhenrumen
+text:
+  desc: 外观：明代经折阵册，土黄硬纸护面。
+  lore: 军士护院把站位、号令与简易阵眼绘成三尺经折册，阵法和谱本均属 （原创扩展）。研读须多人按图移位，逐次核对进退口；单人背熟方格并不等于能布成阵势。
+extension:
+  type: manual
+  value:
+    skill: sk_buzhenrumen
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_buzhenrumen
+      readWis: 25
+      maxLayer: 10
+      cultivation: 750

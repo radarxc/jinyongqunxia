@@ -1,0 +1,51 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_zhengding"
+chapter_id: "ch10"
+book_world: "ch10_baima"
+display_name: "恒州·中山县（702年推定）"
+historical_year: 702
+era_kit: "song_southern"
+seed: 70210015
+design_intent: {"prosperity": "tang_prefecture_candidate", "notes": ["复原依据：history/city_zhengding__tang_702.md；城市与年代逐项核查，未将明清墙线前推唐初。", "使用宋基线墙门、地面与大理通用建筑替代形制；不更改chapters/10开放名单。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [88, 87], "r_band_slots": [64, 64], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 24, "z": 28}, {"x": 104, "z": 28}, {"x": 104, "z": 112}, {"x": 24, "z": 112}]}, "inside_margin_cells": 2, "basis": "图名：初唐恒州城；src_plan支持四门十字街四坊，方形城垣与坐标（推定）；src_wall排除宝应扩城或明代官帽形城圈；src_name支持705复名线索，702中山县名仍推定。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 64, "z": 28}, "width_cells": 8, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 12, "h": 4}, "passage_cells": {"w": 8, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：南门；src_plan四门格局，精确门位、宽5–8格（推定）（原创扩展），无后世门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 64, "z": 112}, "width_cells": 7, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 11, "h": 4}, "passage_cells": {"w": 7, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：北门；src_plan四门格局，精确门位、宽5–8格（推定）（原创扩展），无后世门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 24, "z": 70}, "width_cells": 5, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：西门；src_plan四门格局，精确门位、宽5–8格（推定）（原创扩展），无后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 104, "z": 70}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：东门；src_plan四门格局，精确门位、宽5–8格（推定）（原创扩展），无后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 64, "z": 28}, {"x": 64, "z": 112}], "surface": "dirt_road", "priority": 100, "basis": "图名：初唐十字主街；src_plan支持拓扑，线位与路宽5格（推定）（原创扩展）。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 24, "z": 70}, {"x": 104, "z": 70}], "surface": "dirt_road", "priority": 80, "basis": "图名：初唐十字主街；src_plan支持拓扑，线位与路宽5格（推定）（原创扩展）。"}
+  - {"id": "west_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 44, "z": 32}, {"x": 44, "z": 108}], "surface": "dirt_road", "priority": 60, "basis": "图名：坊内十字巷（推定）；src_plan述四坊内十字区划残留，本图线位、连通方式（原创扩展）；不视为考古道路坐标。"}
+  - {"id": "east_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 84, "z": 32}, {"x": 84, "z": 108}], "surface": "dirt_road", "priority": 60, "basis": "图名：坊内十字巷（推定）；src_plan述四坊内十字区划残留，本图线位、连通方式（原创扩展）；不视为考古道路坐标。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 28, "z": 49}, {"x": 100, "z": 49}], "surface": "dirt_road", "priority": 60, "basis": "图名：坊内十字巷（推定）；src_plan述四坊内十字区划残留，本图线位、连通方式（原创扩展）；不视为考古道路坐标。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 28, "z": 91}, {"x": 100, "z": 91}], "surface": "dirt_road", "priority": 60, "basis": "图名：坊内十字巷（推定）；src_plan述四坊内十字区划残留，本图线位、连通方式（原创扩展）；不视为考古道路坐标。"}
+rivers:
+  - {"id": "hutuo_edge", "width_cells": 4, "points": [{"x": 4, "z": 8}, {"x": 66, "z": 7}, {"x": 124, "z": 9}], "flow": "east", "navigable": false, "basis": "图名：滹沱河方向水面；src_plan只支持城在河北岸，702河线、宽度与距离（推定）；此为范围外地理方向提示，不是测绘。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 28, "z": 76}, "max": {"x": 58, "z": 108}}}, "priority": 100, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_yamen", "bld_kit_song_dali_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西北坊官署（推定）；四坊格局有研究依据，官署方位无定点资料（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 70, "z": 32}, "max": {"x": 100, "z": 64}}}, "priority": 90, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_shop", "bld_kit_song_dali_inn", "bld_kit_song_dali_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东南坊市旅（推定）；分坊存在有据，功能分配与数量（原创扩展）。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 28, "z": 32}, "max": {"x": 58, "z": 64}}}, "priority": 50, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_house", "bld_kit_song_dali_shrine"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西南坊民居（推定）；分坊存在有据，建筑数量（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 70, "z": 76}, "max": {"x": 100, "z": 108}}}, "priority": 85, "density": 0.62, "allowed_building_types": ["bld_kit_song_dali_guardhouse", "bld_kit_song_dali_stable", "bld_kit_song_dali_warehouse", "bld_kit_song_dali_house"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东北坊守舍（推定）；不放成德节度使府，功能分配（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_dali_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_courtyard", "zone_refs": ["zone_office"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shop", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_market_stall", "zone_refs": ["zone_market"], "count": {"min": 6, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_house", "zone_refs": ["zone_houses", "zone_service"], "count": {"min": 8, "max": 24}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_shrine", "zone_refs": ["zone_houses"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+  - {"type": "bld_kit_song_dali_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以数量推算人口，功能仅作外观。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不使用茶花、竹林与热带树木", "basis": "旱地视觉密度（原创扩展）【建议值】；不作唐代物候证据。"}
+sources:
+  - {"key": "src_plan", "kind": "academic", "title": "赵献超：正定古城平面格局的复原研究", "url": "https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_36605.shtml", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "国博刊载提要已读，非全文/图；明确唐初至宝应阶段四门十字街四坊；网页关键词错配，不采用。"}
+  - {"key": "src_name", "kind": "academic", "title": "CHGIS真定县沿革", "url": "https://tgaz.fudan.edu.cn/tgaz/placename/hvd_44966", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "记录为705–1722；注释记705中山复真定，702显示中山，非705县名直接前推。"}
+  - {"key": "src_wall", "kind": "academic", "title": "走进正定：规制独特的雄俊城垣", "url": "https://m.thepaper.cn/baijiahao_4156819", "accessed": "2026-10-03", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "网信正定正文已读；排除宝应扩城20里与明代24里轮廓；图像下载情况见history。"}

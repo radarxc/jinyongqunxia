@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_zaohedingxia
+name: 枣核钉匣
+kind: hidden
+sub: awl
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《神雕侠侣》·裘千尺以口喷枣核钉；永久匣体 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/zaohedingxia
+text:
+  desc: 外观：乌木小匣开启陈列九枚枣核形短铁钉，单枚约指节长、两端尖锐、表面暗红褐。 待运行时投影：ammoMul=1.160; hiddenHit=6.6; sect=sect_jueqinggu。
+  lore: 《神雕侠侣》中裘千尺以口喷枣核钉伤敌。原著手法不等同寻常投掷，本文只将九枚枣核形短钉收作可装备匣体（原创扩展）；铁钉可回收，仍须逐枚清点。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: awl
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 65
+      qiAffinity: 100

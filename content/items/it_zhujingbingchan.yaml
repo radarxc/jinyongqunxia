@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_zhujingbingchan
+name: 朱睛冰蟾
+kind: material
+sub: herb
+grade: 10
+stack: 999
+chapters: any
+origin: canonExpanded
+canonRef: 金庸作品奇物 （待考：核书名、人物与原文药效）
+price: null
+flags:
+- unique
+assets:
+  icon: item/zhujingbingchan
+text:
+  desc: 外观：白色小蟾与朱红眼置透气寒玉匣，形态 （待考）。
+  lore: 白色小蟾、朱红双睛的奇物只经华山门人携带与救治剧情流转，不设自然种群或采期。书名、持有人、产地与原文药效均待三联本核对，暂不赋属性。（待考） （原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_tian9
+    materialGrade: 10
+    rare: true
+    herbFamily: zhuJingBingChan
+    ageYears: 0
+    attributes:
+      version: 2

@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_yuebing
+name: 月饼
+kind: food
+sub: food
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 明清节令点心，宋代同名形制不据此反推
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_yangsheng:1battle
+assets:
+  icon: item/yuebing
+text:
+  desc: 外观：棕金圆饼一枚切开露豆沙仁，木模花纹无字。
+  lore: 明清中秋节令点心，本件为无字木模圆饼，剖开可见豆沙仁。须按节令和书界投放，不能用后世形制定格宋代同名食物；配茶分食最佳。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 14

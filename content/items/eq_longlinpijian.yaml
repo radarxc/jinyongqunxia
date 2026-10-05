@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_longlinpijian
+name: 龙鳞护肩
+kind: armor
+sub: shoulder
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/longlinpijian
+text:
+  desc: 外观：深青金属鳞片双肩甲，鎏金只作窄边。 待运行时投影：defOutPct=5%; resCCPp=5。
+  lore: （原创扩展）异人将深青金属压成层叠鳞片，鎏金仅收窄边，不塑龙首。双肩受击时鳞片逐层卸力，须用内衬隔开寒意；江湖只见过一副，来历众说纷纭。
+extension:
+  type: equipment
+  value:
+    slot: shoulder
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: true
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      def: 7
+      block: 12

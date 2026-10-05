@@ -1,0 +1,188 @@
+{
+  "kind": "Composition",
+  "version": 1,
+  "asset_id": "vfx_mv_jinshejian_kuangwu__base01",
+  "subject_ref": "sk_jinshejian",
+  "move_ref": "mv_jinshejian_kuangwu",
+  "mode": "baseline",
+  "effect_set": "../../effect/mv_jinshejian_kuangwu/effect-set.yaml",
+  "emitter_plate": "../../../emitters/sword/emitter-plate.yaml",
+  "canvas_px": [
+    1792,
+    1024
+  ],
+  "background": "#EFE6D2",
+  "emit_at_px": [
+    620,
+    512
+  ],
+  "angle_deg": 0,
+  "range_hex": 3,
+  "pixels_per_hex": 256,
+  "length_px": 768,
+  "scale": [
+    1,
+    1.55
+  ],
+  "emitter_scale": 0.48,
+  "rhythm": {
+    "charge_s": 0.15,
+    "release_s": 0.2,
+    "sustain_s": 0.4,
+    "dissipate_s": 0.15
+  },
+  "transition": {
+    "interpolation": "crossfade",
+    "scale_from": 0.92,
+    "drift_fraction": 0.02,
+    "brightness": [
+      0.75,
+      1,
+      1.08,
+      1,
+      0.75
+    ],
+    "directional_mask": {
+      "enabled": true,
+      "softness": 0.08
+    }
+  },
+  "output": {
+    "fps": 20,
+    "loop": true,
+    "loop_gap_s": 0.4,
+    "peak_phase": 0.3888888888888889,
+    "preview_size_px": [
+      896,
+      512
+    ],
+    "html_max_bytes": 3000000,
+    "optional_animation": "none"
+  },
+  "effect": {
+    "kind": "EffectSet",
+    "version": 1,
+    "asset_id": "vfx_mv_jinshejian_kuangwu__effect_base01",
+    "size_px": [
+      768,
+      512
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "style": "ink",
+    "direction": [
+      1,
+      0
+    ],
+    "reference_length_px": 590,
+    "root_width_px": 16,
+    "blend": "normal",
+    "source": {
+      "mode": "grid",
+      "files": [
+        "source_sheet.png"
+      ],
+      "rects": [
+        {
+          "file_index": 0,
+          "rect_px": [
+            0,
+            0,
+            768,
+            512
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            768,
+            0,
+            768,
+            512
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            0,
+            512,
+            768,
+            512
+          ]
+        },
+        {
+          "file_index": 0,
+          "rect_px": [
+            768,
+            512,
+            768,
+            512
+          ]
+        }
+      ],
+      "keying": {
+        "method": "white_key",
+        "white_cutoff_8bit": 250,
+        "opaque_luma": 0.2,
+        "key_full_8bit": 100,
+        "epsilon": 0.00392156862745098,
+        "dewhite": true
+      }
+    },
+    "frames": [
+      {
+        "file": "frame_000.png",
+        "anchor_px": [
+          96,
+          256
+        ],
+        "phase": 0
+      },
+      {
+        "file": "frame_001.png",
+        "anchor_px": [
+          96,
+          256
+        ],
+        "phase": 0.25
+      },
+      {
+        "file": "frame_002.png",
+        "anchor_px": [
+          96,
+          256
+        ],
+        "phase": 0.5
+      },
+      {
+        "file": "frame_003.png",
+        "anchor_px": [
+          96,
+          256
+        ],
+        "phase": 1
+      }
+    ]
+  },
+  "emitter": {
+    "kind": "EmitterPlate",
+    "version": 1,
+    "file": "source_sword.png",
+    "size_px": [
+      1254,
+      1254
+    ],
+    "color_space": "srgb",
+    "alpha_mode": "straight",
+    "category": "sword_hand",
+    "emit_point_px": [
+      1229.5,
+      622
+    ],
+    "direction": [
+      1,
+      0
+    ],
+    "emission_width_px": 13
+  }
+}

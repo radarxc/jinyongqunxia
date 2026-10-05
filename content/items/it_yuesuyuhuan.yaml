@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuesuyuhuan
+name: 越地素玉环
+kind: collectible
+sub: jade
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuesuyuhuan
+text:
+  desc: 外观：青灰玉圆环，中央圆孔。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[collector]}; giftValue=1; provenance=expanded。
+  lore: 以春秋礼玉工艺为背景制作的素面小环，名称并非原著宝物。可由玉工酬劳取得，适合赠初识的藏家；仅为收藏器，不增加装备属性，其造型与流转均为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

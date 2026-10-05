@@ -1,0 +1,54 @@
+{
+  "id": "bld_kit_ming_north_wangfu",
+  "subject": "明代北方府城：王府殿院模块（原创扩展）；具体构件断代（待考）。",
+  "prompt": "Use case: sketch-to-render. Materialize this EXACT architect blockout as a Ming northern Chinese princely courtyard module, keeping geometry locked. Input silhouette and all ground axis directions must stay unchanged: ground22wide by18deep, front edge1.22222 times side edge, perfectly symmetric ground slopes +0.500 and -0.500, two pixels across per1pixel rise. On1536x1152canvas keep foundation vertices L188,610 F826,929 R1348,668 B710,349. Add realistic red plaster enclosing walls, central wood gate, rear ceremonial hall with green glazed tiles, red columns and restrained Ming painted beams; two grey tiled side wings. A modest princely residence, no imperial yellow. Intricate greybrick/woodgrain/tile details, realistic antique strategy-game painted style. Lower roof peaks as needed but NEVER alter ground shape, horizontal eaves axes or view angle. Paper-thin grey stone paving edge with fully visible three corners, all entrance steps inside polygon. Natural left-upper illumination, true transparent RGBA surroundings and margins. No background glow haze vignette, no people, text, logos, watermark, modern objects.",
+  "references": [
+    {
+      "path": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_wangfu/geometry-guide.png",
+      "sha256": "b932bb5b27cc6654f2a729836e193bb53909f83408c357af69cd93e8756d2b4f",
+      "role": "精确2:1体块几何参考；仅作image_gen输入；已view_image"
+    }
+  ],
+  "created": "2026-09-30T22:35:58.998598+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46e-f804-7962-b399-b98ec1ba7a28/exec-0e77b69d-dd89-416a-b671-e975b3cba219.png",
+  "file": "bld_kit_ming_north_wangfu.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "1344x992",
+  "sha256": "e8181e5483a5507422d26fb8443bfafbb29d8f3a42b2ad64c1a626ca05b3b7b4",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_wangfu",
+    "footprint": [
+      22,
+      18
+    ],
+    "anchor": [
+      670.9408,
+      636.0356
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    22,
+    18
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 11.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_wangfu.png",
+  "source_sha256": "29587bdb3728a1e414571dbc319ece29f3326f286b9261eab65b546722525550",
+  "meta": "meta/bld_kit_ming_north_wangfu.yaml",
+  "notes": "（原创扩展）第3轮原图底轴[0.548623, -0.543853]；成品底轴[0.520046, -0.520046]。仅alpha裁铺地外围，柱脚墙基完整；底面外轮廓通过，内部砖缝/横梁未重投影。仅原向单视图；拼接（待实测）。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "source_record": "sources/bld_kit_ming_north_wangfu.json",
+  "revision": 3,
+  "repair_record": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_wangfu/revision.json"
+}

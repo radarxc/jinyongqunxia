@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_qingpiaodaoxia
+name: 清式镖刀匣
+kind: hidden
+sub: dart
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingpiaodaoxia
+text:
+  desc: 外观：黑漆木扁匣开启，六柄柳叶薄刀嵌槽排列。 待运行时投影：ammoMul=0.950; hiddenHit=3.3。
+  lore: （原创扩展）清代江湖匠人把六柄柳叶薄刀嵌入黑漆扁匣，黑角短柄朝同侧，鹿鼎时代起投放。飞刀无护手，只宜掷用；落地后可捡回未卷刃者。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: dart
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 85
+      hardness: 35
+      qiAffinity: 100

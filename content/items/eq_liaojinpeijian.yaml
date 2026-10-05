@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_liaojinpeijian
+name: 辽金佩剑
+kind: weapon
+sub: sword
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·辽金；天龙至神雕北境可得，形制 （待考）
+price: auto
+flags: []
+assets:
+  icon: item/liaojinpeijian
+text:
+  desc: 外观：全长约八十厘米，窄直铁刃、短横镡、皮缠直柄与扁圆首。
+  lore: 辽金北境军旅场景中的窄直佩剑，双挂环便于骑行时固定，风沙中须常护刃防锈。具体年代、族群和形制依据仍 （待考：核辽金出土兵器）；装具、尺度与投放为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 42
+      qiAffinity: 100

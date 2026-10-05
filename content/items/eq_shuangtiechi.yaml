@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_shuangtiechi
+name: 双铁尺
+kind: weapon
+sub: exotic
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/shuangtiechi
+text:
+  desc: 外观：两柄乌铁直尺并置，各约五十厘米。 待运行时投影：exoticKind=misc。
+  lore: 两柄无刃铁尺以方脊承接来刃，短横护手可锁住剑身，再以另一尺点打腕肘。它不仗锋利，胜在坚实和成对配合；本件尺寸、麻缠柄、江湖流传与品阶均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: pair
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 45
+      qiAffinity: 100

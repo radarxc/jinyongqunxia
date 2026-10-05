@@ -1,0 +1,74 @@
+id: bld_kit_tubo_yamen
+status: candidate
+building:
+  type: bld_kit_tubo_yamen
+  footprint: [16, 12]
+  anchor: &id001 [483.0, 360.6652]
+  era: tubo
+anchor_px: *id001
+footprint_m: [16, 12]
+entrance: {edge: S, offset_cells: 8.0}
+entrance_note: S边中点为规划默认，非实际门洞像素；运行时待实测。
+collision_polygon_m:
+- [0, 0]
+- [16, 0]
+- [16, 12]
+- [0, 12]
+collision_note: 规划整占地代理，不含阴影；院内行走细化待实测。
+actual_height_m: null
+height_note: 未做三维量测；不可把PNG轮廓当作精确高度。
+occluder_proxy_px: [32, 32, 933, 586]
+occluder_note: alpha非零包围框仅作离线保守代理。
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_tubo_yamen.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [896, 448]
+  ground_width_px: 896
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [70, 566]
+    front: [861, 958]
+    right: [1510, 636]
+  source_axis_slopes: [0.49557522123893805, -0.49614791987673346]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.2187981510015409
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.08590138674884429
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读取可见底面，±3 px；biaoju量墙身接地线，其他量薄基面边。后角由平行边推算；非三维测绘。
+pixel_qa:
+  mode: RGBA
+  size: [966, 618]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 321732
+  alpha_partial_pixels: 274057
+  alpha_near_opaque_pixels: 269879
+  alpha_opaque_pixels: 1199
+  alpha_nonzero_bbox: [32, 32, 933, 586]
+  transparent_margins_px: [32, 32, 33, 32]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_tubo_yamen.png
+  source_sha256: eb2c65f8a515d451109e6d2a13b062906e8cb4673c5b307fa335c92bdc71130f
+  source_size: [1536, 1024]
+  crop_box: [65, 73, 1515, 963]
+  uniform_scale_requested: 0.6222222222222222
+  resized_size: [902, 554]
+  rounded_effective_scale: [0.6220689655172413, 0.6224719101123596]
+  paste_offset: [32, 32, 934, 586]
+  target_canvas: [966, 618]
+  final_file: bld_kit_tubo_yamen.png
+  steps: [crop alpha>0 bounding box, 'uniform LANCZOS resize, nearest-integer dimensions', 'paste without mask onto transparent RGBA; no repaint, warp, alpha threshold,
+      flip or rotation']
+release_ready: false
+visual_review: 原图与灰底合成均已 view_image；工具直接展示的外围棕色光晕在正确 alpha 合成后不存在。石砌白赭墙平顶院落、左上光、门口完整，无文字/人物/现代元素。地面宽深比残差约8.6%，仍需城市拼接复核。
+historical_note: 原创地域功能组合；非任何具名实物或全年代复原。

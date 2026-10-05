@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_luohanfumo_can
+name: 罗汉伏魔神功泥人图
+kind: manual
+sub: partial
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《侠客行》·十八泥人所绘穴位与经脉线路；本行登记整组原著实物
+price: null
+flags: []
+assets:
+  icon: item/miji_luohanfumo_can
+text:
+  desc: 外观：清代十八尊掌高泥人置旧木匣，黑彩穴点、红线经脉。
+  lore: 《侠客行》十八泥人绘有穴位与经脉线路，合起来承载罗汉伏魔神功。本行登记整组实物；木匣与题签为 （原创扩展）。研读须依次对照泥人姿态，缺一尊便只能达到残本层限。
+extension:
+  type: manual
+  value:
+    skill: sk_luohanfumo
+    maxLayer: 6
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_luohanfumo
+      readBre: 60
+      maxLayer: 6
+      cultivation: 2400

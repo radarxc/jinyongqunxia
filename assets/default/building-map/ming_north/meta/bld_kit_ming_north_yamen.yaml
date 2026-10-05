@@ -1,0 +1,89 @@
+id: bld_kit_ming_north_yamen
+footprint_m:
+- 16
+- 13
+footprint_basis: design/22 §3.4 明代对应骨架；本套件地域命名
+anchor_px:
+- 495.6154
+- 363.428
+entrance:
+  edge: S
+  offset_cells: 8.0
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 16
+  - 0
+- - 16
+  - 13
+- - 0
+  - 13
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 164
+  - 557
+  F:
+  - 872.5
+  - 914
+  R:
+  - 1371
+  - 624
+source_anchor_px:
+- 767.5
+- 590.5
+target_ground_span_px: 928
+geometry:
+  crop_box:
+  - 157
+  - 145
+  - 1379
+  - 923
+  uniform_scale: 0.7688483844241922
+  scaled_size:
+  - 940
+  - 598
+  canvas_size:
+  - 992
+  - 640
+  paste_offset:
+  - 26
+  - 21
+  - 966
+  - 619
+  raster_scales:
+  - 0.7692307692307693
+  - 0.7686375321336761
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 337886
+  alpha_partial_pixels: 296418
+  alpha_opaque_pixels: 576
+  alpha_bbox:
+  - 27
+  - 22
+  - 965
+  - 619
+  rectangular_trim_removed_nonzero: 46
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.50388
+  - -0.58175
+  source_ratio_relative_error: 0.15478
+  geometry_warning: true
+  visual_review: 第2轮逐张view_image两候选，选本轮整体较优图；主体、底角完整，RGBA透明，光源左上。实测斜率与宽深比见repair-r2记录，仍未同时达到审核几何阈值，保留candidate；未做仿射或透视纠偏。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+final_view_image_review: 第2轮已逐张view_image规范化成品：轮廓及底面完整，透明留边，左上光向、纹理密度可读；几何仍有已登记残差，尚不通过严格审核。
+source_sha256: bb69714bcd5ea77250b2fb45461e53557b677bc4eeb1ee75620c60522b719b20
+sha256: b1d24e097c96ddfd45621cea1ed6ed1d7664caca284b784d74653dc0f9a8e3ea

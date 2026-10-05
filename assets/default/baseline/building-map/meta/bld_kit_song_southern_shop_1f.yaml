@@ -1,0 +1,81 @@
+id: bld_kit_song_southern_shop_1f
+status: candidate
+building:
+  type: bld_kit_song_southern_shop_1f
+  footprint: [6, 5]
+  anchor: &id001 [255.36, 313.5697]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [6, 5]
+logical_footprint_polygon_px:
+- [79.36000000000001, 305.5697]
+- [271.36, 401.5697]
+- [431.36, 321.5697]
+- [239.36, 225.5697]
+collision_polygon_m:
+- [0, 0]
+- [6, 0]
+- [6, 5]
+- [0, 5]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [81, 114]
+- [431, 114]
+- [431, 402]
+- [81, 402]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 5.09
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 2}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_southern_shop_1f.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [352, 176]
+  ground_width_px: 352
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [64, 756]
+    front: [716, 1088]
+    right: [1322, 790]
+  source_axis_slopes: [0.50920245398773, -0.49174917491749176]
+  axis_tolerance: 0.03
+  axis_pass: true
+  source_width_depth_ratio: 1.0759075907590758
+  expected_width_depth_ratio: 1.2
+  ratio_relative_error: 0.1034103410341034
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [512, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 201216
+  alpha_partial_pixels: 60123
+  alpha_opaque_pixels: 805
+  alpha_near_opaque_pixels: 58636
+  alpha_nonzero_bbox: [79, 111, 432, 405]
+  transparent_margins_px: [79, 111, 80, 107]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_southern_shop_1f.png
+  source_sha256: 8957c6daf5af7ffbbd40aaff4189ed58cc3633ac799c895b8b7402f08265c223
+  source_size: [1382, 1138]
+  crop_box: [63, 17, 1324, 1114]
+  uniform_scale_requested: 0.27980922098569155
+  resized_size: [353, 307]
+  rounded_effective_scale: [0.27993655828707376, 0.27985414767547856]
+  paste_offset: [79, 102]
+  final_file: bld_kit_song_southern_shop_1f.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

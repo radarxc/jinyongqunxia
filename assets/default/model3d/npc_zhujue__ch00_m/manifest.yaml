@@ -1,0 +1,396 @@
+- id: npc_zhujue__ch00_m__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 主角（男）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 5223c172-cb00-4bd3-ba60-758c2caf97a7
+    url: https://studio.tripo3d.ai/workspace/generate/5223c172-cb00-4bd3-ba60-758c2caf97a7
+    generate_op: 0208ebce-1208-4f00-b42a-80fcad33fff8（multiview_to_model）
+    rig_op: 5566990a-45c8-42b6-9564-5a5cee351bc5
+    animation_ops:
+      idle: d5e3cb8b-749c-4626-89f8-4324236b0226
+      walk: 7fec6b96-0e8b-43a1-8fa8-bcca97980f53
+      run: 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7
+    comparison_single_image_project: aafbded0-9015-426a-906f-9e3a8b3d1166（单图对比版，未选用、未绑骨、未导出）
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: multiview：Front + Left（Right / Back 留空）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+    use: 多视图 Front 槽（正面立绘原图）
+  - path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
+    sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+    use: 多视图 Left 槽：裁中间那人（纯侧面、脸朝画面左＝角色左侧），裁切框 (651,1)-(893,1007)，裁后 242×1006，sha256 c3f1071ad707344c3875a336f1b18f16bfda0c929abf5317353ed23742799a2a
+  sha256: ebb7b7854d77da07222d9824d753b017c5b65715059e7740a75667dc74068e89
+  size_bytes: 6062140
+  joints: 65
+  triangles: 99466
+  vertices: 55384
+  animations: []
+  textures:
+  - image/jpeg 435910 B
+  - image/jpeg 1512158 B
+  - image/jpeg 613770 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T12:21:00-07:00'
+  status: candidate
+  notes: 绑骨后的基础模型（无动画，绑定姿势）。Tripo 网页「Export」：GLB、贴图 2k、Export Skeleton 开；云端原件为 8K 贴图，可按需重导。 看图验收（2026-10-03）：正/左/右/背四视角完整；左侧头发为黑色、无肉色块（试点 v1 的瑕疵已消除）；骨架位置正确；idle / walk / run 预览正常。
+- id: npc_zhujue__ch00_m__anim_idle
+  file: anim_idle.glb
+  category: model3d
+  style: default
+  subject: 主角（男）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 5223c172-cb00-4bd3-ba60-758c2caf97a7
+    url: https://studio.tripo3d.ai/workspace/generate/5223c172-cb00-4bd3-ba60-758c2caf97a7
+    generate_op: 0208ebce-1208-4f00-b42a-80fcad33fff8（multiview_to_model）
+    rig_op: 5566990a-45c8-42b6-9564-5a5cee351bc5
+    animation_ops:
+      idle: d5e3cb8b-749c-4626-89f8-4324236b0226
+      walk: 7fec6b96-0e8b-43a1-8fa8-bcca97980f53
+      run: 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7
+    comparison_single_image_project: aafbded0-9015-426a-906f-9e3a8b3d1166（单图对比版，未选用、未绑骨、未导出）
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: multiview：Front + Left（Right / Back 留空）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - idle
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+    use: 多视图 Front 槽（正面立绘原图）
+  - path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
+    sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+    use: 多视图 Left 槽：裁中间那人（纯侧面、脸朝画面左＝角色左侧），裁切框 (651,1)-(893,1007)，裁后 242×1006，sha256 c3f1071ad707344c3875a336f1b18f16bfda0c929abf5317353ed23742799a2a
+  sha256: 3b216268e2982e2140a62e0893ad83bf26d411c3fef78d0c1c41f7506fa7f7c1
+  size_bytes: 6415376
+  joints: 65
+  triangles: 99466
+  vertices: 55384
+  animations:
+  - idle (15.333s)
+  textures:
+  - image/jpeg 435910 B
+  - image/jpeg 1512158 B
+  - image/jpeg 613770 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T12:21:00-07:00'
+  status: candidate
+  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 idle（retarget op d5e3cb8b-749c-4626-89f8-4324236b0226），含网格+骨架+1 条动画；原地（Animation stay in Place 开）。
+- id: npc_zhujue__ch00_m__anim_walk
+  file: anim_walk.glb
+  category: model3d
+  style: default
+  subject: 主角（男）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 5223c172-cb00-4bd3-ba60-758c2caf97a7
+    url: https://studio.tripo3d.ai/workspace/generate/5223c172-cb00-4bd3-ba60-758c2caf97a7
+    generate_op: 0208ebce-1208-4f00-b42a-80fcad33fff8（multiview_to_model）
+    rig_op: 5566990a-45c8-42b6-9564-5a5cee351bc5
+    animation_ops:
+      idle: d5e3cb8b-749c-4626-89f8-4324236b0226
+      walk: 7fec6b96-0e8b-43a1-8fa8-bcca97980f53
+      run: 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7
+    comparison_single_image_project: aafbded0-9015-426a-906f-9e3a8b3d1166（单图对比版，未选用、未绑骨、未导出）
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: multiview：Front + Left（Right / Back 留空）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - walk
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+    use: 多视图 Front 槽（正面立绘原图）
+  - path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
+    sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+    use: 多视图 Left 槽：裁中间那人（纯侧面、脸朝画面左＝角色左侧），裁切框 (651,1)-(893,1007)，裁后 242×1006，sha256 c3f1071ad707344c3875a336f1b18f16bfda0c929abf5317353ed23742799a2a
+  sha256: d6a69a707abf89068b10405516ad26402c9e4bc81a9445d8763cde3fe5b28b18
+  size_bytes: 6129936
+  joints: 65
+  triangles: 99466
+  vertices: 55384
+  animations:
+  - walk (2.333s)
+  textures:
+  - image/jpeg 435910 B
+  - image/jpeg 1512158 B
+  - image/jpeg 613770 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T12:21:00-07:00'
+  status: candidate
+  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 walk（retarget op 7fec6b96-0e8b-43a1-8fa8-bcca97980f53），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。
+- id: npc_zhujue__ch00_m__anim_run
+  file: anim_run.glb
+  category: model3d
+  style: default
+  subject: 主角（男）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 5223c172-cb00-4bd3-ba60-758c2caf97a7
+    url: https://studio.tripo3d.ai/workspace/generate/5223c172-cb00-4bd3-ba60-758c2caf97a7
+    generate_op: 0208ebce-1208-4f00-b42a-80fcad33fff8（multiview_to_model）
+    rig_op: 5566990a-45c8-42b6-9564-5a5cee351bc5
+    animation_ops:
+      idle: d5e3cb8b-749c-4626-89f8-4324236b0226
+      walk: 7fec6b96-0e8b-43a1-8fa8-bcca97980f53
+      run: 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7
+    comparison_single_image_project: aafbded0-9015-426a-906f-9e3a8b3d1166（单图对比版，未选用、未绑骨、未导出）
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: multiview：Front + Left（Right / Back 留空）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - run
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+    use: 多视图 Front 槽（正面立绘原图）
+  - path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
+    sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+    use: 多视图 Left 槽：裁中间那人（纯侧面、脸朝画面左＝角色左侧），裁切框 (651,1)-(893,1007)，裁后 242×1006，sha256 c3f1071ad707344c3875a336f1b18f16bfda0c929abf5317353ed23742799a2a
+  sha256: 246272e574634a9caa645963c8f00de487e71472bc13dad51a3a86786aa78f79
+  size_bytes: 6120476
+  joints: 65
+  triangles: 99466
+  vertices: 55384
+  animations:
+  - run (1.25s)
+  textures:
+  - image/jpeg 435910 B
+  - image/jpeg 1512158 B
+  - image/jpeg 613770 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T12:21:00-07:00'
+  status: candidate
+  notes: 【备份】正式使用 anim_idle_walk_run.glb（单文件三段动画）；本分文件仅作备份。预设动作 run（retarget op 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7），含网格+骨架+1 条动画；原地（Hips 只有 Y 向起伏）。 2026-10-04 修跑步跳位（AR-85 同款，零点数）：Tripo 的原地 run 片段整段偏离原点（Hips
+    水平偏移 x -0.029 / z +0.518，约半个身高），切换动作会跳位；用 tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
+- id: npc_zhujue__ch00_m__anim_idle_walk_run
+  file: anim_idle_walk_run.glb
+  category: model3d
+  style: default
+  subject: 主角（男）· 普通魅力（越女剑 ch00 基线服饰）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 5223c172-cb00-4bd3-ba60-758c2caf97a7
+    url: https://studio.tripo3d.ai/workspace/generate/5223c172-cb00-4bd3-ba60-758c2caf97a7
+    generate_op: 0208ebce-1208-4f00-b42a-80fcad33fff8（multiview_to_model）
+    rig_op: 5566990a-45c8-42b6-9564-5a5cee351bc5
+    animation_ops:
+      idle: d5e3cb8b-749c-4626-89f8-4324236b0226
+      walk: 7fec6b96-0e8b-43a1-8fa8-bcca97980f53
+      run: 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7
+    comparison_single_image_project: aafbded0-9015-426a-906f-9e3a8b3d1166（单图对比版，未选用、未绑骨、未导出）
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: f9091f2aa7dab1fb3cb46c033cadef590291c259425b306359bb1c0e61f12382
+    use: 多视图 Front 槽（正面立绘原图）
+  - path: assets/default/rig/npc_zhujue__ch00_m/sheet/sheet_L.png
+    sha256: 2f356901dfab4c10e9353c2231089214a51ebaa5a9a5f20d1c4fc097b57f23e1
+    use: 多视图 Left 槽：裁中间那人（纯侧面、脸朝画面左＝角色左侧），裁切框 (651,1)-(893,1007)，裁后 242×1006，sha256 c3f1071ad707344c3875a336f1b18f16bfda0c929abf5317353ed23742799a2a
+  visibility: private
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: multiview：Front + Left（Right / Back 留空）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - run
+      - walk
+      - idle
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  sha256: d53b0e4064dda0a8ceeef4843660c6529caf5dcb2dce7a95bad913720bb24797
+  size_bytes: 6540412
+  joints: 65
+  triangles: 99466
+  vertices: 55384
+  animations:
+  - run (1.25s)
+  - walk (2.333s)
+  - idle (15.333s)
+  textures:
+  - image/jpeg 435910 B
+  - image/jpeg 1512158 B
+  - image/jpeg 613770 B
+  preview: preview.png
+  created: '2026-10-03T19:15:00-07:00'
+  status: candidate
+  notes: 正式使用的动作文件：一个 GLB 内含 run / walk / idle 三段动画（同一套网格 + 65 关节骨架），原地（Animation stay in Place 开）。协调者 2026-10-03 口径：动作统一单文件；同目录 anim_idle.glb / anim_walk.glb / anim_run.glb 三个分文件仅作备份。 2026-10-04 修跑步跳位（AR-85
+    同款，零点数）：Tripo 的原地 run 片段整段偏离原点（Hips 水平偏移 x -0.029 / z +0.518，约半个身高），切换动作会跳位；用 tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
+- id: npc_zhujue__ch00_m__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 主角（男）· 普通魅力（越女剑 ch00 基线服饰） · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 5223c172-cb00-4bd3-ba60-758c2caf97a7
+    url: https://studio.tripo3d.ai/workspace/generate/5223c172-cb00-4bd3-ba60-758c2caf97a7
+    generate_op: 0208ebce-1208-4f00-b42a-80fcad33fff8（multiview_to_model）
+    rig_op: 5566990a-45c8-42b6-9564-5a5cee351bc5
+    animation_ops:
+      idle: d5e3cb8b-749c-4626-89f8-4324236b0226
+      walk: 7fec6b96-0e8b-43a1-8fa8-bcca97980f53
+      run: 5c09c84e-6754-44ea-a7ae-a4d265bc4fd7
+    comparison_single_image_project: aafbded0-9015-426a-906f-9e3a8b3d1166（单图对比版，未选用、未绑骨、未导出）
+  size: 600x778
+  sha256: 245f02c0c2fe774259597d5bc3fd4050e2fe156c8d1073a73cbf1b49220dac15
+  size_bytes: 160568
+  created: '2026-10-03T22:34:27-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

@@ -1,0 +1,1 @@
+{"command": ["python3", "tools/agents/check_assets.py", "assets/default/building-map/xiyu", "--min", "18", "--max", "22", "--min-side", "256"], "exit_code": 0, "stdout": "assets/default/building-map/xiyu：图片 19 张，条目 19 条，问题 0 个\n", "stderr": ""}

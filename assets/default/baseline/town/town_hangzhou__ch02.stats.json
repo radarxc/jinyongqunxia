@@ -1,0 +1,48 @@
+{
+  "placement_attempts": 72,
+  "parcels": 6,
+  "city_id": "city_hangzhou",
+  "road_cells": 3240,
+  "buildings": 60,
+  "building_types": {
+    "bld_kit_song_southern_biaoju": 1,
+    "bld_kit_song_southern_casino": 1,
+    "bld_kit_song_southern_courtyard": 3,
+    "bld_kit_song_southern_guardhouse": 1,
+    "bld_kit_song_southern_house": 11,
+    "bld_kit_song_southern_inn": 1,
+    "bld_kit_song_southern_manor": 1,
+    "bld_kit_song_southern_market_stall": 18,
+    "bld_kit_song_southern_palace_hall": 1,
+    "bld_kit_song_southern_restaurant": 2,
+    "bld_kit_song_southern_shop_1f": 8,
+    "bld_kit_song_southern_shop_2f": 5,
+    "bld_kit_song_southern_stable": 1,
+    "bld_kit_song_southern_temple_hall": 1,
+    "bld_kit_song_southern_warehouse": 2,
+    "bld_kit_song_southern_wharf": 1,
+    "bld_kit_song_southern_yamen": 1,
+    "bld_lm_ch02_linan_palace_gate": 1
+  },
+  "water_cells": 3512,
+  "lake_cells": {
+    "west_lake_edge": 2387
+  },
+  "source_bridges": 12,
+  "assembled_bridges": 11,
+  "merged_bridge_groups": [
+    [
+      "bridge_north",
+      "bridge_gate_north"
+    ]
+  ],
+  "planning_walkable": 7347,
+  "runtime_hex_walkable": 5222,
+  "road_components": 1,
+  "required_components": 1,
+  "complete": true,
+  "missing_required": {},
+  "decorations": 862,
+  "generation_seconds": 4.9166,
+  "layout_sha256": "aba1b35f4427e1908fcbb882c45f90d5c5eb298454fa8bb3cb6cbcf4162750ae"
+}

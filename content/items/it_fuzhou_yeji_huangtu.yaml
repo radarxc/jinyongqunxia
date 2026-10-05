@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_fuzhou_yeji_huangtu
+name: 福州野鸡黄兔
+kind: dish
+sub: dish
+grade: 5
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《笑傲江湖》·福州城外酒铺将野鸡、黄兔炒作下酒菜
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_ningshen:2battle
+assets:
+  icon: item/fuzhou_yeji_huangtu
+text:
+  desc: 外观：炒野鸡块与黄兔肉分盛两只粗瓷盘，褐金油色。
+  lore: 《笑傲江湖》福州城外酒铺把野鸡、黄兔炒作下酒菜，本作按当地四季酒席投放。本件两盘须热食，适合同席分尝；具体调味、份量与效果属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 16

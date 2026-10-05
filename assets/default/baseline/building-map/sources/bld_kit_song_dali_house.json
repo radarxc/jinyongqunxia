@@ -1,0 +1,80 @@
+{
+  "id": "bld_kit_song_dali_house",
+  "type": "bld_kit_song_dali_house",
+  "w": 6,
+  "h": 5,
+  "subject": "1093年大理国小型民居（建筑细部待考）",
+  "prompt": "Use case: historical-scene. Create ONE production isometric city-map building sprite for tianshu, Song-era Dali kingdom in 1093. Realistic ancient Chinese timber/stone construction and softly weathered material detail, restrained clay-white walls, dark timber, gray tiled roofs, modest local southwest vegetation only where specified. Reference image is MATERIAL AND REALISM ONLY, DO NOT copy its camera, mountain landscape or full scene. Orthographic camera exactly yaw45 elevation30, 2:1 dimetric ground-plane projection, ground axes have screen slopes +0.5 and -0.5, verticals upright, no perspective convergence. South entrance/front must face screen LOWER LEFT. One complete isolated asset centered, true transparent RGBA background; generous >=10% empty transparent margins on all sides. Entire asset and contact shadow fully inside canvas. A very thin flat rectangular footprint, four corners readable, NO thick diorama plinth. No outside road, panorama, sky or landscape. Light from SCREEN UPPER LEFT; small soft contact shadow goes SCREEN LOWER RIGHT only. No writing of any kind, signs, letters, numbers, people, border, watermark, logo, checkerboard pattern, modern items, late Ming/Qing tourism styling, oversized decorative upturned roofs. Keep scale realistic. A modest single-story domestic house, simple gray tiled gabled roof, lightly plastered earth walls and visible dark timber frame, wooden south door and lattice windows, stone doorstep; no courtyard complex. Footprint 6m east-west by5m north-south. One tiny camellia shrub contained at side.",
+  "negative": "文字、水印、现代元素、人物、景观背景、厚底座、旅游古城风格、裁切、透视汇聚",
+  "references": [
+    {
+      "id": "ref_sect_shaolin__ch01_base01",
+      "file": "assets/default/baseline/building/ref_sect_shaolin__ch01_base01.png",
+      "sha256": "b109e6d771320b80f97750d1fc612f1a26f1da1e8bd5d5d0baca7c27cffa256f",
+      "role": "仅材质与写实气质"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-7225-7853-a3d8-1d5bb7819f26/exec-3268c81e-d16c-48da-b2e3-d04280e8daff.png",
+  "source_sha256": "f49fc18114ab43aa76404ff6a9b8c3be68690437bf7879064411fd82de9eef2d",
+  "created": "2026-09-30",
+  "visual_review": "已view_image(detail=original)逐张自查：小型民居主体完整，无文字或现代物，灰瓦木构与基线一致；门朝左下，左上光。底面目测点支持2:1近似投影，局部瓦檐不用于锚点；低alpha外缘需规格化时扩透明画布。历史细部待考。",
+  "candidate_count": 1,
+  "ground_edges_source_px": [
+    [
+      [
+        229,
+        661
+      ],
+      [
+        837,
+        964
+      ]
+    ],
+    [
+      [
+        837,
+        964
+      ],
+      [
+        1333,
+        709
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      229,
+      661
+    ],
+    "front": [
+      837,
+      964
+    ],
+    "right": [
+      1333,
+      709
+    ]
+  },
+  "projection_review": "手动读取可见底面边角，±2px估计；两边斜率0.4984/-0.5141，w:h投影dx比608/496=1.2258，目录6/5=1.2。",
+  "status": "candidate",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      254
+    ],
+    "transparent_pixels": 953442,
+    "partial_pixels": 619422,
+    "opaque_pixels": 0,
+    "bbox": [
+      0,
+      21,
+      1472,
+      982
+    ]
+  }
+}

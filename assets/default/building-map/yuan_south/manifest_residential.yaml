@@ -1,0 +1,321 @@
+- id: bld_kit_yuan_south_house_small
+  file: bld_kit_yuan_south_house_small.png
+  category: building-map
+  style: default
+  subject: 元末江南·小民居（原创扩展）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A modest single-storey 7m by6m commoner house: one three-bay range, low stone footings, dark weathered timber frame, pale lime-and-earth infill, plain grey flat-and-round tile overhanging gable roof, exposed rafters, simple straight lattice doors and
+    windows, no courtyard and no shop.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 滨水小屋比例
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+    role: 疏落岸居、朴素灰瓦木构
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:29:09+00:00'
+  generation_id: 1f0da54c-26cd-4e6f-a2a2-ff77727afc89
+  size: 480x480
+  sha256: b1a0dd4fa07e72c795735302e2a7aa5972f3964e095b0aefbfe364d6b9fa13d0
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_house_small
+    footprint:
+    - 7
+    - 6
+    anchor: &id001
+    - 234.9137
+    - 305.0886
+    era: yuan
+  footprint_m:
+  - 7
+  - 6
+  footprint_basis: design/22 §3.4 bld_kit_yuan_house
+  entrance:
+    edge: S
+    offset_cells: 3
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_house_small_selected.json
+  source_archive: sources/hist_house_small_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 滨水小屋比例；疏落岸居、朴素灰瓦木构；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id001
+- id: bld_kit_yuan_south_house_large
+  file: bld_kit_yuan_south_house_large.png
+  category: building-map
+  style: default
+  subject: 元末江南·大民居（原创扩展）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 10m by8m prosperous two-storey merchant residence, compact rectangular range: stout timber post-and-beam grid, plaster lower infill, timber upper lattice windows, grey tile overhanging gable roof, restrained bracket supports, low stone base; domestic,
+    not a shop or courtyard.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 两层滨水木构
+  - url: http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+    role: 柱网、深檐与灰筒板瓦
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:29:51+00:00'
+  generation_id: 68d3a326-18a6-4d0b-b277-315c3be4fe26
+  size: 656x656
+  sha256: 86df4a010376fdcf7c380740d434663b1f2f7dc712b12f55f6e910bc30e7fcdd
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_house_large
+    footprint:
+    - 10
+    - 8
+    anchor: &id002
+    - 320.5022
+    - 433.5185
+    era: yuan
+  footprint_m:
+  - 10
+  - 8
+  footprint_basis: 【建议值】南宋courtyard包络用于大民居变体（原创扩展）
+  entrance:
+    edge: S
+    offset_cells: 5
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_house_large_selected.json
+  source_archive: sources/hist_house_large_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 两层滨水木构；柱网、深檐与灰筒板瓦；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id002
+- id: bld_kit_yuan_south_courtyard
+  file: bld_kit_yuan_south_courtyard.png
+  category: building-map
+  style: default
+  subject: 元末江南·坊巷院落（原创扩展）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A compact 10m by8m Jiangnan courtyard dwelling: main hall and two lower side wings enclosing a small visible stone-and-packed-earth court, inward-facing covered galleries, grey tiled gable roofs, lime infill and dark timber; one clear south entrance,
+    no garden scenery.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 院落/廊屋关系
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+    role: 江南疏院植被层次
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:30:27+00:00'
+  generation_id: 22e1ba43-7ecf-42c8-afe6-982d016028d6
+  size: 656x480
+  sha256: a1fd6e6bc0b0e6d8e16b14df31de89a04f6e343b24749c76a3b5a5d0299f8f91
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_courtyard
+    footprint:
+    - 10
+    - 8
+    anchor: &id003
+    - 330.7259
+    - 281.0382
+    era: yuan
+  footprint_m:
+  - 10
+  - 8
+  footprint_basis: 【建议值】design/22 §3.3同功能项
+  entrance:
+    edge: S
+    offset_cells: 5
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_courtyard_selected.json
+  source_archive: sources/hist_courtyard_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 院落/廊屋关系；江南疏院植被层次；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id003
+- id: bld_kit_yuan_south_shop_1f
+  file: bld_kit_yuan_south_shop_1f.png
+  category: building-map
+  style: default
+  subject: 元末江南·单层商铺（原创扩展）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A small 6m by5m single-storey street shop: shallow open timber shopfront with removable board shutters and waist-height counter, simple lattice rear doors, plain grey tiled gable roof, lime sidewalls, no hanging text sign, goods or people.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 临街开间与板门
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018
+    role: 草亭尺度及低饱和材料
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:31:04+00:00'
+  generation_id: b5172ed5-2a32-4ee9-900d-2dba99df5ac6
+  size: 448x432
+  sha256: 80d7ef6434e593e9989fb3fe2f9ce6551bbb712701c652a663fc506a178e97ea
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_shop_1f
+    footprint:
+    - 6
+    - 5
+    anchor: &id004
+    - 233.9831
+    - 292.6702
+    era: yuan
+  footprint_m:
+  - 6
+  - 5
+  footprint_basis: 【建议值】design/22 §3.3同功能项
+  entrance:
+    edge: S
+    offset_cells: 3
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_shop_1f_selected.json
+  source_archive: sources/hist_shop_1f_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 临街开间与板门；草亭尺度及低饱和材料；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id004
+- id: bld_kit_yuan_south_shop_2f
+  file: bld_kit_yuan_south_shop_2f.png
+  category: building-map
+  style: default
+  subject: 元末江南·两层商铺（原创扩展）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. An 8m by6m two-storey street shop: open lower timber storefront and shutter counter, upper living loft with closely spaced straight lattice windows, deep grey-tiled gable eaves on simple bracket arms, dark timber and lime infill; no balcony plants or
+    written sign.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 两层铺屋开间
+  - url: http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+    role: 深檐、格扇与灰瓦
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:29:32+00:00'
+  generation_id: 07483c40-5355-4bd4-86b1-bc68bf6bf01c
+  size: 544x496
+  sha256: f2a639caf0693a620e62c3bf91381659e755df9ea89edc32546ee9f85619d8b0
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_shop_2f
+    footprint:
+    - 8
+    - 6
+    anchor: &id005
+    - 278.4106
+    - 340.9128
+    era: yuan
+  footprint_m:
+  - 8
+  - 6
+  footprint_basis: 【建议值】design/22 §3.3同功能项
+  entrance:
+    edge: S
+    offset_cells: 4
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_shop_2f_selected.json
+  source_archive: sources/hist_shop_2f_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 两层铺屋开间；深檐、格扇与灰瓦；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id005
+- id: bld_kit_yuan_south_inn
+  file: bld_kit_yuan_south_inn.png
+  category: building-map
+  style: default
+  subject: 元末江南·客栈（原创扩展）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 12m by9m two-storey travellers inn around a tiny service court: broad open entrance bay, ground-level public room shutters, upper guest-room lattice windows, timber gallery only where structurally plausible, multiple plain grey gable roofs, stone footings;
+    no sign text, lantern spectacle or people.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 滨水楼屋与小院
+  - url: http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+    role: 柱网、格扇、深檐
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:30:08+00:00'
+  generation_id: b3c61547-c0d5-4751-9937-688b13290b16
+  size: 752x720
+  sha256: 204e9cd38034f8ff2ca4f6d54e7171fd0dc171d669d2b86e2a8413f83ec99be5
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_inn
+    footprint:
+    - 12
+    - 9
+    anchor: &id006
+    - 368.8065
+    - 461.5521
+    era: yuan
+  footprint_m:
+  - 12
+  - 9
+  footprint_basis: 【建议值】design/22 §3.3同功能项
+  entrance:
+    edge: S
+    offset_cells: 6
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_inn_selected.json
+  source_archive: sources/hist_inn_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 滨水楼屋与小院；柱网、格扇、深檐；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id006
+- id: bld_kit_yuan_south_restaurant
+  file: bld_kit_yuan_south_restaurant.png
+  category: building-map
+  style: default
+  subject: 元末江南·酒楼茶肆（原创扩展）
+  prompt: 'Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 12m by9m substantial two-storey food house: wide open lower bays with timber shutters, upper dining level with lattice screens and modest covered gallery, main grey-tiled hip-and-gable roof, deep eaves, restrained plain brackets, stone base; no banners,
+    text, patrons or food props.'
+  negative: 文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕
+  references:
+  - url: https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+    role: 滨水台榭
+  - url: https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00000900
+    role: 重檐/平座/栏杆的等级比例
+  tool: Codex Images edits endpoint
+  model: gpt-image-2
+  created: '2026-10-01T07:30:41+00:00'
+  generation_id: aa3b5656-8bfc-41d0-9314-bedf18aa53bc
+  size: 768x688
+  sha256: 4416848d826b0c508ca172b21618dbbcaf14b4c04507d9ba2e00acffa6bfa6c2
+  status: candidate
+  building:
+    type: bld_kit_yuan_south_restaurant
+    footprint:
+    - 12
+    - 9
+    anchor: &id007
+    - 387.8841
+    - 446.489
+    era: yuan
+  footprint_m:
+  - 12
+  - 9
+  footprint_basis: 【建议值】design/22 §3.3同功能项
+  entrance:
+    edge: S
+    offset_cells: 6
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: sources/hist_restaurant_selected.json
+  source_archive: sources/hist_restaurant_selected.png
+  processing:
+  - alpha 非零包围框裁切
+  - 一次等比 LANCZOS 缩放
+  - 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+  notes: 滨水台榭；重檐/平座/栏杆的等级比例；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。
+  anchor_px: *id007

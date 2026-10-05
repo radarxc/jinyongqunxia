@@ -1,0 +1,507 @@
+- id: tex_town_ming_south_city_gate__k4_r000_v01
+  file: tex_town_ming_south_city_gate__k4_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·净宽4格完整城门（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan Ming city gate with four-unit clear passage. Strong historical construction detail: massive blue-grey
+    fired-brick gate platform on granite footings; radiating brick voussoirs around one shallow round arch; repaired lime joints, low parapet;
+    complete low grey-tile guard hall above with plain ridge and restrained bracket blocks; true empty tunnel.
+
+
+    Preserve the guide''s logical footprint 8 by 4, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result. Gate geometry: front division exactly 2:4:2 units; central 4-unit arch and tunnel fully transparent, with
+    no door, floor or dark back wall.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
+  references:
+  - file: assets/default/building-map/ming_south/history/guides/tex_town_ming_south_city_gate__k4_r000_v01.png
+    sha256: 9a91363cc27fee362d80ef9a9f5c2b6eecf6e8c15a20380ea00832df081b13bd
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3071.jpg
+    accessed: '2026-10-01'
+    sha256: c44e42854e908977709f4cd3c5544844ab1000342453e5c3cc6ccc90d4ffe90f
+    used_detail: 南京中华门遗存：青灰城砖、花岗岩墙脚、券洞与城台体量
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3072.jpg
+    accessed: '2026-10-01'
+    sha256: 6abf6df4fec1f18dabbc5fb1f1ed201dd7f32a5bcde9a9e9a246d93e967fef55
+    used_detail: 南京中华门遗存：砖砌法、灰缝旧化、门台比例与低女墙
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:33:25.203868+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_city_gate__k4_r000_v01.png
+  size: 457x488
+  sha256: bcabaf7cb50c50ffd47c5be0413e5908f7e60e684517c75b712faa2ea724bfa6
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: city_gate
+    footprint:
+    - 8
+    - 4
+    variant: k4_r000_v01
+    autotile_mask: null
+  source_sha256: e9451746c8b1973d3387c7dbbda41d0b2276060be708ae73f92fed37e3253a29
+  anchor_px:
+  - 233.0
+  - 364.2
+  notes: 2026-10-01按历史图片重出；历史细节：青灰烧结城砖台与花岗石脚；浅圆券放射券砖、修补灰缝、低女墙、低缓灰瓦门楼和短浅承托；门洞真透明。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: assets/default/building-map/ming_south/history/records/tex_town_ming_south_city_gate__k4_r000_v01.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.35924007
+    paste_offset:
+    - 21
+    - 115
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
+- id: tex_town_ming_south_city_gate__k6_r000_v01
+  file: tex_town_ming_south_city_gate__k6_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·净宽6格完整城门（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan Ming city gate with six-unit clear passage. Strong historical construction detail: broad blue-grey
+    fired-brick gate platform on granite footings; radiating brick voussoirs around one wide shallow round arch; repaired lime joints, low parapet;
+    complete low grey-tile guard hall above; true empty tunnel.
+
+
+    Preserve the guide''s logical footprint 10 by 4, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result. Gate geometry: front division exactly 2:6:2 units; central 6-unit arch and tunnel fully transparent, with
+    no door, floor or dark back wall.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
+  references:
+  - file: assets/default/building-map/ming_south/history/guides/tex_town_ming_south_city_gate__k6_r000_v01.png
+    sha256: 5e5fdee8c4722cf5229af9c9f324e415c2cb4ad9f40ba9b62f74a9bcdf6724ec
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3071.jpg
+    accessed: '2026-10-01'
+    sha256: c44e42854e908977709f4cd3c5544844ab1000342453e5c3cc6ccc90d4ffe90f
+    used_detail: 南京中华门遗存：青灰城砖、花岗岩墙脚、券洞与城台体量
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3072.jpg
+    accessed: '2026-10-01'
+    sha256: 6abf6df4fec1f18dabbc5fb1f1ed201dd7f32a5bcde9a9e9a246d93e967fef55
+    used_detail: 南京中华门遗存：砖砌法、灰缝旧化、门台比例与低女墙
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:33:26.656466+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_city_gate__k6_r000_v01.png
+  size: 538x477
+  sha256: 0a292ea5f2c66996280cf7d1954b39ac441b463b5202e846ec2be194309c9c25
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: city_gate
+    footprint:
+    - 10
+    - 4
+    variant: k6_r000_v01
+    autotile_mask: null
+  source_sha256: 6c8f2f6c0d35fd08e6cf5340a7894effa54ecd2fc2fb1c18aeccf29137bd0be7
+  anchor_px:
+  - 263.0419
+  - 343.4636
+  notes: 2026-10-01按历史图片重出；历史细节：宽体青灰城砖台与花岗石脚；宽浅圆券放射券砖、修补灰缝、低女墙和完整低缓灰瓦门楼；门洞真透明。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: assets/default/building-map/ming_south/history/records/tex_town_ming_south_city_gate__k6_r000_v01.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.43607706
+    paste_offset:
+    - 20
+    - 29
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
+- id: tex_town_ming_south_wall__brick_r000_v01
+  file: tex_town_ming_south_wall__brick_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·青灰砖城墙直段（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan straight Ming city-wall module. Strong historical construction detail: tall square blue-grey fired-brick
+    pier; thin staggered horizontal courses, lime joints and restrained kiln-color variation; rough granite bottom course and plain flat brick
+    cap; no roof or crenellation.
+
+
+    Preserve the guide''s logical footprint 1 by 1, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
+  references:
+  - file: assets/default/building-map/ming_south/history/guides/tex_town_ming_south_wall__brick_r000_v01.png
+    sha256: 2d41f05beda296d3c4de8e177accf0bb8f7f2802e0ec579d34a94e6cf4702b31
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3071.jpg
+    accessed: '2026-10-01'
+    sha256: c44e42854e908977709f4cd3c5544844ab1000342453e5c3cc6ccc90d4ffe90f
+    used_detail: 南京中华门遗存：青灰城砖、花岗岩墙脚、券洞与城台体量
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3072.jpg
+    accessed: '2026-10-01'
+    sha256: 6abf6df4fec1f18dabbc5fb1f1ed201dd7f32a5bcde9a9e9a246d93e967fef55
+    used_detail: 南京中华门遗存：砖砌法、灰缝旧化、门台比例与低女墙
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:24:07.130300+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_wall__brick_r000_v01.png
+  size: 73x173
+  sha256: a52f1c5ba46f944c3841e92120301f2f2305d6c09546dcc7b978cab62c520bf9
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: wall
+    footprint:
+    - 1
+    - 1
+    variant: brick_r000_v01
+    autotile_mask: null
+  source_sha256: 058d326592c97895973274859af4ef16db107e85a24bad3f8e7c1c50f6d3903e
+  anchor_px:
+  - 36.58
+  - 149.59
+  notes: 2026-10-01按历史图片重出；历史细节：青灰烧结城砖细横皮错缝、细石灰缝和克制窑色差；粗花岗石底皮、平砖压顶；无屋顶与垛口。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/ming_south/history/records/tex_town_ming_south_wall__brick_r000_v01.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.11284722
+    paste_offset:
+    - 4
+    - 16
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
+- id: tex_town_ming_south_wall_corner__outer_ne_v01
+  file: tex_town_ming_south_wall_corner__outer_ne_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·青灰砖城墙外角（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan outer L corner of a Ming city wall. Strong historical construction detail: two equal-height and
+    equal-thickness blue-grey brick arms in a three-voxel L plan; continuous flat cap, interlocking corner bond, thin lime joints, granite bottom
+    course; missing fourth square fully transparent.
+
+
+    Preserve the guide''s logical footprint 2 by 2, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result. Corner geometry: exact 2 by 2 plan made of three 1 by 1 wall voxels; arms two units long, one unit thick
+    and three units tall.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
+  references:
+  - file: assets/default/building-map/ming_south/history/guides/tex_town_ming_south_wall_corner__outer_ne_v01.png
+    sha256: 78393577d08317ef04c618b2b45ea02194f84c4e705abff26cada5609dde2323
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3071.jpg
+    accessed: '2026-10-01'
+    sha256: c44e42854e908977709f4cd3c5544844ab1000342453e5c3cc6ccc90d4ffe90f
+    used_detail: 南京中华门遗存：青灰城砖、花岗岩墙脚、券洞与城台体量
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Nanjing-Zhonghua-Gate-3072.jpg
+    accessed: '2026-10-01'
+    sha256: 6abf6df4fec1f18dabbc5fb1f1ed201dd7f32a5bcde9a9e9a246d93e967fef55
+    used_detail: 南京中华门遗存：砖砌法、灰缝旧化、门台比例与低女墙
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:24:25.721452+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_wall_corner__outer_ne_v01.png
+  size: 172x232
+  sha256: ccd74cdf0e2e47df29bddb97c0d6e6fb8ccb49d9b98880f0a0660672de752558
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: wall_corner
+    footprint:
+    - 2
+    - 2
+    variant: outer_ne_v01
+    autotile_mask: null
+  source_sha256: 8b4dbaec71c55ca40c49079296cf75ec4d07ddd12ff634fd23fa8202c16e94f6
+  anchor_px:
+  - 85.8627
+  - 191.646
+  notes: 2026-10-01按历史图片重出；历史细节：三格L形同高等厚墙臂；连续平顶、转角咬砌、细灰缝与花岗石底皮；缺失第四格真透明。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/ming_south/history/records/tex_town_ming_south_wall_corner__outer_ne_v01.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.12906404
+    paste_offset:
+    - 21
+    - 73
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
+- id: tex_town_ming_south_bridge__stone_w5_l10_r000_v01
+  file: tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·单孔花岗石拱桥（原创扩展）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan single-span Jiangnan stone footbridge. Strong historical construction detail: low segmental arch
+    in warm-grey granite; radiating voussoirs and rough block soffit; worn stone-paved gently humped deck; plain post-and-panel rails with square
+    posts; arch opening entirely transparent.
+
+
+    Preserve the guide''s logical footprint 5 by 10, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
+  references:
+  - file: assets/default/building-map/ming_south/history/guides/tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png
+    sha256: 31dc7532fa52306685880b242ae93716ff749e2b8468899b7047c3c6070f2cef
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:The_Fangsheng_Bridge-1.jpg
+    accessed: '2026-10-01'
+    sha256: 5aac882674797a16fb92e61afcc4fd70e5f5d875b3b921aadab7c2b18eef5ed9
+    used_detail: 朱家角放生桥实物：花岗石分节拱券、缓拱桥面与素栏
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:The_Fangsheng_Bridge-2.jpg
+    accessed: '2026-10-01'
+    sha256: bfe71f4ed683673513993e8227490b015bf814123e34f4fdd8bef7a99ff966b5
+    used_detail: 朱家角放生桥实物：桥台石作、踏步磨损与运河尺度
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:27:16.161113+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png
+  size: 489x230
+  sha256: 888c588ac988d9bcf401976e0b87f44f9051181305a0c618891510e317341150
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: bridge
+    footprint:
+    - 5
+    - 10
+    variant: stone_w5_l10_r000_v01
+    autotile_mask: null
+  source_sha256: deb8818e9a34cbc430c7eb892a11bb523b17d8aa8f4fbe68280aea291dc7d025
+  anchor_px:
+  - 243.84
+  - 139.46
+  notes: 2026-10-01按历史图片重出；历史细节：暖灰花岗石低缓单孔拱；放射券石和粗石拱腹；磨损缓拱桥面、方柱素栏；拱孔真透明。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/ming_south/history/records/tex_town_ming_south_bridge__stone_w5_l10_r000_v01.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.2712916
+    paste_offset:
+    - 4
+    - 6
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
+- id: tex_town_ming_south_tree_cluster__willow_v01
+  file: tex_town_ming_south_tree_cluster__willow_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·垂柳（地域意象，具体种属待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan mature Jiangnan weeping willow. Strong historical construction detail: forked grey-brown fissured
+    trunk; airy asymmetrical crown with many fine drooping branch curtains and narrow lanceolate leaves; visible inner woody structure and clean
+    root contact, no soil island.
+
+
+    Preserve the guide''s logical footprint 3 by 3, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result. Tree geometry: retain a clean root contact as anchor and draw no ground tile.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
+  references:
+  - file: assets/default/building-map/ming_south/history/guides/tex_town_ming_south_tree_cluster__willow_v01.png
+    sha256: 0295e7ec5253842362ce9bd20488ad482e1e3b9654a25b2c5a0d1e93371cb20e
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:A_willow_and_a_boat_in_Pingjiang_Road_(6650483501).jpg
+    accessed: '2026-10-01'
+    sha256: c1d7ce2df6eca284323dd68faa2db12748a79982feb339a7cdde6ae6e7e78d87
+    used_detail: 苏州平江路实景：垂柳灰褐裂纹树干与细长下垂枝幕
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Hangzhou_-_West_Lake_1759.jpg
+    accessed: '2026-10-01'
+    sha256: f4715e787314243c0b65e1a5faa9232e0d5280a3bc83dd9ee5d71121dac865d2
+    used_detail: 1759年西湖图：湖岸垂柳的疏透轮廓与地域意象
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:27:20.068597+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_tree_cluster__willow_v01.png
+  size: 200x154
+  sha256: c9e0ffa697c0d4232bc14862d810498d3140a575587fdadf74b64ce68f8f8e0d
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 3
+    - 3
+    variant: willow_v01
+    autotile_mask: null
+  source_sha256: dafa3dd592eac3e66ac9208b0a245e9b7ee7ae995df53490ae2ca32fe1f9789a
+  anchor_px:
+  - 99.7
+  - 149.12
+  notes: 2026-10-01按历史图片重出；历史细节：灰褐裂纹分叉树干、疏透不对称树冠、细长下垂枝幕与披针叶；内部木枝可见，根部无土岛。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/ming_south/history/records/tex_town_ming_south_tree_cluster__willow_v01.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.13773585
+    paste_offset:
+    - 8
+    - 4
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite
+- id: tex_town_ming_south_tree_cluster__bamboo_v01
+  file: tex_town_ming_south_tree_cluster__bamboo_v01.png
+  category: tile
+  style: default
+  subject: 明代江南·丛竹（地域意象，具体种属待考）
+  prompt: 'You are a narrow image-generation tool runner. Call image_gen exactly ONCE, then stop; do not inspect or edit the result. Generate
+    one entirely new anonymous original game sprite. The first attached image is only a geometry, camera and scale guide. The last two historical
+    images control form, construction, proportion and materials; do not copy either composition.
+
+
+    Subject: one isolated Ming dynasty Jiangnan compact Jiangnan bamboo clump. Strong historical construction detail: six to nine slender green
+    culms with visible segmented nodes, gathered cleanly at roots; fine lanceolate leaves in separated alternating sprays, open internal gaps
+    and slightly leaning asymmetric crown; no rocks or planter.
+
+
+    Preserve the guide''s logical footprint 2 by 2, approximate silhouette scale and entrance orientation. Orthographic yaw 45 degrees, elevation
+    30 degrees, 2:1 dimetric ground axes about +0.5 and -0.5; verticals upright, opposite edges parallel, no perspective convergence. Show the
+    whole subject and a readable thin ground-contact boundary. Soft daylight from screen upper-left and tiny lower-right contact shadow. Match
+    the guide''s restrained realistic weathered materials and fine detail density, but replace its period detail with the historical references.
+
+
+    TRUE transparent RGBA background with clean antialiasing and at least 8 percent empty margin on every side; required openings also alpha zero.
+    Exactly one coherent sprite. No people, readable writing, signs, flags, watermark, modern object, landscape, sky, checkerboard, glow, thick
+    floating base, clipping, fantasy architecture, exaggerated roof lift, gold or Qing dragon decoration. Use transparent_background true. Output
+    only the generated image result. Tree geometry: retain a clean root contact as anchor and draw no ground tile.'
+  negative: 无人、文字、水印、现代物件、背景地台、假棋盘、清式繁饰；门桥孔洞真透明。
+  references:
+  - file: assets/default/building-map/ming_south/history/guides/tex_town_ming_south_tree_cluster__bamboo_v01.png
+    sha256: a1adac1a5dfae5d7d5f37758c23873b6afc53c1400a959b2b474d3569c1888a5
+    used_detail: 旧版同ID成品，仅控制相机、朝向、画布与逻辑占地，不提供年代造型
+    role: geometry_camera_guide_actual_image_input
+  - url: https://www.metmuseum.org/art/collection/search/44590
+    accessed: '2026-10-01'
+    sha256: 28ac2426ffb006a761f22241bfa62e1f279ca543a0c55c4f0f6a7befa4b9650b
+    used_detail: 明代夏昶墨竹：分节细竿、交替叶簇与疏密节奏
+    role: historical_form_material_reference_actual_image_input
+  - url: https://commons.wikimedia.org/wiki/File:Bamb_Garden_in_Yangzhou.JPG
+    accessed: '2026-10-01'
+    sha256: 938f9daecbbbb8daa19f2fe24cb2c6a4da2fb09b0cdd26b04fd1423bb23a729b
+    used_detail: 扬州竹园实物：根部聚生、竿叶比例与内部通透空隙
+    role: historical_form_material_reference_actual_image_input
+  tool: codex exec · built-in image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: ultra (codex orchestration; image backend undisclosed)
+  created: '2026-10-01T10:27:27.786415+00:00'
+  source_path: assets/default/building-map/ming_south/history/selected-sources/tex_town_ming_south_tree_cluster__bamboo_v01.png
+  size: 136x171
+  sha256: 69e3d7b3673b0a32dc2159dd7ebdac1878c43c3aadfe6769dbbd6e3ff9639fa3
+  status: approved
+  approved_by: 作者 2026-10-01 素材总览页「其他的图都通过」
+  tile:
+    kind: tree_cluster
+    footprint:
+    - 2
+    - 2
+    variant: bamboo_v01
+    autotile_mask: null
+  source_sha256: 34bd6d632fdcbe63af9218f9cddbf5780d79ff074ef805c59167953af1c7eb71
+  anchor_px:
+  - 64.07
+  - 163.19
+  notes: 2026-10-01按历史图片重出；历史细节：6至9根可见节的细绿竿根部聚生；披针叶分离交替成簇、内部通透、略倾不对称；无石组花盆。逐图目检通过主体完整、真RGBA及禁项；保留原ID/type/footprint/anchor。仅单视图candidate，换图后未做整城总装、格孔碰撞或墙段接缝实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/ming_south/history/records/tex_town_ming_south_tree_cluster__bamboo_v01.json
+  processing:
+    method: alpha>=2 bbox, uniform LANCZOS resize, transparent padding
+    scale: 0.11490126
+    paste_offset:
+    - 4
+    - 29
+    excluded: no warp, anisotropic scale, repaint, flip, or alpha threshold rewrite

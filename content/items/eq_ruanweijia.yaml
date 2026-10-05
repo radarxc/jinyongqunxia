@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_ruanweijia
+name: 软猬甲
+kind: armor
+sub: innerArmor
+grade: 10
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·桃花岛宝物
+price: null
+flags: []
+assets:
+  icon: item/ruanweijia
+text:
+  desc: 外观：深褐软甲表面密布短刺，贴身背心轮廓。
+  lore: 《射雕英雄传》中软猬甲为桃花岛宝物，黄蓉贴身穿用，可御兵刃并以倒刺伤拳掌来袭者；来历与后续持有人仍 （待考）。本表背心形制为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: metal
+    divine: true
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 50

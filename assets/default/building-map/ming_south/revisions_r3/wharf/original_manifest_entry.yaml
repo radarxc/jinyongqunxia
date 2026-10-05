@@ -1,0 +1,44 @@
+- id: bld_kit_ming_south_wharf
+  file: bld_kit_ming_south_wharf.png
+  category: building-map
+  style: default
+  subject: 明代江南河埠码头（原创扩展）
+  prompt: 'Use case: precise-object-edit. Correct ONLY the ground projection and shape of this supplied Ming Jiangnan wharf sprite. Preserve the exact materials, design details, realistic style, transparent background and upper-left light. Target footprint 10 east-west by4 north-south metres. Geometry is crucial: both planar ground axes must have exactly slope +0.5 and -0.5, not steeper. Front projected horizontal span : side projected horizontal span = 10:4. Thin flat rectangular footprint with visible corners, no curved edges. Ground center is halfway between opposite leftmost and rightmost base corners. Keep exactly three modest stone steps along front long edge and two mooring posts. No water, boat or scenery. One complete asset, at least8% transparent margin all sides, no text, labels, measurements, grid, perspective, people, white backdrop, painted checkerboard or soft halo. True RGBA.'
+  negative: No people, readable text, watermark, scenery, modern glass, painted checkerboard, Qing ornament or thick diorama pedestal.
+  references:
+  - path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-04c3357b-f360-40cc-ae71-dc12e52cdd62.png
+    sha256: 27deb15b4d1f42c9ccfa0352ad074b5111d762ec00e6f892c6911f94316090ca
+    role: edit_target
+  tool: codex exec · image_gen
+  model: image_gen (underlying image model undisclosed)
+  effort: not_exposed
+  created: '2026-09-30T21:25:02.370755+00:00'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-f970-73e3-ad29-38fcf89b70a6/exec-e5534e16-6c01-4cef-824e-4fee1848fc4d.png
+  source_copy: sources/bld_kit_ming_south_wharf.png
+  source_sha256: 70fef63cdc012a144d887996e3951a89c504be58ba2f3bde695c07e982900dc5
+  size: 528x272
+  sha256: 1f71b40224e3408efe2049849bc6768465da4a221ce34a6a09c74a7aaecb8f1c
+  status: candidate
+  building:
+    type: bld_kit_ming_south_wharf
+    footprint:
+    - 10
+    - 4
+    anchor:
+    - 279.2565
+    - 146.15
+    era: ming_south
+  footprint_basis: 【建议值】design/22 §3.3 宋江南同功能占地（大民居按院落）
+  candidate_count: 2
+  source_record: sources/wharf.json
+  projection_contract:
+    yaw_deg: 45
+    elevation_deg: 30
+    ground_tile_px:
+    - 64
+    - 32
+    actual_views:
+    - 0
+    allowRotation: false
+    geometry_verified: false
+  notes: 已逐图view_image；仅透明裁边、等比LANCZOS及padding。底面中心为人工测点推算；轴向/占地比例残差见来源记录，未宣称精确拼接或四向已完成。

@@ -1,0 +1,410 @@
+- id: vfx_template_plain_strike_arc
+  file: plain_strike/arc/source_sheet.png
+  category: vfx
+  style: default
+  subject: plain_strike/arc 通用招式原料（原创扩展），不限书界年代，无人物服饰
+  prompt: 'Use case: stylized-concept. Asset type: ordinary martial-arts strike animation sheet for a
+    Chinese wuxia game. ONE wide 1536x512 image, pure flat WHITE background. EXACTLY THREE equal square
+    cells horizontally, 512x512 each, no visible grid or borders. Same effect in three consecutive animation
+    frames, left to right: initial small motion, readable peak, brief dissipating trace. All effect parts
+    within each cell with 32px clear white margin. Restrained hand-painted game effect in medium neutral
+    GRAY, physically ordinary air motion, NO magical energy, NO glow, NO luminous rim, NO flame or electricity.
+    Isolated effect only, no body, hand, foot, weapon, letters, labels, numbers, logos, scenery, shadows
+    or checkerboard. Subject: a single curved weapon SWING ARC, a dynamic tapered crescent-shaped air
+    trail curving from upper-left toward lower-right, compact restrained gray sweeping streaks. Center
+    at local (256,256). Peak trail stays inside x70..440,y70..440. No actual blade, sword, magical light
+    or ink droplets.'
+  negative: 'No text, grid, figures, scenery, checkerboard; plain_strike: no glow.'
+  references: []
+  tool: image_gen built-in
+  model: 工具未返回模型标识
+  effort: 工具未返回推理档位
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-0ab1b6c7-cf4e-440c-bcb8-75dae26c9437.png
+  size: 2172x724
+  sha256: eb0670941f458a6f9ed62b81561a0b24c5975cd95f7b6f141e1edd7641d58142
+  status: candidate
+  notes: 源图逐字节保存；透明帧由cut_frames.py生成。shader仅qi_projection按palette着色；待协调者浏览器验收。
+  demo_files: []
+  file_integrity:
+  - file: plain_strike/arc/effect.yaml
+    bytes: 841
+    sha256: 6474b011f1f3270b4e866bd78026f38f6d2c985469797617b20fc9b303e7cf3c
+  - file: plain_strike/arc/frame_000.png
+    bytes: 48459
+    sha256: 62de881bac15650e12776c444f40748c35c3a78eba0f07711513e851676cfd77
+  - file: plain_strike/arc/frame_001.png
+    bytes: 139588
+    sha256: f3359eff37e662f3ba79bfec30498ca712bddd63df8d03526b755b14eb8e8a0f
+  - file: plain_strike/arc/frame_002.png
+    bytes: 82458
+    sha256: 81f2346c7a195e462dc8f93ea2cc0cc1835a3543e3893e8144b04899b3a9c375
+  - file: plain_strike/arc/quality.json
+    bytes: 776
+    sha256: b9f1de7dc4926ade9eb9468e04e64f19e23c3cdd7bca128692d75aff0b85bdf9
+  - file: plain_strike/arc/source_sheet.png
+    bytes: 804818
+    sha256: eb0670941f458a6f9ed62b81561a0b24c5975cd95f7b6f141e1edd7641d58142
+  palette: docs/design/vfx/palette.yaml
+  palette_sha256: 6daf57d81491e58b2de8f4b9b9833a2b93177c8df4d89729441aa70cfb89d367
+- id: vfx_template_plain_strike_impact
+  file: plain_strike/impact/source_sheet.png
+  category: vfx
+  style: default
+  subject: plain_strike/impact 通用招式原料（原创扩展），不限书界年代，无人物服饰
+  prompt: 'Use case: stylized-concept. Asset type: ordinary martial-arts strike animation sheet for a
+    Chinese wuxia game. ONE wide 1536x512 image, pure flat WHITE background. EXACTLY THREE equal square
+    cells horizontally, 512x512 each, no visible grid or borders. Same effect in three consecutive animation
+    frames, left to right: initial small motion, readable peak, brief dissipating trace. All effect parts
+    within each cell with 32px clear white margin. Restrained hand-painted game effect in medium neutral
+    GRAY, physically ordinary air motion, NO magical energy, NO glow, NO luminous rim, NO flame or electricity.
+    Isolated effect only, no body, hand, foot, weapon, letters, labels, numbers, logos, scenery, shadows
+    or checkerboard. Subject: a compact fist-or-kick IMPACT FLASH, a small irregular burst of sharp air
+    strokes pointing predominantly right. Center at local (256,256). Peak burst diameter 270px; simple
+    crisp dry neutral gray marks, no exploding star or sparks.'
+  negative: 'No text, grid, figures, scenery, checkerboard; plain_strike: no glow.'
+  references: []
+  tool: image_gen built-in
+  model: 工具未返回模型标识
+  effort: 工具未返回推理档位
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-32253492-68e9-4af5-831a-161a35d55101.png
+  size: 2172x724
+  sha256: 1addf01561666cfd6fb4befa27eb4685ca5caf028667d43ac6b025f4a0b2c523
+  status: candidate
+  notes: 源图逐字节保存；透明帧由cut_frames.py生成。shader仅qi_projection按palette着色；待协调者浏览器验收。
+  code: plain_strike/demo_finger_neutral_finger.html
+  demo_files:
+  - plain_strike/demo_finger_neutral_finger.html
+  file_integrity:
+  - file: plain_strike/demo_finger_neutral_finger.html
+    bytes: 898789
+    sha256: 84d40dcd34610d6d115681fdfaeb604402e6ae8310642814599e98439adde5ac
+  - file: plain_strike/demo_finger_neutral_finger.json
+    bytes: 3042
+    sha256: 215a812c6190978c8b55aea9383014c3bb048b25152c0612c350b1c830413545
+  - file: plain_strike/impact/effect.yaml
+    bytes: 845
+    sha256: 7c04d114ea0e92b4c98e800fe797c06bd7a736f85b1642b2895e46e4fd6e5377
+  - file: plain_strike/impact/frame_000.png
+    bytes: 71528
+    sha256: da55e7da0dc0201701d3d470eced4e67ee4d49eb2a110a58a5920ef21d26e93d
+  - file: plain_strike/impact/frame_001.png
+    bytes: 182729
+    sha256: 2f66d6f6f3e4de845a0d5927693ca1129054da51d99a7acd6bc9ace81a9c5d97
+  - file: plain_strike/impact/frame_002.png
+    bytes: 73536
+    sha256: efd50a4784ca2eb4b0bebdc1c008c59d7d0bc64dc458f1b469ef7310eed93b8d
+  - file: plain_strike/impact/quality.json
+    bytes: 796
+    sha256: 2ea5c052cc5e818898e002e287a90527cb1f848d872ece3a94adc93b75123e9a
+  - file: plain_strike/impact/source_sheet.png
+    bytes: 883131
+    sha256: 1addf01561666cfd6fb4befa27eb4685ca5caf028667d43ac6b025f4a0b2c523
+  palette: docs/design/vfx/palette.yaml
+  palette_sha256: 6daf57d81491e58b2de8f4b9b9833a2b93177c8df4d89729441aa70cfb89d367
+- id: vfx_template_plain_strike_wave
+  file: plain_strike/wave/source_sheet.png
+  category: vfx
+  style: default
+  subject: plain_strike/wave 通用招式原料（原创扩展），不限书界年代，无人物服饰
+  prompt: 'Use case: precise-object-edit. Edit this three-frame white-background ordinary palm push-wave
+    animation sheet. Change ONLY the leftmost frame: it currently points left, reverse that air ridge
+    so it points RIGHT like the two later frames, with trailing streaks extending to its LEFT. The leftmost
+    small gathering wave should sit near the left side of its first cell. Keep the middle and right frames,
+    white background, gray non-glowing painted style, margins, image dimensions and three-cell layout
+    unchanged. No text, borders, figures or glow.'
+  negative: 'No text, grid, figures, scenery, checkerboard; plain_strike: no glow.'
+  references:
+  - /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-94f94449-7d02-4f76-9c7b-6eaec8cdb4e6.png
+  tool: image_gen built-in
+  model: 工具未返回模型标识
+  effort: 工具未返回推理档位
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-cc10656c-a86b-4a64-9840-c755283952e9.png
+  size: 2172x724
+  sha256: 8dee4b280b924ef74d4254aad552f4dabdfe6519c3e34847cc0c5904d47d51d1
+  status: candidate
+  notes: 源图逐字节保存；透明帧由cut_frames.py生成。shader仅qi_projection按palette着色；待协调者浏览器验收。
+  generation_prompt: 'Use case: stylized-concept. Asset type: ordinary martial-arts strike animation sheet
+    for a Chinese wuxia game. ONE wide 1536x512 image, pure flat WHITE background. EXACTLY THREE equal
+    square cells horizontally, 512x512 each, no visible grid or borders. Same effect in three consecutive
+    animation frames, left to right: initial small motion, readable peak, brief dissipating trace. All
+    effect parts within each cell with 32px clear white margin. Restrained hand-painted game effect in
+    medium neutral GRAY, physically ordinary air motion, NO magical energy, NO glow, NO luminous rim,
+    NO flame or electricity. Isolated effect only, no body, hand, foot, weapon, letters, labels, numbers,
+    logos, scenery, shadows or checkerboard. Subject: a short palm-wind PUSH WAVE moving horizontally
+    right, a blunt rounded compact forward air ridge and two fine trailing strokes. Root at local (64,256);
+    maximum extent to x440. A subtle physical air shove, not a beam, no magic or ornate pattern.'
+  edit_input_source: 'Generated images are saved to /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309
+    as /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-94f94449-7d02-4f76-9c7b-6eaec8cdb4e6.png
+    by default.
+
+    If you need to use a generated image at another path, copy it and leave the original in place unless
+    the user explicitly asks you to delete it.
+
+    The generated image is already displayed to the user. There is no need to render it in the final response
+    as a Markdown image or file link.'
+  code: plain_strike/demo_palm_neutral_palm.html
+  demo_files:
+  - plain_strike/demo_palm_neutral_palm.html
+  file_integrity:
+  - file: plain_strike/demo_palm_neutral_palm.html
+    bytes: 842268
+    sha256: efd00a2f7a6ac2035930517229814e6544e6421373b2fe58d7b099d3ff29d1f0
+  - file: plain_strike/demo_palm_neutral_palm.json
+    bytes: 3029
+    sha256: 7a8040aeef4be744185f4145cb60c77dc9fcb186a3c79e389b18dae8ef0563f0
+  - file: plain_strike/wave/effect.yaml
+    bytes: 840
+    sha256: 3908d3c0672f7fed77264f9e62a5c540eb54f72e924cb944827ebae6d4f36f45
+  - file: plain_strike/wave/frame_000.png
+    bytes: 59591
+    sha256: a78a1260f2f41794caebf4962d445f86df56c2336ea2bd60955535f2007fcf1d
+  - file: plain_strike/wave/frame_001.png
+    bytes: 184438
+    sha256: 398f885d0b52c253a523d3c2ba4c9c379ca65900b775bdfcc1efee41b728d8b1
+  - file: plain_strike/wave/frame_002.png
+    bytes: 77251
+    sha256: 1815ef38146491bde16887d6209cb3d532f47545c98dd02f33444b5dcfa9903d
+  - file: plain_strike/wave/quality.json
+    bytes: 779
+    sha256: cd65bfef33d0cc0cdfe075305de0075f0622858549f35f5b3e3ea7fc961f3bd6
+  - file: plain_strike/wave/source_sheet.png
+    bytes: 1098530
+    sha256: 8dee4b280b924ef74d4254aad552f4dabdfe6519c3e34847cc0c5904d47d51d1
+  palette: docs/design/vfx/palette.yaml
+  palette_sha256: 6daf57d81491e58b2de8f4b9b9833a2b93177c8df4d89729441aa70cfb89d367
+- id: vfx_template_qi_projection_beam
+  file: qi_projection/beam/source_sheet.png
+  category: vfx
+  style: default
+  subject: qi_projection/beam 通用招式原料（原创扩展），不限书界年代，无人物服饰
+  prompt: 'Use case: stylized-concept. Asset type: neutral qi BEAM animation sprite sheet for Chinese
+    wuxia game. ONE square image 1024x1024, pure flat WHITE background. EXACTLY FOUR equal 512x512 cells
+    in 2x2, no visible dividers. Each cell the SAME very fine straight narrow silver-gray energy BEAM
+    pointing horizontally RIGHT, root at local (48,256). Frames in reading order: short gathering beam,
+    extending beam, full slender beam reaching x460, thinning broken dissipating filament. Beam remains
+    centered at y256 and narrow under 70px tall, hand-painted flowing neutral light silvery filaments,
+    readable medium gray silhouette under light highlights, grayscale for shader tint. Keep white margins
+    24px. No character, hand, weapon, letters, labels, icons, shadows, ink splashes, colored glow, scenery,
+    checkerboard. Pure white sheet, isolated effects, no frame overlap.'
+  negative: 'No text, grid, figures, scenery, checkerboard; plain_strike: no glow.'
+  references: []
+  tool: image_gen built-in
+  model: 工具未返回模型标识
+  effort: 工具未返回推理档位
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-c0d73c51-1f49-418a-a505-c9029d17c8ba.png
+  size: 1254x1254
+  sha256: cfd25f39542941a6617531376c81850b0c1b748635cdedd6a0154b652ade7052
+  status: candidate
+  notes: 源图逐字节保存；透明帧由cut_frames.py生成。shader仅qi_projection按palette着色；待协调者浏览器验收。
+  code: qi_projection/demo_finger_yang_finger.html
+  demo_files:
+  - qi_projection/demo_finger_yang_finger.html
+  - afterimage/demo_finger_neutral_finger.html
+  file_integrity:
+  - file: afterimage/demo_finger_neutral_finger.html
+    bytes: 649112
+    sha256: 83b59269d7c5e9be13d20fe4439e42e2e15852d92e27f118d7dd79aa1282f824
+  - file: afterimage/demo_finger_neutral_finger.json
+    bytes: 1547
+    sha256: 276fa1ddf4bc57a9a71679b7d834acf313db3faa0e0f19ea45063df3677274f3
+  - file: qi_projection/beam/effect.yaml
+    bytes: 1005
+    sha256: 56d85e1460fab01da7e012e34c495e23dead41848d44d140232999a08bed2918
+  - file: qi_projection/beam/frame_000.png
+    bytes: 41834
+    sha256: d3b644465d8c507354dac956c602181d4dbb1f38f640aef1a9e0617fc6044c76
+  - file: qi_projection/beam/frame_001.png
+    bytes: 62677
+    sha256: 616db73cfc776a2eebbc8f62956ea34780ddde1b96b5effb5b529f16360ec1ea
+  - file: qi_projection/beam/frame_002.png
+    bytes: 61828
+    sha256: 23298077abab97d8cc8e08d29493fd3bb698b7405ff85ff248c0fcde106301b0
+  - file: qi_projection/beam/frame_003.png
+    bytes: 52319
+    sha256: 3fbd394c8a3d93d0d7098b358f6024cec33fca97549df26fbe4182b45a6cb0eb
+  - file: qi_projection/beam/quality.json
+    bytes: 1031
+    sha256: 87dbc3e9f477e66d1448f4c4f5993652d1cdee8149375780e24284f836d43071
+  - file: qi_projection/beam/source_sheet.png
+    bytes: 863613
+    sha256: cfd25f39542941a6617531376c81850b0c1b748635cdedd6a0154b652ade7052
+  - file: qi_projection/demo_finger_yang_finger.html
+    bytes: 809269
+    sha256: 48f40d84fca5cc160881154680f30a8fefef6942a8b3f5c0a09d9e5b3b3b2b15
+  - file: qi_projection/demo_finger_yang_finger.json
+    bytes: 3372
+    sha256: a4af1fe45846673213c320dcbe2783c99534c6632b2c25a7df4d062630d722f5
+  palette: docs/design/vfx/palette.yaml
+  palette_sha256: 6daf57d81491e58b2de8f4b9b9833a2b93177c8df4d89729441aa70cfb89d367
+- id: vfx_template_qi_projection_fan
+  file: qi_projection/fan/source_sheet.png
+  category: vfx
+  style: default
+  subject: qi_projection/fan 通用招式原料（原创扩展），不限书界年代，无人物服饰
+  prompt: 'Use case: stylized-concept. Asset type: a neutral qi projection animation sprite sheet for
+    a Chinese wuxia game. Generate ONE square 1024x1024 image, pure flat white #FFFFFF background. EXACTLY
+    FOUR equal 512x512 cells arranged in a 2x2 grid, no visible grid or borders. Each cell is one successive
+    frame of the SAME palm-emitted FAN-SHAPED AIR WAVE pointing horizontally right. Frame order top-left
+    small gathering, top-right spreading release, bottom-left full fan wave, bottom-right dissipating
+    wisps. In EVERY cell fix the root at local pixel (64,256); leave outer 24px clear. Fan is narrow at
+    left root and broad at right, rendered as fine flowing SILVER GRAY monochrome airy silk energy strokes
+    with a readable medium-gray silhouette and light highlights, neutral unsaturated values for shader
+    recoloring. Detailed elegant restrained game VFX, no ink splashes, no character, hand, weapon, text,
+    labels, symbols, scenery, shadows, checkerboard, colored glow, or cell dividers. Isolated effect only.
+    Everything stays inside each cell. White background must remain perfectly white, not off-white.'
+  negative: 'No text, grid, figures, scenery, checkerboard; plain_strike: no glow.'
+  references: []
+  tool: image_gen built-in
+  model: 工具未返回模型标识
+  effort: 工具未返回推理档位
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-64335e8e-f5b1-449c-bbdc-eb02fe56dbeb.png
+  size: 1254x1254
+  sha256: 5d05ab2586470597a09f745d81eead4c7deebab5e6082f94361fac5c45c50b3c
+  status: candidate
+  notes: 源图逐字节保存；透明帧由cut_frames.py生成。shader仅qi_projection按palette着色；待协调者浏览器验收。
+  code: qi_projection/demo_palm_yin_palm.html
+  demo_files:
+  - qi_projection/demo_palm_yin_palm.html
+  - afterimage/demo_palm_neutral_palm.html
+  file_integrity:
+  - file: afterimage/demo_palm_neutral_palm.html
+    bytes: 582474
+    sha256: af8f87c40406448cd3478e5d78f1028caa735a593ba2e9b4fc986680315278c0
+  - file: afterimage/demo_palm_neutral_palm.json
+    bytes: 1541
+    sha256: 4e549f8dbb1c1480a3f74393a460efa2ca38d0c86b96c8bac24fe6dceca5108c
+  - file: qi_projection/demo_palm_yin_palm.html
+    bytes: 1319170
+    sha256: ceea92bc15730e926fa6577e16ce69392ac0fda3c295ec66fc77ce468cfded05
+  - file: qi_projection/demo_palm_yin_palm.json
+    bytes: 3363
+    sha256: 3be08e1e2a471c777d89462c13ed0311dec732db3f0481e428b1fb22ba6adc8c
+  - file: qi_projection/fan/effect.yaml
+    bytes: 1004
+    sha256: a2d378eac6c3501243f5876d10443b14a29f38f3ce4b659468cf9815b7367ffd
+  - file: qi_projection/fan/frame_000.png
+    bytes: 78392
+    sha256: e0ace5ed64f29cc7c34959c0c161ad9ba1ca12ea2a6e91d7d44c6cb9b537a08f
+  - file: qi_projection/fan/frame_001.png
+    bytes: 281905
+    sha256: f21177afd13cdbe4f05de5f48d99898390d795c1b06164339ef81f6f8619b99c
+  - file: qi_projection/fan/frame_002.png
+    bytes: 332078
+    sha256: aeb6b6459e3e881c9315158802ae049315a781cd6c7074c96560c4b938af022d
+  - file: qi_projection/fan/frame_003.png
+    bytes: 168531
+    sha256: ccbeead1aff3ae558f6d312280918e5d8aa155f5c5f979cb16b1218a21ab3e45
+  - file: qi_projection/fan/quality.json
+    bytes: 1052
+    sha256: dd7d91b67b5e9666308649dbd935c5cc835c45f2cc5a31ff258174366c24781a
+  - file: qi_projection/fan/source_sheet.png
+    bytes: 1215187
+    sha256: 5d05ab2586470597a09f745d81eead4c7deebab5e6082f94361fac5c45c50b3c
+  palette: docs/design/vfx/palette.yaml
+  palette_sha256: 6daf57d81491e58b2de8f4b9b9833a2b93177c8df4d89729441aa70cfb89d367
+- id: vfx_template_qi_projection_impact
+  file: qi_projection/impact/source_sheet.png
+  category: vfx
+  style: default
+  subject: qi_projection/impact 通用招式原料（原创扩展），不限书界年代，无人物服饰
+  prompt: 'Use case: stylized-concept. Asset type: neutral short broad qi IMPACT animation sprite sheet
+    for Chinese wuxia game. ONE 1024x1024 square on pure flat WHITE. EXACTLY FOUR equal cells in a 2x2
+    grid without visible dividers. Same compressed broad AIR PULSE moving RIGHT, one frame each cell in
+    reading order: tightly gathered at left, short thick release, strong compact blunt impact, broken
+    fading wisps. Root fixed at local (64,256), full effect x64..440 and y140..370. Shape is short and
+    chunky, not a long beam, not a fan. Neutral pale SILVER-GRAY smooth airy streaks with readable medium-gray
+    edges, grayscale only for shader tint. White margins 32px all around cells, isolated effects, no hand,
+    figure, weapon, text, numbers, cell borders, scenery, shadow, ink splatter, stars, magical symbols,
+    flame or electricity. All effect parts inside each cell.'
+  negative: 'No text, grid, figures, scenery, checkerboard; plain_strike: no glow.'
+  references: []
+  tool: image_gen built-in
+  model: 工具未返回模型标识
+  effort: 工具未返回推理档位
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-2d9b83ba-173a-4341-949b-11c581286f6e.png
+  size: 1254x1254
+  sha256: d57a242ec84b657859868107fe0809c3d147131c44c505b82e56ac6cad95f04b
+  status: candidate
+  notes: 源图逐字节保存；透明帧由cut_frames.py生成。shader仅qi_projection按palette着色；待协调者浏览器验收。
+  demo_files: []
+  file_integrity:
+  - file: qi_projection/impact/effect.yaml
+    bytes: 1008
+    sha256: c9fd89bda418eaca4fa4081a7871773d096a698c2a3816a95a8ee83f2d9ee675
+  - file: qi_projection/impact/frame_000.png
+    bytes: 100661
+    sha256: 8a9c047f5a5f18635919f533c86f773d91be699aa79cc814e9cae7af874d029c
+  - file: qi_projection/impact/frame_001.png
+    bytes: 189881
+    sha256: 63dad7fac242b60cd92d00fdb76c9acc63a258f9045bdf5afc090c049ae3e8d0
+  - file: qi_projection/impact/frame_002.png
+    bytes: 262225
+    sha256: d8b811882a338c9747f3a25d6175e017f197fb7cad082ce4b89da9ac8ec26d6f
+  - file: qi_projection/impact/frame_003.png
+    bytes: 111104
+    sha256: a6a214435fa1fd0a5e0c25d5fa1cb232bd5903520f5a1cd49364f5683b1c71a4
+  - file: qi_projection/impact/quality.json
+    bytes: 1033
+    sha256: f5de2bcaeb926853ea6257f00e2a6ff452cf76e3919fbb8385bab7c371a711a7
+  - file: qi_projection/impact/source_sheet.png
+    bytes: 1038096
+    sha256: d57a242ec84b657859868107fe0809c3d147131c44c505b82e56ac6cad95f04b
+  palette: docs/design/vfx/palette.yaml
+  palette_sha256: 6daf57d81491e58b2de8f4b9b9833a2b93177c8df4d89729441aa70cfb89d367
+- id: vfx_template_qi_projection_rings
+  file: qi_projection/rings/source_sheet.png
+  category: vfx
+  style: default
+  subject: qi_projection/rings 通用招式原料（原创扩展），不限书界年代，无人物服饰
+  prompt: 'Use case: stylized-concept. Asset type: neutral sonic qi CONCENTRIC RIPPLES animation sprite
+    sheet for Chinese wuxia game. ONE 1024x1024 square, pure flat WHITE background. EXACTLY FOUR equal
+    512x512 cells arranged 2x2, no visible grid. Each cell successive stage of SAME concentric oval sound-wave
+    ripples seen in 3/4 sideways perspective travelling RIGHT. Root at local (64,256); ring ellipses centered
+    along y256, axis horizontal right. Reading order: one small gathering ellipse, three expanding ellipses,
+    four concentric flowing wave rings at peak, thin fragmented dissipating rings. Light neutral SILVER-GRAY,
+    fine airy silk strokes with readable medium-gray contours for shader recoloring. Effect fully inside
+    x40..460,y60..450 in each cell, 32px white clear margin. Isolated ripples only, no instruments, hands,
+    people, letters, numbers, dividers, magic circles, runes, scenery, colored glow, ink splashes, water
+    surface or checkerboard.'
+  negative: 'No text, grid, figures, scenery, checkerboard; plain_strike: no glow.'
+  references: []
+  tool: image_gen built-in
+  model: 工具未返回模型标识
+  effort: 工具未返回推理档位
+  created: '2026-09-30'
+  source_path: /Users/bytedance/.codex/generated_images/01a0f426-fae2-76f0-a3d4-18f1a8f64309/exec-7ee0fb7e-a8c1-4ef3-9f1f-3c169a221226.png
+  size: 1254x1254
+  sha256: 8c55e73d050c439f21d9b708070bd53ccd0b942eff60558b02394df9e12e94bd
+  status: candidate
+  notes: 源图逐字节保存；透明帧由cut_frames.py生成。shader仅qi_projection按palette着色；待协调者浏览器验收。
+  demo_files: []
+  file_integrity:
+  - file: qi_projection/rings/effect.yaml
+    bytes: 1006
+    sha256: 9eaa9f5fd7c82de6e5222417e7289a2ed0d772738f763d3d1cd44d3c93981244
+  - file: qi_projection/rings/frame_000.png
+    bytes: 50245
+    sha256: f957050086fb05646f0f0da9b152376f2a80c3ece19b3698b782dbf8dcbb8b48
+  - file: qi_projection/rings/frame_001.png
+    bytes: 160088
+    sha256: e9e221e45f9ac046cd6f5d913ea8581695be509cb9a489ca2b85b7c0b350414a
+  - file: qi_projection/rings/frame_002.png
+    bytes: 237990
+    sha256: a5a9b20abde8105a37fe750e8a086e3af443e87a36da236ffd1a66a143c6884b
+  - file: qi_projection/rings/frame_003.png
+    bytes: 89829
+    sha256: 540ae1344f92938f1eb7c464326ca8fcc1ebcbf4515190b95247bd5b2449a9a7
+  - file: qi_projection/rings/quality.json
+    bytes: 1033
+    sha256: e66c6263408754e74d2fa002294f3afc2ed83198302f1c1219164069e0306152
+  - file: qi_projection/rings/source_sheet.png
+    bytes: 1092596
+    sha256: 8c55e73d050c439f21d9b708070bd53ccd0b942eff60558b02394df9e12e94bd
+  palette: docs/design/vfx/palette.yaml
+  palette_sha256: 6daf57d81491e58b2de8f4b9b9833a2b93177c8df4d89729441aa70cfb89d367

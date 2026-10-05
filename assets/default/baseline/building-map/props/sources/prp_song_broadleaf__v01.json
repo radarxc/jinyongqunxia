@@ -1,0 +1,80 @@
+{
+  "id": "prp_song_broadleaf__v01",
+  "subject": "A single Jiangnan broadleaf evergreen tree, generic historical local plant impression without claiming a specific species: slender grey-brown trunk and narrow upright oval crown, restrained leathery medium-small green leaves, visible branching gaps, short clean root flare. Narrow-crown variant v01, distinctly taller than wide. Visual envelope ground span2m,height4m; final canvas136x229,root anchor68,193.",
+  "prompt": "Use case: historical-scene. Asset type: tianshu/default isolated southern Song town vegetation PNG sprite, circa 1223 Lin'an, regional plant silhouette is an original game-art interpretation, exact species and historical planting remain unverified. Historical realistic game art matching grey-tile timber Song city scenery: natural detailed leaves and bark, restrained green palette, credible botanical structure, not watercolor, not cartoon, not plastic. Camera target orthographic yaw45 degrees pitch30 degrees, no perspective convergence, front-facing complete plant viewed from above at 30 degrees. Soft neutral daylight from screen upper left, on-object shading only. TRUE RGBA transparent background with real empty leaf gaps. Exactly ONE independent rooted vegetation prop, not a scene and not a cluster of separate mature plants. Entire crown and root tips visible with generous transparent margins. The lowest root/trunk contact line must be unambiguous and everything below that line completely transparent: NO ground plane, soil, stones, grass bed, pot, basin, plinth, mist or ANY cast/contact shadow. No background haze. Do not draw a diamond base, grid, ruler, labels or text. The raw image will later be uniformly scaled into a tiny fixed production canvas using the root as anchor; do not paint that canvas or a border.\nSubject: A single Jiangnan broadleaf evergreen tree, generic historical local plant impression without claiming a specific species: slender grey-brown trunk and narrow upright oval crown, restrained leathery medium-small green leaves, visible branching gaps, short clean root flare. Narrow-crown variant v01, distinctly taller than wide. Visual envelope ground span2m,height4m; final canvas136x229,root anchor68,193.\nAvoid: ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow, contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI, people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic, cropped crown or roots",
+  "negative": "ground, dirt, soil mound, root ball, landscape, sky, horizon, floor, pot, planter, basin, stone pedestal, grass patch, cast shadow, contact shadow, ambient shadow on background, background gradient, checkerboard, fog, text, letters, watermark, grid, rulers, labels, UI, people, animals, buildings, multiple separate trees, photomontage, watercolor, ink wash, paper texture, cartoon, anime, voxel, low-poly, plastic, cropped crown or roots",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f167-4bcc-7622-8021-becaabc161ba/exec-f455dbed-ad69-458f-b944-44b10dfa00cc.png",
+  "created": "2026-09-30T09:22:20.604Z",
+  "status": "candidate",
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "candidate_count": 1,
+  "rejections": [],
+  "asset_id": "prp_song_broadleaf",
+  "variant_key": "v01",
+  "era": "song_southern",
+  "source_size": [
+    966,
+    1628
+  ],
+  "size": "966x1628",
+  "sha256": "0d00e7e713db6fa9030fe66e81ec199bee07dd8fd2a5378b0b98cea58b9e6bf0",
+  "source_sha256": "0d00e7e713db6fa9030fe66e81ec199bee07dd8fd2a5378b0b98cea58b9e6bf0",
+  "root_source_px": [
+    473.5,
+    1596
+  ],
+  "root_measurement_note": "人工view确认最下可见前根；追踪与实体连续的抗锯齿末端至alpha>=3的最后一行，y取该行下边界。x为该前根末端横向中心；不是画布中心，也不是远端alpha1–2噪点的bbox底边。约±3源像素不确定性。",
+  "root_source_uncertainty_px": 3,
+  "alpha_bbox": [
+    0,
+    0,
+    944,
+    1628
+  ],
+  "alpha_bbox_gt2": [
+    163,
+    0,
+    811,
+    1596
+  ],
+  "alpha_bbox_192": [
+    167,
+    9,
+    808,
+    1594
+  ],
+  "alpha_mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "alpha_zero_pixels": 948403,
+  "alpha_partial_pixels": 624019,
+  "alpha_opaque_pixels": 226,
+  "below_root_nonzero_pixels": 44,
+  "below_root_alpha_max": 2,
+  "below_root_note": "只剩alpha<=2远端或抗锯齿散点，无实叶/地面影；原图未裁切、未删除、未修改任何alpha。纯几何透明底修边由root处理并登记。",
+  "target_size_px": [
+    136,
+    229
+  ],
+  "target_anchor_px": [
+    68,
+    193
+  ],
+  "footprint_cells": {
+    "w": 1,
+    "h": 1
+  },
+  "visual_bounds_m": {
+    "w": 2,
+    "d": 2,
+    "h": 4
+  },
+  "placement_domain": "land",
+  "collision": "none",
+  "visual_review": "已view_image original逐张检查：单个植被物件形态，无人物/文字/盆/地台/土块/背景或烘焙地面影；疏密或冠形变体可辨。写实南宋江南植物意象（原创扩展），物种和历史栽植（待考）。左上受光；yaw45/pitch30为提示目标，未由树冠反推精确机位。根contact为可见前根末端抗锯齿轮廓的下缘，不把远端低alpha噪点计作根。 源顶端有alpha3级像素触边，alpha>=8的真实叶缘自y7开始；完整冠形目视未见明显裁断，但极淡顶缘仍登记而不抹除。",
+  "postprocessing": "none: raw source archived byte-for-byte; final geometric fitting delegated to root"
+}

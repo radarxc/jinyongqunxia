@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_huoqingtongduanjian
+name: 霍青桐短剑
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《书剑恩仇录》·霍青桐赠陈家洛，双层剑鞘藏蜡丸地图
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/huoqingtongduanjian
+text:
+  desc: 外观：直身短剑全长约四十五厘米，银刃、绿松石点饰护手、黄褐皮柄。 待运行时投影：exoticKind=dagger。
+  lore: 《书剑恩仇录》中霍青桐将父亲所赐短剑赠给陈家洛，双层剑鞘夹层的蜡丸藏有迷城地图。短剑便于贴身急刺；绿松石装具与具体尺寸为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 72
+      qiAffinity: 100

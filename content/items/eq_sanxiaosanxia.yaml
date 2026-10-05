@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: eq_sanxiaosanxia
+name: 三笑逍遥散匣
+kind: hidden
+sub: powder
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·星宿派三笑逍遥散；专用匣体 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/sanxiaosanxia
+text:
+  desc: 外观：三格乌木粉匣完全闭合，格盖各嵌一枚素银圆点、边缘有密封蜡痕。 待运行时投影：ammoMul=1.160; hiddenHit=6.6; onHit=bf_sanxiao; sect=sect_xingxiu。
+  lore: 《天龙八部》有星宿派三笑逍遥散；（待考：核施毒者、受害者与三次发作描写）。三格密封乌木匣为原创载具，只在战斗规则中施加三笑毒，不记录现实配制方法。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: powder
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 60
+      qiAffinity: 100
+      poison: 8

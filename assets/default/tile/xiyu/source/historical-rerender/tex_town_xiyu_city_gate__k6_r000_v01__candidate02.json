@@ -1,0 +1,33 @@
+{
+  "id": "tex_town_xiyu_city_gate__k6_r000_v01",
+  "generated_at": "2026-10-01T10:29:55.594173+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__candidate02.png",
+  "sha256": "bd33c2703a58f37e283fea1a0b41fda16f707e705f2e54e6aba8bcbc3ae959b0",
+  "generation_inputs": [
+    {
+      "file": "source/historical-rerender/tex_town_xiyu_city_gate__k6_r000_v01__candidate01.png",
+      "sha256": "8d1f698c274f7758612896c1b1eb96961824b56626a650b0b06ff18587668fad",
+      "role": "candidate01_edit_target"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/city_wall_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg",
+      "detail": "1915年喀什厚土城墙、水平层理与小洞口；不复制构图。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/yarkand_kashgar_gate.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg",
+      "detail": "叶尔羌旧城门的厚重土墙体量、垛口节奏与深门洞；具名门楼轮廓不照搬。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/yarkand_old_gate.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg",
+      "detail": "厚砖门墙及尖拱套门；现代标牌、修缮铺装和上层敞廊排除。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年喀什厚土城墙、水平层理与小洞口；不复制构图。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Yarkand_Kashgar_Gate.jpg — 叶尔羌旧城门的厚重土墙体量、垛口节奏与深门洞；具名门楼轮廓不照搬。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Yarkand-puerta-antigua-ciudadela-d01.jpg — 厚砖门墙及尖拱套门；现代标牌、修缮铺装和上层敞廊排除。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. STRICT TEXTURE-ONLY EDIT of supplied exact geometry. Preserve silhouette and ALL polygon boundary pixel positions. Do not redesign or change camera. This is an ancient Western Regions oasis adobe CITY GATE, full frontage10 units, depth4, two straight vertical piers2 units wide each and central fully open portal6 units wide. Ground-plane axes slopes+0.5/-0.5, front-edge/depth-edge horizontal lengths900:360 =2.5. Supplied sketch already has correct geometry: trace precisely. Apply warm buff mud plaster, realistic tiny adobe grains, subtle exposed brick courses near foot, restrained wood lintel across doorway. Fine realistic painted historical wuxia map sprite, muted neutral earth colors. Keep flat rectangular clear portal with timber lintel, flat roof and straight piers; no battlements, no extra pilaster or building. Exact bottom footprint corners in1536x1024: L138,500; F1038,950; R1398,770. The portal front foot corners318,590 and858,860: clear60%frontage, piers20%each. Right side face must remain360px wide. Transparent areas remain alpha0, no floor/platform, no glow, no shadow, no labels/people/text. Upperleft light, right face subdued shade. Fully opaque wall, true transparent RGBA. Keep full silhouette and margins, material edit only.\n\nRequired historical detail summary: 厚夯土/土坯墙、水平层理、局部残损和深门洞；登记要求的平直木过梁保留为跨年代原创扩展，不加中式楼亭、斗拱、瓦脊或现代修缮。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
+}

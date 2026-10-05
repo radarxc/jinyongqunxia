@@ -1,0 +1,26 @@
+{
+  "id": "tex_town_qing_south_wall_corner__outer_ne_v01",
+  "mode": "RGBA",
+  "size": [
+    169,
+    166
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "transparent_ratio": 0.5894,
+  "anchor_px": [
+    86,
+    105
+  ],
+  "source_bbox": [
+    0,
+    19,
+    1250,
+    1242
+  ],
+  "attempts": 1,
+  "selected_attempt": 1,
+  "reference_sha256": "d4b1a8a9974d5e9e79a0d60a9e502cdf5b44d69569925ad4a72015f2ed99ac14"
+}

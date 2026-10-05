@@ -1,0 +1,6 @@
+schemaVersion: region-dialogue.v1
+chapter: ch10_baima
+sceneId: sc_10_fengshi_feiyi
+anchorId: first_talk
+storyId: story_ch10_cold_entry
+entryKey: fengshi_first_talk

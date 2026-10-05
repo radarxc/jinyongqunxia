@@ -1,0 +1,102 @@
+id: bld_kit_yuan_north_yamen
+file: bld_kit_yuan_north_yamen.png
+category: building-map
+style: default
+subject: 元北方路府官署（原创扩展）
+prompt: 'Use case: sketch-to-render. STRICT TEXTURE-ONLY EDIT of this exact low-poly courtyard blockout. This is an orthographic 2:1 dimetric 45 yaw 30 elevation MAP BUILDING. Keep the image framing, exact outer footprint silhouette and all three visible ground vertices at their CURRENT pixel coordinates. Do not change the camera. Ground axes must stay EXACTLY slope +0.500 and -0.500. EVERY wall, ground paving line and roof ridge remains parallel to its blockout direction. Do NOT shift any outer corner, widen/deepen the compound, or add any ground/apron outside existing polygon. Preserve verticals. Yuan northern government yamen courtyard, sober central gray tiled timber hall, one official drum on a timber stand in courtyard, bare paving and no vegetation. footprint 16 by 12. All warm tan faces become realistic finely weathered buff earth plaster with sparse gray brick base, dark gray faces become realistically detailed small gray fired-clay Yuan Chinese roof tiles, gently curved eaves, plain ridge tiles. Add fine brown timber doors, posts and window lattice to the existing geometry. Restrained historic realism matching detailed gray tile timber Chinese city game sprites, not cartoon, no flat vector faces. Main light upper left, minute lower right contact shadow contained within original footprint. Empty areas MUST be true fully transparent alpha zero, no backdrop or glow; opaque building surfaces. No text, symbols, signage, banner, humans, modern elements, painted axes or grid overlays. ONE complete isolated building, use source canvas shape and margins.'
+negative: 文字、伪字、人物、现代物、天空、地平线、棋盘格、背景建筑、大阴影、厚地台、清式宫廷装饰、透视消失点、裁切。
+references:
+- {path: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_yamen.repair3.guide.png, role: 本轮第二候选唯一输入：精确平行投影简模；材质纹理由image_gen生成, sha256: c90230ed8b1b8c54c5680e0aa5b85ea739e7475155ddfe7508ef56f4cfb5f015}
+historical_references:
+- {title: 品读 | 永乐宫的建筑——杜仙洲, url: 'https://sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 元代木构、单檐庑殿/歇山、平缓屋面、土坯墙和砖裙的形制母题；文中明确部分梁架清修，不能整体倒推元貌。}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:44:48.959076+00:00'
+created_time_basis: 生成后归档时间，非工具披露服务端时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f470-c3e9-75b2-a74f-f82de69d9828/exec-b01de091-d36d-4317-bbd3-a7ab7eb505bd.png
+size: 1152x768
+sha256: 3d7a817daa1d5c66eade7f7d71786d638e6e81ec866da62cf05341fc28cc74d7
+status: candidate
+building:
+  type: bld_kit_yuan_yamen
+  footprint: [16, 12]
+  anchor: [615.0289, 427.0861]
+  era: yuan_north
+footprint_m: [16, 12]
+entrance: {edge: S, offset_cells: 7}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [896, 448]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+processing:
+  source_archive: sources/bld_kit_yuan_north_yamen.repair3.v02.png
+  source_size: [1536, 1024]
+  source_sha256: e2b37d389d772ecd7d008b7e6387aa4f5f8227bc93d7f5f9e2844e2e71e51522
+  crop_box: [0, 43, 1436, 954]
+  uniform_scale_requested: 0.7386644682605111
+  resized_size: [1061, 673]
+  rounded_effective_scale: [0.7388579387186629, 0.7387486278814489]
+  paste_offset: [45, 47]
+  steps: [crop to alpha>0 bbox, uniform LANCZOS resize; round dimensions to pixels, paste without mask into transparent canvas; no warp/repaint/flip/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [165, 520]
+    front: [854, 878]
+    right: [1378, 595]
+  source_axis_slopes: [0.5195936139332366, -0.5400763358778626]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.3148854961832062
+  expected_width_depth_ratio: 1.3333333333333333
+  ratio_relative_error: 0.013835877862595325
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  final_corners_px:
+    left: [166.9116, 399.3831]
+    front: [675.9847, 663.8551]
+    right: [1063.1462, 454.7892]
+  precision_note: 独立读源图可见墙脚左/前/右角，±3px；锚取左右角中点；另拟合连续可见墙脚检验局部平行性。
+  parallel_edge_samples:
+  - x_range: [190, 340]
+    sample_endpoints:
+    - [190, 532]
+    - [339, 610]
+    slope: 0.5291292946353177
+    rmse_px: 0.295227249839353
+  - x_range: [600, 800]
+    sample_endpoints:
+    - [600, 735]
+    - [799, 846]
+    slope: 0.5544078601965051
+    rmse_px: 0.3007698689411093
+  - x_range: [950, 1320]
+    sample_endpoints:
+    - [950, 825]
+    - [1319, 626]
+    slope: -0.5411723734779423
+    rmse_px: 0.3149607043063224
+  parallel_edge_pass: false
+  parallel_edge_method: 源图alpha>=128可见连续墙脚边，排除门台阶；各区间最小二乘独立拟合，不以目标斜率回推测点。
+pixel_qa:
+  mode: RGBA
+  size: [1152, 768]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 571299
+  alpha_partial_pixels: 312603
+  alpha_opaque_pixels: 834
+  alpha_near_opaque_pixels: 304619
+  alpha_nonzero_bbox: [45, 47, 1106, 720]
+  transparent_margins_px: [45, 47, 46, 48]
+  border_alpha_max: 0
+candidate_count: 2
+source_record: sources/bld_kit_yuan_north_yamen.repair3.v02.json
+notes: 第三次运行：两候选均实际生成并归档，选v02仅简模纹理编辑；相较旧图统一双轴，但局部墙脚拟合仍有超出±0.5±0.03，未完成严格几何验收，保留candidate。仅裁切、等比缩放、透明扩边；保留本轮失败记录。
+png_rotations_available: [0]
+allowRotation: false
+anchor_px: [615.0289, 427.0861]
+footprint_basis: design/22 §3.4 冻结骨架
+repair_round: 3
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}

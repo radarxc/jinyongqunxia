@@ -1,0 +1,379 @@
+# 玉女心经：3 张原料 + 3 招派生整图；全部为待审候选。
+assets:
+- id: vfx_sk_yunvxinjing__family_base01
+  file: effect/family/source_sheet.png
+  category: vfx
+  style: default
+  subject: 玉女心经家族 / 散热，青色回卷内息（神雕书界；原创扩展造型）
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: 2D wuxia game VFX source sprite sheet for the yin internal cultivation art Yunü Xinjing. This is
+    an original visual interpretation, not a literal quotation or canonical supernatural object.
+
+    Output: one landscape 1536x1024 PNG, opaque PURE WHITE #FFFFFF background, precisely four equally sized 768x512
+    cells arranged 2 columns by 2 rows, reading left to right then top to bottom. NO drawn grid, numbers or labels.
+
+    Every cell contains one isolated self-contained effect only. Keep at least 45 pixels of entirely blank white
+    on ALL FOUR edges of EACH cell, including wisps. Nothing crosses the invisible boundaries x=768 or y=512.
+
+    Shared art direction: refined Chinese ink-wash martial arts atmosphere, translucent soft jade cyan and blue-green,
+    delicately graded smoky brush fibers, subtle dark teal structural accents, generous transparent-looking negative
+    spaces. Compact internal aura, calm and protective, never a long laser or weapon attack. Highlights are visibly
+    cyan, never solid white paint. No realistic material object.
+
+    Geometry: effect begins with a soft visibly broad root near local (130,256), extending to the right toward (650,256).
+    The root is NOT a thin tail. Maintain the same root location, same orientation and identifiable main silhouette
+    in all four cells.
+
+    Four keyframes: gathering faint but clearly visible; complete calm peak; same peak drifting gently; fading still
+    visible fragments. Changes are modest for smooth crossfade. Frame 2 and frame 3 have the same overall silhouette.
+
+    No humans, hands, fingers, sleeves, weapons, text, calligraphy, talismans, magic diagram, flowers, dragon, lotus,
+    snowflakes, sparkles, hard shadows, paper grain, borders, checkerboard, off-white background, black background,
+    full white internal highlights, neon sci-fi bloom.
+
+    Primary request: the shared family aura and ordinary self-cooling Sanre move. Paint two to three soft cyan streams
+    of rising cool breath, curling into a single airy open crescent near the hand. A compact, rounded, open flow
+    with a broad diffuse contact root on the left; the right end gently rolls upward into thin vapor. A central
+    hollow with white negative space. Quiet elegant exhalation; NO literal ice chunks, no fire, no halo disk, no
+    solid shield. Keep the complete aura only within local x=90..675,y=90..422.'
+  negative: 人物、手、兵器、文字、编号、格线、纸纹、棋盘格、灰影、实体玉壶、冰块、近白实心高光。
+  references: []
+  tool: Codex 内置 image_gen
+  model: 工具未返回底层图像模型标识
+  effort: 未指定（内置工具默认）
+  created: '2026-10-03T23:25:21.839445+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_yunvxinjing/codex-home/generated_images/01a10413-1d65-7b22-94dc-33f0b5f53ea4/exec-715d9d6c-be6d-4294-92b2-bd19394ca43d.png
+  size: 1536x1024
+  sha256: 1c6cf552cf3717ee4a928c92e0ef29ab3989a7226318a6a206bf5550f764554e
+  status: candidate
+  skill_ref: sk_yunvxinjing
+  nature: yin
+  delivery: inner
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 仅按图鉴散热 / 护法叙事及招名作原创视觉；青色按 yin 风格，不声称为原著显色。四帧 768x512，white_key 128，量图与参数见 README；参考图输入为空，未改原件。
+  file_integrity:
+  - file: effect/family/effect-set.yaml
+    bytes: 999
+    sha256: 9f57062b014058b6dec97822d6962ab6ffd71d770df769bc0dbc3cdf7579fbf2
+  - file: effect/family/frame_000.png
+    bytes: 238471
+    sha256: 78c93bbbf2426ecf9130749a01afdc571b04688db6ec13028d0e15e60ace48f0
+  - file: effect/family/frame_001.png
+    bytes: 267855
+    sha256: d1bb8d98d66905b34e630fe058070edca840f2f807284e91713eedf80df13e41
+  - file: effect/family/frame_002.png
+    bytes: 267740
+    sha256: 5fb924f3b2c3aedf1b27706eda8978f0334a17a1e7285edfe26de2830403c310
+  - file: effect/family/frame_003.png
+    bytes: 210584
+    sha256: e373d02bd3288639358282e0f1e61a5c38e16f67f534b3613f969d82c11ef59e
+  - file: effect/family/generation.json
+    bytes: 2864
+    sha256: e4fe916ab1c839cecb66198ea541005d668d09f5e4dfaa4b0c54839761fd0da3
+  - file: effect/family/preview_black.png
+    bytes: 710992
+    sha256: 9ba6be1ede2990ebe60123be6199ff985cacbc4abf94ffead81777207a824297
+  - file: effect/family/preview_gray.png
+    bytes: 644039
+    sha256: d83a698505d0c7dc8b41f139efba54a3d8f8f2470832efd0d6f4fa17d696b399
+  - file: effect/family/preview_white.png
+    bytes: 649579
+    sha256: 4ac4fe6d9ea728f15275f536fd17275829d06b94e8a108e1b237dc4d4161054c
+  - file: effect/family/quality.json
+    bytes: 1028
+    sha256: eec9949c28048a236d8fdf741b22645aeaa38f6fd9b2431b2be7b92a0048ec8c
+- id: vfx_sk_yunvxinjing__hufa_base01
+  file: effect/mv_yunvxinjing_hufa/source_sheet.png
+  category: vfx
+  style: default
+  subject: 玉女心经·护法，双弧护持（神雕书界；原创扩展造型）
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: 2D wuxia game VFX source sprite sheet for the yin internal cultivation art Yunü Xinjing. This is
+    an original visual interpretation, not a literal quotation or canonical supernatural object.
+
+    Output: one landscape 1536x1024 PNG, opaque PURE WHITE #FFFFFF background, precisely four equally sized 768x512
+    cells arranged 2 columns by 2 rows, reading left to right then top to bottom. NO drawn grid, numbers or labels.
+
+    Every cell contains one isolated self-contained effect only. Keep at least 45 pixels of entirely blank white
+    on ALL FOUR edges of EACH cell, including wisps. Nothing crosses the invisible boundaries x=768 or y=512.
+
+    Shared art direction: refined Chinese ink-wash martial arts atmosphere, translucent soft jade cyan and blue-green,
+    delicately graded smoky brush fibers, subtle dark teal structural accents, generous transparent-looking negative
+    spaces. Compact internal aura, calm and protective, never a long laser or weapon attack. Highlights are visibly
+    cyan, never solid white paint. No realistic material object.
+
+    Geometry: effect begins with a soft visibly broad root near local (130,256), extending to the right toward (650,256).
+    The root is NOT a thin tail. Maintain the same root location, same orientation and identifiable main silhouette
+    in all four cells.
+
+    Four keyframes: gathering faint but clearly visible; complete calm peak; same peak drifting gently; fading still
+    visible fragments. Changes are modest for smooth crossfade. Frame 2 and frame 3 have the same overall silhouette.
+
+    No humans, hands, fingers, sleeves, weapons, text, calligraphy, talismans, magic diagram, flowers, dragon, lotus,
+    snowflakes, sparkles, hard shadows, paper grain, borders, checkerboard, off-white background, black background,
+    full white internal highlights, neon sci-fi bloom.
+
+    Primary request: the unique Hufa protective-support ultimate. Two softly interlaced jade-cyan silk-like currents
+    form a double embracing arc / nested open protective shell to the right of a broad root, cradling an empty central
+    space. It should suggest one breath protecting another, elegant rounded C-shaped arcs rather than a metal shield.
+    Both arcs remain connected softly to the same wide left root, no detached bullet. Keep the complete effect only
+    within local x=90..675,y=65..447. Darker teal accents in the inner fold distinguish it from the simple family
+    cooling breath.'
+  negative: 人物、手、兵器、文字、编号、格线、纸纹、棋盘格、灰影、实体玉壶、冰块、近白实心高光。
+  references: []
+  tool: Codex 内置 image_gen
+  model: 工具未返回底层图像模型标识
+  effort: 未指定（内置工具默认）
+  created: '2026-10-03T23:25:52.543508+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_yunvxinjing/codex-home/generated_images/01a10413-1d65-7b22-94dc-33f0b5f53ea4/exec-6ce5698b-4c74-4948-80e6-14e6b22b0ba1.png
+  size: 1536x1024
+  sha256: d8c9ed3aff76a737038a85571acd57a67c66c2b9d5ae98ef93d9f8d5be2ff009
+  status: candidate
+  skill_ref: sk_yunvxinjing
+  nature: yin
+  delivery: inner
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 仅按图鉴散热 / 护法叙事及招名作原创视觉；青色按 yin 风格，不声称为原著显色。四帧 768x512，white_key 128，量图与参数见 README；参考图输入为空，未改原件。
+  file_integrity:
+  - file: effect/mv_yunvxinjing_hufa/effect-set.yaml
+    bytes: 997
+    sha256: 04008ab9fedfbc12a0a312c0a7c47ab52b15b3c634c0ede519826f0a22056baa
+  - file: effect/mv_yunvxinjing_hufa/frame_000.png
+    bytes: 265659
+    sha256: 53b13be2c975e610ee47c0423ea744fed3dfc265c50689ba491516bd02804522
+  - file: effect/mv_yunvxinjing_hufa/frame_001.png
+    bytes: 350998
+    sha256: a3642bc14745d95001ef76799c3c62e9b90fb28c451bdea80a5b9876da9ca238
+  - file: effect/mv_yunvxinjing_hufa/frame_002.png
+    bytes: 356187
+    sha256: aa7053425d9f2425ca1f3b4599bef71acd73323873501da5794a62e44bbbd763
+  - file: effect/mv_yunvxinjing_hufa/frame_003.png
+    bytes: 270814
+    sha256: 176afe81723703bf6d30655a98d693124f783d219494a477207973eb74cd6154
+  - file: effect/mv_yunvxinjing_hufa/generation.json
+    bytes: 2927
+    sha256: 1636a6df90cb719ebee21542d1d5c11bb6b1233e0579f99cd1f8ebb67d87304b
+  - file: effect/mv_yunvxinjing_hufa/preview_black.png
+    bytes: 925123
+    sha256: f52f5ff6e1e9507f4f2790ab1c452105c3df9a455aee1b1130112fa16002fee2
+  - file: effect/mv_yunvxinjing_hufa/preview_gray.png
+    bytes: 859342
+    sha256: 52832f2e2478b858359af1378cecc49331100cd30e27ea64971ceb41a0743f74
+  - file: effect/mv_yunvxinjing_hufa/preview_white.png
+    bytes: 845948
+    sha256: 51290ec8ad527cdd5d7cef5ee2876d67bb2b815f35bc7c64fa587493c32bc174
+  - file: effect/mv_yunvxinjing_hufa/quality.json
+    bytes: 1029
+    sha256: 4895c0a0ec24309c52f02a233290750bcbafa60f694b4ae921946053d31ff9b8
+- id: vfx_sk_yunvxinjing__bingxin_base01
+  file: effect/mv_yunvxinjing_bingxin/source_sheet.png
+  category: vfx
+  style: default
+  subject: 玉女心经·冰心玉壶，青气虚壶（神雕书界；原创扩展造型）
+  prompt: 'Use case: stylized-concept.
+
+    Asset type: 2D wuxia game VFX source sprite sheet for the yin internal cultivation art Yunü Xinjing. This is
+    an original visual interpretation, not a literal quotation or canonical supernatural object.
+
+    Output: one landscape 1536x1024 PNG, opaque PURE WHITE #FFFFFF background, precisely four equally sized 768x512
+    cells arranged 2 columns by 2 rows, reading left to right then top to bottom. NO drawn grid, numbers or labels.
+
+    Every cell contains one isolated self-contained effect only. Keep at least 45 pixels of entirely blank white
+    on ALL FOUR edges of EACH cell, including wisps. Nothing crosses the invisible boundaries x=768 or y=512.
+
+    Shared art direction: refined Chinese ink-wash martial arts atmosphere, translucent soft jade cyan and blue-green,
+    delicately graded smoky brush fibers, subtle dark teal structural accents, generous transparent-looking negative
+    spaces. Compact internal aura, calm and protective, never a long laser or weapon attack. Highlights are visibly
+    cyan, never solid white paint. No realistic material object.
+
+    Geometry: effect begins with a soft visibly broad root near local (130,256), extending to the right toward (650,256).
+    The root is NOT a thin tail. Maintain the same root location, same orientation and identifiable main silhouette
+    in all four cells.
+
+    Four keyframes: gathering faint but clearly visible; complete calm peak; same peak drifting gently; fading still
+    visible fragments. Changes are modest for smooth crossfade. Frame 2 and frame 3 have the same overall silhouette.
+
+    No humans, hands, fingers, sleeves, weapons, text, calligraphy, talismans, magic diagram, flowers, dragon, lotus,
+    snowflakes, sparkles, hard shadows, paper grain, borders, checkerboard, off-white background, black background,
+    full white internal highlights, neon sci-fi bloom.
+
+    Primary request: the unique Bingxin Yuhu (ice-clear heart, jade vessel) supportive ultimate. An airy rounded
+    vessel-shaped aura implied by two translucent cyan ink-wash curves, with an open softly curling neck above and
+    a rounded empty bowl below, a small concentrated calm cyan inner breath. This is the poetic outline of an EMPTY
+    JADE VESSEL MADE OF VAPOR, not a real jug, not ceramic, not a literal glass flask, not a projectile. It unfolds
+    upward and rightward from the broad soft left root. Subtle nested inner arc evokes clarity and serenity; no
+    heart icon and no physical ice crystal. Keep all of the complete image only within local x=90..675,y=65..447.'
+  negative: 人物、手、兵器、文字、编号、格线、纸纹、棋盘格、灰影、实体玉壶、冰块、近白实心高光。
+  references: []
+  tool: Codex 内置 image_gen
+  model: 工具未返回底层图像模型标识
+  effort: 未指定（内置工具默认）
+  created: '2026-10-03T23:26:24.232889+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/logs/VFX-sk_yunvxinjing/codex-home/generated_images/01a10413-1d65-7b22-94dc-33f0b5f53ea4/exec-225c448b-bea1-4a6f-95f3-66cfc8b3cec8.png
+  size: 1536x1024
+  sha256: 5afc380de52601f96976a9e1ce4c40ac7553770d84254a09d2d7fa9520799c34
+  status: candidate
+  skill_ref: sk_yunvxinjing
+  nature: yin
+  delivery: inner
+  candidate_count: 1
+  selected_candidate: 1
+  notes: 仅按图鉴散热 / 护法叙事及招名作原创视觉；青色按 yin 风格，不声称为原著显色。四帧 768x512，white_key 128，量图与参数见 README；参考图输入为空，未改原件。
+  file_integrity:
+  - file: effect/mv_yunvxinjing_bingxin/effect-set.yaml
+    bytes: 1000
+    sha256: 2233f19e5a0d7a170fdc6a64259120ef5ed776e47dadf2b6e425c60c5e61f737
+  - file: effect/mv_yunvxinjing_bingxin/frame_000.png
+    bytes: 230808
+    sha256: 449c59aca1afbe357baa29361fedd930b1267cb594d6f4d931555be734019f90
+  - file: effect/mv_yunvxinjing_bingxin/frame_001.png
+    bytes: 270490
+    sha256: b30ee8a6e445898a8038640fa3fcd0e2128e21bc126cd334f67f096a901f76df
+  - file: effect/mv_yunvxinjing_bingxin/frame_002.png
+    bytes: 276731
+    sha256: 4d44d70a7f7915a81494d2aa93c7346d4dd46a9f0cc8be7e32e8baf9b89c08e9
+  - file: effect/mv_yunvxinjing_bingxin/frame_003.png
+    bytes: 227294
+    sha256: 68b1bfffd02ab1b1f656bbfae376804cedda81abd47dba7b43e9b937c718a778
+  - file: effect/mv_yunvxinjing_bingxin/generation.json
+    bytes: 3009
+    sha256: 0abbc83b585f78ae600c0668617f3168d9ded2ffe78625f99b75115862cf4e6b
+  - file: effect/mv_yunvxinjing_bingxin/preview_black.png
+    bytes: 734790
+    sha256: 90c31f83993de0bfaae1597e274ff7a7655c9353747449bbe81ac7f659cf77d3
+  - file: effect/mv_yunvxinjing_bingxin/preview_gray.png
+    bytes: 676541
+    sha256: bf4e134e44aa37a6f3ad9c36cef241211cad356a094ae34995c0fa7870d94d9b
+  - file: effect/mv_yunvxinjing_bingxin/preview_white.png
+    bytes: 673499
+    sha256: 2d7ee0f3fb630d2774715bf5c2668f11bb515bb31597e8fcf46c4a80ef7d1e67
+  - file: effect/mv_yunvxinjing_bingxin/quality.json
+    bytes: 1029
+    sha256: b16d1c240790c4d7f3fcdb8b3e3eda8fc7cc9cbe505184fd2f51ce6dec9748c4
+- id: vfx_mv_yunvxinjing_sanre__base01
+  file: moves/mv_yunvxinjing_sanre/peak.png
+  category: vfx
+  style: default
+  subject: 玉女心经·散热（神雕书界；原创扩展演出）
+  prompt: 按 moves/mv_yunvxinjing_sanre/composition.yaml 合成独立掌图与 effect/family/effect-set.yaml；E=[780,580]，方向0度，length_px=192。使用现有
+    compose.py / build_demo.py 导出峰值及实时 Three.js 演示，造型全部来自原料图。
+  negative: 不得程序补画轮廓，不新增伤害、射程或外放加持，不烘焙整图动画。
+  references:
+  - effect/family/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 程序合成（不调用图像模型）
+  effort: 不适用（确定性导出）
+  created: '2026-10-03T23:34:11.643849+00:00'
+  source_path: assets/default/vfx/sk_yunvxinjing/moves/mv_yunvxinjing_sanre/composition.yaml
+  size: 1536x1024
+  sha256: 14df979f43e463f3468ae645aee525238c83c57cc7eb5808cf9fc8d00b377597
+  status: candidate
+  code: moves/mv_yunvxinjing_sanre/demo.html
+  pipeline: two-part
+  skill_ref: sk_yunvxinjing
+  move_ref: mv_yunvxinjing_sanre
+  nature: yin
+  delivery: inner
+  ultimate: false
+  projection: false
+  effect_set: effect/family/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  notes: 范围语义见道家图鉴 §3.3；冰心默认自身中心，不将友方 r2 变为投送距离。共享 palm 逐字节引用；素材通过静态门禁不代表浏览器或作者批准。
+  file_integrity:
+  - file: moves/mv_yunvxinjing_sanre/composition.json
+    bytes: 3338
+    sha256: 944cc587bf0de406960664ee5d6752175595e618f36c1b2f8e59f1f51869dbc1
+  - file: moves/mv_yunvxinjing_sanre/composition.yaml
+    bytes: 992
+    sha256: 6454ef0dba0cdb4848cef6a4136732f418054d5248fa3f55f0c8462814446681
+  - file: moves/mv_yunvxinjing_sanre/demo.html
+    bytes: 1721641
+    sha256: 704878ced91e8316c84a071bc0e596851603c866c1108266ee6c21003ffbfe47
+- id: vfx_mv_yunvxinjing_hufa__base01
+  file: moves/mv_yunvxinjing_hufa/peak.png
+  category: vfx
+  style: default
+  subject: 玉女心经·护法（神雕书界；原创扩展演出）
+  prompt: 按 moves/mv_yunvxinjing_hufa/composition.yaml 合成独立掌图与 effect/mv_yunvxinjing_hufa/effect-set.yaml；E=[780,580]，方向0度，length_px=256。使用现有
+    compose.py / build_demo.py 导出峰值及实时 Three.js 演示，造型全部来自原料图。
+  negative: 不得程序补画轮廓，不新增伤害、射程或外放加持，不烘焙整图动画。
+  references:
+  - effect/mv_yunvxinjing_hufa/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 程序合成（不调用图像模型）
+  effort: 不适用（确定性导出）
+  created: '2026-10-03T23:34:45.519911+00:00'
+  source_path: assets/default/vfx/sk_yunvxinjing/moves/mv_yunvxinjing_hufa/composition.yaml
+  size: 1536x1024
+  sha256: b74ed2ef3c92f883a16c4fe4a8556d10992d71222761f0b4618067dc3d173627
+  status: candidate
+  code: moves/mv_yunvxinjing_hufa/demo.html
+  pipeline: two-part
+  skill_ref: sk_yunvxinjing
+  move_ref: mv_yunvxinjing_hufa
+  nature: yin
+  delivery: inner
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_yunvxinjing_hufa/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  notes: 范围语义见道家图鉴 §3.3；冰心默认自身中心，不将友方 r2 变为投送距离。共享 palm 逐字节引用；素材通过静态门禁不代表浏览器或作者批准。
+  file_integrity:
+  - file: moves/mv_yunvxinjing_hufa/composition.json
+    bytes: 3347
+    sha256: 47bff9cc052a825985f73b1faa3cc95756f56a14cef41ea5d87ed54c5b0f5bbd
+  - file: moves/mv_yunvxinjing_hufa/composition.yaml
+    bytes: 994
+    sha256: e407272f5d924ed49ce501c3e34976f06f90a5771945f3879910f55f11e1a1dd
+  - file: moves/mv_yunvxinjing_hufa/demo.html
+    bytes: 2001004
+    sha256: 0d6f54734b83817517252d697ba9564308a39528e0b9798da84e177eec2a875c
+- id: vfx_mv_yunvxinjing_bingxin__base01
+  file: moves/mv_yunvxinjing_bingxin/peak.png
+  category: vfx
+  style: default
+  subject: 玉女心经·冰心玉壶（神雕书界；原创扩展演出）
+  prompt: 按 moves/mv_yunvxinjing_bingxin/composition.yaml 合成独立掌图与 effect/mv_yunvxinjing_bingxin/effect-set.yaml；E=[780,580]，方向0度，length_px=320。使用现有
+    compose.py / build_demo.py 导出峰值及实时 Three.js 演示，造型全部来自原料图。
+  negative: 不得程序补画轮廓，不新增伤害、射程或外放加持，不烘焙整图动画。
+  references:
+  - effect/mv_yunvxinjing_bingxin/source_sheet.png
+  - ../emitters/palm/emitter-plate.yaml
+  - ../emitters/palm/source_palm.png
+  tool: tools/vfx/compose.py + tools/vfx/build_demo.py
+  model: 程序合成（不调用图像模型）
+  effort: 不适用（确定性导出）
+  created: '2026-10-03T23:35:11.802721+00:00'
+  source_path: assets/default/vfx/sk_yunvxinjing/moves/mv_yunvxinjing_bingxin/composition.yaml
+  size: 1536x1024
+  sha256: d53a10b9e5a8fbbdcdb1f7406b125d5d79848902229fff8c455d5a99d393e66c
+  status: candidate
+  code: moves/mv_yunvxinjing_bingxin/demo.html
+  pipeline: two-part
+  skill_ref: sk_yunvxinjing
+  move_ref: mv_yunvxinjing_bingxin
+  nature: yin
+  delivery: inner
+  ultimate: true
+  projection: false
+  effect_set: effect/mv_yunvxinjing_bingxin/effect-set.yaml
+  emitter_plate: ../emitters/palm/emitter-plate.yaml
+  notes: 范围语义见道家图鉴 §3.3；冰心默认自身中心，不将友方 r2 变为投送距离。共享 palm 逐字节引用；素材通过静态门禁不代表浏览器或作者批准。
+  file_integrity:
+  - file: moves/mv_yunvxinjing_bingxin/composition.json
+    bytes: 3359
+    sha256: 4d963955868cc34f9b04d6be968d9c6c5c97f95ad8fc6cd9d9faa6b21433b791
+  - file: moves/mv_yunvxinjing_bingxin/composition.yaml
+    bytes: 1008
+    sha256: 104e0e520f9197af3543476d2bd626dce3192d2209bdcd29c499521f9689800a
+  - file: moves/mv_yunvxinjing_bingxin/demo.html
+    bytes: 1798086
+    sha256: 0ff3d99f82ffd07e48c1b1fa05a4a910c3e81c29904a88fbe62ae7defd6504b9

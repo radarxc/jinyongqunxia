@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_liuxingchui
+name: 流星锤图谱原本
+kind: manual
+sub: original
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_liuxingchui
+text:
+  desc: 外观：明代长幅经折图谱，墨蓝硬纸护面。
+  lore: 奇门兵器师把链锤回旋、放索与收势轨迹绘成经折原稿，器法和载体皆属 （原创扩展）。研读须按朱线在空场以轻锤试路，尤其留意回收方向；贸然用重锤极易反伤自身。
+extension:
+  type: manual
+  value:
+    skill: sk_liuxingchui
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_liuxingchui
+      readWis: 35
+      maxLayer: 10
+      cultivation: 1600

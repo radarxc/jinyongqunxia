@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_beisongxuanxiuyuanlanshan_nan
+name: 北宋玄绣缘襕衫·男
+kind: armor
+sub: clothing
+grade: 8
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 北宋；出现书界 ch01；（原创扩展）；形制／色系依据：《宋史》卷153《舆服五·公服／襆头／带》 https://zh.wikisource.org/zh-hans/宋史/卷153；元丰以后公服取色不等于庶民流行排序，女俑色彩残损不得补作白内衣证据；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongxuanxiuyuanlanshan_nan
+text:
+  desc: 外观：北宋男款，圆领右侧暗系。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=male。
+  lore: （原创扩展）据北宋舆服语汇演成玄男式襕衫，圆领右侧暗系，宽袖与长摆横襕便于整束。细密花纹绣缘落衣缘，行旅先收袖；绯色不授官阶，横襕与裁片默认原创，同档换色同值。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 62

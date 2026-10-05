@@ -71,6 +71,26 @@ def main():
     ap.add_argument("--max-images", type=int, default=8)
     ap.add_argument("--dry-run", action="store_true", help="只打印提示词与命令，不调用模型")
     a = ap.parse_args()
+    env = None
+    try:  # 2026-10-03 协调者（作者 AR-65）：审核也改走 Codex gpt-6.1-sol，读 executor_override.json 的 review_* 项
+        ov = json.loads((ROOT / ".agents/coord/executor_override.json").read_text(encoding="utf-8"))
+        if isinstance(ov, dict) and ov.get("enabled", True):
+            rv = ov.get("review") if isinstance(ov.get("review"), dict) else {  # AR-66：审核一律 Codex gpt-6.1-sol
+                "bin": ov.get("bin"), "model": ov.get("review_model") or ov.get("model"),
+                "effort": ov.get("review_effort") or ov.get("effort")}
+            a.bin = rv.get("bin") or a.bin
+            a.model = rv.get("model") or a.model
+            a.effort = rv.get("effort") or a.effort
+    except Exception:
+        pass
+    if "codex" in Path(str(a.bin)).name.lower():  # Codex 审核用独立 CODEX_HOME，线程历史不往 ~/.codex 堆；auth / config 链接过去
+        home = ROOT / ".agents" / "reviews" / "codex-home"
+        home.mkdir(parents=True, exist_ok=True)
+        for name in ("auth.json", "config.toml"):
+            link = home / name
+            if not link.exists() and not link.is_symlink():
+                link.symlink_to(Path.home() / ".codex" / name)
+        env = {**os.environ, "CODEX_HOME": str(home)}
 
     wt = ROOT / ".agents" / "wt" / a.task
     if not wt.is_dir():
@@ -113,6 +133,8 @@ def main():
                            untracked="、".join(untracked) or "无", images_note=images_note, checks=checks)
     argv = [a.bin, "exec", "-m", a.model, "-c", f'model_reasoning_effort="{a.effort}"',
             "-s", "read-only", "--skip-git-repo-check", "-C", str(wt), "-o", str(out)]
+    if any(k in Path(str(a.bin)).name.lower() for k in ("traex", "traecli")):
+        argv += ["-c", "skills.include_instructions=false"]  # 同 step.py TRAEX_NO_SKILLS：不把作者本机 Trae 技能清单放进审核提示
     for f in attach:
         argv += ["-i", str(wt / f)]
     argv.append("-")  # 提示词经标准输入传入
@@ -126,7 +148,7 @@ def main():
     with open(log, "w", encoding="utf-8") as lf:
         try:
             rc = subprocess.run(argv, input=prompt, text=True, stdout=lf, stderr=subprocess.STDOUT,
-                                cwd=str(wt), timeout=a.timeout_min * 60).returncode
+                                cwd=str(wt), timeout=a.timeout_min * 60, env=env).returncode
         except subprocess.TimeoutExpired:
             print(f"REVIEW-TIMEOUT：超过 {a.timeout_min:g} 分钟，可重跑本脚本")
             return 2

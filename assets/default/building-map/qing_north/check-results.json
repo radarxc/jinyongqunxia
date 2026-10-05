@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-30",
+  "commands": [
+    {
+      "command": "python3 tools/agents/check_assets.py assets/default/building-map/qing_north --min 18 --max 22 --min-side 256",
+      "exit_code": 0,
+      "images": 19,
+      "problems": 0
+    },
+    {
+      "command": "python3 tools/agents/check_assets.py assets/default/tile/qing_north --min 5 --max 10 --min-side 32",
+      "exit_code": 0,
+      "images": 7,
+      "problems": 0
+    },
+    {
+      "command": "python3 tools/lint/check_ids.py --strict",
+      "exit_code": 0,
+      "strict_failure_count": 0,
+      "known_undefined": 1,
+      "known_undefined_id": "sk_babuganchan"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "extra_checks": {
+    "rgba_hash_anchor_bounds_buildings": 19,
+    "rgba_hash_anchor_bounds_tiles": 7,
+    "anchor_transform_mismatches": 0,
+    "report_lines": 96,
+    "buildings_with_geometry_warnings": 8,
+    "building_replay_hash_matches": 19,
+    "historical_references_buildings": 19,
+    "historical_references_tiles": 7
+  },
+  "release_ready": false,
+  "note": "命令成功不代表精确投影、历史细部、多朝向或正式总装已通过；历史图片仅作生成后形制复核。"
+}

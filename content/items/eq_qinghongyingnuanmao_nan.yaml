@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: eq_qinghongyingnuanmao_nan
+name: 清红缨暖帽·男
+kind: armor
+sub: headwear
+grade: 4
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch10_baima
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 暖帽 · 清（《大清会典·冠服》）· 出现书界 ch08/ch09/ch10/ch11/ch12/ch13/ch14 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinghongyingnuanmao_nan
+text:
+  desc: 外观：男款黑缎暖帽独立陈列，不画人头。 待运行时投影：resColdPp=2; wearer=male。
+  lore: （原创扩展）据清代暖帽制度意象重构，黑缎圆顶配窄熏貂缘，低红缨下仅置素铜顶珠。士绅寒时出门佩用，顶珠不冒充官阶；入室后须顺毛收好。
+extension:
+  type: equipment
+  value:
+    slot: head
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 7

@@ -1,0 +1,61 @@
+{
+  "id": "bld_kit_yuan_south_inn",
+  "file": "bld_kit_yuan_south_inn.png",
+  "category": "building-map",
+  "style": "default",
+  "subject": "元末江南·客栈（原创扩展）",
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A 12m by9m two-storey travellers inn around a tiny service court: broad open entrance bay, ground-level public room shutters, upper guest-room lattice windows, timber gallery only where structurally plausible, multiple plain grey gable roofs, stone footings; no sign text, lantern spectacle or people.",
+  "negative": "文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕",
+  "references": [
+    {
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "role": "滨水楼屋与小院"
+    },
+    {
+      "url": "http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html",
+      "role": "柱网、格扇、深檐"
+    }
+  ],
+  "tool": "Codex Images edits endpoint",
+  "model": "gpt-image-2",
+  "created": "2026-10-01T07:30:08+00:00",
+  "generation_id": "b3c61547-c0d5-4751-9937-688b13290b16",
+  "size": "752x720",
+  "sha256": "204e9cd38034f8ff2ca4f6d54e7171fd0dc171d669d2b86e2a8413f83ec99be5",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_yuan_south_inn",
+    "footprint": [
+      12,
+      9
+    ],
+    "anchor": [
+      368.8065,
+      461.5521
+    ],
+    "era": "yuan"
+  },
+  "footprint_m": [
+    12,
+    9
+  ],
+  "footprint_basis": "【建议值】design/22 §3.3同功能项",
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 6
+  },
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source_record": "sources/hist_inn_selected.json",
+  "source_archive": "sources/hist_inn_selected.png",
+  "processing": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ],
+  "notes": "滨水楼屋与小院；柱网、格扇、深檐；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。",
+  "anchor_px": [
+    368.8065,
+    461.5521
+  ]
+}

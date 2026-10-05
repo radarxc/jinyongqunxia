@@ -1,0 +1,24 @@
+schemaVersion: martial-art.v1
+id: sk_yuezu_duanjian
+name: 越卒短剑
+aliases: []
+category: weapon
+subType: sword
+grade: 3
+origin: expanded
+sect: null
+lineage: 越军教习的短兵基础
+sourceChapters: [ch00_yuenv]
+nature: neutral
+wOutBp: 8000
+wInBp: 2000
+requirements: {attrs: {agi: 30}, aptitude: {apSword: 10}}
+maxLayer: 10
+layers:
+  - {n: 1, unlock: []}
+moveIds: []
+learnSources:
+  - {type: master, chapter: ch00_yuenv, ref: 越军教习角色槽, maxLayer: 10}
+  - {type: manual, chapter: ch00_yuenv, ref: it_miji_yuezu_duanjian, maxLayer: 10}
+tags: [weapon, sword, common, prologue_role]
+description: 越军教习所用的拔刺、护身与列中换步短剑套路。（原创扩展）

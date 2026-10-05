@@ -26,14 +26,18 @@ coordinate_convention:
   rotation_to_world_yaw: "worldYawDeg=(rotation_deg+270)%360"
   runtime_conversion: "enumerate tech/02 hex centers in world axes, then sample planning masks at x_p=x_w,z_p=height-z_w"
 geometry_contract:
+  lake_raster: "lake polygon follows Polygon constraints; integer grid vertices, implicit last-first edge, simple and non-zero area; cell center inside or on boundary is water; union lake and river masks before road, zone, building and walkability checks"
+  water_body_reference: "RiverSpec.id and LakeSpec.id share one unique namespace; BridgeSpec.river_ref retains its historical name and resolves either kind; lake bridges require the same anchor and dry-road ends but have no river-tangent orientation rule"
   building_rotation: "w0,h0 are unrotated catalog dimensions; rotate local point (u,v) by 0:(u,v),90:(v,w0-u),180:(w0-u,h0-v),270:(h0-v,u); add rotated instance origin; size=(h0,w0) for 90/270 else (w0,h0)"
   building_entrance: "select unrotated local cell N:(floor((w0-1)/2),h0),E:(w0,floor((h0-1)/2)),S:(floor((w0-1)/2),-1),W:(-1,floor((h0-1)/2)); rotate its center (i+0.5,j+0.5), add instance origin, then floor to entrance cell; never reselect the midpoint on the rotated edge"
   entrance_buffer: "extend from the transformed entrance cell along rotated outward normal; depth counts the entrance cell; ordinary depth=1, yamen depth=4; recompute buffer,connector and hex mapping after rotation"
   bridge_rectangle: "at is a cell index; spans=(width,length) for 0/180 else (length,width); min=at-floor(spans/2); max=min+spans excluded; even spans bias negative"
   bridge_mask: "bridge_cells=rectangle intersect water; every road-water intersection must be covered by a declared bridge; both bridge ends connect dry road"
   gate_rectangle: "unrotated offsets x=-floor((w-1)/2)..ceil((w-1)/2),z=-1..2; rotate offsets clockwise around at cell center; even w biases local +x"
-  gate_collision: "P=union of all gate passage masks,G=union of all gate footprints; hard mask=(wall supercover minus P) union (G minus P); exactly one primary gate; overhead beam is not ground collision"
-  gate_walk_domain: "wall-interior cell centers union P, minus hard collision and non-bridge water; trim road end caps only at walls/exterior; P is the wall-margin passage exception"
+  wall_forms: "exactly one of legacy wall or walls; walls is NamedWallSpec[1..N] or literal none; shared wall cells are unioned once"
+  gate_collision: "P=union of ordinary and water-gate passage masks,G=union of their footprints; hard mask=(wall supercover minus P) union (G minus P); walled sites have exactly one primary ordinary gate; overhead beam is not ground collision"
+  gate_walk_domain: "union of every wall interior, or full bounds for walls:none, plus P; subtract hard collision and non-bridge water; P is the wall-margin passage exception"
+  water_gate: "WaterGateSpec opens only its named wall; every wall-water cell must be covered by a declared water passage or fail TOWN_WALL_WATER_UNDECLARED; water remains continuous beneath the gate assembly"
   entrance_path: "4-neighbor BFS <=6 edges; N/E/S/W; ties by length,road id,target z/x,full z/x path lexicographically"
   entrance_hex: "valid sampled hex center within 1.5m of entrance cell center, unobstructed centerline to entrance; choose primary-gate-connected candidate by squared distance,r,q"
   gate_hex: "valid hex center inside wall and in road_ref union P, within 4m of at center; order distance,r,q; primary selects root, others must join root component"
@@ -42,11 +46,13 @@ geometry_contract:
   road_connectivity: "stage B requires primary gate at in union(main_axis cells) only; multiple main-axis components are allowed; stage C lays secondary/alley roads then joins non-primary components before rebuilding buildable masks; 4-neighbor components over union(roads.values) only, with bridge road cells included; repeat after zone and entrance connectors and at final validation; walkable empty ground never substitutes for a road"
   primary_target_reachability: "check at end of stage C, after all component and zone connectors; among palace/princely/commercial/market zones select maximum priority; primary road component must intersect or 4-neighbor-touch a winning-cell boundary of at least one tied zone; missing or unreachable target raises TOWN_ROAD_PRIMARY_DISCONNECTED; component-repair failure raises TOWN_ROAD_COMPONENT_DISCONNECTED first"
 enums:
-  era_kit: [song_dali, song_southern, yuan, ming, qing_early]
+  era_kit: [tang, song_dali, song_southern, yuan, ming, qing_early, song_north, liao_jin_north, yuan_north, yuan_south, ming_north, ming_south, qing_north, qing_south, xiyu, tubo, mongol]
   zone_kind: [palace, princely, administrative, commercial, market, residential, religious, escort, waterfront, gate_service, garden]
   ground_type: [rammed_earth, grey_brick, stone_slab, dirt_road, grass, water, bridge_deck]
   street_class: [main_axis, secondary, alley]
   gate_side: [north, east, south, west]
+  wall_role: [outer, inner, division]
+  water_gate_kind: [water_gate, water_barrier]
   rotation_deg: [0, 90, 180, 270]
   validation_severity: [error, warning, info]
 definitions:
@@ -66,8 +72,8 @@ definitions:
       notes: {type: "string[1..N]", unit: none, range: non_empty_items, example: ["土面多于砖面"]}
   GridSpec:
     fields:
-      width: {type: integer, unit: m/grid, range: "one of [64,96,160]", example: 96}
-      height: {type: integer, unit: m/grid, range: "one of [64,96,160]", example: 96}
+      width: {type: integer, unit: m/grid, range: "one of [64,96,128,160]", example: 96}
+      height: {type: integer, unit: m/grid, range: "one of [64,96,128,160]", example: 96}
       cell_m: {type: integer, unit: m, range: 1, example: 1}
       chunk_cells: {type: integer, unit: planning_cells, range: 32, example: 32}
   RuntimePartitionSpec:
@@ -91,7 +97,7 @@ definitions:
       min: {type: GridPoint, unit: m/grid, range: inside_grid, example: {x: 12, z: 12}}
       max: {type: GridPoint, unit: m/grid, range: "min < max <= grid size", example: {x: 30, z: 40}}
   Polygon:
-    description: simple non-self-intersecting polygon; last point is implicitly joined to first
+    description: simple non-self-intersecting polygon with non-zero area; no repeated closing point; last point is implicitly joined to first
     fields:
       points: {type: "GridPoint[3..N]", unit: m/grid, range: inside_grid, example: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}]}
   WallSpec:
@@ -99,6 +105,14 @@ definitions:
       polygon: {type: Polygon, unit: m/grid, range: simple_inside_grid, example: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}}
       inside_margin_cells: {type: integer, unit: planning_cells, range: "0..8", example: 2}
       basis: {type: string, unit: none, range: non_empty, example: "历史城垣比例概化；网络资料，待核"}
+  NamedWallSpec:
+    description: "closed wall circuit; overlapping cells with another circuit are a shared partition and are rendered once"
+    fields:
+      id: {type: string, range: "unique within file; [a-z][a-z0-9_]*", example: outer}
+      role: {type: enum.wall_role, range: enum, example: outer}
+      polygon: {type: Polygon, unit: m/grid, range: simple_inside_grid, example: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}}
+      inside_margin_cells: {type: integer, unit: planning_cells, range: "0..8", example: 2}
+      basis: {type: string, unit: none, range: non_empty, example: "外廓与分城墙的历史格局概化（原创扩展）"}
   Polyline:
     description: ordered centerline expanded by width_cells during rasterization
     fields:
@@ -110,6 +124,7 @@ definitions:
       priority: {type: integer, unit: none, range: "0..100; higher wins", example: 90}
       basis: {type: string, unit: none, range: non_empty, example: "历史平面图概化；网络资料，待核"}
   GateSpec:
+    required: [id, side, at, width_cells, asset_type, rotation_deg, footprint_cells, passage_cells, road_ref, primary, basis]
     fields:
       id: {type: string, range: "unique within file", example: south_gate}
       side: {type: enum.gate_side, range: enum, example: south}
@@ -121,23 +136,44 @@ definitions:
       passage_cells: {type: "{w:int,h:int}", unit: m/grid, range: "unrotated w=width_cells,h=4; P from gate_rectangle; unobstructed opening", example: {w: 6, h: 4}}
       road_ref: {type: Polyline.id, range: existing_street, example: main_north_south}
       primary: {type: boolean, range: true_or_false, example: true}
+      wall_ref: {type: "string|null", required: false, range: "existing NamedWallSpec.id; omitted means outer for legacy wall", example: outer}
       basis: {type: string, range: non_empty, example: "城市主入口的设计概化（原创扩展）"}
+  WaterGateSpec:
+    description: "declared water opening; gatehouse fallback may reuse the era city-gate asset while water cells remain continuous"
+    fields:
+      id: {type: string, range: "unique within file", example: west_water_gate}
+      wall_ref: {type: string, range: existing_NamedWallSpec_id, example: outer}
+      kind: {type: enum.water_gate_kind, range: enum, example: water_gate}
+      side: {type: enum.gate_side, range: enum, example: west}
+      at: {type: GridPoint, unit: m/grid, range: on_named_wall_and_water, example: {x: 8, z: 48}}
+      width_cells: {type: integer, unit: m/grid, range: "2..16", example: 6}
+      asset_type: {type: string, unit: asset_id, range: "tex_town_<era_kit>_city_gate fallback until a dedicated water-gate asset exists", example: tex_town_tang_city_gate}
+      rotation_deg: {type: enum.rotation_deg, unit: degree, range: "south=0,west=90,north=180,east=270", example: 90}
+      footprint_cells: {type: "{w:int,h:int}", unit: m/grid, range: "unrotated w=width_cells+4,h=4", example: {w: 10, h: 4}}
+      passage_cells: {type: "{w:int,h:int}", unit: m/grid, range: "unrotated w=width_cells,h=4; water remains water", example: {w: 6, h: 4}}
+      basis: {type: string, range: non_empty, example: "河道穿墙处的水门位置概化（原创扩展）"}
   RiverSpec:
     fields:
-      id: {type: string, range: "unique within file", example: east_canal}
+      id: {type: string, range: "unique across rivers and lakes in this file", example: east_canal}
       width_cells: {type: integer, unit: m/grid, range: "2..16", example: 4}
       points: {type: "GridPoint[2..N]", unit: m/grid, range: inside_grid, example: [{x: 80, z: 8}, {x: 82, z: 88}]}
       flow: {type: enum, range: [north, east, south, west, unknown], example: south}
       navigable: {type: boolean, range: true_or_false, example: false}
       basis: {type: string, range: non_empty, example: "历史水系概化；网络资料，待核"}
+  LakeSpec:
+    description: "lake or cropped lake shore; no centerline or width; no navigability implied"
+    fields:
+      id: {type: string, range: "unique across rivers and lakes in this file", example: west_lake_edge}
+      polygon: {type: Polygon, unit: m/grid, range: simple_inside_grid, example: {points: [{x: 0, z: 24}, {x: 18, z: 32}, {x: 24, z: 50}, {x: 16, z: 74}, {x: 0, z: 84}]}}
+      basis: {type: string, range: non_empty, example: "西墙外湖岸关系有史料；折点为非等比缩景推定（待考）"}
   BridgeSpec:
     description: "rectangle anchor and even-size bias are fixed by geometry_contract.bridge_rectangle; never use image bounding-box center"
     fields:
       id: {type: string, range: "unique within file", example: bridge_market}
-      at: {type: GridPoint, unit: m/grid, range: on_river_and_road, example: {x: 81, z: 42}}
-      river_ref: {type: RiverSpec.id, range: existing_river, example: east_canal}
+      at: {type: GridPoint, unit: m/grid, range: on_referenced_water_body_and_road, example: {x: 81, z: 42}}
+      river_ref: {type: string, range: "existing RiverSpec.id or LakeSpec.id in shared unique namespace; field name kept for compatibility", example: east_canal}
       road_ref: {type: Polyline.id, range: existing_street, example: market_cross_street}
-      length_cells: {type: integer, unit: m/grid, range: "river width..20", example: 6}
+      length_cells: {type: integer, unit: m/grid, range: "2..20; river bridge at least river width; lake bridge spans crossed water to both dry-road ends", example: 6}
       width_cells: {type: integer, unit: m/grid, range: "2..10", example: 4}
       rotation_deg: {type: enum.rotation_deg, range: enum, example: 90}
       basis: {type: string, range: non_empty, example: "桥位为历史格局的比例压缩（原创扩展）"}
@@ -180,7 +216,7 @@ definitions:
       basis: {type: string, unit: none, range: non_empty, example: "作者美术要求（原创扩展）"}
   CitySpec:
     description: hand-authored historical abstraction consumed by generator
-    required: [schema_version, kind, city_id, chapter_id, book_world, display_name, historical_year, era_kit, seed, design_intent, grid, runtime_partition, projection, wall, gates, streets, rivers, bridges, zones, landmarks, building_quotas, vegetation, sources]
+    required: [schema_version, kind, city_id, chapter_id, book_world, display_name, historical_year, era_kit, seed, design_intent, grid, runtime_partition, projection, gates, streets, rivers, bridges, zones, landmarks, building_quotas, vegetation, sources]
     fields:
       schema_version: {type: string, range: town.city_spec.v1, example: town.city_spec.v1}
       kind: {type: string, range: CitySpec, example: CitySpec}
@@ -188,17 +224,20 @@ definitions:
       chapter_id: {type: string, range: "ch01..ch14", example: ch01}
       book_world: {type: string, range: "existing full chapter ID", example: ch01_tianlong}
       display_name: {type: string, range: non_empty, example: 大理国都（羊苴咩城）}
-      historical_year: {type: integer, unit: CE, range: "900..1800", example: 1093}
+      historical_year: {type: integer, unit: CE, range: "702..1800", example: 1093}
       era_kit: {type: enum.era_kit, range: enum, example: song_dali}
       seed: {type: integer, unit: uint32, range: "0..4294967295", example: 109301}
       design_intent: {type: DesignIntent, unit: none, range: valid_fields, example: {prosperity: modest_capital, notes: ["低密院落"]}}
       grid: {type: GridSpec, unit: m/grid, range: valid_fields, example: {width: 96, height: 96, cell_m: 1, chunk_cells: 32}}
       runtime_partition: {type: RuntimePartitionSpec, unit: axial_slots, range: "bands obey design/11 scene limits; prefix sums from q_min/r_min; local chunks start at each band minimum", example: {q_min: -48, r_min: 1, q_slot_count: 131, r_slot_count: 96, q_band_slots: [66, 65], r_band_slots: [96], formal_scene_refs: null}}
       projection: {type: ProjectionSpec, unit: degree_and_CSS_px, range: valid_fields, example: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}}
-      wall: {type: WallSpec, unit: m/grid, range: valid_fields, example: {polygon: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}, inside_margin_cells: 2, basis: "历史格局概化"}}
-      gates: {type: "GateSpec[1..N]", range: unique_ids, example: [{id: south_gate, side: south, at: {x: 48, z: 8}, width_cells: 6, asset_type: tex_town_song_dali_city_gate, rotation_deg: 0, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: main_north_south, primary: true, basis: "主入口的设计概化（原创扩展）"}]}
+      wall: {type: WallSpec, required: false, unit: m/grid, range: "legacy form; mutually exclusive with walls", example: {polygon: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}, inside_margin_cells: 2, basis: "历史格局概化"}}
+      walls: {type: "NamedWallSpec[]|none", required: false, unit: m/grid, range: "1..N unique closed circuits, or literal none for an unwalled camp; mutually exclusive with wall", example: [{id: outer, role: outer, polygon: {points: [{x: 8, z: 8}, {x: 88, z: 8}, {x: 88, z: 88}, {x: 8, z: 88}]}, inside_margin_cells: 2, basis: "历史格局概化"}]}
+      gates: {type: "GateSpec[]", range: "unique_ids; walled sites require exactly one primary, walls:none requires none", example: [{id: south_gate, side: south, at: {x: 48, z: 8}, width_cells: 6, asset_type: tex_town_song_dali_city_gate, rotation_deg: 0, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, road_ref: main_north_south, primary: true, basis: "主入口的设计概化（原创扩展）"}]}
+      water_gates: {type: "WaterGateSpec[]", required: false, range: unique_ids, example: []}
       streets: {type: "Polyline[1..N]", range: "unique_ids; raster union connected to primary gate after deterministic stage C repair", example: [{id: main_north_south, class: main_axis, width_cells: 5, points: [{x: 48, z: 8}, {x: 48, z: 86}], surface: dirt_road, priority: 100, basis: "南北主街的设计概化（原创扩展）"}]}
       rivers: {type: "RiverSpec[0..N]", range: unique_ids, example: []}
+      lakes: {type: "LakeSpec[0..N]", required: false, range: "unique_ids_across_rivers_and_lakes; optional with default [] for existing v1 inputs", example: []}
       bridges: {type: "BridgeSpec[0..N]", range: unique_ids, example: []}
       zones: {type: "ZoneSpec[1..N]", range: unique_ids, example: [{id: zone_commercial_south, kind: commercial, geometry: {rect: {min: {x: 26, z: 12}, max: {x: 70, z: 43}}}, priority: 85, density: 0.48, allowed_building_types: [bld_kit_song_dali_shop], ground_mix: {rammed_earth: 100}, basis: "沿主街商铺的设计概化（原创扩展）"}]}
       landmarks: {type: "LandmarkSpec[0..N]", range: non_overlapping, example: []}
@@ -307,7 +346,7 @@ definitions:
       ground_cells: {type: "GroundCell[width*height] or lossless RLE", unit: planning_cells, range: "complete exactly once; RLE value has ground,walkable,elevation_m,overlay and derives at from run index", example: [[0, 9216, {ground: rammed_earth, walkable: false, elevation_m: 0, overlay: null}]]}
       roads: {type: "map<street_id_or_connector_id,GridPoint[]>", unit: planning_cells, range: "key is source street id or generated connector id; full width-expanded cells except wall/gate domain trim per geometry_contract; unique walkable cells sorted z,x; crossings may occur in several values", example: {main_north_south: [{x: 48, z: 8}]}}
       generated_connectors: {type: "GeneratedConnector[]", unit: connectors, range: "stable id order; each has exactly one roads[id] width-expanded set containing its center chain", example: []}
-      water_cells: {type: "GridPoint[]", range: unique_non_walkable_unless_bridge, example: []}
+      water_cells: {type: "GridPoint[]", range: "unique_union_of_rivers_and_lakes; non_walkable_unless_bridge", example: []}
       bridge_cells: {type: "GridPoint[]", range: subset_water_and_walkable, example: []}
       buildings: {type: "BuildingInstance[]", range: non_overlapping, example: []}
       decorations: {type: "DecorationInstance[]", unit: instances, range: "unique id and at; sorted at.z,at.x,asset_id; empty is valid", example: [{id: dec_0001, asset_id: prp_song_dali_camellia, at: {x: 18, z: 20}}]}

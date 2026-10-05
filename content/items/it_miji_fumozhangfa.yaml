@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_fumozhangfa
+name: 伏魔杖法古册
+kind: manual
+sub: copy
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·萧远山在少林藏经阁取到“一册伏魔杖法”
+price: auto
+flags: []
+assets:
+  icon: item/miji_fumozhangfa
+text:
+  desc: 外观：北宋黄黑麻纸蝴蝶装册，褐布包角、细线缝缀。
+  lore: 《天龙八部》中萧远山在少林藏经阁取得一册伏魔杖法。图页须配合长杖逐段校正起落、腰马与距离；黄黑麻纸装帧为 （原创扩展），抄本层限提醒读者不能凭一册取代师授。
+extension:
+  type: manual
+  value:
+    skill: sk_fumozhangfa
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_fumozhangfa
+      readWis: 50
+      maxLayer: 8
+      cultivation: 2400

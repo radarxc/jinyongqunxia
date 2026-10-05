@@ -1,0 +1,7 @@
+Use the built-in image generation tool exactly once. Do not edit files or run shell commands.
+
+Image 1 is the mandatory production geometry. Image 2 is material and regional style reference only. Create one isolated map-building sprite. Replace the exact solid box in image 1 with a realistic two-storey large oasis dwelling from Kashgar, Hotan, or Yarkand. Preserve image 1 camera, canvas, framing, footprint, height, and every exterior boundary. The three visible foundation corners must stay at left (230,650), front (810,940), right (1274,708) on the 1536x1024 canvas. Both ground axes must stay exactly +0.5 and -0.5. Width:depth is 10:8. Orthographic yaw 45 degrees and elevation 30 degrees; verticals stay vertical; no perspective convergence.
+
+Use warm weathered ochre adobe, flat timber-earth roof, a low parapet entirely inside the box, carved geometric wooden lattice windows, a centered double wooden door on the left-facing front wall, and a shallow second-floor wooden balcony that remains inside the supplied guide. Fine realistic historical strategy-game detail, matching the restrained texture density of image 2 and the approved Song building-map kit. Upper-left light and only a very short lower-right contact shadow.
+
+True transparent RGBA outside the building. No colored halo, vignette, ground patch, thick plinth, scenery, people, animals, text, signage, modern items, tiled Chinese roof, dome, or minaret. Do not retain guide outlines. Geometry fidelity is more important than ornament. Return only the generated image and its path.

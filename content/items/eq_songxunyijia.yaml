@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_songxunyijia
+name: 宋制巡役甲
+kind: armor
+sub: officialArmor
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songxunyijia
+text:
+  desc: 外观：南宋灰蓝布甲配小片札甲护胸，短摆、皮带。 待运行时投影：lawProfile={uniform:true,allowedIdentityTags:[office_song_patrol],violation:uniformImpersonation,wantedIntent:activate,normalGate:blocked}。
+  lore: 宋制巡役甲以灰蓝布衣缀小片护胸，供州县巡役日常执勤，重在耐磨而非冲阵。卸甲须逐解皮带；冒穿者一经城门盘问便可能招来追捕。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: medium
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 36

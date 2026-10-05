@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_liaoyudiexiedai_nan
+name: 辽玉蹀躞带·男
+kind: armor
+sub: belt
+grade: 7
+stack: 1
+chapters:
+- ch01_tianlong
+origin: canonExpanded
+canonRef: 蹀躞带 · 辽（陈国公主墓出土带具）· 出现书界 ch01 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/liaoyudiexiedai_nan
+text:
+  desc: 外观：男款黑褐革蹀躞带盘成一圈，鎏金玉带扣、十二带箍与方形玉銙完整。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据辽墓出土带具语汇演成，黑褐革带配玉銙、带箍和短垂带，骑装时可分挂随身小物。本件垂带空置，不附兵器；旧主经历为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 10

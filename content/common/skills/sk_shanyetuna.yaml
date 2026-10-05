@@ -1,0 +1,34 @@
+schemaVersion: martial-art.v1
+id: sk_shanyetuna
+name: 山野吐纳
+aliases: []
+category: inner
+subType: inner
+grade: 3
+origin: expanded
+sect: null
+lineage: 山民跋涉间调匀呼吸的方法
+sourceChapters: [ch00_yuenv]
+nature: yin
+wOutBp: 0
+wInBp: 10000
+requirements: {attrs: {bre: 30}, aptitude: {apInner: 10}}
+maxLayer: 10
+inner:
+  contribution: {hpMaxPct: 6, mpMaxPct: 10, mpRegenMilli: 1200}
+  meridians: [mer_renmai]
+  breathProfileRef: txp_shanyetuna
+  innerGuard: {enabled: true, reflectBp: 0}
+  baseQiPerTick: 10
+  baseQiSpeedBp: 7750
+  layerCurveBp: [5625, 6250, 6875, 7500, 8125, 8750, 9375, 10000, 10625]
+  fluxTrainBase: 2
+  fluxTrainHardCap: {acupoint: 64, meridian: 96}
+layers:
+  - {n: 1, unlock: []}
+moveIds: []
+learnSources:
+  - {type: master, chapter: ch00_yuenv, ref: 山民吐纳角色槽, maxLayer: 10}
+  - {type: manual, chapter: ch00_yuenv, ref: it_miji_shanyetuna, maxLayer: 10}
+tags: [inner, common, prologue_role]
+description: 山民行路时调息匀步的低阶阴性内功。（原创扩展）

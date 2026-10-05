@@ -1,0 +1,15 @@
+{
+  "id": "inn",
+  "prompt": "Use case: precise-object-edit. Edit target is the supplied new late Yuan Jiangnan inn building sprite. Keep its identity, layout, muted grey tile roofs, warm wood, lime plaster, fine realistic Song-reference textures, doors, upper-left lighting and short lower-right contact shadow. Correct only footprint proportions and camera to exact 2:1 dimetric orthographic, not perspective, no vanishing points. ALL ground edges left-to-front slope +0.500 and front-to-right -0.500; vertical walls stay vertical. Rebuild the underlying whole parcel to 12m EAST-WEST frontage and 9m NORTH-SOUTH depth, horizontal spans ratio 1.3333. For example ground LEFT corner(120,720), FRONT corner(600,960), RIGHT corner(960,780) gives correct shape; scale composition to fit these ratios rather than literal pixels. The front facade faces lower left along the LONGER ground edge. Keep complete thin ground interface with clear corner edges. Full building uncropped with 12 percent true transparent empty margin; solid building should be opaque. Remove any haze, large ground shadow, glow, fake background. No words or people. ONE sprite with true transparent RGBA background.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-708d06c0-975b-455d-8230-32413e485f89.png",
+  "reference": "/Users/bytedance/.codex/generated_images/01a0f467-d4fa-79e1-a2bb-251cf3b481f2/exec-20f4eb93-1699-4bd0-83f6-07acd481a59d.png",
+  "source_archive": "sources/bld_kit_yuan_south_inn.v2.png",
+  "source_sha256": "1020662bd83239a2add4b01cf50b69259ba09deb8498447a4e22c2764667c4a7",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "created": "2026-09-30T22:36:47.196133+00:00",
+  "created_time_basis": "source PNG mtime, not service-side call timestamp",
+  "reference_sha256": "ff028a124e5b39d633d5f95092156d5a5f1d5128f4d982f205618edd7bb51ad3"
+}

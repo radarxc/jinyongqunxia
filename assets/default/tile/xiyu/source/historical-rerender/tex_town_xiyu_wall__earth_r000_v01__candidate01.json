@@ -1,0 +1,33 @@
+{
+  "id": "tex_town_xiyu_wall__earth_r000_v01",
+  "generated_at": "2026-10-01T10:26:58.074429+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__candidate01.png",
+  "sha256": "ac809c7d198f386975d3fd2efdf286c7cfc02b149f0460660049d35bcde2d0a3",
+  "generation_inputs": [
+    {
+      "file": "source/historical-rerender/tex_town_xiyu_wall__earth_r000_v01__geometry-lock.png",
+      "sha256": "46671222f5f683423f82b01a953e059f095c996626ab5dff78cf05e471d90b17",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/city_wall_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg",
+      "detail": "1915年城墙的厚土体量、水平施工层和风蚀表面。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/jiaohe_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg",
+      "detail": "交河遗址生土墙体的整体削筑感、圆钝风蚀边和不规则缺口。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/jiaohe_392.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg",
+      "detail": "夯土层理、小洞口与局部土坯肌理；脚手架、护栏和游客排除。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:The_City_Wall_of_Kashgar.jpg — 1915年城墙的厚土体量、水平施工层和风蚀表面。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Jiaohe_-_Yarkhoto_ruins.jpg — 交河遗址生土墙体的整体削筑感、圆钝风蚀边和不规则缺口。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg — 夯土层理、小洞口与局部土坯肌理；脚手架、护栏和游客排除。\n\nAsset-specific production prompt:\nStrict texture-only edit: apply realistic fine pale ochre adobe/mud plaster with tiny straw grain, subtle horizontal rammed layers to the exact supplied wall-block sketch. Trace ALL polygon boundaries pixel-for-pixel. Do not change camera, scale, frame, silhouette, dimensions or height. Simple cuboid; footprint1x1m, height3m; exact2:1 dimetric projection, square bottom diamond, both axes slopes+0.5/-0.5. Native32px per ground-axis horizontal meter, vertical3m =117.58px; supplied sketch has this ratio precisely. Bottom contact L(598,875), F(768,960), R(938,875), top vertices corresponding625px higher. Preserve every coordinate, no enlarge/reframe. Fine realistic painted historical Chinese wuxia-map sprite, muted buff adobe and fine straw detail, flat flush top no cap. Upperleft light and right-face shade. True transparent RGBA, alpha0 background unchanged, no floor, shadow, halo, glow, building details, text or people. Texture only.\n\nRequired historical detail summary: 暖黄褐夯土与草筋泥抹、横向层理、墙脚轻微冲蚀、顶部无现代压顶；不加瓦帽、规整水泥缝或景区设施。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
+}

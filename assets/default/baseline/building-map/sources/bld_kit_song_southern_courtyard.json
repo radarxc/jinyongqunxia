@@ -1,0 +1,75 @@
+{
+  "id": "bld_kit_song_southern_courtyard",
+  "type": "bld_kit_song_southern_courtyard",
+  "w": 10,
+  "h": 8,
+  "subject": "坊巷院落",
+  "prompt": "Use case: precise-object-edit. Correct ONLY the camera projection and rectangular footprint geometry of this standalone Southern Song building sprite; keep materials, architectural design, historical style, doorway orientation, upper-left light and colors. Exact 2:1 orthographic dimetric: yaw45, elevation30; both ground edges must make 26.565 degrees with horizontal (slope +0.500 and -0.500), not the steeper 30-degree floor lines of generic isometric art. Ground is one flat uninterrupted rectangular 10 by 8 unit footprint, with no offsets or stepped outline. The left-to-front ground edge is 10 units, and front-to-right edge is 8 units, so down-right horizontal length divided by up-right horizontal length must equal 1.2500. In particular make down-right edge visibly longer than up-right edge. Clear thin footprint boundary, no raised plinth. Full building uncut with 12% transparent empty margins. Output true transparent RGBA with clean alpha, no background or glow, no writing, no people.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_courtyard_try1.png",
+      "sha256": "7d1083a4c9541b49ed4b9f58b2c7fc1076b20bd35db9b69f4e4d94a6e5f20747",
+      "role": "edit target：定向调整相机和占地几何，保留建筑材质"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-89fecd5b-2934-4b3a-81dc-1055beecf98d.png",
+  "source_sha256": "c85c4360e1fa1856e703663effb8be33cc89b41c6cec25a397abd883d1405ba0",
+  "created": "2026-09-30",
+  "visual_review": "新图经audit独立view与量点，底面双轴+.575/-.574比首版更对称，仍有严格2:1残差；选新版。材质、左上光、S门左下、无字无人物、透明轮廓完整。",
+  "candidate_count": 2,
+  "ground_edges_source_px": [
+    [
+      [
+        80,
+        675
+      ],
+      [
+        727,
+        1047
+      ]
+    ],
+    [
+      [
+        727,
+        1047
+      ],
+      [
+        1328,
+        702
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      80,
+      675
+    ],
+    "front": [
+      727,
+      1047
+    ],
+    "right": [
+      1328,
+      702
+    ]
+  },
+  "source_dimensions": [
+    1402,
+    1122
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-c70610b5-1e1d-4f4d-9ea3-aa0bc690d9f2.png",
+      "source_sha256": "7d1083a4c9541b49ed4b9f58b2c7fc1076b20bd35db9b69f4e4d94a6e5f20747",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_courtyard_try1.png",
+      "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 10 by 8 one-metre cells, ratio 10:8. Subject: One compact Southern Song Jiangnan residential courtyard compound, low whitewashed enclosing walls, a small central stone courtyard, one rear main hall and two low side rooms with grey tiled roofs, plain wooden gateway on southwest-facing front side, restrained cultivated potted shrub.",
+      "selection": "unselected",
+      "reason": "首版双轴不对称较大，新版双轴更对称；两版仍非严格2:1。"
+    }
+  ]
+}

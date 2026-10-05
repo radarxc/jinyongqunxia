@@ -1,0 +1,120 @@
+{
+  "clipId": "clip_sword_attack",
+  "directions": {
+    "E": {
+      "armTorsoPlaneCrossFramePct": 25.431,
+      "rawMinLimbProjection": 0.2081,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 6,
+      "torsoViewSwitchesPerSec": 3.158,
+      "weaponAxisDeviationDeg": {
+        "gripPointErrorPxMax": 0.67,
+        "max": 0.485,
+        "p95": 0.374,
+        "rawMinProjection": 0.3729
+      }
+    },
+    "N": {
+      "armTorsoPlaneCrossFramePct": 44.397,
+      "rawMinLimbProjection": 0.0465,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 6,
+      "torsoViewSwitchesPerSec": 3.158,
+      "weaponAxisDeviationDeg": {
+        "gripPointErrorPxMax": 0.666,
+        "max": 0.34,
+        "p95": 0.298,
+        "rawMinProjection": 0.1196
+      }
+    },
+    "NE": {
+      "armTorsoPlaneCrossFramePct": 37.069,
+      "rawMinLimbProjection": 0.1451,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 5,
+      "torsoViewSwitchesPerSec": 2.632,
+      "weaponAxisDeviationDeg": {
+        "gripPointErrorPxMax": 0.695,
+        "max": 0.428,
+        "p95": 0.293,
+        "rawMinProjection": 0.3266
+      }
+    },
+    "NW": {
+      "armTorsoPlaneCrossFramePct": 36.207,
+      "rawMinLimbProjection": 0.147,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 6,
+      "torsoViewSwitchesPerSec": 3.158,
+      "weaponAxisDeviationDeg": {
+        "gripPointErrorPxMax": 0.643,
+        "max": 0.484,
+        "p95": 0.357,
+        "rawMinProjection": 0.3748
+      }
+    },
+    "S": {
+      "armTorsoPlaneCrossFramePct": 44.397,
+      "rawMinLimbProjection": 0.0465,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 6,
+      "torsoViewSwitchesPerSec": 3.158,
+      "weaponAxisDeviationDeg": {
+        "gripPointErrorPxMax": 0.666,
+        "max": 0.34,
+        "p95": 0.298,
+        "rawMinProjection": 0.1196
+      }
+    },
+    "SE": {
+      "armTorsoPlaneCrossFramePct": 36.207,
+      "rawMinLimbProjection": 0.147,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 6,
+      "torsoViewSwitchesPerSec": 3.158,
+      "weaponAxisDeviationDeg": {
+        "gripPointErrorPxMax": 0.643,
+        "max": 0.484,
+        "p95": 0.357,
+        "rawMinProjection": 0.3748
+      }
+    },
+    "SW": {
+      "armTorsoPlaneCrossFramePct": 37.069,
+      "rawMinLimbProjection": 0.1451,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 5,
+      "torsoViewSwitchesPerSec": 2.632,
+      "weaponAxisDeviationDeg": {
+        "gripPointErrorPxMax": 0.695,
+        "max": 0.428,
+        "p95": 0.293,
+        "rawMinProjection": 0.3266
+      }
+    },
+    "W": {
+      "armTorsoPlaneCrossFramePct": 25.431,
+      "rawMinLimbProjection": 0.2081,
+      "renderMinLimbScale": 0.45,
+      "torsoViewSwitches": 6,
+      "torsoViewSwitchesPerSec": 3.158,
+      "weaponAxisDeviationDeg": {
+        "gripPointErrorPxMax": 0.67,
+        "max": 0.485,
+        "p95": 0.374,
+        "rawMinProjection": 0.3729
+      }
+    }
+  },
+  "fps": 30,
+  "frameCount": 58,
+  "schema": "tianshu-clip-metrics.v1",
+  "sourceSha256": "406eb0a8dc4ab366e623b79b6e3005a4951392e1bda78ae39c1099d31147733c",
+  "thresholds": {
+    "maxFootSlideCm": 2.0,
+    "maxViewSwitchesPerSec": 8.0,
+    "maxWeaponAxisDeviationDeg": 5.0,
+    "minForeshorten": 0.45
+  },
+  "walkFootSlide": null
+}

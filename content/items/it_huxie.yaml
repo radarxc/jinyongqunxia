@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_huxie
+name: 湖蟹
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 江南湖泊时鲜；宋《山家清供》有蟹馔
+price: auto
+flags: []
+assets:
+  icon: item/huxie
+text:
+  desc: 外观：青壳湖蟹两只置蒲草小篓，完整生鲜。
+  lore: 江南湖泊秋令时鲜，宋《山家清供》已有蟹馔语境。本件两只须鲜活入厨，可蒸食或作蟹酿橙；水乡酒楼往往只在当季挂牌。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: fish
+    attributes:
+      version: 2

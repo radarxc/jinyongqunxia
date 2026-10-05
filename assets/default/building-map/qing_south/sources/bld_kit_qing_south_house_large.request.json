@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_qing_south_house_large",
+  "subject": "大民居",
+  "footprint": [
+    7,
+    6
+  ],
+  "prompt": "Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780, an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline's realistic matte materials, muted palette, fine restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background, object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles, dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette or detached scenery. Single standalone asset only.  IMPORTANT: ground edges have slope +0.5 and -0.5, NOT30-degree isometric lines. Exact width/depth footprint edge ratio is specified, do not enlarge the front facade at expense of depth. Subject: A larger two-storey Jiangnan private townhouse with THREE-bay front, plain high white side gable walls with grey tile coping, dark timber lattice shutters and a simple balcony contained inside the eave line, grey small clay tiles, no courtyard, no vegetation. This is a sober residence, not a shop. Width:depth ratio7:6. Footprint 7m east-west by 6m north-south.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-79c1dc59-a7c8-4a7e-b200-21075395bf70.png",
+  "reference": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+  "candidate_count": 2,
+  "rejected_candidate": {
+    "id": "bld_kit_qing_south_house_large",
+    "subject": "大民居",
+    "footprint": [
+      7,
+      6
+    ],
+    "prompt": "Use case: historical-scene. Generate ONE isolated realistic ancient-Chinese city-map building sprite, early-to-middle Qing Jiangnan region, circa 1700-1780, an original anonymous game building NOT a reconstruction of a named monument. Match the supplied Song baseline's realistic matte materials, muted palette, fine restrained texture density and scale, but change architecture to Qing Jiangnan. Orthographic map camera yaw45 elevation30, exact 2:1 dimetric ground-plane: east axis (+2,+1), north axis (+2,-1), verticals upright. Front entrance faces lower left. Thin rectangular footprint with clearly visible left, front, right ground corners; no thick diorama plinth. Complete whole building and short soft shadow fully within frame, generous transparent margins. True transparent RGBA background, object interior opaque, no painted checkerboard. Upper-left lighting, short lower-right contact shadow. White limewashed brick walls, grey small clay roof tiles, dark weathered timber, restrained Qing lattice windows, plain gables with small tile coping. No red lantern spectacle, imperial yellow roofs, exaggerated Huizhou horse-head gables everywhere, modern tourism decoration, European features, modern objects, people, text, plaques with writing, watermark, sky, landscape, vignette or detached scenery. Single standalone asset only.  IMPORTANT: ground edges have slope +0.5 and -0.5, NOT30-degree isometric lines. Exact width/depth footprint edge ratio is specified, do not enlarge the front facade at expense of depth. Subject: A larger two-storey Jiangnan private townhouse with THREE-bay front, plain high white side gable walls with grey tile coping, dark timber lattice shutters and a simple balcony contained inside the eave line, grey small clay tiles, no courtyard, no vegetation. This is a sober residence, not a shop. Width:depth ratio7:6. Footprint 7m east-west by 6m north-south. CRITICAL SECOND CANDIDATE: use much shallower orthographic view, ground lines must be26.565 degrees from horizontal, NOT30 degrees, matching a2:1 game grid. The horizontal left-to-front ground span divided by front-to-right span MUST be7/6. Increase side depth to show almost as much side as front. No perspective convergence; keep ground edges straight and sharp. No pedestals or protruding steps that obscure the rectangular footprint corners.",
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f961-7d03-b26f-506d2b925f40/exec-e91470f5-cc49-4559-a175-d4682dec24e4.png",
+    "reference": "assets/default/baseline/building-map/bld_kit_song_southern_house.png",
+    "candidate_count": 2,
+    "candidate_number": 2,
+    "reason": "第2候选右轴偏陡且两轴更不对称，第1比例也更接近目标。"
+  },
+  "selected_candidate_number": 1
+}

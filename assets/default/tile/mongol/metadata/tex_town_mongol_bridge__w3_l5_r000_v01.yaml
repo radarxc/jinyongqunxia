@@ -1,0 +1,33 @@
+asset_id: tex_town_mongol_bridge__w3_l5_r000_v01
+era: mongol
+status: candidate
+metadata_purpose: 候选静态精灵装配参考，非严格运行时验收结果
+footprint_cells:
+  w: 3
+  h: 5
+anchor_px:
+- 134.237
+- 98.877
+anchor_semantics: 未旋转底面中心的人工估计；植物为根部中心
+height_m_suggested: 1.2
+rotation_deg: 0
+available_rotations_deg:
+- 0
+projection_contract:
+  target: orthographic yaw45 elevation30; 2:1 ground axes +/-0.5
+  strict_verified: false
+  source_anchor_px_estimate:
+  - 785
+  - 563
+  source_crop_box:
+  - 48
+  - 25
+  - 1508
+  - 1006
+  source_solid_width_measure_alpha: 128
+  scale_xy:
+  - 0.17671232876712328
+  - 0.1763506625891947
+  transparent_padding_px: 4
+processing: 只几何裁切/等比缩放/透明边；未改写源alpha，alpha>=128只测轮廓宽不作为清理阈值
+notes: 尺寸为游戏建议值；造型（原创扩展）；单视图不得冒充四向齐备。

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuanqingyitie
+name: 元代清议帖
+kind: collectible
+sub: calligraphy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanqingyitie
+text:
+  desc: 外观：浅黄纸短札一件，折住正文。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 为倚天文士支线设计的清议短札，玩家协助抄录后请书家题赠。宜赠好文的宾客，不承担身份认证；题辞、装帧与人物均为（原创扩展），不因年代相近便冒署赵孟頫。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

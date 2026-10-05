@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yuanqingyouxiaowan
+name: 元青釉小碗
+kind: collectible
+sub: porcelain
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanqingyouxiaowan
+text:
+  desc: 外观：青灰釉敞口小碗，弧腹厚足。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 以元代瓷业背景设计普通青釉碗，作为书界中易于取得的入门礼物。适合赠商贾或文士，窑户与取得属于（原创扩展）；只用于陈设交游，不因瓷器品阶改变饮食回复量。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

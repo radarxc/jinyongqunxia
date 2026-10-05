@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_lianchenghanyuzhuo
+name: 连城汉玉腕镯
+kind: collectible
+sub: jade
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B07](#src-b07)；准入：仅连城；礼包归属结清后
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/lianchenghanyuzhuo
+text:
+  desc: 外观：一只温白旧玉镯，圆条厚润。 待运行时投影：eraRange=[qing]; giftTo={preferred:[collector]}; giftValue=2; provenance=book。
+  lore: 《连城诀》万震山托人送戚长发的礼包中有汉玉腕镯，称汉玉是书中说法而非考古鉴定。宜赠藏家，礼包物权结算后方可转赠；具体形制和玩家取得为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

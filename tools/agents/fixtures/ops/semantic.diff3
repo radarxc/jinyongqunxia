@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+export const limit = 20;
+||||||| base
+export const limit = 10;
+=======
+export const limit = 30;
+>>>>>>> task

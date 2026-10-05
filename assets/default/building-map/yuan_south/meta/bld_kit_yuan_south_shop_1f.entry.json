@@ -1,0 +1,61 @@
+{
+  "id": "bld_kit_yuan_south_shop_1f",
+  "file": "bld_kit_yuan_south_shop_1f.png",
+  "category": "building-map",
+  "style": "default",
+  "subject": "元末江南·单层商铺（原创扩展）",
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan game-asset sprite. IMAGE 1 is only the exact output presentation example: imitate its clean real RGBA cutout, orthographic dimetric map camera yaw 45 degrees pitch 30 degrees, zero perspective, upper-left daylight, short lower-right contact shadow, restrained realistic Southern Song baseline detail, and comfortable transparent margin; do not copy its architecture. IMAGES 2-3 are historical evidence for form, proportion, materials and construction only; never copy their camera or complete composition. Both visible ground axes must read as 2:1 dimetric slopes, verticals remain vertical. Solid object fully opaque; exterior true alpha-zero transparent. Absolutely no aura, vignette, bloom, glow, haze, fog, translucent backdrop, floor plane, landscape, people, text, labels, signs, watermark, modern items, dense Qing polychromy, imperial yellow glaze, fantasy ornament or cropped edges. A small 6m by5m single-storey street shop: shallow open timber shopfront with removable board shutters and waist-height counter, simple lattice rear doors, plain grey tiled gable roof, lime sidewalls, no hanging text sign, goods or people.",
+  "negative": "文字、水印、人物、现代物、后世修复外观、清式密集彩画、黄琉璃、透视背景、光晕",
+  "references": [
+    {
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "role": "临街开间与板门"
+    },
+    {
+      "url": "https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00001018",
+      "role": "草亭尺度及低饱和材料"
+    }
+  ],
+  "tool": "Codex Images edits endpoint",
+  "model": "gpt-image-2",
+  "created": "2026-10-01T07:31:04+00:00",
+  "generation_id": "b5172ed5-2a32-4ee9-900d-2dba99df5ac6",
+  "size": "448x432",
+  "sha256": "80d7ef6434e593e9989fb3fe2f9ce6551bbb712701c652a663fc506a178e97ea",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_yuan_south_shop_1f",
+    "footprint": [
+      6,
+      5
+    ],
+    "anchor": [
+      233.9831,
+      292.6702
+    ],
+    "era": "yuan"
+  },
+  "footprint_m": [
+    6,
+    5
+  ],
+  "footprint_basis": "【建议值】design/22 §3.3同功能项",
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 3
+  },
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source_record": "sources/hist_shop_1f_selected.json",
+  "source_archive": "sources/hist_shop_1f_selected.png",
+  "processing": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ],
+  "notes": "临街开间与板门；草亭尺度及低饱和材料；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。",
+  "anchor_px": [
+    233.9831,
+    292.6702
+  ]
+}

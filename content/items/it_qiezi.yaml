@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_qiezi
+name: 茄子
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: canon
+canonRef: 魏晋后已在中国栽培，宋元明清均可投放
+price: auto
+flags: []
+assets:
+  icon: item/qiezi
+text:
+  desc: 外观：紫黑长茄三只置白瓷盘，表皮哑亮。
+  lore: 魏晋以后已在中国栽培，宋元明清各书界均可投放，夏秋最盛。紫黑长茄吸味，宜蒸、煨或炒；菜贩以蒂青、皮面无伤为鲜。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: vegetable
+    attributes:
+      version: 2

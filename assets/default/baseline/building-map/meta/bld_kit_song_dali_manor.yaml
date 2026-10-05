@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_manor
+status: candidate
+building:
+  type: bld_kit_song_dali_manor
+  footprint: [15, 12]
+  anchor: &id001 [554.8314, 426.2779]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [15, 12]
+logical_footprint_polygon_px:
+- [122.83140000000003, 402.2779]
+- [602.8314, 642.2779]
+- [986.8314, 450.2779]
+- [506.83140000000003, 210.2779]
+collision_polygon_m:
+- [0, 0]
+- [15, 0]
+- [15, 12]
+- [0, 12]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [123, 122]
+- [986, 122]
+- [986, 643]
+- [123, 643]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 7.76
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 7}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 180]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_manor.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [864, 432]
+  ground_width_px: 864
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [177, 513]
+    front: [962, 879]
+    right: [1630, 518]
+  source_axis_slopes: [0.4662420382165605, -0.5404191616766467]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.1751497005988023
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.05988023952095811
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [1184, 768]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 655142
+  alpha_partial_pixels: 253271
+  alpha_opaque_pixels: 899
+  alpha_near_opaque_pixels: 247409
+  alpha_nonzero_bbox: [121, 120, 1063, 647]
+  transparent_margins_px: [121, 120, 121, 121]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_manor.png
+  source_sha256: d03d1453a47a3d6bafc1d30d4c5913fa56995993484ff28fc3d9b03b6e8b98ff
+  source_size: [1774, 887]
+  crop_box: [174, 0, 1758, 887]
+  uniform_scale_requested: 0.5946317962835512
+  resized_size: [942, 527]
+  rounded_effective_scale: [0.5946969696969697, 0.5941375422773394]
+  paste_offset: [121, 120]
+  final_file: bld_kit_song_dali_manor.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

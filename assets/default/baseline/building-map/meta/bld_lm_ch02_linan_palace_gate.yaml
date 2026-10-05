@@ -1,0 +1,81 @@
+id: bld_lm_ch02_linan_palace_gate
+status: candidate
+building:
+  type: bld_lm_ch02_linan_palace_gate
+  footprint: [14, 8]
+  anchor: &id001 [487.2902, 642.2093]
+  era: song_southern
+anchor_px: *id001
+footprint_m: [14, 8]
+logical_footprint_polygon_px:
+- [135.29020000000003, 594.2093]
+- [583.2902, 818.2093]
+- [839.2902, 690.2093]
+- [391.2902, 466.2093]
+collision_polygon_m:
+- [0, 0]
+- [14, 0]
+- [14, 8]
+- [0, 8]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [104, 241]
+- [855, 241]
+- [855, 796]
+- [104, 796]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 10.24
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: N, offset_cells: 6}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_lm_ch02_linan_palace_gate.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [704, 352]
+  ground_width_px: 704
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [98, 840]
+    front: [747, 1131]
+    right: [1183, 945]
+  source_axis_slopes: [0.44838212634822805, -0.42660550458715596]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.488532110091743
+  expected_width_depth_ratio: 1.75
+  ratio_relative_error: 0.14941022280471827
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [960, 928]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 643039
+  alpha_partial_pixels: 247152
+  alpha_opaque_pixels: 689
+  alpha_near_opaque_pixels: 239041
+  alpha_nonzero_bbox: [102, 97, 857, 830]
+  transparent_margins_px: [102, 97, 103, 98]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_lm_ch02_linan_palace_gate.png
+  source_sha256: 5d3eaac9eaa67a9b8f92f4167f30e6ee599cd8e855d82bd95806ca8d1e988d75
+  source_size: [1254, 1254]
+  crop_box: [47, 52, 1210, 1182]
+  uniform_scale_requested: 0.6488479262672812
+  resized_size: [755, 733]
+  rounded_effective_scale: [0.649183147033534, 0.6486725663716815]
+  paste_offset: [102, 97]
+  final_file: bld_lm_ch02_linan_palace_gate.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

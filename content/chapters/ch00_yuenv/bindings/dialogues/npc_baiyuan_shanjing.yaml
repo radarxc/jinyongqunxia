@@ -1,0 +1,10 @@
+schemaVersion: region-dialogue.v1
+chapter: ch00_yuenv
+sceneId: sc_00_shanjing
+anchorId: npc_baiyuan_shanjing
+storyId: story_ch00_main
+entryKey: baiyuan_choice
+condition:
+  all:
+    - {any: [{flag: fl_00_initial_battle_manual}, {flag: fl_00_initial_battle_assisted}]}
+    - {not: {flag: fl_00_baiyuan_merged}}

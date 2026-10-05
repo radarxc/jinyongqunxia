@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_huijianghongbudai_nan
+name: 回疆红布腰带·男
+kind: armor
+sub: belt
+grade: 2
+stack: 1
+chapters:
+- ch10_baima
+- ch12_shujian
+origin: canonExpanded
+canonRef: 红带 · 清（《皇清职贡图》）· 出现书界 ch10/ch12 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huijianghongbudai_nan
+text:
+  desc: 外观：男款暗红棉布长带盘成一圈，数层缠绕痕与素结清楚。 待运行时投影：defOutK=0.05; hpMaxK=0.01; wearer=male。
+  lore: 据《皇清职贡图》的回疆服饰语汇演成，暗红棉布长带绕腰数层，以素结固定长衣。商旅还能用它捆毯或压住货包，边缘磨损反而便于打结。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: waist
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 6

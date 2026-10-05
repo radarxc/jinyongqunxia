@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: it_bilingdan
+name: 碧灵丹
+kind: pill
+sub: medicine
+grade: 9
+stack: 99
+chapters: any
+origin: canonExpanded
+canonRef: 梁羽生《云海玉弓缘》·天山派灵药；具体药效边界 （待考）
+price: auto
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 1200
+  - op: dispel
+    params:
+      tags:
+      - poison
+      - injury
+      grade: 9
+assets:
+  icon: item/bilingdan
+text:
+  desc: 外观：一枚碧绿丸药置雪莲纹银瓶旁，软木塞与旧青绢包裹。
+  lore: 《云海玉弓缘》天山派灵药，碧丸以银瓶、旧青绢护持。伤毒并见时方取一丸，寻常擦伤不轻启封；所用雪莲与解毒边界仍待核原文。（待考：核材料与药效） （原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healOuter: 12

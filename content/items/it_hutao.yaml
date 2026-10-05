@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_hutao
+name: 胡桃
+kind: material
+sub: ingredient
+grade: 4
+stack: 999
+chapters: any
+origin: canon
+canonRef: 汉以后西来坚果，西北与中原可得
+price: auto
+flags: []
+assets:
+  icon: item/hutao
+text:
+  desc: 外观：褐壳胡桃六枚置小木碟，一枚裂壳露仁 （原创扩展）。
+  lore: 汉以后西来的坚果，在西北与中原秋收后可得。褐壳耐运，敲开取仁可生食、入糕或添羹；商队常用小木碟招待同行熟客。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_xuan9
+    materialGrade: 4
+    rare: false
+    ingredientKind: fruit
+    attributes:
+      version: 2

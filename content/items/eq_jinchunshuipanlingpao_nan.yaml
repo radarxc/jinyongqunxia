@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_jinchunshuipanlingpao_nan
+name: 金春水盘领袍·男
+kind: armor
+sub: clothing
+grade: 5
+stack: 1
+chapters:
+- ch02_shediao
+- ch03_shendiao
+origin: canonExpanded
+canonRef: 春水盘领常服 · 金（《金史·舆服志》）· 出现书界 ch02/ch03 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/jinchunshuipanlingpao_nan
+text:
+  desc: 外观：男款女真墨绿盘领窄袖袍单件平展，左衽暗合、膝下开衩。 待运行时投影：effRes=3; wearer=male。
+  lore: 据《金史·舆服志》的盘领常服演成，窄袖、左衽和开衩便于女真武人骑行。衣上春水暗纹仅作身份审美，不带神异；本件流传为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 43

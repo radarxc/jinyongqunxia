@@ -1,0 +1,18 @@
+coordinates: source
+keypoints:
+  knee_L:
+  - 23
+  - 17
+  ankle_L:
+  - 23
+  - 113
+source:
+  keypoints:
+  - knee_L
+  - ankle_L
+  inpaintedPct: 1.296
+  rejectedInpaintedPct: 0.0
+  jointCaps: true
+  standardFallback: false
+  lowConfidence:
+  - knee_L

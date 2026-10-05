@@ -1,0 +1,17 @@
+{
+  "id": "bld_lm_ch01_chongshengsi_pagoda",
+  "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, a single reusable transparent PNG building, realistic historical Chinese architectural materials, no ink painting or miniature toy. Orthographic dimetric 2:1 projection, yaw45 pitch30, two horizontal ground axes have screen slopes +0.5 and -0.5, vertical pillars exactly vertical, NO perspective convergence. Front faces screen lower left. Grey clay tiles, weathered timber, understated plaster and stone, believable Song-period structural joinery, low-saturation warm natural colors. Thin flat rectangular footprint foundation, clearly visible straight front and right base edges, no chunky diorama pedestal. Entire building including eaves and thin footprint inside canvas, at least 10% transparent padding on all sides. Sunlight from SCREEN UPPER LEFT, short subtle contact shadow toward SCREEN LOWER RIGHT. TRUE transparent RGBA canvas, no background sky, floor, scenery or checkerboard. No text, signs, pseudo-writing, letters, watermark, logo, humans, modern objects, Qing yellow palace roofs, Japanese torii, dramatic extreme eaves. Generate exactly ONE asset in a square 1024x1024 composition. Primary request: ONE Dali Chongsheng Qianxun pagoda concept, circa1093 Tianlong ch01, a tall slim square-plan sixteen-tier pale ivory brick Buddhist pagoda with many evenly stacked close shallow eaves, tiny centered dark niches, four-sided stepped finial. Historically inspired original asset, not exact reconstruction. Base square 7m by7m. NO other tower, no surrounding temple. Small shallow square stone plinth, empty and simple. Ground axis corners must form an exact wide 2:1 diamond. Entire tall tower visible with generous transparent margin; do not squash its tall proportions. Input image1 only a reference for realistic weathered stone/timber material quality; ignore its perspective, scene composition and building shapes.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f166-4e1e-79f1-9e71-f3cbf0a66607/exec-2d8c8ace-74f4-431f-979a-ed01e8614310.png",
+  "reason": "Rejected: tower has tiled pavilion roofs instead of shallow dense brick eaves, count not sixteen; base axes visibly shallower than ±0.5.",
+  "source_sha256": "15c9cb1f418ed1515ba3167db829bbb52d2e4c7b4067d5e672554a7afbf2d584",
+  "references": [
+    {
+      "id": "ref_sect_shaolin__ch01_base01",
+      "file": "assets/default/baseline/building/ref_sect_shaolin__ch01_base01.png",
+      "sha256": "b109e6d771320b80f97750d1fc612f1a26f1da1e8bd5d5d0baca7c27cffa256f",
+      "status": "approved",
+      "role": "仅材质气质，不继承视角"
+    }
+  ],
+  "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_lm_ch01_chongshengsi_pagoda_try1.png"
+}

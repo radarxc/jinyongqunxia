@@ -1,0 +1,37 @@
+schemaVersion: item.v1
+id: eq_qinghongqinglingwenchangpao_nan
+name: 清红青绫纹长袍·男
+kind: armor
+sub: clothing
+grade: 6
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 清（康熙至乾隆）；出现书界 ch08/ch09/ch11/ch12/ch13/ch14；（原创扩展）；形制／色系依据：故宫《第四届专题论坛——清代宫廷服饰探讨》 https://www.dpm.org.cn/learing_detail/258734.html；乾隆红青推广到康熙属原创扩展；本白、浅黄不冒充皇家身份色；八朝素白通用为原创设计，女服逐朝实证（待考）；中国丝绸博物馆《乾隆色谱2.0：清代宫廷丝织品的色彩重建》 https://www.chinasilkmuseum.com/zz/info_17.aspx?itemid=28366（红青归蓝色系；项目深蓝调为原创近似取色）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qinghongqinglingwenchangpao_nan
+text:
+  desc: 外观：清（康熙至乾隆）男款，主色红青。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=male。
+  lore: （原创扩展）清红青款采用克制绫织暗纹缘，圆领右衽长袍保持长身与平袖，行前理顺大襟布纽；同档换色同值，乾隆红青向康熙推广为原创，不凭衣色授身份。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 48

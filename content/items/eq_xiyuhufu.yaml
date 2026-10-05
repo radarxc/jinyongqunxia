@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_xiyuhufu
+name: 西域胡服
+kind: armor
+sub: clothing
+grade: 9
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/xiyuhufu
+text:
+  desc: 外观：靛青窄袖长衫、皮革窄腰封与软毡边，西域元代感 （原创扩展）。 待运行时投影：coldResPp=4; rideSta=-10%。
+  lore: 西域胡服以窄袖长衫、毡边和皮腰封组合，适合骑乘及昼夜温差大的旅途。商队说真正识路的人先看缝口是否耐沙，而不看衣上装饰。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 67

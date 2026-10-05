@@ -1,0 +1,22 @@
+schemaVersion: move.v1
+id: mv_beiming_kuntun
+name: 鲲吞
+skillId: sk_beiming
+unlock: 9
+kind: attack
+ultimate: true
+rageCost: 100
+target: enemy
+range: {min: 1, max: 1}
+shape: {tpl: aoe_single}
+delivery: melee
+hTol: 2
+powerBp: 28500
+referencePowerBp: 10000
+wInBp: 10000
+mpCost: 54
+recovery: 1200
+hitZone: body
+meridianRouteRef: mfr_beiming_kuntun
+autoTargetCap: 1
+friendlyFire: none

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_heshouwu
+name: 何首乌
+kind: material
+sub: herb
+grade: 7
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/heshouwu
+text:
+  desc: 外观：药用块根切作乌褐厚片，断面云锦状纹理。
+  lore: 秦巴、江淮、江南、浙闽、江西、湖湘与巴蜀山谷秋冬九至十二月收块根。乌褐厚片须静服调息，本作让它增长内功修为，不附永久先天。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di9
+    materialGrade: 7
+    rare: false
+    herbFamily: heShouWu
+    ageYears: 0
+    attributes:
+      version: 2
+      qiCultivation: 2500

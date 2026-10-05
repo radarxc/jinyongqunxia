@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: eq_huxinjing
+name: 护心镜
+kind: armor
+sub: innerArmor
+grade: 7
+stack: 1
+chapters:
+- ch08_luding
+- ch09_liancheng
+- ch11_yuanyang
+- ch12_shujian
+- ch13_feihu
+- ch14_xueshan
+origin: canonExpanded
+canonRef: 清（康熙至乾隆）；出现书界 ch08/ch09/ch11/ch12/ch13/ch14；（原创扩展）；胸背护镜据国博《乾隆帝甲胄》，前后护心镜 https://www.chnmuseum.cn/zp/zpml/csp/202112/t20211221_253268.shtml；参考故宫清代甲胄研究，康熙明黄缎棉甲 https://www.dpm.org.cn/Uploads/File/pdf/0d/26/d7/0d26d7bec4f2172637f4045b0ee8d70b.pdf；内甲槽为独立薄镜带转换，康熙书界配置和镜带结构（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/huxinjing
+text:
+  desc: 外观：清（康熙至乾隆）通用款，主色铁灰。 待运行时投影：defInK=0.08; defOutK=0.1。
+  lore: （原创扩展）清铁灰款采用薄铁锻片、平整孔缘与细密革带缝线，据乾隆甲胄的胸背护镜演成独立薄镜带内甲，收存先检查革带与孔缘；镜片胸背成对只占一个innerBody，康熙配置与镜带结构（待考），不继承整套官甲数值或身份。
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 36

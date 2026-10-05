@@ -1,0 +1,923 @@
+version: 1
+category: accessories
+items:
+- item: eq_baiyuguan
+  sourceSha256: d0b7cb9bd4827e1651926333f809a4269dd2bf6b81e09546bbddb7884f32131c
+  toolVersion: 1
+  palette:
+  - '#D4D2C7'
+  - '#B6B3A3'
+  - '#888377'
+  build: {}
+  layers:
+  - slot: hair_or_headgear
+    view: front34
+    file: eq_baiyuguan__hair_or_headgear.png
+    sourceRect:
+    - 0
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 9
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: hair_or_headgear
+    view: back34
+    file: eq_baiyuguan__hair_or_headgear.png
+    sourceRect:
+    - 112
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: hair_or_headgear
+    view: side
+    file: eq_baiyuguan__hair_or_headgear.png
+    sourceRect:
+    - 224
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 9
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_baiyuguan__hair_or_headgear.png
+    sha256: 827e322b937cb0a88150f02465a2cc74439fee9312184d808b1da933557da1e3
+- item: eq_bumianpifeng
+  sourceSha256: d9303d6f7be49ab9242ea4ceb1c20e7a9a4858b22e41148b2b46d707ccf6f01b
+  toolVersion: 1
+  palette:
+  - '#687075'
+  - '#575D63'
+  - '#8C877E'
+  build: {}
+  layers:
+  - slot: cape
+    view: front34
+    file: eq_bumianpifeng__cape.png
+    sourceRect:
+    - 0
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: -2
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: cape
+    view: back34
+    file: eq_bumianpifeng__cape.png
+    sourceRect:
+    - 154
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: 11.5
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: cape
+    view: side
+    file: eq_bumianpifeng__cape.png
+    sourceRect:
+    - 308
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: -2
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_bumianpifeng__cape.png
+    sha256: bf97899edef5eee2d70bcd7abc085603e96a4c2a7fca000259746ee63dccddee
+- item: eq_heyudachang
+  sourceSha256: 5a4d05f7ac4283cb68c9b51bbb710b0bbc6fec0422a736a4c370d153198b06ad
+  toolVersion: 1
+  palette:
+  - '#A9A5A2'
+  - '#918E8C'
+  - '#737070'
+  build: {}
+  layers:
+  - slot: cape
+    view: front34
+    file: eq_heyudachang__cape.png
+    sourceRect:
+    - 0
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: -2
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: cape
+    view: back34
+    file: eq_heyudachang__cape.png
+    sourceRect:
+    - 154
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: 11.5
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: cape
+    view: side
+    file: eq_heyudachang__cape.png
+    sourceRect:
+    - 308
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: -2
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_heyudachang__cape.png
+    sha256: bae94e7722c333929293a1224ba26f2e3898fb6345457ba40d6ca34cb698c99e
+- item: eq_linpijian
+  sourceSha256: 1780622cfbf41ae905366b1a707bc93c55e5b71d5abf79e186d97f00bf794b6c
+  toolVersion: 1
+  palette:
+  - '#34383B'
+  - '#565756'
+  - '#86837D'
+  build: {}
+  layers:
+  - slot: pauldron_L
+    view: front34
+    file: eq_linpijian__pauldron_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: -0.1
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_L
+    view: back34
+    file: eq_linpijian__pauldron_L.png
+    sourceRect:
+    - 60
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 0.9
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_L
+    view: side
+    file: eq_linpijian__pauldron_L.png
+    sourceRect:
+    - 120
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: -0.1
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: front34
+    file: eq_linpijian__pauldron_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: back34
+    file: eq_linpijian__pauldron_R.png
+    sourceRect:
+    - 60
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: side
+    file: eq_linpijian__pauldron_R.png
+    sourceRect:
+    - 120
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_linpijian__pauldron_L.png
+    sha256: 4c3906e3c5a6740f2a2bc5e87844c13a76eb7bfe8c6ae1f25e4126dbbfed1e65
+  - file: eq_linpijian__pauldron_R.png
+    sha256: c09bc701cd340e2dc9460949fc393615f34ab56d0b11639feb33d999e358040e
+- item: eq_longlinpijian
+  sourceSha256: 74176978fb93853040283141a91c49629aa9b538f649f6564b73dee869500827
+  toolVersion: 1
+  palette:
+  - '#3E4041'
+  - '#65696B'
+  - '#A79E8F'
+  build: {}
+  layers:
+  - slot: pauldron_L
+    view: front34
+    file: eq_longlinpijian__pauldron_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: -0.1
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_L
+    view: back34
+    file: eq_longlinpijian__pauldron_L.png
+    sourceRect:
+    - 60
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 0.9
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_L
+    view: side
+    file: eq_longlinpijian__pauldron_L.png
+    sourceRect:
+    - 120
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: -0.1
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: front34
+    file: eq_longlinpijian__pauldron_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: back34
+    file: eq_longlinpijian__pauldron_R.png
+    sourceRect:
+    - 60
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: side
+    file: eq_longlinpijian__pauldron_R.png
+    sourceRect:
+    - 120
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_longlinpijian__pauldron_L.png
+    sha256: 77a2fceefaa11560487a72243ca89cf8250da25710c162c7de7e161c4f85f873
+  - file: eq_longlinpijian__pauldron_R.png
+    sha256: 2c2adf87aff9f6496897671073276e0cc7303f6488405d13103668e3e3d01529
+- item: eq_pijian
+  sourceSha256: bd775af4a901dcf225674bf4a00cffb38da8dea805231d14b76c5647afdcc6c6
+  toolVersion: 1
+  palette:
+  - '#65584E'
+  - '#493F38'
+  - '#877566'
+  build: {}
+  layers:
+  - slot: pauldron_L
+    view: front34
+    file: eq_pijian__pauldron_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: -0.1
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_L
+    view: back34
+    file: eq_pijian__pauldron_L.png
+    sourceRect:
+    - 60
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 0.9
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_L
+    view: side
+    file: eq_pijian__pauldron_L.png
+    sourceRect:
+    - 120
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: -0.1
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: front34
+    file: eq_pijian__pauldron_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: back34
+    file: eq_pijian__pauldron_R.png
+    sourceRect:
+    - 60
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: side
+    file: eq_pijian__pauldron_R.png
+    sourceRect:
+    - 120
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_pijian__pauldron_L.png
+    sha256: 6dbf2fef334ccb3c78f4cfc7298f49eba5faf78930caa7371d192d6169070c40
+  - file: eq_pijian__pauldron_R.png
+    sha256: a90511dfd591d2d3561413b5d741fffa3bd7534efb699ea15036e764a6c4a9f7
+- item: eq_qingjin
+  sourceSha256: deed089eebb4589055951cefff2f6fd64c9fbd133c447c1ddb79086a52b4bf20
+  toolVersion: 1
+  palette:
+  - '#6B727B'
+  - '#888E94'
+  - '#4A5058'
+  build: {}
+  layers:
+  - slot: hair_or_headgear
+    view: front34
+    file: eq_qingjin__hair_or_headgear.png
+    sourceRect:
+    - 0
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 9
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: hair_or_headgear
+    view: back34
+    file: eq_qingjin__hair_or_headgear.png
+    sourceRect:
+    - 112
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: hair_or_headgear
+    view: side
+    file: eq_qingjin__hair_or_headgear.png
+    sourceRect:
+    - 224
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 9
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_qingjin__hair_or_headgear.png
+    sha256: 5bbd1c035083925d6e8724ca1fb82c0fb9b47b2b3269027be0fc572c767f4a03
+- item: eq_qixingbaoguan
+  sourceSha256: 7cdf2a76676a915cf9f3811144ff0d34b85d22c8312d0c69fce5479014aae7e5
+  toolVersion: 1
+  palette:
+  - '#3D4751'
+  - '#5F666C'
+  - '#9E9A94'
+  build: {}
+  layers:
+  - slot: hair_or_headgear
+    view: front34
+    file: eq_qixingbaoguan__hair_or_headgear.png
+    sourceRect:
+    - 0
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 9
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: hair_or_headgear
+    view: back34
+    file: eq_qixingbaoguan__hair_or_headgear.png
+    sourceRect:
+    - 112
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: hair_or_headgear
+    view: side
+    file: eq_qixingbaoguan__hair_or_headgear.png
+    sourceRect:
+    - 224
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 9
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_qixingbaoguan__hair_or_headgear.png
+    sha256: 13d34a7973606af0aef4fffea78940cd4712812175643c27f014201d0b7f639a
+- item: eq_tianfengpifeng
+  sourceSha256: ce5e0bd90cede8b3a1e1910445f80a00629ec939a23534211101f447d9cc3077
+  toolVersion: 1
+  palette:
+  - '#C5C7CB'
+  - '#D9D9D9'
+  - '#ABADAF'
+  build: {}
+  layers:
+  - slot: cape
+    view: front34
+    file: eq_tianfengpifeng__cape.png
+    sourceRect:
+    - 0
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: -2
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: cape
+    view: back34
+    file: eq_tianfengpifeng__cape.png
+    sourceRect:
+    - 154
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: 11.5
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: cape
+    view: side
+    file: eq_tianfengpifeng__cape.png
+    sourceRect:
+    - 308
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: -2
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_tianfengpifeng__cape.png
+    sha256: a2ce83ae4ecd3e5429924de5af5c7efe4521cb56e87b4a80e92725f381fc94b0
+- item: eq_wuyepifeng
+  sourceSha256: a811e193761eb7af6cbf2e8a793d97ab56cdd45456d9f9267df1cafb172ed8c5
+  toolVersion: 1
+  palette:
+  - '#40454B'
+  - '#4E545A'
+  - '#2F3236'
+  build: {}
+  layers:
+  - slot: cape
+    view: front34
+    file: eq_wuyepifeng__cape.png
+    sourceRect:
+    - 0
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: -2
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: cape
+    view: back34
+    file: eq_wuyepifeng__cape.png
+    sourceRect:
+    - 154
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: 11.5
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: cape
+    view: side
+    file: eq_wuyepifeng__cape.png
+    sourceRect:
+    - 308
+    - 0
+    - 154
+    - 244
+    pivot:
+    - 77
+    - 12
+    scale: 1.0
+    zOrder: -2
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_wuyepifeng__cape.png
+    sha256: 33c222e3a55feadecaf9850a1ded734d89e29680b60dc0ac2283c506ca0252fe
+- item: eq_xuantiepijian
+  sourceSha256: 6f3bc59bf33da40199d136ad71e18097149bba0a30423dd0af26860468487315
+  toolVersion: 1
+  palette:
+  - '#585755'
+  - '#383735'
+  - '#86827C'
+  build: {}
+  layers:
+  - slot: pauldron_L
+    view: front34
+    file: eq_xuantiepijian__pauldron_L.png
+    sourceRect:
+    - 0
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: -0.1
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_L
+    view: back34
+    file: eq_xuantiepijian__pauldron_L.png
+    sourceRect:
+    - 60
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 0.9
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_L
+    view: side
+    file: eq_xuantiepijian__pauldron_L.png
+    sourceRect:
+    - 120
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: -0.1
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: front34
+    file: eq_xuantiepijian__pauldron_R.png
+    sourceRect:
+    - 0
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: back34
+    file: eq_xuantiepijian__pauldron_R.png
+    sourceRect:
+    - 60
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: pauldron_R
+    view: side
+    file: eq_xuantiepijian__pauldron_R.png
+    sourceRect:
+    - 120
+    - 0
+    - 60
+    - 48
+    pivot:
+    - 30
+    - 20
+    scale: 1.0
+    zOrder: 13.3
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_xuantiepijian__pauldron_L.png
+    sha256: 40d20889a5d0d0421ef5f6a8c6f4c44b584aab2c5aba05674261c31cc993b1be
+  - file: eq_xuantiepijian__pauldron_R.png
+    sha256: f073e5ee2b088aae0302e8de299d1116a5737545c533f4a52c5191c696075188
+- item: eq_zijinfaguan
+  sourceSha256: 6b02202bd9ae21340d6964cd22f4ccd4ced6cd6dc8cc3d036da80fcdd9360ea3
+  toolVersion: 1
+  palette:
+  - '#4E4442'
+  - '#83736A'
+  - '#C4BAA6'
+  build: {}
+  layers:
+  - slot: hair_or_headgear
+    view: front34
+    file: eq_zijinfaguan__hair_or_headgear.png
+    sourceRect:
+    - 0
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 9
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: hair_or_headgear
+    view: back34
+    file: eq_zijinfaguan__hair_or_headgear.png
+    sourceRect:
+    - 112
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 12
+    tint:
+      slot: fixed
+      strength: 0.0
+  - slot: hair_or_headgear
+    view: side
+    file: eq_zijinfaguan__hair_or_headgear.png
+    sourceRect:
+    - 224
+    - 0
+    - 112
+    - 80
+    pivot:
+    - 56
+    - 72
+    scale: 1.0
+    zOrder: 9
+    tint:
+      slot: fixed
+      strength: 0.0
+  files:
+  - file: eq_zijinfaguan__hair_or_headgear.png
+    sha256: 4d3cade1c46db32c77fbd205aa971aa4a47e83f34c7a77d2adb45727505a19ef

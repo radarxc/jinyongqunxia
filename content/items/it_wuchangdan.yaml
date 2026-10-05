@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: it_wuchangdan
+name: 无常丹
+kind: pill
+sub: medicine
+grade: 6
+stack: 99
+chapters: any
+origin: canonExpanded
+canonRef: 金庸作品 （待考：核具体书名、使用人物与药效）
+price: auto
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 850
+  - op: dispel
+    params:
+      tags:
+      - injury
+      grade: 6
+assets:
+  icon: item/wuchangdan
+text:
+  desc: 外观：黑白相间双层漆盒，深褐丸药。
+  lore: 黑白漆盒所藏疗伤丸，江湖来历与使用人物仍须核书。服后用于压住较重外伤，银灰蜡封一破便不宜久存；药客因此有“开盒不回头”之说。（待考：核具体书名、人物与药效） （原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healOuter: 9

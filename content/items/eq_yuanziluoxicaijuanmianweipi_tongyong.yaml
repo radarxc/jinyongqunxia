@@ -1,0 +1,31 @@
+schemaVersion: item.v1
+id: eq_yuanziluoxicaijuanmianweipi_tongyong
+name: 元紫罗细裁绢面围披
+kind: armor
+sub: cape
+grade: 5
+stack: 1
+chapters:
+- ch04_yitian
+origin: canonExpanded
+canonRef: 元；出现书界 ch04；（原创扩展）；形制／色系依据：《元史》卷78《舆服一·质孙》 https://zh.wikisource.org/zh-hans/元史/卷078；故宫《蒙元时期的罟罟冠》 https://www.dpm.org.cn/explode/others/210566.html；《钦定续文献通考》后妃命妇以下首饰服章制度，元史不载后妃服色 https://www.shidianguji.com/book/SK1150/chapter/1lbe49p795btn；女性绛红袍色从首服借色，袍面偏好（待考）；八朝素白通用为原创设计，女服逐朝实证（待考）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuanziluoxicaijuanmianweipi_tongyong
+text:
+  desc: 外观：元通用款，主色紫罗。 待运行时投影：defOutK=0.025; hpMaxK=0.005。
+  lore: （原创扩展）据元代披覆语汇演成紫罗通用绢面围披，无袖及膝宽幅、系结与薄毡衬合为一件。细织密缝缘只用于披缘，行旅先系稳领结；具体裁片为原创，不作既有深蓝织金战士斗篷，不自动授身份或遮蔽官甲。
+extension:
+  type: equipment
+  value:
+    slot: cape
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 4

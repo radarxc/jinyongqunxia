@@ -1,0 +1,46 @@
+id: bld_kit_mongol_house_small
+status: candidate
+building: {"type": "bld_kit_mongol_house_small", "footprint": [7, 6], "anchor": [267.7404, 294.5055], "era": "mongol"}
+anchor_px: [267.7404, 294.5055]
+footprint_m:
+- 7
+- 6
+footprint_basis: design/22 §3.4 bld_kit_yuan_house；地域形制替换（原创扩展）
+measured_ground_polygon_px: [[59.6154, 286.7349], [284.3599, 392.4763], [475.8654, 302.2761], [251.1209, 196.5347]]
+collision_polygon_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 6
+- - 0
+  - 6
+collision_note: 全占地仅规划阻挡代理；毡帐/院落内可行走区域另需细化，不含阴影。
+entrance:
+  edge: S
+  offset_cells: 3
+entrance_note: 规划边中点代理，非门洞实测（待实测）
+height_m: null
+height_note: 未测量；不能由roof顶点与center直接反推整体高度。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+png_rotations_available:
+- 0
+allowRotation: false
+views:
+- rotation_deg: 0
+  yaw_deg_requested: 45
+  pitch_deg_requested: 30
+  file: bld_kit_mongol_house_small.png
+glb: null
+projection_contract: {"tile_px": [64, 32], "ground_bbox_target_px": [416, 208], "ground_width_px": 416.25, "ground_height_measured_px": 195.9416, "light": "screen_upper_left", "shadow": "screen_lower_right_contact_only", "projection_verified": false}
+geometry_qa: {"source_corners_px": {"left": [84, 565], "front": [821, 912], "right": [1449, 616], "rear_inferred": [712, 269]}, "source_anchor_px": [766.5, 590.5], "source_axis_slopes": [0.4708276797829037, -0.4713375796178344], "axis_tolerance": 0.03, "axis_pass": true, "source_width_depth_ratio": 1.1735668789808917, "expected_width_depth_ratio": 1.1666666666666667, "ratio_relative_error": 0.005914467697907044, "ratio_tolerance_suggestion": 0.1, "ratio_pass": true, "measurement_uncertainty_source_px": 5, "precision_note": "返修源图可见土面角人工量取约±5px；后角由L+R-F推算，锚点为L/R中点；未warp。", "edge_note": "端点轴率进入±.03；底部alpha>128轮廓线性拟合左轴0.46834、右轴-0.47021，左边略弯并超限，不能称严格投影已验收。", "edge_fit_axis_slopes": [0.468340857, -0.470207074], "edge_fit_axis_pass": false, "edge_fit_method": "source alpha>128 lower contour least squares, x=150..749 and900..1369"}
+pixel_qa: {"mode": "RGBA", "size": [512, 512], "alpha_extrema": [0, 255], "alpha_zero_pixels": 214223, "alpha_partial_pixels": 47211, "alpha_opaque_pixels": 710, "alpha_nonzero_bbox": [57, 117, 478, 394], "transparent_margins_px": [57, 117, 34, 118], "border_alpha_max": 0}
+processing: {"source_archive": "sources/bld_kit_mongol_house_small__r2_c02.png", "source_sha256": "90ea9582c844753b6b9e35483222e2c33001127c7743617fbef60f58ce50ec34", "source_size": [1536, 1024], "crop_box": [0, 8, 1456, 917], "uniform_scale_requested": 0.3047619047619048, "resized_size": [444, 277], "rounded_effective_scale": [0.30494505494505497, 0.3047304730473047], "paste_offset": [34, 117], "final_file": "bld_kit_mongol_house_small.png", "steps": ["crop alpha>0 bbox", "uniform LANCZOS resize, dimensions rounded to nearest pixel", "paste unmasked onto transparent RGBA canvas; no warp, repaint, flip or alpha threshold"]}
+selected_candidate: "run2-c2"
+visual_review: "第2轮返修采用本轮候选2；轴率0.47083/-0.47134；宽深比1.17357，目标1.16667；轴率/比例检查分别True/True。仍为candidate，非3D/四向及总装验收。"
+release_ready: false

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_huifengluoyan
+name: 回风落雁剑谱
+kind: manual
+sub: full
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_huifengluoyan
+text:
+  desc: 外观：明代云灰线装薄册，白丝四眼订。
+  lore: 衡山派回风落雁剑术被整理成云灰薄谱，载体为 （原创扩展）。图页须连续观读回转、落步与剑锋呼应，分拆练习容易失去节奏；纸纹如雾只是素雅装帧，不作玄异征兆。
+extension:
+  type: manual
+  value:
+    skill: sk_huifengluoyan
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_huifengluoyan
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

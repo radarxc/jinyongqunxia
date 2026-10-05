@@ -1,0 +1,32 @@
+# 支援 / 自身；projection:false。长度为局部示意尺，非攻击射程（原创扩展）。
+kind: Composition
+version: 1
+asset_id: vfx_mv_taohuaguiyuanjue_tingchao__base01
+subject_ref: mv_taohuaguiyuanjue_tingchao
+mode: baseline
+effect_set: ../../effect/family/effect-set.yaml
+emitter_plate: ../../../emitters/palm/emitter-plate.yaml
+canvas_px: [1536, 1024]
+background: '#EFE6D2'
+emit_at_px: [600, 560]
+angle_deg: 0
+range_hex: 0
+pixels_per_hex: 256
+length_px: 240
+scale: [1, 0.9]
+emitter_scale: 0.6
+rhythm: {charge_s: 0.10, release_s: 0.15, sustain_s: 0.25, dissipate_s: 0.10}
+transition:
+  interpolation: crossfade
+  scale_from: 0.95
+  drift_fraction: 0
+  brightness: [0.8, 1, 1, 1, 0.8]
+  directional_mask: {enabled: false, softness: 0.08}
+output:
+  fps: 20
+  loop: true
+  loop_gap_s: 0.4
+  peak_phase: 0.4166666666666667
+  preview_size_px: [768, 512]
+  html_max_bytes: 3000000
+  optional_animation: none

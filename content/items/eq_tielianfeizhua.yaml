@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_tielianfeizhua
+name: 铁链飞爪
+kind: weapon
+sub: whip
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/tielianfeizhua
+text:
+  desc: 外观：四爪乌铁抓头合拢朝内，以约两米铁链接短木柄。
+  lore: 江湖武人把四爪铁头接上长链，用于勾住兵器、衣甲或障碍后牵扯，短柄帮助回收控向。它是战斗器，不等同攀援工具 it_feizhua；器名、结构、用法与流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: whip
+    hands: 1
+    tags: []
+    matFamily: wood
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 90
+      hardness: 55
+      qiAffinity: 100

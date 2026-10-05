@@ -1,0 +1,8 @@
+{
+  "asset": "bld_kit_xiyu_warehouse",
+  "prompt": "Use case: precise-object-edit. IMAGE1 is edit target, IMAGE2 is reference ONLY for its correct city-map camera. Preserve plain adobe warehouse and loading canopy. Both current visible ground edges are too shallow; make exact+0.50 and-0.50. Make IMAGE1 a strict orthographic yaw45 elevation30 2:1 dimetric sprite on rectangular ground10m by8m. Ground diagonal axes screen slopes +0.5 and -0.5, no vanishing points, all verticals upright. Front entrance faces screen LOWER LEFT. Match IMAGE2 camera, do not copy its stable building or objects. Keep realistic historic southern Xinjiang architecture, worn ochre adobe/brick, existing restrained colors and fine detail density. Entire isolated asset and contact shadow inside frame,15% empty transparent padding each side, TRUE transparent RGBA background. Upper-left light and only tiny lower-right contact shadow. No people, letters, text, landscape, thick diorama base, halo or modern objects.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-3ec8a295-1a02-4ba0-97bf-fab36d41f7d5.png",
+  "candidate": 2,
+  "edit_target": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-6e09b64e-c8ca-4c60-91df-cadcd44a32e3.png",
+  "camera_reference": "/Users/bytedance/.codex/generated_images/01a0f459-e62a-7d81-b6da-ebc5d5a1cf9c/exec-de9b1647-4e92-4de0-8549-a70945b5a9f9.png"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "bld_kit_ming_north_temple_hall",
+  "subject": "明代北方府城：佛寺殿堂（原创扩展）；具体构件断代（待考）。",
+  "footprint": [
+    14,
+    11
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f426-f82e-74c3-9466-90640f7d6631/exec-678c71f9-8950-4cee-bbfa-022830456d20.png",
+  "prompt": "Use case: historical-scene. Generate exactly ONE isolated reusable building sprite for tianshu default building-map, Ming dynasty northern Chinese prefectural city (Beijing/Datong/Xian regional vocabulary), anonymous original period-inspired design, not a measured heritage reconstruction. Input image is STYLE reference only: match its restrained realistic material detail, fine grey clay roof tiles, weathered masonry and natural matte wood, and same detail density. Change architecture to Ming north as specified. Orthographic 2:1 dimetric ground projection, camera yaw45 elevation30, east axis down-right slope +0.5 and north up-right slope -0.5; parallel ground edges, vertical posts, no perspective convergence. South entrance on screen lower-left edge. Complete building on thin rectangular ground-contact footprint with readable left, front, right corners, footprint axis ratio as specified, no thick pedestal, no soil island. Neutral soft light from SCREEN UPPER LEFT, short soft contact shadow only toward lower-right. TRUE transparent RGBA background and generous blank alpha0 margins all four sides; no skyline, no surrounding scenery. No people, writing, Chinese pseudo-glyphs, text, plaques, signs, banners, watermark, grid, modern fittings, plastic render, cartoon, ink wash, oversaturation, dense lanterns, white halo or baked checkerboard. Only building and its own footprint; include all eaves and base corners uncropped. Asset ID bld_kit_ming_north_temple_hall. Footprint 14 metres east-west by 11 metres north-south. ONE Buddhist temple hall inspired only by Ming Zhihua Temple's black-glazed roof and sober red timber palette, not a replica. Single-eaved hip-and-gable black-grey subtly glazed roof, five-bay hall, dark red wood lattice doors, restrained small brackets, subdued beam paint, low grey stone terrace with three central entrance steps; no surrounding temple compound, no pagoda, no text or statues outside. CHANGE THE REFERENCE SUBJECT COMPLETELY: a single free-standing enclosed hall only, no courtyard, no perimeter walls, no side wings, no gate. Rectangular terrace exactly width14 depth11. Three central steps face screen lower-left. Roof hip-and-gable, visible hipped side planes, glazed black not blue. Geometric correction: hall must be substantially DEEPER, almost square ground plan 14 wide by11 deep, not a narrow long strip. Visible LEFT-to-FRONT ground horizontal distance divided by FRONT-to-RIGHT distance equals14/11=1.273. Ground corners form a shallow exact2:1 diamond with slopes +/-0.5; equal apparent scale on both axes. Show much more of the right side roof depth. Maintain enclosed Ming black-roof Buddhist hall material. At least10percent clean alpha0 margin all sides.",
+  "references": [
+    {
+      "file": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-ming_north/assets/default/baseline/building-map/bld_kit_song_dali_yamen.png",
+      "role": "宋基线材质与细节密度参考；不继承年代",
+      "status": "candidate",
+      "sha256": "3222e018ff8dd8ba7e955af24127b964c91f0b1ebde191eacfe2b50327034fef"
+    }
+  ],
+  "created": "2026-09-30T21:30:20.335Z",
+  "created_basis": "生成结果接收后的入库登记时间；服务端生成时刻未公开。",
+  "points": {
+    "L": [
+      178,
+      654
+    ],
+    "F": [
+      862,
+      975
+    ],
+    "R": [
+      1353,
+      737
+    ]
+  },
+  "footprint_basis": "design/22 §3.4 明代对应骨架；本套件地域命名",
+  "visual_review": "原图已view_image：独立黑灰瓦歇山殿、朱木，第二候选加深侧面；底面仍非精确14:11；不声称智化殿复原。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "selection_reason": "第二候选改善硬山端墙/寺殿进深/砖塔形态；几何残差仍保留。",
+  "original_size": [
+    1470,
+    1070
+  ],
+  "source_sha256": "68fb5dc26b295a1bdbbcdad0b9a0ee7db6b3b85e16dd521535fdacb567b8c417",
+  "final_visual_review": "已逐张view_image成品：全轮廓与透明留边完整；底面、屋檐及缩放后细节可读；几何与形制限制仍见visual_review/meta。"
+}

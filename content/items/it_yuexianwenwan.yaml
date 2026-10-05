@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuexianwenwan
+name: 越地弦纹原始瓷碗
+kind: collectible
+sub: porcelain
+grade: 2
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H01](#src-h01)；准入：越女序章；仅同类窑作，不指定现代出土原件
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuexianwenwan
+text:
+  desc: 外观：灰青釉小碗，侈口深腹。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=history。
+  lore: 春秋原始瓷弦纹碗有馆藏可参，不能据后世茶书反推越人已用它点茶。此件由越地窑户交割，适宜款待宾客或赠爱器藏家；窑户身份及流转为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 12

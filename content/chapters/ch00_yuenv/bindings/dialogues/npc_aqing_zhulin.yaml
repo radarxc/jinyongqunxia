@@ -1,0 +1,7 @@
+schemaVersion: region-dialogue.v1
+chapter: ch00_yuenv
+sceneId: sc_00_zhulin
+anchorId: npc_aqing_zhulin
+storyId: story_ch00_main
+entryKey: aqing_first_meeting
+condition: {not: {flag: fl_00_staff_accepted}}

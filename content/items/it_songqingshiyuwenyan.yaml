@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_songqingshiyuwenyan
+name: 青石鱼纹砚
+kind: collectible
+sub: stationery
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 历史器物／类型：[H29](#src-h29)；准入：天龙；北宋1093年前断代待考
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/songqingshiyuwenyan
+text:
+  desc: 外观：青灰石长方砚，浅水池与平研面。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,collector]}; giftValue=2; provenance=history。
+  lore: 故宫文房目录列有宋青石鱼纹砚，可用来表现材质朴素而雕工讲究的礼砚。宜赠文士藏家；具体断在北宋早中期仍（待考），过审后方可投天龙，取得情节为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

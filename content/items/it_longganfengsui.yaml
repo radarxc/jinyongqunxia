@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_longganfengsui
+name: 龙肝凤髓料
+kind: material
+sub: ingredient
+grade: 9
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/longganfengsui
+text:
+  desc: 外观：两只封釉食盒分装深红肉脯与乳白髓脂，宫宴精致感 （原创扩展）。
+  lore: “龙肝凤髓”只是豪宴行话，并非异兽真材；两只封釉食盒分别藏精选肉脯与髓脂。名厨以少量提鲜，江湖富户常拿整盒排场待客。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_di3
+    materialGrade: 9
+    rare: false
+    ingredientKind: rare
+    attributes:
+      version: 2

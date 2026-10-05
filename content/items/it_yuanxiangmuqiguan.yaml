@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuanxiangmuqiguan
+name: 元式香木棋罐
+kind: collectible
+sub: antique
+grade: 10
+stack: 1
+chapters: any
+origin: expanded
+price: null
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/yuanxiangmuqiguan
+text:
+  desc: 外观：一只深褐香木圆罐，合盖嵌口。 待运行时投影：eraRange=[yuan]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=4; provenance=expanded。
+  lore: 为元末棋友支线设计精工棋罐，以木料和严密嵌口区分于普通漆盒。适合赠文士藏家；木种、造型与流转为（原创扩展），气味只作叙事描写，不产生安神或修炼效果。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 76

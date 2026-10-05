@@ -1,0 +1,9 @@
+{
+  "key": "bld_kit_mongol_warehouse",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f459-2218-7e42-9157-1365bb18d076/exec-4f78a02c-794e-489a-b780-fb08eacd7870.png",
+  "prompt": "Use case: precise-object-edit. Convert the supplied Song warehouse sprite into a Mongol grassland caravan warehouse, 13th-14th century, original regional game adaptation. Keep the EXACT 45-degree camera, 30-degree elevation, 2:1 ground projection, ground parallelogram 9 by 7 metres, base corners, doors/windows placement and realistic detail density of the reference. Replace all ceramic roof tiles and finials with plain overlapping weathered wooden shingles, simple wooden ridge capped with tied timber. Replace plaster panels with muted dark rough timber planks. Keep two open wooden south doors and stacks of rope-bound wool/felt packages inside, with a small grey felt awning over entry; no ceramic decorative jars. Keep same height and width, no added scenery. Light from upper left and short contact shadow lower right. True RGBA alpha0 outside building and thin foundation. No people, no text, no watermark, no checkerboard, no bright varnish. Entire structure inside transparent margins.",
+  "references": [
+    "assets/default/baseline/building-map/bld_kit_song_dali_warehouse.png"
+  ],
+  "selection": "selected"
+}

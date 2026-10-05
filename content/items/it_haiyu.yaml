@@ -1,0 +1,26 @@
+schemaVersion: item.v1
+id: it_haiyu
+name: 海鱼
+kind: material
+sub: ingredient
+grade: 3
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/haiyu
+text:
+  desc: 外观：银蓝海鱼一尾置海藻竹盘，梭形完整。
+  lore: 东南沿海与海岛渔村常见的一尾梭形海鱼，随渔汛四季轮换具体品种。可煎、蒸或晒制，离岸后须盐冰保鲜；内陆并非常备货。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang3
+    materialGrade: 3
+    rare: false
+    ingredientKind: fish
+    attributes:
+      version: 2

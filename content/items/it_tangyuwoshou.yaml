@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_tangyuwoshou
+name: 白玉卧兽
+kind: collectible
+sub: jade
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H10](#src-h10)；准入：白马702—703；前朝旧藏
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/tangyuwoshou
+text:
+  desc: 外观：乳白玉圆雕伏卧小兽，四肢贴体。 待运行时投影：eraRange=[tang]; giftTo={preferred:[collector]}; giftValue=2; provenance=history。
+  lore: 据隋代白玉卧兽资料选入武周可见的前朝小玉，作案头赏玩之用。适合赠收藏者，不能增加宠物或战斗收益；旧藏身份、合法交付与可见毛线细部属于（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 44

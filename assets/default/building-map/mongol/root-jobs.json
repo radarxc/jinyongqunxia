@@ -1,0 +1,74 @@
+[
+  {
+    "id": "bld_kit_mongol_temple_hall",
+    "name": "temple_hall",
+    "footprint": [
+      13,
+      10
+    ],
+    "cn": "佛寺殿堂",
+    "detail": "An anonymous modest Mongol-Yuan Buddhist timber temple hall, broad low grey-green clay tiled hipped gable roof, restrained upward eaves, matte dark red-brown columns and simple bracket sets, pale rammed-earth infill walls, wooden lattices, a central open south doorway, thin stone sill and three modest steps. Inspired only by Chinese timber construction and Buddhist temple evidence at Karakorum, NOT a reconstruction of the Great Hall, NOT a palace; no modern Erdene Zuu details.",
+    "basis": "design/22 §3.3 temple_hall 13×10【建议值】",
+    "prompt": "Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 13 metres east-west by 10 metres north-south, axis lengths ratio 13:10. An anonymous modest Mongol-Yuan Buddhist timber temple hall, broad low grey-green clay tiled hipped gable roof, restrained upward eaves, matte dark red-brown columns and simple bracket sets, pale rammed-earth infill walls, wooden lattices, a central open south doorway, thin stone sill and three modest steps. Inspired only by Chinese timber construction and Buddhist temple evidence at Karakorum, NOT a reconstruction of the Great Hall, NOT a palace; no modern Erdene Zuu details."
+  },
+  {
+    "id": "bld_kit_mongol_stupa",
+    "name": "stupa",
+    "footprint": [
+      7,
+      7
+    ],
+    "cn": "佛塔地标",
+    "detail": "One anonymous 13th-14th century Buddhist stupa motif for the Mongolian grassland, off-white plaster hemispherical mound over a restrained stepped square stone base, a small square harmika and simple stacked disc finial, matte weathered ochre-gold tip, no prayer flags or surrounding buildings. Chinese-Tibetan Buddhist context is attested at Karakorum but this standalone exterior is an original game extrapolation, not an identified monument. No Erdene Zuu wall-tower replicas.",
+    "basis": "design/22 §3.3 pagoda 7×7【建议值】",
+    "prompt": "Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 7 metres east-west by 7 metres north-south, axis lengths ratio 7:7. One anonymous 13th-14th century Buddhist stupa motif for the Mongolian grassland, off-white plaster hemispherical mound over a restrained stepped square stone base, a small square harmika and simple stacked disc finial, matte weathered ochre-gold tip, no prayer flags or surrounding buildings. Chinese-Tibetan Buddhist context is attested at Karakorum but this standalone exterior is an original game extrapolation, not an identified monument. No Erdene Zuu wall-tower replicas."
+  },
+  {
+    "id": "bld_kit_mongol_guardhouse",
+    "name": "guardhouse",
+    "footprint": [
+      6,
+      5
+    ],
+    "cn": "营门守舍",
+    "detail": "A small rectangular watchmen's cabin at a Mongol camp gate, low pitched roof covered by taut unpainted grey felt over timber rafters, rough dark wooden posts and earth-plastered infill, small square lattice window, simple south-facing wooden door, one modest adjacent upright spear rack WITHOUT weapons; not the main gate itself. Entire cabin and tiny porch on one flat dry earth footprint.",
+    "basis": "design/22 §3.2 guardhouse 6×5【建议值】",
+    "prompt": "Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 6 metres east-west by 5 metres north-south, axis lengths ratio 6:5. A small rectangular watchmen's cabin at a Mongol camp gate, low pitched roof covered by taut unpainted grey felt over timber rafters, rough dark wooden posts and earth-plastered infill, small square lattice window, simple south-facing wooden door, one modest adjacent upright spear rack WITHOUT weapons; not the main gate itself. Entire cabin and tiny porch on one flat dry earth footprint."
+  },
+  {
+    "id": "bld_kit_mongol_stable",
+    "name": "stable",
+    "footprint": [
+      8,
+      6
+    ],
+    "cn": "拴马棚",
+    "detail": "A squat open-front rectangular horse shelter of a Mongol caravan camp, stout weathered timber uprights, low gently pitched felt-and-wood roof, three open stalls with plain wooden troughs, rear timber slat wall, shallow hay bundles under roof only, no horses, no fences beyond footprint, broad width relative to depth exactly 8:6. Dry taupe ground contact, no tiled Chinese roof.",
+    "basis": "design/22 §3.2 stable 8×6【建议值】",
+    "prompt": "Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 8 metres east-west by 6 metres north-south, axis lengths ratio 8:6. A squat open-front rectangular horse shelter of a Mongol caravan camp, stout weathered timber uprights, low gently pitched felt-and-wood roof, three open stalls with plain wooden troughs, rear timber slat wall, shallow hay bundles under roof only, no horses, no fences beyond footprint, broad width relative to depth exactly 8:6. Dry taupe ground contact, no tiled Chinese roof."
+  },
+  {
+    "id": "bld_kit_mongol_warehouse",
+    "name": "warehouse",
+    "footprint": [
+      9,
+      7
+    ],
+    "cn": "商旅仓屋",
+    "detail": "A compact single-storey Mongol caravan timber storehouse, thick dark rough plank walls, a low gabled wooden shingle roof tied at ridge, south-facing double plank door, one shuttered small window, a few tightly bound felt-wrapped bales under a small attached awning, subtly weathered undecorated muted wood, no modern barrels or machinery. Entire asset and bales inside rectangle.",
+    "basis": "design/22 §3.2 warehouse 9×7【建议值】",
+    "prompt": "Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 9 metres east-west by 7 metres north-south, axis lengths ratio 9:7. A compact single-storey Mongol caravan timber storehouse, thick dark rough plank walls, a low gabled wooden shingle roof tied at ridge, south-facing double plank door, one shuttered small window, a few tightly bound felt-wrapped bales under a small attached awning, subtly weathered undecorated muted wood, no modern barrels or machinery. Entire asset and bales inside rectangle."
+  },
+  {
+    "id": "bld_kit_mongol_wharf",
+    "name": "wharf",
+    "footprint": [
+      8,
+      4
+    ],
+    "cn": "河岸卸货栈台",
+    "detail": "One simple low rectangular wooden river landing platform, short weathered squared timber piles and rough planks, shallow short steps at south bank-facing side, no rail along the back long waterside edge, two modest mooring posts at back corners, ONE small stack of rope-tied plain cargo on one corner only. No water, boats, terrain, embankment, building roof or background. Mongolian river-edge utilitarian game prop, not an assertion of a navigable port in Karakorum.",
+    "basis": "design/22 §3.2 wharf 8×4【建议值】",
+    "prompt": "Use case: historical-scene. Generate exactly ONE production building sprite for tianshu default building-map, Mongol grassland and Karakorum/Xanadu cultural context, 13th-14th century, historical realistic game art. Orthographic camera yaw 45 degrees elevation 30 degrees. Ground projection exactly 2:1 dimetric, visible ground axes +0.5 and -0.5 screen slope, all parallel edges remain parallel, verticals upright. South entrance faces screen LOWER LEFT. Muted earth tones, weathered tactile materials and fine natural detail density matching realistic Song city-kit assets, not a cartoon, not glossy toy rendering. Warm neutral light from SCREEN UPPER LEFT, very short soft contact shadow towards LOWER RIGHT. Flat thin ground contact rectangle with clearly readable corners, NEVER a thick diorama pedestal. Genuine RGBA transparency everywhere outside asset; no opaque white backdrop or painted checkerboard. Generous transparent margin on all sides; complete uncut silhouette. No text, labels, grid, numbers, watermark, people, modern objects or scenic background. Footprint 8 metres east-west by 4 metres north-south, axis lengths ratio 8:4. One simple low rectangular wooden river landing platform, short weathered squared timber piles and rough planks, shallow short steps at south bank-facing side, no rail along the back long waterside edge, two modest mooring posts at back corners, ONE small stack of rope-tied plain cargo on one corner only. No water, boats, terrain, embankment, building roof or background. Mongolian river-edge utilitarian game prop, not an assertion of a navigable port in Karakorum."
+  }
+]

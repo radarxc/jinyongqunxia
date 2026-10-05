@@ -1,0 +1,81 @@
+- id: npc_huangrong__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 黄蓉（射雕英雄传 ch02 · 丐帮帮主青年，A 版新基线）· 窄轮廓 A 字版
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: a2ae3f7b-b146-4cb3-969c-6d76b1b3fdcd
+    url: https://studio.tripo3d.ai/workspace/generate/a2ae3f7b-b146-4cb3-969c-6d76b1b3fdcd
+    generate_op: 2b065ca5-4b89-413c-948e-69960418fd8c（image_to_model）
+    rig_op: d7bd9256-8d1f-4add-9168-e869952fd153
+    voided_old_project: 685acbce-0d81-48bf-bb9a-f2ed1fdc3cec（旧基线，生成 65 + 绑骨 20，作废）
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_bangzhu_apose_slim.png
+    sha256: c148e6ca4a7a85a392cd2d2778ffeb0359a9518ed7cb786e212e8fdfe5c7c286
+    use: 单图生成输入（A 字姿势全身参考，作者已定脸）
+  - path: assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png
+    sha256: 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240
+    use: 作者选定的 A 版 base 立绘（A 字参考据此出图；本模型未直接输入）
+  sha256: cc745165bf7798c35763a813b6cb0d54bb0d6e39cc35c58951e75c54c0ad1797
+  size_bytes: 5892432
+  joints: 65
+  triangles: 93406
+  vertices: 59873
+  animations: []
+  textures:
+  - image/jpeg 294344 B
+  - image/jpeg 1125151 B
+  - image/jpeg 775923 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-03T16:29:35-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。看图验收：正/左/右/背完整，淡黄长裙 + 青绿腰带 + 竹叶绣纹、发冠可辨识，后发深褐、无肉色块；自动绑骨一次成功（Hips y0.553、头顶骨端 0.995、双手外展 y0.51、脚 0.067）。窄轮廓 A 字参考（b2f441e6），基线为作者定的 A 版（bc87bc91，往李一桐版靠）。旧基线做的 project 685acbce（13:17，已绑骨）作废未导出。
+- id: npc_huangrong__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 黄蓉（射雕英雄传 ch02 · 丐帮帮主青年，A 版新基线）· 窄轮廓 A 字版 · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: a2ae3f7b-b146-4cb3-969c-6d76b1b3fdcd
+    url: https://studio.tripo3d.ai/workspace/generate/a2ae3f7b-b146-4cb3-969c-6d76b1b3fdcd
+    generate_op: 2b065ca5-4b89-413c-948e-69960418fd8c（image_to_model）
+    rig_op: d7bd9256-8d1f-4add-9168-e869952fd153
+    voided_old_project: 685acbce-0d81-48bf-bb9a-f2ed1fdc3cec（旧基线，生成 65 + 绑骨 20，作废）
+  size: 600x778
+  sha256: e9e50a0dcf6fd5fbae050975989e4e02fee9cda084cc83d20189a7aa8458c521
+  size_bytes: 111365
+  created: '2026-10-03T22:34:22-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

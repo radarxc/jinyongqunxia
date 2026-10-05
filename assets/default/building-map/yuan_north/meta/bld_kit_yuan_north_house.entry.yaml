@@ -1,0 +1,86 @@
+id: bld_kit_yuan_north_house
+repair_round: 3
+file: bld_kit_yuan_north_house.png
+category: building-map
+style: default
+subject: 元代北方·大民居；匿名建筑组合（原创扩展），具体细部（待考）。
+prompt: 'Use case: sketch-to-render. This supplied exact architectural geometry model is the EDIT TARGET. Texture and detail its surfaces to produce a photorealistic ancient Chinese Yuan dynasty one-storey northern Chinese dwelling, centered wooden entry and lattice windows. Camera and silhouettes MUST be locked to the input image. Every foundation and straight horizontal building edge stays in exactly the existing orientation. Do NOT reinterpret as a generic isometric perspective. Exact 2:1 dimetric orthographic projection, +/-0.500 slope. Footprint 7x6; left ground corner (360,640), front (799,860), right (1176,672) on 1536x1024 canvas. Preserve these corners and connect them with straight visible thin stone border lines. Ground edge horizontal lengths ratio 1.1666666666666667. The front foundation edge is +0.5, perpendicular side -0.5; beams/roof ridges parallel to these. Do not move, zoom or rotate the object. Bring the plain tan blocks to life with finely textured worn ochre earth plaster, grey stone footing, weathered dark-brown timber posts and lintels, wood doors/lattice windows. Cover plain grey roof planes with small ridged grey ceramic tiles, restraint in gable tip curvature. Matte realistic ancient architecture, no cartoon or simplified vector appearance. Restrained sand/grey/brown palette. Bright upper-left diffuse sunlight and small hard ground-contact shadow only toward lower right. Cutout sprite: entire surrounding background MUST have alpha=0; object interiors fully opaque alpha=255, crisp clean outline, no haze, glow, gradient, fog, backdrop, floor plane or ambient aura. No text, annotations, grid, people, symbols, modern elements, labels or watermarks. Preserve thin footprint polygon shape precisely; texture it with lightly worn earth paving and sparse dry grass.'
+negative: 现代元素、人物、文字、景观背景、厚底座、塑料质感、明清官式彩画、裁边、假透明、透视汇聚
+references:
+- {file: assets/default/building-map/yuan_north/sources/bld_kit_yuan_north_house.repair3.guide.png, sha256: a8324635d8c09bbeb7eb0b99a2ee3ade49cb27c6e96c93ceb19fc44242d57805, role: 本轮第二候选唯一输入，精确几何简模；源图已view_image}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed by image tool
+created: '2026-09-30T22:39:26.651392+00:00'
+created_time_basis: 源PNG文件mtime；非服务端回执时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f470-9542-7111-8c58-d7596d688c80/exec-73263185-480b-4b93-a9fb-aa0992b4babe.png
+size: 608x512
+sha256: 7dcee8eed4362477df81c39d1356e15a8b79719d6c3cc0af9a1bf96c01fac34b
+status: candidate
+building:
+  type: bld_kit_yuan_north_house
+  footprint: [7, 6]
+  anchor: [312.2523, 316.8674]
+  era: yuan_north
+anchor_px: [312.2523, 316.8674]
+footprint_m: [7, 6]
+footprint_basis: design/22 §3.4 冻结骨架
+entrance: {edge: S, offset_cells: 2}
+png_rotations_available: [0]
+allowRotation: false
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [416, 208]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+source_archive: sources/bld_kit_yuan_north_house.repair3.v02.png
+source_sha256: fa76f00168f78ea8c9794d8055717b47cdcb2f34d885b51d67e1a0aa078e7ed9
+source_record: sources/bld_kit_yuan_north_house.repair3.v02.json
+processing:
+  source_size: [1536, 1024]
+  crop_box: [0, 36, 1520, 994]
+  uniform_scale_requested: 0.35708154506437767
+  resized_size: [543, 342]
+  rounded_effective_scale: [0.35723684210526313, 0.3569937369519833]
+  paste_offset: [32, 85]
+  steps: [crop alpha>0 bounding box, one uniform LANCZOS resize with integer rounding, paste without alpha mask into transparent RGBA canvas]
+geometry_qa:
+  source_corners_px:
+    left: [202, 648]
+    front: [817, 987]
+    right: [1367, 723]
+  anchor_source_px: [784.5, 685.5]
+  source_axis_slopes: [0.551219512195122, -0.48]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.1181818181818182
+  expected_width_depth_ratio: 1.1666666666666667
+  ratio_relative_error: 0.04155844155844168
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 4
+  measurement_note: 独立读取成品源图的实际薄底边三角点，±4源px；并抽查建筑平行横枋/围墙压顶，不以简模目标点代替实测。
+  parallel_edges_source_px:
+  - - [303, 410]
+    - [829, 663]
+  - - [879, 648]
+    - [1242, 466]
+  parallel_edge_slopes: [0.48098859315589354, -0.5013774104683195]
+  parallel_edge_pass: true
+pixel_qa:
+  mode: RGBA
+  size: [608, 512]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 228247
+  alpha_partial_pixels: 82265
+  alpha_opaque_pixels: 784
+  alpha_near_opaque_pixels: 79730
+  nonzero_bbox: [101, 98, 524, 427]
+  transparent_margins_px: [101, 98, 84, 85]
+  border_alpha_max: 0
+candidate_count: 2
+selected_candidate: 2
+notes: 本轮两候选择第二：仅简模约束纹理重出；源图与透明灰底QA均已查看。比例已改善，但左底边斜率仍超±0.5容差。仅裁边/等比缩放/透明补边，未做warp；候选状态不变。
+historical_basis:
+- {url: 'https://www.sxrcylg.cn/index.php?a=index&aid=1035&c=View&m=home', accessed: '2026-09-30', used: 仅元代殿堂木构/土坯墙砖裙/筒板瓦与木门母题；不能证明匿名民居原貌。}
+visual_qa: {source_view_image: true, final_view_image: true, status: candidate, note: 逐张目视轮廓/材质/光向；不替代严格几何、历史复原及作者审批。}

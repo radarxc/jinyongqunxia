@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_shinianxueshen
+name: 十年雪参
+kind: material
+sub: herb
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/shinianxueshen
+text:
+  desc: 外观：银白参体略弯，蓝灰布衬木盒。
+  lore: 青藏与河西陇右背风坡的固定成熟株，秋八至九月采期与物种都仍待核实。银白参体静服可回气固本，根骨点计入药食预算，不因十年名目破限。（待核实） （原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan3
+    materialGrade: 6
+    rare: false
+    herbFamily: xueShen
+    ageYears: 10
+    attributes:
+      version: 2
+      restoreQi: 10
+      con: 1

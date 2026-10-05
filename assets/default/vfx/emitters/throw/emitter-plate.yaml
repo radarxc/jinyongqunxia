@@ -1,0 +1,12 @@
+# type=throw；图中不画暗器，锚点是领先中指尖前方的离手点。
+# 实测（原创扩展）：领先中指尖alpha>=128最右列x=1169、y=414..423，以像素中心计尖端[1169.5,419]，向右12px得离手点[1181.5,419]。近端扫描列x=1140，y=407..446，宽=446−407+1=40；12px是空中视觉偏移，不是玩法射程。
+kind: EmitterPlate
+version: 1
+file: source_throw.png
+size_px: [1254, 1254]
+color_space: srgb
+alpha_mode: straight
+category: throw_hand
+emit_point_px: [1181.5, 419]
+direction: [1, 0]
+emission_width_px: 40

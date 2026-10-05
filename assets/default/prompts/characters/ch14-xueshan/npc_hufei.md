@@ -9,11 +9,29 @@ tier: S
 output: assets/default/character/male/ch14/por_npc_hufei__ch14_prime_base.png
 manifest: assets/default/character/male/ch14/manifest.yaml
 references:
-  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_2-1.png
-    use: 第一且唯一身份参考：原版胡斐HDGRP_2-1，已在本会话实际view并对照姓名表。保留稍长方脸、浓而有力眉、专注略窄眼、直鼻与坚实颧颌关系，按ch14约二十七岁和浓密络腮虬髯重构真实面貌。取原头像本人身份，不照搬像素、转头或截图边框；本人不剃额不结辫的阶段例外按ch14稿。
-  - path: .agents/coord/imagegen-reference/user_wangyuyan_background_only_20261002.png
-    use: 第二参考仅为实际查看的纯背景派生图：暖浅灰不透明纸底、极淡蓝灰远山与留白、浅接触阴影；没有人物，不提供面部、身体、衣装或器物身份。此图是用户水墨图经真实 imagegen 去人物得到的内部派生参考，非原用户图，未 approved。水墨与纸纹仅留背景，不侵蚀人物。
-status: ready
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_still0.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_game.jpg
+  use: 复合造型或身份参考；用途见实际提示词
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+  use: 项目画风基线
+- path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  use: 项目画风基线
+status: candidate
+redo_reason: 作者 10-02 晚：复合基线风格精修
+reference_upload:
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch13/por_npc_hufei__ch13_youth_base.png
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_still0.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_hufei__ch14_prime_base_game.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+codex_prompt_rev: 2026-10-02 AR-36 retry3
+generation_job: por_npc_hufei__ch14_prime_base.retry3.r1
+generation_attempts: 1
+classic_ref:
+  note: 影视造型＋经典游戏绘画气质＋同性别双基线，五官重新设计
 ---
 
 <!-- full-coverage-import:current-policy:v1 -->
@@ -24,6 +42,24 @@ status: ready
 
 
 # 胡斐 · 《雪山飞狐》（ch14）
+
+## Gemini 提示词
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+【复合参考】第1张是本轮新出的同一胡斐，继承同脸骨相自然长到成熟豪侠时期，不改成另一人。
+第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+【人物辨识与原创面孔】胡斐；成熟豪迈、机警克制、满腮虬髯；必须以本轮 por_npc_hufei__ch13_youth_base 同一张新脸成熟化：保留宽颧方颌、浓眉眼角、鼻唇比例，仅加风霜与虬髯，不能另造演员脸。
+【造型道具】浓发不剃额不结辫、横生倒竖；灰白厚右衽袍、旧毛皮领、深灰护腕与腰带、厚靴；腰侧普通无字鞘单刀，不将鞘上装饰当藏宝钥匙；剧照仅借衣饰气质，勿照搬辫发。
+【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+```
 
 ## 人物要点
 
@@ -76,3 +112,7 @@ Use case: stylized-concept。Asset type: tianshu 的 default 风格包人物立�
 - 完整头足、刀鞘端点入画，灰白衣装与浅灰底分离。
 
 以上为生成后的检查标准，本任务未出图，未声称通过成图视觉验收。
+## 本轮精修记录
+
+- 参考分工见实际提示词；配色、姿势、取景及成年化均为（原创扩展）。
+- 本轮结果已逐图目检并入库为 candidate；实际作业与参考哈希见 manifest。

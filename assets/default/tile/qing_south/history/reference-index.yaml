@@ -1,0 +1,45 @@
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/A_stone_arch_bridge_in_Pingjiang_Road%2C_Suzhou.jpg?width=1200
+  sha256: 8e4fccf56785f7355933a27b3c0eae416b526c4ede167cd38c22e01a6ec20475
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。平江路石桥与1984年吴门桥照片只取低矢单孔、放射花岗石券、粗石拱腹、磨损台阶、低石板栏和方望柱；不复制整桥构图。
+  repository_copy: false
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Suzhou_Wumen_Bridge_1984.jpg?width=1600
+  sha256: 8271ad05d176010377bdb6bfe640efd2ca48fd08d1cff84c8e105c5f1d2bc3a0
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。平江路石桥与1984年吴门桥照片只取低矢单孔、放射花岗石券、粗石拱腹、磨损台阶、低石板栏和方望柱；不复制整桥构图。
+  repository_copy: false
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5888.jpg?width=1600
+  sha256: 108441ed5caeba8a8cacbafd607b04edab5b8e74ee031502930154ea8bee38d4
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+  repository_copy: false
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5933.jpg?width=1600
+  sha256: aff1a916076e3955b14f7c2dbc594280df405fbc4f9a36a774271f281d6e123f
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+  repository_copy: false
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/20090926_Suzhou_Pan_Men_5941.jpg?width=1600
+  sha256: 14a8ce8eac475a8ad072ee35ec1877324cbccc3d527eae080af81d492b56f67e
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。盘门地域证据用于青灰砖错缝、花岗石基脚/券脚、放射券石、补灰缝、低女墙与朴素灰瓦门楼；不复制整座盘门。
+  repository_copy: false
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Osmanthus_fragrans_in_China.jpg?width=1200
+  sha256: 9cadcce98eabaa926694e10c5e75adc5142759ef272d3dc66cc6e87825410dce
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。垂柳取单干、疏透冠和长垂枝；桂花取多分枝、革质对生椭圆叶及少量淡黄小花，不作球形绿篱。
+  repository_copy: false
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Osmanthus_Fragrans_chinese_Guihua.JPG?width=1200
+  sha256: 237a8b3f0a477756bbfc723a085dc05c960456dfdea2cb21bdb711ac33c8ccfb
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。垂柳取单干、疏透冠和长垂枝；桂花取多分枝、革质对生椭圆叶及少量淡黄小花，不作球形绿篱。
+  repository_copy: false
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/A_willow_and_a_boat_in_Pingjiang_Road_%286650483501%29.jpg?width=1200
+  sha256: c1d7ce2df6eca284323dd68faa2db12748a79982feb339a7cdde6ae6e7e78d87
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。垂柳取单干、疏透冠和长垂枝；桂花取多分枝、革质对生椭圆叶及少量淡黄小花，不作球形绿篱。
+  repository_copy: false
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Hangzhou_-_West_Lake_1759.jpg?width=1600
+  sha256: f4715e787314243c0b65e1a5faa9232e0d5280a3bc83dd9ee5d71121dac865d2
+  accessed: '2026-10-01'
+  use: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。垂柳取单干、疏透冠和长垂枝；桂花取多分枝、革质对生椭圆叶及少量淡黄小花，不作球形绿篱。
+  repository_copy: false

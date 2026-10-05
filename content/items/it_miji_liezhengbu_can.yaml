@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_liezhengbu_can
+name: 列阵步残本
+kind: manual
+sub: partial
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_liezhengbu_can
+text:
+  desc: 外观：明代赭灰线装残册，麻线补订。
+  lore: 队列中补位、让道与追随旗号的步法只剩赭灰残册，内容和载体均属 （原创扩展）。研读须多人按号令慢演，不可把列阵步当独行轻功；泥水撕页毁去后段，来源上限七层。
+extension:
+  type: manual
+  value:
+    skill: sk_liezhengbu
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_liezhengbu
+      readWis: 20
+      maxLayer: 7
+      cultivation: 350

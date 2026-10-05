@@ -1,0 +1,42 @@
+{
+  "columns": 0,
+  "grid": {
+    "orientation": "orthogonal",
+    "width": 48,
+    "height": 48
+  },
+  "name": "tianshu-terrain-dir",
+  "tilewidth": 48,
+  "tileheight": 48,
+  "tilecount": 18,
+  "margin": 0,
+  "spacing": 0,
+  "type": "tileset",
+  "version": "1.10",
+  "transformations": {
+    "hflip": false,
+    "vflip": false,
+    "rotate": false,
+    "preferuntransformed": true
+  },
+  "tiles": [
+    {"id": 0, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 192, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_taijie"}, {"name": "ramp", "type": "bool", "value": true}, {"name": "rampDir", "type": "int", "value": 0}]},
+    {"id": 1, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 192, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_taijie"}, {"name": "ramp", "type": "bool", "value": true}, {"name": "rampDir", "type": "int", "value": 1}]},
+    {"id": 2, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 192, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_taijie"}, {"name": "ramp", "type": "bool", "value": true}, {"name": "rampDir", "type": "int", "value": 2}]},
+    {"id": 3, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 192, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_taijie"}, {"name": "ramp", "type": "bool", "value": true}, {"name": "rampDir", "type": "int", "value": 3}]},
+    {"id": 4, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 192, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_taijie"}, {"name": "ramp", "type": "bool", "value": true}, {"name": "rampDir", "type": "int", "value": 4}]},
+    {"id": 5, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 192, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_taijie"}, {"name": "ramp", "type": "bool", "value": true}, {"name": "rampDir", "type": "int", "value": 5}]},
+    {"id": 6, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 336, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_jiliu"}, {"name": "flowDir", "type": "int", "value": 0}]},
+    {"id": 7, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 336, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_jiliu"}, {"name": "flowDir", "type": "int", "value": 1}]},
+    {"id": 8, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 336, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_jiliu"}, {"name": "flowDir", "type": "int", "value": 2}]},
+    {"id": 9, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 336, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_jiliu"}, {"name": "flowDir", "type": "int", "value": 3}]},
+    {"id": 10, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 336, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_jiliu"}, {"name": "flowDir", "type": "int", "value": 4}]},
+    {"id": 11, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 336, "y": 48, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_jiliu"}, {"name": "flowDir", "type": "int", "value": 5}]},
+    {"id": 12, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 0, "y": 96, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_pubu"}, {"name": "flowDir", "type": "int", "value": 0}]},
+    {"id": 13, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 0, "y": 96, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_pubu"}, {"name": "flowDir", "type": "int", "value": 1}]},
+    {"id": 14, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 0, "y": 96, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_pubu"}, {"name": "flowDir", "type": "int", "value": 2}]},
+    {"id": 15, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 0, "y": 96, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_pubu"}, {"name": "flowDir", "type": "int", "value": 3}]},
+    {"id": 16, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 0, "y": 96, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_pubu"}, {"name": "flowDir", "type": "int", "value": 4}]},
+    {"id": 17, "image": "../../../.cache/content-build/tiled-placeholders/terrain.png", "imagewidth": 384, "imageheight": 288, "x": 0, "y": 96, "width": 48, "height": 48, "properties": [{"name": "terrainId", "type": "string", "value": "tr_pubu"}, {"name": "flowDir", "type": "int", "value": 5}]}
+  ]
+}

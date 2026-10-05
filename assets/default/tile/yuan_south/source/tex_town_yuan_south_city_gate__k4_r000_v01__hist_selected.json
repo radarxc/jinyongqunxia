@@ -1,0 +1,37 @@
+{
+  "endpoint": "codex/images/edits",
+  "model": "gpt-image-2",
+  "turn_id": "24e808fe-2c57-4242-b232-d7a0d695c301",
+  "request_id": "e9d787b7-ea60-430c-9014-90ee1e0e3a74",
+  "generation_id": "cf07347e-fcf3-4c90-a12b-558a2221c8d6",
+  "created_unix": 1790840501,
+  "elapsed_seconds": 43.915,
+  "prompt": "Create ONE ORIGINAL isolated late-Yuan Jiangnan THICK MASONRY CITY GATE sprite. IMAGE1 gives only orthographic dimetric yaw45 pitch30, real transparent RGBA, upper-left light, detail density and 8m by4m overall module; do not repeat its thin bridge-like upper hall. IMAGES2-3 document Panmen masonry. Make a massive squat blue-grey brick wall-body across the full 8m width and4m depth on dark dressed-stone footing, about3m high, with ONE 4m-wide deep barrel-vaulted brick passage visibly piercing the center and equal2m solid piers. The masonry arch ring and thick tunnel reveals must be prominent; passage is open transparent through to ground, no doors or floor obstruction. On top place only a compact low three-bay grey-tiled timber guard hall, clearly narrower than the masonry body, with plain dark timber and restrained brackets. Omit Panmen's later reconstructed high tower and tourist details. No flanking walls. Exact 2:1 dimetric ground axes, entire object uncropped, clean transparent margin, solid surfaces opaque, alpha0 outside, no glow/haze/scenery/text/people/flags/Qing paint.",
+  "references": [
+    {
+      "kind": "style_geometry_reference",
+      "file": "tex_town_song_southern_city_gate__k8_r000_v01.png",
+      "note": "宋基线透明精灵，只约束相机、透明裁切与写实密度"
+    },
+    {
+      "kind": "historical_image",
+      "url": "http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml",
+      "detail_used": "盘门青砖券洞、厚城体、石基",
+      "downloaded_and_viewed": true
+    },
+    {
+      "kind": "historical_image",
+      "url": "https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8",
+      "detail_used": "排除后世楼橹",
+      "downloaded_and_viewed": true
+    }
+  ],
+  "output_sha256": "1f50a71a4d12bf6de5ed36762e97a9701aa92b5dfb60a7ccb02023f7f5c5804d",
+  "selected_asset_file": "tex_town_yuan_south_city_gate__k4_r000_v01.png",
+  "selected_asset_sha256": "c5c6f2cc31020bac3a2bfedf4f66bda605b161837a5308e40006a6e3ab16e1a4",
+  "normalization": [
+    "alpha 非零包围框裁切",
+    "一次等比 LANCZOS 缩放",
+    "透明 RGBA 留白；无阈值、重绘、warp 或仿射投影"
+  ]
+}

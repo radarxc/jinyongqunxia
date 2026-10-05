@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: it_shaolin_sumian
+name: 少林素面
+kind: dish
+sub: dish
+grade: 4
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《天龙八部》·虚竹在镇甸饭店点两碗素面；承接少林持斋
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1400
+  - op: meal
+    params:
+      value: bf_qingxin:1battle
+assets:
+  icon: item/shaolin_sumian
+text:
+  desc: 外观：清汤素面盛灰白粗瓷碗，青菜与笋丝少许。
+  lore: 《天龙八部》中虚竹在镇甸饭店点两碗素面，承接少林持斋身份，本作按少林周边四季饭食投放。本件配青菜笋丝清汤，须趁热食；效果属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 14

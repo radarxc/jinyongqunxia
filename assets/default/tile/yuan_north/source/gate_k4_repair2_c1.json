@@ -1,0 +1,13 @@
+{
+  "repair_round": 2,
+  "candidate": 1,
+  "tool": "image_gen built-in",
+  "prompt": "Use case: sketch-to-render. Produce ONE complete realistic Yuan dynasty northern Chinese city gate game sprite. Input image 1 is the EXACT geometry and CAMERA template: retain its silhouette, proportions, pier footprint corners and ALL verticals. Add realistic materials and architectural details to this blockout without changing its projection. Input image 2 is ONLY the material and architectural style reference; DO NOT use image2 camera or proportions, which are wrong. Keep the new steep diagonal axes from image1, slopes precisely +0.5 and -0.5, orthographic 2:1 dimetric, NO perspective. Footprint 8m frontage x4m depth, two exactly2m wide rectangular rammed-earth piers at outer ends with 4m clear opening between. Three-meter-tall piers; timber upper hall and grey tiled shallow single-eave hipped-gable roof above, total6m. Preserve image1's broad visible right-depth face; do not flatten the front axis or shorten depth. Precisely trace the pier bottom corners and the passage gaps in image1. Do NOT taper piers or add a projecting foundation that changes footprints. Appearance: fine grey Chinese curved roof tiles, restrained brown timber columns, balustrades and lattice panels, simple Yuan bracket sets, warm buff rammed-earth layered piers with minimal grey brick door-edge detailing. Historically informed anonymous original extension, not literal monument reconstruction. Beautiful subdued realistic ancient Chinese game art matching input2's grey wood/earth palette and detail density. Soft upper-left illumination, right faces shaded, tiny contact shadow only. GENUINE RGBA fully transparent background AND open passage negative space, solid masonry opaque alpha255. No ground tile, floor across opening, pedestal, labels, text, inscriptions, watermarks, people, checkerboard or modern objects. Keep same1536x1024 framing as geometry input and complete silhouette with margins. DO NOT simplify the finished asset into flat-shaded or lowpoly blocks: only geometry comes from image1.",
+  "transparent_background": true,
+  "referenced_image_paths": [
+    "assets/default/tile/yuan_north/source/gate_k4_repair2_geometry.png",
+    "assets/default/tile/yuan_north/source/gate_k4_repair2_style_input.png"
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44e-87f8-7ce1-b32c-ae55ad02c328/exec-3e85d872-7ef6-49fb-88d3-03caf349a7ce.png",
+  "selected": false
+}

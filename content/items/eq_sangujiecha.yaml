@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_sangujiecha
+name: 三股铁叉
+kind: weapon
+sub: exotic
+grade: 3
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·明清民间叉兵 （原创扩展定级）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/sangujiecha
+text:
+  desc: 外观：三股对称铁叉头配硬木长杆，通长约一百八十厘米。 待运行时投影：exoticKind=misc。
+  lore: 三股铁叉由民间叉具演成，中央长齿主刺，两侧外张齿可架住刀杆或限制去路。长柄需双手持用，狭室回转不便；对称叉头、尺度与品阶为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 45
+      qiAffinity: 100

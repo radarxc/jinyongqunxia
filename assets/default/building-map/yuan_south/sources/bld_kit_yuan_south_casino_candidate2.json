@@ -1,0 +1,29 @@
+{
+  "key": "casino_v2",
+  "id": "bld_kit_yuan_south_casino",
+  "prompt": "Use case: precise-object-edit. Correct ONLY the camera ground projection of this gaming-house sprite. Keep the exact late Yuan Jiangnan two-storey building, materials, doors, balcony, grey tiles, table/cup, entry, lighting and transparent background. Orthographic dimetric, mathematical ground axes slopes exactly +0.5 and -0.5 (26.565 degrees), slightly FLATTEN the current steep base angles. On1254x1254 canvas use ground rectangle LEFT(120,760), FRONT(720,1060), RIGHT(1200,820), BACK(600,520),10:8 ground edge ratio. All paving, wall and roof axes must parallel these two directions with vertical columns. Correct perspective rather than stretching image. Keep complete roof and base within at least60px transparent margin; zoom out uniformly if needed. Upper-left illumination, very faint short shadow to lower-right; no grey halo. True RGBA, no text, people, new props, modern objects, scenery, outlines, labels or marks. Single asset only, same detail density.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-9f3de003-f47d-41d8-a7d8-1051d9accdd3.png",
+  "source_archive": "sources/bld_kit_yuan_south_casino_candidate2.png",
+  "source_sha256": "835a538de6bfe72f71dd8e971c0a5e253abf5a0b8e379c7d79e050787bda9c62",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:37:08.745955+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [
+    {
+      "path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-521e8b9d-cd47-4a0b-8af2-303cba89b79a.png",
+      "sha256": "8b5f1ef49ad1830e62563eaa9748b0b4959b003491fe701c73eba637ea779295",
+      "status": "candidate",
+      "role": "已view_image；材质、密度与受控编辑参考，不代表严格几何已通过"
+    }
+  ],
+  "selection_status": "selected_candidate",
+  "selection_reason": "第2张右轴改善且轮廓完整；左轴仍较陡，保留候选告警。",
+  "view_image_reviewed": true
+}

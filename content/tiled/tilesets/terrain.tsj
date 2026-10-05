@@ -1,0 +1,496 @@
+{
+  "columns": 8,
+  "image": "../../../.cache/content-build/tiled-placeholders/terrain.png",
+  "imageheight": 288,
+  "imagewidth": 384,
+  "margin": 0,
+  "name": "tianshu-terrain",
+  "spacing": 0,
+  "tilecount": 48,
+  "tileheight": 48,
+  "tiles": [
+    {
+      "id": 0,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_pingdi"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_caodi"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_huacong"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_zhulin"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_milin"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_jingji"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_suishi"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_shadi"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_liusha"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_nizhao"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_duzhao"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_jiaotu"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_taijie"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_qianshui"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_shenshui"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_jiliu"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_pubu"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_dajiang"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_bingmian"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_baobing"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_xuedi"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_shenxue"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_bingku"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_qiaobi"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_xuanya"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_shengu"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_wuding"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_gaoqiang"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_shushao"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_tiesuoqiao"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_dumuqiao"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_zhandao"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_yunhaizhandao"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_chengqiang"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_gongdianwuji"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_chuanjiaban"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_shinei"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_dongku"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_shizhen"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_jiguan"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_mushi"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_migong"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_shibi"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_huoyan"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_rongyan"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_qinghuacong"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_sheku"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "properties": [
+        {
+          "name": "terrainId",
+          "type": "string",
+          "value": "tr_liubai"
+        }
+      ]
+    }
+  ],
+  "tilewidth": 48,
+  "type": "tileset",
+  "version": "1.12"
+}

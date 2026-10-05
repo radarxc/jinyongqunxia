@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_guanglingsan
+name: 《广陵散》琴谱
+kind: collectible
+sub: antique
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B14](#src-b14)；准入：仅笑傲；梅庄物权结算后
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/guanglingsan
+text:
+  desc: 外观：单册旧纸琴谱合拢，褐色素书衣。 待运行时投影：eraRange=[ming]; giftTo={preferred:[scholar,musician,collector],npcOverrides:{npc_huangzhonggong:favored}}; giftValue=3; provenance=book; tags=[score]。
+  lore: 《笑傲江湖》曲洋寻得《广陵散》，向问天以谱投黄钟公所好。沿用既有研读收益，宜赠乐人；原著版本与流转（待考），梅庄物权结算前不能出售，书衣外观为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    study:
+      art: music
+      value: 8
+    appraise:
+      art: art
+      dc: 68

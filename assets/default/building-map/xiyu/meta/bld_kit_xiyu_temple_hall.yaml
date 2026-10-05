@@ -1,0 +1,90 @@
+id: bld_kit_xiyu_temple_hall
+file: bld_kit_xiyu_temple_hall.png
+category: building-map
+style: default
+subject: 西域回部城镇·平顶木柱廊礼拜殿与小穹顶（原创扩展；各年代细部待考）
+prompt: 'Retexture this EXACT orthographic block into a realistic historical Xinjiang mosque prayer hall game-map sprite. Preserve exact block ground geometry, bottom corners, camera
+  and proportion. Front width14, side depth11; front edge27.27% longer than side edge. Both ground and roof axes slopes+0.5 and-0.5. Tiny weathered ochre adobe and yellow brick, main
+  flat earthen roof with visible timbers, low rear parapets, small round earth-colored dome tucked near rear. Along the full left-facing long front facade: finely carved wood-column
+  porch with restrained faded turquoise paint, wooden lattice doors, rugs inside porch without script. Columns and walls sit exactly on graybox footprint edges; thin brick footing but
+  no thick platform. Tiny detailed photoreal-painterly historical strategy-game texture, no cartoon or plastic. Light from upper-left, short subtle shadow lower-right only. Entire opaque
+  asset fully inside canvas with true transparent RGBA outside. No halo, backdrop, gradient, ground beyond footprint, environment, text, signage, calligraphy, person or modern object.
+  Strictly preserve parallel projection of input block.'
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: sources/bld_kit_xiyu_temple_hall_candidate1.png, sha256: 5a541eb729e64d2a5a0f58c1121ee158233836e762912c9b9ed5f9f2fc8f063f, role: 第二候选编辑目标}
+- {file: sources/bld_kit_xiyu_stable.png, sha256: 623dc97485979aa860167f3e9e88d89a73d1649779f667e6e468ecbb5e098855, role: 第二候选相机参照，不复制马厩主体}
+- {file: sources/bld_kit_xiyu_temple_hall_round2_geometry.png, sha256: 471dc59e9273f7d1d23d990fe0107c9c739f38d403195eedbac70bca4cc73b1c, role: 第2轮精确占地灰盒生成参照；不作为成品}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:03:30.489102+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-0691-70c0-90be-71f987f7577e/exec-820303a9-e6f2-4d09-a7a4-460070af154e.png
+size: 1088x736
+sha256: f7d1c650b7f556105ec61c6ec605b7da30a952b272a72e05b495ff093971b456
+status: candidate
+notes: 第2轮按登记占地重出；源图及成品逐张view_image、灰底alpha检查。材质与地域功能保持；仅裁切、等比缩放、透明扩边。当前测量见geometry_qa。当前底角测量通过，仍需总装实测。
+building:
+  type: bld_kit_xiyu_temple_hall
+  footprint: &id001 [14, 11]
+  anchor: [554.3656, 420.3131]
+  era: xiyu
+footprint_m: *id001
+footprint_basis: design/22 §3.4 ming_temple_hall 14×11
+entrance: {edge: S, offset_cells: 6}
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [800, 400]
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available: [0]
+allowRotation: false
+metadata: meta/bld_kit_xiyu_temple_hall.yaml
+candidate_count: 1
+processing:
+  source_archive: sources/bld_kit_xiyu_temple_hall_round2_candidate1.png
+  source_sha256: deed9ebfc8a66ce3603347cca0a48de1c89989ea755c7bd8ec1995d02341b590
+  source_size: [1536, 1024]
+  crop_box: [0, 21, 1514, 1024]
+  uniform_scale_requested: 0.6584362139917695
+  resized_size: [997, 660]
+  rounded_effective_scale: [0.6585204755614267, 0.6580259222333001]
+  paste_offset: [45, 38]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [166, 563]
+    front: [843, 907]
+    right: [1381, 641]
+  source_anchor_px: [773.5, 602.0]
+  source_axis_slopes: [0.5081240768094535, -0.4944237918215613]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.2727272727272727
+  source_width_depth_ratio: 1.258364312267658
+  ratio_relative_error: 0.011285183218268657
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 灰底view_image人工底角定位并用源alpha>200边界核对，约±4px；后角遮挡，非3D实测
+  footprint_is_logical: true
+  release_note: 第2轮重出；当前底角测量通过；约±4px人工精度，仍须总装实测。
+pixel_qa:
+  mode: RGBA
+  size: [1088, 736]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 491774
+  alpha_partial_pixels: 308277
+  alpha_near_opaque_pixels: 286007
+  alpha_nonzero_bbox: [45, 38, 1042, 698]
+  transparent_margins_px: [45, 38, 46, 38]
+  border_alpha_max: 0
+source_record: sources/bld_kit_xiyu_temple_hall_round2_candidate1.json
+selected_candidate: 1
+selection_note: 本轮最多两候选择一；历史源图及调用记录保留，未做透视或非等比修正。
+visual_qa: {checked_with: view_image original and normalized final plus neutral-gray alpha composite, no_pixel_repainting: true}
+style_review_references:
+- {file: assets/default/baseline/building-map/bld_kit_song_dali_biaoju.png, sha256: 928e60e61ff9c0d14f9691b22486b599f181e3b4f52b86182f9b0be3daa76161, role: 已view_image阅图的写实材质／细节密度参照；首候选未作图像输入}
+repair_round: 2
+repair_history: {round1_source_archive: sources/bld_kit_xiyu_temple_hall.png, round1_source_record: sources/bld_kit_xiyu_temple_hall_v2.json, round1_candidate_count: 2, round1_selected_candidate: 2,
+  round1_geometry_axis_pass: true, round1_geometry_ratio_pass: false}

@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: eq_shengsifubao
+name: 生死符冰片包
+kind: hidden
+sub: awl
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《天龙八部》·天山童姥以冰片施生死符；可持久装备包 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/shengsifubao
+text:
+  desc: 外观：青白玉色小盒完全闭合，旁置三枚钱大透明薄冰片于白绸隔层。 待运行时投影：ammoMul=1.195; hiddenHit=7.2; onHit=bf_shengsifu; sect=sect_lingjiu。
+  lore: 《天龙八部》中天山童姥以冰片施生死符；冰片本为临时凝成。本文把青白小盒与三枚冰片作装备介质陈设（原创扩展），须依对应法门施用，不能长期库存。
+extension:
+  type: equipment
+  value:
+    slot: offHand
+    cat: hidden
+    hiddenKind: awl
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 110
+      hardness: 0
+      qiAffinity: 100
+      qiEffect: bf_shengsifu

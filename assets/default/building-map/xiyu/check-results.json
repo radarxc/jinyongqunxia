@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-09-30T21:05:17-07:00",
+  "results": [
+    {
+      "command": "python3 tools/agents/check_assets.py assets/default/building-map/xiyu --min 18 --max 22 --min-side 256",
+      "exit_code": 0,
+      "stdout": "assets/default/building-map/xiyu：图片 19 张，条目 19 条，问题 0 个\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 tools/agents/check_assets.py assets/default/tile/xiyu --min 5 --max 10 --min-side 32",
+      "exit_code": 0,
+      "stdout": "assets/default/tile/xiyu：图片 7 张，条目 7 条，问题 0 个\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 tools/lint/check_ids.py --strict",
+      "exit_code": 0,
+      "stdout": "ID consistency report\nscanned: 115 files (111 Markdown, 4 data), 66041 occurrences, 14011 definitions\nreferenced but undefined: 1 (known baseline: sk_babuganchan)\nconflicting duplicate definitions: 0\nnear-match ID pairs: 0\ndeprecated IDs in active text: 0\nset/member asymmetry: 0\nstrict failure count: 0\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 assets/default/building-map/xiyu/verify.py --expected 19",
+      "exit_code": 0,
+      "stdout": "WARN bld_kit_xiyu_casino: axis=False slopes=[0.5343065693430656, -0.5166374781085814]; ratio=True relative_error=4.0280%\nWARN bld_kit_xiyu_house_large: axis=False slopes=[0.4969418960244648, -0.42574257425742573]; ratio=True relative_error=3.6040%\nWARN bld_kit_xiyu_restaurant: axis=False slopes=[0.5263908701854494, -0.5539033457249071]; ratio=True relative_error=2.2770%\nmetadata=19 validated=19 errors=0 geometry_warnings=3; warnings are NOT geometry approval\n",
+      "stderr": ""
+    }
+  ],
+  "note": "三条任务门禁与纯几何重建校验均退出0；基础检查通过不等于严格投影验收，当前建筑有3条轴向告警，贴片见QA。"
+}

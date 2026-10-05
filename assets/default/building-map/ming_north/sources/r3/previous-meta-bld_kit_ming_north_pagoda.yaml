@@ -1,0 +1,88 @@
+id: bld_kit_ming_north_pagoda
+footprint_m:
+- 7
+- 7
+footprint_basis: 【建议值】design/22 §3.2 千寻塔占地7×7；不继承地标身份。
+anchor_px:
+- 255.6587
+- 872.026
+entrance:
+  edge: S
+  offset_cells: 3.5
+png_rotations_available:
+- 0
+allowRotation: false
+projection_contract: yaw45_pitch30_dimetric_2to1_target
+height_m: null
+collision_polygon_local_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 7
+- - 0
+  - 7
+collision_note: Bounding rectangle proxy only; not runtime collision approval.
+occlusion_polygon_px: null
+runtime_validation: 待实测
+source_points_px:
+  L:
+  - 184
+  - 1262.9897803950432
+  F:
+  - 512.0950318892566
+  - 1436.6736539196352
+  R:
+  - 840
+  - 1262.7448234987157
+source_anchor_px:
+- 512.0
+- 1262.8673019468795
+target_ground_span_px: 448
+geometry:
+  crop_box:
+  - 177
+  - 28
+  - 848
+  - 1443
+  uniform_scale: 0.6829268292682927
+  scaled_size:
+  - 458
+  - 966
+  canvas_size:
+  - 512
+  - 1024
+  paste_offset:
+  - 27
+  - 29
+  - 485
+  - 995
+  raster_scales:
+  - 0.6825633383010432
+  - 0.6826855123674912
+qa:
+  mode: RGBA
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 322936
+  alpha_partial_pixels: 200209
+  alpha_opaque_pixels: 1143
+  alpha_bbox:
+  - 28
+  - 31
+  - 484
+  - 994
+  rectangular_trim_removed_nonzero: 88
+  rectangular_trim_removed_max_alpha: 1
+  source_axis_slopes:
+  - 0.52937
+  - -0.53042
+  source_ratio_relative_error: 0.00058
+  geometry_warning: true
+  visual_review: 本轮已view_image原图及灰底合成；完整轮廓、左上光、北方灰砖/木石细节保留；源底边拟合斜率[0.52937, -0.53042]，宽深比例相对误差0.058%；不以目标值冒充实测。
+  limitation: Manual visible ground-corner estimates; hidden corner inferred; runtime
+    untested.
+source_sha256: 09eac0274235aad36bbb43e676a76b6cf6a6fa6982260d66e552bccb49044eaf
+sha256: cb2ee5275aa07e749203e9487b9b47cfc308b072dcc76cb3bc144f1a66af940a

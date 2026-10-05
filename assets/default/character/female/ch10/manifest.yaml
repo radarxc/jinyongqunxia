@@ -1,0 +1,324 @@
+- id: por_npc_shangguanhong__ch10_youth_prologue_base
+  file: por_npc_shangguanhong__ch10_youth_prologue_base.png
+  category: character/female
+  style: default
+  subject: 上官虹（ch10_baima）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（上官虹的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改上官虹的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+
+    【人物】上官虹：「金银小剑三娘子」，李文秀之母，约二十八岁的青年女侠，果断干练，温柔与戒备并存。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】干练而温柔：目光明亮果断，嘴角带一点温柔的浅笑。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch10/por_npc_shangguanhong__ch10_youth_prologue_base.png
+    sha256: 825f1bc3445fc53175cc18ba771440b29255de081634755806060dd97bf4a668
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shangguanhong__ch10_youth_prologue_base.825f1bc3.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6.1-sol
+  created: 2026-10-03T21:08:20-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_shangguanhong__ch10_youth_prologue_base.x1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: e921a3f47e151c6d2d671fd711b0c0da6928047ea706a975331656f019cce940
+  status: candidate
+  notes: 立绘重审重出（AR-30）；白马改唐代（DES-baima-tang 合入）：旧图是清初剃发留辫 / 瓜皮帽 / 清式袍褂，且男女各自同脸；按唐代名录 §2 的发式、服色与标志物重出，脸部按 C 组报告 §1 区分。；AR-58 神态（各书配角）·10 号出图员：干练温柔的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shangguanhong__ch10_youth_prologue_base.825f1bc3.png
+    sha256: 825f1bc3445fc53175cc18ba771440b29255de081634755806060dd97bf4a668
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shangguanhong__ch10_youth_prologue_base.825f1bc3.entry.yaml
+- id: por_npc_zhujue__ch10_f_base
+  file: por_npc_zhujue__ch10_f_base.png
+  category: character/female
+  style: default
+  subject: 主角（女）· 唐·西州以北（白马，AR-26 唐代化）（ch10_baima）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】主角（女）：本作原创的穿越者，此刻身处《白马啸西风》按本作改设在唐代西域（武周长安二年，约公元 702 年，项目原创定年）：西州以北、天山北麓的驿路上，随驿车和粟特商队西行的汉人行旅。本图是她在这一时代的基础立绘，不代表特定门派或结局。
+
+    【身份参考】随提示词上传的第 1 张图是主角本人（序章 ch00 新版定稿）：保持同一个人——脸型、眉形、眼睛、鼻子、嘴、右眼下的小痣、肤色、体型和年龄都不变；只把服饰、发式和道具换成下文的本时代版本。不要照搬图中的衣服、姿势和背景。
+
+    【本人面容（十五个时代统一，不能变）】约二十八岁的现代中国女青年，原创面孔，不像任何演员或书中其他人物。略长的鹅蛋脸，颧骨清楚，下颌利落而不尖；眉毛偏浓、平直，眉尾微微上扬（不是细柳眉、不是挑眉）；深棕色细长杏眼、内双，眼神清醒专注；鼻梁秀直、鼻头略圆；唇形清楚、上唇略薄，嘴角平；右眼外下方一颗清楚可见的浅褐色小痣（全书标志）；暖中性肤色带一点日晒，皮肤有真实纹理，素面不施浓妆。中等偏高的个子，肩背舒展、腰背挺直，四肢有行动的力量（约 7 头身）；乌黑直发、发量浓密。是成熟有主见的成年女子：沉静、可靠、带一点好奇，既不柔弱也不妩媚。
+
+    【主角标志】发髻上系一根褪色的朱红细绳，露出短短的绳头——每个时代都保留这根红绳。
+
+    【服饰】唐代女子骑行的胡服装束：乌发梳成高髻，外戴一顶黑色软脚幞头，髻根系朱红细绳、绳头露出一点；黛青色翻领窄袖长袍（翻领露出绛红衬里，袍长过膝），月白内衫，腰束黑色革带、挂一只小皮囊，深色长裤，黑色长靴；衣料旧而完整，带一点风沙。
+
+    【道具】左腰用两根短挂带挂一柄唐代直身双刃剑，完整收在朴素木鞘里，剑不出鞘。
+
+    【姿态与神情】身体正面站稳，双手空着、自然垂在身侧；神情沉静清醒，像刚在风沙里抬头辨认驿路。成年女性的身体比例（约 7 头身），衣着完整端庄。整体要好看、有魅力：清秀耐看、英气而美丽（但不是网红或模特脸）。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要明星脸或模特式五官；不要与书中男女主角撞脸；不要年龄变小或变老。不要像书中女角；不要清代旗装、宋明服饰；不要披帛飘带、袒露的唐代宫装；不要清真寺穹顶等后世建筑。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_base.png
+    sha256: 5f491550d73ea5daf2a29eb618568c208d226d296da1e5d7fc3a37774c7f85e5
+    use: 身份参考（本轮新出的主角（女）· 春秋末·越国 por_npc_zhujue__ch00_f_base）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w1/staging/por_npc_zhujue__ch00_f_base.jpg
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T04:01:41-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhujue__ch10_f_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f8cb169f4835e954525579406b47a2c5f313fe92f04c8d27c516831df8fd63c7
+  status: candidate
+  notes: 立绘重审重出（AR-30）；AR-31：作者点名的重要人物，按经典造型以文字改写后重出（10-02）；codex 出图（1 号出图员，AR-31）；主角时代图：上传本轮新出的 ch00 锚点作唯一身份参考；沿用审核组提示词（唐代装束按 design/10 §8.9 改写），补去 AI 味一句
+- id: por_npc_aman__ch10_base
+  file: por_npc_aman__ch10_base.png
+  category: character/female
+  style: default
+  subject: 阿曼（ch10_baima）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山（西域雪山与草坡的远影）和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】阿曼，《白马啸西风》中铁延部（唐代庭州草原上的牧部）骑手车尔库的女儿，草原上最美的姑娘，与苏普相爱。
+
+    【时代】唐代武周长安年间（约 702 年）的西域，西州—庭州一带（游戏设定）。服饰按唐代：汉人束发、戴软幞头或裹巾，穿圆领窄袖袍、半臂，骑行可穿翻领胡服；草原牧部（铁延部，突厥—铁勒背景的虚构牧部）穿翻领窄袖袍、长裤、软靴，编辫、戴毡帽。
+
+    【年龄与体态】约二十二岁的成年女子，身材修长匀称、成人骨架与比例（约七头身），有常年骑马的挺拔轻盈。
+
+    【经典造型】「草原第一美女」：许多细辫盘在小毡帽后、石榴红窄袖袍配青绿半臂、颈间一条小花巾、腰间一串小铜铃；明朗大方。
+
+    【面容】成年女子的骨相：脸型偏长、颧骨和下颌线清楚、下巴有一定长度、两颊不鼓；不是圆润的娃娃脸，也不是少女。偏长的鹅蛋脸，颧骨略高而柔和；眉毛浓黑修长、眉尾微扬；眼睛细长微挑、单眼皮或浅内双、深褐色眼珠（自然大小）；鼻梁挺秀；嘴唇饱满，嘴角含着明朗的微笑（不露齿或只露一点）；健康的浅麦色皮肤透着高原红晕，有雀斑、细小毛孔、风吹的干燥感和左右脸的细微不对称。明艳大方的成熟女子之美，不是娃娃脸，也不是网红脸。
+
+    【发式】乌黑长发编成许多细辫，盘在脑后，戴一顶镶毛边的小毡帽。
+
+    【服饰】石榴红色翻领窄袖长袍（袍长及踝，便于骑马），外罩一件青绿色短半臂，腰束细皮带，深色长裤，软皮靴；颈间系一条小花巾。
+
+    【道具】腰带上挂着一串小铜铃；一手轻提花巾一角，一手自然垂下。
+
+    【姿态与神情】微笑站立，身体朝向正面，大方地看向前方。
+
+    【去 AI 味·本张重点】这张最要紧的是不要 AI 感：皮肤要有真实的肤理和细小瑕疵（毛孔、淡雀斑或晒斑、轻微的黑眼圈、唇纹），五官有个人特点和轻微的左右不对称，表情自然、不摆拍；不要瓷娃娃般的磨皮肌肤、完美对称的模板五官、水汪汪的大眼睛和偶像式柔光。好看，但像真实的人。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要清代剃发留辫、瓜皮帽、马褂、旗装或补服；不要明代网巾、宋代直脚幞头；不要现代民族礼服、伊斯兰式缠头或面纱、清真寺等后世宗教符号；不要用夸张的五官或肤色来表现族属。不要露齿大笑的营业式笑容；不要圆脸大眼的娃娃脸；不要和李文秀同一张脸。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
+    uploaded: 缩小版 JPEG（gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg）
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
+    uploaded: 缩小版 JPEG（gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg）
+  tool: codex exec · image_gen（AR-32 补记：只上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T16:23:53-0700
+  source_path: .agents/coord/gemini_originals/por_npc_aman__ch10_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 4ed11c5fac86e27397cfddcc03f4a62a6bfa22ddf625206674c6307ce8a72d09
+  status: candidate
+  notes: AR-32 补记修改 A（9 号出图员）：作者 10-02（AR-32 补记第 6 条）：复查判定上一版有明显 AI 感（磨皮瓷肌、露齿营业式甜笑的网红模板脸）；沿用文字做法，只加强成年骨相与去 AI 化描写。文字 + 两张同性别基线；只用文字；r1
+- id: por_npc_liwenxiu__ch10_youth_astuo_base
+  file: por_npc_liwenxiu__ch10_youth_astuo_base.png
+  category: character/female
+  style: default
+  subject: 李文秀（ch10_baima）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【本张重点】上一版被判定为 AI 感过重：瓷娃娃般的磨皮肌肤、完美对称的模板五官、水汪汪的大眼睛，还显得稚气。这一张要画成一个真实的、二十四五岁的成年女子：在草原风霜里长大的脸：脸型偏长、颧骨略高、下颌线清楚；眼睛细长、单眼皮或很窄的内双，眼神沉静而忧伤；鼻梁秀直；嘴唇偏薄、被风吹得微干；两颊被风吹得发红起皮；看得见毛孔、几颗淡雀斑或一颗小痣、眼下淡淡的青色和细纹，左右脸不完全对称；表情安静自然，不摆拍、不营业。耐看、有个人特点，但绝不是网红美女、精修照或少女。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山（西域雪山与草坡的远影）和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】李文秀，《白马啸西风》的女主角，白马李三与上官虹的女儿，自幼流落庭州草原、寄居铁延部的汉人女剑手；已从华辉学成武功、化名「阿斯托」穿男式胡服行走的时期。
+
+    【时代】唐代武周长安年间（约 702 年）的西域，西州—庭州一带（游戏设定）。服饰按唐代：汉人束发、戴软幞头或裹巾，穿圆领窄袖袍、半臂，骑行可穿翻领胡服；草原牧部（铁延部，突厥—铁勒背景的虚构牧部）穿翻领窄袖袍、长裤、软靴，编辫、戴毡帽。唐代汉人女子着男装胡服骑行是当时风尚。
+
+    【年龄与体态】二十四五岁的成年女子（不是少女），身形修长纤细、成人骨架与比例（约七头身），肩背灵活结实，有常年骑马的挺拔。
+
+    【经典造型】草原风霜里长大的汉家女子：高束发戴黑色软幞头，一身月白窄袖胡服、外罩绛红半臂，手挽白马的缰绳，颈间一条无字的素黄小巾；清丽、坚韧，眉眼里有化不开的失落与温柔。
+
+    【面容】成年女子的骨相：脸型偏长、颧骨和下颌线清楚、下巴有一定长度、两颊不鼓；不是圆润的娃娃脸，也不是少女。清秀的偏长椭圆脸；眉毛舒展平直、眉尾干净；一双深棕色的眼睛细长、内双、自然大小，眼神里藏着失落，也有安静的决断；鼻梁秀直；嘴唇偏薄、被风吹得微干；两颊有草原日晒的淡红和几颗雀斑，皮肤看得见毛孔和风吹的粗糙；素面不施脂粉。清丽、坚韧、有个人特点的成年女子。
+
+    【发式】乌黑长发高高束在头顶，外罩一顶黑色软幞头（唐代女子着男装的样子，幞头两脚短而软垂），两鬓干净，没有珠翠。
+
+    【服饰】唐代女子男装骑行打扮：月白色圆领窄袖胡服袍（袍长及小腿，两侧开衩），外罩一件绛红色短半臂，腰束深褐革带、挂一只小皮囊，深灰长裤，黑色软皮高靴；颈间系一条素黄色线织小巾（巾上没有字）。
+
+    【道具】右手挽着一盘白色马缰（缰绳末端垂下，马不在画面里）；左手自然垂在身侧。
+
+    【姿态与神情】身体基本朝向正面、双脚稳立，目光温和而悠远。
+
+    【去 AI 味·本张重点】这张最要紧的是不要 AI 感：皮肤要有真实的肤理和细小瑕疵（毛孔、淡雀斑或晒斑、轻微的黑眼圈、唇纹），五官有个人特点和轻微的左右不对称，表情自然、不摆拍；不要瓷娃娃般的磨皮肌肤、完美对称的模板五官、水汪汪的大眼睛和偶像式柔光。好看，但像真实的人。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要清代剃发留辫、瓜皮帽、马褂、旗装或补服；不要明代网巾、宋代直脚幞头；不要现代民族礼服、伊斯兰式缠头或面纱、清真寺等后世宗教符号；不要用夸张的五官或肤色来表现族属。不要披帛长裙的仕女装；不要画出白马；不要长剑；不要圆脸娃娃相和少女幼态；不要和上官虹、阿曼同一张脸。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+    sha256: 2d1b0b0905e7624d3713ca71422974db15f0eaf42da34376794d040e4855a640
+    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
+    uploaded: 缩小版 JPEG（gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg）
+  - path: assets/default/baseline/character/female/ref_npc_xiaolongnv__ch03_base01.png
+    sha256: 725271dfebbb9e9d6dbe02c77ebcc26d292e7f46c29375266480717604175be9
+    use: 画风基线：项目同性别基线立绘，只取画风、用色、光线、质感和背景处理，不取长相
+    uploaded: 缩小版 JPEG（gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg）
+  tool: codex exec · image_gen（AR-32 补记：只上传两张同性别基线立绘作画风参考）
+  model: gpt-6-astra
+  created: 2026-10-02T16:34:24-0700
+  source_path: .agents/coord/gemini_originals/por_npc_liwenxiu__ch10_youth_astuo_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf
+  status: candidate
+  notes: AR-32 补记修改 A（9 号出图员）：作者 10-02（AR-32 补记第 6 条）：复查判定上一版偏幼态（圆润小脸、少女相）；沿用文字做法，只加强成年骨相与去 AI 化描写。文字 + 两张同性别基线；只用文字；r2；r1 已脱幼态但仍偏少女，取 r2（成年骨相更清楚）
+- id: por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense
+  file: por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.png
+  category: character/female
+  style: default
+  subject: 李文秀·风雪夜的阿斯托（ch10_baima）
+  prompt: 'Use case: precise-object-edit
+
+    这是 AR-82 原著核对返修的图像编辑，图1是待编辑完整原图，输出同样竖幅构图、同样人物位置尺度的一张完整编辑图，画布 1024×1536 竖幅。必须在原画上修改，不要重画成另一幅画。
+
+    【只改】将李文秀本图由屋外雪地改为计家屋内火堆旁夺金银短剑制伏陈达海的取样。保持李文秀原头部位置、大小、角度、五官与原深蓝衣服、羊皮披肩。身体改为侧身护住画外苏普阿曼的方向，两手各拿一柄从陈达海腰间夺来的匕首尺度短剑（金柄、银柄各一），双臂向旁侧伸出，剑尖分别刺住旁侧陈达海的左右肩窝；只画陈达海局部肩背与受制双臂，不露他的脸，不需完整第二人，他原长剑下垂落势。表现被制住而非血腥：不画喷血、开放伤口。李文秀是主体，不能改成独自垂刀站立。原完整单人尺寸和视角保持，土屋木梁墙壁及小火堆可见，暖火光与冷窗光有原手绘笔触。
+
+    【保持】人物面容、年龄、五官骨相与原图完全一致，原有神态保留；男性闭口不笑。除明确列出的修改外，发式、服装款式配色、姿态、兵器、背景、纸纹、笔触、光线、人物位置尺度都保持原图。若必须改变姿势，头部位置、尺度、角度和五官仍保持图1，方便原面部无损合成。禁止水平镜像，汉式交领右衽。
+
+
+    【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+
+    参考图的绝对路径：/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_lines/novel-fix-3/refs/ar82_nfix3_02_r1_target.jpg。仅使用已附图像，无需联网；若必须对外请求，User-Agent 一律 TianshuBot/1.0，不带个人标识。
+
+    '
+  negative: 【不要】不要新增无关人物、题字、印章、标记、文字、水印、分格、对照表；不要照片光影、塑料皮肤、偶像脸；不要更换原图人物身份；道具与手的接触自然可信，完整保留手指。
+  references:
+  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.png
+    sha256: 71d858c948490fb1cd4865a5f9e27ed66dd9566ad7a28a48545c208fe24f5a11
+    use: 待改原图；旧版备份 .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.71d858c9.png
+  tool: codex exec · image_gen（AR-82 原图编辑，遮罩合成；范围外逐像素不变）
+  model: gpt-6.1-sol
+  created: '2026-10-04T02:02:27-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/ar82_nfix3_02_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 82e7e53cc2c7b1f2c885f357494dabeb48e07cf43c3d0f1c200ad112c9bc9aee
+  status: candidate
+  notes: '立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审：去掉右颊褐斑，其余不动）；AR-82 原著核对返修：李文秀计家屋内夺双短剑制陈达海双肩；依据：- AR-82 返修依据：“插入了他左右肩窝”——《白马啸西风》第06章（三联版转载分章，计家屋内夺剑制陈达海）；来源：https://github.com/OliverCWY/JY/blob/master/Markdown/%E4%B8%89%E8%81%94%E7%89%88/%E7%99%BD%E9%A9%AC%E5%95%B8%E8%A5%BF%E9%A3%8E/%E7%AC%AC06%E7%AB%A0.md；执行：场景改为计家屋内火堆旁；先空手迎长剑，再从陈达海腰间夺金银小剑刺入其双肩；画出她护苏普、阿曼的方向及陈达海受制状态。保持作者认可面容。；局部合成范围外变化0；Executed-By: Codex gpt-6.1-sol（AR-82）'
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.71d858c9.png
+    sha256: 71d858c948490fb1cd4865a5f9e27ed66dd9566ad7a28a48545c208fe24f5a11
+    entry: .agents/coord/_handoff/gem/codex_w36/replaced/por_npc_liwenxiu__ch10_youth_scene_astuo_snow_defense.71d858c9.entry.yaml
+- id: por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure
+  file: por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.png
+  category: character/female
+  style: default
+  subject: 李文秀·白马向东（ch10_baima）
+  prompt: '【任务】这是一次极小的局部修图。第 1 张是李文秀定稿立绘的脸部特写（基线，脸上没有斑）；第 2 张是待修原图的脸部放大，红圈圈出了要去掉的那块斑（红圈只是标记，结果里不要出现红圈）；第 3 张是待修的完整原图。请以第 3 张为底稿，只做下面这一处修改，输出修改后的完整图片：2:3 竖幅，构图与第 3 张完全一致。
+
+    【只改这一处】她右脸颊（画面左侧）眼睛下方、颧骨上那一颗圆形的深褐色斑点（像一颗大痣，直径约有眼睛宽度的一半）必须完全去掉，那里换成和周围一样干净的皮肤，只保留一点自然的风吹日晒红晕；改完后脸上任何地方都不能再有褐色圆斑。
+
+    【其余一律不动】五官、脸型、表情、头巾、头发、衣服、姿势、其他人物和马、背景、光线、题字与印章、笔触与画风都和第 3 张一致；不要重画、不要美化、不要改构图。
+
+    【画风】项目的写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。修过的皮肤与周围的质感、光影自然衔接。
+
+    【不要】不要红圈或任何标记；不要新增东西；不要文字水印；不要水平镜像。'
+  negative: 不要红圈或任何标记；不要新增东西；不要文字水印；不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png
+    sha256: f310c81427c1eb88f90bb9a47125e11f40b8365169b2336cbce38175b1b16adf
+    use: 对脸基线：作者审核通过的 por_npc_liwenxiu__ch10_youth_astuo_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.png
+    sha256: 73fe79cacf42db89ed19fee0d0f087783179f61f1876f52d52966c8905d3c002
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.73fe79ca.png
+  tool: codex exec · image_gen（AR-53 局部小修：去掉右颊褐斑；上传基线脸部特写、标了红圈的原图脸部放大、原图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T18:20:13-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.x2.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: a7787c1c41d0263143251d87453eed6557c02b5585d63a0981c641591cb67a5b
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-44 对脸精修，基线 = por_npc_liwenxiu__ch10_youth_astuo_base（AR-53 / AR-56 总审：去掉右颊褐斑，其余不动（第 2 次，加红圈标记参考））
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.73fe79ca.png
+    sha256: 73fe79cacf42db89ed19fee0d0f087783179f61f1876f52d52966c8905d3c002
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_liwenxiu__ch10_youth_scene_white_horse_east_departure.73fe79ca.entry.yaml
+- id: por_npc_yalixian__ch10_youth_memory_base
+  file: por_npc_yalixian__ch10_youth_memory_base.png
+  category: character/female
+  style: default
+  subject: 雅丽仙（ch10_baima）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（雅丽仙的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改雅丽仙的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+
+    【人物】雅丽仙：阿曼之母、车尔库之妻，前史中约二十二岁的草原美人，温柔明朗。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】温柔明媚：眼神柔和明亮，嘴角带明媚的浅笑。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/female/ch10/por_npc_yalixian__ch10_youth_memory_base.png
+    sha256: 1a7aedfef6bcfa36fbeaa5c4f5e88f5c6cbe607c3483690a39b7ae995778e7dc
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_yalixian__ch10_youth_memory_base.1a7aedfe.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6.1-sol
+  created: 2026-10-03T21:08:22-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_yalixian__ch10_youth_memory_base.x1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f8f71327bb04eab45fefa2d3569eae8bcbb44adfb55ebdf3f6b8d1c121d0e009
+  status: candidate
+  notes: 'ART-cast-fill-d：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_yalixian__ch10_youth_memory_base.r1；未获作者批准。 QA: batch_03.jpg 联系表可辨结构通过；未发现必须重出的缺陷；细微指节不冒称像素级穷检。原始 PNG 保存在 source_path；本次未裁切。；AR-58 神态（各书配角）·10 号出图员：温柔明媚的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变'
+  tier: A
+  effort: xhigh
+  mode: RGB
+  source_sha256: 1a7aedfef6bcfa36fbeaa5c4f5e88f5c6cbe607c3483690a39b7ae995778e7dc
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_yalixian__ch10_youth_memory_base.1a7aedfe.png
+    sha256: 1a7aedfef6bcfa36fbeaa5c4f5e88f5c6cbe607c3483690a39b7ae995778e7dc
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_yalixian__ch10_youth_memory_base.1a7aedfe.entry.yaml

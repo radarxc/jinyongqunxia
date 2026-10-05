@@ -1,0 +1,76 @@
+# 边道止争（原创扩展）；归属：docs/design/chapters/00-yuenv.md §5.1、§5.4。
+# 灰盒依赖（mockRef）：ENG-npc-species-roleslot、ENG-26 的内容字段表 / 宿主接线。
+# 越卒仅上场 1 名 AI 友军；阿青双投影在胜后由剧情开启，不塞入此战，见 ../README.md。
+schemaVersion: encounter.v1
+id: enc_00_biandao
+chapterId: ch00_yuenv
+kind: story
+arena:
+  kind: regionArena
+  regionId: rg_jiangnan_taihu
+  sceneId: sc_00_yueying
+  arenaId: arena_00_biandao
+participants:
+  - unitRef: hero
+    source: {kind: character, characterRef: protagonist}
+    side: player
+    control: player
+    spawnId: spawn_hero
+    state: active
+    required: true
+    placement: {pos: {q: 4, r: 9}, facing: 0}
+  - unitRef: yue_soldier_1
+    source: {kind: template, templateId: tmpl_normal, dreamLevel: 2}
+    side: ally
+    control: ai
+    spawnId: spawn_yue_soldier_1
+    state: active
+    required: true
+    group: role_yue_soldier
+    placement: {pos: {q: 3, r: 9}, facing: 0}
+  - unitRef: wu_swordsman_1
+    source: {kind: template, templateId: tmpl_normal, dreamLevel: 2}
+    side: enemy
+    control: ai
+    spawnId: spawn_wu_swordsman_1
+    state: active
+    required: true
+    group: role_wu_swordsman
+    placement: {pos: {q: 7, r: 9}, facing: 3}
+  - unitRef: wu_swordsman_2
+    source: {kind: template, templateId: tmpl_normal, dreamLevel: 2}
+    side: enemy
+    control: ai
+    spawnId: spawn_wu_swordsman_2
+    state: active
+    required: true
+    group: role_wu_swordsman
+    placement: {pos: {q: 7, r: 10}, facing: 3}
+outcome:
+  win: [{kind: allHostileDown, side: player}]
+  lose: [{kind: unitDown, unitRef: hero}]
+  draw: []
+  onDefeat: retry
+  concede: forbidden
+rules:
+  mode: normal
+  noAuto: true
+  noRetreat: true
+  noItems: false
+  mercyAllowed: true
+  lethalIntent: false
+  friendlyFire: false
+  roundLimit: 30
+  boss: false
+  retry: true
+  skippable: false
+# 调阵、补聚气和胜后演示没有对应 when；宿主按既有任务阶段执行，不伪造连败触发。
+beats: []
+difficulty:
+  localDifficulty: 1
+  # 8500 + 500 × 1 = 9000 bp；只作用于两名吴剑士，AI 越卒不乘敌方难度。
+  enemyStatBp: 9000
+  modes:
+    diff_jianghu: {hpBp: 8000, attackBp: 8000}
+    diff_xiake: {hpBp: 10000, attackBp: 10000}
+    diff_zongshi: {hpBp: 12000, attackBp: 11200}

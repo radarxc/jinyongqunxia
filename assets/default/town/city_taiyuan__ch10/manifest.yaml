@@ -1,0 +1,40 @@
+- id: town_city_taiyuan__ch10
+  file: preview.png
+  category: town
+  style: default
+  subject: 并州·晋阳三城（702年候选）
+  prompt: 'python3 tools/town/gen_layout.py docs/design/town/city_taiyuan__ch10.yaml -o assets/default/town/city_taiyuan__ch10/layout.yaml --stats /private/tmp/tianshu-town-gaps/taiyuan.stats.json
+
+    python3 tools/town/check_town.py docs/design/town/city_taiyuan__ch10.yaml assets/default/town/city_taiyuan__ch10/layout.yaml --strict-assets
+
+    python3 tools/town/plan_view.py docs/design/town/city_taiyuan__ch10.yaml assets/default/town/city_taiyuan__ch10/layout.yaml -o /private/tmp/tianshu-town-gaps/taiyuan_plan.svg
+
+    python3 tools/town/render_town.py assets/default/town/city_taiyuan__ch10/layout.yaml -o assets/default/town/city_taiyuan__ch10/preview.png --scale 0.5
+    --report /private/tmp/tianshu-town-gaps/taiyuan.preview.render.json --overlay assets/default/town/city_taiyuan__ch10/overlay.svg
+
+    python3 tools/town/render_town.py assets/default/town/city_taiyuan__ch10/layout.yaml -o assets/default/town/city_taiyuan__ch10/town.png --scale 1 --report
+    /private/tmp/tianshu-town-gaps/taiyuan.town.render.json'
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-03'
+  size: 5120x2560
+  sha256: 2477f56d2c97a13d31204abdf8fb4e46ed69fd57248ee5e8c981b5a2e407ab4f
+  status: candidate
+  references:
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  - docs/design/town/city_taiyuan__ch10.yaml
+  - docs/design/town/history/city_taiyuan__tang_702.md
+  notes:
+  - 唐代702–703年按AR-26；宋代基线替代墙门及土木建筑；非唐代建筑考古复原。
+  - ch10保留town.png全尺寸；preview按0.5直接总装；运行时按layout与贴片渲染。
+  - 历史（第6次）：当时虽补入中城、东城、两岸守舍及跨汾桥，但单多边形连续外围不等于三座独立城垣，内隔墙仍缺。
+  - 严格素材检查允许candidate与已声明共享材质适配；本次目检已完成，未做release验收。
+  - 历史（第6次）：汾河两处穿城垣仍画实墙，水门遭旧工具TOWN_GATE_ON_WATER拒绝，故维持partial_candidate。
+  - 历史（第6次）：preview=5120×2560，town=10240×5120；当时目检未通过整城验收。
+  - 历史全尺寸town.png SHA-256=180233dd31d9021a579fd7cef712ee9f17406d769d39890523d378e2da8da74c
+  - 协调者 10-03 05:32：水门 / 多重城垣是 tools/town 的工具缺口（审核 r2），本轮按 rejected 落库（文件留作对比，构建不进包）；TOOL-town-gaps-1 合入后由接力任务重做。
+  - TOOL-town-gaps-1：已用west_city / middle_city / east_city三道闭合墙环表达西中东三城，重合内隔墙只绘一次；联络门均声明wall_ref。
+  - 汾河南北水门已在middle_city开口；连续水面、跨汾桥与门楼均已重渲染并目检，未声明墙水相交为0，strict-assets为0 error。
+  - 唐代专用贴片仍缺；本候选显式回退 tang → song_southern，并按有限共享表复用 song_dali 土木素材，不把回退图当唐代考古复原。
+  - 本次全尺寸town.png SHA-256=1f6096b487c0a8c3a2d87c2057c8194dd36116fc3bb6d1089a7614eaf25f80ee；layout SHA-256=02db7ba911b5ba6dca1f62fcaee31ad6e0a529a5c09fba1579b62a702838ccc9。

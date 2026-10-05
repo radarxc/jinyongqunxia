@@ -1,0 +1,366 @@
+- id: cg_ch02_grassland_eagles
+  file: cg_ch02_grassland_eagles.png
+  category: scene
+  style: default
+  subject: 大漠成长与弯弓射雕（ch02_shediao）
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
+
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
+
+    【身份与年龄】以第1张作者选定的B脸为身份参考，青年郭靖：方正脸、浓眉大眼、厚实端正的鼻唇、憨厚坚毅，不画成另一张偶像脸。
+
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
+
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+    保留原图弓弦与箭杆穿过脸前的准确位置、遮挡关系，不能抹掉箭杆；仅修改遮挡后面的面部。
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
+  references:
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
+    use: AR-87 身份基线，青年B或B年长化定稿
+  - path: assets/default/scene/ch02/cg_ch02_grassland_eagles.png
+    sha256: 26951b44a30c0e4adb9f1992146a06bf08d7b5d841dad8d25a122fa9bdc80034
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch02_grassland_eagles.26951b44.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:42:01-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch02_grassland_eagles_v1_composite.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 948202b000376a0e8ed55ead93810c67bcf799ecd35ef3d3abada13c2255981d
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「弯弓射雕」，实际字形「弯弓射雕」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle；AR-44 对脸精修，基线 = por_npc_zhebie__ch02_prime_base（AR-53 配角对齐：华筝（脸型收窄、下颌柔和）、哲别（络腮胡改成八字髭加下巴短须）对齐各自基准；局部合成——两人头部方块分别交 codex 改，再依次贴回，其余像素不变（编辑 k1/k2））；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  previous_revision:
+    png: .agents/coord/_lines/guojing-final/replaced/cg_ch02_grassland_eagles.26951b44.png
+    sha256: 26951b44a30c0e4adb9f1992146a06bf08d7b5d841dad8d25a122fa9bdc80034
+    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch02_grassland_eagles.26951b44.entry.yaml
+  effort: xhigh
+- id: cg_ch02_peach_island_trials
+  file: cg_ch02_peach_island_trials.png
+  category: scene
+  style: default
+  subject: 桃花岛三道试题（ch02_shediao）
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
+
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
+
+    【身份与年龄】以第1张作者选定的B脸为身份参考，青年郭靖：方正脸、浓眉大眼、厚实端正的鼻唇、憨厚坚毅，不画成另一张偶像脸。
+
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
+
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
+  references:
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
+    use: AR-87 身份基线，青年B或B年长化定稿
+  - path: assets/default/scene/ch02/cg_ch02_peach_island_trials.png
+    sha256: 6a2983a1cf275c60982c801414dc9632b87483525bfc91ff7eb3f8bd545e06dc
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch02_peach_island_trials.6a2983a1.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:46:17-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch02_peach_island_trials_v1_composite.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 253015a9ce39c1c64540d1ec873e482eec2b17fe4a49fffdfaf26ed94abf6c9b
+  status: candidate
+  notes: "多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出2。题字「桃岛三试」，实际字形「桃岛三试」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-58 插图对脸（11 号出图员）：黄药师按作者 10-03 18:02 选定的新 base 对脸（郭靖、黄蓉（主角）与欧阳克、洪七公、欧阳锋不动，题字保留）；AR-44 对脸精修，基线 = por_npc_ouyangfeng__ch02_elder_sane_base（AR-53 配角对齐：洪七公（白浓眉、灰白须发）、欧阳锋（灰白须发、年长）对齐各自基准；局部合成——两人头部方块分别交 codex 改，再依次贴回，其余像素不变（编辑 k1/k2））；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变；题字島試→岛试；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）"
+  previous_revision:
+    png: .agents/coord/_lines/guojing-final/replaced/cg_ch02_peach_island_trials.6a2983a1.png
+    sha256: 6a2983a1cf275c60982c801414dc9632b87483525bfc91ff7eb3f8bd545e06dc
+    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch02_peach_island_trials.6a2983a1.entry.yaml
+  runner_job_records:
+  - - cg_ch02_peach_island_trials.resume3r3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_peach_island_trials.resume3r3.png
+    - '187'
+    - exec-e0d046cf-0951-49e4-b495-64c1d43a9f55.png
+  runner_success_count: 1
+  effort: xhigh
+  title_revision: {"source_path": ".agents/coord/_lines/title-audit/cg_ch02_peach_island_trials_fixed.png", "before_sha256": "7dda3daf955f16c43060cd674c2f258dcb3e2c2604d5c6d3cbe62f8db21ad503", "allowed_box": [[1410, 93, 1530, 174], [1410, 224, 1530, 302]], "changed_outside_title": 0, "pixel_checks": ".agents/coord/_lines/title-audit/cg_ch02_peach_island_trials_pixel_checks.json", "method": "w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留", "created": "2026-10-04T02:17:00-07:00"}
+- id: cg_ch02_beiwuzhaoqin
+  file: cg_ch02_beiwuzhaoqin.png
+  category: scene
+  style: default
+  subject: 比武招亲（ch02_shediao）
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
+
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
+
+    【身份与年龄】以第1张作者选定的B脸为身份参考，青年郭靖：方正脸、浓眉大眼、厚实端正的鼻唇、憨厚坚毅，不画成另一张偶像脸。
+
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
+
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
+  references:
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
+    use: AR-87 身份基线，青年B或B年长化定稿
+  - path: assets/default/scene/ch02/cg_ch02_beiwuzhaoqin.png
+    sha256: 224280cc2ebdc3b1138d5439e9a4ea48e4254fe31fcc489372409ff95324ff2c
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch02_beiwuzhaoqin.224280cc.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:37:58-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch02_beiwuzhaoqin_v1_composite.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 94a722ec23de154e51ebf13e85f72c1fa177dbb3d5677db689fe9041a34b9144
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「比武招亲」，实际字形「比武招亲」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：穆念慈按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_yangkang__ch02_youth_wangfu_base（AR-53 配角对齐：杨康五官对齐基准（以 11 号改过穆念慈后的当前文件为底）；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-53 / AR-80 穆念慈头部局部合成；其余人物、衣装、场景、题字逐像素不变；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  previous_revision:
+    png: .agents/coord/_lines/guojing-final/replaced/cg_ch02_beiwuzhaoqin.224280cc.png
+    sha256: 224280cc2ebdc3b1138d5439e9a4ea48e4254fe31fcc489372409ff95324ff2c
+    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch02_beiwuzhaoqin.224280cc.entry.yaml
+  effort: xhigh
+- id: cg_ch02_niujia_snow
+  file: cg_ch02_niujia_snow.png
+  category: scene
+  style: default
+  subject: 牛家村风雪与十八年之约（ch02_shediao）
+  prompt: '【AR-53 / AR-91 图像编辑】第1张是作者批准的新base脸部身份参考，第2张是待改图局部头部裁块。以第2张为底只改指定人物的脸与必要须式，不重新构图。只输出修改后的1:1方图1024×1024，保留第2张全部取景、头部位置、大小、角度与方向。
+
+    【具体人物与阶段】画面右侧持剑的丘处机。牛家村开篇约三十岁，照新base相同的窄长方骨相和眼鼻唇比例年轻化；保留黑发黑眉、黑色八字髭与短须、锐利严肃神态。不可画成白眉白须老道，不戴base的道帽；原头部朝向、发髻、蓝灰道袍和剑不变。
+
+    【保留】仅将目标头部内的五官与须式对齐第1张，年龄按上述阶段；头颈位置大小、发式头饰（上述有明确要求时遵照）、光源方向色温和柔和手绘笔触全部保持。衣领、衣服、体态、手势、道具、背景、画面里其他人的脸和身体、题字不可改变。不要把第1张的姿勢光照直接贴进去。
+
+    【不要】照片质感、塑料皮肤、模板偶像脸、镜像、文字、水印、新增人物、改变头部位置大小、改变衣物或帽子。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/male/ch02/por_npc_qiuchuji__ch02_elder_base.png
+    sha256: 25b9e544da1f6f50d9d658857be5141966cef965320e8b516cea8a59c9f82369
+    use: AR-91作者批准新base，只取本人脸；年龄服饰按场景
+  - path: .agents/coord/_lines/hist-ingest2/originals/cg_ch02_niujia_snow.png
+    sha256: 48821ebcc5aca20d761367827eaae8269949173cf80f42c42d6897dc65187424
+    use: 入库前原图；非目标头部区域逐像素保留
+  tool: codex exec · image_gen（AR-53 / AR-91 头部裁块编辑；限定蒙版局部合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T09:37:20-07:00'
+  source_path: .agents/coord/_lines/hist-ingest2/aligned/cg_ch02_niujia_snow.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: cc0e6779ce04ea00eac81d0a316cbeb0e7cc719347dc9956e6abf1a435351b95
+  status: candidate
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「牛家风雪」，实际字形「牛家风雪」逐字核验，原生题字，未叠加。；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：丘处机按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐：包惜弱（眉细淡、眼适中、下巴圆）、杨铁心（深眼窝细长眼）、丘处机（长脸细眉，须形保留）对齐各自基准；局部合成——三人头部方块分别交 codex 改，再依次对齐、羽化贴回原图，其余像素不变（编辑 k1/k2/k3））；AR-44 对脸精修，基线 = por_npc_qiuchuji__ch02_elder_base（AR-53 配角对齐（总审复核返修）：丘处机按基线改为长脸、颧骨高、眉平不压眼；头巾黑发与须形保留；局部合成，只改丘处机头部，其余像素不变）；题字風→风；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-73 / AR-89 / AR-91 照历史画像，作者批准入库；AR-53 只合成丘处机头部，原服饰体态和其他人物及题字逐像素不变'
+  previous_revision:
+    png: .agents/coord/_lines/hist-ingest2/originals/cg_ch02_niujia_snow.png
+    sha256: 48821ebcc5aca20d761367827eaae8269949173cf80f42c42d6897dc65187424
+  effort: xhigh
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch02_niujia_snow_fixed.png
+    before_sha256: fbf199dc9b6ec3503f6e3ae03533022f430770f6462fc300dc047fc5056d6fb9
+    allowed_box:
+    - - 1420
+      - 190
+      - 1520
+      - 261
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch02_niujia_snow_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T00:55:02-07:00'
+  head_composite_jobs:
+  - ar91_hist2_cg_ch02_niujia_snow_npc_qiuchuji_r1
+  head_composite_validation:
+    changed_pixels: 18190
+    outside_head_masks_changed: 0
+    evidence: .agents/coord/_lines/hist-ingest2/ar91_hist2_cg_ch02_niujia_snow_npc_qiuchuji_r1.merge.json
+- id: cg_ch02_guorong_first_meet
+  file: cg_ch02_guorong_first_meet.png
+  category: scene
+  style: default
+  subject: 张家口郭黄初相识（ch02_shediao）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只将右侧黄蓉高髻上的破布帽换为歪戴黑黝黝破皮帽、盖住发髻，在额头、脸颊与两只手加清楚黑煤污。她仍是小叫化男装乔装，原五官骨相、眼神、神情、面容身份和姿势不变。郭靖、全部其他人、食物桌椅、题字朱印、原衣服其余处与背景完全不动。
+
+    【原著依据】《射雕英雄传》第七回 比武招亲：“头上歪戴着一顶黑黝黝的破皮帽，脸上手上全是黑煤”；https://www.xuges.com/wuxia/jinyong/sdyxz/049.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/47_cg_ch02_guorong_first_meet.png
+    sha256: 3d2ee3ed746a2999a36b51f6844bfb60dca1ab77a2db293d31084c4a7113e085
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:26:40.331294-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_47_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 2a5aae660a2a100134aeff8a59896a573f076387a504b1bbffcaf0b9abc35b59
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「张垣初逢」，实际字形「张垣初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回新 base 的圆润鹅蛋脸与大杏眼）；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变；AR-82 原著核对返修：郭蓉初逢插图同步破皮帽和脸手煤污
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/47_cg_ch02_guorong_first_meet.png
+    sha256: 3d2ee3ed746a2999a36b51f6844bfb60dca1ab77a2db293d31084c4a7113e085
+  effort: ultra
+- id: cg_ch02_junshan_succession
+  file: cg_ch02_junshan_succession.png
+  category: scene
+  style: default
+  subject: 轩辕夺棒（ch02_shediao）
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
+
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
+
+    【身份与年龄】以第1张作者选定的B脸为身份参考，青年郭靖：方正脸、浓眉大眼、厚实端正的鼻唇、憨厚坚毅，不画成另一张偶像脸。
+
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
+
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
+  references:
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
+    use: AR-87 身份基线，青年B或B年长化定稿
+  - path: assets/default/scene/ch02/cg_ch02_junshan_succession.png
+    sha256: f352e754eb417fb112a5a7ed372ba707b43c81e0c65beedf03499f1635e9fee7
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch02_junshan_succession.f352e754.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:46:14-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch02_junshan_succession_v1_composite.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: f641417caf8074b7cea15a773fa3d9fbc111ff7e0a61ceea0861841384071fae
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「轩辕夺棒」，实际字形「轩辕夺棒」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base、por_npc_guojing__ch02_youth_scene_peach_island_square_circle；AR-44 对脸精修，基线 = por_npc_yangkang__ch02_youth_wangfu_base（AR-53 配角对齐：远景杨康脸改得清俊、轮廓分明；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  previous_revision:
+    png: .agents/coord/_lines/guojing-final/replaced/cg_ch02_junshan_succession.f352e754.png
+    sha256: f352e754eb417fb112a5a7ed372ba707b43c81e0c65beedf03499f1635e9fee7
+    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch02_junshan_succession.f352e754.entry.yaml
+  runner_job_records:
+  - - cg_ch02_junshan_succession.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_junshan_succession.resume3.png
+    - '185'
+    - exec-d698369b-4d12-49b0-baad-f1bccd41cac0.png
+  runner_success_count: 1
+  effort: xhigh
+- id: cg_ch02_huashan_discourse
+  file: cg_ch02_huashan_discourse.png
+  category: scene
+  style: default
+  subject: 华山论剑与英雄之问（ch02_shediao）
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
+
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
+
+    【身份与年龄】以第1张作者选定的B脸为身份参考，青年郭靖：方正脸、浓眉大眼、厚实端正的鼻唇、憨厚坚毅，不画成另一张偶像脸。
+
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
+
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
+  references:
+  - path: assets/default/character/male/ch02/por_npc_guojing__ch02_youth_base.png
+    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
+    use: AR-87 身份基线，青年B或B年长化定稿
+  - path: assets/default/scene/ch02/cg_ch02_huashan_discourse.png
+    sha256: 8f07d8684d961027dca6fdc52ad815994174166de8c2b974bced484c0de4bfa7
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch02_huashan_discourse.8f07d868.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:42:06-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch02_huashan_discourse_v1_composite.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 9b759b0862156553fdbe573eb6435f35ca4df6b7f138977fcf8f5ae7a2cbe221
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「华山论剑」，实际字形「华山论剑」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_guojing__ch02_youth_scene_peach_island_square_circle、por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）；AR-44 对脸精修，基线 = por_npc_huangyaoshi__ch02_elder_base（AR-58：黄药师按作者 10-03 18:02 选定的新 base 对脸（中景小脸）；郭靖、黄蓉、洪七公、欧阳锋不动）；AR-44 对脸精修，基线 = por_npc_hongqigong__ch02_elder_bangzhu_base（AR-53 配角对齐：洪七公改成基准的白浓眉、灰白须发；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  previous_revision:
+    png: .agents/coord/_lines/guojing-final/replaced/cg_ch02_huashan_discourse.8f07d868.png
+    sha256: 8f07d8684d961027dca6fdc52ad815994174166de8c2b974bced484c0de4bfa7
+    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch02_huashan_discourse.8f07d868.entry.yaml
+  runner_job_records:
+  - - cg_ch02_huashan_discourse.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_huashan_discourse.resume3r2.png
+    - '193'
+    - exec-9f5981c7-44dd-4903-bcb3-566445d5a468.png
+  - - cg_ch02_huashan_discourse.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_huashan_discourse.resume3r2.png
+    - '186'
+    - exec-ffd70e01-4855-445b-8421-46fd0d81549c.png
+  runner_success_count: 2
+  effort: xhigh
+- id: cg_ch02_ironspear_truth
+  file: cg_ch02_ironspear_truth.png
+  category: scene
+  style: default
+  subject: 铁枪庙真相（ch02_shediao）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是柯镇恶的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中柯镇恶的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+
+    【要改成】（AR-53 配角对齐）照基线：他是盲人——双眼是灰白色的盲眼（看不到黑眼珠）；额头缠一条深色头巾（布带绕额一圈）；头巾下露出灰白乱发；脸瘦削多皱纹、短须。
+
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致；暗处的光线照原图。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/male/ch02/por_npc_kezhene__ch02_elder_blind_base.png
+    sha256: 743c066d7eec1414966cec9351add6312fd8a8a2ead2d941e6f4ec0ff09a4ffa
+    use: 对脸基线：作者审核通过的 por_npc_kezhene__ch02_elder_blind_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch02/cg_ch02_ironspear_truth.png
+    sha256: 1faab80c5ca90c980abdca1386a2202aacd5075ab59e95a23cf6151c0c8c039d
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.1faab80c.png
+  tool: codex exec · image_gen（AR-53 配角对齐 · 局部合成：只把柯镇恶头部方块交 codex 改脸，再按原位置对齐、羽化贴回，其余像素不变）
+  model: gpt-6-astra
+  created: 2026-10-03T19:26:57-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch02_ironspear_truth.k2.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 83be163b97cd6701503940c9509ebfb7a1a3761222014a3db18e34e8ab05cc11
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「铁枪辨冤」，实际字形「铁枪辨冤」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（AR-53 总审返修：黄蓉改回大杏眼、圆润脸）；AR-44 对脸精修，基线 = por_npc_kezhene__ch02_elder_blind_base（AR-53 配角对齐：欧阳锋（灰白须发、年长）、柯镇恶（灰白盲眼、深色头巾）对齐各自基准；局部合成——两人头部方块分别交 codex 改，再依次贴回，其余像素不变（编辑 k1/k2））
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.1faab80c.png
+    sha256: 1faab80c5ca90c980abdca1386a2202aacd5075ab59e95a23cf6151c0c8c039d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch02_ironspear_truth.1faab80c.entry.yaml
+  runner_job_records:
+  - - cg_ch02_ironspear_truth.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch02_ironspear_truth.resume3r2.png
+    - '178'
+    - exec-e0b6708c-2a79-4766-a976-ca2996f1bdfb.png
+  runner_success_count: 1
+  effort: ultra

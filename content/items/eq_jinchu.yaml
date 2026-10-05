@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: eq_jinchu
+name: 达尔巴金杵
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·达尔巴，粗长沉重而金光闪闪的金刚降魔杵
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/jinchu
+text:
+  desc: 外观：粗长金色金属杵约一百三十厘米，中段皮缠双手握位、两端棱瓣钝首。 待运行时投影：exoticKind=pestle; sect=sect_mizong。
+  lore: 《神雕侠侣》中达尔巴使用粗长沉重、金光闪闪的金刚降魔杵。双手持杵须以肩背带动，重压和横扫皆能逼退对手；握位、棱瓣形制与金属配比为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - heavy
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 135
+      hardness: 78
+      qiAffinity: 100

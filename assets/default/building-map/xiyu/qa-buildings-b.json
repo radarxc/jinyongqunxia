@@ -1,0 +1,137 @@
+[
+  {
+    "id": "bld_kit_xiyu_stable",
+    "size": "640x448",
+    "anchor": [
+      310.0638,
+      249.3223
+    ],
+    "slopes": [
+      0.5059445178335535,
+      -0.5133333333333333
+    ],
+    "ratio": 1.2616666666666667,
+    "axis_pass": true,
+    "ratio_pass": true
+  },
+  {
+    "id": "bld_kit_xiyu_biaoju",
+    "size": "928x640",
+    "anchor": [
+      451.7345,
+      358.3115
+    ],
+    "slopes": [
+      0.4723404255319149,
+      -0.6076335877862595
+    ],
+    "ratio": 1.0763358778625953,
+    "axis_pass": false,
+    "ratio_pass": false
+  },
+  {
+    "id": "bld_kit_xiyu_casino",
+    "size": "704x480",
+    "anchor": [
+      352.2956,
+      278.6499
+    ],
+    "slopes": [
+      0.486318407960199,
+      -0.562111801242236
+    ],
+    "ratio": 1.2484472049689441,
+    "axis_pass": false,
+    "ratio_pass": true
+  },
+  {
+    "id": "bld_kit_xiyu_manor",
+    "size": "1120x768",
+    "anchor": [
+      567.3911,
+      491.2872
+    ],
+    "slopes": [
+      0.4801699716713881,
+      -0.5054095826893354
+    ],
+    "ratio": 1.0911901081916537,
+    "axis_pass": true,
+    "ratio_pass": false
+  },
+  {
+    "id": "bld_kit_xiyu_palace",
+    "size": "1536x992",
+    "anchor": [
+      748.664,
+      602.3403
+    ],
+    "slopes": [
+      0.42255125284738043,
+      -0.5743944636678201
+    ],
+    "ratio": 1.519031141868512,
+    "axis_pass": false,
+    "ratio_pass": false
+  },
+  {
+    "id": "bld_kit_xiyu_temple_hall",
+    "size": "1024x672",
+    "anchor": [
+      541.1793,
+      415.9661
+    ],
+    "slopes": [
+      0.48058252427184467,
+      -0.49920508744038156
+    ],
+    "ratio": 0.9825119236883942,
+    "axis_pass": true,
+    "ratio_pass": false
+  },
+  {
+    "id": "bld_kit_xiyu_pagoda",
+    "size": "992x736",
+    "anchor": [
+      502.9141,
+      573.723
+    ],
+    "slopes": [
+      0.5073746312684366,
+      -0.5043988269794721
+    ],
+    "ratio": 0.9941348973607038,
+    "axis_pass": true,
+    "ratio_pass": true
+  },
+  {
+    "id": "bld_kit_xiyu_guardhouse",
+    "size": "512x352",
+    "anchor": [
+      262.16,
+      211.9053
+    ],
+    "slopes": [
+      0.520618556701031,
+      -0.5201342281879194
+    ],
+    "ratio": 1.3020134228187918,
+    "axis_pass": true,
+    "ratio_pass": true
+  },
+  {
+    "id": "bld_kit_xiyu_warehouse",
+    "size": "672x480",
+    "anchor": [
+      347.2825,
+      293.0285
+    ],
+    "slopes": [
+      0.5026595744680851,
+      -0.47050147492625366
+    ],
+    "ratio": 1.1091445427728615,
+    "axis_pass": true,
+    "ratio_pass": false
+  }
+]

@@ -1,0 +1,62 @@
+id: bld_kit_yuan_south_wharf
+status: candidate
+building:
+  type: bld_kit_yuan_south_wharf
+  footprint:
+  - 10
+  - 4
+  anchor: &id001
+  - 316.731
+  - 282.2335
+  era: yuan
+anchor_px: *id001
+footprint_m:
+- 10
+- 4
+footprint_basis: 【建议值】沿用design/22 §3.3南宋wharf10×4；只交装饰不启用port
+entrance:
+  edge: S
+  offset_cells: 5
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- http://dfzb.suzhou.gov.cn/dfzb/szdq/201811/497a392651c54c2781bf1258f8b40d19.shtml
+historical_details:
+- 码头船岸关系
+- 盘门水脚石砌与台阶
+generation_id: c9b6602e-d37b-403d-8faa-df8c57614977
+source_record: sources/hist_wharf_selected.json
+source_archive: sources/hist_wharf_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+pixel_qa:
+  mode: RGBA
+  size:
+  - 640
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 254690
+  alpha_partial_pixels: 71972
+  alpha_opaque_pixels: 1018
+  alpha_nonzero_bbox:
+  - 64
+  - 75
+  - 553
+  - 431
+  transparent_margins_px:
+  - 64
+  - 75
+  - 87
+  - 81
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 码头船岸关系；盘门水脚石砌与台阶；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

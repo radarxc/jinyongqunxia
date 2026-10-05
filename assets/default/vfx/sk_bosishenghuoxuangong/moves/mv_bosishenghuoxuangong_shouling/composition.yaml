@@ -1,0 +1,33 @@
+# 绝招守令归真：自身、projection:false；2.5×180=450 px 只表现闭合护持。
+kind: Composition
+version: 1
+asset_id: vfx_mv_bosishenghuoxuangong_shouling__base01
+subject_ref: sk_bosishenghuoxuangong
+move_ref: mv_bosishenghuoxuangong_shouling
+mode: baseline
+effect_set: ../../effect/mv_bosishenghuoxuangong_shouling/effect-set.yaml
+emitter_plate: ../../../emitters/palm/emitter-plate.yaml
+canvas_px: [1536, 1024]
+background: '#4A433C'
+emit_at_px: [430, 512]
+angle_deg: 0
+range_hex: 0
+pixels_per_hex: 180
+length_px: 450
+scale: [1, 1.4]
+emitter_scale: 0.32
+rhythm: {charge_s: 0.15, release_s: 0.2, sustain_s: 0.4, dissipate_s: 0.15}
+transition:
+  interpolation: crossfade
+  scale_from: 0.95
+  drift_fraction: 0
+  brightness: [0.8, 1, 1, 1, 0.8]
+  directional_mask: {enabled: true, softness: 0.08}
+output:
+  fps: 20
+  loop: true
+  loop_gap_s: 0.4
+  peak_phase: 0.3888888888888889
+  preview_size_px: [768, 512]
+  html_max_bytes: 3000000
+  optional_animation: none

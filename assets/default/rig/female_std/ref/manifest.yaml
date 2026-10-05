@@ -1,0 +1,63 @@
+- id: rig_female_std__ref_front34
+  file: ref_front34.png
+  category: rig/ref
+  style: default
+  subject: 女性标准体 · front34 全身参考（原创扩展）
+  prompt: |-
+    由 sheet_L 经 tools/rig/sheet_split.py 拆出。实际命令：
+    python3 tools/rig/sheet_split.py assets/default/rig/female_std/sheet/sheet_L.png --out assets/default/rig/female_std/ref --facing L --height-m 1.62
+    随后仅将 front34.png 改名为 ref_front34.png，并同步 sheet.json 的 file。
+  tool: tools/rig/sheet_split.py
+  model: none
+  created: '2026-10-03T13:47:59-07:00'
+  size: 256x480
+  sha256: 4f0003686e2106c0cfb11aad93dc25c1d27ebca236f3f5a1252c878ded22a3db
+  status: candidate
+  references:
+  - path: assets/default/rig/female_std/sheet/sheet_L.png
+    sha256: 83671d48caf156868d661bce95834107b3191f55dd329e0ca059bd4c00a12548
+    use: 整张 A 字三视图源图
+  notes: 源身高 873 px（BiRefNet alpha≥24）；归一身高 415 px（round(1.62×256)）；脚底边界 y=460，末个不透明像素行见 qa.yaml。源腋下抽样 y=436，背景间距 37 / 48 px；腿间 y=767，间距 75 px（独立 Lab 色键 alpha<48）。工具腋下检查通过，肩宽比
+    0.3498；facing=L，nearSide=L。
+- id: rig_female_std__ref_side
+  file: ref_side.png
+  category: rig/ref
+  style: default
+  subject: 女性标准体 · side 全身参考（原创扩展）
+  prompt: |-
+    由 sheet_L 经 tools/rig/sheet_split.py 拆出。实际命令：
+    python3 tools/rig/sheet_split.py assets/default/rig/female_std/sheet/sheet_L.png --out assets/default/rig/female_std/ref --facing L --height-m 1.62
+    随后仅将 side.png 改名为 ref_side.png，并同步 sheet.json 的 file。
+  tool: tools/rig/sheet_split.py
+  model: none
+  created: '2026-10-03T13:47:59-07:00'
+  size: 256x480
+  sha256: 7c023289359e460c1f6c52c28db5502909e8cbda740403b08f597defe644453f
+  status: candidate
+  references:
+  - path: assets/default/rig/female_std/sheet/sheet_L.png
+    sha256: 83671d48caf156868d661bce95834107b3191f55dd329e0ca059bd4c00a12548
+    use: 整张 A 字三视图源图
+  notes: 源身高 873 px（BiRefNet alpha≥24）；归一身高 415 px（round(1.62×256)）；脚底边界 y=460，末个不透明像素行见 qa.yaml。源腋下抽样 y=488，背景间距 32 / 27 px；腿间 y=767，间距 23 px（独立 Lab 色键 alpha<48）。工具腋下检查通过，肩宽比
+    0.1905；facing=L，nearSide=L。侧视大腿上段仍有投影遮挡，腿间开口主要在膝部以下；切件需结合 front34/back34 人工复核髋、膝并补被遮区域。
+- id: rig_female_std__ref_back34
+  file: ref_back34.png
+  category: rig/ref
+  style: default
+  subject: 女性标准体 · back34 全身参考（原创扩展）
+  prompt: |-
+    由 sheet_L 经 tools/rig/sheet_split.py 拆出。实际命令：
+    python3 tools/rig/sheet_split.py assets/default/rig/female_std/sheet/sheet_L.png --out assets/default/rig/female_std/ref --facing L --height-m 1.62
+    随后仅将 back34.png 改名为 ref_back34.png，并同步 sheet.json 的 file。
+  tool: tools/rig/sheet_split.py
+  model: none
+  created: '2026-10-03T13:47:59-07:00'
+  size: 256x480
+  sha256: fa5b0e8f18481a4eb83bdce156c3524afa99f3c17d969e3ea660ef75d948d68f
+  status: candidate
+  references:
+  - path: assets/default/rig/female_std/sheet/sheet_L.png
+    sha256: 83671d48caf156868d661bce95834107b3191f55dd329e0ca059bd4c00a12548
+    use: 整张 A 字三视图源图
+  notes: 源身高 867 px（BiRefNet alpha≥24）；归一身高 415 px（round(1.62×256)）；脚底边界 y=460，末个不透明像素行见 qa.yaml。源腋下抽样 y=434，背景间距 34 / 32 px；腿间 y=763，间距 63 px（独立 Lab 色键 alpha<48）。工具腋下检查通过，肩宽比
+    0.3164；facing=L，nearSide=L。

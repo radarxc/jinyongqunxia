@@ -19,6 +19,12 @@ realism_revision: user_identity_pose_20261001
 
 # 木桑道人 · 人物写实修正
 
+## AR-82 当前定稿要求
+
+只将灰蓝道袍主体改成洗旧黄色粗布，土黄、柔和旧布质地，保留所有衣褶轮廓，不是明黄色华服。头脸须发、道髻、双手、棋子、腰带、棋袋、剑鞘、内领内衫和双靴逐像素保持。
+
+以上为当前原著核对后的要求，覆盖下文旧版中与之冲突的服饰、器物、伤残、光线和体态描述。
+
 ## 人物与阶段
 
 - subject_id：npc_musang
@@ -74,3 +80,8 @@ FINAL POSE CHECK: FRONT-FACING, head facing forward, both eyes HORIZONTALLY LEVE
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_musang__ch07_base.prepared.json`。
+
+## 原著依据
+
+- 《碧血剑》三《经年亲剑铗，长日对楸枰》：“身穿黄色粗布道袍”（https://xuges.com/WUXIA/jinyong/bxj/014.htm）
+- AR-82 返修约束：只将灰蓝道袍主体改成洗旧黄色粗布，土黄、柔和旧布质地，保留所有衣褶轮廓，不是明黄色华服。头脸须发、道髻、双手、棋子、腰带、棋袋、剑鞘、内领内衫和双靴逐像素保持。

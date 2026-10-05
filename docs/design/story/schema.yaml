@@ -1,0 +1,280 @@
+contract: story.v1
+description: StoryLine, StoryNode, StoryEdge and TimeWindow contract draft for ENG-02
+contentPath: content/story/<chNN>/<line_id>.yaml
+encoding: JSON-compatible YAML
+strictObjects: true
+types:
+  StoryLine:
+    type: object
+    required: [schemaVersion, chapterId, lineId, kind, titleKey, eraLayer, startNodeId, nodes, edges, source]
+    fields:
+      schemaVersion: {type: literal, value: story.v1, example: story.v1}
+      chapterId: {type: string, pattern: '^ch(?:0[0-9]|1[0-5])_[a-z0-9_]+$', example: ch01_tianlong}
+      lineId: {type: string, pattern: '^(?:main|side_[a-z0-9_]+)$', example: main}
+      kind: {type: enum, values: [main, side], example: main}
+      titleKey: {type: string, minLength: 1, example: story.ch01.main.title}
+      eraLayer: {type: string, pattern: '^ch(?:0[0-9]|1[0-5])$', example: ch01}
+      startNodeId: {type: string, pattern: '^n_[a-z0-9_]+$', example: n_wake}
+      trigger: {type: StoryTrigger, optional: true}
+      sideHooks: {type: 'SideHook[]', default: []}
+      nodes: {type: 'StoryNode[]', minItems: 1}
+      edges: {type: 'StoryEdge[]', minItems: 0}
+      source: {type: SourceRef}
+    invariants:
+      - lineId main iff kind main
+      - one indegree-zero node equal to startNodeId
+      - every node reachable and the full edge set is acyclic
+      - every non-end node has an outgoing edge; every end node has none
+  StoryTrigger:
+    type: object
+    fields:
+      condition: {type: ConditionExprRef, optional: true}
+      timeWindow: {type: TimeWindow, optional: true}
+    minProperties: 1
+    semantics: condition AND timeWindow when both are present
+  SideHook:
+    type: object
+    required: [lineId, atNodeId, when]
+    fields:
+      lineId: {type: string, pattern: '^side_[a-z0-9_]+$', example: side_babuzhong}
+      atNodeId: {type: string, pattern: '^n_[a-z0-9_]+$', example: n_xingzilin_merge}
+      when: {type: ConditionExprRef}
+      optional: {type: boolean, default: false}
+  SourceRef:
+    type: object
+    required: [document, anchors]
+    fields:
+      document: {type: string, minLength: 1, example: docs/design/story/01-tianlong.md}
+      anchors: {type: 'string[]', minItems: 1, example: ['§0.3', '§3', '§4']}
+      note: {type: string, optional: true}
+  StoryNode:
+    type: discriminatedUnion
+    discriminator: type
+    variants: [spawn, despawn, dialogue, quest, choice, condition, merge, end]
+    commonRequired: [id, type, titleKey, completeOn, payload, sourceRef]
+    commonFields:
+      id: {type: string, pattern: '^n_[a-z0-9_]+$', example: n_duanyu_spawn}
+      type: {type: enum, values: [spawn, despawn, dialogue, quest, choice, condition, merge, end]}
+      titleKey: {type: string, minLength: 1, example: story.ch01.node.duanyu_spawn}
+      completeOn: {type: string, minLength: 1, example: immediate}
+      timeWindow: {type: TimeWindow, optional: true}
+      once: {type: boolean, default: true}
+      payload: {type: NodePayload}
+      sourceRef: {type: string, minLength: 1, example: design/story/01 §0.3}
+    payloads:
+      spawn:
+        required: [npcId, sceneId, anchor, eraLayer]
+        fields:
+          npcId: {type: string, pattern: '^npc_[a-z0-9_]+$', example: npc_duanyu}
+          sceneId: {type: string, pattern: '^sc_[a-z0-9_]+$', example: sc_01_wuliangyidao}
+          anchor: {type: string, pattern: '^[a-z][a-z0-9_]*$', example: roadside}
+          eraLayer: {type: string, pattern: '^ch(?:0[0-9]|1[0-5])$', example: ch01}
+      despawn:
+        required: [npcId, sceneId, anchor, eraLayer, reason]
+        fields:
+          npcId: {type: string, pattern: '^npc_[a-z0-9_]+$', example: npc_duanyu}
+          sceneId: {type: string, pattern: '^sc_[a-z0-9_]+$', example: sc_01_wuliangyidao}
+          anchor: {type: string, pattern: '^[a-z][a-z0-9_]*$', example: roadside}
+          eraLayer: {type: string, pattern: '^ch(?:0[0-9]|1[0-5])$', example: ch01}
+          reason: {type: string, minLength: 1, example: travel_to_dali}
+      dialogue:
+        exactlyOneOf: [ink, inlineLines]
+        fields:
+          ink: {type: InkRef, example: {storyId: story_ch01_main, knot: wake_at_wuliang}}
+          inlineLines: {type: 'InlineLine[]', minItems: 1}
+      quest:
+        exactlyOneOf: [questId, inlineEvent]
+        fields:
+          questId: {type: string, pattern: '^q_[a-z0-9_]+$', example: q_01_main_c_01}
+          inlineEvent: {type: InlineEvent}
+        completeOnByPayload: {questId: quest/succeeded, inlineEvent: immediate}
+      choice:
+        required: [decisionId, options]
+        fields:
+          decisionId: {type: string, pattern: '^dc_[a-z0-9_]+$', example: dc_01_01}
+          options: {type: 'ChoiceOption[]', minItems: 2}
+      condition:
+        required: [expression]
+        fields:
+          expression: {type: ConditionExprRef}
+      merge:
+        required: [mergeKey]
+        fields:
+          mergeKey: {type: string, pattern: '^[a-z][a-z0-9_]*$', example: xingzilin_routes}
+      end:
+        required: [endingTags]
+        fields:
+          endingTags: {type: 'string[]', minItems: 1, example: [canon]}
+  StoryEdge:
+    type: discriminatedUnion
+    discriminator: trigger
+    variants: [auto, condition, choice, timeout]
+    commonRequired: [id, from, to, trigger, priority]
+    commonFields:
+      id: {type: string, pattern: '^e_[a-z0-9_]+$', example: e_wake_spawn}
+      from: {type: string, pattern: '^n_[a-z0-9_]+$', example: n_wake}
+      to: {type: string, pattern: '^n_[a-z0-9_]+$', example: n_duanyu_spawn}
+      trigger: {type: enum, values: [auto, condition, choice, timeout]}
+      priority: {type: integer, minimum: 0, maximum: 1000, default: 0}
+    triggerFields:
+      auto:
+        forbidden: [condition, choiceKey]
+      condition:
+        required: [condition]
+        fields: {condition: {type: ConditionExprRef}}
+        forbidden: [choiceKey]
+      choice:
+        required: [choiceKey]
+        fields: {choiceKey: {type: string, pattern: '^[a-z][a-z0-9_]*$', example: aid_xiaofeng}}
+        forbidden: [condition]
+      timeout:
+        forbidden: [condition, choiceKey]
+    invariants:
+      - from and to resolve in the same StoryLine
+      - choice keys equal the source choice node option keys one-to-one
+      - timeout is unique and matches source TimeWindow alternate target
+      - multi-route condition or merge nodes have one auto fallback unless conditions are statically exclusive and exhaustive
+  TimeWindow:
+    type: discriminatedUnion
+    discriminator: mode
+    variants: [absolute, relative]
+    commonRequired: [mode, onMiss]
+    commonFields:
+      mode: {type: enum, values: [absolute, relative]}
+      onMiss: {type: OnMiss}
+    modeFields:
+      absolute:
+        required: [epochId, opensAt, closesAt]
+        fields:
+          epochId: {type: string, minLength: 1, example: epoch_ch01}
+          opensAt: {type: CalendarDateTime}
+          closesAt: {type: CalendarDateTime}
+        invariant: opensAt is earlier than closesAt in one epoch
+      relative:
+        required: [anchor, opensAfterMinutes, closesAfterMinutes]
+        fields:
+          anchor: {type: TimeAnchor}
+          opensAfterMinutes: {type: integer, minimum: 0, example: 0}
+          closesAfterMinutes: {type: integer, minimum: 1, example: 2880}
+        invariant: opensAfterMinutes is less than closesAfterMinutes
+    interval: half-open [open, close)
+  OnMiss:
+    type: discriminatedUnion
+    discriminator: policy
+    variants:
+      expire:
+        required: [policy]
+        fields: {policy: {type: literal, value: expire}}
+      defer:
+        required: [policy, deferByMinutes]
+        fields:
+          policy: {type: literal, value: defer}
+          deferByMinutes: {type: integer, minimum: 1}
+          maxDefers: {type: integer, minimum: 1, maximum: 9, default: 1}
+      alternate:
+        required: [policy, targetNodeId]
+        fields:
+          policy: {type: literal, value: alternate}
+          targetNodeId: {type: string, pattern: '^n_[a-z0-9_]+$', example: n_mantuo_late}
+  CalendarDateTime:
+    type: object
+    required: [year, month, day, hour, minute]
+    fields:
+      year: {type: integer, example: 1093}
+      month: {type: integer, minimum: 1, maximum: 12, example: 1}
+      day: {type: integer, minimum: 1, maximum: 30, example: 1}
+      hour: {type: integer, minimum: 0, maximum: 23, example: 6}
+      minute: {type: integer, minimum: 0, maximum: 59, example: 0}
+  TimeAnchor:
+    type: object
+    required: [event]
+    fields:
+      event: {type: enum, values: [story/nodeCompleted, quest/accepted, quest/succeeded, quest/failed]}
+      lineId: {type: string, pattern: '^(?:main|side_[a-z0-9_]+)$', optional: true}
+      nodeId: {type: string, pattern: '^n_[a-z0-9_]+$', optional: true}
+      questId: {type: string, pattern: '^q_[a-z0-9_]+$', optional: true}
+    invariants:
+      - story/nodeCompleted requires nodeId and defaults lineId to the current line
+      - quest events require questId
+  InkRef:
+    type: object
+    required: [storyId, knot]
+    fields:
+      storyId: {type: string, minLength: 1}
+      knot: {type: string, minLength: 1}
+  InlineLine:
+    type: object
+    required: [speakerId, textKey]
+    fields:
+      speakerId: {type: string, pattern: '^(?:npc_[a-z0-9_]+|player|narrator)$'}
+      textKey: {type: string, minLength: 1}
+  InlineEvent:
+    type: object
+    required: [eventKey, actions]
+    fields:
+      eventKey: {type: string, pattern: '^[a-z][a-z0-9_]*$'}
+      actions: {type: 'ActionRef[]', minItems: 1}
+    note: ActionRef reuses the whitelist in design/12 section 2.3
+  ChoiceOption:
+    type: object
+    required: [key, textKey]
+    fields:
+      key: {type: string, pattern: '^[a-z][a-z0-9_]*$'}
+      textKey: {type: string, minLength: 1}
+      when: {type: ConditionExprRef, optional: true}
+  ConditionExprRef:
+    type: external
+    owner: docs/design/12-quests-npc-factions.md section 2.2
+    acceptedExamples:
+      - {quest: {id: q_01_main_z_03, state: completed}}
+      - {npc: {id: npc_duanyu, state: alive}}
+      - {storyNode: {lineId: side_babuzhong, nodeId: n_resolved, state: completed}}
+  ActionRef:
+    type: external
+    owner: docs/design/12-quests-npc-factions.md section 2.3
+  StoryLineState:
+    type: object
+    required: [lineId, status, activeNodeIds, completedNodeIds, expiredNodeIds, chosenOptions, branchPath, resolvedWindows, appliedEffectIds, revision]
+    fields:
+      lineId: {type: string}
+      status: {type: enum, values: [locked, available, active, completed, expired]}
+      activeNodeIds: {type: 'string[]', sorted: true}
+      completedNodeIds: {type: 'string[]', uniqueItems: true}
+      expiredNodeIds: {type: 'string[]', uniqueItems: true}
+      chosenOptions: {type: map, keyType: nodeId, valueType: choiceKey}
+      branchPath: {type: 'string[]'}
+      resolvedWindows: {type: map, valueType: ResolvedTimeWindow}
+      appliedEffectIds: {type: 'string[]', uniqueItems: true}
+      revision: {type: integer, minimum: 0}
+  StoryEvent:
+    type: discriminatedUnion
+    discriminator: event
+    variants:
+      - story/lineAvailable
+      - story/nodeEntered
+      - story/nodeCompleted
+      - story/choiceCommitted
+      - story/nodeExpired
+      - story/lineCompleted
+    commonRequired: [event, chapterId, lineId, causeId]
+    idempotency: receiptId is mandatory for effects and node completion
+  StoryMigrationManifest:
+    type: object
+    required: [chapterId, sourceRevision, storyLineMappings, nodeMappings, timeWindowMappings, sideHookMappings, unmapped]
+    releaseInvariant: unmapped is empty
+validationScope:
+  draftChecker:
+    command: python3 tools/lint/check_story_dag.py <yaml>
+    checks:
+      - root shape and discriminators
+      - unique node and edge IDs
+      - closed references, one start, reachability and acyclicity
+      - node payload and repository npc, quest and scene registries
+      - TimeWindow ranges, choice coverage and timeout consistency
+      - candidate fallback shape; semantic condition exhaustiveness is deferred to production schema
+  eng02ProductionSchema:
+    additionallyChecks:
+      - strict unknown-field rejection and full ConditionExpr or Action typing
+      - exactly one main line per chapter and side-hook existence
+      - cross-line mandatory dependency cycles
+      - runtime state, event and migration compatibility

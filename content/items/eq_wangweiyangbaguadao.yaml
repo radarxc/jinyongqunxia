@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_wangweiyangbaguadao
+name: 王维扬八卦刀
+kind: weapon
+sub: blade
+grade: 8
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《书剑恩仇录》·王维扬以八卦刀法著称；佩刀是否具名 （待考）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/wangweiyangbaguadao
+text:
+  desc: 外观：柳叶形腰刀约七十五厘米，椭圆铜镡、深褐皮缠柄与黑漆鞘。 待运行时投影：sect=sect_baguamen。
+  lore: 《书剑恩仇录》中威震河朔王维扬以八卦刀法著称，本表据此配置柳叶腰刀，便于随步位回旋劈削。佩刀是否具名仍 （待考：核王维扬相关情节）；八瓣护手、装具和定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 76
+      qiAffinity: 100

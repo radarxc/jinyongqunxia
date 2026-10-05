@@ -1,0 +1,67 @@
+id: bld_kit_qing_south_manor
+file: bld_kit_qing_south_manor.png
+category: building-map
+style: default
+subject: 清初至清中江南山庄大院（原创扩展）
+prompt: 'Use image_gen to generate exactly ONE final production asset, not a discussion. The first supplied image is a mandatory geometry and camera guide: preserve its full registered footprint, arrangement, south entrance on the lower-left-facing facade, ridge directions, and relative masses. The next two images are historical visual evidence only; borrow period form, proportions, material and construction details without copying their scene composition. Render an isolated realistic early-to-mid Qing Jiangnan building, circa 1660-1780, as high-detail historical 2.5D game map art. Exact orthographic 2:1 dimetric projection, yaw 45 degrees, pitch about 30 degrees, screen ground axes +0.5 and -0.5, verticals upright, absolutely no perspective convergence. True transparent RGBA alpha-0 backdrop, one complete uncropped object centered with generous margin on all four sides, clear footprint baseline, no scenery or ground tile. Screen upper-left soft light and only a short soft lower-right contact
+  shadow. Muted lime white, blue-grey brick, charcoal-grey clay tile and dark weathered timber; no bright fantasy palette. Show roof lift and curvature, ridge treatment, tile method, bracket or beam bearing, column grid, foundation, lattice type, decoration restraint and masonry clearly. No people, animals, trees, furniture, text, signs, flags, logos, watermark, checkerboard, white matte, modern objects, fantasy, northern palace silhouette, yellow glazed tile or cropped edge. SUBJECT: a wealthy 16 by 13 cell Jiangnan gentry manor. Preserve multiple axial courts and side wings. Main reception hall three bays wide and nine-purlin in spirit, with low hard-gable grey-tile roof, plain ridge, white firewalls and blue-grey brick bases. Dark timber column frames, straight lattice screens, thin dressed-stone platforms; modest one- to two-step local bracket sets and exposed flat beams. South gate has restrained clear-brick relief surround and shallow double-sided brick carving inspired by Suzhou residences,
+  but no palace imagery. No garden plants.'
+negative: 文字、人物、现代物件、实底背景、厚底台、裁切、透视、黄琉璃泛化
+references:
+- file: assets/default/building-map/qing_south/review2/buildings_b/manor.guide.png
+  sha256: 94a22df7b70367d25cb5b20f2cc1513b2cf31382ed7e4acbcdb841e4c44e243f
+  role: 本轮生成输入：登记几何、相机与尺度引导；不参与成品合成
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Wu_Family_Reception_Hall%2C_early_17th_century.jpg?width=1600
+  sha256: 631ac1d80091f3dd644998280d792fe420687f719e5980568fdc281d214e0576
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+- url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Master_of_Nets_Garden_1.jpg?width=1600
+  sha256: cd5e0d1ad8b84c7525418996b1808dadbe8b78bce7cca58c151a0a5fe69774f9
+  accessed: '2026-10-01'
+  role: 本轮 image_gen 历史图片输入；仅取形制、比例、材质与构造，不复制构图。低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。
+tool: codex exec · built-in image_gen
+model: image_gen (underlying image model undisclosed)
+effort: not_exposed
+created: '2026-10-01T08:24:02.464103+00:00'
+created_time_basis: 入选源PNG文件mtime，非服务端生成时间回执
+source_path: history/selected-sources/manor.png
+size: 1248x928
+sha256: 3c42a144a285965ca982f868affaa514ed58b190a866e8dbdd0d7762017070b5
+status: candidate
+building:
+  type: bld_kit_qing_south_manor
+  footprint:
+  - 16
+  - 13
+  anchor:
+  - 608.7401
+  - 537.7825
+  era: qing_south
+footprint_m:
+- 16
+- 13
+footprint_source: design/22 §3.3 bld_kit_song_southern_manor同构占地
+entrance:
+  edge: S
+  offset_cells: 8.0
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 928
+  - 464
+  ground_width_px: 928
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+metadata: meta/bld_kit_qing_south_manor.yaml
+source_record: history/records/manor.yaml
+source_sha256: d94d1a0ebdf98fe37c477fe342996c1aa3316d13dca645aaaeb53fc8c87a8cfe
+candidate_count: 1
+selected_candidate: 1
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+notes: 2026-10-01 历史图片输入重出：低举折硬山灰小瓦、素脊、短出檐；一跳以内简化承檐，三间柱网；白灰砖墙、青砖勒脚、直棂/方格窗、薄石基。规格化仅以alpha>=2确定裁框、框内保留原RGBA、一次等比LANCZOS缩放并贴回原登记canvas；未非等比拉伸或补画。45°/俯仰约30°、2:1、左上光、透明底已目视复核；精确占地底边与总装仍待实测。

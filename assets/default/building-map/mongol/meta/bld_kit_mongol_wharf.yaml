@@ -1,0 +1,53 @@
+id: bld_kit_mongol_wharf
+building:
+  type: bld_kit_mongol_wharf
+  footprint: [8, 4]
+  anchor: &id001 [293.8248, 295.0361]
+  era: mongol
+anchor_px: *id001
+geometry_qa:
+  source_corners_LFR_px:
+  - [167, 559]
+  - [799, 920]
+  - [1111, 748]
+  source_axis_slopes: [0.5712025316455697, -0.5512820512820513]
+  axis_tolerance: 0.03
+  axis_pass: false
+  width_depth_ratio: 2.0256410256410255
+  expected_ratio: 2.0
+  ratio_relative_error: 0.012820512820512775
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 5
+  note: 人工读取可见底面L/F/R；隐藏后角由平行边推算。几何残差未warp修正。
+processing:
+  source_archive: sources/bld_kit_mongol_wharf__raw.png
+  source_sha256: f326ef145031e008424a0209285c3f982b84c3bb3f833a027f2c54735b70c46d
+  source_size: [1254, 1254]
+  crop_box: [0, 21, 1210, 1212]
+  uniform_scale_requested: 0.4067796610169492
+  resized_size: [492, 484]
+  actual_scale_xy: [0.4066115702479339, 0.4063811922753988]
+  paste_offset: [34, 38, 526, 522]
+  anchor_source_px: [639.0, 653.5]
+  alpha_edits: none
+  note: 只裁全透明包围留白、一次等比目标LANCZOS、透明padding；整数尺寸有亚像素取整。
+views:
+- {rotation_deg: 0, file: bld_kit_mongol_wharf.png}
+allowRotation: false
+glb: null
+release_ready: false
+pixel_qa:
+  mode: RGBA
+  size: [560, 560]
+  alpha_extrema: [0, 255]
+  alpha_bbox: [70, 51, 509, 510]
+  transparent_pixels: 273774
+collision_polygon_m:
+- [0, 0]
+- [8, 0]
+- [8, 4]
+- [0, 4]
+collision_note: 候选逻辑矩形，非实墙测绘；河埠仅装饰，不创建port或旅行服务。
+historical_note: 仅地域母题有文字参考；具体屋面/门窗/彩画/塔式为原创设计，待考。
+repair_round_2: {tool: built-in image_gen, candidate_count: 2, attempt_records: sources/bld_kit_mongol_wharf__repair2_calls.json, selected_candidate: 0, geometry_pass: false, result: 两新候选未优于原图整体几何；保留原成品字节，审核问题未解决}

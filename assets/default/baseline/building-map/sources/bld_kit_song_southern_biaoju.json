@@ -1,0 +1,77 @@
+{
+  "id": "bld_kit_song_southern_biaoju",
+  "type": "bld_kit_song_southern_biaoju",
+  "w": 14,
+  "h": 11,
+  "subject": "镖局 / 护运行",
+  "prompt": "Use case: historical-scene. Build ONE realistic Southern Song Lin'an private caravan escort depot compound (镖局原创扩展) on the EXACT quadrilateral ground plane in reference. Retain the exact contour: canvas1536x1024, LEFT(150,540), FRONT(738,834), RIGHT(1200,603), BACK(612,309). Ground footprint14 by11, front LEFT-FRONT edge horizontal588, adjacent FRONT-RIGHT edge462, ratio1.2727. Their slopes exactly+.5/-.5. This is exact orthographic2:1 isometric no perspective; all ground/wall/roof axes parallel to these two guide edges. Realistic muted brown timber, handmade grey tiled roofs, cream plaster perimeter wall with stone footing. One low rear office hall, smaller side store, a broad enclosed tamped earth court with one wood cart and tied cargo crates. Plain wide gateway centered on LEFT-FRONT wall. Clear unobstructed outer two base edges and sharp front corner, ground is thin, no thick model pedestal. Complete eaves within canvas. Upper-left warm daylight, short down-right shadow. Remove white background and black outline and corner labels entirely; actual transparent alpha background. No people, no logos, no writing, no modern objects, no Qing/Ming palace style. Ground four corners must follow reference even if architecture layout must adapt. Keep reference positions, don't auto-fit or rotate ground.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_biaoju_guide.png",
+      "role": "geometry guide：自制占地轮廓QA图，非生成资产",
+      "sha256": "63e1501ea0fba3a17ef058d68c0e1e1eb1ddd7b20c31014f2038e411f816e2bb"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-5999-7012-a4fb-aab8768433ae/exec-22382dec-b195-4b84-b225-4d519bb24c6f.png",
+  "source_sha256": "921ccbedcebf1d91f794f192c5460e3fbe99870f4140212e132ee083b452e0ca",
+  "created": "2026-09-30T10:51:22.643845+00:00",
+  "visual_review": "第2次运行返修：内置image_gen真实重出主体；逐张view_image及64×32占地叠图，宽深关系和两轴目视协调，左上光、暖灰瓦木石、宋意象，无文字人物现代物；无裁切。严格几何数值见geometry_qa；不将轻微告警当成已通过。",
+  "candidate_count": 2,
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      51,
+      521
+    ],
+    "front": [
+      844,
+      913
+    ],
+    "right": [
+      1474,
+      588
+    ]
+  },
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-15255513-4a2c-459e-96d8-9ab727e1b4b1.png",
+      "source_sha256": "040e3673dbb667eb083e6586fd34ae3ec16e32247077381a5ab7865f9929a5be",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_biaoju_pre_review2.png",
+      "selection": "rejected_review1",
+      "reason": "合入审核判退：可见底面比例或双轴方向不合登记占地。",
+      "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 14 x 11 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 14 units, up-right edge 11 units, horizontal ratio 1.2727. Subject: One Southern Song Lin'an cargo escort business compound, not a military fort: substantial grey-tiled dark timber main hall, small side warehouse rooms, open secure yard containing a covered wooden handcart and strapped wooden freight chests, cream plaster enclosing walls and wide wood gateway facing southwest. No weapons or written sign; fictional escort institution expressed as historical cargo yard.",
+      "references": []
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        51,
+        521
+      ],
+      [
+        844,
+        913
+      ]
+    ],
+    [
+      [
+        844,
+        913
+      ],
+      [
+        1474,
+        588
+      ]
+    ]
+  ],
+  "review2_overlay": "review2/bld_kit_song_southern_biaoju_overlay.png"
+}

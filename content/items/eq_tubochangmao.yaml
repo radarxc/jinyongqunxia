@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_tubochangmao
+name: 吐蕃长矛
+kind: weapon
+sub: spear
+grade: 5
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 地域军器·吐蕃；白马（唐）起藏边节点可得 （原创扩展复原）
+price: auto
+flags: []
+assets:
+  icon: item/tubochangmao
+text:
+  desc: 外观：厚脊柳叶铁矛头接深褐木杆，通长约二点四米。
+  lore: 吐蕃与藏边节点复原的长矛，厚脊柳叶锋便于正面穿刺，颈部皮条加固后更耐山路磕碰。高原武士须经常检查木杆干裂；具体器形、缠带纹样、尺度和投放均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 55
+      qiAffinity: 100

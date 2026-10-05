@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_chaihu
+name: 柴胡
+kind: material
+sub: herb
+grade: 4
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/chaihu
+text:
+  desc: 外观：药用根为灰褐细长条，顶端残留茎基。
+  lore: 燕京直隶、中原、关中、河东晋中、齐鲁与东北向阳坡，春三四月或秋九十月采根。本作归入疏解内伤的药材池，灰褐长根须辨茎基。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan9
+    materialGrade: 4
+    rare: false
+    herbFamily: chaiHu
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 3

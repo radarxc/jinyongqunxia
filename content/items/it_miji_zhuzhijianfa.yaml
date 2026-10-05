@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_zhuzhijianfa
+name: 竹枝剑法原本
+kind: manual
+sub: original
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_zhuzhijianfa
+text:
+  desc: 外观：春秋青竹简二十四枚，褐牛皮绳双编。
+  lore: 越地习剑者把竹枝代剑的步位刻录成青竹简，武学载体与传承皆属 （原创扩展）。研读须先以轻枝体会腕转和穿林线路，再换真剑；二十四枚简次一旦错乱，整套剑势便难连贯。
+extension:
+  type: manual
+  value:
+    skill: sk_zhuzhijianfa
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_zhuzhijianfa
+      readWis: 40
+      maxLayer: 10
+      cultivation: 2000

@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_dagouzhen
+name: 打狗阵谱
+kind: manual
+sub: full
+grade: 7
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_dagouzhen
+text:
+  desc: 外观：明代墨绿经折阵图册，竹夹板、麻绳束带。
+  lore: 丐帮群丐围敌的阵法在本作绘成经折图册，阵谱载体与分位均属 （原创扩展）。研读须多人照页次换位并听号令，单人只得阵理；竹夹板间的重旧痕见其常在帮中铺地演练。
+extension:
+  type: manual
+  value:
+    skill: sk_dagouzhen
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_dagouzhen
+      readWis: 45
+      maxLayer: 10
+      cultivation: 2500

@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_danggui
+name: 当归
+kind: material
+sub: herb
+grade: 2
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/danggui
+text:
+  desc: 外观：药用根切成黄棕薄片，油润形成层可辨。
+  lore: 秦巴、巴蜀、河西陇右与青藏药圃秋九至十月取根，本作以黄棕薄片的形成层辨货。江湖伤药常拿它作辅材，单味只投影轻度外伤恢复。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_huang6
+    materialGrade: 2
+    rare: false
+    herbFamily: dangGui
+    ageYears: 0
+    attributes:
+      version: 2
+      healOuter: 6

@@ -1,0 +1,62 @@
+id: bld_kit_yuan_south_shop_2f
+status: candidate
+building:
+  type: bld_kit_yuan_south_shop_2f
+  footprint:
+  - 8
+  - 6
+  anchor: &id001
+  - 278.4106
+  - 340.9128
+  era: yuan
+anchor_px: *id001
+footprint_m:
+- 8
+- 6
+footprint_basis: 【建议值】design/22 §3.3同功能项
+entrance:
+  edge: S
+  offset_cells: 4
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+historical_details:
+- 两层铺屋开间
+- 深檐、格扇与灰瓦
+generation_id: 07483c40-5355-4bd4-86b1-bc68bf6bf01c
+source_record: sources/hist_shop_2f_selected.json
+source_archive: sources/hist_shop_2f_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+pixel_qa:
+  mode: RGBA
+  size:
+  - 544
+  - 496
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 161319
+  alpha_partial_pixels: 107468
+  alpha_opaque_pixels: 1037
+  alpha_nonzero_bbox:
+  - 81
+  - 30
+  - 491
+  - 466
+  transparent_margins_px:
+  - 81
+  - 30
+  - 53
+  - 30
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 两层铺屋开间；深檐、格扇与灰瓦；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

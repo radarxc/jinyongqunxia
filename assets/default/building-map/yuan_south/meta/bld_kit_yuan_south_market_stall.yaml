@@ -1,0 +1,62 @@
+id: bld_kit_yuan_south_market_stall
+status: candidate
+building:
+  type: bld_kit_yuan_south_market_stall
+  footprint:
+  - 5
+  - 4
+  anchor: &id001
+  - 265.4068
+  - 304.0847
+  era: yuan
+anchor_px: *id001
+footprint_m:
+- 5
+- 4
+footprint_basis: design/22 §3.4 bld_kit_yuan_market骨架5×4；地区同构命名
+entrance:
+  edge: S
+  offset_cells: 2
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+historical_reference_urls:
+- https://m-minghuaji.dpm.org.cn/paint/detail?id=8b90556546a340a2a688b0cb9e6e49d8
+- https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00005285
+historical_details:
+- 市井滨水小构
+- 疏枝、芦荻与轻型棚架氛围
+generation_id: 8d54c184-e006-4e5f-97d8-2dcb0233e19c
+source_record: sources/hist_market_stall_selected.json
+source_archive: sources/hist_market_stall_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+pixel_qa:
+  mode: RGBA
+  size:
+  - 512
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 206456
+  alpha_partial_pixels: 54328
+  alpha_opaque_pixels: 1360
+  alpha_nonzero_bbox:
+  - 38
+  - 46
+  - 480
+  - 463
+  transparent_margins_px:
+  - 38
+  - 46
+  - 32
+  - 49
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 市井滨水小构；疏枝、芦荻与轻型棚架氛围；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

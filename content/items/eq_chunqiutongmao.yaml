@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_chunqiutongmao
+name: 春秋青铜矛
+kind: weapon
+sub: spear
+grade: 1
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用军器·春秋；仅序章原生可得，依青铜矛常见形制 （原创扩展定级）
+price: auto
+flags: []
+assets:
+  icon: item/chunqiutongmao
+text:
+  desc: 外观：柳叶形青铜矛头带中脊与长骹，硬木杆通长约二米、末端无鐏。
+  lore: 依春秋青铜矛常见轮廓复原的序章军器，柳叶锋配长骹，持用时以双手推进直刺，麻绳接合处须常检视。硬木杆长度、尾部处理、军中投放及品阶均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 35
+      qiAffinity: 100

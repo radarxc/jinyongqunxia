@@ -1,8 +1,8 @@
 # 门派武学图鉴 · 少林（skills-shaolin）
 
-> **版本**：v1.5（阴阳性质落地 AR-18，2026-09-29）；v1.4（路线叙事第三轮，2026-09-29）；v1.3（经脉落地终审，2026-09-29）；v1.2（AR-01 扩充；全局审计）；经脉系统落地、绝招数量调整（2026-09-27）；M4 返修（解锁层 7/9/10、同门绝招独立路线）；图鉴一致性审计、天中 / 地中绝招数统一、外放标记、绝招路线叙事化（2026-09-28）；路线唯一性第五轮（2026-09-30）。
+> **版本**：v1.5（阴阳性质落地 AR-18，2026-09-29）；v1.4（路线叙事第三轮，2026-09-29）；v1.3（经脉落地终审，2026-09-29）；v1.2（AR-01 扩充；全局审计）；经脉系统落地、绝招数量调整（2026-09-27）；M4 返修（解锁层 7/9/10、同门绝招独立路线）；图鉴一致性审计、天中 / 地中绝招数统一、外放标记、绝招路线叙事化（2026-09-28）；路线唯一性第五轮（2026-09-30）；属性门槛与修炼永久加成 v2（AR-27，2026-10-02）。
 > **归属（基准 §18）**：`design/catalog/skills-*.md`——门派武学图鉴。本文定义少林派（嵩山少林）、南少林及其旁支武学；门派制度、Buff、阵法、套装与书界投放只登记接口。
-> **上游**：`docs/decisions/author-requirements.md` AR-01/02/07/08/14–18；`docs/decisions/author-decisions.md` P06/P09/P32/P47/P49；`docs/00-canon.md` v1.8（§2–§4、§6–§8、§12–§13、§16、§18、§20）；`docs/decisions/rulings-v1.md` C12/C14/C17/C22/C23；`design/03`、`design/05` v1.7.1、`design/21` v2.7.2。
+> **上游**：`docs/decisions/author-requirements.md` AR-01/02/07/08/14–18；`docs/decisions/author-decisions.md` P06/P09/P32/P47/P49；`docs/00-canon.md` v1.8（§2–§4、§6–§8、§12–§13、§16、§18、§20）；`docs/decisions/rulings-v1.md` C12/C14/C17/C22/C23；`design/03` v2、`design/05` v1.7.1、`design/21` v2.7.2。
 > **引用而不重定义**：属性与技艺 ID 见 `design/03`；武学字段、招式预算、层数、内功与学习门槛见 `design/05`；战斗经脉运行、招式路线、调息、护体内劲与经脉速度见 `design/21`；Buff 目录见 `design/06`；套装规则与最终效果见 `design/07`；阵法与合击见 `design/09`；门派制度见 `design/12` 与 `design/17`；经脉、穴位、冲穴、周天与九转见 `design/15`；资源、月钱与营生见 `design/16`；时代地图见 `design/11`。`sk_yijinjing`、`sk_longzhaoshou`、`sk_luohanquan`、`sk_tieshazhang` 的完整数据以 `design/05` 为准，本文只给摘要与需同步接口。
 > **标注约定**：**（原创扩展）**＝原著没有；**（待考）**＝须按三联／广州修订版逐字核对且写明书名、人物或情节；**（待核实）**＝版本、API 等技术事实尚未确认；**（待实测）**＝须真机或真账号验证；**【建议值】**＝依赖归属文档、本文先给可用值并在 §8 登记。
 
@@ -218,63 +218,63 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 | `sk_shaolinjiuyang` | 少林九阳功 | 内功/心法 | 8 地中 | `yang` | 0/1 | 倚天 | 拜(L4)；遇（楔子闻经） | 原著（无色所记九阳真经） |
 | `sk_tiebushan` | 铁布衫 | 内功/心法（横练） | 7 地下 | `yang` | 0/1 | 天龙、鹿鼎、书剑 | 拜(L4)；籍（鹿鼎） | 绝；民间名目，原创纳入 |
 | `sk_tongrenhenglian` | 铜人横练 | 内功/心法（横练） | 6 玄上 | `yang` | 0/1 | 天龙、倚天、笑傲、鹿鼎 | 拜(L3)＋“铜人巷”事件 | 原创扩展（用户示例套装成员） |
-| `sk_damoxinjing` | 达摩心经 | 内功/心法 | 5 玄中 | `harmony` | 0/1 | 天龙、神雕、侠客 | 拜(L3)达摩院；籍 | 原创扩展 |
-| `sk_tongzigong` | 童子功 | 内功/心法 | 4 玄下 | `yang` | 0/1 | 笑傲、鹿鼎、书剑 | 拜(L2)；籍 | 民间名目，原创纳入 |
-| `sk_shaolinxinfa` | 少林心法 | 内功/心法 | 2 黄中 | `yang` | 0/1 | 天龙、射雕、神雕、倚天、笑傲、侠客、鹿鼎、书剑 | 拜(L1)；籍 | 原创扩展（入门） |
-| `sk_shaolinzhuanggong` | 少林桩功 | 内功/心法 | 1 黄下 | `yang` | 0/1 | 同上 | 拜(L1)；观 | 原创扩展（入门） |
+| `sk_damoxinjing` | 达摩心经 | 内功/心法 | 5 玄中 | `harmony` | 0/1 | 天龙、神雕、侠客 | 拜(L3)达摩院；籍 | 原创扩展；`reqs {attrs:{bre:35,wil:30},aptitude:{apInner:20}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
+| `sk_tongzigong` | 童子功 | 内功/心法 | 4 玄下 | `yang` | 0/1 | 笑傲、鹿鼎、书剑 | 拜(L2)；籍 | 民间名目，原创纳入；`reqs {attrs:{bre:30,wil:25},aptitude:{apInner:15}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]` |
+| `sk_shaolinxinfa` | 少林心法 | 内功/心法 | 2 黄中 | `yang` | 0/1 | 天龙、射雕、神雕、倚天、笑傲、侠客、鹿鼎、书剑 | 拜(L1)；籍 | 原创扩展（入门）；`reqs {attrs:{bre:25},aptitude:{apInner:5}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_shaolinzhuanggong` | 少林桩功 | 内功/心法 | 1 黄下 | `yang` | 0/1 | 同上 | 拜(L1)；观 | 原创扩展（入门）；`reqs {attrs:{bre:20},aptitude:{apInner:0}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
 | `sk_xumishanzhang` | 须弥山掌 | 拳脚/拳掌 | 9 地上 | 阳 | 0.50/0.50 | 天龙 | 拜(L5)；遇（藏经阁） | 绝（待考 K-01：核《天龙八部》是否出现该名目及施用人物） |
 | `sk_qianshourulaizhang` | 千手如来掌 | 拳脚/拳掌 | 9 地上 | 调和 | 0.40/0.60 | 笑傲 | 拜(L5)方证；观（三战） | 原著（方证） |
 | `sk_boruozhang` | 般若掌 | 拳脚/拳掌 | 8 地中 | 调和 | 0.45/0.55 | 天龙、倚天、鹿鼎 | 拜(L4)般若堂；鹿鼎澄观 | 绝（原著） |
 | `sk_weituochu` | 韦陀杵 | 拳脚/拳掌 | 8 地中 | 阳 | 0.60/0.40 | 天龙 | 拜(L4)戒律院 | 绝（原著：玄悲“大韦陀杵”） |
 | `sk_dajingangquan` | 大金刚拳 | 拳脚/拳掌 | 7 地下 | 阳 | 0.65/0.35 | 天龙 | 拜(L4)；页 | 绝（待考 K-01：核《天龙八部》少林绝技名录） |
 | `sk_dajingangzhang` | 大金刚掌 | 拳脚/拳掌 | 7 地下 | 阳 | 0.55/0.45 | 天龙、笑傲、侠客 | 拜(L4)；籍（侠客） | 绝（待考 K-01：核《天龙八部》是否作“大金刚掌”或“大力金刚掌”，并核施用人物） |
-| `sk_dacidabeiqianyeshou` | 大慈大悲千叶手 | 拳脚/拳掌 | 6 玄上 | 调和 | 0.60/0.40 | 鹿鼎 | 拜：海大富（宫中）／罗汉堂(L3) | 原著《鹿鼎记》（待考 K-07：核用名与少林归属） |
-| `sk_xinyiba` | 心意把 | 拳脚/拳掌 | 6 玄上 | 阳 | 0.70/0.30 | 笑傲、侠客、鹿鼎 | 拜(L3)；籍 | 民间嵩山少林名目，原创纳入 |
-| `sk_tieshazhang` | 铁砂掌 | 拳脚/拳掌 | 5 玄中 | 阳 | 0.75/0.25 | 天龙、倚天、笑傲、鹿鼎 | 拜(L3)；籍；页；观 | 原创扩展（05 §2.8） |
-| `sk_shuaibeishou` | 摔碑手 | 拳脚/拳掌 | 4 玄下 | 阳 | 0.75/0.25 | 天龙、笑傲、侠客、鹿鼎 | 拜(L2)；页 | 民间名目，原创纳入 |
-| `sk_fuhuquan` | 伏虎拳 | 拳脚/拳掌 | 3 黄上 | 阳 | 0.85/0.15 | 天龙、射雕、神雕、侠客、鹿鼎 | 拜(L1)；籍；观 | 原创扩展（同名传统拳术不作小说事实） |
-| `sk_shaolinchangquan` | 少林长拳 | 拳脚/拳掌 | 3 黄上 | 中性 | 0.85/0.15 | 笑傲、侠客、鹿鼎、书剑 | 拜(L1)；书剑经南少林共享 | **（原创扩展）**；区别通行武馆的“长拳入门” |
-| `sk_weituozhang` | 韦陀掌 | 拳脚/拳掌 | 2 黄中 | 阳 | 0.75/0.25 | 天龙、射雕、笑傲、侠客、鹿鼎 | 拜(L1)；观 | 原著入门功夫（待考 K-06：核《天龙八部》虚竹所习名目） |
-| `sk_luohanquan` | 罗汉拳 | 拳脚/拳掌 | 1 黄下 | 阳 | 0.90/0.10 | 天龙、神雕、倚天、笑傲、鹿鼎 | 拜(L1)；籍；页；观 | 05 §13.8 |
+| `sk_dacidabeiqianyeshou` | 大慈大悲千叶手 | 拳脚/拳掌 | 6 玄上 | 调和 | 0.60/0.40 | 鹿鼎 | 拜：海大富（宫中）／罗汉堂(L3) | 原著《鹿鼎记》（待考 K-07：核用名与少林归属）；`reqs {attrs:{str:40,con:40},aptitude:{apFist:25}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_xinyiba` | 心意把 | 拳脚/拳掌 | 6 玄上 | 阳 | 0.70/0.30 | 笑傲、侠客、鹿鼎 | 拜(L3)；籍 | 民间嵩山少林名目，原创纳入；`reqs {attrs:{str:40,con:40},aptitude:{apFist:25}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_tieshazhang` | 铁砂掌 | 拳脚/拳掌 | 5 玄中 | 阳 | 0.75/0.25 | 天龙、倚天、笑傲、鹿鼎 | 拜(L3)；籍；页；观 | 原创扩展（05 §2.8）；`reqs {attrs:{str:40,con:35},aptitude:{apFist:20}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,con:1}},{layer:9,attrs:{str:1,con:1}}]` |
+| `sk_shuaibeishou` | 摔碑手 | 拳脚/拳掌 | 4 玄下 | 阳 | 0.75/0.25 | 天龙、笑傲、侠客、鹿鼎 | 拜(L2)；页 | 民间名目，原创纳入；`reqs {attrs:{str:30,con:25},aptitude:{apFist:15}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_fuhuquan` | 伏虎拳 | 拳脚/拳掌 | 3 黄上 | 阳 | 0.85/0.15 | 天龙、射雕、神雕、侠客、鹿鼎 | 拜(L1)；籍；观 | 原创扩展（同名传统拳术不作小说事实）；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_shaolinchangquan` | 少林长拳 | 拳脚/拳掌 | 3 黄上 | 中性 | 0.85/0.15 | 笑傲、侠客、鹿鼎、书剑 | 拜(L1)；书剑经南少林共享 | **（原创扩展）**；区别通行武馆的“长拳入门”；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_weituozhang` | 韦陀掌 | 拳脚/拳掌 | 2 黄中 | 阳 | 0.75/0.25 | 天龙、射雕、笑傲、侠客、鹿鼎 | 拜(L1)；观 | 原著入门功夫（待考 K-06：核《天龙八部》虚竹所习名目）；`reqs {attrs:{str:25},aptitude:{apFist:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_luohanquan` | 罗汉拳 | 拳脚/拳掌 | 1 黄下 | 阳 | 0.90/0.10 | 天龙、神雕、倚天、笑傲、鹿鼎 | 拜(L1)；籍；页；观 | 05 §13.8；`reqs {attrs:{str:20},aptitude:{apFist:0}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
 | `sk_nianhuazhi` | 拈花指 | 拳脚/指法 | 9 地上 | 调和 | 0.30/0.70 | 天龙、鹿鼎 | 拜(L5)；鹿鼎澄观(L4) | 绝（原著） |
 | `sk_wuxiangjiezhi` | 无相劫指 | 拳脚/指法 | 9 地上 | 调和 | 0.25/0.75 | 天龙 | 拜(L5)；观（鸠摩智） | 绝（原著） |
 | `sk_dalijingangzhi` | 大力金刚指 | 拳脚/指法 | 8 地中 | 阳 | 0.65/0.35 | 天龙、倚天 | 拜(L4)达摩院；观（阿三） | 绝（原著《倚天屠龙记》） |
 | `sk_yizhichan` | 一指禅 | 拳脚/指法 | 8 地中 | 调和 | 0.30/0.70 | 天龙、笑傲、侠客、书剑 | 拜(L4)；书剑南少林 | 绝（待考 K-01：核《天龙八部》《侠客行》《书剑恩仇录》是否出现该名目及施用人物） |
 | `sk_mohezhi` | 摩诃指 | 拳脚/指法 | 7 地下 | 阳 | 0.50/0.50 | 天龙、侠客 | 拜(L4)达摩院 | 绝（待考 K-01：核《天龙八部》少林绝技名录） |
 | `sk_duoluoyezhi` | 多罗叶指 | 拳脚/指法 | 7 地下 | 调和 | 0.40/0.60 | 天龙 | 拜(L4)达摩院 | 绝（原著） |
-| `sk_jingangzhi` | 金刚指 | 拳脚/指法 | 4 玄下 | 阳 | 0.60/0.40 | 天龙、倚天、笑傲、侠客、鹿鼎、书剑 | 拜(L2)；籍 | 原创扩展（指力入门） |
+| `sk_jingangzhi` | 金刚指 | 拳脚/指法 | 4 玄下 | 阳 | 0.60/0.40 | 天龙、倚天、笑傲、侠客、鹿鼎、书剑 | 拜(L2)；籍 | 原创扩展（指力入门）；`reqs {attrs:{agi:30,wis:25},aptitude:{apFinger:15}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | `sk_ruyingsuixingtui` | 如影随形腿 | 拳脚/腿法 | 7 地下 | 阳 | 0.70/0.30 | 天龙、笑傲、侠客 | 拜(L4)；籍（侠客） | 绝（待考 K-01：核《天龙八部》《笑傲江湖》《侠客行》是否出现该名目及施用人物） |
-| `sk_tiesaozhou` | 铁扫帚 | 拳脚/腿法 | 5 玄中 | 阳 | 0.80/0.20 | 天龙、鹿鼎、书剑 | 拜(L3)；页 | 民间七十二艺名目，原创纳入 |
-| `sk_tantui` | 少林弹腿 | 拳脚/腿法 | 2 黄中 | 中性 | 0.90/0.10 | 笑傲、侠客、鹿鼎、书剑 | 拜(L1)；观 | 民间名目，原创纳入 |
+| `sk_tiesaozhou` | 铁扫帚 | 拳脚/腿法 | 5 玄中 | 阳 | 0.80/0.20 | 天龙、鹿鼎、书剑 | 拜(L3)；页 | 民间七十二艺名目，原创纳入；`reqs {attrs:{agi:35},aptitude:{apLeg:20}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_tantui` | 少林弹腿 | 拳脚/腿法 | 2 黄中 | 中性 | 0.90/0.10 | 笑傲、侠客、鹿鼎、书剑 | 拜(L1)；观 | 民间名目，原创纳入；`reqs {attrs:{agi:25},aptitude:{apLeg:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 | `sk_longzhaoshou` | 龙爪手（金刚龙爪手） | 拳脚/擒拿 | 8 地中 | 阳 | 0.70/0.30 | 天龙、倚天、笑傲 | 拜(L4)般若堂；观（空性）；籍 | 绝（原著《倚天屠龙记》；05 §13.7） |
-| `sk_yingzhuagong` | 鹰爪功 | 拳脚/擒拿 | 5 玄中 | 阳 | 0.75/0.25 | 倚天、笑傲、鹿鼎、书剑 | 拜(L3)；页 | 民间名目，原创纳入 |
-| `sk_shaolinqinna` | 少林擒拿手 | 拳脚/擒拿 | 3 黄上 | 阳 | 0.85/0.15 | 天龙、射雕、神雕、倚天、笑傲、侠客、鹿鼎 | 拜(L1)；籍 | 原创扩展（05 引用为龙爪手前置） |
+| `sk_yingzhuagong` | 鹰爪功 | 拳脚/擒拿 | 5 玄中 | 阳 | 0.75/0.25 | 倚天、笑傲、鹿鼎、书剑 | 拜(L3)；页 | 民间名目，原创纳入；`reqs {attrs:{str:35,agi:30},aptitude:{apGrapple:20}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_shaolinqinna` | 少林擒拿手 | 拳脚/擒拿 | 3 黄上 | 阳 | 0.85/0.15 | 天龙、射雕、神雕、倚天、笑傲、侠客、鹿鼎 | 拜(L1)；籍 | 原创扩展（05 引用为龙爪手前置）；`reqs {attrs:{str:30},aptitude:{apGrapple:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
 | `sk_fumozhangfa` | 伏魔杖法 | 兵器/棍杖 | 8 地中 | 阳 | 0.60/0.40 | 天龙、鹿鼎 | 拜(L4)；鹿鼎十八罗汉 | 绝（待考 K-01：核《天龙八部》《鹿鼎记》是否出现该名目及施用人物） |
-| `sk_yachagun` | 夜叉棍法 | 兵器/棍杖 | 5 玄中 | 阳 | 0.75/0.25 | 天龙、鹿鼎 | 拜(L3)；页 | 民间少林大小夜叉棍，原创纳入 |
-| `sk_yinshougun` | 阴手棍 | 兵器/棍杖 | 4 玄下 | 中性 | 0.80/0.20 | 笑傲、侠客、鹿鼎 | 拜(L2)；籍 | 史实名目（明·程宗猷《少林棍法阐宗》），原创纳入 |
-| `sk_shaolingunfa` | 少林棍法 | 兵器/棍杖 | 2 黄中 | 中性 | 0.85/0.15 | 天龙、射雕、神雕、倚天、笑傲、侠客、鹿鼎、书剑 | 拜(L1)；籍；观 | 原创扩展（入门） |
-| `sk_shaolinhushangun` | 少林护山棍 | 兵器/棍杖 | 3 黄上 | 中性 | 0.85/0.15 | 笑傲、侠客、鹿鼎、书剑 | 拜(L1)；书剑经南少林共享 | **（原创扩展）** |
+| `sk_yachagun` | 夜叉棍法 | 兵器/棍杖 | 5 玄中 | 阳 | 0.75/0.25 | 天龙、鹿鼎 | 拜(L3)；页 | 民间少林大小夜叉棍，原创纳入；`reqs {attrs:{str:35,con:35},aptitude:{apStaff:20}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_yinshougun` | 阴手棍 | 兵器/棍杖 | 4 玄下 | 中性 | 0.80/0.20 | 笑傲、侠客、鹿鼎 | 拜(L2)；籍 | 史实名目（明·程宗猷《少林棍法阐宗》），原创纳入；`reqs {attrs:{str:30,con:30},aptitude:{apStaff:15}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_shaolingunfa` | 少林棍法 | 兵器/棍杖 | 2 黄中 | 中性 | 0.85/0.15 | 天龙、射雕、神雕、倚天、笑傲、侠客、鹿鼎、书剑 | 拜(L1)；籍；观 | 原创扩展（入门）；`reqs {attrs:{str:25},aptitude:{apStaff:5}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_shaolinhushangun` | 少林护山棍 | 兵器/棍杖 | 3 黄上 | 中性 | 0.85/0.15 | 笑傲、侠客、鹿鼎、书剑 | 拜(L1)；书剑经南少林共享 | **（原创扩展）**；`reqs {attrs:{str:30},aptitude:{apStaff:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
 | `sk_ranmudaofa` | 燃木刀法 | 兵器/刀 | 9 地上 | 阳 | 0.40/0.60 | 天龙 | 拜(L5)；观（鸠摩智） | 绝（原著） |
-| `sk_cibeidao` | 慈悲刀 | 兵器/刀 | 6 玄上 | 调和 | 0.60/0.40 | 天龙、笑傲、侠客 | 拜(L3) | 原创扩展 |
-| `sk_jiedaofa` | 戒刀法 | 兵器/刀 | 3 黄上 | 中性 | 0.85/0.15 | 天龙、笑傲、鹿鼎、书剑 | 拜(L1)；观 | 原创扩展 |
+| `sk_cibeidao` | 慈悲刀 | 兵器/刀 | 6 玄上 | 调和 | 0.60/0.40 | 天龙、笑傲、侠客 | 拜(L3) | 原创扩展；`reqs {attrs:{str:40,agi:35},aptitude:{apBlade:25}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_jiedaofa` | 戒刀法 | 兵器/刀 | 3 黄上 | 中性 | 0.85/0.15 | 天龙、笑傲、鹿鼎、书剑 | 拜(L1)；观 | 原创扩展；`reqs {attrs:{str:30},aptitude:{apBlade:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
 | `sk_damojianfa` | 达摩剑法 | 兵器/剑 | 7 地下 | 调和 | 0.55/0.45 | 笑傲 | 拜(L4)达摩院 | 绝（待考 K-01：核《笑傲江湖》是否出现该名目及施用人物） |
-| `sk_fumojian` | 伏魔剑法 | 兵器/剑 | 5 玄中 | 阳 | 0.70/0.30 | 笑傲、侠客 | 拜(L3)；页 | 原创扩展（同名传统剑法不作小说事实） |
-| `sk_luohanjian` | 罗汉剑法 | 兵器/剑 | 3 黄上 | 中性 | 0.85/0.15 | 天龙、笑傲 | 拜(L1) | 原创扩展 |
+| `sk_fumojian` | 伏魔剑法 | 兵器/剑 | 5 玄中 | 阳 | 0.70/0.30 | 笑傲、侠客 | 拜(L3)；页 | 原创扩展（同名传统剑法不作小说事实）；`reqs {attrs:{agi:35,wis:30},aptitude:{apSword:20}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
+| `sk_luohanjian` | 罗汉剑法 | 兵器/剑 | 3 黄上 | 中性 | 0.85/0.15 | 天龙、笑傲 | 拜(L1) | 原创扩展；`reqs {attrs:{agi:30},aptitude:{apSword:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 | `sk_jiashafumogong` | 袈裟伏魔功 | 兵器/奇门（袈裟） | 8 地中 | 调和 | 0.40/0.60 | 天龙 | 拜(L4)；观（鸠摩智） | 绝（原著） |
-| `sk_xiangmochu` | 韦陀降魔杵 | 兵器/奇门（杵） | 6 玄上 | 阳 | 0.75/0.25 | 天龙、鹿鼎 | 拜(L3) | 原创扩展 |
-| `sk_fumosuofa` | 伏魔索法 | 兵器/鞭索 | 6 玄上 | 阳 | 0.60/0.40 | 倚天、笑傲、鹿鼎 | 拜(L3)；倚天渡厄三僧 | 原创扩展（取三渡黑索之意） |
+| `sk_xiangmochu` | 韦陀降魔杵 | 兵器/奇门（杵） | 6 玄上 | 阳 | 0.75/0.25 | 天龙、鹿鼎 | 拜(L3) | 原创扩展；`reqs {attrs:{wis:40,agi:35},aptitude:{apExotic:25}}`；`trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:2}},{layer:9,attrs:{wis:1}}]` |
+| `sk_fumosuofa` | 伏魔索法 | 兵器/鞭索 | 6 玄上 | 阳 | 0.60/0.40 | 倚天、笑傲、鹿鼎 | 拜(L3)；倚天渡厄三僧 | 原创扩展（取三渡黑索之意）；`reqs {attrs:{agi:40,wis:35},aptitude:{apWhip:25}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
 | `sk_yiweidujiang` | 一苇渡江 | 轻功 | 9 地上 | 中性 | — | 天龙 | 遇（达摩洞面壁）；拜(L5) | 绝；典出达摩渡江传说，原创扩展定级 |
-| `sk_bihuyouqiang` | 壁虎游墙功 | 轻功 | 5 玄中 | 中性 | — | 天龙、倚天、笑傲、鹿鼎 | 拜(L3)；籍 | 民间七十二艺名目，原创纳入 |
-| `sk_meihuazhuang` | 梅花桩 | 轻功 | 4 玄下 | 中性 | — | 笑傲、侠客、鹿鼎、书剑 | 拜(L2) | 民间名目，原创纳入 |
-| `sk_luohanbu` | 罗汉步 | 轻功 | 2 黄中 | 中性 | — | 全部少林书界＋书剑 | 拜(L1) | 原创扩展（入门） |
-| `sk_chanmenshenfa` | 禅门身法 | 轻功 | 2 黄中 | 调和 | — | 笑傲、侠客、鹿鼎、书剑 | 拜(L1)；书剑经南少林共享 | **（原创扩展）** |
-| `sk_jingangnianzhu` | 金刚念珠 | 暗器 | 6 玄上 | 中性 | 0.85/0.15 | 笑傲、鹿鼎 | 拜(L3) | 原创扩展 |
-| `sk_putizi` | 菩提子 | 暗器 | 3 黄上 | 中性 | 0.90/0.10 | 天龙、笑傲、鹿鼎、书剑 | 拜(L1)；观 | 原创扩展 |
+| `sk_bihuyouqiang` | 壁虎游墙功 | 轻功 | 5 玄中 | 中性 | — | 天龙、倚天、笑傲、鹿鼎 | 拜(L3)；籍 | 民间七十二艺名目，原创纳入；`reqs {attrs:{agi:35,bre:30},aptitude:{apLight:20}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_meihuazhuang` | 梅花桩 | 轻功 | 4 玄下 | 中性 | — | 笑傲、侠客、鹿鼎、书剑 | 拜(L2) | 民间名目，原创纳入；`reqs {attrs:{agi:30,bre:25},aptitude:{apLight:15}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_luohanbu` | 罗汉步 | 轻功 | 2 黄中 | 中性 | — | 全部少林书界＋书剑 | 拜(L1) | 原创扩展（入门）；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_chanmenshenfa` | 禅门身法 | 轻功 | 2 黄中 | 调和 | — | 笑傲、侠客、鹿鼎、书剑 | 拜(L1)；书剑经南少林共享 | **（原创扩展）**；`reqs {attrs:{agi:25},aptitude:{apLight:5}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
+| `sk_jingangnianzhu` | 金刚念珠 | 暗器 | 6 玄上 | 中性 | 0.85/0.15 | 笑傲、鹿鼎 | 拜(L3) | 原创扩展；`reqs {attrs:{agi:40,wis:35},aptitude:{apHidden:25}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]` |
+| `sk_putizi` | 菩提子 | 暗器 | 3 黄上 | 中性 | 0.90/0.10 | 天龙、笑傲、鹿鼎、书剑 | 拜(L1)；观 | 原创扩展；`reqs {attrs:{agi:30},aptitude:{apHidden:10}}`；`trainingAttrs:[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]` |
 | `sk_jingangfumoquan` | 金刚伏魔圈 | 杂学/阵法（合击） | 9 地上 | 阳 | 0.30/0.70 | 倚天 | 拜(L5)渡厄；合 | 原著（渡厄三僧） |
-| `sk_luohanzhen` | 罗汉阵 | 杂学/阵法（合击） | 6 玄上 | 阳 | 0.60/0.40 | 天龙、鹿鼎 | 拜(L3)；合 | 原创扩展（待考 K-11：核《天龙八部》《鹿鼎记》是否出现同名阵法） |
-| `sk_jingangnuhou` | 金刚怒吼 | 杂学/音功 | 6 玄上 | 阳 | 0/1 | 天龙、倚天、笑傲、鹿鼎 | 拜(L3) | 原创扩展（06 已引用） |
-| `sk_shaolinshangke` | 少林伤科 | 杂学/医 | 5 玄中 | — | — | 笑傲、鹿鼎、书剑 | 拜(L3)药局；籍 | 原创扩展（少林伤科传统） |
-| `sk_boruoxinjing` | 般若心经 | 杂学/心神 | 4 玄下 | — | — | 全部少林书界＋书剑 | 拜(L2)；籍 | 原创扩展（佛法根基） |
+| `sk_luohanzhen` | 罗汉阵 | 杂学/阵法（合击） | 6 玄上 | 阳 | 0.60/0.40 | 天龙、鹿鼎 | 拜(L3)；合 | 原创扩展（待考 K-11：核《天龙八部》《鹿鼎记》是否出现同名阵法）；`reqs {attrs:{wis:40,agi:35}}`；`trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
+| `sk_jingangnuhou` | 金刚怒吼 | 杂学/音功 | 6 玄上 | 阳 | 0/1 | 天龙、倚天、笑傲、鹿鼎 | 拜(L3) | 原创扩展（06 已引用）；`reqs {attrs:{wis:40,bre:35},aptitude:{apInner:25}}`；`trainingAttrs:[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]` |
+| `sk_shaolinshangke` | 少林伤科 | 杂学/医 | 5 玄中 | — | — | 笑傲、鹿鼎、书剑 | 拜(L3)药局；籍 | 原创扩展（少林伤科传统）；`reqs {attrs:{wis:35,agi:30}}`；`trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
+| `sk_boruoxinjing` | 般若心经 | 杂学/心神 | 4 玄下 | — | — | 全部少林书界＋书剑 | 拜(L2)；籍 | 原创扩展（佛法根基）；`reqs {attrs:{wil:30,wis:25}}`；`trainingAttrs:[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]` |
 
 ### 1.5 天级条目卡（3 门，与基准 §13 完全一致）
 
@@ -282,7 +282,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：少林至高内功，达摩所传（原著）。天龙中游坦之误打误撞以梵文经书练成；笑傲中方证欲以之为令狐冲化解异种真气（原著）。原著没有射雕、倚天玩家受授情节；本文相应学习途径均为原创扩展。
 - **基本**：`harmony`；wOut/wIn 0/1；`inner.contribution {mpMaxPct 56, hpMaxPct 40, attrs {con 10, str 4, wil 8}, mpRegen 3.0, stats {resInjury 20}}`（IP 155）；`inner.meridians:[mer_renmai,mer_dumai]`（任督同修，阴阳 `1:1`）；`bridge: true`；`seclusionCap: 10`；moveSlots 5。
-- **reqs**：`attrs {wil 70}`、`morality {min 20}`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, morality]`。
+- **reqs `aptitude:{apInner:55}`；**：`attrs {bre:75,wil:60,wis:60}`、`morality {min 20}`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, morality]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:2}},{layer:6,attrs:{bre:3,con:1}},{layer:9,attrs:{bre:3,con:1}}]`。
 - **层数要点**：1 易筋｜3 洗髓、伐毛洗髓｜5 化异种真气｜7 倒拽九牛尾（第一绝招）、金刚不坏之基｜8 百病不侵｜9 韦陀献杵（第二绝招）｜10 易筋换骨（第三绝招）、易筋大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 / 效果 | 招架 |
@@ -303,7 +304,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：《倚天屠龙记》中空见神僧以金刚不坏体承受谢逊七伤拳、意在劝其止杀；最后因开口应答而护体有隙，受拳圆寂（原著）。本作定位：**护体终点**——横练一脉（铜人横练→铁布衫→金钟罩）之极，无罩门。
 - **基本**：`yang`；wOut/wIn 0/1（撼山招式覆写）；`inner.contribution {mpMaxPct 30, hpMaxPct 32, attrs {con 12, str 5, wil 5}, mpRegen 2.4, stats {defOut 10, resCC 10}}`（IP 30+32+44+12 = 118 ✓；mp −29%、hp +28%、属性 +22%、回内 −20%，均在 ±30% 内）；`inner.meridians:[mer_dumai,mer_shouyangming]`（立脊护身、整臂承力；阳票 `2:0`，**原创扩展**）；`seclusionCap 8`；`auxUsableMoves [mv_jingangbuhuai_hushen]`；moveSlots 5（内功例外：普通招式 4）。
-- **reqs**：`attrs {con 60, wil 55}`、`aptitude {apInner 55}`、`morality {min 20}`、`prereq [{skill: sk_jinzhongzhao, layer: 7}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq, morality]`。
+- **reqs**：`attrs {con:65,bre:50,str:45}`、`aptitude {apInner:45}`、`morality {min 20}`、`prereq [{skill: sk_jinzhongzhao, layer: 7}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq, morality]`。
+- **trainingAttrs**：`[{layer:3,attrs:{con:2,bre:1}},{layer:6,attrs:{con:3,bre:1}},{layer:9,attrs:{con:3,bre:1}}]`。
 - **层数要点**：1 金刚守势、金刚身｜3 受拳不还｜4 不坏｜5 金刚护身｜6 无罩门｜7 不坏金身（第一绝招）｜8 金疮不染｜9 金刚撼山（第二绝招）｜10 金刚大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -328,7 +330,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：倚天中谢逊于王盘山岛以狮子吼震倒群豪，事先令张翠山、殷素素塞耳（原著）。基准 §13 记为少林/谢逊；本条为少林传承，**谢逊途径由倚天组 `skills-yitian.md` 与 `chapters/04` 以同一 ID 配置**，本文只登记接口。
 - **基本**：`yang`；wOut/wIn 0/1；资质 `apInner`（05 §2.3），强度辅以 `music`；`layerStats {effHit [3,10], resMind [2,10]}`（20）；moveSlots 5；所有招式 `tags [sonic]`、`hTol 99`、`delivery ranged`、不可招架。
-- **reqs**：`attrs {con 55, wil 60}`、`aptitude {apInner 55}`、`prereq [{skill: sk_jingangnuhou, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {wis:60,bre:50}`、`aptitude {apInner:45}`、`prereq [{skill: sk_jingangnuhou, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:1}},{layer:9,attrs:{bre:1}}]`。
 - **层数要点**：1 狮吼震、音劲｜3 慑魂｜4 收发由心｜5 破阵吼｜6 当头棒喝、狮王神威｜7 狮子吼（第一绝招）｜8 震散护体｜9 聚音成线（第二绝招）｜10 狮吼大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 友伤 | 附带 Buff | 核算 |
@@ -359,7 +362,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：外门横练，以气贯皮、周身如披铁衫，刀剑难入而有罩门（民间名目；06 已列为"少林横练"，本文定级地下）。
 - **基本**：`yang`；`inner.contribution {mpMaxPct 18.5, hpMaxPct 20.5, attrs {con 7, str 5}, mpRegen 1.8, stats {defOut 8, tough 7}}`（IP 18.5+20.5+24+9 = 72 ✓）；`inner.meridians:[mer_dumai,mer_shouyangming]`（铁背撑身、曲池架臂；阳票 `2:0`，**原创扩展**）；moveSlots 4。
-- **reqs**：`attrs {con 40, str 35}`、`aptitude {apInner 35}`、`prereq [{skill: sk_tongrenhenglian, layer: 5}]`、`sect {id: sect_shaolin, rank: 3}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {con:50,bre:40,str:35}`、`aptitude {apInner:30}`、`prereq [{skill: sk_tongrenhenglian, layer: 5}]`、`sect {id: sect_shaolin, rank: 3}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{con:1}},{layer:6,attrs:{con:2,str:1}},{layer:9,attrs:{con:3,str:1}}]`。
 - **层数要点**：1 硬接、铁背靠、布衫、罩门｜4 千斤坠｜5 韧劲｜6 铁牛冲｜7 罡气护身（绝）｜10 布衫大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -378,7 +382,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：横练中乘，罡气外罩如钟，受击发声反震（民间名目；06 列为反震 `bf_fanzhen` 来源之一）。
 - **基本**：`yang`；`inner.contribution {mpMaxPct 21, hpMaxPct 23, attrs {con 8, str 4, wil 2}, mpRegen 2.2, stats {defOut 10, defIn 5}}`（IP 21+23+28+11 = 83 ✓）；`inner.meridians:[mer_dumai,mer_shoutaiyang]`（背部罡罩、上肢外侧承击；阳票 `2:0`，**原创扩展**）；moveSlots 4。
-- **reqs**：`attrs {con 45, str 40, wil 40}`、`aptitude {apInner 45}`、`prereq [{skill: sk_tiebushan, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {con:55,bre:45,str:40}`、`aptitude {apInner:35}`、`prereq [{skill: sk_tiebushan, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{con:2}},{layer:6,attrs:{con:2,wil:1}},{layer:9,attrs:{con:3,wil:1}}]`。
 - **层数要点**：1 金钟护体、钟鸣、罩、罩门｜4 金钟反震｜5 钟声回响｜6 洪钟大吕｜7 金钟不破（第一绝招）｜10 金钟大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -397,7 +402,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：《倚天屠龙记》楔子中，觉远临终背诵九阳经文，张君宝、郭襄、无色禅师各有所记，后来形成武当、峨眉、少林三派九阳功（原著）。同源组 `lg_jiuyang`（02 §5.4）。
 - **基本**：`yang`；`inner.contribution {mpMaxPct 32, hpMaxPct 18, attrs {con 5, str 3, wil 3}, mpRegen 2.2, stats {resCold 10, resInjury 5}}`（IP 32+18+22+11 = 83 ✓）；`inner.meridians:[mer_dumai,mer_yangwei]`（选脉依据：原著只确定无色禅师由觉远诵经所得一支，未写运行经脉；本作把该少林支系设计为与本卡“九阳护体—九阳周天”相配的立身护体法，真气先沿背脊命门—至阳—身柱上提，再由阳维金门束联躯干与四肢，故取督脉、阳维，而非由既有 `nature` 或“纯阳”名称倒推；支系来历待按《倚天屠龙记》楔子觉远临终诵经、无色听经情节逐字核对，**待考**；行气部位为**原创扩展**）；阳票 `2:0`；`auxUsableMoves [mv_shaolinjiuyang_liaoshang]`；moveSlots 4。
-- **reqs**：`attrs {con 45}`、`aptitude {apInner 45}`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect]`。
+- **reqs**：`attrs {bre:55,wil:45}`、`aptitude {apInner:35}`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - **层数要点**：1 九阳护体、他强由他强（残）｜3 纯阳劲｜5 九阳疗伤、寒毒难侵｜7 九阳周天（第一绝招）｜8 三派同源｜10 九阳余绪。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 / 效果 | 招架 | 核算 |
@@ -415,7 +421,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：民间传说常把《易筋》《洗髓》二经并称；本作据此原创扩展为易筋经的姊妹篇，重“伐毛洗髓、澄心定性”，但不把它写成金庸原著事实。本作定为**明清少林的最高内功**（非天级：基准 §13 未收，不得升天），满足 02 §2.8“鹿鼎原生最高内功为地阶（catalog 定）”。
 - **基本**：`harmony`（≥ 7，自动桥接）；`inner.contribution {mpMaxPct 34, hpMaxPct 22, attrs {con 5, wis 4, wil 4}, mpRegen 2.5, stats {resMind 8, resInjury 7}}`（IP 34+22+26+12.5 = 94.5 ✓）；`inner.meridians:[mer_renmai,mer_dumai]`（伐毛洗髓、换脉还原取任督相承；阴阳 `1:1`，**原创扩展**）；moveSlots 4。
-- **reqs**：`attrs {wil 50, wis 45}`、`aptitude {apInner 45}`、`morality {min 10}`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, morality]`。
+- **reqs**：`attrs {bre:55,wil:45}`、`aptitude {apInner:40}`、`morality {min 10}`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, morality]`。
+- **trainingAttrs**：`[{layer:3,attrs:{bre:1}},{layer:6,attrs:{bre:2}},{layer:9,attrs:{bre:2}}]`。
 - **层数要点**：1 伐毛、清净｜3 澄心｜4 化异｜5 换脉｜6 化戾｜7 洗髓还原（绝）｜10 洗髓大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 / 效果 | 招架 |
@@ -435,7 +442,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：少林外门拳法之刚猛者，拳如金刚捣杵；本作将传统少林名目纳入七十二绝技，招名与玩法均为原创扩展。
 - **基本**：`yang` · 0.65/0.35 · `layerStats {parry [2,6], defOut [2,9]}`（15）· moveSlots 4。
-- **reqs**：`attrs {str 40, con 35, wis 40}`、`aptitude {apFist 40}`、`prereq [{skill: sk_fuhuquan, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {str:45,con:40}`、`aptitude {apFist:30}`、`prereq [{skill: sk_fuhuquan, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 金刚开山、金刚镇魔、刚劲｜3 怒目金刚｜4 怒目（被动）｜5 金刚捣杵｜7 金刚一怒（绝）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -453,7 +461,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：掌力沉雄、专震内腑；“大金刚掌／大力金刚掌”的小说用名仍待 K-01 核定，06 以“大力金刚掌”列为内伤来源，本文暂以 `sk_dajingangzhang` 收录。**拳掌进阶链**：罗汉拳（黄下）→ 铁砂掌（玄中）→ 大金刚掌（地下）→ 须弥山掌 / 千手如来掌（地上）。
 - **基本**：`yang` · 0.55/0.45 · `layerStats {defOut [2,8], crit [1,6]}`（14）· moveSlots 4。
-- **reqs**：`attrs {str 40, con 40, wis 40}`、`aptitude {apFist 40}`、`prereq [{skill: sk_tieshazhang, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {str:45,bre:35}`、`aptitude {apFist:30}`、`prereq [{skill: sk_tieshazhang, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,bre:1}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 托天式、摩云掌、掌力沉雄｜4 裂石｜5 震伤｜6 大力摧山｜7 大力金刚（绝）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -473,7 +482,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：少林七十二绝技之一；《天龙八部》有般若掌名目，《鹿鼎记》澄观为般若堂首座。本文“般若智光、破执去妄”的掌意及疗愈效果均为原创扩展，定位为**攻守兼修、能疗能制服**的佛门掌法。
 - **基本**：`harmony` · 0.45/0.55 · `layerStats {parry [3,9], defIn [1,6]}`（15）· moveSlots 4。
-- **reqs**：`attrs {str 40, wis 45}`、`aptitude {apFist 45}`、`prereq [{skill: sk_weituozhang, layer: 7}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。倚天本土来源按 C17 使用 `reqsOverride {prereq: [{skill: sk_tieshazhang, layer: 5}]}`，避免依赖该书界白名单外的韦陀掌。
+- **reqs**：`attrs {str:50,con:45}`、`aptitude {apFist:35}`、`prereq [{skill: sk_weituozhang, layer: 7}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。倚天本土来源按 C17 使用 `reqsOverride {prereq: [{skill: sk_tieshazhang, layer: 5}]}`，避免依赖该书界白名单外的韦陀掌。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 如是、空相、无住｜4 照见五蕴｜5 慈悲｜6 度一切苦厄｜7 般若波罗蜜（第一绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 / 效果 | 招架 | 核算 |
@@ -493,7 +503,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：《天龙八部》中“大韦陀杵”是玄悲大师的成名绝技；玄悲遇害后，少林因“以彼之道，还施彼身”而疑姑苏慕容，后知乃慕容博所为（原著）。
 - **基本**：`yang` · 0.60/0.40 · `layerStats {defOut [2,7], crit [2,8]}`（15）· moveSlots 4。
-- **reqs**：`attrs {str 45, con 40, wis 40}`、`aptitude {apFist 45}`、`prereq [{skill: sk_weituozhang, layer: 7}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {str:50,con:45}`、`aptitude {apFist:35}`、`prereq [{skill: sk_weituozhang, layer: 7}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 降魔杵、护法、金刚力｜4 镇岳｜5 护法（被动）｜7 韦陀伏魔、大韦陀杵（第一绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -511,7 +522,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：掌势如须弥压顶，少林掌法中最沉重者；名目是否见《天龙八部》及其施用人物待 K-01 核定，本文效果为原创扩展。只在天龙藏经阁鼎盛时可学。
 - **基本**：`yang` · 0.50/0.50 · `layerStats {defOut [2,7], resCC [2,8]}`（15）· moveSlots 4。
-- **reqs**：`attrs {str 50, con 45, wis 45}`、`aptitude {apFist 50}`、`prereq [{skill: sk_dajingangzhang, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {str:55,con:50}`、`aptitude {apFist:40}`、`prereq [{skill: sk_dajingangzhang, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 压山、沉掌、沉重｜4 八风不动｜5 如山｜7 须弥压顶（第一绝招）｜9 芥子纳须弥（第二绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -531,7 +543,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：《笑傲江湖》少林三战中，方证大师以千手如来掌对任我行，掌影繁复、守中有攻（原著）。这是笑傲书界唯一的少林地上拳掌。
 - **基本**：`harmony` · 0.40/0.60 · `layerStats {combo [2,8], parry [2,7]}`（15）· moveSlots 4。
-- **reqs**：`attrs {agi 45, wis 50}`、`aptitude {apFist 50}`、`morality {min 20}`、`prereq [{skill: sk_dajingangzhang, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq, morality]`。
+- **reqs**：`attrs {str:55,agi:45}`、`aptitude {apFist:40}`、`morality {min 20}`、`prereq [{skill: sk_dajingangzhang, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq, morality]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 千手、掌影、千变｜5 慈悲｜6 如来｜7 万佛朝宗（第一绝招）｜9 接引（第二绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -554,7 +567,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：少林指法之大开大阖者；“摩诃指”是否见《天龙八部》及施用人物待 K-01 核定，招名与效果为原创扩展。
 - **基本**：`yang` · 0.50/0.50 · `layerStats {seal [2,8], hit [1,7]}`（15）· moveSlots 4。
-- **reqs**：`attrs {agi 35, wis 40}`、`aptitude {apFinger 40}`、`prereq [{skill: sk_jingangzhi, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {agi:45,bre:35}`、`aptitude {apFinger:30}`、`prereq [{skill: sk_jingangzhi, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,bre:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 摩诃大指、点穴、指力｜4 摩诃破气、认穴｜6 连指｜7 摩诃无量（绝）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -577,7 +591,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：天龙所列少林绝技（鸠摩智曾冒用，原著）。"多罗"即贝多罗叶（写经之叶），指力如落叶纷飞，擅长群点（效果原创扩展）。
 - **基本**：`harmony` · 0.40/0.60 · `layerStats {hit [2,8], seal [1,7]}`（15）· moveSlots 4。
-- **reqs**：`attrs {agi 40, wis 40}`、`aptitude {apFinger 40}`、`prereq [{skill: sk_jingangzhi, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {bre:45,wis:35}`、`aptitude {apFinger:30}`、`prereq [{skill: sk_jingangzhi, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,bre:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 叶落、贝叶、叶脉｜4 经叶、精准｜6 乱叶｜7 漫天贝叶（绝）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -599,7 +614,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：《倚天屠龙记》中西域金刚门阿三以大力金刚指重创俞岱岩四肢，张三丰等由伤势认出少林金刚指力一路；金刚门源自火工头陀一脉（原著）。具体师承层级统一留在 K-09 核对。06 `bf_gushang`（骨伤）即以此为典。
 - **基本**：`yang` · 0.65/0.35 · `layerStats {seal [2,8], crit [1,7]}`（15）· moveSlots 4。
-- **reqs**：`attrs {str 45, agi 35, wis 40}`、`aptitude {apFinger 45}`、`prereq [{skill: sk_jingangzhi, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {agi:50,bre:40}`、`aptitude {apFinger:35}`、`prereq [{skill: sk_jingangzhi, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,bre:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 捏骨、扎穴、刚指｜4 错骨｜5 伤筋｜6 金指穿石｜7 金刚碎骨（第一绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -620,7 +636,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：以一指贯注周身功力，少林指法的根本功夫；是否见于相关金庸小说及施用人物待 K-01 核定。南少林亦传是本作原创扩展。
 - **基本**：`harmony` · 0.30/0.70 · `layerStats {seal [3,10], pierce [1,5]}`（15）· moveSlots 4。
-- **reqs**：`attrs {wis 45, wil 40}`、`aptitude {apFinger 45}`、`prereq [{skill: sk_jingangzhi, layer: 7}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {bre:50,wis:40}`、`aptitude {apFinger:35}`、`prereq [{skill: sk_jingangzhi, layer: 7}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,bre:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 一指、禅定、贯注｜4 灌顶｜5 解穴｜6 指力外放｜7 一指定乾坤（第一绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 / 效果 | 招架 | 核算 |
@@ -643,7 +660,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：取“世尊拈花、迦叶微笑”之意，指力阴柔无形；《天龙八部》中拈花指是少林绝技之一。扫地僧相关论述的逐字表述，以及《鹿鼎记》澄观是否明确通晓此技，留待 K-05 核定。
 - **基本**：`harmony` · 0.30/0.70 · `layerStats {seal [3,10], crit [1,5]}`（15）· moveSlots 4。
-- **reqs**：`attrs {wis 50, agi 45}`、`aptitude {apFinger 50}`、`prereq [{skill: sk_yizhichan, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {bre:55,wis:45}`、`aptitude {apFinger:40}`、`prereq [{skill: sk_yizhichan, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,bre:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 拈花、微笑、无相｜4 阴柔｜6 散花｜7 迦叶一笑（第一绝招）、禅机｜9 无形（第二绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -668,7 +686,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：指力无形无相、发时不见其势。《天龙八部》中鸠摩智以小无相功为根基，施展包括无相劫指在内的少林绝技（原著）。
 - **基本**：`harmony` · 0.25/0.75 · `layerStats {pierce [3,10], crit [1,5]}`（15）· moveSlots 4。
-- **reqs**：`attrs {wis 50, wil 45}`、`aptitude {apFinger 50}`、`prereq [{skill: sk_mohezhi, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {bre:60,wis:50}`、`aptitude {apFinger:40}`、`prereq [{skill: sk_mohezhi, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,bre:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 无相、劫火、无迹｜4 空劫｜5 劫｜7 劫尽（第一绝招）｜9 无相劫（第二绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -697,7 +716,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：腿影如随形之影，敌退我进、紧缠不舍；该名目是否见于相关金庸小说及施用人物待 K-01 核定，效果为原创扩展。腿法持械不降效（05 §6.3），是棍僧、刀僧的副手拳脚首选。
 - **基本**：`yang` · 0.70/0.30 · `layerStats {eva [2,8], counter [1,7]}`（15）· moveSlots 4。
-- **reqs**：`attrs {agi 45, str 35, wis 40}`、`aptitude {apLeg 40}`、`prereq [{skill: sk_tiesaozhou, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {agi:45}`、`aptitude {apLeg:30}`、`prereq [{skill: sk_tiesaozhou, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 如影、随形、追影｜4 连环踢、追击｜6 绕影｜7 影踪无定（绝）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -714,7 +734,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 ##### 龙爪手 `sk_longzhaoshou`（地中 8 · 拳脚·擒拿 · 天龙/倚天/笑傲；别名"金刚龙爪手"）——摘要卡，定义以 05 §13.7 为准
 
 - **简述**：少林七十二绝技；倚天光明顶空性以龙爪手对张无忌，张无忌观而学之、以同一路龙爪手胜之（原著）。**即用户示例"少林金刚套装"中的"金刚龙爪手"——同一武学，`alias` 已收"金刚龙爪手"，不另立 ID。**
-- **基本**：`yang` · 0.70/0.30 · `layerStats {seal [3,10], crit [1,5]}` · reqs：`attrs {str 45}`、`aptitude {apGrapple 45}`、`prereq [{skill: sk_shaolinqinna, layer: 5}]`（本文 §1.7 定义）、`sect {id: sect_shaolin, rank: 4}`。
+- **基本**：`yang` · 0.70/0.30 · `layerStats {seal [3,10], crit [1,5]}` · reqs：`attrs {str:50,agi:40}`、`aptitude {apGrapple:35}`、`prereq [{skill: sk_shaolinqinna, layer: 5}]`（本文 §1.7 定义）、`sect {id: sect_shaolin, rank: 4}`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **招式**（原著定数 8 式，超出地阶 4–7 招规范，按原著例外）：捕风式（1，0.95，点穴 20%）、捉影式（2，拉拽 1，0.95）、抚琴式（3，1.10×2 段，缴械 25%）、鼓瑟式（4，横扫 0.85，点穴 15%）、批亢式（5，1.20，暴击 +15）、**龙爪三十六路**（7，第一绝招 2.70×6 段，点穴 100% 2 + 缴械 50%，`ultimate:true/rageCost:100/recovery:1200`）、抱残式（8，架势反击并定身）、**捣虚式**（9，第二绝招 2.75，驱散架势、无视 20% 外防，`ultimate:true/rageCost:100/recovery:1200`）、守缺式（9，架势，引用 `bf_shouque`）。第二绝招核算：`3.00−0.10（驱散）−0.15（无视外防）=2.75`；完整定义须同步 `design/05` §13.7（见 §8.3）。
 - **被动**：拿穴（1）、分筋错骨（5）、金刚指力（8）、龙爪大成（10，对被封穴目标不可招架）。
 - **本文登记**：① 守缺式所用 `bf_shouque` 已由 06 §8.11 收录（数值以 05 为准）；② 擒拿进阶链：少林擒拿手（黄上）→ 鹰爪功（玄中，可选）→ 龙爪手（地中）；③ `setTags [set_shaolin_jingang]`（05 原定），本文不增补。
@@ -725,7 +746,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：禅杖、齐眉棍皆可施展的少林镇寺杖法；该名目是否见于《天龙八部》《鹿鼎记》及施用人物待 K-01 核定，招名与效果为原创扩展。**棍杖进阶链**：少林棍法（黄中）→ 阴手棍（玄下）/ 夜叉棍法（玄中）→ 伏魔杖法（地中）。
 - **基本**：`yang` · 0.60/0.40 · `weaponReq {category: staff}` · `layerStats {parry [3,10], defOut [1,5]}`（15）· moveSlots 4。
-- **reqs**：`attrs {str 45, con 40, wis 40}`、`aptitude {apStaff 45}`、`prereq [{skill: sk_yachagun, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {str:50,con:45}`、`aptitude {apStaff:35}`、`prereq [{skill: sk_yachagun, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 伏魔、横扫群魔、拒敌｜4 镇杖、拆招｜6 举鼎｜7 降魔禅杖（第一绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -744,7 +766,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：《天龙八部》中鸠摩智以小无相功为根基冒用燃木刀法，展示刀锋未及木材而木先焦燃的功力（原著；不作逐字引文）。本作把它机制化为刀带灼热内劲。**刀法进阶链**：戒刀法（黄上）→ 慈悲刀（玄上）→ 燃木刀法（地上）。
 - **基本**：`yang` · 0.40/0.60 · `weaponReq {category: blade}` · `layerStats {crit [2,8], hit [1,7]}`（15）· moveSlots 4；招式 `tags [fire]`。
-- **reqs**：`attrs {str 45, wis 50}`、`aptitude {apBlade 50}`、`prereq [{skill: sk_cibeidao, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {str:50,bre:50}`、`aptitude {apBlade:40}`、`prereq [{skill: sk_cibeidao, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2,bre:1}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 燃木、离焰、炽热｜4 焚香、刀劲｜7 业火燃木（第一绝招）｜9 刀气燎原（第二绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -766,7 +789,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：达摩院所传剑法，剑意取“面壁”“一苇”“只履西归”诸典；“达摩剑法”是否见于《笑傲江湖》及施用人物待 K-01 核定，招名与效果为原创扩展。少林非剑派，此为寺中唯一地阶剑法。**剑法进阶链**：罗汉剑法（黄上）→ 伏魔剑法（玄中）→ 达摩剑法（地下）。
 - **基本**：`harmony` · 0.55/0.45 · `weaponReq {category: sword}` · `layerStats {parry [3,9], hit [1,6]}`（15）· moveSlots 4。
-- **reqs**：`attrs {agi 40, wis 40}`、`aptitude {apSword 40}`、`prereq [{skill: sk_fumojian, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {agi:45,wis:35}`、`aptitude {apSword:30}`、`prereq [{skill: sk_fumojian, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 面壁、直指人心、禅剑｜4 一苇、静中生慧｜6 只履西归｜7 见性成佛（绝）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 / 位移 | 招架 | 核算 |
@@ -785,7 +809,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：《天龙八部》中袈裟伏魔功列入少林绝技，鸠摩智亦以小无相功为根基施展（原著）；本文将其配成可持袈裟类奇门兵器的卷缠与护身体系。
 - **基本**：`harmony` · 0.40/0.60 · `weaponReq {category: exotic, kinds: [misc], tags: [jiasha]}`（袈裟类奇门兵器 `eq_jiasha_*` 由 design/10 定义；缺 `jiasha` 标签时"卷""罩"失去附带效果，05 §6.2）· `layerStats {parry [3,9], eva [1,6]}`（15）· moveSlots 4。
-- **reqs**：`attrs {wis 45, agi 40}`、`aptitude {apExotic 45}`、`prereq [{skill: sk_damoxinjing, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {wis:55,agi:40}`、`aptitude {apExotic:35}`、`prereq [{skill: sk_damoxinjing, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:2}},{layer:9,attrs:{wis:1}}]`。
 - **层数要点**：1 卷、拂、柔中带刚｜4 罩、袖里乾坤｜5 拂暗器｜7 袈裟伏魔（第一绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -806,7 +831,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：典出达摩折苇渡江的传说；基准 §11 以"一苇渡江"描述五阶·凌虚轻功。本作将其定为少林最高轻功（地上），列入七十二绝技（原创纳入）。只在高武书界原生，与 03 §4.5.2"中武最高原生轻功地中"的假设一致。
 - **基本**：`neutral`；`QS(9) = 120`（10 重时 `Q_skill` 120，03 §4.5）；`layerStats {eva [3,10], tough [1,5]}`（15）；轻功非核心、不可携带。
-- **reqs**：`attrs {agi 50, wil 45}`、`aptitude {apLight 50}`、`prereq [{skill: sk_bihuyouqiang, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {agi:55,bre:45}`、`aptitude {apLight:40}`、`prereq [{skill: sk_bihuyouqiang, layer: 5}]`、`sect {id: sect_shaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 一苇、身轻｜4 踏苇｜5 踏水｜7 飞渡（第一绝招）｜9 随波（第二绝招）｜10 大成。
 
 | 招式 | ID | 层 | 类型 | 耗内 | 冷却 | 效果 |
@@ -824,7 +850,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 - **简述**：《倚天屠龙记》后段，渡厄、渡劫、渡难三僧坐于少室山后峰三株古松间，各持长索结“金刚伏魔圈”守护囚禁谢逊之处；张无忌曾与杨逍、周芷若等分别配合闯圈（原著）。
 - **阵法规则以 09 §6.8.3 为准**（`special.formation`）：三角三点阵型、三名成员**坐关**（不能移动，免疫击退/牵引/换位）、圈域 = 三角凸包、“伏魔”（圈域内敌人每回合 `bf_fengqinggong`）、“索网”（持长索时圈域内皆在射程）、“三力一心”（受伤 50% 平分给另两人）及专属破法。正式 ID 为 `sk_jingangfumoquan`；C12 已解决旧名迁移，09 当前生产引用也已使用正式 ID。本卡只补武学本体：层数、招式、被动、学习。
 - **基本**：`yang` · 0.30/0.70（持鞭索时"黑索锁拿"改 0.60/0.40）· 强度技艺 `formation`（05 §2.3；09 §6.8.0 强度 ×(1 + formation/200)）· `layerStats {parry [3,10], resCC [1,5]}`（15）· `fusible: false`。
-- **reqs**：`attrs {wil 50, wis 45}`、`skills {formation: 50}` **【建议值】**、`prereq [{skill: sk_fumosuofa, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。`formation` 是软门槛；罗汉阵不再作为倚天本土硬前置，可作为阵法修炼加速项由 `design/09` 配置。
+- **reqs**：`attrs {wis:55,agi:45}`、`skills {formation: 50}` **【建议值】**、`prereq [{skill: sk_fumosuofa, layer: 5}]`、`sect {id: sect_shaolin, rank: 5}`、`hard: [sect, prereq]`。`formation` 是软门槛；罗汉阵不再作为倚天本土硬前置，可作为阵法修炼加速项由 `design/09` 配置。
+- **trainingAttrs**：`[{layer:3,attrs:{wis:1}},{layer:6,attrs:{wis:1}},{layer:9,attrs:{wis:1}}]`。
 - **层数要点**：1 布圈、黑索锁拿、古松之定｜5 一心补隙｜7 松间伏魔（第一绝招）｜9 禅心坚定（第二绝招）｜10 二僧成圈。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 / 效果 | 招架 | 核算 |
@@ -847,7 +874,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：罗汉堂外门横练，弟子须"闯铜人巷"方得传授（民间"少林十八铜人"传说的化用，原创扩展）。横练链起点：铜人横练 → 铁布衫 → 金钟罩 → 金刚不坏体。
 - **基本**：`yang`；`inner.contribution {mpMaxPct 14, hpMaxPct 15.5, attrs {con 6, str 4}, mpRegen 1.5, stats {defOut 6, resCC 4}}`（IP 14+15.5+20+7.5 = 57 ✓；mp −30%、hp +29%、属性 +25%、回内 −17%）；`inner.meridians:[mer_dumai,mer_shouyangming]`（铜身立脊、铜臂外撞；阳票 `2:0`，**原创扩展**）；moveSlots 3。
-- **reqs**：`attrs {con 30, str 30}`、`aptitude {apInner 25}`、`prereq [{skill: sk_shaolinzhuanggong, layer: 4}]`、`sect {id: sect_shaolin, rank: 3}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {con:45,str:35}`、`aptitude {apInner:25}`、`prereq [{skill: sk_shaolinzhuanggong, layer: 4}]`、`sect {id: sect_shaolin, rank: 3}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{con:1}},{layer:6,attrs:{con:2}},{layer:9,attrs:{con:2}}]`。
 - **招式**：铜身 `mv_tongrenhenglian_tongshen`（1）架势·`bf_waifang_sheng` 2·5%·cd2｜铜臂撞 `mv_tongrenhenglian_tongbi`（1）单体·0.95·6%·cd0·击退 1（1−0.05；wOut/wIn 覆写 0.80/0.20）｜千斤坠 `mv_tongrenhenglian_qianjin`（4）架势·`bf_wenzhong` 3·5%·cd3｜**铜人巷（绝）** `mv_tongrenhenglian_tongrenxiang`（7）`aoe_around`·2.20·8%·气势100·收招1200·`ultimate:true`·击退 1（`3.00×0.75−0.05=2.20`）。；`MoveDef{unlock:7; ultimate:true; rageCost:100; mpCost:8%; cd:0; recovery:1200}`
 - **被动**：`ps_tongrenhenglian_henglian` 横练（1，Z4 近战来袭 −2%→−6%，`scaled`）；`ps_tongrenhenglian_zhaomen` 罩门（1，伴生 `bf_zhaomen`，品阶 = 本功）；`ps_tongrenhenglian_tongpi` 铜皮（5，trigger `onHurt` 近战，`bf_renjin` 1，每回合 1 次）；`ps_tongrenhenglian_dacheng` 横练大成（10，常驻 `bf_mian_liuxue`，06 所列"横练大成"）。
 - **setTags**：`[set_shaolin_jingang]`。
@@ -942,13 +970,13 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 | ID | 名称 | 大类/子类 | 品阶 | 性质 | wOut/wIn | 原生书界 | 获取方式 | 出处 |
 |---|---|---|---|---|---|---|---|---|
 | `sk_huheshuangxingquan` | 虎鹤双形拳 | 拳脚/拳掌 | 7 地下 | 阳 | 0.65/0.35 | 书剑 | 拜(L4)罗汉堂 | 民间南派名目，原创纳入 |
-| `sk_wulangbaguagun` | 五郎八卦棍 | 兵器/棍杖 | 6 玄上 | 阳 | 0.75/0.25 | 书剑 | 拜(L3) | 民间南派名棍，原创纳入 |
-| `sk_tiexiangong` | 铁线功 | 内功/心法（横练） | 5 玄中 | `yang` | 0/1 | 书剑 | 拜(L3) | 民间"铁线拳"之内功化，原创扩展 |
-| `sk_wuxingquan` | 五形拳 | 拳脚/拳掌 | 5 玄中 | 阳 | 0.75/0.25 | 书剑 | 拜(L3)；页 | 民间名目，原创纳入 |
-| `sk_bazhandao` | 八斩刀 | 兵器/刀（双刀） | 5 玄中 | 中性 | 0.85/0.15 | 书剑 | 拜(L3) | 民间南派双刀，原创纳入 |
-| `sk_hongquan` | 洪拳 | 拳脚/拳掌 | 3 黄上 | 阳 | 0.85/0.15 | 书剑 | 拜(L1)；观 | 民间南派名目，原创纳入 |
-| `sk_nanshaolinqiaoshou` | 南少林桥手 | 拳脚/拳掌 | 3 黄上 | 阳 | 0.80/0.20 | 书剑 | 拜(L1) | **（原创扩展）** |
-| `sk_luohanshibashou` | 罗汉十八手 | 拳脚/拳掌 | 1 黄下 | 阳 | 0.90/0.10 | 书剑 | 拜(L1) | 原创扩展（入门） |
+| `sk_wulangbaguagun` | 五郎八卦棍 | 兵器/棍杖 | 6 玄上 | 阳 | 0.75/0.25 | 书剑 | 拜(L3) | 民间南派名棍，原创纳入；`reqs {attrs:{str:40,con:35},aptitude:{apStaff:25}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_tiexiangong` | 铁线功 | 内功/心法（横练） | 5 玄中 | `yang` | 0/1 | 书剑 | 拜(L3) | 民间"铁线拳"之内功化，原创扩展；`reqs {attrs:{con:35,str:30},aptitude:{apInner:20}}`；`trainingAttrs:[{layer:3,attrs:{con:1}},{layer:6,attrs:{con:2}},{layer:9,attrs:{con:2}}]` |
+| `sk_wuxingquan` | 五形拳 | 拳脚/拳掌 | 5 玄中 | 阳 | 0.75/0.25 | 书剑 | 拜(L3)；页 | 民间名目，原创纳入；`reqs {attrs:{str:35,con:30},aptitude:{apFist:20}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_bazhandao` | 八斩刀 | 兵器/刀（双刀） | 5 玄中 | 中性 | 0.85/0.15 | 书剑 | 拜(L3) | 民间南派双刀，原创纳入；`reqs {attrs:{str:35,agi:30},aptitude:{apBlade:20}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]` |
+| `sk_hongquan` | 洪拳 | 拳脚/拳掌 | 3 黄上 | 阳 | 0.85/0.15 | 书剑 | 拜(L1)；观 | 民间南派名目，原创纳入；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_nanshaolinqiaoshou` | 南少林桥手 | 拳脚/拳掌 | 3 黄上 | 阳 | 0.80/0.20 | 书剑 | 拜(L1) | **（原创扩展）**；`reqs {attrs:{str:30},aptitude:{apFist:10}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
+| `sk_luohanshibashou` | 罗汉十八手 | 拳脚/拳掌 | 1 黄下 | 阳 | 0.90/0.10 | 书剑 | 拜(L1) | 原创扩展（入门）；`reqs {attrs:{str:20},aptitude:{apFist:0}}`；`trainingAttrs:[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:1}},{layer:9,attrs:{str:1}}]` |
 | 嵩山共享 | 少林桩功、少林心法、童子功、**铁布衫**、**一指禅**、金刚指、少林弹腿、铁扫帚、鹰爪功、少林棍法、戒刀法、罗汉步、梅花桩、菩提子、般若心经、少林伤科、**少林长拳、少林护山棍、禅门身法** | — | 地 **2** / 玄 **7** / 黄 **10** | — | — | 书剑（经南少林） | 同 §1.4；各来源以正式 `reqsOverride {sect: {id: sect_nanshaolin, rank: Ln}, ...}` 覆写 | 见 §1 |
 
 ### 2.3 地阶条目卡
@@ -957,7 +985,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：南派少林拳术，虎形练力、鹤形练精，刚柔并济（民间南拳名目；本作纳入南少林，为书剑少林系拳法顶点）。南派拳链：罗汉十八手（黄下）→ 洪拳（黄上）→ 五形拳（玄中）→ 虎鹤双形拳（地下）。
 - **基本**：`yang` · 0.65/0.35 · `layerStats {parry [2,7], eva [1,8]}`（15）· moveSlots 4。
-- **reqs**：`attrs {str 40, agi 40, wis 40}`、`aptitude {apFist 40}`、`prereq [{skill: sk_wuxingquan, layer: 5}]`、`sect {id: sect_nanshaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **reqs**：`attrs {str:45,agi:35}`、`aptitude {apFist:30}`、`prereq [{skill: sk_wuxingquan, layer: 5}]`、`sect {id: sect_nanshaolin, rank: 4}`、`hard: [sect, prereq]`。
+- **trainingAttrs**：`[{layer:3,attrs:{str:1}},{layer:6,attrs:{str:2}},{layer:9,attrs:{str:1}}]`。
 - **层数要点**：1 猛虎出林、白鹤亮翅、虎骨｜4 虎抱头、鹤步｜6 鹤嘴啄｜7 虎鹤双形（绝）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 收招 | 附带 Buff | 招架 | 核算 |
@@ -1005,7 +1034,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 
 - **简述**：《倚天屠龙记》中成昆化名圆真潜伏少林，于光明顶以幻阴指暗袭明教众人，中指者受阴寒指力所制，后由张无忌以九阳神功化解（原著）。被袭者名单与先后次序待考 K-08；本作据其阴毒偷袭定位设置邪派门槛。
 - **基本**：`sect: null`、`lineage: 叛僧成昆（圆真）`（少林旁出，不属少林门派传承）· `yin` · 0.20/0.80 · `layerStats {crit [2,8], seal [1,7]}`（15）· moveSlots 4；招式 `tags [cold]`；`observable: false`。
-- **reqs**：`attrs {wis 45, agi 40}`、`aptitude {apFinger 45}`、`morality {max -20}`、`hard: [morality]`。**不属七十二绝技**（无 `liqi`）。
+- **reqs**：`attrs {bre:50,wis:40}`、`aptitude {apFinger:35}`、`morality {max -20}`、`hard: [morality]`。**不属七十二绝技**（无 `liqi`）。
+- **trainingAttrs**：`[{layer:3,attrs:{agi:1}},{layer:6,attrs:{agi:2,bre:1}},{layer:9,attrs:{agi:1}}]`。
 - **层数要点**：1 幻阴、暗袭、阴寒｜4 寒劲入脉、潜形｜6 幻影｜7 幻阴无相（第一绝招）｜10 大成。
 
 | 招式 | ID | 层 | 范围 | 射程 | 倍率 | 耗内 | 冷却 | 附带 Buff | 招架 | 核算 |
@@ -1565,6 +1595,8 @@ AR-18 起，表中性质均由各正式卡的 `inner.meridians` 逐脉计票推�
 | `sk_yizhichan` | `set_fangzheng` |
 
 ## 7. 数据校验规则与测试用例
+
+- **属性 v2 校验**：本册 74 门正式武学均含按 `design/05` §7.3.1 重算的 `reqs.attrs`；全部显式 `ap*` 门槛按 `5×grade−5` 迁移；每门含顶层 `trainingAttrs`，层位恰为 3/6/9，单节点 1–4、单门总和 ≤12，属性只取 `str/con/bre/wis/agi/wil`。
 
 ### 7.1 静态校验
 

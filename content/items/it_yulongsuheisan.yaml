@@ -1,0 +1,42 @@
+schemaVersion: item.v1
+id: it_yulongsuheisan
+name: 玉龙苏合散
+kind: pill
+sub: medicine
+grade: 10
+stack: 9
+chapters: any
+origin: canonExpanded
+canonRef: 金庸作品 （待考：核具体书名、持有人与药效）
+price: null
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 1400
+  - op: mpPct
+    params:
+      valueBp: 840
+  - op: dispel
+    params:
+      tags:
+      - injury
+      - poison
+      grade: 10
+assets:
+  icon: item/yulongsuheisan
+text:
+  desc: 外观：羊脂玉小葫芦盛银白细粉，银塞云纹。
+  lore: 羊脂玉葫芦密藏银白细粉，危急时少量服下并立刻调息，可兼顾回气、内外伤救治与解毒。具体书名、持有人及原文药效尚待核对，现有数值均属玩法投影。（待考） （原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      restoreQi: 8
+      healInner: 8
+      healOuter: 14

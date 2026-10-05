@@ -1,0 +1,15 @@
+{
+  "id": "bld_kit_ming_north_market_stall_c02",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-fe4e22e6-b788-4771-bb4e-7e4f00acb73e.png",
+  "prompt": "Use case: precise-object-edit. Correct this single Ming northern Chinese MARKET STALL sprite. Preserve beige textile canopy, wood counter, two grain baskets and folded cloth, no people or text. Deliver true TRANSPARENT RGBA, with a completely empty fully transparent band at least 12% of image width/height on ALL FOUR SIDES. Remove ALL background glow, haze, vignette, gradient and ground shadow outside the thin rectangular brick footprint; all empty pixels must have alpha ZERO. Light remains upper-left. Ground has 3:2 axis ratio: front left-to-front edge runs down-right at EXACTLY +0.500 slope, front-to-right edge runs up-right at EXACTLY -0.500; orthographic camera yaw45 pitch30, not 30deg ground-edge isometric. Brick pad must be paper-thin and all corners uncut. Keep natural realistic texture density. No extra props, no watermark, no pedestal.",
+  "created": "2026-09-30T21:19:29.436Z",
+  "references": [
+    {
+      "path": "/Users/bytedance/.codex/generated_images/01a0f428-545d-7841-8c07-12623ae9a4f4/exec-22c7cf6e-29d1-47d9-9570-6ea71de013d0.png",
+      "id": "bld_kit_ming_north_market_stall_c01",
+      "role": "编辑目标，已view_image"
+    }
+  ],
+  "status": "rejected",
+  "rejected_reason": "占地宽深比更加偏离3:2，保留候选1。"
+}

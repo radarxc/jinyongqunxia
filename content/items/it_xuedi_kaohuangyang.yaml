@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_xuedi_kaohuangyang
+name: 雪地烤黄羊
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《书剑恩仇录》·喀丝丽烤熟随身干黄羊与陈家洛分食
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2200
+  - op: meal
+    params:
+      value: bf_ruiyi,bf_juqi:3battle
+assets:
+  icon: item/xuedi_kaohuangyang
+text:
+  desc: 外观：焦褐黄羊肉块置盐岩浅盘，雪地火烤痕。 待运行时投影：party=4。
+  lore: 《书剑恩仇录》中喀丝丽烤熟随身干黄羊，与陈家洛在雪地分食。本件保留火烤痕与盐岩浅盘，宜热食；锐意、聚气与供餐数值属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 22

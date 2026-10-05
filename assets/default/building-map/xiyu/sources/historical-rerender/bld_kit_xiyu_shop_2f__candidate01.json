@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_shop_2f",
+  "generated_at": "2026-10-01T10:15:52.055685+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_shop_2f__candidate01.png",
+  "sha256": "04125c486a50a22625152713ebf8835c0aa8fc8429b88df9851e63f1dfb25a82",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_shop_2f__geometry-lock.png",
+      "sha256": "be7914ddb03a21c942969f0766712b98b966fcf3bc729ba97d22c895a6bf7fe5",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/houses_1.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Kashgar_-_old_town_houses.jpg",
+      "detail": "只取二层土木叠置、悬挑木廊和紧凑街屋尺度；现代构件排除。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/market_4058.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Sunday_market_Kashgar_IGP4058.jpg",
+      "detail": "只取木器、铜器与几何木格的视觉语汇；现代棚架和乐器排除。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:Kashgar_-_old_town_houses.jpg — 只取二层土木叠置、悬挑木廊和紧凑街屋尺度；现代构件排除。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Sunday_market_Kashgar_IGP4058.jpg — 只取木器、铜器与几何木格的视觉语汇；现代棚架和乐器排除。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. Texture-only architectural surface detail edit. Trace ALL polygon boundaries of this solid shape precisely. Do not alter the silhouette, corners, roof edge angles, vertical corner positions or diagonal foundation lines, not even slightly. The output must be this exact geometry, with carved detail applied to its planes: a historical Kashgar two-storey adobe shop. Light ochre mud plaster, realistic brick and wood texture, flat earth roof with small parapet within edges, a lattice wooden upper gallery, two open recessed ground-floor shop bays containing textiles and copper vessels. All shop goods and awning remain inside block. No rooftop rooms, roof alterations, protruding platforms or people. Input ground footprint8:6 and BOTH visible ground edge slopes exactly one vertical per two horizontal; preserve these. Full sprite true transparent RGBA, upper-left illumination, tiny lower-right contact shadow only. No halo, ground patch, context, letters or signs. Preserve transparent margin and camera exactly; detailed realistic historical-game art.\n\nRequired historical detail summary: 下层深铺洞、上层木廊或格窗，平顶外露梁头；不做整面玻璃窗。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

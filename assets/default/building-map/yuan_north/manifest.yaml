@@ -1,0 +1,2575 @@
+- id: bld_kit_yuan_north_biaoju
+  file: bld_kit_yuan_north_biaoju.png
+  category: building-map
+  style: default
+  subject: 元北方护运行货栈（原创扩展）
+  prompt: 'Use case: precise-object-edit. Generate one entirely NEW anonymous original Yuan-era north-China game-building sprite. IMAGE 1 is only the locked geometry,
+    camera, registered 14-by-11 logical footprint, entrance orientation, approximate silhouette scale and transparent-margin guide. IMAGES 2 and 3 are actual architectural
+    photo references; use their visible construction details only, never copy their whole composition. The escort depot function is an ORIGINAL gameplay extension
+    and the photos are regional vernacular construction analogues, not proof of a named Yuan escort depot.
+
+
+    Subject: a defensible cargo-and-escort courtyard depot: buff rammed-earth/adobe perimeter walls over a sparse grey-brick damp skirt; heavy inward-set double plank
+    gate in a dark timber frame; plain three-bay hard-gabled rear store hall and lower lean side sheds. Apply IMAGE 2''s compact courtyard scale, straight low hard-gable
+    grey-tile roof and earth/brick wall relation. Apply IMAGE 3''s pan-and-cover grey tile rhythm, round rafter ends, exposed post-and-beam frame, thick plank doors,
+    small square lattice windows and grey-brick wall foot. Low roof curvature and modest eave projection; plain ridge with restrained end caps, no elaborate beasts;
+    sparse simple bracket blocks, no palace-grade dougong or colored painting. A few sealed crates, sacks and one handcart may sit inside; no heraldry or weapons
+    display.
+
+
+    Preserve IMAGE 1''s single coherent compound count, readable ground-contact corners and bottom edge. Orthographic dimetric yaw 45 degrees, elevation about 30
+    degrees; screen ground axes about +0.5 and -0.5, verticals upright, opposite edges parallel, no perspective convergence. Soft upper-left light, darker right/rear
+    faces, tiny lower-right contact shadow. Restrained realistic weathered materials and fine Song-baseline detail density. TRUE transparent RGBA with clean antialiasing
+    and at least 8 percent empty margin on every side; openings alpha zero. No floor plane outside the walls, people, animals, text, pseudo-text, signs, flags, plaques,
+    watermark, modern objects, landscape, sky, checkerboard, glow, fog, thick pedestal, clipping, fantasy, yellow glaze or dense Qing decoration.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: jishi_1.png
+    url: http://sx.people.com.cn/NMediaFile/2021/1025/LOCAL202110251056000479181413354.png
+    sha256: 02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 高平姬氏民居院落照片：低举折硬山灰瓦、夯土/土坯墙与灰砖防潮裙；只作北方民居材料和尺度类比。
+  - file: jishi_3.png
+    url: http://sx.people.com.cn/NMediaFile/2021/1025/LOCAL202110251103000545126112312.png
+    sha256: 00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 高平姬氏民居正立面照片：灰筒板瓦、圆椽头、木柱枋、厚板门、方格窗和灰砖墙脚；避开照片中的现代器物与文字。
+  tool: Codex images/edits via built-in image generation backend
+  model: gpt-image-2
+  generation_id: 99d0e7fa-5a51-401e-82ba-f9b2558e906c
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    size: 1457x1079
+    request_image_count: 3
+  created: '2026-10-02T06:58:17+00:00'
+  created_time_basis: image generation 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_biaoju.png
+  source_sha256: b272e21f52a62282932d6a15e80759c10d476918c510c69b6ac5ea5cfc0a077d
+  size: 864x640
+  sha256: a67f3048c296f680bd5504236d67b3409aeafe3b3e2fc583e111284e60e25498
+  status: candidate
+  building:
+    type: bld_kit_yuan_biaoju
+    footprint:
+    - 14
+    - 11
+    anchor:
+    - 457.0881
+    - 338.1434
+    era: yuan_north
+  footprint_m:
+  - 14
+  - 11
+  entrance:
+    edge: S
+    offset_cells: 6
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 800
+    - 400
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: design/22 §3.4 冻结骨架
+  anchor_px:
+  - 457.0881
+  - 338.1434
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_biaoju.json
+  processing:
+    source_size:
+    - 1457
+    - 1079
+    crop_box:
+    - 72
+    - 84
+    - 1387
+    - 1019
+    uniform_scale: 0.5642585551330799
+    resized_size:
+    - 742
+    - 528
+    canvas_size:
+    - 864
+    - 640
+    paste_offset:
+    - 61
+    - 56
+    alpha_cleanup: source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 864
+    - 640
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 329614
+    alpha_partial_pixels: 222436
+    alpha_opaque_pixels: 910
+    alpha_nonzero_bbox:
+    - 61
+    - 56
+    - 803
+    - 584
+    transparent_margins_px:
+    - 61
+    - 56
+    - 61
+    - 56
+    border_alpha_max: 0
+  historical_detail: 护运货栈（原创扩展）：低举折硬山灰筒板瓦、圆椽头、夯土/土坯墙与灰砖防潮裙、粗木柱枋、厚板门及方格窗；照片仅作北方民居形制类比。
+  notes: 合入前审核返修：入选候选真实输入两张可辨建筑构造的历史图片；保留既有ID、类型、占地与入口。成品仅清除alpha<=2不可见边缘噪点，再alpha裁边、等比LANCZOS缩放及透明扩边，不做warp。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 参考图、入选原图和规格化成品均经view_image；通过构造、完整轮廓、左上光及透明边目检，保留candidate。
+  generation_turn_id: c42be57d-774e-40df-8d96-6014471e36df
+- id: bld_kit_yuan_north_casino
+  file: bld_kit_yuan_north_casino.png
+  category: building-map
+  style: default
+  subject: 元北方无名博戏堂（原创扩展）
+  prompt: 'Use case: precise-object-edit. Generate one entirely NEW anonymous original Yuan-era north-China game-building sprite. IMAGE 1 locks only camera, composition,
+    registered 10-by-8 logical footprint, entrance orientation, approximate silhouette scale and transparent margins. IMAGE 2 is a historical painted street-shop
+    detail and IMAGE 3 a Yuan architectural painting; use visible construction traits only and do not copy either composition. The gaming-house function is an ORIGINAL
+    gameplay extension.
+
+
+    Subject: one sober three-bay, one-storey commercial hall used for indoor games, with no gambling symbols. Use IMAGE 2 for the open center bay, removable plank
+    shutters, simple counter/threshold and shopfront human-scale proportions, but include no people. Use IMAGE 3 for the low-curved hard-gable grey pan-and-cover
+    tile roof, plain ridge, visible raftered eaves, timber column spacing, sparse bracket logic, raised stone/brick sill, square geometric lattice and earth infill
+    over grey-brick skirt. Only a dim low wooden table may be glimpsed through the center opening; no cards, dice or tokens. Dark weathered timber, buff plaster/earth,
+    restrained faded mineral color only on structural members; no palace ornament.
+
+
+    Preserve IMAGE 1''s footprint and bottom-edge readability. Orthographic dimetric yaw 45/elevation about 30, ground axes near +0.5/-0.5, verticals upright, parallel
+    edges, no perspective. Upper-left soft light and tiny lower-right contact shadow. Fine realistic Song-baseline detail. TRUE transparent RGBA, clean edges and
+    at least 8 percent clear margin all sides. No people, animals, readable writing, pseudo-text, signboards, flags, watermark, modern objects, landscape, sky, checkerboard,
+    glow, haze, ground slab, pedestal, clipping, fantasy, yellow glaze or Qing decoration.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: qingming_shop_1f.jpg
+    url: https://img.jiguzuo.com/guohua/changjuan/202511/9cadde09ad1fbfdb0a0a44f4e0679383.jpg
+    sha256: 251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 《清明上河图》可辨铺面局部：开放柜台、可卸板门、遮棚支撑和街市尺度；不复制人物、文字或构图。
+  - file: longchi_06.jpg
+    url: https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan06-1500x1133.jpg
+    sha256: 06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 王振鹏《龙池竞渡图》06可辨建筑局部：柱网、瓦垄、木构榫接、斗拱层级和石台基；仅取构造语汇。
+  tool: Codex images/edits via built-in image generation backend
+  model: gpt-image-2
+  generation_id: 8d5604eb-5992-4d06-845b-aaf963651e09
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    size: 1500x1049
+    request_image_count: 3
+  created: '2026-10-02T06:58:22+00:00'
+  created_time_basis: image generation 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_casino.png
+  source_sha256: 8fb4409389ea82b3884d78342f803047f90ddbe9f3b08c1b63d0be9d0ab47c13
+  size: 640x448
+  sha256: 1ebe279ac754c6c9d6dd0a26c528bc4250760da0a638b74c3c4d173207ab208b
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_casino
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 337.1335
+    - 248.5774
+    era: yuan_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 4
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 576
+    - 288
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+  anchor_px:
+  - 337.1335
+  - 248.5774
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_casino.json
+  processing:
+    source_size:
+    - 1500
+    - 1049
+    crop_box:
+    - 111
+    - 100
+    - 1443
+    - 973
+    uniform_scale: 0.41291291291291293
+    resized_size:
+    - 550
+    - 360
+    canvas_size:
+    - 640
+    - 448
+    paste_offset:
+    - 45
+    - 44
+    alpha_cleanup: source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 640
+    - 448
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 171172
+    alpha_partial_pixels: 114573
+    alpha_opaque_pixels: 975
+    alpha_nonzero_bbox:
+    - 45
+    - 44
+    - 595
+    - 404
+    transparent_margins_px:
+    - 45
+    - 44
+    - 45
+    - 44
+    border_alpha_max: 0
+  historical_detail: 无名博戏堂（原创扩展）：三开间木构铺面、可卸板门、低石槛、深出檐灰筒板瓦、柱网、直棂窗与灰砖墙脚；古画只支撑同时代铺面/大木语汇。
+  notes: 合入前审核返修：入选候选真实输入两张可辨建筑构造的历史图片；保留既有ID、类型、占地与入口。成品仅清除alpha<=2不可见边缘噪点，再alpha裁边、等比LANCZOS缩放及透明扩边，不做warp。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 参考图、入选原图和规格化成品均经view_image；通过构造、完整轮廓、左上光及透明边目检，保留candidate。
+  generation_turn_id: b8b80a47-243b-4140-9ac1-b2e86014b8a3
+- id: bld_kit_yuan_north_courtyard
+  file: bld_kit_yuan_north_courtyard.png
+  category: building-map
+  style: default
+  subject: 元代北方·院落；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Use case: precise historical image edit for one isolated reusable game asset. Image 1 is the current yuan_north asset and is ONLY a locked composition
+    and geometry guide. Preserve its subject count, logical footprint, complete silhouette placement, all visible ground-contact corners, bottom edge and transparent
+    margins. Preserve strict orthographic dimetric yaw 45 degrees and about 30 degrees pitch: both ground axes are exact 2:1 slopes (+0.5 and -0.5), all parallel
+    edges remain parallel, verticals vertical, with no perspective convergence. Keep the registered footprint proportions and do not add any apron or scenery beyond
+    it. Images 2 and 3 are genuine historical or heritage references. Take only form, proportions, regional materials and construction detail from them; do not copy
+    their camera, modern surroundings, damage pattern or whole composition.
+
+
+    Replace the generic old rendering with an ORIGINAL Yuan-dynasty NORTH CHINA interpretation. Required subject details: a compact northern residential courtyard:
+    three-bay north main hall and lower east-west wings around an open stone-packed court, axial timber gate and small screen wall, hard-gabled grey pan-and-cover
+    tile roofs, plastered earth walls with brick skirts, exposed rafters, dark timber posts, plank-and-geometric-lattice doors. Where architecture appears, render
+    historically legible roof pitch and eave curve, individual handmade grey pan-and-cover clay tiles, plain ridge and restrained chiwen or ridge ornaments where
+    appropriate; robust sparse bracket arms rather than dense Qing brackets; visible post grid, beams, purlins and rafter ends; period-appropriate plank-and-geometric-lattice
+    doors and windows; buff rammed-earth or adobe or grey masonry as specified. Materials are matte, finely weathered and maintained, with high realistic detail density
+    matching the approved Song baseline, never toy-like or low-poly. Natural upper-left light, darker right and rear faces, only a tiny lower-right contact shadow.
+
+
+    Output one complete asset as a true RGBA transparent-background PNG. Alpha must be zero outside the silhouette and in intended openings. Keep every roof, base
+    corner and tree crown fully in frame. No readable text, pseudo-text, plaques, labels, people, animals, flags, banners, modern objects, sky, landscape, water plane,
+    ground plane beyond the registered footprint, fog, glow, halo, checkerboard, thick diorama pedestal, fantasy elements, Qing-style dense polychrome, yellow imperial
+    glazed tiles, front-elevation camera or cropped edges.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: wangzhenpeng_05.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 仅可辨画卷中局部楼台轮廓。
+  - file: wangzhenpeng_06.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 可取界画建筑群层级、屋面和桥岸关系；画题为宋代金明池，不能直接当元北方民居实录。
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: 4037005b-d3e5-4084-8420-61483d62830d
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T07:32:01+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_courtyard.png
+  source_sha256: 01fe407cf7e1a493c3125af85b5261380fe60be3b6964c84bdbcd0406ba3861f
+  size: 640x480
+  sha256: 871d49357701aa3bc4a3af29c67e030775320dc93146ba0e728c19f351198dd5
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_courtyard
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 343.4496
+    - 293.6582
+    era: yuan_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 4
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 576
+    - 288
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+  anchor_px:
+  - 343.4496
+  - 293.6582
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_courtyard.json
+  processing:
+    source_size:
+    - 1504
+    - 1046
+    crop_box:
+    - 93
+    - 36
+    - 1460
+    - 1035
+    uniform_scale: 0.4084084084084084
+    resized_size:
+    - 558
+    - 408
+    canvas_size:
+    - 640
+    - 480
+    paste_offset:
+    - 41
+    - 36
+    alpha_cleanup: none
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 640
+    - 480
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 179485
+    alpha_partial_pixels: 126786
+    alpha_opaque_pixels: 929
+    alpha_nonzero_bbox:
+    - 41
+    - 36
+    - 599
+    - 444
+    transparent_margins_px:
+    - 41
+    - 36
+    - 41
+    - 36
+    border_alpha_max: 0
+  historical_detail: 'a compact northern residential courtyard: three-bay north main hall and lower east-west wings around an open stone-packed court, axial timber
+    gate and small screen wall, hard-gabled grey pan-and-cover tile roofs, plastered earth walls with brick skirts, exposed rafters, dark timber posts, plank-and-geometric-lattice
+    doors'
+  notes: 历史参考增强重出；保留既有ID、类型与登记占地。成品仅由alpha裁边、等比LANCZOS缩放和透明扩边规格化，不做warp。 参考图已逐张view_image；弱证据输入：wangzhenpeng_05.jpg, wangzhenpeng_06.jpg。 45°/30°、2:1投影、接口和锚点仍待场景实测；候选不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过完整轮廓、历史材质、左上光与透明边目检；保留candidate。
+- id: bld_kit_yuan_north_guardhouse
+  file: bld_kit_yuan_north_guardhouse.png
+  category: building-map
+  style: default
+  subject: 元北方城门守舍（原创扩展）
+  prompt: 'Use case: precise historical image edit for one isolated reusable game asset. Image 1 is the current yuan_north asset and is ONLY a locked composition
+    and geometry guide. Preserve its subject count, logical footprint, complete silhouette placement, all visible ground-contact corners, bottom edge and transparent
+    margins. Preserve strict orthographic dimetric yaw 45 degrees and about 30 degrees pitch: both ground axes are exact 2:1 slopes (+0.5 and -0.5), all parallel
+    edges remain parallel, verticals vertical, with no perspective convergence. Keep the registered footprint proportions and do not add any apron or scenery beyond
+    it. Images 2 and 3 are genuine historical or heritage references. Take only form, proportions, regional materials and construction detail from them; do not copy
+    their camera, modern surroundings, damage pattern or whole composition.
+
+
+    Replace the generic old rendering with an ORIGINAL Yuan-dynasty NORTH CHINA interpretation. Required subject details: a small gate watch house: compact three-bay
+    hard-gabled hall astride or beside a passage, low grey tiled roof, heavy squared timber posts and lintels, buff rammed-earth side walls with grey-brick base,
+    paired plank doors, narrow lattice openings, simple exposed rafter ends, no battlements. Where architecture appears, render historically legible roof pitch and
+    eave curve, individual handmade grey pan-and-cover clay tiles, plain ridge and restrained chiwen or ridge ornaments where appropriate; robust sparse bracket arms
+    rather than dense Qing brackets; visible post grid, beams, purlins and rafter ends; period-appropriate plank-and-geometric-lattice doors and windows; buff rammed-earth
+    or adobe or grey masonry as specified. Materials are matte, finely weathered and maintained, with high realistic detail density matching the approved Song baseline,
+    never toy-like or low-poly. Natural upper-left light, darker right and rear faces, only a tiny lower-right contact shadow.
+
+
+    Output one complete asset as a true RGBA transparent-background PNG. Alpha must be zero outside the silhouette and in intended openings. Keep every roof, base
+    corner and tree crown fully in frame. No readable text, pseudo-text, plaques, labels, people, animals, flags, banners, modern objects, sky, landscape, water plane,
+    ground plane beyond the registered footprint, fog, glow, halo, checkerboard, thick diorama pedestal, fantasy elements, Qing-style dense polychrome, yellow imperial
+    glazed tiles, front-elevation camera or cropped edges.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: wangzhenpeng_07.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 可取界画桥、树与临水构筑物的层级，不能证明具体功能建筑。
+  - file: wangzhenpeng_08.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 可取界画楼阁体量、柱廊和屋面层级，不照搬构图。
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: a0822ef4-0752-40bc-a458-40270eb91a4f
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T07:32:35+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_guardhouse.png
+  source_sha256: 13198c17a94e8e419812db5a1fe127f0339bfc156a08702c8767569d3696d2f1
+  size: 416x352
+  sha256: e289f6bc778f2560b7163c1260d401191189baaa2225fa53816cd7f579b03875
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_guardhouse
+    footprint:
+    - 6
+    - 5
+    anchor:
+    - 206.9627
+    - 193.282
+    era: yuan_north
+  footprint_m:
+  - 6
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 2
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 352
+    - 176
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+  anchor_px:
+  - 206.9627
+  - 193.282
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_guardhouse.json
+  processing:
+    source_size:
+    - 1254
+    - 1254
+    crop_box:
+    - 44
+    - 180
+    - 1217
+    - 1114
+    uniform_scale: 0.2890792291220557
+    resized_size:
+    - 339
+    - 270
+    canvas_size:
+    - 416
+    - 352
+    paste_offset:
+    - 38
+    - 41
+    alpha_cleanup: none
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 416
+    - 352
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 93607
+    alpha_partial_pixels: 52082
+    alpha_opaque_pixels: 743
+    alpha_nonzero_bbox:
+    - 38
+    - 41
+    - 377
+    - 311
+    transparent_margins_px:
+    - 38
+    - 41
+    - 39
+    - 41
+    border_alpha_max: 0
+  historical_detail: 'a small gate watch house: compact three-bay hard-gabled hall astride or beside a passage, low grey tiled roof, heavy squared timber posts and
+    lintels, buff rammed-earth side walls with grey-brick base, paired plank doors, narrow lattice openings, simple exposed rafter ends, no battlements'
+  notes: 历史参考增强重出；保留既有ID、类型与登记占地。成品仅由alpha裁边、等比LANCZOS缩放和透明扩边规格化，不做warp。 参考图已逐张view_image；弱证据输入：wangzhenpeng_07.jpg, wangzhenpeng_08.jpg。 45°/30°、2:1投影、接口和锚点仍待场景实测；候选不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过完整轮廓、历史材质、左上光与透明边目检；保留candidate。
+- id: bld_kit_yuan_north_house
+  file: bld_kit_yuan_north_house.png
+  category: building-map
+  style: default
+  subject: 元代北方·大民居；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Edit IMAGE 1 into ONE ORIGINAL isolated Yuan-dynasty north-China game building. IMAGE 1 strictly locks subject count, registered footprint, silhouette
+    placement, every visible ground corner, bottom edge, framing, true orthographic dimetric camera at yaw 45 degrees and pitch about 30 degrees, and transparent
+    margins. Keep both ground axes at 2:1 slopes, parallel edges parallel, verticals vertical, and no perspective convergence. IMAGES 2-4 are historical evidence
+    only: adopt visible form, proportions, material and construction details without copying their camera, modern surroundings, damage, people, text, or complete
+    composition. Natural upper-left light, darker right/rear faces, tiny lower-right contact shadow, restrained realistic detail matching the approved Song baseline.
+    Output one complete true RGBA transparent PNG: alpha zero beyond the silhouette, no floor or ambient backdrop. No readable or pseudo text, plaques, signs, people,
+    animals, modern objects, imperial yellow glaze, Qing ornament, fantasy, glow, haze, checkerboard, thick pedestal, or crop. A substantial commoner dwelling based
+    on Jishi Residence: three-bay hard-gabled main range and one short lower side wing; low handmade grey pan-and-cover tile roof, plain ridge and nearly straight
+    eaves; exposed round rafter ends, simple beam-and-bracket supports and stone posts; thick buff earthen or brick walls over grey-brick damp skirt; dark plank door
+    and square geometric lattice windows; narrow stone apron.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: jishi_people_1.png
+    url: http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 元至元三十一年姬氏民居院落：硬山灰瓦、近直檐线、砖墙与院落尺度。
+    input_sha256: 02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662
+  - file: jishi_people_3.png
+    url: http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 正立面可辨筒板瓦、圆椽头、粗木柱梁、板门、方格窗与灰砖墙脚。
+    input_sha256: 00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3
+  - file: jishi_people_4.png
+    url: http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 近照可辨木门框、简素方格窗棂、木材接合与风化肌理。
+    input_sha256: 71359e30658a32cdf47d667cea3490915052cd18d778f3c0a38d12042fcf726b
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: 9666c9ad-e651-4a13-a862-c88f4259d2c2
+  generation_settings:
+    background: transparent
+    quality: auto
+    output_format: png
+    request_image_count: 4
+  created: '2026-10-01T13:07:04+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_house.png
+  source_sha256: d68570bdb3df3b3db954da1aa06d8e4286942930677db2c2f4b06fec9fc3e123
+  size: 512x384
+  sha256: e105988e57f732612507c041cdbef8a351b8cbbcc5655645072c6ee3478d6a0c
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_house
+    footprint:
+    - 7
+    - 6
+    anchor:
+    - 255.2546
+    - 242.2319
+    era: yuan_north
+  footprint_m:
+  - 7
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 2
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 416
+    - 208
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: design/22 §3.4 冻结骨架
+  anchor_px:
+  - 255.2546
+  - 242.2319
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_house.json
+  processing:
+    source_size:
+    - 1448
+    - 1086
+    crop_box:
+    - 58
+    - 59
+    - 1406
+    - 1055
+    uniform_scale: 0.3086053412462908
+    resized_size:
+    - 416
+    - 307
+    canvas_size:
+    - 512
+    - 384
+    paste_offset:
+    - 48
+    - 38
+    alpha_cleanup: retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 512
+    - 384
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 122468
+    alpha_partial_pixels: 73354
+    alpha_opaque_pixels: 786
+    alpha_nonzero_bbox:
+    - 48
+    - 38
+    - 464
+    - 345
+    transparent_margins_px:
+    - 48
+    - 38
+    - 48
+    - 39
+    border_alpha_max: 0
+  historical_detail: 三间硬山主屋及短侧翼；低缓灰色筒板瓦、近直檐、圆椽头、粗木梁柱、板门、方格窗、土/砖墙与灰砖墙脚。
+  notes: 第5次运行按审核返修；保留既有ID、类型、登记占地与画布。成品仅做alpha外晕清理、等比LANCZOS缩放和透明扩边，不做warp。本项输入均为已逐张view_image的可辨建筑影像；references.used逐张限定取用细节。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过：至少三项历史构造可与本项参考直接核对，且完整轮廓、左上光与透明边目检无禁项；保留candidate。
+- id: bld_kit_yuan_north_house_small
+  file: bld_kit_yuan_north_house_small.png
+  category: building-map
+  style: default
+  subject: 元代北方·小民居；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Edit IMAGE 1 into ONE ORIGINAL isolated Yuan-dynasty north-China game building. IMAGE 1 strictly locks subject count, registered footprint, silhouette
+    placement, every visible ground corner, bottom edge, framing, true orthographic dimetric camera at yaw 45 degrees and pitch about 30 degrees, and transparent
+    margins. Keep both ground axes at 2:1 slopes, parallel edges parallel, verticals vertical, and no perspective convergence. IMAGES 2-4 are historical evidence
+    only: adopt visible form, proportions, material and construction details without copying their camera, modern surroundings, damage, people, text, or complete
+    composition. Natural upper-left light, darker right/rear faces, tiny lower-right contact shadow, restrained realistic detail matching the approved Song baseline.
+    Output one complete true RGBA transparent PNG: alpha zero beyond the silhouette, no floor or ambient backdrop. No readable or pseudo text, plaques, signs, people,
+    animals, modern objects, imperial yellow glaze, Qing ornament, fantasy, glow, haze, checkerboard, thick pedestal, or crop. A modest two-or-three-bay northern
+    house based on Jishi Residence: low hard-gabled handmade grey pan-and-cover tile roof, plain ridge, exposed rafter ends, simple heavy lintel and sparse bracket
+    support, buff earth and brick wall over grey-brick foot, dark timber frame, central plank door and one small square lattice window, no decorative courtyard objects.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: jishi_people_2.png
+    url: http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 院内正侧房可辨低缓硬山、灰瓦、砖墙、板门、格窗及石台阶。
+    input_sha256: e2ab75105a527ec9cb1ac5ab85035c87a86cfbd19c9d7f56dd8f73db638e44d7
+  - file: jishi_people_3.png
+    url: http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 正立面可辨筒板瓦、椽头、梁枋/简素斗拱、石柱础、板门和方格窗。
+    input_sha256: 00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3
+  - file: jishi_people_4.png
+    url: http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 近照只取粗木门框、简素方格窗棂与风化材质。
+    input_sha256: 71359e30658a32cdf47d667cea3490915052cd18d778f3c0a38d12042fcf726b
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: e9c8f48d-117f-42cf-8517-7859e112bbcd
+  generation_settings:
+    background: transparent
+    quality: auto
+    output_format: png
+    request_image_count: 4
+  created: '2026-10-01T13:08:00+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_house_small.png
+  source_sha256: e6a1e3844ecad4ece1a6c339107310153880228b6b51db0b37bcd88171f808fa
+  size: 416x352
+  sha256: 6e771207d1f14ba0efa5f2ef258941771c13832335825da9811892313fa4e8df
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_house_small
+    footprint:
+    - 6
+    - 5
+    anchor:
+    - 207.7526
+    - 223.5644
+    era: yuan_north
+  footprint_m:
+  - 6
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 2
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 352
+    - 176
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+  anchor_px:
+  - 207.7526
+  - 223.5644
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_house_small.json
+  processing:
+    source_size:
+    - 1363
+    - 1154
+    crop_box:
+    - 49
+    - 69
+    - 1340
+    - 1118
+    uniform_scale: 0.2612011439466158
+    resized_size:
+    - 337
+    - 274
+    canvas_size:
+    - 416
+    - 352
+    paste_offset:
+    - 39
+    - 39
+    alpha_cleanup: retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 416
+    - 352
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 94470
+    alpha_partial_pixels: 51259
+    alpha_opaque_pixels: 703
+    alpha_nonzero_bbox:
+    - 39
+    - 39
+    - 376
+    - 313
+    transparent_margins_px:
+    - 39
+    - 39
+    - 40
+    - 39
+    border_alpha_max: 0
+  historical_detail: 两至三间小型硬山民居；灰色筒板瓦、圆椽头、简素梁枋与柱础、板门、方格窗、土砖墙和石台阶。
+  notes: 第5次运行按审核返修；保留既有ID、类型、登记占地与画布。成品仅做alpha外晕清理、等比LANCZOS缩放和透明扩边，不做warp。本项输入均为已逐张view_image的可辨建筑影像；references.used逐张限定取用细节。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过：至少三项历史构造可与本项参考直接核对，且完整轮廓、左上光与透明边目检无禁项；保留candidate。
+- id: bld_kit_yuan_north_inn
+  file: bld_kit_yuan_north_inn.png
+  category: building-map
+  style: default
+  subject: 元代北方·客栈；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Use case: precise historical image edit for one isolated reusable game asset. Image 1 is the current yuan_north asset and is ONLY a locked composition
+    and geometry guide. Preserve its subject count, logical footprint, complete silhouette placement, all visible ground-contact corners, bottom edge and transparent
+    margins. Preserve strict orthographic dimetric yaw 45 degrees and about 30 degrees pitch: both ground axes are exact 2:1 slopes (+0.5 and -0.5), all parallel
+    edges remain parallel, verticals vertical, with no perspective convergence. Keep the registered footprint proportions and do not add any apron or scenery beyond
+    it. Images 2 and 3 are genuine historical or heritage references. Take only form, proportions, regional materials and construction detail from them; do not copy
+    their camera, modern surroundings, damage pattern or whole composition.
+
+
+    Replace the generic old rendering with an ORIGINAL Yuan-dynasty NORTH CHINA interpretation. Required subject details: a roadside inn compound: two-storey front
+    lodging hall with a timber upper gallery and simple wooden balustrade, lower side stable/store wing around a small court, grey tiled hard-gable roofs, plain ridge,
+    exposed rafters, earth-and-brick lower walls, lift-up plank shop fronts and square lattice screens; no signboard text. Where architecture appears, render historically
+    legible roof pitch and eave curve, individual handmade grey pan-and-cover clay tiles, plain ridge and restrained chiwen or ridge ornaments where appropriate;
+    robust sparse bracket arms rather than dense Qing brackets; visible post grid, beams, purlins and rafter ends; period-appropriate plank-and-geometric-lattice
+    doors and windows; buff rammed-earth or adobe or grey masonry as specified. Materials are matte, finely weathered and maintained, with high realistic detail density
+    matching the approved Song baseline, never toy-like or low-poly. Natural upper-left light, darker right and rear faces, only a tiny lower-right contact shadow.
+
+
+    Output one complete asset as a true RGBA transparent-background PNG. Alpha must be zero outside the silhouette and in intended openings. Keep every roof, base
+    corner and tree crown fully in frame. No readable text, pseudo-text, plaques, labels, people, animals, flags, banners, modern objects, sky, landscape, water plane,
+    ground plane beyond the registered footprint, fog, glow, halo, checkerboard, thick diorama pedestal, fantasy elements, Qing-style dense polychrome, yellow imperial
+    glazed tiles, front-elevation camera or cropped edges.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: wangzhenpeng_02.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 书法题跋，无建筑证据；仅作为实际输入记录。
+  - file: wangzhenpeng_06.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 可取界画建筑群层级、屋面和桥岸关系；画题为宋代金明池，不能直接当元北方民居实录。
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: 8576f53d-c59a-4f4d-867b-e233a6005089
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T07:34:36+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_inn.png
+  source_sha256: 94b5c937d618e796bf1691ef8c7f34e01820e823e9ed3be9896f5565536aa397
+  size: 736x608
+  sha256: fa9771ae4446cd4e75f5d6fede99fd7b3f8d3ae0a684d1ac82fd145b4136d0d0
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_inn
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 382.8991
+    - 384.887
+    era: yuan_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 672
+    - 336
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+  anchor_px:
+  - 382.8991
+  - 384.887
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_inn.json
+  processing:
+    source_size:
+    - 1549
+    - 1015
+    crop_box:
+    - 161
+    - 8
+    - 1425
+    - 994
+    uniform_scale: 0.5294117647058824
+    resized_size:
+    - 669
+    - 522
+    canvas_size:
+    - 736
+    - 608
+    paste_offset:
+    - 33
+    - 43
+    alpha_cleanup: none
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 736
+    - 608
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 243350
+    alpha_partial_pixels: 203211
+    alpha_opaque_pixels: 927
+    alpha_nonzero_bbox:
+    - 34
+    - 44
+    - 701
+    - 564
+    transparent_margins_px:
+    - 34
+    - 44
+    - 35
+    - 44
+    border_alpha_max: 0
+  historical_detail: 'a roadside inn compound: two-storey front lodging hall with a timber upper gallery and simple wooden balustrade, lower side stable/store wing
+    around a small court, grey tiled hard-gable roofs, plain ridge, exposed rafters, earth-and-brick lower walls, lift-up plank shop fronts and square lattice screens;
+    no signboard text'
+  notes: 历史参考增强重出；保留既有ID、类型与登记占地。成品仅由alpha裁边、等比LANCZOS缩放和透明扩边规格化，不做warp。 参考图已逐张view_image；弱证据输入：wangzhenpeng_02.jpg, wangzhenpeng_06.jpg。 45°/30°、2:1投影、接口和锚点仍待场景实测；候选不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过完整轮廓、历史材质、左上光与透明边目检；保留candidate。
+- id: bld_kit_yuan_north_manor
+  file: bld_kit_yuan_north_manor.png
+  category: building-map
+  style: default
+  subject: 元北方山庄大院（原创扩展）
+  prompt: 'Use case: precise historical image edit for one isolated reusable game asset. Image 1 is the current yuan_north asset and is ONLY a locked composition
+    and geometry guide. Preserve its subject count, logical footprint, complete silhouette placement, all visible ground-contact corners, bottom edge and transparent
+    margins. Preserve strict orthographic dimetric yaw 45 degrees and about 30 degrees pitch: both ground axes are exact 2:1 slopes (+0.5 and -0.5), all parallel
+    edges remain parallel, verticals vertical, with no perspective convergence. Keep the registered footprint proportions and do not add any apron or scenery beyond
+    it. Images 2 and 3 are genuine historical or heritage references. Take only form, proportions, regional materials and construction detail from them; do not copy
+    their camera, modern surroundings, damage pattern or whole composition.
+
+
+    Replace the generic old rendering with an ORIGINAL Yuan-dynasty NORTH CHINA interpretation. Required subject details: a large but non-imperial northern manor
+    compound: axial gate, deep five-bay main hall, lower hard-gabled side halls and service sheds enclosing two readable courts, low stone platforms, grey pan-and-cover
+    tiled roofs, restrained hip roof only on the main hall, robust sparse bracket arms, red-brown timber, buff earth walls and grey-brick skirts. Where architecture
+    appears, render historically legible roof pitch and eave curve, individual handmade grey pan-and-cover clay tiles, plain ridge and restrained chiwen or ridge
+    ornaments where appropriate; robust sparse bracket arms rather than dense Qing brackets; visible post grid, beams, purlins and rafter ends; period-appropriate
+    plank-and-geometric-lattice doors and windows; buff rammed-earth or adobe or grey masonry as specified. Materials are matte, finely weathered and maintained,
+    with high realistic detail density matching the approved Song baseline, never toy-like or low-poly. Natural upper-left light, darker right and rear faces, only
+    a tiny lower-right contact shadow.
+
+
+    Output one complete asset as a true RGBA transparent-background PNG. Alpha must be zero outside the silhouette and in intended openings. Keep every roof, base
+    corner and tree crown fully in frame. No readable text, pseudo-text, plaques, labels, people, animals, flags, banners, modern objects, sky, landscape, water plane,
+    ground plane beyond the registered footprint, fog, glow, halo, checkerboard, thick diorama pedestal, fantasy elements, Qing-style dense polychrome, yellow imperial
+    glazed tiles, front-elevation camera or cropped edges.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: wangzhenpeng_01.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 题跋/空白，未取建筑细节；仅作为实际输入记录。
+  - file: wangzhenpeng_05.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 仅可辨画卷中局部楼台轮廓。
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: ff392976-8567-4722-84e2-6665060b5d30
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T07:35:12+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_manor.png
+  source_sha256: a2c404c580f23acc1d8747fe22fac74c0991d156bf9d7e16191c7f8aee6274bc
+  size: 1088x768
+  sha256: 2fc74013cfed3a938bc3d92893d1842d1fca2d0af91c31522335465f49f15797
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_manor
+    footprint:
+    - 18
+    - 14
+    anchor:
+    - 570.5885
+    - 393.5763
+    era: yuan_north
+  footprint_m:
+  - 18
+  - 14
+  entrance:
+    edge: S
+    offset_cells: 8
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 1024
+    - 512
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+  anchor_px:
+  - 570.5885
+  - 393.5763
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_manor.json
+  processing:
+    source_size:
+    - 1491
+    - 1055
+    crop_box:
+    - 51
+    - 31
+    - 1470
+    - 1031
+    uniform_scale: 0.701
+    resized_size:
+    - 995
+    - 701
+    canvas_size:
+    - 1088
+    - 768
+    paste_offset:
+    - 46
+    - 33
+    alpha_cleanup: none
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 1088
+    - 768
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 457425
+    alpha_partial_pixels: 377090
+    alpha_opaque_pixels: 1069
+    alpha_nonzero_bbox:
+    - 47
+    - 35
+    - 1041
+    - 732
+    transparent_margins_px:
+    - 47
+    - 35
+    - 47
+    - 36
+    border_alpha_max: 0
+  historical_detail: 'a large but non-imperial northern manor compound: axial gate, deep five-bay main hall, lower hard-gabled side halls and service sheds enclosing
+    two readable courts, low stone platforms, grey pan-and-cover tiled roofs, restrained hip roof only on the main hall, robust sparse bracket arms, red-brown timber,
+    buff earth walls and grey-brick skirts'
+  notes: 历史参考增强重出；保留既有ID、类型与登记占地。成品仅由alpha裁边、等比LANCZOS缩放和透明扩边规格化，不做warp。 参考图已逐张view_image；弱证据输入：wangzhenpeng_01.jpg, wangzhenpeng_05.jpg。 45°/30°、2:1投影、接口和锚点仍待场景实测；候选不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过完整轮廓、历史材质、左上光与透明边目检；保留candidate。
+- id: bld_kit_yuan_north_market_stall
+  file: bld_kit_yuan_north_market_stall.png
+  category: building-map
+  style: default
+  subject: 元代北方·市场棚；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Use case: precise-object-edit. IMAGE 1 is the candidate to correct. Keep its same anonymous original Yuan-era north-China open market shelter design: four
+    to six rough square timber posts, mortised straight beams, visible rafter ends, shallow handmade grey-tile canopy, plain ridge, plank trestle counter, baskets
+    and folded cloth. IMAGES 2 and 3 remain the actual historical construction references: use IMAGE 2 for open counter/canopy scale and IMAGE 3 for post spacing,
+    tile rhythm, timber joints and sparse bracket logic.
+
+
+    Make exactly these corrections: REMOVE the entire rectangular stone paving, curb and every floor/ground pixel. The posts and trestles stand as isolated architectural
+    feet directly against transparent alpha. Keep openings and all space between/below the counter transparent. Scale the complete shelter uniformly smaller and center
+    it so every nonzero pixel has at least 8 percent fully transparent margin on all four canvas sides. Preserve the registered 5-by-4 footprint proportions, orthographic
+    dimetric yaw 45/elevation about 30, ground axes near +0.5/-0.5, verticals upright, parallel edges and upper-left light. Do not redesign or add structures. TRUE
+    RGBA alpha transparency, clean antialiasing. No people, animals, floor, terrain, shadow sheet, text, pseudo-text, signs, flags, watermark, modern objects, landscape,
+    sky, checkerboard, glow, fog, pedestal, clipping, fantasy, yellow glaze or Qing decoration.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: qingming_shop_1f.jpg
+    url: https://img.jiguzuo.com/guohua/changjuan/202511/9cadde09ad1fbfdb0a0a44f4e0679383.jpg
+    sha256: 251937c9b33b6b067ccd6b6606894bc4ad659930b0aab70137f40c27e2a146e8
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 《清明上河图》可辨铺面局部：开放柜台、可卸板门、遮棚支撑和街市尺度；不复制人物、文字或构图。
+  - file: longchi_06.jpg
+    url: https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan06-1500x1133.jpg
+    sha256: 06b2c8cf96f7b4c99a2fac3f4369fa719e038ee3597e1826d3fa35deebd572c6
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 王振鹏《龙池竞渡图》06可辨建筑局部：柱网、瓦垄、木构榫接、斗拱层级和石台基；仅取构造语汇。
+  tool: Codex images/edits via built-in image generation backend
+  model: gpt-image-2
+  generation_id: 7b433a56-5700-4f44-b530-8639cb0ff9d3
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    size: 1402x1122
+    request_image_count: 3
+  created: '2026-10-02T07:01:49+00:00'
+  created_time_basis: image generation 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_market_stall.png
+  source_sha256: d4212161116e4ed6045dd896f8f810a8f0e2d97374424a8b4f3770e7af0c1ea8
+  size: 384x320
+  sha256: 4b17a7c870639291f42525414dc559b43c287099f66158aa9e05222980489729
+  status: candidate
+  building:
+    type: bld_kit_yuan_market
+    footprint:
+    - 5
+    - 4
+    anchor:
+    - 185.0914
+    - 207.1285
+    era: yuan_north
+  footprint_m:
+  - 5
+  - 4
+  entrance:
+    edge: S
+    offset_cells: 1
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 288
+    - 144
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: design/22 §3.4 冻结骨架
+  anchor_px:
+  - 185.0914
+  - 207.1285
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_market_stall.json
+  processing:
+    source_size:
+    - 1402
+    - 1122
+    crop_box:
+    - 264
+    - 192
+    - 1162
+    - 967
+    uniform_scale: 0.3535483870967742
+    resized_size:
+    - 317
+    - 274
+    canvas_size:
+    - 384
+    - 320
+    paste_offset:
+    - 33
+    - 23
+    alpha_cleanup: source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 384
+    - 320
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 77808
+    alpha_partial_pixels: 43918
+    alpha_opaque_pixels: 1154
+    alpha_nonzero_bbox:
+    - 33
+    - 23
+    - 350
+    - 297
+    transparent_margins_px:
+    - 33
+    - 23
+    - 34
+    - 23
+    border_alpha_max: 0
+  historical_detail: 市场棚（原创扩展）：开放式木柱棚、榫接横梁、可读椽头与浅灰瓦篷、木案和筐篮；第二候选去除整块铺地，柱脚直接落透明底。
+  notes: 合入前审核返修：入选候选真实输入两张可辨建筑构造的历史图片；保留既有ID、类型、占地与入口。成品仅清除alpha<=2不可见边缘噪点，再alpha裁边、等比LANCZOS缩放及透明扩边，不做warp。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 参考图、入选原图和规格化成品均经view_image；通过构造、完整轮廓、左上光及透明边目检，保留candidate。
+  generation_turn_id: 2a2bde8d-5e1c-40de-a564-5dee7a9020ff
+- id: bld_kit_yuan_north_pagoda
+  file: bld_kit_yuan_north_pagoda.png
+  category: building-map
+  style: default
+  subject: 元北方覆钵白塔地标（类型意象，原创扩展）
+  prompt: 'Use case: precise historical image edit for one isolated reusable game asset. Image 1 is the current yuan_north asset and is ONLY a locked composition
+    and geometry guide. Preserve its subject count, logical footprint, complete silhouette placement, all visible ground-contact corners, bottom edge and transparent
+    margins. Preserve strict orthographic dimetric yaw 45 degrees and about 30 degrees pitch: both ground axes are exact 2:1 slopes (+0.5 and -0.5), all parallel
+    edges remain parallel, verticals vertical, with no perspective convergence. Keep the registered footprint proportions and do not add any apron or scenery beyond
+    it. Images 2 and 3 are genuine historical or heritage references. Take only form, proportions, regional materials and construction detail from them; do not copy
+    their camera, modern surroundings, damage pattern or whole composition.
+
+
+    Replace the generic old rendering with an ORIGINAL Yuan-dynasty NORTH CHINA interpretation. Required subject details: an original Yuan northern Tibetan-style
+    white stupa closely informed by the Miaoying Temple White Stupa type without copying its setting: square stepped stone base, broad double lotus pedestal, swelling
+    white masonry vase body, small harmika, tall tapering stack of thirteen discs, bronze-gold canopy and finial; limewashed texture, crisp molded bands, no Chinese
+    pavilion roof. Where architecture appears, render historically legible roof pitch and eave curve, individual handmade grey pan-and-cover clay tiles, plain ridge
+    and restrained chiwen or ridge ornaments where appropriate; robust sparse bracket arms rather than dense Qing brackets; visible post grid, beams, purlins and
+    rafter ends; period-appropriate plank-and-geometric-lattice doors and windows; buff rammed-earth or adobe or grey masonry as specified. Materials are matte, finely
+    weathered and maintained, with high realistic detail density matching the approved Song baseline, never toy-like or low-poly. Natural upper-left light, darker
+    right and rear faces, only a tiny lower-right contact shadow.
+
+
+    Output one complete asset as a true RGBA transparent-background PNG. Alpha must be zero outside the silhouette and in intended openings. Keep every roof, base
+    corner and tree crown fully in frame. No readable text, pseudo-text, plaques, labels, people, animals, flags, banners, modern objects, sky, landscape, water plane,
+    ground plane beyond the registered footprint, fog, glow, halo, checkerboard, thick diorama pedestal, fantasy elements, Qing-style dense polychrome, yellow imperial
+    glazed tiles, front-elevation camera or cropped edges.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: miaoying_01.jpg
+    url: https://commons.wikimedia.org/wiki/File:20090528_Beijing_White_Dagoba_8092.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 取妙应寺白塔覆钵体、台座、十三天、华盖与刹顶层级；不复制寺院环境。
+  - file: miaoying_02.jpg
+    url: https://commons.wikimedia.org/wiki/File:White_Dagoba_Temple,_Beijing_(11122326145).jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 下载内容实际为佛像而非塔；未取用形制。
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: b35f0518-2962-4a49-b979-8463ffaf00ed
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T07:36:35+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_pagoda.png
+  source_sha256: 6664dfae2540c0489d27c0d712af198da4160023651c193da654d37192688503
+  size: 608x832
+  sha256: 8969b5664f822ae640c6b4ac43c6261139bed913b1c337a2d10493afbeba13e9
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_pagoda
+    footprint:
+    - 8
+    - 8
+    anchor:
+    - 303.2849
+    - 653.1972
+    era: yuan_north
+  footprint_m:
+  - 8
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 3
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 512
+    - 256
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+  anchor_px:
+  - 303.2849
+  - 653.1972
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_pagoda.json
+  processing:
+    source_size:
+    - 1072
+    - 1467
+    crop_box:
+    - 42
+    - 20
+    - 1030
+    - 1433
+    uniform_scale: 0.5222672064777328
+    resized_size:
+    - 516
+    - 738
+    canvas_size:
+    - 608
+    - 832
+    paste_offset:
+    - 46
+    - 47
+    alpha_cleanup: none
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 608
+    - 832
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 355823
+    alpha_partial_pixels: 148825
+    alpha_opaque_pixels: 1208
+    alpha_nonzero_bbox:
+    - 47
+    - 48
+    - 561
+    - 784
+    transparent_margins_px:
+    - 47
+    - 48
+    - 47
+    - 48
+    border_alpha_max: 0
+  historical_detail: 'an original Yuan northern Tibetan-style white stupa closely informed by the Miaoying Temple White Stupa type without copying its setting: square
+    stepped stone base, broad double lotus pedestal, swelling white masonry vase body, small harmika, tall tapering stack of thirteen discs, bronze-gold canopy and
+    finial; limewashed texture, crisp molded bands, no Chinese pavilion roof'
+  notes: 历史参考增强重出；保留既有ID、类型与登记占地。成品仅由alpha裁边、等比LANCZOS缩放和透明扩边规格化，不做warp。 参考图已逐张view_image；弱证据输入：miaoying_02.jpg。 45°/30°、2:1投影、接口和锚点仍待场景实测；候选不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过完整轮廓、历史材质、左上光与透明边目检；保留candidate。
+- id: bld_kit_yuan_north_restaurant
+  file: bld_kit_yuan_north_restaurant.png
+  category: building-map
+  style: default
+  subject: 元代北方·酒楼茶肆；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Use case: precise-object-edit. IMAGE 1 is the candidate to correct. Preserve its same anonymous original Yuan-era north-China two-storey wine-and-food
+    house architecture, proportions and historical details. IMAGES 2 and 3 remain actual historical visual references for lattice/shopfront rhythm and Yuan timber/tile
+    construction.
+
+
+    Make exactly one correction: uniformly scale the entire complete building down and center it so all posts, stone feet, eaves and roof ends are fully visible and
+    every nonzero pixel has at least 8 percent fully transparent margin on all four canvas sides. Do not crop, redraw, add, remove, modernize or otherwise alter the
+    architecture. Retain registered 12-by-9 footprint proportions, orthographic dimetric yaw 45/elevation about 30, ground axes near +0.5/-0.5, upright verticals,
+    parallel edges, upper-left light, grey pan-and-cover tiles, hard-gable roof, close lattice, timber gallery, restrained brackets and brick skirt. TRUE RGBA alpha.
+    No ground slab, people, animals, text, pseudo-text, signs, flags, watermark, modern objects, landscape, sky, checkerboard, glow, fog, pedestal, clipping, fantasy,
+    yellow glaze or Qing decoration.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: qingming_shop_2f.jpg
+    url: https://img.jiguzuo.com/guohua/changjuan/202511/afe2d555092873a14e7840d910a2f34a.jpg
+    sha256: acd1241d0b73f90cd08d550cc70d5b54e7b7875f528378b511bf73680d18b188
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 《清明上河图》可辨楼店局部：连续密直棂楼窗、街向开间、朴素栏杆与挑廊层级；不复制人物、文字或构图。
+  - file: longchi_08.jpg
+    url: https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan08-1500x1133.jpg
+    sha256: 74d2d46db6b29476d14da59dbed9ef239f5cb09c92294ad27fd970a0686bbd4e
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 王振鹏《龙池竞渡图》08可辨楼阁局部：柱网、屋面层级、格扇、栏杆、斗拱和台基；只作元代大木语汇参考。
+  tool: Codex images/edits via built-in image generation backend
+  model: gpt-image-2
+  generation_id: 020d752c-3da3-4a29-b587-df7d0f2c70d1
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    size: 1449x1086
+    request_image_count: 3
+  created: '2026-10-02T07:01:44+00:00'
+  created_time_basis: image generation 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_restaurant.png
+  source_sha256: 75ba1c284a61510e4570cbf9122ccabc7c40c531ddcef2486483fc2840a0c42c
+  size: 736x672
+  sha256: 39f88b056e9f2eecf17eed6177882bd77159fb3096e00487dd95941ab4ceb411
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_restaurant
+    footprint:
+    - 12
+    - 9
+    anchor:
+    - 362.6249
+    - 445.1357
+    era: yuan_north
+  footprint_m:
+  - 12
+  - 9
+  entrance:
+    edge: S
+    offset_cells: 5
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 672
+    - 336
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+  anchor_px:
+  - 362.6249
+  - 445.1357
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_restaurant.json
+  processing:
+    source_size:
+    - 1449
+    - 1086
+    crop_box:
+    - 258
+    - 117
+    - 1224
+    - 983
+    uniform_scale: 0.6542443064182195
+    resized_size:
+    - 632
+    - 567
+    canvas_size:
+    - 736
+    - 672
+    paste_offset:
+    - 52
+    - 52
+    alpha_cleanup: source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 736
+    - 672
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 274716
+    alpha_partial_pixels: 218898
+    alpha_opaque_pixels: 978
+    alpha_nonzero_bbox:
+    - 52
+    - 52
+    - 684
+    - 619
+    transparent_margins_px:
+    - 52
+    - 52
+    - 52
+    - 53
+    border_alpha_max: 0
+  historical_detail: 酒楼茶肆（原创扩展）：两层木构开间、连续密直棂窗、朴素直栏杆、挑廊、分层灰瓦檐、椽头、低石脚；第二候选等比缩小补全透明边。
+  notes: 合入前审核返修：入选候选真实输入两张可辨建筑构造的历史图片；保留既有ID、类型、占地与入口。成品仅清除alpha<=2不可见边缘噪点，再alpha裁边、等比LANCZOS缩放及透明扩边，不做warp。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 参考图、入选原图和规格化成品均经view_image；通过构造、完整轮廓、左上光及透明边目检，保留candidate。
+  generation_turn_id: 73c07c21-1c34-4d06-8400-a76d01202515
+- id: bld_kit_yuan_north_shop_1f
+  file: bld_kit_yuan_north_shop_1f.png
+  category: building-map
+  style: default
+  subject: 元代北方·单层商铺；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Edit IMAGE 1 into ONE ORIGINAL isolated Yuan-dynasty north-China game building. IMAGE 1 strictly locks subject count, registered footprint, silhouette
+    placement, every visible ground corner, bottom edge, framing, true orthographic dimetric camera at yaw 45 degrees and pitch about 30 degrees, and transparent
+    margins. Keep both ground axes at 2:1 slopes, parallel edges parallel, verticals vertical, and no perspective convergence. IMAGES 2-4 are historical evidence
+    only: adopt visible form, proportions, material and construction details without copying their camera, modern surroundings, damage, people, text, or complete
+    composition. Natural upper-left light, darker right/rear faces, tiny lower-right contact shadow, restrained realistic detail matching the approved Song baseline.
+    Output one complete true RGBA transparent PNG: alpha zero beyond the silhouette, no floor or ambient backdrop. No readable or pseudo text, plaques, signs, people,
+    animals, modern objects, imperial yellow glaze, Qing ornament, fantasy, glow, haze, checkerboard, thick pedestal, or crop. A one-storey three-bay street shop:
+    deep grey pan-and-cover tiled eaves on exposed rafters and sparse bracket arms; clear timber post-and-lintel bays; removable plank shutters and one open counter/service
+    bay; tight square lattice transoms; buff earthen side wall on grey-brick foot and worn stone threshold. Use the Qingming market crop for open board-front service
+    bays, and the Yuan Wang Zhenpeng detail only for column spacing, tiled eaves and lattice construction. No signboards or wares with writing.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: shop_1f_qingming_detail.jpg
+    url: https://img.jiguzuo.com/guohua/changjuan/202511/9cadde09ad1fbfdb0a0a44f4e0679383.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 北宋《清明上河图》街市局部：一层铺面开间、板门/板式柜台、立柱和檐下木构；仅作前代城市商业形制旁证。
+    input_sha256: 9aabe6e3d0b1284c38b403ccb17dfbc2f39a5e14a7925833635e41ae9e63cb5e
+  - file: shop_1f_longchi_detail.jpg
+    url: https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan06-1500x1133.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 元王振鹏《龙池竞渡图》界画局部：柱距、瓦檐、斗拱和格扇构造；宫苑功能不移植。
+    input_sha256: cb1a7279eac36da978dc90a04140313a584786a91ab716125b399958596d4b02
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: ae72a71a-c0bc-44c2-9653-fa9062c24346
+  generation_settings:
+    background: transparent
+    quality: auto
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T13:08:56+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_shop_1f.png
+  source_sha256: 7a7ae8ea28f8d4ca3738d68270d29d827ce447108546e788eb76b4a529691b27
+  size: 416x384
+  sha256: 4c2921fa91690577561e25a31f654d7da87b04469960eba901cc41c3a6de3c97
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_shop_1f
+    footprint:
+    - 6
+    - 5
+    anchor:
+    - 207.626
+    - 242.9878
+    era: yuan_north
+  footprint_m:
+  - 6
+  - 5
+  entrance:
+    edge: S
+    offset_cells: 2
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 352
+    - 176
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+  anchor_px:
+  - 207.626
+  - 242.9878
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_shop_1f.json
+  processing:
+    source_size:
+    - 1305
+    - 1205
+    crop_box:
+    - 65
+    - 94
+    - 1257
+    - 1138
+    uniform_scale: 0.276006711409396
+    resized_size:
+    - 329
+    - 288
+    canvas_size:
+    - 416
+    - 384
+    paste_offset:
+    - 43
+    - 48
+    alpha_cleanup: retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 416
+    - 384
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 103312
+    alpha_partial_pixels: 55764
+    alpha_opaque_pixels: 668
+    alpha_nonzero_bbox:
+    - 43
+    - 48
+    - 372
+    - 336
+    transparent_margins_px:
+    - 43
+    - 48
+    - 44
+    - 48
+    border_alpha_max: 0
+  historical_detail: 三开间单层铺面；灰瓦深檐、外露椽头和疏朗承托，木柱额枋、板门/板式柜台、格窗、土墙与灰砖脚。
+  notes: 第5次运行按审核返修；保留既有ID、类型、登记占地与画布。成品仅做alpha外晕清理、等比LANCZOS缩放和透明扩边，不做warp。本项输入均为已逐张view_image的可辨建筑影像；references.used逐张限定取用细节。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过：至少三项历史构造可与本项参考直接核对，且完整轮廓、左上光与透明边目检无禁项；保留candidate。
+- id: bld_kit_yuan_north_shop_2f
+  file: bld_kit_yuan_north_shop_2f.png
+  category: building-map
+  style: default
+  subject: 元代北方·两层商铺；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Edit IMAGE 1 into ONE ORIGINAL isolated Yuan-dynasty north-China game building. IMAGE 1 strictly locks subject count, registered footprint, silhouette
+    placement, every visible ground corner, bottom edge, framing, true orthographic dimetric camera at yaw 45 degrees and pitch about 30 degrees, and transparent
+    margins. Keep both ground axes at 2:1 slopes, parallel edges parallel, verticals vertical, and no perspective convergence. IMAGES 2-4 are historical evidence
+    only: adopt visible form, proportions, material and construction details without copying their camera, modern surroundings, damage, people, text, or complete
+    composition. Natural upper-left light, darker right/rear faces, tiny lower-right contact shadow, restrained realistic detail matching the approved Song baseline.
+    Output one complete true RGBA transparent PNG: alpha zero beyond the silhouette, no floor or ambient backdrop. No readable or pseudo text, plaques, signs, people,
+    animals, modern objects, imperial yellow glaze, Qing ornament, fantasy, glow, haze, checkerboard, thick pedestal, or crop. A narrow two-storey three-bay street
+    shop: open lower board-front service bay; heavy timber frame; upper continuous removable geometric lattice screens and shallow straight-balustrade gallery; low-curved
+    grey pan-and-cover tile gable roof, plain ridge, visible rafter ends and sparse brackets; buff plaster/earth infill and grey-brick foot. Use the Qingming crop
+    for gallery, shutters and street-shop framing, and Yuan Wang Zhenpeng for roof, post grid, brackets and continuous lattice.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: shop_2f_qingming_detail.jpg
+    url: https://img.jiguzuo.com/guohua/changjuan/202511/afe2d555092873a14e7840d910a2f34a.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 北宋《清明上河图》楼铺局部：二层连续格窗、浅栏杆、木柱网及下层铺面；仅作前代商业界面旁证。
+    input_sha256: b4d45402ee7242f9cafc43c15c0eba233b2cdb83afeda0c491696ed298bdc137
+  - file: shop_2f_longchi_detail.jpg
+    url: https://www.shuge.org/wp-content/uploads/2026/06/long_chi_jing_du_tu_juan08-1500x1133.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 元王振鹏《龙池竞渡图》界画局部：两层木构柱网、灰瓦屋面、斗拱与连续格扇；宫苑功能不移植。
+    input_sha256: fb92587f4ecb3ef4c311f36bc9591b87f9f44a43ba9f75b8c5ea9097b554ef9d
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: d9222676-ca86-489c-ab49-a5a6ab0c86ba
+  generation_settings:
+    background: transparent
+    quality: auto
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T13:10:07+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_shop_2f.png
+  source_sha256: b2194523a34328d8b33cfc6d19cb77840b25fbe5984c15bda9b497f111483e5b
+  size: 512x480
+  sha256: 373de18527a24ff775b0fff14ca7fdb26ac848acbc59bba1bd5c6e0da82ba8f9
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_shop_2f
+    footprint:
+    - 8
+    - 6
+    anchor:
+    - 255.1274
+    - 311.6077
+    era: yuan_north
+  footprint_m:
+  - 8
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 3
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 448
+    - 224
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+  anchor_px:
+  - 255.1274
+  - 311.6077
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_shop_2f.json
+  processing:
+    source_size:
+    - 1295
+    - 1214
+    crop_box:
+    - 16
+    - 34
+    - 1270
+    - 1168
+    uniform_scale: 0.345679012345679
+    resized_size:
+    - 433
+    - 392
+    canvas_size:
+    - 512
+    - 480
+    paste_offset:
+    - 39
+    - 44
+    alpha_cleanup: retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 512
+    - 480
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 144366
+    alpha_partial_pixels: 100458
+    alpha_opaque_pixels: 936
+    alpha_nonzero_bbox:
+    - 39
+    - 44
+    - 472
+    - 436
+    transparent_margins_px:
+    - 39
+    - 44
+    - 40
+    - 44
+    border_alpha_max: 0
+  historical_detail: 三开间两层铺面；下层开敞柜台、上层连续格窗与浅栏杆，木柱网、灰瓦硬山屋面、外露椽头、土墙与灰砖脚。
+  notes: 第5次运行按审核返修；保留既有ID、类型、登记占地与画布。成品仅做alpha外晕清理、等比LANCZOS缩放和透明扩边，不做warp。本项输入均为已逐张view_image的可辨建筑影像；references.used逐张限定取用细节。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过：至少三项历史构造可与本项参考直接核对，且完整轮廓、左上光与透明边目检无禁项；保留candidate。
+- id: bld_kit_yuan_north_stable
+  file: bld_kit_yuan_north_stable.png
+  category: building-map
+  style: default
+  subject: 元代北方·马厩；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Use case: precise historical image edit for one isolated reusable game asset. Image 1 is the current yuan_north asset and is ONLY a locked composition
+    and geometry guide. Preserve its subject count, logical footprint, complete silhouette placement, all visible ground-contact corners, bottom edge and transparent
+    margins. Preserve strict orthographic dimetric yaw 45 degrees and about 30 degrees pitch: both ground axes are exact 2:1 slopes (+0.5 and -0.5), all parallel
+    edges remain parallel, verticals vertical, with no perspective convergence. Keep the registered footprint proportions and do not add any apron or scenery beyond
+    it. Images 2 and 3 are genuine historical or heritage references. Take only form, proportions, regional materials and construction detail from them; do not copy
+    their camera, modern surroundings, damage pattern or whole composition.
+
+
+    Replace the generic old rendering with an ORIGINAL Yuan-dynasty NORTH CHINA interpretation. Required subject details: a long utilitarian stable: three-or-five
+    open timber bays beneath a hard-gabled grey pan-and-cover tile roof, low earth-and-brick rear wall, rough squared posts, exposed purlins and rafters, low plank
+    stall partitions, hay rack, feed trough and tied bundles; no horses or people, no modern tack. Where architecture appears, render historically legible roof pitch
+    and eave curve, individual handmade grey pan-and-cover clay tiles, plain ridge and restrained chiwen or ridge ornaments where appropriate; robust sparse bracket
+    arms rather than dense Qing brackets; visible post grid, beams, purlins and rafter ends; period-appropriate plank-and-geometric-lattice doors and windows; buff
+    rammed-earth or adobe or grey masonry as specified. Materials are matte, finely weathered and maintained, with high realistic detail density matching the approved
+    Song baseline, never toy-like or low-poly. Natural upper-left light, darker right and rear faces, only a tiny lower-right contact shadow.
+
+
+    Output one complete asset as a true RGBA transparent-background PNG. Alpha must be zero outside the silhouette and in intended openings. Keep every roof, base
+    corner and tree crown fully in frame. No readable text, pseudo-text, plaques, labels, people, animals, flags, banners, modern objects, sky, landscape, water plane,
+    ground plane beyond the registered footprint, fog, glow, halo, checkerboard, thick diorama pedestal, fantasy elements, Qing-style dense polychrome, yellow imperial
+    glazed tiles, front-elevation camera or cropped edges.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: jishi_01.png
+    url: http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 取姬氏民居的北方土墙、灰瓦硬山、砖裙与朴素木门窗；现状有后世修缮，不逐件照搬。
+  - file: jishi_02.png
+    url: http://sx.people.com.cn/n2/2021/1025/c189153-34972542.html
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 取姬氏民居的北方土墙、灰瓦硬山、砖裙与朴素木门窗；现状有后世修缮，不逐件照搬。
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: 2a2ee4e7-a458-4831-8c66-c42fb76b45ea
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T07:39:22+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_stable.png
+  source_sha256: 4e37aa52eb1f5609615f267509e715bcf79fbd8ad0eeada2802e79403aa8443a
+  size: 512x416
+  sha256: 2e3c20df663cdc7f0c9983295f06c0ff71ce61b68562c593b7890c3cef23ce27
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_stable
+    footprint:
+    - 8
+    - 6
+    anchor:
+    - 256.4821
+    - 256.56
+    era: yuan_north
+  footprint_m:
+  - 8
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 3
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 448
+    - 224
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+  anchor_px:
+  - 256.4821
+  - 256.56
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_stable.json
+  processing:
+    source_size:
+    - 1254
+    - 1254
+    crop_box:
+    - 48
+    - 224
+    - 1234
+    - 1110
+    uniform_scale: 0.3758465011286682
+    resized_size:
+    - 446
+    - 333
+    canvas_size:
+    - 512
+    - 416
+    paste_offset:
+    - 33
+    - 41
+    alpha_cleanup: none
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 512
+    - 416
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 128944
+    alpha_partial_pixels: 83191
+    alpha_opaque_pixels: 857
+    alpha_nonzero_bbox:
+    - 33
+    - 41
+    - 479
+    - 374
+    transparent_margins_px:
+    - 33
+    - 41
+    - 33
+    - 42
+    border_alpha_max: 0
+  historical_detail: 'a long utilitarian stable: three-or-five open timber bays beneath a hard-gabled grey pan-and-cover tile roof, low earth-and-brick rear wall,
+    rough squared posts, exposed purlins and rafters, low plank stall partitions, hay rack, feed trough and tied bundles; no horses or people, no modern tack'
+  notes: 历史参考增强重出；保留既有ID、类型与登记占地。成品仅由alpha裁边、等比LANCZOS缩放和透明扩边规格化，不做warp。 参考图已逐张view_image；弱证据输入：无。 45°/30°、2:1投影、接口和锚点仍待场景实测；候选不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过完整轮廓、历史材质、左上光与透明边目检；保留candidate。
+- id: bld_kit_yuan_north_temple_hall
+  file: bld_kit_yuan_north_temple_hall.png
+  category: building-map
+  style: default
+  subject: 元北方寺观殿堂（永乐宫木构母题，原创扩展）
+  prompt: 'Edit IMAGE 1 into ONE ORIGINAL isolated Yuan-dynasty north-China game building. IMAGE 1 strictly locks subject count, registered footprint, silhouette
+    placement, every visible ground corner, bottom edge, framing, true orthographic dimetric camera at yaw 45 degrees and pitch about 30 degrees, and transparent
+    margins. Keep both ground axes at 2:1 slopes, parallel edges parallel, verticals vertical, and no perspective convergence. IMAGES 2-4 are historical evidence
+    only: adopt visible form, proportions, material and construction details without copying their camera, modern surroundings, damage, people, text, or complete
+    composition. Natural upper-left light, darker right/rear faces, tiny lower-right contact shadow, restrained realistic detail matching the approved Song baseline.
+    Output one complete true RGBA transparent PNG: alpha zero beyond the silhouette, no floor or ambient backdrop. No readable or pseudo text, plaques, signs, people,
+    animals, modern objects, imperial yellow glaze, Qing ornament, fantasy, glow, haze, checkerboard, thick pedestal, or crop. A compact deep five-bay Yuan Daoist
+    hall based on Yongle Palace: low-pitched broad single-eave hip roof, orderly grey pan-and-cover tile courses, restrained glazed ridge and chiwen only at the ridge,
+    broad nearly straight eaves, stout red-brown columns, sparse robust two-to-three-step brackets and exposed rafters, high grey-brick terrace, timber panel and
+    geometric lattice doors, restrained aged blue-green and ochre beam bands, no statue or incense.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: yongle701_1.jpg
+    url: https://www.sxrcylg.cn/uploads/allimg/210901/1-210Z1100033b4.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 永乐宫元代殿宇正立面：单檐庑殿屋面、宽出檐、柱网、格扇与高砖台基。
+    input_sha256: 6e605f46b260f70d14e9fd629e4f8098ddb8f9cfc107dc715d094c2512037133
+  - file: yongle701_4.jpg
+    url: https://www.sxrcylg.cn/uploads/allimg/210901/1-210Z1100222V1.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 屋面近照可辨筒板瓦行列、琉璃正脊、鸱吻与克制的脊饰配置。
+    input_sha256: dfe647cd81be17875f720b42808a2b8a206386dacdabbd395a4e95d38c626f6a
+  - file: yongle_detail_4.jpg
+    url: https://www.sxrcylg.cn/uploads/allimg/20230927/1-23092G0013B04.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 馆藏三清殿前檐当心间阑额，只取元代木作尺度、透雕和彩绘残貌。
+    input_sha256: b3c90f0e233307ab2735b76cb8c78106b2a13f20a3e30bb992f0a3f8677e0dd6
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: 4acdf0c3-a36c-46ed-b6d3-49c514504be6
+  generation_settings:
+    background: transparent
+    quality: auto
+    output_format: png
+    request_image_count: 4
+  created: '2026-10-01T13:03:42+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_temple_hall.png
+  source_sha256: 691f1919ae847771a11a21b7bd74d9c80cdb2346babcd13df18bc99eab8e9bc4
+  size: 896x672
+  sha256: 18cd7155db78de3e50008813f7decaf9c046fda3957f661c82b67f6f5c4ed5d7
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_temple_hall
+    footprint:
+    - 14
+    - 11
+    anchor:
+    - 449.6442
+    - 419.3574
+    era: yuan_north
+  footprint_m:
+  - 14
+  - 11
+  entrance:
+    edge: S
+    offset_cells: 6
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 800
+    - 400
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+  anchor_px:
+  - 449.6442
+  - 419.3574
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_temple_hall.json
+  processing:
+    source_size:
+    - 1448
+    - 1086
+    crop_box:
+    - 54
+    - 65
+    - 1411
+    - 1064
+    uniform_scale: 0.5865865865865866
+    resized_size:
+    - 796
+    - 586
+    canvas_size:
+    - 896
+    - 672
+    paste_offset:
+    - 50
+    - 43
+    alpha_cleanup: retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 896
+    - 672
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 338052
+    alpha_partial_pixels: 263172
+    alpha_opaque_pixels: 888
+    alpha_nonzero_bbox:
+    - 50
+    - 44
+    - 846
+    - 628
+    transparent_margins_px:
+    - 50
+    - 44
+    - 50
+    - 44
+    border_alpha_max: 0
+  historical_detail: 五开间元代殿宇母题；单檐庑殿灰色筒板瓦，琉璃正脊与鸱吻，宽出檐、疏朗斗拱/阑额、柱网格扇及高砖台基。
+  notes: 第5次运行按审核返修；保留既有ID、类型、登记占地与画布。成品仅做alpha外晕清理、等比LANCZOS缩放和透明扩边，不做warp。本项输入均为已逐张view_image的可辨建筑影像；references.used逐张限定取用细节。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过：至少三项历史构造可与本项参考直接核对，且完整轮廓、左上光与透明边目检无禁项；保留candidate。
+- id: bld_kit_yuan_north_wangfu
+  file: bld_kit_yuan_north_wangfu.png
+  category: building-map
+  style: default
+  subject: 元北方王府殿院模块（原创扩展）
+  prompt: 'Use case: precise-object-edit. Generate one entirely NEW anonymous original Yuan-era north-China princely residence module, an ORIGINAL gameplay extension
+    rather than a reconstruction of a named palace. IMAGE 1 locks only camera, axial two-court composition, registered 20-by-16 logical footprint, entrance orientation,
+    approximate hierarchy/scale and transparent margins. IMAGES 2 and 3 are photographs of extant Yuan-period Yongle Palace architecture; use their visible construction
+    details only, not the photographed composition or site identity.
+
+
+    Subject: an axial ceremonial gate, large five-bay central hall, lower side halls and modest rear service buildings enclosing two courts. Use IMAGE 2 for the central
+    hall''s single-eave hip roof, broad low roof proportion, regular red-brown column grid, close-set lattice doors and high grey-brick/stone platform with stair.
+    Use IMAGE 3 for grey pan-and-cover tile courses, ridge profile, colored ridge tiles and restrained chiwen end forms. Use strong but sparse bracket sets with believable
+    one-to-two-step projection, deep straight eaves and exposed rafters. Side buildings use grey hard-gable tile roofs, buff earth/brick enclosure walls and simple
+    plank doors. Restrained aged red-brown timber and sparse faded blue-green bands; no dragon imagery, imperial yellow roof, marble balustrade excess or later Qing
+    ornament.
+
+
+    Preserve IMAGE 1''s axial mass count, footprint, readable courtyard bottom corners and bottom edge. Orthographic dimetric yaw 45/elevation about 30, ground axes
+    near +0.5/-0.5, verticals upright, parallel edges, no perspective. Upper-left light, darker rear/right faces and tiny lower-right contact shadow. Realistic fine
+    Song-baseline detail. TRUE transparent RGBA with clean edges and at least 8 percent empty margin each side. No people, animals, text, pseudo-text, plaques, flags,
+    watermark, modern elements, landscape, sky, checkerboard, haze, glow, thick unified ground slab, clipping, fantasy, yellow glaze or dense Qing decoration.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: yongle_front.jpg
+    url: https://www.sxrcylg.cn/uploads/allimg/210901/1-210Z1100033b4.jpg
+    sha256: 6e605f46b260f70d14e9fd629e4f8098ddb8f9cfc107dc715d094c2512037133
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 永乐宫现存元构殿堂正立面照片：五间柱网、格扇、单檐宽屋面、斗拱与高砖石台基；现状含后世修缮，不逐件倒推元貌。
+  - file: yongle_roof.jpg
+    url: https://www.sxrcylg.cn/uploads/allimg/210901/1-210Z1100222V1.jpg
+    sha256: dfe647cd81be17875f720b42808a2b8a206386dacdabbd395a4e95d38c626f6a
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 永乐宫屋面近照：灰筒板瓦、彩色脊瓦与鸱吻轮廓；仅取瓦作和脊饰，不复制后世修缮细节。
+  tool: Codex images/edits via built-in image generation backend
+  model: gpt-image-2
+  generation_id: 3de25e65-5df9-40f1-babf-c1235003ac19
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    size: 1507x1044
+    request_image_count: 3
+  created: '2026-10-02T06:58:22+00:00'
+  created_time_basis: image generation 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_wangfu.png
+  source_sha256: 6d2bd5a1e19fe43b3a05069d911a2cfff2d142be38f488f571a5dc67659ee1f0
+  size: 1248x864
+  sha256: f3c595d92337176dd0f12e54c616a9045f4dd1d25df0c09c875b53dc52d7d1e1
+  status: candidate
+  building:
+    type: bld_kit_yuan_wangfu
+    footprint:
+    - 20
+    - 16
+    anchor:
+    - 657.0865
+    - 483.9447
+    era: yuan_north
+  footprint_m:
+  - 20
+  - 16
+  entrance:
+    edge: S
+    offset_cells: 9
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 1152
+    - 576
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: design/22 §3.4 冻结骨架
+  anchor_px:
+  - 657.0865
+  - 483.9447
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_wangfu.json
+  processing:
+    source_size:
+    - 1507
+    - 1044
+    crop_box:
+    - 54
+    - 99
+    - 1478
+    - 982
+    uniform_scale: 0.7528089887640449
+    resized_size:
+    - 1072
+    - 665
+    canvas_size:
+    - 1248
+    - 864
+    paste_offset:
+    - 88
+    - 99
+    alpha_cleanup: source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 1248
+    - 864
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 674714
+    alpha_partial_pixels: 402546
+    alpha_opaque_pixels: 1012
+    alpha_nonzero_bbox:
+    - 88
+    - 99
+    - 1160
+    - 764
+    transparent_margins_px:
+    - 88
+    - 99
+    - 88
+    - 100
+    border_alpha_max: 0
+  historical_detail: 王府殿院模块（原创扩展，非具名王府复原）：五间主殿、规整柱网与格扇、石台基、灰筒板瓦、克制鸱吻、疏朗斗拱及低饱和蓝绿赭梁枋。
+  notes: 合入前审核返修：入选候选真实输入两张可辨建筑构造的历史图片；保留既有ID、类型、占地与入口。成品仅清除alpha<=2不可见边缘噪点，再alpha裁边、等比LANCZOS缩放及透明扩边，不做warp。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 参考图、入选原图和规格化成品均经view_image；通过构造、完整轮廓、左上光及透明边目检，保留candidate。
+  generation_turn_id: 412dfd79-a281-4ecc-b73c-51bb07799bb7
+- id: bld_kit_yuan_north_warehouse
+  file: bld_kit_yuan_north_warehouse.png
+  category: building-map
+  style: default
+  subject: 元代北方·仓屋；匿名建筑组合（原创扩展），具体细部（待考）。
+  prompt: 'Use case: precise-object-edit. IMAGE 1 is the candidate to correct. Keep its same anonymous original Yuan-era north-China secure warehouse architecture:
+    long low hard-gable grey pan-and-cover tile roof, exposed rafter ends, thick buff earth walls, high grey-brick damp skirt, timber frame, braced double plank doors,
+    stone threshold and small high lattice vents. IMAGES 2 and 3 remain actual regional architectural references for tile/rafter/door/lattice/wall construction.
+
+
+    Make exactly these corrections: REMOVE the entire rectangular earth/stone ground strip, paving border, grass, weeds and all terrain pixels. Architecture must
+    end at its wall, post, threshold and brick-foot contacts against transparent alpha. Keep only the sealed sacks/crate beside the wall. Scale uniformly if needed
+    so every nonzero pixel has at least 8 percent transparent margin on all four sides. Preserve registered 10-by-8 footprint proportions, orthographic dimetric yaw
+    45/elevation about 30, ground axes near +0.5/-0.5, verticals upright, parallel edges and upper-left light. Do not redesign or add structures. TRUE RGBA alpha.
+    No floor, terrain, plants, people, animals, text, pseudo-text, signs, flags, watermark, modern objects, landscape, sky, checkerboard, glow, fog, pedestal, clipping,
+    fantasy, yellow glaze or Qing decoration.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: jishi_1.png
+    url: http://sx.people.com.cn/NMediaFile/2021/1025/LOCAL202110251056000479181413354.png
+    sha256: 02697488dd26fc7cd4e5083ff030e9add6d1dfca883765ad86e2756806097662
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 高平姬氏民居院落照片：低举折硬山灰瓦、夯土/土坯墙与灰砖防潮裙；只作北方民居材料和尺度类比。
+  - file: jishi_3.png
+    url: http://sx.people.com.cn/NMediaFile/2021/1025/LOCAL202110251103000545126112312.png
+    sha256: 00e7194d742e19c932e57de22c114658dfe6e465fb7a5d8ffafef3bb5bf131b3
+    accessed: '2026-10-01'
+    role: 实际作为入选候选的 image generation 输入。
+    used: 高平姬氏民居正立面照片：灰筒板瓦、圆椽头、木柱枋、厚板门、方格窗和灰砖墙脚；避开照片中的现代器物与文字。
+  tool: Codex images/edits via built-in image generation backend
+  model: gpt-image-2
+  generation_id: 7fc5220b-4679-4aa0-ab6b-9d8734576086
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    size: 1402x1122
+    request_image_count: 3
+  created: '2026-10-02T07:01:48+00:00'
+  created_time_basis: image generation 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_warehouse.png
+  source_sha256: 1982c66656439a7096b0e4f261f0fa3e3b5583d45b086a1cbbe340ef18a2cafb
+  size: 640x512
+  sha256: 0ec4ce993271a9d115a48a33e899c6c6d91209daddf221b5ae63625526513aa8
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_warehouse
+    footprint:
+    - 10
+    - 8
+    anchor:
+    - 346.7174
+    - 318.3739
+    era: yuan_north
+  footprint_m:
+  - 10
+  - 8
+  entrance:
+    edge: S
+    offset_cells: 4
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 576
+    - 288
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】同构借用 design/22 §3.2–3.3 对应宋建筑占地，不是历史尺寸
+  anchor_px:
+  - 346.7174
+  - 318.3739
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_warehouse.json
+  processing:
+    source_size:
+    - 1402
+    - 1122
+    crop_box:
+    - 84
+    - 91
+    - 1342
+    - 1009
+    uniform_scale: 0.43720190779014306
+    resized_size:
+    - 550
+    - 401
+    canvas_size:
+    - 640
+    - 512
+    paste_offset:
+    - 45
+    - 55
+    alpha_cleanup: source alpha<=2 set to 0; then alpha crop, uniform LANCZOS resize and transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 640
+    - 512
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 203396
+    alpha_partial_pixels: 123307
+    alpha_opaque_pixels: 977
+    alpha_nonzero_bbox:
+    - 45
+    - 55
+    - 595
+    - 456
+    transparent_margins_px:
+    - 45
+    - 55
+    - 45
+    - 56
+    border_alpha_max: 0
+  historical_detail: 仓屋（原创扩展）：长条低举折硬山、灰筒板瓦与圆椽头、夯土/土坯填墙、灰砖防潮裙、厚板双门和高位小格窗；第二候选去除铺地、草与杂物。
+  notes: 合入前审核返修：入选候选真实输入两张可辨建筑构造的历史图片；保留既有ID、类型、占地与入口。成品仅清除alpha<=2不可见边缘噪点，再alpha裁边、等比LANCZOS缩放及透明扩边，不做warp。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 参考图、入选原图和规格化成品均经view_image；通过构造、完整轮廓、左上光及透明边目检，保留candidate。
+  generation_turn_id: 254fe84a-1226-4ba0-a737-29935de976e1
+- id: bld_kit_yuan_north_wharf
+  file: bld_kit_yuan_north_wharf.png
+  category: building-map
+  style: default
+  subject: 元北方河埠货运模块（原创扩展）
+  prompt: 'Use case: precise historical image edit for one isolated reusable game asset. Image 1 is the current yuan_north asset and is ONLY a locked composition
+    and geometry guide. Preserve its subject count, logical footprint, complete silhouette placement, all visible ground-contact corners, bottom edge and transparent
+    margins. Preserve strict orthographic dimetric yaw 45 degrees and about 30 degrees pitch: both ground axes are exact 2:1 slopes (+0.5 and -0.5), all parallel
+    edges remain parallel, verticals vertical, with no perspective convergence. Keep the registered footprint proportions and do not add any apron or scenery beyond
+    it. Images 2 and 3 are genuine historical or heritage references. Take only form, proportions, regional materials and construction detail from them; do not copy
+    their camera, modern surroundings, damage pattern or whole composition.
+
+
+    Replace the generic old rendering with an ORIGINAL Yuan-dynasty NORTH CHINA interpretation. Required subject details: a compact canal freight wharf module: coursed
+    grey stone quay edge and broad worn landing steps descending within the footprint, simple timber loading frame/winch, small hard-gabled grey-tile tally shed with
+    buff earth infill, bollards, rope coils and a few crates; no water plane, boats, people or modern metal crane. Where architecture appears, render historically
+    legible roof pitch and eave curve, individual handmade grey pan-and-cover clay tiles, plain ridge and restrained chiwen or ridge ornaments where appropriate;
+    robust sparse bracket arms rather than dense Qing brackets; visible post grid, beams, purlins and rafter ends; period-appropriate plank-and-geometric-lattice
+    doors and windows; buff rammed-earth or adobe or grey masonry as specified. Materials are matte, finely weathered and maintained, with high realistic detail density
+    matching the approved Song baseline, never toy-like or low-poly. Natural upper-left light, darker right and rear faces, only a tiny lower-right contact shadow.
+
+
+    Output one complete asset as a true RGBA transparent-background PNG. Alpha must be zero outside the silhouette and in intended openings. Keep every roof, base
+    corner and tree crown fully in frame. No readable text, pseudo-text, plaques, labels, people, animals, flags, banners, modern objects, sky, landscape, water plane,
+    ground plane beyond the registered footprint, fog, glow, halo, checkerboard, thick diorama pedestal, fantasy elements, Qing-style dense polychrome, yellow imperial
+    glazed tiles, front-elevation camera or cropped edges.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: wangzhenpeng_12.jpg
+    url: https://www.shuge.org/view/long_chi_jing_du_tu_juan/
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 题跋页，无建筑证据；仅作为实际输入记录。
+  - file: waning_01.jpg
+    url: https://commons.wikimedia.org/wiki/File:Wanning_Bridge_1.jpg
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；仅在画面可辨时取形制、比例、材质与构造细节，具体见 used。
+    used: 取万宁桥单孔石拱、石券和低栏板材料母题；不复制现代环境或实测尺寸。
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: 714dfbf3-221b-4f33-97cb-9a581a036b30
+  generation_settings:
+    background: transparent
+    quality: medium
+    output_format: png
+    request_image_count: 3
+  created: '2026-10-01T07:41:20+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_wharf.png
+  source_sha256: 140f9a029187aa422375b6ee2e943b4ed21e6981bc823038eca0bc756a0a704d
+  size: 512x448
+  sha256: 5c6b66f9d70f06d568d947114c900439a78a4d9a9e16d9bdfb1bc0a22027be72
+  status: candidate
+  building:
+    type: bld_kit_yuan_north_wharf
+    footprint:
+    - 10
+    - 6
+    anchor:
+    - 255.7329
+    - 264.3725
+    era: yuan_north
+  footprint_m:
+  - 10
+  - 6
+  entrance:
+    edge: S
+    offset_cells: 4
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 512
+    - 256
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: 【建议值】元北方同功能模块占地；非上游冻结数值、非历史测绘。
+  anchor_px:
+  - 255.7329
+  - 264.3725
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 1
+  selected_candidate: 1
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_wharf.json
+  processing:
+    source_size:
+    - 1402
+    - 1122
+    crop_box:
+    - 156
+    - 111
+    - 1302
+    - 1034
+    uniform_scale: 0.38353196099674974
+    resized_size:
+    - 440
+    - 354
+    canvas_size:
+    - 512
+    - 448
+    paste_offset:
+    - 36
+    - 47
+    alpha_cleanup: none
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 512
+    - 448
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 142154
+    alpha_partial_pixels: 86116
+    alpha_opaque_pixels: 1106
+    alpha_nonzero_bbox:
+    - 36
+    - 47
+    - 476
+    - 401
+    transparent_margins_px:
+    - 36
+    - 47
+    - 36
+    - 47
+    border_alpha_max: 0
+  historical_detail: 'a compact canal freight wharf module: coursed grey stone quay edge and broad worn landing steps descending within the footprint, simple timber
+    loading frame/winch, small hard-gabled grey-tile tally shed with buff earth infill, bollards, rope coils and a few crates; no water plane, boats, people or modern
+    metal crane'
+  notes: 历史参考增强重出；保留既有ID、类型与登记占地。成品仅由alpha裁边、等比LANCZOS缩放和透明扩边规格化，不做warp。 参考图已逐张view_image；弱证据输入：wangzhenpeng_12.jpg。 45°/30°、2:1投影、接口和锚点仍待场景实测；候选不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过完整轮廓、历史材质、左上光与透明边目检；保留candidate。
+- id: bld_kit_yuan_north_yamen
+  file: bld_kit_yuan_north_yamen.png
+  category: building-map
+  style: default
+  subject: 元北方路府官署（原创扩展）
+  prompt: 'Edit IMAGE 1 into ONE ORIGINAL isolated Yuan-dynasty north-China route/prefecture yamen compound. IMAGE 1 strictly locks subject count, registered 16 by
+    12 footprint, compound arrangement, silhouette placement, every visible ground corner, bottom edge, framing, true orthographic dimetric camera at yaw 45 degrees
+    and pitch about 30 degrees, and transparent margins. Keep both ground axes at 2:1 slopes, parallel edges parallel, verticals vertical, and no perspective convergence.
+    IMAGES 2-4 are photographic evidence of the actual Huozhou Prefectural Yamen main hall: adopt only clearly visible historical form, proportions, materials and
+    construction details without copying their frontal camera, modern surroundings, people, drums, plaques, text, glass cases, damage or full composition. Make the
+    main audience hall dominant: broad five-bay suspended-gable roof in sober grey pan-and-cover tiles, restrained ridge terminals; a shallow three-bay rolled-shed
+    suspended-gable porch visibly attached at the front; open front colonnade; robust sparse four-puzuo single-down-ang-like bracket rhythm, broad lintel beams, exposed
+    unpainted rafters and reduced-column timber frame; aged dark red-brown columns; plain buff rammed-earth or plaster infill over grey-brick skirts; hall raised
+    on a substantial stone-and-brick terrace and broad moon platform; low flanking office wings and axial gate remain subordinate. Use restrained traces of old pigment
+    only under the eaves, not Qing-style dense decoration. Natural upper-left light, darker right/rear faces, tiny lower-right contact shadow, restrained realistic
+    detail matching the approved Song baseline. Output one complete true RGBA transparent PNG: alpha zero beyond the silhouette, no floor or ambient backdrop. No
+    readable or pseudo text, plaques, signs, banners, people, animals, modern objects, imperial yellow glaze, fantasy, glow, haze, checkerboard, thick floating pedestal
+    or crop.'
+  negative: 无文字、伪字、人物、动物、现代物、天空、场景背景、假透明、厚地台、清式密集彩画、黄琉璃、透视汇聚或裁边。
+  references:
+  - file: huozhou_hall_ctrip.jpg
+    url: https://dimg04.c-ctrip.com/images/0103i120008siudt1F3FB_W_1200_0_Q90.jpg?proc=autoorient
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 霍州州署大堂正立面：五间悬山主体、前置三间卷棚抱厦、前檐柱列、灰瓦和月台。
+    input_sha256: 2ad62ada2521fb5d703c64a4145d4f21859089bd4822f7ebfa0e5549d2ca81e0
+  - file: huozhou_hall_sina.jpg
+    url: https://s9.sinaimg.cn/bmiddle/001m77tDgy6Fpb9H13258&690
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 同一元代大堂较早正立面：抱厦与主堂叠接、开敞前檐、柱础、台基及素朴木色。
+    input_sha256: 55f5154f84330ae5ce8ec0e3bca3e86adfeea58aff7b87d08fc01a634f9be7ee
+  - file: huozhou_frame_sina.jpg
+    url: https://s3.sinaimg.cn/bmiddle/001m77tDgy6FpbarrFwa2&690
+    accessed: '2026-10-01'
+    role: 实际作为 image_gen 输入；逐张目检后仅取可见构造，不复制构图、现代环境或文字。
+    used: 大堂室内梁架照片：粗壮梁栿、檩椽、减柱形成的大跨空间及克制彩绘残貌。
+    input_sha256: 760d6184c36da23d78888ed02b6a33557ed142c99eb2bc1141f81f72c658308c
+  tool: built-in image_gen
+  model: gpt-image-2
+  generation_id: c6d66223-c533-4871-abc8-086fc5f6be35
+  generation_settings:
+    background: transparent
+    quality: auto
+    output_format: png
+    request_image_count: 4
+  created: '2026-10-01T13:23:29+00:00'
+  created_time_basis: image_gen 服务回执 Unix 时间
+  source_path: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_yamen.png
+  source_sha256: b32a4ef60c8d807c9399da9c6162286357fdd5c212901a8e3531a8f0d65ad8cf
+  size: 960x704
+  sha256: 144741c1211872ca43fb8fb8ae3d3b9a0d290c6d760b75be5dcf5c2db79a46f1
+  status: candidate
+  building:
+    type: bld_kit_yuan_yamen
+    footprint:
+    - 16
+    - 12
+    anchor:
+    - 510.5347
+    - 391.0236
+    era: yuan_north
+  footprint_m:
+  - 16
+  - 12
+  entrance:
+    edge: S
+    offset_cells: 7
+  projection_contract:
+    tile_px:
+    - 64
+    - 32
+    ground_bbox_px:
+    - 896
+    - 448
+    light: screen_upper_left
+    shadow: screen_lower_right_contact_only
+  png_rotations_available:
+  - 0
+  allowRotation: false
+  footprint_basis: design/22 §3.4 冻结骨架
+  anchor_px:
+  - 510.5347
+  - 391.0236
+  anchor_basis: 旧版锚点在旧alpha包围框内的归一位置映射到新alpha包围框；未重测底面，待实测。
+  candidate_count: 2
+  selected_candidate: 2
+  source_record: assets/default/building-map/yuan_north/sources/historical-20261001/bld_kit_yuan_north_yamen.json
+  processing:
+    source_size:
+    - 1465
+    - 1073
+    crop_box:
+    - 35
+    - 22
+    - 1435
+    - 1041
+    uniform_scale: 0.6035328753680078
+    resized_size:
+    - 845
+    - 615
+    canvas_size:
+    - 960
+    - 704
+    paste_offset:
+    - 57
+    - 44
+    alpha_cleanup: retain original alpha only within 3px of alpha>=240; then alpha>=3 crop, uniform LANCZOS resize, transparent padding; no warp
+  pixel_qa:
+    mode: RGBA
+    size:
+    - 960
+    - 704
+    alpha_extrema:
+    - 0
+    - 255
+    alpha_zero_pixels: 380589
+    alpha_partial_pixels: 294022
+    alpha_opaque_pixels: 1229
+    alpha_nonzero_bbox:
+    - 58
+    - 44
+    - 901
+    - 658
+    transparent_margins_px:
+    - 58
+    - 44
+    - 59
+    - 46
+    border_alpha_max: 0
+  historical_detail: 以霍州州署元代大堂为核心；五间悬山灰瓦主体、三间卷棚抱厦、开敞前檐、四铺作单下昂式疏朗斗拱、大额枋、粗梁檩椽和高台基；院落组合为原创扩展。
+  notes: 第5次运行按审核返修；保留既有ID、类型、登记占地与画布。成品仅做alpha外晕清理、等比LANCZOS缩放和透明扩边，不做warp。本项输入均为已逐张view_image的可辨建筑影像；references.used逐张限定取用细节。45°/30°、2:1投影、接口和锚点仍待场景实测；candidate不等于史实复原或作者批准。
+  visual_qa:
+    reference_viewed: true
+    selected_source_viewed: true
+    final_viewed: true
+    result: 通过：至少三项历史构造可与本项参考直接核对，且完整轮廓、左上光与透明边目检无禁项；保留candidate。

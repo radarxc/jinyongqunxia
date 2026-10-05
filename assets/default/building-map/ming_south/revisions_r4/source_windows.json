@@ -1,0 +1,16 @@
+{
+  "title": "木窗的匠心和工艺",
+  "url": "https://ylj.suzhou.gov.cn/szsylj/ylys/202404/613a96d3071d489d82e3b0f303e41754.shtml",
+  "accessed": "2026-09-30",
+  "method": "curl with TLS verification and HTML text extraction",
+  "exit_code": 6,
+  "error": "curl: (6) Could not resolve host: ylj.suzhou.gov.cn",
+  "excerpts": {
+    "明代": [],
+    "直线": [],
+    "柳条": [],
+    "书条": [],
+    "玻璃": [],
+    "明瓦": []
+  }
+}

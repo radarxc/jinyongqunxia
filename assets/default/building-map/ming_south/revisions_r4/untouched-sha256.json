@@ -1,0 +1,92 @@
+[
+  {
+    "id": "bld_kit_ming_south_shop_2f",
+    "file": "bld_kit_ming_south_shop_2f.png",
+    "sha256": "a65525f3a543d7c95abdc3023a104f9b0b35c5c8d9cfef2bf37bef68691aef4d",
+    "size": [
+      448,
+      432
+    ]
+  },
+  {
+    "id": "bld_kit_ming_south_inn",
+    "file": "bld_kit_ming_south_inn.png",
+    "sha256": "906570d20a1c53935b93d8fdc25d805f01226b582834cfc2e43362c6c73a7f57",
+    "size": [
+      736,
+      544
+    ]
+  },
+  {
+    "id": "bld_kit_ming_south_market_stall",
+    "file": "bld_kit_ming_south_market_stall.png",
+    "sha256": "d86d11260a071f4c7998447b1c8513b79a30699010578ae08303e8491b548a87",
+    "size": [
+      256,
+      272
+    ]
+  },
+  {
+    "id": "bld_kit_ming_south_wangfu",
+    "file": "bld_kit_ming_south_wangfu.png",
+    "sha256": "44d926e5bfd5b247b74dc6af5fe58d23da1ebb32a88f78f518fdfbb24094c84f",
+    "size": [
+      1322,
+      990
+    ]
+  },
+  {
+    "id": "bld_kit_ming_south_pagoda",
+    "file": "bld_kit_ming_south_pagoda.png",
+    "sha256": "2c997a6896bda8aa1f5e84cb87c9d3415102e8a2bc99dfad65a7403ea4c56747",
+    "size": [
+      490,
+      1103
+    ]
+  },
+  {
+    "id": "bld_kit_ming_south_stable",
+    "file": "bld_kit_ming_south_stable.png",
+    "sha256": "c6d12cca3d27507a2d29452655ae7a17279c8ed196d380bfe4f1edb6f2ca08c4",
+    "size": [
+      556,
+      449
+    ]
+  },
+  {
+    "id": "tex_town_ming_south_wall__brick_r000_v01",
+    "file": "tex_town_ming_south_wall__brick_r000_v01.png",
+    "sha256": "2d41f05beda296d3c4de8e177accf0bb8f7f2802e0ec579d34a94e6cf4702b31",
+    "size": [
+      73,
+      173
+    ]
+  },
+  {
+    "id": "tex_town_ming_south_bridge__stone_w5_l10_r000_v01",
+    "file": "tex_town_ming_south_bridge__stone_w5_l10_r000_v01.png",
+    "sha256": "31dc7532fa52306685880b242ae93716ff749e2b8468899b7047c3c6070f2cef",
+    "size": [
+      489,
+      230
+    ]
+  },
+  {
+    "id": "tex_town_ming_south_tree_cluster__willow_v01",
+    "file": "tex_town_ming_south_tree_cluster__willow_v01.png",
+    "sha256": "0295e7ec5253842362ce9bd20488ad482e1e3b9654a25b2c5a0d1e93371cb20e",
+    "size": [
+      200,
+      154
+    ]
+  },
+  {
+    "id": "tex_town_ming_south_tree_cluster__bamboo_v01",
+    "file": "tex_town_ming_south_tree_cluster__bamboo_v01.png",
+    "sha256": "a1adac1a5dfae5d7d5f37758c23873b6afc53c1400a959b2b474d3569c1888a5",
+    "size": [
+      136,
+      171
+    ]
+  }
+]

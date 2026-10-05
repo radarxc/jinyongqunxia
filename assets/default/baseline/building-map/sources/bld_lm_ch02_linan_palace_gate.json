@@ -1,0 +1,41 @@
+{
+  "id": "bld_lm_ch02_linan_palace_gate",
+  "w": 14,
+  "h": 8,
+  "subject": "临安皇城北向门楼意象，ch02南宋1223（无字原创意象，门名形制待考）",
+  "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, a single reusable transparent PNG building, realistic historical Chinese architectural materials, no ink painting or miniature toy. Orthographic dimetric 2:1 projection, yaw45 pitch30, two horizontal ground axes have screen slopes +0.5 and -0.5, vertical pillars exactly vertical, NO perspective convergence. Front faces screen lower left. Grey clay tiles, weathered timber, understated plaster and stone, believable Song-period structural joinery, low-saturation warm natural colors. Thin flat rectangular footprint foundation, clearly visible straight front and right base edges, no chunky diorama pedestal. Entire building including eaves and thin footprint inside canvas, at least 10% transparent padding on all sides. Sunlight from SCREEN UPPER LEFT, short subtle contact shadow toward SCREEN LOWER RIGHT. TRUE transparent RGBA canvas, no background sky, floor, scenery or checkerboard. No text, signs, pseudo-writing, letters, watermark, logo, humans, modern objects, Qing yellow palace roofs, Japanese torii, dramatic extreme eaves. Generate exactly ONE asset in a square 1024x1024 composition. ONE complete restrained Southern Song Linan palace gateway building 14m east-west by8m north-south footprint. Broad single-storied timber gate hall above a modest grey stone gate base, one central open passage continuing north to south, muted cinnabar structural columns, sparse large bracket clusters, shallow grey tiled hipped roof with restrained ridge ends, NO yellow tiles or Qing ornament. The formal entrance is on its NORTH SIDE (screen upper-right, far side); visible south rear opening faces lower-left. Entire flat rectangular thin plinth visible in a 14:8 ground ratio, straight front and right edges, no neighboring palace, no external city wall, no banner, no written plaque. Cinematic realistic material fidelity but mathematically orthographic framing.\nCORRECTION: the rectangular ground footprint must truly be14m x8m, not a long narrow14x5 strip. Show a DEEP rectangular gatehouse foundation. On a square image, base corners roughly at LEFT(15%,68%), FRONT(59.55%,90.275%), RIGHT(85%,77.55%), BACK(40.45%,55.275%); the two ground axes are exactly+0.5 and-0.5, ratio of visible frontage run to visible depth run is14/8=1.75. Treat this as engineering geometry; roof and walls follow these same axes, no perspective convergence. Ignore any source image ground distortion. More transparent padding around eaves. Cast only a tiny contact shadow immediately DOWN-RIGHT, no wide shadow on upper-right.",
+  "type": "bld_lm_ch02_linan_palace_gate",
+  "negative": "无文字、现代元素、人物、透视、厚台基、背景色或棋盘格",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f166-4e1e-79f1-9e71-f3cbf0a66607/exec-ab5f44c7-9180-441e-9d52-c0b3efcf9cf1.png",
+  "candidate_count": 3,
+  "footprint_corners_source_px": {
+    "left": [
+      98,
+      840
+    ],
+    "front": [
+      747,
+      1131
+    ],
+    "right": [
+      1183,
+      945
+    ]
+  },
+  "visual_review": "三稿均view_image，选择第2稿：完整宋式灰瓦门楼、南北贯通，无字无人；主光左上、短影右下。第1稿台基过长窄，第3稿仍浅斜且更窄。第2稿底面仍+.448/-.427、宽深比1.489 vs1.75，几何未通过；地台相对目标偏厚。仅candidate，严禁作为已通过精确拼接/历史复原素材。",
+  "discarded_candidates": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f166-4e1e-79f1-9e71-f3cbf0a66607/exec-57d218c8-9208-460c-aabf-8a64616067c0.png",
+      "prompt": "Use case: historical-scene. Asset type: tianshu default building-map, a single reusable transparent PNG building, realistic historical Chinese architectural materials, no ink painting or miniature toy. Orthographic dimetric 2:1 projection, yaw45 pitch30, two horizontal ground axes have screen slopes +0.5 and -0.5, vertical pillars exactly vertical, NO perspective convergence. Front faces screen lower left. Grey clay tiles, weathered timber, understated plaster and stone, believable Song-period structural joinery, low-saturation warm natural colors. Thin flat rectangular footprint foundation, clearly visible straight front and right base edges, no chunky diorama pedestal. Entire building including eaves and thin footprint inside canvas, at least 10% transparent padding on all sides. Sunlight from SCREEN UPPER LEFT, short subtle contact shadow toward SCREEN LOWER RIGHT. TRUE transparent RGBA canvas, no background sky, floor, scenery or checkerboard. No text, signs, pseudo-writing, letters, watermark, logo, humans, modern objects, Qing yellow palace roofs, Japanese torii, dramatic extreme eaves. Generate exactly ONE asset in a square 1024x1024 composition. ONE complete restrained Southern Song Linan palace gateway building 14m east-west by8m north-south footprint. Broad single-storied timber gate hall above a modest grey stone gate base, one central open passage continuing north to south, muted cinnabar structural columns, sparse large bracket clusters, shallow grey tiled hipped roof with restrained ridge ends, NO yellow tiles or Qing ornament. The formal entrance is on its NORTH SIDE (screen upper-right, far side); visible south rear opening faces lower-left. Entire flat rectangular thin plinth visible in a 14:8 ground ratio, straight front and right edges, no neighboring palace, no external city wall, no banner, no written plaque. Cinematic realistic material fidelity but mathematically orthographic framing.",
+      "reason": "底面过长窄，投影偏平"
+    },
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f166-4e1e-79f1-9e71-f3cbf0a66607/exec-fd30982c-0abf-4f48-98eb-cc808ecb6add.png",
+      "prompt": "为中国古代城镇拼接地图生成一张单体PNG。南宋1223年临安皇城门楼的无字原创意象：朴素灰瓦宋式木构，暗红柱子，大而稀疏斗拱，中间开门洞，灰石基座薄而贴地。无清宫黄色，无人物，无文字。重要：这是严格2:1正交斜45度游戏地图sprite，不是建筑摄影、不要透视消失点。相机偏航45度俯仰30度。门楼占地矩形宽14米深8米，有明显进深，四角明确；所有地面长边斜率+0.5、短边-0.5，竖柱绝对竖直；两条地面投影边长度比7:4。底面前角应在整地面左右跨度的63.636%位置，而非正中，也非过于偏右。简洁平行四边形地面，仅含基座不要铺整条街。请把地基、柱脚、檐口的正交投影画对。只一座完整门楼，主体写实材质，屋顶缓和不夸张，屋檐完整。光源画面左上，极短接触影向右下。真正透明RGBA，四周至少12%透明留白，无底色，无棋盘格，完全不画背景。正式入口北侧，但北南门洞贯通，当前看到南侧后开口。",
+      "reason": "底面更长窄，投影仍偏平；未优于第2稿"
+    }
+  ],
+  "source_sha256": "5d3eaac9eaa67a9b8f92f4167f30e6ee599cd8e855d82bd95806ca8d1e988d75",
+  "created": "2026-09-30T08:28:23.209671+00:00"
+}

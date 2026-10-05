@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_bubingcao
+name: 步兵操全本
+kind: manual
+sub: full
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_bubingcao
+text:
+  desc: 外观：清代土黄线装小册，粗麻四眼订。
+  lore: 营中把步兵舒筋、整队与近身护架编成土黄小册，拳操与谱本属 （原创扩展）。研读须按口令逐节练习，先求齐整耐久再求出手；泥点折角显示它常在操场边使用。
+extension:
+  type: manual
+  value:
+    skill: sk_bubingcao
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_bubingcao
+      readWis: 25
+      maxLayer: 10
+      cultivation: 750

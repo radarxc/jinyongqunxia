@@ -1,0 +1,9 @@
+[
+  {"asset_id":"prp_song_dali_camellia","name":"山茶花丛","era":"song_dali","s":2,"Y":1.5,"size_px":[136,131],"anchor_px":[68,95],"variants":["疏花","密花"]},
+  {"asset_id":"prp_song_dali_bamboo","name":"大理竹丛","era":"song_dali","s":2,"Y":3,"size_px":[136,190],"anchor_px":[68,154],"variants":["疏枝","密枝"]},
+  {"asset_id":"prp_song_dali_broadleaf","name":"大理阔叶树","era":"song_dali","s":2,"Y":4,"size_px":[136,229],"anchor_px":[68,193],"variants":["窄冠","圆冠"]},
+  {"asset_id":"prp_song_dali_grass","name":"大理草丛","era":"song_dali","s":1,"Y":0.5,"size_px":[72,60],"anchor_px":[36,40],"variants":["低簇","散叶"]},
+  {"asset_id":"prp_song_willow","name":"垂柳","era":"song_southern","s":2,"Y":4,"size_px":[136,229],"anchor_px":[68,193],"variants":["疏枝","密枝"]},
+  {"asset_id":"prp_song_bamboo","name":"江南竹丛","era":"song_southern","s":2,"Y":3,"size_px":[136,190],"anchor_px":[68,154],"variants":["疏枝","密枝"]},
+  {"asset_id":"prp_song_broadleaf","name":"江南阔叶树","era":"song_southern","s":2,"Y":4,"size_px":[136,229],"anchor_px":[68,193],"variants":["窄冠","圆冠"]}
+]

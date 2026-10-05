@@ -1,0 +1,32 @@
+{
+  "suffix": "house_large",
+  "title": "大型民居",
+  "fp": [
+    7,
+    6
+  ],
+  "path": "exec-a49083b5-b5da-46aa-a6ac-1cf74d7e7436",
+  "prompt": "Create a NEW northern Liao-Jin version of the reference Song game map building, retaining its camera, complete very thin diamond footprint, true clean transparency, entrance direction and detailed realistic ancient architectural rendering. This is a CITY MAP SPRITE, not a perspective architectural showcase. Orthographic yaw45 elevation30, 2:1 dimetric projection, ground axes +0.5 and -0.5, upright verticals, parallel lines, no perspective. Entrance screen LOWER LEFT. Both ground axes clearly readable; complete flat rectangular ground perimeter with LEFT, FRONT and RIGHT corners. Entire sprite occupies central 70 percent of canvas. Main light screen UPPER LEFT, short soft contact shadow lower right. Background alpha=0, NO glow, halo or gradient. No thick plinth, text, people, sky, landscape, neighboring structures, symbols, Ming/Qing palace ornaments or modern features. One self-contained building. Historic regional inspiration, original game interpretation rather than monument reconstruction. Subject: larger 7m east-west by 6m north-south single-story northern family dwelling, 11th–12th century Yanjing/Datong. Broad three-bay dark timber house, sober gray ceramic tiled gabled roof with broad low eaves, thick warm buff earthen plaster walls on low stone footing. Central plank door on left-front facade, simple lattice windows, a small storage bay under roof at side. No courtyard wall. Keep front ground edge length 7/6 of side edge.",
+  "ref": "bld_kit_song_southern_house",
+  "corners": {
+    "left": [
+      94,
+      757
+    ],
+    "front": [
+      677,
+      1095
+    ],
+    "right": [
+      1183,
+      805
+    ]
+  },
+  "count": 2,
+  "note": "三开间大民居；无现代装饰。画风与宋基线一致，屏幕轴线近传统等轴约±0.58，几何未完全通过。 已生成2候选对比，选第1候选，原因见rejected_candidate。",
+  "rejected": {
+    "source_path": "/Users/bytedance/.codex/generated_images/01a0f428-333a-7700-b17d-ba49c7363b52/exec-7a59e386-17e5-4f3b-8a99-4e3171168d4c.png",
+    "prompt": "Generate a revised NEW northern Liao-Jin town building asset using reference only for realism, textures and type. Correct the ground footprint projection: orthographic dimetric 2:1, ground edges at exactly26.565degrees to horizontal, slopes+0.5 and-0.5. Do NOT copy the reference camera or ground shape. Transparent RGBA, no background, halo, people, writing or markings, no thick plinth. Front entrance faces screen lower-left. Screen-upper-left light, short contact shadow lower-right. All roof and ground perimeter fully contained with margins. Northern Liao/Jin11th–12th century warm buff plaster, dark timber and plain gray tile, modest broad eaves; no Ming/Qing palace decoration. ONE larger family house, single-story three-bay building on footprint7east-west by6north-south meters. Draw thin rectangular perimeter whose LEFT to FRONT projected horizontal length is7units and FRONT to RIGHT horizontal length is6units. Ground left-front and front-right edges must be slope0.5. Lower roof pitch than source, shallow eaves, one plank door and simple lattice windows, low stone foundation, no plants or ceremonial symbols.",
+    "reason": "第2候选可见底边仍偏2:1，且前/侧宽深比比第1候选偏差更大；选第1候选。"
+  }
+}

@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_biyudao
+name: 碧玉刀
+kind: weapon
+sub: blade
+grade: 9
+stack: 1
+chapters: any
+origin: canon
+canonRef: 古龙《七种武器·碧玉刀》
+price: auto
+flags:
+- unique
+assets:
+  icon: item/biyudao
+text:
+  desc: 外观：碧玉色刀装配窄直背短刀，玉质集中在柄与鞘。
+  lore: 此刀取自古龙《七种武器·碧玉刀》的非商业致敬，名贵处落在碧玉装具而非整块玉刃。短刀适合贴身快斩，江湖传闻重其名更重持刀人的抉择；形制与数值为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 74
+      qiAffinity: 100

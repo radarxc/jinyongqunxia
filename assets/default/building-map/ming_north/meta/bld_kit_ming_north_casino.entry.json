@@ -1,0 +1,54 @@
+{
+  "id": "bld_kit_ming_north_casino",
+  "subject": "明代北方府城·赌场（原创扩展）",
+  "prompt": "Use case: sketch-to-render. Add realistic historical materials and architectural detail onto this EXACT locked geometric blockout. ONE Ming north China gambling hall with grey brick hard-gabled roof walls, rounded grey clay roof tiles, brown timber columns, two open front bays with exactly two plain wooden gaming tables and small ivory counters. Make materials as intricate as a realistic painted strategy-game sprite. Keep ALL geometry exactly as input: the outer thin foundation polygon, camera angles, front and side wall dimensions, 10wide by8deep ground rectangle, roof ridge and eaves axes; all diagonals rise1 per run2. No change of proportions or camera. Front footprint edge1.25 times side footprint edge. This is a MATERIALIZATION pass over the existing correct model, not a loose shape inspiration. Keep ground corners at L208,670 F830,981 R1328,732 B706,421 on1536x1152canvas. Natural upper-left illumination, subtle contact shadows only inside stone paving. True transparent RGBA everywhere outside silhouette. Full uncut sprite no people text watermark glow background modern items. No big plinth.",
+  "references": [
+    {
+      "path": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_casino/geometry-guide.png",
+      "sha256": "f941829310410b569aaa4fb9868b203b9efa3070cdae8047a8428159284a0644",
+      "role": "精确2:1体块几何参考；仅作image_gen输入；已view_image"
+    }
+  ],
+  "created": "2026-09-30T22:33:29.229065+00:00",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f46e-f804-7962-b399-b98ec1ba7a28/exec-0d262c3c-8f63-4e0b-b142-09078313d4be.png",
+  "file": "bld_kit_ming_north_casino.png",
+  "category": "building-map",
+  "style": "default",
+  "negative": "排除项完整内嵌于prompt；工具无独立negative参数。",
+  "tool": "image_gen",
+  "model": "image_gen (underlying model undisclosed)",
+  "effort": "not_exposed",
+  "size": "640x512",
+  "sha256": "47e9637fb224bd0a425b3627029e7fecb2260ba7b529478eb6b122a9995db13c",
+  "status": "candidate",
+  "building": {
+    "type": "bld_kit_ming_north_casino",
+    "footprint": [
+      10,
+      8
+    ],
+    "anchor": [
+      319.4917,
+      340.1193
+    ],
+    "era": "ming_north"
+  },
+  "footprint_m": [
+    10,
+    8
+  ],
+  "entrance": {
+    "edge": "S",
+    "offset_cells": 5.0
+  },
+  "projection_contract": "yaw45_pitch30_dimetric_2to1_target",
+  "source_copy": "sources/bld_kit_ming_north_casino.png",
+  "source_sha256": "e630674703339a26b7b6a93082fe67bb21eabb27da13c7290ee002a3a9d591e8",
+  "meta": "meta/bld_kit_ming_north_casino.yaml",
+  "notes": "（原创扩展）第3轮原图底轴[0.515121, -0.536634]；成品底轴[0.515493, -0.520369]。仅alpha裁铺地外围，柱脚墙基完整；底面外轮廓通过，内部砖缝/横梁未重投影。仅原向单视图；拼接（待实测）。",
+  "candidate_count": 2,
+  "selected_candidate": 2,
+  "source_record": "sources/bld_kit_ming_north_casino.json",
+  "revision": 3,
+  "repair_record": "assets/default/building-map/ming_north/sources/repair-r3/bld_kit_ming_north_casino/revision.json"
+}

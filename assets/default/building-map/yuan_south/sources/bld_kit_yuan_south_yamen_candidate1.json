@@ -1,0 +1,22 @@
+{
+  "key": "yamen",
+  "id": "bld_kit_yuan_south_yamen",
+  "prompt": "Use case: historical-scene. Generate exactly ONE building sprite for tianshu/default/building-map, asset bld_kit_yuan_south_yamen, late Yuan Jiangnan circa 1350, anonymous road-prefecture government compound, 16x12 planning cells. Realistic historical architectural miniature illustration consistent with a detailed Song game asset: handmade charcoal grey clay tiles, cream limewash with light wear, warm dark timber, slightly red-brown government hall columns, rough light-grey stone paving and footing, restrained natural saturation. Main rear administration hall and low side offices, small front gate in perimeter wall, open central court with one modest hearing drum. No palace grandeur. Precise orthographic dimetric yaw45 elevation30, two ground axes slope exactly +0.5 and -0.5, no perspective convergence, vertical columns. On a 1536x1024 canvas ground plane quadrilateral LEFT(180,550), FRONT(820,870), RIGHT(1300,630), BACK(660,310): preserve visible thin stone ground boundary and this16:12 edge ratio; no thick plinth. Entry on the LEFT-to-FRONT edge, entire asset centered with clear transparent margins. Roof tips, wall footing, all corners complete. Light from SCREEN UPPER LEFT, short subtle shadow toward SCREEN LOWER RIGHT. Actual fully transparent RGBA background, not a painted checkerboard. Medium-dense realistic wood/tile/stone texture, crisp readable but no outline drawing. Anonymous original game reconstruction; no factual named palace replication. No humans, text, signs, labels, numbers, grids, watermark, modern items, Qing imperial yellow roofs, Qing dragon insignia, tall late-Huizhou horse-head gables, cartoon, plastic, deep diorama slab, vegetation outside footprint, sky or scenery.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f468-db51-74b0-a8a9-3964297969a6/exec-4a50aa61-1795-4c1a-92c0-d96cd739454e.png",
+  "source_archive": "sources/bld_kit_yuan_south_yamen_candidate1.png",
+  "source_sha256": "bf67f8495ad815de77aeebf70a5fbb1250147a745309a2de36f86c21ff15185b",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "created": "2026-09-30T22:37:08.697978+00:00",
+  "created_time_basis": "生成后归档记录时间，非服务端生成开始时间",
+  "negative": "No text, people, modern objects, opaque background, checkerboard, Qing rank decoration, late-Huizhou horse-head gables, cartoon, thick diorama plinth or cropped eaves.",
+  "references": [],
+  "selection_status": "rejected",
+  "selection_reason": "第1张两轴严重不对称且外灰晕；第2张保留宋基线外观、完整轮廓，几何告警仍登记。",
+  "view_image_reviewed": true
+}

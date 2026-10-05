@@ -1,0 +1,26 @@
+{
+  "selected": 2,
+  "files": [
+    "exec-ea6a5ccb-0448-4a97-950c-86f49d0d76f9.png",
+    "exec-c8ec2303-528b-4691-a72b-98fa88f93118.png"
+  ],
+  "corners": [
+    [
+      121,
+      557
+    ],
+    [
+      849,
+      925
+    ],
+    [
+      1449,
+      619
+    ]
+  ],
+  "prompts": [
+    "Render this LOW orthographic blockout as a realistic Qing Jiangnan princely residence module with footprint22 by18 metres. Preserve camera low angle: do not steepen toward standard 30-degree isometric. Final production map sprite ground axes screen slopes plus0.5 and minus0.5 (2:1), width/depth edge ratio22:18. Rear ceremonial residential hall with muted vermilion columns and very restrained teal-gold beam painting under charcoal gray tiled roof; smaller gray-tile side galleries; off-white enclosing wall; dignified central wooden gate on lower-left-facing edge with carved gray stone frame. No imperial yellow tile roof. Two modest potted trees and one small shrub inside courtyard, open gray flagstones. Original anonymous Jiangnan palace-style compound, historical architectural game asset, realistic finely weathered matte fired-clay roof tiles wood plaster stone; no cartoon or fantasy decoration. Thin flat ground rim follows the blockout, all three visible outer corners and straight edges explicit; stairs inside. Replace the colored blocks with detailed architecture but retain mass positioning and camera. Full roofs and ground inside frame with margins. Real RGBA transparent outside, upper-left warm neutral light tiny lower-right contact shadow. No thick plinth, text, labels, people, signs, modern things or watermark.",
+    "Sketch-to-render this blockout as a Qing Jiangnan princely residence compound city-map sprite. Same exact orthographic camera, ground shape and building positioning as provided. Final ground axes slope +0.500/-0.500, footprint22x18 ratio22:18. Rear ceremonial residential hall with muted vermilion columns and restrained teal-gold beam paint beneath charcoal gray clay tile roof, side galleries, off-white walls, dignified carved gray stone central front gate facing lower-left. A few modest potted plants inside courtyard only. Render full realistic pitched gray roofs, detailed weathered roof tiles wood stone plaster with fine old Chinese map sprite texture, muted warm neutral palette, no cartoon or fantasy. Thin flat flagstone pad with three straight clear outer corners, steps stay inside footprint. Keep parallel eaves and foundation axes matching the supplied blockout. Avoid camera perspective, avoid common steeper isometric. Full roof and footprint not cropped. Transparent RGBA background outside; upper-left lighting and tiny lower-right contact shadow. No thick pedestal, yellow imperial roofs, text, people, signs, watermarks, modern objects."
+  ],
+  "generated_dir": "/Users/bytedance/.codex/generated_images/01a0f450-5169-7ad2-87a6-dab5c8b3cb31"
+}

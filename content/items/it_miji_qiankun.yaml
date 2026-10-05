@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_miji_qiankun
+name: 乾坤大挪移羊皮原本
+kind: manual
+sub: original
+grade: 11
+stack: 1
+chapters: any
+origin: canon
+canonRef: 《倚天屠龙记》·明教密道羊皮载体
+price: null
+flags: []
+assets:
+  icon: item/miji_qiankun
+text:
+  desc: 外观：元代淡褐薄羊皮折页，黑皮绳束缚。
+  lore: 《倚天屠龙记》明教密道中的羊皮载有乾坤大挪移心法。读者须依层次调动内息，遇到难通处不可强行照搬；外包棉布、皮绳与题签属 （原创扩展），明教中人将它视作镇教秘传。
+extension:
+  type: manual
+  value:
+    skill: sk_qiankun
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_qiankun
+      readBre: 65
+      maxLayer: 10
+      cultivation: 4500

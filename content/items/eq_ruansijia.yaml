@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: eq_ruansijia
+name: 软丝甲
+kind: armor
+sub: innerArmor
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/ruansijia
+text:
+  desc: 外观：灰银丝线密织短衣，可折叠、微金属光但柔软 （原创扩展）。 待运行时投影：weaponZ4=2%。
+  lore: 软丝甲以灰银复合丝线密织，能折叠收纳，贴身穿着时借细密经纬卸去兵刃余势。江湖传它最怕粗暴拧绞，破一股丝便要整片回织。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: innerBody
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

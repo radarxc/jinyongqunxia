@@ -13,20 +13,63 @@ scene_key: lvliu
 scene_title: 绿柳邀客
 stage: 汝阳王府郡主布局绿柳庄，尚以俊秀少年公子形象接客。
 references:
-- path: .agents/coord/imagegen-reference/hero-20261001/classic_zhaomin_1993_portrait.jpg
-  use: 已实际查看的赵敏经典影视形象 JPG，按作者授权作为本人容貌、英气与机智灵动神态的参考；不是已完成新写实身份 PNG，不照搬照片纹理、原影视服装、姿态、水印、字幕或背景。阶段衣装按本场独立设计。
-- path: assets/default/character/male/ch01/por_npc_xiaofeng__ch01_prime_scene_shaoshi_dragon_palm.png
-  use: 已实际查看并核验新写实首样 SHA-256 4bddf4a7b9583d717383a938a189f113be5bbb58a4859c6d84635f14e686e922；仅借自然面容与肤质的描绘质量、完整坚实体积、连贯光影、连贯布料和干净轮廓，不复制萧峰的脸、性别、年龄、胡须、头巾、体型、服饰、姿态或龙影。
-- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
-  use: 已实际查看的对应性别项目基线，仅低饱和配色色卡；此位置不作本人身份或人物画法参考，不继承碎墨、飞白、纸纹透衣、破布、脸、年龄、衣饰、武器与姿势。
-- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
-  use: 已实际查看的用户王语嫣水墨图，只用于背景的浅淡山水、留白与环境层次；完全忽略其中人物、脸、体型、肤质、服饰、发饰和人物笔触，不让背景纸纹与飞白侵入本场人物。
-status: ready
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhaomin__ch04_youth_lvliu_base.resume3r2.png", "use": "本轮新立绘；锁定人物身份、年龄与对应阶段造型", "sha256": "e21663fe6597618aa327bc0b55817e66f7faacab16d8e6ad69b733ccfe32bda5"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_still1.jpg", "use": "经典影视造型；只借服饰发型配色气质，不照搬演员五官", "sha256": "28152f5850674cd84249426d5718f3bd77cbed2febc2e8610e6b02dac21e2faa"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_game.jpg", "use": "经典武侠游戏插画风格；只借绘画气质、线条、造型感", "sha256": "daa70caa7125430bccdc2efad45b77ccddc97bc11660158a4f36d0bf2ce279e8"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "cd6b69da364b28cfc91738d9647b8a94962e740cc8adbef303c721bfcf352bed"}
+- {"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg", "use": "项目同性别基线；只取画风", "sha256": "f45e437fad61090b11ba36df0779b783b1996e6a61942c019d49a121b7d9feae"}
+status: candidate
 scene_revision: user_scenes_20261001
 realism_revision: user_character_realism_20261001
+redo_reason: "作者 10-02 晚：复合基线风格精修"
+reference_upload:
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/por_npc_zhaomin__ch04_youth_lvliu_base.resume3r2.png"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_still1.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/resume/refs/zhaomin_game.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_wangyuyan__ch01_base01.jpg"
+- "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/female__ref_npc_xiaolongnv__ch03_base01.jpg"
+composite_job: por_npc_zhaomin__ch04_youth_scene_lvliu.resume3r2
 ---
 
 # 赵敏 · 人物写实修正
+
+## Gemini 提示词
+
+> 作者10-02晚复合精修；任务 `por_npc_zhaomin__ch04_youth_scene_lvliu.resume3r2`；实际上传顺序见frontmatter，末两张为female项目基线。
+
+```text
+生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+输出1024×1536，完全成年，禁止童颜或少年身材。
+【身份】第一张是本轮该主角新基础立绘，面部骨相必须保持一致，只依下文变年龄、衣物、姿态、道具与背景；第二张之后的剧照仅借造型，游戏图仅借古典武侠绘画气质，不恢复演员五官。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+【背景】保留下面指定的阶段场景、建筑和道具；淡水墨空间、暖浅灰纸感、自然远近层次，不抠图。
+同一赵敏成年女性骨相，绿柳山庄初登场阶段。严格继承第一张修正版基础的成年女性面孔和女扮男装书生造型：白色直身男式交领右衽长袍到脚踝、黑色布靴露全、黛青革带，乌发全束高髻戴朴素黑书生冠；不得花冠、半披长发、轻纱裙、拖地女裙。手持素面折扇，扇面不可读字，神情从容自信、目光机敏审视。完整全身站在廊前，身后保留垂柳、曲水、石栏与明亮庭院，手脚完整自然。折扇是标志物，不穿皇后冠服，不继承基础纸底而丢失场景。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片或演员复刻。不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。
+最后两张是项目画风基线，只取手绘质感、线条、设色与空气层次，不取其中人物的身份、姿势、道具。
+```
+
+## 历史 Gemini 提示词（本轮复合精修之前，不再用于出图）
+
+> 2026-10-02 重要人物立绘重审（A 组，`tools/agents/reports/REVIEW-portraits-A-ch00-04.md`）：**整体重出（随基础图）**。赵敏基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定。
+> 上传参考只按 frontmatter `reference_upload`（共 1 张，按顺序上传）；frontmatter 的 `references` 与本节以下内容是旧出图管线的历史记录，不再用于出图。
+
+```text
+生成一张 2:3 竖幅全身人物剧情场景图：画面里只有这一个人物，完整全身（头顶、双手、双脚和手中器物都在画内），人物是画面主体；头部端正、五官清楚，镜头平视。
+【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+【场景背景】绿柳山庄：柳条、曲廊、池岸与一小片清水，庄园纵深极淡。背景用低对比、低饱和的淡彩水墨来画，只保留能认出地点的少量轮廓，不喧宾夺主；人物轮廓清楚、与背景分开，水墨不侵入人物和衣服。
+【人物与场景】赵敏，《倚天屠龙记》，绿柳邀客。阶段：汝阳王府郡主布局绿柳庄，尚以俊秀少年公子形象接客。
+【身份参考】随提示词上传的第 1 张图是赵敏本人的新版基础立绘：保持同一张脸、同样的年龄感、体格与发际（偏短的鹅蛋脸、下颌线清楚，浓而上扬的英气长眉，一双黑白分明、炯炯有神的大眼睛（眼神自信、狡黠、带挑战意味），鼻梁挺直，唇形饱满、嘴角含笑，肌肤白皙；明艳中带英气与贵气，比黄蓉更锐利、更有王府郡主的气派）；本场的服饰、动作、道具与背景按下文，不要照搬基础立绘的姿势与背景。
+【衣装】与基础立绘相同的男装公子打扮：宝蓝色绸衫（汉式交领右衽长袍）、玉白内领、窄腰带系玉佩、深色短靴，乌发束成男子发髻戴小玉冠。
+【动作与神情】侧身迎客，手执折扇轻收，眉梢轻挑，传达郡主的机智与自信（不妖媚）。
+【器物】一柄白玉柄折扇；腰间少量佩饰。
+【体态】成年女性的身体比例（约 7 头身），衣着完整端庄、不透明、不暴露、不性感化。
+【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要第二个人物或人群、分身残影；不要可读文字或图谱口诀；不要换成另一张脸。
+【画风基线】上传的参考图里，最后一张是本项目的立绘画风基线（只上传了一张时就是它）：只参考它的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；不要照搬基线图里那个人的长相、年龄、发型、服饰和姿势。
+```
+
+---
+
+以下为 2026-10-02 之前的历史提示词与说明，仅作历史保留。
 
 ## 人物与阶段
 
@@ -79,3 +122,10 @@ Create a premium REALISTIC Chinese wuxia character illustration with a delicate 
 - 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
 - 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
 - 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/realism-20261001/por_npc_zhaomin__ch04_youth_scene_lvliu.prepared.json`。
+
+## 原著依据
+
+- 《倚天屠龙记》二十三 灵芙醉客绿柳庄：“身穿宝蓝绸衫”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm
+- 《倚天屠龙记》二十三 灵芙醉客绿柳庄：“黄金为钩、宝带为束，悬着一柄长剑”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm
+- 《倚天屠龙记》二十三 灵芙醉客绿柳庄：“头巾上两粒龙眼般大的明珠莹然生光”；https://www.xuges.com/wuxia/jinyong/yttlj/168.htm
+- AR-82 返修约束（本节优先于历史提示词）：只修改赵敏本人三处：白色袍改成初见阶段宝蓝绸衫，保留原款式褶皱；发冠换成男装头巾，上有两粒龙眼大的明珠；腰间黄金钩宝带悬完整倚天长剑鞘，向腿旁斜垂。原脸、眼神、表情、手及手里折扇、所有背景完全不动。

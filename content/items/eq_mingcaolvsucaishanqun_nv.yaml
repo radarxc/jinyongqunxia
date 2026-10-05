@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: eq_mingcaolvsucaishanqun_nv
+name: 明草绿素裁衫裙·女
+kind: armor
+sub: clothing
+grade: 2
+stack: 1
+chapters:
+- ch05_xiaoao
+- ch06_xiake
+origin: canonExpanded
+canonRef: 明；出现书界 ch05/ch06；（原创扩展）；形制／色系依据：故宫董进《图说明代宫廷服饰（九）——后妃吉服与便服》 https://img.dpm.org.cn/Uploads/File/2020/04/27/u5ea6aea86025c.pdf；官仪服色不直接等同江湖常服；八朝素白通用为原创设计，女服逐朝实证（待考）；公服／女服用色并参《明史》卷67《舆服三·公服／士庶妻冠服》 https://zh.wikisource.org/zh-hans/明史/卷67
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingcaolvsucaishanqun_nv
+text:
+  desc: 外观：明女款，主色草绿。 待运行时投影：defInK=0.12; defOutK=0.16; eva=2xG; wearer=female。
+  lore: （原创扩展）据明代衫裙语汇演成草绿女式衫裙，交领右衽短衫与前后平幅、侧密褶长裙合为一件外衣。素面实用缝边落衣裙缘，行走先整裙带；同档换色同值，素白跨朝常服实证待考，不以衣色授身份。
+extension:
+  type: equipment
+  value:
+    slot: body
+    tags: []
+    armorWeight: light
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 31

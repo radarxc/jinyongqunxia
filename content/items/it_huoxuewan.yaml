@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: it_huoxuewan
+name: 活血丸
+kind: pill
+sub: medicine
+grade: 2
+stack: 99
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 550
+assets:
+  icon: item/huoxuewan
+text:
+  desc: 外观：褐色小丸三枚置青瓷浅碟，蜡纸小包。
+  lore: 小镇药铺把褐色蜜丸分装在蜡纸包中，供轻伤后缓服。它只用于恢复气血，不替代接骨或解毒；脚夫、护院常在赶路前备上数枚。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healOuter: 6

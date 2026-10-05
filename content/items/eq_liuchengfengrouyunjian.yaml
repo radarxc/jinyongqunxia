@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_liuchengfengrouyunjian
+name: 刘乘风柔云剑
+kind: weapon
+sub: sword
+grade: 6
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 《连城诀》·“柔云剑”刘乘风；称号是否兼指佩剑 （待考）
+price: auto
+flags:
+- unique
+assets:
+  icon: item/liuchengfengrouyunjian
+text:
+  desc: 外观：窄薄直剑约七十五厘米，浅云形护手、灰蓝丝缠柄与深灰鞘。
+  lore: 《连城诀》中刘乘风号“柔云剑”，本表据称号配置窄薄直剑，招路偏轻柔转折，以卸力和换线见长。“柔云剑”是否也是佩剑专名仍 （待考：核刘乘风相关情节）；云纹装具与定级为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: sword
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 100
+      hardness: 52
+      qiAffinity: 100

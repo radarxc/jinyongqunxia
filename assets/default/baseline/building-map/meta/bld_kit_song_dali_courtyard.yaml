@@ -1,0 +1,81 @@
+id: bld_kit_song_dali_courtyard
+status: candidate
+building:
+  type: bld_kit_song_dali_courtyard
+  footprint: [10, 8]
+  anchor: &id001 [482.2346, 393.4873]
+  era: song_dali
+anchor_px: *id001
+footprint_m: [10, 8]
+logical_footprint_polygon_px:
+- [194.2346, 377.4873]
+- [514.2346, 537.4873]
+- [770.2346, 409.4873]
+- [450.2346, 249.4873]
+collision_polygon_m:
+- [0, 0]
+- [10, 0]
+- [10, 8]
+- [0, 8]
+collision_note: design/22 §6.6基线全footprint硬碰撞；非实测墙体，院内行走另需细化，不含阴影。
+occluder_proxy_px:
+- [193, 139]
+- [772, 139]
+- [772, 550]
+- [193, 550]
+occluder_note: 仅统计alpha>=192的包围框，未修改图片alpha；保守离线代理，不能替代屋顶淡出/逐像素深度。
+height_proxy_m: 6.49
+height_note: 仅顶点与底面中心同XZ时近似成立的投影代理（待实测）；长脊/院落不适用，不是建模实高。
+entrance: {edge: S, offset_cells: 4}
+entrance_note: 目录入口边中点代理，非图像门洞实测；地标北门从背面视图无法直接确认（待实测）。
+planning_rotations_allowed: [0, 90, 180, 270]
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_song_dali_courtyard.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [576, 288]
+  ground_width_px: 576
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  source_corners_px:
+    left: [206, 627]
+    front: [832, 947]
+    right: [1393, 629]
+  source_axis_slopes: [0.5111821086261981, -0.5668449197860963]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.1158645276292336
+  expected_width_depth_ratio: 1.25
+  ratio_relative_error: 0.10730837789661307
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: false
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读可见底面边；±3px不确定性；非3D测绘，隐藏后角未直接测得。
+pixel_qa:
+  mode: RGBA
+  size: [896, 672]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 463095
+  alpha_partial_pixels: 138144
+  alpha_opaque_pixels: 873
+  alpha_near_opaque_pixels: 135203
+  alpha_nonzero_bbox: [94, 98, 775, 553]
+  transparent_margins_px: [94, 98, 121, 119]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_song_dali_courtyard.png
+  source_sha256: 7ac30d49e254220d06b2d7392578158c03219e29a6ebe0d80b743786c13bb182
+  source_size: [1536, 1024]
+  crop_box: [0, 17, 1458, 1000]
+  uniform_scale_requested: 0.485256950294861
+  resized_size: [708, 477]
+  rounded_effective_scale: [0.48559670781893005, 0.4852492370295015]
+  paste_offset: [94, 97]
+  final_file: bld_kit_song_dali_courtyard.png
+  steps: [crop to alpha>0 bounding box, uniform LANCZOS resize; dimensions rounded to nearest px, 'paste without mask into
+      transparent RGBA canvas; no repaint, warp, flip or alpha thresholding']
+release_ready: false

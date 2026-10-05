@@ -1,0 +1,1505 @@
+- id: por_npc_baoxiang__ch09_prime_pursuit_base
+  file: por_npc_baoxiang__ch09_prime_pursuit_base.png
+  category: character/male
+  style: default
+  subject: 宝象 npc_baoxiang ch09_liancheng · 血刀门僧；取江岸追逐狄云、破庙中毒之前的阶段
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    保持原头脸发式与神情逐像素不变，身体仍为成年僧人。把原宽厚肩胸、粗臂和壮实腰身改得明显瘦长，极高极瘦而非健美；肩宽减少，胸腰明显收窄，四肢细长，完整全身和原站姿及手持刀鞘位置保持。僧袍主色改旧黄土黄色，原红线血刀刺绣仍只用红线。衣服廓形随瘦身收窄、自然布褶，禁止缩小头部或换脸。
+
+    【原著依据】《连城诀》五《老鼠汤》：“极高极瘦的和尚”（https://xuges.com/WUXIA/jinyong/lcj/026.htm）；《连城诀》六《血刀老祖》：“质地颜色和狄云所穿一模一样”（https://xuges.com/WUXIA/jinyong/lcj/033.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_baoxiang__ch09_prime_pursuit_base.png
+    sha256: 39156845cb2559b65638ac79cd48533cf600694fae10bccda5ec4e189379a290
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_baoxiang__ch09_prime_pursuit_base.39156845.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-04T02:37:19-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_21_r1.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 3a5cf6210238c7a7ae3c81db852ca51d8d27d2bb2a95962f77568521228e4fb1
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_baoxiang__ch09_prime_pursuit_base.39156845.png
+    sha256: 39156845cb2559b65638ac79cd48533cf600694fae10bccda5ec4e189379a290
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_baoxiang__ch09_prime_pursuit_base.39156845.entry.yaml
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_baoxiang__ch09_prime_pursuit_base.requests.json
+  notes: '实际查看：壮年剃净头顶僧人，铁锈红僧衣、短浓须，右手握腰侧唯一入鞘兵器柄，左手空着，衣襟红线器形与三滴纹为刺绣，无血腥、乌蚕衣或老祖血刀，人物头足双手完整，无明显多肢重大结构问题。身形高长但极瘦感较弱，眼睛没有特别大，衣襟刀纹近直剑轮廓、护手与鞘略华丽、衣摆微毛、背景亭花偏多；按宽松尺度记录，不追加。原始PNG与元数据保存，candidate待审核。
+
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。；AR-82 原著核对返修：宝象极高极瘦体态与旧黄僧袍'
+  source_size: 1024x1536
+- id: por_npc_lingtusi__ch09_prime_magistrate_base
+  file: por_npc_lingtusi__ch09_prime_magistrate_base.png
+  category: character/male
+  style: default
+  subject: 凌退思 npc_lingtusi ch09_liancheng · 荆州知府；取官狱布局与毒棺阴谋阶段、尚未卸任或受审
+  prompt: "POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.\n\nCreate one REALISTIC Chinese wuxia character illustration of 凌退思 / npc_lingtusi from Lian Cheng Jue. There is NO verified original-game face for this supporting character. Design a distinct original face from the individual facial description. Image 1 is ONLY a colour palette, with ZERO facial or anatomical transfer; image 2 is ONLY the pale ink-wash background. Never borrow Xiao Feng, Linghu Chong, Di Yun or Wang Yuyan identity. 当前已核实原版游戏头像资料没有此人的可靠配对；本图为依当前角色稿而作的独立具体面容设计，不冒充原版头像、演员脸或既有身份基线。单候选须保持同一组面貌关系。\n\
+    \n身份与阶段：荆州知府；取官狱布局与毒棺阴谋阶段、尚未卸任或受审。年龄与体貌：中老年男子；身形略丰、肩背端正，面部细纹明显，行动沉稳而非武林宗师筋肉。中老年地方文官，身形略丰、肩背端正、眼口周细纹真实，动作从容而非武林宗师筋肉。prime只是素材键，不把他年轻化为壮年公子。\n\n独立面容辨识锚点：宽阔额头和纵向较长的圆脸，太阳穴饱满，颧部不过分突出，下颌圆厚而非万震山横向宽阔脸。眉细长而向眉尾微垂，眼睑较薄，眼裂偏窄，眼神冷静评估；眉眼之间留自然较宽距离。鼻梁平直、中段较长，鼻头圆钝但不肥；嘴线紧抿且上唇较薄，下唇适中。灰黑须髭修整细密，嘴与下颌轮廓仍清楚，不遮脸。脸型、眼睑与紧抿唇表达官场克制，不借基线萧峰粗眉宽颌。\n\n服制与发式：清初深石青对襟补服罩深蓝长袍、文官飞禽补纹低对比而无字，官帽结构简朴且不加花翎，深色靴，领口内层若为交领严格右衽；前额剃发、灰黑辫垂背，官帽不遮蔽全部时代发式，胡须整齐。汉式交领须穿着者左襟盖右襟、向本人右侧合拢；僧衣和其他服制按各自结构，不镜像。整片布料实在连续，领胸腿部遮蔽，鞋袜入画，朴素不等于破损。\n\n姿态与器物：正面站立、腰背端直，两脚稳收，头颈自然竖直、下巴中性、双眼水平审视正前方，不低头从眉下窥看。左手掌从下方托一只封闭小官印匣，匣置腰腹前且小于胸宽；右手指尖轻搭匣盖边，左右手和匣底接点清楚。印匣无字、不打开、不露印面，没有武器和毒花手杖。官帽、双足与全衣摆都入画。\n\n人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。\n\n参考边界：第一参考严格仅male项目色卡：低饱和设色、暖肤色与浅灰底的协调关系，已实际view。没有任何本人身份参考图；不得借基线人物的脸型、眉眼鼻唇、头发、胡须、年龄、体型、姿势或衣服。尤其不沿用基线残破衣边、碎墨或纸感；人物完整写实由文字定义。保持原manifest实际状态，不把基线审批转移给本角色。\
+    \ 第二参考仅背景：暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略图中王语嫣的脸、年龄、体型、头倾、手势、头发及白青裙装，墨迹与纸纹不得侵入人物、衣料、器物。\n\n背景与交付：第二图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认一张独立候选经执行者实际自查；所有输出仍为candidate，待用户最终审核，不自动approved。\n\n事实与原创边界：当前已核实原版游戏头像资料没有此人的可靠配对；本图为依当前角色稿而作的独立具体面容设计，不冒充原版头像、演员脸或既有身份基线。单候选须保持同一组面貌关系。 补纹、官帽精确品级与印匣形制仍待服饰史终校；只用低对比文官飞禽纹，不强定官阶。 面容、须髭样式和官印匣为原创身份化设计，不是原著专属实物考证。 \n\n完整排除项：不要帝王龙袍、冕冠、花翎、军帅甲、帮会纹身、毒花杖或武林宗师大肌肉；不要强定品级顶戴或印面伪字。不要低头藏眼、无须青年、萧峰脸、万震山圆阔脸。印匣不悬空不吞手，不加刀剑。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。\
+    \ 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。\n\nFINAL POSE CHECK: FRONT-FACING 凌退思 / npc_lingtusi. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level and gaze forward. NO head tilt and NO Dutch angle. Keep this individual face and correct age, injuries and equipment; never inherit the face, body, head lean or costume from any reference."
+  negative: 不要帝王龙袍、冕冠、花翎、军帅甲、帮会纹身、毒花杖或武林宗师大肌肉；不要强定品级顶戴或印面伪字。不要低头藏眼、无须青年、萧峰脸、万震山圆阔脸。印匣不悬空不吞手，不加刀剑。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    use: 第一参考严格仅male项目色卡：低饱和设色、暖肤色与浅灰底的协调关系，已实际view。没有任何本人身份参考图；不得借基线人物的脸型、眉眼鼻唇、头发、胡须、年龄、体型、姿势或衣服。尤其不沿用基线残破衣边、碎墨或纸感；人物完整写实由文字定义。保持原manifest实际状态，不把基线审批转移给本角色。
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89.png
+    status_at_input: candidate
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 第二参考仅背景：暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略图中王语嫣的脸、年龄、体型、头倾、手势、头发及白青裙装，墨迹与纸纹不得侵入人物、衣料、器物。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-02T06:16:01.536174+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-8406d44d-bd5b-4e0d-a47a-101df7edf17c.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 5619833cd2f27874e05798b4006cae457e2dd8894fb5b8fbf9b84b0daf41b388
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_lingtusi__ch09_prime_magistrate_base/prompt-d7939a58b4c75a2b132a589a33859a392f9070d61b9cf7afbe17a38d88e05298.md
+    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_lingtusi__ch09_prime_magistrate_base/manifest-c1593b09a6f6a98ceae3121439f05f3336d5958a749e80990b535eee3ec90a90.yaml
+    png: null
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_lingtusi__ch09_prime_magistrate_base.requests.json
+  notes: '实际查看：中老年长圆脸、灰黑修整须，深石青对襟文官补服、飞禽纹与无翎帽，左手托封闭小匣右指搭盖，人物双鞋手和帽顶完整，无武器、毒物或明显多肢重大结构问题。身形偏结实而略丰感弱，衣袖裙摆金线比低对比简朴目标繁密，补纹具体鸟种与红顶珠未作官阶考证，背景亭花偏多；如实记录宽松自查偏差，不追加。原始PNG按真实尺寸，candidate待审核。
+
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。'
+- id: por_npc_liurenfeng__ch09_prime_pursuit_base
+  file: por_npc_liurenfeng__ch09_prime_pursuit_base.png
+  category: character/male
+  style: default
+  subject: 刘乘风 npc_liurenfeng ch09_liancheng · 南四奇之一；取赶赴雪谷、尚未被花铁干误杀的持剑道人形象
+  prompt: 'POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
+
+
+    Create one REALISTIC Chinese wuxia character illustration of 刘乘风 / npc_liurenfeng from Lian Cheng Jue. The current verified original-game portrait corpus has NO reliably paired face for this supporting character. Design a distinct original face from the individual facial description. Image 1 is ONLY a colour palette, with ZERO facial or anatomical transfer; image 2 is ONLY the pale ink-wash background. Never borrow Xiao Feng, Linghu Chong, Di Yun, Wang Yuyan or another NPC identity. 当前已核实原版游戏头像资料没有此人的可靠配对；本图为依当前角色稿而作的独立具体面容设计，不冒充原版头像、演员脸或既有身份基线。单候选须保持同一组面貌关系。
+
+
+    身份与阶段：南四奇之一；取赶赴雪谷、尚未被花铁干误杀的持剑道人形象。年龄与体貌：名录口径的中年男子；瘦长身形、肩窄腰直、颌下长须略灰，脸有风霜而不作衰迈老人。按名录中年男性呈现，瘦长而脊背挺直，不因长须和道人装扮画成衰迈老人。未被花铁干误杀；道袍、低小素道冠与长剑按主稿，不新增武当门籍或徽记。 项目清初服饰语汇为原创时代图层，小说确切纪年与外貌细节未经本次纸本终校。
+
+
+    独立面容辨识锚点：独立明显瘦长脸，脸长显著而颊宽窄，颧骨清晰但不宽张，额侧向下平顺收窄；下颌线较窄且清楚，收至小而圆的下巴，不做尖锥。细直眉长而疏密自然，眉眼间距适中；眼裂修长偏窄、上眼睑线平稳，眼间距略近，双目水平直视且清醒专注。鼻梁细长修直、鼻尖小而端正、鼻翼窄；口裂中等偏窄，双唇偏薄但有真实体积，唇线平直而松弛。颌下长须黑中略灰、细束自然分层，口鼻结构仍可辨；有适度风霜纹而无八旬垂老纹，额角发色仍以黑灰为主。
+
+
+    服制与发式：青灰交领右衽道袍、灰白内领、窄布绦、深灰长裤与朴素布靴，袖摆克制不画繁复法衣；方外道人束髻，以低小素道冠固定，无清俗家辫发；此装束不据此新增武当等门派归属。汉式交领须穿着者左襟盖右襟、向本人右侧合拢；按本人左右判断，不水平镜像。整片布料实在连续，领胸腿部遮蔽，鞋袜入画，简朴不等于破损；衣边平整有收边，不复制色卡人物的破衣。
+
+
+    姿态与器物：正面完整站立，窄肩自然放松且水平，头颈竖直，额鼻下巴中线竖直，双眼水平向前；两脚自然错开小半步但躯干和面部不转侧。左手在本人左侧身外提握一柄完整入鞘的普通中式直身长剑鞘口，剑首朝上、灰木直长鞘朝下。柄、小横格、鞘口和封尾同轴，鞘长度足够容纳整剑；鞘与衣摆之间有连续净空间隙，尾端离地，全部端点入画。右手轻放腰前但掌指露出衣袖，不结印。只有这一柄入鞘长剑，无拂尘、铃、符箓或其他法器。
+
+
+    人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
+
+
+    参考边界：第一参考严格仅male项目色卡：低饱和设色、暖肤色与浅灰底的协调关系，已实际view。没有任何本人身份参考图；不得借基线人物的脸型、眉眼鼻唇、头发、胡须、年龄、体型、姿势或衣服。尤其不沿用基线残破衣边、碎墨或纸感；人物完整写实由文字定义。保持原manifest实际状态，不把基线审批转移给本角色。 第二参考仅背景：暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略图中王语嫣的脸、年龄、体型、头倾、手势、头发及白青裙装，墨迹与纸纹不得侵入人物、衣料、器物。
+
+
+    背景与交付：第二图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认一张独立候选经执行者实际自查；所有输出仍为candidate，待用户最终审核，不自动approved。
+
+
+    事实与原创边界：当前已核实原版游戏头像资料没有此人的可靠配对；本图为依当前角色稿而作的独立具体面容设计，不冒充原版头像、演员脸或既有身份基线。单候选须保持同一组面貌关系。 原著道人、长剑、年龄语词、须发与剑形制的指定版终校待考；mainrole明确名录中年优先，网络老道称呼不自动改为老年。 狭颊瘦长脸、小圆下巴、细直眉与略近眼距、细长鼻和薄唇、青灰道袍与素小冠为本次原创美术补足。
+
+
+    完整排除项：不要清俗家辫发、僧人光头、华丽道教法衣、八卦发光符、拂尘、铃或武当徽记；不要把中年道人画成满脸八旬皱纹、满头白发或弓背老人。不要穿胸枪、血伤、尸身、被夺衣或误杀后的状态；不要双剑、裸剑、弯鞘、短鞘、以衣袖吞手或剑鞘藏进衣中。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+
+
+    FINAL POSE CHECK: FRONT-FACING 刘乘风 / npc_liurenfeng. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level and gaze forward. NO head tilt and NO Dutch angle. Keep this individual face and correct age, injuries and equipment; never inherit the face, body, head lean or costume from any reference.'
+  negative: 不要清俗家辫发、僧人光头、华丽道教法衣、八卦发光符、拂尘、铃或武当徽记；不要把中年道人画成满脸八旬皱纹、满头白发或弓背老人。不要穿胸枪、血伤、尸身、被夺衣或误杀后的状态；不要双剑、裸剑、弯鞘、短鞘、以衣袖吞手或剑鞘藏进衣中。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    use: 第一参考严格仅male项目色卡：低饱和设色、暖肤色与浅灰底的协调关系，已实际view。没有任何本人身份参考图；不得借基线人物的脸型、眉眼鼻唇、头发、胡须、年龄、体型、姿势或衣服。尤其不沿用基线残破衣边、碎墨或纸感；人物完整写实由文字定义。保持原manifest实际状态，不把基线审批转移给本角色。
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89.png
+    status_at_input: candidate
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 第二参考仅背景：暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略图中王语嫣的脸、年龄、体型、头倾、手势、头发及白青裙装，墨迹与纸纹不得侵入人物、衣料、器物。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-02T06:18:16.514476+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-10d61440-ca74-4485-9eac-49ac33bd81c6.png
+  size: 1024x1536
+  mode: RGB
+  sha256: ace4c4b611751521d67f909bc15a5e44da81cfbfc7e5b152ef3457fc674c779a
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_liurenfeng__ch09_prime_pursuit_base/prompt-937b5243550a291f9f5b9895c0aea9aa1365a1a5422c2cae2c42406292311b2f.md
+    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_liurenfeng__ch09_prime_pursuit_base/manifest-47a292887a814fb34a86bc49f600a33c9f7938d58cf038b8e7ce677ce85e9cf2.yaml
+    png: null
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_liurenfeng__ch09_prime_pursuit_base.requests.json
+  notes: '实际查看：中年瘦长脸、黑灰长须、小素道冠束髻无辫，青灰道袍，左手在身侧持唯一完整入鞘直剑，右手腰前，全身双鞋、剑首鞘尾完整，无拂尘法术、明显多肢或重大结构问题。身形肩宽略大于瘦窄要求、冠形稍高、剑鞘金属装饰偏多、袖摆较宽衣边轻毛；如实记宽松自查偏差，不追加。保存原始PNG，candidate待最终审核。
+
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（439205f1）'
+- id: por_npc_lutianshu__ch09_prime_pursuit_base
+  file: por_npc_lutianshu__ch09_prime_pursuit_base.png
+  category: character/male
+  style: default
+  subject: 陆天抒 npc_lutianshu ch09_liancheng · 南四奇之一；取雪谷大战前救援同行、尚未遭雪下伏击的阶段
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    只改原图刀身下端刀头与胡须：右手（画面左）所持厚背刀末端截成明确宽方头鬼头刀，厚背、平截方刀头，不再尖锐上挑，原刀柄、刀身其余曲线和握手不动。短黑灰胡须改明显白色长须，由上唇白髭、下颌长白须飘垂至胸前，不改变脸型五官与原表情。
+
+    【原著依据】《连城诀》七《落花流水》：“一柄厚背方头的鬼头刀”（https://xuges.com/WUXIA/jinyong/lcj/041.htm）；《连城诀》七《落花流水》：“白须飘飘”（https://xuges.com/WUXIA/jinyong/lcj/041.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_lutianshu__ch09_prime_pursuit_base.png
+    sha256: 8d00c17cb24b1e388ae55cb38685684fb86c8bbd85e92d08bbdc2ef5059e7ed3
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lutianshu__ch09_prime_pursuit_base.8d00c17c.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  effort: xhigh
+  created: 2026-10-04T02:41:46-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_26_r1.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 3e75350287e83c2aa5308cf47a237e033ff8ddcc26520c451a2f17a097d1ecd2
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lutianshu__ch09_prime_pursuit_base.8d00c17c.png
+    sha256: 8d00c17cb24b1e388ae55cb38685684fb86c8bbd85e92d08bbdc2ef5059e7ed3
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_lutianshu__ch09_prime_pursuit_base.8d00c17c.entry.yaml
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_lutianshu__ch09_prime_pursuit_base.requests.json
+  notes: '实际查看：中年宽方脸、短须略灰、宽肩厚背，紫铜棕袍、后辫，右手宽单刃鬼头刀朝外斜下、左手独立刀鞘，头足及刀鞘端点完整，无鲜血骷髅、明显多肢或重大结构问题。刀尖靠左边但未截断，鞘轮廓偏直偏窄与加宽刀头的贴合度有限，衣边有轻毛且纹理较密，额部剃发弱；记录宽松自查偏差，不追加，不宣称严格器物尺寸适配通过。原始PNG保存，candidate待审核。
+
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（439205f1）；AR-82 原著核对返修：陆天抒厚背方头鬼头刀与飘垂白须'
+  source_size: 1024x1536
+- id: por_npc_qichangfa__ch09_prime_rural_base
+  file: por_npc_qichangfa__ch09_prime_rural_base.png
+  category: character/male
+  style: default
+  subject: 戚长发 npc_qichangfa ch09_liancheng · 梅念笙门下、狄云与戚芳的乡间长辈；取入万府前后的朴实外表阶段，尚未天宁寺暴露贪念
+  prompt: "POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.\n\nCreate one REALISTIC Chinese wuxia character illustration of 戚长发 / npc_qichangfa from Lian Cheng Jue. There is NO verified original-game face for this supporting character. Design a distinct original face from the individual facial description. Image 1 is ONLY a colour palette, with ZERO facial or anatomical transfer; image 2 is ONLY the pale ink-wash background. Never borrow Xiao Feng, Linghu Chong, Di Yun or Wang Yuyan identity. 当前已核实原版游戏头像资料没有此人的可靠配对；本图为依当前角色稿而作的独立具体面容设计，不冒充原版头像、演员脸或既有身份基线。单候选须保持同一组面貌关系。\n\
+    \n身份与阶段：梅念笙门下、狄云与戚芳的乡间长辈；取入万府前后的朴实外表阶段，尚未天宁寺暴露贪念。年龄与体貌：中老年男子；矮壮结实、肩背厚重，额纹与粗糙手掌显出乡间劳作经历，不作畸形矮人。中老年乡间长辈，矮壮结实、肩背厚，粗糙手掌和额纹表达劳作；身高只作相对观感，不能夸张成畸形矮人。仍是入万府前后的寡言外表，未暴露终幕背刺。\n\n独立面容辨识锚点：方阔脸与较短面中，低宽眉骨，颧颊坚实、下颌角宽厚，短而平的下巴，和丁典宽长脸区分。眉粗但眉尾短，眼裂小而深藏、上睑偏厚，正面目光谨慎寡言；不能做阴险夸张吊眼。鼻梁较低阔、鼻头圆厚、鼻翼宽而自然。嘴宽、厚唇，口角平，短灰须沿口周和下颌稀密真实。日晒肤色、额纹和粗糙手纹具体清楚，但皮肤不是破纸、不要拿萧峰浓眉高鼻换脸。\n\n服制与发式：土褐右衽粗布短长衫、洗旧灰裤、绑腿与黑布鞋，衣袖收口，布腰带细窄，衣着旧但完整；清初剃前额留后辫，灰黑发辫贴背，简单布条扎辫尾，不画汉地高髻。汉式交领须穿着者左襟盖右襟、向本人右侧合拢；僧衣和其他服制按各自结构，不镜像。整片布料实在连续，领胸腿部遮蔽，鞋袜入画，朴素不等于破损。\n\n姿态与器物：正面站稳，肩部自然略收但头颈竖直、双眼水平，下巴中性；两脚承担重量。左手在本人左外侧低提一柄完全入旧木长鞘的普通中国直剑，握在鞘口下方布包处，手与剑柄分离；剑鞘自然斜垂、鞘尾离地且全部可见。一段牢固麻布绕鞘中部，剑柄、小剑格、鞘口、完整长鞘都清楚，布不变碎带。右手空垂，显出劳作手掌，不背刺、不拖铁索。\n\n人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。\n\n参考边界：第一参考严格仅male项目色卡：低饱和设色、暖肤色与浅灰底的协调关系，已实际view。没有任何本人身份参考图；不得借基线人物的脸型、眉眼鼻唇、头发、胡须、年龄、体型、姿势或衣服。尤其不沿用基线残破衣边、碎墨或纸感；人物完整写实由文字定义。保持原manifest实际状态，不把基线审批转移给本角色。\
+    \ 第二参考仅背景：暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略图中王语嫣的脸、年龄、体型、头倾、手势、头发及白青裙装，墨迹与纸纹不得侵入人物、衣料、器物。\n\n背景与交付：第二图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认一张独立候选经执行者实际自查；所有输出仍为candidate，待用户最终审核，不自动approved。\n\n事实与原创边界：当前已核实原版游戏头像资料没有此人的可靠配对；本图为依当前角色稿而作的独立具体面容设计，不冒充原版头像、演员脸或既有身份基线。单候选须保持同一组面貌关系。 矮壮、方脸、衣色和剑鞘包布为主稿美术默认，不确定原著身高。 铁索横江是绰号，不作武器证据；不虚构引文或出生年。 \n\n完整排除项：不要铁索兵器、锁链、天宁寺宝箱或背刺动作；不要畸形矮人、年轻俊公子、魔鬼狞笑、血迹伤口。不要高髻或明代网巾，不因外号铁索横江添加铁索。不要剑出鞘、短鞘、长麻布飞带、破衣纸屑。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。\
+    \ 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。\n\nFINAL POSE CHECK: FRONT-FACING 戚长发 / npc_qichangfa. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level and gaze forward. NO head tilt and NO Dutch angle. Keep this individual face and correct age, injuries and equipment; never inherit the face, body, head lean or costume from any reference."
+  negative: 不要铁索兵器、锁链、天宁寺宝箱或背刺动作；不要畸形矮人、年轻俊公子、魔鬼狞笑、血迹伤口。不要高髻或明代网巾，不因外号铁索横江添加铁索。不要剑出鞘、短鞘、长麻布飞带、破衣纸屑。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    use: 第一参考严格仅male项目色卡：低饱和设色、暖肤色与浅灰底的协调关系，已实际view。没有任何本人身份参考图；不得借基线人物的脸型、眉眼鼻唇、头发、胡须、年龄、体型、姿势或衣服。尤其不沿用基线残破衣边、碎墨或纸感；人物完整写实由文字定义。保持原manifest实际状态，不把基线审批转移给本角色。
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89.png
+    status_at_input: candidate
+  - path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    original_input_path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+    use: 第二参考仅背景：暖浅灰不透明纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略图中王语嫣的脸、年龄、体型、头倾、手势、头发及白青裙装，墨迹与纸纹不得侵入人物、衣料、器物。
+    sha256: 61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b
+    archived_path: .agents/coord/portrait-generation/identity-20261001/reference-archives/61ef2d8af3f0dcc87204f60bb222cf754cc42ff44b69c481dc57eeb3c7fca80b.png
+    status_at_input: null
+  tool: codex exec · image_gen
+  model: 会话执行模型待核实；不冒称底层成像模型
+  effort: 待核实
+  created: '2026-10-02T06:22:40.387475+00:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/generated_images/exec-f6a27b8d-0cd8-48cc-ab50-8a97153d9607.png
+  size: 1024x1536
+  mode: RGB
+  sha256: 7dc4180ed6fe51f86cc5c597b62ae920c42ac763bc89e48be9513db23effea06
+  status: candidate
+  qc_status: relaxed_self_check_passed
+  quality_standard: user_identity_pose_20261001
+  realism_revision: user_identity_pose_20261001
+  counts_as_complete: true
+  previous_revision:
+    prompt: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_qichangfa__ch09_prime_rural_base/prompt-a99372fb6effd569cc47a96dbc6b0d211557188fdfe362727053fdb2f4a395bc.md
+    manifest: .agents/coord/portrait-generation/identity-20261001/backups/por_npc_qichangfa__ch09_prime_rural_base/manifest-3640355d64b438fd3a84937616481c64725844a2131a8a8c6fd6c4bcb4ba1976.yaml
+    png: null
+  request_log: .agents/coord/portrait-generation/identity-20261001/por_npc_qichangfa__ch09_prime_rural_base.requests.json
+  notes: '实际查看：中老年方阔脸、灰短须与额纹，土褐旧衫、灰裤后辫，左手提完整入鞘直剑且鞘有麻布包覆，右手空垂，神态寡言警惕；全身双鞋与手完整，无明显多肢重大结构问题。身材未显特别矮壮，剃额弱、麻布有较长尾、衣摆毛边较多；脸仍有男性色卡影响，与近期配角辨识差异有限。此请求在最新神态指示前已提交，按既有宽松尺度保留candidate并登记身份差异待最终审核，不称严格身份合格，不重编码或静默替换。
+
+    本轮依作者提速指示，实际候选数：1；仅初始候选经实际查看后保存，未生成或比较第二张。细节偏差按上述记录保留；仍为candidate待最终审核。 本轮人物写实修正宽松自查候选，待作者最终审核；非approved。原始1024×1536 RGB PNG原字节保存，未裁切、缩放、重编码或去除溯源；未冒称2048×3072 RGBA母版。实际请求及输入哈希见request_log；archived_path只用于历史追溯，原始输入为original_input_path。
+
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（20c6f2c9）'
+- id: por_npc_wangui__ch09_youth_wanfu_base
+  file: por_npc_wangui__ch09_youth_wanfu_base.png
+  category: character/male
+  style: default
+  subject: 万圭（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：万圭，《连城诀》中万震山的儿子，在万府构陷狄云前后、仍维持体面公子外表的时期。
+
+    年龄与体态：约二十五岁的成年男子，身材修长匀称，举止讲究。
+
+    面容：窄长的脸、面皮白净；眉毛整齐细长；眼睛细长，眼神阴沉，带审视与算计，脸上却挂着客气的微笑；鼻梁直；嘴唇薄；皮肤有真实的毛孔与纹理。看上去是个体面的富家公子，细看让人不舒服。
+
+    发式：清初男子发式——前额剃光，脑后一条梳理整齐的辫子，头戴深墨蓝色瓜皮小帽。
+
+    服饰：深靛蓝色圆领大襟细布长袍（右衽），外罩灰蓝色短马褂，腰坠一枚素面小玉，黑色软靴。
+
+    道具与姿态：腰间佩一柄长剑（深色木鞘，不出鞘），左手扶着剑柄；右手在胸前作客气的礼节手势；站姿自持。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要狰狞的反派脸谱；不要毒药、匕首。清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T02:32:29-0700
+  source_path: .agents/coord/gemini_originals/por_npc_wangui__ch09_youth_wanfu_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: e9125e16dddebfdfca73bb410c098ad4aabffe1d16e48e5c6803311aa3355329
+  status: candidate
+  notes: 立绘重审重出（AR-30）；主要反派万圭（S）缺图；补出万府体面公子、暗中算计的阶段。
+- id: por_npc_yandaping__ch09_prime_beggar_base
+  file: por_npc_yandaping__ch09_prime_beggar_base.png
+  category: character/male
+  style: default
+  subject: 言达平（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：言达平，人称“陆地神龙”，《连城诀》中梅念笙的弟子；扮作老乞丐在荆州万府外接近狄云、暗中点拨剑招的时期。
+
+    年龄与体态：五十多岁的瘦削男子，背微微弯着，但腿脚稳健，筋骨仍在。
+
+    面容：狭长的脸，颧骨突出，眼窝深陷；一双眼睛却灵活精明，透着戒备与算计；鼻梁高；嘴唇薄，嘴角挂着让人捉摸不透的笑；灰黑胡须杂乱，满脸日晒风霜的皱纹。
+
+    发式：前额剃过、已长出短短的发茬，脑后一条灰黑的乱辫，头侧包着一块旧布巾，辫子仍看得见。
+
+    服饰：灰褐色粗布长衣，打着几块结实的补丁（破损只在衣边），旧长裤，草鞋；身体遮蔽完整。
+
+    道具与姿态：右手拄一根朴素木杖；左手伸出一指轻点前方，像在提点招式；重心略偏一腿。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要病弱濒死的老人；不要丐帮打狗棒的特定造型；不要华丽佩剑。清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T02:37:48-0700
+  source_path: .agents/coord/gemini_originals/por_npc_yandaping__ch09_prime_beggar_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 6ae7f631cf6944ef587d34541d4db4640c9b0b42eb23cb349dea001192fc950d
+  status: candidate
+  notes: 立绘重审重出（AR-30）；言达平（S）缺图；补出他扮作老乞丐、在荆州暗中点拨狄云剑招的阶段。
+- id: por_npc_wanzhenshan__ch09_prime_host_base
+  file: por_npc_wanzhenshan__ch09_prime_host_base.png
+  category: character/male
+  style: default
+  subject: 万震山（ch09_liancheng）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（万震山的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改万震山的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+
+    【人物】万震山：五云手，约五十岁，寿宴待客的主人，外表豪爽好客、内里阴险算计。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】笑里藏刀：脸上挂着待客的豪爽笑容，眼神却深沉算计。
+
+    【本张另外要求】上一版只带轻微冷笑，待客的豪爽笑容不够明显。请嘴角清楚上扬、笑容适度打开可微露上齿，脸上挂着热情待客的笑；眼神仍深沉算计，笑里藏刀，不变慈祥好人。原脸骨相五官、胡须、年龄皱纹、头发帽子衣饰、手势兵器及构图背景逐项保持。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_wanzhenshan__ch09_prime_host_base.png
+    sha256: cd3040f5bfed23f886dfeaeff919277c5ea47ea6304da55e204ce3cbb5344e13
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wanzhenshan__ch09_prime_host_base.cd3040f5.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6.1-sol
+  created: 2026-10-03T21:00:15-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_wanzhenshan__ch09_prime_host_base.x2.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: c2ba21dbde519f710a8f840dd373283fd3f0831d25cdbeca821438a608953280
+  status: candidate
+  notes: 立绘重审重出（AR-30）；主检出 10-02 新出的候选以 2004 年剧集剧照为面部身份参考，有复刻真人面容的风险（本轮口径禁止）；造型（富户员外、待客手势、佩剑）可用，只把脸换成文字设计的面容。；AR-58 神态（各书配角）·10 号出图员：笑里藏刀——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wanzhenshan__ch09_prime_host_base.cd3040f5.png
+    sha256: cd3040f5bfed23f886dfeaeff919277c5ea47ea6304da55e204ce3cbb5344e13
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_wanzhenshan__ch09_prime_host_base.cd3040f5.entry.yaml
+- id: por_npc_huantiegan__ch09_prime_pursuit_base
+  file: por_npc_huantiegan__ch09_prime_pursuit_base.png
+  category: character/male
+  style: default
+  subject: 花铁干（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：花铁干，《连城诀》中江南“落花流水”四侠之一，以一杆短枪成名；追赶血刀老祖、雪谷变故之前，仍是受人敬重的成名侠客的时期。
+
+    年龄与体态：约五十岁的男子，身形精实、肩背稳健，中年人的骨架，不显衰老。
+
+    面容：长方脸、额角较窄；细长而有神的眼睛；鼻唇纹深刻；唇上一撇修剪整齐的八字胡，下巴一小撮灰白短须；嘴角礼貌地收着，表面沉着正派，眼神里却藏着一丝精明的算计；肤色暖褐，有真实的皱纹与毛孔。
+
+    发式：前额剃光，脑后一条灰黑辫子垂在背后。
+
+    服饰：灰褐色圆领大襟长袍（右衽）、暗栗色窄袖长坎肩、灰布裤与短靴，袖口紧凑，便于使枪。
+
+    道具与姿态：右手握一杆纯钢短枪（叶形枪尖、细钢枪杆、一簇暗红枪缨，枪比人矮），枪竖斜在身侧，枪尖和枪尾都在画面里；左手松放在腰侧；两脚前后略错开，重心紧实，目光估量着前方。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要照片感；不要把短枪换成长剑；不要跪地求饶的狼狈相（那是后来的事）。清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:07:06-0700
+  source_path: .agents/coord/gemini_originals/por_npc_huantiegan__ch09_prime_pursuit_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f29dc306849f8227642f720059c45c9942dfe4de757331d6b440be0554e5c697
+  status: candidate
+  notes: 立绘重审重出（AR-30）；主检出 10-02 新出的候选以剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；造型（八字胡、灰褐长袍栗色坎肩、红缨短钢枪）可用，保留造型，只把脸换成文字设计的面容。A 级，不上传参考图。
+- id: por_npc_shuidao__ch09_prime_pursuit_base
+  file: por_npc_shuidao__ch09_prime_pursuit_base.png
+  category: character/male
+  style: default
+  subject: 水岱（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘。
+
+
+    画风：写实手绘古风人物插画，与项目现有立绘保持一致——像功力深厚的画师用细腻笔触画出的真实人物，不是照片、不是三维渲染、不是动漫。皮肤要有真实质感：看得见细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不打油亮高光；布料看得见经纬纹理、自然褶皱和穿用后的轻微旧化；整体是低饱和、沉稳的设色；柔和的自然光从左上方照来，明暗过渡连贯。
+
+
+    人物：水岱，人称“冷月剑”，《连城诀》中江南“落花流水”四侠之一、水笙的父亲；赶赴雪谷救女、双腿尚未受伤的时期。
+
+    年龄与体态：约四十五岁的男子，身材高而挺拔，腰背紧实，双腿完好。
+
+    面容：宽额、略长的方脸，眉骨舒展，鼻梁端正；唇上与下巴蓄着修短的须髭，鬓角有少量灰发；眼神急切而克制，透着救女心切的坚毅；皮肤有真实的风霜与细纹。名门大侠的端正气度。
+
+    发式：前额剃光，灰黑辫子收拢垂在背后，头戴一顶素黑便帽。
+
+    服饰：深青色圆领大襟长袍（右衽）、灰白内领、靛色腰带、厚长裤与黑软靴，外加一件简洁的保暖短褂（雪地行旅）。
+
+    道具与姿态：左手扶着腰间一柄青黑长鞘的长剑（不出鞘）；右手微微张开向前，像要接应来人；胸背挺直，略向前侧身。
+
+
+    构图：竖幅 2:3，单人全身立绘，从头顶到双脚完整入画，四周留出余白；站姿自然、重心稳定，身体正面或微侧，头颈端正、双眼平视；双手和所持器物完整清楚。背景：暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物轮廓与背景分明、边缘干净（后续要抠图），脚下只有极淡的接触阴影。
+
+
+    排除：不要任何文字、题字、印章、签名、水印、边框；不要多个人物、多视图或拼贴；不要幼态（童颜、娃娃脸、儿童或少年身材、头大身小）；不要塑料皮肤、磨皮、网红脸、锥子下巴、过大的眼睛、浓妆滤镜、过度对称、过度精修、偶像化打光或蜡像感；不要与任何真实演员或明星相像；不要照片质感、三维渲染或动漫画风；不要现代物件；不要裸露、透视衣料或性感化；不要血腥；不要裁掉头顶、手指、双脚或器物；不要多余或残缺的手指、手与器物粘连。不要照片感；不要拐杖、轮椅或残腿。清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾。
+
+    质感：手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【画风基线】上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理；参考图只取画风、光线、质感和背景处理，不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: ''
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  tool: codex exec · image_gen（基线画风参考 2 张）
+  model: gpt-6-astra
+  created: 2026-10-02T03:07:09-0700
+  source_path: .agents/coord/gemini_originals/por_npc_shuidao__ch09_prime_pursuit_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 72f1347d0730e49318dc1c2975978df6c8357fd29f19f66378cec7bb57681847
+  status: candidate
+  notes: '立绘重审重出（AR-30）；主检出 10-02 新出的候选以剧集剧照为面部身份参考生成，有复刻真人面容的风险（本轮口径禁止）；造型（深青长袍、素黑便帽、长剑、双腿完好）可用，保留造型，只把脸换成文字设计的面容，并补雪地行旅短褂。A 级，不上传参考图。
+
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（439205f1）'
+- id: por_npc_zhujue__ch09_m_base
+  file: por_npc_zhujue__ch09_m_base.png
+  category: character/male
+  style: default
+  subject: 主角（男）· 本作清初·康熙（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风：人物是完整、坚实、比例真实的写实绘画；皮肤有真实质感——细小毛孔、细纹、晒痕、轻微色斑和自然的左右不对称，不磨皮、不油亮；头发有一根根的发丝和自然碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。这是手绘写实绘画，不是照片，不是三维渲染，也不是动漫或游戏 CG。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】主角（男）：本作原创的穿越者，此刻身处《连城诀》清初·康熙（约 1705–1712 年，项目原创定年）；荆州一带的汉地普通江湖旅人，不是僧人或囚徒。本图是他在这一时代的基础立绘，不代表特定门派或结局。
+
+    【身份参考】随提示词上传的第 1 张图是主角本人（序章 ch00 新版定稿）：保持同一个人——脸型、左眉断疤与小痣、眼睛、鼻子、嘴、肤色、体型和年龄都不变；只把服饰、发式和道具换成下文的本时代版本。不要照搬图中的衣服、姿势和背景。
+
+    【本人面容（十五个时代统一，不能变）】约二十八岁的现代中国男青年，原创面孔，不像任何演员或书中其他人物。偏长的方圆脸，颧骨适中，下颌转折清楚但不宽；平直的浓眉，左眉眉峰处有一道约一厘米长的浅白色旧疤，把左眉截成两段（全书标志，必须清楚可见）；左眉尾下方一颗浅褐色小痣；深棕色中等大小的杏眼、内双，眼神专注、带一点好奇；鼻梁直、鼻头圆钝；上唇薄、下唇略厚，嘴角平和；暖中性略带日晒的肤色，唇上与下巴有极淡的胡茬，眼角有一两道细纹。中等偏高的个子，肩背匀称，四肢结实而不魁梧（约 7.5 头身）；乌黑的头发直而略硬。整体是踏实可靠、警觉而不凶的普通青年，不是偶像或模特。
+
+    【主角标志】发髻根部（清代则是辫梢）系一根褪色的朱红细绳，露出短短的绳头——每个时代都保留这根红绳。
+
+    【服饰】铁灰色清前期圆领右侧掩襟布袍，旧青短外褂、窄布带、长裤布鞋，袖口平直实用；前额与头顶大部剃净，脑后黑发编成细实的辫子，辫根明确、辫梢系朱红细绳，鬓角干净。
+
+    【道具】左腰用两根短系带挂一柄普通的中国腰刀，完整入微弯的窄木鞘，朴素小护手与木柄，无纹饰；刀不出鞘。
+
+    【姿态与神情】下颌微收、视线平稳，衣着带轻微行旅磨痕但精神不萎顿，神情思索而不苦。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；汉式交领必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要明星脸或模特式五官；不要与书中男女主角撞脸；不要具名神兵、门派徽记、官服；不要年龄变小或变老。不要跨时代混搭的发式和服饰。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。参考图只取画风、光线、质感和背景处理，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【去 AI 味】手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch00/por_npc_zhujue__ch00_m_base.png
+    sha256: 1dac5acb9eeab83a8c054ed8eab83e95c33848fab89d83f55c0e5140c312530c
+    use: 身份参考（本轮新出的主角（男）· 春秋末·越国 por_npc_zhujue__ch00_m_base）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/codex_w1/staging/por_npc_zhujue__ch00_m_base.jpg
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 画风基线（只取画风、光线、质感与背景，AR-31）；按磁盘规则实际上传缩到长边 1024 的 JPEG
+    uploaded: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0212031f-f2ac-4925-a6ba-d50d0c2e9ce5/scratchpad/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+  tool: codex exec · image_gen（上传两张同性别基线立绘作画风参考，前置身份参考）
+  model: gpt-6-astra
+  created: 2026-10-02T03:58:50-0700
+  source_path: .agents/coord/gemini_originals/por_npc_zhujue__ch09_m_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 6ce30c003d7a766b440f80fc347ad9a7b96007e985851e1d65fb4fa009913a2c
+  status: candidate
+  notes: 立绘重审重出（AR-30）；随男主 ch00 新锚点统一重出（加左眉断疤与朱红发绳、去 AI 味），服饰沿用本时代设定；codex 出图（1 号出图员，AR-31）；主角时代图：上传本轮新出的 ch00 锚点作唯一身份参考；沿用审核组提示词，补去 AI 味一句
+- id: por_npc_xuedaolaozu__ch09_elder_snow_base
+  file: por_npc_xuedaolaozu__ch09_elder_snow_base.png
+  category: character/male
+  style: default
+  subject: 血刀老祖（ch09_liancheng）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    只把砖红僧袍主体换成褪旧土黄色黄袍，保留全部衣服廓形、布褶、深浅阴影和灰腰带；红色只用于血刀与少量血刀绣纹，不得整件红袍。原作者指定头脸与笑意、双手、血刀、双靴和背景全不变。
+
+    【原著依据】《连城诀》六《血刀老祖》：“一个身穿黄袍的和尚”（https://xuges.com/WUXIA/jinyong/lcj/033.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_xuedaolaozu__ch09_elder_snow_base.png
+    sha256: 10200a57ffaa4163e5315e54fabb2a77106abcc1b63e64c49a5488144908842b
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_xuedaolaozu__ch09_elder_snow_base.10200a57.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:43:26-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_27_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 93645d5bb7916075b2eb5b7c2bf8dd662dcf9c8952d583411758b92e0c09ead6
+  status: candidate
+  notes: AR-32 主要角色经典剧照重出（6 号出图员）；版本：2004 年《连城诀》电视剧；job por_npc_xuedaolaozu__ch09_elder_snow_base__t1；AR-58 神态（各书配角）·10 号出图员：阴狠的邪笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变；AR-82 原著核对返修：血刀老祖砖红僧袍改褪旧土黄
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_xuedaolaozu__ch09_elder_snow_base.10200a57.png
+    sha256: 10200a57ffaa4163e5315e54fabb2a77106abcc1b63e64c49a5488144908842b
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_xuedaolaozu__ch09_elder_snow_base.10200a57.entry.yaml
+- id: por_npc_dingdian__ch09_prime_prison_base
+  file: por_npc_dingdian__ch09_prime_prison_base.png
+  category: character/male
+  style: default
+  subject: 丁典（ch09_liancheng）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    只改两处：从丁典左右两肩衣缝各垂下一条铁链，清晰连到现有双腕铁铐与脚踝铁镣，身上两条链可辨，不能只是墙边道具。肩部穿出衣缝而不画穿刺或血肉伤口。胡须扩为覆盖两颊下部、下颌两侧及下巴的浓密蓬乱虬髯。原有头脸骨相五官、眼神神情、发式、服装、手与脚以及现有手脚铁链原样保持。
+
+    【原著依据】《连城诀》二《牢狱》：“琵琶骨中也穿着两条铁链”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“满脸虬髯”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_dingdian__ch09_prime_prison_base.png
+    sha256: 06ababa67dadfb708d26fa051a9354643299a78aa1c26e9c181bca57b66df54a
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_dingdian__ch09_prime_prison_base.06ababa6.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:37:24-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_22_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 56992f34dab3bb0f4842e7a1be123d359f98348baef7259a00c89d5690222831
+  status: candidate
+  notes: 'AR-32 补记修改 B（9 号出图员）：作者 10-02（AR-32 补记）：连城取 2004 版，下载剧照后重出；上一版本机无剧照，只用文字。2004 年内地电视剧《连城诀》（王新民导演，2003 年拍摄、2004 年 7 月首播）；丁典由王海地饰演 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘；r1
+
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（20c6f2c9）；AR-82 原著核对返修：丁典补双肩琵琶骨链与满脸蓬乱虬髯'
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_dingdian__ch09_prime_prison_base.06ababa6.png
+    sha256: 06ababa67dadfb708d26fa051a9354643299a78aa1c26e9c181bca57b66df54a
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_dingdian__ch09_prime_prison_base.06ababa6.entry.yaml
+- id: por_npc_diyun__ch09_youth_disguise_base
+  file: por_npc_diyun__ch09_youth_disguise_base.png
+  category: character/male
+  style: default
+  subject: 狄云（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【复合参考】第1张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+
+    第2张是经典影视造型剧照，只借发型、服饰、配色、道具、气质和大致脸型，不照搬演员五官。
+
+    第3张是经典武侠游戏画风，只借古典插画的气质、线条、理想化造型感，不抄头像粗像素。
+
+    最后两张同性别项目基线，只取画风、自然材质、纸底与淡水墨，不取长相。
+
+    五官要向经典武侠游戏插画的理想化脸型靠，成品像这个角色而不是像演员；重新设计眉眼鼻唇，拒绝明星照片修图。
+
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物辨识与原创面孔】狄云；憨厚朴实、历尽冤屈仍善良、疲惫而倔强；约二十四岁成年骨架。原创新脸设计：偏长宽颊、厚实下颌、低而平的浓眉、窄内双深眼、宽实鼻头和不完全对称的宽唇，日晒深肤色；只借剧照大致脸型，五官重新理想化为经典武侠游戏插画，不照搬演员。
+
+    【造型道具】刚剃光头有极短青茬，无须无戒疤无辫；土黄色旧僧袍、暗红褐领缘，交领右衽，内衫长裤完整不透明；衣襟小刀与三滴图案仅暗红线刺绣，乌蚕衣领口一线；灰绑腿旧布鞋。右手五指旧残但掌腕前臂完整，无血腥，左手托油布小包；腿完好，不持血刀或长剑。【本轮重出首要修正】画面左侧垂下的是人物解剖学右手，五根手指包括拇指全部早已缺失，绝不能画正常手或任何指节、指甲。右手仍有完整宽手掌、手腕与前臂，右手掌下缘平钝愈合；一小圈旧布只护住无指掌端，没有任何手指从布外伸出，不能画成握拳，也不能从腕部截断。画面右侧拿包的是左手，左手五指正常。
+
+    【成人化与姿势】成年人物，头端正、眼平视、双脚落地，人物自然站立，所有道具完整在画幅内。青年是成年青年，不是孩子。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要演员肖像、照片质感；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
+  negative: ''
+  references:
+  - path: .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03a.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still0.jpg
+    sha256: 619f5ffe81a84df98c6641516fe44e30d778a5287d55339b7cad83be9f06b253
+    uploaded_sha256: aed8c61ad1afb02c58ba7c97267148f1a5ca96c5db14a6f9bebee4c80b36e76f
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03b.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still1.jpg
+    sha256: 567b21d5a9772dccd6e300e603520e39ead643d2e7059b3e91137b9191a2d3ae
+    uploaded_sha256: 72a940792859a645e099e5e872cf05d77098534f40eb00619ff4b0916198ea85
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_38-1.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_game.jpg
+    sha256: 350da7fd51afb0e958376939d132e69883e39b8d1353b1b34794af269a57cb54
+    uploaded_sha256: a432d532a497dca4c3ca5598f3e97da7dffba50cd91d246d3b209d99f3c4eb2d
+    use: 经典游戏绘画风格
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-02T23:56:06-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_diyun__ch09_youth_disguise_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_diyun__ch09_youth_disguise_base.retry3.r2
+  quality_retries: 1
+  history:
+  - id: por_npc_diyun__ch09_youth_disguise_base
+    sha256: 3430daf2c91d21508b7aeeb989a87005a8ce53f078b7804a1172e1fcf3989b9d
+    source_path: .agents/coord/gemini_originals/por_npc_diyun__ch09_youth_disguise_base.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-02T16:49:19-0700
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_diyun__ch09_youth_disguise_base/3430daf2c91d21508b7aeeb989a87005a8ce53f078b7804a1172e1fcf3989b9d.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_diyun__ch09_youth_disguise_base/3430daf2c91d21508b7aeeb989a87005a8ce53f078b7804a1172e1fcf3989b9d.yaml
+- id: por_npc_diyun__ch09_youth_rural_base
+  file: por_npc_diyun__ch09_youth_rural_base.png
+  category: character/male
+  style: default
+  subject: 狄云（湘西乡下常装）（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【复合参考】第1张是本轮精修的新僧装狄云，只锁定同一成年人的脸部骨相、眉眼鼻唇和晒黑肤色，回到入狱前约二十岁的饱满面颊；不继承光头、僧衣、残手、背景或姿势。第2张是经典影视造型剧照，只借乡间服饰、发式、配色与憨厚气质，不照搬演员五官；第3张是经典武侠游戏画风参考，只借古典插画气质与理想化造型感；最后两张是同性别项目画风基线，只取画风、纸底、光线和材质，不取身份。成品像狄云这个角色，保持本轮新基础脸，不像演员照片。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】狄云，《连城诀》男主角，湘西麻溪铺乡下长大、跟着师父戚长发练剑的农家青年；随师父去荆州万家之前、还没有蒙冤入狱的时期。
+
+    【年龄与体态】约二十岁的成年青年男子，身材结实匀称、肩背宽厚，是常年耕田挑担练出来的力气；双手粗糙、指节粗大，十根手指完好。
+
+    【经典造型】要一眼认出是《连城诀》的狄云——湘西农家青年：靛蓝短褂、卷腿布裤、草鞋、背后斗笠、手里一柄旧剑；憨厚木讷、眼神清澈真诚，朴实而端正好看，不丑化。
+
+    【面容】与第1张是同一张原创脸：偏长宽颊、厚实下颌、低而平的浓眉、窄内双深眼、宽实鼻头和不完全对称的宽唇，日晒深肤色；入狱之前面颊稍饱满、神情憨厚真诚，保留成年骨架。五官沿本轮新基础立绘的经典武侠游戏插画理想化设计，不复刻演员。
+
+    【发式】清初乡下男子发式——前额和头顶前半剃过，脑后一条粗黑的辫子垂在背后。
+
+    【服饰】湘西农家的靛蓝色粗布短褂（大襟右衽、布纽扣）、宽腿黑布裤卷到小腿、腰间扎一条旧布带、脚穿草鞋；衣服洗得发白，打过一两处补丁，但完整干净。
+
+    【道具与姿态】左手握一柄连鞘的旧长剑（木鞘磨得发亮，是平日练剑用的普通剑）；背后挂一顶旧竹斗笠；右手自然垂下；憨直地站着，正面看人。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感，不要像剧照照片、照片修图或拼贴，不要照搬剧照的背景、光影、构图和姿势；不要三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要光头、僧衣、残缺的手指或镣铐；不要清瘦憔悴的牢狱相；不要偶像化的俊美脸；清初男子一律穿圆领大襟（衣襟从领口斜向右腋下扣合），不要汉式交领长衫，不要明代发髻或网巾；不要日式服饰。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。
+
+    【本轮一致性】本期尚未入狱：双手各五指完整，不包扎；衣物仍是靛蓝短褂、卷腿黑布裤、草鞋，背挂旧斗笠，左手握连鞘旧长剑，右手自然舒展。配色与站姿为（原创扩展），具体发式三联／广州修订版逐字终校（待考）。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+    sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+    uploaded_sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03a.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still0.jpg
+    sha256: 619f5ffe81a84df98c6641516fe44e30d778a5287d55339b7cad83be9f06b253
+    uploaded_sha256: aed8c61ad1afb02c58ba7c97267148f1a5ca96c5db14a6f9bebee4c80b36e76f
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_38-1.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_game.jpg
+    sha256: 350da7fd51afb0e958376939d132e69883e39b8d1353b1b34794af269a57cb54
+    uploaded_sha256: a432d532a497dca4c3ca5598f3e97da7dffba50cd91d246d3b209d99f3c4eb2d
+    use: 经典游戏绘画风格
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T02:30:30-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_diyun__ch09_youth_rural_base.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 29a0dd869c462d23a3a7f7d2c44c2534cf10451e17b50e687230816c8a82023e
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_diyun__ch09_youth_rural_base.retry3.r1
+  quality_retries: 0
+  history:
+  - id: por_npc_diyun__ch09_youth_rural_base
+    sha256: 7ee11e4e0e31a0d53a6392132e9668941e691e8a8d153d4003e765e7d870dd50
+    source_path: .agents/coord/gemini_originals/por_npc_diyun__ch09_youth_rural_base.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-02T18:27:14-0700
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_diyun__ch09_youth_rural_base/7ee11e4e0e31a0d53a6392132e9668941e691e8a8d153d4003e765e7d870dd50.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/por_npc_diyun__ch09_youth_rural_base/7ee11e4e0e31a0d53a6392132e9668941e691e8a8d153d4003e765e7d870dd50.yaml
+- id: por_npc_meiniansheng__ch09_elder_memory_base
+  file: por_npc_meiniansheng__ch09_elder_memory_base.png
+  category: character/male
+  style: default
+  subject: 梅念笙（ch09_liancheng）
+  prompt: '【任务】这是一次图像编辑（只改神态），不是重新创作。第 1 张参考图是待改原图（梅念笙的基础立绘）；第 2 张是同一张原图的脸部特写（看清五官细节，用来保持是同一个人）。请以第 1 张为底稿，只改梅念笙的面部神态——眼神、眉眼的松紧、嘴角与笑容——然后输出修改后的完整图片：2:3 竖幅，构图、取景与第 1 张原图完全一致。
+
+    【人物】梅念笙：「铁骨墨萼」，约七十岁，丁典追述中的老前辈，慈和淡泊。
+
+    【新神态（按年龄与性格定，不要千篇一律的平静脸）】慈和淡泊：目光温和，嘴角带慈祥的浅笑。
+
+    【必须保持是同一个人】脸型与骨相、额头与发际线、眉形、眼型与双眼皮、鼻梁与鼻头、嘴唇形状与厚薄、下颌、胡须的形状与疏密、皱纹、痣与疤、肤色与年龄感都与原图一致——只是同一个人换了一个表情，熟悉原图的人一眼认得出。表情只靠表情肌变化（眼角、眼睑、苹果肌、嘴角、法令纹随之自然变化），不要把脸变年轻、变瘦、变美，也不要换成另一张脸。
+
+    【原图保持不变】除面部表情以外，原图的一切都保留：头部朝向与角度、发式与头饰、服装的款式颜色与褶皱、手势与手中器物、身体姿势、人物在画面中的位置和大小、背景纸底与水墨远山、光线方向与色调、笔触与画风。
+
+    【画风】项目的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。改过的五官的光影、色温和笔触要与原图其余部分一致、自然融入，不要像照片贴上去。
+
+    【不要】不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。'
+  negative: 不要文字、题款、印章、水印；不要第二个人；不要改变头身比例和头部大小；不要幼态（童颜、娃娃脸）；不要网红脸、磨皮、照片质感；不要夸张的漫画表情或扭曲五官；衣襟保持原图的右衽，不要水平镜像。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_meiniansheng__ch09_elder_memory_base.png
+    sha256: 383239ece66d9f4c1ceaafa42752322b0ee87c544d41f8bd41f1ccd8e420db1e
+    use: 待改原图（AR-58 神态（各书配角）：图像编辑只改表情，脸、服饰、构图不变；同时上传本图的脸部特写 640×640 用来保持是同一个人）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_meiniansheng__ch09_elder_memory_base.383239ec.png
+  tool: codex exec · image_gen（AR-58 神态（各书配角）：图像编辑，上传待改原图全身 + 本图脸部特写，不加画风基线）
+  model: gpt-6.1-sol
+  created: 2026-10-03T20:53:30-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_meiniansheng__ch09_elder_memory_base.x1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: a5ade7b95b08384eecea7aa93ef8dfee739c9a73256c0c025161286e5979f8c6
+  status: candidate
+  notes: ART-cast-fill-b：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；1张候选；未获作者批准。；AR-58 神态（各书配角）·10 号出图员：慈祥的浅笑——作者 10-03 原话「这些角色的神态要参考年龄性格，不要千篇一律。不冷俊的都可以微笑」；只改表情，脸、服饰、构图不变
+  tier: A
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_meiniansheng__ch09_elder_memory_base.383239ec.png
+    sha256: 383239ece66d9f4c1ceaafa42752322b0ee87c544d41f8bd41f1ccd8e420db1e
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_meiniansheng__ch09_elder_memory_base.383239ec.entry.yaml
+- id: por_npc_buyuan__ch09_prime_wanfu_base
+  file: por_npc_buyuan__ch09_prime_wanfu_base.png
+  category: character/male
+  style: default
+  subject: 卜垣（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《连城诀》的卜垣。万震山弟子；取万府早期、尚无后期伤亡的存活阶段。
+
+    【依据】具体年龄感、骨相、体型、服色配饰和动作是（原创扩展）的美术区分方案，不冒称原著逐字描写；汪啸风的黄衫与马具金铃沿用现有（待考）边界。项目清初时代图层，全员剃额留辫，不沿用基线中的高髻和头巾。
+
+    【年龄与体型】约三十六岁的成年男子；六人中最窄肩、最清瘦，胸廓薄、四肢细长，成人正常头身比。
+
+    【面部辨识】窄长菱形脸，颧骨外突而两颊凹，细平眉，眼裂细长且外眼角微垂，鼻梁窄而鼻尖略钩，薄唇紧抿，完全无须；肤色偏浅，有轻微眼下阴影；神情审慎、心中盘算，不能画成方脸壮汉。
+
+    【衣装】大面积低饱和苔绿右衽长衣，深橄榄绿窄袖与米灰内领，暗褐细布腰带，深褐长裤和旧布鞋；袖缘细密磨损，腰侧一个扁平素布小囊，无图案、无宗教符号。
+
+    【发式】前额剃发，后发编一条细辫，从本人右肩垂到胸前，辫尾系灰白细绳；不戴帽。
+
+    【道具】普通中国直身长剑完整入深木鞘，低挂本人左腰，剑鞘离开衣摆斜向外，双手不碰剑；不持账本或暗器。
+
+    【站姿】双脚靠近但不交叉，重心偏本人左腿；左臂屈起横在腹前、左手掌心向下，右手在胸腹之间轻拢左袖口，两手轮廓清楚；身体略向本人右侧转，头脸仍正对镜头，谨慎收拢的姿态。
+
+    【区分重点】即使去掉衣色，也须凭脸型、胡须、肩腰比例和手势认出此人；严守此人的体型与站姿，不复用基线角色的蓝袍和一手扶剑的站姿。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: 画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（ART-cast-polish-ch09；ref=text；两张男性基线）
+  model: gpt-6-astra
+  created: '2026-10-03T05:42:34.232299-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w15/out/por_npc_buyuan__ch09_prime_wanfu_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 28279102db07fda05cfab60230e9f7266f41a5e59eff1f32e81c85011c032635
+  status: candidate
+  notes: ART-cast-polish-ch09：同门差异化；六人联系表复核脸型、体型、站姿、服色、成年与全身完整；采用por_npc_buyuan__ch09_prime_wanfu_base.r1；具体美术细部为原创扩展，保留原稿待考边界；candidate待作者审阅。
+  tier: B
+  source_sha256: 28279102db07fda05cfab60230e9f7266f41a5e59eff1f32e81c85011c032635
+  redo_reason: 同门差异化
+- id: por_npc_fengtan__ch09_prime_wanfu_base
+  file: por_npc_fengtan__ch09_prime_wanfu_base.png
+  category: character/male
+  style: default
+  subject: 冯坦（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《连城诀》的冯坦。万震山弟子；取万府早期、尚无后期伤亡的存活阶段。
+
+    【依据】具体年龄感、骨相、体型、服色配饰和动作是（原创扩展）的美术区分方案，不冒称原著逐字描写；汪啸风的黄衫与马具金铃沿用现有（待考）边界。项目清初时代图层，全员剃额留辫，不沿用基线中的高髻和头巾。
+
+    【年龄与体型】约三十二岁的成年男子；六人中最敦实、偏矮但约七头身成人比例，宽厚躯干、粗上臂、结实小腿，不能缩成大头娃娃或肥胖卡通。
+
+    【面部辨识】横向宽的圆方脸、饱满但有成人颧颌骨的双颊，下颌宽而圆，短浓平眉、较小的圆眼，低鼻梁与宽鼻翼，下唇略厚，上唇有一小片短须；肤色偏红褐有晒斑，嘴角轻微下压，犹豫而敦厚。
+
+    【衣装】大面积低饱和赤陶棕右衽布长衣，燕麦色内领，深咖啡色腰带，袖口卷一层露出浅麻色里布，深棕宽长裤与黑布鞋；腰侧朴素圆口软布囊，无门徽。
+
+    【发式】前额剃发，戴小而贴头的深褐无饰便帽，不遮眉眼；后发一条粗短辫从本人左颈侧露出，辫梢扎棕布条，不能变高髻。
+
+    【道具】一柄普通中国直身长剑完整入褐木长鞘，挂本人左腰偏后，剑柄避开手腕；鞘尾完整露在左腿外侧，不能重复第二柄剑。
+
+    【站姿】双脚平行较宽地站稳，双手各自扶在两侧腰胯，两个肘部明显向外张开，手指自然向前落在腰带以下；胸背稍松，头部端正平视，形成宽而低的轮廓。
+
+    【区分重点】即使去掉衣色，也须凭脸型、胡须、肩腰比例和手势认出此人；严守此人的体型与站姿，不复用基线角色的蓝袍和一手扶剑的站姿。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: 画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（ART-cast-polish-ch09；ref=text；两张男性基线）
+  model: gpt-6-astra
+  created: '2026-10-03T05:45:55.853956-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w15/out/por_npc_fengtan__ch09_prime_wanfu_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 24e2ea1a00340824209c4e9266cc5237e0294019e1d44ccfb52ef70b091d3af7
+  status: candidate
+  notes: ART-cast-polish-ch09：同门差异化；六人联系表复核脸型、体型、站姿、服色、成年与全身完整；采用por_npc_fengtan__ch09_prime_wanfu_base.r1；具体美术细部为原创扩展，保留原稿待考边界；candidate待作者审阅。
+  tier: B
+  source_sha256: 24e2ea1a00340824209c4e9266cc5237e0294019e1d44ccfb52ef70b091d3af7
+  redo_reason: 同门差异化
+- id: por_npc_lukun__ch09_prime_wanfu_base
+  file: por_npc_lukun__ch09_prime_wanfu_base.png
+  category: character/male
+  style: default
+  subject: 鲁坤（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《连城诀》的鲁坤。万震山大弟子；取万府早期、尚无后期伤亡的存活阶段。
+
+    【依据】具体年龄感、骨相、体型、服色配饰和动作是（原创扩展）的美术区分方案，不冒称原著逐字描写；汪啸风的黄衫与马具金铃沿用现有（待考）边界。项目清初时代图层，全员剃额留辫，不沿用基线中的高髻和头巾。
+
+    【年龄与体型】约四十二岁的壮年男子；六人中最高大宽肩，厚胸背、长而壮实的双腿，肩宽与清瘦者形成明显差异，约七点五头身。
+
+    【面部辨识】宽长方脸、厚重方下颌，眉骨突出、浓而近连的平眉，深眼窝、宽直鼻梁、紧闭的宽嘴，连着下颌的短硬胡茬，眼角细纹清楚；肤色古铜，神情严厉自负，不能画成俊秀青年或老翁。
+
+    【衣装】大面积低饱和烟褐右衽窄袖长衣，外穿无纹的深炭黑短坎肩，暗灰宽布腰带，黑褐长裤与朴布靴；外褂肩部结实、两侧无披风，色块深而沉稳，不用蓝袍。
+
+    【发式】前额剃净，后发编粗实长辫，垂在背后，辫末用一段暗红布缠束；额头宽、发根清楚，不戴帽。
+
+    【道具】一柄普通中国直身长剑完整入深褐长鞘，挂本人左腰，柄与鞘在交叠双臂下方，剑鞘沿左腿外侧略向外斜，双手不持兵器。
+
+    【站姿】身体正对镜头、双脚肩宽站直，双前臂在胸前低位交叠，一只手自然搭在另一上臂外侧，另一只手由对侧肘下露出，左右结构自然；头端正不仰，显示大弟子的倨傲稳固。
+
+    【区分重点】即使去掉衣色，也须凭脸型、胡须、肩腰比例和手势认出此人；严守此人的体型与站姿，不复用基线角色的蓝袍和一手扶剑的站姿。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: 画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（ART-cast-polish-ch09；ref=text；两张男性基线）
+  model: gpt-6-astra
+  created: '2026-10-03T05:46:15.140299-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w15/out/por_npc_lukun__ch09_prime_wanfu_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 8fb90f60317c1eb0bf5fb77229e609dacf2499ce495b9d539568582617ce80da
+  status: candidate
+  notes: ART-cast-polish-ch09：同门差异化；六人联系表复核脸型、体型、站姿、服色、成年与全身完整；采用por_npc_lukun__ch09_prime_wanfu_base.r1；具体美术细部为原创扩展，保留原稿待考边界；candidate待作者审阅。
+  tier: B
+  source_sha256: 8fb90f60317c1eb0bf5fb77229e609dacf2499ce495b9d539568582617ce80da
+  redo_reason: 同门差异化
+- id: por_npc_shencheng__ch09_prime_wanfu_base
+  file: por_npc_shencheng__ch09_prime_wanfu_base.png
+  category: character/male
+  style: default
+  subject: 沈城（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《连城诀》的沈城。万震山弟子；取万府早期、尚无后期伤亡的存活阶段。
+
+    【依据】具体年龄感、骨相、体型、服色配饰和动作是（原创扩展）的美术区分方案，不冒称原著逐字描写；汪啸风的黄衫与马具金铃沿用现有（待考）边界。项目清初时代图层，全员剃额留辫，不沿用基线中的高髻和头巾。
+
+    【年龄与体型】约二十八岁的成年男子；身材偏高、窄腰、肩线平直，四肢修长但胸背不消瘦，成人约七点五头身。
+
+    【面部辨识】上宽下收的倒梯形脸，额头宽、下颌收束但不是尖下巴，疏淡直眉，间距稍宽的细长眼，鼻梁平直、鼻尖圆，唇峰清楚且下唇较薄，干净无须；肤色偏暖白，神情克制拘谨，不能做偶像式美颜。
+
+    【衣装】大面积暖象牙白右衽长衣，衣料不透明，窄袖外搭灰紫色齐腰无袖短褂，暗紫窄腰带、浅灰长裤和灰布靴；浅衣深领构成醒目的明度差，不能画成蓝灰长袍。
+
+    【发式】前额剃发，后发整齐编为细直单辫垂在背后，本人左肩后可见一截辫身，辫尾系灰紫绳，鬓边刮净，不戴帽或头巾。
+
+    【道具】一柄普通中国直身长剑完整入深灰木鞘，挂本人左腰向外斜，挂点和鞘尾清晰，握在腹前的双手与器物分离。
+
+    【站姿】双脚平行稍窄，膝盖伸直，肩线放平；双手在小腹下轻轻相握，右掌包住左手四指而拇指自然分开，肘部贴近身体；身体与头均基本正面，姿态收敛守礼，不碰剑柄。
+
+    【区分重点】即使去掉衣色，也须凭脸型、胡须、肩腰比例和手势认出此人；严守此人的体型与站姿，不复用基线角色的蓝袍和一手扶剑的站姿。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: 画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（ART-cast-polish-ch09；ref=text；两张男性基线）
+  model: gpt-6-astra
+  created: '2026-10-03T05:47:41.837224-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w15/out/por_npc_shencheng__ch09_prime_wanfu_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 7831bc860577578bc52e755fea0740e095e9cefd0eb24c3ee8cb963211edbb22
+  status: candidate
+  notes: ART-cast-polish-ch09：同门差异化；六人联系表复核脸型、体型、站姿、服色、成年与全身完整；采用por_npc_shencheng__ch09_prime_wanfu_base.r1；具体美术细部为原创扩展，保留原稿待考边界；candidate待作者审阅。
+  tier: B
+  source_sha256: 7831bc860577578bc52e755fea0740e095e9cefd0eb24c3ee8cb963211edbb22
+  redo_reason: 同门差异化
+- id: por_npc_sunjun__ch09_prime_wanfu_base
+  file: por_npc_sunjun__ch09_prime_wanfu_base.png
+  category: character/male
+  style: default
+  subject: 孙均（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《连城诀》的孙均。万震山弟子；取万府早期、尚无后期伤亡的存活阶段。
+
+    【依据】具体年龄感、骨相、体型、服色配饰和动作是（原创扩展）的美术区分方案，不冒称原著逐字描写；汪啸风的黄衫与马具金铃沿用现有（待考）边界。项目清初时代图层，全员剃额留辫，不沿用基线中的高髻和头巾。
+
+    【年龄与体型】约三十岁的成年男子；中等身高、肩窄腰劲，紧实敏捷的精悍体型，前臂筋肉清楚但不夸张，成人约七点五头身。
+
+    【面部辨识】紧凑的短菱形脸，颧部宽、下颌有棱角，短眉向外上挑，窄而锐利的眼，鼻梁短直、鼻尖圆钝，嘴角一侧绷紧，只有下巴中央一小撮短须而双颊干净；肤色深小麦，神情急躁警惕。
+
+    【衣装】大面积低饱和暗枣红右衽窄袖长衣，黑褐滚边与黑腰带，褐灰布护腕、炭灰长裤和软靴；衣摆开衩下长裤完整遮腿，护腕与红衣形成色块，不用蓝袍。
+
+    【发式】前额剃发，后发编紧密扁辫，从本人左肩沿背侧垂下，用黑绳束末；鬓角比其余人短，不戴帽，不做高发髻。
+
+    【道具】一柄普通中国直身长剑完整入灰木长鞘，斜挂本人左腰，剑鞘朝左下方并离开双腿，绝不拔出剑刃，不添第二把剑。
+
+    【站姿】本人右脚向前半步、左脚向后，双脚着地，膝微屈但身体直立；右手在腰前搭住本人左腰的入鞘剑柄，左手握松拳垂在本人左大腿旁，两手相距明显；肩背稍绷，头正平视，像静候比剑而非攻击。
+
+    【区分重点】即使去掉衣色，也须凭脸型、胡须、肩腰比例和手势认出此人；严守此人的体型与站姿，不复用基线角色的蓝袍和一手扶剑的站姿。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: 画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（ART-cast-polish-ch09；ref=text；两张男性基线）
+  model: gpt-6-astra
+  created: '2026-10-03T05:47:56.616740-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w15/out/por_npc_sunjun__ch09_prime_wanfu_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 5c50bfded0656f1d810e99fb97102da419c654b339a88a91419b1573c6678e27
+  status: candidate
+  notes: ART-cast-polish-ch09：同门差异化；六人联系表复核脸型、体型、站姿、服色、成年与全身完整；采用por_npc_sunjun__ch09_prime_wanfu_base.r1；具体美术细部为原创扩展，保留原稿待考边界；candidate待作者审阅。成图为左手同侧扶剑，与提示词右手设想略有不同；无伤残侧别冲突，作为自然手势偏差接受。
+  tier: B
+  source_sha256: 5c50bfded0656f1d810e99fb97102da419c654b339a88a91419b1573c6678e27
+  redo_reason: 同门差异化
+- id: por_npc_wangxiaofeng__ch09_youth_travel_base
+  file: por_npc_wangxiaofeng__ch09_youth_travel_base.png
+  category: character/male
+  style: default
+  subject: 汪啸风（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《连城诀》的汪啸风。水笙表兄、江南侠门青年，铃剑双侠之一；取与水笙同行而尚未雪谷离散的阶段，并非万震山门下。
+
+    【依据】具体年龄感、骨相、体型、服色配饰和动作是（原创扩展）的美术区分方案，不冒称原著逐字描写；汪啸风的黄衫与马具金铃沿用现有（待考）边界。项目清初时代图层，全员剃额留辫，不沿用基线中的高髻和头巾。
+
+    【年龄与体型】约二十四岁的成年青年侠士；修长挺拔、肩腰匀称、长腿，体态轻快舒展，成人约七点五头身，不能画成中年门人。
+
+    【面部辨识】饱满的长鹅蛋脸、下颌圆润但骨相成熟，舒展而细长的剑眉，明亮杏眼，鼻梁直挺不夸张，清晰的唇峰与略上扬的嘴角，干净无须；肤色健康浅麦，英俊自信而有矜持，和深眼窝短须壮汉明显不同。
+
+    【衣装】清晰的暖姜黄色右衽窄袖行旅长衫，低饱和但不可泛成灰褐，米白内领、深墨绿细布腰带、棕色长裤与深褐软靴；下摆和一侧短衣带略有风动，不加万门短褂或同门徽记。
+
+    【发式】前额剃发，后发梳齐编长而匀细的单辫，从本人右肩后露出并顺背垂落，辫末系深绿绳；额头干净，没有发髻、帽子或络腮胡。
+
+    【道具】普通中国直身长剑完整入黑木鞘，系在本人左腰，鞘尾在腿外；右手提的短马络绳下端系一枚小金铃，铃为马具非武器，闭合的绳圈与手指结构清楚，不画马或第二个人。
+
+    【站姿】重心落在本人右腿，左脚向侧前方松松迈半步，膝舒展；右前臂轻屈在腰部侧前方低提一圈短马络绳，左臂远离身体自然垂下，左手张弛自然不扶剑；双肩舒展、头端正平视，行旅停步的轻松姿态。
+
+    【区分重点】即使去掉衣色，也须凭脸型、胡须、肩腰比例和手势认出此人；严守此人的体型与站姿，不复用基线角色的蓝袍和一手扶剑的站姿。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: 画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要六人合照、人物对比拼图、蓝灰色制式长袍、清宫官服、额外宗教徽记、无依据伤疤或伤残；不要宋明高髻与网巾。
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 男性画风基线；只取画风、设色、光线、质感与背景，不取脸型、体型、衣装与姿势
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（ART-cast-polish-ch09；ref=text；两张男性基线）
+  model: gpt-6-astra
+  created: '2026-10-03T05:49:41.798218-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w15/out/por_npc_wangxiaofeng__ch09_youth_travel_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 260da63e7e5fba9eed1e343fab8755a8118b249efa5708214376f35ec3301bdb
+  status: candidate
+  notes: 'ART-cast-polish-ch09：同门差异化；六人联系表复核脸型、体型、站姿、服色、成年与全身完整；采用por_npc_wangxiaofeng__ch09_youth_travel_base.r1；具体美术细部为原创扩展，保留原稿待考边界；candidate待作者审阅。
+
+    AR-69：作者定男性默认不笑，改回 AR-58 前版本（ab8c0389）'
+  tier: A
+  source_sha256: 260da63e7e5fba9eed1e343fab8755a8118b249efa5708214376f35ec3301bdb
+  redo_reason: 同门差异化
+- id: por_npc_wukan__ch09_prime_wanfu_base
+  file: por_npc_wukan__ch09_prime_wanfu_base.png
+  category: character/male
+  style: default
+  subject: 吴坎（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《连城诀》的吴坎。万震山弟子、万家门L3门人；取万府后期内讧、遭灭口之前阶段。
+
+    【面容】三十余岁精悍男子，窄额宽颧、斜长细眉、深陷细眼、薄唇和尖短须，脸颊微凹，警惕而非夸张奸笑。具体骨相是原创扩展的视觉设计，不冒充原著逐字描写。
+
+    【衣装】墨蓝右衽长袍、赭灰窄外褂、长裤与布靴，衣边完整、袖口有少量磨损；清初前额剃发、后发编为整齐单辫，辫尾顺背，发根与头皮关系清楚，不用宋式裹髻或明式网巾。
+
+    【道具】一柄普通中国直身长剑完整入黑漆鞘，腰侧短绳固定，右手只搭柄不拔剑，不持绳索或毒物。
+
+    【姿势】双足落地站稳，头脸朝前，目光平视，双肩放松；手在腰部以下自然扶道具，不歪头，不仰头，不做侧后方回望。男性约7.5头身，女性约7头身，成年比例。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要将其他人物画进来，不要无依据的伤残、官帽或宗教法器。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: '画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要将其他人物画进来，不要无依据的伤残、官帽或宗教法器。
+
+    '
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（AR-36；ref=text；两张同性别基线）
+  model: gpt-6-astra
+  created: '2026-10-02T23:12:39.609376-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w14/out/por_npc_wukan__ch09_prime_wanfu_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: c8fe55929c7f221099b95bafa315e67cb47685c07ee2b71ced7960425ccf5e7b
+  status: candidate
+  notes: ART-cast-fill-b：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；1张候选；未获作者批准。
+  tier: A
+- id: por_npc_zhouqi09__ch09_prime_wanfu_base
+  file: por_npc_zhouqi09__ch09_prime_wanfu_base.png
+  category: character/male
+  style: default
+  subject: 周圻（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物】《连城诀》的周圻。万震山二弟子、万家门L3门人；取万府早期同门冲突与证词阶段。
+
+    【面容】三十五岁上下，略宽梯形脸，眉峰低平，单眼皮，宽厚鼻头与方下巴，短八字须，神态自负。具体骨相是原创扩展的视觉设计，不冒充原著逐字描写。
+
+    【衣装】石蓝右衽长衫、墨青短无袖外褂、深裤和布鞋，窄腰带干净完整；清初前额剃发、后发编为整齐单辫，辫尾顺背，发根与头皮关系清楚，不用宋式裹髻或明式网巾。
+
+    【道具】一柄普通中国直身长剑完整入黑木长鞘，腰左侧低挂，左手只扶鞘口不握裸刃。
+
+    【姿势】双足落地站稳，头脸朝前，目光平视，双肩放松；手在腰部以下自然扶道具，不歪头，不仰头，不做侧后方回望。男性约7.5头身，女性约7头身，成年比例。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要将其他人物画进来，不要无依据的伤残、官帽或宗教法器。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: '画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不要将其他人物画进来，不要无依据的伤残、官帽或宗教法器。
+
+    '
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（AR-36；ref=text；两张同性别基线）
+  model: gpt-6-astra
+  created: '2026-10-02T23:12:27.545937-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w14/out/por_npc_zhouqi09__ch09_prime_wanfu_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: b01d41f8db54a290addb46ee60b87b12568acad27ee1190a64ca6044a104a67e
+  status: candidate
+  notes: ART-cast-fill-b：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；1张候选；未获作者批准。
+  tier: B
+- id: por_npc_diyun__ch09_youth_scene_maxipu_rural
+  file: por_npc_diyun__ch09_youth_scene_maxipu_rural.png
+  category: character/male
+  style: default
+  subject: 狄云·麻溪铺乡间（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【身份与复合参考】第1张是本轮新出的本人基础立绘，锁定同一张脸和成人骨架，只随下文阶段改变年龄、发式、衣物道具。中间参考依次借影视造型、经典武侠游戏绘画气质；不得照搬演员五官。最后两张同性别基线只借手绘笔触、低饱和用色与材质，不借脸、不画基线人物。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【主角】狄云；憨厚朴实、历尽冤屈仍善良、疲惫而倔强；约二十四岁成年骨架。原创新脸设计：偏长宽颊、厚实下颌、低而平的浓眉、窄内双深眼、宽实鼻头和不完全对称的宽唇，日晒深肤色；只借剧照大致脸型，五官重新理想化为经典武侠游戏插画，不照搬演员。
+
+    【本期】麻溪铺乡间；同脸较饱满，成年农家青年；十指完好、剃额留辫，靛蓝粗布短褂、卷脚黑裤、草鞋；普通旧剑与背后竹斗笠。
+
+    【阶段背景】湘西稻田、土屋与山坳，暖晚照，保留场景。完整保留背景，不抠图；淡墨融入真实景深，人物头脚和道具完整入画。
+
+    【考据边界】lc1；配色、斗笠原创扩展；与AR35乡装base同阶段但本图保留背景。；第一参考为本轮新 base，只锁定成年脸部身份。；配色、镜头、成人化、具体站姿是（原创扩展）。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要真人照片，不要复刻演员面容；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。'
+  negative: ''
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_disguise_base.png
+    sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+    uploaded_sha256: 98a16e841a752b191c53de4b6f912784e064febe46caeff4b529ccb9d6cf661e
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: .agents/coord/imagegen-reference/identity-20261002/liancheng/diyun_2004_wuyue_baike03a.jpg
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_still0.jpg
+    sha256: 619f5ffe81a84df98c6641516fe44e30d778a5287d55339b7cad83be9f06b253
+    uploaded_sha256: aed8c61ad1afb02c58ba7c97267148f1a5ca96c5db14a6f9bebee4c80b36e76f
+    use: 影视造型、衣饰与气质；不复制演员五官
+  - path: .agents/coord/imagegen-reference/identity-20261001/game/raw-portraits/HDGRP_38-1.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/staging/por_npc_diyun__ch09_youth_disguise_base_game.jpg
+    sha256: 350da7fd51afb0e958376939d132e69883e39b8d1353b1b34794af269a57cb54
+    uploaded_sha256: a432d532a497dca4c3ca5598f3e97da7dffba50cd91d246d3b209d99f3c4eb2d
+    use: 经典游戏绘画风格
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-02T23:59:07-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/por_npc_diyun__ch09_youth_scene_maxipu_rural.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 2da155541bad7ce5c1b84c0501fb127ac6345055d90ce36774d98ddbd4f0d300
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_diyun__ch09_youth_scene_maxipu_rural.retry3.r1
+  quality_retries: 0
+  history: []
+- id: por_npc_diyun__ch09_youth_scene_jingzhou_prison
+  file: por_npc_diyun__ch09_youth_scene_jingzhou_prison.png
+  category: character/male
+  style: default
+  subject: 狄云·荆州铁狱（ch09_liancheng）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    只改身上束缚与右手（人物自身右手在画面左侧）：双肩各一条铁链从衣缝垂下，连接到新增两腕铁铐和双踝镣链，锁链真实连在身上不能只在墙边悬挂；不表现穿刺血肉。右手旧布包扎成残掌、无拇指也无其余四指，原外露指头全部去掉，仅残掌轮廓和包扎布，左手完整持碗原样。保持头脸发式、完整衣服、姿势、碗及牢室。
+
+    【原著依据】《连城诀》二《牢狱》：“两条铁链从自己双肩垂了下来”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“右手的五根手指已被人削落”（https://xuges.com/WUXIA/jinyong/lcj/008.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_jingzhou_prison.png
+    sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_jingzhou_prison.be3e92d9.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:38:18-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_23_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 63191ee70c74f5d243da7ad25872f16b27d01947ce2c9a4a67a10c1eae380aeb
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-82 原著核对返修：狄云荆州牢狱肩腕脚锁链及右手五指全失
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_diyun__ch09_youth_scene_jingzhou_prison.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_jingzhou_prison.be3e92d9.png
+    sha256: be3e92d94fd73d5934cf75ef8bdfa4f86bd347da609c3bb619a42527706ef437
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_jingzhou_prison.be3e92d9.entry.yaml
+- id: por_npc_diyun__ch09_youth_scene_snowvalley_feathers
+  file: por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+  category: character/male
+  style: default
+  subject: 狄云·雪谷羽衣（ch09_liancheng）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    只改砖红僧衣主色与腰侧羽束：砖红内层改褪旧土黄，来自宝象的旧黄袍，外面灰披与灰布护衣保持。腰旁羽束改为一件可辨领肩、袖孔、两片衣身、长度齐膝的完整鹰毛雁翎羽衣，由狄云画面左侧下垂那只手提起衣领，羽衣在他身旁展开垂下，齐膝、不只是腰饰羽串。狄云本人不穿羽衣，因为他拒穿；原手中单刀、脸、光头、双脚、雪山景全不动。
+
+    【原著依据】《连城诀》六《血刀老祖》：“身穿黄袍”（https://xuges.com/WUXIA/jinyong/lcj/033.htm）；《连城诀》八《羽衣》：“衣长齐膝”（https://xuges.com/WUXIA/jinyong/lcj/050.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.4a667d26.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T02:39:55-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_24_r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 8eec2c9904399c060de710f9ee6d706445f0c5a0593e58e5b40ddbfa6f3404fb
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；本轮复合新身份；联系表逐图检查通过；衣物道具与背景按阶段保留。；AR-82 原著核对返修：狄云雪谷旧黄僧衣与齐膝羽衣
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: por_npc_diyun__ch09_youth_scene_snowvalley_feathers.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.4a667d26.png
+    sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.4a667d26.entry.yaml
+- id: por_npc_shanyong__ch09_prime_prison_base
+  file: por_npc_shanyong__ch09_prime_prison_base.png
+  category: character/male
+  style: default
+  subject: 善勇（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物与阶段】善勇，《连城诀》。身份：善勇，血刀门弟子、狱中夺《神照经》一方**（待考）**。画其生前正常站立的成年形象，不画死亡或受害场面。
+
+    【造型】约四十岁成年男子，精壮长身；长脸、粗眉、左颊一条浅淡陈旧伤痕，鼻梁宽平、嘴唇较厚，目光警惕。剃度光头，暗红右衽僧衣外搭旧褐布肩片，双肩均覆盖；黑布护腕，腰间完整入鞘戒刀，双手自然下垂。
+
+    【考据边界】脸部细节、制作年龄与衣饰配色是本项目原创扩展，不冒称原著逐字描述。衣襟右衽；小型饰物和卷册均无文字。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。左颊旧伤为原创识别点，无新鲜血迹；不画牢房或囚徒群像。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: '画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。左颊旧伤为原创识别点，无新鲜血迹；不画牢房或囚徒群像。
+
+    '
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（AR-47；ref=text；两张同性别基线）
+  model: gpt-6-astra
+  created: '2026-10-03T15:25:03.373353-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w23/out/por_npc_shanyong__ch09_prime_prison_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: f0c52782767eb1b5c13a55ad3927f36e760af167f962c16017a0e7aab5839978
+  status: candidate
+  notes: 'ART-cast-fill-d：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_shanyong__ch09_prime_prison_base.r1；未获作者批准。 QA: batch_03.jpg 联系表可辨结构通过；未发现必须重出的缺陷；细微指节不冒称像素级穷检。原始 PNG 保存在 source_path；本次未裁切。'
+  tier: B
+  effort: xhigh
+  mode: RGB
+  source_sha256: f0c52782767eb1b5c13a55ad3927f36e760af167f962c16017a0e7aab5839978
+- id: por_npc_shengdi__ch09_prime_prison_base
+  file: por_npc_shengdi__ch09_prime_prison_base.png
+  category: character/male
+  style: default
+  subject: 胜谛（ch09_liancheng）
+  prompt: '生成一张 2:3 竖幅全身人物立绘：单人、单一视角、完整全身——头顶、双手、双脚和手中器物的两端都在画面内，四周留出自然空白；人物站姿自然，身体基本朝向正面，头部端正（不歪头、不仰不俯），镜头平视。
+
+    【参考图】随提示词上传的两张参考图都是本项目的立绘画风基线：画风、用色、光线、质感和暖浅灰纸底加淡水墨背景以它们为准；它们只管画风，不取长相、年龄、发型、服饰和姿势。人物的长相和造型完全按下面的文字来画。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；柔和的自然光从左上方照来，明暗过渡自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【背景】不透明的暖浅灰色纸底，只在远处有极淡的水墨远山和薄雾，大面积留白；人物与背景明暗分明、轮廓边缘干净完整（后续要自动抠图），水墨和纸纹只在背景里，不侵入人物和衣服；脚下只有很淡的一点接触阴影。
+
+    【人物与阶段】胜谛，《连城诀》。身份：胜谛，血刀门弟子、狱中夺《神照经》一方**（待考）**。画其生前正常站立的成年形象，不画死亡或受害场面。
+
+    【造型】约四十五岁成年男子，肩颈厚实；方脸、下垂眼、短硬须，鼻头宽圆、下唇略厚，两眉相距较近。剃度光头，褪色暗红右衽僧衣、灰色腰绳，腰间短刀完整入鞘，黑布鞋，双手放松，神态阴沉收敛。
+
+    【考据边界】脸部细节、制作年龄与衣饰配色是本项目原创扩展，不冒称原著逐字描述。衣襟右衽；小型饰物和卷册均无文字。
+
+    【不要】画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不可复用善勇的长脸、颊疤和体形，不画恐怖鬼脸。
+
+    【画风基线】随提示词上传的参考图里，最后两张是本项目的立绘画风基线：只参考它们的画风、用色、光线、质感和暖浅灰纸底加淡水墨的背景处理，整体画风必须与它们一致——精细写实的数字手绘插画，不是油画，不要厚涂笔触和画布纹理。基线图只取画风，不取长相：不要照搬基线图里人物的长相、年龄、发型、服饰和姿势。'
+  negative: '画面里不要任何文字、题款、印章、签名、水印、边框、分格或多视图；不要第二个人；不要幼态（童颜、娃娃脸、婴儿肥、儿童或少年身材、大头小身）；不要塑料感皮肤、磨皮美颜、网红脸（尖下巴大眼高鼻的模板脸）、过度对称、浓妆、偶像式打光、蜡像感；不要照片质感、三维渲染或动漫大眼；不要歪头、斜镜头；不要多指、缺指（设定的伤残除外）、手与器物粘连或悬空；衣襟必须右衽（穿着者的左襟压在右襟上），不要左衽（设定为少数民族服制的除外），不要水平镜像；不要现代物品、发光特效、法阵或能量光。不可复用善勇的长脸、颊疤和体形，不画恐怖鬼脸。
+
+    '
+  references:
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    use: 同性别画风基线；只取画风、光线、质感与背景，不取脸型和衣装
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+  tool: codex exec · image_gen（AR-47；ref=text；两张同性别基线）
+  model: gpt-6-astra
+  created: '2026-10-03T15:26:30.704408-07:00'
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w23/out/por_npc_shengdi__ch09_prime_prison_base.r1.png
+  source_size: 1024x1536
+  size: 1024x1536
+  sha256: 98af62df1edf4d95e43e4eeb62bc77771e9dce50ad15bc13d14114615d68a755
+  status: candidate
+  notes: 'ART-cast-fill-d：联系表复核单人完整全身、成年、器物、暖浅灰纸底及画风；本轮1张候选，选por_npc_shengdi__ch09_prime_prison_base.r1；未获作者批准。 QA: batch_03.jpg 联系表可辨结构通过；未发现必须重出的缺陷；细微指节不冒称像素级穷检。原始 PNG 保存在 source_path；本次未裁切。'
+  tier: B
+  effort: xhigh
+  mode: RGB
+  source_sha256: 98af62df1edf4d95e43e4eeb62bc77771e9dce50ad15bc13d14114615d68a755

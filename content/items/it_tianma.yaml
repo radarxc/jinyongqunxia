@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_tianma
+name: 天麻
+kind: material
+sub: herb
+grade: 6
+stack: 999
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/tianma
+text:
+  desc: 外观：药用块茎蒸晒成黄白长椭圆，环纹与鹦哥嘴状芽痕可见。
+  lore: 秦巴、晋中、江南、荆湖、巴蜀、云滇黔与东北疏林，冬至次春十一至四月取休眠块茎。本作归作疏内伤辅材，环纹芽痕是辨货要点。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan3
+    materialGrade: 6
+    rare: false
+    herbFamily: tianMa
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 4

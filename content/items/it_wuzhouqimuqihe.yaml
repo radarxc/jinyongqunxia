@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_wuzhouqimuqihe
+name: 武周漆木棋盒
+kind: collectible
+sub: antique
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/wuzhouqimuqihe
+text:
+  desc: 外观：单只黑褐漆木圆盒，盖合。 待运行时投影：eraRange=[tang]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 以武周行旅携带棋具的需要设计一件漆木棋盒，盒内棋子不另画入图标。宜送爱棋的文士，属日常酬礼；形制与名称为（原创扩展），不假称白马原文点名的那件旧藏。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

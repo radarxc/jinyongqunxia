@@ -1,0 +1,76 @@
+{
+  "id": "bld_kit_song_southern_shop_2f",
+  "type": "bld_kit_song_southern_shop_2f",
+  "w": 8,
+  "h": 6,
+  "subject": "两层商铺·茶坊",
+  "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Footprint exactly 8 by 6 one-metre cells, ratio 8:6. Subject: One two-storey prosperous Southern Song Lin'an tea shop, timber frame and cream plaster, two storeys with restrained grey clay tiled roof, open shopfront facing southwest, wooden balcony, bamboo blind, tea jars and small tables under short cloth awning, unlettered plain hanging cloth.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-3ff7c550-da09-49b0-b910-06a23a7fbc60.png",
+  "source_sha256": "6cf6151107347152848cd9deb8ffadd3e2b0175fd793d676cc15d41a1ea64724",
+  "created": "2026-09-30",
+  "visual_review": "原图已 view_image original：单体完整，宋式灰瓦木构白墙，入口朝左下，左上主光与短接触影，边缘清楚、无字无人无现代物。原图透明留白偏紧，交 root 加边。严格底面双轴与占地比例存在生成残差；交 root 记录实际投影与候选审批，不能称精确通过。",
+  "candidate_count": 2,
+  "ground_edges_source_px": [
+    [
+      [
+        98,
+        771
+      ],
+      [
+        718,
+        1053
+      ]
+    ],
+    [
+      [
+        718,
+        1053
+      ],
+      [
+        1354,
+        776
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      98,
+      771
+    ],
+    "front": [
+      718,
+      1053
+    ],
+    "right": [
+      1354,
+      776
+    ]
+  },
+  "source_dimensions": [
+    1448,
+    1086
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ],
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-f3f17275-ff1b-457b-88f8-d3cf662fd6cc.png",
+      "prompt": "Use case: precise-object-edit. Correct ONLY the camera projection and rectangular footprint geometry of this standalone Southern Song building sprite; keep materials, architectural design, historical style, doorway orientation, upper-left light and colors. Exact 2:1 orthographic dimetric: yaw45, elevation30; both ground edges must make 26.565 degrees with horizontal (slope +0.500 and -0.500), not the steeper 30-degree floor lines of generic isometric art. Ground is one flat uninterrupted rectangular 8 by 6 unit footprint, with no offsets or stepped outline. The left-to-front ground edge is 8 units, and front-to-right edge is 6 units, so down-right horizontal length divided by up-right horizontal length must equal 1.3333. In particular make down-right edge visibly longer than up-right edge. Clear thin footprint boundary, no raised plinth. Full building uncut with 12% transparent empty margins. Output true transparent RGBA with clean alpha, no background or glow, no writing, no people.",
+      "selection": "unselected",
+      "reason": "定向修正后独立QA量点：双轴或占地比例未优于首版；保留首版，仍将残差交下游。",
+      "source_sha256": "a17c8b9eb01104578a3f79974c70b00899c2d1c1ef5a9f28e48ba4e554b73308",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_shop_2f_try2.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/bld_kit_song_southern_shop_2f.png",
+          "sha256": "6cf6151107347152848cd9deb8ffadd3e2b0175fd793d676cc15d41a1ea64724",
+          "role": "edit target：本条首版候选PNG，未获作者审批"
+        }
+      ]
+    }
+  ]
+}

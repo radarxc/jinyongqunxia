@@ -1,0 +1,59 @@
+{
+  "id": "bld_kit_song_southern_guardhouse",
+  "type": "bld_kit_song_southern_guardhouse",
+  "w": 7,
+  "h": 5,
+  "subject": "城门守舍",
+  "prompt": "Use case: historical-scene. Asset type: a single RGBA building sprite for a realistic historical Chinese isometric town map. Year 1223 CE, Southern Song Lin'an/Jiangnan. Render realistic weathered wood, handmade grey tiles, natural stone and plaster, muted warm earthy tones, sophisticated historical game environment, not cartoon. Camera MUST be exact orthographic yaw 45 degrees, elevation pitch 30 degrees; 2:1 diamond ground grid with ground edges at slopes +0.5 and -0.5; no perspective convergence. Local south-facing entrance appears on screen lower-left facing wall. Single isolated complete building module over a thin flat rectangular ground footprint, no thick diorama plinth, ground footprint edges clearly visible. Main light comes from screen upper left, short soft contact shadow toward lower right only. True transparent background alpha; no white background, no checkerboard texture, no sky or surroundings. Center entire silhouette with minimum 10 percent transparent margin on EVERY side. Full eaves and base within image. No people, no characters, no readable writing, no signage text, no watermark, no modern objects, no Qing/Ming palace fashions, no excessive fantasy curls. Footprint dimensions relate to planning ground, not total roof height. Precise ground projection: footprint 7 x 5 m, two visible rectangular ground edges slope +0.500 and -0.500, each edge makes 26.565 degrees with horizontal, NOT standard 30-degree isometric edges. Down-right ground edge has length 7 units, up-right edge 5 units, horizontal ratio 1.4000. Subject: One modest Southern Song Lin'an gate-guard lodge, small single-storey timber and plaster service building with simple grey-tile gable roof, an open southwest-facing porch, plain wooden benches and closed storage chest, subdued administrative function, no fortress tower, no banners or text.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-85580f24-dd4e-4dbe-9d3b-c1bc0f37c223.png",
+  "source_sha256": "51d68ed860a0da93989bb6d38e1b087796b296b0cf91768d87079be519ea827c",
+  "created": "2026-09-30",
+  "visual_review": "已逐张 view_image original：灰瓦木构 / 河埠石阶材质写实，单体无字无人无现代物，入口或河阶向左下，左上光与短接触影，未裁边；真透明经PIL确认。底面双轴或外包比例有残差，河埠阶梯使底面不规则且明显比逻辑10x4更窄长；只作为candidate，精确拼接未通过。",
+  "candidate_count": 1,
+  "ground_edges_source_px": [
+    [
+      [
+        169,
+        670
+      ],
+      [
+        783,
+        976
+      ]
+    ],
+    [
+      [
+        783,
+        976
+      ],
+      [
+        1368,
+        668
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      169,
+      670
+    ],
+    "front": [
+      783,
+      976
+    ],
+    "right": [
+      1368,
+      668
+    ]
+  },
+  "source_dimensions": [
+    1536,
+    1024
+  ],
+  "alpha_extrema": [
+    0,
+    254
+  ]
+}

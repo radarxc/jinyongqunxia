@@ -1,0 +1,881 @@
+# tech/09-character-rig · 角色分层部件绑定与代码步态规格
+
+| 项 | 内容 |
+|---|---|
+| 文档 | `docs/tech/09-character-rig.md`（简称 `tech/09-rig`，不与 `tech/09-roadmap.md` 混写） |
+| 版本 | v1.1（2026-10-02，AR-29 / AR-34）；v1.0（2026-10-01，AR-22） |
+| 变更记录 | v1.1：统一近侧 / 解剖学左右；加入三视图 sheet 与身份 rig manifest 契约、C5 镜像策略、§4.6 片段驱动、R9 纹理数组，并以 C9 收口战斗大动作 |
+| 上游基准 | `docs/decisions/author-requirements.md` AR-19/AR-21/AR-22/AR-29/AR-34；`docs/00-canon.md` §12、§18–§20；`docs/decisions/rulings-v1.md` C20/C21 |
+| 平行文档 | `tech/02`（相机、公告板、深度与合批）、`tech/03`（帧时/显存硬预算）、`tech/06`（图集、KTX2 与 manifest）、`tech/07`（美术输入与生成管线）、`design/10`（十一类物品、装备槽与负重唯一归属） |
+| 本文职责 | `tianshu_rig` v1、装备可见层、物品图派生规则、步态轨迹、运行时接口、目录/manifest、验收向量 |
+| 不在本文定义 | 物品属性与穿戴合法性、战斗移动速度、攻击/受击大动作、品阶效果、人物体型名录；分别引用 `design/10`、`design/09`、`tech/07` 与 `design/18` |
+| 标注约定 | 原著没有的绑定与动画方案均为**（原创扩展）**；版本/API 未联网确认标**（待核实）**；真机或成片验证标**（待实测）**。本文未注明上游出处的原创数字均为**（初值，待 ENG-12 实测）** |
+
+> **结论先行（TL;DR）**
+>
+> 0. v1.1 统一 `_L/_R` 为角色解剖学左右：三个未镜像视图都面向画面左，近侧均为 `L`；镜像只交换左右值。关节坐标优先取三视图切件的关键点 / pivot 旁注，无旁注时按分视图比例回退。三视图按 AR-34 改由 `codex exec` 生成。
+> 1. AR-22 覆盖旧的“角色逐帧预渲染”路线：角色由 **16 个运行时部件槽 + 最多 4 个附加装备槽**组成；每个槽只换图、调色并执行公告板平面内 2D 仿射，走代码步态，不读取行走/待机帧表。
+> 2. 每套美术由一张 A 字三视图切为 **3 个视图 × 13 张源部件表 = 39 张**；具名 NPC 每人一套身份 rig，主角 / 可换装队友用标准体加装备层，路人用标准体加调色。下肢三族左右共享源，运行时展开为 16 槽；`Dir8` 仍由 3 视图加镜像解析。
+> 3. 衣、官甲、头饰、鞋替换或复合到既有部件实例；内甲不可见；武器左右手、成对护肩、披风最多再占 4 槽。腰带作为 `pelvis_skirt` 的第二采样层，不另增实例，故整角色综合上限为 20。
+> 4. 物品原图以近象牙底 `RGB(230,225,216)` 做“边界连通色键 → 羽化 → 去色溢”，确定性派生 256/128/64/32 图标；装备覆盖层用槽位模板、主色板与纹理片生成，不逐件重画动作。
+> 5. 步行步长 0.70 m、跑步步长 1.20 m；完整左右步态周期 `T=2L/speedMps`，髋/膝/踝/肩/肘均由本文闭式曲线计算。轻/中/重装只改曲线幅度与有效步长，不改玩法坐标。
+> 6. `createRigCharacter` / `setMotion` / `playClip` / `stopClip` / `update` 交 ENG-12 / ENG-12c-clip；身份 rig 图页以 `DataArrayTexture` + `sampler2DArray` 合批，所有角色仍合计两次实例化 pass（芯/软边）。
+> 7. 行走默认保留程序步态；攻击、受击、格挡、倒地等战斗大动作全部使用分层部件 + 动作轨迹。整身帧仅供立绘切入（cutin），不得作为战斗动作降级。
+
+---
+
+## 目录
+
+- [0. 决策边界与数据流](#0-决策边界与数据流)
+- [1. `tianshu_rig` v1 绑定](#1-tianshu_rig-v1-绑定)
+- [2. 装备可见层](#2-装备可见层)
+- [3. 物品图标与覆盖层生成规则](#3-物品图标与覆盖层生成规则)
+- [4. 代码步态与轨迹](#4-代码步态与轨迹)
+  - [4.6 片段驱动](#46-片段驱动)
+- [5. 运行时与性能契约](#5-运行时与性能契约)
+- [6. manifest、目录与预览](#6-manifest目录与预览)
+- [7. 校验、测试与交接](#7-校验测试与交接)
+- [参考资料](#参考资料)
+- [本文新增术语/约定](#本文新增术语约定)
+- [待决事项 / 依赖](#待决事项--依赖)
+
+---
+
+## 0. 决策边界与数据流
+
+### 0.1 AR-22 对旧路线的覆盖
+
+| 项 | v1 主路线 | 保留内容 | 被覆盖内容 |
+|---|---|---|---|
+| 角色形态 | 分层部件直立公告板 | `tech/02` 的直立面、纵向补偿、整体深度偏移 | 单角色单张整身帧 |
+| 行走/待机 | 代码求关节角与 2D 仿射 | `Dir8`、四个相机预设 | `fpsSource`、帧表、动作页驻留 |
+| 装备 | 物品图确定性生成覆盖层；运行时换层 | 图集、ppm 分档、可选法线 | “兵器随角色帧烘焙、不可见换装” |
+| 光照/边缘 | 颜色层 + 可选同布局法线；芯/软边两 pass | `tech/02` §3–§4 | 每帧独立法线/深度页 |
+| 战斗大动作 | 分层部件 + 动作轨迹；整身帧仅供 cutin | 招式的 VFX/SFX/cutin 合成方向 | 战斗整身帧或逐动作预渲染 |
+
+### 0.2 构建与运行数据流
+
+```text
+物品审定原图 ─→ TOOL-rig-pipeline：抠底/裁边/图标/槽位层 ─┐
+三视图 sheet ─→ 切件/身份 manifest ─→ KTX2 数组层 ───────┼→ rig atlas array
+design/10 EquipDef ─→ 可见层解析/轻重分档 ────────────────┘
+                                                                  ↓
+core 的位置/Dir8/speed ─→ setMotion / playClip ─→ PartPose ─→ 16 个关节仿射
+equipment ───────────────────────────→ 最多 4 个附加槽/复合采样
+                                                                  ↓
+                       InstancedMesh：core pass + fringe pass
+```
+
+硬边界：Core 仍只给位置、朝向、速度与装备事实；渲染层不得从步态反推移动距离或命中时刻。装备名称、重量、`hands` 与槽位只消费 `design/10`，本文件不建平行物品表。
+
+## 1. `tianshu_rig` v1 绑定
+
+### 1.1 坐标、单位与体型
+
+本节全部比例与像素余量均为**（初值，待 ENG-12 实测）**；64/96/128 px/m 显示档来自 `tech/02` §2.6，非本文新值。
+
+| 约定 | 值 |
+|---|---|
+| 逻辑平面 | 每个部件自己的 2D 平面；`+x` 向图右、`+y` 向图下，角度正向为屏幕顺时针 |
+| 源密度 | 透明 PNG 母版固定 **256 px/m**；运行包离线缩到 64/96/128 px/m，运行时不得重采母版 |
+| 标准身高 | 男 `H_m=1.70 m → round(1.70×256)=435 px`；女 `H_f=1.62 m → round(1.62×256)=415 px` |
+| 体型缩放 | 同性别标准模板 `sBody=actualHeight/H_sex`；超出 `[0.88,1.12]` 改用 `design/18` 指定体型集，不硬拉标准模板 |
+| 像素取整 | manifest 写整数像素；米值为权威，`px=round(m×256)`；镜像点 `x'=W−1−x` |
+| 四肢 pivot | 源图上边中央 `(round((W−1)/2), padTop)`；子关节位于同一局部中轴的下端 |
+| 躯干 pivot | 骨盆点；源图靠下中央，子关节为颈点，方向由 pivot 向上 |
+| 头 pivot | 颈点；源图靠下中央；头顶只作量测点，不作为可旋转关节 |
+| 根关节 | `pelvis`；世界锚点仍是两脚接地中心，根高由步态的躯干起伏给出 |
+
+部件画布由“线段包围盒 + 每边 4% 长度透明余量”生成；至少保留 4 px，外扩后再取偶数宽高。pivot/子关节不得靠裁边重算，否则同一动作换装备会跳点。
+
+### 1.2 部件、关节与默认长度
+
+长度均是 pivot 到主 child joint 的骨段长度；`head` 为颈至头顶，`foot` 为踝至脚尖。左右同值。男直立高度核对为 `soleToAnkle 0.10 + shin 0.40 + thigh 0.44 + torso 0.52 + head 0.24 = 1.70 m`；女为 `0.09+0.38+0.42+0.50+0.23=1.62 m`。**（初值，待 ENG-12 实测）**
+
+| 运行时 part | 父关节 / 继承 | 男 `front34` 参考画布 / pivot px | child joint / 参考 px | 男 / 女长度 m | tint 槽 | 源表 |
+|---|---|---|---|---:|---|---|
+| `head` | `neck` / torso | 96×80 / `(48,70)` 下中颈点 | `crown:(48,9)` | 0.24 / 0.23 | `skin`，默认不换色 | 独立 |
+| `hair_or_headgear` | `neck` / head 同矩阵 | 112×80 / `(56,72)` 下中颈点 | `crown:(56,8)` | 0.25 / 0.24 | `hair` 或装备固色 | 独立 |
+| `torso` | `pelvis` / root | 132×154 / `(66,142)` 下中骨盆点 | `neck:(66,9)`；比例回退 `shoulder_R/L:(18/114,30)` | 0.52 / 0.50 | `clothPrimary` ✅ | 独立 |
+| `pelvis_skirt` | `pelvis` / root | 146×92 / `(73,8)` 上中骨盆点 | 比例回退 `hip_R/L:(46/100,8)`；`hem:(73,80)` | 0.28 / 0.27 | `clothSecondary` ✅ | 独立 |
+| `upper_arm_L` | `shoulder_L` / torso | 58×92 / `(29,8)` 顶中 | `elbow_L:(29,85)` | 0.30 / 0.28 | `clothPrimary` ✅ | 独立 |
+| `upper_arm_R` | `shoulder_R` / torso | 58×92 / `(29,8)` 顶中 | `elbow_R:(29,85)` | 0.30 / 0.28 | `clothPrimary` ✅ | 独立 |
+| `forearm_L` | `elbow_L` / upper arm | 52×82 / `(26,8)` 顶中 | `wrist_L:(26,75)` | 0.26 / 0.245 | `clothSecondary` ✅ | 独立 |
+| `forearm_R` | `elbow_R` / upper arm | 52×82 / `(26,8)` 顶中 | `wrist_R:(26,75)` | 0.26 / 0.245 | `clothSecondary` ✅ | 独立 |
+| `hand_L` | `wrist_L` / forearm | 40×62 / `(20,6)` 顶中 | `grip_L:(20,33)`（`0.56L`） | 0.19 / 0.18 | `skin`，默认不换色 | 独立 |
+| `hand_R` | `wrist_R` / forearm | 40×62 / `(20,6)` 顶中 | `grip_R:(20,33)`（`0.56L`） | 0.19 / 0.18 | `skin`，默认不换色 | 独立 |
+| `thigh_L` | `hip_L` / pelvis | 64×128 / `(32,8)` 顶中 | `knee_L:(32,121)` | 0.44 / 0.42 | `clothSecondary` ✅ | `thigh_shared` |
+| `thigh_R` | `hip_R` / pelvis | 64×128 / `(32,8)` 顶中 | `knee_R:(32,121)` | 0.44 / 0.42 | `clothSecondary` ✅ | 同左 + 镜像 |
+| `shin_L` | `knee_L` / thigh | 58×116 / `(29,7)` 顶中 | `ankle_L:(29,109)` | 0.40 / 0.38 | `clothSecondary` ✅ | `shin_shared` |
+| `shin_R` | `knee_R` / thigh | 58×116 / `(29,7)` 顶中 | `ankle_R:(29,109)` | 0.40 / 0.38 | `clothSecondary` ✅ | 同左 + 镜像 |
+| `foot_L` | `ankle_L` / shin | 96×68 / `(48,8)` 顶中踝点 | `toe_L:(90,57)` | 0.25 / 0.235 | `footwear`，装备替换 | `foot_shared` |
+| `foot_R` | `ankle_R` / shin | 96×68 / `(48,8)` 顶中踝点 | `toe_R:(90,57)` | 0.25 / 0.235 | `footwear`，装备替换 | 同左 + 镜像 |
+
+上表像素是男 `front34` 的比例回退模板；女模板先乘 `1.62/1.70=0.9529`。比例回退按视图投影：`front34` 的 L 在画面右、`side` 的 L/R 横向重合、`back34` 的 L 在画面左；其他剪影可改变画布，但关节米长不得变。正式素材应先由三视图关键点确定解剖学关节，再由切件工具把坐标写入每视图 `keypoints.yaml`（默认已归一坐标）或每部件 `*.pivots.yaml`（默认裁边前 source 坐标）旁注；两者都可用 `coordinates: source|normalized` 显式覆盖。`make_parts.py` 有旁注时优先换算并逐条写入 manifest；source 坐标转换会把原图到归一图的平移量记为 `sourceOrigin`，使重复 build / `--check` 不会把旁注二次平移。没有旁注时，程序占位与正式 set 均使用已按视图修正的比例默认值；这些默认值是可运行降级，不得把 `14%/86%`、`32%/68%` 当作经关键点确认的正式关节事实。`head`、`hair_or_headgear`、`torso`、`pelvis_skirt`、六个手臂/手源和三张共享下肢源合计 `4+6+3=13` 张源部件表；运行时把三张下肢源展开为左右六槽，所以是 16 个变换实例。下肢若有非对称伤残或纹样，manifest 可把 `sharedSource:false` 并提供左右图，但不得增加运行时槽数。
+
+### 1.3 三个绘制视图、镜像与八方向
+
+| 源视图 | 画面定义（未镜像） | 覆盖 `Dir8` | 镜像规则 |
+|---|---|---|---|
+| `front34` | 面向屏幕左下，见脸与胸腹；`nearSide:L`，近侧在画面右 | 0 S、1 SW、7 SE | 1 不镜像、7 镜像；0 沿用最近的 1/7，首次默认不镜像 |
+| `side` | 面向屏幕左；`nearSide:L`，左右投影近重合于画面中间 | 2 W、6 E | 2 不镜像、6 镜像 |
+| `back34` | 面向屏幕左上，见后脑与背；`nearSide:L`，近侧在画面左 | 3 NW、4 N、5 NE | 3 不镜像、5 镜像；4 沿用最近的 3/5，首次默认不镜像 |
+
+`_L/_R` 永远按角色自身的解剖学左 / 右命名，不按观看者画面左右命名。`Dir8` 0/4 的“沿用最近侧”是仅表现的滞回：进入正南/正北扇区时保存最近的左/右侧，存档与 replay 仍只记录 core 朝向。传送或首次出现无历史时取表中默认，保证回放截图确定。镜像同时交换 `_L/_R` 关节、UV 与 `nearSide` 的值（`L↔R`）。C5 固定为：普通角色接受镜像；主角和 S 级必须另供面向画面右的 `sheet_R.png`，供汉服右衽、文字、伤疤、惯用手或单侧佩饰等 `mirrorSafe:false` 情形选用，不得把 L 图静默翻转。
+
+下表把 `tech/02` §1.5 的六角世界朝向与四个相机预设直接落到“Dir8 / 源视图 / M（镜像）”；S/N 的 `H1/H4` 仍按上段滞回，表内写首次默认。
+
+| 六角朝向 | 世界角 | ψ=45° | ψ=135° | ψ=225° | ψ=315° |
+|---|---:|---|---|---|---|
+| `H0` | 0° | 7/front34/M | 5/back34/M | 3/back34/— | 1/front34/— |
+| `H1` | 60° | 0/front34/— | 6/side/M | 4/back34/— | 2/side/— |
+| `H2` | 120° | 2/side/— | 0/front34/— | 6/side/M | 4/back34/— |
+| `H3` | 180° | 3/back34/— | 1/front34/— | 7/front34/M | 5/back34/M |
+| `H4` | 240° | 4/back34/— | 2/side/— | 0/front34/— | 6/side/M |
+| `H5` | 300° | 6/side/M | 4/back34/— | 2/side/— | 0/front34/— |
+
+探索八向的完整交叉表如下；单元格仍为“Dir8 / 源视图 / M”，0/4 写首次默认，连续转向时改用最近侧滞回。
+
+| 世界朝向 | 世界角 | ψ=45° | ψ=135° | ψ=225° | ψ=315° |
+|---|---:|---|---|---|---|
+| E | 0° | 7/front34/M | 5/back34/M | 3/back34/— | 1/front34/— |
+| SE | 45° | 0/front34/— | 6/side/M | 4/back34/— | 2/side/— |
+| S | 90° | 1/front34/— | 7/front34/M | 5/back34/M | 3/back34/— |
+| SW | 135° | 2/side/— | 0/front34/— | 6/side/M | 4/back34/— |
+| W | 180° | 3/back34/— | 1/front34/— | 7/front34/M | 5/back34/M |
+| NW | 225° | 4/back34/— | 2/side/— | 0/front34/— | 6/side/M |
+| N | 270° | 5/back34/M | 3/back34/— | 1/front34/— | 7/front34/M |
+| NE | 315° | 6/side/M | 4/back34/— | 2/side/— | 0/front34/— |
+
+探索朝向与战斗六向都必须先调用 `tech/02` §1.5 的 `spriteDir()` 得到 `Dir8`，再查本节三视图表；战斗 `HexDir` 不得直接当数组下标。
+
+### 1.4 部件 z 序与描边/调色
+
+下表是未镜像且 `nearSide:L` 时的整数 `zOrder`；数值越大越靠相机。镜像时仍只交换同名 L/R 部件的值，中心部件不变；因此镜像后 `nearSide:R`。顶点实际偏移为 `uCamBack × zOrder × 0.0005 m`，基础 16 层跨度 `15×0.0005=0.0075 m`，远小于整角色综合 `depthBiasM=0.35 m`。**（初值，待 ENG-12 实测）**
+
+| part | `front34` | `back34` | `side` |
+|---|---:|---:|---:|
+| `upper_arm_R` | 0 | 1 | 0 |
+| `forearm_R` | 1 | 0 | 1 |
+| `hand_R` | 2 | 2 | 2 |
+| `thigh_R` | 3 | 3 | 3 |
+| `shin_R` | 4 | 4 | 4 |
+| `foot_R` | 5 | 5 | 5 |
+| `pelvis_skirt` | 7 | 6 | 6 |
+| `torso` | 6 | 7 | 7 |
+| `head` | 8 | 8 | 8 |
+| `hair_or_headgear` | 9 | 12 | 9 |
+| `thigh_L` | 10 | 9 | 10 |
+| `shin_L` | 11 | 10 | 11 |
+| `foot_L` | 12 | 11 | 12 |
+| `upper_arm_L` | 13 | 13 | 13 |
+| `forearm_L` | 14 | 14 | 14 |
+| `hand_L` | 15 | 15 | 15 |
+
+颜色母版必须已烘焙 2 px（256 px/m）浓墨外轮廓，缩到 128/96/64 ppm 时分别约 1/0.75/0.5 px；64 ppm 包用 alpha coverage 保线，不在运行时做几何描边。`clothPrimary`、`clothSecondary` 可整体 tint；shader 只对 `luma>0.16` 的像素乘色，保留墨线与铅白高光。皮肤、头发默认 `tintStrength:0`；剧情变色必须显式进 manifest palette，不能从 NPC 阵营猜色。
+
+## 2. 装备可见层
+
+### 2.1 十一类物品到外观槽
+
+十一类沿 AR-20/`design/10`，只定义表现投影。偏移先按 256 px/m 母版的归一局部坐标 `(u,v)` 写入，换算为 `offsetM=(u×partW/256,v×partH/256)`；几何缩放只取 `scale=sBody×fitScale`。运行档只改变栅格尺寸，`runtimeSizePx/runtimePpm=masterSizePx/256`，不得再乘 `runtimePpm/256` 而缩小角色。`fitScale` 只能由本节规则算出并钳在 `[0.75,1.25]`，超界即构建失败并要求专用模板。下列数字均为**（初值，待 ENG-12 实测）**。
+
+| 物品类 | 可见层 / 挂点 | 偏移、缩放与 z 序 | 随步态 | 规则 |
+|---|---|---|---|---|
+| 兵器 | `weapon_R@grip_R`；成对再用 `weapon_L@grip_L` | 握点对齐为 `(0,0)`；长度按 §3.3；持握层取对应 `hand` 的 `z±0.25` | 是：随手臂 + §4.5 摆动 | `hands:1/2/pair` 只消费 `design/10`；双手时副手用约束点，不生成第三件武器 |
+| 衣物 | 覆盖 `torso`、`pelvis_skirt`、双上/前臂、双腿 | 每槽模板 `fitScale=min(slotW/artW,slotH/artH)`；与被覆 part 同 z +0.10 | 是 | 有覆盖图则替换/复合；仅 `tint` 时沿 `clothPrimary/Secondary` |
+| 制式盔甲 | `torso`、`pelvis_skirt`，可带 `pauldron_L/R` | 躯干 z +0.20；裙甲 +0.20；护肩在近臂 +0.30、远臂 −0.10 | 是 | 外观必须可见；通缉规则只见 `design/10` §3.4.1 |
+| 内甲 | 无 | — | 否 | 永远不生成可见层；外衣破损演出也不得自动露出 |
+| 护肩 | `shoulder_L/R`，最多 2 附加实例 | `u=0,v=0` 对齐肩关节；宽为肩宽的 0.34；近侧 z=臂+0.35、远侧 z=躯干−0.15 | 是 | 缺单侧图可镜像，但纹章/文字须 `mirrorSafe:true` |
+| 披风 | `cape@neck`，1 附加实例 | 颈点下移 `0.02H`；宽 `0.55×shoulderSpan`、长 `0.52H`；`front34/side z=−2`，`back34 z=11.5` | 是：二阶滞后 | 背视在躯干/腿前、头发/近臂后完整显示；前视只露肩缘，不穿过躯干 |
+| 头饰 | 替换/复合 `hair_or_headgear` | 颈点对齐；高按头模板；z=头+1 | 随头部 | 不允许遮掉脸部安全框（正视脸框面积 ≥70%） |
+| 鞋 | 替换 `foot_L/R` | 踝点对齐；鞋长 / 模板脚长得 `fitScale`；z 同脚 | 是 | 左右按镜像策略；独特纹样可提供双图 |
+| 腰带 | `pelvis_skirt` 第二采样层，不增实例 | 骨盆下 `v=0.08`；宽 `0.94×torsoWidth`、高 `0.06H`；z=裙/躯干较大者+0.15 | 是 | 与裙甲相撞时腰带优先，最多垂饰到 `0.20H` |
+| 暗器 | 默认不可见；暗器囊可用 `pouch@pelvis` | 囊位于非惯用侧 `u=−0.35,v=0.20`；复合进 `pelvis_skirt`，不增实例 | 是 | 单枚暗器不挂身；名门暗器只有 `visibleHolster:true` 才画囊 |
+| 秘籍 / 药食 | 无 | — | 否 | 背包/UI 图标可见，地图行走角色不可见 |
+
+装备附加层相对父部件的通用变换为 `Mlayer=Mpart·T(offsetM)·S(fitScale)`；替换层沿用父部件 `pivot/childJoint`。表中相对 z 先加到对应 part 的 §1.4 z 值，再钳入 `[−2,15.5]`；披风例外取上表的视图固定值。衣物表中的“双腿”是对 `thigh/shin` 槽的覆盖，模板由相应基础部件 alpha mask 派生，不另设新的运行时 part。
+
+### 2.2 附加槽上限与冲突消解
+
+| 附加实例 | 0/1/2 个 | 条件 |
+|---|---:|---|
+| `weapon_R` | 0 或 1 | 有主手/成对/双手武器 |
+| `weapon_L` | 0 或 1 | `hands:pair`，或双手武器需要独立前景握柄段；同一武器纹理可被第二实例引用 |
+| `pauldron_L/R` | 0、1 或 2 | 装备提供护肩；官甲自带护肩与独立护肩二选一 |
+| `cape` | 0 或 1 | 披风槽非空 |
+
+最大组合不是简单相加：运行时固定 4 个附加槽，优先级为 `weapon_R > weapon_L > near pauldron > cape > far pauldron`。若“成对武器 + 双护肩 + 披风”请求 5 槽，远侧护肩改由所属 `torso/upper_arm` 实例的 `layerRecord` 复合采样，因此仍为 `16+4=20` 实例。衣、甲、头饰、鞋替换基础 UV；腰带、暗器囊同样经 `layerRecord` 在 `pelvis_skirt` 实例内最多复合两层，均不增加实例；具体查表布局见 §5.2。
+
+### 2.3 兵器携带姿势
+
+角度以角色局部竖直向下为 0°，顺时针为正；镜像后角度取反。所有角度为**（初值，待 ENG-12 实测）**。
+
+| 状态 / 子类 | 单手右手 | 双手主手 | 非战斗收纳 |
+|---|---:|---:|---|
+| 剑 / 刀 / 短奇门 | 待机 −18°；步行 `−18°+0.35×shoulder_R` | 主手 −25°，副手约束在握柄 `0.38L` | `carry:sheath` 默认悬腰：轴线 +12°、鞘口在骨盆右侧 |
+| 枪 / 棍 / 杖 / 长柄 | 待机 −8°；步行摆幅只取手臂 0.20 | 主手 −12°，副手约束在 `0.42L` | `carry:back` 斜背：轴线 −38°、中心在 torso 后 |
+| 鞭 / 索 | 手柄 −15°，软段只画收束形 | 同单手 | 腰侧盘卷模板 |
+| 弓 / 火器 / 暗器械 | 待机 −10°，不自动拉弦/举枪 | 双手模板专用 | `carry:back` 或腰囊；由物品层显式给出 |
+
+`carryMode` 只允许 `hand|sheath|back|hidden`。刀剑默认悬腰；长度 `>1.05H` 的长兵默认斜背；剧情/战斗切换用 180 ms 交叉淡化，不在行走中瞬移握点。主副手的 IK 只影响视觉关节，不改变战斗 `hands` 合法性。
+
+### 2.4 视图层级合成
+
+| 视图 | 最后方 → 最前方（同组内沿 §1.4） |
+|---|---|
+| `front34` | 披风 → 斜背武器 → 远侧肢体/护肩 → torso/裙甲/衣物 → 腰带/囊 → 头发/头饰 → 近侧肢体/护肩 → 手持武器 |
+| `back34` | 远侧肢体 → torso/裙甲 → 悬腰件 → 披风 → 斜背武器 → 头发/头饰 → 近侧肢体/护肩 → 手持武器 |
+| `side` | 披风后片 → 远侧肢体/护肩 → torso/裙甲 → 腰带/囊 → 头发/头饰 → 近侧肢体/护肩 → 手持武器 |
+
+透明层不能用整角色画家排序替代：所有不透明芯仍写深度；上述 z 只解决同一角色平面内的贴层关系，角色之间与建筑之间继续遵循 `tech/02` §3。
+
+## 3. 物品图标与覆盖层生成规则
+
+### 3.1 TOOL-rig-pipeline 输入、色键与裁边
+
+交付实现任务名为 **TOOL-rig-pipeline**。同一输入哈希、配置版本与工具版本必须逐像素复现相同 PNG；任何 AI 只参与原图候选，下面步骤全是确定性代码。
+
+| 步骤 | 算法与数值 **（初值，待 TOOL-rig-pipeline 金样复核）** | 失败条件 |
+|---|---|---|
+| 规范化 | 解 EXIF 朝向；转 sRGB 8-bit RGBA；最长边先不缩放 | ICC 缺失可按 sRGB，但记 warning |
+| 背景种子 | 从四边向内 3% 环带取像素；满足 `ΔE76(rgb,(230,225,216))≤18` 且 `max(rgb)−min(rgb)≤34` | 边界合格种子 < 40% 时拒绝自动抠底 |
+| 连通抠底 | 只从边界种子做 8 邻 flood fill，避免删掉物体内部象牙色；距离 `d≤10` alpha=0，`10<d<22` 线性羽化，`d≥22` 保留 | 主体连到边界且被删面积 >8% 时失败 |
+| 去色溢 | 对 `0<alpha<1` 像素，减去背景估计色的残留：`rgb'=clamp((rgb−bg×(1−a))/max(a,1/255))`，再限制 HSV 饱和度不比最近全不透明邻点高 0.08 | 1 px 边缘出现亮环即失败 |
+| 裁边 | 取 `alpha≥8/255` 包围盒；每边补 `ceil(0.08×max(w,h))`，不足 4 px 取 4；越界补透明；最终宽高取偶数 | 主体为空或占画布 <5% / >92% |
+| 图标 | 居中放入 `256²`，主体最长边为 `round(256×0.84)=215 px`；Lanczos3 下采 128/64/32，alpha 预乘后缩放再还原 | 32 px 轮廓断裂需人工简化，不锐化硬救 |
+
+输出路径固定为 `assets/default/item/<类>/icons/<id>_<size>.png`，其中 `<类>` 使用 `design/10` 的稳定资源分类目录，不翻译成第二套枚举；`<id>` 必须是既有 `eq_*` 或 `it_*`。四档都从 256 派生，禁止逐档重新抠底。
+
+### 3.2 槽位模板尺寸
+
+模板不是新美术资产 ID，而是 `tools/rig/templates/v1/` 内的构建资源；每个视图一份 SVG mask，`viewBox` 取下列 256 px/m 男模板，女模板整体乘 `1.62/1.70=0.9529` 后再人工校肩宽。尺寸含 8% 透明补边。**（初值，待 ART 样片确认）**
+
+| template key | 源画布 px（W×H） | pivot px | child/约束 px | 用途 |
+|---|---:|---:|---:|---|
+| `torso` | 132×154 | (66,142) | neck (66,9) | 衣、官甲胸背；腋下留空供手臂穿插 |
+| `pelvis_skirt` | 146×92 | (73,8) | hem (73,80) | 裙摆、裙甲、腰带/囊复合层 |
+| `upper_arm` | 58×92 | (29,8) | elbow (29,85) | 袖、臂甲 |
+| `forearm` | 52×82 | (26,8) | wrist (26,75) | 袖口、护臂 |
+| `hand` | 40×62 | (20,6) | grip (20,33) | 手套、护手；不改握点 |
+| `thigh` | 64×128 | (32,8) | knee (32,121) | 裤、裙内腿、腿甲 |
+| `shin` | 58×116 | (29,7) | ankle (29,109) | 裤脚、胫甲、绑腿 |
+| `headgear` | 112×80 | (56,72) | crown (56,8) | 发型、巾、冠、盔 |
+| `pauldron` | 60×48 | (30,20) | arm seam (30,40) | 单侧护肩 |
+| `cape` | 154×244 | (77,12) | hem (77,232) | 背后整片；前视模板仅肩缘 mask |
+| `foot` | 96×68 | (48,8) | toe (90,57) | 鞋/靴；踝至脚尖 `sqrt(42²+49²)/256≈0.252 m`；pivot 保持顶中，镜像时 child 同步 |
+| `belt` | 138×40 | (69,10) | pendant end (69,36) | 腰带及短垂饰，复合入裙部 |
+| `pouch` | 52×60 | (26,10) | bottom (26,52) | 可见暗器囊，复合入裙部 |
+
+SVG 必含 `id=fill`、`id=edge`、`id=forbidden` 三个闭合 path：纹理只能填 `fill`；主色可覆盖 `fill+edge`；`forbidden` 保持透明以保护脸、腋、膝内侧。生成 PNG 尺寸与模板一致，pivot 不因内容裁边变化。
+
+### 3.3 兵器主轴、握点与长度
+
+先对主体 alpha 做 PCA：最大特征向量为主轴；当特征值比 `<2.0`（圆形/团状）时改用子类模板轴。旋转到“刃/尖朝局部 −y，柄端朝 +y”，人工元数据 `axisFlip:true` 可翻转 180°。握点比例 `g` 从柄端沿主轴向尖端计，目标显示长度 `L` 优先读名录外观字段；字段缺失才用下表。**（初值，待 ART/TOOL 样片确认）**
+
+| `design/10` 子类 | 默认 `g` | 默认长度 m | 长度范围 m | 备注 |
+|---|---:|---:|---:|---|
+| `sword` / 单刀 `blade` | 0.18 / 0.20 | 1.00 / 0.92 | 0.65–1.25 | 护手可辅助判断柄端 |
+| 双手刀 / `spear` | 0.22 / 0.16 | 1.55 / 2.10 | 1.20–2.60 | 双手副握点在主握点向尖端 `0.38L/0.42L` |
+| `staff` | 0.28 | 1.85 | 1.20–2.30 | 杖头较重时以标注覆盖 PCA |
+| `whip` | 0.10 | 0.42（仅手柄/收束段） | 0.25–0.70 | 行走不模拟完整软索 |
+| `brush/fan/flute/dagger/token` | 0.18 | 0.42 | 0.20–0.75 | 短奇门 |
+| `wheel/hook/pestle/hammer/axe/misc` | 0.24 | 0.85 | 0.35–1.60 | 主轴不稳定者必须人工确认 |
+| `qin` | 0.50 | 1.10 | 0.90–1.30 | 双手横持，不用尖端语义 |
+| `hidden` 可见器械 | 0.22 | 0.32 | 0.12–0.80 | 普通弹药本体只做图标 |
+
+运行像素长 `lenPx=round(L×ppm)`；缩放 `fitScale=lenPx/(axisMax−axisMin)`。握点经同一旋转/缩放变换后写入 `layers.yaml`，误差必须 ≤1 px。名录若没有外观长度，不得把数值伤害、品阶或重量反推为长度。
+
+### 3.4 主色板、纹理片与覆盖层输出
+
+| 环节 | 确定性规则 **（初值，待 TOOL-rig-pipeline 实测）** |
+|---|---|
+| 采样掩码 | 只取 `alpha≥0.90`、排除最亮 5% 与最暗 5% luminance；像素不足 256 则用全部不透明像素 |
+| 主色 | CIELAB 上 k-means++，`k=min(5,max(3,round(sqrt(N)/64)))`，seed 固定为 `sha256(id)` 前 32 bit，迭代 32 次；按像素占比降序输出 3–5 色 |
+| 纹理片 | 取主体包围盒中心 1/3（宽、高各 1/3）；与透明区相交时向最大实色连通域平移；仍不足 64×64 时镜像扩展至 64² |
+| 填充 | 纹理片按模板局部纵轴平铺，奇数 tile 镜像；每层以主色 1 为底，色 2–5 分配给 edge/trim/detail mask |
+| 接缝 | tile 交界用 6 px cosine 羽化；不得旋转纹样穿过衣襟、刃口或甲片边界 |
+| 质检 | `fill` 覆盖率 92%–100%；`forbidden` 非透明像素为 0；pivot/child 偏差 ≤1 px；左右镜像后轮廓 IoU ≥0.98 |
+
+输出为 `assets/default/item/<类>/layers/<id>__<slot>.png`；每张 PNG 固定横排 `front34|back34|side` 三个等尺寸透明 cell，故路径不增加 view 后缀。镜像不安全时另出 `<id>__<slot>__mirror.png`，同样三 cell。类别目录共用 `assets/default/item/<类>/layers/layers.yaml`，以 `items[]` 分隔物品，至少为：
+
+```yaml
+version: 1
+items:
+  - item: <existing-eq-or-it-id>
+    sourceSha256: <hex>
+    layers:
+      - slot: torso
+        view: front34
+        file: <id>__torso.png
+        sourceRect: [0, 0, 132, 154]
+        pivot: [66, 142]
+        scale: 1.0
+        zOrder: 6.2
+        tint: { slot: clothPrimary, strength: 1.0 }
+```
+
+`slot` 必须命中 §1/§2 白名单；`sourceRect` 不越 PNG；`pivot` 落在 cell 内；`scale∈[0.75,1.25]`；`zOrder` 限 `[−2,15.5]`。每个声明 slot 恰有三条 view 记录；`mirrorSafe:false` 时另引用镜像修正版。源图、模板版本、palette 与工具版本进入构建缓存键。
+
+### 3.5 类别生成策略
+
+| 类别 | 从物品原图得到什么 | 需人工补充 |
+|---|---|---|
+| 兵器 | 主轴对正、透明武器层、握点与默认长度 | 轴翻转、双手副握点、悬腰/斜背模式 |
+| 衣物 | torso/裙/臂/腿模板填色与纹理 | 衣襟、袖缘、左右非对称 |
+| 制式盔甲 | torso/裙甲模板，可生成成对护肩 | 甲片边界、身份纹章、左右非对称 |
+| 内甲 | 仅图标 | 无可见层；不得套衣物模板 |
+| 护肩 | 成对 `pauldron_L/R` 模板层 | 纹章方向与远侧 `layerRecord` 复合版本 |
+| 披风 | 背后 `cape` 模板层，前视仅留肩缘 | 前/后视 mask 与尾部安全范围 |
+| 头饰 | `headgear` 模板覆盖 `hair_or_headgear` | 脸框、冠带与镜像安全性 |
+| 鞋 | `foot_L/R` 替换层 | 独特纹样的左右专图 |
+| 腰带 | `belt` 模板，复合进 `pelvis_skirt` 第二采样 | 垂饰长度与裙甲冲突 |
+| 暗器 | 图标；显式可见时生成 `pouch`/器械层 | `visibleHolster` 与挂点 |
+| 秘籍 / 药食 | 四档图标 | 不生成角色覆盖层 |
+
+生成层是“可运行的小图”，不是对原物的考据证明；原图形制不确定时沿其资产卡标注**（待考）**，工具不得凭像素推断名称、朝代或用途。
+
+## 4. 代码步态与轨迹
+
+### 4.1 时间、速度与重量档
+
+`speedMps` 来自表现位移速度；`speedMps≤0.05` 为 idle，`0.05<speedMps<2.0` 为 walk，`speedMps≥2.0` 为 run；跨 2.0 m/s 用 0.10 m/s 滞回并在 160 ms 内混合，避免阈值抖动。一个周期含左右两步，因此 `T=2L_eff/max(speedMps,0.05)`，相位 `t=fract(elapsed/T)`；不得用动画反推 core 位移。所有参数均为**（初值，待 ENG-12 实测）**。
+
+| 模式 | 基准步长 `L` | 推荐速度范围 | 基准 `T` 例 | 髋/膝/踝幅 | 肩/肘 | 躯干起伏 |
+|---|---:|---:|---:|---:|---:|---:|
+| idle | 0 | 0–0.05 m/s | 呼吸 3.6 s | 0 / 0 / 0° | 0 / 4° | 0.008 m |
+| walk | 0.70 m | 0.6–2.0 m/s | `speed=1.40 → T=1.00 s` | 24 / 34 / 12° | 18 / 10° | 0.025 m |
+| run | 1.20 m | 2.0–5.5 m/s | `speed=4.00 → T=0.60 s` | 42 / 64 / 20° | 30 / 12° | 0.055 m |
+
+| `weightClass` | 来源（只消费 `design/10`） | 幅度 `kA` | 周期 `kT` | 步长 `kL` | 披风/武器惯性 |
+|---|---|---:|---:|---:|---:|
+| `light` | 无衣甲或 `armorWeight:light`，且无 `heavy` 兵器；`Q_load=0` | 1.08 | 0.94 | 1.06 | 1.10 |
+| `medium` | `armorWeight:medium` 且无 `heavy` 兵器；`Q_load=0` | 1.00 | 1.00 | 1.00 | 1.00 |
+| `heavy` | `armorWeight:heavy`（`Q_load=10`）或 `heavy` 兵器（`Q_load=15`），兼有时 `Q_load=25` | 0.78 | 1.16 | 0.86 | 0.72 |
+
+计算顺序固定：`L_eff=L×kL`，先得 `T_raw=2L_eff/speedMps`，再得 `T=clamp(T_raw×kT, walk?[0.60,1.80]:[0.38,0.90])`；振幅乘 `kA`。这使 walk 中装 1.40 m/s 的 `T=1.00 s`，重装同速为 `(2×0.70×0.86/1.40)×1.16=0.998 s`，避免重装在相同世界速度下出现明显滑步；其视觉差异主要来自短步幅与小摆幅。
+
+### 4.2 可直接实现的关节曲线
+
+所有角为关节局部角（度）；正值为该部件在屏幕平面内顺时针旋转。`p_L=t`、`p_R=fract(t+0.5)`；`τ=2π`。二次谐波制造前后摆非完全对称，避免机械钟摆。**（初值，待 ENG-12 实测）**
+
+```text
+u(p) = sin(τp) + 0.12 sin(2τp + π/6)
+v(p) = max(0, sin(τ(p−0.08)))^1.25
+a(p) = 0.70 sin(τ(p+0.08)) + 0.30 sin(2τp)
+s(p) = −sin(τp) − 0.08 sin(2τp−π/4)
+e(p) = 0.50 + 0.50 cos(τ(p−0.10))
+
+hip_i      = Ahip × kA × u(p_i)
+knee_i     = K0 + Aknee × kA × v(p_i)             // 只屈不反折
+ankle_i    = Aankle × kA × a(p_i)
+shoulder_i = Ashoulder × kA × s(p_i)              // 与同侧腿反摆
+elbow_i    = E0 + Aelbow × kA × e(p_i)
+bodyY      = Abob × kA × [−cos(2τt) + 0.15sin(τt)]
+```
+
+参数按模式：walk `(Ahip,Aknee,K0,Aankle,Ashoulder,E0,Aelbow,Abob)=(24,34,4,12,18,18,10,0.025)`；run 为 `(42,64,10,20,30,58,12,0.055)`。前臂局部旋转为 `elbow−90°` 的贴图基准修正由 manifest `restAngle` 吸收，测试向量只断言上式的生理屈曲角。
+
+| 次级轨迹 | 公式/参数 **（初值，待 ENG-12 实测）** |
+|---|---|
+| 躯干侧摆 | `torsoRoll=−2.5°×kA×sin(τt)`；run 再乘 1.4 |
+| 躯干前倾 | walk `2°`、run `7°`，重装各 +2°；转向期间另加 `clamp(yawRate×0.015,−4°,4°)` |
+| 头部滞后 | 目标 `−0.55×torsoRoll`，二阶跟随 `k=64 s⁻²,c=14.4 s⁻¹`；角度钳 `±6°` |
+| 骨盆横移 | `x=0.012m×kA×sin(τt)`；只作用身体部件，不改世界锚点 |
+| 接地 | `foot` 在相位 `[0.08,0.48]` 为支撑脚，脚底 y 钳到地面；其余链由两段腿 IK 修正，膝角仍限 `[0°,85°]` |
+
+### 4.3 待机、转向与“一拍二”
+
+| 项 | 规格 **（初值，待 ENG-12 实测）** |
+|---|---|
+| 待机呼吸 | `b=sin(2πelapsed/3.6)`；torso `y+=0.004b m`（峰峰 0.008 m）、`scaleY=1+0.006b`；双肩 `±0.8b°`；头部用 `0.25 s` 相位滞后 |
+| 微动去同相 | 每角色只从稳定实例 ID 派生 `idlePhase∈[0,1)`；不读随机数、不进入存档，重放相同 ID 得相同相位 |
+| 转向 | `turnBlendMs=160`；`easeInOutCubic` 混合最短角，视图跨扇区中点时换源；目标视图未就绪则保持旧视图并延迟转向 |
+| 相机旋转 | 仍用 `tech/02` 的 350 ms；角色朝向与相机偏航逐帧重算，三视图解析不另开动画 |
+| 一拍二 | 默认 `stepFps=12`；只把关节采样时间量化为 `poseTime=floor(elapsed×12)/12`，世界位移、转向、披风弹簧保持连续；设置可改 `stepFps:0` 关闭 |
+| 大 `dt` | `dt>100 ms` 时相位按真实时间前进但弹簧分步；后台恢复首帧直接收敛到目标姿势，不补播历史摆动 |
+
+### 4.4 披风二阶跟随与兵器摆动
+
+披风角 `φ` 和角速度 `ω` 使用半隐式 Euler，子步 `h≤1/120 s`、每帧最多 8 步；超过部分直接把 `φ` 向目标收敛，防后台恢复爆炸：
+
+```text
+targetCape = clamp(−0.45×torsoRoll − 6°×vLateralMps, −28°, 28°)
+ω += [k×(targetCape−φ) − c×ω]×h
+φ += ω×h
+```
+
+基准 `k=36 s⁻²,c=10.8 s⁻¹`（阻尼比 `c/(2√k)=0.90`）；轻/中/重的目标幅度乘 §4.1 惯性系数 1.10/1.00/0.72，重装并将 `c×1.15`。披风根固定在颈点，只有整体摆角与 y 向 `0.03H×sin(τt−π/3)` 的尾摆，不做布料网格。**（初值，待 ENG-12 实测）**
+
+兵器手持基角见 §2.3；行走附加 `weaponSwing=0.35×shoulderGrip`，跑步为 `0.22×shoulderGrip`，双手为 `0.12×(shoulder_L+shoulder_R)`。长/重兵再经一阶滞后 `x += (target−x)×(1−exp(−dt/0.10))`，轻兵时间常数 0.06 s；尖端不得穿入头部安全圆（半径 `0.13H`），命中则把摆幅逐帧缩到不相交。
+
+### 4.5 测试向量
+
+下表由 §4.2 公式直接计算，顺序为髋 H、膝 K、踝 A、肩 S、肘 E 的左/右角（度）和躯干 `Δy`（m）；取角 0.1°、位移 0.001 m。它断言平地接地 IK 前的 nominal pose generator；地形 IK 另以 RIG-V10 验收。实现须在未量化 `stepFps=0` 时以角误差 ≤0.15°、位移误差 ≤0.0005 m 逐格断言。全表均为**（初值，待 ENG-12 实测）**。
+
+| 模式 | 重量 | t | H_L | H_R | K_L | K_R | A_L | A_R | S_L | S_R | E_L | E_R | Δy |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| walk | 轻 | 0 | 1.6 | 1.6 | 4.0 | 18.7 | 4.4 | −4.4 | 1.1 | 1.1 | 27.8 | 19.0 | −0.027 |
+| walk | 轻 | .25 | 24.4 | −27.5 | 35.1 | 4.0 | 7.9 | −7.9 | −20.5 | 18.3 | 26.6 | 20.2 | 0.031 |
+| walk | 轻 | .50 | 1.6 | 1.6 | 18.7 | 4.0 | −4.4 | 4.4 | 1.1 | 1.1 | 19.0 | 27.8 | −0.027 |
+| walk | 轻 | .75 | −27.5 | 24.4 | 4.0 | 35.1 | −7.9 | 7.9 | 18.3 | −20.5 | 20.2 | 26.6 | 0.023 |
+| walk | 中 | 0 | 1.4 | 1.4 | 4.0 | 17.6 | 4.0 | −4.0 | 1.0 | 1.0 | 27.0 | 19.0 | −0.025 |
+| walk | 中 | .25 | 22.6 | −25.4 | 32.8 | 4.0 | 7.4 | −7.4 | −19.0 | 17.0 | 25.9 | 20.1 | 0.029 |
+| walk | 中 | .50 | 1.4 | 1.4 | 17.6 | 4.0 | −4.0 | 4.0 | 1.0 | 1.0 | 19.0 | 27.0 | −0.025 |
+| walk | 中 | .75 | −25.4 | 22.6 | 4.0 | 32.8 | −7.4 | 7.4 | 17.0 | −19.0 | 20.1 | 25.9 | 0.021 |
+| walk | 重 | 0 | 1.1 | 1.1 | 4.0 | 14.6 | 3.2 | −3.2 | 0.8 | 0.8 | 25.1 | 18.7 | −0.020 |
+| walk | 重 | .25 | 17.6 | −19.8 | 26.5 | 4.0 | 5.7 | −5.7 | −14.8 | 13.2 | 24.2 | 19.6 | 0.022 |
+| walk | 重 | .50 | 1.1 | 1.1 | 14.6 | 4.0 | −3.2 | 3.2 | 0.8 | 0.8 | 18.7 | 25.1 | −0.020 |
+| walk | 重 | .75 | −19.8 | 17.6 | 4.0 | 26.5 | −5.7 | 5.7 | 13.2 | −14.8 | 19.6 | 24.2 | 0.017 |
+| run | 轻 | 0 | 2.7 | 2.7 | 10.0 | 37.7 | 7.3 | −7.3 | 1.8 | 1.8 | 69.7 | 59.2 | −0.059 |
+| run | 轻 | .25 | 42.6 | −48.1 | 68.6 | 10.0 | 13.2 | −13.2 | −34.2 | 30.6 | 68.3 | 60.7 | 0.068 |
+| run | 轻 | .50 | 2.7 | 2.7 | 37.7 | 10.0 | −7.3 | 7.3 | 1.8 | 1.8 | 59.2 | 69.7 | −0.059 |
+| run | 轻 | .75 | −48.1 | 42.6 | 10.0 | 68.6 | −13.2 | 13.2 | 30.6 | −34.2 | 60.7 | 68.3 | 0.050 |
+| run | 中 | 0 | 2.5 | 2.5 | 10.0 | 35.7 | 6.7 | −6.7 | 1.7 | 1.7 | 68.9 | 59.1 | −0.055 |
+| run | 中 | .25 | 39.5 | −44.5 | 64.3 | 10.0 | 12.3 | −12.3 | −31.7 | 28.3 | 67.5 | 60.5 | 0.063 |
+| run | 中 | .50 | 2.5 | 2.5 | 35.7 | 10.0 | −6.7 | 6.7 | 1.7 | 1.7 | 59.1 | 68.9 | −0.055 |
+| run | 中 | .75 | −44.5 | 39.5 | 10.0 | 64.3 | −12.3 | 12.3 | 28.3 | −31.7 | 60.5 | 67.5 | 0.047 |
+| run | 重 | 0 | 2.0 | 2.0 | 10.0 | 30.0 | 5.3 | −5.3 | 1.3 | 1.3 | 66.5 | 58.9 | −0.043 |
+| run | 重 | .25 | 30.8 | −34.7 | 52.3 | 10.0 | 9.6 | −9.6 | −24.7 | 22.1 | 65.4 | 59.9 | 0.049 |
+| run | 重 | .50 | 2.0 | 2.0 | 30.0 | 10.0 | −5.3 | 5.3 | 1.3 | 1.3 | 58.9 | 66.5 | −0.043 |
+| run | 重 | .75 | −34.7 | 30.8 | 10.0 | 52.3 | −9.6 | 9.6 | 22.1 | −24.7 | 59.9 | 65.4 | 0.036 |
+
+核算示例：walk/中/t=.25 时 `u(.25)=sin(π/2)+0.12sin(7π/6)=0.94`，所以 `H_L=24×0.94=22.56→22.6°`；`bodyY=.025×[−cos(π)+.15sin(π/2)]=.02875→.029 m`。run/重/t=.25 的 `K_L=10+64×.78×max(0,sin(.34π))^1.25=52.3°`。
+
+### 4.6 片段驱动
+
+本节所有新增阈值均为**【建议值】**：`12 fps`、`160 ms` 与 `[0.8,1.4]` 来自调研报告 §5.3，`0.45`、`±30°` 来自 §5.4，`10°` 来自 §6.1 R4 / §8.1；须由 ENG-12c-clip 的 Q4–Q8 与真机门禁复核。C9 已定战斗大动作统一走本节的“分层部件 + 动作轨迹”，整身帧只用于 cutin。
+
+```ts
+interface PartPose {
+  viewIndex: 0 | 1 | 2;
+  mirrored: boolean;
+  affine: readonly [number, number, number, number, number, number];
+  z: number;
+}
+interface ClipPlayOptions {
+  facingYawDeg: number; rate?: number;
+  onEvent?: (event: 'hit' | 'end') => void;
+}
+playClip(id: string, options: ClipPlayOptions): void; // 即 playClip(id, {facingYawDeg, rate, onEvent})
+stopClip(): void;
+```
+
+`writePose(partPoses: readonly PartPose[])` 是唯一实例写入口：程序步态和片段播放器都先产出每部件 `PartPose`，不得各写一套 UV / 仿射 / z 路径。片段每次求值的顺序固定为：`facingYawDeg` 偏航旋转 → 用角色自身骨长做 2D 正向运动学 → 逐部件选 `front34|side|back34`（`10°` 滞回【建议值】）→ 沿骨方向缩短钳至 `0.45`【建议值】→ 按投影深度动态 z → 求主手握点与剑轴。姿势以一拍二 `12 fps` 采样【建议值】，世界锚、转向与软层弹簧仍逐帧连续更新。
+
+片段根运动固定原地：`rootMotion` 可供踩滑分析与姿势起伏，绝不推动 core 坐标。进入或退出片段均与程序步态做 `160 ms` 交叉淡入淡出【建议值】；`hit` / `end` 只同步 VFX、SFX、cutin 或表现队列，core 不读取、不据此判命中、伤害、位移或死亡。播放器停止、取消或淡出也不得伪造 `hit`。
+
+移动类片段忽略调用方 `rate`，播放速率严格取 `core speedMps / nativeSpeedMps`；结果只在 `[0.8,1.4]` 内使用【建议值】，超界或 `nativeSpeedMps≤0` 时退回 §4.1–§4.4 的程序步态。非移动片段的 `rate` 省略时为 `1`，只缩放表现时间，不反推 core。C8 尚待 A/B，默认继续用程序步态，动作库 walk 只进原型开关。
+
+难读姿势可在不改 core 朝向的前提下使用 `±30°` 偏航辅助【建议值】。片段或 `clip-map` 标 `nearHandWeapon:true` 时，若动态 z 判断主手落到远侧，则镜像片段的左右骨、剑轴与事件姿势，使主手兵器保持近侧；不得用此规则翻转玩法朝向。
+
+`content/anim/clip-map.yaml` 是唯一映射表：把 `MoveDef.anim.clip` 的表现键映射到 `tianshu-clip.v1` 片段 ID 及 `rate/nearHandWeapon/yawAssistMaxDeg` 等参数；加载器不得把招式键或片段选择硬编码在渲染代码。字段语义只引用 `design/05` 的 `MoveDef.anim`，本文不重定义招式。
+
+## 5. 运行时与性能契约
+
+### 5.1 ENG-12 公共接口
+
+```ts
+type Dir8 = 0|1|2|3|4|5|6|7;
+type WeightClass = 'light'|'medium'|'heavy';
+type MotionMode = 'idle'|'walk'|'run';
+
+interface RigSet { manifestUrl: string; bodyScale?: number; palette?: string }
+interface EquipmentVisuals {
+  mainHand?: string; offHand?: string; head?: string; body?: string;
+  innerBody?: string; hands?: string; shoulder?: string; cape?: string;
+  waist?: string; feet?: string; accessory?: string;
+}
+interface RigCharacter {
+  setMotion(dir8: Dir8, speedMps: number, weightClass: WeightClass): void;
+  playClip(id: string, options: ClipPlayOptions): void;
+  stopClip(): void;
+  update(dtSeconds: number): void;
+  setEquipment(next: EquipmentVisuals): Promise<void>;
+  dispose(): void;
+}
+declare function createRigCharacter(rigSet: RigSet, equipment: EquipmentVisuals): RigCharacter;
+```
+
+| 调用 | 前置/后置条件 | 失败策略 |
+|---|---|---|
+| `createRigCharacter` | manifest/schema、所有必需 part、atlas 版本验证成功后才注册实例 | 缺基础 part 为硬失败；可选法线缺失回平面法线 |
+| `setMotion` | `dir8` 合法，`speedMps≥0`；只写目标状态，不分配对象 | 非有限数值在开发版抛错，生产版钳 0 并记 telemetry |
+| `playClip` | 片段和 `clip-map` 已校验；从当前 `PartPose` 淡入，不改 core | 未知/未过 release gate 的片段拒绝播放并保留程序步态 |
+| `stopClip` | 取消后在 160 ms【建议值】内淡回最新程序姿势；不得合成事件 | 无活动片段时无操作 |
+| `update(dt)` | 每渲染帧一次；内部最多 8 个弹簧子步；不改变 core | `dt>0.5 s` 直接 snap 到目标，防螺旋补帧 |
+| `setEquipment` | 异步预取层，校验成功后在一帧边界原子换 UV | 新层失败则保留旧装备外观，不显示错误物品 |
+| `dispose` | 归还实例区间与 palette 引用，不销毁共享图集 | 二次调用无操作 |
+
+方向改变不重建实例；部件层只更新 `uvRect` / 数组层 / 镜像位。程序步态与片段都经 §4.6 的 `writePose` 写实例。装备变化不参与 core hash，加载失败也不回滚已提交的装备事实。
+
+### 5.2 实例布局与两次 draw call
+
+具名 NPC 身份 rig 增加后，基础部件与装备层按相同尺寸 / mip / 编码装入 `DataArrayTexture`；着色器以 `sampler2DArray` 采样，实例 `flags` 携带数组层号。所有人形仍共用同一 atlas family 和 `InstancedMesh`，每帧只画“芯”与“软边”两 pass，故视野内合计 ≤2 draw call，而不是每角色 2 次。区域流送只替换数组层内容 / 映射；若硬件层数或尺寸不足，先按区域装箱或降 ppm，不得静默拆材质增加 draw call。（R9，待真机实测）
+
+| 每实例属性 | 格式建议 | 字节 | 语义 |
+|---|---|---:|---|
+| `uvRect` | `UNORM16×4` | 8 | 图集 `(u0,v0,du,dv)` |
+| `affine2d` | `float32×6` | 24 | 公告板平面内 2×3 仿射；局部 → 米 |
+| `anchorDepth` | `float32×4` | 16 | 世界脚点 xyz + 整角色综合深度偏移 |
+| `sortTint` | `uint16×4` | 8 | `depthKey`、量化 part z、palette、`layerRecord+flags`；`flags` 位段含纹理数组层号 |
+| **合计** | — | **56 B/实例** | 20 实例/角色为 1,120 B；100 角色为 112,000 B |
+
+`normalPages` 使用同一数组层与 UV，不新增实例或 draw call；low 档关闭。实例 buffer 预分配 `100×20=2,000` 项，基础热路径只更新活动的 `100×16=1,600` 个骨架变换；装备层复用父部件矩阵或约束点。`partZQ=round((zOrder+2)×20)`，以 0.05 为一级无符号保存 −2～15.5；排序键为 `(renderQueue, characterDepthBucket, partZQ, stableCharacterIndex)`，部件 z 不能越过另一个角色的深度桶。`layerRecord` 的区域常驻查表项保存最多两组覆盖层 UV/数组层/tint，0 表示无复合层；只在 `setEquipment` 时更新，不进入逐帧 56 B 实例上传，也不增加 draw call。**（初值，待 ENG-12 实测）**
+
+### 5.3 CPU、GPU 与内存预算
+
+| 指标 | 硬预算 **（初值，待 ENG-12 三机实测）** | 核算/说明 |
+|---|---:|---|
+| 关节求值 | 100 角色 × 16 = 1,600 transforms，P95 ≤0.55 ms | 连续 SoA、三角表或批量 `Math.sin`；零每帧分配 |
+| 实例写入 | 2,000 项脏区合并，P95 ≤0.25 ms | `0.55+0.25=0.80 ms`，包含在 `tech/03` 渲染 CPU 3.5 ms，不另加预算 |
+| draw call | 所有人形 ≤2 | 芯 + 软边；法线是采样器，不是 pass |
+| 实例数 | 每角色 ≤20；100 角色 ≤2,000 | 16 基础 + 4 附加；不可见槽写 alpha=0 或压缩 active range |
+| 动态上传 | ≤112 KB/帧最坏值 | 56 B×2,000；常态只传 dirty ranges |
+| 临时分配 | 0 B/帧 steady state | 600 帧堆增长 ≤1 MB，沿 `tech/03` 热路径门禁 |
+| atlas | 受 `tech/03` 40/105/170/300 MB 角色精灵硬线 | 分层去除逐帧重复后应重测，不预称节省比例 |
+
+`stepFps=12` 只降低姿势求值频率；每帧仍可重用最后姿势并连续更新世界 anchor/转向。超过 100 可见人形时，远景 C 级路人先降为合成人群卡片；逻辑实体不删除。
+
+### 5.4 深度、公告板与排序
+
+| 项 | 对齐规则 |
+|---|---|
+| 公告板 | Y 轴锁定直立面，整体纵向补偿 `1/cos30°=1.1547`；部件仿射发生在该平面内 |
+| 整体深度 | 普通 `depthBiasM=0.35`，攻击大动作可请求 1.0；来源与推导见 `tech/02` §3.2 |
+| 部件深度 | §1.4 的毫米级 z 只解决自遮挡；角色整体仍由脚底世界深度排序 |
+| 芯/软边 | alpha ≥0.5 写深度；alpha <0.5 预乘混合、不写深度，完全沿 `tech/02` §3.3 |
+| 水面/贴花/特效 | 队列保持 `tech/02` §3.1 的 50/60/70/80/90；装备层不得自设 renderOrder |
+| 法线镜像 | 视空间法线 R/X 通道取反；没有专用法线时用 `(0,0,1)` |
+
+## 6. manifest、目录与预览
+
+### 6.1 目录契约
+
+```text
+assets/default/rig/<set>/
+├── manifest.yaml
+├── sheet/
+│   ├── sheet_L.png                         # front34|side|back34，均面向画面左
+│   ├── sheet_R.png                         # 主角 / S 级必需；其余 set 可选
+│   └── manifest.yaml                       # 与其他素材 manifest 同字段
+├── front34/<part>.png
+├── back34/<part>.png
+├── side/<part>.png
+├── normal/{front34,back34,side}/<part>.png   # 可选，同尺寸/alpha
+└── preview/<set>__pose-strip.png             # 派生物，不进源 manifest hash
+```
+
+`sheet_L.png` 必须同时包含 `front34|side|back34`，三栏均面向画面左；普通角色可由其切件并按 C5 接受镜像。主角和 S 级还必须提供 `sheet_R.png`，作为 `mirrorSafe:false` 的面向右修正版，不能由 L 图翻转冒充。`sheet/manifest.yaml` 沿用其他素材 manifest 的状态、输入、工具、提示词版本、输出哈希与来源字段；根 `manifest.yaml` 的 `identity.sheetSha256` 记录 `sheet_L.png` 的 SHA-256，若有 R 图则由 sheet manifest 另记其哈希。
+
+`<set>` 是资产集局部键，不注册为内容 ID。基础 set 使用 `male_std` / `female_std`，不得用角色姓名；身份 set 是唯一例外，固定命名 `<npcId>__<variant>`，例如 `npc_zhujue__ch00_m`。具名 NPC 每人一套 `kind: identity`；主角和可换装队友继续选标准 set 加装备层，路人选标准 set 加调色。文件名严格取 §1.2 的 13 个 source key：左右独立的上臂/前臂/手，以及 `thigh_shared`、`shin_shared`、`foot_shared`。
+
+### 6.2 `manifest.yaml` v1
+
+下例展示一个前臂 part；正式文件必须列齐 `3×13=39` 条。`size`、`pivot`、`childJoint` 均以各 PNG 左上为原点的母版像素；运行时统一乘 `runtimePpm/ppm`。`restAngle` 是轨迹输出到源贴图静止姿势的局部角修正，单位为度；在未镜像贴图平面内顺时针为正，运行时先算 `localAngleDeg=motionAngleDeg+restAngle`，镜像时再对总角取反。字段省略时默认 `0.0`，合法范围为有限数 `[-180,180)`；v1 前臂用 `-90.0` 吸收 §4.2 的生理屈曲角基准修正，其余部件默认 `0.0`。**（初值，待 ART/ENG-12 实测）**
+
+```yaml
+schema: tianshu-rig.v1
+set: npc_zhujue__ch00_m
+kind: identity
+identity:
+  npcId: npc_zhujue
+  variant: ch00_m  # 格式示例；是 set 后缀，不注册为独立内容 ID
+  portrait: por_npc_zhujue__ch00_m_base
+  sheetSha256: "<64 lowercase hex>"
+skeleton: tianshu_humanoid.v1
+ppm: 256
+heightM: 1.70
+views: [front34, back34, side]
+nearSide: L
+boneLengthsM: {torso: 0.53, head: 0.24, upper_arm: 0.31, forearm: 0.27, hand: 0.19, thigh: 0.45, shin: 0.41, foot: 0.25}
+mirrorPolicy:
+  dir8: {0: front34, 1: front34, 2: side, 3: back34, 4: back34, 5: back34, 6: side, 7: front34}
+  mirrored: [5, 6, 7]
+palette:
+  clothPrimary: "#6B5141"
+  clothSecondary: "#394C53"
+  skin: "#E9CFB4"
+parts:
+  - id: forearm_L
+    file: front34/forearm_L.png
+    view: front34
+    pivot: [26, 8]
+    childJoint: {wrist_L: [26, 75]}
+    size: [52, 82]
+    restAngle: -90.0
+    zOrder: 14
+    tintable: clothSecondary
+    source: {keypoints: [elbow_L, wrist_L], inpaintedPct: 3.2}
+    jointSource: front34/forearm_L.pivots.yaml
+    sourceOrigin: [8, 6]
+attachments:
+  - slot: hair_back
+    parent: head
+    view: back34
+    file: back34/hair_back.png
+    pivot: [40, 6]
+    spring: {k: 36, c: 10.8}
+```
+
+上述扩展字段全部可选，省略时保持旧 set 的解析结果：`kind` 默认为 `standard`，`nearSide` 默认为 `L`，骨长沿 §1.2 / `heightM` 回退，`attachments` 默认为空。只有显式 `kind: identity` 才要求完整 `identity`；`skeleton` 若出现则须与动作片段一致。`parts[].childJoint` / `zOrder` 省略时走既有回退；新增 `parts[].source` 只记录切件溯源，不参与运行时姿势。示例数值逐项照录调研报告 §5.3 的格式样例，均为**【建议值】**，正式 set 必须以切件量测覆盖。示例中的主角键用于展示身份 set 命名；生产选用仍服从 AR-29 的“主角 / 可换装队友用标准体 + 装备层”。
+
+| 字段 | 校验 |
+|---|---|
+| `schema/set/ppm/views` | 分别精确为 `tianshu-rig.v1`、安全局部键、256、三视图全集 |
+| `kind/identity` | 均可省略；`kind` 仅允许 `standard|identity`。identity 时 `set=<npcId>__<variant>`，四字段齐全，`sheetSha256` 为 L sheet 的 64 位小写 hex，`portrait` 必须引用已登记素材 |
+| `skeleton/boneLengthsM` | 可省略；出现时骨架须受支持，骨长 key 只取 §1.2 稳定骨段且为有限正数；缺失项按标准体 / 身高回退 |
+| `nearSide` | 可省略，默认且唯一合法显式值为解剖学 `L`；三个未镜像源视图都面向画面左，镜像时推导为 `R` |
+| `parts[].id` | 每视图恰含 13 个 source key，无重复、无未知 part |
+| `file/view` | 文件存在、路径不越目录；实际 PNG 尺寸等于 `size` |
+| `pivot/childJoint` | `childJoint` 可省略并按 §1.2 回退；有 `keypoints.yaml` / `*.pivots.yaml` 旁注时必须优先采用并写 `jointSource`；坐标均在 `[−1,W]×[−1,H]` 容差内，相邻关节误差 ≤1/256 m |
+| `jointSource/sourceOrigin` | `jointSource` 是 set 内安全相对路径；旁注用 source 坐标时须保存两元素有限数 `sourceOrigin`，仅当 PNG 哈希与旁注路径未变时复用，换源图即重算 |
+| `restAngle` | 可省略，默认 `0.0`；须为度数制有限数且在 `[-180,180)`；未镜像顺时针为正，前臂 v1 必须为 `-90.0` |
+| `zOrder` | 可省略并按 §1.4 回退；出现时须与对应视图一致，镜像后自动交换 L/R，不再抄一份 |
+| `source` | 可省略；`keypoints` 只列本 part 使用的稳定关节名，`inpaintedPct` 为 `[0,100]`；仅作 provenance |
+| `attachments` | 可省略，默认 `[]`；每项 slot 唯一，parent/view/file/pivot 安全有效，弹簧参数有限且非负；计入每角附加槽上限 |
+| `tintable` | 只允许 `false|clothPrimary|clothSecondary|footwear|hair`；皮肤默认为 false |
+| `palette` | 3–8 个 sRGB hex；具体角色/装备可覆写但 key 必须已声明 |
+
+### 6.3 预览条带
+
+`tools/rig/preview.py --set <set> --motion <idle|walk|run> --weight <light|medium|heavy>` 读取 manifest 与同一参考曲线实现，输出 `preview/<set>__<motion>_<weight>__pose-strip.png`。这只是验收工具约定，本任务不实现脚本。
+
+| 项 | 规格 **（初值，待 ART/ENG-12 实测）** |
+|---|---|
+| 布局 | 4 列相位 `0/.25/.50/.75` × 3 行 `front34/back34/side`；单格 256×320 px，格间 16 px |
+| 背景 | 透明成片另输出；审阅版铺 `RGB(230,225,216)` 与 1 m 网格 |
+| 叠加 | 可选 `--debug` 显示 pivot、骨段、关节名、zOrder、握点、脚底线与安全圆 |
+| 装备 | `--equipment layers.yaml` 后必须另出满载条带：双手长兵 + 双护肩 + 披风 + 官甲 + 鞋 + 腰带 |
+| 差分 | 金样逐像素阈值：透明区错误 0 px；非透明区 SSIM ≥0.995；算法版本变更须人工接受后换金样 |
+
+## 7. 校验、测试与交接
+
+### 7.1 构建时校验
+
+| 编号 | 输入 | 断言 | 失败等级 |
+|---|---|---|---|
+| RIG-V01 | 每个 rig set | 三视图各 13 源 part；运行映射恰为 16 part | error |
+| RIG-V01a | sheet / 身份 manifest | L sheet 三栏朝左；主角 / S 级 R sheet 齐全；identity 命名、portrait 与 sheet 哈希闭合 | error |
+| RIG-V02 | PNG/manifest/关节旁注 | size 一致；有旁注则记录安全 `jointSource`，无旁注则用分视图比例回退；pivot/child 在界内；关节误差 ≤1 px | error |
+| RIG-V02a | 三视图 z 与镜像 | 未镜像时三视图均为 L 侧六个肢体段在前；镜像后均为 R 侧在前 | error |
+| RIG-V03 | 镜像 | L/R 对换、UV 翻转、法线 X 取反；`mirrorSafe:false` 有修正版 | error |
+| RIG-V04 | 层文件 | 每件可见装备覆盖所有声明 slot 与三视图；不可见类没有层 | error |
+| RIG-V05 | 层预算 | 基础 16 + 附加 active ≤20；超额按 §2.2 转 `layerRecord` 复合后再验 | error |
+| RIG-V06 | 图标 | 256/128/64/32 齐全；alpha 包围盒、8% 补边、命名符合 §3.1 | error |
+| RIG-V07 | 步态 | §4.5 的 24 行 × 11 数值全部在容差内 | error |
+| RIG-V08 | 热路径 | 100 角色/1,600 变换 P95 ≤0.55 ms；总 rig CPU ≤0.80 ms；0 B/帧 | release error |
+| RIG-V09 | 渲染 | `DataArrayTexture` 层号正确；所有人形 ≤2 draw call；每角色 ≤20 实例；芯/软边深度状态对齐 `tech/02` | release error |
+| RIG-V10 | 视觉 | 四镜头、三视图、轻中重、满载装备无断肢/穿脸/滑步 | manual gate |
+
+### 7.2 实现任务接口清单
+
+| 接收方 | 必须实现/交付 | 验收输入 |
+|---|---|---|
+| TOOL-rig-pipeline | 色键、羽化/去溢色、8% 裁边、四档图标、PCA 主轴/握点、模板填充、`layers.yaml`、manifest lint、预览脚本 | 1 件浅色衣、1 件双手长兵、1 件圆形暗器、1 件官甲、1 件披风的金样 |
+| ART / 三视图切件工具 | 按 §6.1 交付 sheet；关键点 / 切件产出 3×13 源表、身份字段与 pivot 旁注；填写 `restAngle`（前臂 v1 为 −90°）；镜像不安全清单与可选法线 | sheet/identity 哈希闭合；idle/walk/run 三视图与满载条带；静止姿势验证修正角 |
+| ENG-12 / ENG-12c-clip | `writePose` 统一入口、曲线/IK/弹簧与三视图解析；`playClip` / `stopClip`、投影/动态 z/剑轴/事件；`DataArrayTexture` 两 pass | §4.5 向量、§4.6 与 `clip-map` 用例、RIG-V01～V16、三台实机 |
+
+### 7.3 迁移与兼容
+
+| 旧对象 | 处理 |
+|---|---|
+| `sprite-spec.json` v1 | 停止给角色生产新帧表；加载器只作旧开发样片读取，生产角色转 `tianshu-rig.v1` |
+| `spr_*` 角色整身图集 | 不删除历史源；标 `legacyFrameSprite:true`，不得与同角色 rig 同时渲染 |
+| `battle8` / `loco` 页组 | 角色页组退役；`Dir8` 名称继续作为朝向接口；VFX/环境 flipbook 不受影响 |
+| 存档 | 不保存动画相位；只存既有装备实例与 core 朝向，加载后可从稳定实例 ID 初始化 idle 相位 |
+
+## 参考资料
+
+1. 项目内唯一事实源：`docs/00-canon.md` §12、§18–§20；`docs/decisions/author-requirements.md` AR-19/AR-21/AR-22/AR-29/AR-34；`docs/decisions/rulings-v1.md` C20/C21。
+2. 相机、`Dir8`、直立公告板、深度偏移、两段式精灵和性能总账：`docs/tech/02-rendering.md` §1.5、§2.5–§3.3、§8。
+3. 帧时间、显存、可见单位与零分配预算：`docs/tech/03-mobile-performance.md` §2、§6、§8。
+4. 物品类别、十一槽、`hands`、`armorWeight` 与 `Q_load`：`docs/design/10-items-and-equipment.md` §2–§3。
+5. 美术色板、人物比例、图标原图与工具边界：`docs/tech/07-asset-generation.md` §2、§5–§7。
+6. 物理二阶跟随采用标准阻尼弹簧形式；本文参数为项目原创初值，尚无真机/成片验证。
+7. 三视图、动作库、片段投影、清单扩展、C1–C11 与 R9：`tools/agents/reports/RESEARCH-anim-motion-library.md` §2.3、§3、§5.2–§6.2。
+
+## 本文新增术语/约定
+
+| 术语 | 定义 |
+|---|---|
+| `tianshu_rig` v1 / `tianshu-rig.v1` | 本文的人形分层绑定语义 / manifest schema 名；不是全局内容 ID |
+| 解剖学 L/R / `nearSide` | `_L/_R` 只指角色自身左右；三个未镜像视图的近侧均为 `L`，镜像后为 `R`，与部件在画面左 / 右的位置无关 |
+| source part / runtime part | 美术文件中的 13 个源部件 / 展开左右共享源后的 16 个运行时变换槽 |
+| rig set | 同一体型、比例、三视图与 palette 的基础部件集合，目录局部键 |
+| identity rig / sheet | 具名 NPC 某变体的一套身份部件 / 供切件的 A 字三视图原图；身份 set 是基础 set 禁用角色名规则的唯一例外 |
+| `PartPose` / `writePose` | 逐部件的视图、镜像、2D 仿射与动态 z / 程序步态和片段共享的实例写入口 |
+| atlas array layer | `DataArrayTexture` 的纹理层，由实例 flags 选择；不得因此增加材质或 draw call |
+| equipment layer | 从物品原图与槽位模板确定性生成、挂到 rig part/关节的透明覆盖图 |
+| `stepFps` | 仅量化关节姿势采样的帧率；0 为关闭，不量化世界移动或弹簧 |
+| pose strip | 由参考实现生成的三视图 × 四相位验收条带 |
+
+## 待决事项 / 依赖
+
+### 已解决 / 已采纳追溯
+
+- **已解决（2026-10-01 AR-22）**：行走/待机由“整身预渲染帧”改为“分层部件 + 代码轨迹”；装备在地图角色上可见，见 §1–§5。
+- **已解决（C20 + AR-12）**：规则六向、表现 `Dir8` 与四镜头不变；资产由八套帧改为三个绘制视图加镜像，映射见 §1.3。
+- **已解决（AR-21）**：仍采用 Three.js/WebGL2、Vue/Vite 与零每帧分配；本文接口不依赖 UI 框架。
+- **已解决（2026-10-02 AR-29 / AR-34）**：人物动作采用“2D 分层部件 + CC0 动作库驱动 + `codex exec` 三视图切件”；近侧为解剖学左侧，关节优先读切件关键点旁注、缺失时按分视图比例回退，见 §1.1–§1.4、§6.1–§6.2。
+- **已解决（C5）**：普通角色接受镜像；主角和 S 级另供面向右 `sheet_R.png` 作为 `mirrorSafe:false` 修正版，见 §1.3、§6.1。
+- **已解决（C9；原 RIG-O03）**：攻击、受击、格挡、倒地等战斗大动作全部走“分层部件 + 动作轨迹”；整身帧只用于 cutin，见 §4.6。
+- **已解决（R9）**：身份 rig 图页以 `DataArrayTexture` / `sampler2DArray` 和实例层号合批，仍守 2 draw call，见 §5.2。
+
+### 本文依赖的上游事实
+
+| 依赖 | 当前口径 |
+|---|---|
+| 物品类/槽/轻重 | 只认 `design/10`；`Q_load` 0/10/15/25 映射到本文轻中重表现，不改变属性 |
+| 人物体型与伤残 | 由 `design/18` 给身份 set / 标准 set、身高与镜像安全事实；本文只定义资产字段 |
+| 攻击、受击、倒地 | `design/09` 给玩法事件；`design/05` 给 `anim.clip` 键；本文只定义表现片段，不定义战斗时序 |
+| 图集和压缩 | `tech/06` 接收 `tianshu-rig.v1` 后决定 KTX2/分包；本文只定逻辑布局 |
+
+### 对基准的修改提案
+
+| 编号 | 提案 | 理由 |
+|---|---|---|
+| RIG-P01 | Canon §19“2D 精灵公告板（8 方向，法线贴图）”补述为“分层部件公告板；`Dir8` 由三视图+镜像解析；行走/待机为代码轨迹” | AR-22 已覆盖逐帧路线，避免基准继续被读成八套帧 |
+| RIG-P02 | Canon §18 技术文档表把角色 rig 规格明确引用 `tech/09-character-rig.md`，路线图仍为 `tech/09-roadmap.md` | 两份 09 文件用途不同，减少简称歧义 |
+
+### 开放问题（附默认值）
+
+| 编号 | 问题 | 默认值（不阻塞实现） | 收口点 |
+|---|---|---|---|
+| RIG-O01 | 正南/正北是否值得独画第 4/5 视图 | 沿最近 3/4 侧并用滞回；不新增源图 | ART 三机 64 ppm 样片 |
+| RIG-O02 | 非对称汉服/伤残的镜像比例 | 已由 C5 定边界：普通角色允许镜像；主角 / S 级提供 R sheet；具体角色事实仍由 `design/18` 标记 | `design/18` 角色资产卡 |
+| RIG-O03 | 战斗大动作是否全用分层轨迹 | **已解决：C9 是**；整身帧只用于 cutin，不作为战斗动作降级 | §4.6 / ENG-12c-clip |
+| RIG-O04 | 100 角色 0.80 ms 是否三机可达 | 作为阻断初值；若失败先 SoA/查表/降低远景更新率，不减少逻辑角色 | `tech/03` 真机门禁 |
+| RIG-O05 | 物品原图底色漂移是否需要自动估色 | 默认从边界环估色并以 `(230,225,216)` 作先验；边界种子不足即人工 mask | TOOL-rig-pipeline 金样 |
+| RIG-O08 | 行走是否切换为动作库 walk（C8） | 默认保持程序步态；先在 `/rig-demo` 做程序步态 / `clip_walk` A/B，再由作者判定 | ENG-12c-clip Q8 |
+
+---
+
+## 8. 动作片段（AR-29 · P6–P7 增补）
+
+> 本节于 2026-10-02 仅追加，不改写前述 v1.1 规格。动作片段、映射、投影 QA 均为**（原创扩展）**；运行时播放器仍由 ENG-12c-clip 实现。
+
+### 8.1 边界与离线数据流
+
+AR-29 采用“2D 分层部件 + CC0 动作库驱动”。离线工具读取源 GLB，把关节正向运动学结果烘焙为 `tianshu_humanoid.v1` 的骨向量；运行时只能消费烘焙结果，不能读取或再分发原始 GLB。
+
+```text
+CC0 GLB（仓外） → clip_import.py → clip_*.json（30 fps，可选 12 fps）
+                                      ├→ clip_metrics.py → 八向 metrics.json
+                                      └→ 八向 stick strip PNG（人工目检）
+```
+
+边界如下：
+
+1. `rootMotion: inPlace`：片段的骨盆位移只供表现姿势、踩滑估算和投影；不得回写玩法坐标。
+2. `hit` / `end` 只供 `tech/02` 的 `CueApi.playAnim(...).on(...)` 回调；命中、伤害、倒地和死亡仍由 core 事件决定。
+3. 原始 GLB / ZIP 放仓外 `.agents/coord/motion_src/`；仓内只留骨向量 JSON、schema、来源记录、指标与 PNG。
+4. `_L/_R` 沿 §1.3 的解剖学左右；`nearSide:L`，镜像后才交换为 R。
+
+### 8.2 `tianshu-clip.v1` 格式
+
+schema 位于 `assets/default/rig/clips/clip.schema.json`。整数编码统一小端序再 Base64；浮点只存在离线采样中，写盘前按“恰好半值远离零”整数化，保证同输入同输出。
+
+| 字段 | 单位 / 编码 | 契约 |
+|---|---|---|
+| `fps` / `frameCount` / `durationMs` | 12 或 30 / 帧 / ms | 30 fps 是源档；12 fps 是显式降采样，二者都含末帧 |
+| `tracks.bones` | 16 个稳定骨名 | 躯干、头、肩宽、髋宽、左右上臂/前臂/手/大腿/胫/脚 |
+| `directionI16` | 每帧每骨 `xyz×32767` | 归一化三维方向，范围 `[-32767,32767]` |
+| `lengthRatioU16` | `当前骨长/静止骨长×32767` | 保存源动作的骨长比例；正常刚性骨应接近 32767 |
+| `rootMmI16` | 每帧骨盆 `xyz` 毫米 | 相对静止骨盆；播放器保持 in-place，不推动 core |
+| `facingYawCdegI16` | 0.01° | 骨盆、胸、头偏航；投影工具用胸偏航选视图 |
+| `restPose` | 20 个关节、毫米整数 | 解码骨链与离线 QA 的静止锚；不是角色体型权威长度 |
+| `weapon` | `gripJoint` + 每帧 `tipDirectionI16` | 主手握点；无兵器骨的源以“腕→中指第一节”标定剑尖方向 |
+| `events` | `{frame,type}` | 只允许 `hit`、`end`；每条 clip 至少一个 `end` |
+| `viewHints` | 百分点 / 0.01° | 缩短下限固定 4500 bp = 0.45；偏航辅助上限 3000 cdeg = 30° |
+| `source` | 文本 + SHA-256 | 原动作、许可、固定 URL 与源文件哈希必须齐全 |
+
+规模核算：16 骨的方向与长度每帧为 `16×(3×2+2)=128 B`；根位移、三组偏航、剑轴为 `(3+3+3)×2=18 B`，合计 **146 B/帧**，另加 JSON/Base64 约 `4/3` 膨胀。1.5 s、30 fps 含末帧为 `round(1.5×30)+1=46` 帧，二进制轨迹约 `46×146=6,716 B`。
+
+### 8.3 骨架映射与未映射项
+
+`clip_import.py` 自动在两张白名单映射中择优，也允许 `--mapping` 固定；任一必需目标关节缺失即拒绝导出，不猜测左右。
+
+| 目标 | UE 风格 66 关节（Mesh2Motion / UAL2） | Rigify 53 关节（UAL1 Godot） |
+|---|---|---|
+| 根 / 骨盆 / 胸 / 颈 / 头 | `root/pelvis/spine_03/neck_01/head` | `DEF-root/DEF-hips/DEF-chest/DEF-neck/DEF-head` |
+| 左臂 | `upperarm_l/lowerarm_l/hand_l/middle_01_l` | `DEF-upper_arm.L/DEF-forearm.L/DEF-hand.L/DEF-f_middle.01.L` |
+| 右臂 | `_r` 对应项 | `.R` 对应项 |
+| 左腿 | `thigh_l/calf_l/foot_l/ball_l` | `DEF-thigh.L/DEF-shin.L/DEF-foot.L/DEF-toe.L` |
+| 右腿 | `_r` 对应项 | `.R` 对应项 |
+
+本次 Mesh2Motion 两个源包的 20 个目标关节全部可映射。47 个未消费源节点会逐 clip 原样登记：`clavicle_*`、`spine_01/02`、其余指节、各 `*_leaf`，以及 `Mannequin` / `Armature` 容器；它们不是“缺失必需关节”，只是 v1 的 20 关节 / 16 骨投影不需要。Rigify 表由合成骨架测试覆盖，尚未用本次源包实物再烘焙，故标**（待实测）**。
+
+### 8.4 投影指标与原型判定
+
+`clip_metrics.py` 对相机偏航 `S/SW/W/NW/N/NE/E/SE = 0/45/90/135/180/225/270/315°` 分别计算；胸部视图采用三样本移动平均 + 10° 滞回，肢体按三维骨向量直接投影。
+
+| 指标 | 算法 | P6–P7 闸门 |
+|---|---|---|
+| 躯干视图切换 | 胸部左右肩给朝向，在六个三视图/镜像朝向中择近 | Q4：≤8 次/s |
+| 肢体最短缩放 | `raw=sqrt(x²+y²)/sqrt(x²+y²+z²)`；渲染 `max(0.45,raw)` | Q4：渲染值不得低于 0.45 |
+| 手臂越过躯干平面帧比 | 左右肘/腕相对骨盆—颈中心深度，与第 0 帧符号不同的采样数 / `4×帧数` | 诊断动态 z；无单独阻断线 |
+| 支撑脚踩滑 | 踝高在最低点 +0.5 cm 内、连续 ≥3 帧为支撑相；加 `nativeSpeed` 后量水平最大漂移 | Q5：≤2 cm |
+| 剑轴投影偏差 | 剑轴投影按 128 px/m 和 0.45 下限整数化，比较整数向量与连续投影方向；握点同样整数化 | Q6：轴 ≤5°、握点 ≤1 px |
+
+实测结果来自 `assets/default/rig/clips/*.metrics.json`，不是运行时帧率或真机性能结论：
+
+| 原型 | Q4 最短原始投影 / 渲染下限 | 躯干切换 | 手臂跨平面 | Q5 踩滑 | Q6 剑轴 / 握点 | 结论 |
+|---|---|---|---|---|---|---|
+| `clip_walk`，51 帧 / 1.667 s | 八向最差 `0.0793 / 0.45` | `0–1.20/s` | `0–51.961%` | 最大 `0.366 cm` | 不适用 | Q4/Q5 通过；正前/正后手臂深度关系频繁反转，运行时必须动态 z |
+| `clip_sword_attack`，58 帧 / 1.917 s | `0.0465 / 0.45` | `2.632–3.158/s` | `25.431–44.397%` | 不适用 | 最大 `0.485° / 0.695 px` | Q4/Q6 通过；作为原型主剑招 |
+| `clip_sword_regular_a`，15 帧 / 0.458 s | `0.0506 / 0.45` | `8.571–12.857/s` | `31.667–40.000%` | 不适用 | 最大 `0.625° / 0.628 px` | 缩短与 Q6 通过；Q4 视图切换失败，不得原样发布 |
+
+`Sword_Regular_A` 的默认处置是不阻塞素材导入，但标记为“原型失败样本”；主原型使用已过线的 `Sword_Attack`。若后续仍要启用 Regular_A，ENG-12c-clip 先尝试 12 fps 视图选择、关键姿势清理或更强滞回，复测八向全部 ≤8 次/s 后才可成为生产动作。不得为了过线删改 metrics 或把原始投影比冒充钳制后缩放。
+
+### 8.5 片段清单、事件与许可
+
+首批提交 10 个片段：原型主片段 `clip_walk`、`clip_sword_attack`，压力样本 `clip_sword_regular_a`，以及备用 `clip_idle`、`clip_run`、`clip_hit_chest`、`clip_fall`、`clip_meditate`、`clip_dodge_back`、`clip_punch_jab`。原动作名、帧数、事件帧、固定下载 URL、字节数和 SHA-256 见 `assets/default/rig/clips/SOURCES.md`，不在本文重定义。
+
+许可白名单固定为：
+
+| 许可键 | 可导入条件 | 交付要求 |
+|---|---|---|
+| `CC0-1.0` | 官方源明确把该动作/美术资产置于 CC0 | 可烘焙、修改、分发；仍保留来源哈希供追溯 |
+| `CMU-commercial` | 只取 CMU 官方条款覆盖的数据 | 可放产品，不得把数据本身直接转售；按官网请求致谢 |
+| `CC-BY-4.0` | 来源与作者明确、可给完整署名 | 发行物必须署名、给许可链接并标修改 |
+
+本批只用了 Mesh2Motion `human-base-animations.glb` / `human-addon-animations.glb` 的 CC0 动作。`human-mocap-animations.glb` 来源未明，明确不下载、不导入；Mixamo、万代南梦宫和 SFU 不在白名单。许可和官方文件于 2026-10-02 联网核实。
+
+### 8.6 构建校验与 ENG-12c-clip 交接
+
+| 编号 | 断言 | 失败等级 |
+|---|---|---|
+| RIG-V11 | schema 通过；Base64 解码字节数与 `frameCount×bones` 精确一致 | error |
+| RIG-V12 | 相同源字节 / 参数两次导出逐字节一致；半值远离零 | error |
+| RIG-V13 | 必需 20 关节全映射；许可在白名单；SHA-256 与来源记录一致 | error |
+| RIG-V14 | 所有 clip 有 `end`；攻击可有一个 `hit`；事件帧在范围内 | error |
+| RIG-V15 | 八向 `renderMinLimbScale≥0.45`；走路踩滑 ≤2 cm；兵器握点 ≤1 px、剑轴 ≤5° | release error |
+| RIG-V16 | 八向躯干切换均 ≤8 次/s；条带图人工通过 | manual/release gate |
+
+ENG-12c-clip 解码后以角色自身 rig 骨长替换源骨长，只消费方向与长度比；0.45 缩短是投影视觉下限，不得改变 3D 关节事实。播放器须按帧序只触发一次事件，循环片段的 `end` 是循环边界回调；停止或交叉淡化不能伪造 `hit`。
+
+### 8.7 本节参考资料（访问日期 2026-10-02）
+
+1. Mesh2Motion 仓库与许可段：<https://github.com/Mesh2Motion/mesh2motion-app#licenses>。
+2. Mesh2Motion 美术资产 CC0 声明：<https://github.com/Mesh2Motion/mesh2motion-app/blob/79f3f61a9852ef70234a5a4a7c13ed87f7a71833/LICENSE-CC0.MD>。
+3. CC0 1.0 法律文本：<https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt>。
+4. Quaternius UAL 官方页（CC0 备选源）：<https://quaternius.com/packs/universalanimationlibrary.html>、<https://quaternius.com/packs/universalanimationlibrary2.html>。
+5. glTF 2.0 规范：<https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html>。
+
+### 8.8 本节新增术语/约定
+
+| 术语 | 定义 |
+|---|---|
+| `tianshu-clip.v1` | 离线烘焙的 20 关节 / 16 骨人形动作片段 schema；不是玩法内容 ID |
+| 骨向量轨迹 | 每帧的单位方向 + 相对静止骨长，不携带源网格和皮肤 |
+| 剑轴标定 | 以主手握点和“腕→中指第一节”方向作为无兵器骨源的剑尖方向代理 |
+| 原型失败样本 | 数据和 QA 证据可保留，但未过 release gate，运行时不得作为生产动作默认启用 |
+
+### 8.9 本节待决事项 / 依赖
+
+- **已解决（AR-29）**：许可首批只用 CC0；本批使用 Mesh2Motion base/addon，mocap 组不纳入。
+- **已解决（P6–P7）**：Walk 已过 Q4/Q5；备选 Sword_Attack 已过 Q4/Q6，作为原型主剑招；Sword_Regular_A 的缩短与 Q6 通过但 Q4 失败，保留为压力样本，见 §8.4。
+- **本文依赖**：`CueApi.playAnim` 与核心/表现边界见 `tech/02`；运行时播放器和真机性能归 ENG-12c-clip。
+- **开放问题 RIG-O06**：Sword_Regular_A 如何降到 ≤8 次/s？默认不阻塞原型（已切换到通过的 `Sword_Attack`）；后续先在 12 fps 视图选择上复测，再做关键姿势清理，不放宽 Q4。
+- **开放问题 RIG-O07**：Rigify 53 实包映射尚未以 UAL1 GLB 复测；默认保留合成测试通过的映射表，首次引入 UAL1 时必须跑 RIG-V11–V16。

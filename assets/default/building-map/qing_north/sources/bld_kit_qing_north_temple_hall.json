@@ -1,0 +1,23 @@
+{
+  "id": "bld_kit_qing_north_temple_hall",
+  "prompt": "Classic 2:1 ISOMETRIC GAME MAP GEOMETRY with realistic architectural textures, not pixel-art. Create one isolated transparent sprite of a northern Han Buddhist main hall, gray tiled hip-and-gable roof, dark red columns, restrained blue-green painted beam trim, gray brick side walls and lattice doors; no statues or Tibetan elements. Exact orthographic45-degree azimuth30-degree elevation, both ground axes slope precisely 1 vertical unit per 2 horizontal units, front-left edge+0.5 and front-right edge-0.5. The rectangular base is 14 meters east-west by 11 meters north-south, projected front-left edge 14 units and front-right edge 11 units. South entrance faces lower-left. Draw the entire thin rectangular base with clear left/front/right corners, correct2:1 diamond form, no tall pedestal. Northern China early-to-mid Qing original historical-game module. Warm-neutral soft top-left lighting; tiny contact shadow only. Fine gray tile and gray brick material details, restrained realism matching a Song-era city-building kit. TRUE TRANSPARENT ALPHA BACKGROUND; no glow, halo, mist, shadows around silhouette, no floor, no backdrop. Keep complete silhouette comfortably inside canvas with15% fully transparent margin all sides. No visible writing, numbers, guides, modern elements, people, scenery or checkerboard. Asset bld_kit_qing_north_temple_hall.",
+  "tool": "built-in image_gen",
+  "model": "image_gen (underlying model not disclosed)",
+  "effort": "not exposed by image tool",
+  "transparent_background": true,
+  "receipt": {
+    "output_hint": "Generated images are saved to /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b as /Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-ccfa48ed-b6fc-461f-8b1e-6ee4cc82687e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "image_data_note": "原回执image_url为PNG data URL；为避免重复base64，图像字节已原样归档为同名PNG。output_hint原文完整保存。"
+  },
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-cd6c-7603-8267-7010ab51116b/exec-ccfa48ed-b6fc-461f-8b1e-6ee4cc82687e.png",
+  "references": [],
+  "candidate_number": 2,
+  "selected": true,
+  "candidate_count": 2,
+  "archive_file": "bld_kit_qing_north_temple_hall.png",
+  "source_sha256": "1c9ac01647ed175284880a6d4c707676b48a726b84c575b4373a25ec56210d64",
+  "source_size": [
+    1536,
+    1024
+  ]
+}

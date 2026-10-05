@@ -1,0 +1,485 @@
+- id: cg_ch03_chongyang_swords
+  file: cg_ch03_chongyang_swords.png
+  category: scene
+  style: default
+  subject: 重阳宫并肩与婚誓（ch03_shendiao）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只将杨过左手玄铁重剑的三角尖端改成半球形圆钝厚铁尖，两边不开刃；保持重剑的长度、角度、重量感和原左手。杨过、小龙女、金轮法王全部人物与剑柄、衣服、背景、题字印章保持。
+
+    【原著依据】《神雕侠侣》第二十六回 神雕重剑：“剑尖更圆圆的似是个半球”；https://www.xuges.com/wuxia/jinyong/sdxl/187.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/49_cg_ch03_chongyang_swords.png
+    sha256: f1a0efff7097a61807a6f8595c2a55020d7f138834ed9fd088ee7f7a67ade42a
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  - path: assets/default/character/male/ch03/por_npc_jinlunfawang__ch03_elder_base.png
+    sha256: 6905a0639bb012b0e7de96f7b83b248c610da3abdfebba1ee7b8759861157148
+    use: 对脸基线：作者审核通过的 por_npc_jinlunfawang__ch03_elder_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:28:54.535064-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_49_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 67617577b7d1cecd5cc23789929dceb7aa6a3565b52566e3ed087d2f28bc4679
+  status: candidate
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「重阳同心」，实际字形「重阳同心」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女须明确为身份图的刘亦菲定稿五官：同样眉眼间距、杏眼、鼻梁鼻头、唇形与颌骨。允许画出base身份特征，禁止复原旧脸。保留待改图三分之四侧转头向、警惕关切视线和柔侧光，别变正脸，别改变耳坠发式。；质检：实际打开base与返修前后：小龙女眉眼鼻唇骨相明确采用恢复base，保持原侧转头向和警惕关切神态，柔侧光和接缝自然，耳坠发式尺度不变；杨过等其他人衣饰与题字蒙版外零变化；题字陽→阳；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-82 原著核对返修：重阳同心插图同步玄铁重剑圆钝尖'
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/49_cg_ch03_chongyang_swords.png
+    sha256: f1a0efff7097a61807a6f8595c2a55020d7f138834ed9fd088ee7f7a67ade42a
+  runner_job_records:
+  - - cg_ch03_chongyang_swords.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_chongyang_swords.resume3.png
+    - '137'
+    - exec-147c7693-118e-492d-ad4d-48b070062188.png
+  runner_success_count: 1
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_34_52_r2
+    before_sha256: 528aeb2af9536af55a135f691e46b0b090441128fda91534be1c6ded6caaf6c7
+    box:
+    - 322
+    - 152
+    - 450
+    - 310
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_34_52_r2.png
+    outside_changed_pixels: 0
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch03_chongyang_swords_fixed.png
+    before_sha256: 87d3c8c1fe7d45d13d0efc7607352d1492643ca4b16b0e2aaf7b2e4d8f6b9fba
+    allowed_box:
+    - - 1410
+      - 120
+      - 1530
+      - 205
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch03_chongyang_swords_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T02:01:27-07:00'
+- id: cg_ch03_heartbreak_message
+  file: cg_ch03_heartbreak_message.png
+  category: scene
+  style: default
+  subject: 断肠崖十六年之约（ch03_shendiao）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是杨过的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是小龙女的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中杨过、小龙女的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：断肠崖十六年约定，以不带分镜框的前后时层叠化表现（原创扩展构图）。左侧远处较早时层，小龙女独自在崖边留下约定后远去于谷雾，不画坠落痛苦特写；右侧近处稍后时层，断右臂的杨过仅用左手触石刻，迟到发现留言、神情震动。二人处于不同时间且没有触碰，不能画成杨过追及拉住她；石壁只有模糊刻痕，画面只有指定四字题字可读。
+
+    【要对齐的部分】杨过、小龙女各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「十六年约」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
+    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
+    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: a6dd6fb0ff602f66e1050fde2f9218e01aa898e7fd8d0958307eecefe42903b2
+    use: 对脸基线：作者审核通过的 por_npc_xiaolongnv__ch03_youth_jueqing_base（小龙女），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch03/cg_ch03_heartbreak_message.png
+    sha256: 5e0fa7663cb97389fadcf7497fedd9007700fb927a79b5858e64b41782085f74
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_heartbreak_message.5e0fa766.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T14:30:45-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch03_heartbreak_message.s1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 49ef457d65baaac8b574fe423385bab2441d18119a2f7e62e7681ff0df805952
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「十六年约」，实际字形「十六年约」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_heartbreak_message.5e0fa766.png
+    sha256: 5e0fa7663cb97389fadcf7497fedd9007700fb927a79b5858e64b41782085f74
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_heartbreak_message.5e0fa766.entry.yaml
+  runner_job_records:
+  - - cg_ch03_heartbreak_message.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_heartbreak_message.resume3.png
+    - '203'
+    - exec-826d846e-af36-457e-94a4-9b58a8fd26dc.png
+  runner_success_count: 1
+  effort: ultra
+- id: cg_ch03_dashengguan_heroes
+  file: cg_ch03_dashengguan_heroes.png
+  category: scene
+  style: default
+  subject: 大胜关英雄大会（ch03_shendiao）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只把正中杨过握的长竹杖改为断裂铁桨的黑色金属桨柄，顶部有断口、不画竹节，手与完整双臂不动。另将右侧金轮法王手中小金轮改成径长尺半的可实战大金轮，腰间小饰轮去掉、其余四轮收到袍下不露。杨过和法王的脸、衣服、手，郭靖黄蓉小龙女及其他人、题字朱印与背景完全不动。
+
+    【原著依据】《神雕侠侣》第十三回 武林盟主：“这金轮径长尺半”；https://www.xuges.com/wuxia/jinyong/sdxl/092.htm；《神雕侠侣》第十三回 武林盟主：“杨过却用铁桨柄去打他后臀”；https://www.xuges.com/wuxia/jinyong/sdxl/088.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/48_cg_ch03_dashengguan_heroes.png
+    sha256: 5165ad05cac1f9cb7af0d74a3f0378294bdddd13b3085131ac16f4c138ce85c8
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T04:18:07.173499-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_48_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: e9f47fc65a8dd86bbe6029b7a6833010b1477d801270d573e14e86e1150140e3
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「大胜群英」，实际字形「大胜群英」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_jinlunfawang__ch03_elder_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份图定稿的刘亦菲本人脸：精确眉眼间距、眼形、鼻头、上唇弓及下颌；禁止复原待改图旧脸或变泛化漂亮脸。待改图原冷静目光、头向、远景人物尺度和光向照原，耳坠白衣发式不变。；质检：已实际打开base与返修前后：小龙女同人眉眼鼻唇颌骨明确采用恢复base，原冷静神态、头向视线及远景尺度保留，原光向自然无接缝；其余群雄杨过与题字逐像素不变；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变；AR-82 原著核对返修：大胜关插图同步断铁桨柄及实战大轮；AR-82 原著核对返修：大胜关插图同步断铁桨柄及实战大轮
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/48_cg_ch03_dashengguan_heroes.png
+    sha256: 5165ad05cac1f9cb7af0d74a3f0378294bdddd13b3085131ac16f4c138ce85c8
+  runner_job_records:
+  - - cg_ch03_dashengguan_heroes.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_dashengguan_heroes.resume3.png
+    - '134'
+    - exec-4745b2d2-0619-44d4-b569-12eeaaa1aba3.png
+  runner_success_count: 1
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_35_52_r2
+    before_sha256: 8f1ac58c72c354ecfefea666b989f254af3b7b7b9383dca59f512d3a0df11f26
+    box:
+    - 803
+    - 139
+    - 892
+    - 271
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_35_52_r2.png
+    outside_changed_pixels: 0
+- id: cg_ch03_tomb_acceptance
+  file: cg_ch03_tomb_acceptance.png
+  category: scene
+  style: default
+  subject: 活死人墓相逢（ch03_shendiao）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张参考图是孙婆婆的定稿立绘脸部特写（身份基线）；第 2 张是从一幅剧情插图里裁出并放大的头部方图（待改）。请以第 2 张为底稿，只把画中孙婆婆的脸改成与基线是同一个人，输出修改后的方图：1:1，取景、头部的位置与大小、头部朝向与角度都与第 2 张完全一致。
+
+    【要改成】（AR-53 配角对齐）脸型改成基线那样的瘦长脸：两颊瘦削、颧骨略突、下巴偏长；灰白发髻；神情慈和（可以带一点微笑，但脸不要圆润）。
+
+    【保持不变】头部朝向与角度、表情的情绪方向、衣领与衣服、光线方向与色温、背景、画面里露出的其他人或物、笔触与画风都和第 2 张一致。第 2 张是从大图放大的，画面偏软——输出保持同样的柔和度与手绘笔触，不要变得更锐利或像照片。
+
+    【画风】写实手绘古风插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。
+
+    【不要】不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。'
+  negative: 不要文字、水印；不要新增人物；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/female/ch03/por_npc_sunpopo__ch03_elder_gumu_base.png
+    sha256: 8c2072752a2017b93d1aad1ef290008b536726dce72756dbe3de106cf4ae5a37
+    use: 对脸基线：作者审核通过的 por_npc_sunpopo__ch03_elder_gumu_base，只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch03/cg_ch03_tomb_acceptance.png
+    sha256: 7c9dca7003b947a34819571abf07deed95d0208592ebfd97a4a500c84353d05d
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.7c9dca70.png
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:51:34.423487-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_37_52_r2.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: d90935fca7fedf48d8b71265608f1b7b8b819a1081a0f6966c15e4b7e42d206a
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「古墓相依」，实际字形「古墓相依」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-44 对脸精修，基线 = por_npc_sunpopo__ch03_elder_gumu_base（AR-53 配角对齐；局部合成——头部方块交 codex 改，对齐后羽化贴回，其余像素不变）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须是身份参考定稿的刘亦菲脸：同一眉眼、鼻头、唇弓及下颌。保留待改图低头侧转、关切视线，灯笼暖光与月光方向；禁止照搬平光、转为正脸、换耳坠或旧脸。；质检：实际打开base与返修前后：小龙女眉眼鼻唇颌骨采用恢复base，低头关切视线、原灯笼暖光与月光方向保留，耳坠发式不改，脸颈接缝自然；杨过孙婆婆及题字均蒙版外零变化
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.7c9dca70.png
+    sha256: 7c9dca7003b947a34819571abf07deed95d0208592ebfd97a4a500c84353d05d
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_tomb_acceptance.7c9dca70.entry.yaml
+  runner_job_records:
+  - - cg_ch03_tomb_acceptance.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_tomb_acceptance.resume3.png
+    - '183'
+    - exec-7ab61136-c14e-4fc0-9d63-f89a6e902c03.png
+  runner_success_count: 1
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_37_52_r2
+    before_sha256: adf95134900125711b60f8ce94b5bd7d01f40179dd9b1653bbbce78a6bb74628
+    box:
+    - 900
+    - 110
+    - 984
+    - 219
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_37_52_r2.png
+    outside_changed_pixels: 0
+- id: cg_ch03_sword_tomb_training
+  file: cg_ch03_sword_tomb_training.png
+  category: scene
+  style: default
+  subject: 重剑无锋（ch03_shendiao）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只编辑左侧神雕躯干翅膀腿脚：全身黄黑羽毛疏疏落落，显出明显大块裸露灰皮，翅膀缩短紧贴躯干，腿脚比普通鹰粗壮数倍且腿上部露皮。神雕很丑，不能是普通密羽大鹰。保留原头部血红大肉瘤、脸和朝向、身体站位及整体身高。杨过、玄铁剑、河水、岩石、题字朱印逐像素不动。
+
+    【原著依据】《神雕侠侣》第二十三回 手足情仇：“头顶生着个血红的大肉瘤”；https://www.xuges.com/wuxia/jinyong/sdxl/162.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/55_cg_ch03_sword_tomb_training.png
+    sha256: f35a0230c64515301d7b88926e4fb5b80a0deddc9d3ade59dad54ebdeea9b6dc
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_youth_onearm_base.png
+    sha256: fae1051837e382950391f767be6549d19cc99fa81a19e61bd35c43cc265d37a9
+    use: 对脸基线：作者审核通过的 por_npc_yangguo__ch03_youth_onearm_base（杨过），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:39:05.353019-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_55_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 2cc8773575182f24e697e9bee188d7cbdfbb7779c56978a09b103f0ca67891ed
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「重剑无锋」，实际字形「重剑无锋」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base；AR-82 原著核对返修：剑冢插图同步神雕疏羽短翅粗腿
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/55_cg_ch03_sword_tomb_training.png
+    sha256: f35a0230c64515301d7b88926e4fb5b80a0deddc9d3ade59dad54ebdeea9b6dc
+  runner_job_records:
+  - - cg_ch03_sword_tomb_training.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_sword_tomb_training.resume3r2.png
+    - '98'
+    - exec-1d92e0d5-4326-40a8-959f-1fbc92085594.png
+  runner_success_count: 1
+  effort: ultra
+- id: cg_ch03_valley_reunion
+  file: cg_ch03_valley_reunion.png
+  category: scene
+  style: default
+  subject: 绝情谷底十六年重逢（ch03_shendiao）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是小龙女的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中小龙女的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：十六年后绝情谷底重逢，中年杨过从水潭边停下，只有左手微抬、空右袖清楚；小龙女穿整洁修补的浅色谷底衣装，从简陋住处前回望。两人同一轮立绘身份，面貌自然成熟，距离一步，眼含泪光而含笑，深情克制。谷底绿意、水面、清晨薄雾柔和；不拥吻、不少年恋爱糖水照，不在杨过右侧凭空增加手掌。
+
+    【要对齐的部分】小龙女各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「谷底重逢」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）白衣女子是小龙女：原著写她十六年后容貌如昔，所以她的脸要和基线一模一样年轻——清丽的鹅蛋脸、轮廓柔和不宽、肤色极白、神情清冷淡然，不要显年长、不要脸变宽。杨过的脸不要动（他保持四十岁上下的样子）。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/scene/ch03/cg_ch03_valley_reunion.png
+    sha256: 5799300656ab620251a2c3ec90a18f4cacb7e66cdf8c3f3807b4c37a78e0f66c
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.57993006.png
+  - path: assets/default/character/female/ch03/por_npc_xiaolongnv__ch03_youth_jueqing_base.png
+    sha256: e37ee9936855121025327a08d9d3b966723f88dd72f35cfec760c2ecd3c238ce
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:51:39.645624-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_38_52_r2.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 389f28bb2fd5f91b65f5a5b2d61f7564eeb272828ec2a423014d99de174ede56
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「谷底重逢」，实际字形「谷底重逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_xiaolongnv__ch03_youth_jueqing_base（十六年后重逢，保留两人原图的年龄感）；AR-44 对脸精修，基线 = por_npc_xiaolongnv__ch03_youth_jueqing_base（AR-53 总审返修：小龙女十六年后容貌如昔，对齐 jueqing_base）；AR-84 第二轮：小龙女五官对齐 por_npc_xiaolongnv__ch03_youth_jueqing_base；AR-53 仅头部，AR-75 神态与光向保留；小龙女必须采用身份参考刘亦菲定稿眉眼鼻唇颌骨，但十六年后对应年龄阶段照待改原图，不能画回少女。保留侧面仰望杨过的关切神态、视线、头向与原山谷柔光；禁止变正脸、禁止复原旧脸、禁止变更耳坠发式。；质检：实际打开base与返修前后：小龙女以恢复base身份画对应十六年后阶段，侧面仰望关切神态和原山谷柔光保留，五官同人、耳坠发式不改、接缝自然；杨过和题字等头外像素一致
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.57993006.png
+    sha256: 5799300656ab620251a2c3ec90a18f4cacb7e66cdf8c3f3807b4c37a78e0f66c
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch03_valley_reunion.57993006.entry.yaml
+  runner_job_records:
+  - - cg_ch03_valley_reunion.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_valley_reunion.resume3.png
+    - '190'
+    - exec-18f069e3-1295-4d3f-9d49-b51a59936fba.png
+  runner_success_count: 1
+  effort: ultra
+  ar84_alignment:
+    job: ar84_calign_38_52_r2
+    before_sha256: 961dd4d83319b9b6d89a049a69801b628c560bc958fce3665fa78fa7ec3da10e
+    box:
+    - 1025
+    - 164
+    - 1140
+    - 294
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_38_52_r2.png
+    outside_changed_pixels: 0
+- id: cg_ch03_xiangyang_flying_stone
+  file: cg_ch03_xiangyang_flying_stone.png
+  category: scene
+  style: default
+  subject: 襄阳大战与蒙哥之死（ch03_shendiao）
+  prompt: 'Use case: identity-preserve. Asset type: 古风游戏郭靖头部局部修正。
+
+    【任务】第1张是身份参考；第2张是待改原图裁出的头部方图。以第2张为底，只重画郭靖面部，输出同取景1024×1024方图。
+
+    【身份与年龄】以第1张新中年郭靖定稿为身份参考，保持原场景的中年郭靖年龄、短髭须和威严神情。
+
+    【神态】保持第2张原有神态的情绪、眉眼紧张程度、目光方向与头部转角，严肃闭嘴不笑。参考图只取五官身份，不复制它的表情、发型、衣服、背景或光线。
+
+    【保持】脸部大小位置和外轮廓、头部朝向、原有发型发冠头巾、耳朵、脖子、衣领、服装、身体动作、背景、其他人和题字不变。下巴与颈部过渡自然，正常人体解剖，不能多出一层下巴、僵硬断颈或贴头痕迹。
+
+    【光线与画风】严格沿用第2张的光线方向、明暗关系、肤色冷暖、柔和度与写实手绘笔触；避免塑料皮肤、过度锐利、完美对称和照片感。
+
+
+
+    【不要】不要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。'
+  negative: 要文字、水印、新增人物；不要镜像；不笑；不要改变服饰构图。
+  references:
+  - path: assets/default/character/male/ch03/por_npc_guojing__ch03_prime_base.png
+    sha256: bdf0c389f59047dbacc0a7d4512656bc887608865191e4132d301506b33e6cd4
+    use: AR-87 身份基线，青年B或B年长化定稿
+  - path: assets/default/scene/ch03/cg_ch03_xiangyang_flying_stone.png
+    sha256: 22d0ad972da50355fe8994927b8844cb3fab1926e29bc213e8430a3580fe916c
+    use: AR-87 编辑前原图；旧图备份 .agents/coord/_lines/guojing-final/replaced/cg_ch03_xiangyang_flying_stone.22d0ad97.png
+  tool: 共享 w35 runner · codex exec / image_gen；AR-87 局部编辑与有界蒙版合成
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:46:20-07:00'
+  source_path: .agents/coord/_lines/guojing-final/staging/ar87_gj_cg_ch03_xiangyang_flying_stone_v1_composite.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 2526604bbc089e78ad2285a2e4d6b5ad87e36b9b00b13cb50910812b37b1af7f
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「飞石靖难」，实际字形「飞石靖难」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_yangguo__ch03_youth_onearm_base、por_npc_guojing__ch03_prime_base、por_npc_huangrong__ch03_prime_base；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审返修：黄蓉改回三十七八岁的壮年 base）；AR-44 对脸精修，基线 = por_npc_huangrong__ch03_prime_base（AR-53 总审复核返修：黄蓉改圆脸笑眼）；AR-80 / AR-87 参考黄日华 1983 TVB，作者选 B；AR-53 仅合成郭靖头部，保持场景神态与不笑，其他人物、题字、衣服与蒙版外像素不变
+  previous_revision:
+    png: .agents/coord/_lines/guojing-final/replaced/cg_ch03_xiangyang_flying_stone.22d0ad97.png
+    sha256: 22d0ad972da50355fe8994927b8844cb3fab1926e29bc213e8430a3580fe916c
+    entry: .agents/coord/_lines/guojing-final/replaced/cg_ch03_xiangyang_flying_stone.22d0ad97.entry.yaml
+  runner_job_records:
+  - - cg_ch03_xiangyang_flying_stone.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch03_xiangyang_flying_stone.resume3r2.png
+    - '208'
+    - exec-4dbe386d-563e-4955-8038-d2217b1ecc1c.png
+  runner_success_count: 1
+  effort: xhigh
+- id: cg_ch03_xiangyang_gift
+  file: cg_ch03_xiangyang_gift.png
+  category: scene
+  style: default
+  subject: 郭襄十六岁生辰与杨过献礼（ch03_shendiao）
+  prompt: '生成一张全新的1536×1024横幅剧情插画，3:2，不透明背景。用所附四位角色各自现行身份参考从空白画面生成；所附图只是身份参考，不是待编辑的剧情图。没有上传旧插图，绝不可复刻旧插图构图。
+
+
+    【原著瞬间】《神雕侠侣》第三十七回《三世恩怨》：郭襄十六岁生辰，杨过三件大礼已经揭晓，他公开拜见郭靖、黄蓉后走到郭襄身前含笑。此时襄阳城西大校场已入夜，云淡星稀、钩月斜挂，校场四角戏台、灯笼、火炬与古代花炮齐庆，群豪惊叹喝彩。这里的花炮是杨过现身后庆寿戏台旁重放的，不是他尚未到场时的第二礼十字烟花。请画这一同一时刻，不画城门外，不画揭面，不画虚构纸盒礼物，不画血腥战果。
+
+
+    【四位角色与严格身份对应】第1张身份板为郭襄，左右两格是同一个人原立绘与脸部放大；第2张为十六年后独臂杨过；第3张为神雕时期黄蓉；第4张为作者选定的郭靖B脸。四人各自用对应参考的眉眼、眼距、鼻形、唇形、脸型、下巴；不能串脸。参考板不是分镜，输出只是一幅完整的剧情画面。
+
+    郭襄：十六岁青春少女，五官清秀灵动，眼睛和小鼻子严格以第1张为准；淡灰绿外衣、白色内领与明珠、半挽发髻和白缎发带沿用自己的base。不要把参考里的露齿大笑带过来：闭唇含蓄浅笑，眼中有喜悦的湿润感，脸颊一点自然红晕，喜泪尚未落下。自然偏身朝杨过，双手松松相拢于身前、轻轻欠身致谢，手指正确，不挤成拳，不捧礼盒。
+
+    杨过：三十六岁上下，十六年后成熟清俊、有浅淡胡茬，独臂蓝衫，右臂自上臂缺失，空右袖自然下垂，只有左手。用第2张自己的脸，不照搬高台救人的掌势，不穿破烂衣服，不拿剑或面具。左手自然放低，眉间舒展、闭唇含笑，眼神明确而柔和地看郭襄，是长辈欣慰关照小辈。身姿挺拔从容，保留双方约一臂距离，不握手、不拥抱、不俯身贴脸，不画成恋人。
+
+    黄蓉：后景稍近，来自第3张的独立脸型、眉眼、唇形，画成四十多岁的中年母亲，少量真实眼尾细纹和温柔沉着的神情，与郭襄显出一代年龄差；素雅已婚盘髻，黛青绿衣，站在郭靖身旁关注女儿与故人。不能用郭襄的脸，不能画成少女姐妹，不作舞台式大笑。
+
+    郭靖：在黄蓉旁，用第4张B的方正骨相、厚实眉眼、鼻口及黄日华版神韵，年长化为作者要求的四十上下中年，有适度细纹与淡须，身形结实宽肩，稳重欣慰、嘴角可有细微笑意；穿本场南宋守城侠士的深色布袍，不照搬年轻参考的蒙古金刀驸马毛边装、弓箭。黄药师、郭芙等具名人物在镜头外，不新增无参考的具名面孔。
+
+
+    【构图与动作】以郭襄和杨过为视觉重心的自然平视中近景，腰部至大腿上方入画，人物身体有真实重量与站立重心；杨过在左、郭襄偏右，郭靖黄蓉在后面偏左，两人各自独立轮廓，勿挡主要人物脸。人物正在庆寿交流而非排队合影。所有四人的脸都能看清，每张脸有足够像素。脸部至多轻微三分之二转侧（约10–20度），郭襄只轻转眼神看杨过，头颈基本中正，不能昂头折脖子。背景有高台、两根旗杆、挂灯笼的小戏台、匿名群豪席地饮宴或转身喝彩；群豪读得出惊喜，远景脸不需刻画成肖像。画面上方留出夜空，古代花炮升起、散出金红青色细小花雨与烟气；热闹而不喧宾夺主，不是现代大型烟花秀。
+
+
+    【下巴、下颌线与脖子是首要验收点】郭襄下巴严格保持第1张自然短而圆润的脸型收束，颏部居中，左右下颌与嘴的中轴吻合；不要尖下巴、歪下巴、拉长下巴、削脸、突起的颏骨或下巴下的额外肉团。所有人头、颈、肩遵循同一空间方向，脖子从下颌后方自然接到胸锁乳突与衣领，转头时下颌轮廓仍连续，不能扭折、细长、断开或粘贴式连接。正常的头身比例，避免为了看烟花把头过度仰起。完整绘出脸颈一体的自然皮肤明暗。
+
+
+    【画风、光线】照项目STYLE.md：细腻写实手绘武侠人物，女性古典清秀、男性真实骨相，与四张身份参考同一质感；远景古风水墨空气层次。清楚的手绘线条和自然笔触，真实的皮肤细纹、布料经纬、自然发丝，沉稳低饱和蓝绿衣装与温暖灯火；夜间灯笼、火炬、花炮构成可信柔和照明，脸上亮度充足但不漂白，不磨皮，不打美颜棚光，不发光武功，不做照片、塑料CG、3D渲染、漫画或厚涂油画。
+
+
+    【题字】画面右上角竖排一列毛笔楷书，从上到下严格仅写简体「襄阳献礼」，四个字独立、清晰、准确，题字占画宽约6%、高度约28%，不挡脸、不挡郭襄头发；可附一枚无可读文字的小朱印。除这一题字，不画其他可读文字（戏台匾额不写字，花炮散为花雨）。
+
+
+    【禁止】身份串脸、统一网红脸、尖歪长下巴、脖子角度错、过度仰头、露齿大笑、情侣暧昧、额外杨过右手、手指错误、多余肢体、具名人物无参考、少女性化、裸露、血腥、耳朵战果展示、现代物件、水印、Logo、边框、分镜。
+
+
+    【本张构图变化】取稍舒展的腰部中景，郭襄与杨过各有完整颈肩与清楚脸型；郭靖黄蓉位于两人之间稍偏左的后景，保证互不遮脸；天空金红青细花雨映照灯笼与群豪。
+
+    '
+  negative: 尖歪长下巴、头颈扭折、身份串脸、情侣暧昧、露齿大笑、杨过右臂、生日现场揭面、普通礼盒、血腥战果、现代烟花秀、CG塑料感、文字水印
+  references:
+  - path: assets/default/character/female/ch03/por_npc_guoxiang__ch03_youth_base.png
+    sha256: 01534d245cdc9e335bc6eec209bcb19d4b90a62f3b9a625c4677dfe3cdc7dc44
+    use: 郭襄 AR-80 最新 base，含蓄浅笑、自然下巴
+  - path: assets/default/character/male/ch03/por_npc_yangguo__ch03_prime_scene_xiangyang_platform_rescue_palm.png
+    sha256: 6a2f222db03994dc883c68649030f84746ae20186ac2c3c56e9e03206476ed1c
+    use: 杨过 ch03 十六年后场景立绘，独臂与成熟身份
+  - path: assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png
+    sha256: 072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24
+    use: 黄蓉 ch03 中年 base，同人增龄为中年母亲
+  - path: .agents/coord/_lines/final-2/guojing_face_B.png
+    sha256: 8c7112d12f754f37c81443618a6a2d3b5218d654206f9a4791be496c2331b528
+    use: 郭靖 AR-87 作者选 B，四十上下中年化
+  tool: 共享 w36 runner · codex exec / image_gen；从空白整张生成，仅四人身份参考
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:40:07-07:00'
+  source_path: .agents/coord/_handoff/gem/codex_w36/out/cg_ch03_xiangyang_gift.ar87_C.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 474fa489566263e10e65e3247098ccfc7654674bf7d62aac253be194e19b583f
+  status: candidate
+  notes: AR-87 重写提示词整张重出；核三联版《神雕侠侣》第36回《献礼祝寿》三礼及第37回《三世恩怨》杨过现身后庆寿：襄阳城西大校场夜，戏台、灯笼、花炮、群豪喝彩；郭襄含蓄闭唇浅笑且有喜泪，杨过含笑关照小辈；郭靖采用作者新B脸中年化，黄蓉采用ch03中年身份；四人逐脸放大检查下巴、下颌线、脖子；A/B/C三张新生成选C，未上传旧图、未局部修改或头部合成；右上竖排题字襄阳献礼；原著依据与旧提示词档案见完整重写提示词MD
+  previous_revision:
+    png: .agents/coord/_lines/xiangyang-gift/replaced/old.png
+    sha256: d38145d79437f623494a601739979e295ed6b042a9c6f6fc044351c8a3cd6947
+    entry: .agents/coord/_lines/xiangyang-gift/replaced/old_entry.yaml
+    prompt: .agents/coord/_lines/xiangyang-gift/replaced/old_prompt.md
+  runner_job_records:
+  - - cg_ch03_xiangyang_gift.ar87_C
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w36/out/cg_ch03_xiangyang_gift.ar87_C.png
+    - '217'
+    - exec-9f537bcf-5de2-457e-b531-497c42624082.png
+    - gpt-6.1-sol/xhigh
+  runner_success_count: 1
+  effort: xhigh
+  visual_review:
+    selected: C
+    generation_count: 3
+    old_image_used_as_edit_target: false
+    head_composite: false
+    selection_reason: C 的郭襄眼鼻与脸型、郭靖新B骨相和杨过十六年后身份较稳定；郭襄含蓄闭唇浅笑，杨过嘴角与目光有清楚笑意；四人的下巴、下颌线与颈肩连接自然，四人站位互不挡脸，夜空花炮、戏台灯火与群豪构成完整庆寿场景
+    candidates:
+    - job: cg_ch03_xiangyang_gift.ar87_A
+      full_image_opened: true
+      all_four_faces_opened_at_enlargement: true
+      chin_neck: 自然连续，无尖歪长下巴或合成边界
+      identity: 郭襄、杨过、黄蓉身份可辨；郭靖胡须较重，较B/C偏离新B
+      expression: 主角神情温暖，郭襄闭唇浅笑
+      decision: 未选，郭靖身份接近度较弱
+    - job: cg_ch03_xiangyang_gift.ar87_B
+      full_image_opened: true
+      all_four_faces_opened_at_enlargement: true
+      chin_neck: 自然连续，郭襄下巴稍长于C
+      identity: 四人较贴近身份参考，郭靖B较稳定
+      expression: 郭襄闭唇浅笑；杨过眉间较紧
+      decision: 未选，主角神情及构图弱于C
+    - job: cg_ch03_xiangyang_gift.ar87_C
+      full_image_opened: true
+      all_four_faces_opened_at_enlargement: true
+      chin_neck: 四人逐一确认颏部居中、下颌连续、脖子承接身体方向；郭襄自然圆润，不做头部合成
+      identity: 郭襄现行大眼小鼻、杨过十六年后、黄蓉中年、郭靖B骨相均可辨
+      expression: 郭襄闭唇浅笑、眼中微湿，杨过清楚含笑看她；家长稳重
+      decision: 选定；题字襄阳献礼、尺寸1536x1024、空右袖、夜校场及戏台花炮逐项通过
+  original_basis:
+    chapters:
+    - 第三十六回 献礼祝寿
+    - 第三十七回 三世恩怨
+    setting: 襄阳城西大校场；十月廿四夜；杨过公开见礼后花炮戏台庆寿
+    gift_1: 歼灭蒙古先锋两个千人队；五袋两千只耳朵为战果凭证，图不展示
+    gift_2: 流星祝寿烟花传讯，烧南阳蒙古粮草火药
+    gift_3: 带达尔巴揭破霍都、夺回打狗棒、报鲁有脚之仇
+    mask: 生日现场无揭面动作；画本来面目，面具取下发生在第35回

@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_beisongqimuqiguan
+name: 北宋漆木棋罐
+kind: collectible
+sub: antique
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongqimuqiguan
+text:
+  desc: 外观：一只暗栗色漆木圆罐，平缓圆盖合拢。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=1; provenance=expanded。
+  lore: 为北宋棋友酬答设计实用棋罐，刻意不把成套棋盘棋子塞入一个物品图。适合赠文士或乐于弈棋的藏家；木胎工艺、具体样式和取得属于（原创扩展），器内不藏秘籍。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

@@ -1,0 +1,25 @@
+{
+  "snapshot_time": "2026-09-30T01:21:05.276316-07:00",
+  "files": [
+    {
+      "file": "22-town-layout-and-generation.md",
+      "lines": 924,
+      "sha256": "6c9e1afe2fd589b62f5e77efc99590dbc9e43c2766710a72f37c8d3312dc88e7"
+    },
+    {
+      "file": "town/schema.yaml",
+      "lines": 331,
+      "sha256": "3ad66446e9398b71b96d0265e1b81aa4a7ebca8c1f956caf2d794e549f304e72"
+    },
+    {
+      "file": "town/city_dali__ch01.yaml",
+      "lines": 272,
+      "sha256": "215ed3a30cf622dac04ccbfe29bb3df404c8b78383d2cdcb02f3503cc57b4c8f"
+    },
+    {
+      "file": "town/city_hangzhou__ch02.yaml",
+      "lines": 291,
+      "sha256": "7ba7de694de15d0393a6f8cc01ae00415b3e2bc20247314168a758993ee766a5"
+    }
+  ]
+}

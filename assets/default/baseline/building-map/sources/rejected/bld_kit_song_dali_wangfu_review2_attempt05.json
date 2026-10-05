@@ -1,0 +1,20 @@
+{
+  "short": "wangfu",
+  "round": 5,
+  "prompt": "Edit target: the attached modest Dali palace. Keep architecture, vegetation and lighting. Change ONLY the camera geometry: LOWER the camera elevation to make the ground much FLATTER by about 15%. Current front ground slopes are roughly 0.58/0.60 and they must be exactly0.50/0.50. In screen space ground pixels: left corner (140,550), front corner (860,910), right corner (1420,630), back corner (700,270). Left-to-front must drop360 for720 across; front-to-right must rise280 for560 across. Straight two front perimeter wall-foot edges coincide exactly with those lines; all horizontal building edges and paving use matching directions. Keep verticals vertical. Plan18x14, left-to-front facade wider than front-to-right side by1.286. This is a 2:1 DIMETRIC grid, not30-degree isometric, no perspective. Thin stone contact border, generous padding. Full building on genuine transparent RGBA, opaque building. No text/people/grid/modern/watermark. IMPORTANT: flatter camera is the sole correction; visibly reduce apparent ground depth while retaining facade architecture and no pixel warping.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-146f3b74-3020-42a0-b849-4b49a78401c5.png",
+  "reason": "右轴仍较陡约+0.521/-0.579，淘汰",
+  "ref": "wangfu4",
+  "archive": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt05.png",
+  "source_sha256": "f53e60430aa2f43239800329942c81c90f1071d6b8aaa59f59fe2be1c26d7b8c",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_wangfu_review2_attempt04",
+      "file": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_wangfu_review2_attempt04.png",
+      "sha256": "c2dd3c7120bd1ffe7579b22919134748907115c2c9b7806b3ae6dfe849c2a59c",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "status": "rejected",
+  "created": "2026-09-30T10:49:21.052266+00:00"
+}

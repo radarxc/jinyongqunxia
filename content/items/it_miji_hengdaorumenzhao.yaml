@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_hengdaorumenzhao
+name: 横刀入门招全本
+kind: manual
+sub: full
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_hengdaorumenzhao
+text:
+  desc: 外观：明代深赭线装图册，四眼黑线。
+  lore: 行脚刀客把横刀迎敌的起手、截击和收势绘成深赭图册，招法和载体属 （原创扩展）。研读须先明刀背与刃口朝向，再练腰身带刀；浅压刀痕只是装帧记号，不代表真正刃伤。
+extension:
+  type: manual
+  value:
+    skill: sk_hengdaorumenzhao
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_hengdaorumenzhao
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

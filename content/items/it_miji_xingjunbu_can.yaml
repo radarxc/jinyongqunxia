@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_xingjunbu_can
+name: 行军步残本
+kind: manual
+sub: partial
+grade: 5
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_xingjunbu_can
+text:
+  desc: 外观：清代灰布面线装残册，粗麻四眼订。
+  lore: 斥候将负重疾行与泥地落足记成残谱，步法、册本和散佚经历皆属 （原创扩展）。研读须依地形校准步幅，不能照残页一味求快；末页缺损使来源上限仅七层。
+extension:
+  type: manual
+  value:
+    skill: sk_xingjunbu
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_xingjunbu
+      readWis: 35
+      maxLayer: 7
+      cultivation: 1120

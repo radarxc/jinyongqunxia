@@ -1,0 +1,14 @@
+schemaVersion: book-world.v1
+id: ch00_yuenv
+eraLayerId: ch00
+gameYear: {start: -482, end: -482, approx: true}
+worldTier: LOW
+levelCap: 10
+layerCap: 9
+foreignSuppression: 4
+startTick: 0
+countsRealLevel: false
+wake:
+  regionId: rg_jiangnan_taihu
+  sceneId: sc_00_zhulin
+  spawnId: bookfall

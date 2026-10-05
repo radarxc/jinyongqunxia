@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_beisongbaijian
+name: 北宋清谈拜帖
+kind: collectible
+sub: calligraphy
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/beisongbaijian
+text:
+  desc: 外观：素笺短帖一件，折起正文。 待运行时投影：eraRange=[song_north]; giftTo={preferred:[scholar,collector]}; giftValue=1; provenance=expanded。
+  lore: 为天龙文士交游设计的普通拜帖，玩家代整书斋后可请求题赠。适合馈赠同好，题辞不构成门派或官府凭证；文字、装帧和获赠流程为（原创扩展），不能署成名家真迹。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 20

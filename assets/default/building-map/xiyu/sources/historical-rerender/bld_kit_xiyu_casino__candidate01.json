@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_casino",
+  "generated_at": "2026-10-01T10:11:02.987105+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_casino__candidate01.png",
+  "sha256": "71621bba0590565f336de0cb5af78161436daf9ba669de3b72427e7ab98476cc",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_casino__geometry-lock.png",
+      "sha256": "509f68e4eff94b8caa290a6f781f1a4db7e883ab49eb9341c32e40fe8f425b0d",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/school_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:A_Kashgar_School.jpg",
+      "detail": "1915年泥抹墙、厚墙洞口、简素木柱及平顶院屋；只取形制。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/caravanserai_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg",
+      "detail": "遮阴深廊、粗木柱梁与木椽覆土屋面。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:A_Kashgar_School.jpg — 1915年泥抹墙、厚墙洞口、简素木柱及平顶院屋；只取形制。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg — 遮阴深廊、粗木柱梁与木椽覆土屋面。\n\nAsset-specific production prompt:\nFinish this exact 3D blockout as an ancient Xinjiang adobe gaming-house courtyard. Keep the bottom three visible corners EXACTLY at (168,560),(835,893),(1368,627) on1536x1024. Do not zoom, recenter, change camera, elongate sides, or otherwise modify geometry. Front wall is25% longer than the right wall. Both ground axes are2:1 slope±0.5. Add realistic tan mud and brick material, flat-roof perimeter rooms, carved timber courtyard arcade, wooden front door in left-facing wall, two low wooden game tables and small rugs. Detailed realistic historical strategy-game art, tiny wood grain and plaster chips. Upper-left light, small lower-right contact shadow. Fully opaque building and true transparent RGBA background. Absolutely no halo, scenery, writing, people, modern items or raised ground platform. Geometry precision is primary: bottom corners and all parallel edges must match blockout.\n\nRequired historical detail summary: 应为匿名世俗小院，不加宗教标识；棋戏馆功能无对应史证，保持原创扩展。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

@@ -1,0 +1,33 @@
+schemaVersion: item.v1
+id: it_guisugao
+name: 桂酥糕
+kind: food
+sub: food
+grade: 3
+stack: 20
+chapters: any
+origin: expanded
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1200
+  - op: applyBuff
+    params:
+      value: bf_yangsheng:2h
+assets:
+  icon: item/guisugao
+text:
+  desc: 外观：四块浅金方糕，桂花碎点。
+  lore: 江南作坊趁秋桂初放拌花蒸烤，浅金方糕上仍见细碎桂花。配清茶小口食用最合宜；掌柜常把当日出炉的一盘留给晚归渡客。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 12

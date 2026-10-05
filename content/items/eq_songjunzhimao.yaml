@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_songjunzhimao
+name: 宋军直矛
+kind: weapon
+sub: spear
+grade: 1
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·宋；天龙起可得（《武经总要》枪类参照）
+price: auto
+flags: []
+assets:
+  icon: item/songjunzhimao
+text:
+  desc: 外观：窄柳叶铁锋配素木长杆，通长约二点二米。
+  lore: 参照《武经总要》枪类名目的宋军直矛，窄锋配素木长杆，列阵时以攒刺和拒进为主。枪裤、麻缨可保护接合与遮挡血水；具体尺度、装具和配发为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: spear
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 40
+      qiAffinity: 100

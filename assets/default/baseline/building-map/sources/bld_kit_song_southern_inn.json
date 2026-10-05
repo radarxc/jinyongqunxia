@@ -1,0 +1,115 @@
+{
+  "id": "bld_kit_song_southern_inn",
+  "type": "bld_kit_song_southern_inn",
+  "w": 12,
+  "h": 9,
+  "subject": "客栈",
+  "prompt": "Use case: precise-object-edit. Keep this exact inn's visual style, architecture, warm timber, grey tiles, ivory plaster, guest balconies, courtyard, left-upper lighting, transparent background and all details. Correct ONLY the rectangular floor width/depth and camera projection. This is a 12 wide x 9 deep rectangle. Current front edge is too short relative to side; LENGTHEN the lower-left-facing frontage by 13 percent, leaving side depth fixed. The long floor edge from LEFT ground corner to FRONT ground corner must have horizontal run 4:3 relative to FRONT to RIGHT. Both ground edge angles must be exactly 26.565 degrees to horizontal, slopes +0.500 and -0.500, slightly flatter than the current image. Rebuild the actual walls, roof and courtyard to follow this geometry, not just transparent canvas padding. Consistent orthographic camera with straight parallel edges. Thin floor boundary all four sides, clean complete uncut sprite, generous empty margin. No text, people, modern objects, grid or labels. True transparent RGBA, no halo.",
+  "negative": "文字、标牌字、水印、人物、天空、地平线、背景色、棋盘格、厚地台、大阴影、现代物、清代形制、透视消失点、裁切屋檐、卡通。",
+  "references": [
+    {
+      "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try2.png",
+      "sha256": "e106a6f6cfccb8cac215c55aa72fa583adb58504416b4fd21f241402ab9a7f20",
+      "role": "image_gen candidate: geometry/style reference or edit target; not author approved"
+    }
+  ],
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-b5f8ddaf-313c-4a49-bf65-c916de844581.png",
+  "source_sha256": "8ba6f7ce43a46933cea8aaa0cdd45fadf40b5389650e12f9ea4420194f7f642b",
+  "created": "2026-09-30T10:49:55.609330+00:00",
+  "visual_review": "返修第2轮：已逐张view_image；底面宽深恢复，宋式灰瓦木构及商用/客栈陈设完整，无文字人物现代物，左上主光；底面接触角按可见地坪外缘读点并用alpha>=192轮廓复核。64×32网格叠图另存review2；细小轴向残差按geometry_qa如实登记，目视判断不等于严格几何通过。",
+  "candidate_count": 5,
+  "candidate_history": [
+    {
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f168-bd42-7250-a8f4-ddaffadae304/exec-5477abc3-62d4-4ad3-83d3-d6f4cb12c1e3.png",
+      "prompt": "Use case: background-extraction. This is a game sprite. Remove the ENTIRE background halo, colored mist, blurry glow, surrounding blurred silhouette and all backdrop pixels. Return ONLY the sharply bounded building or market stall including its thin paved footprint, on genuine fully transparent RGBA background. Outside its solid silhouette alpha MUST be zero, no glowing border or large shadows. Preserve the pictured structure, viewpoint, colors, texture, light, proportions and all architectural details exactly. Keep the entire structure uncut, add 10 percent empty transparent margins on all four sides. Do not add anything, do not add shadows, no white or black or checkerboard background.",
+      "selection": "unselected",
+      "reason": "误判透明像素RGB预览光晕而追加去背景；第二版更饱和，未改善投影，选首版。",
+      "source_sha256": "6ab153450504d501e6055076c343dd680434c0e427f45e23f350ef18e3eca54f",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_try2.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_pre_review2.png",
+          "sha256": "740471fca8e998963abb80b1d05c9650ae4d54c17401993713112282a08f8f13",
+          "role": "edit target：本条首版候选PNG，未获作者审批"
+        }
+      ]
+    },
+    {
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_pre_review2.png",
+      "source_sha256": "740471fca8e998963abb80b1d05c9650ae4d54c17401993713112282a08f8f13",
+      "source_record": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_pre_review2.json",
+      "selection": "rejected_by_review1",
+      "reason": "合入前审核点名：可见底面宽深比与登记占地明显不符；本轮重出。"
+    },
+    {
+      "key": "inn",
+      "prompt": "Use case: historical-scene. ONE realistic Southern Song Lin'an commercial inn compound, isolated transparent RGBA sprite for a town-building game. Strict 2:1 orthographic camera; vertical pillars vertical. Foundation is a clean thin rectangular footprint of exactly 12 x 9 metres, wide SOUTH facade faces screen lower-left, shorter EAST side faces lower-right. Geometric construction on 1536 square image: the LEFT ground corner (160,1010), FRONT ground corner (832,1346), RIGHT ground corner (1336,1094), BACK corner (664,758). Left to front runs exactly 672px right and 336px down (12 units). Front to right runs 504px right and 252px UP (9 units). All foundation and wall lines parallel these two directions, +0.500/-0.500 slopes. Front corner is shifted RIGHT of screen center, and right corner is LOWER than left corner. These are crucial, not optional. NOT a square diamond. Do not display numbers or guidelines. Subject: a broad two-storey timber and ivory plaster guest inn with restrained weathered grey Chinese roof tiles, front balconies along the broad 12-unit facade, sheltered southwest entrance with travel baskets and rolled bedrolls, small internal yard visible behind, small stone-paved entrance apron. Inn is entirely within that single rectangular ground boundary. Realistic historic game environment and physically detailed warm wood, rough plaster and grey tiles, muted earthy colors. Upper-left sunlight, short soft shadow to lower-right. Whole silhouette centered with generous transparent margin, top and all corners uncut. True alpha outside silhouette. No backdrop, black or white background, checkers, halo, text, signs, people, modern objects, cartoons or oversized fantasy eaves. Southern Song year 1223 architecture, not Qing palace styling.",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-70025ce9-d570-4c17-89b8-8726255ac1a4.png",
+      "references": [],
+      "source_sha256": "0593a24432c6978d6ddfdd9e694481ae4aed038197f34d7f98e3c321c0d3e405",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try1.png",
+      "selection": "unselected",
+      "reason": "纯文本约束版仍两轴不协调且左侧主体靠边/疑裁切，淘汰。"
+    },
+    {
+      "key": "inn2",
+      "prompt": "Use case: historical-scene. The attached image is a GEOMETRY construction reference, not artwork: keep EXACTLY the same four corners and exact ground boundary angles. Build a realistic historical Chinese SOUTHERN SONG inn ON this rectangular platform. Camera is orthographic, horizontal edge slopes +0.5 and -0.5. Entire platform shape stays fixed: left corner (150,850), front corner (710,1130), right corner(1130,920), rear corner (570,640) in the 1280 square image. Its long lower-left facade edge is 12 units, short lower-right side edge is 9 units. Generate a beautiful realistic single two-storey Lin'an commercial inn compound with guest balconies, dark warm weathered timber, ivory plaster, restrained grey tile roofs, compact inside yard. Wide southwest entrance facade, travel baskets and rolled bedrolls. Keep all architecture aligned to those two axes and vertical pillars truly vertical. Cover the reference thin slab with natural stone paving; don't display drawn grid lines. Thin foundation, no thick pedestal. Realistic historic game art with physically detailed tiles and subtle warm earthy colors. Upper-left sun, short lower-right contact shadow. All building, roof and platform contained within image with at least 100px empty transparent margins. Replace ALL white background with true transparent alpha. No grid, guide lines, outlines, text, symbols, people, modern objects, cartoon, horizon, backdrop, glow, giant shadow. Most important: preserve reference platform shape exactly while rendering the complete inn above it.",
+      "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e1-2598-76d0-b96e-6d20617f42cc/exec-0d7902e2-8485-4726-be57-52f63990ff3a.png",
+      "references": [
+        {
+          "path": "assets/default/baseline/building-map/review2/bld_kit_song_southern_inn_geometry_guide.png",
+          "sha256": "00fe557db1a270b6d948f0b96dae9814073018384f21ef9b6847ddc1b1403abb",
+          "role": "geometry-only construction guide; no asset pixels drawn by code"
+        }
+      ],
+      "source_sha256": "e106a6f6cfccb8cac215c55aa72fa583adb58504416b4fd21f241402ab9a7f20",
+      "saved_path": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_southern_inn_review2_try2.png",
+      "selection": "unselected",
+      "reason": "几何引导版两轴已协调，但初读比例约1.18，相对12/9仍偏短约11.7%，由下一版延长前立面替换。"
+    }
+  ],
+  "ground_edges_source_px": [
+    [
+      [
+        45,
+        627
+      ],
+      [
+        853,
+        1024
+      ]
+    ],
+    [
+      [
+        853,
+        1024
+      ],
+      [
+        1475,
+        724
+      ]
+    ]
+  ],
+  "footprint_corners_source_px": {
+    "left": [
+      45,
+      627
+    ],
+    "front": [
+      853,
+      1024
+    ],
+    "right": [
+      1475,
+      724
+    ]
+  },
+  "source_dimensions": [
+    1497,
+    1051
+  ],
+  "alpha_extrema": [
+    0,
+    255
+  ]
+}

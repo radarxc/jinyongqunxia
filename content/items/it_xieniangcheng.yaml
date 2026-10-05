@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_xieniangcheng
+name: 蟹酿橙
+kind: dish
+sub: dish
+grade: 7
+stack: 20
+chapters: any
+origin: canon
+canonRef: 宋《山家清供》载以蟹膏肉填黄熟橙蒸制
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2000
+  - op: meal
+    params:
+      value: bf_qingxin,bf_ningshen:2battle
+assets:
+  icon: item/xieniangcheng
+text:
+  desc: 外观：四只截顶黄橙盛蟹肉后复盖枝顶，置小蒸甑。 待运行时投影：party=4。
+  lore: 宋《山家清供》载以蟹膏肉填入黄熟橙后蒸制，秋季蟹肥橙熟时最合时令。本件四枚同甑上桌；清心、宁神与供餐数值属原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      stamina: 20

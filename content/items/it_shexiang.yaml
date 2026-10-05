@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_shexiang
+name: 麝香
+kind: material
+sub: herb
+grade: 8
+stack: 999
+chapters: any
+origin: canon
+canonRef: 动物性本草；受保护动物来源，仅作历史设定、不可循环采集
+price: auto
+flags: []
+assets:
+  icon: item/shexiang
+text:
+  desc: 外观：历史药材为棕褐颗粒封入小绢囊，再置铜扣木匣。
+  lore: 秦巴、巴蜀、青藏与东北只标历史来源，本作不设采期、野采或交易。棕褐颗粒仅由古药库与合法旧藏交付，用作疏内伤素材，不展示猎取。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_di6
+    materialGrade: 8
+    rare: false
+    herbFamily: sheXiang
+    ageYears: 0
+    attributes:
+      version: 2
+      healInner: 5

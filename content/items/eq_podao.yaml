@@ -1,0 +1,34 @@
+schemaVersion: item.v1
+id: eq_podao
+name: 朴刀
+kind: weapon
+sub: blade
+grade: 2
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 通用制式·宋元民间长柄刀 （待考：核形制年代下限）；定级 （原创扩展）
+price: auto
+flags: []
+assets:
+  icon: item/podao
+text:
+  desc: 外观：宽背单刃配一米余木柄，刀身约半臂长。
+  lore: 长木柄配宽背短刃，可借双手劈砍，也能以杆身拦架，民间护院与行旅者容易就地修补。宋元是否已有此一稳定器名和形制仍 （待考：核年代下限），玩法为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 43
+      qiAffinity: 100

@@ -1,0 +1,135 @@
+id: bld_kit_qing_south_house_small
+status: candidate
+building:
+  type: bld_kit_qing_south_house_small
+  footprint:
+  - 6
+  - 5
+  anchor:
+  - 263.5089
+  - 298.8751
+  era: qing_south
+anchor_px:
+- 263.5089
+- 298.8751
+footprint_m:
+- 6
+- 5
+footprint_source: design/22 §3.3 bld_kit_song_southern_house
+logical_footprint_polygon_px:
+- - 87.50889999999998
+  - 290.8751
+- - 279.5089
+  - 386.8751
+- - 439.5089
+  - 306.8751
+- - 247.50889999999998
+  - 210.87509999999997
+occluder_proxy_px:
+- 87
+- 115
+- 439
+- 392
+occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+entrance:
+  edge: S
+  offset_cells: 2
+entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
+collision_polygon_m:
+- - 0
+  - 0
+- - 6
+  - 0
+- - 6
+  - 5
+- - 0
+  - 5
+collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_house_small.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+release_ready: false
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 352
+  - 176
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 512
+  - 512
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 202041
+  alpha_partial_pixels: 59482
+  alpha_opaque_pixels: 621
+  alpha_nonzero_bbox:
+  - 88
+  - 113
+  - 440
+  - 395
+  transparent_margins_px:
+  - 88
+  - 113
+  - 72
+  - 117
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 163
+  - 272
+  - 1145
+  - 1059
+  isotropic_scale: 0.3583227445997459
+  resized_size:
+  - 352
+  - 282
+  paste_offset:
+  - 88
+  - 113
+  - 440
+  - 395
+  final_size:
+  - 512
+  - 512
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/house_small.png
+  source_sha256: b6b6b4fc78ae47f2300f65e962deaa2676e5f744ce6d29e33256ab82e807d0dc
+  forbidden_transforms_used: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+final_review: 成品576×544已view_image(original)复查：轮廓完整、透明边充足、格窗灰瓦可辨；接触影右下。
+source_request: history/records/house_small.yaml
+source_measure: sources/bld_kit_qing_south_house_small.measure.json
+review2_record: review2/house_small.review.json
+review2_result: 两次重出均未通过几何，未采用；保留旧图、SHA、测点、锚点，返修未解决。

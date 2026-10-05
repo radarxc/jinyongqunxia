@@ -1,0 +1,17 @@
+{
+"type": "casino",
+"w": 10,
+"h": 8,
+"subject": "赌场（原创扩展）",
+"prompt": "Use case: historical-scene. Generate exactly ONE complete isolated building sprite for tianshu default building-map. Reference image is only a style and fine material texture reference; create the new northern subject described. Northern Song Kaifeng/Luoyang urban architecture, grey clay tiled roofs with restrained eave curves, matte weathered timber, wooden lattice shutters, muted warm grey earthen plaster and rough grey brick lower walls, low saturation. True orthographic dimetric yaw45 pitch30: ground edges at precisely +0.5 and -0.5 slopes, 2:1 ground projection; parallel edges never converge. A very thin flush rectangular ground contact footprint with left, front and right corners clearly visible. No thick plinth. South entrance faces screen lower-left. Main light screen upper-left, short soft lower-right contact shadow. Match reference's realistic fine details and density. Real RGBA transparent background, whole eaves and base uncut, generous transparent margin on ALL sides. No people, animals, text, readable signs, labels, lantern rows, Qing paintwork, horsehead walls, modern objects, scene background, sky, checkerboard, watermark, perspective convergence. Asset bld_kit_song_north_casino. Gameplay-original gambling house in Northern Song northern urban material language, no assertion of historical named institution. A compact two-storey recreational hall, discreet deep recessed wide front entrance with unlettered timber lintel, heavy wood screens around the upper floor, two simple game tables faintly visible inside ground-floor doorway, plain grey tiled gable roof, robust rough brick base and muted beige plaster. Not palace, no casino signage, cards, roulette, neon, or modern symbols. Footprint10 by8 cells, axis10:8, shallow exact2:1 ground. Pure transparent backdrop.",
+"source": "/Users/bytedance/.codex/generated_images/01a0f428-3a13-73a2-b64f-f05bceba7950/exec-04bf78a5-2e30-4856-bb76-3ab3d466a643.png",
+"candidate_count": 1,
+"corners": [[126, 742], [770, 1105], [1308, 832]],
+"references": [{"path": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-song_north/assets/default/baseline/building-map/bld_kit_song_southern_house.png", "sha256": "0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7", "role": "style/material only;实际referenced_image_paths输入，已view_image"}],
+"alternates": [],
+"id": "bld_kit_song_north_casino",
+"source_sha256": "9e24b70e784aa6e04fed3d23f1289899557b8b2369029e4fd925d9baad59dec2",
+"source_size": [1402, 1122],
+"source_viewed": true,
+"selected_reason": "（原创扩展）木屏和室内桌凳表达游戏赌场功能；仅凭外观无法区分普通会馆，需交互标签。"
+}

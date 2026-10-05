@@ -1,0 +1,21 @@
+- id: town_city_tengchong__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 腾冲府一带（大理国，待考）1093年玩法拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_tengchong__ch01/layout.yaml -o assets/default/town/city_tengchong__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2048x1024
+  sha256: f8429631395ad1ed0055c2b77c2e8faf2c94bef3218651aac06313a7c59bf6a1
+  status: candidate
+  references:
+  - docs/design/town/city_tengchong__ch01.yaml
+  - docs/design/town/history/city_tengchong__northern_song.md
+  - assets/default/tile/song_dali/
+  - assets/default/building-map/song_dali/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；套件回退 12 项（按素材变体计）：路缘、城门使用 song_dali / song_southern 共享或替代贴片

@@ -1,0 +1,36 @@
+schemaVersion: item.v1
+id: it_heliandouzi
+name: 荷莲兜子
+kind: dish
+sub: dish
+grade: 8
+stack: 20
+chapters: any
+origin: canon
+canonRef: 元《饮膳正要》所载多馅蒸兜
+price: auto
+flags:
+- runtimeProjection
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 2200
+  - op: meal
+    params:
+      value: bf_juqi,bf_huichun:2battle
+assets:
+  icon: item/heliandouzi
+text:
+  desc: 外观：荷叶托四只蒸制粉皮兜，细碎多馅可辨。 待运行时投影：party=4。
+  lore: 元《饮膳正要》载多馅蒸兜，本件以荷叶托四只粉皮兜，蒸熟后同席分食。细碎馅料按当季替换；聚气、回春效果均为原创。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healOuter: 7
+      stamina: 22

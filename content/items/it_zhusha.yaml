@@ -1,0 +1,28 @@
+schemaVersion: item.v1
+id: it_zhusha
+name: 朱砂
+kind: material
+sub: herb
+grade: 6
+stack: 999
+chapters: any
+origin: canon
+canonRef: 矿物药历史设定；毒性，供剧情 / 暗器 / 解毒设定
+price: auto
+flags: []
+assets:
+  icon: item/zhusha
+text:
+  desc: 外观：药用辰砂矿晶碾成鲜红粗粉，旁置暗红晶粒。
+  lore: 湖湘、广西、巴蜀与云滇黔矿脉四季可见，暗红晶粒须双层瓷盒封存。矿物有毒，本作仅供剧情、暗器或解毒设定，不提供研制与服用途径。（原创扩展）
+extension:
+  type: material
+  value:
+    family: herb
+    resourceRef: res_yaocai_xuan3
+    materialGrade: 6
+    rare: false
+    herbFamily: zhuSha
+    ageYears: 0
+    attributes:
+      version: 2

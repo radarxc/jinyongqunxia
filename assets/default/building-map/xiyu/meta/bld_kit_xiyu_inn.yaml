@@ -1,0 +1,93 @@
+id: bld_kit_xiyu_inn
+file: bld_kit_xiyu_inn.png
+category: building-map
+style: default
+subject: 西域绿洲商旅客栈；土木平顶围院与木廊（原创扩展，年代细部待考）
+prompt: 'Use case: sketch-to-render. This input is an exact orthographic production geometry blockout, NOT a mood image. Materialize it as a realistic hand-crafted ancient southern Xinjiang
+  oasis-town map sprite. Preserve the input camera, framing, every major outer boundary and especially the three lowest footprint corners PIXEL EXACTLY. Do NOT rotate, re-project, tilt,
+  enlarge, narrow, or reposition the blockout. Its ground axes are exactly +0.5 and -0.5 slopes, yaw45 elevation30, required for grid assembly. Add fine weathered ochre adobe, local
+  pale stone foundation, honest timber grain and carved wood screens. Restrained highly detailed realistic historic strategy-game art; no plastic/toy look. Upper-left light, tiny lower-right
+  contact shadow. Keep real transparent RGBA outside silhouette. No text, numbers, guide marks, border, watermark, people, animals, modern objects, landscape, or thick floating display
+  slab. Ground is a flat thin contact surface. All new detail stays WITHIN the guide silhouette. Footprint front-to-side lengths exactly 12:9. Preserve this rectangular courtyard inn
+  massing. Back and side lodging wings have two storeys, recessed wooden balcony gallery facing inner courtyard, front gate in exact existing gap. Earthen flat roofs with low parapets,
+  timber doors/screens, a few rolled travel bundles within court. Lowest vertices left(208,580), front(848,900), right(1328,660).'
+negative: 文字、伪字、人物、现代物、背景、厚地台、透视汇聚、卡通、旋转或镜像补朝向
+references:
+- {file: sources/round2/inn_guide.png, sha256: 6d9c3cfeaab52e8e5b1b764bf0a0bee52af538571722df6ec149914936839f71, role: '本轮精确2:1实心灰盒，唯一相机与布局参考'}
+tool: built-in image_gen
+model: image_gen (underlying model not disclosed)
+effort: not exposed
+created: '2026-09-30T23:01:00.870395+00:00'
+created_time_basis: 原PNG文件mtime，非服务端调用时间
+source_path: /Users/bytedance/.codex/generated_images/01a0f487-1f8f-70e0-a288-c172cd21b383/exec-90a5e31b-1ae1-41d2-a8eb-907543e522f4.png
+size: 896x640
+sha256: 3dac5aec8e6f1c3dccc82546235b439584d653b4948de96895af55862ddb54d3
+status: candidate
+notes: 合入前审核第1轮返修：精确12×9实心灰盒重出，选第一候选。角点取可见外包络，不以局部前墙退台填满逻辑占地；独立长直段OLS为+0.52569/-0.51618，轴/比例均进既有公差。第二候选虽填直退台，但左轴增至+0.54480，未选。原图与灰底合成经view_image复核，纯裁切/等比缩放/扩边，未调阈值或扭曲。
+building:
+  type: bld_kit_xiyu_inn
+  footprint: [12, 9]
+  anchor: [472.7282, 363.5005]
+  era: xiyu
+footprint_m: [12, 9]
+footprint_basis: design/22 §3.3 bld_kit_song_southern_inn 同功能占地；仅地域外观替换
+entrance:
+  edge: S
+  offset_cells: 5
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 672
+  - 336
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+png_rotations_available:
+- 0
+allowRotation: false
+metadata: meta/bld_kit_xiyu_inn.yaml
+candidate_count: 2
+source_record: sources/round2/inn_record.json
+selected_candidate: 1
+generation_round: 合入前审核第1轮返修
+processing:
+  source_archive: sources/round2/inn_candidate1.png
+  source_sha256: d6ab060488c90fa94c49750d67f5884d7b3d754859c09446fc1475e9861c40c0
+  source_size: [1536, 1024]
+  crop_box: [0, 37, 1468, 1024]
+  uniform_scale_requested: 0.5609348914858097
+  resized_size: [823, 554]
+  rounded_effective_scale: [0.5606267029972752, 0.5612968591691996]
+  paste_offset: [36, 43]
+  steps: [alpha>0 bbox crop, uniform LANCZOS resize with pixel rounding, unmasked paste into transparent canvas; no repaint/warp/alpha threshold]
+geometry_qa:
+  source_corners_px:
+    left: [180, 571]
+    front: [875, 900]
+    right: [1378, 645]
+  source_anchor_px: [779.0, 608.0]
+  source_axis_slopes: [0.47338129496402875, -0.5069582504970179]
+  axis_tolerance: 0.03
+  axis_pass: true
+  expected_width_depth_ratio: 1.3333333333333333
+  source_width_depth_ratio: 1.3817097415506958
+  ratio_relative_error: 0.03628230616302197
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  precision_note: 人工读取可见底面角点，约±4px；后角遮挡，非3D实测
+  source_axis_ols_slopes: [0.525686689, -0.516181738]
+  source_axis_ols_x_intervals:
+  - [250, 730]
+  - [950, 1270]
+  corner_basis: 可见外包络；局部退台不改变逻辑占地；OLS独立拟合长直底边
+pixel_qa:
+  mode: RGBA
+  size: [896, 640]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 346585
+  alpha_partial_pixels: 225944
+  alpha_near_opaque_pixels: 212944
+  alpha_nonzero_bbox: [36, 43, 857, 597]
+  transparent_margins_px: [36, 43, 39, 43]
+  border_alpha_max: 0

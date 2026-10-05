@@ -1,0 +1,22 @@
+{
+  "key": "willow",
+  "id": "tex_town_qing_south_tree_cluster__willow_v01",
+  "kind": "tree_cluster",
+  "variant": "willow_v01",
+  "footprint": [
+    2,
+    2
+  ],
+  "subject": "清初至清中江南柳树意象（原创扩展）；具体栽植（待考）",
+  "ref": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-qing_south/assets/default/baseline/tile/tex_town_song_southern_tree_cluster__willow_v01.png",
+  "source_anchor": [
+    790,
+    950
+  ],
+  "target_width": 224,
+  "height_m": 5,
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f427-c8aa-7940-bc3b-27f1118f5917/exec-c6cbd0bd-9a13-49cd-8b01-d374687d9e72.png",
+  "prompt": "Use case: historical-scene. Create ONE isolated graceful Jiangnan weeping willow tree for a realistic early-to-mid Qing Chinese town map, 1660–1780. Input reference is the approved Song kit style and olive-green foliage detail guide; create ONE tree with a single visible slender grey-brown trunk and an airy asymmetrical drooping willow crown, not a group. Long fine hanging leafy sprays, restrained muted green without vivid yellow, leaves visibly willow-shaped. Compact root footprint 2 by 2 ground cells, tree-height target 5 meters. Orthographic yaw45 elevation30 matching 2:1 isometric ground grid, no perspective convergence, view slightly down on crown. Bottom anchor at trunk ground contact center, clear visible roots at the base, no soil tile, grass island, container or pedestal. Realistic ancient game sprite with fine natural material density matching reference, soft upper-left light and very short lower-right contact shadow only. Entire crown and roots visible, generous genuinely transparent RGBA margins, alpha0 backdrop. ONE asset not a sheet; no people, buildings, water, text, logo, watermark, checkerboard, bright glow or haze. Botanical regional motif, not a claim about a documented individual tree.",
+  "created": "2026-09-30",
+  "attempts": 1
+}

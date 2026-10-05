@@ -1,0 +1,32 @@
+schemaVersion: item.v1
+id: eq_jiuhuanxidao
+name: 九环锡刀
+kind: weapon
+sub: blade
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/jiuhuanxidao
+text:
+  desc: 外观：全长约一百二十厘米，厚背单刃、刀背九枚闭合小铁环、短铁镡与长木柄麻缠。
+  lore: 行脚武人把九枚小铁环装在厚背长刀上，挥动时环声先至，可示警也能扰乱对手判断。双手长柄适合沉肩劈斩，铁环松脱须及时补铆；器名、制作、使用讲究与流传均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: blade
+    hands: 2
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 115
+      hardness: 45
+      qiAffinity: 100

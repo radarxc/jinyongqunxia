@@ -1,0 +1,15 @@
+{
+  "id": "tex_town_yuan_north_wall_corner__outer_ne_v01",
+  "repair_round": 2,
+  "tool": "image_gen (built-in)",
+  "model": "backend undisclosed",
+  "attempts_this_round": 1,
+  "selected": "first",
+  "prompt": "Use case: precise-object-edit. Add natural fine-grained rammed-earth texture to THIS EXACT CONCAVE L SHAPE. Strict texture-only edit: do NOT change silhouette or planar geometry. Output the SAME 1024x1536 framing in SAME position and transparent outside. It is a precise Yuan northern-China city-wall OUTER CORNER asset, 2m by2m outer footprint, each arm1m thick, walls3m tall. It is NOT a shorter courtyard wall. Keep the tall shape provided. Its deliberately shallow diamond camera MUST remain as drawn (ground slopes +0.5 and -0.5). Top polygon vertices in order: (512,192),(896,384),(704,480),(512,384),(320,480),(128,384). Each corresponding bottom point exactly705.453px vertically below, no x displacement. The vertical inner corner height stays705.453 pixels. Preserve ALL given vertices and concave V arrangement. Make realistic medieval warm buff compacted sandy earth, delicate horizontal rammed strata following the existing plane direction, subtle worn grains, sharply cut ends for seamless assembly, NO bricks, stones, coping, roof, crenellations, base ground, grass, people, text or watermark. Left facing planes lit by upper-left light, right facing planes darker; preserve exact face shading arrangement. No halo, cast shadow, glow or backdrop; true RGBA alpha0 outside including empty inner corner. Entire solid opaque alpha255 with smooth contour antialias only. One complete asset. Change only surface texture. Do not use a different camera, do not soften or move any edges, do not rescale or reframe. Match realistic small medieval game sprite material density.",
+  "reference_image": "tex_town_yuan_north_wall_corner__outer_ne_v01__repair2_guide.png",
+  "source_copy": "tex_town_yuan_north_wall_corner__outer_ne_v01__repair2_source.png",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f44f-794b-75c3-bb25-bb0001d0e036/exec-6b07acfe-7ee3-4f60-bca3-68571fa36057.png",
+  "normalization": "PIL矩形裁切、严格等比LANCZOS缩小、8px透明补边；无warp、非等比缩放、合成改绘或alpha重绘",
+  "geometry_basis": "design/22 §1.2: 地面1m=(32,±16)px；垂高3m=3×16√6=117.5755px",
+  "validation": "源图alpha>128轮廓逐边回归；误差折算小于0.5px；逐图view_image；同尺度墙角+两臂各3直段组合预览验证"
+}

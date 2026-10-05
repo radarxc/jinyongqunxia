@@ -1,0 +1,24 @@
+schemaVersion: item.v1
+id: it_yueqingyouguan
+name: 越地青釉双耳罐
+kind: collectible
+sub: porcelain
+grade: 8
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yueqingyouguan
+text:
+  desc: 外观：灰胎薄青釉罐，圆肩收腹。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[scholar,merchant,collector]}; giftValue=3; provenance=expanded。
+  lore: 参照越地春秋原始瓷罐设计的上等礼器，不冒称已有专名的传世珍瓷。可在护送窑货后获赠，用于陈设与馈赠商贾；双耳、纹样组合和珍稀品相均为（原创扩展）。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

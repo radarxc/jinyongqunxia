@@ -1,0 +1,62 @@
+id: bld_kit_yuan_south_yamen
+status: candidate
+building:
+  type: bld_kit_yuan_south_yamen
+  footprint:
+  - 16
+  - 12
+  anchor: &id001
+  - 558.0449
+  - 443.518
+  era: yuan
+anchor_px: *id001
+footprint_m:
+- 16
+- 12
+footprint_basis: design/22 §3.4 元代官署骨架，16×12
+entrance:
+  edge: S
+  offset_cells: 8.0
+png_rotations_available:
+- 0
+allowRotation: false
+release_ready: false
+historical_reference_urls:
+- https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00000900
+- http://wglyj.jinhua.gov.cn/art/2021/3/22/art_1229485174_58917773.html
+historical_details:
+- 礼制轴线与台基
+- 宋元木构举折、柱网、铺作
+generation_id: 424ff7b5-f4da-43b3-95b5-a08cd5ae3961
+source_record: sources/hist_yamen_selected.json
+source_archive: sources/hist_yamen_selected.png
+processing:
+- alpha 非零包围框裁切
+- 一次等比 LANCZOS 缩放
+- 无 mask 粘贴到透明 RGBA 留白；无阈值、重绘、warp 或仿射投影
+pixel_qa:
+  mode: RGBA
+  size:
+  - 1120
+  - 832
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 642432
+  alpha_partial_pixels: 288787
+  alpha_opaque_pixels: 621
+  alpha_nonzero_bbox:
+  - 67
+  - 81
+  - 1052
+  - 750
+  transparent_margins_px:
+  - 67
+  - 81
+  - 68
+  - 82
+visual_qa:
+  historical_detail_reviewed: true
+  transparent_cutout_reviewed: true
+  projection_claim: 目标为2:1斜二测；未以warp强制修正，精确轴线与占地配准待总装实测
+notes: 礼制轴线与台基；宋元木构举折、柱网、铺作；现存建筑/遗物后世维修仅作形制边界，不当作纯元代原状；仅原向单视图，精确拼接（待实测）。

@@ -1,0 +1,41 @@
+{
+  "id": "bld_kit_yuan_north_inn",
+  "candidate_count": 1,
+  "selected_candidate": 1,
+  "source": "/private/tmp/yuan_hist/inn_c1.png",
+  "source_sha256": "94b5c937d618e796bf1691ef8c7f34e01820e823e9ed3be9896f5565536aa397",
+  "final": "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/KIT-yuan_north-hist/assets/default/building-map/yuan_north/bld_kit_yuan_north_inn.png",
+  "final_sha256": "fa9771ae4446cd4e75f5d6fede99fd7b3f8d3ae0a684d1ac82fd145b4136d0d0",
+  "processing": {
+    "source_size": [
+      1549,
+      1015
+    ],
+    "crop_box": [
+      161,
+      8,
+      1425,
+      994
+    ],
+    "uniform_scale": 0.5294117647058824,
+    "resized_size": [
+      669,
+      522
+    ],
+    "canvas_size": [
+      736,
+      608
+    ],
+    "paste_offset": [
+      33,
+      43
+    ],
+    "alpha_cleanup": "none"
+  },
+  "references": [
+    "wangzhenpeng_02.jpg",
+    "wangzhenpeng_06.jpg"
+  ],
+  "detail": "a roadside inn compound: two-storey front lodging hall with a timber upper gallery and simple wooden balustrade, lower side stable/store wing around a small court, grey tiled hard-gable roofs, plain ridge, exposed rafters, earth-and-brick lower walls, lift-up plank shop fronts and square lattice screens; no signboard text",
+  "visual_review": "view_image审阅通过；返工项见candidate_count"
+}

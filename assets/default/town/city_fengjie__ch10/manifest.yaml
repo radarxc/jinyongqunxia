@@ -1,0 +1,113 @@
+assets:
+- id: town_city_fengjie__ch10
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 夔州·白帝山连城（702年推定）
+  prompt: python3 tools/town/render_town.py assets/default/town/city_fengjie__ch10/layout.yaml -o assets/default/town/city_fengjie__ch10/preview.jpg --scale 0.25 --report /private/tmp/CITY-layouts-ch10-c-logs/city_fengjie.render.json
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-03'
+  size: 2560x1280
+  sha256: 7ac27439c0cae2115622c1bc6c38657d590578d046bb05fbb40b7c6e4e8b9d6d
+  status: candidate
+  references:
+  - docs/design/town/city_fengjie__ch10.yaml
+  - docs/design/town/history/city_fengjie__tang_702.md
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes:
+  - 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染
+  - era_kit=tang；回退：era-kit-fallback:tex_town_tang_city_gate->tex_town_song_southern_city_gate; era-kit-fallback:tex_town_tang_dirt_road->tex_town_song_dali_dirt_road; era-kit-fallback:tex_town_tang_rammed_earth->tex_town_song_dali_rammed_earth; era-kit-fallback:tex_town_tang_riverbank->tex_town_song_dali_riverbank; era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge; era-kit-fallback:tex_town_tang_wall->tex_town_song_southern_wall; era-kit-fallback:tex_town_tang_water->tex_town_song_southern_water; gate-width:requested=6,source=5; gate-width:requested=6,source=7; gate-width:requested=6,source=8
+  - 唐套件目录缺失；建筑主动使用宋南方通用贴片，仅作候选外观。
+  asset_substitutions:
+  - requested_id: tex_town_tang_city_gate
+    actual_id: tex_town_song_southern_city_gate__k5_r090_v01
+    reason: era-kit-fallback:tex_town_tang_city_gate->tex_town_song_southern_city_gate
+  - requested_id: tex_town_tang_city_gate
+    actual_id: tex_town_song_southern_city_gate__k5_r090_v01
+    reason: gate-width:requested=6,source=5
+  - requested_id: tex_town_tang_city_gate
+    actual_id: tex_town_song_southern_city_gate__k6_r270_v01
+    reason: era-kit-fallback:tex_town_tang_city_gate->tex_town_song_southern_city_gate
+  - requested_id: tex_town_tang_city_gate
+    actual_id: tex_town_song_southern_city_gate__k7_r180_v01
+    reason: era-kit-fallback:tex_town_tang_city_gate->tex_town_song_southern_city_gate
+  - requested_id: tex_town_tang_city_gate
+    actual_id: tex_town_song_southern_city_gate__k7_r180_v01
+    reason: gate-width:requested=6,source=7
+  - requested_id: tex_town_tang_city_gate
+    actual_id: tex_town_song_southern_city_gate__k8_r000_v01
+    reason: era-kit-fallback:tex_town_tang_city_gate->tex_town_song_southern_city_gate
+  - requested_id: tex_town_tang_city_gate
+    actual_id: tex_town_song_southern_city_gate__k8_r000_v01
+    reason: gate-width:requested=6,source=8
+  - requested_id: tex_town_tang_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v01
+    reason: era-kit-fallback:tex_town_tang_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_tang_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v02
+    reason: era-kit-fallback:tex_town_tang_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_tang_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v03
+    reason: era-kit-fallback:tex_town_tang_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_tang_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v04
+    reason: era-kit-fallback:tex_town_tang_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_tang_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v01
+    reason: era-kit-fallback:tex_town_tang_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_tang_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v02
+    reason: era-kit-fallback:tex_town_tang_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_tang_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v03
+    reason: era-kit-fallback:tex_town_tang_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_tang_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v04
+    reason: era-kit-fallback:tex_town_tang_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_tang_riverbank
+    actual_id: tex_town_song_dali_riverbank__e
+    reason: era-kit-fallback:tex_town_tang_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_tang_riverbank
+    actual_id: tex_town_song_dali_riverbank__w
+    reason: era-kit-fallback:tex_town_tang_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_tang_road_edge
+    actual_id: tex_town_song_southern_road_edge__e
+    reason: era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_tang_road_edge
+    actual_id: tex_town_song_southern_road_edge__n
+    reason: era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_tang_road_edge
+    actual_id: tex_town_song_southern_road_edge__ne
+    reason: era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_tang_road_edge
+    actual_id: tex_town_song_southern_road_edge__nw
+    reason: era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_tang_road_edge
+    actual_id: tex_town_song_southern_road_edge__s
+    reason: era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_tang_road_edge
+    actual_id: tex_town_song_southern_road_edge__se
+    reason: era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_tang_road_edge
+    actual_id: tex_town_song_southern_road_edge__sw
+    reason: era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_tang_road_edge
+    actual_id: tex_town_song_southern_road_edge__w
+    reason: era-kit-fallback:tex_town_tang_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_tang_wall
+    actual_id: tex_town_song_southern_wall__brick_r000_v01
+    reason: era-kit-fallback:tex_town_tang_wall->tex_town_song_southern_wall
+  - requested_id: tex_town_tang_water
+    actual_id: tex_town_song_southern_water__v01
+    reason: era-kit-fallback:tex_town_tang_water->tex_town_song_southern_water
+  - requested_id: tex_town_tang_water
+    actual_id: tex_town_song_southern_water__v02
+    reason: era-kit-fallback:tex_town_tang_water->tex_town_song_southern_water
+  - requested_id: tex_town_tang_water
+    actual_id: tex_town_song_southern_water__v03
+    reason: era-kit-fallback:tex_town_tang_water->tex_town_song_southern_water
+  - requested_id: tex_town_tang_water
+    actual_id: tex_town_song_southern_water__v04
+    reason: era-kit-fallback:tex_town_tang_water->tex_town_song_southern_water

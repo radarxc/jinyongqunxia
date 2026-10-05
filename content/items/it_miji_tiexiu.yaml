@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_tiexiu
+name: 铁袖功抄本
+kind: manual
+sub: copy
+grade: 1
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_tiexiu
+text:
+  desc: 外观：清代深灰线装小册，四眼黑线。
+  lore: 卖艺人把以袖护臂、拍打承力的功夫抄成深灰小册，功法和载体皆属 （原创扩展）。研读须从软布与轻击练起，逐日增加强度；袖口摩擦痕见其实用，抄本只到八层。
+extension:
+  type: manual
+  value:
+    skill: sk_tiexiu
+    maxLayer: 8
+    variant: copy
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_tiexiu
+      readBre: 20
+      maxLayer: 8
+      cultivation: 400

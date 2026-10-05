@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_yuelongwenhuang
+name: 龙纹旧玉璜
+kind: collectible
+sub: jade
+grade: 8
+stack: 1
+chapters: any
+origin: canon
+canonRef: 历史器物／类型：[H04](#src-h04)；准入：越女序章；旧族转让，非墓葬奖励
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/yuelongwenhuang
+text:
+  desc: 外观：浅黄青玉弧形璜，两端龙首。 待运行时投影：eraRange=[chunqiu]; giftTo={preferred:[collector]}; giftValue=3; provenance=history。
+  lore: 参照春秋沿用旧玉并加刻纹饰的玉璜资料，陈设时应保留旧作痕迹。宜赠鉴玉藏家，取得必须有原主转让；具体旧藏谱系为（原创扩展），不把馆藏出土经过搬入剧情。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 60

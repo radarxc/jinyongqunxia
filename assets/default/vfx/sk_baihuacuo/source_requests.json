@@ -1,0 +1,27 @@
+{
+  "skill": "sk_baihuacuo",
+  "source_basis": "docs/design/catalog/skills-qianlong.md §2.1：袁士霄传陈家洛；六招招名与效果为原创扩展，具体回目与原著招名待考。",
+  "color_basis": "harmony 淡金，沿用 assets/default/STYLE.md；未找到已核实的原著颜色描写，不宣称金色为原著事实。",
+  "generation_configuration": {"tool": "Codex built-in image_gen backend", "model": "gpt-image-2", "effort": "not exposed"},
+  "negative": "文字、编号、边框、分格线、水印、纸纹、棋盘格、人物、手、兵器、实物花朵、纯白高光、霓虹、光剑、龙、远程弹丸、黑色或灰色背景、裁断轮廓。",
+  "requests": [
+    {
+      "key": "family",
+      "output": "effect/family/source_01.png",
+      "candidate_limit": 2,
+      "prompt": "Create ONE white-background 2-by-2 sprite sheet, four equal square cells, no grid lines, no text, no numbers. Baihua Cuo Quan, a close-combat Chinese wuxia fist technique, original visual interpretation. Delicate pale antique-gold and muted ochre Chinese ink-wash energy, dry-brush grain, soft translucent edges, generous negative space, never solid metallic objects or literal flowers. A compact family motif of three interleaved and deliberately offset curved brush ribbons, suggesting deceptive fist paths and petal-like negative spaces. Every cell points right from the SAME broad, visible root at local (0.24W,0.50H); root cross-section about 0.12H. Keep all ink within x=0.17W..0.85W and y=0.18H..0.82H, with wide pure-white margins. Four successive keyframes in reading order: gathering, fully formed, full compact flourish, gently loosening after-trace. Do not greatly change the silhouette or root. The root is connected to the visible curves in every frame, no disconnected projectile. Background exactly white, no paper, shadow, checkerboard, figures, fists, hands, weapons, labels or white highlights. Gold pigment is distinguishable from white and never neon. Pure effect artwork only; four equal cells in one square image, ideally 2048 by 2048."
+    },
+    {
+      "key": "mv_baihuacuo_cuoluo",
+      "output": "effect/mv_baihuacuo_cuoluo/source_01.png",
+      "candidate_limit": 2,
+      "prompt": "Create ONE white-background 2-by-2 sprite sheet, four equal square cells, no grid lines, no text, no numbers. Baihua Cuoluo, an ultimate close-combat Chinese wuxia fist technique, original visual interpretation. Antique pale-gold and muted ochre ink wash. The unique motif is an asymmetric compact flower-like vortex of six interleaved, offset curved energy strokes, different depths of pale ink, open petal-like negative spaces, connected by broad brushwork to a left root; it suggests a nearby surrounding flurry, never a literal flower or remote projectile. Each cell has the SAME visible broad root at local (0.24W,0.50H), root cross-section about 0.15H; dominant motion travels right and curves upward and downward around the adjacent space. All marks inside x=0.17W..0.85W and y=0.16H..0.84H, wide white margins. Four successive frames in reading order: gathering interleaved strokes, opening, full offset whorl, light fading ribbons. Maintain comparable geometry and a connected root through all four. Dry-brush grain and luminous gold wash with transparent-looking edges, no solid filled disk, no dense starburst, no hard shadow. Pure white background, no paper, checkerboard, figures, fists, hands, weapons, dragons, beams, borders, text, labels or white highlights. Four equal cells in one square image, ideally 2048 by 2048."
+    },
+    {
+      "key": "mv_baihuacuo_fanchang",
+      "output": "effect/mv_baihuacuo_fanchang/source_01.png",
+      "candidate_limit": 2,
+      "prompt": "Create ONE white-background 2-by-2 sprite sheet, four equal square cells, no grid lines, no text, no numbers. Fanchang Hedao, an ultimate close-combat Chinese wuxia fist technique, original visual interpretation. Delicate antique pale-gold and muted ochre ink wash. Unique motif: two deliberately contrary, folded S-shaped brush ribbons cross, briefly curl back, then converge into ONE compact blunt forward stroke toward the right, with restrained petal-like gaps connecting to the Baihua Cuo Quan family. It suggests reversing habitual motion and returning to one coherent fist path; never a sword beam, arrow, projectile or literal yin-yang symbol. Every cell uses the SAME visible broad root at local (0.24W,0.50H), root cross-section about 0.12H. Keep all strokes inside x=0.17W..0.85W and y=0.18H..0.82H. Four successive frames in reading order: gathering opposing strokes, crossing and turning, a coherent folded flourish, soft declining after-trace. Maintain comparable silhouette and connected root, large white margins. Dry-brush texture, layered translucent-looking wash, bright pigment distinguishable from white. Exactly white background, no paper, shadow, checkerboard, persons, hands, weapons, dragons, literal flowers, text, symbols, borders or white highlights. Four equal cells in one square image, ideally 2048 by 2048. CRITICAL REVISION: include absolutely NO detached petal shapes, leaf shapes, seeds, dots, or botanical marks; all visible pigment must belong to the two continuous folded brush ribbons and their connected root."
+    }
+  ]
+}

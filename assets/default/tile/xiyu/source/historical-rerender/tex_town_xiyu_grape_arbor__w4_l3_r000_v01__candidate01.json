@@ -1,0 +1,33 @@
+{
+  "id": "tex_town_xiyu_grape_arbor__w4_l3_r000_v01",
+  "generated_at": "2026-10-01T10:30:01.863068+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__candidate01.png",
+  "sha256": "6fa839679d68f3053bd34b251f26f75ae705e45c07f97fa7a8b953193344998b",
+  "generation_inputs": [
+    {
+      "file": "source/historical-rerender/tex_town_xiyu_grape_arbor__w4_l3_r000_v01__geometry-lock.png",
+      "sha256": "386684897b50dd80dade48c0a8e6e6a1a294783b5c89a1a9df2d0ca9f2152255",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/grape_1963.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg",
+      "detail": "1963年吐鲁番照片的低矮密藤、果穗尺度和采摘空间；不复制人物。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/grape_1964_a.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD.jpg",
+      "detail": "1964年葡萄园与绿洲田网、防护林的尺度关系；不取远景构图。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/grape_1964_b.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD2.jpg",
+      "detail": "1964年采摘照片的叶幕密度、枝蔓下垂和果穗比例；不复制人物。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:1963-03_1963%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E7%9B%86%E5%9C%B0%E8%91%A1%E8%90%84.jpg — 1963年吐鲁番照片的低矮密藤、果穗尺度和采摘空间；不复制人物。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD.jpg — 1964年葡萄园与绿洲田网、防护林的尺度关系；不取远景构图。\n- Historical input 4: https://commons.wikimedia.org/wiki/File:1964-02_1964%E5%B9%B4_%E5%90%90%E9%B2%81%E7%95%AA%E8%91%A1%E8%90%84%E5%9B%AD2.jpg — 1964年采摘照片的叶幕密度、枝蔓下垂和果穗比例；不复制人物。\n\nAsset-specific production prompt:\nUse case: precise-object-edit. Render this EXACT supplied four-post grape-arbor geometry into a realistic ancient Western Regions oasis garden game-map sprite. Preserve every timber beam and vertical post coordinate, ALL post foot positions, lengths, camera and exact proportions. Do not redesign the trellis. Strict2:1 dimetric orthographic45/30 camera, ground axes slopes+0.5/-0.5. Ground full outer footprint4:3, L190.5,647.5 F850.5,977.5 R1345.5,730 on1536x1024. Exact front/depth horizontal spans660:495. Fine rough brown unpainted timber texture and mortise-lashing joinery; add delicate twisting grape vines, modest muted olivegreen leaf clusters and a few small dull purple bunches along top beams. Leaves restrained, keep all four post feet and outer beam endpoints clearly visible, do NOT enlarge base or add rocks. Light upperleft, right sides subtly shaded. Realistic fine painted historical wuxia map style, same detail density as traditional Song town sprites, no cartoon/vector flatness. True transparent RGBA background and all empty post/leaf spaces, no backdrop, no floor, no ground, no broad shadow, no glow, no people or text. Full silhouette with margin. Geometry locked, material/detail edit only.\n\nRequired historical detail summary: 粗素木柱梁、木销/绳扎、扭曲老藤、克制叶团和少量暗紫果穗；历史照片支持藤蔓与尺度，不直接证明登记四柱棚架构造，构架仍属原创扩展。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin.\n\nCandidate correction: "
+}

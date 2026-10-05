@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_caoyaozhi
+name: 草药知原本
+kind: manual
+sub: original
+grade: 3
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_caoyaozhi
+text:
+  desc: 外观：唐代经折药册，浅褐硬纸护面。
+  lore: 采药人把常见草木的形色、时令与误认风险绘入经折药册，内容和载体属 （原创扩展）。研读须拿实物逐一比对叶脉与气味，夹存干叶只能作旧样；不明药材不可仅凭图下注。
+extension:
+  type: manual
+  value:
+    skill: sk_caoyaozhi
+    maxLayer: 10
+    variant: original
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_caoyaozhi
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1000

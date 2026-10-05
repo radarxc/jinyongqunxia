@@ -1,0 +1,30 @@
+schemaVersion: item.v1
+id: eq_qingyunlv
+name: 青云履
+kind: armor
+sub: shoes
+grade: 6
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qingyunlv
+text:
+  desc: 外观：青灰软底云头履，白布中底、细绦。 待运行时投影：eva=3; qinggong=15。
+  lore: 青云履以青灰软面、白布中底和细绦缝合，云头收得含蓄，适宜石阶与屋脊腾挪。江湖人说它落脚如云，实因底薄且鞋楦贴足。（原创扩展）
+extension:
+  type: equipment
+  value:
+    slot: feet
+    tags: []
+    matFamily: fabric
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      def: 9
+      agi: 2

@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: it_qingshui_yufeng_mijiang
+name: 清水玉蜂蜜浆
+kind: food
+sub: food
+grade: 5
+stack: 20
+chapters: any
+origin: canon
+canonRef: 《神雕侠侣》·杨过以清水调玉蜂蜜浆喂小龙女、郭襄
+price: auto
+flags: []
+use:
+  context: both
+  action: eat
+  target: self
+  effects:
+  - op: staPct
+    params:
+      valueBp: 1550
+  - op: meal
+    params:
+      value: bf_huinei:2battle
+assets:
+  icon: item/qingshui_yufeng_mijiang
+text:
+  desc: 外观：淡金蜜浆兑清水盛粗白瓷碗，清透微稠。
+  lore: 《神雕侠侣》中杨过以清水调玉蜂蜜浆喂小龙女、郭襄。本件须以清水调匀缓饮，用于照料伤弱者；内伤减层与体力数值为原创投影。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healInner: 2
+      stamina: 16

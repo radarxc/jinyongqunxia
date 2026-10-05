@@ -1,0 +1,133 @@
+id: bld_kit_qing_south_shop_1f
+status: candidate
+building:
+  type: bld_kit_qing_south_shop_1f
+  footprint:
+  - 7
+  - 5
+  anchor:
+  - 304.7367
+  - 311.535
+  era: qing_south
+anchor_px:
+- 304.7367
+- 311.535
+footprint_m:
+- 7
+- 5
+footprint_source: design/22 §3.4 bld_kit_qing_early_shop
+logical_footprint_polygon_px:
+- - 112.73669999999998
+  - 295.535
+- - 336.7367
+  - 407.535
+- - 496.7367
+  - 327.535
+- - 272.7367
+  - 215.53500000000003
+occluder_proxy_px:
+- 113
+- 147
+- 497
+- 410
+occluder_note: alpha>=192包围框仅测量代理；不修改PNG alpha；不能替代屋顶淡出/逐像素深度。
+height_m: null
+height_note: 单视图不能可靠测量实际高度，待建模实测。
+planning_rotations_allowed:
+- 0
+- 90
+- 180
+- 270
+entrance:
+  edge: S
+  offset_cells: 3
+entrance_note: 南边中点规划代理，非图像门洞测量（待实测）。
+collision_polygon_m:
+- - 0
+  - 0
+- - 7
+  - 0
+- - 7
+  - 5
+- - 0
+  - 5
+collision_note: 全矩形规划代理；院内通行、河埠台阶及门洞需细化，阴影不参与碰撞。
+views:
+- rotation_deg: 0
+  yaw_deg: 45
+  pitch_deg: 30
+  file: bld_kit_qing_south_shop_1f.png
+png_rotations_available:
+- 0
+allowRotation: false
+glb: null
+release_ready: false
+projection_contract:
+  tile_px:
+  - 64
+  - 32
+  ground_bbox_px:
+  - 384
+  - 192
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+geometry_qa:
+  status: 待实测
+  registered_footprint_preserved: true
+  normalization_only: true
+  note: 本轮未以旧图量点冒充新图实测；精确底边斜率、宽深比、门孔及拼接须总装复核。
+pixel_qa:
+  mode: RGBA
+  size:
+  - 576
+  - 576
+  alpha_extrema:
+  - 0
+  - 255
+  alpha_zero_pixels: 276567
+  alpha_partial_pixels: 54481
+  alpha_opaque_pixels: 728
+  alpha_nonzero_bbox:
+  - 128
+  - 146
+  - 480
+  - 413
+  transparent_margins_px:
+  - 128
+  - 146
+  - 96
+  - 163
+  border_alpha_max: 0
+processing:
+  operations:
+  - alpha_ge_2_crop_bbox
+  - uniform_resize_LANCZOS
+  - transparent_padding_to_registered_canvas
+  source_size:
+  - 1254
+  - 1254
+  crop_box:
+  - 51
+  - 263
+  - 1210
+  - 1142
+  isotropic_scale: 0.3037542662116041
+  resized_size:
+  - 352
+  - 267
+  paste_offset:
+  - 128
+  - 146
+  - 480
+  - 413
+  final_size:
+  - 576
+  - 576
+  registered_anchor_preserved: true
+  source_archive: history/selected-sources/shop_1f.png
+  source_sha256: 84dc2f6bfafd8f22a60161f1151b680afa08953848b80755a83d46a6fe4b4c73
+  forbidden_transforms_used: false
+visual_review: 本轮入选源图及规格化成品已逐张/接触表 view_image；历史细节、真透明、完整轮廓与左上光通过目视，精确投影待实测。
+final_review: 成品576×576，仅裁切等比缩小并透明留边；最终像素和可见三角详见pixel_qa/geometry_qa。 已逐张view_image(original)复查：屋檐、基脚完整，透明留白充足，无新增文字人物。
+source_request: history/records/shop_1f.yaml
+source_measure: review2/shop_1f.measure.json

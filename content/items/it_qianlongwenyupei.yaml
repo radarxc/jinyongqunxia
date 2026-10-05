@@ -1,0 +1,25 @@
+schemaVersion: item.v1
+id: it_qianlongwenyupei
+name: 乾隆所赠温玉佩
+kind: collectible
+sub: jade
+grade: 9
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 书中物 （待考：修订版）：[B09](#src-b09)；准入：仅书剑；赠受次序与转赠授权核准后
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/qianlongwenyupei
+text:
+  desc: 外观：一件暖白玉小佩，圆润长椭圆。 待运行时投影：eraRange=[qing]; giftTo={preferred:[noble,collector]}; giftValue=3; provenance=book。
+  lore: 《书剑恩仇录》乾隆赠陈家洛温玉、可转赠意中人的情节待核修订版。仅按原主授权实例候选，适合爱玉藏家；造型与取得为（原创扩展），不把温润叙述变成持续疗伤。
+extension:
+  type: collectible
+  value:
+    giftTo: []
+    appraise:
+      art: art
+      dc: 68

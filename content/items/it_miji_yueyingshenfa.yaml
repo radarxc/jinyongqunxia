@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_yueyingshenfa
+name: 越影身法帛卷
+kind: manual
+sub: full
+grade: 4
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_yueyingshenfa
+text:
+  desc: 外观：春秋浅褐帛卷，乌木细轴、麻带束缚。
+  lore: 越地山野行者将逐影换步之法绘成长帛，身法、卷轴与授受皆属 （原创扩展）。研读须沿卷连续辨认落足与重心转移，再在溪石间缓试；只临摹姿势，难得轻捷要领。
+extension:
+  type: manual
+  value:
+    skill: sk_yueyingshenfa
+    maxLayer: 10
+    variant: full
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_yueyingshenfa
+      readWis: 30
+      maxLayer: 10
+      cultivation: 1200

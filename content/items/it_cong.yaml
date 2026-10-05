@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_cong
+name: 葱
+kind: material
+sub: ingredient
+grade: 1
+stack: 999
+chapters: any
+origin: canon
+canonRef: 历代基础菜蔬与辛香料
+price: auto
+flags: []
+assets:
+  icon: item/cong
+text:
+  desc: 外观：青白大葱三根并置竹板，根须完整。
+  lore: 历代厨房都少不了的青白辛香菜蔬，四季随圃地供应。切段入汤、切末佐肉皆可；旅店后厨总会留三两根给清淡饭菜提味。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang9
+    materialGrade: 1
+    rare: false
+    ingredientKind: vegetable
+    attributes:
+      version: 2

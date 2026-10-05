@@ -1,0 +1,74 @@
+id: bld_kit_qing_north_market_stall
+status: candidate
+building:
+  type: bld_kit_qing_north_market_stall
+  footprint: [3, 2]
+  anchor: [129.2088, 144.8799]
+  era: qing_north
+anchor_px: [129.2088, 144.8799]
+footprint_m: [3, 2]
+logical_footprint_polygon_px:
+- [49.2088, 136.8799]
+- [145.2088, 184.8799]
+- [209.2088, 152.8799]
+- [113.2088, 104.87989999999999]
+collision_polygon_m:
+- [0, 0]
+- [3, 0]
+- [3, 2]
+- [0, 2]
+collision_note: 全占地代理；非实测墙体，院内行走另需细化。
+entrance: {edge: S, offset_cells: 1}
+entrance_note: 南边中点规划代理，非门洞测量。
+height_actual_m: null
+views:
+- {rotation_deg: 0, yaw_deg: 45, pitch_deg: 30, file: bld_kit_qing_north_market_stall.png}
+png_rotations_available: [0]
+allowRotation: false
+glb: null
+projection_contract:
+  tile_px: [64, 32]
+  ground_bbox_px: [160, 80]
+  ground_width_px: 160
+  camera_yaw_deg: 45
+  camera_elevation_deg: 30
+  light: screen_upper_left
+  shadow: screen_lower_right_contact_only
+  note: 投影目标，不宣称生成图精确满足；实测见geometry_qa。
+geometry_qa:
+  source_corners_px:
+    left: [164, 557]
+    front: [880, 944]
+    right: [1358, 711]
+  source_axis_slopes: [0.5405027932960894, -0.4874476987447699]
+  axis_tolerance: 0.03
+  axis_pass: false
+  source_width_depth_ratio: 1.497907949790795
+  expected_width_depth_ratio: 1.5
+  ratio_relative_error: 0.001394700139469962
+  ratio_tolerance_suggestion: 0.1
+  ratio_pass: true
+  measurement_uncertainty_source_px: 3
+  precision_note: 人工读同一地台上表面三角点，±3px不确定性；另一代理独立复核。底面中心取(L+R)/2，后角由L+R−F推算；未以变形纠偏。
+pixel_qa:
+  mode: RGBA
+  size: [256, 256]
+  alpha_extrema: [0, 255]
+  alpha_zero_pixels: 53205
+  alpha_partial_pixels: 11775
+  alpha_opaque_pixels: 556
+  alpha_nonzero_bbox: [46, 61, 227, 191]
+  transparent_margins_px: [46, 61, 29, 65]
+  border_alpha_max: 0
+processing:
+  source_archive: sources/bld_kit_qing_north_market_stall__revision2.png
+  source_sha256: 97b189fdf5d9b9268c78722f3bd1a6ea2a7701ff53b03af5ffb5c78f19f4b3fd
+  source_size: [1536, 1024]
+  crop_box: [0, 9, 1504, 1000]
+  uniform_scale_requested: 0.13400335008375208
+  resized_size: [202, 133]
+  rounded_effective_scale: [0.13430851063829788, 0.13420787083753785]
+  paste_offset: [27, 61]
+  final_file: bld_kit_qing_north_market_stall.png
+  steps: [crop alpha>0 bbox, uniform LANCZOS resize rounded to integer dimensions, 'paste without mask on transparent canvas, minimum 16px margins; no repaint/warp/flip/alpha threshold']
+release_ready: false

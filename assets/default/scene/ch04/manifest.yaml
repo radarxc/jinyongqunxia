@@ -1,0 +1,539 @@
+- id: cg_ch04_lingshe_farewell
+  file: cg_ch04_lingshe_farewell.png
+  category: scene
+  style: default
+  subject: 灵蛇岛小昭离别（ch04_yitian）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是小昭的身份基线（作者审核通过的立绘，脸部特写）；第 2 张是张无忌的身份基线（作者审核通过的立绘，脸部特写）；第 3 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中小昭、张无忌的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：灵蛇岛小昭为救众人承担总教责任、随船离别。小昭为成年女子，瓜子脸、修长眉、高挺秀鼻，清澈眼睛带自然轻淡蓝意、颊边浅梨涡，肤色白净，汉人面貌为主带些波斯血统的立体感，穿完整的素色长衣与轻披巾、不戴脚镣、不性感化；站在波斯大舰船头，向另一艘归航船上的张无忌举手作别。无忌换素青行旅长袍，一手停在半空，温厚目光里有离愁。两艘航船分居对角，已扬帆而间距渐开，中间是逐渐拉宽的海面，不出现岸边送行者；暮色海风、朴素船帆，船上随从压为远景剪影不捏造具体容貌；以两船分离后的互望定格，构图机位属原创扩展，重点两人克制惜别。
+
+    【要对齐的部分】小昭、张无忌各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「灵蛇别梦」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_lingshe_farewell.json'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/female/ch04/por_npc_xiaozhao__ch04_youth_chained_base.png
+    sha256: aab5bae803e9348731f750d8458ae7ad161eb74abab03ac8c929fc5fbdfa7202
+    use: 对脸基线：作者审核通过的 por_npc_xiaozhao__ch04_youth_chained_base（小昭），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
+    use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（张无忌），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch04/cg_ch04_lingshe_farewell.png
+    sha256: dfb9d5f786e35fcfb93a5080e45f06fdf5937c7a233037d21bf488204366a4ce
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_lingshe_farewell.dfb9d5f7.png
+  - path: assets/default/scene/ch04/cg_ch04_lingshe_farewell.png
+    sha256: 4b2543c6f2f2f4ec83d64262ede775ce1945c52e527ce704a7ca61f31634766c
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lingshe_farewell.png
+  tool: Python · Pillow BICUBIC + scipy local coordinate remap（AR-86 原头像素统一缩放与肩胸局部变形）
+  model: gpt-6.1-sol
+  created: '2026-10-04T00:14:09.970934-07:00'
+  source_path: .agents/coord/_lines/zhangwuji-final/out/cg_ch04_lingshe_farewell.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 9219e8f35188a1c30cee0738ebe12b5c6c2ed7adc9fe748f57916f4ebae9d3b0
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「灵蛇别梦」，实际字形「灵蛇别梦」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_xiaozhao__ch04_youth_chained_base、por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同
+  previous_revision:
+    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lingshe_farewell.png
+    sha256: 4b2543c6f2f2f4ec83d64262ede775ce1945c52e527ce704a7ca61f31634766c
+    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_lingshe_farewell.entry.yaml
+  runner_job_records:
+  - - cg_ch04_lingshe_farewell.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_lingshe_farewell.resume3.png
+    - '93'
+    - exec-86cf0509-0021-4255-b7d4-2d11e31b62d1.png
+  runner_success_count: 1
+  effort: not applicable (deterministic composition)
+  executed_by: Codex gpt-6.1-sol（AR-86）
+- id: cg_ch04_jiuyang_valley
+  file: cg_ch04_jiuyang_valley.png
+  category: scene
+  style: default
+  subject: 幽谷九阳（ch04_yitian）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只把张无忌两手捧的山水卷轴改为一本打开的薄经书，经文为异文夹蝇头汉字，不画山水卷。身旁前下方石上放另三本薄经书及打开油布包，总共四本。手指、脸、体格、衣服、白猿、山水风景和题字印章全不动。
+
+    【原著依据】《倚天屠龙记》十六 剥极而复参九阳：“四本薄薄的经书”；https://www.xuges.com/wuxia/jinyong/yttlj/112.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/50_cg_ch04_jiuyang_valley.png
+    sha256: 5b528328787b61100edfa609e2f2f507922a2c3755b8e3d4f159eeed40d69179
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
+    use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（张无忌），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:28:57.184206-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_50_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: c6e7a7e3a2414858f08eb33dbdc9c3cffd2989064f9310c5bf43f692a3a4eea1
+  status: candidate
+  notes: '多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「幽谷九阳」，实际字形「幽谷九陽」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；题字陽→阳；只修题字，题字区外逐像素不变；Executed-By: Codex gpt-6.1-sol（AR-75）；AR-82 原著核对返修：九阳幽谷插图同步四本薄经书及油布包'
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/50_cg_ch04_jiuyang_valley.png
+    sha256: 5b528328787b61100edfa609e2f2f507922a2c3755b8e3d4f159eeed40d69179
+  runner_job_records:
+  - - cg_ch04_jiuyang_valley.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_jiuyang_valley.resume3.png
+    - '189'
+    - exec-7a9351db-ceb6-405c-be1f-6ae7b40156a5.png
+  runner_success_count: 1
+  effort: ultra
+  executed_by: Codex gpt-6.1-sol（AR-86）
+  title_revision:
+    source_path: .agents/coord/_lines/title-audit/cg_ch04_jiuyang_valley_fixed.png
+    before_sha256: 7090cb1a9404707bcb52c6695e98feba50ffa55fbc54b92b840daac9018b1abe
+    allowed_box:
+    - - 1410
+      - 258
+      - 1520
+      - 338
+    changed_outside_title: 0
+    pixel_checks: .agents/coord/_lines/title-audit/cg_ch04_jiuyang_valley_pixel_checks.json
+    method: w24裁图编辑；仅错误字的新旧墨迹并集蒙版羽化贴回，正确字、朱印、人物及场景原像素保留
+    created: '2026-10-04T00:55:05-07:00'
+- id: cg_ch04_vajra_circle
+  file: cg_ch04_vajra_circle.png
+  category: scene
+  style: default
+  subject: 金刚伏魔圈（ch04_yitian）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只将右下前景背侧身周芷若的灰紫衣裙改为素淡青色（浅青绿），原衣料褶皱、鞭子和身体姿势保持；不能改其他三僧或张无忌、地窖和黑索。周芷若头发与脸、题字朱印及背景完全不动。
+
+    【原著依据】《倚天屠龙记》三十八 君子可欺之以方：“青影闪动，一条长鞭迎面击来”；https://www.xuges.com/wuxia/jinyong/yttlj/284.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: ''
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/51_cg_ch04_vajra_circle.png
+    sha256: d24322fe6298bc1fde2b67e3aa05d16ca6e2fe1c9f20717518096ab3432dcab0
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:30:34.748667-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_51_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 7b117fbd8244bf40bc5f5b5de45591afa940a691f4aea2990b37f69004429300
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「金刚伏魔」，实际字形「金刚伏魔」逐字核验，原生题字，未叠加。；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-82 原著核对返修：金刚伏魔插图同步周芷若素淡青衣
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/51_cg_ch04_vajra_circle.png
+    sha256: d24322fe6298bc1fde2b67e3aa05d16ca6e2fe1c9f20717518096ab3432dcab0
+  repair_runner_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_vajra_circle.resume3.png
+  repair_runner_source_sha256: 68a7f73da8ec7b385ff8c6497cf21596b3237d35d43dbdd6d68f2859f61928aa
+  runner_job_records:
+  - - cg_ch04_vajra_circle.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_vajra_circle.resume3.png
+    - '229'
+    - exec-c54ffe63-805e-435b-b933-4dadd75c50a4.png
+  runner_success_count: 1
+  ingest_source_sha256: cbf674fdb894272cbaf712209cc3eff0e17df7116ad1a41b3ddcc8a5a0fcfe83
+  composite_job: cg_ch04_vajra_circle.resume3
+  effort: ultra
+  executed_by: Codex gpt-6.1-sol（AR-86）
+- id: cg_ch04_guangming_peak
+  file: cg_ch04_guangming_peak.png
+  category: scene
+  style: default
+  subject: 光明顶止战（ch04_yitian）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只在画心张无忌灰外衫及白内衣的肩袖和衣摆添少量清楚旧裂口与破边，保持原衣服颜色、款式褶皱及白衣少年身份，不露大片裸皮。脸、头发、体格、手、腰带和裤鞋，所有其他人、剑、背景和题字朱印全部不动。
+
+    【原著依据】《倚天屠龙记》二十 与子共穴相扶将：“衣衫褴褛的少年”；https://www.xuges.com/wuxia/jinyong/yttlj/146.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/54_cg_ch04_guangming_peak.png
+    sha256: bfb7594ca0cd91f846ff6ac141d11a36aa8de65f4f65adcd02f67696b5d9efca
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:43:28.136216-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_54_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 95e48080efea39e33873fc009341692682bfea48ad2627a46d7972e9f47b30ea
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「光明止戈」，实际字形「光明止戈」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办，轻微不一致）：灭绝师太、杨逍按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留光明顶峨眉弟子周芷若的担忧侧视与紧张嘴形，不照搬base冷峻正视。；质检：已打开对照：周芷若同人眉眼鼻唇，对齐恢复base同时保留原关切蹙眉与转头视线，光向与接缝自然；张无忌等其他人、手与题字均原像素保留；AR-82 原著核对返修：光明正戈插图同步张无忌衣衫褴褛；AR-82 原著核对返修：光明正戈插图同步张无忌衣衫褴褛
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/54_cg_ch04_guangming_peak.png
+    sha256: bfb7594ca0cd91f846ff6ac141d11a36aa8de65f4f65adcd02f67696b5d9efca
+  runner_job_records:
+  - - cg_ch04_guangming_peak.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_guangming_peak.resume3r2.png
+    - '153'
+    - exec-9c595752-1ea3-4bbb-950d-54fdcd9f2265.png
+  runner_success_count: 1
+  effort: ultra
+  executed_by: Codex gpt-6.1-sol（AR-86）
+  ar84_alignment:
+    job: ar84_calign_43_57_r1
+    before_sha256: 293a3e4097ec3978cd474491009a2e01011f81ddcea9278909d102ec572aad84
+    box:
+    - 326
+    - 187
+    - 425
+    - 307
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_43_57_r1.png
+    outside_changed_pixels: 0
+- id: cg_ch04_haozhou_wedding
+  file: cg_ch04_haozhou_wedding.png
+  category: scene
+  style: default
+  subject: 濠州婚礼被打断（ch04_yitian）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是张无忌的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中张无忌的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：濠州婚礼被赵敏打断。赵敏身穿青色旅装站在左侧，右手掌摊开一小束淡黄色头发向张无忌示意，这是谢逊的头发；不画布包、信函、金锁或其他替代线索；张无忌已换暗红礼袍，从礼案前骤然回身。右前周芷若换大红锦袍与小型珠饰凤冠霞帔，红盖巾边缘略揭、面色清冷而受伤，不拿长鞭；凤冠避免夸张仙侠头饰。三人关系由红绸和视线连接，烛光暖而不通红，喜堂所有装饰无可读字；取赵敏出示信物、尚未受伤离堂的瞬间，目光与手势机位属原创扩展；服饰细节待三联纸本复核。
+
+    【要对齐的部分】张无忌各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「濠州惊变」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（作者 AR-53 总审返修）穿红色喜服的新郎是张无忌：现在脸偏瘦削、颧骨和下颌偏硬——改回基线的样子：端正圆润的鹅蛋脸、下巴圆润、两颊不凹、双眼皮大眼睛、眼神温和，清秀俊朗。赵敏和周芷若的脸不要动。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_haozhou_wedding.json'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
+    use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（张无忌），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch04/cg_ch04_haozhou_wedding.png
+    sha256: b9ce51aebdeb1bf05f1b43a9a30d83a68f97bb78e6179c84a3396b3cfa0cb324
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch04_haozhou_wedding.b9ce51ae.png
+  - path: assets/default/scene/ch04/cg_ch04_haozhou_wedding.png
+    sha256: 348a7545a263831983f50e345a67867c2f3005fc5030ba2faeecd09f255b361c
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_haozhou_wedding.png
+  - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png
+    sha256: d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:53:01.125298-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_39_56_r2.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 3d171fd58c544b26bf34d1cfc5d8a454525b8b242fbb6687f62a173a007f441a
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「濠州惊变」，实际字形「濠州惊变」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base（AR-53 总审返修：张无忌新郎脸改回 A 版 base 的圆润温和）；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留婚礼破局时的紧绷、委屈或挑衅原神态，头部朝向完全照图1；不改婚服、红帘与另一人的头。；质检：已打开base与前后：周芷若眉眼鼻唇为恢复base同人，保留婚礼愤怒受挫视线及红喜服反光；发冠耳坠不变、接缝自然；张无忌赵敏题字等其他像素不动；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；赵敏必须为身份参考base的同一张脸：较圆的大眼、眉眼间距、鼻梁鼻头和唇弓颌骨均取base。只借待改裁剪保留三分之四侧转望向张无忌的关切神态和原光向，禁止转为正脸，禁止照搬base笑容，禁止复原旧泛化脸。发丝耳坠位置保留；同图其他头和文字不动。；质检：已实际打开base与返修前后：赵敏圆大眼、眉眼间距、鼻唇及颌骨采用恢复base同人，三分之四侧转关切神态与暖侧光保留，发丝耳坠不变、脸颈接缝自然；只合成本头，保留已提交周芷若及张无忌和题字全部原像素
+  previous_revision:
+    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_haozhou_wedding.png
+    sha256: 348a7545a263831983f50e345a67867c2f3005fc5030ba2faeecd09f255b361c
+    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_haozhou_wedding.entry.yaml
+  runner_job_records:
+  - - cg_ch04_haozhou_wedding.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_haozhou_wedding.resume3.png
+    - '101'
+    - exec-43cbb664-5d99-42c2-b2e4-7e5f5ef77b6a.png
+  runner_success_count: 1
+  effort: ultra
+  executed_by: Codex gpt-6.1-sol（AR-86）
+  ar84_alignment:
+    job: ar84_calign_39_56_r2
+    before_sha256: d37c6b68e7f9c963bb57ba8b0154c398c4b0f10db48abcdfff63d94cc7337682
+    box:
+    - 243
+    - 219
+    - 375
+    - 370
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_39_56_r2.png
+    outside_changed_pixels: 0
+- id: cg_ch04_lvliu_footplay
+  file: cg_ch04_lvliu_footplay.png
+  category: scene
+  style: default
+  subject: 绿柳庄地牢足心制穴（ch04_yitian）
+  prompt: '本次纠正前三张共同问题，下面两条优先级最高：
+
+    1. 托足按穴必须是拇指，不是食指。做一个真实的两手抱托足姿势：托前脚掌的手，食指、中指、无名指、小指全部弯曲包在脚掌外侧，绝不伸出任何一根长直食指去戳足底；宽短的拇指从虎口伸出，以柔软的拇指指腹按在足心凹处，拇指根部与手掌的连接必须清楚。手掌部分转向足底、拇指在最靠近足心的一侧，其他四指只抓握支撑。另一手在后跟下承托。画真实的拇指指腹按压，禁止食指指尖戳足心。
+
+    2. 张无忌必须是图2/3作者认可F本人，不能另换一个锐鼻硬下巴的侧脸男人。身体侧向赵敏，头自然向镜头稍转约35–45度，两眼均能读到但仍看左边赵敏。完全保留F的眼眉、鼻唇和温和青年颌骨形状，表情严肃不笑，顶髻只有F的黑色发束，不能增加白色玉带冠。不得复制图1演员侧脸。
+
+
+    Use case: historical-scene / illustration-story
+
+    从零新生成1536×1024横幅写实手绘武侠剧情插画，《倚天屠龙记》绿柳庄地牢足心制穴，整张重画，全员明确成年。
+
+
+    参考图分工：图1作者剧照，仅取人物动作、左右站位、距离、高低关系、侧面平视镜头和两人全身取景，不取演员脸、服装、发型、灯光、摄影画质或字幕。图2/3是同一位张无忌的作者认可F全身与头肩，唯一的张无忌身份参考；图4/5是同一位赵敏的AR-84恢复base全身与头肩，唯一的赵敏身份参考。使用参考里的同一个人，保留各自骨相五官、发型头饰，不重新设计相似陌生人，不串脸，不借用图1演员。赵敏神态与服色按下述本场要求变化。
+
+
+    动作和镜头照图1：平视侧面中景，两人位于中部，从头到脚都完整入画，左右各留空地和墙面，人物高度约画高65–75%。赵敏在左，坐在地面，背靠钢壁，上身微后仰，一手撑身侧地面、另一手自然放身侧，脸朝右边张无忌看他。两腿从髋部向右前方伸出，一腿稍抬、一只赤足被张无忌双手托起，另一腿伸在地面、另一只赤足着地。长裙完整遮住大腿及小腿上部，膝盖不高耸抱胸。被托脚尖向上，足心大致朝张无忌，侧镜头看见足弓和部分足底，踝、后跟、足掌、五个脚趾真实连贯，腿脚朝向自然，不扭踝、不多脚。
+
+
+    张无忌在右，坐在她脚边的简单矮木凳上，双脚穿深靴自然着地，侧身朝左，身体自然微前倾。他双手共同托起她同一只赤足到自己下胸口，一手托踝下和后跟，另一手托前脚掌，拇指明确按足心凹处；手掌有真实支撑和握力，手指从袖口连续长出、关节自然，每手五指但允许合理遮挡，不能指趾融合、手掌悬空或手指插穿足掌。坐凳男子头部略高于坐地女子，保持图1高低关系和人体重心，不画半跪或蹲坐。两人对视，头稍向画面转来，使自然的三分之二侧脸可读；不看观众。下巴与颌颈过渡自然、脖子从衣领自然长出，不尖长下巴、不扭颈。头身与肩宽照F，头不过大、肩不窄、不是健美体格。
+
+
+    张无忌必须是图2/3的同一青年：F的白色交领袍、深镶边、黑灰腰带与腕部布带，头发束起、侧发珠饰照F。神态急于脱困救明教中毒众人的认真逼问：眼神坚定而焦急，口闭合、嘴角平直、绝不笑，不轻薄不调情。
+
+    赵敏必须是图4/5的同一郡主：眼型、眉鼻唇、脸型骨相保持，头顶束髻、浅玉发饰与簪照base，神态又羞又恼又强撑，轻蹙眉、脸颊略红、双唇绷住，倔强看他，不用base的露齿笑。服饰依原著此次已换女装，身穿嫩绿丝绸交领衫与完整长裙，精细古雅暗纹、白内领和腰间玉坠可保留base样式；不可穿蓝色男袍，不照抄图1的红衣黄裙。双足鞋袜均脱，一足托起、一足落地，脱下的软鞋和白色罗袜自然落在两人脚边，不摆齐陈列。剧情是受制逼问和救人之急，不是暧昧摆拍。
+
+
+    地牢依原著：水阁下纯钢铸的狭窄深井，深四五丈，连续光滑冷硬暗钢壁、钢底板，钢壁无明显细缝，克制的金属旧化；不画砖石、栅栏、窗或低矮顶棚。巨大铁翻板闭合在高处，此平视镜头让钢壁向高处消失来暗示井深，不硬塞低顶；上面八根钢条在翻板上方不可见。无第三人、无烛台、无随手可开机关、无满壁铆钉。柔和微光只为面容动作可读的绘画处理，仍显昏暗狭窄。矮凳只依作者指定剧照加入，原著未写凳。
+
+
+    画风照STYLE.md与两份base：写实手绘古风武侠，男性偏写实、女性古典美丽，自然骨相及细微不对称，细腻笔触、皮肤真实而不磨皮，头发不过锐，布料经纬、丝绸厚薄与自然垂坠可读，低饱和沉稳设色、柔和明暗。不是照片、电视剧复刻、3D塑料CG、动漫、网红美颜或厚涂油画。
+
+
+    题字：右上角竖排一列毛笔楷书，严格规范简体，自上而下四字「绿」「柳」「初」「逢」，合为「绿柳初逢」。每字独立清楚准确，占画宽约6%、高约28%，不挡脸；可附无可读文字小朱印。禁止繁体「綠」、日文字形、错字、增减字、其他文字、字幕、水印、Logo或边框。
+
+    避免：陌生脸、串脸、剧照演员五官、赵敏蓝男装、张无忌微笑、开心大笑、足部特写、裸露大腿、指趾融合、错肢、拧踝、脚不连腿、鞋袜仍穿在被托脚上、尖长下巴、扭脖、浮空坐姿、照片光影、发光穴位武功。
+
+
+    再次强调：这次不是食指点穴。四根长手指弯曲抓足，大拇指腹按足心；只画F同一身份。
+
+
+
+    最终头部补丁提示词：
+
+    Use case: identity-preserve / compositing
+
+    生成一张1024×1024写实手绘武侠头部补丁，重建图3遮灰的头部，不能做整幅场景。
+
+    图1是作者认可的F张无忌，唯一五官身份来源。图2是同一F全身，发型衣领身份补充。必须用这同一个男子，不创造相似的男人。准确保留他的眼眉、鼻唇、颧骨、软而自然的青年下巴，不能换锐鼻硬长下巴的侧脸，不改变年龄。原base的笑意改为急于救人时认真逼问：闭口，嘴角平直、不笑，眉略收。
+
+    图3只是构图、头部大小位置、颈部朝向、衣领、钢壁与光线的局部参考，错误旧头已遮灰。不要把灰色轮廓作为新头外轮廓。重新从图1建立F的头发和脸。所有灰色区域都画完整，不能留下灰斑。图3有现成白袍深边、身体倾角与暗钢背景，其余保持图3内容和位置，不改衣服、肩膀、边框。
+
+    机位：身体朝左，头稍向画面转来呈自然三分之二侧面，yaw约35–40度，两眼均可读，目光向左下方另一人物；不能正脸看镜头，也不做90度锐鼻侧脸。F原骨相和五官要一眼辨认，同一脸只改变转头和表情。闭口不笑、严肃克制，不轻薄。面容中心大约(415,510)，黑色顶髻中心约(415,70)，下巴约y=760，颈部自然接到图3保留的衣领(y=885附近)；原图的头部大致大小不变，不把脸扩大，不拉长下巴。左边脸廓不要伸到x=160以内，右边头发耳廓不要超出x=650。
+
+    发型完全照F黑色半束顶髻，黑发束结，不加白玉冠、白色丝带或别人的头饰。面容与头发用细腻手绘笔触，匹配图3地牢内柔和灰暗光、肤色不过白，不把明亮纸底人脸生硬贴入黑钢壁。颈部肌肉放松自然，下巴圆转，肩颈接合顺畅。保留F侧发细珠饰特征，长发自然沿原肩方向落下。
+
+    画满整张正方形补丁，灰色头部由F替换，外部仍为图3自然背景及衣领，不要文字、箭头、标记、边框、照片质感或塑料美颜。最重要：图1F是唯一身份，面容不能再凭通用英俊男演员重设计。
+
+    '
+  negative: 不要串脸、错肢、多余指趾、扭踝、尖长下巴、扭曲脖子、男性微笑、照片质感、蓝男装赵敏、繁体或日文字形、砖石牢房；完整全身侧面平视取景。
+  references:
+  - path: /Users/bytedance/Projects/jinyongqunxia/.agents/coord/imagegen-reference/identity-20261002/yitian/author_screenshot_lvliu_footplay_20261004.png
+    use: 作者剧照：只取动作、站位和镜头
+    sha256: d4d69d78cfb93fd9309bf5a6ffeaded98ed2dabf96a5b932888d31b403e7d268
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    use: 作者认可张无忌F，身份服饰体格
+    sha256: 3320846559f71c5013f03eba4e872004b787141b59e774cba57b33d37bbe7103
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    use: 赵敏AR-84恢复base身份发饰；服色依原著嫩绿女装
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+  tool: codex exec · image_gen（codex_w33；AR-88整图择优 + AR-53仅张无忌头部合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:58:27.139934-07:00'
+  source_path: .agents/coord/_lines/lvliu-redo/cg_ch04_lvliu_footplay.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: af2042e25a009e3fcd5c1be6fcd87da5e4f1901bf129c274cdb180ab4d9b3919
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「绿柳初逢」，实际字形「绿柳初逢」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；AR-75 绿柳庄整图重画，张无忌对齐 F、赵敏对齐 f1cd1652 现行 base，握赤足点足心，羞恼与逼问；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留赵敏对张无忌的关切与复杂眼神、侧面朝图左，保持最新蓝衣；张无忌、赤足、点穴动作及衣服一律不动。；质检：已打开对照：赵敏眉眼鼻唇脸型为恢复base同人，保留绿柳恼怒警觉与原室内侧光，接缝自然；从张无忌完成后的最新重绘git取底，张无忌手脸动作及题字均头外零变化；AR-88 照作者剧照的动作和镜头重画；四张整图（含一次拇指动作纠正补生成）逐张打开后择优，质检记录 .agents/coord/_lines/lvliu-redo/qa.md；第二十三回原著：纯钢深井、落牢前已得解药，制穴逼开翻板救人；赵敏嫩绿女装覆盖base蓝色男装；题字规范简体「绿柳初逢」逐字核验；canon-align已交付或停止后入库。；按AR-53仅合成张无忌头部，头部蒙版外逐像素保留所选新图，接缝已打开检查。
+  previous_revision:
+    png: .agents/coord/_lines/lvliu-redo/pre_ingest_e91c5f94.png
+    sha256: e91c5f945709c7ef5fe514f8ca11404f0a87833023584fa23de1ca7e80d6f262
+    entry: .agents/coord/_lines/lvliu-redo/pre_ingest_e91c5f94.entry.yaml
+  runner_job_records:
+  - - ar88_lvliu_screenshot_v1
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w33/out/ar88_lvliu_screenshot_v1.png
+    - '118'
+    - exec-ed5718bf-fa16-44fe-810f-1a1330b058cb.png
+    - gpt-6.1-sol/xhigh
+  - - ar88_lvliu_screenshot_v2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w33/out/ar88_lvliu_screenshot_v2.png
+    - '149'
+    - exec-b06b1322-92dd-4f70-9170-5253cdba1b0d.png
+    - gpt-6.1-sol/xhigh
+  - - ar88_lvliu_screenshot_v3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w33/out/ar88_lvliu_screenshot_v3.png
+    - '202'
+    - exec-4e31d15c-9753-4ff9-882f-4a4b9f47541f.png
+    - gpt-6.1-sol/xhigh
+  - - ar88_lvliu_screenshot_v4
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w33/out/ar88_lvliu_screenshot_v4.png
+    - '152'
+    - exec-d707c2aa-8115-47f8-8b2e-c953a19ff609.png
+    - gpt-6.1-sol/xhigh
+  - - ar88_lvliu_F_head_v5
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w33/out/ar88_lvliu_F_head_v5.png
+    - '115'
+    - exec-96e0fd46-ec03-4f7e-b33a-3dd018cc2aad.png
+    - gpt-6.1-sol/xhigh
+  runner_success_count: 5
+  effort: xhigh
+  executed_by: Codex gpt-6.1-sol（AR-88）
+  ar84_alignment:
+    job: ar84_calign_40_56_r1
+    before_sha256: 86dfa97d91b1b65a43f8273c493363a85c6378d8959e9d6fb04c4d8c40ee51bc
+    box:
+    - 1029
+    - 236
+    - 1144
+    - 376
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_40_56_r1.png
+    outside_changed_pixels: 0
+  composition_parameters: .agents/coord/_lines/lvliu-redo/selected.json
+  composite_job: ar88_lvliu_screenshot_v4 + ar88_lvliu_F_head_v5
+- id: cg_ch04_wanan_fire_rescue
+  file: cg_ch04_wanan_fire_rescue.png
+  category: scene
+  style: default
+  subject: 万安寺火塔营救（ch04_yitian）
+  prompt: '【任务】这是一次局部改脸，不是重新创作。第 1 张是范遥定稿立绘的脸部特写（身份基线）；第 2 张（最后一张）是待改剧情插图里范遥头部一带的放大方图（插图局部）。请以最后一张为底稿，只把范遥改成与各自的身份基线是同一个人，然后输出修改后的方图：1:1，取景、大小、位置与最后一张完全一致，不要移动、缩放或裁切。
+
+    【画里是谁】万安寺火塔，左上方窗口里、烟火中的男子（范遥，化名苦头陀，约四十五岁）。
+
+    【要改成什么】按基线改成苦头陀：满脸纵横交错的旧刀疤（基线那样的疤痕，容貌可怖），头发改成暗红色的长发（与基线同色），额上勒一道基线那样的头箍；去掉黑色络腮胡（基线只有短胡茬）；脸型骨相与基线一致。
+
+    【原图保持】保留头部角度、身体姿势、佛珠与烟火光影。方图里的其他人物、背景、光线方向与色调、笔触都与最后一张一致；不要改其他任何东西。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温、清晰度和笔触要与周围一致、自然融入，不要比周围更清晰或更像照片。
+
+    【不要】不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+
+
+    AR-86 定稿调整：原头（脖子以上连同发髻发带）等比缩放94%，肩胸略微加宽约7%；脸部与神态保持原图。局部程序变形参数见 .agents/coord/_lines/zhangwuji-final/composition_cg_ch04_wanan_fire_rescue.json'
+  negative: 不要文字、水印；不要新增人物或物件；不要幼态、网红脸、磨皮、照片质感；不要水平镜像。
+  references:
+  - path: assets/default/character/male/ch04/por_npc_fanyao__ch04_prime_kutoutuo_base.png
+    sha256: 03517b3e2a626c5658f7c08936473cce30b977bde2dcde15ec406e068ab05fc9
+    use: 对脸基准：范遥的本人默认基础立绘（面部总审 AR-53 的基准），上传其脸部特写 640×640（face__por_npc_fanyao__ch04_prime_kutoutuo_base.jpg）
+  - path: assets/default/scene/ch04/cg_ch04_wanan_fire_rescue.png
+    sha256: 3da97dcf21ae37b135f3de842b94bfb97b27cfd929248a5783cd944e2d6275dd
+    use: 待改插图：只把范遥头部方块交 codex 改，再按原位置对齐、羽化贴回，方块外与贴回区以外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w24/replaced/cg_ch04_wanan_fire_rescue.3da97dcf.png
+  - path: assets/default/scene/ch04/cg_ch04_wanan_fire_rescue.png
+    sha256: df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3
+    use: AR-86 调整前原图；已备份 .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wanan_fire_rescue.png
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_lvliu_base.png
+    sha256: 9f376a0bcf5639eea74c6b319f287d4867f007a1a5f52c7b95bb38b5269508f8
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  - path: assets/default/character/female/ch04/por_npc_zhouzhiruo__ch04_youth_zhangmen_base.png
+    sha256: d66b2f1445aed1cdf918fa95c7c4a1cd1d41fc2fc7f29e2524936718a2a6d642
+    use: AR-84 作者恢复 / 跨书同人身份基准，只取五官骨相；保留本图阶段、神态、服饰
+  tool: codex_w25 runner · image_gen · AR-84 局部五官身份对齐；有界头部蒙版合成，蒙版外像素一致
+  model: gpt-6.1-sol
+  created: '2026-10-04T01:31:11.916466-07:00'
+  source_path: .agents/coord/_lines/canon-align/prepared/ar84_calign_41_57_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 9000c9205b21075bcb6ea464393d97811f1c36518904c7b64d45050b5842d822
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。题字「火塔救群雄」，实际字形「火塔救群雄」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu、por_npc_zhouzhiruo__ch04_youth_scene_guangmingding；AR-53 配角对齐（11 号出图员，协调者 10-03 交办）：范遥按本人默认基础立绘对脸，只合成目标人物头部，其他人物与题字逐像素不变；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留火塔救援时原画紧张关切的眼神与火光方向；不微笑；周芷若在上层窗边、赵敏在院侧，身份不能串。；质检：已打开对照：赵敏眉眼鼻唇与恢复base同人，保留救援回望和原火光暖侧光，头脸接缝自然；张无忌、窗上周芷若、其他人物与题字均头外像素不变；AR-84 第二轮：周芷若五官对齐 por_npc_zhouzhiruo__ch04_youth_zhangmen_base；AR-53 仅头部，AR-75 神态与光向保留；保留火塔救援时原画紧张关切的眼神与火光方向；不微笑；周芷若在上层窗边、赵敏在院侧，身份不能串。；质检：已打开对照：楼窗远景周芷若眉眼鼻唇对齐恢复base，保持担忧视线、头倾与周围火光，不变远景尺度；接缝自然，头外零差异，保留已提交赵敏与张无忌其他人物题字
+  previous_revision:
+    png: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wanan_fire_rescue.png
+    sha256: df9b97a384522f2901772158a1ba34d1f80ac9d2aa3ebc42c300b2bac200a3a3
+    entry: .agents/coord/_lines/zhangwuji-final/originals/cg_ch04_wanan_fire_rescue.entry.yaml
+  runner_job_records:
+  - - cg_ch04_wanan_fire_rescue.resume3
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_wanan_fire_rescue.resume3.png
+    - '218'
+    - exec-bfb0ebbf-fb03-4687-8dde-038d659b71ac.png
+  runner_success_count: 1
+  effort: ultra
+  executed_by: Codex gpt-6.1-sol（AR-86）
+  ar84_alignment:
+    job: ar84_calign_41_57_r1
+    before_sha256: 3cdfbe7713df1f84b8e0713d391b952aa41d3bf4baf37e6c751be3579fa76381
+    box:
+    - 490
+    - 73
+    - 543
+    - 145
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_41_57_r1.png
+    outside_changed_pixels: 0
+- id: cg_ch04_wudang_taiji
+  file: cg_ch04_wudang_taiji.png
+  category: scene
+  style: default
+  subject: 武当太极传承（ch04_yitian）
+  prompt: 'Use case: precise-object-edit / identity-preserve.
+
+    图1是唯一待编辑原图。必须以这张图为底编辑。输出同样比例的整图，人物位置、大小、姿势、朝向和机位不变。
+
+    【只改】只将右后方门边赵敏的深蓝色袍改为白色男装长袍，胸前明显绣一个血红火焰标记。保留她的束发男冠、面容、身材、手和鞋。张无忌与张三丰、木剑、题字朱印、其他人和背景完全不动。
+
+    【原著依据】《倚天屠龙记》二十四 太极初传柔克刚：“一身白袍，袍上绣着个血红的火焰”；https://www.xuges.com/wuxia/jinyong/yttlj/176.htm
+
+    【严格不变量】脸型、五官、骨相、表情、眼神、年龄、肤色、头部大小及方向逐像素保持；只允许明确指定的煤污覆盖、头巾饰物变化，不许换脸。未点名的衣料、手指、器物、背景、纸纹、题字、朱印、同图其他人保持原样。保留原手绘笔触和光影，衣襟右衽，禁止镜像。
+
+    【不要】不要重构画面、加人、文字、水印、光效、照片感、塑料肤质、换脸或改动未列区域。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: .agents/coord/_lines/novel-fix-1/before/52_cg_ch04_wudang_taiji.png
+    sha256: aea6b043777b51c4ca60732acdbd4c4d84b60c38d194bed8fc8a09b1cf343625
+    use: AR-82待改原图：作者批准脸保持，指定区域以外逐像素不变
+  - path: assets/default/character/male/ch04/por_npc_zhangwuji__ch04_youth_jiaozhu_base.png
+    sha256: 6af3aee1e834a4f85587ef7810e0e910c9db2316d0de1b696cce0e8e73566a24
+    use: 对脸基线：作者审核通过的 por_npc_zhangwuji__ch04_youth_jiaozhu_base（张无忌），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/character/female/ch04/por_npc_zhaomin__ch04_youth_scene_lvliu.png
+    sha256: ec9f93d8dfc59a736699ba6eaa3a5045db6a982dc9fdd45778007258fa8f8188
+    use: 对脸基线：作者审核通过的 por_npc_zhaomin__ch04_youth_scene_lvliu（赵敏），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  tool: codex exec · image_gen（指定codex_w25队列；AR-82局部蒙版合成）
+  model: gpt-6.1-sol
+  created: '2026-10-04T03:33:19.503554-07:00'
+  source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_52_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: e916471892712debe71f38d2db1e12190084d57ab99469baefa410a539ab00c3
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出1。题字「太极初传」，实际字形「太极初传」逐字核验，原生题字，未叠加。；AR-44 对脸精修，基线 = por_npc_zhangwuji__ch04_youth_jiaozhu_base、por_npc_zhaomin__ch04_youth_scene_lvliu；AR-86 肩胸略加宽、头部 94%；原头等比缩放不重画，肩胸局部平滑扩宽约7%，腰腿手与动作保留；同图其他人物与题字逐像素保留，局部支持区外逐像素相同；AR-84 第二轮：赵敏五官对齐 por_npc_zhaomin__ch04_youth_lvliu_base；AR-53 仅头部，AR-75 神态与光向保留；保留远处院门边赵敏观察太极的神态，头巾与耳环不动，其他人逐像素不动。；质检：已打开对照：远景赵敏眉眼鼻唇对齐恢复base，保留观察太极的原神态、视线和尺度，原柔侧光自然；张三丰张无忌与题字头外像素一致，无接缝；AR-82 原著核对返修：武当太极插图同步赵敏白袍血红火焰
+  previous_revision:
+    png: .agents/coord/_lines/novel-fix-1/before/52_cg_ch04_wudang_taiji.png
+    sha256: aea6b043777b51c4ca60732acdbd4c4d84b60c38d194bed8fc8a09b1cf343625
+  runner_job_records:
+  - - cg_ch04_wudang_taiji.resume3r2
+    - ok
+    - /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/out/cg_ch04_wudang_taiji.resume3r2.png
+    - '194'
+    - exec-ed93386e-cf20-4e8f-9c1f-a4332833db0d.png
+  runner_success_count: 1
+  effort: ultra
+  executed_by: Codex gpt-6.1-sol（AR-86）
+  ar84_alignment:
+    job: ar84_calign_42_56_r1
+    before_sha256: 44096a61aa74e3dc98627479d28673eb0db8531345d8cfb968770ce33fa95071
+    box:
+    - 1310
+    - 296
+    - 1365
+    - 372
+    mask: .agents/coord/_lines/canon-align/masks/ar84_calign_42_56_r1.png
+    outside_changed_pixels: 0

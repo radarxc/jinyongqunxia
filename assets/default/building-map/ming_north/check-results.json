@@ -1,0 +1,6 @@
+{
+  "checked": "2026-09-30",
+  "checks": [{"command": "python3 tools/agents/check_assets.py assets/default/building-map/ming_north --min 18 --max 22 --min-side 256", "exit_code": 0, "output": "assets/default/building-map/ming_north：图片 19 张，条目 19 条，问题 0 个\n"}, {"command": "python3 tools/agents/check_assets.py assets/default/tile/ming_north --min 5 --max 10 --min-side 32", "exit_code": 0, "output": "assets/default/tile/ming_north：图片 7 张，条目 7 条，问题 0 个\n"}, {"command": "python3 tools/lint/check_ids.py --strict", "exit_code": 0, "output_summary": "scanned 115 files; known undefined sk_babuganchan baseline=1; new=0; strict failure count=0."}],
+  "geometry": {"buildings": 19, "warnings": 2, "attempted_buildings": 10, "replaced_buildings": 9, "ground_contour_passes": 8, "revised_building_failures": 2, "attempted_tiles": 3, "replaced_tiles": 0, "revised_tile_failures": 3, "candidate_count": 24, "precision_accepted": false, "revision": 3, "limitation": "Four building paving contours were alpha-trimmed; internal structural axes were not reprojected. Five requested assets still fail geometry."},
+  "alpha": "26 registered PNGs verified RGBA, alpha0..255, dimensions, SHA and source SHA; 13 unlisted finals, 4 retained failed finals, all 581 baseline files and 13 tools/town files unchanged."
+}

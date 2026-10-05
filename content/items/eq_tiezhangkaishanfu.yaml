@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_tiezhangkaishanfu
+name: 铁掌开山斧
+kind: weapon
+sub: exotic
+grade: 7
+stack: 1
+chapters: any
+origin: canonExpanded
+canonRef: 铁掌帮 · design/17 §8.2；器物 （原创扩展）
+price: auto
+flags:
+- runtimeProjection
+- unique
+assets:
+  icon: item/tiezhangkaishanfu
+text:
+  desc: 外观：宽月牙铁斧配八十厘米硬木柄，斧面素黑、双铁箍与尾帽。 待运行时投影：exoticKind=axe; sect=sect_tiezhangbang。
+  lore: 铁掌帮寨中用于破木开路兼作守寨兵器的宽刃斧，斧头前重，单手挥击仍需扎稳腰马。素黑斧面不刻帮徽；名称、来历、尺寸与江湖传闻均为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 1
+    tags: []
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: true
+    attributes:
+      version: 2
+      atk: 105
+      hardness: 76
+      qiAffinity: 100

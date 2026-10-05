@@ -1,0 +1,20 @@
+{
+  "short": "yamen",
+  "round": 2,
+  "prompt": "Use case: precise-object-edit. Correct the supplied Dali yamen city-map sprite. KEEP its building design, materials, footprint ratio 14:11, lighting upper left. Need a clean standalone game sprite on TRUE TRANSPARENT RGBA with absolutely ZERO ambient glowing halo, ZERO gradient or shadows outside the thin ground contact rectangle. Make the building and ground fully OPAQUE, background alpha=0. The previous image has a smoky hazy aura around it: REMOVE that aura entirely. Orthographic 2:1 dimetric. BOTH ground axes must have absolute slope exactly 0.5. On 1536x1024 canvas, ground polygon should be LEFT (128,530), FRONT (844.8,888.4), RIGHT (1408,606.8), BACK (691.2,248.4). The front-left wall is 14 units and front-right wall 11 units. Ground front corner is right of ground center, and the right wall should rise slightly less steeply than in input. Align wall feet and roofs to this corrected view. Generous transparent margins. No text, labels, grid, persons, modern objects, watermark. Only one building, all roofs uncut.",
+  "source_path": "/Users/bytedance/.codex/generated_images/01a0f1e0-ee87-71f0-960c-21b5234d904c/exec-9088ac9a-8dd3-498c-87c3-ba7654f71d4b.png",
+  "reason": "右侧边缘达到画布边界，主体留边不足，淘汰",
+  "ref": "yamen1",
+  "archive": "assets/default/baseline/building-map/sources/rejected/bld_kit_song_dali_yamen_review2_attempt02.png",
+  "source_sha256": "81ba3448aeb89c706a78c545b9af801b949e0567f51c914eaf569ca727230a7b",
+  "references": [
+    {
+      "id": "bld_kit_song_dali_yamen",
+      "file": "assets/default/baseline/building-map/sources/bld_kit_song_dali_yamen.png",
+      "sha256": "802ce940f9f5a67cbf5d5b28123937d6290936228c1e2d05855c3a8b2664cb3c",
+      "role": "返修生成输入；建筑候选为编辑目标，projection_guide为程序绘制的精确占地QA几何指导（非入库美术）"
+    }
+  ],
+  "status": "rejected",
+  "created": "2026-09-30T10:49:21.043503+00:00"
+}

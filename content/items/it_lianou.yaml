@@ -1,0 +1,27 @@
+schemaVersion: item.v1
+id: it_lianou
+name: 莲藕
+kind: material
+sub: ingredient
+grade: 2
+stack: 999
+chapters: any
+origin: canon
+canonRef: 江南水田时蔬；宋代食谱常见
+price: auto
+flags: []
+assets:
+  icon: item/lianou
+text:
+  desc: 外观：带泥莲藕两节置荷叶，切口乳白多孔。
+  lore: 江南水田秋季起出的常见时蔬，宋代食谱中亦常入羹馔。本件两节尚带薄泥，切口乳白多孔；洗净后可煨汤、炒食或作素馅。（原创扩展）
+extension:
+  type: material
+  value:
+    family: ingredient
+    resourceRef: res_shicai_huang6
+    materialGrade: 2
+    rare: false
+    ingredientKind: vegetable
+    attributes:
+      version: 2

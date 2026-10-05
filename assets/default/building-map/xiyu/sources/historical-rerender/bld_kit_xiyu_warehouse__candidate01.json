@@ -1,0 +1,27 @@
+{
+  "id": "bld_kit_xiyu_warehouse",
+  "generated_at": "2026-10-01T10:17:57.626606+00:00",
+  "model": "gpt-6-astra image_generation",
+  "candidate": "sources/historical-rerender/bld_kit_xiyu_warehouse__candidate01.png",
+  "sha256": "bd8d5471f6fa4525dda8903854a372c97a3e3efe94c429d37759b4ecee1ca8c3",
+  "generation_inputs": [
+    {
+      "file": "sources/historical-rerender/bld_kit_xiyu_warehouse__geometry-lock.png",
+      "sha256": "3b64804daf80a97d43635aa74edba6fdcc6de75a4ac06e1b2c8c75a579f6fb1c",
+      "role": "pre-rerender_geometry_projection_style_lock"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/caravanserai_1915.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg",
+      "detail": "厚土墙、粗木柱、密椽覆土屋面与深阴影储物廊。",
+      "role": "historical_form_material_input"
+    },
+    {
+      "file": "/private/tmp/KIT-xiyu-hist-refs/jiaohe_392.jpg",
+      "url": "https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg",
+      "detail": "交河遗址厚夯土墙、层理和小洞口；脚手架、护栏与游客排除。",
+      "role": "historical_form_material_input"
+    }
+  ],
+  "prompt": "Call image_generation exactly once. Re-render the FIRST attached image as the same production asset, not a new composition. The FIRST image is the geometry, footprint, camera, orientation, canvas occupancy, and style-density lock. Preserve its registered type and footprint, strict orthographic 2:1 dimetric view (yaw 45 degrees, camera elevation about 30 degrees), vertical verticals, ground axes about +0.5/-0.5, visible bottom footprint edge, screen-upper-left light, and only a short lower-right contact shadow.\n\nThe later attached images are real historical/regional references actually used for construction form, proportion, material, and detail. Translate only the listed features into the asset; do not copy photographic composition, people, signs, watermarks, vehicles, modern repairs, electrical fixtures, or scenery.\n- Historical input 2: https://commons.wikimedia.org/wiki/File:A_Caravanserai_on_the_Osh-Kashgar_road.jpg — 厚土墙、粗木柱、密椽覆土屋面与深阴影储物廊。\n- Historical input 3: https://commons.wikimedia.org/wiki/File:Turpan_May_2007_392.jpg — 交河遗址厚夯土墙、层理和小洞口；脚手架、护栏与游客排除。\n\nAsset-specific production prompt:\nRetexture this EXACT orthographic block into a detailed realistic ancient Xinjiang storehouse game-map sprite. Preserve exact block ground geometry, bottom corner positions and camera. Front width10, side depth8, width/depth1.25. Both ground and roof axes exactly slope+0.5 and-0.5, no perspective convergence. Simple thick warm ochre adobe walls, low yellow brick footing, flat packed-earth roof with short raised parapets and short exposed wood beam ends. Broad heavy double timber doors in left-facing long front wall, modest flat timber awning inset within footprint, a few sacks and clay jars by door within footprint. No yard extensions. Textured earthen plaster weathering, grainy timber and fine masonry; realistic historical strategy-game illustration at high detail, no cartoon/plastic. Entire building opaque, true transparent RGBA outside isolated footprint. Upper-left light, short right-lower contact shadow. No words, labels, people, modern elements, scenery, sky, halo, gradient or colored backdrop. Ground rectangle bottom edges clearly readable and matching graybox exactly.\n\nRequired historical detail summary: 低矮平顶仓屋、少窗深门、厚土墙与露木梁头，货物不超出占地。\nOutput ONE isolated, fully rendered, highly detailed realistic historical game-map asset. TRUE transparent RGBA outside the object; no backdrop, landscape, halo, caption, letters, numbers, watermark, people, faces, modern object, fantasy ornament, or thick floating diorama slab. Keep the full silhouette uncut with transparent margin."
+}

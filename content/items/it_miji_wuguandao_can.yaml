@@ -1,0 +1,29 @@
+schemaVersion: item.v1
+id: it_miji_wuguandao_can
+name: 武馆刀法残本
+kind: manual
+sub: partial
+grade: 2
+stack: 1
+chapters: any
+origin: expanded
+price: auto
+flags: []
+assets:
+  icon: item/miji_wuguandao_can
+text:
+  desc: 外观：清代赭色线装残册，粗麻补订。
+  lore: 武馆旧刀谱缺去两叶，只余基础劈、拦与收刀图，武学和残本属 （原创扩展）。研读须以木刀按现存次序练习，不能臆接缺招；封边油旧仍留教头翻阅痕，来源限七层。
+extension:
+  type: manual
+  value:
+    skill: sk_wuguandao
+    maxLayer: 7
+    variant: partial
+    readMul: 1
+    attributes:
+      version: 2
+      skillRef: sk_wuguandao
+      readWis: 25
+      maxLayer: 7
+      cultivation: 525

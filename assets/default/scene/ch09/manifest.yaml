@@ -1,0 +1,271 @@
+- id: cg_ch09_maxipu_sword
+  file: cg_ch09_maxipu_sword.png
+  category: scene
+  style: default
+  subject: 麻溪剑影（ch09_liancheng）
+  prompt: '【任务】这是一次图像编辑（改脸），不是重新创作。第 1 张是戚芳的身份基线（作者审核通过的立绘，脸部特写）；第 2 张（最后一张）是待改的剧情插图（3:2 横幅）。请以最后一张为底稿，只把画中戚芳的脸改成与各自的身份基线是同一个人，然后输出修改后的完整插图：3:2 横幅，构图与原图完全一致。
+
+    【画里谁是谁】这张插图画的是：排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+
+    【要对齐的部分】戚芳各自的脸型与骨相、眉眼、鼻口、胡须、肤色与年龄感要和自己的基线一致，让人一眼认出；表情保留原图的情绪方向；发式和头饰保持原图。每个人只像自己的基线，严禁串脸。
+
+    【原图保持不变】除这几张脸以外，原图的一切都保留：画幅与构图、所有人物的位置、大小、姿势、手势和动作、服饰、兵器道具、背景场景、光线、色调、笔触画风；画里其他人物（没有给基线的）的脸也不要改。右上角的竖排毛笔题字「麻溪剑影」和小朱印必须原样保留，一笔不改、不增不减。
+
+    【画风】项目的写实手绘古风剧情插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。新脸的光影、色温与原图一致、自然融入，不要像照片贴上去。
+
+    【不要】不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+
+    【本张另外要求】（AR-53 / AR-56 总审轻微：持木剑的少女是戚芳，脸窄、轮廓硬）把她的脸改成基线的圆润鹅蛋脸、两颊饱满、下巴圆润、眼睛圆而大；表情照原图。狄云和其他人的脸不要动。'
+  negative: 不要新增或删除人物；不要改动题字；不要串脸；不要幼态（童颜、娃娃脸）；不要照片质感、磨皮、网红脸；不要水平镜像；衣襟保持右衽。
+  references:
+  - path: assets/default/character/female/ch09/por_npc_qifang__ch09_youth_mother_base.png
+    sha256: ede3331b5673781e0f61ceccc3f3a89800ac9f3981d24097c9ccad195b5cb927
+    use: 对脸基线：作者审核通过的 por_npc_qifang__ch09_youth_mother_base（戚芳），只取脸（五官骨相、胡须、发式），上传缩小版 JPEG与脸部特写
+  - path: assets/default/scene/ch09/cg_ch09_maxipu_sword.png
+    sha256: ec374e54a70312eaea7abfbd9461ad460e40e8ef64e7c1125181ef221ef268c3
+    use: 待改原图（AR-44 图像编辑只改脸，其余保持）；旧图备份 .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch09_maxipu_sword.ec374e54.png
+  tool: codex exec · image_gen（AR-44 剧情插图对脸：图像编辑，上传各人物基线脸部特写 + 待改插图，不加画风基线）
+  model: gpt-6-astra
+  created: 2026-10-03T18:27:38-0700
+  source_path: .agents/coord/_handoff/gem/codex_w17/out/cg_ch09_maxipu_sword.s1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 638caa2c737af1c0fc53d5273ddcdeac62c0ba8bdb3407edea8b8527fce0a66c
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；第5次续作：题字「麻溪剑影」逐字放大正确，原生题字，未字体叠加；采用本轮新女主对应阶段身份。；AR-44 对脸精修，基线 = por_npc_qifang__ch09_youth_mother_base（AR-53 / AR-56 总审返修：戚芳对齐新基准；局部合成——codex 整图编辑后只取戚芳头部、羽化贴回原图，其余像素不变，原输出见 codex_w17/out/cg_ch09_maxipu_sword.s1.raw.png）
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_maxipu_sword.retry3.r2
+  quality_retries: 1
+  history:
+  - id: cg_ch09_maxipu_sword
+    sha256: 57811ae224f89a931b6a01d3e09976e7eaedbb952ede86872840c26cddb458e9
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_maxipu_sword.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-03T00:13:45-0700
+    generation_job: cg_ch09_maxipu_sword.retry3.r1
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_maxipu_sword/57811ae224f89a931b6a01d3e09976e7eaedbb952ede86872840c26cddb458e9.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_maxipu_sword/57811ae224f89a931b6a01d3e09976e7eaedbb952ede86872840c26cddb458e9.yaml
+    archived_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_maxipu_sword/374f4a0cef7a0f11fbdeb866b83e7e376140467ec8a8b560c0ddf4165f038070.source.png
+  effort: ultra
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch09_maxipu_sword.ec374e54.png
+    sha256: ec374e54a70312eaea7abfbd9461ad460e40e8ef64e7c1125181ef221ef268c3
+    entry: .agents/coord/_handoff/gem/codex_w17/replaced/cg_ch09_maxipu_sword.ec374e54.entry.yaml
+- id: cg_ch09_prison_bond
+  file: cg_ch09_prison_bond.png
+  category: scene
+  style: default
+  subject: 铁狱同心（ch09_liancheng）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    只改两位主角的指定范围：画面左侧丁典的胡须浓密蓬乱覆盖两颊下部和下颌，原骨相眼鼻嘴及神情不变；丁典和右侧狄云两人各从双肩衣缝垂下两条铁链，连到双腕铐与双踝镣链，因坐姿被石桌遮挡处自然遮挡，不能把墙边铁链当身上束缚，不画血肉穿刺。右侧狄云向碗伸出的自身右手（画面左侧）五指全部已失，包括拇指，旧布包扎为残掌与手腕，不出现任何指头；仍可以残掌轻触碗沿，另一只手保留正常手指。原汤碗、石桌、背景、题字和两人的其他部位保持原样。
+
+    【原著依据】《连城诀》二《牢狱》：“琵琶骨中也穿着两条铁链”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“满脸虬髯”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“两条铁链从自己双肩垂了下来”（https://xuges.com/WUXIA/jinyong/lcj/009.htm）；《连城诀》二《牢狱》：“右手的五根手指已被人削落”（https://xuges.com/WUXIA/jinyong/lcj/008.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/scene/ch09/cg_ch09_prison_bond.png
+    sha256: a1f63e31379cd064f66f7a9547f585c8f68fc8f32563155bfcdb8a3fde5ef0fb
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_prison_bond.a1f63e31.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T03:10:44-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_39_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 9e7b766cf3035ddbab15ba797440f7b6be5b444c0a9554ccd3581a1e2a2cecbb
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「铁狱同心」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。；AR-82 原著核对返修：铁狱同心同步丁典虬髯、两人肩链与狄云断指
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_prison_bond.retry3.r1
+  quality_retries: 0
+  history: []
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_prison_bond.a1f63e31.png
+    sha256: a1f63e31379cd064f66f7a9547f585c8f68fc8f32563155bfcdb8a3fde5ef0fb
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_prison_bond.a1f63e31.entry.yaml
+- id: cg_ch09_snow_valley
+  file: cg_ch09_snow_valley.png
+  category: scene
+  style: default
+  subject: 雪谷相守（ch09_liancheng）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    只修改远处站在洞口、持木杖的狄云身上砖红色内层旧僧衣为褪色土黄，来自宝象的黄袍。保持外面的灰披布衣、本人头脸光头、木杖、双手双脚、水笙全部、她正在缝制的羽衣、雪景、篝火和题字逐像素不变。不让狄云穿羽衣。
+
+    【原著依据】《连城诀》六《血刀老祖》：“身穿黄袍”（https://xuges.com/WUXIA/jinyong/lcj/033.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/scene/ch09/cg_ch09_snow_valley.png
+    sha256: dc54e206cf2dd71e4638c6f870247742f7614e243d6c43b52aa015140a1a4741
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_snow_valley.dc54e206.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T03:18:54-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_40_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 48c2aea7c6662d619b17e4218fbfd19f5e2346f060b7bc5927c29cd4fe294f92
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；第5次续作：题字「雪谷相守」逐字放大正确，原生题字，未字体叠加；采用本轮新女主对应阶段身份。水笙抽线缀羽衣，已纠正狄云向她递衣的旧候选。；AR-44 对脸精修，基线 = por_npc_shuisheng__ch09_youth_travel_base（AR-53 / AR-56 总审返修：水笙对齐新基准；局部合成——codex 整图编辑后只取水笙头部、羽化贴回原图，其余像素不变，原输出见 codex_w17/out/cg_ch09_snow_valley.s1.raw.png）；AR-82 原著核对返修：雪谷相守狄云内层僧衣同步旧土黄
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_snow_valley.retry3.r3
+  quality_retries: 2
+  history:
+  - id: cg_ch09_snow_valley
+    sha256: 41c62aa8e40e9240e43387441e0456f96da75cd5d0026108d07e7a999cf9874d
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_snow_valley.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-03T00:13:47-0700
+    generation_job: cg_ch09_snow_valley.retry3.r2
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_snow_valley/41c62aa8e40e9240e43387441e0456f96da75cd5d0026108d07e7a999cf9874d.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_snow_valley/41c62aa8e40e9240e43387441e0456f96da75cd5d0026108d07e7a999cf9874d.yaml
+    archived_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_snow_valley/66ebb703c2cf670628f9aa49403e74ba67fdcd953c9a38e9e0cf578a3d0088c8.source.png
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_snow_valley.dc54e206.png
+    sha256: dc54e206cf2dd71e4638c6f870247742f7614e243d6c43b52aa015140a1a4741
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_snow_valley.dc54e206.entry.yaml
+- id: cg_ch09_wall_rescue
+  file: cg_ch09_wall_rescue.png
+  category: scene
+  style: default
+  subject: 夹墙生机（ch09_liancheng）
+  prompt: 'Use case: identity-preserve / precise-object-edit.
+
+    图1是唯一待编辑原图。严格图像编辑，保持画幅比例、机位、人物位置、身体姿势和所有器物位置，不重新设计画面。
+
+    输出和原图同样比例的完整画面。
+
+    只把画面中央狄云身上的砖红内层旧僧衣改褪色土黄，与他自宝象处取得、雪谷继续穿用的黄袍一致。保持灰外披、腰带、羽物、本人脸头发、双手脚、接触动作全原样；右侧少年和左后方女子的全部像素、墙巷、灯火与题字完全不动，不重画其他人。
+
+    【原著依据】《连城诀》六《血刀老祖》：“身穿黄袍”（https://xuges.com/WUXIA/jinyong/lcj/033.htm）
+
+    【身份锁定】原图的作者选定脸型、骨相、五官位置、眉眼鼻唇、眼神、表情、年龄、肤色与发型保持；只改明确列出的疤痕、须发或饰物时才可碰对应部分。禁止换脸、变年轻、变网红脸。
+
+    【不变量】未指定编辑的区域保持原图不变：背景纸底、水墨、场景、题字、同图其他人、器物、手、针、绷架、药瓶、剑、鞋、衣褶均保持原样，除非上文明示修改。衣襟右衽，禁止镜像。保持原图手绘画风。
+
+    【不要】不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。'
+  negative: 不要额外人物、文字、水印、可读刻字、现代物件、发光特效；不画新鲜流血；不要改变原图头脸或构图。
+  references:
+  - path: assets/default/scene/ch09/cg_ch09_wall_rescue.png
+    sha256: a9447ca4e7d51d0c09f2eacd8d1561614c65f861f729cad2826222e1a5085fcf
+    use: 待改原图；仅原著问题局部编辑，蒙版外逐像素不变；旧图备份 .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_wall_rescue.a9447ca4.png
+  tool: codex exec · image_gen（AR-82 原著核对返修，指定w31队列出图+局部蒙版合成）
+  model: gpt-6.1-sol
+  created: 2026-10-04T03:18:57-0700
+  source_path: .agents/coord/_handoff/gem/codex_w31/out/ar82_nf2_41_r1.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 06e3b219c118da7914e06d9e334509fd2a7066c454efc86d43001b5a2a5b2c7b
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；第5次续作：题字「夹墙生机」逐字放大正确，原生题字，未字体叠加；采用本轮新女主对应阶段身份。；AR-53 配角对齐（12 号出图员），基线 = por_npc_wangui__ch09_youth_wanfu_base（第 1 次（s1）改得不够未入库，第 2 次加重要求后入选；编辑结果只取万圭（#3）头部区域羽化合成回原图，其余像素保持原图（狄云、戚芳不动）；头部转角比原图略正；原始编辑结果 out/<job>.raw.png）；AR-82 原著核对返修：夹墙生机狄云承接旧黄僧衣
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_wall_rescue.retry3.r3
+  quality_retries: 2
+  history:
+  - id: cg_ch09_wall_rescue
+    sha256: f92536b1acdc70f5539ccad0d4bfe16e72ade413737967bbebfab1ff8c26bd78
+    source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_wall_rescue.png
+    tool: codex exec · image_gen
+    model: gpt-6-astra
+    created: 2026-10-03T00:13:47-0700
+    generation_job: cg_ch09_wall_rescue.retry3.r2
+    archived_image: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/f92536b1acdc70f5539ccad0d4bfe16e72ade413737967bbebfab1ff8c26bd78.png
+    archived_manifest: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/f92536b1acdc70f5539ccad0d4bfe16e72ade413737967bbebfab1ff8c26bd78.yaml
+    archived_source: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3-history/cg_ch09_wall_rescue/1ca0ce5eee597d8cbd3cf634cf23e2399beefc38b245ce554c391f7e41843702.source.png
+  effort: xhigh
+  previous_revision:
+    png: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_wall_rescue.a9447ca4.png
+    sha256: a9447ca4e7d51d0c09f2eacd8d1561614c65f861f729cad2826222e1a5085fcf
+    entry: .agents/coord/_handoff/gem/codex_w31/replaced/cg_ch09_wall_rescue.a9447ca4.entry.yaml
+- id: cg_ch09_tianning_treasure
+  file: cg_ch09_tianning_treasure.png
+  category: scene
+  style: default
+  subject: 佛腹照心（ch09_liancheng）
+  prompt: '生成一张3:2横幅写实手绘古风剧情插画，1536×1024。所有人物明确为成年；单幅完整场景，不拼贴不分镜。
+
+    第1张参考：狄云·雪谷羽衣阶段图，锁定新身份与年龄，衣物道具以【场面】为准，不复制姿势背景。
+
+    第2张参考：戚长发本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    第3张参考：凌退思本人基础图，只锁定该人的面容与成人体态；未另述衣装时沿用本人base，明确场面要求优先。
+
+    最后两张为项目画风基线，只借笔触、设色、自然材质，不借人物身份。各人脸与发式严格隔离，不串脸。未上传的人物只按下述文字塑造，不复制演员面孔。
+
+    【场面】天宁寺大殿佛腹开裂，群豪争抢金珠；狄云独立殿侧转身欲离，戚长发抢宝、凌退思带官兵入殿；人群模糊文字化，珠宝无魔法光，无已死万震山或言达平。 【姿态重出修正】狄云仅用解剖学左手提住衣摆；右前臂自然下垂，整只右掌藏在宽大的完整右袖内，从右袖口绝不露出手指、指甲或握拳。右手五指早已缺失，不可恢复；画面不描绘残端。不可右手提衣。
+
+    【剧情边界】lc12 与 story/09事件52-53；构图浓缩，毒物效果不以绿光暗示。；题名、画面取景、站位、时刻、服饰配色、成年化均属（原创扩展）；指定版本细节待纸本逐字终校（待考）。
+
+    【画风】写实手绘古风人物插画，与本项目写实武侠角色立绘同一画风，像功力深厚的画师用细腻笔触画出的真实人物。手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。皮肤有真实质感——细小毛孔、细纹、晒痕和自然的左右不对称，不磨皮、不油亮；头发是一缕缕自然的发丝和少量碎发；布料看得出经纬纹理、厚薄和自然垂坠的褶皱，带穿用过的轻微旧化，但完整不破烂；整体设色低饱和、沉稳；依照本场天色和灯火布光，明暗自然，不打舞台光、轮廓光或美颜柔光。不是照片，不是三维渲染，不是动漫或游戏 CG，也不是油画（没有厚涂笔触和画布纹理）。
+
+    【构图】画面有近中远层次，视线与肢体动作清晰，人物互相留出空间，头与手可读。保留完整环境背景。不要堆成合影。右上方天空或墙面留出题字空白，文字不挡脸。
+
+    【古风题字】右上角一列竖排毛笔楷书，自上至下准确写「佛」「腹」「照」「心」，合成「佛腹照心」。每字约画宽4%，全列不超过画高40%。墨黑自然笔锋；每字仅一次，不多字不漏字；下方一枚小朱红无字方印。
+
+    【时代】清代传统服装；男角剃额留辫，僧侣剃光无辫，圆性素僧帽遮剃发、不戴紫帽珠帘；胡斐按作者例外束发不剃额不结辫，狄云按对应阶段；右衽；禁止现代物件。
+
+    排除：除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。'
+  negative: 除题名外不出现可读文字、字幕、堂匾、签名或水印；不要幼态、儿童比例、色情、裸露、血腥特写、肢体错乱、多指、穿模、照片、演员肖像、塑料CG、厚涂油画、漫画、法阵发光。
+  references:
+  - path: assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_diyun__ch09_youth_scene_snowvalley_feathers.png
+    sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    uploaded_sha256: 4a667d262d398a825d116a37f6b1e0d7f72c0cb186f5b4179807aa66df96ed67
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_qichangfa__ch09_prime_rural_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_qichangfa__ch09_prime_rural_base.png
+    sha256: 7dc4180ed6fe51f86cc5c597b62ae920c42ac763bc89e48be9513db23effea06
+    uploaded_sha256: 7dc4180ed6fe51f86cc5c597b62ae920c42ac763bc89e48be9513db23effea06
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/character/male/ch09/por_npc_lingtusi__ch09_prime_magistrate_base.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/wt/ART-hero-refine-b/assets/default/character/male/ch09/por_npc_lingtusi__ch09_prime_magistrate_base.png
+    sha256: 5619833cd2f27874e05798b4006cae457e2dd8894fb5b8fbf9b84b0daf41b388
+    uploaded_sha256: 5619833cd2f27874e05798b4006cae457e2dd8894fb5b8fbf9b84b0daf41b388
+    use: 身份参考（作者 AR-29：只上传主角与 S 级）
+  - path: assets/default/baseline/character/male/ref_npc_linghuchong__ch05_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_linghuchong__ch05_base01.jpg
+    sha256: 3523d4d935ad8bb13db359ce72e73bc211ebdb3af5cb2a9806db346dca6df202
+    uploaded_sha256: 7e6d79259fbe713df66f3d94cc23a6703181a38c8534373fa436882e0e6f2fe1
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  - path: assets/default/baseline/character/male/ref_npc_xiaofeng__ch01_base01.png
+    uploaded: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/baseline_small/male__ref_npc_xiaofeng__ch01_base01.jpg
+    sha256: c9f87f225636e3f8166717f1b0c8ccaf13c319210fdc6069e09289e96632fd89
+    uploaded_sha256: b167bd9f5352842d6bba12d41962da8427cee329dd52d94d4150bcae611143ff
+    use: 同性别项目画风基线：只取画风、光线、质感与背景，不取人物身份
+  tool: codex exec · image_gen
+  model: gpt-6-astra
+  created: 2026-10-03T00:13:48-0700
+  source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w12/archive/retry3/cg_ch09_tianning_treasure.png
+  source_size: 1536x1024
+  size: 1536x1024
+  sha256: 349d6efb2ce48a12875749820bf12a06c695eb09401c821b1652a8998154a7ac
+  status: candidate
+  notes: 多人情景图（AR-29 / AR-30：只上传主角与 S 级立绘，其余按文字）；作者 10-02 晚：复合基线风格精修；题字「佛腹照心」逐字放大正确；原生题字，未字体叠加；本轮新base及阶段身份。
+  redo_reason: 作者 10-02 晚：复合基线风格精修
+  generation_job: cg_ch09_tianning_treasure.retry3.r2
+  quality_retries: 1
+  history: []

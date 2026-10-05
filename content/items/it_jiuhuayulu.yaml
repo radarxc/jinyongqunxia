@@ -1,0 +1,40 @@
+schemaVersion: item.v1
+id: it_jiuhuayulu
+name: 九花玉露丸
+kind: pill
+sub: medicine
+grade: 9
+stack: 99
+chapters: any
+origin: canon
+canonRef: 《射雕英雄传》·黄药师所制
+price: auto
+flags: []
+use:
+  context: both
+  action: consume
+  target: self
+  effects:
+  - op: healPct
+    params:
+      valueBp: 1200
+  - op: applyBuff
+    params:
+      value: bf_xuming
+  - op: dispel
+    params:
+      tags:
+      - injury
+      grade: 9
+assets:
+  icon: item/jiuhuayulu
+text:
+  desc: 外观：九枚淡青丸置桃花瓣形白瓷盘，露珠光泽。
+  lore: 《射雕英雄传》中黄药师所制丸药，以珍异药材与花露入药。本作令淡青丸兼顾外伤救急与疏解内伤，并以桃花瓣形瓷盘收存；具体数值和形制均为扩展。（原创扩展）
+extension:
+  type: generic
+  value:
+    attributes:
+      version: 2
+      healInner: 7
+      healOuter: 12

@@ -1,0 +1,35 @@
+schemaVersion: item.v1
+id: eq_mingtangpa
+name: 明军镋钯
+kind: weapon
+sub: exotic
+grade: 6
+stack: 1
+chapters: any
+origin: canon
+canonRef: 通用军器·明；笑傲起军阵节点可得（《纪效新书》《练兵实纪》）
+price: auto
+flags:
+- runtimeProjection
+assets:
+  icon: item/mingtangpa
+text:
+  desc: 外观：中央长矛锋配两侧对称月牙钯齿，硬木杆通长约二点五米。 待运行时投影：exoticKind=misc。
+  lore: 名目与军阵语境取自明代兵书，中锋直刺、两侧钯齿用于架住或拨偏敌兵，双手长杆适合守住队列空隙。持用须避免侧齿缠住同伴；具体尺度、月牙轮廓和装具为 （原创扩展）。
+extension:
+  type: equipment
+  value:
+    slot: mainHand
+    cat: exotic
+    hands: 2
+    tags:
+    - long
+    matFamily: metal
+    divine: false
+    catalogTian: false
+    uniqueEquipped: false
+    attributes:
+      version: 2
+      atk: 95
+      hardness: 60
+      qiAffinity: 100

@@ -1,0 +1,83 @@
+task: ART-rig-sheet-side
+sheet_full_pass: false
+selection: L/R 均保留初轮 r2；初轮每张 3 次、本轮返修每张 3 次，累计 12 次独立生成。本轮三版均不合格，不覆盖原候选图。
+coordinates: 原 PNG 左上原点、零基像素；bounds 的 x1/y1 不包含端点。仅测量，未裁缩或修绘入库 PNG。
+height_method: Foreground RGB Euclidean distance > 30 from border median; connected components > 10000 pixels and height > 500 pixels; bounds right/bottom exclusive.
+gap_method: 人工定位两腿之间的扫描线窗口，取与边缘背景 RGB 欧氏距离 ≤5 的连续背景区间；是局部可见留白样本，不是整条腿最小间距。
+angle_method: 人工估计髋/膝/踝，acos(dot(hip-knee,ankle-knee)/(|hip-knee|*|ankle-knee|))；髋被短褐遮挡，非正式骨架标定。
+pose_default: 第三栏按并足执行，不要求腿间留白；平臂解释为侧身、双臂在画面内向前后平举，非自动改变规格。
+contact_sheet: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w16/sheets/ART-rig-sheet-side.jpg
+review1:
+  verdict: fail
+  generation_count_per_asset: 3
+  retries_per_asset: 2
+  adopted: false
+  reason: 六次返修均未解除第三栏纯侧视问题；新增贴衣 / 肢体缺陷，保留初轮已审核的候选图，不降低已通过项。
+  runner_directory: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w16
+  records_directory: review1
+  contact_sheets:
+  - sheets/zhujue_sheet_side_L_review1_r1__zhujue_sheet_side_R_review1_r1.jpg
+  - sheets/zhujue_sheet_side_L_review1_r2__zhujue_sheet_side_R_review1_r2.jpg
+  - sheets/zhujue_sheet_side_L_review1_r3__zhujue_sheet_side_R_review1_r3.jpg
+  - sheets/review1_selected_details.jpg
+  attempts:
+  - {job: zhujue_sheet_side_L_review1_r1, heights_px: [917, 908, 916], pass: false, reason: 第三栏宽后背；首栏近臂贴衣}
+  - {job: zhujue_sheet_side_R_review1_r1, heights_px: [929, 917, 922], pass: false, reason: 第三栏宽后背；身高差 12 px}
+  - {job: zhujue_sheet_side_L_review1_r2, heights_px: [936, 934, 934], pass: false, reason: 第三栏宽后背；抬腿膝角目测偏小，未做正式标定}
+  - {job: zhujue_sheet_side_R_review1_r2, heights_px: [957, 948, 954], pass: false, reason: 第三栏宽后背；首栏近臂压衣，膝角未正式标定}
+  - {job: zhujue_sheet_side_L_review1_r3, heights_px: [944, 940, 940], pass: false, reason: 第三栏仍偏背；首栏近手贴衣}
+  - {job: zhujue_sheet_side_R_review1_r3, heights_px: [954, 949, 953], pass: false, reason: 第三栏额外长出下垂手臂}
+  prompt_issue: 本轮 r2 提示词小腿坐标的水平偏移与文字的“前倾 10°”相反，其理想向量夹角为约 80°，不是 100°；该版不采用。后续应使踝向面朝方向偏移。
+  references: r1/r2 上传原立绘及 sheet_L 的 1024 JPEG；r3 另上传各自 review1_r2 的 1024 JPEG 作构图 / 返修参考；实际提示词、额外参考哈希与量测 JSON 存 records_directory。
+assets:
+  L:
+    job: zhujue_sheet_side_L_r2
+    file: sheet_side_L.png
+    regenerations: 5
+    selected_run: 1
+    revision_run_generations: 3
+    selected_round: 2
+    size: [1536, 1024]
+    background_rgb: [225.0, 218.0, 209.0]
+    bounds_xyxy_exclusive:
+    - [69, 28, 383, 970]
+    - [464, 27, 879, 962]
+    - [888, 28, 1510, 969]
+    heights_px: [942, 935, 941]
+    height_spread_pct: 0.743
+    leg_gap_samples:
+    - {pose: 1, y: 780, x0: 252, x1_exclusive: 269, width_px: 17}
+    - {pose: 2, y: 660, x0: 581, x1_exclusive: 682, width_px: 101}
+    raised_leg_hip_knee_ankle_estimate:
+    - [684, 470]
+    - [531, 529]
+    - [556, 735]
+    knee_internal_angle_estimate_deg: 104.2
+    qa_pass: false
+    notes: 侧视双腿错开，供切件分出大腿 / 小腿。三栏为错步站姿、抬前腿、并足平臂；面向左，nearSide=L。初轮首出 1 次、重出 2 次；本轮返修首出 1 次、重出 2 次，累计每张生成 6 次。返修三版均未通过且出现留白 / 肢体退步，仍选初轮 r2；PNG 原样保留，SHA-256 未变。三栏高度 942/935/941 px，差 7 px（0.743%）；腿间背景样本：第一栏 y=780、x=[252,269) 共 17 px；第二栏 y=660、x=[581,682) 共 101 px；抬腿膝内角人工估计 104.2°。Q1 可见锚：黑高髻与朱红绳、竹青短褐、深褐腰带、浅麻裤、深橄榄绑腿和深灰布鞋与参考匹配；结位在左前。三人完整、手空、腋下可见背景；无文字/网格/色板/地面阴影。未通过整张严格纯侧视质检：第三栏躯干偏背三分之四，前两栏胸腹也略偏转；保持 candidate，不能称侧腿阻断已解除。右衽已在提示词固定，纯侧视遮挡使逐栏衣襟叠压方向仍待复核。完整量测及轮次取舍见 qa_side.yaml。
+
+  R:
+    job: zhujue_sheet_side_R_r2
+    file: sheet_side_R.png
+    regenerations: 5
+    selected_run: 1
+    revision_run_generations: 3
+    selected_round: 2
+    size: [1536, 1024]
+    background_rgb: [225.0, 219.0, 210.0]
+    bounds_xyxy_exclusive:
+    - [94, 25, 407, 955]
+    - [495, 23, 951, 948]
+    - [951, 24, 1520, 953]
+    heights_px: [930, 925, 929]
+    height_spread_pct: 0.538
+    leg_gap_samples:
+    - {pose: 1, y: 780, x0: 214, x1_exclusive: 221, width_px: 7}
+    - {pose: 2, y: 660, x0: 697, x1_exclusive: 809, width_px: 112}
+    raised_leg_hip_knee_ankle_estimate:
+    - [681, 476]
+    - [834, 543]
+    - [847, 741]
+    knee_internal_angle_estimate_deg: 117.4
+    qa_pass: false
+    notes: 侧视双腿错开，供切件分出大腿 / 小腿。三栏为错步站姿、抬前腿、并足平臂；面向右，nearSide=R；独立生成，未翻转左图。初轮首出 1 次、重出 2 次；本轮返修首出 1 次、重出 2 次，累计每张生成 6 次。返修三版均未通过且出现留白 / 肢体退步，仍选初轮 r2；PNG 原样保留，SHA-256 未变。三栏高度 930/925/929 px，差 5 px（0.538%）；腿间背景样本：第一栏 y=780、x=[214,221) 共 7 px；第二栏 y=660、x=[697,809) 共 112 px；抬腿膝内角人工估计 117.4°，偏离约 100°目标。Q1 可见锚：黑高髻与朱红绳、竹青短褐、深褐腰带、浅麻裤、深橄榄绑腿和深灰布鞋与参考匹配；左前结位处于远侧，无法完整目检，不记满分。三人完整、手空、腋下可见背景；无文字/网格/色板/地面阴影。未通过整张严格纯侧视质检：第三栏躯干偏背三分之四，前两栏胸腹也略偏转；保持 candidate，不能称侧腿阻断已解除。右衽已在提示词固定，纯侧视遮挡使逐栏衣襟叠压方向仍待复核。完整量测及轮次取舍见 qa_side.yaml。
