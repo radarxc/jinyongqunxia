@@ -1,0 +1,58 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_dengfeng
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 登封县
+historical_year: 1259
+era_kit: liao_jin_north
+seed: 1444989913
+design_intent:
+  prosperity: major_county_candidate
+  notes:
+  - history/city_dengfeng__southern_song_jin_mongol.md；1259年蒙古统治期河南府路登封县治候选；沿用1217几何，辽金套件不作政权标签。
+  - 少林在县城西北约13公里，嵩阳书院、中岳庙亦为城外文化节点；本城不并入寺院剧情。
+  - 已看2025保护规划图；明清方城、四门名称与街巷不直接倒投宋金，所有城内控制点仍标推定。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 22, z: 16}, {x: 108, z: 16}, {x: 108, z: 112}, {x: 22, z: 112}]}
+  inside_margin_cells: 2
+  basis: 图名：登封县治外垣；src_chgis确认河南府属县与治所，src_wall记唐初夯土城与后世屡修，src_plan明确现图明清层；纵向紧凑轮廓及全部折点（推定），不是汉崇高城或少林院墙。
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 16}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: county_axis, primary: true, wall_ref: outer, basis: "图名：南向方位门；门数、门位与宽度（推定）（原创扩展），不沿用明代黄离门名。"}
+- {id: north_gate, side: north, at: {x: 64, z: 112}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: county_axis, primary: false, wall_ref: outer, basis: "图名：北向方位门；出城后另接嵩山交通，门位与宽度（推定），不称少林山门。"}
+streets:
+- {id: county_axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 16}, {x: 64, z: 112}], surface: dirt_road, priority: 100, basis: "图名：县治通街；两门交通抽象（推定）（原创扩展），不冒称宋金嵩山路。"}
+- {id: cross_lane, class: secondary, width_cells: 5, points: [{x: 28, z: 64}, {x: 102, z: 64}], surface: dirt_road, priority: 90, basis: "图名：县市横街；src_plan十字街为明清保护对象，本线仅通行推定，不复制晚期街界。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 28, z: 38}, {x: 102, z: 38}], surface: dirt_road, priority: 70, basis: "图名：市肆横巷；线位与宽度（原创扩展）【建议值】。"}
+rivers: []
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 28, z: 72}, max: {x: 59, z: 106}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：县署院区；src_wall后世描述城内中北部，src_plan图已看；1217北部候选区位与边界（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 22}, max: {x: 102, z: 58}}}, priority: 90, density: 0.57, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn], ground_mix: {rammed_earth: 100}, basis: "图名：南门市肆；供旅人补给的可玩功能、地块与密度（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 28, z: 22}, max: {x: 58, z: 58}}}, priority: 50, density: 0.52, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：县民坊居；边界、密度及院落（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 70, z: 86}, max: {x: 102, z: 106}}}, priority: 80, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：北门行旅服务；县城与山寺分离据src_shaolin，马厩守舍的落位（原创扩展），不绑定寺庄。"}
+- {id: zone_workshop, kind: residential, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 102, z: 84}}}, priority: 60, density: 0.5, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：作坊民居；匿名作坊仓舍（原创扩展），不把碑墨坊剧情ID固定进城图。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "县署功能代理（推定），不复刻嵩阳楼。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_residential, zone_workshop], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 3, max: 7}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍（原创扩展），非少林外院。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service, zone_workshop], count: {min: 6, max: 15}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "山行交通代理（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "城门服务代理（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_workshop], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名仓舍（原创扩展）。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；不作本章物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_chgis, kind: academic, title: "复旦CHGIS：登封县（706—1911）", url: "http://tgaz.fudan.edu.cn/tgaz/placename/json/hvd_82892", accessed: "2026-10-04", confidence: verified_summary, supports: [seat_location, administration], note: "JSON正文已读；金属河南府、元属河南府路；治所附近历史层需分开。"}
+- {key: src_wall, kind: official_web, title: "郑州市文物局：登封县故城", url: "https://wwj.zhengzhou.gov.cn/city/3182643.jhtml", accessed: "2026-10-04", confidence: verified_summary, supports: [city_wall, office], note: "仅文字；唐初土墙、明万历包砖及四门、官署中北部，后世形制不倒投。"}
+- {key: src_plan, kind: official_web, title: "登封历史文化名城保护规划批前公示及附图03", url: "https://public.dengfeng.gov.cn/D49Y/8969061.jhtml", accessed: "2026-10-04", confidence: verified_summary, supports: [later_map_limit, site_separation], note: "正文和历史城区格局图已看；图明示明清层，汉崇高城、书院、寺庙分列，不能充宋金实测。"}
+- {key: src_shaolin, kind: academic, title: "中新网：少林寺", url: "https://www.chinanews.com.cn/kong/news/2009/03-27/1622001.shtml", accessed: "2026-10-04", confidence: verified_summary, supports: [site_separation], note: "仅文字；寺在县城西北13公里，今日大批殿堂经元明与现代重建；不取其现状为城图。"}

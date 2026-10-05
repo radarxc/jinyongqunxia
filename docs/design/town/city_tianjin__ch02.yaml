@@ -1,0 +1,48 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+era_kit: "liao_jin_north"
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+city_id: "city_tianjin"
+display_name: "直沽寨及河口聚落（推定）"
+historical_year: 1217
+seed: 220217128
+design_intent: {"prosperity": "riverside_fort_candidate", "notes": ["复原依据：docs/design/town/history/city_tianjin__southern_song_jin_mongol.md；1217锚点，金末直沽寨与河口聚落。", "src_jinshi证直沽寨不晚于1214；src_history图1采用三岔口说，精确寨址与金代岸线待考；不套明1404算盘城。", "ch03只改chapter_id/book_world，沿用同带拓扑候选；1316海津镇不前移，1237–1259经营与守方不由本图定义。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [96, 79], "r_band_slots": [96, 32], "formal_scene_refs": null}
+walls:
+- {"id": "fort", "role": "division", "polygon": {"points": [{"x": 16, "z": 32}, {"x": 58, "z": 32}, {"x": 58, "z": 64}, {"x": 16, "z": 64}]}, "inside_margin_cells": 2, "basis": "图名：直沽寨小垣（推定）；src_jinshi仅证军寨，寨墙形状、规模与完整度均（推定）；division保留寨外聚落，非全城外郭。"}
+gates:
+- {"id": "fort_east", "side": "east", "at": {"x": 58, "z": 48}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "fort", "basis": "图名：临埠寨门；朝向、数量、宽度与门楼（推定）（原创扩展）。"}
+streets:
+- {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 24, "z": 48}, {"x": 66, "z": 48}, {"x": 66, "z": 68}, {"x": 106, "z": 68}], "surface": "dirt_road", "priority": 100, "basis": "图名：寨门至河埠道；关系据src_history，线位和路宽（推定）（原创扩展）。"}
+- {"id": "market_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 12, "z": 68}, {"x": 66, "z": 68}], "surface": "dirt_road", "priority": 75, "basis": "图名：河口市巷；关系据src_history，线位和路宽（推定）（原创扩展）。"}
+- {"id": "residential_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 66, "z": 20}, {"x": 66, "z": 48}], "surface": "dirt_road", "priority": 75, "basis": "图名：陆路聚落街；关系据src_history，线位和路宽（推定）（原创扩展）。"}
+- {"id": "quay_access", "class": "secondary", "width_cells": 3, "points": [{"x": 86, "z": 68}, {"x": 86, "z": 83}], "surface": "dirt_road", "priority": 75, "basis": "图名：河埠接驳道；关系据src_history，线位和路宽（推定）（原创扩展）。"}
+rivers:
+- {"id": "baihe", "width_cells": 7, "points": [{"x": 108, "z": 128}, {"x": 108, "z": 102}, {"x": 96, "z": 94}], "flow": "south", "navigable": true, "basis": "图名：白河来水（古岸推定）；src_history图1仅约束河口相对关系；1217岸线、宽度、汇点与通航尺度（推定）。"}
+- {"id": "canal", "width_cells": 7, "points": [{"x": 0, "z": 96}, {"x": 48, "z": 96}, {"x": 96, "z": 94}], "flow": "east", "navigable": true, "basis": "图名：南来漕渠（古岸推定）；src_history图1仅约束河口相对关系；1217岸线、宽度、汇点与通航尺度（推定）。"}
+- {"id": "haikou", "width_cells": 7, "points": [{"x": 96, "z": 94}, {"x": 112, "z": 86}, {"x": 128, "z": 70}], "flow": "east", "navigable": true, "basis": "图名：直沽河下游（古岸推定）；src_history图1仅约束河口相对关系；1217岸线、宽度、汇点与通航尺度（推定）。"}
+bridges: []
+zones:
+- {"id": "zone_fort", "kind": "administrative", "geometry": {"rect": {"min": {"x": 22, "z": 36}, "max": {"x": 52, "z": 60}}}, "priority": 100, "density": 0.48, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_courtyard", "bld_kit_liao_jin_north_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：军寨署舍；功能为同期一般格局；区位、边界与密度（推定）（原创扩展）。"}
+- {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 20, "z": 72}, "max": {"x": 60, "z": 88}}}, "priority": 80, "density": 0.48, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：寨外市棚；功能为同期一般格局；区位、边界与密度（推定）（原创扩展）。"}
+- {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 72, "z": 22}, "max": {"x": 108, "z": 62}}}, "priority": 80, "density": 0.48, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large", "bld_kit_liao_jin_north_stable"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：岸南聚居；功能为同期一般格局；区位、边界与密度（推定）（原创扩展）。"}
+- {"id": "zone_quay", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 72, "z": 72}, "max": {"x": 114, "z": 94}}}, "priority": 80, "density": 0.48, "allowed_building_types": ["bld_kit_liao_jin_north_wharf", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：漕运河埠与仓场；功能为同期一般格局；区位、边界与密度（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_fort"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_fort"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_fort", "zone_quay"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market", "zone_quay"], "count": {"min": 3, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_houses"], "count": {"min": 6, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_houses"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_houses"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+- {"type": "bld_kit_liao_jin_north_wharf", "zone_refs": ["zone_quay"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不折算驻军人口，不新增营生。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.01, "avoid_road_cells": 2, "cluster_rule": "院隙少量草簇；不作1217年物候证据", "basis": "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {"key": "src_jinshi", "kind": "academic", "title": "《金史》卷一百三·完颜佐传（网页点校本）", "url": "https://m.gushiwen.cn/guwen/bookv_cd935b4a2e7f.aspx", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已读正文；戍直沽寨与贞祐二年事件，证明不晚于1214存在，不给寨址坐标或围垣。"}
+- {"key": "src_history", "kind": "academic", "title": "付红旭、张仁江：略论天津‘七十二沽’村落群形成史，《中国地方志》2022年第2期，107–111页", "url": "http://difangzhi.cssn.cn/qk/qkgl/zgnjyj201901_132772/202209/W020220927533380348926.pdf", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "PDF已下载，目视107–109页及图1–3；图1河口/沿岸聚落为历史地理示意，不是1217地籍。采用三岔河口说，1205改漕与1214军寨为背景，后期村落不前移。"}

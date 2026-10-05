@@ -1,0 +1,42 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_shanhaiguan"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "榆关一带（迁民镇通道聚落推定）"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 34091712
+design_intent: {"prosperity": "major_candidate", "notes": ["history/city_shanhaiguan__southern_song_jin_mongol.md；1217年锚点，同年代带ch03只改章节书界。", "1381年才建山海关城；本图不画明长城、四门关城、老龙头或天下第一关。", "古榆关与今关城异址；以名录覆盖区域内的金末通道聚落为对象，迁民镇精确边界未知。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [96, 79], "r_band_slots": [96, 32], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls: "none"
+gates: []
+streets:
+  - {"id": "coast_route", "class": "main_axis", "width_cells": 5, "points": [{"x": 6, "z": 60}, {"x": 122, "z": 60}], "surface": "dirt_road", "priority": 100, "basis": "图名：滨海东西通道；src_news记傍海道联通冀东辽西，1217线位、宽度与直线化（推定）。"}
+  - {"id": "north_track", "class": "secondary", "width_cells": 3, "points": [{"x": 64, "z": 60}, {"x": 64, "z": 106}], "surface": "dirt_road", "priority": 80, "basis": "图名：北向支路；src_plan支持北山南海的区域背景；支路线位（原创扩展），不复制明清关门道路。"}
+  - {"id": "south_track", "class": "secondary", "width_cells": 3, "points": [{"x": 64, "z": 28}, {"x": 64, "z": 60}], "surface": "dirt_road", "priority": 70, "basis": "图名：镇内南向便道；通向民居补给区，线位（推定）（原创扩展）。"}
+rivers: []
+lakes:
+  - {"id": "sea_edge", "polygon": {"points": [{"x": 0, "z": 0}, {"x": 128, "z": 0}, {"x": 128, "z": 16}, {"x": 96, "z": 14}, {"x": 64, "z": 18}, {"x": 30, "z": 16}, {"x": 0, "z": 12}]}, "basis": "图名：渤海画缘；src_news支持海在南，src_plan只供后世山海方向对照；以湖多边形承载裁切海面（原创扩展），岸线和城海距（推定），不作1217海岸线。"}
+bridges: []
+zones:
+  - {"id": "zone_watch", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 14, "z": 66}, "max": {"x": 56, "z": 94}}}, "priority": 90, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：通道守备院落（推定）；src_plan称辽代守军金初已失，本图仅用通用守舍表达往来巡护（原创扩展），不复刻辽兴善军或元大宁海阳千户所。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 72, "z": 66}, "max": {"x": 114, "z": 96}}}, "priority": 60, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北侧聚落居舍；迁民镇存在据src_news，街坊、范围与房数（推定）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 14, "z": 30}, "max": {"x": 56, "z": 54}}}, "priority": 100, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：行旅市肆（推定）；通道补给功能（原创扩展），不等同后世西大街市区。"}
+  - {"id": "zone_storage", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 72, "z": 30}, "max": {"x": 114, "z": 54}}}, "priority": 80, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：运输仓马院落（推定）；规模、方位与功能分区（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_watch"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_watch", "zone_storage"], "count": {"min": 2, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_storage"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_houses", "zone_watch", "zone_storage"], "count": {"min": 8, "max": 18}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_houses"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 3, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "通道外草簇；不画高山、海浪或后世关墙，空白不表示无地形。", "basis": "图名：通道草地；植被落点与疏密（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_news", "kind": "academic", "title": "新华每日电讯：山海关：身向榆关那畔行", "url": "https://www.news.cn/politics/20250808/75835cd21dc4496295ad9b216ceba279/c.html", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "正文已读；博物馆展陈转述金元迁民镇、1381建关；古榆关异址，未提供金末镇图。"}
+  - {"key": "src_plan", "kind": "academic", "title": "山海关区政府：山海关历史文化名城保护规划", "url": "http://www.shanhaiguan.gov.cn/BAFa08c0dc/HisOld/_mediafile02/qhdshgFile/2021-01-14/6c2dd8a3-42a6-42ef-a36d-99f6f069eca8.pdf", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "PDF第8至9页沿革已读、第119页后世关城示意图已看；金改迁民镇、1381在故地建关；明清形态只作排除。"}

@@ -1,0 +1,59 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_baoji
+chapter_id: ch02
+book_world: ch02_shediao
+display_name: 宝鸡县
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 1707212170
+design_intent:
+  prosperity: major_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_baoji__southern_song_jin_mongol.md；1217年金凤翔府属宝鸡县治历史拓扑缩景。
+  - 613年陈仓县治迁留谷城，757年改名宝鸡；本图锚定后来的宝鸡县治，不把先秦陈仓上、下城或东二十里故城拼作金代县城。
+  - 《金史》列陈仓山、渭水、汧水、大散关和武城镇，均作区域地理锚点；县城城垣、门街与坊区无同期平面，全部标推定。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 14, z: 22}, {x: 114, z: 22}, {x: 114, z: 108}, {x: 14, z: 108}]}
+  inside_margin_cells: 2
+  basis: 图名：宝鸡县城外垣；613迁留谷城与CHGIS县治点位据src_chencang、src_chgis；矩形包络、尺度与折点（推定）。
+gates:
+- {id: west_gate, side: west, at: {x: 14, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: true, wall_ref: outer, basis: "图名：西向方位门；关中—陇右交通关系据区域地理；门址、门名、门数与宽度（推定）（原创扩展）。"}
+- {id: east_gate, side: east, at: {x: 114, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：东向方位门；关中—陇右交通关系据区域地理；门址、门名、门数与宽度（推定）（原创扩展）。"}
+streets:
+- {id: east_west_axis, class: main_axis, width_cells: 5, points: [{x: 14, z: 64}, {x: 114, z: 64}], surface: dirt_road, priority: 100, basis: "图名：东西通衢；只表达渭河谷交通关系；线位与5格宽（推定），不冒称金代驿道实测。"}
+- {id: south_north_street, class: secondary, width_cells: 5, points: [{x: 64, z: 22}, {x: 64, z: 108}], surface: dirt_road, priority: 90, basis: "图名：南北主街；与大散关方向仅作区域叙事关系，线位与宽度（推定）（原创扩展）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 22, z: 44}, {x: 106, z: 44}], surface: dirt_road, priority: 70, basis: "图名：市肆横巷；可玩街区补线（推定）（原创扩展）。"}
+rivers:
+- {id: weihe_edge, width_cells: 6, points: [{x: 0, z: 8}, {x: 128, z: 8}], flow: east, navigable: false, basis: "图名：渭水南侧画缘；src_jinshi证宝鸡县境有渭水，画缘线位、宽度与县城距离（推定）；不作古岸实测。"}
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 20, z: 70}, max: {x: 58, z: 102}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：县署院落；县级行政功能属史实层级，区位和边界（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 28}, max: {x: 108, z: 58}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：市肆区；允许匿名仓房沿市肆边缘落位；功能与边界（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 20, z: 28}, max: {x: 58, z: 58}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：坊居；边界和密度（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 108, z: 94}}}, priority: 75, density: 0.45, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：县城祠寺区；通用宗教功能（推定）（原创扩展），不指认陈仓山祠或大散关建筑。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 70, z: 94}, max: {x: 108, z: 106}}}, priority: 80, density: 0.52, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：仓驿守舍区；为容纳10×8仓房并接入步道，南界下扩至z94；位置与范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "县署功能锚点；具体院落形制与位置（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不以栋数推算人口。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_residential, zone_religious], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍，不绑定营生；位置与数量（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 9, max: 18}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "通用祠寺模块；不得解释为陈仓山祠。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_market, zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "市肆或仓驿区匿名仓房；位置与数量（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；植物种类不作1217年物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_chgis, kind: academic, title: "CHGIS：宝鸡县（757—1911）", url: "http://tgaz.fudan.edu.cn/tgaz/placename/hvd_70926", accessed: "2026-10-04", confidence: verified_summary, supports: [name, affiliation, seat_location], note: "正文已读；757后名宝鸡县，宋金仍属凤翔府；坐标为县治点，不提供1217城墙或街坊平面。"}
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十六·地理下（通行点校本网页）", url: "http://www.guoxue123.com/Shibu/0101/00jins/025.htm", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_administration, regional_anchors], note: "正文已读；凤翔府宝鸡县条列陈仓山、渭水、汧水、大散关，镇一武城；没有县城平面。"}
+- {key: src_chencang, kind: official_web, title: "宝鸡市陈仓区人民政府：历史沿革", url: "http://www.chencang.gov.cn/col8165/col8169/201602/t20160202_130391.html", accessed: "2026-10-04", confidence: verified_summary, supports: [seat_move, jin_affiliation], note: "正文已读；613陈仓县治迁留谷城（今宝鸡市区），757改宝鸡，金代宝鸡县属凤翔路凤翔府；先秦陈仓上下城不得等同金代县治。"}

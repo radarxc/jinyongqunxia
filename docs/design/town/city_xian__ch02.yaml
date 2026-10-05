@@ -1,0 +1,66 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_xian
+chapter_id: ch02
+book_world: ch02_shediao
+display_name: 京兆府（金代韩建新城沿用候选）
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 2844952407
+design_intent:
+  prosperity: major_prefecture_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_xian__southern_song_jin_mongol.md；1217年金代京兆府城拓扑缩景。
+  - 只画韩建以唐皇城缩筑、宋金沿用的约5.2平方公里新城；不是唐长安外郭城。
+  - 不画唐外郭十二门、东西市、太极宫、大明宫，也不套明代扩城和钟楼四街。
+grid: {width: 160, height: 160, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -80, r_min: 1, q_slot_count: 219, r_slot_count: 160, q_band_slots: [73, 73, 73], r_band_slots: [80, 80], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 14, z: 30}, {x: 146, z: 30}, {x: 146, z: 118}, {x: 14, z: 118}]}
+  inside_margin_cells: 2
+  basis: 图名：京兆府新城外垣；src_wall_history支持沿唐皇城缩筑、约2820×1844米；src_fengyuan_map仅以后置紧凑城形夹限；132×88格只保1.50:1比例，不是历史米制。
+gates:
+- {id: hanguang_gate, side: south, at: {x: 52, z: 30}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: hanguang_street, primary: false, wall_ref: outer, basis: "图名：含光门；src_wall_history支持韩建保留南墙西门；精确格位为缩比。"}
+- {id: anshang_gate, side: south, at: {x: 106, z: 30}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: anshang_street, primary: true, wall_ref: outer, basis: "图名：安上门；src_wall_history支持韩建保留南墙东门；精确格位为缩比。"}
+- {id: shunyi_gate, side: west, at: {x: 14, z: 72}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：顺义门；src_wall_history支持与景风门相对；精确格位为缩比。"}
+- {id: jingfeng_gate, side: east, at: {x: 146, z: 72}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：景风门；src_wall_history支持与顺义门相对；精确格位为缩比。"}
+- {id: xuanwu_gate, side: north, at: {x: 82, z: 118}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: xuanwu_street, primary: false, wall_ref: outer, basis: "图名：玄武门；src_wall_history支持北开玄武门；不与两南门强行对轴。"}
+streets:
+- {id: east_west_axis, class: main_axis, width_cells: 6, points: [{x: 14, z: 72}, {x: 146, z: 72}], surface: dirt_road, priority: 100, basis: "图名：顺义—景风门大街；两门相对有据，线位和6格宽为缩比。"}
+- {id: hanguang_street, class: secondary, width_cells: 5, points: [{x: 52, z: 30}, {x: 52, z: 72}], surface: dirt_road, priority: 90, basis: "图名：含光门街；门街关系有据，终点与宽度（推定）。"}
+- {id: anshang_street, class: main_axis, width_cells: 5, points: [{x: 106, z: 30}, {x: 106, z: 72}], surface: dirt_road, priority: 90, basis: "图名：安上门街；门街关系有据，终点与宽度（推定）。"}
+- {id: xuanwu_street, class: secondary, width_cells: 5, points: [{x: 82, z: 72}, {x: 82, z: 118}], surface: dirt_road, priority: 90, basis: "图名：玄武门街；北门与南双门错位有据，线位与宽度为缩比。"}
+- {id: south_cross_street, class: secondary, width_cells: 4, points: [{x: 28, z: 48}, {x: 132, z: 48}], surface: dirt_road, priority: 75, basis: "图名：南部联络街；开放街巷制据src_wall_history，具体线位（推定）（原创扩展）。"}
+rivers: []
+bridges: []
+zones:
+- {id: zone_prefecture, kind: administrative, geometry: {rect: {min: {x: 58, z: 82}, max: {x: 104, z: 110}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：京兆府署区；src_jinshi仅支持府级行政功能，北中部位置与边界（推定）。"}
+- {id: zone_market_west, kind: market, geometry: {rect: {min: {x: 22, z: 38}, max: {x: 46, z: 66}}}, priority: 90, density: 0.62, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn], ground_mix: {rammed_earth: 100}, basis: "图名：含光门市肆；韩建取消专市而允许自由设市，具体范围（推定）（原创扩展）。"}
+- {id: zone_market_east, kind: market, geometry: {rect: {min: {x: 112, z: 38}, max: {x: 138, z: 66}}}, priority: 90, density: 0.62, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_biaoju], ground_mix: {rammed_earth: 100}, basis: "图名：安上门市肆与护运院；沿门街设市和位置（推定）（原创扩展），不是唐东市。"}
+- {id: zone_residential_west, kind: residential, geometry: {rect: {min: {x: 22, z: 78}, max: {x: 52, z: 108}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：长安县侧坊居意象；城外县城关系有据，但本区只作府城内居住压缩，不等同县衙实址。"}
+- {id: zone_residential_east, kind: residential, geometry: {rect: {min: {x: 110, z: 78}, max: {x: 138, z: 108}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：咸宁县侧坊居意象；城外县城关系有据，但本区只作府城内居住压缩，不等同县衙实址。"}
+- {id: zone_religious_school, kind: religious, geometry: {rect: {min: {x: 60, z: 38}, max: {x: 100, z: 64}}}, priority: 78, density: 0.46, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：寺学院落意象；府学与寺观功能存在，具体位置和组合（推定）（原创扩展）。"}
+- {id: zone_gate_service, kind: gate_service, geometry: {rect: {min: {x: 112, z: 82}, max: {x: 138, z: 106}}}, priority: 84, density: 0.5, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable], ground_mix: {rammed_earth: 100}, basis: "图名：东门仓驿；位置和范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_prefecture], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "京兆府署功能锚点；具体单体（推定）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_prefecture, zone_residential_west, zone_residential_east, zone_religious_school], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_biaoju, zone_refs: [zone_market_east], count: {min: 1, max: 1}, required: true, business_ref: biz_xian_escort_01, institution_ref: null, placement_note: "护运货栈外观承载章节既有营生；位置（原创扩展），不声称金代具名镖局。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market_west, zone_market_east], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "终南与关中驿路补给；数量为压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market_west, zone_market_east], count: {min: 7, max: 16}, required: true, business_ref: null, institution_ref: null, placement_note: "开放沿街市场压缩；数量为生成容量内建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market_west, zone_market_east], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: "开放沿街市场压缩（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market_west, zone_market_east], count: {min: 8, max: 16}, required: true, business_ref: null, institution_ref: null, placement_note: "不恢复唐代封闭东西市；仅沿街摊棚（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential_west, zone_residential_east], count: {min: 14, max: 24}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_prefecture, zone_residential_west, zone_residential_east, zone_religious_school], count: {min: 6, max: 12}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious_school], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名寺学殿堂，不指认唐宫或全真山门。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_gate_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "城门守舍意象（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_gate_service], count: {min: 2, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "仓驿意象（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_gate_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "驿畜意象（原创扩展）。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.01, avoid_road_cells: 2, cluster_rule: "府城院隙少量草簇；不作金代物候证据", basis: "密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十六·地理下（网页点校本）", url: "http://www.guoxue123.com/shibu/0101/00jinsf/026.htm", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_prefecture_rank, counties], note: "正文已检索阅读；支持金代京兆府及十二县，不给城内平面。"}
+- {key: src_wall_history, kind: academic, title: "西安城墙历史演变（中）", url: "https://www.xakpw.com/single/23968", accessed: "2026-10-04", confidence: verified_summary, supports: [wall_extent, gates, street_change], note: "正文已读；韩建新城约2820×1844米、五门、取消坊墙和专市，宋金沿用。"}
+- {key: src_fengyuan_map, kind: academic, title: "元《长安志图》奉元城图（建筑史学刊文章转载）", url: "https://m.thepaper.cn/newsDetail_forward_17695671", accessed: "2026-10-04", confidence: verified_summary, supports: [later_compact_city, later_streets], note: "图8已实际目视；1344图晚于1217约127年，只作延续对照，不作同期地籍。"}

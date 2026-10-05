@@ -1,0 +1,59 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_anyang
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 彰德府
+historical_year: 1259
+era_kit: liao_jin_north
+seed: 1183793481
+design_intent:
+  prosperity: major_prefecture_candidate
+  notes:
+  - history/city_anyang__southern_song_jin_mongol.md；1259年蒙古统治期彰德府治安阳候选；1252属真定路，1265才改彰德路；沿用1217几何。
+  - 1192升府、1265始称彰德路；商代洹北商城与殷墟分区、明清府城片字街均不得倒投。
+  - 已看安阳老城图与天宁寺塔图；寺域作历史位置代理，通用殿堂不等于具名殿堂，现有十三层塔不充五层天宁寺塔。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 16, z: 20}, {x: 112, z: 20}, {x: 112, z: 108}, {x: 16, z: 108}]}
+  inside_margin_cells: 2
+  basis: 图名：彰德府治外垣；src_chgis确认治安阳，src_late图为明清城市层；近矩形与全部折点（推定），src_yinxu所列商代层不移植为府城墙线。
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 20}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: prefectural_axis, primary: true, wall_ref: outer, basis: "图名：南向方位门；门数、门位和宽度（推定）（原创扩展），不套后世门楼名。"}
+- {id: north_gate, side: north, at: {x: 64, z: 108}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: prefectural_axis, primary: false, wall_ref: outer, basis: "图名：北向方位门；门数、门位和宽度（推定）（原创扩展）；不据此推定洹水桥址。"}
+streets:
+- {id: prefectural_axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 20}, {x: 64, z: 108}], surface: dirt_road, priority: 100, basis: "图名：府城通街；南北交通抽象（推定）；src_late南北大街只作晚期对照，不证明宋金线位。"}
+- {id: cross_lane, class: secondary, width_cells: 5, points: [{x: 22, z: 66}, {x: 64, z: 66}, {x: 106, z: 56}], surface: dirt_road, priority: 90, basis: "图名：府市横街；弯折与线位为可玩分区接驳（原创扩展），不复刻明清片字街。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 70, z: 38}, {x: 104, z: 38}], surface: dirt_road, priority: 70, basis: "图名：东南市巷；线位和宽度（推定）（原创扩展）。"}
+rivers:
+- {id: huan_north_edge, width_cells: 4, points: [{x: 0, z: 120}, {x: 128, z: 120}], flow: east, navigable: false, basis: "图名：洹水北侧画缘；src_chgis引古志安阳在洹水南，河城相隔数里压缩到画缘；1217岸线、宽度与流向（推定），非护城河或城内运河。"}
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 22, z: 74}, max: {x: 58, z: 102}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：府署区；府治层级据src_chgis，西北区位与地块（推定），不套袁府、王府或后世县署。"}
+- {id: zone_tianning, kind: religious, geometry: {rect: {min: {x: 22, z: 26}, max: {x: 58, z: 60}}}, priority: 95, density: 0.4, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：天宁寺域候选；src_late记隋寺与952年建塔，已看图示老城西南寺域；延续到1217及寺界（推定），不照抄现存寺院。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 26}, max: {x: 106, z: 50}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn], ground_mix: {rammed_earth: 100}, basis: "图名：东南市肆；市场位置、密度与界线（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 72, z: 64}, max: {x: 106, z: 90}}}, priority: 50, density: 0.55, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：东北坊居；一般北方府城生活区，边界和建筑（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 70, z: 92}, max: {x: 106, z: 106}}}, priority: 80, density: 0.5, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：北门军驿仓舍；功能和边界（推定）（原创扩展），非洹北商代仓储遗迹。"}
+landmarks:
+- {id: lm_tianning_proxy, type: bld_kit_liao_jin_north_temple_hall, origin: {x: 32, z: 44}, size: {w: 13, h: 10}, rotation_deg: 0, zone_ref: zone_tianning, poi: null, basis: "图名：天宁寺域通用殿堂代理；src_late寺域位置约束，具体院落与殿位（推定）（原创扩展）；只标寺域，不冒称天宁寺塔或原殿实测。"}
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "府署功能代理，形制与落位（推定）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office, zone_tianning], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_residential], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍（原创扩展），不造原著到访点。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 6, max: 13}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_tianning], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "已由固定寺域代理占配额，不增加通用塔。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "候选配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；不作本章物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_chgis, kind: academic, title: "复旦CHGIS：安阳县（590—约1365）", url: "http://tgaz.fudan.edu.cn/tgaz/placename/json/hvd_82189", accessed: "2026-10-04", confidence: verified_summary, supports: [administration, seat_location, river_relation], note: "JSON正文已读；引金史1192升彰德府、元史1252散府和1265改路，历代城址在洹水南近旁重筑。"}
+- {key: src_late, kind: academic, title: "安阳工学院科研处所存第五部分《古朴厚重的传统建筑》", url: "https://kyc.ayit.edu.cn/_mediafile/kyc/2018/12/01/20i1bz6oks.pdf", accessed: "2026-10-04", confidence: verified_summary, supports: [later_city_map, tianning_temple], note: "已读PDF第1—5页并看第2页老城图、第4页寺塔图；图示为明清城市面貌，寺塔952始建，不保证现存形制即金代形制。"}
+- {key: src_yinxu, kind: academic, title: "光明日报学术文章《考古所见的殷商文明》（中新网转载）", url: "https://www.chinanews.com.cn/cul/2022/11-05/9887665.shtml", accessed: "2026-10-04", confidence: verified_summary, supports: [archaeological_period_separation], note: "仅文字；已读洹北商城中商、殷墟晚商城址与两岸分区；这些遗址层不能当宋金彰德府图。"}

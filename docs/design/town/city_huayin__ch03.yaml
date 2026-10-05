@@ -1,0 +1,58 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_huayin
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 华阴县
+historical_year: 1259
+era_kit: liao_jin_north
+seed: 1438121702
+design_intent:
+  prosperity: major_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_huayin__southern_song_jin_mongol.md；1259年蒙古统治期华阴县治沿用同年代带拓扑候选。
+  - 华阴县不是前金华州州治郑县；本图只画县城，不把华山峰岳、山道或西岳庙景区并入城内。
+  - 未取得金亡后至1259年的重筑平面；复用1217拓扑仅为审慎候选，不宣称城垣四十年不变。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 14, z: 18}, {x: 114, z: 18}, {x: 114, z: 108}, {x: 14, z: 108}]}
+  inside_margin_cells: 2
+  basis: 图名：华阴县城外垣；县治点位据src_chgis；1259城垣无同期控制点，矩形包络、尺度与折点（推定）。
+gates:
+- {id: west_gate, side: west, at: {x: 14, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: true, wall_ref: outer, basis: "图名：西向方位门；门址、门名、门数与宽度（推定）（原创扩展）。"}
+- {id: east_gate, side: east, at: {x: 114, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：东向方位门；门址、门名、门数与宽度（推定）（原创扩展）。"}
+streets:
+- {id: east_west_axis, class: main_axis, width_cells: 5, points: [{x: 14, z: 64}, {x: 114, z: 64}], surface: dirt_road, priority: 100, basis: "图名：东西通衢；线位与5格宽（推定），不冒称1259驿道实测。"}
+- {id: north_south_street, class: secondary, width_cells: 5, points: [{x: 64, z: 24}, {x: 64, z: 102}], surface: dirt_road, priority: 90, basis: "图名：县署南北街；线位与宽度（推定）（原创扩展）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 22, z: 42}, {x: 106, z: 42}], surface: dirt_road, priority: 70, basis: "图名：市肆横巷；可玩街区补线（推定）（原创扩展）。"}
+rivers:
+- {id: weihe_edge, width_cells: 5, points: [{x: 0, z: 120}, {x: 128, z: 120}], flow: east, navigable: false, basis: "图名：渭水北侧画缘；河流存在沿用src_jinshi前代地理锚点，画缘线位、宽度与县城距离（推定）；不作古岸实测。"}
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 20, z: 70}, max: {x: 58, z: 102}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：县署院落；区位和边界（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 24}, max: {x: 108, z: 58}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：市肆区；允许匿名仓房沿市肆边缘落位；功能与边界（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 20, z: 24}, max: {x: 58, z: 58}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：坊居；边界和密度（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 108, z: 94}}}, priority: 75, density: 0.45, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：县城祠寺区；为通用宗教功能（推定）（原创扩展），不是华山或西岳庙。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 70, z: 94}, max: {x: 108, z: 106}}}, priority: 80, density: 0.52, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：仓驿守舍区；为容纳10×8仓房、接入步道并避开北侧渭水，南界下扩至z94；位置与范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "县署功能锚点；具体院落形制与位置（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_residential, zone_religious], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍，不绑定营生；位置与数量（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 9, max: 18}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "通用祠寺模块；不得解释为西岳庙或华山道观。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_market, zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "市肆或仓驿区匿名仓房；位置与数量（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；植物种类不作1259年物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_chgis, kind: academic, title: "CHGIS：华阴县（762—1911）", url: "http://tgaz.fudan.edu.cn/tgaz/placename/hvd_70329", accessed: "2026-10-04", confidence: verified_summary, supports: [name, affiliation, seat_location], note: "正文已读；县名与治所点位连续，1215后属华州；不提供1259城墙或街坊平面。"}
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十六·地理下（通行点校本网页）", url: "http://www.guoxue123.com/Shibu/0101/00jins/025.htm", accessed: "2026-10-04", confidence: verified_summary, supports: [pre_mongol_regional_anchors], note: "正文已读；仅作为金代前置地理锚点；不能证明1259行政状态或城垣未变。"}

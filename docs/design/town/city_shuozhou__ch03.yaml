@@ -1,0 +1,62 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_shuozhou
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 朔州·鄯阳县（1259年蒙古时期）
+historical_year: 1259
+era_kit: liao_jin_north
+seed: 385741217
+design_intent:
+  prosperity: major_frontier_prefecture_candidate
+  notes:
+  - 复原依据：`docs/design/town/history/city_shuozhou__southern_song_jin_mongol.md`；1259年蒙古时期复用金末北齐大城沿用层的审慎候选。
+  - 未取得1217后战损、修复或蒙古时期改筑平面；除年代与说明外沿用同带拓扑，不冒充1259实测。
+  - 北齐长方大城与城内金代崇福寺为关系锚点；城门、十字街、分区坐标和寺院落点均明确标推定。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- {id: outer, role: outer, polygon: {points: [{x: 18, z: 10}, {x: 110, z: 10}, {x: 110, z: 118}, {x: 18, z: 118}]}, inside_margin_cells: 2, basis: "图名：朔州北齐大城沿用层；北齐土城长方形、辽金沿用据src_wall/src_later_record；1259存毁与修补待考，墙线和比例（推定）。"}
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 10}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: true, wall_ref: outer, basis: "图名：南向方位门；1259门数、门址、门额与修复状态均（推定）（原创扩展）。"}
+- {id: north_gate, side: north, at: {x: 64, z: 118}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: false, wall_ref: outer, basis: "图名：北向方位门；1259门数、门址、门额与修复状态均（推定）（原创扩展）。"}
+- {id: west_gate, side: west, at: {x: 18, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：西向方位门；1259门数、门址、门额与修复状态均（推定）（原创扩展）。"}
+- {id: east_gate, side: east, at: {x: 110, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：东向方位门；1259门数、门址、门额与修复状态均（推定）（原创扩展）。"}
+streets:
+- {id: north_south_axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 10}, {x: 64, z: 118}], surface: dirt_road, priority: 100, basis: "图名：南北主街；线位与宽度（推定）（原创扩展）。"}
+- {id: east_west_axis, class: main_axis, width_cells: 5, points: [{x: 18, z: 64}, {x: 110, z: 64}], surface: dirt_road, priority: 95, basis: "图名：东西主街；线位与宽度（推定）（原创扩展）。"}
+- {id: temple_lane, class: secondary, width_cells: 3, points: [{x: 22, z: 42}, {x: 60, z: 42}], surface: dirt_road, priority: 80, basis: "图名：崇福寺前街（位置意象）；具体1259街线和寺门朝向（推定）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 68, z: 38}, {x: 106, z: 38}], surface: dirt_road, priority: 70, basis: "图名：市肆横巷；功能与线位（推定）（原创扩展）。"}
+rivers:
+- {id: sanggan_edge, width_cells: 5, points: [{x: 122, z: 0}, {x: 122, z: 128}], flow: north, navigable: false, basis: "图名：桑干河画幅边缘；src_jinshi证鄯阳有桑干河，但1259古河道与城垣距离（推定）。"}
+lakes: []
+bridges: []
+water_gates: []
+zones:
+- {id: zone_administrative, kind: administrative, geometry: {rect: {min: {x: 22, z: 84}, max: {x: 58, z: 112}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：州署院落；1259行政院落位置与边界（推定）（原创扩展）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 16}, max: {x: 106, z: 58}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn], ground_mix: {rammed_earth: 100}, basis: "图名：市肆区；位置、范围与功能组合（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 106, z: 112}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：坊居；位置、边界和密度（推定）（原创扩展）。"}
+- {id: zone_chongfu, kind: religious, geometry: {rect: {min: {x: 22, z: 16}, max: {x: 58, z: 58}}}, priority: 85, density: 0.42, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：崇福寺位置意象；金代遗构存在据src_chongfu，1259院落范围与落点（推定）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 22, z: 70}, max: {x: 58, z: 82}}}, priority: 80, density: 0.50, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：仓驿守舍区；与州署区分隔，位置和功能组合（推定）（原创扩展）。"}
+landmarks:
+- {id: lm_chongfu_amituo, type: bld_kit_liao_jin_north_temple_hall, origin: {x: 34, z: 30}, size: {w: 13, h: 10}, rotation_deg: 0, zone_ref: zone_chongfu, poi: null, basis: "图名：崇福寺金代殿堂位置意象；用一座通用殿堂代表寺院锚点，不复刻平面、构架或精确位置（推定）。"}
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_administrative], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "行政功能锚点；形制与位置（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_administrative, zone_chongfu], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_residential, zone_chongfu], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 8, max: 16}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍，不绑定营生。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_chongfu], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "固定地标配额。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 0}, required: false, business_ref: null, institution_ref: null, placement_note: "压缩场景容量优先保障必需仓舍，不另生成马厩（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.010, avoid_road_cells: 2, cluster_rule: "院落空地少量耐旱草簇；不作为1259物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十四·地理上", url: "https://www.quanxue.cn/ls_zhengshi/jinshi/jinshi24.html", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_administration, sanggan_river], note: "正文已读；用作1259前最近的行政与水系锚点，不证明蒙古时期墙街未变。"}
+- {key: src_wall, kind: official_web, title: "山西省文物局：朔州城墙（第三批省保）", url: "https://wwj.shanxi.gov.cn/wwzy/wwlb/bkydww/sjzdwwbhdw/dspsb/202109/t20210908_1983498.shtml", accessed: "2026-10-04", confidence: verified_summary, supports: [northern_qi_wall_origin], note: "公开摘要已读；证北齐州城起源，不提供1259修筑状态。"}
+- {key: src_later_record, kind: gazetteer, title: "朔州古城沿革与尺寸汇编", url: "http://www.likefar.com/scene/2646/", accessed: "2026-10-04", confidence: pending_review, supports: [liao_jin_reuse_tradition], note: "后志转述只取长方关系与辽金沿用线索；不将明城或现存尺寸倒推1259。"}
+- {key: src_chongfu, kind: official_web, title: "国际在线：崇福寺金代弥陀殿与观音殿", url: "https://sx.cri.cn/2025-05-30/aac3eca8-f80f-f7d2-c423-8bb9af95a592.html", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_temple_in_old_city, visual_reference], note: "正文与当代老城照片已读已看图；遗构可作1259城内寺院锚点，但当代明城景观不可倒推1259门楼、墙砖或街线。"}

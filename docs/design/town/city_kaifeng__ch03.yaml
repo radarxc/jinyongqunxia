@@ -1,0 +1,74 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_kaifeng
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 南京开封府 / 汴京
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 182717
+design_intent: {prosperity: capital_candidate, notes: [history/city_kaifeng__southern_song_jin_mongol.md；1217主图，1259同带骨架副本，政治状态由章节数据决定。, 三城环套与南薰—丹凤—州桥—承天主轴；外门仅选四向代表，非史载十四門完整缩尺。, 汴河东西穿城；惠民河截取南部代表段；1259不认定金宫仍为在用皇宫。]}
+grid: {width: 160, height: 160, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -80, r_min: 1, q_slot_count: 219, r_slot_count: 160, q_band_slots: [73, 73, 73], r_band_slots: [80, 80], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- {id: outer, role: outer, polygon: {points: [{x: 14, z: 14}, {x: 146, z: 14}, {x: 146, z: 146}, {x: 14, z: 146}]}, inside_margin_cells: 2, basis: 图名：南京外垣；src_jinshi及src_dpm多重都城有据，132格边长与四角（推定）。}
+- {id: inner, role: inner, polygon: {points: [{x: 40, z: 44}, {x: 120, z: 44}, {x: 120, z: 130}, {x: 40, z: 130}]}, inside_margin_cells: 2, basis: 图名：里城；src_dpm宋代城环延续至金（推定）；边界缩景。}
+- {id: palace, role: division, polygon: {points: [{x: 66, z: 94}, {x: 102, z: 94}, {x: 102, z: 122}, {x: 66, z: 122}]}, inside_margin_cells: 2, basis: 图名：宫城；src_jinshi宫门序列有据，院落外框（推定）。}
+gates:
+- {id: nanxun, side: south, at: {x: 82, z: 14}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: imperial, primary: true, wall_ref: outer, basis: 图名：南薰门；src_jinshi南外门有据，格位（推定）。}
+- {id: north, side: north, at: {x: 130, z: 146}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_bypass, primary: false, wall_ref: outer, basis: 图名：北向代表门；十四门压缩为四向门，不强配门名（推定）。}
+- {id: west, side: west, at: {x: 14, z: 84}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: cross, primary: false, wall_ref: outer, basis: 图名：西向代表门；方位门缩景（推定）。}
+- {id: east, side: east, at: {x: 146, z: 84}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: cross, primary: false, wall_ref: outer, basis: 图名：东向代表门；方位门缩景（推定）。}
+- {id: danfeng, side: south, at: {x: 82, z: 44}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: imperial, primary: false, wall_ref: inner, basis: 图名：丹凤门；src_jinshi龙津桥北、州桥南，格位（推定）。}
+- {id: inner_w, side: west, at: {x: 40, z: 84}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: cross, primary: false, wall_ref: inner, basis: 图名：里城西门；通行门位（推定）（原创扩展）。}
+- {id: inner_e, side: east, at: {x: 120, z: 84}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: cross, primary: false, wall_ref: inner, basis: 图名：里城东门；通行门位（推定）（原创扩展）。}
+- {id: chengtian, side: south, at: {x: 82, z: 94}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: imperial, primary: false, wall_ref: palace, basis: 图名：承天门；src_jinshi州桥与横街北，格位（推定）。}
+streets:
+- {id: imperial, class: main_axis, width_cells: 5, points: [{x: 82, z: 14}, {x: 82, z: 114}], surface: dirt_road, priority: 100, basis: 图名：御路；src_jinshi南薰至承天序列，宽度与间距（推定）。}
+- {id: cross, class: secondary, width_cells: 5, points: [{x: 14, z: 84}, {x: 146, z: 84}], surface: dirt_road, priority: 90, basis: 图名：宫前横街；src_jinshi州桥北有横街，向东西门延伸（推定）。}
+- {id: east_bypass, class: secondary, width_cells: 5, points: [{x: 130, z: 40}, {x: 130, z: 146}], surface: dirt_road, priority: 80, basis: 图名：东城通街；北门接驳（推定）（原创扩展）。}
+- {id: south_market, class: secondary, width_cells: 4, points: [{x: 24, z: 40}, {x: 136, z: 40}], surface: dirt_road, priority: 80, basis: 图名：南郭市街；市场功能有据，线位（推定）（原创扩展）。}
+- {id: west_lane, class: secondary, width_cells: 4, points: [{x: 28, z: 40}, {x: 28, z: 116}], surface: dirt_road, priority: 80, basis: 图名：西郭联络街；（推定）（原创扩展）。}
+rivers:
+- {id: bian, width_cells: 6, points: [{x: 4, z: 68}, {x: 156, z: 68}], flow: east, navigable: false, basis: 图名：汴河；src_kf及src_dpm支持东西贯都，河宽线位（推定）；不主张金代全线通航。}
+- {id: huimin, width_cells: 4, points: [{x: 44, z: 30}, {x: 118, z: 30}], flow: east, navigable: false, basis: 图名：惠民河代表段；src_jinshi列蔡河，南侧位置参宋图（推定）；截取示意非真实源流。}
+water_gates:
+- {id: bian_ow, side: west, at: {x: 14, z: 68}, width_cells: 8, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 12, h: 4}, passage_cells: {w: 8, h: 4}, wall_ref: outer, basis: 图名：汴河水门；穿墙关系据宋图，金代形制及坐标（推定）。, kind: water_gate}
+- {id: bian_oe, side: east, at: {x: 146, z: 68}, width_cells: 8, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 12, h: 4}, passage_cells: {w: 8, h: 4}, wall_ref: outer, basis: 图名：汴河水门；穿墙关系据宋图，金代形制及坐标（推定）。, kind: water_gate}
+- {id: bian_iw, side: west, at: {x: 40, z: 68}, width_cells: 8, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 12, h: 4}, passage_cells: {w: 8, h: 4}, wall_ref: inner, basis: 图名：汴河水门；穿墙关系据宋图，金代形制及坐标（推定）。, kind: water_gate}
+- {id: bian_ie, side: east, at: {x: 120, z: 68}, width_cells: 8, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 12, h: 4}, passage_cells: {w: 8, h: 4}, wall_ref: inner, basis: 图名：汴河水门；穿墙关系据宋图，金代形制及坐标（推定）。, kind: water_gate}
+bridges:
+- {id: zhou, at: {x: 82, z: 69}, river_ref: bian, road_ref: imperial, length_cells: 10, width_cells: 5, rotation_deg: 0, basis: 图名：州桥；src_jinshi写舟桥，丹凤北承天南，尺寸（推定）。}
+- {id: longjin, at: {x: 82, z: 31}, river_ref: huimin, road_ref: imperial, length_cells: 10, width_cells: 5, rotation_deg: 0, basis: 图名：龙津桥；src_jinshi记丹凤南，水系连接与尺寸（推定）。}
+- {id: east_bian, at: {x: 130, z: 69}, river_ref: bian, road_ref: east_bypass, length_cells: 10, width_cells: 5, rotation_deg: 0, basis: 图名：东郭桥；通街过水（推定）（原创扩展）。}
+- {id: west_bian, at: {x: 28, z: 69}, river_ref: bian, road_ref: west_lane, length_cells: 10, width_cells: 5, rotation_deg: 0, basis: 图名：西郭桥；通街过水（推定）（原创扩展）。}
+zones:
+- {id: zone_court, kind: palace, geometry: {rect: {min: {x: 70, z: 100}, max: {x: 98, z: 118}}}, priority: 100, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: 图名：宫城正殿意象；src_jinshi殿名有据，官署素材代殿（推定）。}
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 44, z: 92}, max: {x: 62, z: 126}}}, priority: 95, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: 图名：宫西官署；功能有据，边界（推定）。}
+- {id: zone_temple, kind: religious, geometry: {rect: {min: {x: 88, z: 48}, max: {x: 116, z: 62}}}, priority: 85, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: 图名：城内寺院意象；src_kf支持相国寺金代遭毁，此处匿名寺院，位置（推定）。}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 20, z: 18}, max: {x: 138, z: 40}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_casino], ground_mix: {rammed_earth: 100}, basis: 图名：南郭市肆；src_jinshi药市榷场有据，区位配额（推定）。}
+- {id: zone_west_housing, kind: residential, geometry: {rect: {min: {x: 20, z: 48}, max: {x: 36, z: 138}}}, priority: 50, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: 图名：西郭坊居；边界（推定）（原创扩展）。}
+- {id: zone_east_housing, kind: residential, geometry: {rect: {min: {x: 124, z: 48}, max: {x: 140, z: 138}}}, priority: 50, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: 图名：东郭坊居；边界（推定）（原创扩展）。}
+- {id: zone_inner_housing, kind: residential, geometry: {rect: {min: {x: 44, z: 48}, max: {x: 116, z: 128}}}, priority: 50, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: 图名：里城坊居；边界（推定）（原创扩展）。}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 44, z: 48}, max: {x: 76, z: 64}}}, priority: 80, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_stable], ground_mix: {rammed_earth: 100}, basis: 图名：汴河南仓驿；城河服务关系与边界（推定）（原创扩展）。}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_court, zone_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_court, zone_temple, zone_inner_housing], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_temple], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 6, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 8, max: 18}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_casino, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_west_housing, zone_east_housing, zone_inner_housing], count: {min: 12, max: 36}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_west_housing, zone_east_housing, zone_inner_housing], count: {min: 3, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_office, zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: 缩景配额（原创扩展）【建议值】；单体位置非历史地籍。}
+vegetation: {palette: [prp_song_dali_grass], density: 0.01, avoid_road_cells: 2, cluster_rule: 院隙少量草簇，物候不作史证, basis: 草簇落点与密度（原创扩展）。}
+sources:
+- {key: src_jinshi, kind: academic, title: 《金史》卷二十五·地理中（国学导航点校本）, url: 'http://www.guoxue123.com/shibu/0101/00jinsf/025.htm', accessed: '2026-10-04', confidence: verified_summary, supports: [historical_topology], note: 仅文字；正文已读；南京宫门桥梁轴序、河南府1217年八月升中京金昌府。}
+- {key: src_dpm, kind: academic, title: 孟凡人《北宋东京开封府城的形制布局》, url: 'https://www.dpm.org.cn/Uploads/File/2019/11/25/u5ddbb7e042505.pdf', accessed: '2026-10-04', confidence: verified_summary, supports: [historical_topology], note: 论文已读、城垣图已看；仅作前代城形水系参考，金代坐标另标推定。}
+- {key: src_kf, kind: academic, title: 开封党史方志网：汴河州桥与古街地名考证, url: 'http://www.kfdsw.com/index/detail/id/2602.html', accessed: '2026-10-04', confidence: verified_summary, supports: [historical_topology], note: 仅文字；正文已读；汴河东西走向、州桥御路交汇、相国寺故址与毁损。}

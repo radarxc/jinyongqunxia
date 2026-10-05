@@ -1,0 +1,66 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_yuncheng
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 解州（州治解县）
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 12170272
+design_intent:
+  prosperity: regional_prefectural_seat_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_yuncheng__southern_song_jin_mongol.md；1217年金代解州治解县拓扑缩景。
+  - 城址对应今盐湖区解州镇，不是现代运城市中心；元末以后盐政运城的方城与路网不得倒投。
+  - 太平寰宇记记盐池在县东五里，故只在画幅东缘表现裁切湖岸；完整城墙、门数、街区与岸线均无同期测绘。
+grid: {width: 160, height: 160, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -80, r_min: 1, q_slot_count: 219, r_slot_count: 160, q_band_slots: [73, 73, 73], r_band_slots: [80, 80], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+wall:
+  polygon: {points: [{x: 14, z: 26}, {x: 118, z: 26}, {x: 118, z: 136}, {x: 14, z: 136}]}
+  inside_margin_cells: 2
+  basis: 图名：解州故城外垣；src_wall_notice检索公示支持宋城墙遗存线索，src_chgis支持治解县；完整矩形、尺度、折点与1217连续状态（推定）。
+gates:
+- {id: south_gate, side: south, at: {x: 66, z: 26}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: true, basis: "图名：南向方位门；门数、门名、门址、门楼与1217启闭均（推定）（原创扩展），不沿用元明门额。"}
+- {id: north_gate, side: north, at: {x: 66, z: 136}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: false, basis: "图名：北向方位门；门数、门名、门址、门楼与1217启闭均（推定）（原创扩展），不沿用元明门额。"}
+- {id: west_gate, side: west, at: {x: 14, z: 80}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, basis: "图名：西向方位门；src_wall_notice仅支持后世发现西门瓮城遗迹，1217门数、门址、形制与层位均（推定），本图不复原瓮城。"}
+- {id: east_gate, side: east, at: {x: 118, z: 80}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, basis: "图名：盐池方向门（名待考）；只表达盐池在城东的区域关系，门数、门址、门楼与1217启闭（推定）（原创扩展）。"}
+streets:
+- {id: north_south_axis, class: main_axis, width_cells: 5, points: [{x: 66, z: 26}, {x: 66, z: 136}], surface: dirt_road, priority: 100, basis: "图名：南北主街；连接两方位门，线位与宽度（推定）（原创扩展）。"}
+- {id: east_west_axis, class: main_axis, width_cells: 5, points: [{x: 14, z: 80}, {x: 118, z: 80}], surface: dirt_road, priority: 98, basis: "图名：东西主街；只表达州城与盐池方向通路，线位与宽度（推定）（原创扩展）。"}
+- {id: south_lane, class: secondary, width_cells: 3, points: [{x: 20, z: 50}, {x: 112, z: 50}], surface: dirt_road, priority: 65, basis: "图名：南部坊巷；可玩街区补线（推定）（原创扩展）。"}
+- {id: north_lane, class: secondary, width_cells: 3, points: [{x: 20, z: 108}, {x: 112, z: 108}], surface: dirt_road, priority: 65, basis: "图名：北部坊巷；可玩街区补线（推定）（原创扩展）。"}
+- {id: office_lane, class: secondary, width_cells: 4, points: [{x: 42, z: 80}, {x: 42, z: 130}], surface: dirt_road, priority: 85, basis: "图名：州署支路；州署位置、线位与宽度（推定）（原创扩展）。"}
+rivers: []
+lakes:
+- id: salt_lake_edge
+  polygon: {points: [{x: 134, z: 8}, {x: 160, z: 4}, {x: 160, z: 154}, {x: 144, z: 150}, {x: 136, z: 132}, {x: 132, z: 108}, {x: 134, z: 84}, {x: 131, z: 60}, {x: 132, z: 34}]}
+  basis: 图名：解池西缘（画幅裁切）；src_huanyu记盐池在解县东五里，src_salt_history支持解州与盐池区域关系；距离压缩、岸线折点和南北延伸（推定），x160为裁切线而非完整湖岸。
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 20, z: 88}, max: {x: 60, z: 130}}}, priority: 100, density: 0.46, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：州县官署区；州治解县据src_jinshi/src_chgis，具体位置、边界和院落组合（推定）（原创扩展）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 72, z: 32}, max: {x: 112, z: 74}}}, priority: 90, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：市肆区；功能、位置、范围和密度（推定）（原创扩展），不表示元明盐市格局。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 20, z: 32}, max: {x: 60, z: 74}}}, priority: 50, density: 0.52, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：坊居；边界、密度和院落组合（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 70, z: 88}, max: {x: 92, z: 130}}}, priority: 75, density: 0.42, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_pagoda, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：寺观区；具体寺观、位置与范围（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 96, z: 88}, max: {x: 112, z: 130}}}, priority: 80, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：东门仓驿守舍区；功能组合、位置与范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "州县官署功能锚点；形制与落点（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office, zone_residential], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不以栋数推人口。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 10, max: 20}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_residential, zone_religious], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不自动开放盐务营生。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不自动开放盐务营生。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 6, max: 12}, required: true, business_ref: null, institution_ref: null, placement_note: "普通市集外观配额（原创扩展）【建议值】；不称盐池专营设施。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍外观，不绑定营生；数量与位置（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名寺观模块；不指认具名历史寺观。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_market, zone_service], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "普通市肆后场或仓驿配额（原创扩展）；不指认盐仓。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落与城外陆带少量草簇；盐池岸边不形成后世景观带", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_chgis, kind: academic, title: "复旦CHGIS/TGAZ：解州（1127—1217）", url: "http://tgaz.fudan.edu.cn/tgaz/placename/hvd_94103", accessed: "2026-10-04", confidence: verified_summary, supports: [seat_location, chronology], note: "页面正文、治所与沿革已读；支持1217治解县、1220迁平陆等节点，点位不等于墙线。"}
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十六·地理下", url: "https://m.gushiwen.cn/guwen/bookv_6084c812d83e.aspx", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_administration], note: "解州条正文已读；支持中州、治解县与辖属，不提供城内平面。"}
+- {key: src_huanyu, kind: gazetteer, title: "《太平寰宇记·解州》", url: "https://www.shidianguji.com/book/SK0968/chapter/1la2iszpp7h8p", accessed: "2026-10-04", confidence: verified_summary, supports: [salt_lake_east_of_county], note: "解县条已读，记盐池在县东五里；只约束东西关系，不作为1217岸线测绘。"}
+- {key: src_salt_history, kind: official_web, title: "人民网：盐湖与运城建城沿革", url: "http://www.people.com.cn/24hour/n/2013/0720/c25408-22260075.html", accessed: "2026-10-04", confidence: verified_summary, supports: [late_yuan_yuncheng], note: "正文已读；用于排除元末以后因盐务营建的运城，不据其后世叙述复原1217城内平面。"}
+- {key: src_wall_notice, kind: official_web, title: "运城市政府：解州故城保护范围公示", url: "https://www.yuncheng.gov.cn/doc/2025/03/04/510102.shtml", accessed: "2026-10-04", confidence: pending_review, supports: [song_wall_remains], note: "官网直连本轮多次TLS/504失败，仅核对检索摘要和公示元数据；宋墙、西南墙段与西门瓮城仅作遗存线索，不据此取1217坐标。"}

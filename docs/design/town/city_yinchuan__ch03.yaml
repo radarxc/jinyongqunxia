@@ -1,0 +1,52 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_yinchuan"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "兴庆府故地 / 中兴府（待考）"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 3041496015
+design_intent: {"prosperity": "capital_candidate", "notes": ["复原依据：docs/design/town/history/city_yinchuan__southern_song_jin_mongol.md；1217年西夏中兴府（上游名称保留待考）拓扑缩景。", "城域东西长；西侧唐徕渠据后世区域关系推定，宫署西北仅为推定，不以明清六门充当西夏城门。", "ch03只复用1217年代带拓扑；1227年城毁与蒙古统治状态须由章节差量另行表达，本图不能证明其后仍为西夏王都。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [96, 96, 27], "r_band_slots": [96, 64], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+- {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 18, "z": 36}, {"x": 148, "z": 36}, {"x": 148, "z": 124}, {"x": 18, "z": 124}]}, "inside_margin_cells": 2, "basis": "图名：中兴府东西长城域；名称沿革据src_name；src_gates转述东西倍于南北，游戏比例压为130:88，边界（推定）。"}
+gates:
+- {"id": "south_gate", "side": "south", "at": {"x": 83, "z": 36}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：南向方位门（门数门址推定）；格位与门宽（推定）（原创扩展）。"}
+- {"id": "north_gate", "side": "north", "at": {"x": 83, "z": 124}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：北向方位门（门数门址推定）；格位与门宽（推定）（原创扩展）。"}
+- {"id": "west_gate", "side": "west", "at": {"x": 18, "z": 80}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：西向方位门（门数门址推定）；格位与门宽（推定）（原创扩展）。"}
+- {"id": "east_gate", "side": "east", "at": {"x": 148, "z": 80}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：东向方位门（门数门址推定）；格位与门宽（推定）（原创扩展）。"}
+streets:
+- {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 83, "z": 36}, {"x": 83, "z": 124}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北通街；线位、宽度为可玩缩景（推定）（原创扩展）。"}
+- {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 18, "z": 80}, {"x": 148, "z": 80}], "surface": "dirt_road", "priority": 80, "basis": "图名：东西城门通街；线位、宽度为可玩缩景（推定）（原创扩展）。"}
+- {"id": "market_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 26, "z": 56}, {"x": 140, "z": 56}], "surface": "dirt_road", "priority": 80, "basis": "图名：南部市巷；线位、宽度为可玩缩景（推定）（原创扩展）。"}
+rivers:
+- {"id": "tanglai_edge", "width_cells": 4, "points": [{"x": 8, "z": 0}, {"x": 8, "z": 160}], "flow": "north", "navigable": false, "basis": "图名：唐徕渠西侧画缘；src_gates只证后世西门外渠，延用到1217的线位、流向与城距均（推定）；不画穿城河。"}
+bridges: []
+zones:
+- {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 26, "z": 88}, "max": {"x": 76, "z": 116}}}, "priority": 100, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard", "bld_kit_liao_jin_north_house_large", "bld_kit_liao_jin_north_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西北宫署；src_gates仅证宫署存在，西北选址和边界（推定），不宣称同期宫城控制点。"}
+- {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 90, "z": 42}, "max": {"x": 140, "z": 74}}}, "priority": 70, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_shop_2f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东南市肆；src_gates证商贸功能，区位（推定）。"}
+- {"id": "zone_residential", "kind": "residential", "geometry": {"rect": {"min": {"x": 90, "z": 88}, "max": {"x": 114, "z": 116}}}, "priority": 70, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东北坊居；格位密度（推定）（原创扩展）。"}
+- {"id": "zone_temple", "kind": "religious", "geometry": {"rect": {"min": {"x": 26, "z": 42}, "max": {"x": 74, "z": 74}}}, "priority": 70, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_temple_hall", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西部寺域；src_nxu记承天寺在兴庆府西，院界（推定）；通用模块不复刻承天寺塔。"}
+- {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 116, "z": 88}, "max": {"x": 140, "z": 116}}}, "priority": 70, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东北军驿；存在功能据src_gates，区位（推定）。"}
+landmarks: []
+building_quotas:
+- {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office"], "count": {"min": 2, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_temple_hall", "zone_refs": ["zone_temple"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_service", "zone_office"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_residential", "zone_temple", "zone_office"], "count": {"min": 3, "max": 7}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_shop_2f", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_residential", "zone_service"], "count": {"min": 10, "max": 20}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；植物种类不作1217年物候证据", "basis": "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {"key": "src_gates", "kind": "academic", "title": "银川党史网：银川的老城门", "url": "http://dsyjs.yinchuan.gov.cn/dsyj/ycsl/201606/t20160620_123105.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已读全文，仅文字；东西长城、宫署市肆寺院与1227毁坏；文中明说西夏门楼方位数量无史图，唐徕渠方位来自后世段。"}
+- {"key": "src_nxu", "kind": "academic", "title": "宁夏大学西夏学研究院：西夏历史与文化", "url": "https://xixia.nxu.edu.cn/whkf/lswh.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已读全文，仅文字；1209/1217中兴府受攻、1227西夏灭亡、承天寺在兴庆府西。"}
+- {"key": "src_name", "kind": "academic", "title": "银川档案方志网：银川历史地名来源考察", "url": "http://dag.yinchuan.gov.cn/dayw/dadg/lsda/201912/t20191227_1906586.html", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已读全文，仅文字；兴庆府与银川名称沿革，不用于证明宫城位置。"}

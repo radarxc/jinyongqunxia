@@ -1,0 +1,50 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_baoding"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "保州（顺天府）"
+historical_year: 1259
+era_kit: "liao_jin_north"
+seed: 203011217
+design_intent: {"prosperity": "major_candidate", "notes": ["复原依据：docs/design/town/history/city_baoding__southern_song_jin_mongol.md；1259采用1227后重建态，不复制1217芜城。", "src_cass引顺天府营建记北衙、南宅、市陌裁正、坊十桥十等；本图保留功能恢复与北署南居关系，十坊十桥坐标未明，不逐数复刻。", "外垣、四门、三街与五区均为游戏缩景；水系无法确定真实接入线位，本候选不画，非断言无水。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [96, 79], "r_band_slots": [96, 32], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+- {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 12, "z": 14}, {"x": 116, "z": 14}, {"x": 116, "z": 114}, {"x": 12, "z": 114}]}, "inside_margin_cells": 2, "basis": "图名：重建保州游戏包络；src_cass证1227重建并引后世重修前土城，矩形折点（推定）；src_jinshi证州名与清苑县治。"}
+gates:
+- {"id": "south_gate", "side": "south", "at": {"x": 64, "z": 14}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：南向方位门；四方交通口（推定）（原创扩展）；不用后世门名，门数与位置未有金代图证。"}
+- {"id": "north_gate", "side": "north", "at": {"x": 64, "z": 114}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：北向方位门；四方交通口（推定）（原创扩展）；不用后世门名，门数与位置未有金代图证。"}
+- {"id": "west_gate", "side": "west", "at": {"x": 12, "z": 64}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：西向方位门；四方交通口（推定）（原创扩展）；不用后世门名，门数与位置未有金代图证。"}
+- {"id": "east_gate", "side": "east", "at": {"x": 116, "z": 64}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：东向方位门；四方交通口（推定）（原创扩展）；不用后世门名，门数与位置未有金代图证。"}
+streets:
+- {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 64, "z": 14}, {"x": 64, "z": 114}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北重建主街；src_cass记市陌纡曲必裁正，本三线只是正交路网抽象，坐标与宽度（推定）。"}
+- {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 12, "z": 64}, {"x": 116, "z": 64}], "surface": "dirt_road", "priority": 90, "basis": "图名：东西重建横街；src_cass记市陌纡曲必裁正，本三线只是正交路网抽象，坐标与宽度（推定）。"}
+- {"id": "market_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 20, "z": 44}, {"x": 108, "z": 44}], "surface": "dirt_road", "priority": 70, "basis": "图名：市肆巷；src_cass记市陌纡曲必裁正，本三线只是正交路网抽象，坐标与宽度（推定）。"}
+rivers: []
+bridges: []
+zones:
+- {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 20, "z": 70}, "max": {"x": 58, "z": 102}}}, "priority": 100, "density": 0.48, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北部官署；src_cass列北衙、南宅、仓驿等，仅约束部分方向；边界与细部（推定）（原创扩展）。"}
+- {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 70, "z": 28}, "max": {"x": 108, "z": 58}}}, "priority": 90, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_shop_2f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn", "bld_kit_liao_jin_north_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：南部市肆；src_cass列北衙、南宅、仓驿等，仅约束部分方向；边界与细部（推定）（原创扩展）。"}
+- {"id": "zone_residential", "kind": "residential", "geometry": {"rect": {"min": {"x": 20, "z": 28}, "max": {"x": 58, "z": 58}}}, "priority": 50, "density": 0.56, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：南部坊居；src_cass列北衙、南宅、仓驿等，仅约束部分方向；边界与细部（推定）（原创扩展）。"}
+- {"id": "zone_religious", "kind": "religious", "geometry": {"rect": {"min": {"x": 70, "z": 70}, "max": {"x": 108, "z": 94}}}, "priority": 75, "density": 0.45, "allowed_building_types": ["bld_kit_liao_jin_north_temple_hall", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：重建祠寺区；src_cass列北衙、南宅、仓驿等，仅约束部分方向；边界与细部（推定）（原创扩展）。"}
+- {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 70, "z": 94}, "max": {"x": 108, "z": 106}}}, "priority": 80, "density": 0.52, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：仓驿守舍区；src_cass列北衙、南宅、仓驿等，仅约束部分方向；边界与细部（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "县署功能锚点；具体院落形制与位置（推定）（原创扩展）。"}
+- {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算人口。"}
+- {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_office", "zone_residential", "zone_religious"], "count": {"min": 2, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】。"}
+- {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】。"}
+- {"type": "bld_kit_liao_jin_north_shop_2f", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】。"}
+- {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】。"}
+- {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "匿名旅舍，不绑定营生；位置与数量（原创扩展）【建议值】。"}
+- {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_residential", "zone_service"], "count": {"min": 9, "max": 18}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】。"}
+- {"type": "bld_kit_liao_jin_north_temple_hall", "zone_refs": ["zone_religious"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "通用祠寺模块；不得解释为陈仓山祠。"}
+- {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】。"}
+- {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_market", "zone_service"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "市肆或仓驿区匿名仓房；位置与数量（原创扩展）【建议值】。"}
+- {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落草簇，不作1259年物候证据", "basis": "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {"key": "src_cass", "kind": "academic", "title": "史研所：元初汉人世侯张柔与金元之际北方的军事筑城", "url": "http://lishisuo.cass.cn/xsyj/gdzwgxs/202011/t20201109_5213109.shtml", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["ruin", "reconstruction", "institutions"], "note": "正文已打开阅读，仅文字；引元好问顺天府营建记：1227移镇、此前芜废十五年、北衙南宅、十坊十桥、西北水门；后引明志墙尺度不得当作1217墙线。"}
+- {"key": "src_jinshi", "kind": "academic", "title": "金史卷二十四志第五地理上：保州清苑县条", "url": "http://guoxue.r12345.com/shibu/0101/00jins/023.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["name", "administration"], "note": "正文已读，仅文字；保州顺天军节度、清苑倚郭；县境水名不提供城内水网。"}

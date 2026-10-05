@@ -1,0 +1,59 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_yanan
+chapter_id: ch02
+book_world: ch02_shediao
+display_name: 延安府·肤施县
+historical_year: 1223
+era_kit: liao_jin_north
+seed: 246550712
+design_intent:
+  prosperity: major_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_yanan__southern_song_jin_mongol.md；金代延安府领肤施县，治所在今延安市。
+  - 府城按河西、凤凰山麓、东临延河的关系作非等比拓扑缩景；未取得13世纪同期实测平面。
+  - 城垣折点、两处可玩出入口、街巷和功能分区均标推定；不把后世门名倒置到1223年。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 24, z: 12}, {x: 108, z: 12}, {x: 108, z: 112}, {x: 64, z: 116}, {x: 24, z: 110}, {x: 18, z: 64}]}
+  inside_margin_cells: 2
+  basis: 图名：延安府城；src_city支持河西、依凤凰山、东临延河及沿山筑垣，折点和压缩尺度（推定）。
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 12}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: axis, primary: true, wall_ref: outer, basis: 图名：南向出入口（推定）；src_city只证明后世南向门关系，1223门址与门名不沿用（原创扩展）。}
+- {id: east_gate, side: east, at: {x: 108, z: 62}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: cross, primary: false, wall_ref: outer, basis: 图名：延河侧出入口（推定）；src_city支持东临延河，精确门址和门名（原创扩展）。}
+streets:
+- {id: axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 12}, {x: 64, z: 108}], surface: dirt_road, priority: 100, basis: 图名：府城纵街（推定）；以南向门连接官署与北部军驿（原创扩展）。}
+- {id: cross, class: secondary, width_cells: 5, points: [{x: 28, z: 62}, {x: 108, z: 62}], surface: dirt_road, priority: 90, basis: 图名：延河门横街（推定）；连接山麓与延河侧出入口（原创扩展）。}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 34, z: 34}, {x: 98, z: 34}], surface: dirt_road, priority: 70, basis: 图名：南市横巷（推定）；src_city仅说明后世南门坡商贸，1223线位（原创扩展）。}
+rivers:
+- {id: yan_river, width_cells: 5, points: [{x: 118, z: 0}, {x: 118, z: 128}], navigable: false, basis: 图名：延河；src_city支持府城东临延河，压缩岸线与宽度（推定）。, flow: south}
+lakes: []
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 30, z: 68}, max: {x: 60, z: 104}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: 图名：府县官署区；src_chgis确认府县同治，院界和位置（推定）。}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 20}, max: {x: 102, z: 56}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: 图名：南市区；src_city仅支持后世南门坡商贸，1223范围（推定）（原创扩展）。}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 30, z: 20}, max: {x: 58, z: 56}}}, priority: 50, density: 0.54, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: 图名：山麓坊居；街坊边界与密度（推定）（原创扩展）。}
+- {id: zone_temple, kind: religious, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 102, z: 94}}}, priority: 75, density: 0.46, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: 图名：寺观区；src_city支持宋金时期多宗教空间但不支持此址，范围（推定）（原创扩展）。}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 70, z: 98}, max: {x: 102, z: 108}}}, priority: 80, density: 0.50, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: 图名：军驿仓储区；src_city支持宋金军事中心，具体范围（推定）（原创扩展）。}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 府县同治的可玩外观锚点（原创扩展）【建议值】；不等同衙署实测基址。}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office], count: {min: 0, max: 2}, required: false, business_ref: null, institution_ref: null, placement_note: 压缩场景配额（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_residential, zone_temple], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: 压缩场景配额（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 7}, required: true, business_ref: null, institution_ref: null, placement_note: 压缩场景配额（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: 压缩场景配额（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: 压缩场景配额（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 对应名录inn能力的外观候选；不自动开启营生。}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 7, max: 14}, required: true, business_ref: null, institution_ref: null, placement_note: 压缩场景配额（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_temple], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 匿名寺观外观；不绑定具名机构。}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 军州功能外观（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_market, zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 仓储外观（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: 驿畜外观（原创扩展）【建议值】。}
+vegetation: {palette: [prp_song_dali_grass], density: 0.010, avoid_road_cells: 2, cluster_rule: 山麓城内空地少量草簇；不作1223年物候证据, basis: 图名：空地植被；密度与落点（原创扩展）【建议值】。}
+sources:
+- {key: src_chgis, kind: academic, title: 中国历史地理信息系统：肤施县（607—1911）, url: 'http://tgaz.fudan.edu.cn/tgaz/placename/hvd_70361', accessed: '2026-10-04', confidence: verified_summary, supports: [administrative_continuity, seat_location], note: 已打开正文；引宋史、金史确认延安府领肤施县，治今陕西延安市；不提供13世纪平面。}
+- {key: src_city, kind: official_web, title: 延安市人民政府研究室：关于进一步保护发掘延安城市文化遗产的思考, url: 'http://yjs.yanan.gov.cn/yjcg/szfyjstycg/1572196991331471361.html', accessed: '2026-10-04', confidence: verified_summary, supports: [terrain_relation, wall_relation, military_character], note: 已打开正文；支持1045迁河西府城、西依凤凰山、东临延河及宋金军事中心；门名与完整形制多为后世记载，不直接前置。}

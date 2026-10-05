@@ -1,0 +1,68 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_changzhi
+chapter_id: ch02
+book_world: ch02_shediao
+display_name: 潞州·上党县 / 隆德府（1217年战乱切点）
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 51272508
+design_intent:
+  prosperity: major_prefectural_seat_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_changzhi__southern_song_jin_mongol.md；1217年潞州被蒙古军攻克并改隆德府的切点拓扑缩景。
+  - CHGIS证治上党、今长治市区；地方志证隋筑西北子城，但现存上党门与四门传统多为明代重建或后志追述。
+  - 规格保留大城与西北子城的关系；精确墙线、门位、州署院落和战损均逐项标推定。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 12, z: 12}, {x: 116, z: 12}, {x: 116, z: 116}, {x: 12, z: 116}]}
+  inside_margin_cells: 2
+  basis: 图名：潞州大城外垣；治所据src_chgis，土城四门传统据src_later_gazetteer弱回溯；矩形包络、尺度与折点（推定）。
+- id: citadel
+  role: inner
+  polygon: {points: [{x: 18, z: 72}, {x: 60, z: 72}, {x: 60, z: 110}, {x: 18, z: 110}]}
+  inside_margin_cells: 2
+  basis: 图名：西北子城；隋筑西北子城、周三里十步据src_local_history；1217仍存范围与墙线未见同期测绘，坐标、尺度及闭合形制（推定）。
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 12}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: true, wall_ref: outer, basis: "图名：南向方位门；四门传统据src_later_gazetteer，但门址、门名、宽度和1217存毁均（推定），不沿用明清门额。"}
+- {id: north_gate, side: north, at: {x: 64, z: 116}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: false, wall_ref: outer, basis: "图名：北向方位门；四门传统据后志弱回溯；门址、门名、宽度和1217存毁均（推定）。"}
+- {id: west_gate, side: west, at: {x: 12, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：西向方位门；四门传统据后志弱回溯；门址、门名、宽度和1217存毁均（推定）。"}
+- {id: east_gate, side: east, at: {x: 116, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：东向方位门；四门传统据后志弱回溯；门址、门名、宽度和1217存毁均（推定）。"}
+- {id: citadel_south_gate, side: south, at: {x: 40, z: 72}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: citadel_road, primary: false, wall_ref: citadel, basis: "图名：子城南门；子城方位据src_local_history，门向、坐标、宽度与1217状态（推定）（原创扩展）。"}
+streets:
+- {id: north_south_axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 12}, {x: 64, z: 116}], surface: dirt_road, priority: 100, basis: "图名：南北主街；四门大城内部连线（推定），不冒称金代街线实测。"}
+- {id: east_west_axis, class: main_axis, width_cells: 5, points: [{x: 12, z: 64}, {x: 116, z: 64}], surface: dirt_road, priority: 95, basis: "图名：东西主街；四门大城内部连线（推定），不冒称金代街线实测。"}
+- {id: citadel_road, class: secondary, width_cells: 5, points: [{x: 40, z: 64}, {x: 40, z: 106}], surface: dirt_road, priority: 90, basis: "图名：子城州署街；子城与州署关系仅作功能解释，线位与宽度（推定）（原创扩展）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 68, z: 40}, {x: 110, z: 40}], surface: dirt_road, priority: 70, basis: "图名：市肆横巷；可玩街区补线（推定）（原创扩展）。"}
+rivers: []
+bridges: []
+zones:
+- {id: zone_citadel_office, kind: administrative, geometry: {rect: {min: {x: 22, z: 78}, max: {x: 56, z: 106}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：子城州署区；州治与子城存在据src_jinshi/src_local_history，院落边界及金元之际存毁（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 18}, max: {x: 110, z: 58}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：市肆区；含市肆后场仓储，功能与边界（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 18, z: 18}, max: {x: 58, z: 58}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：坊居；边界和密度（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 68, z: 72}, max: {x: 92, z: 108}}}, priority: 75, density: 0.45, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_pagoda, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：寺观区；具体寺观、位置与范围（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 96, z: 72}, max: {x: 110, z: 108}}}, priority: 80, density: 0.52, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：仓驿守舍区；位置、范围与功能组合（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_citadel_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "州署功能锚点；建筑并非现存明代上党门复刻，形制与位置（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_citadel_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不以栋数推算人口。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_residential, zone_religious], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 10}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍，不绑定营生；数量与位置（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 9, max: 18}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名寺观模块；不绑定后世具名寺院。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_market, zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "市肆后场或仓驿区的压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；植物种类不作1217年物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十六·地理下", url: "https://zh.wikisource.org/wiki/金史/卷26", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_administration], note: "正文已读；潞州为上州，治附郭上党县，天会六年兼潞南辽沁观察处置使，领八县；不提供城墙或街坊平面。"}
+- {key: src_chgis, kind: academic, title: "CHGIS：潞州（1128—1217）", url: "http://tgaz.fudan.edu.cn/tgaz/placename/hvd_94077", accessed: "2026-10-04", confidence: verified_summary, supports: [seat_location, chronology], note: "JSON正文已读；治上党、今长治市区，属河东南路；1217年蒙古军攻克后改隆德府。点位不等于城垣控制点。"}
+- {key: src_local_history, kind: official_web, title: "长治地方志《建置》PDF", url: "http://www.czdsdfz.cn/szfzg/sqzl/czzz/201801/P020180116594934797677.pdf", accessed: "2026-10-04", confidence: verified_summary, supports: [citadel_origin, seat_move], note: "PDF正文与第3页均已读并目视；记隋583年筑今长治西北隅子城、周三里十步，591年潞州治移入；所附唐潞州图是疆域图，不是城内平面。"}
+- {key: src_later_gazetteer, kind: gazetteer, title: "万历《潞安府志》城池材料（长治市政府转述）", url: "https://www.changzhi.gov.cn/zjzz/cyzz/tszz/201705/t20170526_364359.shtml", accessed: "2026-10-04", confidence: pending_review, supports: [later_citadel_tradition, later_four_gate_tradition], note: "正文已读；载西北子城传统、旧土城四门及州署沿革，同时明确金元之际兵毁、现存上党门为明代重建；故只作回溯线索，不证明1217墙线、门位、门楼或院落。"}

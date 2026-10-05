@@ -1,0 +1,35 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_baoding"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "保州"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 203011217
+design_intent: {"prosperity": "major_ruined_candidate", "notes": ["复原依据：docs/design/town/history/city_baoding__southern_song_jin_mongol.md；1217毁后保州为主预览，1259重建态另有规格。", "src_cass引1227为芜城十五年、无寸甓尺楹之旧；本图无完整外垣、门楼、官署和寺殿，以稀疏临时聚落表达废城期（推定）。", "金史中保州为州名，顺天军为节度军号；不把1227以后十坊十桥与后世靴子城前置到1217。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [96, 79], "r_band_slots": [96, 32], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls: "none"
+gates: []
+streets:
+- {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 64, "z": 14}, {"x": 64, "z": 114}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北旧路；src_cass记1227以前芜城，旧路关系和现存宽度（推定）（原创扩展），不是1227裁正市陌。"}
+- {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 12, "z": 64}, {"x": 116, "z": 64}], "surface": "dirt_road", "priority": 90, "basis": "图名：东西旧路；src_cass记1227以前芜城，旧路关系和现存宽度（推定）（原创扩展），不是1227裁正市陌。"}
+- {"id": "market_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 20, "z": 44}, {"x": 108, "z": 44}], "surface": "dirt_road", "priority": 70, "basis": "图名：临时聚落巷；src_cass记1227以前芜城，旧路关系和现存宽度（推定）（原创扩展），不是1227裁正市陌。"}
+rivers: []
+bridges: []
+zones:
+- {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 20, "z": 70}, "max": {"x": 58, "z": 102}}}, "priority": 100, "density": 0.22, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：旧署附近暂居；src_jinshi证保州顺天军及清苑倚郭，src_cass证毁城后芜废；恢复居民与功能区均（推定）（原创扩展），不用完整衙寺冒充毁前建筑。"}
+- {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 70, "z": 28}, "max": {"x": 108, "z": 58}}}, "priority": 90, "density": 0.22, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：临时交换地；src_jinshi证保州顺天军及清苑倚郭，src_cass证毁城后芜废；恢复居民与功能区均（推定）（原创扩展），不用完整衙寺冒充毁前建筑。"}
+- {"id": "zone_residential", "kind": "residential", "geometry": {"rect": {"min": {"x": 20, "z": 28}, "max": {"x": 58, "z": 58}}}, "priority": 50, "density": 0.22, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：稀疏聚落；src_jinshi证保州顺天军及清苑倚郭，src_cass证毁城后芜废；恢复居民与功能区均（推定）（原创扩展），不用完整衙寺冒充毁前建筑。"}
+- {"id": "zone_religious", "kind": "religious", "geometry": {"rect": {"min": {"x": 70, "z": 70}, "max": {"x": 108, "z": 94}}}, "priority": 75, "density": 0.22, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：旧祠附近暂居；src_jinshi证保州顺天军及清苑倚郭，src_cass证毁城后芜废；恢复居民与功能区均（推定）（原创扩展），不用完整衙寺冒充毁前建筑。"}
+- {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 70, "z": 94}, "max": {"x": 108, "z": 106}}}, "priority": 80, "density": 0.22, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_market_stall"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：行旅暂驻；src_jinshi证保州顺天军及清苑倚郭，src_cass证毁城后芜废；恢复居民与功能区均（推定）（原创扩展），不用完整衙寺冒充毁前建筑。"}
+landmarks: []
+building_quotas:
+- {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_office", "zone_market", "zone_residential", "zone_religious", "zone_service"], "count": {"min": 6, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "临时聚落替代贴片；数量、存在与复居时间均（推定）（原创扩展）。"}
+- {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "匿名临时交换点（原创扩展）【建议值】，非金代繁荣市肆史证。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.04, "avoid_road_cells": 2, "cluster_rule": "毁后空地草簇（推定），不复刻历史植被种类", "basis": "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {"key": "src_cass", "kind": "academic", "title": "史研所：元初汉人世侯张柔与金元之际北方的军事筑城", "url": "http://lishisuo.cass.cn/xsyj/gdzwgxs/202011/t20201109_5213109.shtml", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["ruin", "reconstruction", "institutions"], "note": "正文已打开阅读，仅文字；引元好问顺天府营建记：1227移镇、此前芜废十五年、北衙南宅、十坊十桥、西北水门；后引明志墙尺度不得当作1217墙线。"}
+- {"key": "src_jinshi", "kind": "academic", "title": "金史卷二十四志第五地理上：保州清苑县条", "url": "http://guoxue.r12345.com/shibu/0101/00jins/023.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["name", "administration"], "note": "正文已读，仅文字；保州顺天军节度、清苑倚郭；县境水名不提供城内水网。"}

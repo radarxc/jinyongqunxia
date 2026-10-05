@@ -1,0 +1,69 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_taiyuan
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 太原府（唐明镇新城）
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 12170271
+design_intent:
+  prosperity: major_prefectural_capital_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_taiyuan__southern_song_jin_mongol.md；1217年金代太原府城拓扑缩景。
+  - 本城是982年在唐明镇营建、金代沿用的宋金太原城；不是979年被毁的晋阳旧城，也不是明代扩城。
+  - 金代晋阳志佚文支持罗城、城西子城、四门及门街关系；所有格坐标、分区与建筑落点均非同期测绘。
+grid: {width: 160, height: 160, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -80, r_min: 1, q_slot_count: 219, r_slot_count: 160, q_band_slots: [73, 73, 73], r_band_slots: [80, 80], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 12, z: 12}, {x: 148, z: 12}, {x: 148, z: 148}, {x: 12, z: 148}]}
+  inside_margin_cells: 2
+  basis: 图名：太原府罗城；src_taiyuan_history与src_jinyangzhi支持宋金方城、四门和大城套子城；周长压缩、墙线与折点（推定）。
+- id: inner
+  role: inner
+  polygon: {points: [{x: 20, z: 88}, {x: 72, z: 88}, {x: 72, z: 136}, {x: 20, z: 136}]}
+  inside_margin_cells: 2
+  basis: 图名：城西子城；src_taiyuan_history与src_jinyangzhi支持子城为故河东军城、位于罗城西部；范围、尺度与墙线（推定）。
+gates:
+- {id: kaiyuan_gate, side: south, at: {x: 82, z: 12}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: true, wall_ref: outer, basis: "图名：开远门；门名与南向据src_taiyuan_history，格位、门楼、门洞宽度和1217形制（推定）。"}
+- {id: huaide_gate, side: north, at: {x: 82, z: 148}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: false, wall_ref: outer, basis: "图名：怀德门；门名与北向据src_taiyuan_history，格位、门楼、门洞宽度和1217形制（推定）。"}
+- {id: jinsu_gate, side: west, at: {x: 12, z: 76}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：金肃门；门名与西向据src_taiyuan_history，格位、门楼、门洞宽度和1217形制（推定）。"}
+- {id: chaoxi_gate, side: east, at: {x: 148, z: 76}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：朝曦门；门名与东向据src_taiyuan_history，格位、门楼、门洞宽度和1217形制（推定）。"}
+- {id: citadel_south_gate, side: south, at: {x: 46, z: 88}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: citadel_road, primary: false, wall_ref: inner, basis: "图名：子城南门（名待考）；src_jinyangzhi支持子城府衙及门街层级，门向、格位、宽度与门楼（推定）（原创扩展）。"}
+streets:
+- {id: north_south_axis, class: main_axis, width_cells: 5, points: [{x: 82, z: 12}, {x: 82, z: 148}], surface: dirt_road, priority: 100, basis: "图名：开远—怀德门街；两门方向与金代门正街定位体系有据，合成连续轴线、格位与宽度（推定）。"}
+- {id: east_west_axis, class: main_axis, width_cells: 5, points: [{x: 12, z: 76}, {x: 148, z: 76}], surface: dirt_road, priority: 98, basis: "图名：金肃—朝曦门街；两门方向与金代门正街定位体系有据，合成连续轴线、格位与宽度（推定）。"}
+- {id: citadel_road, class: secondary, width_cells: 4, points: [{x: 46, z: 76}, {x: 46, z: 132}], surface: dirt_road, priority: 90, basis: "图名：子城府署街；src_jinyangzhi支持子城内府衙与街序，线位、宽度及南门接法（推定）。"}
+- {id: south_residential_lane, class: secondary, width_cells: 3, points: [{x: 20, z: 46}, {x: 72, z: 46}], surface: dirt_road, priority: 65, basis: "图名：南部坊巷；可玩街区补线（推定）（原创扩展）。"}
+- {id: south_market_lane, class: secondary, width_cells: 3, points: [{x: 82, z: 46}, {x: 140, z: 46}], surface: dirt_road, priority: 70, basis: "图名：南部市肆横巷；可玩街区补线（推定）（原创扩展）。"}
+- {id: north_service_lane, class: secondary, width_cells: 3, points: [{x: 78, z: 112}, {x: 140, z: 112}], surface: dirt_road, priority: 65, basis: "图名：北部坊巷；可玩街区补线（推定）（原创扩展）。"}
+rivers: []
+lakes: []
+bridges: []
+zones:
+- {id: zone_citadel_office, kind: administrative, geometry: {rect: {min: {x: 26, z: 94}, max: {x: 66, z: 130}}}, priority: 100, density: 0.46, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：子城府署区；府衙位于子城的层级据src_jinyangzhi，边界、院落形制与1217使用状态（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 88, z: 20}, max: {x: 140, z: 68}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：罗城市肆区；金代门正街与坊名体系支持沿街建置，具体方位、边界和密度（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 20, z: 20}, max: {x: 72, z: 68}}}, priority: 50, density: 0.54, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：罗城坊居；金代坊名体系有据，边界、密度和院落组合（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 78, z: 84}, max: {x: 106, z: 138}}}, priority: 75, density: 0.42, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_pagoda, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：寺观区；src_jinyangzhi研究证金代材料含寺观类，具体寺观、位置与边界（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 112, z: 84}, max: {x: 140, z: 138}}}, priority: 80, density: 0.50, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：仓驿守舍区；功能组合、位置与范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_citadel_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "府署功能锚点；不复刻后世衙署，形制与落点（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_citadel_office, zone_residential], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不以栋数推人口。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 12, max: 24}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_residential, zone_religious], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 5, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不自动开放营生。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不自动开放营生。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 8, max: 10}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍外观，不绑定营生；数量与位置（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名寺观模块；不指认具名历史寺院。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_market, zone_service], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "市肆后场或仓驿区配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；不连续成林，不作1217年物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_jinyangzhi, kind: academic, title: "国家图书馆：《永乐大典》所存明初《太原志》与金代《晋阳志》", url: "https://www.nlc.cn/pcab/zlyj/zlyj_djsh/20260601_2653281.shtml", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_city_structure, citadel, gate_streets, wards], note: "正文已读，三张城池/官署/坊乡扫描摘页已实际目视；论证主体来自1171—1174金代《晋阳志》，同时指出录文脱讹与错行，故不作逐坊测绘。"}
+- {key: src_taiyuan_history, kind: official_web, title: "太原晚报：太原古城的前世今生", url: "http://epaper.tyrbw.com/tywb/html/2025-06/18/content_252_210458.htm", accessed: "2026-10-04", confidence: verified_summary, supports: [new_city_origin, outer_wall, four_gates, western_citadel], note: "正文已读且叠合示意图已目视；用于区分唐晋阳、宋金新城与明扩城，现代地名定位不当作1217测绘。"}

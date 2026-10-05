@@ -1,0 +1,52 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_shenyang"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "沈州"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 220217160
+design_intent: {"prosperity": "military_town_candidate", "notes": ["复原依据：docs/design/town/history/city_shenyang__southern_song_jin_mongol.md；1217年锚点的辽金旧城战乱期拓扑候选。", "名录capital为跨年代等级；本期为沈州军镇，不设清宫、王府、八门或井字街；守方与毁修状态待考。", "ch03沿用同年代带空间抽象，只改chapter_id/book_world；不宣称1237–1259城墙和驻军未变。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [96, 96, 27], "r_band_slots": [96, 64], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+- {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 14, "z": 14}, {"x": 146, "z": 14}, {"x": 146, "z": 146}, {"x": 14, "z": 146}]}, "inside_margin_cells": 2, "basis": "图名：沈州土城推定垣；src_history支持辽金方形土城；src_jinshi支持贞祐三年战乱，1217毁修未获分期，闭合墙线与完整度（推定）。"}
+gates:
+- {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 14}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：南向寨门；门数、门址（推定）；套件门楼仅作通行标记，不冒称辽金栅门实物。"}
+- {"id": "north_gate", "side": "north", "at": {"x": 80, "z": 146}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：北向寨门；门数、门址（推定）；套件门楼仅作通行标记，不冒称辽金栅门实物。"}
+- {"id": "west_gate", "side": "west", "at": {"x": 14, "z": 80}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：西向寨门；十字街关系据src_history；四门数量、门址、门楼（推定）。"}
+- {"id": "east_gate", "side": "east", "at": {"x": 146, "z": 80}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：东向寨门；十字街关系据src_history；四门数量、门址、门楼（推定）。"}
+streets:
+- {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 80, "z": 14}, {"x": 80, "z": 146}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北主街；辽金十字街沿革据src_history，线位与5格宽（推定）。"}
+- {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 14, "z": 80}, {"x": 146, "z": 80}], "surface": "dirt_road", "priority": 90, "basis": "图名：东西横街；线位与宽度（推定）（原创扩展）。"}
+- {"id": "market_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 22, "z": 50}, {"x": 138, "z": 50}], "surface": "dirt_road", "priority": 70, "basis": "图名：市肆横巷；可玩街区补线（推定）（原创扩展）。"}
+rivers:
+- {"id": "hunhe_context", "width_cells": 5, "points": [{"x": 0, "z": 6}, {"x": 160, "z": 6}], "flow": "west", "navigable": false, "basis": "图名：浑河区域背景；src_city支持沈州在沈水以北，画缘线位、流向简化、城河距离（推定）；不是护城河。"}
+bridges: []
+zones:
+- {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 22, "z": 22}, "max": {"x": 72, "z": 72}}}, "priority": 100, "density": 0.48, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：军镇署舍；金代驿署沿革据src_history；具体区位（推定），不设王府。"}
+- {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 88, "z": 22}, "max": {"x": 138, "z": 72}}}, "priority": 90, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_shop_2f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn", "bld_kit_liao_jin_north_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：市肆区；功能与边界（推定）（原创扩展）。"}
+- {"id": "zone_residential", "kind": "residential", "geometry": {"rect": {"min": {"x": 22, "z": 88}, "max": {"x": 72, "z": 138}}}, "priority": 50, "density": 0.56, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：坊居；边界和密度（推定）（原创扩展）。"}
+- {"id": "zone_temple", "kind": "religious", "geometry": {"rect": {"min": {"x": 88, "z": 88}, "max": {"x": 138, "z": 114}}}, "priority": 75, "density": 0.48, "allowed_building_types": ["bld_kit_liao_jin_north_temple_hall", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：寺观区；位置与范围（推定）（原创扩展）。"}
+- {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 88, "z": 118}, "max": {"x": 138, "z": 138}}}, "priority": 80, "density": 0.52, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：军驿仓储区；位置与范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_office", "zone_residential", "zone_temple"], "count": {"min": 2, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_shop_2f", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_residential", "zone_service"], "count": {"min": 12, "max": 24}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_temple_hall", "zone_refs": ["zone_temple"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_market", "zone_service"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+- {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；不以栋数推算历史人口。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院隙少量草簇；不作1217年物候证据", "basis": "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {"key": "src_history", "kind": "academic", "title": "新华网《环球》：沈阳方城：探索古城复兴和城市更新4.0版本", "url": "http://www.news.cn/globe/2023-11/15/c_1310750164.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已读正文；方形土城、十字街、金代驿署及13世纪毁后重建。建城年与另一文有差异，未采用该绝对年。"}
+- {"key": "src_city", "kind": "academic", "title": "沈阳市自然资源局：是谁最早建了沈阳城？", "url": "https://zrzyj.shenyang.gov.cn/ztgz/lswhmcbh/202208/t20220822_4086376.html", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "全文已读；后金攻城图已下载目视，仅作后世对照，未据图回投1217墙形。辽金栅门与明1388砖城、清八门分期清楚。"}
+- {"key": "src_jinshi", "kind": "academic", "title": "《金史》卷一百三·列传四十一（网页点校本）", "url": "https://m.gushiwen.cn/guwen/bookv_cd935b4a2e7f.aspx", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已读纥石烈桓端传：贞祐三年蒲鲜万奴取东京沈澄诸州，支持1217不能无条件表现安定金州城；逐年守方及毁修未定。"}

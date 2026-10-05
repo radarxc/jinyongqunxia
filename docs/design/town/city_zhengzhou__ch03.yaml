@@ -1,0 +1,51 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_zhengzhou"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "郑州（州城拓扑推定）"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 91824177
+design_intent: {"prosperity": "major_candidate", "notes": ["history/city_zhengzhou__southern_song_jin_mongol.md；1217年锚点，同年代带ch03只改章节书界。", "唐宋横长方城、四门十字街与州署在北取自考古研究；延续至1217属于推定。", "金史记倚郭管城于1216改故市；不影响州名郑州；不把明清门额、元代东门遗构当金末实测。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [96, 79], "r_band_slots": [96, 32], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+  - {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 10, "z": 22}, {"x": 118, "z": 22}, {"x": 118, "z": 104}, {"x": 10, "z": 104}]}, "inside_margin_cells": 2, "basis": "图名：郑州州城外垣；src_arch明确唐宋城横长方、南东西墙沿用商城南部；金末沿用、四角与压缩比例（推定）；不复原商代北半城。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 62, "z": 22}, "width_cells": 5, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：南向城门（推定）；src_arch从唐宋文献推四门，未发现唐宋门址，已掘东门早至元代；本门只标方向，坐标、形制、1217存续（推定）。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 62, "z": 104}, "width_cells": 5, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：北向城门（推定）；src_arch从唐宋文献推四门，未发现唐宋门址，已掘东门早至元代；本门只标方向，坐标、形制、1217存续（推定）。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 10, "z": 62}, "width_cells": 5, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：西向城门（推定）；src_arch从唐宋文献推四门，未发现唐宋门址，已掘东门早至元代；本门只标方向，坐标、形制、1217存续（推定）。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 118, "z": 62}, "width_cells": 5, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 9, "h": 4}, "passage_cells": {"w": 5, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：东向城门（推定）；src_arch从唐宋文献推四门，未发现唐宋门址，已掘东门早至元代；本门只标方向，坐标、形制、1217存续（推定）。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 62, "z": 22}, {"x": 62, "z": 104}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北主街；src_arch十字街推断及宋路遗迹，线位和宽度（推定）。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 10, "z": 62}, {"x": 118, "z": 62}], "surface": "dirt_road", "priority": 90, "basis": "图名：东西主街；src_arch引宋人东西一条街，具体直线与门道对齐（推定）。"}
+  - {"id": "market_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 18, "z": 40}, {"x": 108, "z": 40}], "surface": "dirt_road", "priority": 75, "basis": "图名：市坊横巷（推定）；src_arch多处唐宋次级道路只支持街坊分割，线位（原创扩展）。"}
+rivers: []
+lakes:
+  - {"id": "office_pond", "polygon": {"points": [{"x": 28, "z": 96}, {"x": 52, "z": 96}, {"x": 52, "z": 100}, {"x": 28, "z": 100}]}, "basis": "图名：署后园池（推定）；src_arch引宋浮波亭池及署后淤积层，精确池形、位置和金末存续未知；缩景表达署后有园。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 24, "z": 68}, "max": {"x": 56, "z": 94}}}, "priority": 100, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：州署区；src_jinshi记郑州防御州与倚郭故市，src_arch据历代方志定位州署；院落范围与金末形制（推定）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 70, "z": 28}, "max": {"x": 112, "z": 56}}}, "priority": 90, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_shop_2f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：十字街南市坊；src_arch路口唐宋灶井与晚志大市街支持关系，金末沿用与区界（推定）。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 18, "z": 28}, "max": {"x": 54, "z": 56}}}, "priority": 60, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西南居坊；src_arch唐宋居址只支持住宅存在，方位、规模（推定）（原创扩展）。"}
+  - {"id": "zone_temple", "kind": "religious", "geometry": {"rect": {"min": {"x": 72, "z": 70}, "max": {"x": 106, "z": 96}}}, "priority": 80, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_temple_hall", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：开元寺一带；src_arch据976年石棺及文献定位州治东，金末存续、院界与通用殿堂（推定）；不复制1930年代塔照。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 16, "z": 68}, "max": {"x": 24, "z": 94}}}, "priority": 70, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：州城西北守舍；区位与防务仓储分配（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_temple_hall", "zone_refs": ["zone_temple"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_houses", "zone_temple"], "count": {"min": 2, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_houses"], "count": {"min": 8, "max": 16}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 3, "max": 6}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_shop_2f", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+  - {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_service"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；功能不代表具名历史建筑，数量不反推人口。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "坊内空地少量草簇；植物不作为1217物候证据。", "basis": "图名：城中草簇；落点、密度（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_arch", "kind": "academic", "title": "河南省文物考古研究院：城市考古视野下的唐宋郑州城", "url": "https://m.hnswwkgyjy.cn/NewsView.php?News_ID=2820", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "全文及形态演变图、明清民国方志城图已看；支持前期拓扑，不提供金末精确城图。"}
+  - {"key": "src_jinshi", "kind": "academic", "title": "金史卷二十五·地理中（古文岛通行本）", "url": "https://m.gushiwen.cn/guwen/bookv_1984990412a3.aspx", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "正文已读；郑州中防御，倚郭管城贞祐四年更名故市；户数为州级不用于城内配额。"}

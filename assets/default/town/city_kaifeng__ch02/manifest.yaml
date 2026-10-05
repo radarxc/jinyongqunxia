@@ -1,0 +1,59 @@
+- id: town_city_kaifeng__ch02
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 南京开封府 / 汴京 1217主布局候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_kaifeng__ch02/layout.yaml -o assets/default/town/city_kaifeng__ch02/preview.jpg --scale 0.25
+    --jpeg-quality 85 --report /private/tmp/tianshu_kaifeng_luoyang/kaifeng.render.json
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: 14c09c67c5a98ad97a496e4f04f8fceb1df621a472d901536fdb883dd9b5fd06
+  status: candidate
+  references:
+  - docs/design/town/city_kaifeng__ch02.yaml
+  - docs/design/town/history/city_kaifeng__southern_song_jin_mongol.md
+  - assets/default/tile/liao_jin_north/
+  - assets/default/building-map/liao_jin_north/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染。liao_jin_north 回退与适配共37项，门向/门宽、土路、夯土、水岸/水面复用song_dali/song_southern基线；无缺失素材。桥面未校准亦回退基线；通用官署/院落只作宫区意象。
+  asset_substitutions:
+  - {"requested_id": "tex_town_liao_jin_north_bridge_deck", "actual_id": "tex_town_song_dali_bridge_deck__w3_l5_r000_v01", "reason": "uncalibrated-bridge-fallback:tex_town_liao_jin_north_bridge_deck->tex_town_song_dali_bridge_deck"}
+  - {"requested_id": "tex_town_liao_jin_north_bridge_rail", "actual_id": "tex_town_song_dali_bridge_rail__w3_l5_r000_v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_bridge_rail->tex_town_song_dali_bridge_rail"}
+  - {"requested_id": "tex_town_liao_jin_north_city_gate", "actual_id": "tex_town_song_dali_city_gate__k4_r270_v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_city_gate->tex_town_song_dali_city_gate"}
+  - {"requested_id": "tex_town_liao_jin_north_city_gate", "actual_id": "tex_town_song_dali_city_gate__k4_r270_v01", "reason": "gate-width:requested=8,source=4"}
+  - {"requested_id": "tex_town_liao_jin_north_city_gate", "actual_id": "tex_town_song_dali_city_gate__k5_r180_v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_city_gate->tex_town_song_dali_city_gate"}
+  - {"requested_id": "tex_town_liao_jin_north_city_gate", "actual_id": "tex_town_song_dali_city_gate__k5_r180_v01", "reason": "gate-width:requested=4,source=5"}
+  - {"requested_id": "tex_town_liao_jin_north_city_gate", "actual_id": "tex_town_song_southern_city_gate__k5_r090_v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_city_gate->tex_town_song_southern_city_gate"}
+  - {"requested_id": "tex_town_liao_jin_north_city_gate", "actual_id": "tex_town_song_southern_city_gate__k5_r090_v01", "reason": "gate-width:requested=4,source=5"}
+  - {"requested_id": "tex_town_liao_jin_north_city_gate", "actual_id": "tex_town_song_southern_city_gate__k5_r090_v01", "reason": "gate-width:requested=8,source=5"}
+  - {"requested_id": "tex_town_liao_jin_north_dirt_road", "actual_id": "tex_town_song_dali_dirt_road__v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_dirt_road->tex_town_song_dali_dirt_road"}
+  - {"requested_id": "tex_town_liao_jin_north_dirt_road", "actual_id": "tex_town_song_dali_dirt_road__v02", "reason": "era-kit-fallback:tex_town_liao_jin_north_dirt_road->tex_town_song_dali_dirt_road"}
+  - {"requested_id": "tex_town_liao_jin_north_dirt_road", "actual_id": "tex_town_song_dali_dirt_road__v03", "reason": "era-kit-fallback:tex_town_liao_jin_north_dirt_road->tex_town_song_dali_dirt_road"}
+  - {"requested_id": "tex_town_liao_jin_north_dirt_road", "actual_id": "tex_town_song_dali_dirt_road__v04", "reason": "era-kit-fallback:tex_town_liao_jin_north_dirt_road->tex_town_song_dali_dirt_road"}
+  - {"requested_id": "tex_town_liao_jin_north_rammed_earth", "actual_id": "tex_town_song_dali_rammed_earth__v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_rammed_earth->tex_town_song_dali_rammed_earth"}
+  - {"requested_id": "tex_town_liao_jin_north_rammed_earth", "actual_id": "tex_town_song_dali_rammed_earth__v02", "reason": "era-kit-fallback:tex_town_liao_jin_north_rammed_earth->tex_town_song_dali_rammed_earth"}
+  - {"requested_id": "tex_town_liao_jin_north_rammed_earth", "actual_id": "tex_town_song_dali_rammed_earth__v03", "reason": "era-kit-fallback:tex_town_liao_jin_north_rammed_earth->tex_town_song_dali_rammed_earth"}
+  - {"requested_id": "tex_town_liao_jin_north_rammed_earth", "actual_id": "tex_town_song_dali_rammed_earth__v04", "reason": "era-kit-fallback:tex_town_liao_jin_north_rammed_earth->tex_town_song_dali_rammed_earth"}
+  - {"requested_id": "tex_town_liao_jin_north_riverbank", "actual_id": "tex_town_song_dali_riverbank__e", "reason": "era-kit-fallback:tex_town_liao_jin_north_riverbank->tex_town_song_dali_riverbank"}
+  - {"requested_id": "tex_town_liao_jin_north_riverbank", "actual_id": "tex_town_song_dali_riverbank__n", "reason": "era-kit-fallback:tex_town_liao_jin_north_riverbank->tex_town_song_dali_riverbank"}
+  - {"requested_id": "tex_town_liao_jin_north_riverbank", "actual_id": "tex_town_song_dali_riverbank__ne", "reason": "era-kit-fallback:tex_town_liao_jin_north_riverbank->tex_town_song_dali_riverbank"}
+  - {"requested_id": "tex_town_liao_jin_north_riverbank", "actual_id": "tex_town_song_dali_riverbank__nw", "reason": "era-kit-fallback:tex_town_liao_jin_north_riverbank->tex_town_song_dali_riverbank"}
+  - {"requested_id": "tex_town_liao_jin_north_riverbank", "actual_id": "tex_town_song_dali_riverbank__s", "reason": "era-kit-fallback:tex_town_liao_jin_north_riverbank->tex_town_song_dali_riverbank"}
+  - {"requested_id": "tex_town_liao_jin_north_riverbank", "actual_id": "tex_town_song_dali_riverbank__se", "reason": "era-kit-fallback:tex_town_liao_jin_north_riverbank->tex_town_song_dali_riverbank"}
+  - {"requested_id": "tex_town_liao_jin_north_riverbank", "actual_id": "tex_town_song_dali_riverbank__sw", "reason": "era-kit-fallback:tex_town_liao_jin_north_riverbank->tex_town_song_dali_riverbank"}
+  - {"requested_id": "tex_town_liao_jin_north_riverbank", "actual_id": "tex_town_song_dali_riverbank__w", "reason": "era-kit-fallback:tex_town_liao_jin_north_riverbank->tex_town_song_dali_riverbank"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__e", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__n", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__ne", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__nw", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__s", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__se", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__sw", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__w", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_water", "actual_id": "tex_town_song_southern_water__v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_water->tex_town_song_southern_water"}
+  - {"requested_id": "tex_town_liao_jin_north_water", "actual_id": "tex_town_song_southern_water__v02", "reason": "era-kit-fallback:tex_town_liao_jin_north_water->tex_town_song_southern_water"}
+  - {"requested_id": "tex_town_liao_jin_north_water", "actual_id": "tex_town_song_southern_water__v03", "reason": "era-kit-fallback:tex_town_liao_jin_north_water->tex_town_song_southern_water"}
+  - {"requested_id": "tex_town_liao_jin_north_water", "actual_id": "tex_town_song_southern_water__v04", "reason": "era-kit-fallback:tex_town_liao_jin_north_water->tex_town_song_southern_water"}

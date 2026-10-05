@@ -1,0 +1,51 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_datong"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "西京大同府"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 2800647618
+design_intent: {"prosperity": "capital_candidate", "notes": ["复原依据：docs/design/town/history/city_datong__southern_song_jin_mongol.md；1217年金西京历史拓扑缩景。", "北魏旧宫城在北，辽金外城为北凸轮廓；西南宫署、北部军政区域为文献关系，精确城界推定。", "ch03为本年代带1217拓扑副本；蒙古接管后的状态不由本图推导，正式场景与营生均不新建。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [96, 96, 27], "r_band_slots": [96, 64], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+- {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 14, "z": 14}, {"x": 146, "z": 14}, {"x": 146, "z": 116}, {"x": 128, "z": 116}, {"x": 128, "z": 146}, {"x": 34, "z": 146}, {"x": 34, "z": 116}, {"x": 14, "z": 116}]}, "inside_margin_cells": 2, "basis": "图名：辽金西京北凸外垣；据src_axis的旧宫城北接外城，折点和格数（推定）；不画明代三小城。"}
+gates:
+- {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 14}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：奉天门（传述名，门址推定）；格位与门宽（推定）（原创扩展）。"}
+- {"id": "north_gate", "side": "north", "at": {"x": 80, "z": 146}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：北向门（门址推定）；格位与门宽（推定）（原创扩展）。"}
+- {"id": "west_gate", "side": "west", "at": {"x": 14, "z": 80}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：阜成门（传述名，门址推定）；格位与门宽（推定）（原创扩展）。"}
+- {"id": "east_gate", "side": "east", "at": {"x": 146, "z": 80}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：宣仁门（传述名，门址推定）；格位与门宽（推定）（原创扩展）。"}
+streets:
+- {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 80, "z": 14}, {"x": 80, "z": 146}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北通街；线位、宽度为可玩缩景（推定）（原创扩展）。"}
+- {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 14, "z": 80}, {"x": 146, "z": 80}], "surface": "dirt_road", "priority": 80, "basis": "图名：东西通街；线位、宽度为可玩缩景（推定）（原创扩展）。"}
+- {"id": "market_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 22, "z": 50}, {"x": 138, "z": 50}], "surface": "dirt_road", "priority": 80, "basis": "图名：市肆横巷；线位、宽度为可玩缩景（推定）（原创扩展）。"}
+rivers: []
+bridges: []
+zones:
+- {"id": "zone_palace", "kind": "administrative", "geometry": {"rect": {"min": {"x": 24, "z": 24}, "max": {"x": 72, "z": 72}}}, "priority": 100, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_courtyard", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西南宫署；src_shape述宫殿主体在西南，院界（推定），模块不等同古宫实物。"}
+- {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 40, "z": 118}, "max": {"x": 74, "z": 140}}}, "priority": 100, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard", "bld_kit_liao_jin_north_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北部官署；据src_axis北部军政关系，边界（推定）。"}
+- {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 88, "z": 24}, "max": {"x": 138, "z": 72}}}, "priority": 70, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_shop_2f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东南市肆；商贸存在据src_axis，区位（推定）。"}
+- {"id": "zone_residential", "kind": "residential", "geometry": {"rect": {"min": {"x": 88, "z": 88}, "max": {"x": 138, "z": 110}}}, "priority": 70, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东北坊居；边界和配额（推定）（原创扩展）。"}
+- {"id": "zone_temple", "kind": "religious", "geometry": {"rect": {"min": {"x": 22, "z": 88}, "max": {"x": 72, "z": 110}}}, "priority": 70, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_temple_hall", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：西部寺域；src_axis证辽金寺院，位置和院界（推定），不复刻具名寺庙平面。"}
+- {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 86, "z": 114}, "max": {"x": 124, "z": 140}}}, "priority": 70, "density": 0.55, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：北部军驿；北部军事功能据src_axis，范围（推定）。"}
+landmarks: []
+building_quotas:
+- {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office", "zone_palace"], "count": {"min": 2, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_temple_hall", "zone_refs": ["zone_temple"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_service", "zone_office"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_residential", "zone_temple", "zone_palace"], "count": {"min": 3, "max": 7}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_shop_2f", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_residential", "zone_service"], "count": {"min": 10, "max": 20}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+- {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "缩景配额（原创扩展）【建议值】，不用栋数反推人口。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；植物种类不作1217年物候证据", "basis": "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {"key": "src_axis", "kind": "academic", "title": "大同晚报：走在大同中轴线", "url": "http://epaper.dtnews.cn/dtwb/html/2024-08/16/content_64_236940.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已打开全文；仅文字，现代照片不作城图。辽金北凸、四门、金代三门名、北部军政及商贸。"}
+- {"key": "src_shape", "kind": "academic", "title": "大同晚报：古城影记 解码大同", "url": "http://epaper.dtnews.cn/dtwb/resfile/2024-02-23/14/dtwb2024022314.pdf", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "PDF已下载转PNG并实际看图；只有现代遗迹照片，无历史平面。附都段支持西南宫殿、凸字城；记者转述属B级。"}

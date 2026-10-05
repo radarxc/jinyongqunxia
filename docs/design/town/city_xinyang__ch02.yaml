@@ -1,0 +1,60 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_xinyang
+chapter_id: ch02
+book_world: ch02_shediao
+display_name: 信阳军（宋金前线军镇候选）
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 3277783078
+design_intent:
+  prosperity: major_frontier_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_xinyang__southern_song_jin_mongol.md；1217年宋金边界军镇拓扑候选。
+  - 军治审慎落在今浉河区老城一带，不误置罗山，也不把义阳故城直接等同本城。
+  - 后世河间不规则城形只约束地貌倾向；五门、瓮城与明清门名均未倒投。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 14, z: 30}, {x: 16, z: 18}, {x: 104, z: 18}, {x: 114, z: 28}, {x: 114, z: 102}, {x: 104, z: 112}, {x: 24, z: 112}, {x: 14, z: 102}]}
+  inside_margin_cells: 2
+  basis: 图名：信阳军外垣；军治大区据src_songshi，河间不规则倾向参考src_old_map；八折点和尺度（推定），不套明清城墙。
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 18}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: true, wall_ref: outer, basis: "图名：南向军门；门址、门名、宽度（推定）（原创扩展）。"}
+- {id: east_gate, side: east, at: {x: 114, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：东向军门；只表达光州方向通行，门址与宽度（推定）（原创扩展）。"}
+streets:
+- {id: north_south_axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 18}, {x: 64, z: 106}], surface: dirt_road, priority: 100, basis: "图名：军署南北街；线位与宽度（推定）（原创扩展）。"}
+- {id: east_west_axis, class: main_axis, width_cells: 5, points: [{x: 20, z: 64}, {x: 114, z: 64}], surface: dirt_road, priority: 95, basis: "图名：前线东西通衢；src_1161仅约束德安表里关系，线位与宽度（推定）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 22, z: 40}, {x: 106, z: 40}], surface: dirt_road, priority: 70, basis: "图名：军市横巷；位置与宽度（推定）（原创扩展）。"}
+rivers:
+- {id: shihe_edge, width_cells: 5, points: [{x: 0, z: 8}, {x: 128, z: 8}], flow: east, navigable: false, basis: "图名：浉河画缘；河间关系参考src_old_map，1217岸线、宽度与城距（推定），不作地理配准。"}
+- {id: qinglong_edge, width_cells: 4, points: [{x: 123, z: 0}, {x: 123, z: 128}], flow: north, navigable: false, basis: "图名：青龙河画缘；河间关系参考src_old_map，1217岸线、宽度与城距（推定），不作地理配准。"}
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 22, z: 70}, max: {x: 58, z: 102}}}, priority: 100, density: 0.46, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：军署区；军镇层级可知，区位和边界（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 24}, max: {x: 106, z: 58}}}, priority: 90, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn], ground_mix: {rammed_earth: 100}, basis: "图名：军市；功能和边界（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 22, z: 24}, max: {x: 58, z: 58}}}, priority: 50, density: 0.5, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：坊居；边界和密度（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 106, z: 94}}}, priority: 74, density: 0.42, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：祠寺区；位置、范围和机构均（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 70, z: 98}, max: {x: 106, z: 106}}}, priority: 82, density: 0.5, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable], ground_mix: {rammed_earth: 100}, basis: "图名：寨防仓驿；src_1219只支持寨防存在，城内位置与范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "军署功能位；具体形制（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_residential, zone_religious], count: {min: 3, max: 6}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "项目名录已有旅舍功能；具体位置（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential], count: {min: 9, max: 16}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景建议值（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名祠寺模块，不指认具名古迹。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "寨防功能意象（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "军需仓储意象（原创扩展）。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "河间军镇空地少量草簇；不作1217物候证据", basis: "密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_songshi, kind: academic, title: "《宋史》卷八十五·地理志（网页点校本）", url: "https://m.gushiwen.cn/guwen/bookv_3b843db7a9d6.aspx", accessed: "2026-10-04", confidence: verified_summary, supports: [name, rank, counties], note: "正文已读；信阳军领信阳、罗山二县，不提供1217城图。"}
+- {key: src_1161, kind: academic, title: "《三朝北盟会编》卷二百三十一（网页点校本）", url: "https://m.gushiwen.cn/guwen/bookv_ba25f8101ed7.aspx", accessed: "2026-10-04", confidence: verified_summary, supports: [frontier_role], note: "正文已读；1161攻防早于1217约56年，只约束前沿军镇关系。"}
+- {key: src_1219, kind: academic, title: "《两朝纲目备要》卷十六数字古籍", url: "https://api.cnkgraph.com/Book/360/KR2b0030_016", accessed: "2026-10-04", confidence: verified_summary, supports: [fortified_outposts], note: "记1219金军破信阳军二寨；晚于锚点2年，不定位城门。"}
+- {key: src_old_map, kind: gazetteer, title: "1936城关图基础上的信阳古城手绘地图报道", url: "http://mt.sohu.com/20171010/n517080564.shtml", accessed: "2026-10-04", confidence: pending_review, supports: [later_river_relationship], note: "正文与总图、南北门局部已看；晚约700年，只取浉河—青龙河间地貌倾向，不取门街。"}

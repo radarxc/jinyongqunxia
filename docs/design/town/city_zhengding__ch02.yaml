@@ -1,0 +1,50 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_zhengding"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "真定府"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 203021217
+design_intent: {"prosperity": "major_candidate", "notes": ["复原依据：docs/design/town/history/city_zhengding__southern_song_jin_mongol.md；1217/1259历史拓扑缩景。", "开元寺南考古证据：燕赵南大街轴线延续，金元道路L2与宋元L4及商居并存；唐五代子城墙至金代已废弃，不复原为使用中内墙。", "外垣只作游戏包络（推定），不得照搬明正统东南扩城；城门、街宽、院落与数量为推定。"]}
+grid: {"width": 128, "height": 128, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -64, "r_min": 1, "q_slot_count": 175, "r_slot_count": 128, "q_band_slots": [96, 79], "r_band_slots": [96, 32], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls:
+- {"id": "outer", "role": "outer", "polygon": {"points": [{"x": 12, "z": 14}, {"x": 116, "z": 14}, {"x": 116, "z": 114}, {"x": 12, "z": 114}]}, "inside_margin_cells": 2, "basis": "图名：真定外城游戏包络；src_research区分唐宝应至明正统与明清扩城，src_arch2019证现东墙调查段始于明；本矩形折点与大小（推定），不是明清墙线或金代实测。"}
+gates:
+- {"id": "south_gate", "side": "south", "at": {"x": 64, "z": 14}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": true, "wall_ref": "outer", "basis": "图名：南向方位门；四方交通口（推定）（原创扩展）；不用后世门名，门数与位置未有金代图证。"}
+- {"id": "north_gate", "side": "north", "at": {"x": 64, "z": 114}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "axis", "primary": false, "wall_ref": "outer", "basis": "图名：北向方位门；四方交通口（推定）（原创扩展）；不用后世门名，门数与位置未有金代图证。"}
+- {"id": "west_gate", "side": "west", "at": {"x": 12, "z": 64}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：西向方位门；四方交通口（推定）（原创扩展）；不用后世门名，门数与位置未有金代图证。"}
+- {"id": "east_gate", "side": "east", "at": {"x": 116, "z": 64}, "width_cells": 4, "asset_type": "tex_town_liao_jin_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 8, "h": 4}, "passage_cells": {"w": 4, "h": 4}, "road_ref": "cross", "primary": false, "wall_ref": "outer", "basis": "图名：东向方位门；四方交通口（推定）（原创扩展）；不用后世门名，门数与位置未有金代图证。"}
+streets:
+- {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 64, "z": 14}, {"x": 64, "z": 114}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北主街；src_arch2019证燕赵大街沿用及开元寺在西，轴线关系据考古；直线化与宽度（推定）。"}
+- {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 12, "z": 64}, {"x": 116, "z": 64}], "surface": "dirt_road", "priority": 90, "basis": "图名：东西通衢；src_arch2019证正交相通道路，整城贯通线（推定）。"}
+- {"id": "market_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 20, "z": 44}, {"x": 108, "z": 44}], "surface": "dirt_road", "priority": 70, "basis": "图名：寺南商居巷；src_arch2019附图L2金元、L4宋元并存；本线合并表达寺南路网，非任一道路的测绘复刻（推定）。"}
+rivers: []
+bridges: []
+zones:
+- {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 70, "z": 70}, "max": {"x": 108, "z": 106}}}, "priority": 100, "density": 0.48, "allowed_building_types": ["bld_kit_liao_jin_north_yamen", "bld_kit_liao_jin_north_courtyard", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：府署区；src_arch2019约束寺在轴西、寺南商居及废子城墙两侧居住；本区边界、密度与院落（推定）（原创扩展）。"}
+- {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 20, "z": 22}, "max": {"x": 58, "z": 58}}}, "priority": 90, "density": 0.58, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_shop_2f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn", "bld_kit_liao_jin_north_warehouse"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：寺南商居区；src_arch2019约束寺在轴西、寺南商居及废子城墙两侧居住；本区边界、密度与院落（推定）（原创扩展）。"}
+- {"id": "zone_residential", "kind": "residential", "geometry": {"rect": {"min": {"x": 70, "z": 22}, "max": {"x": 108, "z": 58}}}, "priority": 50, "density": 0.56, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：东南坊居；src_arch2019约束寺在轴西、寺南商居及废子城墙两侧居住；本区边界、密度与院落（推定）（原创扩展）。"}
+- {"id": "zone_religious", "kind": "religious", "geometry": {"rect": {"min": {"x": 20, "z": 70}, "max": {"x": 58, "z": 94}}}, "priority": 75, "density": 0.45, "allowed_building_types": ["bld_kit_liao_jin_north_temple_hall", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：开元寺方位区；src_arch2019约束寺在轴西、寺南商居及废子城墙两侧居住；本区边界、密度与院落（推定）（原创扩展）。"}
+- {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 20, "z": 94}, "max": {"x": 58, "z": 106}}}, "priority": 80, "density": 0.52, "allowed_building_types": ["bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：仓驿守舍区；src_arch2019约束寺在轴西、寺南商居及废子城墙两侧居住；本区边界、密度与院落（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {"type": "bld_kit_liao_jin_north_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_office", "zone_residential", "zone_religious"], "count": {"min": 2, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_shop_2f", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_residential", "zone_service"], "count": {"min": 9, "max": 18}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_temple_hall", "zone_refs": ["zone_religious"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_market", "zone_service"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+- {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 0, "max": 1}, "required": false, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景配额（原创扩展）【建议值】；寺院用通用殿堂模块，不复刻开元寺实测构架。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不作金元物候证据", "basis": "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {"key": "src_arch2019", "kind": "official_web", "title": "河北省文物考古研究院：正定古城2019年度考古工作汇报", "url": "https://www.hbswwkg.com/2022-02/22/content_8729955.html", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["roads", "temple_market", "abandoned_inner_wall"], "note": "正文已读；已看城墙走向、房址道路照片与开元寺南遗址遗存布局图；金代子城墙完全废弃，图示L2金元/L4宋元；考古图不等于1217完整城图。"}
+- {"key": "src_research", "kind": "academic", "title": "赵献超：正定古城平面格局的复原研究（国博摘要）", "url": "https://www.chnmuseum.cn/yj/xscg/xslw/201812/t20181224_36605.shtml", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["periodization", "later_wall_limit"], "note": "已读摘要仅文字；唐宝应至明正统为一复原阶段，明正统改变东南城形；无论文全文图件，不据此认定金代子城仍存。"}

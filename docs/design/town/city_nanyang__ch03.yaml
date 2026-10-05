@@ -1,0 +1,55 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_nanyang
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 申州（南阳县）
+historical_year: 1259
+era_kit: liao_jin_north
+seed: 3753814125
+design_intent:
+  prosperity: major_candidate
+  notes:
+  - 复原依据：history/city_nanyang__southern_song_jin_mongol.md；1259年蒙古统治期申州治沿用同年代带拓扑候选。
+  - 1226年南阳县升为申州治；金邓州州治穰城仍在今邓州，不能复用邓州古城考古骨架。
+  - 1271年才升南阳府；元明清府城与后世四门街网不得倒投本图。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- {id: outer, role: outer, polygon: {points: [{x: 18, z: 20}, {x: 112, z: 20}, {x: 112, z: 108}, {x: 18, z: 108}]}, inside_margin_cells: 2, basis: "图名：申州旧城外垣；治所点据src_chgis，元以前老城范围未锁定；近矩形包络与尺度（推定），不套src_nanyang_late后世府城，也不移植src_dengzhou_arch所示今邓州宋金遗址。"}
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 20}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: true, wall_ref: outer, basis: "图名：南向方位门；门名、门数、门址与宽度均（推定）（原创扩展）。"}
+- {id: north_gate, side: north, at: {x: 64, z: 108}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: false, wall_ref: outer, basis: "图名：北向方位门；门名、门数、门址与宽度均（推定）（原创扩展）。"}
+streets:
+- {id: north_south_axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 20}, {x: 64, z: 108}], surface: dirt_road, priority: 100, basis: "图名：州城南北通街；只表达治所通行，线位与宽度（推定），不套明清南北大街。"}
+- {id: east_west_cross, class: secondary, width_cells: 5, points: [{x: 18, z: 64}, {x: 112, z: 64}], surface: dirt_road, priority: 90, basis: "图名：东西横街；线位与宽度（推定）（原创扩展）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 26, z: 42}, {x: 104, z: 42}], surface: dirt_road, priority: 70, basis: "图名：南市横巷；可玩街区补线（推定）（原创扩展）。"}
+rivers:
+- {id: meixi_edge, width_cells: 4, points: [{x: 8, z: 0}, {x: 8, z: 128}], flow: south, navigable: false, basis: "图名：梅溪水西侧画缘；src_jinshi仅证南阳县境有梅溪水，岸线、宽度与城距（推定），不作1259古河道测绘。"}
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 24, z: 70}, max: {x: 60, z: 102}}}, priority: 100, density: 0.47, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：州署区；1226升申州据src_chgis，1259官署状态、区位与边界（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 26}, max: {x: 106, z: 58}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn], ground_mix: {rammed_earth: 100}, basis: "图名：南市；功能、位置与边界（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 24, z: 26}, max: {x: 58, z: 58}}}, priority: 50, density: 0.55, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：西南坊居；边界和密度（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 106, z: 94}}}, priority: 75, density: 0.44, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：祠寺区；通用宗教功能、位置与范围（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 68, z: 92}, max: {x: 108, z: 106}}}, priority: 80, density: 0.5, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：北门军驿仓储区；位置与范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "州署功能锚点；院落形制和位置（推定）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_residential, zone_religious], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍，不绑定营生（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 8, max: 16}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "通用祠寺模块，不指认具名古迹。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；植物种类不作1259年物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十五·地理中（通行本网页）", url: "https://m.gushiwen.cn/guwen/bookv_1984990412a3.aspx", accessed: "2026-10-04", confidence: verified_summary, supports: [administration, waterways], note: "正文已读；邓州倚郭穰城，南阳为属县并列梅溪水等，不给城图。"}
+- {key: src_chgis, kind: academic, title: "CHGIS：南阳县（705—1911）", url: "http://tgaz.fudan.edu.cn/tgaz/placename/json/hvd_82617", accessed: "2026-10-04", confidence: verified_summary, supports: [name, seat_location, status_change], note: "JSON正文已读；1226升申州，1271升南阳府；今老城府城始于元。"}
+- {key: src_nanyang_late, kind: official_web, title: "南阳文明网：南阳府城的岁月印记", url: "http://hnny.wenming.cn/whjs/202601/t20260119_9138942.html", accessed: "2026-10-04", confidence: verified_summary, supports: [later_map_limit], note: "正文和府城平面图已看；图为元基址上的明清格局，只作反证。"}
+- {key: src_dengzhou_arch, kind: archaeology_report, title: "河南省文物考古研究院：邓州古城遗址保护案例", url: "https://m.hnswwkgyjy.cn/NewsView.php?News_ID=2864", accessed: "2026-10-04", confidence: verified_summary, supports: [site_disambiguation], note: "正文与发掘位置图已看；宋金古街属于今邓州的穰城州治，不能移植到今南阳市。"}

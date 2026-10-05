@@ -1,0 +1,62 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_linfen
+chapter_id: ch02
+book_world: ch02_shediao
+display_name: 平阳府·临汾县（1217年金代）
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 843757455
+design_intent:
+  prosperity: major_prefectural_seat_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_linfen__southern_song_jin_mongol.md；1217年金代平阳府治拓扑缩景。
+  - 《金史》与CHGIS只证府级地位、附郭临汾县及汾水；四门方城取清代《城池图》弱回溯，不能倒推为金代实测。
+  - 1218年蒙古军始克平阳；本规格取1217年末之前的金代候选，不虚构攻城破坏。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 14, z: 14}, {x: 114, z: 14}, {x: 114, z: 114}, {x: 14, z: 114}]}
+  inside_margin_cells: 2
+  basis: 图名：平阳府城外垣；治所点位据src_chgis；四边围垣仅据src_later_map弱回溯，矩形包络、尺度与折点均（推定）。
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 14}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: true, wall_ref: outer, basis: "图名：南向方位门；四门关系仅据src_later_map弱回溯；门名、门址、宽度与瓮城取舍均（推定），不沿用明清门额。"}
+- {id: north_gate, side: north, at: {x: 64, z: 114}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: false, wall_ref: outer, basis: "图名：北向方位门；四门关系仅据src_later_map弱回溯；门名、门址与宽度均（推定）。"}
+- {id: west_gate, side: west, at: {x: 14, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：西向方位门；汾水在城西的关系据src_later_text弱回溯；门址、门名与宽度均（推定）。"}
+- {id: east_gate, side: east, at: {x: 114, z: 64}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: east_west_axis, primary: false, wall_ref: outer, basis: "图名：东向方位门；四门关系仅据src_later_map弱回溯；门址、门名与宽度均（推定）。"}
+streets:
+- {id: north_south_axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 14}, {x: 64, z: 114}], surface: dirt_road, priority: 100, basis: "图名：南北主街；后世图只示道路汇向与城市功能，不可量测；线位与5格宽（推定）。"}
+- {id: east_west_axis, class: main_axis, width_cells: 5, points: [{x: 14, z: 64}, {x: 114, z: 64}], surface: dirt_road, priority: 95, basis: "图名：东西主街；后世图只示道路汇向与城市功能，不可量测；线位与5格宽（推定）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 66, z: 40}, {x: 108, z: 40}], surface: dirt_road, priority: 70, basis: "图名：市肆横巷；可玩街区补线（推定）（原创扩展）。"}
+rivers:
+- {id: fen_river_edge, width_cells: 5, points: [{x: 4, z: 0}, {x: 4, z: 128}], flow: south, navigable: false, basis: "图名：汾水西侧画缘；汾水存在据src_jinshi，城西相对关系据src_later_text弱回溯；线位、宽度与城距（推定），不作1217古岸实测。"}
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 20, z: 70}, max: {x: 58, z: 106}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：府县公署区；府治与附郭县据src_jinshi，具体区位、边界与院落组合（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 20}, max: {x: 108, z: 58}}}, priority: 90, density: 0.58, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：市肆区；含市肆后场仓储，功能与边界（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 20, z: 20}, max: {x: 58, z: 58}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：坊居；边界和密度（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 92, z: 106}}}, priority: 75, density: 0.45, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_pagoda, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：寺观区；后世图有寺观但时代、名称和位置不能回投，故整体（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 96, z: 70}, max: {x: 110, z: 106}}}, priority: 80, density: 0.52, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：仓驿守舍区；位置、范围与功能组合（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "府县治所功能锚点；建筑形制与位置（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不以栋数推算人口。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_residential, zone_religious], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 10}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍，不绑定营生；数量与位置（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 9, max: 18}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名寺观模块；不绑定后世图中的具名寺院。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_market, zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "市肆后场或仓驿区的压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；植物种类不作1217年物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十六·地理下", url: "https://zh.wikisource.org/wiki/金史/卷26", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_administration, fen_river], note: "正文已读；平阳府为上府、天会六年升总管府并置转运司，临汾为附郭次赤，条列汾水；不提供城墙或街坊平面。"}
+- {key: src_chgis, kind: academic, title: "CHGIS：平阳府（1167—1217）", url: "http://tgaz.fudan.edu.cn/tgaz/placename/hvd_94239", accessed: "2026-10-04", confidence: verified_summary, supports: [seat_location, chronology], note: "JSON正文已读；治今临汾市，属河东南路，1218年蒙古军克平阳后改路；点位不等于城垣控制点。"}
+- {key: src_later_map, kind: gazetteer, title: "雍正《临汾县志》卷一《城池图》", url: "https://www.shidianguji.com/book/NLG312001067958/chapter/1laaiw4r5qrrn", accessed: "2026-10-04", confidence: pending_review, supports: [later_four_gate_tradition], note: "已下载并目视清代图；只见四门围城、城内官署寺观和道路汇向等后世意象，非测绘图，距1217约五百年，不证明金代门位、街线或建筑。"}
+- {key: src_later_text, kind: gazetteer, title: "雍正《临汾县志》卷二·城池", url: "https://www.shidianguji.com/book/NLG312001067956/chapter/1laab7z6lxdmc", accessed: "2026-10-04", confidence: pending_review, supports: [later_wall_tradition, later_fen_relation], note: "正文已读；载明初因旧城重筑及明清四门尺度，并记汾河在城西；只能作后世连续性线索，所有具体尺度、门额、瓮城及河距均不回投金代。"}

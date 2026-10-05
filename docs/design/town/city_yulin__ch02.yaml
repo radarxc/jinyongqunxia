@@ -1,0 +1,54 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_yulin
+chapter_id: ch02
+book_world: ch02_shediao
+display_name: 夏州边地军寨（榆林地区节点）
+historical_year: 1223
+era_kit: liao_jin_north
+seed: 519951324
+design_intent:
+  prosperity: major_regional_node_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_yulin__southern_song_jin_mongol.md；现代榆林仅作区域节点，不等同13世纪具名榆林城。
+  - 《地理学报》与地方志均显示今榆阳区在金/西夏边界带，现代榆林城作为城镇节点到明成化前后才成立。
+  - 无同期聚落平面；以边界军寨兼驿聚落推定，不借统万城、绥德州或明榆林卫的城垣冒名。
+grid: {width: 96, height: 96, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -48, r_min: 1, q_slot_count: 131, r_slot_count: 96, q_band_slots: [96, 35], r_band_slots: [96], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: stockade
+  role: outer
+  polygon: {points: [{x: 14, z: 18}, {x: 80, z: 18}, {x: 82, z: 72}, {x: 68, z: 82}, {x: 18, z: 78}]}
+  inside_margin_cells: 2
+  basis: 图名：夏州边地军寨（推定）；src_wuding支持边界带大量军事堡寨，src_local确认现代榆林城为明代节点；具体地点、墙形和尺寸（原创扩展）。
+gates:
+- {id: south_gate, side: south, at: {x: 48, z: 18}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: axis, primary: true, wall_ref: stockade, basis: 图名：军寨南门（推定）；门址、门数与形制（原创扩展）。}
+- {id: north_gate, side: north, at: {x: 48, z: 80}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: axis, primary: false, wall_ref: stockade, basis: 图名：军寨北门（推定）；门址、门数与形制（原创扩展）。}
+streets:
+- {id: axis, class: main_axis, width_cells: 5, points: [{x: 48, z: 18}, {x: 48, z: 80}], surface: dirt_road, priority: 100, basis: 图名：驿路纵街（推定）；边界交通节点的可玩主路（原创扩展）。}
+- {id: cross, class: secondary, width_cells: 5, points: [{x: 18, z: 48}, {x: 78, z: 48}], surface: dirt_road, priority: 80, basis: 图名：寨内横街（推定）；分区连通线（原创扩展）。}
+rivers:
+- {id: regional_stream, width_cells: 5, points: [{x: 6, z: 0}, {x: 6, z: 96}], navigable: false, basis: 图名：无定河支流意象（推定）；src_wuding只支持流域与沿河谷关系，不支持本节点河槽，岸线（原创扩展）。, flow: south}
+lakes: []
+bridges: []
+zones:
+- {id: zone_command, kind: gate_service, geometry: {rect: {min: {x: 20, z: 52}, max: {x: 44, z: 74}}}, priority: 100, density: 0.46, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: 图名：军寨守备区；src_wuding支持军政色彩，院界和位置（推定）（原创扩展）。}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 54, z: 24}, max: {x: 76, z: 44}}}, priority: 90, density: 0.50, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn], ground_mix: {rammed_earth: 100}, basis: 图名：驿市区；功能与边界（推定）（原创扩展）。}
+- {id: zone_houses, kind: residential, geometry: {rect: {min: {x: 20, z: 24}, max: {x: 44, z: 44}}}, priority: 50, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: 图名：寨内居住区；位置和密度（推定）（原创扩展）。}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 54, z: 52}, max: {x: 76, z: 74}}}, priority: 80, density: 0.50, allowed_building_types: [bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: 图名：军需驿畜区；src_wuding支持军事寨堡，具体分区（推定）（原创扩展）。}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_command, zone_service], count: {min: 2, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 军寨守备外观（原创扩展）【建议值】；不登记具名军司。}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_command], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: 寨内院落（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_command, zone_houses], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 压缩场景配额（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_houses, zone_service], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: 压缩场景配额（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 2, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: 驿市铺面（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: 驿市摊位（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 对应名录inn能力的外观候选；不自动开启营生。}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: 军需储物外观（原创扩展）【建议值】。}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: 驿畜外观（原创扩展）【建议值】。}
+vegetation: {palette: [prp_song_dali_grass], density: 0.014, avoid_road_cells: 2, cluster_rule: 寨内空地疏草；不作1223年物候证据, basis: 图名：边寨空地植被；密度与落点（原创扩展）【建议值】。}
+sources:
+- {key: src_wuding, kind: academic, title: 佟彪等：300 BC—1900 AD无定河流域城镇时空格局演变, url: 'http://www.geog.com.cn/CN/10.11821/dlxb201908002', accessed: '2026-10-04', confidence: verified_summary, supports: [regional_settlement_pattern, frontier_character], note: 已读全文并下载PDF；已看金/西夏时期图8。宋金夏交界带多军事堡寨，县治与农业人口不繁盛；图中现代榆林点不是金/西夏具名城。}
+- {key: src_local, kind: official_web, title: 中共榆林市委党史研究室：榆林历史沿革, url: 'https://www.yldsyjs.com/m/article/1210127215603', accessed: '2026-10-04', confidence: verified_summary, supports: [administrative_boundary, modern_name_warning], note: 已打开正文；1223附近今榆林地域分属金与西夏，金南部设绥德军/州而现代榆林城与榆林卫为明成化七年节点。}

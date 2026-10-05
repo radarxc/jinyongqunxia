@@ -1,0 +1,69 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_jinan
+chapter_id: ch02
+book_world: ch02_shediao
+display_name: 济南府·历城县（1217年金末）
+historical_year: 1217
+era_kit: liao_jin_north
+seed: 247351217
+design_intent:
+  prosperity: major_prefectural_seat_candidate
+  notes:
+  - 复原依据：`docs/design/town/history/city_jinan__southern_song_jin_mongol.md`；1217年金山东东路济南府治历城的拓扑缩景。
+  - 山东大学讲座与论文支持唐中叶合城后宋金元延续不规则城圈；金初小清河使北郊水势下降，大明湖名见金代。
+  - 保留城北湖面、南高北低排水和不规则城圈；明清门名、府城图与精确街巷绝不倒推为金代控制点。
+grid: {width: 160, height: 160, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -80, r_min: 1, q_slot_count: 219, r_slot_count: 160, q_band_slots: [96, 96, 27], r_band_slots: [96, 64], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- id: outer
+  role: outer
+  polygon: {points: [{x: 22, z: 18}, {x: 138, z: 18}, {x: 138, z: 106}, {x: 130, z: 106}, {x: 130, z: 140}, {x: 30, z: 140}, {x: 30, z: 118}, {x: 22, z: 118}]}
+  inside_margin_cells: 2
+  basis: 图名：济南府土城；唐中叶东西城合并为不规则城圈、宋金元肌理深化据src_sdu/src_modulus；八点包络仅表达受泉湖地形制约，不是1217测绘（推定）。
+gates:
+- {id: south_gate, side: south, at: {x: 90, z: 18}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: south_north_axis, primary: true, wall_ref: outer, basis: "图名：南向方位门；地形研究支持南门受泉水制约偏位，但金代门址、门名、宽度均（推定）；不沿用明清历山门。"}
+- {id: west_gate, side: west, at: {x: 22, z: 66}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 90, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: west_east_axis, primary: false, wall_ref: outer, basis: "图名：西向方位门；地形研究支持西门受泺水商运影响偏南，但金代门址、门名、宽度均（推定）；不沿用明清泺源门。"}
+- {id: east_gate, side: east, at: {x: 138, z: 78}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 270, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: west_east_axis, primary: false, wall_ref: outer, basis: "图名：东向方位门；金代门址、门名与宽度无同期资料，均（推定）（原创扩展）；不沿用明清齐川门。"}
+water_gates:
+- {id: north_outlet, wall_ref: outer, kind: water_gate, side: north, at: {x: 104, z: 140}, width_cells: 6, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 10, h: 4}, passage_cells: {w: 6, h: 4}, basis: "图名：城北泄水口（推定）；src_modulus/src_lake支持城北低地排水、大明湖水外泄关系；金代是否已有后世汇波门建筑与准确孔位（待考），不沿用明清门额。"}
+streets:
+- {id: south_north_axis, class: main_axis, width_cells: 5, points: [{x: 90, z: 18}, {x: 90, z: 104}], surface: dirt_road, priority: 100, basis: "图名：南北主街；连接南门与湖前市区的可玩骨架，止于湖前而不穿湖；线位、长度和宽度（推定）（原创扩展）。"}
+- {id: west_east_axis, class: main_axis, width_cells: 5, points: [{x: 22, z: 66}, {x: 90, z: 66}, {x: 90, z: 78}, {x: 138, z: 78}], surface: dirt_road, priority: 95, basis: "图名：东西主街；依西门偏南与不规则城圈作折线概化，金代线位和宽度（推定）（原创扩展）。"}
+- {id: lakefront_lane, class: secondary, width_cells: 3, points: [{x: 38, z: 104}, {x: 90, z: 104}], surface: dirt_road, priority: 85, basis: "图名：大明湖南岸街；湖城关系据src_lake，岸街、线位和宽度（推定）（原创扩展）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 96, z: 48}, {x: 132, z: 48}], surface: dirt_road, priority: 75, basis: "图名：市肆横巷；功能与线位（推定）（原创扩展）。"}
+rivers:
+- {id: lake_outlet, width_cells: 4, points: [{x: 104, z: 130}, {x: 104, z: 158}], flow: north, navigable: false, basis: "图名：大明湖城北出水；src_lake证湖水由北部出水入小清河，金代河槽、汇入口和宽度（推定）；不把现代河道配准到网格。"}
+- {id: xiaoqing_edge, width_cells: 5, points: [{x: 0, z: 154}, {x: 160, z: 154}], flow: east, navigable: false, basis: "图名：小清河画幅北缘；金初开浚及盐运关系据src_hydrology/src_lake，城外古河道与距离（推定）；仅作拓扑边缘。"}
+lakes:
+- {id: daming_lake, polygon: {points: [{x: 34, z: 118}, {x: 50, z: 110}, {x: 76, z: 108}, {x: 100, z: 112}, {x: 120, z: 124}, {x: 116, z: 134}, {x: 36, z: 134}]}, basis: "图名：金代大明湖缩景；src_lake证金代称大明湖、金初小清河开浚后湖面渐缩；七点岸线、范围和与城墙距离均（推定），湖面收在北墙内并仅由窄水道外泄，不套用明清或现代湖岸。"}
+bridges: []
+zones:
+- {id: zone_administrative, kind: administrative, geometry: {rect: {min: {x: 28, z: 72}, max: {x: 72, z: 108}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：府县署区；济南府治历城据src_jinshi，院落位置与边界（推定）（原创扩展）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 96, z: 24}, max: {x: 132, z: 62}}}, priority: 90, density: 0.60, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：市肆区；区域中心城市功能增强据src_sdu，具体位置、范围与建筑组合（推定）（原创扩展）。"}
+- {id: zone_residential_southwest, kind: residential, geometry: {rect: {min: {x: 28, z: 24}, max: {x: 84, z: 62}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：南西坊居；位置、边界与密度（推定）（原创扩展）。"}
+- {id: zone_residential_east, kind: residential, geometry: {rect: {min: {x: 82, z: 84}, max: {x: 124, z: 108}}}, priority: 55, density: 0.54, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_courtyard], ground_mix: {rammed_earth: 100}, basis: "图名：东部坊居；位置、边界与密度（推定）（原创扩展）。"}
+- {id: zone_lakefront, kind: waterfront, geometry: {rect: {min: {x: 36, z: 84}, max: {x: 96, z: 102}}}, priority: 85, density: 0.40, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_house_large, bld_kit_liao_jin_north_warehouse], ground_mix: {rammed_earth: 100}, basis: "图名：大明湖南岸院落；湖名与北部水系据src_lake，建筑用途、边界及1217岸线（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 108, z: 84}, max: {x: 128, z: 104}}}, priority: 80, density: 0.50, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：仓驿守舍区；位置与功能组合（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_administrative], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "府署功能锚点；形制与位置（推定）（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_administrative, zone_residential_southwest, zone_residential_east], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_residential_southwest, zone_residential_east, zone_lakefront], count: {min: 4, max: 9}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential_southwest, zone_residential_east, zone_service], count: {min: 12, max: 20}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】；不由栋数反推人口。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 5, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 5, max: 10}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍，不绑定营生；数量与位置（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_lakefront], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名湖岸寺观模块；不指认具名历史寺院。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_market, zone_lakefront, zone_service], count: {min: 2, max: 4}, required: true, business_ref: null, institution_ref: null, placement_note: "市场与水陆转运的场景配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_stable, zone_refs: [zone_service], count: {min: 0, max: 1}, required: false, business_ref: null, institution_ref: null, placement_note: "压缩场景配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_willow, prp_song_broadleaf, prp_song_dali_grass], density: 0.025, avoid_road_cells: 2, cluster_rule: "湖岸稀疏柳木、院落阔叶与草簇；不作为金代具体物候或园林复原", basis: "图名：城内与湖岸植被；种类、密度和落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十五·地理中", url: "http://www.guoxue123.com/shibu/0101/00jinsf/025.htm", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_administration], note: "正文已读；济南府属山东东路、治历城，领县七镇二十九；不提供城墙、门或街坊平面。"}
+- {key: src_sdu, kind: academic, title: "山东大学：济南古城的起源与城垣变迁", url: "https://www.view.sdu.edu.cn/info/1021/166807.htm", accessed: "2026-10-04", confidence: verified_summary, supports: [wall_evolution, city_function, visual_reference], note: "正文与讲座投影照片已读已看图；证西晋双子城、唐中叶合并为不规则城圈、宋金元肌理与功能深化。投影图主要表现更早双子城，仅用来理解长期地形关系，不作1217控制点。"}
+- {key: src_modulus, kind: academic, title: "汪凯等：济南古城景观的模数控制与变化探讨", url: "http://www.lalavision.com/article/doi/10.12409/j.fjyl.202207060386", accessed: "2026-10-04", confidence: verified_summary, supports: [irregular_wall, water_constraints, gate_relations], note: "正文摘要、全文搜索片段及附图说明已读；支持唐宋扩城与泉水地形制约，关于南西北门偏位主要来自明清长期格局研究，故只作弱回溯关系，不用其精确模数或门址。"}
+- {key: src_lake, kind: gazetteer, title: "山东地情档案：历下区湖泊·大明湖", url: "https://shandong-chorography.org/database/c11/section/1/article/12/", accessed: "2026-10-04", confidence: verified_summary, supports: [jin_lake_name, xiaoqing_effect, north_outlet], note: "正文已读；古湖较大，金初小清河开浚后湖面渐缩，金代称大明湖，湖水由城北出水入小清河。后世具体岸界不可倒推1217。"}
+- {key: src_hydrology, kind: academic, title: "济南地区水文环境的演化及其规律研究", url: "http://rwdl.xisu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=9196", accessed: "2026-10-04", confidence: verified_summary, supports: [xiaoqing_dredging, northern_hydrology], note: "六页论文PDF已实际下载；搜索摘要与正文可读信息支持刘豫时期利用旧河道浚通小清河、北郊水势变化。不提供金代城内平面或可配准岸线。"}

@@ -1,0 +1,42 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_zhangjiakou"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "野狐岭 / 宣德州北境（待考）"
+historical_year: 1217
+era_kit: "liao_jin_north"
+seed: 2945678076
+design_intent: {"prosperity": "regional_settlement_research_candidate", "notes": ["复原依据：docs/design/town/history/city_zhangjiakou__southern_song_jin_mongol.md；1217为同带主章锚点；ch03仅复用拓扑，不据此判定1259的行政或驻军状态。", "city_zhangjiakou为现代地域聚合导航键，114.88E/40.81N不锁定13世纪聚落；本图为宣德北境河谷旅行节点（推定）。", "不把野狐岭山口、宣德州治宣化、太子城行宫或1429张家口堡压为同一座城；本图无州署、宫城或封闭城墙。", "河谷聚落、军旅歇脚与畜栏仅服务章节南归会合；具名驿站、驻军单位和原著初遇的精确街巷均待考。"]}
+grid: {"width": 96, "height": 96, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -48, "r_min": 1, "q_slot_count": 131, "r_slot_count": 96, "q_band_slots": [96, 35], "r_band_slots": [96], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+walls: "none"
+gates: []
+streets:
+- {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 44, "z": 12}, {"x": 44, "z": 84}], "surface": "dirt_road", "priority": 100, "basis": "图名：北境南北行路；src_jinshi证宣德州与宣平建置，不能定位此街；北境交通节点与坐标（推定）（原创扩展）。"}
+- {"id": "settlement_ew", "class": "secondary", "width_cells": 5, "points": [{"x": 14, "z": 48}, {"x": 80, "z": 48}], "surface": "dirt_road", "priority": 80, "basis": "图名：聚落接入横路；src_modern说明后世张家口发展史，不据此移植明清街网；本路（推定）（原创扩展）。"}
+rivers:
+- {"id": "qingshui_corridor", "width_cells": 5, "points": [{"x": 90, "z": 0}, {"x": 90, "z": 96}], "navigable": false, "basis": "图名：清水河谷示意（岸线推定）；src_modern记今清水河贯穿南北；本图只借地域地理，1217岸线、河宽与聚落距离（推定）。", "flow": "south"}
+lakes: []
+bridges: []
+zones:
+- {"id": "zone_courtyards", "kind": "residential", "geometry": {"rect": {"min": {"x": 16, "z": 54}, "max": {"x": 38, "z": 80}}}, "priority": 80, "density": 0.46, "allowed_building_types": ["bld_kit_liao_jin_north_courtyard", "bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：河谷聚居院落；无具名县治或官署证据，位置、密度和院式（推定）（原创扩展）。"}
+- {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 50, "z": 16}, "max": {"x": 80, "z": 42}}}, "priority": 90, "density": 0.46, "allowed_building_types": ["bld_kit_liao_jin_north_shop_1f", "bld_kit_liao_jin_north_market_stall", "bld_kit_liao_jin_north_inn"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：行旅饮食与小市；匿名旅舍、铺棚为章节旅行提供外观，不称明清互市（推定）（原创扩展）。"}
+- {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 16, "z": 16}, "max": {"x": 38, "z": 42}}}, "priority": 50, "density": 0.46, "allowed_building_types": ["bld_kit_liao_jin_north_house_small", "bld_kit_liao_jin_north_house_large"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：河谷民居；全部地块与数量（推定）（原创扩展）。"}
+- {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 50, "z": 54}, "max": {"x": 80, "z": 80}}}, "priority": 85, "density": 0.46, "allowed_building_types": ["bld_kit_liao_jin_north_warehouse", "bld_kit_liao_jin_north_stable", "bld_kit_liao_jin_north_guardhouse", "bld_kit_liao_jin_north_house_small"], "ground_mix": {"rammed_earth": 100}, "basis": "图名：旅畜仓舍与守宿；src_jinshi记宣平因北边用兵驻地置县，只说明周边军事交通，不将此处认作宣平县治；分区（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {"type": "bld_kit_liao_jin_north_courtyard", "zone_refs": ["zone_courtyards"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+- {"type": "bld_kit_liao_jin_north_house_small", "zone_refs": ["zone_courtyards", "zone_houses", "zone_service"], "count": {"min": 5, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+- {"type": "bld_kit_liao_jin_north_house_large", "zone_refs": ["zone_courtyards", "zone_houses"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+- {"type": "bld_kit_liao_jin_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+- {"type": "bld_kit_liao_jin_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 3, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+- {"type": "bld_kit_liao_jin_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+- {"type": "bld_kit_liao_jin_north_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+- {"type": "bld_kit_liao_jin_north_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+- {"type": "bld_kit_liao_jin_north_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "河谷旅行节点外观配额（推定）（原创扩展）【建议值】；不绑定历史驿站、军制或营生。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "河谷空地低矮草簇；不以植被密度证明1217年物候", "basis": "图名：聚落空地植被；低密草簇为视觉配置（原创扩展）【建议值】。"}
+sources:
+- {"key": "src_jinshi", "kind": "academic", "title": "《金史》卷二十四·地理上", "url": "http://www.guoxue123.com/Shibu/0101/00jins/023.htm", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["regional_administration", "military_context"], "note": "正文已读；宣德州与宣德、宣平二县；宣平因北边用兵驻地置县。支持区域军旅背景，不能确认现代张家口点上的县治或寨址。"}
+- {"key": "src_modern", "kind": "official_web", "title": "宁波纪检监察网转载：大好河山在今朝", "url": "http://www.nbjw.gov.cn/art/2022/1/28/art_1229602713_67080.html", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["qingshui_geography", "exclude_ming_qing_forts"], "note": "正文已读，原载中央纪委国家监委网站，古列延署名；记清水河贯穿南北及1429堡子里、1613来远堡、1644大境门，均作地域与后世排除依据，无13世纪布局图。"}

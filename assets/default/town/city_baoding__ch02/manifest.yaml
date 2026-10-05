@@ -1,0 +1,37 @@
+- id: town_city_baoding__ch02
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 保州1217荒废期低密度拓扑候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_baoding__ch02/layout.yaml -o assets/default/town/city_baoding__ch02/preview.jpg --scale 0.25 --jpeg-quality 85 --report tmp/baoding_zhengding/baoding.render.json
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2048x1024
+  sha256: 22ce3b2ea4339ac3bc8dae2c4d949736226c70bfaa49335081e4fab2de07a854
+  status: candidate
+  references:
+  - docs/design/town/city_baoding__ch02.yaml
+  - docs/design/town/history/city_baoding__southern_song_jin_mongol.md
+  - assets/default/tile/liao_jin_north/
+  - assets/default/building-map/liao_jin_north/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；JPEG q85；liao_jin_north 套件回退16项（实际变体与原因去重），其他适配0项；missing_assets为空，diagnostic=false；回退土路4、夯土地4、路缘8；无完整墙门，10栋小屋与摊棚只是毁后临时聚落推定；缺废墟专用贴片，1259重建另存ch03 layout。
+  asset_substitutions:
+  - {"requested_id": "tex_town_liao_jin_north_dirt_road", "actual_id": "tex_town_song_dali_dirt_road__v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_dirt_road->tex_town_song_dali_dirt_road"}
+  - {"requested_id": "tex_town_liao_jin_north_dirt_road", "actual_id": "tex_town_song_dali_dirt_road__v02", "reason": "era-kit-fallback:tex_town_liao_jin_north_dirt_road->tex_town_song_dali_dirt_road"}
+  - {"requested_id": "tex_town_liao_jin_north_dirt_road", "actual_id": "tex_town_song_dali_dirt_road__v03", "reason": "era-kit-fallback:tex_town_liao_jin_north_dirt_road->tex_town_song_dali_dirt_road"}
+  - {"requested_id": "tex_town_liao_jin_north_dirt_road", "actual_id": "tex_town_song_dali_dirt_road__v04", "reason": "era-kit-fallback:tex_town_liao_jin_north_dirt_road->tex_town_song_dali_dirt_road"}
+  - {"requested_id": "tex_town_liao_jin_north_rammed_earth", "actual_id": "tex_town_song_dali_rammed_earth__v01", "reason": "era-kit-fallback:tex_town_liao_jin_north_rammed_earth->tex_town_song_dali_rammed_earth"}
+  - {"requested_id": "tex_town_liao_jin_north_rammed_earth", "actual_id": "tex_town_song_dali_rammed_earth__v02", "reason": "era-kit-fallback:tex_town_liao_jin_north_rammed_earth->tex_town_song_dali_rammed_earth"}
+  - {"requested_id": "tex_town_liao_jin_north_rammed_earth", "actual_id": "tex_town_song_dali_rammed_earth__v03", "reason": "era-kit-fallback:tex_town_liao_jin_north_rammed_earth->tex_town_song_dali_rammed_earth"}
+  - {"requested_id": "tex_town_liao_jin_north_rammed_earth", "actual_id": "tex_town_song_dali_rammed_earth__v04", "reason": "era-kit-fallback:tex_town_liao_jin_north_rammed_earth->tex_town_song_dali_rammed_earth"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__e", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__n", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__ne", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__nw", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__s", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__se", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__sw", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}
+  - {"requested_id": "tex_town_liao_jin_north_road_edge", "actual_id": "tex_town_song_southern_road_edge__w", "reason": "era-kit-fallback:tex_town_liao_jin_north_road_edge->tex_town_song_southern_road_edge"}

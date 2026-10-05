@@ -1,0 +1,54 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_shangqiu
+chapter_id: ch03
+book_world: ch03_shendiao
+display_name: 归德府（睢阳县）
+historical_year: 1259
+era_kit: liao_jin_north
+seed: 970381344
+design_intent:
+  prosperity: major_candidate
+  notes:
+  - 复原依据：history/city_shangqiu__southern_song_jin_mongol.md；1259年蒙古统治期归德府治沿用同年代带拓扑候选。
+  - 1232年金哀宗短暂驻跸归德不等于本单元恢复南京名；本图仍按归德府、睢阳县显示。
+  - 金元旧城在今古城稍南；现存外圆内方明清城与门街不得倒投本图。
+grid: {width: 128, height: 128, cell_m: 1, chunk_cells: 32}
+runtime_partition: {q_min: -64, r_min: 1, q_slot_count: 175, r_slot_count: 128, q_band_slots: [96, 79], r_band_slots: [96, 32], formal_scene_refs: null}
+projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}
+walls:
+- {id: outer, role: outer, polygon: {points: [{x: 14, z: 18}, {x: 114, z: 18}, {x: 114, z: 108}, {x: 14, z: 108}]}, inside_margin_cells: 2, basis: "图名：归德府旧城外垣；旧城在今城南约2公里据src_chgis；矩形夯土包络与尺度（推定），明确不套src_morphology所示1511年后新城。"}
+gates:
+- {id: south_gate, side: south, at: {x: 64, z: 18}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 0, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: true, wall_ref: outer, basis: "图名：南向方位门；门名、门数、门址与宽度均（推定）（原创扩展）。"}
+- {id: north_gate, side: north, at: {x: 64, z: 108}, width_cells: 4, asset_type: tex_town_liao_jin_north_city_gate, rotation_deg: 180, footprint_cells: {w: 8, h: 4}, passage_cells: {w: 4, h: 4}, road_ref: north_south_axis, primary: false, wall_ref: outer, basis: "图名：北向方位门；门名、门数、门址与宽度均（推定）（原创扩展）。"}
+streets:
+- {id: north_south_axis, class: main_axis, width_cells: 5, points: [{x: 64, z: 18}, {x: 64, z: 108}], surface: dirt_road, priority: 100, basis: "图名：府治南北通街；只表达府治通行，线位和宽度（推定），不套后世棋盘街。"}
+- {id: east_west_cross, class: secondary, width_cells: 5, points: [{x: 14, z: 64}, {x: 114, z: 64}], surface: dirt_road, priority: 90, basis: "图名：东西横街；线位与宽度（推定）（原创扩展）。"}
+- {id: market_lane, class: secondary, width_cells: 3, points: [{x: 22, z: 40}, {x: 106, z: 40}], surface: dirt_road, priority: 70, basis: "图名：南市横巷；可玩街区补线（推定）（原创扩展）。"}
+rivers:
+- {id: suishui_edge, width_cells: 4, points: [{x: 0, z: 8}, {x: 128, z: 8}], flow: east, navigable: false, basis: "图名：睢水南侧画缘；src_jinshi仅证睢阳县有睢水，岸线、宽度与城距（推定），不作1259古河道测绘。"}
+bridges: []
+zones:
+- {id: zone_office, kind: administrative, geometry: {rect: {min: {x: 20, z: 70}, max: {x: 62, z: 102}}}, priority: 100, density: 0.48, allowed_building_types: [bld_kit_liao_jin_north_yamen, bld_kit_liao_jin_north_courtyard, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：府署区；前金归德府层级据src_jinshi，1259官署状态与区界（推定）。"}
+- {id: zone_market, kind: market, geometry: {rect: {min: {x: 70, z: 24}, max: {x: 108, z: 58}}}, priority: 90, density: 0.6, allowed_building_types: [bld_kit_liao_jin_north_shop_1f, bld_kit_liao_jin_north_shop_2f, bld_kit_liao_jin_north_market_stall, bld_kit_liao_jin_north_inn], ground_mix: {rammed_earth: 100}, basis: "图名：南市；功能、位置与边界（推定）（原创扩展）。"}
+- {id: zone_residential, kind: residential, geometry: {rect: {min: {x: 20, z: 24}, max: {x: 58, z: 58}}}, priority: 50, density: 0.56, allowed_building_types: [bld_kit_liao_jin_north_house_small, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：西南坊居；边界和密度（推定）（原创扩展）。"}
+- {id: zone_religious, kind: religious, geometry: {rect: {min: {x: 70, z: 70}, max: {x: 108, z: 94}}}, priority: 75, density: 0.45, allowed_building_types: [bld_kit_liao_jin_north_temple_hall, bld_kit_liao_jin_north_house_large], ground_mix: {rammed_earth: 100}, basis: "图名：祠寺区；通用宗教功能、位置与范围（推定）（原创扩展）。"}
+- {id: zone_service, kind: gate_service, geometry: {rect: {min: {x: 68, z: 92}, max: {x: 110, z: 106}}}, priority: 80, density: 0.5, allowed_building_types: [bld_kit_liao_jin_north_guardhouse, bld_kit_liao_jin_north_warehouse, bld_kit_liao_jin_north_stable, bld_kit_liao_jin_north_house_small], ground_mix: {rammed_earth: 100}, basis: "图名：北门军驿仓储区；位置与范围（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+- {type: bld_kit_liao_jin_north_yamen, zone_refs: [zone_office], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "府署功能锚点；院落形制和位置（推定）。"}
+- {type: bld_kit_liao_jin_north_courtyard, zone_refs: [zone_office], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_house_large, zone_refs: [zone_office, zone_residential, zone_religious], count: {min: 2, max: 5}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_1f, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_shop_2f, zone_refs: [zone_market], count: {min: 1, max: 3}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_market_stall, zone_refs: [zone_market], count: {min: 4, max: 8}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_inn, zone_refs: [zone_market], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "匿名旅舍，不绑定营生（原创扩展）。"}
+- {type: bld_kit_liao_jin_north_house_small, zone_refs: [zone_residential, zone_service], count: {min: 9, max: 18}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_temple_hall, zone_refs: [zone_religious], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "通用祠寺模块，不指认具名古迹。"}
+- {type: bld_kit_liao_jin_north_guardhouse, zone_refs: [zone_service], count: {min: 1, max: 1}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+- {type: bld_kit_liao_jin_north_warehouse, zone_refs: [zone_service], count: {min: 1, max: 2}, required: true, business_ref: null, institution_ref: null, placement_note: "压缩配额（原创扩展）【建议值】。"}
+vegetation: {palette: [prp_song_dali_grass], density: 0.012, avoid_road_cells: 2, cluster_rule: "院落空地少量草簇；植物种类不作1259年物候证据", basis: "图名：空地植被；密度与落点（原创扩展）【建议值】。"}
+sources:
+- {key: src_jinshi, kind: academic, title: "《金史》卷二十五·地理中（通行本网页）", url: "https://m.gushiwen.cn/guwen/bookv_1984990412a3.aspx", accessed: "2026-10-04", confidence: verified_summary, supports: [administration, waterways], note: "正文已读；归德府睢阳县条列汴水、睢水、涣水，不给城图。"}
+- {key: src_chgis, kind: academic, title: "CHGIS：宋城县 / 睢阳县", url: "http://tgaz.fudan.edu.cn/tgaz/placename/json/hvd_82074", accessed: "2026-10-04", confidence: verified_summary, supports: [name, seat_location], note: "JSON正文已读；1200改睢阳，旧城在今城南；点位非城墙控制点。"}
+- {key: src_morphology, kind: academic, title: "基于城市形态发生学的商丘归德府古城空间特征分析", url: "http://geoscien.neigae.ac.cn/article/2016/1000-0690/1000-0690-36-7-1008.shtml", accessed: "2026-10-04", confidence: verified_summary, supports: [later_map_limit], note: "全文及图1/2已看；现城始筑1511，后世图只作反证。"}
