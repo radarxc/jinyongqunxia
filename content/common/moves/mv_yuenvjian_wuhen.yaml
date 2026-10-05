@@ -19,4 +19,7 @@ recovery: 1200
 hitZone: body
 meridianRouteRef: mfr_yuenvjian_wuhen
 autoTargetCap: 1
+parryable: false
+onHit:
+  applyBuffs: [{buffId: bf_dongyao, chanceBp: 5000, turns: 2}]
 friendlyFire: none

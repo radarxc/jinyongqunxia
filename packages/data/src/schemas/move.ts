@@ -27,6 +27,18 @@ const AcupointTargetSchema = z.union([
   z.strictObject({ mode: z.literal('targetPrimaryRouteKey') }),
 ]);
 
+const OnHitSchema = z.strictObject({
+  applyBuffs: z.array(z.strictObject({
+    buffId: z.string().regex(/^bf_[a-z0-9]+(?:_[a-z0-9]+)*$/),
+    chanceBp: z.number().int().min(0).max(10_000),
+    turns: z.number().int().positive(),
+  })).min(1).optional(),
+  displace: z.strictObject({
+    kind: z.literal('knockback'), cells: z.number().int().positive(),
+  }).optional(),
+}).refine((value) => value.applyBuffs !== undefined || value.displace !== undefined,
+  'onHit requires applyBuffs or displace');
+
 export const MoveDefSchema = z.strictObject({
   schemaVersion: z.literal('move.v1'), id: MoveIdSchema, name: z.string().min(1),
   skillId: z.string().regex(/^sk_[a-z0-9_]+$/), unlock: z.number().int().min(1).max(10),
@@ -50,6 +62,7 @@ export const MoveDefSchema = z.strictObject({
   meridianRouteRef: z.string().regex(/^mfr_[a-z0-9_]+$/).optional(),
   autoTargetCap: z.number().int().min(1).max(4).optional(),
   direction: z.enum(['front', 'side', 'back']).optional(),
+  onHit: OnHitSchema.optional(), parryable: z.boolean().optional(),
   friendlyFire: z.enum(['none', 'allies', 'all']),
 }).superRefine((value, context) => {
   if (value.range.min > value.range.max)
@@ -64,6 +77,7 @@ export type MoveDef = z.output<typeof MoveDefSchema>;
 
 export interface CompiledBattleMove {
   readonly id: `mv_${string}`; readonly powerBp: number; readonly referencePowerBp: number;
+  readonly skillId: `sk_${string}`; readonly sourceGrade?: number;
   readonly wInBp: number; readonly recovery: number; readonly mpCost: number;
   readonly hitZone: 'body' | 'hand' | 'leg'; readonly range: { readonly min: number; readonly max: number };
   readonly delivery: 'melee' | 'ranged' | 'projectile' | 'sonic' | 'self';
@@ -76,13 +90,37 @@ export interface CompiledBattleMove {
   readonly sealLevel?: number; readonly targetAcupoint?: string;
   readonly affectedRouteRefs?: readonly string[]; readonly autoTargetCap?: number;
   readonly direction?: 'front' | 'side' | 'back';
+  readonly onHit?: { readonly applyBuffs?: readonly { readonly buffId: `bf_${string}`;
+    readonly chanceBp: number; readonly turns: number }[];
+    readonly displace?: { readonly kind: 'knockback'; readonly cells: number } };
+  readonly parryable?: boolean;
 }
 
-export function compileBattleMove(move: MoveDef): CompiledBattleMove {
+export interface BattleMoveCompileSource {
+  readonly skillId: `sk_${string}`;
+  /** Effective, post-suppression grade resolved for this battle participant. */
+  readonly effGrade: number;
+}
+
+export function compileBattleMove(move: MoveDef, source?: BattleMoveCompileSource): CompiledBattleMove {
+  if (source !== undefined && (source.skillId !== move.skillId
+    || !Number.isSafeInteger(source.effGrade) || source.effGrade < 1 || source.effGrade > 12)) {
+    throw new TypeError('BATTLE_MOVE_SOURCE');
+  }
+  if (move.onHit?.applyBuffs !== undefined && source === undefined) {
+    throw new TypeError('BATTLE_MOVE_SOURCE_GRADE_REQUIRED');
+  }
   const targetAcupoint = move.targetAcupoint?.mode === 'fixed'
     ? move.targetAcupoint.acupointRef : undefined;
+  const onHit = move.onHit === undefined ? undefined : {
+    ...(move.onHit.applyBuffs === undefined ? {} : { applyBuffs: move.onHit.applyBuffs.map(
+      (application) => ({ ...application, buffId: application.buffId as `bf_${string}` })),
+    }),
+    ...(move.onHit.displace === undefined ? {} : { displace: move.onHit.displace }),
+  };
   return {
-    id: move.id as `mv_${string}`, powerBp: move.powerBp,
+    id: move.id as `mv_${string}`, skillId: move.skillId as `sk_${string}`,
+    powerBp: move.powerBp,
     referencePowerBp: move.referencePowerBp,
     wInBp: move.wInBp, recovery: move.recovery, mpCost: move.mpCost,
     hitZone: move.hitZone, range: move.range, delivery: move.delivery, shape: move.shape,
@@ -101,5 +139,8 @@ export function compileBattleMove(move: MoveDef): CompiledBattleMove {
     ...(move.affectedRouteRefs === undefined ? {} : { affectedRouteRefs: move.affectedRouteRefs }),
     ...(move.autoTargetCap === undefined ? {} : { autoTargetCap: move.autoTargetCap }),
     ...(move.direction === undefined ? {} : { direction: move.direction }),
+    ...(source === undefined ? {} : { sourceGrade: source.effGrade }),
+    ...(onHit === undefined ? {} : { onHit }),
+    ...(move.parryable === undefined ? {} : { parryable: move.parryable }),
   };
 }

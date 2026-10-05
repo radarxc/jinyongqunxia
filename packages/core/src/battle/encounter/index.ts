@@ -44,6 +44,7 @@ export interface BattleSetupInput {
   readonly mode?: BattleSetup['rules']['mode']; readonly noAuto?: boolean; readonly noRetreat?: boolean;
   readonly noItems?: boolean; readonly mercyAllowed?: boolean; readonly lethalIntent?: boolean;
   readonly friendlyFire?: boolean; readonly roundLimit?: number; readonly boss?: boolean;
+  readonly ringOut?: boolean;
   readonly winCond?: readonly BattleCondition[]; readonly loseCond?: readonly BattleCondition[];
   readonly drawCond?: readonly BattleCondition[]; readonly meditationUnitRefs?: readonly string[];
   readonly onDefeat?: BattleSetup['end']['onDefeat'];
@@ -58,6 +59,10 @@ export interface BattleSetupInput {
     readonly canopy?: number; readonly los?: 'none' | 'partial' | 'full';
     readonly standable?: boolean; readonly narrow?: boolean; readonly dangerous?: boolean;
     readonly terrainDealtBp?: number; readonly terrainTakenBp?: number;
+    readonly terrainId?: string; readonly landMulBp?: number;
+    readonly displacementExits?: readonly { readonly direction: HexDir;
+      readonly kind: 'wall' | 'void' | 'water' | 'fall'; readonly landingHeight?: number;
+      readonly landMulBp?: number }[];
     readonly cover?: { readonly vs: readonly ('projectile' | 'ranged')[]; readonly hit: number;
       readonly damageBp: number; readonly sourceDirs?: readonly HexDir[] } | null;
   }[];
@@ -82,6 +87,15 @@ function validGridCell(cell: NonNullable<BattleSetupInput['grid']>[number]): boo
     && (cell.dangerous === undefined || typeof cell.dangerous === 'boolean')
     && (cell.terrainDealtBp === undefined || Number.isSafeInteger(cell.terrainDealtBp))
     && (cell.terrainTakenBp === undefined || Number.isSafeInteger(cell.terrainTakenBp))
+    && (cell.terrainId === undefined || /^tr_[a-z0-9_]+$/.test(cell.terrainId))
+    && (cell.landMulBp === undefined || Number.isSafeInteger(cell.landMulBp)
+      && cell.landMulBp >= 0 && cell.landMulBp <= 20_000)
+    && (cell.displacementExits === undefined || cell.displacementExits.every((exit) =>
+      validFacing(exit.direction) && ['wall', 'void', 'water', 'fall'].includes(exit.kind)
+      && (exit.landingHeight === undefined || Number.isSafeInteger(exit.landingHeight)
+        && exit.landingHeight >= 0 && exit.landingHeight <= 10)
+      && (exit.landMulBp === undefined || Number.isSafeInteger(exit.landMulBp)
+        && exit.landMulBp >= 0 && exit.landMulBp <= 20_000)))
     && (cover === undefined || cover === null || Array.isArray(cover.vs)
       && cover.vs.length > 0 && new Set(cover.vs).size === cover.vs.length
       && cover.vs.every((delivery) => delivery === 'projectile' || delivery === 'ranged')
@@ -197,6 +211,7 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
       mercyAllowed: input.mercyAllowed ?? true, lethalIntent: input.lethalIntent ?? false,
       roundLimit: input.roundLimit ?? (input.boss === true ? 60 : 30),
       friendlyFire: input.friendlyFire ?? false, boss: input.boss ?? false,
+      ...(input.ringOut === true ? { ringOut: true as const } : {}),
       ...(input.retryAllowed === undefined ? {} : { retryAllowed: input.retryAllowed }),
       ...(input.skippable === undefined ? {} : { skippable: input.skippable }) },
     ...(input.scriptBeats === undefined ? {} : { scriptBeats: cloneSetupValue(input.scriptBeats),
@@ -252,9 +267,19 @@ function cloneUnitSeed(seed: BattleUnitSeed, participant: BattleParticipant, ct:
         battleUses: { ...seed.itemState.battleUses },
         lastBattleUseTurns: { ...seed.itemState.lastBattleUseTurns } } };
 }
+function assertMoveSourceGrades(seed: BattleUnitSeed): void {
+  for (const move of seed.moves) {
+    if ((move.onHit?.applyBuffs?.length ?? 0) === 0) continue;
+    if (!Number.isSafeInteger(move.sourceGrade) || move.sourceGrade! < 1 || move.sourceGrade! > 12)
+      throw new TypeError(`BATTLE_MOVE_SOURCE_GRADE_REQUIRED:${seed.id}:${move.id}`);
+  }
+}
 export function createBattleState(setup: BattleSetup, seeds: readonly BattleUnitSeed[]): BattleState {
   let nextBuffIid = 1;
-  for (const seed of seeds) for (const buff of seed.buffs) nextBuffIid = Math.max(nextBuffIid, buff.iid + 1);
+  for (const seed of seeds) {
+    assertMoveSourceGrades(seed);
+    for (const buff of seed.buffs) nextBuffIid = Math.max(nextBuffIid, buff.iid + 1);
+  }
   const units = setup.participants.map((participant) => {
     const seed = seeds.find((candidate) => candidate.id === participant.unitRef);
     if (seed === undefined) throw new RangeError('BATTLE_UNIT_MISSING');

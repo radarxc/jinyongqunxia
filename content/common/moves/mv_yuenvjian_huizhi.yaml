@@ -17,4 +17,6 @@ mpCost: 43
 recovery: 1000
 hitZone: body
 autoTargetCap: 3
+onHit:
+  displace: {kind: knockback, cells: 1}
 friendlyFire: none

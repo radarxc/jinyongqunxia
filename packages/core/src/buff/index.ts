@@ -23,6 +23,47 @@ export interface BuffEvent { readonly t: 'buff/damage' | 'buff/mpChanged' | 'buf
 export const GRADE_FACTOR_BP = [0, 10_000, 11_000, 12_000, 14_000, 15_500, 17_000,
   20_000, 22_000, 24_000, 28_000, 31_000, 35_000] as const;
 
+const gradeFactorBp = (grade: number): number =>
+  GRADE_FACTOR_BP[Math.max(1, Math.min(12, grade))] ?? 10_000;
+
+function strongestGrade(instances: readonly BuffInstance[], id: BuffId): number {
+  let grade = 0;
+  for (const instance of instances) if (instance.def === id) grade = Math.max(grade, instance.grade);
+  return grade;
+}
+
+function scaledPenaltyBp(instances: readonly BuffInstance[], id: BuffId, baseBp: number): number {
+  const grade = strongestGrade(instances, id);
+  return grade === 0 ? 0 : mulBpFloor(baseBp, gradeFactorBp(grade));
+}
+
+/** Percent modifiers from the three on-hit definitions, expressed as signed basis points. */
+export function onHitBuffModifiers(instances: readonly BuffInstance[]): {
+  readonly hitBp: number; readonly parryBp: number; readonly defOutBp: number;
+  readonly effResBp: number;
+} {
+  return {
+    hitBp: -scaledPenaltyBp(instances, 'bf_shiheng', 200),
+    parryBp: -scaledPenaltyBp(instances, 'bf_shiheng', 400),
+    defOutBp: -scaledPenaltyBp(instances, 'bf_pojia', 600),
+    effResBp: -scaledPenaltyBp(instances, 'bf_dongyao', 500),
+  };
+}
+
+export function applyPctModifier(value: number, modifierBp: number): number {
+  const factor = Math.max(2_000, 10_000 + modifierBp);
+  if (value >= 0) return mulBpFloor(value, factor);
+  return -mulBpFloor(-value, factor);
+}
+
+export const hasStaggerRecoveryPenalty = (instances: readonly BuffInstance[]): boolean =>
+  strongestGrade(instances, 'bf_shiheng') > 0;
+
+export function consumeStaggerRecoveryPenalty(instances: BuffInstance[]): void {
+  const index = instances.findIndex((instance) => instance.def === 'bf_shiheng');
+  if (index >= 0) instances.splice(index, 1);
+}
+
 export const NEGATIVE_BUFF_PROGRAMS: readonly BuffProgram[] = [
   { id: 'bf_zhongdu', triggers: [{ hook: 'onTurnStart', priority: 210, triggerIndex: 0,
     ops: [{ op: 'damageHp', amountBp: 80, perStack: true, bypassShield: true }] }] },
@@ -63,7 +104,7 @@ export function executeBuffHook(input: { readonly hook: BuffHook; readonly holde
     for (let opIndex = 0; opIndex < item.trigger.ops.length; opIndex += 1) {
       const op = item.trigger.ops[opIndex]!;
       if (op.op !== 'damageHp') { row.push(0); continue; }
-      const gradeFactor = GRADE_FACTOR_BP[Math.max(1, Math.min(12, item.instance.grade))] ?? 10_000;
+      const gradeFactor = gradeFactorBp(item.instance.grade);
       const stacks = op.perStack ? item.instance.stacks : 1;
       const raw = mulBpFloor(mulBpFloor(input.holder.hpMax, op.amountBp), gradeFactor) * stacks;
       row.push(raw); rawDamageTotal += raw;
@@ -140,9 +181,8 @@ export const forbidsAcuteGather = (instances: readonly BuffInstance[]): boolean 
     || (instance.def === 'bf_dantianshousun' && instance.stacks >= 4));
 
 function defensiveBonusBp(instances: readonly BuffInstance[], id: BuffId): number {
-  let grade = 0;
-  for (const instance of instances) if (instance.def === id) grade = Math.max(grade, instance.grade);
-  return grade === 0 ? 0 : mulBpFloor(500, GRADE_FACTOR_BP[Math.min(12, grade)] ?? 10_000);
+  const grade = strongestGrade(instances, id);
+  return grade === 0 ? 0 : mulBpFloor(500, gradeFactorBp(grade));
 }
 
 export const guardDefenseBonusBp = (instances: readonly BuffInstance[]): number =>

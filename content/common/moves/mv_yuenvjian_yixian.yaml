@@ -19,4 +19,6 @@ recovery: 1200
 hitZone: body
 meridianRouteRef: mfr_yuenvjian_yixian
 autoTargetCap: 3
+onHit:
+  applyBuffs: [{buffId: bf_pojia, chanceBp: 4000, turns: 2}]
 friendlyFire: none

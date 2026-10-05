@@ -36,6 +36,10 @@ export interface BattleGridCell extends HexCoord {
   readonly los: HexLosKind; readonly standable: boolean; readonly narrow: boolean;
   readonly dangerous: boolean; readonly terrainDealtBp: number; readonly terrainTakenBp: number;
   readonly cover: BattleCover | null;
+  readonly terrainId?: string; readonly landMulBp?: number;
+  readonly displacementExits?: readonly { readonly direction: HexDir;
+    readonly kind: 'wall' | 'void' | 'water' | 'fall'; readonly landingHeight?: number;
+    readonly landMulBp?: number }[];
 }
 export interface BattleInitialUnit {
   readonly unitRef: string; readonly ct: number; readonly rage: number;
@@ -74,7 +78,8 @@ export interface BattleSetup {
   readonly rules: { readonly mode: 'normal' | 'spar' | 'deathmatch' | 'guard';
     readonly noAuto: boolean; readonly noRetreat: boolean; readonly noItems: boolean;
     readonly mercyAllowed: boolean; readonly lethalIntent: boolean; readonly roundLimit: number;
-    readonly friendlyFire: boolean; readonly boss: boolean; readonly retryAllowed?: boolean;
+    readonly friendlyFire: boolean; readonly boss: boolean; readonly ringOut?: true;
+    readonly retryAllowed?: boolean;
     readonly skippable?: boolean };
   readonly scriptBeats?: readonly BattleScriptBeat[];
   readonly scriptContext?: { readonly lossStreak: number };
@@ -90,7 +95,8 @@ export interface BattleSetup {
 export interface BattleStats { readonly level: number; readonly atkOut: number; readonly atkIn: number;
   readonly defOut: number; readonly defIn: number; readonly aptitude: number; readonly aptitudeInner: number;
   readonly critDamagePct: number; readonly hit: number; readonly eva: number; readonly parry: number;
-  readonly pierce: number; readonly crit: number; readonly tough: number; readonly strength: number }
+  readonly pierce: number; readonly crit: number; readonly tough: number; readonly strength: number;
+  readonly effHit?: number; readonly effRes?: number; readonly resCC?: number }
 export interface BattleMove {
   readonly id: `mv_${string}`; readonly powerBp: number; readonly referencePowerBp: number;
   readonly skillId?: `sk_${string}`; readonly meridianRouteRef?: string;
@@ -107,6 +113,10 @@ export interface BattleMove {
   readonly delivery: HexDelivery; readonly shape: HexPrimitiveShape;
   readonly hTol: number; readonly target: 'enemy' | 'ally' | 'self' | 'tile' | 'any';
   readonly friendlyFire?: 'none' | 'allies' | 'all';
+  readonly onHit?: { readonly applyBuffs?: readonly { readonly buffId: `bf_${string}`;
+    readonly chanceBp: number; readonly turns: number }[];
+    readonly displace?: { readonly kind: 'knockback'; readonly cells: number } };
+  readonly parryable?: boolean;
 }
 export interface ZoneGuardState { qi: number; readonly carryCapacity: number;
   readonly strengthBp: number; readonly flowRatioBp: number; readonly breakGuardBp: number }
@@ -118,6 +128,8 @@ export interface BattleUnit {
   shield: number; ct: number; ctFrozen: boolean; pendingShift: number; readonly spd: number;
   readonly qinggong: number; readonly openingQinggong: number; readonly openingPriority: number;
   readonly agi: number; readonly stats: BattleStats; readonly moves: readonly BattleMove[];
+  readonly boss?: true;
+  readonly environmentDamageBp?: number;
   readonly zoneGuards: Record<HitZone, ZoneGuardState>;
   buffs: BuffInstance[]; foreignQi: ForeignQiInstance[]; acupointOccupancies: AcupointOccupancy[];
   readonly meridianDefenseBp: number; readonly qiProductionPerTick: number;

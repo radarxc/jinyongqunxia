@@ -9,6 +9,10 @@ M1 Ink 动作使用 `quest/advance`、`battle/start`、`flag/set`、`party/giveI
 参数必须是 `key=value` 标量；未知、重复、多余、缺失或值域错误均阻断构建。
 发布前运行 `pnpm content:build`，不得手改 `.cache/content-build/` 或 `dist/content/`。
 
+通用 Buff 定义放在 `content/common/buffs/*.yaml`，使用 `buff.v1`，每个文件只定义一个
+`bf_*`。招式 `move.v1.onHit.applyBuffs[].buffId` 必须引用这里已登记的定义；施加品阶不写在
+招式里，由来源武功的有效品阶提供。
+
 区域 binding 按章节放在
 `content/chapters/<ch>/bindings/{gates,dialogues,loot}/*.yaml`。三类文件分别使用
 `region-gate.v1`、`region-dialogue.v1`、`region-loot.v1`，并随对应章节、区域按需装载。

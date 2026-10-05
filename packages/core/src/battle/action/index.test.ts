@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import type { ItemDef } from '@tianshu/data/schemas';
+import { compileBattleMove, MartialArtDefSchema, MoveDefSchema } from '@tianshu/data/schemas';
+import { parseContentFile } from '@tianshu/data/tooling';
+// eslint-disable-next-line no-restricted-imports -- Test-only production content fixture loading.
+import { readFileSync } from 'node:fs';
 import { floorDivInt } from '@tianshu/shared';
 import { calculateJudgeChances } from '../damage';
+import { onHitBuffModifiers } from '../../buff';
 import { createRng } from '../../rng';
 import { BASIC_MOVE, battleSeed, combatFixture } from '../../testing/combat-fixture';
 import { createBattleState, createMeditationAmbushBattleSetup } from '../encounter';
@@ -9,6 +14,9 @@ import { createMeridianFlowRuntime, type MeridianFlowInput } from '../meridian-f
 import type { BattleCommand, BattleMove, BattleState } from '../types';
 import { advanceBattleTick, advanceBattleToReady, previewBattleRoute, queryBattleAction,
   queryBattleQi, resolveBattleAction } from './index';
+
+const contentFile = (path: string) => parseContentFile({ path, text: readFileSync(
+  new URL(`../../../../../${path}`, import.meta.url), 'utf8') }).value;
 
 const special: BattleMove = { id: 'mv_test_toujin', powerBp: 10_000, referencePowerBp: 10_000,
   wInBp: 10_000, recovery: 1_000, mpCost: 10, hitZone: 'hand', projection: true,
@@ -703,6 +711,250 @@ describe('shared battle action resolver', () => {
     expect(hero.pos).toEqual({ q: 0, r: 0 }); expect(hero.facing).toBe(4);
   });
 
+  it('applies, refreshes and decrements an on-hit Buff on the holder own action clock', () => {
+    const move = { ...BASIC_MOVE, id: 'mv_test_on_hit_buff' as const, sourceGrade: 7,
+      onHit: { applyBuffs: [{ buffId: 'bf_pojia' as const, chanceBp: 10_000, turns: 2 }] } };
+    const state = combatFixture({ playerMoves: [move] });
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 0, 0])).accepted).toBe(true);
+    const target = state.units[1]!;
+    expect(target.buffs).toEqual([expect.objectContaining({ def: 'bf_pojia', grade: 7,
+      turnsLeft: 2, fresh: false, source: 'hero' })]);
+    expect(state.events).toContainEqual(expect.objectContaining({ t: 'battle/buffApplied',
+      actor: 'hero', target: 'enemy_0', payload: expect.objectContaining({
+        buffId: 'bf_pojia', rngChild: 'battle/onHit', refreshed: false,
+      }) }));
+    expect(resolveBattleAction(state, { t: 'battle/wait', actor: 'enemy_0' },
+      createRng([1, 2, 3, 4])).accepted).toBe(true);
+    expect(target.buffs[0]?.turnsLeft).toBe(1);
+    state.openingOrder.splice(0, state.openingOrder.length, 'hero'); state.units[0]!.ct = 1_000;
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 0, 0])).accepted).toBe(true);
+    expect(target.buffs).toEqual([expect.objectContaining({ turnsLeft: 2 })]);
+    expect(state.events.at(-1)).toMatchObject({ t: 'battle/buffApplied',
+      payload: { refreshed: true } });
+  });
+
+  it('compiles the formal Yuenv move with its source effGrade before applying the Buff', () => {
+    const skill = MartialArtDefSchema.parse(contentFile('content/common/skills/sk_yuenvjian.yaml'));
+    const definition = MoveDefSchema.parse(contentFile(
+      'content/common/moves/mv_yuenvjian_zhuying.yaml'));
+    const move = compileBattleMove(definition, { skillId: skill.id as `sk_${string}`,
+      effGrade: skill.grade }) as unknown as BattleMove;
+    const state = combatFixture({ playerMoves: [move] });
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([4, 0, 0, 0])).accepted).toBe(true);
+    expect(state.units[1]!.buffs).toContainEqual(expect.objectContaining({
+      def: 'bf_shiheng', grade: 9, turnsLeft: 1, source: 'hero',
+    }));
+  });
+
+  it('rejects a precompiled on-hit move without source grade at battle creation', () => {
+    const move = { ...BASIC_MOVE, id: 'mv_test_missing_source_grade' as const,
+      onHit: { applyBuffs: [{ buffId: 'bf_shiheng' as const, chanceBp: 3_000, turns: 1 }] } };
+    expect(() => combatFixture({ playerMoves: [move] }))
+      .toThrow('BATTLE_MOVE_SOURCE_GRADE_REQUIRED:hero:mv_test_missing_source_grade');
+  });
+
+  it('uses target effect resistance when deciding whether an on-hit Buff lands', () => {
+    const move = { ...BASIC_MOVE, id: 'mv_test_effect_res' as const, sourceGrade: 1,
+      onHit: { applyBuffs: [{ buffId: 'bf_pojia' as const, chanceBp: 5_000, turns: 2 }] } };
+    const susceptible = combatFixture({ playerMoves: [move] });
+    const resistant = combatFixture({ playerMoves: [move] });
+    Object.assign(susceptible.units[1]!.stats, { effRes: -5 });
+    Object.assign(resistant.units[1]!.stats, { effRes: 5 });
+    const command = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'skill' as const, move: move.id, target: 'enemy_0' } };
+    expect(resolveBattleAction(susceptible, command, createRng([290, 0, 0, 0])).accepted).toBe(true);
+    expect(resolveBattleAction(resistant, command, createRng([290, 0, 0, 0])).accepted).toBe(true);
+    expect(susceptible.units[1]!.buffs.some((buff) => buff.def === 'bf_pojia')).toBe(true);
+    expect(resistant.units[1]!.buffs.some((buff) => buff.def === 'bf_pojia')).toBe(false);
+  });
+
+  it('makes formal poajia and shiheng instances change later damage, hit and parry settlement', () => {
+    const attack = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'skill' as const, move: BASIC_MOVE.id, target: 'enemy_0' } };
+    const base = combatFixture(); const debuffed = combatFixture();
+    debuffed.units[1]!.buffs.push(
+      { iid: 1, def: 'bf_pojia', holder: 'enemy_0', source: 'hero', grade: 9,
+        stacks: 1, turnsLeft: 2, fresh: false },
+      { iid: 2, def: 'bf_shiheng', holder: 'enemy_0', source: 'hero', grade: 9,
+        stacks: 1, turnsLeft: 2, fresh: false },
+    );
+    Object.assign(base.units[1]!.stats, { eva: 100, parry: 100 });
+    Object.assign(debuffed.units[1]!.stats, { eva: 100, parry: 100 });
+    const baseResult = resolveBattleAction(base, attack, createRng([0, 0, 9_999, 0]));
+    const debuffedResult = resolveBattleAction(debuffed, attack, createRng([0, 0, 9_999, 0]));
+    expect(debuffedResult.hpDamage).toBeGreaterThan(baseResult.hpDamage);
+    const modifiers = onHitBuffModifiers(debuffed.units[1]!.buffs);
+    expect(modifiers).toMatchObject({ hitBp: -480, parryBp: -960, defOutBp: -1440 });
+  });
+
+  it('makes an applied dongyao instance lower effect resistance in the next on-hit check', () => {
+    const follow = { ...BASIC_MOVE, id: 'mv_test_effect_follow' as const, sourceGrade: 9,
+      onHit: { applyBuffs: [{ buffId: 'bf_pojia' as const, chanceBp: 5_000, turns: 2 }] } };
+    const plain = combatFixture({ playerMoves: [follow] });
+    const shaken = combatFixture({ playerMoves: [follow] });
+    for (const state of [plain, shaken]) Object.assign(state.units[1]!.stats, { effRes: 50 });
+    shaken.units[1]!.buffs.push({ iid: 1, def: 'bf_dongyao', holder: 'enemy_0', source: 'hero',
+      grade: 9, stacks: 1, turnsLeft: 2, fresh: false });
+    const command = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'skill' as const, move: follow.id, target: 'enemy_0' } };
+    expect(resolveBattleAction(plain, command, createRng([28, 0, 0, 0])).accepted).toBe(true);
+    expect(resolveBattleAction(shaken, command, createRng([28, 0, 0, 0])).accepted).toBe(true);
+    expect(plain.units[1]!.buffs.some((buff) => buff.def === 'bf_pojia')).toBe(false);
+    expect(shaken.units[1]!.buffs.some((buff) => buff.def === 'bf_pojia')).toBe(true);
+  });
+
+  it('stops knockback at occupied cells, terrain blockers and the map edge', () => {
+    const move = { ...BASIC_MOVE, id: 'mv_test_knockback' as const,
+      onHit: { displace: { kind: 'knockback' as const, cells: 3 } } };
+    const occupied = combatFixture({ gridRadius: 4, enemies: 2, playerMoves: [move] });
+    occupied.units[2]!.pos = { q: 3, r: 0 };
+    expect(resolveBattleAction(occupied, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(occupied.units[1]!.pos).toEqual({ q: 2, r: 0 });
+    expect(occupied.events.at(-1)).toMatchObject({ t: 'battle/displaced', amount: 1,
+      payload: { stoppedBy: 'unit', requestedCells: 3 } });
+
+    const terrain = combatFixture({ gridRadius: 4, playerMoves: [move] });
+    Object.assign(terrain.grid.cells.find((cell) => cell.q === 3 && cell.r === 0)!,
+      { standable: false });
+    expect(resolveBattleAction(terrain, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(terrain.units[1]!.pos).toEqual({ q: 2, r: 0 });
+    expect(terrain.events.at(-1)).toMatchObject({ t: 'battle/displaced',
+      payload: { stoppedBy: 'terrain' } });
+
+    const edge = combatFixture({ gridRadius: 2, playerMoves: [move] });
+    expect(resolveBattleAction(edge, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(edge.units[1]!.pos).toEqual({ q: 2, r: 0 });
+    expect(edge.events.at(-1)).toMatchObject({ t: 'battle/displaced',
+      payload: { stoppedBy: 'edge' } });
+  });
+
+  it('blocks uphill knockback and applies one collision packet to both units', () => {
+    const move = { ...BASIC_MOVE, id: 'mv_test_knockback_uphill' as const,
+      onHit: { displace: { kind: 'knockback' as const, cells: 2 } } };
+    const state = combatFixture({ gridRadius: 4, enemies: 2, playerMoves: [move] });
+    Object.assign(state.grid.cells.find((cell) => cell.q === 2 && cell.r === 0)!, { height: 2 });
+    state.units[2]!.pos = { q: 0, r: 3 };
+    const before = state.units[1]!.hp;
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(state.units[1]!.pos).toEqual({ q: 1, r: 0 });
+    expect(state.events).toContainEqual(expect.objectContaining({ t: 'battle/collisionDamage',
+      target: 'enemy_0' }));
+    expect(state.events.at(-1)).toMatchObject({ t: 'battle/displaced',
+      payload: { stoppedBy: 'uphill' } });
+    expect(state.units[1]!.hp).toBeLessThan(before);
+  });
+
+  it('settles a 10-to-0 forced fall and cannot knock a target uphill from 7 to 10', () => {
+    const move = { ...BASIC_MOVE, id: 'mv_test_knockback_height' as const,
+      onHit: { displace: { kind: 'knockback' as const, cells: 1 } } };
+    const fall = combatFixture({ gridRadius: 3, playerMoves: [move] });
+    Object.assign(fall.grid.cells.find((cell) => cell.q === 0 && cell.r === 0)!, { height: 10 });
+    Object.assign(fall.grid.cells.find((cell) => cell.q === 1 && cell.r === 0)!, { height: 10 });
+    Object.assign(fall.grid.cells.find((cell) => cell.q === 2 && cell.r === 0)!, { height: 0 });
+    const fallBefore = fall.units[1]!.hp;
+    expect(resolveBattleAction(fall, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(fall.units[1]!.pos).toEqual({ q: 2, r: 0 });
+    expect(fall.units[1]!.hp).toBeLessThan(fallBefore);
+    expect(fall.events).toContainEqual(expect.objectContaining({ t: 'battle/fallDamage' }));
+
+    const exact = combatFixture({ gridRadius: 3, playerMoves: [move], hp: 1_001 });
+    Object.assign(exact.units[1]!, { qinggong: 100, jump: 3 });
+    Object.assign(exact.grid.cells.find((cell) => cell.q === 0 && cell.r === 0)!, { height: 8 });
+    Object.assign(exact.grid.cells.find((cell) => cell.q === 1 && cell.r === 0)!, { height: 8 });
+    Object.assign(exact.grid.cells.find((cell) => cell.q === 2 && cell.r === 0)!,
+      { height: 0, landMulBp: 15_000 });
+    expect(resolveBattleAction(exact, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(exact.events).toContainEqual(expect.objectContaining({
+      t: 'battle/fallDamage', amount: 259, payload: { incoming: 259 },
+    }));
+
+    const uphill = combatFixture({ gridRadius: 3, playerMoves: [move] });
+    Object.assign(uphill.grid.cells.find((cell) => cell.q === 0 && cell.r === 0)!, { height: 7 });
+    Object.assign(uphill.grid.cells.find((cell) => cell.q === 1 && cell.r === 0)!, { height: 7 });
+    Object.assign(uphill.grid.cells.find((cell) => cell.q === 2 && cell.r === 0)!, { height: 10 });
+    expect(resolveBattleAction(uphill, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(uphill.units[1]!.pos).toEqual({ q: 1, r: 0 });
+    expect(uphill.events.at(-1)).toMatchObject({ payload: { stoppedBy: 'uphill' } });
+  });
+
+  it('uses explicit edge metadata for plunges and arena ring-outs', () => {
+    const move = { ...BASIC_MOVE, id: 'mv_test_knockback_edge_kind' as const,
+      onHit: { displace: { kind: 'knockback' as const, cells: 1 } } };
+    const plunged = combatFixture({ gridRadius: 1, playerMoves: [move] });
+    Object.assign(plunged.grid.cells.find((cell) => cell.q === 1 && cell.r === 0)!,
+      { displacementExits: [{ direction: 0, kind: 'void' }] });
+    expect(resolveBattleAction(plunged, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(plunged.units[1]).toMatchObject({ active: false, state: 'plunged' });
+    expect(plunged.events).toContainEqual(expect.objectContaining({ t: 'battle/unitPlunged' }));
+
+    const bossFightMinion = combatFixture({ gridRadius: 1, playerMoves: [move], boss: true });
+    Object.assign(bossFightMinion.grid.cells.find((cell) => cell.q === 1 && cell.r === 0)!,
+      { displacementExits: [{ direction: 0, kind: 'void' }] });
+    expect(resolveBattleAction(bossFightMinion, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(bossFightMinion.units[1]).toMatchObject({ active: false, state: 'plunged' });
+
+    const boss = combatFixture({ gridRadius: 1, playerMoves: [move], boss: true });
+    Object.assign(boss.units[1]!, { boss: true });
+    Object.assign(boss.grid.cells.find((cell) => cell.q === 1 && cell.r === 0)!,
+      { displacementExits: [{ direction: 0, kind: 'void' }] });
+    expect(resolveBattleAction(boss, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(boss.units[1]).toMatchObject({ active: true, state: 'active', pos: { q: 1, r: 0 } });
+    expect(boss.events.at(-1)).toMatchObject({ t: 'battle/displaced',
+      payload: { stoppedBy: 'void', bossImmune: true } });
+
+    const ring = combatFixture({ gridRadius: 1, playerMoves: [move], ringOut: true });
+    expect(resolveBattleAction(ring, { t: 'battle/act', actor: 'hero',
+      action: { t: 'skill', move: move.id, target: 'enemy_0' } },
+    createRng([0, 0, 9_999, 0])).accepted).toBe(true);
+    expect(ring.units[1]).toMatchObject({ active: false, state: 'fled' });
+    expect(ring.events).toContainEqual(expect.objectContaining({ t: 'battle/unitRingOut' }));
+  });
+
+  it('consumes stagger only on a skill and adds its 20 percent before route flow cost', () => {
+    const routed = { ...BASIC_MOVE, id: 'mv_test_stagger_recovery' as const, recovery: 500,
+      meridianRouteRef: 'mfr_test' };
+    const state = combatFixture({ playerMoves: [routed],
+      meridianInputs: meridianFixture(['hero', 'enemy_0']) });
+    const hero = state.units[0]!;
+    hero.buffs.push({ iid: 1, def: 'bf_shiheng', holder: hero.id, source: 'enemy_0',
+      grade: 1, stacks: 1, turnsLeft: 2, fresh: false });
+    expect(resolveBattleAction(state, { t: 'battle/wait', actor: hero.id },
+      createRng([1, 2, 3, 4])).accepted).toBe(true);
+    expect(hero.buffs.some((buff) => buff.def === 'bf_shiheng')).toBe(true);
+    state.openingOrder.splice(0, state.openingOrder.length, hero.id); hero.ct = 1_000;
+    expect(resolveBattleAction(state, { t: 'battle/act', actor: hero.id,
+      action: { t: 'skill', move: routed.id, target: 'enemy_0' } },
+    createRng([0, 0, 0, 0])).accepted).toBe(true);
+    expect(hero.buffs.some((buff) => buff.def === 'bf_shiheng')).toBe(false);
+    expect(hero.ct).toBe(340);
+  });
+
   it('stores an accepted command without retaining caller references', () => {
     const state = combatFixture();
     const command = { t: 'battle/act' as const, actor: 'hero', action: { t: 'wait' as const },
@@ -710,6 +962,24 @@ describe('shared battle action resolver', () => {
     expect(resolveBattleAction(state, command, createRng([1, 2, 3, 4])).accepted).toBe(true);
     command.walkTo.q = 9;
     expect(state.acceptedCommands[0]).toMatchObject({ walkTo: { q: 0, r: 1 } });
+  });
+
+  it('keeps on-hit child RNG and settlement bytes identical across 100 runs', () => {
+    const move = { ...BASIC_MOVE, id: 'mv_test_on_hit_determinism' as const, sourceGrade: 4,
+      onHit: { applyBuffs: [
+        { buffId: 'bf_shiheng' as const, chanceBp: 3_000, turns: 1 },
+        { buffId: 'bf_pojia' as const, chanceBp: 4_000, turns: 2 },
+      ], displace: { kind: 'knockback' as const, cells: 1 } } };
+    const command = { t: 'battle/act' as const, actor: 'hero',
+      action: { t: 'skill' as const, move: move.id, target: 'enemy_0' } };
+    const run = () => {
+      const state = combatFixture({ gridRadius: 3, playerMoves: [move] });
+      const rng = createRng([1, 2, 3, 4]);
+      expect(resolveBattleAction(state, command, rng).accepted).toBe(true);
+      return JSON.stringify({ state, rng: rng.snapshot() });
+    };
+    const expected = run();
+    for (let iteration = 1; iteration < 100; iteration += 1) expect(run()).toBe(expected);
   });
 
   it('resolves the same command sequence to identical final bytes 100 times', () => {

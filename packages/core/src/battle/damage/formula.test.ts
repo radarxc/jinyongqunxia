@@ -53,6 +53,15 @@ describe('Z0-Z10 damage formula', () => {
     expect(hit.snapshot()[0]).toBe(3);
   });
 
+  it('skips parry for an explicitly unparryable move', () => {
+    const rng = fixedRng([0, 9_999]);
+    expect(rollJudge({ hitEff: 0, eva: 0, parry: 200, pierce: 0, crit: 0, tough: 0,
+      parryable: false }, rng)).toMatchObject({
+      hit: true, parried: false, parryBp: 0, parryRollBp: null,
+    });
+    expect(rng.snapshot()[0]).toBe(2);
+  });
+
   it('is deterministic for identical battle RNG seeds', () => {
     expect(rollJudge({ hitEff: 60, eva: 55, parry: 50, pierce: 45, crit: 60, tough: 50 },
       createRng([1, 2, 3, 4]))).toEqual(rollJudge(

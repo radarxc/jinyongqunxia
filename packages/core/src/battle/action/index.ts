@@ -1,7 +1,9 @@
-import { BP_SCALE, compareCodePoints, mulBpFloor, mulDivFloor } from '@tianshu/shared';
-import { createRng, type Rng } from '../../rng';
-import { endOwnAction, executeBuffHook, forbidsAcuteGather, guardDamageDownBp,
-  guardDefenseBonusBp, hasGuardStance, qiProductionBp } from '../../buff';
+import { BP_SCALE, clampInt, compareCodePoints, floorDivInt, mulBpFloor,
+  mulDivFloor } from '@tianshu/shared';
+import { chanceBp, createRng, type Rng } from '../../rng';
+import { applyPctModifier, consumeStaggerRecoveryPenalty, endOwnAction, executeBuffHook,
+  forbidsAcuteGather, guardDamageDownBp, guardDefenseBonusBp, hasGuardStance,
+  hasStaggerRecoveryPenalty, onHitBuffModifiers, qiProductionBp } from '../../buff';
 import { useConsumable, type ConsumableTargetState, type UseConsumableResult } from '../../economy';
 import { hexDistance, type HexCoord } from '../../hex';
 import { cloneJsonValue } from '../../state/json';
@@ -12,7 +14,7 @@ import {
 } from '../damage';
 import { evaluateBattleEnd, finishBattle } from '../encounter';
 import { directionBetween, hasBattleLineOfSight, isBattleUnitVisible, queryDamageGeometry,
-  queryMoveAt, queryPath } from '../geometry';
+  queryKnockback, queryMoveAt, queryPath } from '../geometry';
 import { createMeridianFlowRuntime, type MeridianFlowRuntime, type MeridianFlowSnapshot,
   type MeridianFlowInput, type QiGatherStatus, type MeridianFlowPreview, type QiMoveResolution } from '../meridian-flow';
 import { nextTimelineEntry, peekReadyUnitId, settleTimelineAction, type TimelineEntry } from '../timeline';
@@ -223,6 +225,48 @@ function pushBuffEvents(state: BattleState, target: BattleUnit): 'active' | 'ski
   return events.some((event) => event.t === 'buff/actionSkipped') ? 'skipped' : 'active';
 }
 
+const ON_HIT_RNG_CHILD = 'battle/onHit';
+
+function mixU32(value: number): number {
+  let mixed = value >>> 0;
+  mixed = Math.imul(mixed ^ (mixed >>> 16), 0x85ebca6b) >>> 0;
+  mixed = Math.imul(mixed ^ (mixed >>> 13), 0xc2b2ae35) >>> 0;
+  return (mixed ^ (mixed >>> 16)) >>> 0;
+}
+
+function hashU32(seed: number, text: string): number {
+  let hash = seed >>> 0;
+  for (let index = 0; index < text.length; index += 1) {
+    hash = Math.imul(hash ^ text.charCodeAt(index), 0x01000193) >>> 0;
+  }
+  return hash;
+}
+
+/** One persisted battle draw seeds an ephemeral child; child draws never advance the parent. */
+function createOnHitRng(state: BattleState, actor: BattleUnit, target: BattleUnit,
+  move: BattleMove, segmentIndex: number, rng: Rng): Rng {
+  const parentDraw = rng.nextU32();
+  const identity = `${ON_HIT_RNG_CHILD}:${state.actionNo + 1}:${actor.id}:${target.id}`
+    + `:${move.id}:${segmentIndex}`;
+  const seed = hashU32(parentDraw ^ 0x811c9dc5, identity);
+  return createRng([mixU32(seed ^ 0x9e3779b9), mixU32(seed ^ 0x243f6a88),
+    mixU32(seed ^ 0xb7e15162), mixU32(seed ^ 0xdeadbeef)]);
+}
+
+function effectChanceBp(baseBp: number, actor: BattleUnit, target: BattleUnit,
+  buffId: string, parried: boolean): number {
+  const targetModifiers = onHitBuffModifiers(target.buffs);
+  const effHit = actor.stats.effHit ?? 0;
+  const effRes = applyPctModifier(target.stats.effRes ?? 0, targetModifiers.effResBp);
+  const ratingBp = clampInt(10_000 + 100 * (effHit - effRes), 3_000, 20_000);
+  const rawResistance = buffId === 'bf_shiheng' ? target.stats.resCC ?? 0 : 0;
+  const resEffBp = clampInt(rawResistance * 100, -5_000, 7_500);
+  const extraFactorBp = parried ? 5_000 : 10_000;
+  const multiplier = ratingBp * (10_000 - resEffBp) * extraFactorBp;
+  return clampInt(mulDivFloor(clampInt(baseBp, 0, 10_000), multiplier,
+    1_000_000_000_000), 0, 10_000);
+}
+
 function settleTarget(state: BattleState, actor: BattleUnit, target: BattleUnit,
   move: BattleMove, rng: Rng, segmentIndex: number, useGeometry: boolean,
   qi?: QiMoveResolution): { damage: number;
@@ -237,16 +281,23 @@ function settleTarget(state: BattleState, actor: BattleUnit, target: BattleUnit,
   const guard = target.zoneGuards[move.hitZone];
   const zoneFlowBp = guard.carryCapacity === 0 ? 0
     : Math.min(10_000, mulDivFloor(guard.qi, 10_000, guard.carryCapacity));
+  const attackerModifiers = onHitBuffModifiers(actor.buffs);
+  const defenderModifiers = onHitBuffModifiers(target.buffs);
   const defenseBonusBp = guardDefenseBonusBp(target.buffs);
-  const defenderStats = defenseBonusBp === 0 ? target.stats : { ...target.stats,
-    defOut: mulBpFloor(target.stats.defOut, BP_SCALE + defenseBonusBp),
+  const defenderStats = defenseBonusBp === 0 && defenderModifiers.defOutBp === 0
+    ? target.stats : { ...target.stats,
+    defOut: mulBpFloor(applyPctModifier(target.stats.defOut, defenderModifiers.defOutBp),
+      BP_SCALE + defenseBonusBp),
     defIn: mulBpFloor(target.stats.defIn, BP_SCALE + defenseBonusBp) };
-  const result = resolveDamage({ judge: { hitEff: actor.stats.hit + (move.hitMod ?? 0)
+  const result = resolveDamage({ judge: { hitEff: applyPctModifier(actor.stats.hit,
+    attackerModifiers.hitBp) + (move.hitMod ?? 0)
     + (geometry?.hitAdd ?? 0),
     eva: target.stats.eva, evadeRatingDelta: geometry?.evadeRatingDelta ?? 0,
-    parry: target.stats.parry + (hasGuardStance(target.buffs) ? 20 : 0),
+    parry: applyPctModifier(target.stats.parry, defenderModifiers.parryBp)
+      + (hasGuardStance(target.buffs) ? 20 : 0),
     pierce: actor.stats.pierce,
-    crit: actor.stats.crit, tough: target.stats.tough, direction: attackDirection },
+    crit: actor.stats.crit, tough: target.stats.tough, direction: attackDirection,
+    ...(move.parryable === undefined ? {} : { parryable: move.parryable }) },
   formula: { attacker: actor.stats, defender: defenderStats, wInBp: move.wInBp,
     actualPower: { n: move.powerBp, d: 10_000 }, referencePower: { n: move.referencePowerBp, d: 10_000 },
     pierceOutBp: move.pierceOutBp ?? 0, pierceInBp: move.pierceInBp ?? 0,
@@ -277,6 +328,8 @@ function settleTarget(state: BattleState, actor: BattleUnit, target: BattleUnit,
       actor: actor.id, target: target.id }); }
   applyMoveEffects(state, actor, target, move, qi?.releasedQi ?? move.releasedQi ?? 0,
     result.judge.hitBp, defenderMpAtHit, rng);
+  applyConfiguredOnHit(state, actor, target, move, result.judge.parried, segmentIndex, rng);
+  if (useGeometry) settleKnockback(state, actor, target, move, result.incoming);
   return { damage: result.settlement.hpDamage, critical: result.judge.critical,
     critRollBp: result.judge.critRollBp, critChanceBp: result.judge.critBp };
 }
@@ -285,6 +338,111 @@ function nextBuffIid(target: BattleUnit): number {
   let result = 1;
   for (const buff of target.buffs) result = Math.max(result, buff.iid + 1);
   return result;
+}
+
+function nextBattleBuffIid(state: BattleState): number {
+  let result = 1;
+  for (const unit of state.units) {
+    for (const buff of unit.buffs) result = Math.max(result, buff.iid + 1);
+  }
+  return result;
+}
+
+function upsertConfiguredBuff(state: BattleState, actor: BattleUnit, target: BattleUnit,
+  move: BattleMove, application: { readonly buffId: `bf_${string}`;
+    readonly chanceBp: number; readonly turns: number }): { readonly iid: number;
+      readonly grade: number; readonly refreshed: boolean } {
+  if (move.sourceGrade === undefined) throw new TypeError('BATTLE_MOVE_SOURCE_GRADE_REQUIRED');
+  const grade = clampInt(move.sourceGrade, 1, 12);
+  const index = target.buffs.findIndex((buff) => buff.def === application.buffId);
+  if (index < 0) {
+    const iid = nextBattleBuffIid(state);
+    target.buffs.push({ iid, def: application.buffId, holder: target.id, source: actor.id,
+      grade, stacks: 1, turnsLeft: application.turns, fresh: false });
+    return { iid, grade, refreshed: false };
+  }
+  const existing = target.buffs[index]!;
+  const replaceSource = grade > existing.grade;
+  target.buffs[index] = { ...existing,
+    ...(replaceSource ? { source: actor.id, grade } : {}),
+    turnsLeft: Math.max(existing.turnsLeft, application.turns), fresh: false };
+  return { iid: existing.iid, grade: replaceSource ? grade : existing.grade, refreshed: true };
+}
+
+function applyDirectDamage(state: BattleState, target: BattleUnit, amount: number, event: string,
+  actorId: string): number {
+  const incoming = Math.max(0, amount);
+  const shieldSpent = Math.min(target.shield, incoming);
+  target.shield -= shieldSpent;
+  const hpDamage = Math.min(target.hp, incoming - shieldSpent);
+  target.hp -= hpDamage;
+  state.events.push({ t: event, actionNo: state.actionNo + 1, actor: actorId, target: target.id,
+    amount: hpDamage, shieldSpent, payload: { incoming } });
+  if (target.hp === 0 && target.active) { target.active = false; target.state = 'downed';
+    state.events.push({ t: 'battle/unitDowned', actionNo: state.actionNo + 1,
+      actor: actorId, target: target.id }); }
+  return hpDamage;
+}
+
+function fallDamage(target: BattleUnit, height: number, landMulBp: number): number {
+  const excess = height - (1 + target.jump);
+  if (excess <= 0) return 0;
+  const fallBp = Math.min(4_000, 300 + 500 * excess);
+  const qgBp = Math.max(5_000, 10_000 - 25 * target.qinggong);
+  const pctFactorBp = target.environmentDamageBp ?? 10_000;
+  const reducedFallBp = floorDivInt(fallBp, 100);
+  const multiplier = reducedFallBp * landMulBp * qgBp * pctFactorBp;
+  return mulDivFloor(target.hpMax, multiplier, 100_000_000_000_000);
+}
+
+function settleKnockback(state: BattleState, actor: BattleUnit, target: BattleUnit,
+  move: BattleMove, hitDamage: number): void {
+  const displacement = move.onHit?.displace;
+  if (displacement === undefined) return;
+  const result = queryKnockback(state, actor, target, displacement.cells);
+  target.pos = { ...result.to };
+  const bossPlunge = result.stoppedBy === 'void' && target.boss === true;
+  const collision = bossPlunge || ['edge', 'terrain', 'uphill', 'unit'].includes(result.stoppedBy);
+  if (collision) {
+    applyDirectDamage(state, target, mulDivFloor(hitDamage, 1, 5), 'battle/collisionDamage', actor.id);
+    const struck = result.collisionUnitId === undefined ? undefined
+      : state.units.find((unit) => unit.id === result.collisionUnitId);
+    if (struck !== undefined) applyDirectDamage(state, struck, mulDivFloor(hitDamage, 1, 10),
+      'battle/collisionDamage', actor.id);
+  }
+  if (result.stoppedBy === 'fall' && result.fallHeight !== undefined) {
+    applyDirectDamage(state, target, fallDamage(target, result.fallHeight, result.landMulBp ?? 10_000),
+      'battle/fallDamage', actor.id);
+  } else if (result.stoppedBy === 'water') {
+    state.events.push({ t: 'battle/fellIntoWater', actionNo: state.actionNo + 1,
+      actor: actor.id, target: target.id });
+  } else if (!bossPlunge && (result.stoppedBy === 'void' || result.stoppedBy === 'ringOut')) {
+    target.active = false; target.state = result.stoppedBy === 'void' ? 'plunged' : 'fled';
+    state.events.push({ t: result.stoppedBy === 'void' ? 'battle/unitPlunged' : 'battle/unitRingOut',
+      actionNo: state.actionNo + 1, actor: actor.id, target: target.id });
+  }
+  state.events.push({ t: 'battle/displaced', actionNo: state.actionNo + 1, actor: actor.id,
+    target: target.id, amount: result.cellsMoved, payload: { kind: displacement.kind,
+      requestedCells: displacement.cells, ...result, ...(bossPlunge ? { bossImmune: true } : {}) } });
+}
+
+function applyConfiguredOnHit(state: BattleState, actor: BattleUnit, target: BattleUnit,
+  move: BattleMove, parried: boolean, segmentIndex: number, rng: Rng): void {
+  const applications = move.onHit?.applyBuffs ?? [];
+  if (applications.length > 0) {
+    if (move.sourceGrade === undefined) throw new TypeError('BATTLE_MOVE_SOURCE_GRADE_REQUIRED');
+    const child = createOnHitRng(state, actor, target, move, segmentIndex, rng);
+    for (const application of applications) {
+      const effectiveChanceBp = effectChanceBp(application.chanceBp, actor, target,
+        application.buffId, parried);
+      if (!chanceBp(child, effectiveChanceBp)) continue;
+      const applied = upsertConfiguredBuff(state, actor, target, move, application);
+      state.events.push({ t: 'battle/buffApplied', actionNo: state.actionNo + 1, actor: actor.id,
+        target: target.id, payload: { buffId: application.buffId, iid: applied.iid,
+          grade: applied.grade, turns: application.turns, refreshed: applied.refreshed,
+          effectiveChanceBp, rngChild: ON_HIT_RNG_CHILD } });
+    }
+  }
 }
 
 function upsertAcupointBuff(target: BattleUnit, sourceId: string, sourceGrade: number,
@@ -550,9 +708,10 @@ function performAction(state: BattleState, validated: ValidatedPlan, rng: Rng,
   if (action.t === 'item') return { hpDamage: 0,
     recovery: useBattleItem(state, actor, targets[0]!, action.item) };
   if (move === null) throw new RangeError('UNKNOWN_MOVE');
+  const staggered = hasStaggerRecoveryPenalty(actor.buffs);
   actor.mp -= move.mpCost; recordMoveUse(state, actor, move);
   const route = commitSkillRoute(state, actor, move, targets, rng);
-  if (route?.qi.circulationBp === BP_SCALE && route.qi.releasedQi > 0) {
+  if (route !== null && route.qi.circulationBp === BP_SCALE && route.qi.releasedQi > 0) {
     incrementStat(state.rewardStats.fullCirculations, actor.id);
   }
   let hpDamage = 0; let criticalJudge: ReturnType<typeof settleTarget> | null = null;
@@ -563,7 +722,10 @@ function performAction(state: BattleState, validated: ValidatedPlan, rng: Rng,
   }
   if (route !== null && criticalJudge !== null) emitFullCycleCrit(state, actor, move, targets, route,
     criticalJudge.critical, criticalJudge.critRollBp, criticalJudge.critChanceBp);
-  return { hpDamage, recovery: move.recovery + (route?.qi.flowCt ?? 0) };
+  if (staggered) consumeStaggerRecoveryPenalty(actor.buffs);
+  const baseRecovery = staggered
+    ? mulDivFloor(move.recovery * 12_000 + 5_000, 1, 10_000) : move.recovery;
+  return { hpDamage, recovery: baseRecovery + (route?.qi.flowCt ?? 0) };
 }
 
 export function advanceBattleTick(state: BattleState): void {

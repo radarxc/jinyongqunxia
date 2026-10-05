@@ -1,0 +1,26 @@
+schemaVersion: buff.v1
+id: bf_shiheng
+name: 失衡
+category: effect
+polarity: debuff
+grade: inherit
+gradeRange: [1, 12]
+tags: [cc]
+subTags: [cc.stagger]
+resistAttr: resCC
+duration: {type: turns, value: 1, fresh: skipFirst}
+stack: {rule: refresh, key: def}
+dispel: {dispellable: false}
+priority: 450
+params: {hitPct: '-0.02 * G', parryPct: '-0.04 * G'}
+mods:
+  - {op: modStat, stat: hit, kind: pct, value: p.hitPct}
+  - {op: modStat, stat: parry, kind: pct, value: p.parryPct}
+  - {op: modRecovery, valueBp: 2000, consume: nextMove}
+ui: {icon: buff/shiheng, frame: auto, showTimer: true, sortGroup: control}
+text:
+  short: 命中招架下降
+  desc: 命中 −2%×G，招架 −4%×G；下一招收招 +20%。
+  log: '{holder} 身形失衡。'
+origin: canonExpanded
+canonRef: 太极拳“四两拨千斤”（倚天）；破招失衡机制为原创扩展

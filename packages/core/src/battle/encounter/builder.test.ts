@@ -19,13 +19,16 @@ const build = (index: number, lossStreak = 0) => buildEncounter(PROLOGUE_ENCOUNT
 });
 
 function arenaMap(): RegionMap {
-  const valid = new Uint8Array(128); valid[0] = 3;
+  const valid = new Uint8Array(128); valid[0] = 7; valid[4] = 3;
   const terrain = new Uint8Array(1_024); const heights = new Uint8Array(1_024);
+  terrain[2] = 1; terrain[32] = 2; terrain[33] = 3;
+  heights[0] = 10; heights[1] = 10; heights[33] = 10;
   const cells = [{ q: 0, r: 0, h: 0 }, { q: 1, r: 0, h: 0 }];
   return { schemaVersion: 'region-map.v1', id: 'sc_00_arena', regionId: 'rg_fixture',
     chapterScope: ['ch00_yuenv'], eraLayer: 'ch00',
     bounds: { qMin: 0, qMax: 31, rMin: 0, rMax: 31 }, chunkSize: 32,
-    terrainTable: ['tr_pingdi'], chunks: [{ q: 0, r: 0, width: 32, height: 32,
+    terrainTable: ['tr_pingdi', 'tr_shengu', 'tr_suishi', 'tr_shenshui'],
+    chunks: [{ q: 0, r: 0, width: 32, height: 32,
       valid: Buffer.from(valid).toString('base64'), terrainEncoding: 'u8',
       terrain: Buffer.from(terrain).toString('base64'), heights: Buffer.from(heights).toString('base64'),
       ramps: [], water: [], precomputedAo: null, decos: [], objects: [] }],
@@ -54,8 +57,15 @@ describe('encounter.v1 builder', () => {
       regionMaps: [arenaMap()] });
     expect(launch.setup.grid.cells.map(({ q, r }) => ({ q, r })))
       .toEqual([{ q: 0, r: 0 }, { q: 1, r: 0 }]);
+    expect(launch.setup.grid.cells.find((cell) => cell.q === 1))
+      .toMatchObject({ terrainId: 'tr_pingdi', landMulBp: 10_000 });
     expect(launch.setup.returnContext).toMatchObject({ sceneRef: 'sc_00_arena',
       anchorRef: 'arena_fixture' });
+    expect(launch.setup.grid.cells.find((cell) => cell.q === 1)?.displacementExits)
+      .toEqual(expect.arrayContaining([
+        { direction: 0, kind: 'void' }, { direction: 4, kind: 'fall', landingHeight: 0,
+          landMulBp: 12_000 }, { direction: 5, kind: 'water' },
+      ]));
   });
 
   it('rejects missing or mismatched RegionMap and BattleArena references', () => {
@@ -154,6 +164,11 @@ describe('encounter.v1 builder', () => {
     expect([ally.hpMax, ally.stats.atkOut, ally.stats.atkIn]).toEqual([
       mulBpFloor(base.hpMax, 6_000), base.stats.atkOut, base.stats.atkIn,
     ]);
+    const elite = expandEncounterUnitSeed(base, participant, 'elite', 'diff_xiake', 10_000);
+    const boss = expandEncounterUnitSeed(base, participant, 'boss', 'diff_xiake', 10_000);
+    expect(elite).toMatchObject({ environmentDamageBp: 5_000 });
+    expect(elite.boss).toBeUndefined();
+    expect(boss).toMatchObject({ environmentDamageBp: 2_500, boss: true });
   });
 
   it('fires Aqings rescue below 45 percent once', () => {
