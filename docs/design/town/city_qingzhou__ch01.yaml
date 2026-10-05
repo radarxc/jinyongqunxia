@@ -1,0 +1,47 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_qingzhou"
+chapter_id: "ch01"
+book_world: "ch01_tianlong"
+display_name: "青州东阳城与南阳郭"
+historical_year: 1093
+era_kit: "song_north"
+seed: 524017849
+design_intent: {"prosperity": "major_city_candidate", "notes": ["复原依据：history/city_qingzhou__northern_song.md；1093年历史拓扑缩景，不是同期测绘图。", "1093州治仍在北部东阳城，南为南阳郭，中隔南阳河；1129后东阳毁、金初才迁南阳城。", "双城与中河拓扑有据；两城墙线、门位和桥位均推定。", "本批不新造章节事件、NPC、营生或正式场景；素材只表达年代美术候选，不反证城址。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 16, "z": 12}, {"x": 144, "z": 12}, {"x": 144, "z": 148}, {"x": 16, "z": 148}]}, "inside_margin_cells": 2, "basis": "图名：东阳城—南阳郭联合包络（推定）；src_qingzhou支持北城、南郭与中隔河流；连续外框只为让缩景路网可通行，非1093城墙实测（原创扩展）。"}
+gates:
+  - {"id": "south_outer", "side": "south", "at": {"x": 80, "z": 12}, "width_cells": 6, "asset_type": "tex_town_song_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：south_outer（推定）；src_qingzhou支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "north_outer", "side": "north", "at": {"x": 80, "z": 148}, "width_cells": 6, "asset_type": "tex_town_song_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：north_outer（推定）；src_qingzhou支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 16, "z": 112}, "width_cells": 6, "asset_type": "tex_town_song_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：west_gate（推定）；src_qingzhou支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 144, "z": 112}, "width_cells": 6, "asset_type": "tex_town_song_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：east_gate（推定）；src_qingzhou支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 5, "points": [{"x": 80, "z": 12}, {"x": 80, "z": 148}], "surface": "dirt_road", "priority": 100, "basis": "图名：南阳郭至东阳城通路（推定）；src_qingzhou只约束拓扑或地理关系，线位与5格路宽为游戏缩景（原创扩展）。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 16, "z": 112}, {"x": 144, "z": 112}], "surface": "dirt_road", "priority": 80, "basis": "图名：东阳城横街（推定）；src_qingzhou只约束拓扑或地理关系，线位与5格路宽为游戏缩景（原创扩展）。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 20, "z": 39}, {"x": 140, "z": 39}], "surface": "dirt_road", "priority": 60, "basis": "图名：南阳郭坊巷（推定）；为院落群沿街铺开所作游戏缩景（原创扩展）。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 20, "z": 128}, {"x": 140, "z": 128}], "surface": "dirt_road", "priority": 60, "basis": "图名：东阳城坊巷（推定）；为院落群沿街铺开所作游戏缩景（原创扩展）。"}
+rivers:
+  - {"id": "nanyang_river", "width_cells": 6, "points": [{"x": 20, "z": 80}, {"x": 140, "z": 80}], "flow": "east", "navigable": false, "basis": "图名：南阳河；src_qingzhou支持两城中隔河流；缩景河段、线位和宽度为（推定）。"}
+lakes: []
+bridges:
+  - {"id": "between_city_bridge", "at": {"x": 80, "z": 80}, "river_ref": "nanyang_river", "road_ref": "axis", "length_cells": 12, "width_cells": 5, "rotation_deg": 0, "basis": "图名：城间桥（推定）；src_qingzhou只支持隔河关系，桥位和形制为（原创扩展）。"}
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 20, "z": 112}, "max": {"x": 68, "z": 144}}}, "priority": 100, "density": 0.34, "allowed_building_types": ["bld_kit_song_north_courtyard"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：东阳城官署（推定）；src_qingzhou不提供1093地籍，分区边界、支路与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 92, "z": 98}, "max": {"x": 140, "z": 122}}}, "priority": 90, "density": 0.55, "allowed_building_types": ["bld_kit_song_north_shop_1f", "bld_kit_song_north_shop_2f", "bld_kit_song_north_inn", "bld_kit_song_north_market_stall"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：东阳城市肆（推定）；src_qingzhou不提供1093地籍，分区边界、支路与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 20, "z": 16}, "max": {"x": 68, "z": 62}}}, "priority": 50, "density": 0.32, "allowed_building_types": ["bld_kit_song_north_house_small"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：南阳郭民居（推定）；src_qingzhou不提供1093地籍，分区边界、支路与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 92, "z": 16}, "max": {"x": 140, "z": 62}}}, "priority": 80, "density": 0.38, "allowed_building_types": ["bld_kit_song_north_house_large", "bld_kit_song_north_stable"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：南阳郭仓驿（推定）；src_qingzhou不提供1093地籍，分区边界、支路与驿舍替身均为玩法缩景（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_north_courtyard", "zone_refs": ["zone_office"], "count": {"min": 5, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景官署院落群配额（原创扩展）【建议值】；保留支路、通行与院地。"}
+  - {"type": "bld_kit_song_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景沿街铺开配额（原创扩展）【建议值】；不自动开放营生。"}
+  - {"type": "bld_kit_song_north_shop_2f", "zone_refs": ["zone_market"], "count": {"min": 4, "max": 4}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景沿街铺开配额（原创扩展）【建议值】；不自动开放营生。"}
+  - {"type": "bld_kit_song_north_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不自动开放营生。"}
+  - {"type": "bld_kit_song_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 10, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景沿街铺开配额（原创扩展）【建议值】；摊位间保留通道。"}
+  - {"type": "bld_kit_song_north_house_small", "zone_refs": ["zone_houses"], "count": {"min": 20, "max": 20}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景民居院落群配额（原创扩展）【建议值】；不以数量推算人口。"}
+  - {"type": "bld_kit_song_north_house_large", "zone_refs": ["zone_service"], "count": {"min": 13, "max": 13}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "大民居贴片代作驿舍/库院外观（原创扩展）【建议值】；不自动开放营生。"}
+  - {"type": "bld_kit_song_north_stable", "zone_refs": ["zone_service"], "count": {"min": 3, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；与驿舍保留一格净空。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不连续成行，不作为1093年物候复原。", "basis": "图名：空地植被；src_qingzhou不提供植被地籍，密度为（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_qingzhou", "kind": "gazetteer", "title": "青州市志：青州城", "url": "https://shandong-chorography.org/database/c7/section/9/article/12/", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已打开正文或在本轮成功读取页面；本规格只取年代、建制与相对拓扑，不把搜索摘要或后世图直接当1093测绘。"}

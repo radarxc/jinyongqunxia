@@ -1,0 +1,46 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_hangzhou"
+chapter_id: "ch01"
+book_world: "ch01_tianlong"
+display_name: "杭州州城（吴越罗城）"
+historical_year: 1093
+era_kit: "song_southern"
+seed: 1554673601
+design_intent: {"prosperity": "capital_candidate", "notes": ["复原依据：history/city_hangzhou__northern_song.md；1093年历史拓扑缩景，不是同期测绘图。", "1093沿用钱镠吴越罗城，南北长、东西窄，俗称腰鼓城，设十门；西湖在西、运河贯城、钱塘江在南。", "已看后世城垣变迁示意图，仅取罗城与湖江运河相对关系；不是1093实测图，也不是南宋行在。", "本批不新造章节事件、NPC、营生或正式场景；素材只表达年代美术候选，不反证城址。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 42, "z": 6}, {"x": 108, "z": 12}, {"x": 124, "z": 48}, {"x": 118, "z": 94}, {"x": 102, "z": 154}, {"x": 48, "z": 150}, {"x": 34, "z": 108}, {"x": 38, "z": 58}]}, "inside_margin_cells": 2, "basis": "图名：吴越罗城腰鼓形包络；src_hangzhou及已看城垣变迁示意图支持南北长、东西窄，八点轮廓与缩比（推定）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 74, "z": 9}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：south_gate（推定）；src_hangzhou支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 76, "z": 152}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：north_gate（推定）；src_hangzhou支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 35, "z": 84}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：west_gate（推定）；src_hangzhou支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 119, "z": 84}, "width_cells": 6, "asset_type": "tex_town_song_southern_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：east_gate（推定）；src_hangzhou支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 74, "z": 9}, {"x": 74, "z": 84}, {"x": 76, "z": 152}], "surface": "dirt_road", "priority": 100, "basis": "图名：运河城市纵轴（推定）；src_hangzhou只约束拓扑或地理关系，线位与6格路宽为游戏缩景（原创扩展）。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 35, "z": 84}, {"x": 119, "z": 84}], "surface": "dirt_road", "priority": 80, "basis": "图名：东西横街（推定）；src_hangzhou只约束拓扑或地理关系，线位与5格路宽为游戏缩景（原创扩展）。"}
+rivers: []
+lakes:
+  - {"id": "west_lake", "polygon": {"points": [{"x": 0, "z": 28}, {"x": 24, "z": 30}, {"x": 31, "z": 70}, {"x": 28, "z": 118}, {"x": 12, "z": 142}, {"x": 0, "z": 142}]}, "basis": "图名：西湖；src_hangzhou与已看示意图支持罗城西邻西湖；岸线与1093水位（推定）。"}
+  - {"id": "qiantang_edge", "polygon": {"points": [{"x": 0, "z": 0}, {"x": 160, "z": 0}, {"x": 160, "z": 4}, {"x": 100, "z": 5}, {"x": 40, "z": 4}, {"x": 0, "z": 7}]}, "basis": "图名：钱塘江；src_hangzhou支持罗城南抵江岸方向；画幅水缘为（推定）。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 48, "z": 88}, "max": {"x": 76, "z": 138}}}, "priority": 100, "density": 0.42, "allowed_building_types": ["bld_kit_song_southern_yamen", "bld_kit_song_southern_courtyard"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：官署院落（推定）；src_hangzhou不提供1093地籍，分区边界与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 80, "z": 22}, "max": {"x": 100, "z": 72}}}, "priority": 90, "density": 0.42, "allowed_building_types": ["bld_kit_song_southern_shop_1f", "bld_kit_song_southern_inn", "bld_kit_song_southern_market_stall"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：市肆（推定）；src_hangzhou不提供1093地籍，分区边界与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 48, "z": 22}, "max": {"x": 76, "z": 72}}}, "priority": 50, "density": 0.42, "allowed_building_types": ["bld_kit_song_southern_house", "bld_kit_song_southern_courtyard"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：民居（推定）；src_hangzhou不提供1093地籍，分区边界与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 80, "z": 88}, "max": {"x": 100, "z": 138}}}, "priority": 80, "density": 0.42, "allowed_building_types": ["bld_kit_song_southern_warehouse", "bld_kit_song_southern_stable", "bld_kit_song_southern_guardhouse", "bld_kit_song_southern_house"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：仓驿（推定）；src_hangzhou不提供1093地籍，分区边界与建筑数量均为玩法缩景（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_southern_yamen", "zone_refs": ["zone_office"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+  - {"type": "bld_kit_song_southern_courtyard", "zone_refs": ["zone_office", "zone_houses"], "count": {"min": 2, "max": 5}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+  - {"type": "bld_kit_song_southern_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 3, "max": 7}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+  - {"type": "bld_kit_song_southern_inn", "zone_refs": ["zone_market"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+  - {"type": "bld_kit_song_southern_market_stall", "zone_refs": ["zone_market"], "count": {"min": 5, "max": 10}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+  - {"type": "bld_kit_song_southern_house", "zone_refs": ["zone_houses", "zone_service"], "count": {"min": 10, "max": 22}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+  - {"type": "bld_kit_song_southern_warehouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+  - {"type": "bld_kit_song_southern_stable", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+  - {"type": "bld_kit_song_southern_guardhouse", "zone_refs": ["zone_service"], "count": {"min": 1, "max": 1}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不以数量推算人口，不自动开放营生。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不连续成行，不作为1093年物候复原。", "basis": "图名：空地植被；src_hangzhou不提供植被地籍，密度为（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_hangzhou", "kind": "official_web", "title": "杭州文史网：杭州古城墙琐谈", "url": "https://www.hangchow.org/index.php/base/news_show/cid/71", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已打开正文或在本轮成功读取页面；本规格只取年代、建制与相对拓扑，不把搜索摘要或后世图直接当1093测绘。"}

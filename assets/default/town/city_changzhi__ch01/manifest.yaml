@@ -1,0 +1,100 @@
+- id: town_city_changzhi__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 潞州治上党县，1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_changzhi__ch01/layout.yaml -o assets/default/town/city_changzhi__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: 0ae7e0295fac1df0a0c38a90e36afe23cc56ff4bfa56bf9f01284102efcca374
+  status: candidate
+  references:
+  - docs/design/town/city_changzhi__ch01.yaml
+  - docs/design/town/history/city_changzhi__northern_song.md
+  - assets/default/tile/song_north/
+  - assets/default/building-map/song_north/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；套件回退 26 项（按素材变体计）：gate、road、grass、earth、edge 使用基线或共享贴片；历史限制：977–1100年潞州建制已核，方城、门街、地籍与北西官署仍为推定；不套用明代潞安府城。
+  asset_substitutions:
+  - requested_id: tex_town_song_north_city_gate
+    actual_id: tex_town_song_dali_city_gate__k4_r270_v01
+    reason: era-kit-fallback:tex_town_song_north_city_gate->tex_town_song_dali_city_gate
+  - requested_id: tex_town_song_north_city_gate
+    actual_id: tex_town_song_dali_city_gate__k4_r270_v01
+    reason: gate-width:requested=6,source=4
+  - requested_id: tex_town_song_north_city_gate
+    actual_id: tex_town_song_dali_city_gate__k5_r180_v01
+    reason: era-kit-fallback:tex_town_song_north_city_gate->tex_town_song_dali_city_gate
+  - requested_id: tex_town_song_north_city_gate
+    actual_id: tex_town_song_dali_city_gate__k5_r180_v01
+    reason: gate-width:requested=6,source=5
+  - requested_id: tex_town_song_north_city_gate
+    actual_id: tex_town_song_southern_city_gate__k5_r090_v01
+    reason: era-kit-fallback:tex_town_song_north_city_gate->tex_town_song_southern_city_gate
+  - requested_id: tex_town_song_north_city_gate
+    actual_id: tex_town_song_southern_city_gate__k5_r090_v01
+    reason: gate-width:requested=6,source=5
+  - requested_id: tex_town_song_north_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v01
+    reason: era-kit-fallback:tex_town_song_north_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_song_north_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v02
+    reason: era-kit-fallback:tex_town_song_north_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_song_north_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v03
+    reason: era-kit-fallback:tex_town_song_north_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_song_north_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v04
+    reason: era-kit-fallback:tex_town_song_north_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_song_north_grass
+    actual_id: tex_town_song_dali_grass__v01
+    reason: era-kit-fallback:tex_town_song_north_grass->tex_town_song_dali_grass
+  - requested_id: tex_town_song_north_grass
+    actual_id: tex_town_song_dali_grass__v02
+    reason: era-kit-fallback:tex_town_song_north_grass->tex_town_song_dali_grass
+  - requested_id: tex_town_song_north_grass
+    actual_id: tex_town_song_dali_grass__v03
+    reason: era-kit-fallback:tex_town_song_north_grass->tex_town_song_dali_grass
+  - requested_id: tex_town_song_north_grass
+    actual_id: tex_town_song_dali_grass__v04
+    reason: era-kit-fallback:tex_town_song_north_grass->tex_town_song_dali_grass
+  - requested_id: tex_town_song_north_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v01
+    reason: era-kit-fallback:tex_town_song_north_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_song_north_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v02
+    reason: era-kit-fallback:tex_town_song_north_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_song_north_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v03
+    reason: era-kit-fallback:tex_town_song_north_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_song_north_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v04
+    reason: era-kit-fallback:tex_town_song_north_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_song_north_road_edge
+    actual_id: tex_town_song_southern_road_edge__e
+    reason: era-kit-fallback:tex_town_song_north_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_song_north_road_edge
+    actual_id: tex_town_song_southern_road_edge__n
+    reason: era-kit-fallback:tex_town_song_north_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_song_north_road_edge
+    actual_id: tex_town_song_southern_road_edge__ne
+    reason: era-kit-fallback:tex_town_song_north_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_song_north_road_edge
+    actual_id: tex_town_song_southern_road_edge__nw
+    reason: era-kit-fallback:tex_town_song_north_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_song_north_road_edge
+    actual_id: tex_town_song_southern_road_edge__s
+    reason: era-kit-fallback:tex_town_song_north_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_song_north_road_edge
+    actual_id: tex_town_song_southern_road_edge__se
+    reason: era-kit-fallback:tex_town_song_north_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_song_north_road_edge
+    actual_id: tex_town_song_southern_road_edge__sw
+    reason: era-kit-fallback:tex_town_song_north_road_edge->tex_town_song_southern_road_edge
+  - requested_id: tex_town_song_north_road_edge
+    actual_id: tex_town_song_southern_road_edge__w
+    reason: era-kit-fallback:tex_town_song_north_road_edge->tex_town_song_southern_road_edge

@@ -1,0 +1,91 @@
+- id: town_city_hangzhou__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 杭州州城（吴越罗城），1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_hangzhou__ch01/layout.yaml -o assets/default/town/city_hangzhou__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: 07597b1483ec96c8a6033ea10fa3250dac17153cf2c8c99ea1ffa10c2abadfbd
+  status: candidate
+  references:
+  - docs/design/town/city_hangzhou__ch01.yaml
+  - docs/design/town/history/city_hangzhou__northern_song.md
+  - assets/default/tile/song_southern/
+  - assets/default/building-map/song_southern/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；套件回退 23 项（按素材变体计）：gate、road、grass、earth、riverbank 使用基线或共享贴片；历史限制：已看后世城垣变迁示意图，仅取罗城与湖江运河相对关系；不是1093实测图，也不是南宋行在。
+  asset_substitutions:
+  - requested_id: tex_town_song_southern_city_gate
+    actual_id: tex_town_song_southern_city_gate__k5_r090_v01
+    reason: gate-width:requested=6,source=5
+  - requested_id: tex_town_song_southern_city_gate
+    actual_id: tex_town_song_southern_city_gate__k7_r180_v01
+    reason: gate-width:requested=6,source=7
+  - requested_id: tex_town_song_southern_city_gate
+    actual_id: tex_town_song_southern_city_gate__k8_r000_v01
+    reason: gate-width:requested=6,source=8
+  - requested_id: tex_town_song_southern_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v01
+    reason: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_song_southern_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v02
+    reason: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_song_southern_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v03
+    reason: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_song_southern_dirt_road
+    actual_id: tex_town_song_dali_dirt_road__v04
+    reason: shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road
+  - requested_id: tex_town_song_southern_grass
+    actual_id: tex_town_song_dali_grass__v01
+    reason: shared-material:tex_town_song_southern_grass->tex_town_song_dali_grass
+  - requested_id: tex_town_song_southern_grass
+    actual_id: tex_town_song_dali_grass__v02
+    reason: shared-material:tex_town_song_southern_grass->tex_town_song_dali_grass
+  - requested_id: tex_town_song_southern_grass
+    actual_id: tex_town_song_dali_grass__v03
+    reason: shared-material:tex_town_song_southern_grass->tex_town_song_dali_grass
+  - requested_id: tex_town_song_southern_grass
+    actual_id: tex_town_song_dali_grass__v04
+    reason: shared-material:tex_town_song_southern_grass->tex_town_song_dali_grass
+  - requested_id: tex_town_song_southern_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v01
+    reason: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_song_southern_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v02
+    reason: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_song_southern_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v03
+    reason: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_song_southern_rammed_earth
+    actual_id: tex_town_song_dali_rammed_earth__v04
+    reason: shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth
+  - requested_id: tex_town_song_southern_riverbank
+    actual_id: tex_town_song_dali_riverbank__e
+    reason: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_song_southern_riverbank
+    actual_id: tex_town_song_dali_riverbank__n
+    reason: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_song_southern_riverbank
+    actual_id: tex_town_song_dali_riverbank__ne
+    reason: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_song_southern_riverbank
+    actual_id: tex_town_song_dali_riverbank__nw
+    reason: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_song_southern_riverbank
+    actual_id: tex_town_song_dali_riverbank__s
+    reason: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_song_southern_riverbank
+    actual_id: tex_town_song_dali_riverbank__se
+    reason: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_song_southern_riverbank
+    actual_id: tex_town_song_dali_riverbank__sw
+    reason: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank
+  - requested_id: tex_town_song_southern_riverbank
+    actual_id: tex_town_song_dali_riverbank__w
+    reason: shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank

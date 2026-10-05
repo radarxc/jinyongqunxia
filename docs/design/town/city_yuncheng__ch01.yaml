@@ -1,0 +1,46 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_yuncheng"
+chapter_id: "ch01"
+book_world: "ch01_tianlong"
+display_name: "解州治解县"
+historical_year: 1093
+era_kit: "song_north"
+seed: 1960571442
+design_intent: {"prosperity": "major_city_candidate", "notes": ["复原依据：history/city_yuncheng__northern_song.md；1093年历史拓扑缩景，不是同期测绘图。", "北宋解州治所在今盐湖区解州镇，不是现代运城市中心。", "盐池只作南侧画幅地理提示；州城墙线、门数与市街为推定。", "本批不新造章节事件、NPC、营生或正式场景；素材只表达年代美术候选，不反证城址。"]}
+grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
+runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
+projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}
+wall: {"polygon": {"points": [{"x": 16, "z": 16}, {"x": 144, "z": 16}, {"x": 144, "z": 144}, {"x": 16, "z": 144}]}, "inside_margin_cells": 2, "basis": "图名：城垣；src_yuncheng支持北宋解州治所在今盐湖区解州镇，不是现代运城市中心。 城墙坐标与缩比为（推定）（原创扩展）。"}
+gates:
+  - {"id": "south_gate", "side": "south", "at": {"x": 80, "z": 16}, "width_cells": 6, "asset_type": "tex_town_song_north_city_gate", "rotation_deg": 0, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": true, "basis": "图名：south_gate（推定）；src_yuncheng支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "north_gate", "side": "north", "at": {"x": 80, "z": 144}, "width_cells": 6, "asset_type": "tex_town_song_north_city_gate", "rotation_deg": 180, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "axis", "primary": false, "basis": "图名：north_gate（推定）；src_yuncheng支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "west_gate", "side": "west", "at": {"x": 16, "z": 80}, "width_cells": 6, "asset_type": "tex_town_song_north_city_gate", "rotation_deg": 90, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：west_gate（推定）；src_yuncheng支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+  - {"id": "east_gate", "side": "east", "at": {"x": 144, "z": 80}, "width_cells": 6, "asset_type": "tex_town_song_north_city_gate", "rotation_deg": 270, "footprint_cells": {"w": 10, "h": 4}, "passage_cells": {"w": 6, "h": 4}, "road_ref": "cross", "primary": false, "basis": "图名：east_gate（推定）；src_yuncheng支持城市层级或相对关系；门位、六格门洞与门楼形制为游戏缩景（原创扩展），不采用后世门额。"}
+streets:
+  - {"id": "axis", "class": "main_axis", "width_cells": 6, "points": [{"x": 80, "z": 16}, {"x": 80, "z": 144}], "surface": "dirt_road", "priority": 100, "basis": "图名：南北主街（推定）；src_yuncheng只约束拓扑或地理关系，线位与6格路宽为游戏缩景（原创扩展）。"}
+  - {"id": "cross", "class": "secondary", "width_cells": 5, "points": [{"x": 16, "z": 80}, {"x": 144, "z": 80}], "surface": "dirt_road", "priority": 80, "basis": "图名：东西横街（推定）；src_yuncheng只约束拓扑或地理关系，线位与5格路宽为游戏缩景（原创扩展）。"}
+  - {"id": "south_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 20, "z": 48}, {"x": 136, "z": 48}], "surface": "dirt_road", "priority": 60, "basis": "图名：南坊支路（推定）；为院落群沿街铺开所作游戏缩景（原创扩展）。"}
+  - {"id": "north_lane", "class": "secondary", "width_cells": 3, "points": [{"x": 20, "z": 112}, {"x": 136, "z": 112}], "surface": "dirt_road", "priority": 60, "basis": "图名：北坊支路（推定）；为院落群沿街铺开所作游戏缩景（原创扩展）。"}
+rivers: []
+lakes:
+  - {"id": "salt_lake_edge", "polygon": {"points": [{"x": 0, "z": 0}, {"x": 160, "z": 0}, {"x": 160, "z": 7}, {"x": 110, "z": 10}, {"x": 48, "z": 8}, {"x": 0, "z": 12}]}, "basis": "图名：盐池方向；src_yuncheng支持解州地望；水缘仅为南侧区域提示，非1093岸线测绘（推定）。"}
+bridges: []
+zones:
+  - {"id": "zone_office", "kind": "administrative", "geometry": {"rect": {"min": {"x": 20, "z": 88}, "max": {"x": 74, "z": 136}}}, "priority": 100, "density": 0.32, "allowed_building_types": ["bld_kit_song_north_courtyard"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：官署院落（推定）；src_yuncheng不提供1093地籍，分区边界、支路与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_market", "kind": "market", "geometry": {"rect": {"min": {"x": 86, "z": 24}, "max": {"x": 136, "z": 72}}}, "priority": 90, "density": 0.48, "allowed_building_types": ["bld_kit_song_north_shop_1f", "bld_kit_song_north_shop_2f", "bld_kit_song_north_inn", "bld_kit_song_north_market_stall"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：市肆（推定）；src_yuncheng不提供1093地籍，分区边界、支路与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_houses", "kind": "residential", "geometry": {"rect": {"min": {"x": 20, "z": 24}, "max": {"x": 74, "z": 72}}}, "priority": 50, "density": 0.32, "allowed_building_types": ["bld_kit_song_north_house_small"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：民居（推定）；src_yuncheng不提供1093地籍，分区边界、支路与建筑数量均为玩法缩景（原创扩展）。"}
+  - {"id": "zone_service", "kind": "gate_service", "geometry": {"rect": {"min": {"x": 86, "z": 88}, "max": {"x": 136, "z": 136}}}, "priority": 80, "density": 0.35, "allowed_building_types": ["bld_kit_song_north_house_large", "bld_kit_song_north_stable"], "ground_mix": {"rammed_earth": 85, "grass": 15}, "basis": "图名：仓驿（推定）；src_yuncheng不提供1093地籍，分区边界、支路与驿舍替身均为玩法缩景（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type": "bld_kit_song_north_courtyard", "zone_refs": ["zone_office"], "count": {"min": 8, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景官署院落群配额（原创扩展）【建议值】；保留支路、通行与院地。"}
+  - {"type": "bld_kit_song_north_shop_1f", "zone_refs": ["zone_market"], "count": {"min": 8, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景沿街铺开配额（原创扩展）【建议值】；不自动开放营生。"}
+  - {"type": "bld_kit_song_north_shop_2f", "zone_refs": ["zone_market"], "count": {"min": 8, "max": 8}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景沿街铺开配额（原创扩展）【建议值】；不自动开放营生。"}
+  - {"type": "bld_kit_song_north_inn", "zone_refs": ["zone_market"], "count": {"min": 2, "max": 2}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；不自动开放营生。"}
+  - {"type": "bld_kit_song_north_market_stall", "zone_refs": ["zone_market"], "count": {"min": 20, "max": 20}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景沿街铺开配额（原创扩展）【建议值】；摊位间保留通道。"}
+  - {"type": "bld_kit_song_north_house_small", "zone_refs": ["zone_houses"], "count": {"min": 23, "max": 23}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景民居院落群配额（原创扩展）【建议值】；不以数量推算人口。"}
+  - {"type": "bld_kit_song_north_house_large", "zone_refs": ["zone_service"], "count": {"min": 12, "max": 12}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "大民居贴片代作驿舍/库院外观（原创扩展）【建议值】；不自动开放营生。"}
+  - {"type": "bld_kit_song_north_stable", "zone_refs": ["zone_service"], "count": {"min": 3, "max": 3}, "required": true, "business_ref": null, "institution_ref": null, "placement_note": "压缩场景外观配额（原创扩展）【建议值】；与驿舍保留一格净空。"}
+vegetation: {"palette": ["prp_song_dali_grass"], "density": 0.012, "avoid_road_cells": 2, "cluster_rule": "院落空地少量草簇；不连续成行，不作为1093年物候复原。", "basis": "图名：空地植被；src_yuncheng不提供植被地籍，密度为（原创扩展）【建议值】。"}
+sources:
+  - {"key": "src_yuncheng", "kind": "official_web", "title": "运城市人民政府：历史沿革", "url": "https://www.yuncheng.gov.cn/doc/2019/10/29/2221.shtml", "accessed": "2026-10-04", "confidence": "verified_summary", "supports": ["historical_topology"], "note": "已打开正文或在本轮成功读取页面；本规格只取年代、建制与相对拓扑，不把搜索摘要或后世图直接当1093测绘。"}
