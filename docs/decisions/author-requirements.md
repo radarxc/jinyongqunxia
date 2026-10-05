@@ -32,7 +32,8 @@
   - AR-94：男主身高与平肩调整、脸部质量修复、Rig/动作与Skill沉淀；
   - AR-95：3D 头部质量攻坚（额头发丝粘连融化、耳侧悬空面片、下唇残缺、颅顶过大头重感根治方案）；
   - AR-96：天师袍颜色与形制考据（历史朝廷赐紫 vs 武侠太极黑白双方案供作者选定）；
-  - AR-97：3D 人物模型耳坠治理、无装饰与贴身短款素体基底规范（换装系统解耦）。
+  - AR-97：3D 人物模型耳坠治理、无装饰与贴身短款素体基底规范（换装系统解耦）；
+  - AR-98：全量主角立绘一致性审查与重构规范（王语嫣等场景立绘全面对齐指定 Base 脸部）。
 - ⏸ 搁置：AR-79。3D 全量重做按 AR-85 排在 M1 跑通之后，见 TODO。
 - ↪ 被后续取代：
   - AR-67、AR-68 由 AR-83 取代；
@@ -1942,5 +1943,45 @@
      a) **衣物贴身、短（Tight & Short）**：采用素色贴身短打、紧身短衫窄裤、抹胸短裤或无袖紧身内衬，最大化露出颈部、四肢与关节线条；杜绝宽袖、长裙、大摆及松散褶皱；
      b) **头部去发饰帽子（No Hairpin / Hat / Accessories）**：去除一切发簪、发钗、步摇、花钿、帽子、发带飘尾，保留最干净利落的基础束发或盘髻；
      c) **几何网格干净（Clean Mesh Topology）**：消除一切外挂多余面片，保证骨骼权重纯净，便于外层衣物与发饰模块独立挂载。
+
+
+## AR-98 · 全量主角立绘一致性审查与重构规范（王语嫣等场景立绘全面对齐指定 Base 脸部）（2026-10-05 约 11:15）
+
+作者原文（2026-10-05 约 11:15 PDT，逐字照录）：
+
+> 重新检查一遍所有主角立绘是否一致。比如王语嫣应该是参考刘亦菲的版本，但是现在还有很多其他的版本。例子：
+>
+> 王语嫣应该都按照这个立绘：https://github.com/radarxc/jinyongqunxia/blob/claude/jinyong-online-game-design-jko1v9/assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png
+> 一个不符合的立绘例子（其他所有王语嫣的立绘其实都不符合）：https://github.com/radarxc/jinyongqunxia/blob/claude/jinyong-online-game-design-jko1v9/assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.png
+
+协调者口径：
+1. **脱节历史成因定位**：
+   - 10-02（AR-36）批量生成了主角剧情场景立绘；
+   - 10-03（AR-44/59/84）作者明确指定主角 Base 更换为经典影视/演员版本（如王语嫣参考 2003 刘亦菲版骨相并去婴儿肥）；
+   - 但后续场景立绘未全面按 AR-53 进行头部换脸；且 10-04（AR-82）跑原著服饰细节修正时，直接继承了旧场景图已有的模板 AI 脸，导致旧脸被局部精修固化，彻底与新 Base 脱节。
+2. **王语嫣全量立绘整改（首要任务）**：
+   - 唯一黄金真值：`por_npc_wangyuyan__ch01_youth_mantuo_base.png`（2003 刘亦菲版清雅骨相）；
+   - 不符合的全部场景立绘（5 张）及三视图（1 张）列入必改清单，按 AR-53 头部局部换脸/重绘对齐面部，保留原场景构图、光影与原著服饰：
+     - `por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.png`（茶花回眸）
+     - `por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.png`（磨坊换簪）
+     - `por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.png`（少室求情）
+     - `por_npc_wangyuyan__ch01_youth_scene_tingxiang_discernment.png`（听香辨武）
+     - `por_npc_wangyuyan__ch01_youth_scene_well_self_choice.png`（枯井决断）
+     - `threeview/por_npc_wangyuyan__ch01_youth_mantuo_apose_slim.png`
+3. **全书主要人物排查与治理清单**：
+   - 🔴 **红色严重不一致（亟需按指定 Base 局部重绘/换脸对齐）**：
+     - **王语嫣**（ch01）：全部 5 张场景立绘均为旧模板 AI 脸，需严格对齐 2003 刘亦菲 Base。
+     - **任盈盈**（ch05）：`scene_zhuxiang`（绿竹巷）仍为 1996 TVB 梁佩玲剧照脸，与定稿精修 Base（现代清秀骨相）脱节。
+     - **水笙**（ch09）：`scene_xianghou`、`scene_yuyi` 为网红尖下巴，需对齐 `travel_base` 温婉圆润脸。
+     - **白阿绣**（ch06）：全部 5 张场景图（`guihang`, `lingxiao`, `pangqiao`, `songhai`, `ziyan`）为旧版幼态脸，需同步 AR-58 定稿成熟 Base。
+     - **黄蓉**（ch02/ch03）：`ch02_scene_yideng_heals_iron_palm_wound` 木讷脱节；`ch03_prime_base`（中年黄蓉）提示词停留在朱茵版，需按 2017 李一桐 Base 年长化。
+     - **霍青桐**（ch12）：`scene_blackwater_command` 仍为旧版宽脸，需对齐 AR-91 选定的 E 版 Base。
+     - **喀丝丽**（ch12）：`scene_palace_warning_letter` 瘦长脸，与 AR-86 选定的 B 版 Base 脱节。
+     - **段誉**（ch01）：`scene_langhuan_scroll` 脸型偏长，需微调贴近 2003 林志颖 Base。
+   - 🟢 **绿色合格基准（已对齐且全图一致）**：
+     - 萧峰（1997 黄日华）、杨过（1995 古天乐）、小龙女（2006 刘亦菲）、郭靖（1983 黄日华）、张无忌（2003 苏有朋）、赵敏（2003 贾静雯）、周芷若（2003 高圆圆）、令狐冲（1996 吕颂贤）、石破天、袁承志、狄云、李文秀、陈家洛、胡斐、程灵素、袁紫衣、苗若兰、鹿鼎记七美等。
+4. **技术落实路径**：
+   - 强制以指定定稿 Base 作为脸部第一参考图（Face Reference / IP-Adapter）；
+   - 保护原著场景：仅对头部/面部进行精准局部 Inpaint 与融合，严禁改变原图已符合原著的动作、光影、道具及背景。
 
 
