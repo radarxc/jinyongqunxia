@@ -1,0 +1,158 @@
+- id: npc_zhujue__ch00_f_bald_base_body__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 光头素体基底版（AR-97 换装解耦）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
+    url: https://studio.tripo3d.ai/workspace/generate/b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
+    generate_op: a37a450a-a14e-4b15-895d-b91eee57494d（image_to_model）
+    rig_op: aa3a784c-6be9-4d5e-8fcb-1c515c3f0300
+    animation_ops:
+      idle: d7f9e44f-0ef8-4881-8eb8-9901a4777e06
+      walk: 4f95d7b5-9b94-4b25-a6e6-5600bfd8eace
+      run: 3d8b1bc5-889c-4c18-92b1-fbd47aaa582d
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
+    sha256: 024634f5a171d324ef7abac6881bda16c0828ff5ed96641fcff0d2f0badd6585
+    use: 单图生成输入（A 字姿势全身参考）
+  sha256: fe9c33eb2b0fb1c85e7f7436818166fb4dc3e5c8894854002aabfc1c733e856e
+  size_bytes: 4633392
+  joints: 65
+  triangles: 97380
+  vertices: 53046
+  animations: []
+  textures:
+  - image/jpeg 235579 B
+  - image/jpeg 579096 B
+  - image/jpeg 452486 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-05T13:40:48-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。光头基底便于套发套；Mixamo 65关节；修跑步跳位；关节体检（ingest.py）：髋 y0.56、头 y0.882、头顶骨端 y1.019、双手 y0.607/0.61 外展 0.269/0.27、脚 y0.078/0.078。
+- id: npc_zhujue__ch00_f_bald_base_body__anim_idle_walk_run
+  file: anim_idle_walk_run.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 光头素体基底版（AR-97 换装解耦）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
+    url: https://studio.tripo3d.ai/workspace/generate/b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
+    generate_op: a37a450a-a14e-4b15-895d-b91eee57494d（image_to_model）
+    rig_op: aa3a784c-6be9-4d5e-8fcb-1c515c3f0300
+    animation_ops:
+      idle: d7f9e44f-0ef8-4881-8eb8-9901a4777e06
+      walk: 4f95d7b5-9b94-4b25-a6e6-5600bfd8eace
+      run: 3d8b1bc5-889c-4c18-92b1-fbd47aaa582d
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - run
+      - walk
+      - idle
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
+    sha256: 024634f5a171d324ef7abac6881bda16c0828ff5ed96641fcff0d2f0badd6585
+    use: 单图生成输入（A 字姿势全身参考）
+  sha256: ff91a72b51b6bde9b170893b4115714768de3d21d3c0fb27a1dc98efb592f31e
+  size_bytes: 5111796
+  joints: 65
+  triangles: 97380
+  vertices: 53046
+  animations:
+  - run (1.25s)
+  - walk (2.333s)
+  - idle (15.333s)
+  textures:
+  - image/jpeg 235579 B
+  - image/jpeg 579096 B
+  - image/jpeg 452486 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-05T13:40:48-07:00'
+  status: candidate
+  notes: 动作单文件：一个 GLB 内含 run / walk / idle，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
+- id: npc_zhujue__ch00_f_bald_base_body__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 主角（女）· 光头素体基底版（AR-97 换装解耦） · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
+    url: https://studio.tripo3d.ai/workspace/generate/b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
+    generate_op: a37a450a-a14e-4b15-895d-b91eee57494d（image_to_model）
+    rig_op: aa3a784c-6be9-4d5e-8fcb-1c515c3f0300
+    animation_ops:
+      idle: d7f9e44f-0ef8-4881-8eb8-9901a4777e06
+      walk: 4f95d7b5-9b94-4b25-a6e6-5600bfd8eace
+      run: 3d8b1bc5-889c-4c18-92b1-fbd47aaa582d
+  size: 600x778
+  sha256: 438083dc635a6f6d7708e16d7ce23b07a5f44745d745d7f8a298371b0035678f
+  size_bytes: 86535
+  created: '2026-10-05T13:40:48-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
