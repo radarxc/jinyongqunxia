@@ -3,7 +3,7 @@
 > 本文件由 `tools/agents/build_image_index.py` 生成，不要手改；改提示词就改各文件，改规程就改各组 `GUIDE.md`，然后重新生成。
 > 人物立绘另见 `characters/INDEX.md`（别的 agent 在出，不在本索引）。建筑套件与贴片已出齐，只列完成度。
 
-提示词 **1725** 份：已入库 1129、待出图 464、已通过（作者） 132。**待出图队列 464 行**（`python3 tools/agents/build_image_index.py --queue`）。
+提示词 **1725** 份：已入库 1141、待出图 452、已通过（作者） 132。**待出图队列 452 行**（`python3 tools/agents/build_image_index.py --queue`）。
 
 ## 出图 agent 怎么用
 
@@ -28,18 +28,6 @@
 
 | 组 | asset_id | 名称 | 输出 | 状态 | 提示词 |
 |---|---|---|---|---|---|
-| items | `eq_qingqianhuangsucairuanyuanmao_nan` | 清浅黄素裁软圆帽·男 | `assets/default/item/accessories/eq_qingqianhuangsucairuanyuanmao_nan.png` | 待出图 | [eq_qingqianhuangsucairuanyuanmao_nan.md](items/accessories/eq_qingqianhuangsucairuanyuanmao_nan.md) |
-| items | `eq_qingsubaijinwenbaobozan_nv` | 清素白锦纹包帛簪·女 | `assets/default/item/accessories/eq_qingsubaijinwenbaobozan_nv.png` | 待出图 | [eq_qingsubaijinwenbaobozan_nv.md](items/accessories/eq_qingsubaijinwenbaobozan_nv.md) |
-| items | `eq_qingsubailingwenbaobozan_nv` | 清素白绫纹包帛簪·女 | `assets/default/item/accessories/eq_qingsubailingwenbaobozan_nv.png` | 待出图 | [eq_qingsubailingwenbaobozan_nv.md](items/accessories/eq_qingsubailingwenbaobozan_nv.md) |
-| items | `eq_qingsubaisucaibaobozan_nv` | 清素白素裁包帛簪·女 | `assets/default/item/accessories/eq_qingsubaisucaibaobozan_nv.png` | 待出图 | [eq_qingsubaisucaibaobozan_nv.md](items/accessories/eq_qingsubaisucaibaobozan_nv.md) |
-| items | `eq_qingsubaixicaibaobozan_nv` | 清素白细裁包帛簪·女 | `assets/default/item/accessories/eq_qingsubaixicaibaobozan_nv.png` | 待出图 | [eq_qingsubaixicaibaobozan_nv.md](items/accessories/eq_qingsubaixicaibaobozan_nv.md) |
-| items | `eq_qingsubaixiuyuanbaobozan_nv` | 清素白绣缘包帛簪·女 | `assets/default/item/accessories/eq_qingsubaixiuyuanbaobozan_nv.png` | 待出图 | [eq_qingsubaixiuyuanbaobozan_nv.md](items/accessories/eq_qingsubaixiuyuanbaobozan_nv.md) |
-| items | `eq_tangqianhuangjingxiuruanjiaojin_nan` | 唐浅黄精绣软脚巾·男 | `assets/default/item/accessories/eq_tangqianhuangjingxiuruanjiaojin_nan.png` | 待出图 | [eq_tangqianhuangjingxiuruanjiaojin_nan.md](items/accessories/eq_tangqianhuangjingxiuruanjiaojin_nan.md) |
-| items | `eq_tangqianhuangjinwenruanjiaojin_nan` | 唐浅黄锦纹软脚巾·男 | `assets/default/item/accessories/eq_tangqianhuangjinwenruanjiaojin_nan.png` | 待出图 | [eq_tangqianhuangjinwenruanjiaojin_nan.md](items/accessories/eq_tangqianhuangjinwenruanjiaojin_nan.md) |
-| items | `eq_tangqianhuanglingwenruanjiaojin_nan` | 唐浅黄绫纹软脚巾·男 | `assets/default/item/accessories/eq_tangqianhuanglingwenruanjiaojin_nan.png` | 待出图 | [eq_tangqianhuanglingwenruanjiaojin_nan.md](items/accessories/eq_tangqianhuanglingwenruanjiaojin_nan.md) |
-| items | `eq_tangqianhuangsucairuanjiaojin_nan` | 唐浅黄素裁软脚巾·男 | `assets/default/item/accessories/eq_tangqianhuangsucairuanjiaojin_nan.png` | 待出图 | [eq_tangqianhuangsucairuanjiaojin_nan.md](items/accessories/eq_tangqianhuangsucairuanjiaojin_nan.md) |
-| items | `eq_tangqianhuangxicairuanjiaojin_nan` | 唐浅黄细裁软脚巾·男 | `assets/default/item/accessories/eq_tangqianhuangxicairuanjiaojin_nan.png` | 待出图 | [eq_tangqianhuangxicairuanjiaojin_nan.md](items/accessories/eq_tangqianhuangxicairuanjiaojin_nan.md) |
-| items | `eq_tangqianhuangxiuyuanruanjiaojin_nan` | 唐浅黄绣缘软脚巾·男 | `assets/default/item/accessories/eq_tangqianhuangxiuyuanruanjiaojin_nan.png` | 待出图 | [eq_tangqianhuangxiuyuanruanjiaojin_nan.md](items/accessories/eq_tangqianhuangxiuyuanruanjiaojin_nan.md) |
 | items | `eq_tangsubaijingxiushuchai_nv` | 唐素白精绣梳钗·女 | `assets/default/item/accessories/eq_tangsubaijingxiushuchai_nv.png` | 待出图 | [eq_tangsubaijingxiushuchai_nv.md](items/accessories/eq_tangsubaijingxiushuchai_nv.md) |
 | items | `eq_tangsubaijinwenshuchai_nv` | 唐素白锦纹梳钗·女 | `assets/default/item/accessories/eq_tangsubaijinwenshuchai_nv.png` | 待出图 | [eq_tangsubaijinwenshuchai_nv.md](items/accessories/eq_tangsubaijinwenshuchai_nv.md) |
 | items | `eq_tangsubailingwenshuchai_nv` | 唐素白绫纹梳钗·女 | `assets/default/item/accessories/eq_tangsubailingwenshuchai_nv.png` | 待出图 | [eq_tangsubailingwenshuchai_nv.md](items/accessories/eq_tangsubailingwenshuchai_nv.md) |
@@ -761,46 +749,34 @@
 
 （已全部入库。）
 
-### 护肩 / 披风 / 头饰（170）· 已入库 122、待出图 36、已通过（作者） 12
+### 护肩 / 披风 / 头饰（170）· 已入库 134、待出图 24、已通过（作者） 12
 
 | # | 名称 | ID | 品阶 | 子类 | 图 | 提示词 | 来源 |
 |---:|---|---|---|---|---|---|---|
-| 1 | 清素白锦纹包帛簪·女 | `eq_qingsubaijinwenbaobozan_nv` | 地下 | 头饰·冠巾簪饰 | 待出图 | [eq_qingsubaijinwenbaobozan_nv.md](items/accessories/eq_qingsubaijinwenbaobozan_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3／§4 |
-| 2 | 清素白绣缘包帛簪·女 | `eq_qingsubaixiuyuanbaobozan_nv` | 地中 | 头饰·冠巾簪饰 | 待出图 | [eq_qingsubaixiuyuanbaobozan_nv.md](items/accessories/eq_qingsubaixiuyuanbaobozan_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3／§4 |
-| 3 | 唐浅黄精绣软脚巾·男 | `eq_tangqianhuangjingxiuruanjiaojin_nan` | 地上 | 头饰·冠巾簪饰 | 待出图 | [eq_tangqianhuangjingxiuruanjiaojin_nan.md](items/accessories/eq_tangqianhuangjingxiuruanjiaojin_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 4 | 唐浅黄锦纹软脚巾·男 | `eq_tangqianhuangjinwenruanjiaojin_nan` | 地下 | 头饰·冠巾簪饰 | 待出图 | [eq_tangqianhuangjinwenruanjiaojin_nan.md](items/accessories/eq_tangqianhuangjinwenruanjiaojin_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 5 | 唐浅黄绣缘软脚巾·男 | `eq_tangqianhuangxiuyuanruanjiaojin_nan` | 地中 | 头饰·冠巾簪饰 | 待出图 | [eq_tangqianhuangxiuyuanruanjiaojin_nan.md](items/accessories/eq_tangqianhuangxiuyuanruanjiaojin_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 6 | 唐素白精绣梳钗·女 | `eq_tangsubaijingxiushuchai_nv` | 地上 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaijingxiushuchai_nv.md](items/accessories/eq_tangsubaijingxiushuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 7 | 唐素白锦纹梳钗·女 | `eq_tangsubaijinwenshuchai_nv` | 地下 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaijinwenshuchai_nv.md](items/accessories/eq_tangsubaijinwenshuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 8 | 唐素白绣缘梳钗·女 | `eq_tangsubaixiuyuanshuchai_nv` | 地中 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaixiuyuanshuchai_nv.md](items/accessories/eq_tangsubaixiuyuanshuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 9 | 唐紫罗绣缘帛面行披 | `eq_tangziluoxiuyuanbomianxingpi_tongyong` | 地中 | 披风·围披 | 待出图 | [eq_tangziluoxiuyuanbomianxingpi_tongyong.md](items/accessories/eq_tangziluoxiuyuanbomianxingpi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 10 | 元浅黄精绣圆顶毡帽·男 | `eq_yuanqianhuangjingxiuyuandingzhanmao_nan` | 地上 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangjingxiuyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangjingxiuyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 11 | 元浅黄锦纹圆顶毡帽·男 | `eq_yuanqianhuangjinwenyuandingzhanmao_nan` | 地下 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangjinwenyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangjinwenyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 12 | 元浅黄绣缘圆顶毡帽·男 | `eq_yuanqianhuangxiuyuanyuandingzhanmao_nan` | 地中 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangxiuyuanyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangxiuyuanyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 13 | 元素白精绣束髻帛饰·女 | `eq_yuansubaijingxiushujiboshi_nv` | 地上 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaijingxiushujiboshi_nv.md](items/accessories/eq_yuansubaijingxiushujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 14 | 元素白锦纹束髻帛饰·女 | `eq_yuansubaijinwenshujiboshi_nv` | 地下 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaijinwenshujiboshi_nv.md](items/accessories/eq_yuansubaijinwenshujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 15 | 元素白绣缘束髻帛饰·女 | `eq_yuansubaixiuyuanshujiboshi_nv` | 地中 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaixiuyuanshujiboshi_nv.md](items/accessories/eq_yuansubaixiuyuanshujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 16 | 元紫罗绣缘绢面围披 | `eq_yuanziluoxiuyuanjuanmianweipi_tongyong` | 地中 | 披风·围披 | 待出图 | [eq_yuanziluoxiuyuanjuanmianweipi_tongyong.md](items/accessories/eq_yuanziluoxiuyuanjuanmianweipi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 17 | 清素白绫纹包帛簪·女 | `eq_qingsubailingwenbaobozan_nv` | 玄上 | 头饰·冠巾簪饰 | 待出图 | [eq_qingsubailingwenbaobozan_nv.md](items/accessories/eq_qingsubailingwenbaobozan_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3／§4 |
-| 18 | 清素白细裁包帛簪·女 | `eq_qingsubaixicaibaobozan_nv` | 玄下 | 头饰·冠巾簪饰 | 待出图 | [eq_qingsubaixicaibaobozan_nv.md](items/accessories/eq_qingsubaixicaibaobozan_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3／§4 |
-| 19 | 唐浅黄绫纹软脚巾·男 | `eq_tangqianhuanglingwenruanjiaojin_nan` | 玄上 | 头饰·冠巾簪饰 | 待出图 | [eq_tangqianhuanglingwenruanjiaojin_nan.md](items/accessories/eq_tangqianhuanglingwenruanjiaojin_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 20 | 唐浅黄细裁软脚巾·男 | `eq_tangqianhuangxicairuanjiaojin_nan` | 玄下 | 头饰·冠巾簪饰 | 待出图 | [eq_tangqianhuangxicairuanjiaojin_nan.md](items/accessories/eq_tangqianhuangxicairuanjiaojin_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 21 | 唐素白绫纹梳钗·女 | `eq_tangsubailingwenshuchai_nv` | 玄上 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubailingwenshuchai_nv.md](items/accessories/eq_tangsubailingwenshuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 22 | 唐素白细裁梳钗·女 | `eq_tangsubaixicaishuchai_nv` | 玄下 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaixicaishuchai_nv.md](items/accessories/eq_tangsubaixicaishuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 23 | 唐紫罗细裁帛面行披 | `eq_tangziluoxicaibomianxingpi_tongyong` | 玄中 | 披风·围披 | 待出图 | [eq_tangziluoxicaibomianxingpi_tongyong.md](items/accessories/eq_tangziluoxicaibomianxingpi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 24 | 元浅黄绫纹圆顶毡帽·男 | `eq_yuanqianhuanglingwenyuandingzhanmao_nan` | 玄上 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuanglingwenyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuanglingwenyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 25 | 元浅黄细裁圆顶毡帽·男 | `eq_yuanqianhuangxicaiyuandingzhanmao_nan` | 玄下 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangxicaiyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangxicaiyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 26 | 元素白绫纹束髻帛饰·女 | `eq_yuansubailingwenshujiboshi_nv` | 玄上 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubailingwenshujiboshi_nv.md](items/accessories/eq_yuansubailingwenshujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 27 | 元素白细裁束髻帛饰·女 | `eq_yuansubaixicaishujiboshi_nv` | 玄下 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaixicaishujiboshi_nv.md](items/accessories/eq_yuansubaixicaishujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 28 | 元紫罗细裁绢面围披 | `eq_yuanziluoxicaijuanmianweipi_tongyong` | 玄中 | 披风·围披 | 待出图 | [eq_yuanziluoxicaijuanmianweipi_tongyong.md](items/accessories/eq_yuanziluoxicaijuanmianweipi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 29 | 清浅黄素裁软圆帽·男 | `eq_qingqianhuangsucairuanyuanmao_nan` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_qingqianhuangsucairuanyuanmao_nan.md](items/accessories/eq_qingqianhuangsucairuanyuanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3／§4 |
-| 30 | 清素白素裁包帛簪·女 | `eq_qingsubaisucaibaobozan_nv` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_qingsubaisucaibaobozan_nv.md](items/accessories/eq_qingsubaisucaibaobozan_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3／§4 |
-| 31 | 唐浅黄素裁软脚巾·男 | `eq_tangqianhuangsucairuanjiaojin_nan` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_tangqianhuangsucairuanjiaojin_nan.md](items/accessories/eq_tangqianhuangsucairuanjiaojin_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 32 | 唐素白素裁梳钗·女 | `eq_tangsubaisucaishuchai_nv` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaisucaishuchai_nv.md](items/accessories/eq_tangsubaisucaishuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 33 | 唐紫罗素裁帛面行披 | `eq_tangziluosucaibomianxingpi_tongyong` | 黄中 | 披风·围披 | 待出图 | [eq_tangziluosucaibomianxingpi_tongyong.md](items/accessories/eq_tangziluosucaibomianxingpi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 34 | 元浅黄素裁圆顶毡帽·男 | `eq_yuanqianhuangsucaiyuandingzhanmao_nan` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangsucaiyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangsucaiyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 35 | 元素白素裁束髻帛饰·女 | `eq_yuansubaisucaishujiboshi_nv` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaisucaishujiboshi_nv.md](items/accessories/eq_yuansubaisucaishujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
-| 36 | 元紫罗素裁绢面围披 | `eq_yuanziluosucaijuanmianweipi_tongyong` | 黄中 | 披风·围披 | 待出图 | [eq_yuanziluosucaijuanmianweipi_tongyong.md](items/accessories/eq_yuanziluosucaijuanmianweipi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 1 | 唐素白精绣梳钗·女 | `eq_tangsubaijingxiushuchai_nv` | 地上 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaijingxiushuchai_nv.md](items/accessories/eq_tangsubaijingxiushuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 2 | 唐素白锦纹梳钗·女 | `eq_tangsubaijinwenshuchai_nv` | 地下 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaijinwenshuchai_nv.md](items/accessories/eq_tangsubaijinwenshuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 3 | 唐素白绣缘梳钗·女 | `eq_tangsubaixiuyuanshuchai_nv` | 地中 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaixiuyuanshuchai_nv.md](items/accessories/eq_tangsubaixiuyuanshuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 4 | 唐紫罗绣缘帛面行披 | `eq_tangziluoxiuyuanbomianxingpi_tongyong` | 地中 | 披风·围披 | 待出图 | [eq_tangziluoxiuyuanbomianxingpi_tongyong.md](items/accessories/eq_tangziluoxiuyuanbomianxingpi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 5 | 元浅黄精绣圆顶毡帽·男 | `eq_yuanqianhuangjingxiuyuandingzhanmao_nan` | 地上 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangjingxiuyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangjingxiuyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 6 | 元浅黄锦纹圆顶毡帽·男 | `eq_yuanqianhuangjinwenyuandingzhanmao_nan` | 地下 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangjinwenyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangjinwenyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 7 | 元浅黄绣缘圆顶毡帽·男 | `eq_yuanqianhuangxiuyuanyuandingzhanmao_nan` | 地中 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangxiuyuanyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangxiuyuanyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 8 | 元素白精绣束髻帛饰·女 | `eq_yuansubaijingxiushujiboshi_nv` | 地上 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaijingxiushujiboshi_nv.md](items/accessories/eq_yuansubaijingxiushujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 9 | 元素白锦纹束髻帛饰·女 | `eq_yuansubaijinwenshujiboshi_nv` | 地下 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaijinwenshujiboshi_nv.md](items/accessories/eq_yuansubaijinwenshujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 10 | 元素白绣缘束髻帛饰·女 | `eq_yuansubaixiuyuanshujiboshi_nv` | 地中 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaixiuyuanshujiboshi_nv.md](items/accessories/eq_yuansubaixiuyuanshujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 11 | 元紫罗绣缘绢面围披 | `eq_yuanziluoxiuyuanjuanmianweipi_tongyong` | 地中 | 披风·围披 | 待出图 | [eq_yuanziluoxiuyuanjuanmianweipi_tongyong.md](items/accessories/eq_yuanziluoxiuyuanjuanmianweipi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 12 | 唐素白绫纹梳钗·女 | `eq_tangsubailingwenshuchai_nv` | 玄上 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubailingwenshuchai_nv.md](items/accessories/eq_tangsubailingwenshuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 13 | 唐素白细裁梳钗·女 | `eq_tangsubaixicaishuchai_nv` | 玄下 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaixicaishuchai_nv.md](items/accessories/eq_tangsubaixicaishuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 14 | 唐紫罗细裁帛面行披 | `eq_tangziluoxicaibomianxingpi_tongyong` | 玄中 | 披风·围披 | 待出图 | [eq_tangziluoxicaibomianxingpi_tongyong.md](items/accessories/eq_tangziluoxicaibomianxingpi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 15 | 元浅黄绫纹圆顶毡帽·男 | `eq_yuanqianhuanglingwenyuandingzhanmao_nan` | 玄上 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuanglingwenyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuanglingwenyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 16 | 元浅黄细裁圆顶毡帽·男 | `eq_yuanqianhuangxicaiyuandingzhanmao_nan` | 玄下 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangxicaiyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangxicaiyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 17 | 元素白绫纹束髻帛饰·女 | `eq_yuansubailingwenshujiboshi_nv` | 玄上 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubailingwenshujiboshi_nv.md](items/accessories/eq_yuansubailingwenshujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 18 | 元素白细裁束髻帛饰·女 | `eq_yuansubaixicaishujiboshi_nv` | 玄下 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaixicaishujiboshi_nv.md](items/accessories/eq_yuansubaixicaishujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 19 | 元紫罗细裁绢面围披 | `eq_yuanziluoxicaijuanmianweipi_tongyong` | 玄中 | 披风·围披 | 待出图 | [eq_yuanziluoxicaijuanmianweipi_tongyong.md](items/accessories/eq_yuanziluoxicaijuanmianweipi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 20 | 唐素白素裁梳钗·女 | `eq_tangsubaisucaishuchai_nv` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_tangsubaisucaishuchai_nv.md](items/accessories/eq_tangsubaisucaishuchai_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 21 | 唐紫罗素裁帛面行披 | `eq_tangziluosucaibomianxingpi_tongyong` | 黄中 | 披风·围披 | 待出图 | [eq_tangziluosucaibomianxingpi_tongyong.md](items/accessories/eq_tangziluosucaibomianxingpi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 22 | 元浅黄素裁圆顶毡帽·男 | `eq_yuanqianhuangsucaiyuandingzhanmao_nan` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_yuanqianhuangsucaiyuandingzhanmao_nan.md](items/accessories/eq_yuanqianhuangsucaiyuandingzhanmao_nan.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 23 | 元素白素裁束髻帛饰·女 | `eq_yuansubaisucaishujiboshi_nv` | 黄中 | 头饰·冠巾簪饰 | 待出图 | [eq_yuansubaisucaishujiboshi_nv.md](items/accessories/eq_yuansubaisucaishujiboshi_nv.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
+| 24 | 元紫罗素裁绢面围披 | `eq_yuanziluosucaijuanmianweipi_tongyong` | 黄中 | 披风·围披 | 待出图 | [eq_yuanziluosucaijuanmianweipi_tongyong.md](items/accessories/eq_yuanziluosucaijuanmianweipi_tongyong.md) | extract_item_prompts.py；按九列核对，补足 item.md §8 与 design/27 §3 |
 
 ### 鞋（122）· 待出图 92、已入库 22、已通过（作者） 8
 
