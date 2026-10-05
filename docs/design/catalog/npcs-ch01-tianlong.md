@@ -50,14 +50,17 @@
 | `npc_zuozimu` | 左子穆，无量剑东宗人物 | 中年；生卒待考 | `sect_wuliang` | D4 | 无量山冲突停战、门人安全与玉壁秘密 | `sk_wuliangxinfa`、`sk_wuliangjian`、`sk_dongzongjian`；心法与分宗招式 **（原创扩展）** | 否 | 回目待考：无量剑比斗 |
 | `npc_xinshuangqing` | 辛双清，无量剑西宗人物 | 中年；生卒待考 | `sect_wuliang` | D4 | 无量山两宗证词、受困门人救援与停战 | `sk_wuliangxinfa`、`sk_wuliangjian`、`sk_xizongjian`；心法与分宗招式 **（原创扩展）** | 否 | 回目待考：无量剑比斗 |
 | `npc_baishijing` | 白世镜，丐帮执法长老 | 中年；命定结局待考 | `sect_gaibang` L4 | D5 | 马大元旧案揭露前的邪线短窗；事败后按生死状态处理 | `sk_suohouqinnashou`，见 `skills-wujue` §2.5 | 否 | 回目待考：杏子林、马大元旧案 |
+| `npc_kangmin` | 康敏（马夫人），马大元遗孀；杏子林旧案相关人物 | 成年成熟；确龄、生卒待考；本像取毁容死亡前 | 丐帮关系人；不据婚姻授门派职级 | 剧情画像；玩法层级待配置 | 待 design/18 归属流程配置；本次仅画像 | 未配置；不据肖像新增武学或器物 | 未配置 | 既有 story/01 §8.3 中文剧情；2026-10-02 用户新增静态画像范围；原著细节待纸本核对 |
 | `npc_wuchangfeng` | 吴长风，丐帮长老 | 中老年；生卒待考 | `sect_gaibang` L4 | D4 | 杏子林立场、帮务贡献与长老许可 | `sk_guitoudaofa` **（原创扩展命名）**，见 `skills-wujue` §2.5 | 否 | 回目待考：杏子林、少室山 |
 | `npc_sikongxuan` | 司空玄，神农帮帮主 | 中年；命定结局待考 | `sect_shennong` | D4 | 无量山毒伤与生死符危机；解毒或解符后开放 | `sk_changbaicaogong`、`sk_duanchangsan`、`sk_shennongyaochu`；心法与药锄招式 **（原创扩展）** | 否 | 回目待考：无量山神农帮 |
 
-合计：40 名。
+合计：41 名。
 
 ## 本文新增术语与 ID
 
-本轮无新增术语或 ID。能力栏内功及其他武学均沿用正式图鉴外键；本轮新增引用的 `sect_shennong`、`it_shandiandiao` 分别复用 `design/17` §9.10 与 `design/10` 的正式定义。本文不复制性质定义、调息档案或章节配装表。
+2026-10-02 按用户明确新增画像范围登记 `npc_kangmin`（康敏／马夫人），只补静态人物身份与基础立绘索引；生命周期、招募、能力及运行数据仍归 `design/18` 配置，不把画像就绪冒充生产人物面板。
+
+能力栏内功及其他武学均沿用正式图鉴外键；本轮新增引用的 `sect_shennong`、`it_shandiandiao` 分别复用 `design/17` §9.10 与 `design/10` 的正式定义。本文不复制性质定义、调息档案或章节配装表。
 
 ## 数据校验规则与测试用例
 

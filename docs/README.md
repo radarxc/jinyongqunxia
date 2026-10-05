@@ -247,4 +247,4 @@
 
 本轮规划采用依赖图拆分：**每个任务由本机 TraeX CLI 调用 GPT 模型撰写，监督代理逐任务驱动 `tools/agents/step.py`，在独立 worktree 中校验、提交并合入；起草任务后紧跟审校，最后由 F2 做全局一致性终审。**流程细节见 [tools/agents/README.md](../tools/agents/README.md)，实际监督步骤见 [tools/agents/SUPERVISOR.md](../tools/agents/SUPERVISOR.md)。
 
-继续工作时先看 [TODO.md](../TODO.md) §5 的当前决策 / 实测入口和 §6 的阶段状态，再以 [tech/09](tech/09-roadmap.md) P0 开始实现。任何新增规则先确认 `00-canon` §18 的唯一归属；跨文档变化先更新 owner，再运行 ID、伤害与地图门禁。提交 / 推送仍属于调度器的 F6，不由本文宣称完成。
+继续工作时先看 [TODO.md](../TODO.md) §5 的当前决策 / 实测入口和 §6 的阶段状态，再以 [tech/09](tech/09-roadmap.md) P0 开始实现。 **2026-09-30 起 P0 已拆成 Phase G 代理任务**：执行手册 [tools/agents/RUNBOOK-P0.md](../tools/agents/RUNBOOK-P0.md)，准出规范 [decisions/acceptance-p0.md](decisions/acceptance-p0.md)，作者闸门 G3 / G4 见 TODO §5–§6。任何新增规则先确认 `00-canon` §18 的唯一归属；跨文档变化先更新 owner，再运行 ID、伤害与地图门禁。提交 / 推送仍属于调度器的 F6，不由本文宣称完成。
