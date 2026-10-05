@@ -24,6 +24,7 @@ export function battleSeed(id: string, moves: readonly BattleMove[] = [BASIC_MOV
 export function combatFixture(input: { readonly seed?: number; readonly playerMoves?: readonly BattleMove[];
   readonly enemyMoves?: readonly BattleMove[]; readonly enemies?: number; readonly hp?: number;
   readonly noAuto?: boolean; readonly noItems?: boolean; readonly gridRadius?: number;
+  readonly ringOut?: boolean; readonly boss?: boolean;
   readonly meridianInputs?: readonly MeridianFlowInput[];
   readonly inventory?: { readonly stacks: readonly { readonly itemId: string; readonly count: number }[] };
   readonly itemDefs?: readonly ItemDef[]; readonly rewards?: Partial<BattleRewardSetup>;
@@ -44,7 +45,10 @@ export function combatFixture(input: { readonly seed?: number; readonly playerMo
   const setup = createEncounterBattleSetup({ encounterId: 'enc_combat_fixture', setupId: 'setup-fixture',
     seed: input.seed ?? 1, sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'fixture',
     worldTick: 0, participants, sceneRef: 'sc_fixture', anchorRef: 'anchor_fixture',
-    noAuto: input.noAuto ?? false, noItems: input.noItems ?? false, grid, initialUnits,
+    noAuto: input.noAuto ?? false, noItems: input.noItems ?? false,
+    ...(input.ringOut === undefined ? {} : { ringOut: input.ringOut }),
+    ...(input.boss === undefined ? {} : { boss: input.boss }),
+    grid, initialUnits,
     ...(input.meridianInputs === undefined ? {} : { meridianInputs: input.meridianInputs }),
     ...(input.inventory === undefined ? {} : { inventory: input.inventory }),
     ...(input.itemDefs === undefined ? {} : { itemDefs: input.itemDefs }),

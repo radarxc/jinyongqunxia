@@ -40,9 +40,10 @@ export function rollJudge(input: JudgeInput, rng: Rng): JudgeResult {
   const hit = hitRollBp < chances.hitBp;
   if (!hit) return { ...chances, hit, parried: false, critical: false,
     hitRollBp, parryRollBp: null, critRollBp: null };
-  const parryRollBp = rng.nextU32() % 10_000;
+  const skipParry = input.skipParry === true || input.parryable === false;
+  const parryRollBp = skipParry ? null : rng.nextU32() % 10_000;
   const critRollBp = rng.nextU32() % 10_000;
-  const parried = parryRollBp < chances.parryBp;
+  const parried = parryRollBp !== null && parryRollBp < chances.parryBp;
   const critical = critRollBp < chances.critBp;
   return { ...chances, hit, parried, critical, hitRollBp, parryRollBp, critRollBp };
 }

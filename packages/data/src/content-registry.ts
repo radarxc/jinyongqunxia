@@ -2,6 +2,7 @@ import { isNode, LineCounter, parseAllDocuments, visit } from 'yaml';
 import type { ZodType } from 'zod';
 import {
   AcupointDefSchema,
+  BuffDefSchema,
   ChapterDefSchema,
   CharacterTemplateSchema,
   EventDefSchema,
@@ -22,6 +23,7 @@ import {
   WorldMapRegistrationSchema,
   RoleSlotDefSchema,
   type AcupointDef,
+  type BuffDef,
   type ChapterDef,
   type CharacterTemplate,
   type EventDef,
@@ -48,6 +50,7 @@ export type ContentKind =
   | 'characterTemplate'
   | 'martialArt'
   | 'move'
+  | 'buff'
   | 'quest'
   | 'meridian'
   | 'acupoint'
@@ -95,6 +98,7 @@ const SCHEMAS: Readonly<Record<RegisteredContentKind, ZodType>> = {
   characterTemplate: CharacterTemplateSchema,
   martialArt: MartialArtDefSchema,
   move: MoveDefSchema,
+  buff: BuffDefSchema,
   quest: QuestDefSchema,
   encounter: EncounterDefSchema,
   meridian: MeridianDefSchema,
@@ -116,6 +120,7 @@ const KIND_ORDER: readonly RegisteredContentKind[] = [
   'roleSlot',
   'martialArt',
   'move',
+  'buff',
   'encounter',
   'quest',
   'meridian',
@@ -221,6 +226,7 @@ export function identifyContentKind(value: unknown, path: string): RegisteredCon
     'meridian.v1': 'meridian',
     'acupoint.v2': 'acupoint',
     'move.v1': 'move',
+    'buff.v1': 'buff',
     'quest.v1': 'quest',
     'encounter.v1': 'encounter',
     'item.v1': 'item',
@@ -270,6 +276,7 @@ export interface ContentValues {
   readonly martialArts: readonly MartialArtDef[];
   readonly meridians: readonly MeridianDef[];
   readonly moves: readonly MoveDef[];
+  readonly buffs: readonly BuffDef[];
   readonly quests: readonly QuestDef[];
   readonly encounters: readonly EncounterDef[];
   readonly roleSlots: readonly RoleSlotDef[];

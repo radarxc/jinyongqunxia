@@ -18,21 +18,44 @@ const build = (index: number, lossStreak = 0) => buildEncounter(PROLOGUE_ENCOUNT
   units: prologueEncounterSources(), templates: [PROLOGUE_TEMPLATE],
 });
 
-function arenaMap(): RegionMap {
-  const valid = new Uint8Array(128); valid[0] = 3;
-  const terrain = new Uint8Array(1_024); terrain[1] = 1;
-  const heights = new Uint8Array(1_024);
+function regionArenaMap(valid: Uint8Array, terrain: Uint8Array, heights: Uint8Array,
+  terrainTable: RegionMap['terrainTable']): RegionMap {
   const cells = [{ q: 0, r: 0, h: 0 }, { q: 1, r: 0, h: 0 }];
   return { schemaVersion: 'region-map.v1', id: 'sc_00_arena', regionId: 'rg_fixture',
     chapterScope: ['ch00_yuenv'], eraLayer: 'ch00',
     bounds: { qMin: 0, qMax: 31, rMin: 0, rMax: 31 }, chunkSize: 32,
-    terrainTable: ['tr_pingdi', 'tr_zhulin'], chunks: [{ q: 0, r: 0, width: 32, height: 32,
+    terrainTable, chunks: [{ q: 0, r: 0, width: 32, height: 32,
       valid: Buffer.from(valid).toString('base64'), terrainEncoding: 'u8',
       terrain: Buffer.from(terrain).toString('base64'), heights: Buffer.from(heights).toString('base64'),
       ramps: [], water: [], precomputedAo: null, decos: [], objects: [] }],
     objects: [{ id: 'arena_fixture', class: 'BattleArena', q: 0, r: 0, h: 0, cells,
       encounterId: 'enc_00_baiyuan', playerCapacity: 1, enemyCapacity: 1, narrow: false }],
     playerSpawns: [], adjacentRegions: [], eraPatchRefs: [], backdropAssetKey: null };
+}
+
+function arenaMap(): RegionMap {
+  const valid = new Uint8Array(128); valid[0] = 3;
+  const terrain = new Uint8Array(1_024); terrain[1] = 1;
+  return regionArenaMap(valid, terrain, new Uint8Array(1_024), ['tr_pingdi', 'tr_zhulin']);
+}
+
+/** Arena edge at q=1 borders a chasm (dir0), a lower scree ledge (dir4) and deep water (dir5). */
+function displacementArenaMap(): RegionMap {
+  const valid = new Uint8Array(128); valid[0] = 7; valid[4] = 3;
+  const terrain = new Uint8Array(1_024); const heights = new Uint8Array(1_024);
+  terrain[2] = 1; terrain[32] = 2; terrain[33] = 3;
+  heights[0] = 10; heights[1] = 10; heights[33] = 10;
+  return regionArenaMap(valid, terrain, heights, ['tr_pingdi', 'tr_shengu', 'tr_suishi', 'tr_shenshui']);
+}
+
+function buildRegionArena(map: RegionMap) {
+  const definition = structuredClone(PROLOGUE_ENCOUNTERS[1]!);
+  definition.arena = { kind: 'regionArena', regionId: 'rg_fixture',
+    sceneId: 'sc_00_arena', arenaId: 'arena_fixture' };
+  return buildEncounter(definition, { setupId: 'setup-arena', seed: 1,
+    sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'arena_fixture', worldTick: 0,
+    difficulty: 'diff_xiake', units: prologueEncounterSources(), templates: [PROLOGUE_TEMPLATE],
+    regionMaps: [map] });
 }
 
 describe('encounter.v1 builder', () => {
@@ -46,13 +69,7 @@ describe('encounter.v1 builder', () => {
   });
 
   it('resolves a RegionMap BattleArena into the battle grid', () => {
-    const definition = structuredClone(PROLOGUE_ENCOUNTERS[1]!);
-    definition.arena = { kind: 'regionArena', regionId: 'rg_fixture',
-      sceneId: 'sc_00_arena', arenaId: 'arena_fixture' };
-    const launch = buildEncounter(definition, { setupId: 'setup-arena', seed: 1,
-      sourceSnapshotHash: '0'.repeat(64), sourceId: 'fixture', triggerId: 'arena_fixture', worldTick: 0,
-      difficulty: 'diff_xiake', units: prologueEncounterSources(), templates: [PROLOGUE_TEMPLATE],
-      regionMaps: [arenaMap()] });
+    const launch = buildRegionArena(arenaMap());
     expect(launch.setup.grid.cells.map(({ q, r }) => ({ q, r })))
       .toEqual([{ q: 0, r: 0 }, { q: 1, r: 0 }]);
     expect(launch.setup.grid.cells[1]).toMatchObject({ canopy: 3, los: 'partial',
@@ -61,6 +78,17 @@ describe('encounter.v1 builder', () => {
         hitByDelivery: { projectile: -10, ranged: -5 }, damageBp: 0 } });
     expect(launch.setup.returnContext).toMatchObject({ sceneRef: 'sc_00_arena',
       anchorRef: 'arena_fixture' });
+  });
+
+  it('derives landing multipliers and displacement exits from RegionMap neighbours', () => {
+    const launch = buildRegionArena(displacementArenaMap());
+    const edge = launch.setup.grid.cells.find((cell) => cell.q === 1);
+    expect(edge).toMatchObject({ terrainId: 'tr_pingdi', landMulBp: 10_000 });
+    expect(edge?.displacementExits)
+      .toEqual(expect.arrayContaining([
+        { direction: 0, kind: 'void' }, { direction: 4, kind: 'fall', landingHeight: 0,
+          landMulBp: 12_000 }, { direction: 5, kind: 'water' },
+      ]));
   });
 
   it('rejects missing or mismatched RegionMap and BattleArena references', () => {
@@ -159,6 +187,11 @@ describe('encounter.v1 builder', () => {
     expect([ally.hpMax, ally.stats.atkOut, ally.stats.atkIn]).toEqual([
       mulBpFloor(base.hpMax, 6_000), base.stats.atkOut, base.stats.atkIn,
     ]);
+    const elite = expandEncounterUnitSeed(base, participant, 'elite', 'diff_xiake', 10_000);
+    const boss = expandEncounterUnitSeed(base, participant, 'boss', 'diff_xiake', 10_000);
+    expect(elite).toMatchObject({ environmentDamageBp: 5_000 });
+    expect(elite.boss).toBeUndefined();
+    expect(boss).toMatchObject({ environmentDamageBp: 2_500, boss: true });
   });
 
   it('applies full NPC difficulty without template hp or defense multipliers', () => {

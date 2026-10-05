@@ -12,6 +12,7 @@ const common: readonly FieldSpec[] = [
 
 export const CONTENT_FIELD_REGISTRY: Readonly<Record<ContentKind, readonly FieldSpec[]>> = {
   move: [...common, { pattern: 'skillId', class: 'contentRef' },
+    { pattern: 'onHit.applyBuffs.*.buffId', class: 'contentRef' },
     { pattern: 'meridianRouteRef', class: 'contentRef' },
     { pattern: 'affectedRouteRefs.*', class: 'contentRef' },
     { pattern: 'targetAcupoint.acupointRef', class: 'contentRef' }, { pattern: '*', class: 'rule' }],
@@ -25,6 +26,9 @@ export const CONTENT_FIELD_REGISTRY: Readonly<Record<ContentKind, readonly Field
     { pattern: 'settlement.*.*.knot', class: 'contentRef' },
     { pattern: 'settlement.lossFlags.*', class: 'rule' },
     { pattern: '*', class: 'rule' }],
+  buff: [{ pattern: 'schemaVersion', class: 'rule' }, { pattern: 'id', class: 'rule' },
+    { pattern: 'name', class: 'text' }, { pattern: 'text.*', class: 'text' },
+    { pattern: 'canonRef', class: 'authoring' }, { pattern: '*', class: 'rule' }],
   quest: [{ pattern: 'titleKey', class: 'contentRef' },
     { pattern: 'subjectNpcIds.*', class: 'contentRef' },
     { pattern: 'ownerSectId', class: 'contentRef' },

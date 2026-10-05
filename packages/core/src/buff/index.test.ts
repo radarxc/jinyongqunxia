@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { interruptMeditation, createMeditationState } from '../progression';
 import {
-  createQigongDeviationBuff, endOwnAction, executeBuffHook, forbidsAcuteGather,
+  applyPctModifier, consumeStaggerRecoveryPenalty, createQigongDeviationBuff, endOwnAction,
+  executeBuffHook, forbidsAcuteGather, hasStaggerRecoveryPenalty, onHitBuffModifiers,
   qiProductionBp, type BuffInstance, type BuffProgram,
 } from './index';
 
@@ -96,5 +97,23 @@ describe('Buff IR runtime', () => {
     expect(qiProductionBp([instance('bf_chaqi', 1),
       instance('bf_dantianshousun', 2, { stacks: 2 })])).toBe(3500);
     expect(forbidsAcuteGather([instance('bf_dantianshousun', 2, { stacks: 4 })])).toBe(true);
+  });
+
+  it('scales all three on-hit Buff modifiers from the strongest inherited grade', () => {
+    const buffs = [instance('bf_shiheng', 1, { grade: 7 }),
+      instance('bf_pojia', 2, { grade: 7 }), instance('bf_dongyao', 3, { grade: 7 })];
+    expect(onHitBuffModifiers(buffs)).toEqual({
+      hitBp: -400, parryBp: -800, defOutBp: -1200, effResBp: -1000,
+    });
+    expect(applyPctModifier(100, -400)).toBe(96);
+    expect(applyPctModifier(-100, -400)).toBe(-96);
+  });
+
+  it('consumes only one stagger instance when the next move is executed', () => {
+    const buffs = [instance('bf_pojia', 1), instance('bf_shiheng', 2)];
+    expect(hasStaggerRecoveryPenalty(buffs)).toBe(true);
+    consumeStaggerRecoveryPenalty(buffs);
+    expect(buffs.map((buff) => buff.def)).toEqual(['bf_pojia']);
+    expect(hasStaggerRecoveryPenalty(buffs)).toBe(false);
   });
 });

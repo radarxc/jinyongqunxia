@@ -1,0 +1,25 @@
+schemaVersion: buff.v1
+id: bf_dongyao
+name: 动摇
+category: stat
+polarity: debuff
+grade: inherit
+gradeRange: [1, 12]
+tags: [weaken]
+subTags: [weaken.effRes]
+family: fam_rat_effres
+resistAttr: null
+duration: {type: turns, value: 2, fresh: skipFirst}
+stack: {rule: refresh, key: def}
+dispel: {dispellable: true, types: [medicine]}
+priority: 150
+params: {effResPct: '-0.05 * G'}
+mods:
+  - {op: modStat, stat: effRes, kind: pct, value: p.effResPct}
+ui: {icon: buff/dongyao, frame: auto, showTimer: true, sortGroup: weaken}
+text:
+  short: 效果抵抗下降
+  desc: 效果抵抗 −5%×G。
+  log: '{holder} 心神动摇。'
+origin: canonExpanded
+canonRef: 碧海潮生曲前奏（射雕）；摄心术机制为原创扩展

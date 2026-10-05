@@ -5,7 +5,7 @@ import { decodeRegionMap } from '../../world/region-codec';
 import type { BattleUnitSeed } from './index';
 import { createEncounterBattleSetup } from './index';
 import type { BattleCondition, BattleGridCell, BattleSetup } from '../types';
-import type { HexDir } from '../../hex';
+import { HEX_DIRECTIONS, hexKey, type HexDir } from '../../hex';
 
 export interface EncounterUnitSource {
   readonly ref: string; readonly seed: BattleUnitSeed; readonly sourceInstanceId?: string;
@@ -21,6 +21,37 @@ export interface EncounterBuildContext {
   readonly inventory?: BattleSetup['inventory']; readonly itemDefs?: BattleSetup['itemDefs'];
 }
 export interface EncounterBuildResult { readonly setup: BattleSetup; readonly seeds: readonly BattleUnitSeed[] }
+
+const WATER_EXIT_TERRAINS = new Set(['tr_shenshui', 'tr_jiliu', 'tr_pubu', 'tr_dajiang']);
+const SOFT_LANDING_TERRAINS = new Set(['tr_caodi', 'tr_huacong', 'tr_zhulin', 'tr_milin',
+  'tr_jingji', 'tr_qinghuacong']);
+
+function terrainLandMulBp(terrainId: string): number {
+  if (WATER_EXIT_TERRAINS.has(terrainId) || terrainId === 'tr_qianshui') return 3_000;
+  if (terrainId === 'tr_shenxue') return 5_000;
+  if (SOFT_LANDING_TERRAINS.has(terrainId)) return 8_000;
+  if (terrainId === 'tr_suishi') return 12_000;
+  if (terrainId === 'tr_jiguan') return 15_000;
+  return 10_000;
+}
+
+function displacementExits(cell: ReturnType<typeof decodeRegionMap>['cells'][number],
+  allCells: ReadonlyMap<string, ReturnType<typeof decodeRegionMap>['cells'][number]>,
+  arenaCells: ReadonlySet<string>): NonNullable<BattleGridCell['displacementExits']> {
+  return HEX_DIRECTIONS.flatMap((delta, index):
+    NonNullable<BattleGridCell['displacementExits']> => {
+    const key = hexKey({ q: cell.q + delta.q, r: cell.r + delta.r });
+    if (arenaCells.has(key)) return [];
+    const landing = allCells.get(key); const direction = index as HexDir;
+    if (landing?.terrainId === 'tr_shengu') return [{ direction, kind: 'void' as const }];
+    if (landing !== undefined && WATER_EXIT_TERRAINS.has(landing.terrainId))
+      return [{ direction, kind: 'water' as const }];
+    if (landing !== undefined && cell.height - landing.height > 1) return [{ direction,
+      kind: 'fall' as const, landingHeight: landing.height,
+      landMulBp: terrainLandMulBp(landing.terrainId) }];
+    return [{ direction, kind: 'wall' as const }];
+  });
+}
 
 const MODE_MOD: Readonly<Record<DifficultyId, { readonly hp: number; readonly attack: number;
   readonly rating: number; readonly speed: number }>> = {
@@ -92,6 +123,7 @@ export function expandEncounterUnitSeed(seed: BattleUnitSeed, participant: Encou
   const enemyBp = participant.side === 'enemy' ? localDifficultyBp : 10_000;
   const hpModeBp = participant.side === 'enemy' ? mode.hp : 10_000;
   const attackModeBp = participant.side === 'enemy' ? mode.attack : 10_000;
+  const environmentDamageBp = role === 'boss' ? 2_500 : role === 'elite' ? 5_000 : undefined;
   const hpMax = Math.max(1, scaled(copy.hpMax, bossHpBp, enemyBp, hpModeBp));
   const mpMax = Math.max(0, scaled(copy.mpMax, template.mp));
   const stats = { ...copy.stats, level: participant.source.dreamLevel,
@@ -101,7 +133,9 @@ export function expandEncounterUnitSeed(seed: BattleUnitSeed, participant: Encou
     defIn: scaled(copy.stats.defIn, template.defense) };
   for (const key of RATING_KEYS) stats[key] += template.rating
     + (participant.side === 'enemy' ? mode.rating : 0);
-  return { ...copy, hpMax, hp: Math.min(hpMax, scaled(copy.hp, bossHpBp, enemyBp, hpModeBp)),
+  return { ...copy, ...(role === 'boss' ? { boss: true as const } : {}),
+    ...(environmentDamageBp === undefined ? {} : { environmentDamageBp }), hpMax,
+    hp: Math.min(hpMax, scaled(copy.hp, bossHpBp, enemyBp, hpModeBp)),
     mpMax, mp: Math.min(mpMax, scaled(copy.mp, template.mp)),
     spd: scaled(copy.spd, template.speed, participant.side === 'enemy' ? mode.speed : 10_000), stats };
 }
@@ -142,8 +176,12 @@ function arenaGrid(definition: EncounterDef, context: EncounterBuildContext):
     || onField.length > arena.playerCapacity + arena.enemyCapacity)
     throw new RangeError('ENCOUNTER_BATTLE_ARENA_CAPACITY');
   const arenaCells = new Set(arena.cells.map((cell) => `${cell.q},${cell.r}`));
-  const grid = decodeRegionMap(map, 5, 3).cells.filter((cell) => arenaCells.has(`${cell.q},${cell.r}`))
-    .map(terrainBattleCell);
+  const decoded = decodeRegionMap(map, 5, 3);
+  const allCells = new Map(decoded.cells.map((cell) => [hexKey(cell), cell]));
+  const grid = decoded.cells.filter((cell) => arenaCells.has(hexKey(cell)))
+    .map((cell): BattleGridCell => ({ ...terrainBattleCell(cell),
+      landMulBp: terrainLandMulBp(cell.terrainId),
+      displacementExits: displacementExits(cell, allCells, arenaCells) }));
   if (grid.length !== arena.cells.length) throw new RangeError('ENCOUNTER_BATTLE_ARENA_GRID');
   return { grid, sceneRef: map.id, anchorRef: arena.id };
 }
@@ -190,7 +228,8 @@ export function buildEncounter(definition: EncounterDef, context: EncounterBuild
     noRetreat: definition.rules.noRetreat, noItems: definition.rules.noItems,
     mercyAllowed: definition.rules.mercyAllowed, lethalIntent: definition.rules.lethalIntent,
     friendlyFire: definition.rules.friendlyFire, roundLimit: definition.rules.roundLimit,
-    boss: definition.rules.boss, winCond: definition.outcome.win.map(condition),
+    boss: definition.rules.boss, ringOut: definition.kind === 'arena',
+    winCond: definition.outcome.win.map(condition),
     loseCond: definition.outcome.lose.map(condition), drawCond: definition.outcome.draw.map(condition),
     onDefeat: definition.outcome.onDefeat as BattleSetup['end']['onDefeat'],
     concede: definition.outcome.concede,

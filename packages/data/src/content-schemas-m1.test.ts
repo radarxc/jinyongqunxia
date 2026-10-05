@@ -28,6 +28,15 @@ const prop = {
   price: null, flags: [], chapterBound: true, assets: { icon: 'item/bamboo-staff' },
   text: { desc: '章内教学道具。' }, extension: { type: 'generic', value: {} },
 } as const;
+const buff = {
+  schemaVersion: 'buff.v1', id: 'bf_fixture', name: '测试效果', category: 'stat',
+  polarity: 'debuff', grade: 'inherit', gradeRange: [1, 12], tags: ['weaken'],
+  family: 'fam_fixture', resistAttr: null, duration: { type: 'turns', value: 2 },
+  stack: { rule: 'refresh', key: 'def' }, dispel: { dispellable: true, types: ['medicine'] },
+  priority: 150, mods: [{ op: 'modStat', stat: 'effRes', kind: 'pct', value: '-0.05 * G' }],
+  ui: { icon: 'buff/fixture', frame: 'auto', showTimer: true, sortGroup: 'weaken' },
+  text: { short: '测试', desc: '测试。', log: '测试。' }, origin: 'expanded',
+} as const;
 
 const quest = {
   schemaVersion: 'quest.v1', id: 'q_00_main_c_01', kind: 'main',
@@ -64,6 +73,26 @@ describe('M1 content schemas', () => {
     expect(compiled).toMatchObject({ id: move.id, powerBp: 11_000, range: move.range,
       shape: move.shape, ultimate: true, acupointStrike: true, sealLevel: 3,
       targetAcupoint: 'ap_fixture' });
+  });
+
+  it('validates optional on-hit fields while preserving legacy moves', () => {
+    expect(MoveDefSchema.safeParse(move).success).toBe(true);
+    const enhanced = MoveDefSchema.parse({ ...move, parryable: false, onHit: {
+      applyBuffs: [{ buffId: 'bf_fixture', chanceBp: 4_000, turns: 2 }],
+      displace: { kind: 'knockback', cells: 1 },
+    } });
+    expect(compileBattleMove(enhanced, { skillId: 'sk_fixture', effGrade: 9 }))
+      .toMatchObject({ skillId: 'sk_fixture', sourceGrade: 9, parryable: false, onHit: {
+      applyBuffs: [{ buffId: 'bf_fixture', chanceBp: 4_000, turns: 2 }],
+      displace: { kind: 'knockback', cells: 1 },
+    } });
+    expect(() => compileBattleMove(enhanced)).toThrow('BATTLE_MOVE_SOURCE_GRADE_REQUIRED');
+    for (const onHit of [
+      { applyBuffs: [{ buffId: 'bf_fixture', chanceBp: -1, turns: 1 }] },
+      { applyBuffs: [{ buffId: 'bf_fixture', chanceBp: 10_001, turns: 1 }] },
+      { applyBuffs: [{ buffId: 'bf_fixture', chanceBp: 1, turns: 0 }] },
+      { displace: { kind: 'knockback', cells: 0 } },
+    ]) expect(MoveDefSchema.safeParse({ ...move, onHit }).success).toBe(false);
   });
 
   it('accepts the q_00 exception and rejects invalid quest graphs', () => {
@@ -131,5 +160,23 @@ describe('M1 content schemas', () => {
       { path: 'prop.yaml', text: yaml(prop) },
       { path: 'quest.yaml', text: yaml(dialogueQuest) },
     ])).toThrow('CONTENT_REF:quest.yaml:storyKnot:story_ch00_main:opening');
+  });
+
+  it('requires every on-hit Buff reference to be registered with a precise diagnostic', () => {
+    const yaml = (value: unknown): string => JSON.stringify(value);
+    const enhanced = { ...move, onHit: { applyBuffs: [
+      { buffId: 'bf_missing', chanceBp: 3_000, turns: 1 },
+    ] } };
+    expect(() => loadContent([
+      { path: 'skill.yaml', text: yaml(skill) },
+      { path: 'moves/mv_fixture_strike.yaml', text: yaml(enhanced) },
+      { path: 'buff.yaml', text: yaml(buff) },
+    ])).toThrow('CONTENT_REF:moves/mv_fixture_strike.yaml:move:mv_fixture_strike:buff:bf_missing');
+    expect(loadContent([
+      { path: 'skill.yaml', text: yaml(skill) },
+      { path: 'move.yaml', text: yaml({ ...enhanced, onHit: { applyBuffs: [
+        { buffId: 'bf_fixture', chanceBp: 3_000, turns: 1 },
+      ] } }) }, { path: 'buff.yaml', text: yaml(buff) },
+    ]).buffs).toHaveLength(1);
   });
 });

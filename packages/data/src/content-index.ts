@@ -187,6 +187,9 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
       const move = entry.value as ContentValues['moves'][number];
       if (!has('martialArt', move.skillId))
         throw new TypeError(`CONTENT_REF:${entry.path}:martialArt:${move.skillId}`);
+      for (const application of move.onHit?.applyBuffs ?? [])
+        if (!has('buff', application.buffId))
+          throw new TypeError(`CONTENT_REF:${entry.path}:move:${move.id}:buff:${application.buffId}`);
     }
     if (entry.kind === 'quest') {
       const quest = entry.value as ContentValues['quests'][number];
@@ -349,8 +352,8 @@ export function loadContent(files: readonly ContentFile[], context: ContentRefer
   const registry: ContentRegistry = {
     entries, npcs: values('npc') as ContentValues['npcs'], characterTemplates: values('characterTemplate') as ContentValues['characterTemplates'],
     martialArts: values('martialArt') as ContentValues['martialArts'], meridians: values('meridian') as ContentValues['meridians'],
-    moves: values('move') as ContentValues['moves'], encounters: values('encounter') as ContentValues['encounters'],
-    roleSlots,
+    moves: values('move') as ContentValues['moves'], buffs: values('buff') as ContentValues['buffs'],
+    encounters: values('encounter') as ContentValues['encounters'], roleSlots,
     quests: values('quest') as ContentValues['quests'],
     acupoints: values('acupoint') as ContentValues['acupoints'], items: values('item') as ContentValues['items'],
     shops: values('shop') as ContentValues['shops'], stories: values('story') as ContentValues['stories'],

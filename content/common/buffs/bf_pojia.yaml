@@ -1,0 +1,25 @@
+schemaVersion: buff.v1
+id: bf_pojia
+name: 破甲
+category: stat
+polarity: debuff
+grade: inherit
+gradeRange: [1, 12]
+tags: [weaken]
+subTags: [weaken.def]
+family: fam_def
+resistAttr: null
+duration: {type: turns, value: 2, fresh: skipFirst}
+stack: {rule: refresh, key: def}
+dispel: {dispellable: true, types: [medicine, antidote]}
+priority: 150
+params: {defOutPct: '-0.06 * G'}
+mods:
+  - {op: modStat, stat: defOut, kind: pct, value: p.defOutPct}
+ui: {icon: buff/pojia, frame: auto, showTimer: true, sortGroup: weaken}
+text:
+  short: 外防下降
+  desc: 外防 −6%×G。
+  log: '{holder} 的护甲被破。'
+origin: canonExpanded
+canonRef: 铁砂掌开碑手与重兵器；数值化为原创扩展

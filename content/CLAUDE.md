@@ -17,6 +17,10 @@ M1 Ink 动作使用 `quest/advance`、`battle/start`、`flag/set`、`party/giveI
 模板可放同章 `roles/templates/*.yaml`。`slotId` 使用既有 `role_*` 逻辑键，实例身份由下游
 按 `(runId, chapterId, templateId, spawnKey, spawnOrdinal)` 生成确定性 UUID，不建静态 `npc_*`。
 
+通用 Buff 定义放在 `content/common/buffs/*.yaml`，使用 `buff.v1`，每个文件只定义一个
+`bf_*`。招式 `move.v1.onHit.applyBuffs[].buffId` 必须引用这里已登记的定义；施加品阶不写在
+招式里，由来源武功的有效品阶提供。
+
 区域 binding 按章节放在
 `content/chapters/<ch>/bindings/{gates,dialogues,loot}/*.yaml`。三类文件分别使用
 `region-gate.v1`、`region-dialogue.v1`、`region-loot.v1`，并随对应章节、区域按需装载。
