@@ -1,0 +1,72 @@
+---
+asset_id: por_npc_meichaofeng__ch02_prime_blind_base
+subject_id: npc_meichaofeng
+name: 梅超风
+book: ch02_shediao
+gender: female
+age_variant: prime
+tier: S
+output: assets/default/character/female/ch02/por_npc_meichaofeng__ch02_prime_blind_base.png
+manifest: assets/default/character/female/ch02/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/shediao/meichaofeng_1983_huangwenhui_sina2017.jpg
+  use: 第一且唯一面部身份：1983 TVB翁美玲版黄文慧饰梅超风的本人单人旧剧照，已实际view_image并经独立来源审核PASS。保留长脸、眉峰走向及眉间关系、直鼻梁与圆钝鼻尖、清楚唇弓和收束下颌。不照抄低头侧脸、浓眼唇妆、摄影截幅、黑额带或镜头服装；本项目壮年失明阶段优先，双眼无焦点且头端正。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第二仅用户水墨背景：已实际view_image；只取低对比淡青灰远山、暖浅灰纸底与留白。完全不取画中女性面容、年轻体貌、发饰、发式、衣装、姿势、歪头和细碎透明纱感；纸纹墨迹不得侵入人物实体。不是人物风格或身份参考，不修改任何基线审批。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 梅超风 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_meichaofeng
+- book：ch02_shediao
+- gender：female
+- age_variant：prime
+
+## 本轮人物写实规范
+
+黄文慧1983版本人面容第一；成熟壮年、双目失明，正面端正而没有视线焦点。黑衣长发完整写实，右手低持单条银白软鞭、左手低幅爪掌戒备，双脚稳定；用户图第二仅水墨背景。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_meichaofeng__ch02_prime_blind_base/prompt-4048127f54c7e540d80a50b27018d18e028c6604c2f0b090a870b19ac90d835a.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE AND DISABILITY ARE PRIMARY REQUIREMENTS: one FRONT-FACING full-body standing adult woman. Keep head and neck naturally UPRIGHT, facial centerline VERTICAL, both eye positions LEVEL, chin neutral, shoulders balanced, camera level. She is BLIND IN BOTH EYES: relaxed half-closed eyelids with no focused gaze or eye contact. Frontal orientation must never restore sight. No head tilt, no Dutch angle. Do not copy the reference pose.
+
+Create one refined REALISTIC full-body wuxia illustration of MEI CHAOFENG / 梅超风, npc_meichaofeng, in The Legend of the Condor Heroes. Image 1 alone supplies facial identity: Bonnie Wong / 黄文慧 as Mei Chaofeng in the 1983 TVB 黄日华/翁美玲 version. Image 2 supplies only the faint ink-wash BACKGROUND and empty space. Make one original illustration with one person, not a television screenshot.
+
+身份与阶段：射雕ch02_shediao，桃花岛叛徒、铁尸；取郭靖离漠前再次相遇时的失明常态，陈玄风已亡。成熟壮年女性，不锁具体岁数，不画早年少女或现代老年演员；双目失明但为健在自然人体，肩臂有长期习武的筋骨，修长手指与稳定双腿。神情沉郁警醒、收敛冷峻，不凶笑、不丑化，不把铁尸绰号画成非人僵尸。属于项目南宋与金、蒙古并行的时代语境；不把本图的精确年份写成已核定史实。
+
+面容仅从第一参考重建为端正正面：纵向偏长的面部与偏瘦颧颊、长眉的转折走向和眉间关系、较直鼻梁及圆钝鼻尖鼻翼、清楚的上唇弓与闭合唇线、向圆钝下巴收束的下颌。保留壮年女性自然眼纹、皮肤纹理和真实细微不对称；眉眼以自然面部结构表达，减去截图的浓重眼影与深唇妆。此图眼睛低垂且有妆，不能据此编造精确虹膜颜色或天然眼型。双眼自然半合、没有任何视线焦点，眼球不发光、不翻白、不新增创口，不蒙眼也不戴单眼眼罩；正面脸和水平眼位不等于有焦点直视。头、颈、躯干轴线一致，通过安静警戒的面部与身体张力表达听声，不转头侧耳。
+
+服装与发式沿用本阶段角色稿的美术补足：深墨黑交领右衽窄袖长衣、暗灰内衫、完整深色长裤、黑布鞋、简单黑布腰带。穿着者左襟压右襟并向本人右侧闭合，衣领结构清楚，不镜像。衣物完整厚实不透明，腰肩与肘部有可信受力，长衣与裤脚具有连续体积，黑衣层次通过柔和灰阶与材质区分。乌黑长发大部顺背披落，上部以细布带低束，脸侧仅少量自然散发、不遮双眼；黑发整理是既有角色稿艺术选择，不照搬截图灰发色偏、宽额带或女主华丽发饰。
+
+站姿与持物：单人正面静立，双脚完整落地，重心稳定，肩自然平展，头颈端正。仅一条银白偏金属质感的柔韧长软鞭；本人右手在身侧偏低处牢靠握柄，鞭体以松缓的自然弧线收在身体外侧，所有可见鞭段连贯、末梢完整入画，不绕颈缠身、不穿手脚、不悬浮。本人左手在腹腰旁作低幅戒备爪掌，五指自然弯曲、指节可追踪，指甲普通长度；不挡脸，也不摆张牙舞爪姿态。鞭与爪只点明武学身份，不表现击打对象或流血。银白材质和左右手选择是本次视觉实现，非已核原著兵器材质与固定用手事实。
+
+人物与背景：人物本体美观写实，有可信壮年皮肤、结实连续的人体体积、温和自然的肤色和完整衣料，面部、两手、鞋与鞭身清晰可读。柔和左上漫射光、克制明暗与低饱和设色；不用碎墨、飞白或纸纹去构成人物。背景仅为不透明暖浅灰底、极淡低对比远山水墨和充分留白、脚底浅接触阴影。水墨和纸纹停在人物轮廓外，不出现具体坟场、王府、骷髅堆、房屋、花枝或多人场景。
+
+构图与交付：单人单视图完整全身，原生2:3竖幅，完整头发头顶、双手、双足、衣摆、鞭柄与鞭梢都入画并留自然边距，不以固定头身比例或精确占高扭曲人身。目标2048×3072不透明PNG，接受工具真实原生尺寸并如实登记；原始PNG字节保存，不缩放、裁切、修复或重编码。本轮先生成1张候选，状态保持candidate，交独立实际查看，不声称作者已批准或已完成多候选比较。
+
+事实边界：身份、壮年、失明选段与陈玄风已亡按当前主角色稿、catalog、story和chapter约束。已登记长鞭与爪法不自动证明精确鞭材质、服色发式、姿态或具体年龄；这些保持明确艺术补足或待考。第一参考来源的同图角色图注与1983演员表已核，只有本人面容关系可传递，具体集数和失明镜头状态未核；本项目失明阶段必须覆盖照片。用户指定1983版本人五官与正面端正覆盖旧禁演员脸、三分之四侧身和歪颈侧耳；单候选及完整写实人物背景水墨覆盖旧默认两候选、纯纸底与碎线人物。
+
+完整排除项：不要头歪向肩、head tilt、Dutch angle、偏斜脸部中线、双眼高低不齐、仰头、低头藏眼、回眸侧脸、三分之四侧脸或耸单肩；不要复制剧照低垂摄影角度或半身裁切。不要有焦点的直视、清亮有神的健全双眼、用单眼眼罩代替双目失明、眼球发光、外翻白眼、鲜血或夸张创口；不要恢复视力，也不通过转头歪颈表现听声。不要少女网红脸、王语嫣脸、杨丽萍或其他版演员面容、现代黄文慧老年采访脸、锥子脸、动漫大眼、塑料磨皮、僵尸皮肤或恐怖鬼脸。不要复制来源浓重眼唇妆、黑额带为固定身份标志、影视专属衣装、摄影背景或额外人物。不要白骨手、金属爪、黑长美甲、骷髅、血腥、陈玄风同框、王府练功受制瘫坐或护师临终伤势。不要现代服装、拉链、腕表、高跟鞋、金冠华饰、日式服制、清宫服、清式剃发辫、明代网巾、官服补子或唐式低胸纱裙；汉式交领不要左衽，不水平镜像。不要胸腰腿裸露、透明衣料、艳情姿态或妩媚卖萌。不要白衣少女纱裙、手持花枝、佩剑、骷髅杖、多个长鞭、发光鞭、能量白蛇、悬浮兵器、鞭体穿身或绕手腕脖颈。不要多余人物、分身、分格、多视图、头像框、多肢、多指、断肢、错接手腕、手物融合、断裂鞭身、鞭梢出画、悬浮脚或裁断头顶双足。不要破布碎墨、飞白侵蚀、白斑、纸纹穿透皮肤与衣料、撕裂衣角、大片污渍、细碎乱褶、模糊五官、直接照片或三维模型。不要文字、题款、书法、伪字、标签、签名、印章、logo或装饰水印；工具自带溯源标识和元数据原样保留。
+
+FINAL CHECK: one complete FRONT-FACING mature woman; UPRIGHT head and neck, VERTICAL facial centerline, LEVEL eye positions, neutral chin, both feet grounded. BOTH EYES REMAIN BLIND, HALF-CLOSED AND UNFOCUSED. No head tilt, no Dutch angle, no focused gaze. One initial candidate only.
+```
+
+## 排除项
+
+不要头歪向肩、head tilt、Dutch angle、偏斜脸部中线、双眼高低不齐、仰头、低头藏眼、回眸侧脸、三分之四侧脸或耸单肩；不要复制剧照低垂摄影角度或半身裁切。不要有焦点的直视、清亮有神的健全双眼、用单眼眼罩代替双目失明、眼球发光、外翻白眼、鲜血或夸张创口；不要恢复视力，也不通过转头歪颈表现听声。不要少女网红脸、王语嫣脸、杨丽萍或其他版演员面容、现代黄文慧老年采访脸、锥子脸、动漫大眼、塑料磨皮、僵尸皮肤或恐怖鬼脸。不要复制来源浓重眼唇妆、黑额带为固定身份标志、影视专属衣装、摄影背景或额外人物。不要白骨手、金属爪、黑长美甲、骷髅、血腥、陈玄风同框、王府练功受制瘫坐或护师临终伤势。不要现代服装、拉链、腕表、高跟鞋、金冠华饰、日式服制、清宫服、清式剃发辫、明代网巾、官服补子或唐式低胸纱裙；汉式交领不要左衽，不水平镜像。不要胸腰腿裸露、透明衣料、艳情姿态或妩媚卖萌。不要白衣少女纱裙、手持花枝、佩剑、骷髅杖、多个长鞭、发光鞭、能量白蛇、悬浮兵器、鞭体穿身或绕手腕脖颈。不要多余人物、分身、分格、多视图、头像框、多肢、多指、断肢、错接手腕、手物融合、断裂鞭身、鞭梢出画、悬浮脚或裁断头顶双足。不要破布碎墨、飞白侵蚀、白斑、纸纹穿透皮肤与衣料、撕裂衣角、大片污渍、细碎乱褶、模糊五官、直接照片或三维模型。不要文字、题款、书法、伪字、标签、签名、印章、logo或装饰水印；工具自带溯源标识和元数据原样保留。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_meichaofeng__ch02_prime_blind_base.prepared.json`。

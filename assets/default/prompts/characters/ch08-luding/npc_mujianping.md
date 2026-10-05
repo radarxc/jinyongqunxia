@@ -1,0 +1,76 @@
+---
+asset_id: por_npc_mujianping__ch08_youth_base
+subject_id: npc_mujianping
+name: 沐剑屏
+book: ch08_luding
+gender: female
+age_variant: youth
+tier: S
+output: assets/default/character/female/ch08/por_npc_mujianping__ch08_youth_base.png
+manifest: assets/default/character/female/ch08/manifest.yaml
+references:
+- path: .agents/coord/imagegen-reference/identity-20261001/luding/mujianping_1998_kuangwenxun_comparison.jpg
+  use: 第一且唯一面部身份：1998 TVB陈小春版《鹿鼎记》邝文珣饰沐剑屏，已实际view、核实来源DOM和SHA。第一图是左右今昔对照：仅左半幅1998古装沐剑屏面部是本次身份输入；右半幅现代年长近照从面貌年龄、发型、身体、衣服到背景全部排除。原图保持原字节未裁剪，视觉理解时严格只取左侧。 适龄转译到13–16岁未成年少女，原著确岁待考。仅取左侧邝文珣沐剑屏：较圆润的小椭圆脸，面颊有横向体积，下颌弧线柔和、下巴短圆不尖。保留短而柔和的弧眉、自然杏形眼和眉眼间距；眼裂轻长而非大圆眼，眼外侧走向轻柔，不统一为挑高美人眼。鼻梁纤细但有体积，鼻头小圆、鼻翼自然；嘴较小，上唇细致，下唇自然圆润，闭唇只有轻微善意笑。13–16岁的面颊仍稚嫩，脸长、颊宽和短圆下巴必须区别于方怡较长较平直的下颌和鼻梁。好奇而拘谨，不与双儿或王语嫣共享脸。右侧成年近照不提供年龄、鼻颊老化或现代发型；左图浓妆和高饰髻也不是身份必需。 任何照片头倾、视线、他人、服装、场景和台标都不继承；必须正面头直、双眼水平。
+- path: assets/default/baseline/character/female/ref_npc_wangyuyan__ch01_base01.png
+  use: 第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。
+- path: .agents/coord/imagegen-reference/user_wangyuyan_style_20260930.png
+  use: 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入沐剑屏的皮肤、衣料和器物。
+status: ready
+realism_revision: user_identity_pose_20261001
+---
+
+# 沐剑屏 · 人物写实修正
+
+## 人物与阶段
+
+- subject_id：npc_mujianping
+- book：ch08_luding
+- gender：female
+- age_variant：youth
+
+## 本轮人物写实规范
+
+1998邝文珣饰沐剑屏唯一本人身份；13–16岁未成年少女，原著确岁待考，沐王府郡主，宫中藏匿获救后初识韦小宝的早段少女。正面端正、头直眼水平，逐人保留下颌眉眼鼻唇，不共享美人模板；女基线仅色卡、用户图仅背景。人物完整写实，两张原生2:3 candidate待用户审核。
+
+人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景保留水墨韵味，但不切碎人物，不用背景墨迹吞没衣料或肢体。人物身份与场景阶段按完整新设计保留。
+
+本轮实际请求以下文完整提示词为准；旧生成限制及返修文本仅作历史，见备份 `.agents/coord/portrait-generation/identity-20261001/backups/por_npc_mujianping__ch08_youth_base/prompt-267212ed0223ca6ae2783c3bbbe48b049b72505efcd74c7a47e447cccb9159dc.md`。人物身份与阶段事实保留。原参考审批状态不变；本轮仍为候选。
+
+## 提示词
+
+```text
+POSE IS A PRIMARY REQUIREMENT: one FRONT-FACING full-body standing figure, head and neck naturally UPRIGHT. The forehead–nose–chin centreline is VERTICAL and both eyes are on a HORIZONTAL line. Keep the head centered over the torso, camera level, chin neutral and gaze straight ahead. NO head tilt, NO Dutch angle, no rolled camera and no head leaning toward either shoulder. These requirements override every reference photo or drawing pose. Keep natural facial asymmetry without tilting the head.
+
+Create a REALISTIC Chinese wuxia illustration of MU JIANPING / 沐剑屏. Image 1 is the ONLY FACIAL IDENTITY source: 邝文珣 as 沐剑屏 in the 1998 TVB The Duke of Mount Deer starring Jordan Chan. Image 2 is ONLY a colour palette and supplies ZERO facial or anatomical information. Image 3 is ONLY the pale ink-wash background. Preserve this person’s distinct jaw, brows, eye spacing, nose and lips instead of a shared beauty template. 第一图是左右今昔对照：仅左半幅1998古装沐剑屏面部是本次身份输入；右半幅现代年长近照从面貌年龄、发型、身体、衣服到背景全部排除。原图保持原字节未裁剪，视觉理解时严格只取左侧。
+
+身份与阶段：沐剑屏（npc_mujianping），《鹿鼎记》ch08_luding，清初康熙时代。沐王府郡主，宫中藏匿获救后初识韦小宝的早段少女；13–16岁未成年少女，原著确岁待考。健康的13–16岁少女，身量轻巧而有自然骨骼与力量，青春期肩臂和腿长真实，不成年化、不幼童化。整体朝前，头颈自然放松，不用耸肩、歪头或大眼卖萌表达拘谨。
+
+本人面容辨识锚点：仅取左侧邝文珣沐剑屏：较圆润的小椭圆脸，面颊有横向体积，下颌弧线柔和、下巴短圆不尖。保留短而柔和的弧眉、自然杏形眼和眉眼间距；眼裂轻长而非大圆眼，眼外侧走向轻柔，不统一为挑高美人眼。鼻梁纤细但有体积，鼻头小圆、鼻翼自然；嘴较小，上唇细致，下唇自然圆润，闭唇只有轻微善意笑。13–16岁的面颊仍稚嫩，脸长、颊宽和短圆下巴必须区别于方怡较长较平直的下颌和鼻梁。好奇而拘谨，不与双儿或王语嫣共享脸。右侧成年近照不提供年龄、鼻颊老化或现代发型；左图浓妆和高饰髻也不是身份必需。
+
+服制与发式：清初汉族世家少女浅草绿右衽长袄、米白及踝裙，穿着者左襟覆右襟、向本人右侧合拢。领胸完整遮蔽，衣料不透明且宽松，素绣平底鞋都可读；衣物干净完整。黑发收成低小双髻，用简单绸结固定，额发少而不挡眼；不用成人贵妇高髻、影视花冠珠翠。她是沐王府汉族郡主，不能因称号换成满洲宫廷旗装。
+
+姿态与器物：正面端正站稳，双脚自然靠近而不内八卖萌，头中线竖直、眼线水平、看向正前方。双手在腰腹前轻扶一只小素布包，分别支在袋两侧，手指与袋的厚度清楚、不交缠、不握剑。本人左腰即观者右侧佩一柄适合少女身量的普通中国直剑，剑刃完全入鞘；完整剑柄、小型实用剑格、鞘口和足容剑刃的鞘尾都可读。短挂带真实连接腰带，剑鞘自然朝本人左后下斜垂，仍露在裙轮廓外、不穿身体、鞘端完整入画。剑和布包分离，无第二把剑或郡主礼器。
+
+人物画法：完整、美观、细腻的写实国风人物插画，皮肤具有可信而适龄的柔和体积，五官、手部、脚部清楚；头发、衣料与器物都是连续实体，边缘干净，布料厚薄、缝线与承重可信。衣服裁剪完整、整片连续，只用少量宽缓受力褶皱，不用密集噪点或破损表现真实。柔和左上漫射主光、连贯明暗，低饱和设色配自然暖肤色。允许细腻手绘笔触，但脸、手、头发、衣料和人物轮廓不得飞白、碎裂、变薄透纸或被背景墨痕侵蚀。这是新绘制的高级人物插画，不是照片、电视剧截图、拼贴或三维塑料模型。
+
+参考边界：第二参考严格仅作女性项目色卡：低饱和色彩、暖肤色与浅灰白底的协调关系。已实际view。不得提取王语嫣的脸型、眉眼鼻唇、发际、年龄、体型、身体比例、头倾、站姿、手势、宋代衣装或其他身份特征；人物写实完整要求来自文字，不能靠借用基线脸和人体来实现画风一致。原manifest实际approved状态不变，不转移给本角色。 第三参考仅背景：暖浅灰纸底、极浅低对比水墨远山、薄雾和留白，已实际view。完全忽略王语嫣面容、年龄、体型、发髻、倾头转身、白青衣装和饰物；墨迹纸纹不得侵入沐剑屏的皮肤、衣料和器物。
+
+背景与交付：第三图仅提供暖浅灰不透明纸底、极浅低对比水墨远山和留白，薄雾全部留在人物之外；背景墨色及纸纹不能穿过人体、衣料、发丝或器物，不画具体宫殿或剧情陈设。脚下只有少量接触阴影。单人单视图、平视水平镜头、原生竖幅2:3、完整全身；头顶、双手、双足、发饰、衣摆、衣带和全部实际器物端点完整入画，四周自然留净空，不用固定占高或头身数字强行拉长人体。目标2048×3072不透明PNG；接受工具真实原生2:3尺寸并如实登记，保存原始PNG字节，不插值、裁切或重新编码。默认两张独立候选由执行者比较；所有输出仍为candidate，待用户最终审核，不自动approved。
+
+事实边界：13–16岁不是已核实原著确岁；发髻、初见衣色及剑的尺寸属于美术补足。 成人演员剧照仅支持个人面貌关系；右侧现代近照、成人妆面都不决定少女年龄。 继承浅草绿袄、米白裙、低小双髻、双手布包；普通剑入鞘放本人左腰。 正面自然站姿，目光表现好奇，取消耸肩与歪头。 用户指定本人剧版身份覆盖旧稿禁演员脸，但照片年龄、衣装和场景不是小说事实。
+
+完整排除项：不要现代对照右半幅的脸龄、发型、黑衣或植物背景，不复制今昔拼图、文字水印或双脸。不要和方怡共享长下颌直鼻模板，不与双儿王语嫣同脸，不画卡通大圆眼。不要成年少妇、婚后高髻、成熟胸腰、7岁儿童比例、浓妆、旗装、公主朝冠、大拉翅或低胸透纱。不要剑出鞘、巨剑、金蛇剑、龙头剑柄、刀、盾或金玉郡主礼器。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+
+FINAL POSE CHECK: FRONT-FACING MU JIANPING / 沐剑屏. Keep forehead–nose–chin centreline VERTICAL, both eyes HORIZONTALLY LEVEL, head and neck naturally upright over the torso, camera level, chin neutral and gaze forward. NO head tilt and NO Dutch angle. Never inherit photo head lean, sideways gaze, tilted shoulders, turned torso, another person or cropped composition. Preserve only this role’s distinct facial relationships, naturally translated to the stated age; keep the entire age-appropriate body visible.
+```
+
+## 排除项
+
+不要现代对照右半幅的脸龄、发型、黑衣或植物背景，不复制今昔拼图、文字水印或双脸。不要和方怡共享长下颌直鼻模板，不与双儿王语嫣同脸，不画卡通大圆眼。不要成年少妇、婚后高髻、成熟胸腰、7岁儿童比例、浓妆、旗装、公主朝冠、大拉翅或低胸透纱。不要剑出鞘、巨剑、金蛇剑、龙头剑柄、刀、盾或金玉郡主礼器。 不要 head tilt、Dutch angle、头歪向肩、斜置额鼻下巴中线、双眼高低倾斜、倾斜镜头、单肩高耸、低头藏眼、仰头、明显侧脸、侧身回眸、抬下巴卖姿态；不要继承任何参考的倾头、转身、视线方向或摄影构图。不要统一网红锥子脸、动漫大眼、Q版、厚妆丰唇、磨皮塑料、摄影半身照、电视剧截图、3D模型或换头拼贴。不要现代服饰、拉链、腕表、运动鞋、高跟鞋、手机或数码物件；不要日式服制刀具、圆盘镡、菱形缠柄、前结宽腰带、欧式奇幻装备、仙侠冠冕、赛博或蒸汽朋克。不要晚清大拉翅、民国旗袍、中山装、近现代军装或时代族群混搭；不要水平镜像、汉式左衽或反向衣襟。不要多人、分格、多视图、面部特写框、多肢多指、缺手缺脚、粘连手指、错接手腕、手物融合、衣袖吞手、悬空装备、缺失挂点、头足或器物端点裁切。人物不要碎墨、飞白缺块、纸纹透肤透衣、纸屑侵蚀、白斑裂缝、碎布条、撕裂衣角、毛边、大片补丁污渍、密集噪点、斑驳模糊脸或过密褶皱；不要用雾和墨迹遮盖结构。不要裸露、透衣、性感化、血腥、恶搞、丑化、发光武器、光龙、法阵、粒子、强逆光或过度泛光。不要复杂背景、可读文字、伪字、题款、签名、印章、标签、logo或装饰水印；工具原有溯源标识和元数据必须保留。 不要共享美人模板、相同的下颌眉眼鼻唇，不要统一缩尖下巴、统一大眼或统一高鼻；不要今昔对照版式、现代对照右图、演员照片或台标。
+
+## 质检要点
+
+- 人物精细写实、完整坚实体积、连贯衣料、清楚轮廓；背景墨韵但不切碎人物，采用宽松candidate自查。
+- 采用作者授权宽松自查；偏差如实记录，candidate不代表approved。
+- 源PNG通常为1024×1536 RGB；其他原生2:3尺寸如实登记，原字节保存，不裁切、重编码、放大或去除溯源。
+- 完整请求、实际参考哈希及旧版本备份见 `.agents/coord/portrait-generation/identity-20261001/por_npc_mujianping__ch08_youth_base.prepared.json`。
