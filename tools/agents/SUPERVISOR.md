@@ -16,7 +16,7 @@
 
 ## 流程（每个任务）
 
-1. `python3 tools/agents/step.py start <ID>`：建工作区、渲染提示词、探测模型（GPT-6-Astra 无响应时自动改用 GPT-5.6-Sol）、后台启动。
+1. `python3 tools/agents/step.py start <ID>`：建工作区、渲染提示词、探测模型、后台启动。**2026-09-30 起默认模型 GPT-6-Astra：起草 / 代码 / 工具 `ultra`，审校 `xhigh`**（读 `tasks.json` 的 `defaults` 与逐任务字段）；探测无响应时自动改用 GPT-5.6-Sol。
 2. `python3 tools/agents/step.py wait <ID> --max-min 25`（后台运行）。看输出首行：
    - `FINISHED` → 第 3 步。
    - `RUNNING` → 再次后台 wait。

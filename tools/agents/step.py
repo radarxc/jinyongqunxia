@@ -543,7 +543,7 @@ def cmd_start(a) -> int:
     if not a.no_probe:
         for cand in cands:
             print(f"… 探测模型 {cand}（≤ {a.probe_sec:g} 秒）", flush=True)
-            if probe_model(binary, cand, effort, int(a.probe_sec)):
+            if probe_model(binary, cand, PROBE_EFFORT, int(a.probe_sec)):
                 if cand != model:
                     print(f"⚠ {model} 无响应，改用 {cand}")
                 model = cand
