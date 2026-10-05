@@ -1,4 +1,4 @@
-import { access, copyFile, mkdir, readFile, readdir } from 'node:fs/promises';
+import { access, copyFile, mkdir, readFile, readdir, stat } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { parseYamlFile } from '@tianshu/data/tooling';
 import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
@@ -19,6 +19,14 @@ async function copyAvailableAsset(root: string, source: string, absolute: string
     return false;
   }
   const output = join(root, 'apps/game/public', assetPath);
+  try {
+    const [srcStat, outStat] = await Promise.all([stat(absolute), stat(output)]);
+    if (srcStat.size === outStat.size && srcStat.mtimeMs <= outStat.mtimeMs) {
+      return true;
+    }
+  } catch {
+    // needs copy
+  }
   await mkdir(dirname(output), { recursive: true });
   await copyFile(absolute, output);
   return true;
@@ -63,8 +71,13 @@ export async function readAssetManifest(root: string, copy: boolean,
     if (!Array.isArray(rows)) continue;
     for (const row of rows as Record<string, unknown>[]) {
       if (row['status'] === 'rejected' || typeof row['id'] !== 'string') continue;
-      const icons = Array.isArray(row['icons']) ? row['icons'] as { file?: string }[] : [];
-      const images = icons.filter((icon) => icon.file?.endsWith('_64.png')).map((icon) => ({ file: icon.file!, key: 'icon' as const }));
+      const icons = Array.isArray(row['icons']) ? (row['icons'] as { file?: string }[]) : [];
+      const preferredIcon =
+        icons.find((icon) => icon.file?.endsWith('_64.png'))?.file ??
+        icons.find((icon) => icon.file?.endsWith('_128.png'))?.file ??
+        icons[0]?.file;
+      const itemFile = path.includes('/item/') ? preferredIcon : undefined;
+      const images = itemFile ? [{ file: itemFile, key: 'icon' as const }] : [];
       const portrait = path.includes('/portrait/') && typeof row['file'] === 'string'
         ? [{ file: row['file'], key: 'portrait' as const }] : [];
       const maps = path.includes('/map/') && row['id'].startsWith('ref_map_jianghu__') && typeof row['file'] === 'string'

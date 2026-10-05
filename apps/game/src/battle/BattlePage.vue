@@ -24,6 +24,9 @@ const aimDirectionCount = computed<6 | 12>(() => selectedDefinition.value?.shape
   ? selectedDefinition.value.shape.dirCount : 6);
 const directionLabels = ['东', '东偏北', '东北', '北', '西北', '西偏北',
   '西', '西偏南', '西南', '南', '东南', '东偏南'];
+function hexDist(a: { q: number; r: number }, b: { q: number; r: number }): number {
+  return (Math.abs(a.q - b.q) + Math.abs(a.q + a.r - b.q - b.r) + Math.abs(a.r - b.r)) / 2;
+}
 function preview(moveId: string, cell = anchor.value): void {
   const state = view.value; const unit = actor.value; if (!state || !unit || state.auto) return;
   const target = cell ?? state.info.cells.find(tile => {
@@ -31,23 +34,76 @@ function preview(moveId: string, cell = anchor.value): void {
     return enemy?.q === tile.q && enemy.r === tile.r;
   });
   if (!target) return;
-  const shape = unit.moves.find(move => move.id === moveId)?.shape;
+  const moveDef = unit.moves.find(move => move.id === moveId);
+  const shape = moveDef?.shape;
+  const range = moveDef?.range ?? 1;
   const count = shape?.tpl === 'aoe_cone' ? shape.dirCount : 6;
   const aim: HexAim = count === 12
     ? { dirCount: 12, dir: direction.value as HexAim12 }
     : { dirCount: 6, dir: direction.value as HexDir };
-  props.controller.preview({ revision: state.revision, actor: unit.id, moveId, anchor: target, aim });
+  let walkTo: { q: number; r: number } | undefined;
+  if (hexDist(unit, target) > range && state.capabilities.move.reachable.length > 0) {
+    const candidates = state.capabilities.move.reachable
+      .filter(candidate => hexDist(candidate, target) <= range)
+      .sort((a, b) => a.cost - b.cost);
+    if (candidates[0]) {
+      walkTo = { q: candidates[0].q, r: candidates[0].r };
+    }
+  }
+  props.controller.preview({ revision: state.revision, actor: unit.id, moveId, anchor: target, aim, ...(walkTo ? { walkTo } : {}) });
 }
 function chooseMove(id: string): void { selectedMove.value = id; direction.value = 0; preview(id); }
-function chooseCell(cell: BattleCell): void { anchor.value = cell; if (selectedMove.value) preview(selectedMove.value, cell); }
+function chooseCell(cell: BattleCell): void {
+  const previousCell = anchor.value;
+  anchor.value = cell;
+  if (selectedMove.value) {
+    if (view.value?.preview?.valid && previousCell && previousCell.q === cell.q && previousCell.r === cell.r) {
+      // Clicking the same valid target again executes the strike!
+      void props.controller.command({ t: 'battle/act-at', preview: view.value.preview });
+      return;
+    }
+    preview(selectedMove.value, cell);
+  } else {
+    const enemy = view.value?.units.find(u => u.active && u.q === cell.q && u.r === cell.r && view.value?.info.setup.relations[actor.value?.side ?? 'player'][u.side] === 'hostile');
+    if (enemy && actor.value?.moves[0]) {
+      chooseMove(actor.value.moves[0].id);
+    }
+  }
+}
 function hoverCell(cell: BattleCell): void { if (selectedMove.value) preview(selectedMove.value, cell); }
 function chooseUnit(id: string): void {
   selected.value = id; const unit = view.value?.units.find(row => row.id === id);
   const cell = view.value?.info.cells.find(row => row.q === unit?.q && row.r === unit.r);
   if (cell) chooseCell(cell);
 }
+function onSpace(): void {
+  const state = view.value;
+  if (!state || busy.value || state.auto) return;
+  if (state.preview?.valid) {
+    void props.controller.command({ t: 'battle/act-at', preview: state.preview });
+  } else if (state.capabilities.move.selected) {
+    void props.controller.command({ t: 'battle/wait', actor: actor.value?.id ?? '', revision: state.revision, walkTo: { q: state.capabilities.move.selected.q, r: state.capabilities.move.selected.r } });
+  } else {
+    props.controller.setMovement(!props.controller.movement.value);
+  }
+}
+function onCancel(): void {
+  selectedMove.value = null;
+  anchor.value = null;
+  props.controller.setMovement(false);
+  if (view.value) void props.controller.preview({ kind: 'cancel', revision: view.value.revision });
+}
 function visibility(): void { props.controller.setActive(document.visibilityState !== 'hidden'); }
-watch(() => view.value?.revision, () => { selectedMove.value = null; anchor.value = null; selected.value = actor.value?.id ?? null; });
+watch(() => view.value?.revision, () => {
+  anchor.value = null;
+  selected.value = actor.value?.id ?? null;
+  if (actor.value?.control === 'player' && actor.value.moves[0]) {
+    selectedMove.value = actor.value.moves[0].id;
+    preview(actor.value.moves[0].id);
+  } else {
+    selectedMove.value = null;
+  }
+}, { immediate: true });
 onMounted(() => { visibility(); document.addEventListener('visibilitychange', visibility); });
 onBeforeUnmount(() => { props.controller.setActive(false); document.removeEventListener('visibilitychange', visibility); });
 async function leave(): Promise<void> {
@@ -79,7 +135,7 @@ async function leave(): Promise<void> {
       </details>
       <div class="battle-layout">
         <div>
-          <BattleField :key="view.id" :controller="controller" :battle="view" :selected="selected" :floating="floating" :reduced-motion="reducedMotion" :skip="speed === 'skip'" @cell="chooseCell" @hover="hoverCell" @select="chooseUnit" />
+          <BattleField :key="view.id" :controller="controller" :battle="view" :selected="selected" :floating="floating" :reduced-motion="reducedMotion" :skip="speed === 'skip'" @cell="chooseCell" @hover="hoverCell" @select="chooseUnit" @space="onSpace" @cancel="onCancel" />
           <fieldset v-if="selectedDefinition?.shape.tpl === 'aoe_line' || selectedDefinition?.shape.tpl === 'aoe_cone'" class="aim-control">
             <legend>招式朝向</legend>
             <button

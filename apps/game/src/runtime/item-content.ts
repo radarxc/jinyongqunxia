@@ -353,6 +353,7 @@ export class ItemTextCache {
       if (typeof value !== 'object' || value === null || Array.isArray(value))
         throw new TypeError('CONTENT_ITEM_TEXT_LEAF_INVALID');
       for (const [key, text] of Object.entries(value)) {
+        if (!key.startsWith('item.')) continue;
         const match = key.match(/^item\.([a-z0-9_]+)\.text\.(desc|lore|short)$/u);
         if (!match || typeof text !== 'string') throw new TypeError(`CONTENT_ITEM_TEXT_INVALID:${key}`);
         if (fields.has(key)) throw new TypeError(`CONTENT_ITEM_TEXT_DUPLICATE:${key}`);

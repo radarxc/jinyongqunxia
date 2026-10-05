@@ -231,5 +231,85 @@ onBeforeUnmount(() => { disposed = true; generation += 1; previewGeneration += 1
 </template>
 
 <style scoped>
-.region-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,300px);gap:14px;min-height:360px}.region-stage{position:relative;min-width:0;overflow:hidden;border:1px solid var(--line);background:#d9ccb0}.region-stage canvas{width:100%;height:100%;display:block;cursor:crosshair}.region-panel{display:flex;flex-direction:column;gap:8px;padding:16px;overflow:auto}.region-panel h3,.region-panel h4,.region-panel p{margin:4px 0}.region-panel button{min-height:44px}.region-panel output{min-height:24px}.region-help,.region-camera,.region-overlay{position:absolute;margin:0;padding:6px 9px;background:#efe6d2e8}.region-help{left:10px;bottom:10px}.region-camera{display:flex;gap:6px;left:10px;top:10px}.region-overlay{inset:40% auto auto 50%;transform:translate(-50%,-50%);z-index:2}.region-overlay button{margin:4px}.region-stage .map-zoom{right:10px;bottom:10px}@media(max-width:780px),(orientation:portrait){.region-page{grid-template-columns:1fr}.region-stage{min-height:58vw}.region-panel{max-height:280px}}
+.region-page {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 300px);
+  gap: 14px;
+  height: 100%;
+  overflow: hidden;
+}
+.region-stage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #d9ccb0;
+}
+.region-stage canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+.region-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  margin-top: 80px;
+  margin-bottom: 90px;
+  margin-right: 16px;
+  overflow: auto;
+  z-index: 5;
+}
+.region-panel h3, .region-panel h4, .region-panel p {
+  margin: 4px 0;
+}
+.region-panel button {
+  min-height: 44px;
+}
+.region-panel output {
+  min-height: 24px;
+}
+.region-help, .region-camera, .region-overlay {
+  position: absolute;
+  margin: 0;
+  padding: 6px 9px;
+  background: #efe6d2e8;
+}
+.region-help {
+  left: 10px;
+  bottom: 10px;
+}
+.region-camera {
+  display: flex;
+  gap: 6px;
+  left: 10px;
+  top: 10px;
+}
+.region-overlay {
+  inset: 40% auto auto 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.region-overlay button {
+  margin: 4px;
+}
+.region-stage .map-zoom {
+  right: 10px;
+  bottom: 10px;
+}
+@media (max-width: 780px), (orientation: portrait) {
+  .region-page {
+    grid-template-columns: 1fr;
+  }
+  .region-stage {
+    min-height: 58vw;
+  }
+  .region-panel {
+    max-height: 280px;
+  }
+}
 </style>

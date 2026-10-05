@@ -75,7 +75,11 @@ export function createSelectors(content: GameContent,
     const worldMap = marked.has('worldmap') && session.chapter.worldMap && content.worldMaps
       ? content.worldMaps.find((entry) => entry.chapterId === session.chapter.chapterId)! : undefined;
     const texture = worldMap
-      ? content.assets?.[`ref_map_jianghu__${worldMap.era}_base01`]?.map ?? null : null;
+      ? content.assets?.[`ref_map_jianghu__${worldMap.era}_base01`]?.map
+        ?? content.assets?.['ref_map_jianghu__ch01_base01']?.map
+        ?? Object.values(content.assets ?? {}).find((a) => a.map)?.map
+        ?? '/assets/default/baseline/map/ref_map_jianghu__ch01_base01.png'
+      : null;
     const staticChanged = marked.has('worldmap') && (!view || (worldMap
       ? view.worldmapStatic?.map !== worldMap : view.worldmapStatic !== null));
     const changes: Partial<GameProjection> = { title: '天书录', coreVersion: session.meta.coreVersion,

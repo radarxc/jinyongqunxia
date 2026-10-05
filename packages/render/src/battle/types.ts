@@ -91,6 +91,7 @@ export interface BattleRenderer {
   snapshot(id: string): BattleSnapshot | undefined;
   setTimeOfDay(hours: number): void;
   pick(x: number, y: number): BattleCell | null;
+  playStrike?(actorId: string, targetId?: string): void;
   dispose(): void;
 }
 export interface BattleRendererOptions {

@@ -19,3 +19,4 @@ apps/game/public/content/
 .env.local
 .env.*.local
 .env
+scratch/

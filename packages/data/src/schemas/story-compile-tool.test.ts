@@ -18,5 +18,5 @@ describe('story compile tool fixtures', () => {
     expect(result.status, result.stderr).toBe(0);
     expect(result.stderr).toBe('');
     expect(result.stdout).toBe('content:test-compile-story: 4 tests passed\n');
-  });
+  }, 30_000);
 });

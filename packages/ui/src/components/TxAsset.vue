@@ -7,7 +7,7 @@ watch(() => props.src, () => { failed.value = false; });
 
 <template>
   <span class="asset" :class="{ portrait, silhouette: hidden }">
-    <img v-if="src && !failed && !hidden" :src="src" :alt="label" loading="lazy" decoding="async" @error="failed = true">
+    <img v-if="src && !failed && !hidden" :src="src.startsWith('/') ? src : `/${src}`" :alt="label" loading="lazy" decoding="async" @error="failed = true">
     <svg v-else-if="portrait" viewBox="0 0 96 112" role="img" :aria-label="label">
       <circle cx="48" cy="30" r="15" />
       <path d="M23 104 27 66Q30 48 48 48Q66 48 69 66L75 104Z" />

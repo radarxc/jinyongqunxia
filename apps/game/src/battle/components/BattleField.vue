@@ -1,5 +1,5 @@
 <script setup lang="ts">
-/* global window, document, ResizeObserver, requestAnimationFrame, cancelAnimationFrame, PointerEvent, KeyboardEvent, Element, HTMLElement, HTMLCanvasElement, setTimeout, clearTimeout */
+/* global window, document, ResizeObserver, requestAnimationFrame, cancelAnimationFrame, PointerEvent, MouseEvent, KeyboardEvent, Element, HTMLElement, HTMLCanvasElement, setTimeout, clearTimeout */
 import { TICKS_PER_HOUR } from '@tianshu/core';
 import { t } from '@tianshu/ui/runtime';
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, triggerRef, watch } from 'vue';
@@ -22,6 +22,8 @@ const emit = defineEmits<{
   cell: [cell: BattleCell];
   hover: [cell: BattleCell];
   select: [id: string];
+  space: [];
+  cancel: [];
 }>();
 const root = ref<HTMLElement>();
 const canvas = ref<HTMLCanvasElement>();
@@ -49,6 +51,7 @@ let effectsState: 'ok' | 'lost' | 'failed' = 'ok';
 let resumeBattle = false;
 let recovery: Promise<boolean> | undefined;
 let offVfx: (() => void) | undefined;
+let offMove: (() => void) | undefined;
 let disposed = false;
 let frame = 0;
 let framePending = false;
@@ -209,6 +212,12 @@ function keyboard(event: KeyboardEvent): void {
   if (key === 'q' || key === 'e') {
     event.preventDefault();
     rotateCamera(key === 'q' ? -1 : 1);
+  } else if (event.code === 'Space' || event.key === ' ') {
+    event.preventDefault();
+    emit('space');
+  } else if (event.key === 'Escape') {
+    event.preventDefault();
+    emit('cancel');
   }
 }
 function pointer(event: PointerEvent, commit: boolean): void {
@@ -217,12 +226,47 @@ function pointer(event: PointerEvent, commit: boolean): void {
   const cell = renderer.pick(event.clientX - bounds.left, event.clientY - bounds.top);
   if (!cell) return;
   const key = `${cell.q},${cell.r}`;
-  if (commit && movement.value) chooseDestination(cell);
-  else if (commit) emit('cell', cell);
-  else if (key !== hovered) {
+  if (commit) {
+    const isReachable = props.battle.capabilities.move.reachable.some(row => row.q === cell.q && row.r === cell.r);
+    const unitOnCell = props.battle.units.find(u => u.active && u.q === cell.q && u.r === cell.r);
+    if (movement.value && isReachable) {
+      chooseDestination(cell);
+    } else if (!props.battle.preview && isReachable && (!unitOnCell || unitOnCell.id === props.battle.actorId)) {
+      chooseDestination(cell);
+    } else {
+      if (unitOnCell && !props.battle.preview) {
+        emit('select', unitOnCell.id);
+      }
+      emit('cell', cell);
+    }
+  } else if (key !== hovered) {
     hovered = key;
     emit('hover', cell);
   }
+}
+function onContextMenu(event: MouseEvent): void {
+  event.preventDefault();
+  if (!renderer || !canvas.value) return;
+  const bounds = canvas.value.getBoundingClientRect();
+  const cell = renderer.pick(event.clientX - bounds.left, event.clientY - bounds.top);
+  if (cell) {
+    const unitOnCell = props.battle.units.find(u => u.active && u.q === cell.q && u.r === cell.r);
+    if (unitOnCell) {
+      emit('select', unitOnCell.id);
+      return;
+    }
+  }
+  emit('cancel');
+}
+function onUnitClick(unit: BattleView['units'][number]): void {
+  emit('select', unit.id);
+  const cell = props.battle.info.cells.find(row => row.q === unit.q && row.r === unit.r);
+  if (cell) {
+    emit('cell', cell);
+  }
+}
+function onUnitContextMenu(unit: BattleView['units'][number]): void {
+  emit('select', unit.id);
 }
 function chooseDestination(cell: BattleCell): void {
   const reachable = props.battle.capabilities.move.reachable.some(row =>
@@ -327,6 +371,10 @@ async function mountRenderers(rebuildEffects = false, yaw = 45): Promise<boolean
           ready(stage as VfxStage);
         },
       });
+      offMove?.();
+      offMove = props.controller.onMoveResolved((_moveId, from, targets) => {
+        renderer?.playStrike?.(from.id, targets[0]?.id);
+      });
     }
     requestDraw();
     return renderer.contextState === 'ok' && (!vfxStage || vfxStage.contextState === 'ok');
@@ -338,6 +386,7 @@ async function mountRenderers(rebuildEffects = false, yaw = 45): Promise<boolean
   }
 }
 function releaseRenderers(): void {
+  offMove?.(); offMove = undefined;
   offVfx?.(); offVfx = undefined;
   vfxStage?.dispose(); vfxStage = undefined;
   renderer?.dispose(); renderer = undefined;
@@ -409,6 +458,7 @@ onBeforeUnmount(() => {
         aria-label="六角地形与分层角色"
         @pointermove="pointer($event, false)"
         @click="pointer($event as PointerEvent, true)"
+        @contextmenu.prevent="onContextMenu($event)"
       />
       <canvas v-show="!failed" :key="'effects-' + canvasGeneration" ref="vfxCanvas" class="battle-vfx" aria-hidden="true" />
       <p v-if="movement" class="field-mode" role="status">{{ t('battleChooseDestination') }}</p>
@@ -440,20 +490,11 @@ onBeforeUnmount(() => {
       </nav>
       <p v-if="failed" class="field-notice">画面暂不可用，可在下方选择人物与落点继续战斗。</p>
       <p v-else-if="!loaded" class="field-notice">正在展开战场…</p>
-      <button
+      <div
         v-for="unit in battle.units"
         v-show="positions.get(unit.id)?.visible && loaded && unit.active"
         :key="unit.id"
-        type="button"
-        class="unit-label"
-        :class="[
-          unit.side,
-          {
-            selected: selected === unit.id,
-            current: battle.actorId === unit.id,
-            hit: area.has(`${unit.q},${unit.r}`),
-          },
-        ]"
+        class="unit-label-wrap"
         :style="{
           left: `${battleUnitLabelPosition(positions.get(unit.id)?.x ?? 0,
                                            positions.get(unit.id)?.y ?? 0, viewportWidth, unit.index).left}px`,
@@ -464,39 +505,55 @@ onBeforeUnmount(() => {
           '--unit-name-font': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.nameFont}px`,
           '--unit-aux-font': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.auxiliaryFont}px`,
         }"
-        @click="emit('select', unit.id)"
       >
-        <span class="unit-avatar" aria-hidden="true">
-          <img v-if="unit.portraitUrl" :src="'/' + unit.portraitUrl" alt="">
-          <span v-else>{{ unit.name.slice(0, 1) }}</span>
-        </span>
-        <span class="unit-label-copy">
-          <strong>{{ unit.name }}<span aria-label="朝向">{{ directionLabels[unit.facing] }}</span></strong>
-          <span class="unit-meters">
-            <meter
-              :value="unit.hp" :max="unit.hpMax" min="0"
-              :aria-label="`${unit.name} 气血 ${unit.hp}/${unit.hpMax}`"
-            />
-            <meter
-              class="mp" :value="unit.mp" :max="unit.mpMax" min="0"
-              :aria-label="`${unit.name} 内力 ${unit.mp}/${unit.mpMax}`"
-            />
-            <meter
-              class="ct" :value="Math.max(0, Math.min(1000, unit.ct))" max="1000" min="0"
-              :aria-label="`行动槽 ${unit.ct}`"
-            />
-          </span>
-          <small>{{ unit.ct < 0 ? `收招 ${-unit.ct}` : `CT ${unit.ct}` }}</small>
-        </span>
-        <span
-          v-for="status in unit.statuses"
-          :key="status.id"
-          class="status-icon"
-          :title="`${status.label} ${status.detail}`"
+        <button
+          type="button"
+          class="unit-label"
+          :class="[
+            unit.side,
+            {
+              selected: selected === unit.id,
+              current: battle.actorId === unit.id,
+              hit: area.has(`${unit.q},${unit.r}`),
+            },
+          ]"
+          @click="onUnitClick(unit)"
+          @contextmenu.prevent="onUnitContextMenu(unit)"
         >
-          {{ status.label }}
-        </span>
-      </button>
+          <span class="unit-avatar" aria-hidden="true">
+            <img v-if="unit.portraitUrl" :src="unit.portraitUrl.startsWith('/') ? unit.portraitUrl : '/' + unit.portraitUrl" alt="">
+            <span v-else>{{ unit.name.slice(0, 1) }}</span>
+          </span>
+          <span class="unit-label-copy">
+            <strong>{{ unit.name }}<span aria-label="朝向">{{ directionLabels[unit.facing] }}</span></strong>
+            <span class="unit-meters">
+              <meter
+                :value="unit.hp" :max="unit.hpMax" min="0"
+                :aria-label="`${unit.name} 气血 ${unit.hp}/${unit.hpMax}`"
+              />
+              <meter
+                class="mp" :value="unit.mp" :max="unit.mpMax" min="0"
+                :aria-label="`${unit.name} 内力 ${unit.mp}/${unit.mpMax}`"
+              />
+              <meter
+                class="ct" :value="Math.max(0, Math.min(1000, unit.ct))" max="1000" min="0"
+                :aria-label="`行动槽 ${unit.ct}`"
+              />
+            </span>
+            <small>{{ unit.ct < 0 ? `收招 ${-unit.ct}` : `CT ${unit.ct}` }}</small>
+          </span>
+        </button>
+        <div v-if="unit.statuses.length" class="unit-status-row">
+          <span
+            v-for="status in unit.statuses"
+            :key="status.id"
+            class="status-icon"
+            :title="`${status.label} ${status.detail}`"
+          >
+            {{ status.label }}
+          </span>
+        </div>
+      </div>
       <div v-if="floatingVisible && !skip" class="battle-floats" aria-hidden="true">
         <span
           v-for="entry in floating"
@@ -504,8 +561,8 @@ onBeforeUnmount(() => {
           class="float-text"
           :class="{ still: reducedMotion }"
           :style="{
-            left: `${positions.get(entry.event.target ?? entry.event.actor ?? '')?.x ?? 20}px`,
-            top: `${(positions.get(entry.event.target ?? entry.event.actor ?? '')?.y ?? 120) - 110}px`,
+            left: `${Math.max(60, Math.min(viewportWidth - 60, positions.get(entry.event.target ?? entry.event.actor ?? '')?.x ?? (viewportWidth / 2)))}px`,
+            top: `${Math.max(20, (positions.get(entry.event.target ?? entry.event.actor ?? '')?.y ?? 180) - 70)}px`,
             '--float-duration': `${floatDuration}ms`,
           }"
         >

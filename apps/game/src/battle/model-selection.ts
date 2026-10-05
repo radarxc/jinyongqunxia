@@ -6,17 +6,31 @@ function gender(value: string | undefined): 'male' | 'female' {
   return value === 'female' ? 'female' : 'male';
 }
 
+const FALLBACK_PROTAGONIST: BattleModelVisual = {
+  key: 'npc_zhujue__ch00_m', kind: 'dedicated', gender: 'male', heightM: 1.70,
+  modelUrl: '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb',
+  animationUrl: '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb',
+};
+const FALLBACK_GENERIC: BattleModelVisual = {
+  key: 'npc_generic_m', kind: 'generic', gender: 'male', heightM: 1.70,
+  modelUrl: '/assets/default/model3d/npc_generic_m/anim_idle_walk_run.glb',
+  animationUrl: '/assets/default/model3d/npc_generic_m/anim_idle_walk_run.glb',
+};
+
 export function resolveMarkerModel(catalog: BattleModelCatalog | undefined,
   content: Pick<GameContent, 'npcs'>, source: BattleModelSource,
   protagonistGender?: string): BattleModelVisual | null {
-  if (!catalog) return null;
+  if (!catalog) {
+    if (source.kind === 'protagonist') return FALLBACK_PROTAGONIST;
+    return FALLBACK_GENERIC;
+  }
   if (source.kind === 'protagonist')
-    return catalog.protagonist[gender(protagonistGender)] ?? null;
+    return catalog.protagonist[gender(protagonistGender)] ?? FALLBACK_PROTAGONIST;
   if (source.kind === 'template')
-    return catalog.templates[source.templateId] ?? catalog.generic.male ?? null;
+    return catalog.templates[source.templateId] ?? catalog.generic.male ?? FALLBACK_GENERIC;
   const npc = content.npcs.find(row => row.id === source.npcId);
   if (npc?.identity.species !== 'human') return null;
-  return catalog.npcs[source.npcId] ?? catalog.generic[gender(npc?.identity.gender)] ?? null;
+  return catalog.npcs[source.npcId] ?? catalog.generic[gender(npc?.identity.gender)] ?? FALLBACK_GENERIC;
 }
 
 function inferredSource(marker: BattleLaunchMarker, content: Pick<GameContent, 'npcs'>,

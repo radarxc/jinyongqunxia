@@ -210,3 +210,60 @@ onBeforeUnmount(() => {
   </section>
   <section v-else class="paper-panel reading-panel"><p>城镇运行时尚未装载。</p></section>
 </template>
+
+<style scoped>
+.town-page {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  gap: 14px;
+  height: 100%;
+  overflow: hidden;
+}
+.town-stage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #d9ccb0;
+}
+.town-stage canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.town-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  margin-top: 80px;
+  margin-bottom: 90px;
+  margin-right: 16px;
+  overflow: auto;
+  z-index: 5;
+}
+.town-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.town-help, .map-zoom {
+  position: absolute;
+  margin: 0;
+  padding: 6px 10px;
+  background: #efe6d2e8;
+  border-radius: 4px;
+}
+.town-help {
+  left: 10px;
+  bottom: 10px;
+  font-size: 12px;
+}
+.map-zoom {
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
+}
+</style>

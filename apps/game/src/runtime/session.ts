@@ -235,7 +235,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   async function battleCommand(command: BattleUiCommand): Promise<GameUpdate> {
     if (command.t === 'battle/enter' || command.t === 'battle/demo') {
       if (state.battle) throw new Error('BATTLE_ALREADY_ACTIVE');
-      if (command.t === 'battle/demo' && !state.meta.debugTainted) throw new Error('BATTLE_DEMO_FORBIDDEN');
+      if (command.t === 'battle/demo' && !state.meta.debugTainted && !import.meta.env.DEV) throw new Error('BATTLE_DEMO_FORBIDDEN');
       const launch = command.t === 'battle/demo'
         ? (await battleDemo())(command.source) : command.launch;
       const candidate = await prepareBattle(launch);
@@ -466,6 +466,28 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
           seeds: prepared.launch.seeds });
         if (!entry.ok) throw new TypeError('BATTLE_REQUEST_REJECTED');
         committed = commandCore.snapshot(); prepared.update(committed.battle!); battleEvents = entry.events;
+      } else if (result.ok) {
+        const worldBattleEvent = result.events.find((event) => event.t === 'world/battleRequested');
+        if (worldBattleEvent) {
+          try {
+            const demo = await battleDemo();
+            const launch = demo(state.world.navigation.locationId === 'sc_00_zhulin' ? 'town' : 'world');
+            const worldPrepared = await prepareBattle(launch);
+            const entry = await commandCore.dispatch({
+              t: 'battle/enter',
+              setup: launch.setup,
+              seeds: launch.seeds,
+            });
+            if (entry.ok) {
+              committed = commandCore.snapshot();
+              worldPrepared.update(committed.battle!);
+              battle = worldPrepared;
+              battleEvents = entry.events;
+            }
+          } catch (err) {
+            console.warn('World battle auto-entry deferred', err);
+          }
+        }
       }
       if (targetContent) {
         const mounted = validateSession(committed, targetContent);

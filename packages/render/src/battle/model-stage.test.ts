@@ -111,6 +111,22 @@ describe('battle 3D model stage', () => {
     expect(stage.hasModel('u0')).toBe(false); expect(stage.stats.characters).toBe(0); stage.dispose();
   });
 
+  it('animates strike lunge on attacker and recoil on target', async () => {
+    const stage = createBattleModelStage(new Scene(), { loadModel: async () => fixtureModel() });
+    stage.updateUnits([marker('u0', 0), marker('u1', 1)]); await loaded(stage, 2);
+    stage.playStrike?.('u0', 'u1');
+    stage.update(0.1, false);
+    const attackerPos = new Vector3();
+    const targetPos = new Vector3();
+    expect(stage.position('u0', attackerPos)).toBe(true);
+    expect(stage.position('u1', targetPos)).toBe(true);
+    expect(attackerPos.length()).toBeGreaterThan(0.01);
+    stage.update(0.4, false);
+    stage.position('u0', attackerPos);
+    expect(attackerPos.x).toBeCloseTo(0, 1);
+    stage.dispose();
+  });
+
   it.each([6, 12])('reports %i model draw calls and keeps CPU animation updates in budget',
     async count => {
       const stage = createBattleModelStage(new Scene(), { loadModel: async () => animatedFixture() });

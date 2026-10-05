@@ -16,7 +16,7 @@ import {
 import { createTimeOfDayFrame, evaluateTimeOfDay, sunAzimuthDeg } from '../lighting/time-of-day';
 import { createContextGuard } from '../core/context-guard';
 import { getDefaultRenderQuality } from '../quality/tiers';
-import { createDestinationMarker, createWorldMapGeometry, mapPointToWorld } from './geometry';
+import { createDestinationMarker, createProtagonistMarker, createWorldMapGeometry, mapPointToWorld } from './geometry';
 import type { MapActorView, WorldMapScene, WorldMapSceneOptions, WorldMapStats } from './types';
 import type { MapGeometryView } from './types';
 
@@ -70,10 +70,12 @@ export async function createWorldMapScene(
   let sunOffsetZ = 0;
   const marker = createDestinationMarker();
   scene.add(marker);
+  const protagonist = createProtagonistMarker();
+  scene.add(protagonist);
   let rigSet;
   try { rigSet = await rig.loadRigSet(rig.createPlaceholderRigManifest('worldmap-player')); }
   catch (error) {
-    geometry.dispose(); mapTexture?.dispose(); disposeObject(marker);
+    geometry.dispose(); mapTexture?.dispose(); disposeObject(marker); disposeObject(protagonist);
     renderer.forceContextLoss(); renderer.dispose(); throw error;
   }
   const batch = new rig.RigBatch(rigSet, 1);
@@ -161,6 +163,7 @@ export async function createWorldMapScene(
     const [x, y, z] = mapPointToWorld(map, view.point);
     actor.setPosition(x, y + 0.08, z);
     actor.setMotion(view.direction ?? 1, view.walking ? 1.4 : 0, 'medium');
+    protagonist.position.set(x, y, z);
     camera.position.set(x + 8, y + CAMERA_HEIGHT, z + 8);
     camera.lookAt(x, y, z);
     placeSun();
@@ -190,6 +193,11 @@ export async function createWorldMapScene(
       const dt = previous === 0 ? 0 : Math.min(0.1, Math.max(0, (timeMs - previous) / 1_000));
       previous = timeMs;
       actor.update(dt);
+      const beacon = protagonist.getObjectByName('protagonist-beacon');
+      if (beacon) {
+        beacon.position.y = 0.95 + Math.sin(timeMs * 0.005) * 0.08;
+        beacon.rotation.y = timeMs * 0.002;
+      }
       batch.sync();
       renderer.render(scene, camera);
       stats.cpuMs = performance.now() - started;
@@ -248,6 +256,7 @@ export async function createWorldMapScene(
       geometry.dispose();
       mapTexture?.dispose();
       disposeObject(marker);
+      disposeObject(protagonist);
       renderer.forceContextLoss();
       renderer.dispose();
     },

@@ -54,9 +54,13 @@ export async function loadTownAtlas(source: TownRuntimeView['assets']['tile']): 
     const canvas = document.createElement('canvas'); canvas.width = atlasWidth; canvas.height = atlasHeight;
     const context = canvas.getContext('2d'); if (!context) throw new Error('TOWN_ATLAS_CANVAS_UNAVAILABLE');
     for (const asset of packed) {
-      context.fillStyle = placeholderColor(asset.entry.kind);
-      context.fillRect(asset.x, asset.y, asset.width, asset.height);
-      if (asset.image) context.drawImage(asset.image, asset.x, asset.y, asset.width, asset.height);
+      if (asset.image) {
+        context.clearRect(asset.x, asset.y, asset.width, asset.height);
+        context.drawImage(asset.image, asset.x, asset.y, asset.width, asset.height);
+      } else {
+        context.fillStyle = placeholderColor(asset.entry.kind);
+        context.fillRect(asset.x, asset.y, asset.width, asset.height);
+      }
     }
     texture = new CanvasTexture(canvas); texture.colorSpace = SRGBColorSpace;
     texture.minFilter = LinearFilter; texture.magFilter = LinearFilter; texture.generateMipmaps = true;
@@ -77,7 +81,7 @@ const FRAGMENT = `uniform sampler2D map; varying vec2 vUv; varying vec2 vLocalUv
 varying vec4 vClip; varying float vOpacity;
 void main(){ if(vLocalUv.x<vClip.x||vLocalUv.y<vClip.y||vLocalUv.x>vClip.z||vLocalUv.y>vClip.w) discard;
 vec4 texel=texture2D(map,vUv); float alpha=texel.a*vOpacity;
-if(alpha<0.025) discard; gl_FragColor=vec4(texel.rgb*alpha,alpha); }`;
+if(alpha<0.025) discard; gl_FragColor=vec4(texel.rgb,alpha); }`;
 function material(texture: Texture, depthWrite = true): ShaderMaterial {
   return new ShaderMaterial({ uniforms: { map: { value: texture } }, vertexShader: VERTEX,
     fragmentShader: FRAGMENT, transparent: true, depthWrite, depthTest: true });

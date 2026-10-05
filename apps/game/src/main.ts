@@ -127,7 +127,9 @@ async function showTitle(status = ''): Promise<void> {
     continueSummary: save ? `${save.meta.summary['name'] ?? flowT('defaultHero')} · ${new Date(save.savedAt).toLocaleString('zh-CN')}` : undefined,
     newGameAvailable: true, demoAvailable: import.meta.env.DEV, status,
     onContinue: () => { if (save) void beginSession({ slot: save.slot }); },
-    onNewGame: () => { void beginSession({ fresh: true }); }, onSettings: showSettings,
+    onNewGame: () => {
+      void beginSession({ fresh: true });
+    }, onSettings: showSettings,
     onDemo: () => { if (import.meta.env.DEV) void beginSession({ demo: true }); },
   }));
 }
@@ -144,6 +146,11 @@ async function start(): Promise<void> {
   ]);
   startup = await prepareStartup(); settings.value = startup.settings;
   if (startup.error) { await renderRecovery(startup.error); return; }
+  if (import.meta.env.DEV && import.meta.env.MODE !== 'test' && !location.search.includes('title')) {
+    await beginSession({ demo: true });
+    schedulePwaRegistration();
+    return;
+  }
   await showTitle(); schedulePwaRegistration();
 }
 export const gameReady = start().catch(error => { console.error('Game initialization failed', error);

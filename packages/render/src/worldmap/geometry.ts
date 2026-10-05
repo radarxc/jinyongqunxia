@@ -1,7 +1,8 @@
 import {
   BoxGeometry, BufferAttribute, BufferGeometry, Color, ConeGeometry, CylinderGeometry, DataTexture,
-  Group, InstancedMesh, LineBasicMaterial, LineSegments, Mesh, MeshStandardMaterial,
-  NearestFilter, Object3D, RGBAFormat, Vector3,
+  DoubleSide, Group, InstancedMesh, LineBasicMaterial, LineSegments, Mesh, MeshBasicMaterial,
+  MeshStandardMaterial, NearestFilter, Object3D, OctahedronGeometry, RGBAFormat, RingGeometry,
+  Vector3,
 } from 'three';
 import type { Texture } from 'three';
 import type { MapGeometryView, MapNodeView, MapPoint } from './types';
@@ -36,12 +37,17 @@ function terrain(map: MapGeometryView, mapTexture?: Texture): Mesh {
       Math.round(gz * map.grid.height / TERRAIN_Z)];
     const [x, y, z] = mapPointToWorld(map, point);
     positions.push(x, y, z); uvs.push(gx / TERRAIN_X, 1 - gz / TERRAIN_Z);
-    color.setHSL(0.1, 0.2, 0.68 - Math.min(0.2, y * 0.07));
-    colors.push(color.r, color.g, color.b);
+    if (mapTexture) {
+      colors.push(1, 1, 1);
+    } else {
+      color.setHSL(0.1, 0.2, 0.68 - Math.min(0.2, y * 0.07));
+      colors.push(color.r, color.g, color.b);
+    }
   };
   for (let z = 0; z < TERRAIN_Z; z += 1) for (let x = 0; x < TERRAIN_X; x += 1) {
-    vertex(x, z); vertex(x, z + 1); vertex(x + 1, z + 1);
-    vertex(x, z); vertex(x + 1, z + 1); vertex(x + 1, z);
+    // CCW upward winding in coordinate space where +gz -> -Z:
+    vertex(x, z); vertex(x + 1, z + 1); vertex(x, z + 1);
+    vertex(x, z); vertex(x + 1, z); vertex(x + 1, z + 1);
   }
   const geometry = new BufferGeometry();
   geometry.setAttribute('position', new BufferAttribute(new Float32Array(positions), 3));
@@ -49,7 +55,7 @@ function terrain(map: MapGeometryView, mapTexture?: Texture): Mesh {
   geometry.setAttribute('uv', new BufferAttribute(new Float32Array(uvs), 2));
   geometry.computeVertexNormals();
   return new Mesh(geometry, new MeshStandardMaterial({
-    map: mapTexture ?? null, vertexColors: true, roughness: 0.95,
+    map: mapTexture ?? null, vertexColors: !mapTexture, roughness: 0.95, side: DoubleSide,
   }));
 }
 
@@ -90,6 +96,39 @@ function atlas(): DataTexture {
   return texture;
 }
 
+function createPavilionGeometry(): BufferGeometry {
+  const baseGeom = new CylinderGeometry(0.24, 0.28, 0.08, 6);
+  const bodyGeom = new CylinderGeometry(0.18, 0.20, 0.16, 6);
+  bodyGeom.translate(0, 0.12, 0);
+  const roofGeom = new ConeGeometry(0.34, 0.20, 6);
+  roofGeom.translate(0, 0.28, 0);
+
+  const parts = [baseGeom, bodyGeom, roofGeom];
+  const totalPositions: number[] = [];
+  const totalNormals: number[] = [];
+  const totalUvs: number[] = [];
+
+  for (const part of parts) {
+    const nonIndexed = part.toNonIndexed();
+    const posAttr = nonIndexed.getAttribute('position');
+    const normAttr = nonIndexed.getAttribute('normal');
+    const uvAttr = nonIndexed.getAttribute('uv');
+    for (let i = 0; i < posAttr.count; i += 1) {
+      totalPositions.push(posAttr.getX(i), posAttr.getY(i), posAttr.getZ(i));
+      totalNormals.push(normAttr.getX(i), normAttr.getY(i), normAttr.getZ(i));
+      totalUvs.push(uvAttr.getX(i), uvAttr.getY(i));
+    }
+    part.dispose();
+    nonIndexed.dispose();
+  }
+
+  const merged = new BufferGeometry();
+  merged.setAttribute('position', new BufferAttribute(new Float32Array(totalPositions), 3));
+  merged.setAttribute('normal', new BufferAttribute(new Float32Array(totalNormals), 3));
+  merged.setAttribute('uv', new BufferAttribute(new Float32Array(totalUvs), 2));
+  return merged;
+}
+
 export interface WorldMapGeometry {
   readonly group: Group; readonly nodes: InstancedMesh; readonly visibleNodes: readonly MapNodeView[];
   readonly nodeInstances: number; readonly roadSegments: number;
@@ -107,19 +146,20 @@ export function createWorldMapGeometry(map: MapGeometryView, mapTexture?: Textur
   const mountainLines = segments(map, map.terrain.mountains, 0x554c3e, 0.06);
   mountainLines.name = 'mountain-layer'; group.add(mountainLines);
   const texture = atlas();
-  const material = new MeshStandardMaterial({ color: 0xffffff, map: texture, roughness: 0.75 });
-  const geometry = new CylinderGeometry(0.12, 0.2, 0.32, 6);
+  const material = new MeshStandardMaterial({ color: 0xffffff, map: texture, roughness: 0.65 });
+  const geometry = createPavilionGeometry();
   const visibleNodes = map.nodes.filter((node) => node.open !== false);
   const nodes = new InstancedMesh(geometry, material, visibleNodes.length);
   nodes.name = 'map-node-instances';
   const transform = new Object3D();
   visibleNodes.forEach((node: MapNodeView, index) => {
     const [x, y, z] = mapPointToWorld(map, node.point);
-    transform.position.set(x, y + 0.18, z);
-    transform.scale.setScalar(node.kind === 'ruin' ? 0.75 : 1);
+    transform.position.set(x, y + 0.12, z);
+    transform.scale.setScalar(node.kind === 'ruin' ? 0.7 : 1);
     transform.rotation.y = node.kind === 'ruin' ? Math.PI / 4 : 0;
     transform.updateMatrix(); nodes.setMatrixAt(index, transform.matrix);
-    nodes.setColorAt(index, new Color(node.kind === 'ruin' ? 0x3d4b43 : 0x7e3228));
+    // Warm vermilion Chinese architecture for towns, weathered stone for ruins
+    nodes.setColorAt(index, new Color(node.kind === 'ruin' ? 0x4a5d53 : 0xaa382b));
   });
   nodes.instanceMatrix.needsUpdate = true;
   if (nodes.instanceColor) nodes.instanceColor.needsUpdate = true;
@@ -143,4 +183,37 @@ export function createDestinationMarker(): Mesh {
   const marker = new Mesh(new ConeGeometry(0.18, 0.5, 6),
     new MeshStandardMaterial({ color: 0xc99837, emissive: 0x3b2408 }));
   marker.name = 'destination-marker'; marker.visible = false; return marker;
+}
+
+export function createProtagonistMarker(): Group {
+  const group = new Group();
+  group.name = 'protagonist-marker';
+  // Outer jade beacon ring
+  const ring = new Mesh(
+    new RingGeometry(0.24, 0.40, 32),
+    new MeshBasicMaterial({ color: 0x40e0d0, side: DoubleSide, transparent: true, opacity: 0.8 }),
+  );
+  ring.rotation.x = -Math.PI / 2;
+  ring.position.y = 0.03;
+  group.add(ring);
+
+  // Inner golden core
+  const innerRing = new Mesh(
+    new RingGeometry(0.08, 0.16, 24),
+    new MeshBasicMaterial({ color: 0xffd700, side: DoubleSide, transparent: true, opacity: 0.9 }),
+  );
+  innerRing.rotation.x = -Math.PI / 2;
+  innerRing.position.y = 0.035;
+  group.add(innerRing);
+
+  // Floating diamond beacon indicator overhead
+  const beacon = new Mesh(
+    new OctahedronGeometry(0.2, 0),
+    new MeshStandardMaterial({ color: 0xffd700, emissive: 0xb8860b, roughness: 0.3, metalness: 0.5 }),
+  );
+  beacon.name = 'protagonist-beacon';
+  beacon.position.y = 0.95;
+  group.add(beacon);
+
+  return group;
 }

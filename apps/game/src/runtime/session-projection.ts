@@ -79,7 +79,12 @@ export function createSessionSelectors(content: GameContent,
     const marked = new Set(view ? dirty : ALL_VIEWS);
     const map = marked.has('worldmap') && session.chapter.worldMap && content.worldMaps
       ? content.worldMaps.find((entry) => entry.chapterId === session.chapter.chapterId)! : undefined;
-    const texture = map ? content.assets?.[`ref_map_jianghu__${map.era}_base01`]?.map ?? null : null;
+    const texture = map
+      ? content.assets?.[`ref_map_jianghu__${map.era}_base01`]?.map
+        ?? content.assets?.['ref_map_jianghu__ch01_base01']?.map
+        ?? Object.values(content.assets ?? {}).find((a) => a.map)?.map
+        ?? '/assets/default/baseline/map/ref_map_jianghu__ch01_base01.png'
+      : null;
     const staticChanged = marked.has('worldmap') && (!view || (map
       ? view.worldmapStatic?.map !== map : view.worldmapStatic !== null));
     const changes: Partial<GameProjection> = { title: '天书录', coreVersion: session.meta.coreVersion,

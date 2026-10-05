@@ -145,6 +145,10 @@ function chapterAssetGroups(
   );
   for (const [id, value] of Object.entries(assetMap)) {
     const inferred = chapterForAsset(id, value);
+    if (value.map) {
+      for (const chapter of chapterIds) (chapters[chapter] ??= {})[id] = value;
+      continue;
+    }
     const scopes = value.icon
       ? (itemScopes.get(id) ?? 'any')
       : (npcScopes.get(id) ?? (inferred ? [inferred] : undefined));

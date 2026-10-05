@@ -772,8 +772,50 @@ export function createGameController(
     }, true);
     return update;
   }
+  async function mountRegion(regionId: string, sceneId: string, spawnId: string): Promise<boolean> {
+    let update: GameUpdate | undefined;
+    await run(async () => {
+      const result = await host.dispatch({
+        t: 'world/mountRegion',
+        regionId,
+        sceneId,
+        spawnId,
+      });
+      if (result.accepted) {
+        notice.value = '';
+        update = result;
+      }
+    }, true);
+    return update?.accepted ?? false;
+  }
+  async function startDemoBattle(source: 'world' | 'town' = 'world'): Promise<boolean> {
+    let update: GameUpdate | undefined;
+    await run(async () => {
+      const result = await host.dispatch({ t: 'battle/demo', source });
+      if (result.accepted) {
+        notice.value = '';
+        update = result;
+      }
+    }, true);
+    return update?.accepted ?? false;
+  }
+  async function enterTown(nodeId?: string): Promise<boolean> {
+    let update: GameUpdate | undefined;
+    await run(async () => {
+      if (nodeId && worldmap.value && worldmap.value.positionNodeId !== nodeId) {
+        await host.dispatch({ t: 'worldmap/travel', nodeId });
+      }
+      const result = await host.dispatch({ t: 'worldmap/enter' });
+      if (result.accepted) {
+        notice.value = '';
+        update = result;
+      }
+    }, true);
+    return update?.accepted ?? false;
+  }
   return {
     busy,
+    enterTown,
     slots,
     storageAvailable,
     saveStatus,
@@ -810,6 +852,8 @@ export function createGameController(
     startNewGame,
     choosePrologueMode,
     settlePrologueMode,
+    mountRegion,
+    startDemoBattle,
     dialogueContinue,
     dialogueChoose,
     commitFirstSleep,
