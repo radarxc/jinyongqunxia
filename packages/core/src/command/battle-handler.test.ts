@@ -77,10 +77,45 @@ describe('battle command handler', () => {
     const target = state(); enter(target);
     expect(dispatchCommand(target, { t: 'battle/retry', option: 'restart' }))
       .toEqual({ ok: false, reason: 'BATTLE_NOT_ENDED' });
-    finish(target); const openingSeed = target.battle!.opening.setup.seed;
+    finish(target); target.battle!.battle.result = 'lose';
+    const openingSeed = target.battle!.opening.setup.seed;
     expect(dispatchCommand(target, { t: 'battle/retry', option: 'restart' }).ok).toBe(true);
     expect(target.battle).toMatchObject({ retryCount: 1, auto: false,
       battle: { phase: 'opening', setup: { seed: deriveRetrySeed(openingSeed, 1) } } });
+  });
+
+  it('rejects retry after victory or when the encounter forbids retry without counting a loss', () => {
+    const won = state(); enter(won); finish(won); won.battle!.battle.result = 'win';
+    const wonBefore = structuredClone(won);
+    expect(dispatchCommand(won, { t: 'battle/retry', option: 'restart' }))
+      .toEqual({ ok: false, reason: 'BATTLE_ACTION_REJECTED' });
+    expect(won).toEqual(wonBefore);
+
+    const forbidden = state(); const command = enterCommand();
+    enter(forbidden, { ...command, setup: { ...command.setup,
+      rules: { ...command.setup.rules, retryAllowed: false } } });
+    finish(forbidden); forbidden.battle!.battle.result = 'lose';
+    const forbiddenBefore = structuredClone(forbidden);
+    expect(dispatchCommand(forbidden, { t: 'battle/retry', option: 'restart' }))
+      .toEqual({ ok: false, reason: 'BATTLE_ACTION_REJECTED' });
+    expect(forbidden).toEqual(forbiddenBefore);
+  });
+
+  it('commits a threshold-qualified mercy subdue and rejects it otherwise atomically', () => {
+    const target = state(); enter(target, enterCommand({ enemies: 2 }));
+    const enemy = target.battle!.battle.units.find((unit) => unit.id === 'enemy_0')!;
+    enemy.hp = 360; const revision = target.battle!.revision;
+    expect(dispatchCommand(target, { t: 'battle/subdue', actor: 'hero', target: enemy.id,
+      expectedRevision: revision }).ok).toBe(true);
+    expect(target.battle!.battle.units.find((unit) => unit.id === enemy.id))
+      .toMatchObject({ active: false, state: 'surrendered' });
+    expect(target.battle!.commandLog.at(-1)).toEqual({ t: 'battle/subdue', actor: 'hero',
+      target: enemy.id });
+    const before = structuredClone(target);
+    expect(dispatchCommand(target, { t: 'battle/subdue', actor: 'hero', target: 'enemy_1',
+      expectedRevision: target.battle!.revision })).toEqual({ ok: false,
+        reason: 'BATTLE_ACTION_REJECTED' });
+    expect(target).toEqual(before);
   });
 
   it('leaves only a matching ended battle and rejects a mismatched receipt', () => {
@@ -305,6 +340,7 @@ describe('battle command handler', () => {
       const baseline = state();
       if (kind !== 'enter') enter(baseline);
       if (kind === 'retry' || kind === 'finalize' || kind === 'leave') finish(baseline);
+      if (kind === 'retry') baseline.battle!.battle.result = 'lose';
       const active = baseline.battle;
       const command: BattleBusCommand = kind === 'enter' ? enterCommand()
         : kind === 'act' ? { t: 'battle/act', actor: 'hero', action: { t: 'wait' } }

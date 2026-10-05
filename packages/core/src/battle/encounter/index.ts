@@ -55,10 +55,13 @@ export interface BattleSetupInput {
   readonly rewards?: Partial<BattleSetup['rewards']>;
   readonly grid?: readonly {
     readonly q: number; readonly r: number; readonly height: number; readonly moveCost: number;
+    readonly terrainId?: string;
     readonly canopy?: number; readonly los?: 'none' | 'partial' | 'full';
     readonly standable?: boolean; readonly narrow?: boolean; readonly dangerous?: boolean;
     readonly terrainDealtBp?: number; readonly terrainTakenBp?: number;
+    readonly terrainDealtBySubTypeBp?: Readonly<Record<string, number>>;
     readonly cover?: { readonly vs: readonly ('projectile' | 'ranged')[]; readonly hit: number;
+      readonly hitByDelivery?: Readonly<Partial<Record<'projectile' | 'ranged', number>>>;
       readonly damageBp: number; readonly sourceDirs?: readonly HexDir[] } | null;
   }[];
   readonly initialUnits?: readonly { readonly unitRef: string; readonly pos: HexCoord; readonly facing: HexDir }[];
@@ -75,6 +78,7 @@ function validGridCell(cell: NonNullable<BattleSetupInput['grid']>[number]): boo
   return Number.isSafeInteger(cell.q) && Number.isSafeInteger(cell.r)
     && Number.isSafeInteger(cell.height) && cell.height >= 0 && cell.height <= 10
     && Number.isSafeInteger(cell.moveCost) && cell.moveCost >= 1
+    && (cell.terrainId === undefined || /^tr_[a-z0-9_]+$/u.test(cell.terrainId))
     && (cell.canopy === undefined || Number.isSafeInteger(cell.canopy) && cell.canopy >= 0)
     && (cell.los === undefined || cell.los === 'none' || cell.los === 'partial' || cell.los === 'full')
     && (cell.standable === undefined || typeof cell.standable === 'boolean')
@@ -82,10 +86,16 @@ function validGridCell(cell: NonNullable<BattleSetupInput['grid']>[number]): boo
     && (cell.dangerous === undefined || typeof cell.dangerous === 'boolean')
     && (cell.terrainDealtBp === undefined || Number.isSafeInteger(cell.terrainDealtBp))
     && (cell.terrainTakenBp === undefined || Number.isSafeInteger(cell.terrainTakenBp))
+    && (cell.terrainDealtBySubTypeBp === undefined
+      || Object.entries(cell.terrainDealtBySubTypeBp).every(([subType, value]) =>
+        /^[a-z][a-z0-9_]*$/u.test(subType) && Number.isSafeInteger(value)))
     && (cover === undefined || cover === null || Array.isArray(cover.vs)
       && cover.vs.length > 0 && new Set(cover.vs).size === cover.vs.length
       && cover.vs.every((delivery) => delivery === 'projectile' || delivery === 'ranged')
       && Number.isSafeInteger(cover.hit) && Number.isSafeInteger(cover.damageBp)
+      && (cover.hitByDelivery === undefined || Object.entries(cover.hitByDelivery).every(
+        ([delivery, value]) => (delivery === 'projectile' || delivery === 'ranged')
+          && Number.isSafeInteger(value)))
       && (cover.sourceDirs === undefined || Array.isArray(cover.sourceDirs)
         && cover.sourceDirs.length > 0 && new Set(cover.sourceDirs).size === cover.sourceDirs.length
         && cover.sourceDirs.every(validFacing)));
@@ -151,8 +161,15 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
     .map((cell) => ({ ...cell, canopy: cell.canopy ?? 0, los: cell.los ?? 'none' as const,
       standable: cell.standable ?? true, narrow: cell.narrow ?? false,
       dangerous: cell.dangerous ?? false, terrainDealtBp: cell.terrainDealtBp ?? 0,
-      terrainTakenBp: cell.terrainTakenBp ?? 0, cover: cell.cover === undefined || cell.cover === null
+      terrainTakenBp: cell.terrainTakenBp ?? 0,
+      ...(cell.terrainDealtBySubTypeBp === undefined ? {} : {
+        terrainDealtBySubTypeBp: Object.fromEntries(
+          Object.entries(cell.terrainDealtBySubTypeBp).sort(([left], [right]) =>
+            compareCodePoints(left, right))),
+      }), cover: cell.cover === undefined || cell.cover === null
         ? null : { ...cell.cover, vs: [...cell.cover.vs].sort(compareCodePoints),
+          ...(cell.cover.hitByDelivery === undefined ? {} : {
+            hitByDelivery: { ...cell.cover.hitByDelivery } }),
           ...(cell.cover.sourceDirs === undefined ? {}
             : { sourceDirs: [...cell.cover.sourceDirs].sort((left, right) => left - right) }) } }));
   const qValues = grid.map((cell) => cell.q); const rValues = grid.map((cell) => cell.r);

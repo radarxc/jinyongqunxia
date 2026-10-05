@@ -20,6 +20,10 @@ const direction = ref(0); const anchor = ref<BattleCell | null>(null);
 const actor = computed(() => view.value?.units.find(unit => unit.id === view.value?.actorId) ?? null);
 const inspected = computed(() => view.value?.units.find(unit => unit.id === selected.value) ?? actor.value);
 const selectedDefinition = computed(() => actor.value?.moves.find(move => move.id === selectedMove.value));
+const subdueTargets = computed(() => {
+  const state = view.value; const targetIds = state?.subdueTargetIds;
+  return state && targetIds ? state.units.filter(unit => targetIds.includes(unit.id)) : [];
+});
 const aimDirectionCount = computed<6 | 12>(() => selectedDefinition.value?.shape.tpl === 'aoe_cone'
   ? selectedDefinition.value.shape.dirCount : 6);
 const directionLabels = ['东', '东偏北', '东北', '北', '西北', '西偏北',
@@ -52,6 +56,9 @@ onMounted(() => { visibility(); document.addEventListener('visibilitychange', vi
 onBeforeUnmount(() => { props.controller.setActive(false); document.removeEventListener('visibilitychange', visibility); });
 async function leave(): Promise<void> {
   if (await props.controller.command({ t: 'battle/leave' })) emit('returned', props.controller.returnScene.value);
+}
+function retry(): void {
+  const state = view.value; if (state) void props.controller.command({ t: 'battle/retry', revision: state.revision });
 }
 </script>
 
@@ -92,11 +99,26 @@ async function leave(): Promise<void> {
           <BattleLog :entries="logs" :units="view.units" />
         </div>
         <aside>
-          <BattleActions :actor="actor" :revision="view.revision" :busy="busy" :automatic="view.auto" :capabilities="view.info.capabilities" :preview="view.preview" :selected-move="selectedMove" @command="controller.command" @move="chooseMove" @hover="preview" />
+          <BattleActions
+            :actor="actor"
+            :revision="view.revision"
+            :busy="busy"
+            :automatic="view.auto"
+            :capabilities="view.info.capabilities"
+            :preview="view.preview"
+            :selected-move="selectedMove"
+            :concede-allowed="view.info.setup.end.concede !== undefined && view.info.setup.end.concede !== 'forbidden'"
+            :demonstration-replay-id="view.demonstrationReplayId ?? null"
+            :subdue-actor-id="view.subdueActorId ?? null"
+            :subdue-targets="subdueTargets"
+            @command="controller.command"
+            @move="chooseMove"
+            @hover="preview"
+          />
           <BattleMeridians :unit="inspected" />
         </aside>
       </div>
-      <BattleResult :battle="view" :busy="busy" @leave="leave" />
+      <BattleResult :battle="view" :busy="busy" @leave="leave" @retry="retry" />
     </template>
     <p v-if="error" role="alert">{{ error }} <button type="button" @click="error = ''">继续</button></p>
   </section>

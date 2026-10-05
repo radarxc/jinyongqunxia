@@ -1,5 +1,6 @@
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
-import { actBattleSession, createBattleSession, retryBattleSession, setBattleAuto } from '../battle/session';
+import { acceptBattleDemonstration, actBattleSession, concedeBattleSession, createBattleSession,
+  retryBattleSession, setBattleAuto, subdueBattleUnit } from '../battle/session';
 import type { BattleRecordedCommand, BattleSessionState, BattleState } from '../battle/types';
 import type { RngState } from '../rng';
 
@@ -105,13 +106,21 @@ export function runBattleReplay(
     try {
       if (command.t === 'battle/setAuto') setBattleAuto(session, command.mode === 'auto');
       else if (command.t === 'battle/retry') retryBattleSession(session);
+      else if (command.t === 'battle/concede') concedeBattleSession(session);
+      else if (command.t === 'battle/subdue')
+        subdueBattleUnit(session, command.actor, command.target);
+      else if (command.t === 'battle/demonstration')
+        acceptBattleDemonstration(session, command.replayId);
       else {
         const result = actBattleSession(session, command);
         if (!result.accepted) error = result.error ?? 'BATTLE_ACTION_ERROR';
       }
     } catch (cause) {
       if (!(cause instanceof RangeError) || !['BATTLE_ENDED', 'BATTLE_NOT_ENDED',
-        'BATTLE_AUTO_FORBIDDEN'].includes(cause.message)) throw cause;
+        'BATTLE_AUTO_FORBIDDEN', 'BATTLE_CONCEDE_FORBIDDEN',
+        'BATTLE_DEMONSTRATION_UNAVAILABLE', 'BATTLE_SUBDUE_FORBIDDEN',
+        'BATTLE_AUTO_ACTIVE', 'BATTLE_SUBDUE_ACTOR', 'BATTLE_TARGET_INVALID',
+        'BATTLE_SUBDUE_THRESHOLD'].includes(cause.message)) throw cause;
       error = cause.message;
     }
     if (error !== undefined) rejected.push({ inputIndex, command, error });

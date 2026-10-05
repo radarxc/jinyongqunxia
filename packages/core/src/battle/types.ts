@@ -21,20 +21,25 @@ export type Relation = 'friendly' | 'hostile' | 'neutral';
 export interface BattleParticipant {
   readonly unitRef: string; readonly unitIndex: number; readonly side: SideId;
   readonly control: 'player' | 'ai'; readonly spawn: string; readonly state: UnitState;
-  readonly required: boolean; readonly group?: string;
+  readonly required: boolean; readonly group?: string; readonly characterRef?: string;
+  /** Stable generated identity behind an encounter-local unitRef. */
+  readonly sourceInstanceId?: string;
 }
 export interface BattleInitialEffect { readonly unitRef: string; readonly buffRef: `bf_${string}`;
   readonly stacks: number; readonly remainingOwnActions: number; readonly cause: string }
 export interface BattleCover {
   readonly vs: readonly Extract<HexDelivery, 'projectile' | 'ranged'>[];
-  readonly hit: number; readonly damageBp: number;
+  readonly hit: number; readonly hitByDelivery?: Readonly<Partial<Record<
+    Extract<HexDelivery, 'projectile' | 'ranged'>, number>>>; readonly damageBp: number;
   /** World directions from the target toward sources for which directional cover applies. */
   readonly sourceDirs?: readonly HexDir[];
 }
 export interface BattleGridCell extends HexCoord {
-  readonly height: number; readonly moveCost: number; readonly canopy: number;
+  readonly height: number; readonly moveCost: number; readonly terrainId?: string; readonly canopy: number;
   readonly los: HexLosKind; readonly standable: boolean; readonly narrow: boolean;
   readonly dangerous: boolean; readonly terrainDealtBp: number; readonly terrainTakenBp: number;
+  /** Conditional Z7.dealt modifiers keyed by the martial-art subtype used by the move. */
+  readonly terrainDealtBySubTypeBp?: Readonly<Record<string, number>>;
   readonly cover: BattleCover | null;
 }
 export interface BattleInitialUnit {
@@ -93,7 +98,7 @@ export interface BattleStats { readonly level: number; readonly atkOut: number; 
   readonly pierce: number; readonly crit: number; readonly tough: number; readonly strength: number }
 export interface BattleMove {
   readonly id: `mv_${string}`; readonly powerBp: number; readonly referencePowerBp: number;
-  readonly skillId?: `sk_${string}`; readonly meridianRouteRef?: string;
+  readonly skillId?: `sk_${string}`; readonly subType?: string; readonly meridianRouteRef?: string;
   readonly wInBp: number; readonly recovery: number; readonly mpCost: number; readonly hitZone: HitZone;
   readonly hitMod?: number; readonly dmgUpBp?: number; readonly pierceOutBp?: number;
   readonly pierceInBp?: number; readonly ultimate?: boolean; readonly projection?: boolean;
@@ -153,7 +158,12 @@ export interface BattleWaitCommand { readonly t: 'battle/wait'; readonly actor: 
 export type BattleCommand = BattleActCommand | BattleWaitCommand;
 export interface BattleSetAutoCommand { readonly t: 'battle/setAuto'; readonly mode: 'manual' | 'auto' }
 export interface BattleRetryCommand { readonly t: 'battle/retry'; readonly option: 'restart' }
-export type BattleRecordedCommand = BattleCommand | BattleSetAutoCommand | BattleRetryCommand;
+export interface BattleConcedeCommand { readonly t: 'battle/concede' }
+export interface BattleSubdueCommand { readonly t: 'battle/subdue'; readonly actor: string;
+  readonly target: string }
+export interface BattleDemonstrationCommand { readonly t: 'battle/demonstration'; readonly replayId: string }
+export type BattleRecordedCommand = BattleCommand | BattleSetAutoCommand | BattleRetryCommand
+  | BattleConcedeCommand | BattleSubdueCommand | BattleDemonstrationCommand;
 export interface BattleMeridianUnitState {
   readonly unitId: string; readonly unitIndex: number; flow: MeridianFlowSnapshot;
   activeDefense: { readonly routeId: string; readonly qualityBp: number;

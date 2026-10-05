@@ -42,6 +42,9 @@ const HANDLERS: Readonly<Record<string, CommandHandler>> = {
   'battle/act': battleHandler as CommandHandler,
   'battle/setAuto': battleHandler as CommandHandler,
   'battle/retry': battleHandler as CommandHandler,
+  'battle/concede': battleHandler as CommandHandler,
+  'battle/subdue': battleHandler as CommandHandler,
+  'battle/demonstration': battleHandler as CommandHandler,
   'battle/finalize': battleHandler as CommandHandler,
   'battle/leave': battleHandler as CommandHandler,
 };

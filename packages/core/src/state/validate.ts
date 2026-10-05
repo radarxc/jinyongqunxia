@@ -308,11 +308,12 @@ function validateDialogue(value: unknown): void {
   const dialogue = object(value);
   const required = ['storyId', 'storyHash', 'entryKey', 'storyJsonState', 'randomSeed',
     'pendingIntents', 'consumedTagKeys'];
-  const optional = ['speakerId', 'textKey', 'choices', 'history'];
+  const optional = ['anchorId', 'speakerId', 'textKey', 'choices', 'history'];
   if (required.some((key) => !(key in dialogue)) ||
       Object.keys(dialogue).some((key) => !required.includes(key) && !optional.includes(key)))
     throw new TypeError('STATE_SHAPE');
   for (const field of ['storyId', 'storyHash', 'entryKey', 'storyJsonState']) string(dialogue[field]);
+  if ('anchorId' in dialogue) string(dialogue['anchorId']);
   integer(dialogue['randomSeed'], Number.MIN_SAFE_INTEGER);
   array(dialogue['pendingIntents']); uniqueStrings(dialogue['consumedTagKeys']);
   if ('speakerId' in dialogue) string(dialogue['speakerId']);

@@ -1,4 +1,5 @@
-import type { ChapterDef, EventDef, ItemDef, QuestDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { ChapterDef, EncounterDef, EventDef, ItemDef, QuestDef, TownRuntimeDefinition,
+  WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { JsonValue } from '@tianshu/shared';
 import type { EquipmentRule } from '../economy';
 import type { PendingDomainEvent } from '../event';
@@ -19,7 +20,8 @@ export type InventoryCommand =
   | { readonly t: 'inventory/unequip'; readonly slot: GameState['party']['equipment']['entries'][number]['slot'] }
   | { readonly t: 'inventory/use'; readonly itemId: string; readonly targetId: string };
 export type DialogueCommand =
-  | { readonly t: 'dialogue/start'; readonly storyId: string; readonly entryKey: string }
+  | { readonly t: 'dialogue/start'; readonly storyId: string; readonly entryKey: string;
+      readonly anchorId?: string }
   | { readonly t: 'dialogue/continue' }
   | { readonly t: 'dialogue/choose'; readonly choiceIndex: number };
 export type QuestChoiceCommand = { readonly t: 'quest/choose'; readonly questId: string;
@@ -36,11 +38,18 @@ export interface BattleSetAutoBusCommand { readonly t: 'battle/setAuto'; readonl
   readonly expectedRevision?: number }
 export interface BattleRetryBusCommand { readonly t: 'battle/retry'; readonly option: 'restart';
   readonly expectedRevision?: number }
+export interface BattleConcedeBusCommand { readonly t: 'battle/concede'; readonly expectedRevision?: number }
+export interface BattleSubdueBusCommand { readonly t: 'battle/subdue'; readonly actor: string;
+  readonly target: string; readonly expectedRevision?: number }
+export interface BattleDemonstrationBusCommand { readonly t: 'battle/demonstration';
+  readonly replayId: string; readonly expectedRevision?: number }
 export interface BattleReceiptCommand { readonly battleId: string; readonly outcomeSeq: number }
 export type BattleFinalizeCommand = BattleReceiptCommand & { readonly t: 'battle/finalize' };
 export type BattleLeaveCommand = BattleReceiptCommand & { readonly t: 'battle/leave' };
 export type BattleBusCommand = BattleEnterCommand | BattleBusActCommand | BattleSetAutoBusCommand
-  | BattleRetryBusCommand | BattleFinalizeCommand | BattleLeaveCommand;
+  | BattleRetryBusCommand | BattleConcedeBusCommand | BattleSubdueBusCommand
+  | BattleDemonstrationBusCommand |
+  BattleFinalizeCommand | BattleLeaveCommand;
 export type Command = WorldTickCommand | WorldMapCommand | TownCommand | InventoryCommand
   | DialogueCommand | QuestChoiceCommand | RulesCommand | ChapterCommand | RegionCommand
   | BattleBusCommand;
@@ -102,6 +111,7 @@ export interface CoreContent {
   readonly inkStories?: readonly InkStoryContent[];
   readonly chapters?: readonly ChapterDef[]; readonly targetContentHash?: string;
   readonly events?: readonly EventDef[]; readonly quests?: readonly QuestDef[];
+  readonly encounters?: readonly EncounterDef[];
   readonly region?: RegionRuntimeContent;
 }
 export type StatePath = readonly (string | number)[];

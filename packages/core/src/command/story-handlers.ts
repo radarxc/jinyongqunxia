@@ -48,7 +48,7 @@ function commitDialogueIntents(tx: Parameters<typeof dialogueHandler.apply>[0],
   const actions = pending.map((intent) => intent.action).filter((action) =>
     action.op !== 'dialogue/speaker');
   if (actions.length > 0) executeActions(tx, actions, {
-    sourceId: `dialogue:${state.storyId}`, anchorId: 'dialogue',
+    sourceId: `dialogue:${state.storyId}`, anchorId: state.anchorId ?? 'dialogue',
     allowDialogueAutosave: true, reject: { action: 'DIALOGUE_INTENT_ACTION',
       condition: 'DIALOGUE_INTENT_ACTION',
       reference: 'DIALOGUE_INTENT_REFERENCE', inventory: 'DIALOGUE_INTENT_INVENTORY',
@@ -101,7 +101,8 @@ export const dialogueHandler: CommandHandler<DialogueCommand> = {
       const randomSeed = tx.rng('world').nextU32();
       const session = adapter.start(command.storyId, command.entryKey, randomSeed);
       const next = dialogueStateFromSession({ storyId: command.storyId,
-        storyHash: definition.storyHash, entryKey: command.entryKey, randomSeed, session });
+        storyHash: definition.storyHash, entryKey: command.entryKey, randomSeed, session,
+        ...(command.anchorId === undefined ? {} : { anchorId: command.anchorId }) });
       tx.set(['dialogue'], next);
       tx.emit({ t: 'dialogue/started', payload: { storyId: command.storyId,
         entryKey: command.entryKey } });
@@ -124,6 +125,7 @@ export const dialogueHandler: CommandHandler<DialogueCommand> = {
     const complete = !next.canContinue && next.choices.length === 0 && next.lines.length === 0;
     const projected = dialogueStateFromSession({ storyId: current.storyId,
       storyHash: current.storyHash, entryKey: current.entryKey, randomSeed: current.randomSeed,
+      ...(current.anchorId === undefined ? {} : { anchorId: current.anchorId }),
       session: next, history: history(current), pendingIntents: current.pendingIntents,
       consumedTagKeys: current.consumedTagKeys });
     tx.set(['dialogue'], projected);

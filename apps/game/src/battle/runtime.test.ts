@@ -86,6 +86,8 @@ describe('battle projection adapter', () => {
     expect(runtime.coreCommand({ t: 'battle/wait', actor: 'hero', revision: 0,
       walkTo: { q: -1, r: 0 } })).toEqual({ t: 'battle/act', actor: 'hero',
       walkTo: { q: -1, r: 0 }, action: { t: 'wait' }, expectedRevision: 0 });
+    expect(runtime.coreCommand({ t: 'battle/subdue', actor: 'hero', target: 'enemy_0', revision: 0 }))
+      .toEqual({ t: 'battle/subdue', actor: 'hero', target: 'enemy_0', expectedRevision: 0 });
     expect(runtime.transcript()).toEqual(before);
     setBattleAuto(session, true); stepBattleSession(session); runtime.update(session);
     const changed = runtime.packet().units;
@@ -162,5 +164,16 @@ describe('battle projection adapter', () => {
     expect(runtime.coreCommand({ t: 'battle/item', actor: 'hero', itemId: medicine.id,
       targetId: 'hero', revision: session.revision })).toEqual({ t: 'battle/act', actor: 'hero',
       action: { t: 'item', item: medicine.id, target: 'hero' }, expectedRevision: session.revision });
+  });
+
+  it('keeps a manual preview when the host refreshes the same revision', () => {
+    const { runtime, session } = harness();
+    const packet = runtime.previewArea({ t: 'battle/preview', revision: 0, actor: 'hero',
+      moveId: 'mv_basic_strike', anchor: { q: 1, r: 0 },
+      aim: { dirCount: 6, dir: 0 }, requestId: 7 });
+    expect(packet.preview?.valid).toBe(true);
+    runtime.update(session);
+    expect(runtime.coreCommand({ t: 'battle/act-at', preview: packet.preview! }))
+      .toMatchObject({ t: 'battle/act', actor: 'hero', expectedRevision: 0 });
   });
 });

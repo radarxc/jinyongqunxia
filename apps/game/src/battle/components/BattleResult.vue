@@ -3,7 +3,7 @@ import TxModal from '@tianshu/ui/components/TxModal.vue';
 import { battleFullCirculation, battleMartialUse, battleMovementTraining, t } from '@tianshu/ui/runtime';
 import type { BattleView } from '../contracts';
 defineProps<{ battle: BattleView; busy: boolean }>();
-const emit = defineEmits<{ leave: [] }>();
+const emit = defineEmits<{ leave: []; retry: [] }>();
 const titles = { win: '此战告捷', lose: '此战失利', draw: '此战言和', retreat: '已撤离战场' };
 </script>
 
@@ -28,6 +28,14 @@ const titles = { win: '此战告捷', lose: '此战失利', draw: '此战言和'
     </section>
     <p>完整周天合计：{{ battle.rewards?.cycles ?? '尚未结算' }}</p>
     <p v-if="battle.info.preview" class="muted">演武数据为演示，不计入旅程成长。</p>
-    <button type="button" class="primary" :disabled="busy" data-return-scene @click="emit('leave')">返回来源场景</button>
+    <button
+      v-if="battle.result === 'lose' && battle.info.setup.rules.retryAllowed"
+      type="button" :disabled="busy" data-retry-battle @click="emit('retry')"
+    >
+      再战
+    </button>
+    <button type="button" class="primary" :disabled="busy" data-return-scene @click="emit('leave')">
+      返回来源场景
+    </button>
   </TxModal>
 </template>

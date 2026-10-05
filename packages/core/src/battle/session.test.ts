@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createRng, seedStream } from '../rng';
 import { BASIC_MOVE, battleSeed, combatFixture } from '../testing/combat-fixture';
 import { createBattleSession, deriveRetrySeed, retryBattleSession, setBattleAuto,
-  stepBattleSession, actBattleSession } from './session';
+  stepBattleSession, actBattleSession, queryBattleSubdue, subdueBattleUnit } from './session';
 
 function session(input: Parameters<typeof combatFixture>[0] = {}) {
   const battle = combatFixture(input);
@@ -61,6 +61,31 @@ describe('BattleSession', () => {
     expect(actBattleSession(active, { t: 'battle/wait', actor: 'hero', automatic: true,
       aiSeed: (seed + 1) >>> 0 })).toMatchObject({ accepted: false, error: 'BATTLE_AI_SEED_MISMATCH' });
     expect(active).toEqual(before);
+  });
+
+  it('subdues a hostile at the 30% mercy line without consuming a turn or RNG', () => {
+    const active = session({ enemies: 2 }); const target = active.battle.units[1]!;
+    target.hp = 360;
+    const rng = [active.battleRng, active.aiRng] as const; const actionNo = active.battle.actionNo;
+    expect(queryBattleSubdue(active, 'hero', target.id)).toEqual({ enabled: true, reason: null });
+    subdueBattleUnit(active, 'hero', target.id);
+    expect(target).toMatchObject({ active: false, state: 'surrendered' });
+    expect(active.battle.events.at(-1)).toMatchObject({ t: 'battle/unitSurrendered',
+      actor: 'hero', target: target.id, message: 'mercy' });
+    expect(active.commandLog.at(-1)).toEqual({ t: 'battle/subdue', actor: 'hero', target: target.id });
+    expect(active.battle.actionNo).toBe(actionNo); expect([active.battleRng, active.aiRng]).toEqual(rng);
+  });
+
+  it('rejects subdue above the mercy line and when the encounter is lethal', () => {
+    const active = session(); const before = structuredClone(active);
+    expect(queryBattleSubdue(active, 'hero', 'enemy_0').reason).toBe('BATTLE_SUBDUE_THRESHOLD');
+    expect(() => subdueBattleUnit(active, 'hero', 'enemy_0')).toThrow('BATTLE_SUBDUE_THRESHOLD');
+    expect(active).toEqual(before);
+    const opening = combatFixture();
+    const lethal = createBattleSession({ ...opening.setup, rules: { ...opening.setup.rules,
+      lethalIntent: true } }, opening.units);
+    lethal.battle.units[1]!.hp = 1;
+    expect(queryBattleSubdue(lethal, 'hero', 'enemy_0').reason).toBe('BATTLE_SUBDUE_FORBIDDEN');
   });
 
   it('propagates internal faults and preserves the session on a late action error', () => {

@@ -21,6 +21,7 @@ function textKey(value: string): string {
 
 export function dialogueStateFromSession(input: { readonly storyId: string; readonly storyHash: string;
   readonly entryKey: string; readonly randomSeed: number; readonly session: DialogueSession;
+  readonly anchorId?: string;
   readonly history?: DialogueView['history']; readonly pendingIntents?: readonly JsonValue[];
   readonly consumedTagKeys?: readonly string[] }): NonNullable<GameState['dialogue']> {
   if (input.session.mode !== 'ink' || input.session.serializedState === undefined)
@@ -31,6 +32,7 @@ export function dialogueStateFromSession(input: { readonly storyId: string; read
     action: intent.action,
   }) as unknown as JsonValue)];
   return { storyId: input.storyId, storyHash: input.storyHash, entryKey: input.entryKey,
+    ...(input.anchorId === undefined ? {} : { anchorId: input.anchorId }),
     storyJsonState: input.session.serializedState, randomSeed: input.randomSeed,
     pendingIntents: pending, consumedTagKeys: input.consumedTagKeys ?? [],
     speakerId: line?.speakerId ?? 'narrator',

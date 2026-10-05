@@ -3,7 +3,7 @@ import { createRng, seedStream } from '../rng';
 import { cloneJsonValue } from '../state/json';
 import { freezeJsonTree } from '../state/immutable-json';
 import { advanceBattleToReady, resolveBattleAction, type BattleActionResult } from './action';
-import { createBattleState, evaluateBattleEnd, type BattleUnitSeed } from './encounter';
+import { createBattleState, evaluateBattleEnd, resolveBattleConcede, type BattleUnitSeed } from './encounter';
 import { peekReadyUnitId } from './timeline';
 import { battleActionCandidate } from './candidate';
 import type { BattleCommand, BattleEvent, BattleOpeningState, BattleSessionState, BattleSetup } from './types';
@@ -131,7 +131,13 @@ export function retryBattleSession(session: BattleSessionState): void {
   const setup = freezeJsonTree(withSeed(session.opening.setup, deriveRetrySeed(session.opening.setup.seed, retryCount)));
   const previousEvents = session.battle.events;
   const previousCommands = session.battle.acceptedCommands;
-  session.battle = { ...createBattleState(setup, session.opening.seeds),
+  const retried = createBattleState(setup, session.opening.seeds);
+  const triggered = [...session.battle.units.flatMap((unit) => unit.triggeredScriptBeats ?? []),
+    ...previousEvents.flatMap((event) => event.t === 'battle/scriptBeatTriggered'
+      && event.message !== undefined ? [event.message] : [])];
+  if (triggered.length > 0 && retried.units[0] !== undefined)
+    retried.units[0].triggeredScriptBeats = [...new Set(triggered)];
+  session.battle = { ...retried,
     events: previousEvents, acceptedCommands: previousCommands };
   freezeJsonTree(session.battle.grid);
   session.battleRng = seedStream(setup.seed, 'battle'); session.aiRng = seedStream(setup.seed, 'ai');
@@ -141,6 +147,62 @@ export function retryBattleSession(session: BattleSessionState): void {
   session.battle.events.push({ t: 'battle/retried', actionNo: 0,
     amount: retryCount, message: String(setup.seed) });
   readyBattleSession(session);
+}
+
+export function concedeBattleSession(session: BattleSessionState): void {
+  if (session.battle.phase === 'ended') throw new RangeError('BATTLE_ENDED');
+  const result = resolveBattleConcede(session.battle);
+  session.battle.events.push({ t: 'battle/conceded', actionNo: session.battle.actionNo,
+    message: result });
+  endBattleSession(session, result); session.acceptedOrdinal += 1; session.revision += 1;
+  session.commandLog.push({ t: 'battle/concede' });
+}
+
+export function queryBattleSubdue(session: BattleSessionState, actorId: string, targetId: string):
+{ readonly enabled: boolean; readonly reason: string | null } {
+  const state = session.battle;
+  if (state.phase === 'ended') return { enabled: false, reason: 'BATTLE_ENDED' };
+  if (session.auto) return { enabled: false, reason: 'BATTLE_AUTO_ACTIVE' };
+  if (!state.setup.rules.mercyAllowed || state.setup.rules.lethalIntent)
+    return { enabled: false, reason: 'BATTLE_SUBDUE_FORBIDDEN' };
+  const actor = state.units.find((unit) => unit.id === actorId);
+  const target = state.units.find((unit) => unit.id === targetId);
+  if (actor === undefined || !actor.active || actor.control !== 'player')
+    return { enabled: false, reason: 'BATTLE_SUBDUE_ACTOR' };
+  if (target === undefined || !target.active
+    || state.setup.relations[actor.side][target.side] !== 'hostile')
+    return { enabled: false, reason: 'BATTLE_TARGET_INVALID' };
+  if (target.hp * 10_000 > target.hpMax * 3_000)
+    return { enabled: false, reason: 'BATTLE_SUBDUE_THRESHOLD' };
+  return { enabled: true, reason: null };
+}
+
+export function subdueBattleUnit(session: BattleSessionState, actorId: string, targetId: string): void {
+  const eligibility = queryBattleSubdue(session, actorId, targetId);
+  if (!eligibility.enabled) throw new RangeError(eligibility.reason ?? 'BATTLE_SUBDUE_UNAVAILABLE');
+  const target = session.battle.units.find((unit) => unit.id === targetId)!;
+  target.active = false; target.state = 'surrendered'; target.revision += 1;
+  session.battle.events.push({ t: 'battle/unitSurrendered', actionNo: session.battle.actionNo,
+    actor: actorId, target: targetId, message: 'mercy' });
+  session.commandLog.push({ t: 'battle/subdue', actor: actorId, target: targetId });
+  session.acceptedOrdinal += 1; session.revision += 1;
+  const outcome = evaluateBattleEnd(session.battle);
+  if (outcome !== null) endBattleSession(session, outcome);
+  else readyBattleSession(session);
+}
+
+export function acceptBattleDemonstration(session: BattleSessionState, replayId: string): void {
+  if (session.battle.phase === 'ended') throw new RangeError('BATTLE_ENDED');
+  const offered = session.battle.events.some((event) => event.t === 'battle/demonstrationOffered'
+    && event.message === replayId) || (session.battle.setup.scriptBeats ?? []).some((beat) =>
+    session.battle.units.some((unit) => unit.triggeredScriptBeats?.includes(beat.id))
+      && beat.actions.some((action) => action.kind === 'offerDemonstration'
+        && action.replayId === replayId));
+  if (!offered) throw new RangeError('BATTLE_DEMONSTRATION_UNAVAILABLE');
+  session.battle.events.push({ t: 'battle/demonstrationAccepted',
+    actionNo: session.battle.actionNo, message: replayId });
+  endBattleSession(session, 'win'); session.acceptedOrdinal += 1; session.revision += 1;
+  session.commandLog.push({ t: 'battle/demonstration', replayId });
 }
 
 export function cloneBattleSession(session: BattleSessionState): BattleSessionState {

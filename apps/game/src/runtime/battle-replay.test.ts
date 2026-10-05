@@ -8,7 +8,9 @@ import { fixtureContent } from './test-fixture';
 describe('app battle command transcript', () => {
   // Full battle completion and replay are functional checks; loaded-host latency is not a performance assertion.
   it('forwards native battle bus commands including retry and idempotent finalize', async () => {
-    const app = createGameSession(fixtureContent()); const launch = createBattleDemo('world');
+    const app = createGameSession(fixtureContent()); const demo = createBattleDemo('world');
+    const launch = { ...demo, seeds: demo.seeds.map(seed => seed.id === 'hero'
+      ? { ...seed, hp: 1 } : seed) };
     expect((await app.dispatch({ t: 'battle/enter', setup: launch.setup, seeds: launch.seeds }))
       .accepted).toBe(true);
     for (let attempt = 0; attempt < 2; attempt += 1) {

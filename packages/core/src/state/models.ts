@@ -104,6 +104,8 @@ export interface WorldState {
 }
 export interface DialogueState {
   readonly storyId: string; readonly storyHash: string; readonly entryKey: string;
+  /** Region NPC/trigger that opened this dialogue; absent for host-started dialogue. */
+  readonly anchorId?: string;
   readonly storyJsonState: string; readonly randomSeed: number;
   readonly pendingIntents: readonly JsonValue[]; readonly consumedTagKeys: readonly string[];
   readonly speakerId?: string; readonly textKey?: string | null;

@@ -1,7 +1,9 @@
 import type { ContentSource } from '@tianshu/data';
-import { ChapterDefSchema, EventDefSchema, NpcAppearanceSchema, NpcIdSchema,
-  QuestDefSchema, RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema,
-  type ChapterDef, type EventDef, type QuestDef, type RegionMap,
+import { ChapterDefSchema, CharacterTemplateSchema, EncounterDefSchema, EventDefSchema,
+  MoveDefSchema, NpcAppearanceSchema, NpcIdSchema, QuestDefSchema, RegionBindingLeafSchema,
+  RegionMapSchema, RoleSlotDefSchema, WorldMapDefinitionSchema, type ChapterDef,
+  type CharacterTemplate, type EncounterDef, type EventDef, type MoveDef, type QuestDef,
+  type RegionMap, type RoleSlotDef,
   type WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { RegionDialogueBinding, RegionGateBinding, RegionLootBinding } from '@tianshu/core';
 import type { AssetMap, ChapterAssetLoader, ChapterRuntimeLeaf, GameContent, GameNpcDef,
@@ -34,12 +36,19 @@ function itemRuleName(name: string): boolean {
 function chapterRuleName(name: string, chapter: string): boolean {
   return name.startsWith(`${chapter.slice(0, 4)}.rules.base`) && name.endsWith('.json');
 }
+function commonRuleName(name: string): boolean {
+  return name.startsWith('common.rules.base') && name.endsWith('.json');
+}
+function roleRuleName(name: string, chapter: string): boolean {
+  return name.startsWith(`${chapter.slice(0, 4)}.rules.roles`) && name.endsWith('.json');
+}
 function worldRuleName(name: string, chapter: string): boolean {
   return name === `world.rules.era.${chapter.slice(0, 4)}.json`;
 }
 function chapterTextName(name: string, chapter: string): boolean {
-  return name.startsWith(`${chapter.slice(0, 4)}.text.zh-Hans.base`) &&
-    name.endsWith('.json');
+  return (name.startsWith(`${chapter.slice(0, 4)}.text.zh-Hans.base`) ||
+    name.startsWith('common.text.zh-Hans')) && name.endsWith('.json') &&
+    !itemTextName(name, 'zh-Hans');
 }
 function record(value: unknown, code: string): Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value))
@@ -49,11 +58,12 @@ function record(value: unknown, code: string): Record<string, unknown> {
 function chapterText(leaves: Readonly<Record<string, unknown>>): Readonly<Record<string, string>> {
   const text: Record<string, string> = {};
   for (const [name, leaf] of Object.entries(leaves)) {
-    if (!name.includes('.text.zh-Hans.base')) continue;
+    if (!name.includes('.text.zh-Hans')) continue;
     for (const [key, value] of Object.entries(record(leaf, 'CONTENT_CHAPTER_TEXT_INVALID'))) {
       // Compiled Ink JSON shares this leaf; only scalar display strings are runtime text.
       if (typeof value !== 'string') continue;
-      if (text[key] !== undefined) throw new TypeError(`CONTENT_CHAPTER_TEXT_INVALID:${key}`);
+      if (text[key] !== undefined && text[key] !== value)
+        throw new TypeError(`CONTENT_CHAPTER_TEXT_INVALID:${key}`);
       text[key] = value;
     }
   }
@@ -80,7 +90,8 @@ function chapterDefs(leaves: Readonly<Record<string, unknown>>): readonly Chapte
 }
 function eventDefs(leaves: Readonly<Record<string, unknown>>): readonly EventDef[] {
   return ruleRows(leaves).flatMap((entry) =>
-    entry.kind === 'event' && (entry.value as { event?: unknown })?.event !== 'world/mapRegistered'
+    entry.kind === 'event' && (entry.value as { schemaVersion?: unknown })?.schemaVersion === 'event.v1' &&
+      (entry.value as { event?: unknown })?.event !== 'world/mapRegistered'
       ? [EventDefSchema.parse(entry.value)] : []);
 }
 function runtimeNpc(value: unknown, text: Readonly<Record<string, string>>): GameNpcDef {
@@ -164,6 +175,25 @@ function questDefs(leaves: Readonly<Record<string, unknown>>): readonly QuestDef
   return ruleRows(leaves).flatMap((entry) =>
     entry.kind === 'quest' ? [QuestDefSchema.parse(entry.value)] : []);
 }
+function encounterRuntime(leaves: Readonly<Record<string, unknown>>, chapter: string):
+Pick<GameContent, 'encounters' | 'templates' | 'roleSlots' | 'moves'> {
+  const encounters: EncounterDef[] = []; const templates: CharacterTemplate[] = [];
+  const roleSlots: RoleSlotDef[] = []; const moves: MoveDef[] = [];
+  const text = chapterText(leaves);
+  for (const entry of ruleRows(leaves)) {
+    if (entry.kind === 'encounter') encounters.push(EncounterDefSchema.parse(entry.value));
+    if (entry.kind === 'characterTemplate') templates.push(CharacterTemplateSchema.parse(entry.value));
+    if (entry.kind === 'roleSlot') roleSlots.push(RoleSlotDefSchema.parse(entry.value));
+    if (entry.kind === 'move') {
+      const move = record(entry.value, 'CONTENT_MOVE_INVALID');
+      moves.push(MoveDefSchema.parse({ ...move, name: textValue(move['name'], text, true) }));
+    }
+  }
+  if (encounters.some((row) => row.chapterId !== chapter) ||
+      roleSlots.some((row) => row.chapter !== chapter))
+    throw new TypeError('CONTENT_ENCOUNTER_RUNTIME_MISMATCH');
+  return { encounters, templates, roleSlots, moves };
+}
 function inkStories(leaves: Readonly<Record<string, unknown>>): NonNullable<GameContent['inkStories']> {
   return ruleRows(leaves).flatMap((entry) => {
     if (entry.kind !== 'dialogueStructure') return [];
@@ -202,6 +232,7 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     const pack = await loadChapterPackLeaves(source, chapter, (leaf) =>
       leaf.kind === 'text' ? chapterTextName(leaf.logicalName, chapter) :
         itemRuleName(leaf.logicalName) || chapterRuleName(leaf.logicalName, chapter) ||
+        commonRuleName(leaf.logicalName) || roleRuleName(leaf.logicalName, chapter) ||
         worldRuleName(leaf.logicalName, chapter));
     const names = pack.manifest.leaves.filter((leaf) => itemRuleName(leaf.logicalName))
       .map((leaf) => leaf.logicalName);
@@ -236,7 +267,8 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
       throw loadError('CHAPTER_ASSETS_UNAVAILABLE', error);
     }
     const runtime = chapterRuntime(pack.leaves, chapter, mapText);
-    return { ...base, ...runtime, ...(assets ? { assets } : {}),
+    const encounters = encounterRuntime(pack.leaves, chapter);
+    return { ...base, ...runtime, ...encounters, ...(assets ? { assets } : {}),
       ...(battleModels ? { battleModels } : {}),
       items: items as GameContent['items'], chapters, events, quests,
       ...(stories.length === 0 ? {} : { inkStories: stories }),

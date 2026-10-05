@@ -4,7 +4,9 @@ import { battleItemChoice, battleMovePlan, battleQiSummary, battleRouteChoice,
   battleReason, battleTargetChoice, battleTargetPreview, t } from '@tianshu/ui/runtime';
 import type { AreaPreview, BattleCapabilities, BattleControllerCommand, BattleUnitView } from '../contracts';
 const props = defineProps<{ actor: BattleUnitView | null; revision: number; busy: boolean; automatic: boolean;
-  capabilities: BattleCapabilities; preview: AreaPreview | null; selectedMove: string | null }>();
+  capabilities: BattleCapabilities; preview: AreaPreview | null; selectedMove: string | null;
+  concedeAllowed: boolean; demonstrationReplayId: string | null;
+  subdueActorId: string | null; subdueTargets: readonly BattleUnitView[] }>();
 const emit = defineEmits<{ command: [command: BattleControllerCommand];
   move: [moveId: string]; hover: [moveId: string] }>();
 const itemOpen = ref(false); const routeOpen = ref(false);
@@ -138,6 +140,27 @@ function cancel(): void { itemOpen.value = false; routeOpen.value = false; waitP
       <button type="button" data-confirm-gather :disabled="disabled || !route?.capability.enabled" @click="gather">{{ t('battleConfirmAction') }}</button>
     </section>
     <p v-if="!capabilities.gather.enabled" class="muted">{{ capabilities.gather.reason }}</p>
+    <button
+      v-if="concedeAllowed && actor && actor.side === 'player'"
+      type="button" data-concede :disabled="disabled"
+      @click="emit('command', { t: 'battle/concede', revision })"
+    >
+      主动认输
+    </button>
+    <button
+      v-if="demonstrationReplayId"
+      type="button" data-demonstration :disabled="busy"
+      @click="emit('command', { t: 'battle/demonstration', replayId: demonstrationReplayId, revision })"
+    >
+      接受书灵示范
+    </button>
+    <button
+      v-for="subdueTarget in subdueTargets" :key="subdueTarget.id" type="button" data-subdue
+      :disabled="busy || automatic || !subdueActorId"
+      @click="subdueActorId && emit('command', { t: 'battle/subdue', actor: subdueActorId, target: subdueTarget.id, revision })"
+    >
+      止战·制服 {{ subdueTarget.name }}
+    </button>
     <p v-if="preview" role="status">{{ preview.valid ? battleTargetPreview(preview.targetIds.length) : preview.reason }}</p>
     <button class="primary" type="button" data-confirm-move :disabled="disabled || !waitPending && !defendPending && (!preview?.valid || preview.moveId !== selectedMove || preview.revision !== revision)" @click="confirm">{{ t('battleConfirmAction') }}</button>
     <button v-if="preview || draftedDestination || itemOpen || routeOpen || waitPending || defendPending" type="button" data-cancel-plan :disabled="disabled" @click="cancel">{{ t('battleCancelPlan') }}</button>
