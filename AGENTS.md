@@ -1,6 +1,6 @@
 # AGENTS.md：天书录多代理协作入口
 
-工程约定见 `CLAUDE.md`；作者需求见 `docs/decisions/author-requirements.md`，开头有完成状态速查；现状和下一步见 `TODO.md`；**代码开发规格（架构、渲染、战斗、素材路径、内容参数）见 `docs/tech/DEV-SPEC.md`**；流水账见 `tools/agents/HANDOFF.md`。
+工程约定见 `CLAUDE.md`；作者需求见 `docs/decisions/author-requirements.md`，开头有完成状态速查；现状和下一步见 `TODO.md`；**代码开发规格（架构、渲染、战斗、素材路径、内容参数）见 `docs/tech/DEV-SPEC.md`**；本地 `.agents/coord` 已于 10-04 清理，下文命令用到的脚本存档在远端分支 `archive/local-20261004`（恢复方法见该分支 `.agents/coord/README-archive.md`）；流水账见 `tools/agents/HANDOFF.md`。
 
 ## 0. 角色与执行器（AR-65 / AR-66）
 - **协调者（Claude）**：只定目标、判结果，把作者原话逐字记进 AR。
