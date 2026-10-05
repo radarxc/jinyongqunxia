@@ -1,0 +1,478 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_ganzhou
+chapter_id: ch01
+book_world: ch01_tianlong
+display_name: 虔州
+historical_year: 1093
+era_kit: song_southern
+seed: 1678390401
+design_intent:
+  prosperity: northern_song_major_study_candidate
+  notes:
+  - 复原依据：docs/design/town/history/city_ganzhou__northern_song.md；1093年非等比历史拓扑缩景。
+  - 北宋嘉祐砖城仍存，三面环章贡二江；刘彝规划六街与福寿沟。
+  - 地下沟系不在现行二维城图逐段表现，只保三江、六街拓扑。
+  - formal_scene_refs=null；不新增剧情、营生或正式场景。
+grid:
+  width: 160
+  height: 160
+  cell_m: 1
+  chunk_cells: 32
+runtime_partition:
+  q_min: -80
+  r_min: 1
+  q_slot_count: 219
+  r_slot_count: 160
+  q_band_slots:
+  - 73
+  - 73
+  - 73
+  r_band_slots:
+  - 80
+  - 80
+  formal_scene_refs: null
+projection:
+  tile_px:
+  - 64
+  - 32
+  pitch_deg: 30
+  yaw_deg: 45
+walls:
+- id: outer
+  role: outer
+  polygon:
+    points:
+    - x: 36
+      z: 28
+    - x: 124
+      z: 28
+    - x: 132
+      z: 36
+    - x: 132
+      z: 124
+    - x: 124
+      z: 132
+    - x: 36
+      z: 132
+    - x: 28
+      z: 124
+    - x: 28
+      z: 36
+  inside_margin_cells: 2
+  basis: 图名：虔州城垣；据src_ganzhou仅约束相对关系；地下沟系不在现行二维城图逐段表现，只保三江、六街拓扑。；坐标、尺度与形制（推定）（原创扩展）。
+gates:
+- id: south_gate
+  side: south
+  at:
+    x: 80
+    z: 28
+  width_cells: 6
+  asset_type: tex_town_song_southern_city_gate
+  rotation_deg: 0
+  footprint_cells:
+    w: 10
+    h: 4
+  passage_cells:
+    w: 6
+    h: 4
+  road_ref: axis
+  primary: true
+  wall_ref: outer
+  basis: 图名：south方位门；据src_ganzhou仅约束相对关系；门名与门数不作史实；坐标、尺度与形制（推定）（原创扩展）。
+- id: north_gate
+  side: north
+  at:
+    x: 80
+    z: 132
+  width_cells: 6
+  asset_type: tex_town_song_southern_city_gate
+  rotation_deg: 180
+  footprint_cells:
+    w: 10
+    h: 4
+  passage_cells:
+    w: 6
+    h: 4
+  road_ref: axis
+  primary: false
+  wall_ref: outer
+  basis: 图名：north方位门；据src_ganzhou仅约束相对关系；门名与门数不作史实；坐标、尺度与形制（推定）（原创扩展）。
+- id: west_gate
+  side: west
+  at:
+    x: 28
+    z: 62
+  width_cells: 6
+  asset_type: tex_town_song_southern_city_gate
+  rotation_deg: 90
+  footprint_cells:
+    w: 10
+    h: 4
+  passage_cells:
+    w: 6
+    h: 4
+  road_ref: cross_s
+  primary: false
+  wall_ref: outer
+  basis: 图名：west方位门；据src_ganzhou仅约束相对关系；门名与门数不作史实；坐标、尺度与形制（推定）（原创扩展）。
+- id: east_gate
+  side: east
+  at:
+    x: 132
+    z: 98
+  width_cells: 6
+  asset_type: tex_town_song_southern_city_gate
+  rotation_deg: 270
+  footprint_cells:
+    w: 10
+    h: 4
+  passage_cells:
+    w: 6
+    h: 4
+  road_ref: cross_n
+  primary: false
+  wall_ref: outer
+  basis: 图名：east方位门；据src_ganzhou仅约束相对关系；门名与门数不作史实；坐标、尺度与形制（推定）（原创扩展）。
+streets:
+- id: axis
+  class: main_axis
+  width_cells: 6
+  points:
+  - x: 80
+    z: 28
+  - x: 80
+    z: 132
+  surface: dirt_road
+  priority: 100
+  basis: 图名：南北主街；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: cross_s
+  class: secondary
+  width_cells: 5
+  points:
+  - x: 28
+    z: 62
+  - x: 132
+    z: 62
+  surface: dirt_road
+  priority: 80
+  basis: 图名：南横街；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: cross_n
+  class: secondary
+  width_cells: 5
+  points:
+  - x: 28
+    z: 98
+  - x: 132
+    z: 98
+  surface: dirt_road
+  priority: 75
+  basis: 图名：北横街；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: market_lane
+  class: alley
+  width_cells: 3
+  points:
+  - x: 84
+    z: 47
+  - x: 128
+    z: 47
+  surface: dirt_road
+  priority: 65
+  basis: 图名：市肆支街（原创扩展）；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: residential_lane
+  class: alley
+  width_cells: 3
+  points:
+  - x: 36
+    z: 80
+  - x: 80
+    z: 80
+  surface: dirt_road
+  priority: 60
+  basis: 图名：坊居支巷（原创扩展）；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+rivers:
+- id: west_water
+  width_cells: 10
+  points:
+  - x: 10
+    z: 0
+  - x: 10
+    z: 160
+  flow: unknown
+  navigable: true
+  basis: 图名：章江；据src_ganzhou仅约束相对关系；岸线与宽度为非等比缩景；坐标、尺度与形制（推定）（原创扩展）。
+- id: east_water
+  width_cells: 10
+  points:
+  - x: 150
+    z: 0
+  - x: 150
+    z: 160
+  flow: unknown
+  navigable: true
+  basis: 图名：贡江；据src_ganzhou仅约束相对关系；岸线与宽度为非等比缩景；坐标、尺度与形制（推定）（原创扩展）。
+lakes: []
+bridges: []
+water_gates: []
+zones:
+- id: zone_1
+  kind: administrative
+  geometry:
+    rect:
+      min:
+        x: 40
+        z: 34
+      max:
+        x: 74
+        z: 58
+  priority: 100
+  density: 0.55
+  allowed_building_types:
+  - bld_kit_song_southern_yamen
+  - bld_kit_song_southern_courtyard
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：州县署区；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: zone_2
+  kind: market
+  geometry:
+    rect:
+      min:
+        x: 86
+        z: 34
+      max:
+        x: 126
+        z: 59
+  priority: 99
+  density: 0.62
+  allowed_building_types:
+  - bld_kit_song_southern_shop_1f
+  - bld_kit_song_southern_shop_2f
+  - bld_kit_song_southern_market_stall
+  - bld_kit_song_southern_inn
+  - bld_kit_song_southern_restaurant
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：临路市肆；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: zone_3
+  kind: residential
+  geometry:
+    rect:
+      min:
+        x: 38
+        z: 67
+      max:
+        x: 74
+        z: 94
+  priority: 98
+  density: 0.62
+  allowed_building_types:
+  - bld_kit_song_southern_house
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：居民街坊；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: zone_4
+  kind: residential
+  geometry:
+    rect:
+      min:
+        x: 86
+        z: 67
+      max:
+        x: 126
+        z: 94
+  priority: 97
+  density: 0.62
+  allowed_building_types:
+  - bld_kit_song_southern_house
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：居民院落；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: zone_5
+  kind: religious
+  geometry:
+    rect:
+      min:
+        x: 40
+        z: 103
+      max:
+        x: 74
+        z: 126
+  priority: 96
+  density: 0.55
+  allowed_building_types:
+  - bld_kit_song_southern_temple_hall
+  - bld_kit_song_southern_pagoda
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：寺观院落；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+- id: zone_6
+  kind: gate_service
+  geometry:
+    rect:
+      min:
+        x: 86
+        z: 103
+      max:
+        x: 126
+        z: 126
+  priority: 95
+  density: 0.55
+  allowed_building_types:
+  - bld_kit_song_southern_warehouse
+  - bld_kit_song_southern_stable
+  - bld_kit_song_southern_guardhouse
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：仓驿服务区；据src_ganzhou仅约束相对关系；坐标、尺度与形制（推定）（原创扩展）。
+landmarks: []
+building_quotas:
+- type: bld_kit_song_southern_yamen
+  zone_refs:
+  - zone_1
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_courtyard
+  zone_refs:
+  - zone_1
+  count:
+    min: 2
+    max: 4
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_shop_1f
+  zone_refs:
+  - zone_2
+  count:
+    min: 3
+    max: 10
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_shop_2f
+  zone_refs:
+  - zone_2
+  count:
+    min: 3
+    max: 6
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_market_stall
+  zone_refs:
+  - zone_2
+  count:
+    min: 6
+    max: 16
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_inn
+  zone_refs:
+  - zone_2
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_restaurant
+  zone_refs:
+  - zone_2
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_house
+  zone_refs:
+  - zone_3
+  - zone_4
+  count:
+    min: 24
+    max: 48
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_temple_hall
+  zone_refs:
+  - zone_5
+  count:
+    min: 2
+    max: 3
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_pagoda
+  zone_refs:
+  - zone_5
+  count:
+    min: 0
+    max: 1
+  required: false
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_warehouse
+  zone_refs:
+  - zone_6
+  count:
+    min: 2
+    max: 3
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_stable
+  zone_refs:
+  - zone_6
+  count:
+    min: 1
+    max: 2
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+- type: bld_kit_song_southern_guardhouse
+  zone_refs:
+  - zone_6
+  count:
+    min: 1
+    max: 2
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景外观配额（原创扩展）【建议值】；不用于反推历史人口。
+vegetation:
+  palette:
+  - prp_song_willow
+  - prp_song_broadleaf
+  density: 0.014
+  avoid_road_cells: 2
+  cluster_rule: 空地少量阔叶与柳树
+  basis: 图名：空地植被；据src_ganzhou仅约束相对关系；密度为视觉建议；坐标、尺度与形制（推定）（原创扩展）。
+sources:
+- key: src_ganzhou
+  kind: museum
+  title: 赣州市博物馆《赣州城的历史变迁》
+  url: https://gzsbwg.cn/2631.html
+  accessed: '2026-10-04'
+  confidence: verified_summary
+  supports:
+  - historical_topology
+  note: 仅文字；只支持文中明确结论，不支持游戏坐标。

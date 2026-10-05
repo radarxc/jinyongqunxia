@@ -1,0 +1,22 @@
+- id: town_city_ningbo__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 明州1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_ningbo__ch01/layout.yaml -o assets/default/town/city_ningbo__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: 684e7aa97a7fcc23ea550aa60922c849b7a57d189c69bcf983bccb8c25cd73e3
+  status: candidate
+  references:
+  - docs/design/town/city_ningbo__ch01.yaml
+  - docs/design/town/history/city_ningbo__northern_song.md
+  - assets/default/tile/song_southern/
+  - assets/default/building-map/song_southern/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；song_southern 套件语义回退 19 项（请求键：tex_town_song_southern_city_gate、tex_town_song_southern_dirt_road、tex_town_song_southern_rammed_earth、tex_town_song_southern_riverbank），使用
+    baseline 已登记变体

@@ -1,0 +1,22 @@
+- id: town_city_yangzhou__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 扬州1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_yangzhou__ch01/layout.yaml -o assets/default/town/city_yangzhou__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: afe3f72d414e4425e5690c3ee8daa1995d508d55899e4ebfe06be24a94b0fa52
+  status: candidate
+  references:
+  - docs/design/town/city_yangzhou__ch01.yaml
+  - docs/design/town/history/city_yangzhou__northern_song.md
+  - assets/default/tile/song_southern/
+  - assets/default/building-map/song_southern/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；song_southern 套件语义回退 14 项（请求键：tex_town_song_southern_city_gate、tex_town_song_southern_dirt_road、tex_town_song_southern_rammed_earth、tex_town_song_southern_riverbank），使用
+    baseline 已登记变体

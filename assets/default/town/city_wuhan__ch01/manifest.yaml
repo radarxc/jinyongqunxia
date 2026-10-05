@@ -1,0 +1,22 @@
+- id: town_city_wuhan__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 鄂州／汉阳军1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_wuhan__ch01/layout.yaml -o assets/default/town/city_wuhan__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2560x1280
+  sha256: 96a1728d5f91de526f9fb71574618d020e0a6b1d4571289bea6a1d7b7d648e5c
+  status: candidate
+  references:
+  - docs/design/town/city_wuhan__ch01.yaml
+  - docs/design/town/history/city_wuhan__northern_song.md
+  - assets/default/tile/song_southern/
+  - assets/default/building-map/song_southern/
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；song_southern 套件语义回退 13 项（请求键：tex_town_song_southern_city_gate、tex_town_song_southern_dirt_road、tex_town_song_southern_rammed_earth、tex_town_song_southern_riverbank），使用
+    baseline 已登记变体
