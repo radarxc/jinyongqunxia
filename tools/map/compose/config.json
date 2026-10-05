@@ -1,0 +1,119 @@
+{
+  "schema": "tianshu.map-compose-config.v1",
+  "seed": 680083,
+  "sample": {
+    "region_id": "rg_dali_cangshan",
+    "chapter": "ch01",
+    "width": 1536,
+    "height": 1024,
+    "frame_margin": 0.04
+  },
+  "paper": {
+    "color": [238, 228, 204],
+    "grain_strength": 0.024,
+    "grain_scale_px": 11,
+    "wash_strength": 0.018,
+    "wash_scale_px": 144
+  },
+  "fill": {
+    "tile_size_px": 512,
+    "noise_strength": 0.025,
+    "noise_scale_px": 160,
+    "transition_radius_px": 20,
+    "plain_edge_wash_px": 28,
+    "plain_edge_wash_opacity": 0.10,
+    "layer_opacity": {
+      "water": 0.18,
+      "lake": 0.12,
+      "plain": 0.0,
+      "grassland": 0.0,
+      "desert": 0.16,
+      "plateau": 0.0
+    }
+  },
+  "boundary": {
+    "segment_px": 38,
+    "overlap_px": 8,
+    "join_feather_px": 5,
+    "width_classes": {
+      "coast": {"thin": 5, "thick": 9},
+      "lakeshore": {"thin": 4, "thick": 8},
+      "river": {"thin": 4, "thick": 7},
+      "road": {"thin": 3, "thick": 5},
+      "region": {"thin": 2, "thick": 4}
+    }
+  },
+  "rivers": {
+    "default_max_scalerank": 9,
+    "comparison_max_scaleranks": [6, 9],
+    "width_by_scalerank": {"3": 14, "6": 10, "9": 6},
+    "water_color": [218, 232, 238],
+    "ink_color": [92, 91, 82],
+    "edge_width_px": 1,
+    "smooth_iterations": 3
+  },
+  "terrain": {
+    "relief_file": "data/rg_dali_cangshan_dem_relief.png",
+    "elevation_file": "data/rg_dali_cangshan_dem_elevation.png",
+    "relief_meta": "data/rg_dali_cangshan_dem_relief.json",
+    "relief_size": [384, 256],
+    "dem_smooth_radius_px": 2,
+    "rugged_radius_px": 3,
+    "rugged_range_m": [20, 240],
+    "slope_breaks_deg": [2, 5, 10, 20],
+    "hillshade_azimuth_deg": 315,
+    "hillshade_altitude_deg": 45,
+    "hillshade_opacity": 0.020,
+    "slope_edge_opacity": 0.012,
+    "rugged_opacity": 0.0,
+    "ridge_opacity": 0.04,
+    "ridge_width_px": 2,
+    "mountain_min_elevation_m": 650,
+    "mountain_min_ruggedness_m": 52,
+    "mountain_spacing_px": 104,
+    "mountain_density_per_mpx": 36,
+    "mountain_sizes_px": {"qiuling": 142, "shanmai": 214, "shanfeng": 188, "xueshan": 202},
+    "peak_min_elevation_m": 2600,
+    "peak_min_relative_height_m": 150,
+    "snow_min_elevation_m": 3800,
+    "peak_size_px": 188,
+    "peak_spacing_px": 104,
+    "peak_density_per_mpx": 8,
+    "peak_marker_gap_px": 16,
+    "river_clearance_px": 58,
+    "perspective_scale_range": [0.88, 1.12],
+    "mist_band_height_px": 34,
+    "mist_blur_px": 18,
+    "mist_opacity": 0.72
+  },
+  "jitter": {
+    "oriented_scale": 0.15,
+    "oriented_rotation_deg": 6,
+    "oriented_ink": 0.12,
+    "clickable_scale": 0.08,
+    "tile_rotation_deg": 360,
+    "variant_repeat_radius_px": 190
+  },
+  "dissolve": {
+    "feather_radius_px": 7,
+    "noise_strength": 0.20,
+    "bleed_radius_px": 3
+  },
+  "markers": {
+    "city_sizes_px": {"capital": 132, "major": 106, "secondary": 84},
+    "sect_size_px": 72,
+    "poi_size_px": 66,
+    "travel_size_px": 62,
+    "click_radius_px": {"capital": 38, "major": 30, "secondary": 24, "sect": 22, "poi": 20, "travel": 19},
+    "minimum_spacing_px": 46,
+    "paper_halo_px": 10,
+    "low_confidence_alpha": 0.32
+  },
+  "quality": {
+    "river_major_min": 0.85,
+    "river_all_min": 0.80,
+    "sea_iou_min": 0.85,
+    "lake_hit_min": 0.85,
+    "extra_water_max": 0.005
+  }
+}
