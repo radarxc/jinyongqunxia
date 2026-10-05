@@ -1,0 +1,35 @@
+{
+  "enabled": true,
+  "note": "AR-65（20:13）除 Gemini 画图与 Tripo 外改 GPT 6.1 Sol；AR-66（20:33）代码、城镇布局、特效的执行交 traex GPT-6 / GPT-5.6 max，内容与特效审核交 Codex gpt-6.1-sol。traex 无 6.1 Sol。 | 10-04 19:25 协调者：Codex 的 ChatGPT 账号已不支持 gpt-6.1-sol / gpt-6-astra（400 invalid_request），其余执行和审核按 09-30 先例改回 traex GPT-6-Astra max，回落 GPT-5.6-Sol。",
+  "rules": [
+    {
+      "match": "^(ENG|TOOL|LINT|CITY|VFX)-",
+      "bin": "/Users/bytedance/.local/bin/traex",
+      "model": "GPT-6-Astra",
+      "effort": "max",
+      "fallback": [
+        "GPT-5.6-Sol"
+      ],
+      "note": "AR-66 代码 / 城镇布局 / 特效执行"
+    },
+    {
+      "match": ".*",
+      "bin": "/Users/bytedance/.local/bin/traex",
+      "model": "GPT-6-Astra",
+      "effort": "max",
+      "fallback": [
+        "GPT-5.6-Sol"
+      ],
+      "note": "10-04 Codex 模型不可用，改 traex"
+    }
+  ],
+  "review": {
+    "bin": "/Users/bytedance/.local/bin/traex",
+    "model": "GPT-6-Astra",
+    "effort": "max",
+    "fallback": [
+      "GPT-5.6-Sol"
+    ],
+    "note": "10-04 Codex 模型不可用，审核改 traex"
+  }
+}
