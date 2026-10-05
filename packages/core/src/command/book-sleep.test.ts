@@ -55,6 +55,14 @@ const content = (target: ChapterDef = CH10, events?: readonly EventDef[]): CoreC
   items: [{ id: 'it_fixture', kind: 'material', grade: 1, stack: 99 } as never],
   ...(events ? { events } : {}),
 });
+const QUEST = { schemaVersion: 'quest.v1', id: 'q_10_main_c_01', kind: 'main',
+  chapterId: CH10.id, titleKey: 'quest.fixture', subjectNpcIds: [], routeTone: 'neutral',
+  startStageId: 'st_start', flagIds: [], encounterIds: [], stages: [
+    { id: 'st_start', objectiveKeys: [], objectives: [], transitions: [], effects: [
+      { id: 'fx_reward', op: 'reward/item', itemId: 'it_fixture', count: 1 }],
+      terminal: 'completed', endingKey: 'done' },
+  ], tracking: { defaultTracked: true, revealPolicy: 'known_only' },
+  source: { origin: 'expanded', note: 'test' } } as NonNullable<CoreContent['quests']>[number];
 function initial(): GameState {
   const state = createNewGameState({ masterSeed: 271828, identity,
     difficulty: 'diff_xiake', contentHash: SOURCE_HASH, chapter: CH00,
@@ -80,8 +88,8 @@ function tutorialSkill(): SkillInstance {
     latentExp: 0, movesEquipped: [], insight: 0, pages: [], flags: ['tutorial'] };
 }
 function ready(mode: PrologueMode = 'skip', target: ChapterDef = CH10,
-  events?: readonly EventDef[]): Core {
-  const supplied = content(target, events);
+  events?: readonly EventDef[], quests?: CoreContent['quests']): Core {
+  const supplied = { ...content(target, events), ...(quests ? { quests } : {}) };
   const settled = settle(mode, supplied).snapshot();
   const protagonist = settled.profile.protagonist!;
   const companion = { ...protagonist, characterId: 'npc_tutorial_companion', skills: [] };
@@ -229,6 +237,57 @@ describe('source-event EventDef dispatch', () => {
     expect((presented?.payload as { steps: EventDef['actions'] }).steps.map((step) => step.op))
       .toEqual(['dialogue/start', 'ui/revealText', 'world/loadScene']);
     expect(runtime.snapshot().profile.replayRules?.switches[ARRIVAL.id]).toBe(true);
+  });
+
+  it('emits a source-event battle request separately from presentation steps', () => {
+    const event = sourceEvent('ev_fixture_battle', [
+      { op: 'ui/showText', textKey: 'fixture.before_battle' },
+      { op: 'battle/start', encounter: 'enc_fixture' },
+      { op: 'ui/showTitleCard', card: 'after_battle' },
+    ]);
+    const result = ready('skip', CH10, [event])
+      .dispatch({ t: 'chapter/bookSleep', plan: plan() });
+    expect(result.ok && result.events.find((entry) => entry.t === 'world/battleRequested')?.payload)
+      .toEqual({ anchorId: null, encounterId: 'enc_fixture' });
+    expect(result.ok && result.events.find((entry) => entry.t === 'world/eventPresented')?.payload)
+      .toEqual({ eventId: event.id, steps: [
+        { op: 'ui/showText', textKey: 'fixture.before_battle' },
+        { op: 'ui/showTitleCard', card: 'after_battle' },
+      ] });
+  });
+
+  it('advances a quest with effects from chapter/woke in the original event order', () => {
+    const event = sourceEvent('ev_fixture_quest', [
+      { op: 'quest/advance', quest: QUEST.id, stage: 'st_start' },
+      { op: 'ui/showTitleCard', card: 'after_quest' },
+    ]);
+    const runtime = ready('skip', CH10, [event], [QUEST]);
+    const result = runtime.dispatch({ t: 'chapter/bookSleep', plan: plan() });
+    expect(result.ok && result.events.map(({ t, payload }) => ({ t, payload })).slice(3)).toEqual([
+      { t: 'quest/succeeded', payload: { questId: QUEST.id, oldStatus: 'inactive',
+        newStatus: 'completed', stageKey: 'st_start', source: event.id } },
+      { t: 'world/eventPresented', payload: { eventId: event.id,
+        steps: [{ op: 'ui/showTitleCard', card: 'after_quest' }] } },
+    ]);
+    expect(runtime.snapshot().chapter.story.lines).toMatchObject([{ lineId: QUEST.id,
+      status: 'completed', completedNodeIds: ['st_start'],
+      appliedEffectIds: [`${QUEST.id}/st_start/fx_reward`] }]);
+    expect(runtime.snapshot().party.inventory.stacks).toEqual([{ itemId: 'it_fixture', count: 1 }]);
+  });
+
+  it('returns the source rejection code and rolls book sleep back for an invalid quest effect', () => {
+    const invalidQuest = { ...QUEST, stages: [{ ...QUEST.stages[0]!, effects: [
+      { id: 'fx_missing', op: 'reward/item' as const, itemId: 'it_missing', count: 1 },
+    ] }] };
+    const event = sourceEvent('ev_fixture_quest_rollback', [
+      { op: 'quest/advance', quest: QUEST.id, stage: 'st_start' },
+    ]);
+    const runtime = ready('skip', CH10, [event], [invalidQuest]);
+    const before = runtime.canonicalStateJson();
+    expect(runtime.dispatch({ t: 'chapter/bookSleep', plan: plan() }))
+      .toEqual({ ok: false, reason: 'SOURCE_EVENT_REFERENCE' });
+    expect(runtime.canonicalStateJson()).toBe(before);
+    expect(runtime.snapshot().chapter.chapterId).toBe(CH00.id);
   });
 
   it('sorts multiple matches by EventDef ID independently of content order', () => {

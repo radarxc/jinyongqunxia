@@ -1,6 +1,6 @@
 import { compareCodePoints, type JsonValue } from '@tianshu/shared';
 import type { EventPresentationAction } from '@tianshu/data/schemas';
-export { executeAction, executeActions, executeEvent, type ActionExecutionContext } from './event-executor';
+export { executeDialogueActions, executeEvent } from './event-executor';
 export type { EventPresentationAction };
 
 /** Presentation boundary consumed by the game UI; core never performs these steps. */

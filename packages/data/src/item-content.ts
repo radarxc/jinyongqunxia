@@ -1,6 +1,21 @@
 import type { JsonValue } from '@tianshu/shared';
 import { ItemDefSchema, type ItemDef } from './schemas/item';
 
+// Runtime content loading uses this narrow value boundary instead of evaluating the full
+// schema barrel (notably dialogue-only QuestDef schemas) during first-session startup.
+export { ChapterDefSchema } from './schemas/chapter';
+export { NpcAppearanceSchema } from './schemas/character';
+export { NpcIdSchema } from './schemas/primitives';
+export { RegionBindingLeafSchema } from './schemas/region-binding';
+export { RegionMapSchema } from './schemas/region-map';
+export { EventDefSchema } from './schemas/world';
+export { WorldMapDefinitionSchema } from './schemas/world-map';
+export type { ChapterDef } from './schemas/chapter';
+export type { EventDef } from './schemas/world';
+export type { QuestDef } from './schemas/quest';
+export type { RegionMap } from './schemas/region-map';
+export type { WorldMapRuntimeDefinition } from './schemas/world-map';
+
 export type ItemRule = Omit<ItemDef, 'text'>;
 
 interface ItemRuleEnvelope {

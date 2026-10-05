@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { ChapterIdSchema, EventIdSchema, FlagIdSchema, ItemIdSchema, JsonValueSchema, LocalKeySchema, NpcIdSchema } from './primitives';
 import { EventActionSchema } from './event-actions';
 import { GateExprSchema, type GateExpr } from './region-map';
-import { TimeWindowSchema } from './story';
+import { TimeWindowSchema } from './time-window';
 
 export const ShopDefSchema = z.strictObject({
   schemaVersion: z.literal('shop.v1'), key: LocalKeySchema, name: z.string().min(1),

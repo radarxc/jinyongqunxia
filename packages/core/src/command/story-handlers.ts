@@ -1,6 +1,7 @@
-import { InkJsDialogueBridge, authorizedDialogueIntents, dialogueStateFromSession,
+import { InkJsDialogueBridge, dialogueStateFromSession,
   inkExternalQuery, sessionFromDialogue } from '../dialogue';
-import { executeActions } from '../event';
+import { authorizedDialogueIntents, dialogueQuests } from '../dialogue/intent-actions';
+import { executeDialogueActions } from '../event';
 import type { GameState } from '../state';
 import type { CommandHandler, CoreContent, DialogueCommand,
   QuestChoiceCommand, RulesCommand } from '.';
@@ -25,7 +26,7 @@ function bridge(content: CoreContent, state: Readonly<GameState>): InkJsDialogue
     const entry = story(content, storyId);
     if (!entry) throw new Error('DIALOGUE_STORY_UNKNOWN');
     return entry.storyJson;
-  }, inkExternalQuery(state, content.quests));
+  }, inkExternalQuery(state, dialogueQuests(content)));
 }
 function history(state: NonNullable<GameState['dialogue']>) {
   const previous = state.history ?? []; const textKey = state.textKey ?? null;
@@ -47,12 +48,7 @@ function commitDialogueIntents(tx: Parameters<typeof dialogueHandler.apply>[0],
   if (pending.length === 0) return [...consumed];
   const actions = pending.map((intent) => intent.action).filter((action) =>
     action.op !== 'dialogue/speaker');
-  if (actions.length > 0) executeActions(tx, actions, {
-    sourceId: `dialogue:${state.storyId}`, anchorId: 'dialogue',
-    allowDialogueAutosave: true, reject: { action: 'DIALOGUE_INTENT_ACTION',
-      condition: 'DIALOGUE_INTENT_ACTION',
-      reference: 'DIALOGUE_INTENT_REFERENCE', inventory: 'DIALOGUE_INTENT_INVENTORY',
-      quest: 'DIALOGUE_INTENT_QUEST', battle: 'DIALOGUE_INTENT_BATTLE' } });
+  if (actions.length > 0) executeDialogueActions(tx, actions, `dialogue:${state.storyId}`);
   for (const intent of pending) consumed.add(intent.key);
   return [...consumed];
 }

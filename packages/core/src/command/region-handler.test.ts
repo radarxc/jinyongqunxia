@@ -96,6 +96,17 @@ function runtime(supplied = content()): Core {
     difficulty: 'diff_xiake' }), supplied);
 }
 const hash = (core: Core) => createHash('sha256').update(core.canonicalStateJson()).digest('hex');
+const quest = (effects: NonNullable<CoreContent['quests']>[number]['stages'][number]['effects'] = []) =>
+  ({ schemaVersion: 'quest.v1', id: 'q_00_main_c_01', kind: 'main', chapterId: 'ch00_yuenv',
+    titleKey: 'quest.fixture', subjectNpcIds: [], routeTone: 'neutral', startStageId: 'st_start',
+    flagIds: ['fl_ready'], encounterIds: [], stages: [
+      { id: 'st_start', objectiveKeys: [], objectives: [], effects: [], transitions: [
+        { id: 'edge_next', priority: 10, when: { flag: { id: 'fl_ready', is: true } },
+          to: 'st_next', branchKey: 'next' }] },
+      { id: 'st_next', objectiveKeys: [], objectives: [], transitions: [], effects,
+        terminal: 'completed', endingKey: 'done' },
+    ], tracking: { defaultTracked: true, revealPolicy: 'known_only' },
+    source: { origin: 'expanded', note: 'test' } } as NonNullable<CoreContent['quests']>[number]);
 
 describe('region exploration command pipeline', () => {
   it('mounts, walks through checkpoints, exits, mounts the next scene, and repeats the same hash', () => {
@@ -142,6 +153,55 @@ describe('region exploration command pipeline', () => {
     expect(core.snapshot().profile.replayRules?.switches).toMatchObject({
       fl_fixture: true, ev_fixture_checkpoint: true,
     });
+  });
+
+  it('emits a battle request outside the ordered presentation envelope', () => {
+    const supplied = { ...content(), events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint',
+      once: true, actions: [
+        { op: 'ui/showText', textKey: 'fixture.before_battle' },
+        { op: 'battle/start', encounter: 'enc_fixture' },
+        { op: 'ui/showTitleCard', card: 'after_battle' },
+      ] }] } as CoreContent;
+    const core = runtime(supplied);
+    core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    const result = core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } });
+    expect(result.ok && result.events.find((event) => event.t === 'world/battleRequested')?.payload)
+      .toEqual({ anchorId: 'checkpoint', encounterId: 'enc_fixture' });
+    expect(result.ok && result.events.find((event) => event.t === 'world/eventPresented')?.payload)
+      .toEqual({ eventId: 'ev_fixture_checkpoint', steps: [
+        { op: 'ui/showText', textKey: 'fixture.before_battle' },
+        { op: 'ui/showTitleCard', card: 'after_battle' },
+      ] });
+  });
+
+  it('advances a quest with effects and preserves the complete event payload order', () => {
+    const supplied = { ...content(), quests: [quest([{ id: 'fx_reward', op: 'reward/item',
+      itemId: 'it_fixture', count: 1 }])], events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint',
+      once: true, actions: [{ op: 'flag/set', flagId: 'fl_ready', value: true },
+        { op: 'quest/advance', quest: 'q_00_main_c_01', stage: 'st_next' }] }] } as CoreContent;
+    const core = runtime(supplied); core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    const result = core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } });
+    expect(result.ok && result.events.map(({ t, payload }) => ({ t, payload }))).toEqual([
+      { t: 'world/walked', payload: { regionId: 'rg_fixture', sceneId: 'sc_00_zhulin',
+        path: [{ q: 0, r: 0 }, { q: 1, r: 0 }], destination: { q: 1, r: 0 },
+        facing: 0, cost: 1 } },
+      { t: 'world/triggered', payload: { anchorId: 'checkpoint',
+        eventId: 'ev_fixture_checkpoint', action: null } },
+      { t: 'quest/succeeded', payload: { questId: 'q_00_main_c_01', oldStatus: 'inactive',
+        newStatus: 'completed', stageKey: 'st_next', source: 'ev_fixture_checkpoint' } },
+      { t: 'world/safeAnchorReached', payload: { regionId: 'rg_fixture',
+        sceneId: 'sc_00_zhulin', anchorId: 'checkpoint' } },
+      { t: 'world/autosaveRequested', payload: { regionId: 'rg_fixture',
+        sceneId: 'sc_00_zhulin', anchorId: 'checkpoint' } },
+    ]);
+    expect(core.snapshot().chapter.story.lines).toMatchObject([{ lineId: 'q_00_main_c_01',
+      status: 'completed', completedNodeIds: ['st_start', 'st_next'],
+      appliedEffectIds: ['q_00_main_c_01/st_next/fx_reward'] }]);
+    expect(core.snapshot().party.inventory.stacks).toEqual([{ itemId: 'it_fixture', count: 1 }]);
   });
 
   it('persists EventDef once receipts across restore while a repeatable Trigger still fires', () => {
@@ -283,8 +343,6 @@ describe('region exploration command pipeline', () => {
     for (const [action, reason] of [
       [{ op: 'rig/loadClipMap', payload: { schema: 'tianshu-clip-map.v1', clips: {} } },
         'REGION_EVENT_ACTION'],
-      [{ op: 'quest/advance', quest: 'q_00_main_c_01', stage: 'st_next' },
-        'REGION_EVENT_ACTION'],
     ] as const) {
       const supplied = { ...base, events: [{ schemaVersion: 'event.v1',
         id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint',
@@ -295,6 +353,20 @@ describe('region exploration command pipeline', () => {
         .toEqual({ ok: false, reason });
       expect(hash(core)).toBe(before);
     }
+  });
+
+  it('rejects an invalid quest advance and rolls the trigger transaction back', () => {
+    const base = content();
+    const supplied = { ...base, quests: [quest()], events: [{ schemaVersion: 'event.v1',
+      id: 'ev_fixture_checkpoint', chapterId: 'ch00_yuenv', event: 'world/checkpoint', once: true,
+      actions: [{ op: 'flag/set', flagId: 'fl_should_rollback', value: true },
+        { op: 'quest/advance', quest: 'q_00_main_c_01', stage: 'st_next' }] }] } as CoreContent;
+    const core = runtime(supplied); core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' }); const before = hash(core);
+    expect(core.dispatch({ t: 'world/walkTo', hex: { q: 1, r: 0 } }))
+      .toEqual({ ok: false, reason: 'REGION_EVENT_ACTION' });
+    expect(hash(core)).toBe(before);
+    expect(core.snapshot().profile.replayRules?.switches['fl_should_rollback']).toBeUndefined();
   });
 
   it('rejects invalid mount, terrain, height, qinggong, and occupied paths without mutation', () => {
