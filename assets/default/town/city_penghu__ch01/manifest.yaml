@@ -1,0 +1,20 @@
+assets:
+- id: town_city_penghu__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 澎湖屿聚落1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_penghu__ch01/layout.yaml -o assets/default/town/city_penghu__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85 --report tmp/CITY-layouts-ch01-d/logs/tmp/penghu.render.json
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2048x1024
+  sha256: 58c048f362404267b5cb218dc29944a28b54f68777218c863ba9aef756fef512
+  status: candidate
+  references:
+  - docs/design/town/city_penghu__ch01.yaml
+  - docs/design/town/history/city_penghu__northern_song.md
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；套件回退：tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road__v01（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road）；tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road__v02（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road）；tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road__v03（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road）；tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road__v04（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road）；tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth__v01（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth）；tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth__v02（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth）；tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth__v03（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth）；tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth__v04（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__n（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__s（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）

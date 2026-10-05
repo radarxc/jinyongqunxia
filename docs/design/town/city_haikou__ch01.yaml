@@ -1,0 +1,334 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_haikou
+chapter_id: ch01
+book_world: ch01_tianlong
+display_name: 琼州城（今府城）
+historical_year: 1093
+era_kit: song_southern
+seed: 3930498209
+design_intent:
+  prosperity: major_complete_candidate
+  notes:
+  - 复原依据：history/city_haikou__northern_song.md；1093年历史拓扑缩景。
+  - 宋开宝五年州治迁府城并筑约三里城，南宋绍兴间才增筑外罗城；1093年精确墙线（待考），不把南宋外城或明清府城前置。
+  - 未获同期地籍控制点的坐标均标（推定）（原创扩展）；正式场景与营生绑定不在本任务定义。
+grid:
+  width: 128
+  height: 128
+  cell_m: 1
+  chunk_cells: 32
+runtime_partition:
+  q_min: -64
+  r_min: 1
+  q_slot_count: 175
+  r_slot_count: 128
+  q_band_slots:
+  - 96
+  - 79
+  r_band_slots:
+  - 96
+  - 32
+  formal_scene_refs: null
+projection:
+  tile_px:
+  - 64
+  - 32
+  pitch_deg: 30
+  yaw_deg: 45
+walls:
+- id: outer
+  role: outer
+  polygon:
+    points:
+    - x: 12
+      z: 12
+    - x: 116
+      z: 12
+    - x: 116
+      z: 116
+    - x: 12
+      z: 116
+  inside_margin_cells: 2
+  basis: 图名：琼州城（今府城）外垣；宋开宝五年州治迁府城并筑约三里城，南宋绍兴间才增筑外罗城；1093年精确墙线（待考），不把南宋外城或明清府城前置。；轮廓与折点（推定）（原创扩展），据src_city。
+gates:
+- id: south_gate
+  side: south
+  at:
+    x: 64
+    z: 12
+  width_cells: 8
+  asset_type: tex_town_song_southern_city_gate
+  rotation_deg: 0
+  footprint_cells:
+    w: 12
+    h: 4
+  passage_cells:
+    w: 8
+    h: 4
+  road_ref: axis
+  primary: true
+  wall_ref: outer
+  basis: 图名：南门；方位、门宽与坐标（推定）（原创扩展）。
+- id: north_gate
+  side: north
+  at:
+    x: 64
+    z: 116
+  width_cells: 7
+  asset_type: tex_town_song_southern_city_gate
+  rotation_deg: 180
+  footprint_cells:
+    w: 11
+    h: 4
+  passage_cells:
+    w: 7
+    h: 4
+  road_ref: axis
+  primary: false
+  wall_ref: outer
+  basis: 图名：北门；方位、门宽与坐标（推定）（原创扩展）。
+streets:
+- id: axis
+  class: main_axis
+  width_cells: 5
+  points:
+  - x: 64
+    z: 12
+  - x: 64
+    z: 116
+  surface: dirt_road
+  priority: 100
+  basis: 图名：琼州城（今府城）南北主路；相对格局据src_city，线位与宽度（推定）（原创扩展）。
+- id: cross
+  class: secondary
+  width_cells: 5
+  points:
+  - x: 12
+    z: 64
+  - x: 116
+    z: 64
+  surface: dirt_road
+  priority: 90
+  basis: 图名：东西横街；线位与宽度（推定）（原创扩展）。
+- id: market_lane
+  class: secondary
+  width_cells: 3
+  points:
+  - x: 20
+    z: 34
+  - x: 108
+    z: 34
+  surface: dirt_road
+  priority: 70
+  basis: 图名：市肆横巷；可玩街区补线（推定）（原创扩展）。
+rivers:
+- id: regional_water
+  width_cells: 8
+  points:
+  - x: 3
+    z: 3
+  - x: 124
+    z: 3
+  flow: east
+  navigable: true
+  basis: 图名：海岸水面；区域关系据src_city，线位与宽度（推定）。
+lakes: []
+bridges: []
+water_gates: []
+zones:
+- id: zone_office
+  kind: administrative
+  geometry:
+    rect:
+      min:
+        x: 69
+        z: 74
+      max:
+        x: 108
+        z: 108
+  priority: 100
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_song_southern_yamen
+  - bld_kit_song_southern_courtyard
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：行政院落；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+- id: zone_market
+  kind: market
+  geometry:
+    rect:
+      min:
+        x: 69
+        z: 20
+      max:
+        x: 108
+        z: 54
+  priority: 90
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_song_southern_shop_1f
+  - bld_kit_song_southern_shop_2f
+  - bld_kit_song_southern_market_stall
+  - bld_kit_song_southern_inn
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：沿街市肆；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+- id: zone_residential_w
+  kind: residential
+  geometry:
+    rect:
+      min:
+        x: 20
+        z: 20
+      max:
+        x: 59
+        z: 54
+  priority: 60
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_song_southern_house
+  - bld_kit_song_southern_courtyard
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：西部居住；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+- id: zone_residential_e
+  kind: residential
+  geometry:
+    rect:
+      min:
+        x: 69
+        z: 69
+      max:
+        x: 108
+        z: 89
+  priority: 55
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_song_southern_house
+  - bld_kit_song_southern_shop_1f
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：东部居住；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+- id: zone_temple
+  kind: religious
+  geometry:
+    rect:
+      min:
+        x: 20
+        z: 69
+      max:
+        x: 59
+        z: 89
+  priority: 80
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_song_southern_temple_hall
+  - bld_kit_song_southern_house
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：宗教院落；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+landmarks: []
+building_quotas:
+- type: bld_kit_song_southern_yamen
+  zone_refs:
+  - zone_office
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_song_southern_courtyard
+  zone_refs:
+  - zone_office
+  - zone_residential_w
+  count:
+    min: 1
+    max: 3
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_song_southern_house
+  zone_refs:
+  - zone_residential_w
+  - zone_residential_e
+  - zone_temple
+  count:
+    min: 8
+    max: 18
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_song_southern_shop_1f
+  zone_refs:
+  - zone_market
+  - zone_residential_e
+  count:
+    min: 4
+    max: 8
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_song_southern_shop_2f
+  zone_refs:
+  - zone_market
+  count:
+    min: 1
+    max: 3
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_song_southern_market_stall
+  zone_refs:
+  - zone_market
+  count:
+    min: 3
+    max: 7
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_song_southern_inn
+  zone_refs:
+  - zone_market
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_song_southern_temple_hall
+  zone_refs:
+  - zone_temple
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+vegetation:
+  palette:
+  - prp_song_dali_grass
+  density: 0.012
+  avoid_road_cells: 2
+  cluster_rule: 院落空地少量草簇；不以植物证明1093年物候
+  basis: 图名：空地植被；密度与落点（原创扩展）【建议值】。
+sources:
+- key: src_city
+  kind: official_web
+  title: 海南日报：一座滨海小城的变迁史
+  url: https://news.hndaily.cn/h5/html5/2018-02/26/content_16_1.htm
+  accessed: '2026-10-04'
+  confidence: verified_summary
+  supports:
+  - historical_topology
+  note: 仅文字；可信度B；宋开宝五年州治迁府城并筑约三里城，南宋绍兴间才增筑外罗城；1093年精确墙线（待考），不把南宋外城或明清府城前置。

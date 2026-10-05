@@ -1,0 +1,335 @@
+schema_version: town.city_spec.v1
+kind: CitySpec
+city_id: city_kashgar
+chapter_id: ch01
+book_world: ch01_tianlong
+display_name: 喀什噶尔·汗诺依候选
+historical_year: 1093
+era_kit: xiyu
+seed: 2708335327
+design_intent:
+  prosperity: capital_complete_candidate
+  notes:
+  - 复原依据：history/city_kashgar__northern_song.md；1093年历史拓扑缩景。
+  - 汗诺依宏大城址含唐代地层且约在11—14世纪废弃；11世纪喀喇汗都城功能明确，具体同期城线仍概化。
+  - 未获同期地籍控制点的坐标均标（推定）（原创扩展）；正式场景与营生绑定不在本任务定义。
+grid:
+  width: 160
+  height: 160
+  cell_m: 1
+  chunk_cells: 32
+runtime_partition:
+  q_min: -80
+  r_min: 1
+  q_slot_count: 219
+  r_slot_count: 160
+  q_band_slots:
+  - 73
+  - 73
+  - 73
+  r_band_slots:
+  - 80
+  - 80
+  formal_scene_refs: null
+projection:
+  tile_px:
+  - 64
+  - 32
+  pitch_deg: 30
+  yaw_deg: 45
+walls:
+- id: outer
+  role: outer
+  polygon:
+    points:
+    - x: 18
+      z: 18
+    - x: 142
+      z: 18
+    - x: 142
+      z: 142
+    - x: 18
+      z: 142
+  inside_margin_cells: 2
+  basis: 图名：喀什噶尔·汗诺依候选外垣；汗诺依宏大城址含唐代地层且约在11—14世纪废弃；11世纪喀喇汗都城功能明确，具体同期城线仍概化。；轮廓与折点（推定）（原创扩展），据src_city。
+gates:
+- id: south_gate
+  side: south
+  at:
+    x: 80
+    z: 18
+  width_cells: 6
+  asset_type: tex_town_xiyu_city_gate
+  rotation_deg: 0
+  footprint_cells:
+    w: 10
+    h: 4
+  passage_cells:
+    w: 6
+    h: 4
+  road_ref: axis
+  primary: true
+  wall_ref: outer
+  basis: 图名：南门；方位、门宽与坐标（推定）（原创扩展）。
+- id: north_gate
+  side: north
+  at:
+    x: 80
+    z: 142
+  width_cells: 6
+  asset_type: tex_town_xiyu_city_gate
+  rotation_deg: 180
+  footprint_cells:
+    w: 10
+    h: 4
+  passage_cells:
+    w: 6
+    h: 4
+  road_ref: axis
+  primary: false
+  wall_ref: outer
+  basis: 图名：北门；方位、门宽与坐标（推定）（原创扩展）。
+streets:
+- id: axis
+  class: main_axis
+  width_cells: 6
+  points:
+  - x: 80
+    z: 18
+  - x: 80
+    z: 142
+  surface: dirt_road
+  priority: 100
+  basis: 图名：喀什噶尔·汗诺依候选南北主路；相对格局据src_city，线位与宽度（推定）（原创扩展）。
+- id: cross
+  class: secondary
+  width_cells: 5
+  points:
+  - x: 18
+    z: 80
+  - x: 142
+    z: 80
+  surface: dirt_road
+  priority: 90
+  basis: 图名：东西横街；线位与宽度（推定）（原创扩展）。
+- id: market_lane
+  class: secondary
+  width_cells: 3
+  points:
+  - x: 26
+    z: 44
+  - x: 134
+    z: 44
+  surface: dirt_road
+  priority: 70
+  basis: 图名：市肆横巷；可玩街区补线（推定）（原创扩展）。
+rivers:
+- id: regional_water
+  width_cells: 6
+  points:
+  - x: 3
+    z: 3
+  - x: 156
+    z: 3
+  flow: east
+  navigable: true
+  basis: 图名：喀什噶尔河支流意向；区域关系据src_city，线位与宽度（推定）。
+lakes: []
+bridges: []
+water_gates: []
+zones:
+- id: zone_office
+  kind: administrative
+  geometry:
+    rect:
+      min:
+        x: 85
+        z: 90
+      max:
+        x: 134
+        z: 134
+  priority: 100
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_xiyu_yamen
+  - bld_kit_xiyu_courtyard
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：行政院落；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+- id: zone_market
+  kind: market
+  geometry:
+    rect:
+      min:
+        x: 85
+        z: 26
+      max:
+        x: 134
+        z: 70
+  priority: 90
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_xiyu_shop_1f
+  - bld_kit_xiyu_shop_2f
+  - bld_kit_xiyu_market
+  - bld_kit_xiyu_inn
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：沿街市肆；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+- id: zone_residential_w
+  kind: residential
+  geometry:
+    rect:
+      min:
+        x: 26
+        z: 26
+      max:
+        x: 75
+        z: 70
+  priority: 60
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_xiyu_house_small
+  - bld_kit_xiyu_courtyard
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：西部居住；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+- id: zone_residential_e
+  kind: residential
+  geometry:
+    rect:
+      min:
+        x: 85
+        z: 85
+      max:
+        x: 134
+        z: 112
+  priority: 55
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_xiyu_house_small
+  - bld_kit_xiyu_shop_1f
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：东部居住；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+- id: zone_temple
+  kind: religious
+  geometry:
+    rect:
+      min:
+        x: 26
+        z: 85
+      max:
+        x: 75
+        z: 112
+  priority: 80
+  density: 0.52
+  allowed_building_types:
+  - bld_kit_xiyu_temple_hall
+  - bld_kit_xiyu_house_small
+  ground_mix:
+    rammed_earth: 100
+  basis: 图名：宗教院落；功能关系参考src_city，边界、密度与座数（推定）（原创扩展）。
+landmarks: []
+building_quotas:
+- type: bld_kit_xiyu_yamen
+  zone_refs:
+  - zone_office
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_xiyu_courtyard
+  zone_refs:
+  - zone_office
+  - zone_residential_w
+  count:
+    min: 1
+    max: 3
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_xiyu_house_small
+  zone_refs:
+  - zone_residential_w
+  - zone_residential_e
+  - zone_temple
+  count:
+    min: 10
+    max: 22
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_xiyu_shop_1f
+  zone_refs:
+  - zone_market
+  - zone_residential_e
+  count:
+    min: 4
+    max: 8
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_xiyu_shop_2f
+  zone_refs:
+  - zone_market
+  count:
+    min: 1
+    max: 3
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_xiyu_market
+  zone_refs:
+  - zone_market
+  count:
+    min: 3
+    max: 7
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_xiyu_inn
+  zone_refs:
+  - zone_market
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+- type: bld_kit_xiyu_temple_hall
+  zone_refs:
+  - zone_temple
+  count:
+    min: 1
+    max: 1
+  required: true
+  business_ref: null
+  institution_ref: null
+  placement_note: 压缩场景配额（原创扩展）【建议值】；不由数量反推历史人口。
+vegetation:
+  palette:
+  - prp_song_dali_grass
+  density: 0.012
+  avoid_road_cells: 2
+  cluster_rule: 院落空地少量草簇；不以植物证明1093年物候
+  basis: 图名：空地植被；密度与落点（原创扩展）【建议值】。
+sources:
+- key: src_city
+  kind: academic
+  title: 中国社科院考古所：汗诺依考古队成果
+  url: http://kaogu.cssn.cn/ggkg/mjft/202602/t20260213_5973676.shtml
+  accessed: '2026-10-04'
+  confidence: verified_summary
+  supports:
+  - historical_topology
+  note: 仅文字；可信度A；汗诺依宏大城址含唐代地层且约在11—14世纪废弃；11世纪喀喇汗都城功能明确，具体同期城线仍概化。

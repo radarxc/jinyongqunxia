@@ -1,0 +1,20 @@
+assets:
+- id: town_city_chaozhou__ch01
+  file: preview.jpg
+  category: town
+  style: default
+  subject: 潮州子城1093年历史拓扑缩景候选
+  prompt: python3 tools/town/render_town.py assets/default/town/city_chaozhou__ch01/layout.yaml -o assets/default/town/city_chaozhou__ch01/preview.jpg
+    --scale 0.25 --jpeg-quality 85 --report tmp/CITY-layouts-ch01-d/logs/tmp/chaozhou.render.json
+  tool: tools/town/render_town.py
+  model: none
+  created: '2026-10-04'
+  size: 2048x1024
+  sha256: 9d69ca5d8cfbbbacc18bf03b445f140487b797332c01ef0b11254f3cf6f41100
+  status: candidate
+  references:
+  - docs/design/town/city_chaozhou__ch01.yaml
+  - docs/design/town/history/city_chaozhou__northern_song.md
+  - assets/default/baseline/tile/
+  - assets/default/baseline/building-map/
+  notes: 0.25 预览；全尺寸未渲染；运行时按 layout + 贴片渲染；套件回退：tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road__v01（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road）；tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road__v02（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road）；tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road__v03（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road）；tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road__v04（shared-material:tex_town_song_southern_dirt_road->tex_town_song_dali_dirt_road）；tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth__v01（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth）；tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth__v02（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth）；tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth__v03（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth）；tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth__v04（shared-material:tex_town_song_southern_rammed_earth->tex_town_song_dali_rammed_earth）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__e（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__n（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__ne（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__nw（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__s（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__se（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__sw（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）；tex_town_song_southern_riverbank->tex_town_song_dali_riverbank__w（shared-material:tex_town_song_southern_riverbank->tex_town_song_dali_riverbank）
