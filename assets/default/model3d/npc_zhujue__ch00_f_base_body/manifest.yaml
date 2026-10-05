@@ -1,0 +1,159 @@
+- id: npc_zhujue__ch00_f_base_body__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 基底素体版（AR-97 贴身短款素体基底规范）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 8e8c66d0-18ad-4083-bef1-3ce6664d6aeb
+    url: https://studio.tripo3d.ai/workspace/generate/8e8c66d0-18ad-4083-bef1-3ce6664d6aeb
+    generate_op: 88f03fd8-f4fa-44a4-a5a7-d609d63cc1c9（image_to_model）
+    rig_op: 355e86dc-d8ca-4584-a4d6-48cf1ab3eb9b
+    animation_ops:
+      idle: 19337cea-1dec-4b24-ad56-8094b49b115a
+      walk: 7a43135c-ec98-4a60-830b-3cb5ca3d07a3
+      run: a9e4e840-655e-4c01-a7e0-76109770446d
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_base_body_apose.png
+    sha256: 9b90c5d7e730545337e84af1993aab737b4a8297e13e9d82e08a188de5876a9e
+    use: 单图生成输入（A 字姿势全身参考）
+  sha256: 61ea8963e9ed0eeabf5d581fb2f0de27f677db6f55376c57881ab99b4f1f8a28
+  size_bytes: 4768332
+  joints: 65
+  triangles: 94508
+  vertices: 51759
+  animations: []
+  textures:
+  - image/jpeg 241205 B
+  - image/jpeg 772678 B
+  - image/jpeg 472624 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-05T12:37:47-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。AR-97 贴身短款素体标准：紧身裹胸背心、大量露腰（自然腹肌肚脐）、贴身超短裤、100%赤足裸足；彻底擦除耳前耳下悬空散发与耳饰伪影；Mixamo 65 骨骼体检 100% 通过；头身比 7.92（~8头身）；关节体检（ingest.py）：髋 y0.546、头 y0.86、头顶骨端 y0.987、双手 y0.582/0.582 外展 0.272/0.274、脚
+    y0.075/0.075。
+- id: npc_zhujue__ch00_f_base_body__anim_idle_walk_run
+  file: anim_idle_walk_run.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 基底素体版（AR-97 贴身短款素体基底规范）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 8e8c66d0-18ad-4083-bef1-3ce6664d6aeb
+    url: https://studio.tripo3d.ai/workspace/generate/8e8c66d0-18ad-4083-bef1-3ce6664d6aeb
+    generate_op: 88f03fd8-f4fa-44a4-a5a7-d609d63cc1c9（image_to_model）
+    rig_op: 355e86dc-d8ca-4584-a4d6-48cf1ab3eb9b
+    animation_ops:
+      idle: 19337cea-1dec-4b24-ad56-8094b49b115a
+      walk: 7a43135c-ec98-4a60-830b-3cb5ca3d07a3
+      run: a9e4e840-655e-4c01-a7e0-76109770446d
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - idle
+      - walk
+      - run
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_base_body_apose.png
+    sha256: 9b90c5d7e730545337e84af1993aab737b4a8297e13e9d82e08a188de5876a9e
+    use: 单图生成输入（A 字姿势全身参考）
+  sha256: b9a0dce35de5c3d40a265a4839c02fbf9cd968f463c4e07e749309998b8d826c
+  size_bytes: 5245876
+  joints: 65
+  triangles: 94508
+  vertices: 51759
+  animations:
+  - idle (15.333s)
+  - walk (2.333s)
+  - run (1.25s)
+  textures:
+  - image/jpeg 241205 B
+  - image/jpeg 772678 B
+  - image/jpeg 472624 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-05T12:37:47-07:00'
+  status: candidate
+  notes: 动作单文件：一个 GLB 内含 idle / walk / run，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
+- id: npc_zhujue__ch00_f_base_body__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 主角（女）· 基底素体版（AR-97 贴身短款素体基底规范） · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 8e8c66d0-18ad-4083-bef1-3ce6664d6aeb
+    url: https://studio.tripo3d.ai/workspace/generate/8e8c66d0-18ad-4083-bef1-3ce6664d6aeb
+    generate_op: 88f03fd8-f4fa-44a4-a5a7-d609d63cc1c9（image_to_model）
+    rig_op: 355e86dc-d8ca-4584-a4d6-48cf1ab3eb9b
+    animation_ops:
+      idle: 19337cea-1dec-4b24-ad56-8094b49b115a
+      walk: 7a43135c-ec98-4a60-830b-3cb5ca3d07a3
+      run: a9e4e840-655e-4c01-a7e0-76109770446d
+  size: 600x778
+  sha256: ad00c0beb0bb800b707d9dec9487d43ee73a76db3428c0be5abca693e01e3686
+  size_bytes: 88767
+  created: '2026-10-05T12:37:47-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
