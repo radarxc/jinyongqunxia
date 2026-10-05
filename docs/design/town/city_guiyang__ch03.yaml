@@ -1,0 +1,48 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_guiyang"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "贵州一带（宋期聚落推定）"
+historical_year: 1217
+era_kit: "song_dali"
+seed: 3662540856
+design_intent: {"prosperity":"regional_study_candidate","notes":["复原依据：history/city_guiyang__southern_song_jin_mongol.md；城址拓扑压缩，非原尺寸测绘。","historical_year 是主章节参考锚点；同带副本默认沿用共同地形，不代表1259年逐屋实景。","贴片与可玩街区均为候选；经营、门派、正式场景仅引用上游，不在本图定义。","宋期城垣证据不足，采用无墙聚落候选；不是断言当时绝无防御设施。"]}
+grid: {"width":160,"height":160,"cell_m":1,"chunk_cells":32}
+runtime_partition: {"q_min":-80,"r_min":1,"q_slot_count":219,"r_slot_count":160,"q_band_slots":[73,73,73],"r_band_slots":[80,80],"formal_scene_refs":null}
+projection: {"tile_px":[64,32],"pitch_deg":30,"yaw_deg":45}
+walls: "none"
+gates: []
+water_gates: []
+streets:
+  - {"id":"valley_axis","class":"main_axis","width_cells":7,"points":[{"x":77,"z":31},{"x":77,"z":130}],"surface":"stone_slab","priority":100,"basis":"图名：谷地南北路；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"market_road","class":"secondary","width_cells":5,"points":[{"x":28,"z":68},{"x":130,"z":68}],"surface":"stone_slab","priority":70,"basis":"图名：山间市路；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"west_lane","class":"secondary","width_cells":4,"points":[{"x":35,"z":37},{"x":35,"z":114}],"surface":"stone_slab","priority":70,"basis":"图名：西侧聚落巷；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"east_lane","class":"secondary","width_cells":4,"points":[{"x":116,"z":38},{"x":116,"z":109}],"surface":"stone_slab","priority":70,"basis":"图名：东侧山麓路；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"north_lane","class":"secondary","width_cells":4,"points":[{"x":35,"z":110},{"x":116,"z":110}],"surface":"stone_slab","priority":70,"basis":"图名：北侧驿路；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+rivers:
+  - {"id":"nanming","width_cells":12,"points":[{"x":0,"z":19},{"x":54,"z":19},{"x":92,"z":12},{"x":160,"z":12}],"flow":"east","navigable":true,"basis":"图名：南明河谷；仅保留水系与城址的相对方向；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_guiyang_yun。"}
+lakes: []
+bridges: []
+zones:
+  - {"id":"zone_office","kind":"administrative","geometry":{"rect":{"min":{"x":42,"z":78},"max":{"x":73,"z":107}}},"priority":100,"density":0.45,"allowed_building_types":["bld_kit_song_dali_yamen","bld_kit_song_dali_courtyard"],"ground_mix":{"rammed_earth":65,"grass":35},"basis":"图名：地方首领驻地意象；并非确认宋廷州署；套件衙署仅代替地方公用院落；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_market","kind":"market","geometry":{"rect":{"min":{"x":80,"z":38},"max":{"x":111,"z":76}}},"priority":85,"density":0.58,"allowed_building_types":["bld_kit_song_dali_shop","bld_kit_song_dali_market_stall","bld_kit_song_dali_inn"],"ground_mix":{"rammed_earth":65,"grass":35},"basis":"图名：赶集与商旅区；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_houses_w","kind":"residential","geometry":{"rect":{"min":{"x":18,"z":39},"max":{"x":68,"z":63}}},"priority":60,"density":0.5,"allowed_building_types":["bld_kit_song_dali_house","bld_kit_song_dali_courtyard"],"ground_mix":{"rammed_earth":65,"grass":35},"basis":"图名：西部谷地民居；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_houses_e","kind":"residential","geometry":{"rect":{"min":{"x":83,"z":79},"max":{"x":137,"z":106}}},"priority":60,"density":0.5,"allowed_building_types":["bld_kit_song_dali_house","bld_kit_song_dali_shrine"],"ground_mix":{"rammed_earth":65,"grass":35},"basis":"图名：东部坡脚民居；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_service","kind":"gate_service","geometry":{"rect":{"min":{"x":39,"z":114},"max":{"x":110,"z":139}}},"priority":70,"density":0.4,"allowed_building_types":["bld_kit_song_dali_guardhouse","bld_kit_song_dali_stable","bld_kit_song_dali_warehouse"],"ground_mix":{"rammed_earth":65,"grass":35},"basis":"图名：北路驿歇仓场；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_bank","kind":"waterfront","geometry":{"rect":{"min":{"x":29,"z":30},"max":{"x":70,"z":39}}},"priority":60,"density":0.4,"allowed_building_types":["bld_kit_song_dali_warehouse"],"ground_mix":{"rammed_earth":65,"grass":35},"basis":"图名：河谷货棚；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type":"bld_kit_song_dali_courtyard","zone_refs":["zone_office","zone_houses_w"],"count":{"min":1,"max":3},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_guardhouse","zone_refs":["zone_service"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_house","zone_refs":["zone_houses_w","zone_houses_e"],"count":{"min":10,"max":22},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_inn","zone_refs":["zone_market"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_market_stall","zone_refs":["zone_market"],"count":{"min":5,"max":12},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_shop","zone_refs":["zone_market"],"count":{"min":4,"max":8},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_shrine","zone_refs":["zone_houses_e"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_stable","zone_refs":["zone_service"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_warehouse","zone_refs":["zone_service","zone_bank"],"count":{"min":2,"max":3},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_dali_yamen","zone_refs":["zone_office"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+vegetation: {"palette":["prp_song_dali_broadleaf","prp_song_dali_grass"],"density":0.018,"avoid_road_cells":2,"cluster_rule":"沿河岸与空地疏植；山地以留白与草地表达，平面工具不生成真实高程","basis":"树种与密度为地区意象（原创扩展）【建议值】，不是古植物群复原。"}
+sources:
+  - {"key":"src_guiyang_yun","kind":"gazetteer","title":"贵阳城的“九门”- 贵州数字出版云村寨平台","url":"https://www.yuncunzhai.com/article/265224.jhtml","accessed":"2026-10-04","confidence":"verified_summary","supports":["historical_topology"],"note":"仅文字；区分宋矩州、元土城、明清九门。宋期城址与轮廓未定，不以元城倒推已建宋墙。"}

@@ -1,0 +1,58 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_wuxi"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "无锡县"
+historical_year: 1217
+era_kit: "song_southern"
+seed: 2288090097
+design_intent: {"prosperity":"regional_study_candidate","notes":["复原依据：history/city_wuxi__southern_song_jin_mongol.md；城址拓扑压缩，非原尺寸测绘。","historical_year 是主章节参考锚点；同带副本默认沿用共同地形，不代表1259年逐屋实景。","贴片与可玩街区均为候选；经营、门派、正式场景仅引用上游，不在本图定义。"]}
+grid: {"width":160,"height":160,"cell_m":1,"chunk_cells":32}
+runtime_partition: {"q_min":-80,"r_min":1,"q_slot_count":219,"r_slot_count":160,"q_band_slots":[73,73,73],"r_band_slots":[80,80],"formal_scene_refs":null}
+projection: {"tile_px":[64,32],"pitch_deg":30,"yaw_deg":45}
+walls:
+  - {"id":"outer","role":"outer","polygon":{"points":[{"x":20,"z":24},{"x":140,"z":24},{"x":140,"z":140},{"x":20,"z":140}]},"inside_margin_cells":2,"basis":"图名：无锡宋城；外郭形状无同期测量值，依据城址方位作折线概化；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_wuxi_city。"}
+gates:
+  - {"id":"s","side":"south","at":{"x":48,"z":24},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":0,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"west_axis","primary":true,"wall_ref":"outer","basis":"图名：朝京门方向；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_wuxi_city。"}
+  - {"id":"n","side":"north","at":{"x":48,"z":140},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":180,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"west_axis","primary":false,"wall_ref":"outer","basis":"图名：莲蓉门方向；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_wuxi_city。"}
+  - {"id":"w","side":"west","at":{"x":20,"z":82},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":90,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"cross","primary":false,"wall_ref":"outer","basis":"图名：梁溪门方向；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_wuxi_city。"}
+  - {"id":"e","side":"east","at":{"x":140,"z":82},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":270,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"cross","primary":false,"wall_ref":"outer","basis":"图名：熙春门方向；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_wuxi_city。"}
+water_gates:
+  - {"id":"ws","wall_ref":"outer","kind":"water_gate","side":"south","at":{"x":80,"z":24},"width_cells":7,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":0,"footprint_cells":{"w":11,"h":4},"passage_cells":{"w":7,"h":4},"basis":"图名：南水关；河道穿墙孔洞为几何接口；不宣称考证出该门额或拱制；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"wn","wall_ref":"outer","kind":"water_gate","side":"north","at":{"x":80,"z":140},"width_cells":7,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":180,"footprint_cells":{"w":11,"h":4},"passage_cells":{"w":7,"h":4},"basis":"图名：北水关；河道穿墙孔洞为几何接口；不宣称考证出该门额或拱制；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+streets:
+  - {"id":"south_lane","class":"secondary","width_cells":5,"points":[{"x":20,"z":50},{"x":140,"z":50}],"surface":"stone_slab","priority":70,"basis":"图名：南市桥河街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"cross","class":"main_axis","width_cells":5,"points":[{"x":20,"z":82},{"x":140,"z":82}],"surface":"stone_slab","priority":100,"basis":"图名：中市桥河街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"north_lane","class":"secondary","width_cells":5,"points":[{"x":20,"z":112},{"x":140,"z":112}],"surface":"stone_slab","priority":70,"basis":"图名：大市桥河街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"west_axis","class":"main_axis","width_cells":6,"points":[{"x":48,"z":24},{"x":48,"z":140}],"surface":"stone_slab","priority":100,"basis":"图名：县治南北街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"east_axis","class":"secondary","width_cells":5,"points":[{"x":112,"z":24},{"x":112,"z":140}],"surface":"stone_slab","priority":70,"basis":"图名：河东商街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+rivers:
+  - {"id":"canal","width_cells":5,"points":[{"x":80,"z":24},{"x":80,"z":140}],"flow":"unknown","navigable":true,"basis":"图名：运河穿城；仅保留水系与城址的相对方向；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_wuxi_city。"}
+lakes: []
+bridges:
+  - {"id":"b50","at":{"x":80,"z":50},"river_ref":"canal","road_ref":"south_lane","length_cells":10,"width_cells":7,"rotation_deg":90,"basis":"图名：南市桥；桥位维持水陆交通，通用桥片代用，具体桥制待考；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"b82","at":{"x":80,"z":82},"river_ref":"canal","road_ref":"cross","length_cells":10,"width_cells":7,"rotation_deg":90,"basis":"图名：中市桥；桥位维持水陆交通，通用桥片代用，具体桥制待考；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"b112","at":{"x":80,"z":112},"river_ref":"canal","road_ref":"north_lane","length_cells":10,"width_cells":7,"rotation_deg":90,"basis":"图名：大市桥；桥位维持水陆交通，通用桥片代用，具体桥制待考；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+zones:
+  - {"id":"zone_office","kind":"administrative","geometry":{"rect":{"min":{"x":25,"z":115},"max":{"x":43,"z":136}}},"priority":100,"density":0.52,"allowed_building_types":["bld_kit_song_southern_yamen","bld_kit_song_southern_courtyard"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：官署院区；按主街与防守层级安排，非遗址测绘；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_market","kind":"market","geometry":{"rect":{"min":{"x":86,"z":53},"max":{"x":136,"z":77}}},"priority":85,"density":0.6,"allowed_building_types":["bld_kit_song_southern_shop_1f","bld_kit_song_southern_shop_2f","bld_kit_song_southern_market_stall","bld_kit_song_southern_inn"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：沿街市场；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_houses","kind":"residential","geometry":{"rect":{"min":{"x":24,"z":55},"max":{"x":43,"z":105}}},"priority":60,"density":0.54,"allowed_building_types":["bld_kit_song_southern_house","bld_kit_song_southern_courtyard"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：居民街坊；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_service","kind":"gate_service","geometry":{"rect":{"min":{"x":115,"z":87},"max":{"x":136,"z":132}}},"priority":80,"density":0.5,"allowed_building_types":["bld_kit_song_southern_warehouse","bld_kit_song_southern_guardhouse","bld_kit_song_southern_stable"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：仓驿与守备区；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_temple","kind":"religious","geometry":{"rect":{"min":{"x":86,"z":115},"max":{"x":105,"z":136}}},"priority":70,"density":0.48,"allowed_building_types":["bld_kit_song_southern_temple_hall"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：寺观院落意象；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type":"bld_kit_song_southern_courtyard","zone_refs":["zone_office","zone_houses"],"count":{"min":1,"max":5},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_guardhouse","zone_refs":["zone_service"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_house","zone_refs":["zone_houses"],"count":{"min":6,"max":16},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_inn","zone_refs":["zone_market"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_market_stall","zone_refs":["zone_market"],"count":{"min":3,"max":10},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_shop_1f","zone_refs":["zone_market"],"count":{"min":4,"max":12},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_shop_2f","zone_refs":["zone_market"],"count":{"min":2,"max":6},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_stable","zone_refs":["zone_service"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_temple_hall","zone_refs":["zone_temple"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_warehouse","zone_refs":["zone_service"],"count":{"min":2,"max":5},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_yamen","zone_refs":["zone_office"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+vegetation: {"palette":["prp_song_willow","prp_song_broadleaf"],"density":0.018,"avoid_road_cells":2,"cluster_rule":"沿河岸与空地疏植；山地以留白与草地表达，平面工具不生成真实高程","basis":"树种与密度为地区意象（原创扩展）【建议值】，不是古植物群复原。"}
+sources:
+  - {"key":"src_wuxi_city","kind":"gazetteer","title":"无锡城墙古今","url":"http://diqing.difangzhi.cssn.cn/dqwh/dqwh_zszg/202103/t20210331_5323207.shtml","accessed":"2026-10-04","confidence":"verified_summary","supports":["historical_topology"],"note":"仅文字；材料区分宋城与元明城，支持运河穿罗城、三桥、四门及县衙在运河西。"}

@@ -1,0 +1,48 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_wuhu"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "芜湖县·宋期故城候选"
+historical_year: 1217
+era_kit: "song_southern"
+seed: 2227965215
+design_intent: {"prosperity":"regional_study_candidate","notes":["复原依据：history/city_wuhu__southern_song_jin_mongol.md；城址拓扑压缩，非原尺寸测绘。","historical_year 是主章节参考锚点；同带副本默认沿用共同地形，不代表1259年逐屋实景。","贴片与可玩街区均为候选；经营、门派、正式场景仅引用上游，不在本图定义。","宋代修复程度不定；候选墙为故城防御意象，不能作为1217年完整城墙的确证。"]}
+grid: {"width":160,"height":160,"cell_m":1,"chunk_cells":32}
+runtime_partition: {"q_min":-80,"r_min":1,"q_slot_count":219,"r_slot_count":160,"q_band_slots":[73,73,73],"r_band_slots":[80,80],"formal_scene_refs":null}
+projection: {"tile_px":[64,32],"pitch_deg":30,"yaw_deg":45}
+walls:
+  - {"id":"outer","role":"outer","polygon":{"points":[{"x":28,"z":39},{"x":133,"z":39},{"x":143,"z":74},{"x":132,"z":145},{"x":31,"z":145},{"x":20,"z":108}]},"inside_margin_cells":2,"basis":"图名：宋故城北伸包络；外郭形状无同期测量值，依据城址方位作折线概化；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_wuhu_archive。"}
+gates:
+  - {"id":"s","side":"south","at":{"x":78,"z":39},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":0,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"axis","primary":true,"wall_ref":"outer","basis":"图名：南向门（推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"n","side":"north","at":{"x":78,"z":145},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":180,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"axis","primary":false,"wall_ref":"outer","basis":"图名：北向门（推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+water_gates: []
+streets:
+  - {"id":"axis","class":"main_axis","width_cells":7,"points":[{"x":78,"z":39},{"x":78,"z":145}],"surface":"stone_slab","priority":100,"basis":"图名：故城南北市路；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"cross","class":"secondary","width_cells":6,"points":[{"x":23,"z":94},{"x":139,"z":94}],"surface":"stone_slab","priority":70,"basis":"图名：北伸居民街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"south_lane","class":"secondary","width_cells":5,"points":[{"x":39,"z":62},{"x":126,"z":62}],"surface":"stone_slab","priority":70,"basis":"图名：近江街市；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"north_lane","class":"secondary","width_cells":5,"points":[{"x":40,"z":122},{"x":120,"z":122}],"surface":"stone_slab","priority":70,"basis":"图名：高城方向路；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+rivers:
+  - {"id":"qingyi","width_cells":10,"points":[{"x":0,"z":22},{"x":58,"z":19},{"x":107,"z":24},{"x":160,"z":24}],"flow":"west","navigable":true,"basis":"图名：青弋江（城南）；仅保留水系与城址的相对方向；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_wuhu_archive。"}
+lakes:
+  - {"id":"yangtze","polygon":{"points":[{"x":0,"z":0},{"x":8,"z":0},{"x":12,"z":75},{"x":8,"z":160},{"x":0,"z":160}]},"basis":"图名：长江东岸裁切；长江在城西，非现代港区复原；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+bridges: []
+zones:
+  - {"id":"zone_office","kind":"administrative","geometry":{"rect":{"min":{"x":34,"z":115},"max":{"x":75,"z":140}}},"priority":100,"density":0.65,"allowed_building_types":["bld_kit_song_southern_yamen"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：县署意象；扩大压缩院区以容纳衙署入口净空；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_market","kind":"market","geometry":{"rect":{"min":{"x":85,"z":45},"max":{"x":128,"z":88}}},"priority":85,"density":0.6,"allowed_building_types":["bld_kit_song_southern_shop_1f","bld_kit_song_southern_market_stall","bld_kit_song_southern_inn"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：江路商坊；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_houses","kind":"residential","geometry":{"rect":{"min":{"x":31,"z":67},"max":{"x":72,"z":115}}},"priority":60,"density":0.5,"allowed_building_types":["bld_kit_song_southern_house","bld_kit_song_southern_courtyard"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：旧城居民坊；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_bank","kind":"waterfront","geometry":{"rect":{"min":{"x":84,"z":99},"max":{"x":127,"z":135}}},"priority":75,"density":0.5,"allowed_building_types":["bld_kit_song_southern_warehouse","bld_kit_song_southern_house"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：商货仓场；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_temple","kind":"religious","geometry":{"rect":{"min":{"x":35,"z":45},"max":{"x":72,"z":60}}},"priority":70,"density":0.5,"allowed_building_types":["bld_kit_song_southern_temple_hall"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：寺院意象；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type":"bld_kit_song_southern_courtyard","zone_refs":["zone_houses"],"count":{"min":1,"max":5},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_house","zone_refs":["zone_houses","zone_bank"],"count":{"min":12,"max":32},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_inn","zone_refs":["zone_market"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_market_stall","zone_refs":["zone_market"],"count":{"min":5,"max":12},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_shop_1f","zone_refs":["zone_market"],"count":{"min":4,"max":12},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_temple_hall","zone_refs":["zone_temple"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_warehouse","zone_refs":["zone_bank"],"count":{"min":2,"max":5},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_yamen","zone_refs":["zone_office"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+vegetation: {"palette":["prp_song_willow","prp_song_broadleaf"],"density":0.018,"avoid_road_cells":2,"cluster_rule":"沿河岸与空地疏植；山地以留白与草地表达，平面工具不生成真实高程","basis":"树种与密度为地区意象（原创扩展）【建议值】，不是古植物群复原。"}
+sources:
+  - {"key":"src_wuhu_archive","kind":"official_web","title":"芜湖市档案馆 | 记录芜湖历史 传承城市文明","url":"http://dag.wh.cn/whdaxxw/whda/dawh/bycg/2021/07/13/402871af7a55ec56017a9d9ff2041137.html","accessed":"2026-10-04","confidence":"verified_summary","supports":["historical_topology"],"note":"仅文字；芜湖档案说明宋城较后代北伸，建炎兵毁；明万历缩城向青弋江靠近，四门门额属后期。"}

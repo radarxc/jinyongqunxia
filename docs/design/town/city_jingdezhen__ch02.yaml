@@ -1,0 +1,46 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_jingdezhen"
+chapter_id: "ch02"
+book_world: "ch02_shediao"
+display_name: "景德镇"
+historical_year: 1217
+era_kit: "song_southern"
+seed: 588497323
+design_intent: {"prosperity":"regional_study_candidate","notes":["复原依据：history/city_jingdezhen__southern_song_jin_mongol.md；城址拓扑压缩，非原尺寸测绘。","historical_year 是主章节参考锚点；同带副本默认沿用共同地形，不代表1259年逐屋实景。","贴片与可玩街区均为候选；经营、门派、正式场景仅引用上游，不在本图定义。","南宋景德镇无城墙，采用开放式沿江窑市。"]}
+grid: {"width":160,"height":160,"cell_m":1,"chunk_cells":32}
+runtime_partition: {"q_min":-80,"r_min":1,"q_slot_count":219,"r_slot_count":160,"q_band_slots":[73,73,73],"r_band_slots":[80,80],"formal_scene_refs":null}
+projection: {"tile_px":[64,32],"pitch_deg":30,"yaw_deg":45}
+walls: "none"
+gates: []
+water_gates: []
+streets:
+  - {"id":"axis","class":"main_axis","width_cells":7,"points":[{"x":58,"z":18},{"x":58,"z":144}],"surface":"stone_slab","priority":100,"basis":"图名：沿江长街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"east_axis","class":"secondary","width_cells":5,"points":[{"x":105,"z":24},{"x":105,"z":138}],"surface":"stone_slab","priority":70,"basis":"图名：窑作支街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"cross","class":"secondary","width_cells":6,"points":[{"x":30,"z":82},{"x":138,"z":82}],"surface":"stone_slab","priority":70,"basis":"图名：东西货路；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"south_lane","class":"secondary","width_cells":5,"points":[{"x":32,"z":49},{"x":132,"z":49}],"surface":"stone_slab","priority":70,"basis":"图名：南段窑市；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"north_lane","class":"secondary","width_cells":5,"points":[{"x":32,"z":115},{"x":132,"z":115}],"surface":"stone_slab","priority":70,"basis":"图名：北段渡市；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+rivers:
+  - {"id":"changjiang","width_cells":11,"points":[{"x":16,"z":0},{"x":14,"z":80},{"x":18,"z":160}],"flow":"unknown","navigable":true,"basis":"图名：昌江镇区西缘；仅保留水系与城址的相对方向；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_jingdezhen_kilns。"}
+lakes: []
+bridges: []
+zones:
+  - {"id":"zone_office","kind":"administrative","geometry":{"rect":{"min":{"x":66,"z":119},"max":{"x":102,"z":142}}},"priority":95,"density":0.5,"allowed_building_types":["bld_kit_song_southern_yamen","bld_kit_song_southern_courtyard"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：窑务与镇务院落；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_market","kind":"market","geometry":{"rect":{"min":{"x":65,"z":22},"max":{"x":100,"z":76}}},"priority":90,"density":0.6,"allowed_building_types":["bld_kit_song_southern_shop_1f","bld_kit_song_southern_shop_2f","bld_kit_song_southern_market_stall","bld_kit_song_southern_inn"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：沿江瓷市；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_kilns","kind":"commercial","geometry":{"rect":{"min":{"x":110,"z":24},"max":{"x":145,"z":134}}},"priority":85,"density":0.52,"allowed_building_types":["bld_kit_song_southern_warehouse","bld_kit_song_southern_house","bld_kit_song_southern_courtyard"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：窑作仓场意象；套件无专用窑片，以仓屋院落代窑作区并在依据登记回退；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_houses","kind":"residential","geometry":{"rect":{"min":{"x":25,"z":87},"max":{"x":52,"z":137}}},"priority":60,"density":0.52,"allowed_building_types":["bld_kit_song_southern_house","bld_kit_song_southern_courtyard"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：沿江居民街；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_wharf","kind":"waterfront","geometry":{"rect":{"min":{"x":20,"z":22},"max":{"x":55,"z":76}}},"priority":80,"density":0.5,"allowed_building_types":["bld_kit_song_southern_wharf","bld_kit_song_southern_warehouse"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：昌江装运区；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type":"bld_kit_song_southern_courtyard","zone_refs":["zone_office","zone_kilns","zone_houses"],"count":{"min":1,"max":5},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_house","zone_refs":["zone_kilns","zone_houses"],"count":{"min":10,"max":22},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_inn","zone_refs":["zone_market"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_market_stall","zone_refs":["zone_market"],"count":{"min":5,"max":12},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_shop_1f","zone_refs":["zone_market"],"count":{"min":4,"max":12},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_shop_2f","zone_refs":["zone_market"],"count":{"min":2,"max":6},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_warehouse","zone_refs":["zone_kilns","zone_wharf"],"count":{"min":3,"max":6},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_wharf","zone_refs":["zone_wharf"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_yamen","zone_refs":["zone_office"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+vegetation: {"palette":["prp_song_willow","prp_song_broadleaf"],"density":0.018,"avoid_road_cells":2,"cluster_rule":"沿河岸与空地疏植；山地以留白与草地表达，平面工具不生成真实高程","basis":"树种与密度为地区意象（原创扩展）【建议值】，不是古植物群复原。"}
+sources:
+  - {"key":"src_jingdezhen_kilns","kind":"official_web","title":"【窑窑说瓷】景德镇千年历史之城市格局 - 景德镇古窑民俗博览区 官方网站","url":"http://www.chinaguyao.com/iweb/weibo/2015-09-15/2532.html","accessed":"2026-10-04","confidence":"verified_summary","supports":["historical_topology"],"note":"仅文字；材料支持南宋街区沿昌江展开、约0.5×1.5公里及无城墙；窑业为城镇功能而非官城。"}

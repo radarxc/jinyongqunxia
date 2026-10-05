@@ -1,0 +1,59 @@
+schema_version: "town.city_spec.v1"
+kind: "CitySpec"
+city_id: "city_zhenjiang"
+chapter_id: "ch03"
+book_world: "ch03_shendiao"
+display_name: "镇江府"
+historical_year: 1217
+era_kit: "song_southern"
+seed: 1365124099
+design_intent: {"prosperity":"regional_study_candidate","notes":["复原依据：history/city_zhenjiang__southern_song_jin_mongol.md；城址拓扑压缩，非原尺寸测绘。","historical_year 是主章节参考锚点；同带副本默认沿用共同地形，不代表1259年逐屋实景。","贴片与可玩街区均为候选；经营、门派、正式场景仅引用上游，不在本图定义。"]}
+grid: {"width":160,"height":160,"cell_m":1,"chunk_cells":32}
+runtime_partition: {"q_min":-80,"r_min":1,"q_slot_count":219,"r_slot_count":160,"q_band_slots":[73,73,73],"r_band_slots":[80,80],"formal_scene_refs":null}
+projection: {"tile_px":[64,32],"pitch_deg":30,"yaw_deg":45}
+walls:
+  - {"id":"outer","role":"outer","polygon":{"points":[{"x":20,"z":23},{"x":139,"z":23},{"x":139,"z":129},{"x":128,"z":140},{"x":43,"z":140},{"x":20,"z":116}]},"inside_margin_cells":2,"basis":"图名：宋镇江城轮廓概化；外郭形状无同期测量值，依据城址方位作折线概化；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+gates:
+  - {"id":"tongwu","side":"south","at":{"x":79,"z":23},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":0,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"axis","primary":true,"wall_ref":"outer","basis":"图名：通吴门（位置推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+  - {"id":"dengyun","side":"west","at":{"x":20,"z":76},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":90,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"cross","primary":false,"wall_ref":"outer","basis":"图名：登云门（位置推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+  - {"id":"huanjing","side":"west","at":{"x":20,"z":106},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":90,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"west_road","primary":false,"wall_ref":"outer","basis":"图名：还京门（位置推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+  - {"id":"qingyang","side":"east","at":{"x":139,"z":76},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":270,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"cross","primary":false,"wall_ref":"outer","basis":"图名：青阳门（位置推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+  - {"id":"helin","side":"south","at":{"x":46,"z":23},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":0,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"south_road","primary":false,"wall_ref":"outer","basis":"图名：鹤林门（位置推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+  - {"id":"renhe","side":"south","at":{"x":115,"z":23},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":0,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"renhe_road","primary":false,"wall_ref":"outer","basis":"图名：仁和门（位置推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+  - {"id":"lishi","side":"north","at":{"x":58,"z":140},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":180,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"lishi_road","primary":false,"wall_ref":"outer","basis":"图名：利涉门（位置推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+  - {"id":"dingbo","side":"north","at":{"x":111,"z":140},"width_cells":8,"asset_type":"tex_town_song_southern_city_gate","rotation_deg":180,"footprint_cells":{"w":12,"h":4},"passage_cells":{"w":8,"h":4},"road_ref":"dingbo_road","primary":false,"wall_ref":"outer","basis":"图名：定波门（位置推定）；门位、门楼形制均非测绘复刻；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。依据：src_zhenjiang_gates。"}
+water_gates: []
+streets:
+  - {"id":"axis","class":"main_axis","width_cells":7,"points":[{"x":79,"z":23},{"x":79,"z":134}],"surface":"stone_slab","priority":100,"basis":"图名：南北府城通衢；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"cross","class":"secondary","width_cells":6,"points":[{"x":20,"z":76},{"x":139,"z":76}],"surface":"stone_slab","priority":70,"basis":"图名：东西主街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"west_road","class":"secondary","width_cells":5,"points":[{"x":20,"z":106},{"x":124,"z":106}],"surface":"stone_slab","priority":70,"basis":"图名：北侧市街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"south_road","class":"secondary","width_cells":5,"points":[{"x":46,"z":23},{"x":46,"z":126}],"surface":"stone_slab","priority":70,"basis":"图名：西门通吴街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"lishi_road","class":"secondary","width_cells":5,"points":[{"x":58,"z":106},{"x":58,"z":140}],"surface":"stone_slab","priority":70,"basis":"图名：利涉门接街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"dingbo_road","class":"secondary","width_cells":5,"points":[{"x":111,"z":106},{"x":111,"z":140}],"surface":"stone_slab","priority":70,"basis":"图名：定波门接街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"renhe_road","class":"secondary","width_cells":5,"points":[{"x":115,"z":23},{"x":115,"z":76}],"surface":"stone_slab","priority":70,"basis":"图名：仁和门接街；保持出入口与街区连接关系；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+rivers: []
+lakes:
+  - {"id":"yangtze","polygon":{"points":[{"x":0,"z":146},{"x":77,"z":151},{"x":127,"z":146},{"x":160,"z":140},{"x":160,"z":160},{"x":0,"z":160}]},"basis":"图名：长江南岸；取城北江岸关系；岸线推定，金山不内移；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+bridges: []
+zones:
+  - {"id":"zone_office","kind":"administrative","geometry":{"rect":{"min":{"x":86,"z":112},"max":{"x":120,"z":132}}},"priority":100,"density":0.55,"allowed_building_types":["bld_kit_song_southern_yamen","bld_kit_song_southern_courtyard"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：府署区；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_market","kind":"market","geometry":{"rect":{"min":{"x":85,"z":30},"max":{"x":130,"z":70}}},"priority":85,"density":0.6,"allowed_building_types":["bld_kit_song_southern_shop_1f","bld_kit_song_southern_shop_2f","bld_kit_song_southern_market_stall","bld_kit_song_southern_inn"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：运河商贸区；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_houses","kind":"residential","geometry":{"rect":{"min":{"x":27,"z":32},"max":{"x":71,"z":100}}},"priority":60,"density":0.55,"allowed_building_types":["bld_kit_song_southern_house","bld_kit_song_southern_courtyard"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：西城居民坊；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_service","kind":"gate_service","geometry":{"rect":{"min":{"x":84,"z":83},"max":{"x":130,"z":101}}},"priority":80,"density":0.5,"allowed_building_types":["bld_kit_song_southern_warehouse","bld_kit_song_southern_guardhouse","bld_kit_song_southern_stable"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：北向军驿仓场；功能分区为同年代同地域街市活动的推定；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+  - {"id":"zone_temple","kind":"religious","geometry":{"rect":{"min":{"x":40,"z":108},"max":{"x":78,"z":134}}},"priority":75,"density":0.5,"allowed_building_types":["bld_kit_song_southern_temple_hall"],"ground_mix":{"rammed_earth":65,"stone_slab":35},"basis":"图名：城内寺观意象；避开斜墙与横路，保留殿堂入口净空；位置、长度、宽度与座数为压缩推定（推定）（原创扩展）。"}
+landmarks: []
+building_quotas:
+  - {"type":"bld_kit_song_southern_courtyard","zone_refs":["zone_office","zone_houses"],"count":{"min":1,"max":5},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_guardhouse","zone_refs":["zone_service"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_house","zone_refs":["zone_houses"],"count":{"min":12,"max":24},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_inn","zone_refs":["zone_market"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_market_stall","zone_refs":["zone_market"],"count":{"min":5,"max":12},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_shop_1f","zone_refs":["zone_market"],"count":{"min":4,"max":12},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_shop_2f","zone_refs":["zone_market"],"count":{"min":2,"max":6},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_stable","zone_refs":["zone_service"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_temple_hall","zone_refs":["zone_temple"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_warehouse","zone_refs":["zone_service"],"count":{"min":2,"max":5},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+  - {"type":"bld_kit_song_southern_yamen","zone_refs":["zone_office"],"count":{"min":1,"max":1},"required":true,"business_ref":null,"institution_ref":null,"placement_note":"【建议值】（原创扩展）按地块容量与可达入口安排；下限为可见功能代表数，上限不用于推算历史人口或产能。"}
+vegetation: {"palette":["prp_song_willow","prp_song_broadleaf"],"density":0.018,"avoid_road_cells":2,"cluster_rule":"沿河岸与空地疏植；山地以留白与草地表达，平面工具不生成真实高程","basis":"树种与密度为地区意象（原创扩展）【建议值】，不是古植物群复原。"}
+sources:
+  - {"key":"src_zhenjiang_gates","kind":"gazetteer","title":"镇江“古西门街”地名来源考_中国镇江金山网 国家一类新闻网站","url":"https://www.jsw.com.cn/2021/1008/1655629.shtml","accessed":"2026-10-04","confidence":"verified_summary","supports":["historical_topology"],"note":"仅文字；地方报刊据嘉定镇江志梳理宋门：青阳、登云、还京、鹤林、仁和、通吴、利涉、定波；不据明代缩城取形。"}
