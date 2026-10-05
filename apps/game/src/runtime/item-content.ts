@@ -1,9 +1,9 @@
 import type { ContentSource } from '@tianshu/data';
 import type { JsonValue } from '@tianshu/shared';
 import { ChapterDefSchema, EventDefSchema, NpcAppearanceSchema, NpcIdSchema,
-  QuestDefSchema, RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema,
+  RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema,
   type ChapterDef, type EventDef, type QuestDef, type RegionMap,
-  type WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+  type WorldMapRuntimeDefinition } from '@tianshu/data/item-content';
 import type { RegionDialogueBinding, RegionGateBinding, RegionLootBinding } from '@tianshu/core';
 import type { AssetMap, ChapterAssetLoader, ChapterRuntimeLeaf, GameBattleRow, GameContent,
   GameEncounterDef, GameNpcDef, StaticGameContent } from './content';
@@ -170,9 +170,18 @@ function chapterRuntime(leaves: Readonly<Record<string, unknown>>, chapter: stri
     throw new TypeError('CONTENT_CHAPTER_RUNTIME_MISMATCH');
   return { npcs, worldMaps };
 }
-function questDefs(leaves: Readonly<Record<string, unknown>>): readonly QuestDef[] {
-  return ruleRows(leaves).flatMap((entry) =>
-    entry.kind === 'quest' ? [QuestDefSchema.parse(entry.value)] : []);
+function questDefs(leaves: Readonly<Record<string, unknown>>, chapter: string): readonly QuestDef[] {
+  const quests: QuestDef[] = []; const ids = new Set<string>();
+  for (const entry of ruleRows(leaves)) {
+    if (entry.kind !== 'quest') continue;
+    const value = record(entry.value, 'CONTENT_QUEST_ENVELOPE_INVALID');
+    const id = value['id'];
+    if (value['schemaVersion'] !== 'quest.v1' || typeof id !== 'string' ||
+        !/^q_[a-z0-9]+(?:_[a-z0-9]+)*$/u.test(id) || value['chapterId'] !== chapter || ids.has(id))
+      throw new TypeError(`CONTENT_QUEST_ENVELOPE_INVALID:${String(id)}`);
+    ids.add(id); quests.push(value as unknown as QuestDef);
+  }
+  return quests;
 }
 function encounterDefs(leaves: Readonly<Record<string, unknown>>, chapter: string):
 readonly GameEncounterDef[] {
@@ -277,7 +286,7 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     const items = parseItemRuleLeaves(itemLeaves);
     const chapters = chapterDefs(pack.leaves);
     const events = eventDefs(pack.leaves);
-    const quests = questDefs(pack.leaves);
+    const quests = questDefs(pack.leaves, chapter);
     const encounters = encounterDefs(pack.leaves, chapter);
     validateEncounterReferences(quests, encounters);
     const stories = inkStories(pack.leaves);

@@ -6,13 +6,13 @@ import { createBattleSession, actBattleSession, retryBattleSession, setBattleAut
 import type { BattleBusCommand, CommandHandler, CoreTransaction, RejectReason } from '.';
 import { mergeBattleTraining } from '../battle/rewards/settlement';
 import { freezeJsonTree, trackAppendOnlyJson } from '../state/immutable-json';
-import { executeActions, type ActionExecutionContext } from '../event/event-executor';
+import { executeActionBatch, type EventFailureReasons } from '../event/event-executor';
 import type { EncounterSettlementAction } from '@tianshu/data/schemas';
 
-const SETTLEMENT_CONTEXT: ActionExecutionContext = { sourceId: 'battle/settlement', anchorId: null,
-  reject: { condition: 'SOURCE_EVENT_CONDITION', action: 'SOURCE_EVENT_ACTION',
-    reference: 'SOURCE_EVENT_REFERENCE', inventory: 'SOURCE_EVENT_INVENTORY',
-    quest: 'SOURCE_EVENT_ACTION', battle: 'SOURCE_EVENT_ACTION' } };
+// Settlement actions run with source-event rejects; sourceId is the encounter id, no anchor.
+const SETTLEMENT_FAILURES: EventFailureReasons = { condition: 'SOURCE_EVENT_CONDITION',
+  action: 'SOURCE_EVENT_ACTION', reference: 'SOURCE_EVENT_REFERENCE',
+  inventory: 'SOURCE_EVENT_INVENTORY', quest: 'SOURCE_EVENT_ACTION', battle: 'SOURCE_EVENT_ACTION' };
 function settlementActions(tx: CoreTransaction, assisted = false): readonly EncounterSettlementAction[] {
   const session = tx.state.battle!;
   const definition = tx.content.encounters?.find((row) =>
@@ -31,7 +31,7 @@ function executeSettlement(tx: CoreTransaction, assisted = false): void {
   if ((assisted || session.battle.result === 'win') && definition?.settlement?.resetLossOnWin)
     actions.push(...definition.settlement.lossFlags.map((flagId) =>
       ({ op: 'flag/set' as const, flagId, value: false })));
-  const context = { ...SETTLEMENT_CONTEXT, sourceId: session.battle.setup.encounterId };
+  const sourceId = session.battle.setup.encounterId;
   for (const action of actions) {
     if (action.op === 'quest/advance') {
       const line = tx.state.chapter.story.lines.find((row) => row.lineId === action.quest);
@@ -39,8 +39,8 @@ function executeSettlement(tx: CoreTransaction, assisted = false): void {
       const definition = tx.content.quests?.find((row) => row.id === action.quest);
       if (current === action.stage || definition?.stages.find((row) => row.id === current)
         ?.transitions.some((edge) => edge.to === action.stage) === true)
-        executeActions(tx, [action], context);
-    } else executeActions(tx, [action], context);
+        executeActionBatch(tx, [action], sourceId, null, SETTLEMENT_FAILURES);
+    } else executeActionBatch(tx, [action], sourceId, null, SETTLEMENT_FAILURES);
   }
 }
 function lossFlags(tx: CoreTransaction): readonly string[] {
@@ -60,8 +60,8 @@ function persistAttemptLoss(tx: CoreTransaction, attemptedLosses: number): void 
   const count = Math.min(flags.length, Math.max(storedLossStreak(tx, flags), base + attemptedLosses));
   const actions = flags.map((flagId, index) => ({ op: 'flag/set' as const, flagId,
     value: index < count }));
-  executeActions(tx, actions, { ...SETTLEMENT_CONTEXT,
-    sourceId: tx.state.battle!.battle.setup.encounterId });
+  executeActionBatch(tx, actions, tx.state.battle!.battle.setup.encounterId, null,
+    SETTLEMENT_FAILURES);
 }
 
 function receiptKey(command: { readonly battleId: string; readonly outcomeSeq: number }): string {

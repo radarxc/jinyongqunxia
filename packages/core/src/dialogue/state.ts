@@ -1,11 +1,16 @@
-import { EventActionSchema, type EventAction } from '@tianshu/data/schemas';
+import type { EventAction } from '@tianshu/data/schemas';
 import type { JsonValue } from '@tianshu/shared';
 import type { GameState } from '../state';
 import type { DialogueSession } from '.';
 
 export interface AuthorizedDialogueIntent {
-  readonly key: string; readonly action: EventAction;
+  readonly key: string;
+  readonly action: EventAction;
 }
+
+// Keep this module limited to serializable dialogue state. Runtime validation of
+// an intent's action belongs to intent-actions.ts, which is reached only through
+// the dialogue command entry and therefore stays outside the first-session graph.
 
 export interface DialogueChoiceView { readonly choiceIndex: number; readonly textKey: string;
   readonly unavailableReason: string | null }
@@ -46,20 +51,6 @@ NonNullable<GameState['dialogue']> {
   return { ...state, speakerId: state.speakerId ?? 'narrator', textKey: state.textKey ?? null,
     pendingIntents: state.pendingIntents ?? [], consumedTagKeys: state.consumedTagKeys ?? [],
     choices: state.choices ?? [], history: state.history ?? [] };
-}
-
-export function authorizedDialogueIntents(state: NonNullable<GameState['dialogue']>):
-readonly AuthorizedDialogueIntent[] {
-  return state.pendingIntents.map((value) => {
-    if (typeof value !== 'object' || value === null || Array.isArray(value))
-      throw new TypeError('DIALOGUE_INTENT_INVALID');
-    const row = value as Readonly<Record<string, JsonValue>>;
-    if (typeof row['key'] !== 'string' || row['key'].length === 0)
-      throw new TypeError('DIALOGUE_INTENT_INVALID');
-    const parsed = EventActionSchema.safeParse(row['action']);
-    if (!parsed.success) throw new TypeError('DIALOGUE_INTENT_INVALID');
-    return { key: row['key'], action: parsed.data };
-  });
 }
 
 export function sessionFromDialogue(state: NonNullable<GameState['dialogue']>): DialogueSession {
