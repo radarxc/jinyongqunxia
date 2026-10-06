@@ -268,17 +268,18 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_shuisheng__ch09_youth_scene_yuyi.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 9158cc38c40213dbe7e78108867879adc7d7b5f69f96c1e301e8480d339a87bf
+  sha256: 350da3bd605c8066c824a4fe13a6cdbe58f80b74cd9aa44a1a5ee6cac919b7f8
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。；AR-44 对脸精修，基线 = por_npc_shuisheng__ch09_youth_travel_base（AR-53 / AR-56 总审返修：对齐 AR-56 新基准）
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。；AR-44 对脸精修，基线 = por_npc_shuisheng__ch09_youth_travel_base（AR-53 / AR-56 总审返修：对齐 AR-56 新基准）；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_shuisheng__ch09_youth_travel_base（消除锥子尖下巴网红脸，恢复温婉圆润大家闺秀面貌），保留雪谷冬景、衣物动作与神态，蒙版外零漂移
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_shuisheng__ch09_youth_scene_yuyi.retry3.r1
   quality_retries: 0
   history: []
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_yuyi.76b3c446.png
-    sha256: 76b3c446f3035bd0fc2395b18ad7089fb720a86e93b184877ca081720cf1401b
+    png: .agents/coord/_lines/batch2-align-ar98/backup/por_npc_shuisheng__ch09_youth_scene_yuyi.9158cc38.png
+    sha256: 9158cc38c40213dbe7e78108867879adc7d7b5f69f96c1e301e8480d339a87bf
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_yuyi.76b3c446.entry.yaml
 - id: por_npc_shuisheng__ch09_youth_scene_xianghou
   file: por_npc_shuisheng__ch09_youth_scene_xianghou.png
@@ -310,17 +311,18 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_shuisheng__ch09_youth_scene_xianghou.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 079f5305dde409e0fc5500340d7dfbb613d5871e3172f60f471e8243031226e8
+  sha256: c131ca54c5451bab8d12202fac0a96c890aa74a9a43bb855be35e252aac61981
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。；AR-44 对脸精修，基线 = por_npc_shuisheng__ch09_youth_travel_base（AR-53 / AR-56 总审返修：对齐 AR-56 新基准）
+  status: candidate
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；第5次续作：复合基线新身份；联系表目检成年、手绘、完整全身及阶段背景通过。；AR-44 对脸精修，基线 = por_npc_shuisheng__ch09_youth_travel_base（AR-53 / AR-56 总审返修：对齐 AR-56 新基准）；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_shuisheng__ch09_youth_travel_base（消除锥子尖下巴网红脸，恢复温婉圆润大家闺秀面貌），保留雪谷冬景、衣物动作与神态，蒙版外零漂移
   redo_reason: 作者 10-02 晚：复合基线风格精修
   generation_job: por_npc_shuisheng__ch09_youth_scene_xianghou.retry3.r1
   quality_retries: 0
   history: []
   effort: ultra
   previous_revision:
-    png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_xianghou.a388d2e1.png
-    sha256: a388d2e10beeb456f184b14011427eadf6f0315d87597fa0636cdb7ea4e1a2dc
+    png: .agents/coord/_lines/batch2-align-ar98/backup/por_npc_shuisheng__ch09_youth_scene_xianghou.079f5305.png
+    sha256: 079f5305dde409e0fc5500340d7dfbb613d5871e3172f60f471e8243031226e8
     entry: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_shuisheng__ch09_youth_scene_xianghou.a388d2e1.entry.yaml
 - id: por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword
   file: por_npc_qifang__ch09_youth_scene_maxipu_wooden_sword.png

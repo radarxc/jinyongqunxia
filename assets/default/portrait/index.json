@@ -48762,20 +48762,20 @@
   "portrait/npc_renyingying/ch05_youth_scene_zhuxiang": {
    "alpha": false,
    "low": {
-    "b": 153926,
+    "b": 153636,
     "f": "npc_renyingying/ch05_youth_scene_zhuxiang.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 238064,
+    "b": 237004,
     "f": "npc_renyingying/ch05_youth_scene_zhuxiang.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_renyingying__ch05_youth_scene_zhuxiang",
    "source_file": "assets/default/character/female/ch05/por_npc_renyingying__ch05_youth_scene_zhuxiang.png",
-   "source_sha256": "8a2743f094ab443a69f9e829424dbc126f33034e71919232bd5452dd247d0131",
+   "source_sha256": "e0f0b0cc134f3558ded157d7d2b3f1b05ee2d9dbbd1210f1b3f0980ca4a660e3",
    "status": "candidate"
   },
   "portrait/npc_renyingying/ch05_youth_shenggu_base": {
@@ -49484,39 +49484,39 @@
   "portrait/npc_shuisheng/ch09_youth_scene_xianghou": {
    "alpha": false,
    "low": {
-    "b": 145378,
+    "b": 146126,
     "f": "npc_shuisheng/ch09_youth_scene_xianghou.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 221208,
+    "b": 220026,
     "f": "npc_shuisheng/ch09_youth_scene_xianghou.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_shuisheng__ch09_youth_scene_xianghou",
    "source_file": "assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_scene_xianghou.png",
-   "source_sha256": "079f5305dde409e0fc5500340d7dfbb613d5871e3172f60f471e8243031226e8",
+   "source_sha256": "c131ca54c5451bab8d12202fac0a96c890aa74a9a43bb855be35e252aac61981",
    "status": "candidate"
   },
   "portrait/npc_shuisheng/ch09_youth_scene_yuyi": {
    "alpha": false,
    "low": {
-    "b": 169868,
+    "b": 171832,
     "f": "npc_shuisheng/ch09_youth_scene_yuyi.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 254244,
+    "b": 254054,
     "f": "npc_shuisheng/ch09_youth_scene_yuyi.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_shuisheng__ch09_youth_scene_yuyi",
    "source_file": "assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_scene_yuyi.png",
-   "source_sha256": "9158cc38c40213dbe7e78108867879adc7d7b5f69f96c1e301e8480d339a87bf",
+   "source_sha256": "350da3bd605c8066c824a4fe13a6cdbe58f80b74cd9aa44a1a5ee6cac919b7f8",
    "status": "candidate"
   },
   "portrait/npc_shuisheng/ch09_youth_travel_base": {
