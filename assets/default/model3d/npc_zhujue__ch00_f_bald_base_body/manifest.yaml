@@ -2,22 +2,22 @@
   file: model_rig.glb
   category: model3d
   style: default
-  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚）
+  subject: 主角女素体(李一桐三视图200k多边形+AI Complete)
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
-    project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
-    url: https://studio.tripo3d.ai/workspace/generate/c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
-    generate_op: 7b9714a1-71fe-4bc1-8a06-f4562e8384a9（image_to_model）
-    rig_op: 106c9cb4-be88-45e6-83cb-072971e38a11
+    project_id: aaab908f-8e62-4473-ad75-0219ac8cba28
+    url: https://studio.tripo3d.ai/workspace/generate/aaab908f-8e62-4473-ad75-0219ac8cba28
+    generate_op: 0a6335e0-62a1-42fc-9565-67b68f668ec2（image_to_model）
+    rig_op: 3e609ecb-08af-424d-beb2-2564d98faaf8
     animation_ops:
-      idle: be151da7-0c84-4649-9141-0b7e3ade0126
-      walk: 77189fb6-1226-4c2c-8fc0-71225ab7dfb4
-      run: da9af731-4dc1-4521-93b0-8327ed6e82bd
+      idle: 4a3fe261-4ef2-4543-bdba-808e738e42a6
+      walk: 99cab204-01ca-42ea-b918-5a603264dbd8
+      run: 7c17dbb0-0b65-499b-a910-cfad46800da4
     replaces:
-      project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
-      commit: f4e969621
-      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052200/
+      project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+      commit: aa907579c
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052256/
   options:
     generate:
       ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
@@ -47,44 +47,44 @@
     rig: 20
     export: 0
   references:
-  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
-    sha256: 13fc3630703cfc2a156b159f5ea234fd54b68a07bb9367befd870c4e745e66be
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_liyitong_front.png
+    sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
     use: 单图生成输入（A 字姿势全身参考）
-  sha256: 78cbca2f67167d0618805e9e9550ba1c4489a75a5faf6b4a83050ce00c0f060c
-  size_bytes: 4633416
+  sha256: ba0d51c5e0eaa1ee1b2ef2528d46322f1c3262f04d81626757beef12bb2ba5b7
+  size_bytes: 9164184
   joints: 65
-  triangles: 99376
-  vertices: 53946
+  triangles: 198842
+  vertices: 107354
   animations: []
   textures:
-  - image/jpeg 240867 B
-  - image/jpeg 570980 B
-  - image/jpeg 396686 B
+  - image/jpeg 224045 B
+  - image/jpeg 570177 B
+  - image/jpeg 377559 B
   preview: preview.png
   visibility: private
-  created: '2026-10-05T22:00:14-07:00'
+  created: '2026-10-05T22:56:14-07:00'
   status: candidate
-  notes: 绑骨后基础模型（无动画）。单图A-pose无发素体；瓷白无眼影眼眸消除3D挑棚；8.77头身；薄透抹胸三角裤；猎豹腿；Mixamo 65关节；修跑步跳位；关节体检（ingest.py）：髋 y0.561、头 y0.89、头顶骨端 y1.026、双手 y0.614/0.619 外展 0.251/0.251、脚 y0.078/0.078。
+  notes: 绑骨后基础模型（无动画）。AR-93 8.8头身猎豹腿，李一桐高魅力灵动微笑杏眼，超薄无痕贴身内衣，Tripo三视图生成(front/left/back)，200k多边形，AI Complete；关节体检（ingest.py）：髋 y0.553、头 y0.886、头顶骨端 y1.023、双手 y0.602/0.604 外展 0.246/0.245、脚 y0.063/0.063。
 - id: npc_zhujue__ch00_f_bald_base_body__anim_idle_walk_run
   file: anim_idle_walk_run.glb
   category: model3d
   style: default
-  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚）
+  subject: 主角女素体(李一桐三视图200k多边形+AI Complete)
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
-    project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
-    url: https://studio.tripo3d.ai/workspace/generate/c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
-    generate_op: 7b9714a1-71fe-4bc1-8a06-f4562e8384a9（image_to_model）
-    rig_op: 106c9cb4-be88-45e6-83cb-072971e38a11
+    project_id: aaab908f-8e62-4473-ad75-0219ac8cba28
+    url: https://studio.tripo3d.ai/workspace/generate/aaab908f-8e62-4473-ad75-0219ac8cba28
+    generate_op: 0a6335e0-62a1-42fc-9565-67b68f668ec2（image_to_model）
+    rig_op: 3e609ecb-08af-424d-beb2-2564d98faaf8
     animation_ops:
-      idle: be151da7-0c84-4649-9141-0b7e3ade0126
-      walk: 77189fb6-1226-4c2c-8fc0-71225ab7dfb4
-      run: da9af731-4dc1-4521-93b0-8327ed6e82bd
+      idle: 4a3fe261-4ef2-4543-bdba-808e738e42a6
+      walk: 99cab204-01ca-42ea-b918-5a603264dbd8
+      run: 7c17dbb0-0b65-499b-a910-cfad46800da4
     replaces:
-      project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
-      commit: f4e969621
-      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052200/
+      project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+      commit: aa907579c
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052256/
   options:
     generate:
       ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
@@ -114,57 +114,57 @@
       texture_resolution: 2k
       export_skeleton: true
       animations:
-      - walk
       - idle
       - run
+      - walk
       stay_in_place: true
   credits:
     animation_preset: 0
     export: 0
   references:
-  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
-    sha256: 13fc3630703cfc2a156b159f5ea234fd54b68a07bb9367befd870c4e745e66be
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_liyitong_front.png
+    sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
     use: 单图生成输入（A 字姿势全身参考）
-  sha256: 20b8cbfd979636b85f2df1a99de16d48450c20556d27fe1dac458f4e8eaaf461
-  size_bytes: 5112380
+  sha256: bb96cb0238ea99cbd3320452dd5a3c6e76bc07f915ae22f7207d546132faa975
+  size_bytes: 9642152
   joints: 65
-  triangles: 99376
-  vertices: 53946
+  triangles: 198842
+  vertices: 107354
   animations:
-  - walk (2.333s)
   - idle (15.333s)
   - run (1.25s)
+  - walk (2.333s)
   textures:
-  - image/jpeg 240867 B
-  - image/jpeg 570980 B
-  - image/jpeg 396686 B
+  - image/jpeg 224045 B
+  - image/jpeg 570177 B
+  - image/jpeg 377559 B
   preview: preview.png
   visibility: private
-  created: '2026-10-05T22:00:14-07:00'
+  created: '2026-10-05T22:56:14-07:00'
   status: candidate
-  notes: 动作单文件：一个 GLB 内含 walk / idle / run，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
+  notes: 动作单文件：一个 GLB 内含 idle / run / walk，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
 - id: npc_zhujue__ch00_f_bald_base_body__preview
   file: preview.png
   category: model3d
   style: default
-  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚） · 3D 预览
+  subject: 主角女素体(李一桐三视图200k多边形+AI Complete) · 3D 预览
   tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
-    project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
-    url: https://studio.tripo3d.ai/workspace/generate/c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
-    generate_op: 7b9714a1-71fe-4bc1-8a06-f4562e8384a9（image_to_model）
-    rig_op: 106c9cb4-be88-45e6-83cb-072971e38a11
+    project_id: aaab908f-8e62-4473-ad75-0219ac8cba28
+    url: https://studio.tripo3d.ai/workspace/generate/aaab908f-8e62-4473-ad75-0219ac8cba28
+    generate_op: 0a6335e0-62a1-42fc-9565-67b68f668ec2（image_to_model）
+    rig_op: 3e609ecb-08af-424d-beb2-2564d98faaf8
     animation_ops:
-      idle: be151da7-0c84-4649-9141-0b7e3ade0126
-      walk: 77189fb6-1226-4c2c-8fc0-71225ab7dfb4
-      run: da9af731-4dc1-4521-93b0-8327ed6e82bd
+      idle: 4a3fe261-4ef2-4543-bdba-808e738e42a6
+      walk: 99cab204-01ca-42ea-b918-5a603264dbd8
+      run: 7c17dbb0-0b65-499b-a910-cfad46800da4
     replaces:
-      project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
-      commit: f4e969621
-      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052200/
+      project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+      commit: aa907579c
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052256/
   size: 600x778
-  sha256: 674e4d6bf93a382c2ca1e72d3c6976a056b88c6b76c3bc6eb76eda433c5a475f
-  size_bytes: 83542
-  created: '2026-10-05T22:00:14-07:00'
+  sha256: 685fea22c6649f48eaababed0480fa26fff662c303e73dda2e5b488548cc5d6b
+  size_bytes: 86581
+  created: '2026-10-05T22:56:14-07:00'
   status: candidate
   notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
