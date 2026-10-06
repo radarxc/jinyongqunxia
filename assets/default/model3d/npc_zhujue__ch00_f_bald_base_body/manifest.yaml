@@ -47,7 +47,7 @@
     rig: 20
     export: 0
   references:
-  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_liyitong_front.png
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
     sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
     use: 单图生成输入（A 字姿势全身参考）
   sha256: ba0d51c5e0eaa1ee1b2ef2528d46322f1c3262f04d81626757beef12bb2ba5b7
@@ -64,7 +64,9 @@
   visibility: private
   created: '2026-10-05T22:56:14-07:00'
   status: candidate
-  notes: 绑骨后基础模型（无动画）。AR-93 8.8头身猎豹腿，李一桐高魅力灵动微笑杏眼，超薄无痕贴身内衣，Tripo三视图生成(front/left/back)，200k多边形，AI Complete；关节体检（ingest.py）：髋 y0.553、头 y0.886、头顶骨端 y1.023、双手 y0.602/0.604 外展 0.246/0.245、脚 y0.063/0.063。
+  notes: 绑骨后基础模型（无动画）。AR-93 8.8头身猎豹腿，李一桐高魅力灵动微笑杏眼，超薄无痕贴身内衣，Tripo三视图生成(front/left/back)，200k多边形，AI
+    Complete；关节体检（ingest.py）：髋 y0.553、头 y0.886、头顶骨端 y1.023、双手 y0.602/0.604 外展 0.246/0.245、脚
+    y0.063/0.063。
 - id: npc_zhujue__ch00_f_bald_base_body__anim_idle_walk_run
   file: anim_idle_walk_run.glb
   category: model3d
@@ -122,7 +124,7 @@
     animation_preset: 0
     export: 0
   references:
-  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_liyitong_front.png
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
     sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
     use: 单图生成输入（A 字姿势全身参考）
   sha256: bb96cb0238ea99cbd3320452dd5a3c6e76bc07f915ae22f7207d546132faa975
@@ -142,7 +144,8 @@
   visibility: private
   created: '2026-10-05T22:56:14-07:00'
   status: candidate
-  notes: 动作单文件：一个 GLB 内含 idle / run / walk，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
+  notes: 动作单文件：一个 GLB 内含 idle / run / walk，同一套网格 + 65 关节骨架，原地（Animation stay in Place
+    开）。
 - id: npc_zhujue__ch00_f_bald_base_body__preview
   file: preview.png
   category: model3d
@@ -167,4 +170,5 @@
   size_bytes: 86581
   created: '2026-10-05T22:56:14-07:00'
   status: candidate
-  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转
+    RGB PNG（长边 ≤ 1024）。
