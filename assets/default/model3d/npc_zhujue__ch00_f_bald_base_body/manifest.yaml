@@ -2,22 +2,22 @@
   file: model_rig.glb
   category: model3d
   style: default
-  subject: 主角（女）· AR-99 高挑猎豹流线光头素体基底版（换装解耦）
+  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚）
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
-    project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
-    url: https://studio.tripo3d.ai/workspace/generate/2527784b-9cab-4450-80d9-541ff6bbc927
-    generate_op: 0d184464-32ca-47aa-9cbe-9b95c9230f8f（image_to_model）
-    rig_op: 051ce16f-bfb6-45c4-9175-26e263b5a850
+    project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+    url: https://studio.tripo3d.ai/workspace/generate/c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+    generate_op: 7b9714a1-71fe-4bc1-8a06-f4562e8384a9（image_to_model）
+    rig_op: 106c9cb4-be88-45e6-83cb-072971e38a11
     animation_ops:
-      idle: 87c8188f-3e28-4fae-91de-a4012586d68b
-      walk: 3339462d-0b9b-4629-a879-51d3b3a755ef
-      run: 478d9f38-e9aa-45d3-ab6d-0ede4ac36a21
+      idle: be151da7-0c84-4649-9141-0b7e3ade0126
+      walk: 77189fb6-1226-4c2c-8fc0-71225ab7dfb4
+      run: da9af731-4dc1-4521-93b0-8327ed6e82bd
     replaces:
-      project_id: b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
-      commit: 1522a693b
-      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610051542/
+      project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
+      commit: f4e969621
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052200/
   options:
     generate:
       ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
@@ -48,43 +48,43 @@
     export: 0
   references:
   - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
-    sha256: e005fb1b060f2525d52d512183e4bfd55215cf5dada0bf8dc6614b6614a96b29
+    sha256: 13fc3630703cfc2a156b159f5ea234fd54b68a07bb9367befd870c4e745e66be
     use: 单图生成输入（A 字姿势全身参考）
-  sha256: b673086af79e6778f8f93516fec592e0e33183102aa0de0cb13cdbce539c0f05
-  size_bytes: 4575864
+  sha256: 78cbca2f67167d0618805e9e9550ba1c4489a75a5faf6b4a83050ce00c0f060c
+  size_bytes: 4633416
   joints: 65
-  triangles: 99066
-  vertices: 53978
+  triangles: 99376
+  vertices: 53946
   animations: []
   textures:
-  - image/jpeg 234567 B
-  - image/jpeg 555258 B
-  - image/jpeg 361306 B
+  - image/jpeg 240867 B
+  - image/jpeg 570980 B
+  - image/jpeg 396686 B
   preview: preview.png
   visibility: private
-  created: '2026-10-05T15:42:01-07:00'
+  created: '2026-10-05T22:00:14-07:00'
   status: candidate
-  notes: 绑骨后基础模型（无动画）。AR-99 规范：头身比 8.77 高挑、丰满挺拔胸围、大腿肌肉+细长小腿猎豹敏捷流线、薄透高叉三角内裤解耦、双耳立体无遮挡、100%裸足赤足；关节体检（ingest.py）：髋 y0.565、头 y0.894、头顶骨端 y1.031、双手 y0.617/0.617 外展 0.249/0.25、脚 y0.078/0.078。
+  notes: 绑骨后基础模型（无动画）。单图A-pose无发素体；瓷白无眼影眼眸消除3D挑棚；8.77头身；薄透抹胸三角裤；猎豹腿；Mixamo 65关节；修跑步跳位；关节体检（ingest.py）：髋 y0.561、头 y0.89、头顶骨端 y1.026、双手 y0.614/0.619 外展 0.251/0.251、脚 y0.078/0.078。
 - id: npc_zhujue__ch00_f_bald_base_body__anim_idle_walk_run
   file: anim_idle_walk_run.glb
   category: model3d
   style: default
-  subject: 主角（女）· AR-99 高挑猎豹流线光头素体基底版（换装解耦）
+  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚）
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
-    project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
-    url: https://studio.tripo3d.ai/workspace/generate/2527784b-9cab-4450-80d9-541ff6bbc927
-    generate_op: 0d184464-32ca-47aa-9cbe-9b95c9230f8f（image_to_model）
-    rig_op: 051ce16f-bfb6-45c4-9175-26e263b5a850
+    project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+    url: https://studio.tripo3d.ai/workspace/generate/c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+    generate_op: 7b9714a1-71fe-4bc1-8a06-f4562e8384a9（image_to_model）
+    rig_op: 106c9cb4-be88-45e6-83cb-072971e38a11
     animation_ops:
-      idle: 87c8188f-3e28-4fae-91de-a4012586d68b
-      walk: 3339462d-0b9b-4629-a879-51d3b3a755ef
-      run: 478d9f38-e9aa-45d3-ab6d-0ede4ac36a21
+      idle: be151da7-0c84-4649-9141-0b7e3ade0126
+      walk: 77189fb6-1226-4c2c-8fc0-71225ab7dfb4
+      run: da9af731-4dc1-4521-93b0-8327ed6e82bd
     replaces:
-      project_id: b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
-      commit: 1522a693b
-      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610051542/
+      project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
+      commit: f4e969621
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052200/
   options:
     generate:
       ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
@@ -115,56 +115,56 @@
       export_skeleton: true
       animations:
       - walk
-      - run
       - idle
+      - run
       stay_in_place: true
   credits:
     animation_preset: 0
     export: 0
   references:
   - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
-    sha256: e005fb1b060f2525d52d512183e4bfd55215cf5dada0bf8dc6614b6614a96b29
+    sha256: 13fc3630703cfc2a156b159f5ea234fd54b68a07bb9367befd870c4e745e66be
     use: 单图生成输入（A 字姿势全身参考）
-  sha256: c9272fb9aabe9924646ddd08b92a4c204c3f71c293749a66fb25ee2afd710258
-  size_bytes: 5054544
+  sha256: 20b8cbfd979636b85f2df1a99de16d48450c20556d27fe1dac458f4e8eaaf461
+  size_bytes: 5112380
   joints: 65
-  triangles: 99066
-  vertices: 53978
+  triangles: 99376
+  vertices: 53946
   animations:
   - walk (2.333s)
-  - run (1.25s)
   - idle (15.333s)
+  - run (1.25s)
   textures:
-  - image/jpeg 234567 B
-  - image/jpeg 555258 B
-  - image/jpeg 361306 B
+  - image/jpeg 240867 B
+  - image/jpeg 570980 B
+  - image/jpeg 396686 B
   preview: preview.png
   visibility: private
-  created: '2026-10-05T15:42:01-07:00'
+  created: '2026-10-05T22:00:14-07:00'
   status: candidate
-  notes: 动作单文件：一个 GLB 内含 walk / run / idle，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
+  notes: 动作单文件：一个 GLB 内含 walk / idle / run，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
 - id: npc_zhujue__ch00_f_bald_base_body__preview
   file: preview.png
   category: model3d
   style: default
-  subject: 主角（女）· AR-99 高挑猎豹流线光头素体基底版（换装解耦） · 3D 预览
+  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚） · 3D 预览
   tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
-    project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
-    url: https://studio.tripo3d.ai/workspace/generate/2527784b-9cab-4450-80d9-541ff6bbc927
-    generate_op: 0d184464-32ca-47aa-9cbe-9b95c9230f8f（image_to_model）
-    rig_op: 051ce16f-bfb6-45c4-9175-26e263b5a850
+    project_id: c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+    url: https://studio.tripo3d.ai/workspace/generate/c940cd7e-2a0f-49ad-968f-b3b6fd14e16d
+    generate_op: 7b9714a1-71fe-4bc1-8a06-f4562e8384a9（image_to_model）
+    rig_op: 106c9cb4-be88-45e6-83cb-072971e38a11
     animation_ops:
-      idle: 87c8188f-3e28-4fae-91de-a4012586d68b
-      walk: 3339462d-0b9b-4629-a879-51d3b3a755ef
-      run: 478d9f38-e9aa-45d3-ab6d-0ede4ac36a21
+      idle: be151da7-0c84-4649-9141-0b7e3ade0126
+      walk: 77189fb6-1226-4c2c-8fc0-71225ab7dfb4
+      run: da9af731-4dc1-4521-93b0-8327ed6e82bd
     replaces:
-      project_id: b233fcb4-e0d7-4f5b-b403-6a6a3e216f93
-      commit: 1522a693b
-      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610051542/
+      project_id: 2527784b-9cab-4450-80d9-541ff6bbc927
+      commit: f4e969621
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610052200/
   size: 600x778
-  sha256: ddd53fb949854aa6ee4425d9a4d5e509726e26bc2d0c34e649af96b8643a2035
-  size_bytes: 85176
-  created: '2026-10-05T15:42:01-07:00'
+  sha256: 674e4d6bf93a382c2ca1e72d3c6976a056b88c6b76c3bc6eb76eda433c5a475f
+  size_bytes: 83542
+  created: '2026-10-05T22:00:14-07:00'
   status: candidate
   notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。
