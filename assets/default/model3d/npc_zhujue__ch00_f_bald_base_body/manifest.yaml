@@ -2,7 +2,7 @@
   file: model_rig.glb
   category: model3d
   style: default
-  subject: 主角（女）· 光头素体基底版（AR-93 路线2独立高模头雕+方案A颈部接缝骨骼挂接）
+  subject: 主角（女）· 光头素体基底版（AR-93 路线2独立高模头雕+方案A颈部接缝骨骼挂接+祛痣与接缝法线对齐）
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
@@ -58,8 +58,8 @@
   - path: .agents/coord/ART-3d-tripo-web/ref_head_liyitong.png
     sha256: 5f560d429c6e3098fd53a9ab66c7b3c1a024e643c753c84c9edd91c96927fc3c
     use: 路线2独立高模头雕单图输入（李一桐高魅力灵动杏眼光头特写）
-  sha256: b7d7351e84ab91bc9861459a21de4d1751e6083c567fe639611e2122679014df
-  size_bytes: 14759284
+  sha256: 91cf58c87352c0e32606eccf940285e729d80251ceed63db35fcb76451fa307d
+  size_bytes: 14774976
   joints: 65
   triangles: 302759
   vertices: 171186
@@ -68,19 +68,19 @@
   - image/jpeg 224045 B
   - image/jpeg 570177 B
   - image/jpeg 377559 B
-  - image/jpeg 213468 B
-  - image/jpeg 412499 B
-  - image/jpeg 401409 B
+  - image/jpeg 214195 B
+  - image/jpeg 421487 B
+  - image/jpeg 407385 B
   preview: preview.png
   visibility: private
-  created: '2026-10-06T00:07:00-07:00'
+  created: '2026-10-06T00:20:00-07:00'
   status: candidate
-  notes: 绑骨后基础模型（无动画）。AR-93 路线2李一桐高魅力独立高模头雕（Tripo单图200k多边形，关闭autofix消除黄眼双瞳与眼角缺口三角刀痕）+ 方案A颈部接缝骨骼挂接（主流大厂模块化标准，接缝环距离 0.000020m，颈椎关节100%同权无撕裂，保留8.81头身、53.4%猎豹腿黄金比例与超薄无痕抹胸内衣）。关节体检（ingest.py）：髋 y0.553、头 y0.886、头顶骨端 y1.023、双手 y0.602/0.604 外展 0.246/0.245、脚 y0.063/0.063。
+  notes: 绑骨后基础模型（无动画）。AR-93 路线2李一桐高魅力独立高模头雕（Tripo单图200k多边形，关闭autofix消除黄眼双瞳与眼角缺口三角刀痕）+ 方案A颈部接缝骨骼挂接（主流大厂模块化标准，接缝环距离 0.000020m，颈椎关节100%同权无撕裂，保留8.81头身、53.4%猎豹腿黄金比例与超薄无痕抹胸内衣）。微瑕修复：移除右脸颊非必要黑痣（basecolor/normal/rm贴图二阶光滑插值微纹理融合）、颈部接缝顶点法线100%对齐（点积0.999997消除光照缝）。关节体检（ingest.py）：髋 y0.553、头 y0.886、头顶骨端 y1.023、双手 y0.602/0.604 外展 0.246/0.245、脚 y0.063/0.063。
 - id: npc_zhujue__ch00_f_bald_base_body__anim_idle_walk_run
   file: anim_idle_walk_run.glb
   category: model3d
   style: default
-  subject: 主角（女）· 光头素体基底版（AR-93 路线2独立高模头雕+方案A颈部接缝骨骼挂接）
+  subject: 主角（女）· 光头素体基底版（AR-93 路线2独立高模头雕+方案A颈部接缝骨骼挂接+祛痣与接缝法线对齐）
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
@@ -144,8 +144,8 @@
   - path: .agents/coord/ART-3d-tripo-web/ref_head_liyitong.png
     sha256: 5f560d429c6e3098fd53a9ab66c7b3c1a024e643c753c84c9edd91c96927fc3c
     use: 路线2独立高模头雕单图输入（李一桐高魅力灵动杏眼光头特写）
-  sha256: 808ca6b2ad4a552052e5fe1dd2eefd9ee5f669810074cf128375ad4269ebc91e
-  size_bytes: 15414376
+  sha256: a7acd07de0bbd9f2d0aa3a14f9b2ddcd3af152f15206e694d5fd1f13e69086d3
+  size_bytes: 15430068
   joints: 65
   triangles: 302759
   vertices: 171186
@@ -157,19 +157,19 @@
   - image/jpeg 224045 B
   - image/jpeg 570177 B
   - image/jpeg 377559 B
-  - image/jpeg 213468 B
-  - image/jpeg 412499 B
-  - image/jpeg 401409 B
+  - image/jpeg 214195 B
+  - image/jpeg 421487 B
+  - image/jpeg 407385 B
   preview: preview.png
   visibility: private
-  created: '2026-10-06T00:07:00-07:00'
+  created: '2026-10-06T00:20:00-07:00'
   status: candidate
-  notes: 动作单文件：一个 GLB 内含 idle (15.333s) / run (1.25s) / walk (2.333s)，采用方案A接缝骨骼挂接后的完整高模网格（302,759 面）+ 65 关节骨架，原地（Animation stay in Place 开），fix_anim_offset 消除跳位。
+  notes: 动作单文件：一个 GLB 内含 idle (15.333s) / run (1.25s) / walk (2.333s)，采用方案A接缝骨骼挂接后的完整高模网格（302,759 面）+ 65 关节骨架，原地（Animation stay in Place 开），fix_anim_offset 消除跳位，贴图已同步祛痣并消除光照缝。
 - id: npc_zhujue__ch00_f_bald_base_body__preview
   file: preview.png
   category: model3d
   style: default
-  subject: 主角（女）· 光头素体基底版 · 3D 预览
+  subject: 主角（女）· 光头素体基底版 · 3D 预览（无痣精修版）
   tool: tripo-studio-web（Tripo 独立高模头雕封面与 8.8 头身素体融合）
   tripo_model:
     project_id: aaab908f-8e62-4473-ad75-0219ac8cba28
@@ -182,8 +182,8 @@
       walk: 99cab204-01ca-42ea-b918-5a603264dbd8
       run: 7c17dbb0-0b65-499b-a910-cfad46800da4
   size: 600x778
-  sha256: b0faab3232103a94810c79a8f065cf9844b5140c0548edde71b7ce2cb4a0352d
-  size_bytes: 90742
-  created: '2026-10-06T00:10:45-07:00'
+  sha256: abf73a9051e6633f509e0c3c878ea3b21e76ebc902e4b721e878e654e1afe325
+  size_bytes: 87171
+  created: '2026-10-06T00:20:55-07:00'
   status: candidate
-  notes: 路线2+方案A完整装配效果预览（正面、白底、600×778），由 Tripo 独立高模头雕封面与 8.8 头身素体原图高精无缝融合（长边 ≤ 1024）。
+  notes: 路线2+方案A完整装配效果预览（正面、白底、600×778），由 Tripo 独立高模头雕封面（已祛除右颊痣）与 8.8 头身素体原图高精无缝融合（长边 ≤ 1024）。
