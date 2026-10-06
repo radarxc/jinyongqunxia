@@ -43404,20 +43404,20 @@
   "portrait/npc_duanyu/ch01_youth_scene_langhuan_scroll": {
    "alpha": false,
    "low": {
-    "b": 138442,
+    "b": 138432,
     "f": "npc_duanyu/ch01_youth_scene_langhuan_scroll.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 212190,
+    "b": 215038,
     "f": "npc_duanyu/ch01_youth_scene_langhuan_scroll.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_duanyu__ch01_youth_scene_langhuan_scroll",
    "source_file": "assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_scene_langhuan_scroll.png",
-   "source_sha256": "06076c8fa615cd165478e14038f566c69a329c5c9337af019df66a984fec3c53",
+   "source_sha256": "b9ad3ae49aa6d52abcf812e83707cbe1819cd02e904b9bbc115b27c10cd42422",
    "status": "candidate"
   },
   "portrait/npc_duanyu/ch01_youth_scene_lingbo_escape": {
@@ -43461,20 +43461,20 @@
   "portrait/npc_duanyu/ch01_youth_scene_tianlongtemple_first_sword": {
    "alpha": false,
    "low": {
-    "b": 97724,
+    "b": 87232,
     "f": "npc_duanyu/ch01_youth_scene_tianlongtemple_first_sword.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 138980,
+    "b": 125588,
     "f": "npc_duanyu/ch01_youth_scene_tianlongtemple_first_sword.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword",
    "source_file": "assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.png",
-   "source_sha256": "26a7f21b369186254e06fb016da673fca855d36331629c7d2ee7edacd096f0a1",
+   "source_sha256": "c9b7c986d492785fb6e76fccb4ef09f829f23723e615ede6a128e7e72a49eda1",
    "status": "candidate"
   },
   "portrait/npc_duanyu/ch01_youth_scene_wuliang_fan": {
