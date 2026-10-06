@@ -4079,19 +4079,19 @@
   },
   "avatar/npc_huangrong/ch03_prime": {
    "128": {
-    "b": 4990,
+    "b": 5058,
     "f": "npc_huangrong/ch03_prime_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 13332,
+    "b": 13518,
     "f": "npc_huangrong/ch03_prime_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 33046,
+    "b": 32858,
     "f": "npc_huangrong/ch03_prime_base.ava512.webp",
     "h": 512,
     "w": 512
@@ -25072,13 +25072,13 @@
   },
   "bust/npc_huangrong/ch03_prime": {
    "256": {
-    "b": 12514,
+    "b": 12436,
     "f": "npc_huangrong/ch03_prime_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 32510,
+    "b": 32694,
     "f": "npc_huangrong/ch03_prime_base.bust512.webp",
     "h": 512,
     "w": 512
@@ -44905,20 +44905,20 @@
   "portrait/npc_huangrong/ch02_youth_scene_cooking_meets_hongqigong": {
    "alpha": false,
    "low": {
-    "b": 133202,
+    "b": 133208,
     "f": "npc_huangrong/ch02_youth_scene_cooking_meets_hongqigong.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 202070,
+    "b": 201624,
     "f": "npc_huangrong/ch02_youth_scene_cooking_meets_hongqigong.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong",
    "source_file": "assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.png",
-   "source_sha256": "d34a42e9489ad877df9fe42145f03bdfa678218187119396f9b98a3d4e430078",
+   "source_sha256": "86a69a15fbd6629a07d3f390957860a34743965ac1aec6cb19616ff2d3114bdb",
    "status": "candidate"
   },
   "portrait/npc_huangrong/ch02_youth_scene_iron_spear_temple_truth": {
@@ -44962,58 +44962,58 @@
   "portrait/npc_huangrong/ch02_youth_scene_yideng_heals_iron_palm_wound": {
    "alpha": false,
    "low": {
-    "b": 97014,
+    "b": 106094,
     "f": "npc_huangrong/ch02_youth_scene_yideng_heals_iron_palm_wound.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 149154,
+    "b": 160420,
     "f": "npc_huangrong/ch02_youth_scene_yideng_heals_iron_palm_wound.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangrong__ch02_youth_scene_yideng_heals_iron_palm_wound",
    "source_file": "assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_yideng_heals_iron_palm_wound.png",
-   "source_sha256": "ec389a1fc4229f904e217d5dd9b7df6502ce7964406c6160cad0683c0a4edaf6",
+   "source_sha256": "669109b0d0a118b48393a94161e03cfd1f2661e34b47598dcdabf55624e289d4",
    "status": "candidate"
   },
   "portrait/npc_huangrong/ch02_youth_scene_young_beggar_disguise": {
    "alpha": false,
    "low": {
-    "b": 101080,
+    "b": 101122,
     "f": "npc_huangrong/ch02_youth_scene_young_beggar_disguise.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 143350,
+    "b": 145160,
     "f": "npc_huangrong/ch02_youth_scene_young_beggar_disguise.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangrong__ch02_youth_scene_young_beggar_disguise",
    "source_file": "assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.png",
-   "source_sha256": "fb4af38249f094f9d2238e2261219b00f91c23118641686911cd15391896c67f",
+   "source_sha256": "3855815174bf16bad439497b9e6ab51f278f4fcea5d76ce9d0ec079afcf81012",
    "status": "candidate"
   },
   "portrait/npc_huangrong/ch03_prime_base": {
    "alpha": true,
    "low": {
-    "b": 80226,
+    "b": 79332,
     "f": "npc_huangrong/ch03_prime_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 102964,
+    "b": 102638,
     "f": "npc_huangrong/ch03_prime_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangrong__ch03_prime_base",
    "source_file": "assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png",
-   "source_sha256": "072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24",
+   "source_sha256": "57ca4979ccfa9b1c1f5ddf974d1f78fd954dc2a7be657c2c97523a8fa02a84f9",
    "status": "candidate"
   },
   "portrait/npc_huangshannvzi/ch04_youth_gumu_base": {

@@ -842,9 +842,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_huangrong__ch03_prime_base.e2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24
+  sha256: 57ca4979ccfa1a533bf4203130d222e96d194ee44be1b86e00b65f3a0937a09f
   status: candidate
-  notes: AR-32 补记修改 A（9 号出图员）：作者 10-02：神雕中年黄蓉要由射雕的经典形象长到中年、两书同一张脸；核对上一版：脸不像射雕新版、看着只有三十出头且有磨皮感，按「锚点在前、剧照随后」重出，同一人年长约二十岁。同一人锚点 + 1994 年 TVB 张智霖、朱茵版《射雕英雄传》（黄蓉取朱茵版，AR-30 / AR-32 补记：神雕中年黄蓉由射雕经典形象长到中年，不用神雕剧中形象） 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘；r1；核对结论：上一版脸不像射雕新版、只像三十出头且偏磨皮；r1 以射雕新版为第一张锚点，眼形与笑意对上、眼角细纹与法令纹显出约四十岁；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（保留神雕时期三十七八岁的年龄）
+  notes: AR-32 补记修改 A（9 号出图员）：作者 10-02：神雕中年黄蓉要由射雕的经典形象长到中年、两书同一张脸；核对上一版：脸不像射雕新版、看着只有三十出头且有磨皮感，按「锚点在前、剧照随后」重出，同一人年长约二十岁。同一人锚点 + 1994 年 TVB 张智霖、朱茵版《射雕英雄传》（黄蓉取朱茵版，AR-30 / AR-32 补记：神雕中年黄蓉由射雕经典形象长到中年，不用神雕剧中形象） 剧照 + 两张同性别基线；参考只借造型、气质与面部特征，按项目画风重绘；r1；核对结论：上一版脸不像射雕新版、只像三十出头且偏磨皮；r1 以射雕新版为第一张锚点，眼形与笑意对上、眼角细纹与法令纹显出约四十岁；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base（保留神雕时期三十七八岁的年龄）；AR-98 主角立绘全量一致性对齐：神雕中年黄蓉骨相与五官严格对齐射雕黄蓉 por_npc_huangrong__ch02_youth_bangzhu_base（李一桐经典形象）并年长化约二十岁至郭夫人阶段，两书同一张脸，蒙版外零漂移
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch03_prime_base.ba684489.png
