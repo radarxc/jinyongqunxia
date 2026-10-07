@@ -5,165 +5,172 @@
   "stepMu": 0.005,
   "rows": [
     {
-      "yMu": -0.02284951,
-      "centerXMu": 0.04104387,
-      "centerZMu": -0.00727864,
-      "radiusXMu": 0.0126835,
-      "radiusZMu": 0.01290582
+      "yMu": -0.02409224,
+      "centerXMu": 0.04222963,
+      "centerZMu": -0.00255517,
+      "radiusXMu": 0.01367075,
+      "radiusZMu": 0.01049135
     },
     {
-      "yMu": -0.01784951,
-      "centerXMu": 0.04348307,
-      "centerZMu": -0.00962108,
-      "radiusXMu": 0.021104,
-      "radiusZMu": 0.02576287
+      "yMu": -0.01909224,
+      "centerXMu": 0.04402355,
+      "centerZMu": -0.00485409,
+      "radiusXMu": 0.01802138,
+      "radiusZMu": 0.02041937
     },
     {
-      "yMu": -0.01284951,
-      "centerXMu": 0.0376665,
-      "centerZMu": -0.01009418,
-      "radiusXMu": 0.02549323,
-      "radiusZMu": 0.03290532
+      "yMu": -0.01409224,
+      "centerXMu": 0.03935629,
+      "centerZMu": -0.00255078,
+      "radiusXMu": 0.02203789,
+      "radiusZMu": 0.02512382
     },
     {
-      "yMu": -0.00784951,
-      "centerXMu": 0.02235148,
-      "centerZMu": -0.00386746,
-      "radiusXMu": 0.05529183,
-      "radiusZMu": 0.03218714
+      "yMu": -0.00909224,
+      "centerXMu": 0.03433283,
+      "centerZMu": -0.00103225,
+      "radiusXMu": 0.06108896,
+      "radiusZMu": 0.02759637
     },
     {
-      "yMu": -0.00284951,
-      "centerXMu": 0.01344727,
-      "centerZMu": -0.00378606,
-      "radiusXMu": 0.04989597,
-      "radiusZMu": 0.03471784
+      "yMu": -0.00409224,
+      "centerXMu": 0.0149011,
+      "centerZMu": -0.00053973,
+      "radiusXMu": 0.04721388,
+      "radiusZMu": 0.03088369
     },
     {
-      "yMu": 0.00215049,
-      "centerXMu": 0.00077472,
-      "centerZMu": -0.00451021,
-      "radiusXMu": 0.05439088,
-      "radiusZMu": 0.04147766
+      "yMu": 0.00090776,
+      "centerXMu": 0.00640241,
+      "centerZMu": 0.00128322,
+      "radiusXMu": 0.05060326,
+      "radiusZMu": 0.03154613
     },
     {
-      "yMu": 0.00715049,
-      "centerXMu": -0.00467577,
-      "centerZMu": 0.00299851,
-      "radiusXMu": 0.05908932,
-      "radiusZMu": 0.04100147
+      "yMu": 0.00590776,
+      "centerXMu": -0.00136452,
+      "centerZMu": 0.00277767,
+      "radiusXMu": 0.05787558,
+      "radiusZMu": 0.03697202
     },
     {
-      "yMu": 0.01215049,
-      "centerXMu": -0.00461561,
-      "centerZMu": -0.00256502,
-      "radiusXMu": 0.05903022,
-      "radiusZMu": 0.04952397
+      "yMu": 0.01090776,
+      "centerXMu": -0.00298186,
+      "centerZMu": 0.00332779,
+      "radiusXMu": 0.06048539,
+      "radiusZMu": 0.0414548
     },
     {
-      "yMu": 0.01715049,
-      "centerXMu": -0.00172712,
-      "centerZMu": -0.00702667,
-      "radiusXMu": 0.05868672,
-      "radiusZMu": 0.05583944
+      "yMu": 0.01590776,
+      "centerXMu": -0.00249797,
+      "centerZMu": 0.00121382,
+      "radiusXMu": 0.06189928,
+      "radiusZMu": 0.04469681
     },
     {
-      "yMu": 0.02215049,
-      "centerXMu": -0.00849681,
-      "centerZMu": -0.00795497,
-      "radiusXMu": 0.06337337,
-      "radiusZMu": 0.05762658
+      "yMu": 0.02090776,
+      "centerXMu": -0.00248432,
+      "centerZMu": 0.0077889,
+      "radiusXMu": 0.0576861,
+      "radiusZMu": 0.04574856
     },
     {
-      "yMu": 0.02715049,
-      "centerXMu": -0.00828486,
-      "centerZMu": -0.00991096,
-      "radiusXMu": 0.05716441,
-      "radiusZMu": 0.06080962
+      "yMu": 0.02590776,
+      "centerXMu": -0.00495715,
+      "centerZMu": 0.01391288,
+      "radiusXMu": 0.05509712,
+      "radiusZMu": 0.05254007
     },
     {
-      "yMu": 0.03215049,
-      "centerXMu": 0.00504853,
-      "centerZMu": -0.00725392,
-      "radiusXMu": 0.06292012,
-      "radiusZMu": 0.05485579
+      "yMu": 0.03090776,
+      "centerXMu": -0.00162,
+      "centerZMu": 0.00652503,
+      "radiusXMu": 0.05345295,
+      "radiusZMu": 0.04760575
     },
     {
-      "yMu": 0.03715049,
-      "centerXMu": 0.03277218,
-      "centerZMu": -0.0057999,
-      "radiusXMu": 0.09169268,
-      "radiusZMu": 0.05158154
+      "yMu": 0.03590776,
+      "centerXMu": 0.0014913,
+      "centerZMu": 0.0033323,
+      "radiusXMu": 0.05710081,
+      "radiusZMu": 0.0452727
     },
     {
-      "yMu": 0.04215049,
-      "centerXMu": 0.01867859,
-      "centerZMu": -0.00260498,
-      "radiusXMu": 0.07799268,
-      "radiusZMu": 0.04994695
+      "yMu": 0.04090776,
+      "centerXMu": 0.00443118,
+      "centerZMu": 0.00032057,
+      "radiusXMu": 0.06224911,
+      "radiusZMu": 0.04533449
     },
     {
-      "yMu": 0.04715049,
-      "centerXMu": 0.01874723,
-      "centerZMu": -0.00124432,
-      "radiusXMu": 0.07781706,
-      "radiusZMu": 0.04790538
+      "yMu": 0.04590776,
+      "centerXMu": 0.00706128,
+      "centerZMu": 0.0018948,
+      "radiusXMu": 0.06445513,
+      "radiusZMu": 0.04447041
     },
     {
-      "yMu": 0.05215049,
-      "centerXMu": -0.00506304,
-      "centerZMu": 0.00247788,
-      "radiusXMu": 0.05354363,
-      "radiusZMu": 0.0437362
+      "yMu": 0.05090776,
+      "centerXMu": -0.00364203,
+      "centerZMu": 0.00272114,
+      "radiusXMu": 0.0543946,
+      "radiusZMu": 0.0435085
     },
     {
-      "yMu": 0.05715049,
-      "centerXMu": -0.01229198,
-      "centerZMu": 0.00305549,
-      "radiusXMu": 0.05653527,
-      "radiusZMu": 0.04239586
+      "yMu": 0.05590776,
+      "centerXMu": -0.01125276,
+      "centerZMu": 0.00550035,
+      "radiusXMu": 0.05925473,
+      "radiusZMu": 0.04273985
     },
     {
-      "yMu": 0.06215049,
-      "centerXMu": -0.00140286,
-      "centerZMu": -0.00012854,
-      "radiusXMu": 0.05333213,
-      "radiusZMu": 0.04350475
+      "yMu": 0.06090776,
+      "centerXMu": -0.00689019,
+      "centerZMu": 0.00910565,
+      "radiusXMu": 0.05346398,
+      "radiusZMu": 0.04494721
     },
     {
-      "yMu": 0.06715049,
-      "centerXMu": 0.00415885,
-      "centerZMu": 0.00375074,
-      "radiusXMu": 0.0562835,
-      "radiusZMu": 0.03768321
+      "yMu": 0.06590776,
+      "centerXMu": -0.00797629,
+      "centerZMu": 0.00776707,
+      "radiusXMu": 0.05243117,
+      "radiusZMu": 0.04227394
     },
     {
-      "yMu": 0.07215049,
-      "centerXMu": -9.795e-05,
-      "centerZMu": 0.00208569,
-      "radiusXMu": 0.04814287,
-      "radiusZMu": 0.03496192
+      "yMu": 0.07090776,
+      "centerXMu": -0.00676962,
+      "centerZMu": 0.00550802,
+      "radiusXMu": 0.04754541,
+      "radiusZMu": 0.03838025
     },
     {
-      "yMu": 0.07715049,
-      "centerXMu": -0.00525958,
-      "centerZMu": 0.00056435,
-      "radiusXMu": 0.03945463,
-      "radiusZMu": 0.03241061
+      "yMu": 0.07590776,
+      "centerXMu": -0.0011463,
+      "centerZMu": -0.0004559,
+      "radiusXMu": 0.045487,
+      "radiusZMu": 0.03784443
     },
     {
-      "yMu": 0.08215049,
-      "centerXMu": -0.00819435,
-      "centerZMu": 0.00057671,
-      "radiusXMu": 0.03260151,
-      "radiusZMu": 0.02758263
+      "yMu": 0.08090776,
+      "centerXMu": -0.00653025,
+      "centerZMu": 0.00608236,
+      "radiusXMu": 0.03864655,
+      "radiusZMu": 0.03150058
     },
     {
-      "yMu": 0.08715049,
-      "centerXMu": -0.00917453,
-      "centerZMu": 0.00370329,
-      "radiusXMu": 0.02314704,
-      "radiusZMu": 0.01645396
+      "yMu": 0.08590776,
+      "centerXMu": -0.01121382,
+      "centerZMu": 0.00060881,
+      "radiusXMu": 0.03402749,
+      "radiusZMu": 0.0265637
+    },
+    {
+      "yMu": 0.09090776,
+      "centerXMu": -0.00868618,
+      "centerZMu": 0.00362401,
+      "radiusXMu": 0.02397905,
+      "radiusZMu": 0.01738456
     }
   ]
 }
