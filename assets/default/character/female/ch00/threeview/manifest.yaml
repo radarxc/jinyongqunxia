@@ -124,3 +124,48 @@
   previous_revision:
     png: .agents/coord/_lines/novel-fix-1/before/02_por_npc_aqing__ch00_youth_apose_slim.png
     sha256: a62f5311f341f0c70f3d77acce9100b229d2edf75d5889d0cc88b6eae5cb18fe
+- id: por_npc_zhujue__ch00_f_bald_base_body_apose
+  file: por_npc_zhujue__ch00_f_bald_base_body_apose.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体基底 A 字全身参考（上臂约 41°；现素体 Tripo 输入，AR-97 / AR-99）
+  tool: not-recorded（Antigravity generate_image，2026-10-06 前后；溯源未登记）
+  model: not-recorded
+  source_path: not-recorded
+  size: 1024x1536
+  sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
+  status: approved
+  created: '2026-10-07T15:49:51-07:00'
+  notes: 补登记。作者认可的光头素体底图（光头、裸足、薄透裹胸、高叉三角裤、猎豹腿），是现素体 npc_zhujue__ch00_f_bald_base_body 的 Tripo 单图输入；2D 量得上臂 41.5° / 41.4°、头身比 8.94、髋高比 0.496。AR-105 后不再作模板输入，模板改用 _apose_narrow。
+- id: por_npc_zhujue__ch00_f_bald_base_body_apose_narrow
+  file: por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体 窄 A 字全身参考（上臂 25°，换装模板 tpl_f_medium 的唯一底图，AR-104 / AR-105）
+  prompt: 'You have an image generation tool. Use it exactly once to EDIT the reference image ./ref_bald_apose.png (pass it as the reference/input image). Edit instruction for the image tool: Lower both arms a little compared with the reference so that the FINGERTIPS end EXACTLY level with the crotch (not above it, not below it). The arms stay spread away from the body in a narrow A-pose (upper arm about 30 degrees from vertical): the distance from one fingertip to the other is about HALF of the body height, and each hand is about two thigh-widths outside the thigh, never touching or hanging close to the body. Arms straight with elbows only very slightly bent, palms facing inward toward the body, fingers together and relaxed, empty hands, symmetric left and right. Keep EVERYTHING else identical to the reference: the same face and features, the same bald head and head size, the same body proportions, torso, legs and bare feet, the same sheer bandeau and high-cut briefs, the same standing pose, the same plain beige background, the same full-body framing with head and feet fully visible. Do not add hair, clothes, shoes, jewelry, text or watermark. After the tool returns, copy the generated image file into ./out/plate30_r4 with its original extension. Do not modify ./ref_bald_apose.png and do not write or run any code that alters pixels. Reply with only the output file path.'
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
+    sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
+    use: 唯一参考：同一人、同比例，只改手臂姿态
+  tool: agy CLI（Antigravity generate_image 图像编辑；agy --model gemini-3.1-pro-high --sandbox -p）
+  model: Antigravity 图像工具（对话模型 gemini-3.1-pro-high）
+  effort: n/a
+  source_path: .agents/coord/_dressup_review/plate_narrow_r4_source.jpg
+  source_size: 848x1264
+  size: 1024x1536
+  sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+  normalization: 整图 LANCZOS 缩放 ×1.2068 使人物高与底图同为 1377 px，脚底对齐 y=1475、肩中点对齐，背景色 RGB(219,212,195) 补边；无局部改动
+  check_plate:
+    target_arm_angle_deg: 25
+    tolerance_deg: 3
+    left_arm_angle_deg: 24.961
+    right_arm_angle_deg: 24.86
+    face_iou: 0.972487
+    hips_ratio_delta: 0.002179
+    arm_span_ratio: 0.467683
+    head_to_body_ratio: 9.059211
+    pass: true
+  rounds: 8（上臂角依次 12.8 / 21.5 / 39.4 / 25.0 / 39.6 / 19.2 / 25.1 / 12.2°，取第 4 轮）
+  status: approved
+  created: '2026-10-07T15:49:51-07:00'
+  notes: 作者 2026-10-07 选定（AR-105「接受25度」）。Codex 账号出图 400、Gemini 网页版出不了素体，按作者指示改用 agy CLI 出图（AR-105）。图像模型不认精确角度，8 轮里没有落在 30° ± 3° 的，作者接受 25° 为规范窄 A；脸区 IoU 0.972、髋高比差 0.002、头身比 9.06（底图 8.94）。
