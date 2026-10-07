@@ -37,6 +37,10 @@
   },
   "slot_pool_overrides": [
    [
+    "^TOOL-dressup-",
+    "assets"
+   ],
+   [
     "^TOOL-(map|rig|ingest|assets)-",
     "assets"
    ]
@@ -50551,6 +50555,199 @@
    "profile": "code",
    "model": "GPT-5.6-Sol",
    "effort": "xhigh"
+  },
+  {
+   "phase": "PROD",
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "AR-104 阶段 T；执行 GPT-5.6-Sol xhigh（AR-103）",
+   "id": "TOOL-dressup-t0-plate",
+   "title": "3D 纸娃娃换装 · T0 · 模板板工具 make_template_plate.py 与 2D 门禁 check_plate.py（AR-104）",
+   "wave": 31,
+   "prompt": "TOOL-dressup-t0-plate.md",
+   "deps": [],
+   "profile": "code",
+   "writes": [
+    "tools/model3d/dressup/make_template_plate.py",
+    "tools/model3d/dressup/check_plate.py",
+    "tools/model3d/dressup/tests_plate.py"
+   ],
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/make_template_plate.py",
+     "tools/model3d/dressup/check_plate.py",
+     "tools/model3d/dressup/tests_plate.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_plate.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/make_template_plate.py",
+      "measure",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png",
+      "--json"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "AR-104 阶段 T；执行 GPT-5.6-Sol xhigh（AR-103）",
+   "id": "ART-dressup-t1-plate30-f",
+   "title": "3D 纸娃娃换装 · T1 · 女光头素体 30° 窄 A 底图（Codex 图像编辑 + check_plate 门禁，AR-104）",
+   "wave": 32,
+   "prompt": "ART-dressup-t1-plate30-f.md",
+   "deps": [
+    "TOOL-dressup-t0-plate"
+   ],
+   "profile": "assets",
+   "writes": [
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose30.png",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose30_overlay.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose30.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose30.png",
+      "--arm-angle-deg",
+      "30",
+      "--arm-tol-deg",
+      "3"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "AR-104 阶段 T；执行 GPT-5.6-Sol xhigh（AR-103）",
+   "id": "ENG-dressup-t3-derive",
+   "title": "3D 纸娃娃换装 · T3 · 路 A 体型派生 derive_template.py（中等 → 娇小 / 修长，AR-104）",
+   "wave": 33,
+   "prompt": "ENG-dressup-t3-derive.md",
+   "deps": [
+    "ENG-dressup-a1-glbio",
+    "ENG-dressup-a2-skeleton"
+   ],
+   "profile": "code",
+   "writes": [
+    "tools/model3d/dressup/template_specs.json",
+    "tools/model3d/dressup/derive_template.py",
+    "tools/model3d/dressup/tests_derive.py",
+    "assets/default/model3d/dressup/templates/tpl_f_small/**",
+    "assets/default/model3d/dressup/templates/tpl_f_tall/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/derive_template.py",
+     "tools/model3d/dressup/template_specs.json",
+     "assets/default/model3d/dressup/templates/tpl_f_small/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f_tall/body.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_derive.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f_small/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f_tall/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
