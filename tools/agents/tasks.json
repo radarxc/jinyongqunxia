@@ -50748,6 +50748,72 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-t2-tpl-f-medium",
+   "title": "3D 纸娃娃换装 · T2 · 女中等模板 tpl_f_medium 新正本（Tripo 生成 + 绑骨 + 动作 → 规范化 → 骨架帧，85 点，AR-104 / AR-105）",
+   "phase": "PROD",
+   "wave": 33,
+   "kind": "draft",
+   "prompt": "ART-dressup-t2-tpl-f-medium.md",
+   "deps": [
+    "ENG-dressup-a2-skeleton",
+    "ART-dressup-t1-plate30-f"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "AR-104 / AR-105；经 tri_pipeline_runner /open /eval 驱动 Tripo，不用 /tripo/task 队列",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/templates/tpl_f_medium/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/preview.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
