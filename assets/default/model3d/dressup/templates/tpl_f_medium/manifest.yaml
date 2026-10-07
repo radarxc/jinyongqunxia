@@ -1,0 +1,27 @@
+- id: dressup__template__tpl_f_medium
+  file: body.glb
+  category: model3d
+  kind: dressup-template
+  template: tpl_f_medium
+  gender: female
+  archetype: medium
+  heightM: 1.65
+  tool: tripo-studio-web（过渡期正本：复制自 npc_zhujue__ch00_f_bald_base_body/anim_idle_walk_run.glb，Tripo 项目 0e8cd219-a69e-48cd-83dc-0199e5037404 导出）
+  skeleton: skeleton.json            # 由 tools/model3d/dressup/export_skeleton.py 生成（ENG-dressup-a2-skeleton）
+  regions: regions.npy
+  source:
+    tripo_project_id: 0e8cd219-a69e-48cd-83dc-0199e5037404
+    copied_from: assets/default/model3d/npc_zhujue__ch00_f_bald_base_body/anim_idle_walk_run.glb
+  sha256: 647c674f2e3139d407714ead2fef5ddfa2abb05643d5cfdee2f730cdafb31748
+  size_bytes: 9637236
+  joints: 65
+  vertices: 105991
+  triangles: 198436
+  animations:
+  - walk (2.333s)
+  - run (1.25s)
+  - idle (15.333s)
+  preview: preview.png
+  status: candidate
+  created: '2026-10-07T11:38:13-07:00'
+  notes: AR-102 过渡期素体正本（唯一骨架来源）。1 primitive、rest=bind、Mixamo 65 关节、原地 idle/walk/run；材质带 KHR_materials_unlit 扩展但仍含 normal/MR 贴图，进包前由 textures.py 处理。AR-102 新模板（娇小/中等/修长）到位后替换本文件并重算 skeleton.json。

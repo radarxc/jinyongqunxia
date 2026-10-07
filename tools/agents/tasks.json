@@ -50269,6 +50269,261 @@
     "tools/perf/README.md",
     "CLAUDE.md"
    ]
+  },
+  {
+   "id": "ENG-dressup-a1-glbio",
+   "title": "3D 纸娃娃换装 · A1 · 离线基础库 glb_io / common / meshopt_decode / inspect / selftest（AR-102）",
+   "phase": "PROD",
+   "wave": 30,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a1-glbio.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/glb_io.py",
+    "tools/model3d/dressup/common.py",
+    "tools/model3d/dressup/meshopt_decode.mjs",
+    "tools/model3d/dressup/inspect.py",
+    "tools/model3d/dressup/selftest.py",
+    "tools/model3d/dressup/README.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/glb_io.py",
+     "tools/model3d/dressup/common.py",
+     "tools/model3d/dressup/meshopt_decode.mjs",
+     "tools/model3d/dressup/inspect.py",
+     "tools/model3d/dressup/selftest.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）"
+  },
+  {
+   "id": "ENG-dressup-a2-skeleton",
+   "title": "3D 纸娃娃换装 · A2 · 正本骨架帧导出 export_skeleton.py（插槽 / 尺寸 / 颈环 / 区域 / 握拳）",
+   "phase": "PROD",
+   "wave": 31,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a2-skeleton.md",
+   "deps": [
+    "ENG-dressup-a1-glbio"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/regions.npy",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/manifest.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/export_skeleton.py",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）"
+  },
+  {
+   "id": "ENG-dressup-a3-prop",
+   "title": "3D 纸娃娃换装 · A3 · 刚性道具归一化 normalize_prop.py（剑 / 斗笠 / 玉佩实跑）",
+   "phase": "PROD",
+   "wave": 31,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a3-prop.md",
+   "deps": [
+    "ENG-dressup-a1-glbio"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/normalize_prop.py",
+    "tools/model3d/dressup/tests_prop.py",
+    "assets/default/model3d/dressup/props/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/normalize_prop.py",
+     "assets/default/model3d/dressup/props/item_qingfeng_sword/fit.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_prop.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）"
+  },
+  {
+   "id": "ENG-dressup-a4-garment",
+   "title": "3D 纸娃娃换装 · A4 · 衣物 / 发型贴合 fit_garment.py 与跨模板 refit_template.py（流仙裙 / 夜行衣 / 马尾实跑）",
+   "phase": "PROD",
+   "wave": 32,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a4-garment.md",
+   "deps": [
+    "ENG-dressup-a1-glbio",
+    "ENG-dressup-a2-skeleton"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/refit_template.py",
+    "tools/model3d/dressup/tests_garment.py",
+    "assets/default/model3d/dressup/garments/**",
+    "assets/default/model3d/dressup/hair/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/fit_garment.py",
+     "tools/model3d/dressup/refit_template.py",
+     "assets/default/model3d/dressup/garments/cloth_xianxia_dress/fit.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）"
+  },
+  {
+   "id": "ENG-dressup-a5-gate",
+   "title": "3D 纸娃娃换装 · A5 · 门禁与进包 validate / textures / pack_glb / ingest / dressup-assets",
+   "phase": "PROD",
+   "wave": 31,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a5-gate.md",
+   "deps": [
+    "ENG-dressup-a1-glbio"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/textures.py",
+    "tools/model3d/dressup/pack_glb.mjs",
+    "tools/model3d/dressup/ingest.py",
+    "apps/game/build/dressup-assets.ts",
+    "apps/game/build/dressup-assets.test.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "assets/default/model3d/dressup/**/manifest.yaml",
+    "assets/default/model3d/dressup/**/report.json"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/validate.py",
+     "tools/model3d/dressup/textures.py",
+     "tools/model3d/dressup/pack_glb.mjs",
+     "tools/model3d/dressup/ingest.py",
+     "apps/game/build/dressup-assets.ts",
+     "apps/game/build/dressup-assets.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）"
   }
  ]
 }
