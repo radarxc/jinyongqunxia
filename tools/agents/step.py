@@ -42,7 +42,8 @@ import run as R  # noqa: E402  复用 run.py
 from check_semaphore import check_slot  # noqa: E402
 
 DEFAULT_MODEL = "GPT-6-Astra"  # 作者 2026-10-01：「调用 traex-cli（GPT 6 astra max，如果没有就 5.6-sol max）」——默认 Astra，启动探测不应答自动回退 FALLBACK_MODELS
-DEFAULT_EFFORT = "max"  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
+DEFAULT_EFFORT = "max"
+PROBE_EFFORT = "low"  # 探测模型用的推理强度（远端并入后被引用但漏定义，start 一探测就 NameError；2026-10-07 补）  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
 CODEX_BIN = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
 
 
@@ -429,7 +430,11 @@ def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bo
             return False
         except OSError:
             return False
-        return p.returncode == 0 and R.PREFLIGHT_ANSWER in (p.stdout or "") + (p.stderr or "")
+        out = (p.stdout or "") + (p.stderr or "")
+        # 2026-10-07 协调者：探测只问"模型有没有应答"。GPT-5.6-Sol 实测会把 UHSNAIT 拼成 UHSSNAIT（rc=0、12 秒应答），
+        # 严格比对会把能用的模型判成无响应；放宽为 rc=0 且输出里有一个 ≥6 个大写字母、含 NAIT 的词。
+        import re
+        return p.returncode == 0 and (R.PREFLIGHT_ANSWER in out or re.search(r"\b[A-Z]{6,9}NAIT\b|\bUHS+NAIT\b", out) is not None)
 
 
 def launch(argv: list, prompt_file: Path, log: Path, exit_file: Path, cwd: Path, extra_env: dict) -> int:
