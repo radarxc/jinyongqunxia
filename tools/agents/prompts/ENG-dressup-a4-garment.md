@@ -9,7 +9,8 @@
 spec §5.1 对齐、§5.3 权重转移 / 推离 / 遮罩、§5.4 跨模板、§5.5 材质。核验修正（必须遵守）：
 - 现有道具是独立出图的整身人形壳，姿态 / 朝向与正本不一致（袖角 17°~70° vs 正本 39°，面朝 ±X），**不存在刚体对齐**；本任务的语义锚点对齐只保证尺度 / 位置 / 偏航，袖角残差如实写进 fit.json，由后续"模板图编辑出图"从源头解决。
 - 长裙 / 宽袖离体表 > 10 cm 时最近三角会把权重分给脚趾：必须用 `jointsAllowed`（按 slot）限制，并对低置信顶点用"到关节线段距离"加权混合（Hips 为主、腿骨渐变）。
-- 推离只在 bind 姿势消穿模，要迭代 2~3 轮 + 拉普拉斯；动态穿透由 A5 的 validate 统计。
+- 推离只在 bind 姿势消穿模：每轮推完**重新查最近面复查**，迭代到 inside = 0 或达 `--iters` 上限（原型三轮后仍残留 236 顶点），位移做拉普拉斯平滑并检查翻面与边长拉伸（翻面 0、边长比 [0.7, 1.4] 内三角 ≥ 99%），`fit.json.pushOut.rounds[]` 记每轮 inside / moved；动态穿透由 A5 的 validate 统计。
+- 颈环带、手、脚区域不得进 hideRegions；对齐用 Umeyama 时强制 det = +1 并用 ≥ 6 个对称关节校验镜像（`align.mirrored`）。
 
 ## 要做的事
 1. `tools/model3d/dressup/fit_garment.py --body <正本> --skeleton <skeleton.json> --garment <raw.glb> --kind garment|hair --slot <slot> --id <id> --out <dir> [--remove-body-stub] [--push-mm 3] [--iters 3] [--coverage 0.65] [--json]`：对齐 → 删假人（可选）→ 权重转移 → 推离 → 遮罩统计 → 写蒙皮 GLB（1 node / 1 mesh / 1 primitive，skin 与正本逐字节一致，unlit，doubleSided）+ `fit.json`。
