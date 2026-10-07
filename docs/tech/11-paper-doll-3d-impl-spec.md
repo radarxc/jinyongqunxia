@@ -1,7 +1,7 @@
 # tech/11 · 3D 纸娃娃换装 · 实现 Spec（交 traex 执行）
 
 > 依据：作者需求 AR-102（素体改模板、头身分离、三种体型模板、骨架唯一、装备贴合代码化并沉淀为 Skill）、AR-103（先出方案与 spec，代码与门禁交 traex GPT-5.6-Sol xhigh，Claude 只规划与阶段验证）；方案见 `docs/tech/10-paper-doll-3d.md`。
-> 本文是**实现契约**：目录、文件归属、命令行、数据格式、运行时 API、门禁阈值、阶段划分与验收。执行器只改任务声明的文件；本文已按 `tech/10` §6 的核验结论回改（2026-10-07 v1.1：颈环按规则派生、骨长微调改子骨 position、分块与门禁三处联动、新增 `normalize_rig.py`），再有冲突以 `tech/10` §6 为准并在报告里写明。
+> 本文是**实现契约**：目录、文件归属、命令行、数据格式、运行时 API、门禁阈值、阶段划分与验收。执行器只改任务声明的文件；本文已按 `tech/10` §6 的核验结论回改（2026-10-07 v1.1：颈环按规则派生、骨长微调改子骨 position、分块与门禁三处联动、新增 `normalize_rig.py`；v1.2：AR-104 五项拍板——30° 窄 A、模板路 A、男三型、Blender 兜底、点数，新增阶段 T），再有冲突以 `tech/10` §6 为准并在报告里写明。
 > 分工：traex（GPT-5.6-Sol，xhigh）写代码、跑脚本、跑 `pnpm check` 与 validate 门禁；Claude 每个阶段结束后做验证（§10），作者看图定稿。
 
 ## 目录
@@ -27,7 +27,7 @@
 - **模型单位（mu）**：GLB 原始坐标。Tripo 导出按 AABB 最长边归一化（身体最长边 = 身高 ≈ 0.98；道具最长边多数 ≈ 0.98，有例外 0.90 / 0.95，且 AABB 边 ≠ 物体主轴长，剑斜放时主轴 1.44）。运行时按角色身高缩放到米：`scale = heightM / bodyHeightMu`。所有离线脚本只在 mu 里算；JSON 数值字段名带单位后缀 `Mu` / `M` / `Deg` / `Mm`，不混用。
 - **素体正本（canonical body）**：唯一骨架来源。过渡期 = `assets/default/model3d/npc_zhujue__ch00_f_bald_base_body/anim_idle_walk_run.glb`（Tripo 原版：1 个 primitive、105,991 顶点、198,436 三角、65 根 `mixamorig:*`、rest = bind（IBM 反推与节点 TRS 差 < 1e-6）、自带 idle 15.333 s / walk 2.333 s / run 1.25 s、`KHR_materials_unlit` 已在 extensionsUsed 但材质仍带 normal / metallicRoughness 贴图）。`model_rig.glb`（本地缝头版，2 primitive、222,460 顶点）骨架与它不一致（RightHand 差 2.57°、RightForeArm 9.41°），**不再作为任何插槽 / 权重的基准**。新模板（AR-102，`tpl_f_small / tpl_f_medium / tpl_f_tall` 与男三型）到位后，正本切换为各模板的 `body.glb`，全部派生数据由脚本重算。
 - **骨名**：GLB 内 `mixamorig:Hips`；three `GLTFLoader` 载入后被清洗为 `mixamorigHips`（`PropertyBinding.sanitizeNodeName`）。运行时映射一律用清洗后的名字；离线 JSON 用 GLB 原名。
-- **规范 A 姿势**：以正本 bind pose 为准（当前上臂与竖直夹角 39.2°、前臂 49.1°）。装备参考图必须由模板 A 字图做图像编辑得到，姿态逐像素一致；不同来源的图之间残差（现有道具：腕 10–15 cm）只能靠姿势对齐（骨局部旋转）消，不能靠相似变换消。
+- **规范 A 姿势**：**30° 窄 A**（AR-104：上臂与竖直夹角 30° ± 3°，束袖、空手）。过渡期正本上臂 39.2°、前臂 49.1°，只用于跑通阶段 A 工具链；阶段 T 生成的 30° 正本替换后，所有派生数据由脚本重算。装备参考图必须由模板 A 字图做图像编辑得到，姿态逐像素一致；不同来源的图之间残差（现有道具：腕 10–15 cm）只能靠姿势对齐（骨局部旋转）消，不能靠相似变换消。
 - **头身分离**：模板 = 颈以下；头按角色单独出；所有模板共用同一**规范颈环**（在 Neck 骨局部系取垂直于 Neck→Head 轴的切面，高度取「切片 100% 由 Neck 主导且长宽比 < 1.3 的第一段」，正本实测在 Neck + 0.012~0.018 mu、半径 ≈ 0.026 mu；**不是** Neck + 0.006——那里 17%~36% 是肩顶点，拟合圆比真实颈管大 38%）与**规范头尺寸 / 颅骨表**（头宽 0.0971 / 头深 0.1171 / 头围 ≈ 0.3248 mu，均从 Head 权重 ≥ 0.5 的顶点壳量得；颅骨表 = Head 骨局部每 5 mm 一行 x/z 半径）。头资产存「作者模板蒙皮空间」，运行时以 `inv(IBM_neck^目标) · IBM_neck^作者` 为 bindMatrix 绑到当前模板（见 `tech/10` §1.2、§3.2）。
 - **身体区域（region）**：17 区位掩码，顶点按最大权重关节归区，GLB 自定义属性 `_REGION`（u8），three 侧读作 `_region`。
 
@@ -87,13 +87,21 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
 | | `ENG-dressup-b2-preview` | viewer attachExternal / unlit 模式；Character3dPage「换装 v2」面板；window.__dressup | b1、阶段 A 产物 | §10.B |
 | **C 端到端与 Skill** | `ENG-dressup-c1-e2e` | 用阶段 A 脚本把正本 + 6 件装备跑完入库（templates/tpl_f_medium、props×3、garments×2、hair×1），report 全部 ≥ draft | a2–a5 | §10.C |
 | | `ENG-dressup-c2-skill` | `.claude/skills/dressup-3d/SKILL.md` + AGENTS.md 入口一行 | a1–a5, b1–b2, c1 | §10.C |
-| **D 模板与头**（需作者 Tripo 点数） | `ART-dressup-d1-templates` | 三套女模板 A 字图（同底图改比例）→ Tripo 生成 + 绑骨 + 动作 → 入库 templates/tpl_f_{small,medium,tall}；export_skeleton 重算 | c1 | §10.D |
-| | `ENG-dressup-d2-head` | 切头 / 缝头脚本：现有 NPC 整身模型按规范颈环切头、按头宽归一、肤色匹配 → heads/<npc_id>/ | d1 | §10.D |
-| | `ENG-dressup-d3-refit` | 对 c1 的 3 件衣物跑 refit_template 到 small / tall，门禁 | d1 | §10.D |
-| **E 首件真流程**（需作者 Tripo 点数） | `ART-dressup-e1-garment-gen` | 以模板图做 Gemini 图像编辑出一件衣服 → 2D 轮廓门禁 → Tripo 生成（整身绑骨路线）→ 关节级 Umeyama 残差报告 → 贴合入库 | d1 | §10.E |
-| | `ART-dressup-e2-merge-rig-test` | 20 点实验：合体上传整体绑骨，核对顶点数是否不变、按坐标取回权重 | d1 | §10.E |
+| **T 30° 模板**（AR-104 路 A；女 85 点、男 85 点） | `TOOL-dressup-t0-plate` | `make_template_plate.py`（量板：头顶 / 脚底 / 臂角 / 跨度 / 髋 / 肩；按目标比例逐行重采样）+ `check_plate.py`（2D 门禁） | — | §10.T |
+| | `ART-dressup-t1-plate30-f` | 现女光头底图 → Codex 图像编辑到 30° 窄 A（同人、同比例、光头、裸足、薄裹胸三角裤、白底），过 `check_plate.py` | t0 | §10.T（协调者看图后才放行 t2） |
+| | `ART-dressup-t2-tpl-f-medium` | 经常驻进程队列投递 Tripo（`image_to_model` 65 + `rig` 20 + `retarget` 0 + 导出）→ `normalize_rig.py` + `export_skeleton.py` → 替换 `templates/tpl_f_medium/`（新正本） | t1, a2 | §10.T |
+| | `ENG-dressup-t3-derive` | `derive_template.py`：分骨长度缩放 + LBS 派生娇小 / 修长（共拓扑、0 点），先在过渡期正本上实测，t2 合入后重跑出 `tpl_f_small` / `tpl_f_tall` | a2 | §10.T |
+| | `ART-dressup-t4-plate30-m` | 新出男光头 30° 窄 A 底图（AR-99 男体：一字平肩、胸厚、腹肌、细长小腿；光头、裸足、薄短裤） | t0 | §10.T |
+| | `ART-dressup-t5-tpl-m-medium` | 同 t2，男中等 `tpl_m_medium` 1.81 m；t3 派生 `tpl_m_lean` 1.76 / `tpl_m_bulk` 1.86 | t4, a2, t3 | §10.T |
+| **D 头与跨模板** | `ENG-dressup-d2-head` | 切头 / 缝头脚本：现有 NPC 整身模型按规范颈环切头、按头宽归一、肤色匹配 → heads/<npc_id>/ | t2 | §10.D |
+| | `ENG-dressup-d3-refit` | 对 c1 的 3 件衣物跑 refit_template 到 small / tall，门禁 | t3, c1 | §10.D |
+| **E 首件真流程**（W1 实验） | `ART-dressup-e1-garment-gen` | 以 30° 模板图做 Gemini 图像编辑出一件衣服 → 2D 轮廓门禁 → Tripo 生成（整身绑骨路线）→ 关节级 Umeyama 残差报告 → 贴合入库 | t2 | §10.E |
+| | `ART-dressup-e2-merge-rig-test` | 20 点实验：合体上传整体绑骨，核对顶点数是否不变、按坐标取回权重 | t2 | §10.E |
 
-阶段 A / B / C 不花 Tripo 点数、不需要浏览器，只用仓库现有文件，可以立刻开工；D / E 需要作者 Chrome 里的 Tripo 与 Gemini（走 `tripo-web` / `gemini-imagegen` 技能，Opus 子代理驱动），本 spec 只定输入输出，不展开操作。
+阶段 A / B / C 不花 Tripo 点数、不需要浏览器，只用仓库现有文件，可以立刻开工。T / E 的出图与 Tripo 调用也由 traex 执行（AR-103）：
+- 出图：按 `tools/agents/prompts/_imagegen.md` 在沙箱里转调本机 Codex（`gpt-6-astra` image_gen，`-i` 参考图），任务登记 `web: true`；
+- Tripo：经作者 Chrome 里的常驻进程 `tools/imagegen/tri_pipeline_runner.mjs`（AR-100 单连接，HTTP `127.0.0.1:9223`）：`GET /status` 先查 `cdpConnected` 与 Tripo 会话，`POST /tripo/task {npcId, ref, subject, notes}` 入队；常驻进程依次 generate → rig → retarget idle/walk/run → 导出 → `fix_anim_offset.py` → `tools/model3d/ingest.py` 落到**主检出** `assets/default/model3d/<npcId>/` 并提交主分支；任务从主检出绝对路径只读取产物再做后处理。Tripo 会话失效（`/status` 报 Session not found）时任务停下写报告，由协调者恢复会话，不得自行重启常驻进程或驱动浏览器；
+- 不输密码、不买点数、不点条款同意；每个 Tripo 任务报告写清消耗点数与余额。
 
 ## 3. 命令行约定
 
@@ -305,6 +313,11 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 - `assets/default/model3d/dressup/` 下 1 模板 + 3 道具 + 2 衣物 + 1 发型全部有 glb / fit / report / manifest，status 与 report.level 一致；`apps/game/public/assets/default/model3d/dressup/` 同步。
 - SKILL.md 每条命令逐个 `--help` 核对；按 SKILL 从零重跑一件道具能复现 report。
 
+**T 30° 模板**
+- `check_plate.py` 对 30° 底图：上臂与竖直夹角 30° ± 3°（左右各测）、头顶 / 脚底 y 与原底图差 < 2%、脸区（头顶到下巴）与原底图 IoU ≥ 0.9、跨度 / 身高比落在 30° 理论值 ± 3%；协调者并排看图确认同一人、同比例后才放行 Tripo。
+- Tripo 新正本：65 关节、rest = bind、`normalize_rig.py --check` 通过、上臂角 30° ± 3°（3D 测）、头身比 8.0~8.5、髋高占比与中等规格 0.565 差 ≤ 2%（超出由 `derive_template.py` 校正，校正量 > 8% 重出）；消耗 85 点。
+- `derive_template.py`：娇小 / 修长的身高（1.58 / 1.72 m 比例）与髋高占比（0.545 / 0.585）、肩宽比命中规格 ± 0.5%；顶点无 NaN、最大位移 ≤ 0.04 mu；三套共拓扑、骨名与顺序一致；每套 `skeleton.json` 颈环半径差 < 2 mm（派生只改骨长，颈环不变）。
+
 **D / E**：模板三套 skeleton.json 的 neckRing 半径差 < 2 mm、头尺寸归一后差 < 1%；refit 后 small / tall 的 report ≥ draft；首件 Gemini 编辑衣服的 2D 轮廓 IoU ≥ 0.9、Tripo 绑骨后躯干关节 Umeyama 残差 ≤ 2% H、腕 / 脚残差单独报告；合体绑骨实验给出"顶点是否不变"的明确结论。
 
 ## 11. 禁区（被核验驳倒或修正的做法）
@@ -317,7 +330,7 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 6. `_REGION` 不会"原样"载入：three 改名小写、按 float 上传；按 §8 写法。
 7. 分块不改 vite `manualChunks`；改 content-plugin 的 `codeSplitting.groups` + check_size + budgets 三处一起。
 8. 验收线不用 ΔE < 5（ACES 坏图也能过）；用 ΔE2000 < 1.5。
-9. 不装 Blender、不装新 pip 包；Node 侧只允许新增 devDependency `meshoptimizer`。
+9. 主链不依赖 Blender、不装新 pip 包；Node 侧只允许新增 devDependency `meshoptimizer`。Blender 经 AR-104 允许作对照 / 兜底（切头布尔、高质量减面、权重对照），只能在任务说明明确要求时 `brew install --cask blender` 或在草稿 venv `pip install bpy`，产物与报告必须注明，主流程脚本不得 import bpy。
 10. 不改 `packages/core`；不改门禁阈值；不在任何测试里加"高负载跳过"。
 11. 颈环不取 Neck + 0.006 常数、不用「下巴→颅顶」做头归一（颅顶多被发髻 / 帽子盖住）；按 §4 规则派生，头归一用「颈切面轮廓 ↔ 规范环」相似 + 脸高 ±8% 钳位。
 12. 骨长微调不用 `bone.scale` 配对法；头绑定不用运行时 `matrixWorld`；任何共享骨架的克隆体禁止无参 `bind`。
