@@ -1,0 +1,59 @@
+{
+  "anchor": "stringTop",
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "sha256": "647c674f2e3139d407714ead2fef5ddfa2abb05643d5cfdee2f730cdafb31748"
+  },
+  "class": "pendant",
+  "diagnostics": {
+    "anchorPositionMu": [
+      8.63698590464574e-14,
+      -1.956377737470919e-13,
+      -3.2908924898073445e-12
+    ],
+    "anchorSourceMu": [
+      -0.113788241,
+      0.484263713,
+      -0.002180989
+    ],
+    "componentsInput": 1,
+    "componentsOutput": 1,
+    "keep": "all"
+  },
+  "forward": "+Z",
+  "gripAdjust": {
+    "pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "quat": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "id": "luxury_jade_pendant",
+  "kind": "prop",
+  "mPerMu": 1.684441398,
+  "measuredLengthMu": 0.999062362,
+  "realSizeM": 0.08,
+  "scaleApplied": 0.047538063,
+  "schema": "tianshu-dressup-fit.v1",
+  "sizeAxis": "length",
+  "socket": "chest",
+  "source": {
+    "file": "apps/game/public/models/props/luxury_jade_pendant_raw.glb",
+    "sha256": "6119734cbc3470d42bb5e99bb208100ce78a9f61fae9dde5d73b6eb2bbd11c6a"
+  },
+  "stats": {
+    "boundaryEdges": 0,
+    "components": 1,
+    "fileBytes": 18272568,
+    "nonManifoldEdges": 0,
+    "triangles": 286012,
+    "vertices": 159289
+  },
+  "up": "+Y"
+}

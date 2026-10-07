@@ -1,0 +1,82 @@
+{
+  "anchor": "tip",
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "sha256": "647c674f2e3139d407714ead2fef5ddfa2abb05643d5cfdee2f730cdafb31748"
+  },
+  "class": "hat",
+  "diagnostics": {
+    "anchorPositionMu": [
+      -9.36366136143492e-12,
+      0.0,
+      5.539649547162381e-12
+    ],
+    "anchorSourceMu": [
+      -0.005487842,
+      0.490340064,
+      0.001674371
+    ],
+    "componentsInput": 1,
+    "componentsOutput": 1,
+    "keep": "all",
+    "profileWidthsMu": [
+      0.306052369,
+      0.340348645,
+      0.374029569,
+      0.43061731,
+      0.453451283,
+      0.465713998,
+      0.471877346,
+      0.48725936,
+      0.495692803,
+      0.500224664,
+      0.683243432,
+      0.92841681,
+      0.937521169,
+      0.865098024,
+      0.732257862,
+      0.614560582,
+      0.489919974,
+      0.368667359,
+      0.241201322,
+      0.129366417
+    ],
+    "selectedEnd": "high"
+  },
+  "forward": "+Z",
+  "gripAdjust": {
+    "pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "quat": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "id": "item_bamboo_hat",
+  "kind": "prop",
+  "mPerMu": 1.684441398,
+  "measuredLengthMu": 0.953571626,
+  "realSizeM": 0.45,
+  "scaleApplied": 0.280158167,
+  "schema": "tianshu-dressup-fit.v1",
+  "sizeAxis": "width",
+  "socket": "headTop",
+  "source": {
+    "file": "apps/game/public/models/props/item_bamboo_hat_raw.glb",
+    "sha256": "4c9a2786f957cb8981bffb97923c807f831b00627c87be95a6ba665435c7e879"
+  },
+  "stats": {
+    "boundaryEdges": 0,
+    "components": 1,
+    "fileBytes": 22220472,
+    "nonManifoldEdges": 0,
+    "triangles": 285748,
+    "vertices": 160426
+  },
+  "up": "+Y"
+}
