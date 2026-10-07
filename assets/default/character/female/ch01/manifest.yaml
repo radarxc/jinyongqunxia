@@ -243,7 +243,6 @@
   size: 1024x1536
   sha256: 60278f44be4dec2622445f16cee7c440fcd9faae60538aec9eb7d5170727f5f1
   status: candidate
-  status: candidate
   notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（作者 17:24 选定新 base 后对齐）；AR-82 原著核对返修：王语嫣曼陀长发补银色丝带；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_wangyuyan__ch01_youth_mantuo_base（2003 刘亦菲版去婴儿肥清雅骨相），保留原场景构图、神态、光照、银带挽长发及背景，蒙版外零漂移
   effort: ultra
   previous_revision:
@@ -280,7 +279,6 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: e9600bc15b6f0b65295b69d9f47332827cc3ddec0010e594e2d28eb3f706ee80
-  status: candidate
   status: candidate
   notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（作者 17:24 选定新 base 后对齐（两遍精修：去婴儿肥））；AR-82 原著核对返修：王语嫣其他场景同步银带轻挽长发；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_wangyuyan__ch01_youth_mantuo_base（2003 刘亦菲版去婴儿肥清雅骨相），保留原场景构图、神态、光照、银带挽长发及背景，蒙版外零漂移
   effort: ultra
@@ -319,7 +317,6 @@
   size: 1024x1536
   sha256: 80b179a950407f4efd947bd92ace91e2d7443b0589db5e74d19206052bf4518c
   status: candidate
-  status: candidate
   notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（作者 17:24 选定新 base 后对齐（两遍精修：去婴儿肥））；AR-82 原著核对返修：王语嫣其他场景同步银带轻挽长发；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_wangyuyan__ch01_youth_mantuo_base（2003 刘亦菲版去婴儿肥清雅骨相），保留原场景构图、神态、光照、银带挽长发及背景，蒙版外零漂移
   effort: ultra
   previous_revision:
@@ -357,7 +354,6 @@
   size: 1024x1536
   sha256: 358eff45d83b0c4ec044ddd0908b166403bd7cbd4e3a7c110cb8fa718c6b1d5e
   status: candidate
-  status: candidate
   notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（作者 17:24 选定新 base 后对齐（两遍精修：去婴儿肥））；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（AR-53 总审复核返修：再去婴儿肥）；AR-82 原著核对返修：王语嫣其他场景同步银带轻挽长发；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_wangyuyan__ch01_youth_mantuo_base（2003 刘亦菲版去婴儿肥清雅骨相），保留原场景构图、神态、光照、银带挽长发及背景，蒙版外零漂移
   effort: ultra
   previous_revision:
@@ -394,7 +390,6 @@
   source_size: 1024x1536
   size: 1024x1536
   sha256: 4955f730c45328b8478e91101d036008dab2813e504d515c512efc83bfeec35d
-  status: candidate
   status: candidate
   notes: 立绘重审重出（AR-30）；王语嫣基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_wangyuyan__ch01_youth_mantuo_base（作者 17:24 选定新 base 后对齐（两遍精修：去婴儿肥））；AR-82 原著核对返修：王语嫣其他场景同步银带轻挽长发；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_wangyuyan__ch01_youth_mantuo_base（2003 刘亦菲版去婴儿肥清雅骨相），保留原场景构图、神态、光照、银带挽长发及背景，蒙版外零漂移
   effort: ultra
