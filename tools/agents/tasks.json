@@ -50327,7 +50327,7 @@
   },
   {
    "id": "ENG-dressup-a2-skeleton",
-   "title": "3D 纸娃娃换装 · A2 · 正本骨架帧导出 export_skeleton.py（插槽 / 尺寸 / 颈环 / 区域 / 握拳）",
+   "title": "3D 纸娃娃换装 · A2 · 正本预处理 normalize_rig.py 与骨架帧导出 export_skeleton.py（插槽 / 尺寸 / 颈环 / 颅骨表 / 区域 / 握拳）",
    "phase": "PROD",
    "wave": 31,
    "kind": "draft",
@@ -50338,22 +50338,34 @@
    "review": false,
    "web": true,
    "writes": [
+    "tools/model3d/dressup/normalize_rig.py",
     "tools/model3d/dressup/export_skeleton.py",
     "tools/model3d/dressup/tests_skeleton.py",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
     "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
     "assets/default/model3d/dressup/templates/tpl_f_medium/regions.npy",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/skull_profile.json",
     "assets/default/model3d/dressup/templates/tpl_f_medium/manifest.yaml"
    ],
    "vars": {},
    "validate": {
     "exists": [
+     "tools/model3d/dressup/normalize_rig.py",
      "tools/model3d/dressup/export_skeleton.py",
-     "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json"
+     "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/skull_profile.json"
     ],
     "cmd": [
      [
       "{python}",
       "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb"
      ],
      [
       "{python}",

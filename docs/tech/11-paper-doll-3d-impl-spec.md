@@ -1,7 +1,7 @@
 # tech/11 · 3D 纸娃娃换装 · 实现 Spec（交 traex 执行）
 
 > 依据：作者需求 AR-102（素体改模板、头身分离、三种体型模板、骨架唯一、装备贴合代码化并沉淀为 Skill）、AR-103（先出方案与 spec，代码与门禁交 traex GPT-5.6-Sol xhigh，Claude 只规划与阶段验证）；方案见 `docs/tech/10-paper-doll-3d.md`。
-> 本文是**实现契约**：目录、文件归属、命令行、数据格式、运行时 API、门禁阈值、阶段划分与验收。执行器只改任务声明的文件；与方案文档冲突时以本文为准，与已核验事实冲突时以事实为准并在报告里写明。
+> 本文是**实现契约**：目录、文件归属、命令行、数据格式、运行时 API、门禁阈值、阶段划分与验收。执行器只改任务声明的文件；本文已按 `tech/10` §6 的核验结论回改（2026-10-07 v1.1：颈环按规则派生、骨长微调改子骨 position、分块与门禁三处联动、新增 `normalize_rig.py`），再有冲突以 `tech/10` §6 为准并在报告里写明。
 > 分工：traex（GPT-5.6-Sol，xhigh）写代码、跑脚本、跑 `pnpm check` 与 validate 门禁；Claude 每个阶段结束后做验证（§10），作者看图定稿。
 
 ## 目录
@@ -28,7 +28,7 @@
 - **素体正本（canonical body）**：唯一骨架来源。过渡期 = `assets/default/model3d/npc_zhujue__ch00_f_bald_base_body/anim_idle_walk_run.glb`（Tripo 原版：1 个 primitive、105,991 顶点、198,436 三角、65 根 `mixamorig:*`、rest = bind（IBM 反推与节点 TRS 差 < 1e-6）、自带 idle 15.333 s / walk 2.333 s / run 1.25 s、`KHR_materials_unlit` 已在 extensionsUsed 但材质仍带 normal / metallicRoughness 贴图）。`model_rig.glb`（本地缝头版，2 primitive、222,460 顶点）骨架与它不一致（RightHand 差 2.57°、RightForeArm 9.41°），**不再作为任何插槽 / 权重的基准**。新模板（AR-102，`tpl_f_small / tpl_f_medium / tpl_f_tall` 与男三型）到位后，正本切换为各模板的 `body.glb`，全部派生数据由脚本重算。
 - **骨名**：GLB 内 `mixamorig:Hips`；three `GLTFLoader` 载入后被清洗为 `mixamorigHips`（`PropertyBinding.sanitizeNodeName`）。运行时映射一律用清洗后的名字；离线 JSON 用 GLB 原名。
 - **规范 A 姿势**：以正本 bind pose 为准（当前上臂与竖直夹角 39.2°、前臂 49.1°）。装备参考图必须由模板 A 字图做图像编辑得到，姿态逐像素一致；不同来源的图之间残差（现有道具：腕 10–15 cm）只能靠姿势对齐（骨局部旋转）消，不能靠相似变换消。
-- **头身分离**：模板 = 颈以下；头按角色单独出；所有模板共用同一**规范颈环**（Neck 关节高度 + 0.006 mu 处水平切片拟合圆）与**规范头尺寸**（头宽 0.0971 / 头深 0.1171 / 头围 ≈ 0.3248 mu，均从 Head 权重 ≥ 0.5 的顶点壳量得）。
+- **头身分离**：模板 = 颈以下；头按角色单独出；所有模板共用同一**规范颈环**（在 Neck 骨局部系取垂直于 Neck→Head 轴的切面，高度取「切片 100% 由 Neck 主导且长宽比 < 1.3 的第一段」，正本实测在 Neck + 0.012~0.018 mu、半径 ≈ 0.026 mu；**不是** Neck + 0.006——那里 17%~36% 是肩顶点，拟合圆比真实颈管大 38%）与**规范头尺寸 / 颅骨表**（头宽 0.0971 / 头深 0.1171 / 头围 ≈ 0.3248 mu，均从 Head 权重 ≥ 0.5 的顶点壳量得；颅骨表 = Head 骨局部每 5 mm 一行 x/z 半径）。头资产存「作者模板蒙皮空间」，运行时以 `inv(IBM_neck^目标) · IBM_neck^作者` 为 bindMatrix 绑到当前模板（见 `tech/10` §1.2、§3.2）。
 - **身体区域（region）**：17 区位掩码，顶点按最大权重关节归区，GLB 自定义属性 `_REGION`（u8），three 侧读作 `_region`。
 
 ## 1. 目录与文件归属
@@ -45,7 +45,10 @@ tools/model3d/dressup/                 离线流水线（Python 3.11：numpy / s
                    EXT_meshopt_compression 编码（devDependency meshoptimizer，由本任务 pnpm add -Dw 加入）
   textures.py      basecolor ≤ 2048² JPEG q85；删除 normal / metallicRoughness 的 texture / image / bufferView（真正从 BIN 删块）；KHR_materials_unlit；doubleSided
   inspect.py       体检（--json）：节点树 / 骨架 / 包围盒 / 材质 / 蒙皮统计 / A 姿势角 / rest=bind 校验 / 连通块 / 边界边
-  export_skeleton.py   正本 → skeleton.json（§4）+ regions 旁路文件
+  normalize_rig.py     模板预处理与构建期校验：rest==bind、模型与动画 skin.joints / IBM 逐元素一致（<1e-5）、yaw 统一 +Z、
+                   丢弃 clip 里常量 scale 轨道与非 Hips 的常量 position 轨道（保留 Hips 根运动）；不一致退出码 2
+  export_skeleton.py   正本 → skeleton.json（§4）+ regions.npy + skull_profile.json
+  （阶段 D 再加：conform_ring.py 切颈压环、cut_head.py / make_head_from_bust.py 出头、skin_match.py 肤色、derive_template.py / fix_proportion.py 骨长派生与校正、make_template_plate.py / check_plate.py 出板与 2D 门禁）
   normalize_prop.py    刚性道具归一化（§5.2）→ <id>.glb + fit.json
   fit_garment.py       衣物 / 发型贴合（§5.3）→ <id>.glb（蒙皮，skin 与正本一致）+ fit.json
   refit_template.py    跨模板重贴合（§5.4）
@@ -76,7 +79,7 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
 | 阶段 | 任务 ID | 内容 | 依赖 | 验收（Claude 做） |
 |---|---|---|---|---|
 | **A 离线基础** | `ENG-dressup-a1-glbio` | glb_io / common / meshopt_decode / inspect / selftest / README | — | §10.A |
-| | `ENG-dressup-a2-skeleton` | export_skeleton.py，正本 → skeleton.json | a1 | §10.A |
+| | `ENG-dressup-a2-skeleton` | normalize_rig.py（模型 / 动画骨架一致校验、剥常量轨道）+ export_skeleton.py（skeleton.json / regions.npy / skull_profile.json） | a1 | §10.A |
 | | `ENG-dressup-a3-prop` | normalize_prop.py；实跑剑 / 斗笠 / 玉佩 | a1 | §10.A |
 | | `ENG-dressup-a4-garment` | fit_garment.py + refit_template.py；实跑流仙裙 / 夜行衣 / 马尾 | a1, a2 | §10.A |
 | | `ENG-dressup-a5-gate` | validate.py / textures.py / pack_glb.mjs / ingest.py / dressup-assets.ts（+测试） | a1 | §10.A |
@@ -116,7 +119,11 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
     "shoulderSkinWidthMu": 0.1614, "chestWidthMu": 0.1486, "waistWidthMu": 0.1156, "hipWidthMu": 0.1170,
     "handLengthMu": { "L": 0.1072, "R": 0.1098 }, "handThicknessMu": { "L": 0.0276, "R": 0.0272 }, "footLengthMu": 0.1296
   },
-  "neckRing": { "yMu": 0.8421, "centerMu": [0, 0.8421, -0.01], "radiusMu": 0.036, "samples": 32 },
+  "neckRing": {                                                        // 按规则派生：Neck 局部系垂直于 Neck→Head 轴的切面，取「100% Neck 主导且长宽比 < 1.3 的第一段」
+    "localYMu": 0.014, "centerMu": [0, 0.850, -0.012], "radiusMu": { "x": 0.028, "z": 0.024 }, "samples": 64,
+    "profile": [ { "pos": [], "normal": [], "weights": { "mixamorig:Neck": 0.85, "mixamorig:Spine2": 0.10, "mixamorig:LeftShoulder": 0.025, "mixamorig:RightShoulder": 0.025 } } ],
+    "lipOffsetMu": 0.004, "sha256": "…" },                             // 64 点椭圆轮廓 + 唇环；sha 进 manifest 作 ringSha 门禁
+  "skullProfile": { "file": "skull_profile.json", "stepMu": 0.005, "sha256": "…" },   // Head 骨局部，下巴→颅顶每 5 mm 一行 x/z 半径，发型 / 帽子贴合唯一依据
   "sockets": {                                                         // 父骨局部坐标系；pos 为 mu，quat 为 [x,y,z,w]
     "gripR": { "bone": "mixamorig:RightHand", "pos": [], "quat": [], "palmNormalLocal": [], "palmOffsetMu": 0.0153, "radiusMu": 0.014 },
     "gripL": {}, "headTop": { "bone": "mixamorig:Head" }, "headCenter": { "bone": "mixamorig:Head" }, "neck": { "bone": "mixamorig:Neck" },
@@ -136,7 +143,8 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
 
 插槽求法（核验修正后的做法，§11 第 4 条）：
 - `gripR/L`：取该手 `RightHand` 权重 > 0.9 的掌心核心顶点在骨局部系的质心；掌面法线取手部顶点 PCA 最薄轴，朝掌心侧（拇指所在侧）；握轴点 = 质心 + (palmOffsetMu + 柄半径) × 掌心法线；握轴方向 = Index1 → Pinky1 连线；左右分别算，不镜像。
-- `headTop`：Head 权重 ≥ 0.5 顶点中 y 最高 3 mm 簇的质心（不用 `HeadTop_End`，它比网格顶高 0.038 且前偏）。
+- `headTop`：Head 权重 ≥ 0.5 顶点中 y 最高 3 mm 簇的质心（不用 `HeadTop_End`，它比网格顶高 0.038 且前偏 0.042 mu）。
+- 颈环：不用 Neck + 常数；按上文规则搜索切面高度，椭圆拟合，64 点各存位置 / 法线（径向 + 上翘 15°）/ 4 骨权重；头与模板共用此表，LBS 逐点一致 → 任何姿态缝 gap 0。
 - `chest / back / waist*`：对应骨权重顶点壳的外表面点 + 法线（关节本身埋在皮下 ≈ 0.04 mu）。
 - `fingerPose.fist`：从 idle 第 0 帧采样指骨局部四元数，再向握拳方向加紧 25°~35°。
 
@@ -166,15 +174,15 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
 
 ### 5.3 衣物 / 发型 `fit_garment.py`
 - `--kind garment|hair --slot body|innerBody|hands|feet|waist|cape|shoulder|head --id <id> [--remove-body-stub] [--push-mm 3] [--iters 3] [--coverage 0.65]`。
-- 对齐（§5.1）→ 删除衣内假人（可选：与正本体表距离 < 1 mm 且法线反向的三角）→ **权重转移**：每顶点找正本最近三角（cKDTree k=16 质心候选 + 精确点-三角），重心插值 4 骨权重；置信 = 距离 ≤ 5% 对角线且法线夹角 ≤ 30°；低置信顶点按邻接做拉普拉斯扩散填充；**按 slot 限制关节集合**（body 裙摆：Hips / UpLeg / Leg，禁 Foot / Toe；袖：Shoulder / Arm / ForeArm / Hand；hair：Head / Neck / Spine2），归一化到 ≤ 4 骨 → **推离**：带符号距离 < pushMm 的顶点沿体表法线推出，`iters` 轮，每轮后拉普拉斯 1 次 → **遮罩统计**：对每个 region，被衣物覆盖（衣物三角在体表外 ≤ 15 mm、法线同向、射线遮挡）的面积占比 > `coverage` → `hideRegions`；`neverHide = [handL, handR, footL, footR]`。
+- 对齐（§5.1）→ 删除衣内假人（可选：与正本体表距离 < 1 mm 且法线反向的三角）→ **权重转移**：每顶点找正本最近三角（cKDTree k=16 质心候选 + 精确点-三角），重心插值 4 骨权重；置信 = 距离 ≤ 5% 对角线且法线夹角 ≤ 30°；低置信顶点按邻接做拉普拉斯扩散填充；**按 slot 限制关节集合**（body 裙摆：Hips / UpLeg / Leg，禁 Foot / Toe；袖：Shoulder / Arm / ForeArm / Hand；hair：Head / Neck / Spine2），归一化到 ≤ 4 骨 → **推离**：带符号距离 < pushMm 的顶点沿体表法线推到 +pushMm，**每轮推完重新查最近面复查**，迭代到 inside = 0 或达 `iters` 上限（原型三轮后仍残留 236 顶点，必须按复查迭代），位移做拉普拉斯平滑并检查翻面 / 边长拉伸（翻面 0、边长比 [0.7, 1.4] 内三角 ≥ 99%）→ **遮罩统计**：对每个 region，被衣物覆盖（衣物三角在体表外 ≤ 15 mm、法线同向、射线遮挡）的面积占比 > `coverage` → `hideRegions`；`neverHide = [handL, handR, footL, footR]`。
 - 输出：1 node + 1 mesh（1 primitive）+ skin（joints 顺序与 IBM 逐字节复制正本）+ unlit 材质；`fit.json`：
 
 ```jsonc
 { "schema": "tianshu-dressup-fit.v1", "kind": "garment", "slot": "body", "id": "cloth_xianxia_dress",
   "source": {}, "body": {},
-  "align": { "method": "landmarks|joints", "scale": 1.02, "yawDeg": 90, "residualMu": { "neckTop": 0.004, "feet": 0.0 } },
+  "align": { "method": "landmarks|joints", "scale": 1.02, "yawDeg": 90, "mirrored": false, "residualMu": { "neckTop": 0.004, "feet": 0.0, "mixamorig:Hips": 0.003 } },   // joints 法逐关节残差
   "weights": { "method": "nearest-triangle-barycentric", "highConfidence": 0.91, "maxBones": 4, "jointsAllowed": [] },
-  "pushOut": { "mm": 3, "iters": 3, "movedVertices": 7238, "residualInside": 0 },
+  "pushOut": { "mm": 3, "iters": 3, "rounds": [ { "inside": 6831, "moved": 7238 }, { "inside": 236, "moved": 240 }, { "inside": 0, "moved": 0 } ], "flippedTriangles": 0, "stretchOutliers": 0 },
   "hideRegions": ["torsoUpper", "torsoLower", "hips", "thighL", "thighR"], "neverHide": ["handL", "handR", "footL", "footR"],
   "spring": null,
   "fitVersion": 1 }
@@ -199,6 +207,8 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
 | 穿透（动态） | 对模板 idle / walk / run 各采 24 帧做 LBS（**同骨架，直接用模板 clip，不 retarget**；sampler LINEAR 插值，CUBICSPLINE 报不支持），装备顶点带符号距离 < −1 mm 的占比：draft ≤ 2%，approved ≤ 0.5% |
 | 穿透（静态） | bind 姿势残留 0 |
 | 遮罩 | hideRegions ⊆ regions.ids 且 ∩ neverHide = ∅ |
+| 几何质量 | 翻面三角 0；边长比 [0.7, 1.4] 内三角 ≥ 99%；贴身区（\|d\| < 0.05 m）到体表距离 p90 与源件差 < 5 mm（refit 用） |
+| 遮罩禁区 | 颈环带、手、脚区域不得被 hideRegions 覆盖 |
 | 道具 | 锚点 \|pos\| < 1e-4 mu、主轴 = +Y、尺寸与 realSizeM 差 ≤ 2% |
 | 面数 / 贴图 | 不超过 §5.5 目标；贴图 ≤ 2048² |
 
@@ -212,7 +222,10 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
   category: model3d
   kind: dressup-garment          # dressup-template | dressup-head | dressup-garment | dressup-hair | dressup-prop
   slot: body                     # EquipmentSlotSchema 的值（packages/data/src/schemas/item.ts）；prop 用 mainHand / offHand / accessory…
-  template: tpl_f_medium
+  template: tpl_f_medium         # 制作所用模板（madeOn）
+  fits:                          # 跨模板变体（refit_template.py 产出）：每模板一份文件与报告
+    tpl_f_medium: { file: cloth_xianxia_dress.glb, report: report.json, status: candidate }
+    tpl_f_small: { file: cloth_xianxia_dress.tpl_f_small.glb, report: report.tpl_f_small.json, status: draft }
   item: eq_xianxia_liuxianqun    # content/items 物品 id，可空
   fit: fit.json
   report: report.json
@@ -243,7 +256,7 @@ export interface DressupActor {
   equip(spec: DressupEquipSpec): Promise<void>;
   unequip(id: string): void;
   setHideMask(regions: readonly string[]): void;         // 并集由 actor 按已穿装备自动算；此方法供调试
-  setBoneScale(tweaks: Readonly<Record<string, number>>): void;   // 骨长微调（子骨反向补偿），限 ±5%
+  setBoneLength(tweaks: Readonly<Record<string, number>>): void;  // 骨长微调：子骨 position.y × s（或父骨 scale + 辅助节点 1/s），限 0.97~1.03；不用 bone.scale 配对法
   playClip(name: string, fade?: number): void;           // 复用模板 clip；持械时覆盖指骨轨道为 fingerPose
   update(dt: number): void;
   stats(): { drawCalls: number; triangles: number; boneTextureUploads: number };
@@ -257,7 +270,10 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 - **unlit**：`KHR_materials_unlit` → `MeshBasicMaterial`，仍受 `renderer.toneMapping` 影响，设 `material.toneMapped = false`（或整场景 `NoToneMapping`）；对仍是 PBR 的旧资产，运行时 `MeshStandardMaterial → MeshBasicMaterial({ map })` 并 dispose 旧材质。"关阴影 / 强光"对 unlit 材质是空操作，不作为前提。
 - **区域遮罩**：three 把 `_REGION` 改名为 `_region`（值不变）；shader 里 `attribute float _region;`，`flat varying uint vRegion; vRegion = uint(_region + 0.5);`，`uniform uint uHideMask; if ((uHideMask & (1u << vRegion)) != 0u) discard;`；`customProgramCacheKey` 固定；`customDepthMaterial` 同样注入或素体 `castShadow = false`；加载后断言 `geometry.attributes._region` 存在。draw call 数 = 素体 primitive 数（正本 1），与隐藏组合无关。
 - **插槽**：`sockets[*]` 建成挂在对应 Bone 下的 `Object3D`（局部 pos / quat 来自 skeleton.json）；prop 的矩阵 = socket · `gripAdjust`；持械时对该手 15 根指骨在 `mixer.update` 之后写 `fingerPose.fist` 四元数（或从 clip 里剔除这些 track）。
-- **骨长微调**：`bone.scale` 非均匀缩放会传给子骨，子骨按 1/scale 反向补偿；只允许 ±5%。
+- **骨长微调**：**不用** `bone.scale(1,s,1)` + 子骨 `(1,1/s,1)`（已驳倒：动画弯曲时 S·R·S⁻¹ 使小腿缩短 2.9%、子树非刚性 3%，mixer 的 scale 轨道每帧复位）。改为 ① `child.position.y *= s`（真改骨长），或 ② 父骨 `scale.y = s` + 父子间插普通 `Object3D`（position = 子骨 rest 偏移，scale.y = 1/s，子骨 position = 0）；在 `SkeletonUtils.clone` 之后、首次 `skeleton.update` 之前施加；前提是 `normalize_rig.py` 已剥掉 clip 的 scale 轨道与非 Hips position 轨道；只允许 0.97~1.03，比例差更大换模板。
+- **头绑定**：`bindMatrix = inv(IBM_neck^目标) · IBM_neck^作者模板`，绝不用运行时 `neck.matrixWorld`；bindMatrix 只能是相似变换（det > 0，无非均匀缩放 / 镜像）；头与装备必须挂在角色 root 内；共享 `boneInverses` 的任何克隆体禁止无参 `bind`。
+- **战斗实例化**：`SkeletonUtils.clone` 会给每个 SkinnedMesh 各自 `skeleton.clone()`；clone 后取第一个 skeleton，其余 `mesh.bind(shared, mesh.bindMatrix)` 合并。
+- **包围盒**：meshopt 量化后 `geometry.boundingBox` 不可直接当身高（`scene.ts` 现做法会得到 2.0），改读 manifest `heightMu` 或 `SkinnedMesh.computeBoundingBox()`。
 - **动画**：装备与正本同骨架，复用正本 clip，不调用 `retargetClip`。
 
 ## 9. 分块与预算
@@ -265,7 +281,9 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 - 分块规则在 `apps/game/build/content-plugin.ts`（Rolldown `codeSplitting.groups`，`includeDependenciesRecursively: false`），**不是** vite `manualChunks`：新增 `dressupLazyChunk(id)` 把 `packages/render/src/dressup/**` 分到 `render-dressup`；`GLTFLoader` / `SkeletonUtils` 已在 `battle-model3d`，允许静态依赖它；若用到其他 `three/examples/jsm/**` 附件要逐个点名进 `render-dressup`。
 - 入口必须是 `import()` 边界：页面或 battle 场景动态引入 `packages/render/src/dressup/runtime.ts`；`packages/render/src/index.ts` 只 `export type`。
 - `tools/perf/check_size.mjs` 新增 `appendRenderLazyRecord('render-dressup', findManifestChunk('render-dressup', { sources: ['packages/render/src/dressup/runtime.ts'], manifestNames: ['render-dressup'] }))`，扣除 render 与 battle-model3d 已计闭包；`budgets.json` 加 `"render-dressup": 24`；`check_size.test.mjs` 补"缺块即失败"断言；`content-plugin.test.ts` 补分块断言。
-- render 主 chunk 180 KiB 门不动（现余 0.58 KiB）；换装运行时不得给主 chunk 增加任何静态 import。
+- render 主 chunk 180 KiB 门不动（实测 174.4~175.0 KiB，余 ≈ 5 KiB；「0.58 KiB」是旧数）；换装运行时只用 render 主块里已存在的 three 核心 API（新用到的核心导出会被 tree-shaking 留进主块），每次 `pnpm size` 前后对比 render 行；不得拆块绕过。
+- `apps/game/vite.config.ts` PWA `globIgnores` 加 `**/assets/render-dressup-*.js`（否则 Service Worker 首装预缓存）。
+- 新增 `packages/render/src/dressup/performance.test.ts`（100 角色 × 平均 4 件 `skeleton.update` + 插槽更新 P95 门，进 `pnpm check:perf`，不进 `pnpm check`；禁止高负载跳过）。
 - meshopt simplifier（55 KB）只在离线脚本里用，不进运行时。
 
 ## 10. 阶段验收（Claude 验证清单）
@@ -291,7 +309,7 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 
 ## 11. 禁区（被核验驳倒或修正的做法）
 
-1. 不用 AABB 中心 / 包围盒对齐装备（现有 18 件道具全部按 0.98 归一、锚点在中心，必然失败）；尺度来源只能是 realSizeM × 语义长度，或生成端 `auto_size`（待实测）。
+1. 不用 AABB 中心 / 包围盒对齐发型 / 武器 / 衣服（现有道具多数按 0.98 归一、锚点在中心；紧凑件如玉佩 / 香囊可用）；尺度来源只能是 realSizeM × 语义长度（PCA 主轴），或生成端 `auto_size`（仅 API 有，Studio 待实测）。
 2. 不用 `HeadTop_End` 当头顶；插槽 / 尺寸一律从蒙皮网格顶点壳算，不从关节位置派生。
 3. 不把 `model_rig.glb` 与 `anim_idle_walk_run.glb` 混用；穿透统计不跨骨架套 clip。
 4. Umeyama 只消全局尺度 / 平移 / 朝向；关节角差必须用骨局部旋转对齐；"3% 内"是零样本假设，必须首件实测。
@@ -301,6 +319,9 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 8. 验收线不用 ΔE < 5（ACES 坏图也能过）；用 ΔE2000 < 1.5。
 9. 不装 Blender、不装新 pip 包；Node 侧只允许新增 devDependency `meshoptimizer`。
 10. 不改 `packages/core`；不改门禁阈值；不在任何测试里加"高负载跳过"。
+11. 颈环不取 Neck + 0.006 常数、不用「下巴→颅顶」做头归一（颅顶多被发髻 / 帽子盖住）；按 §4 规则派生，头归一用「颈切面轮廓 ↔ 规范环」相似 + 脸高 ±8% 钳位。
+12. 骨长微调不用 `bone.scale` 配对法；头绑定不用运行时 `matrixWorld`；任何共享骨架的克隆体禁止无参 `bind`。
+13. 推离不是「推一次就完」：每轮推完必须复查最近面并迭代到 inside = 0；检查翻面与边长拉伸。
 
 ## 12. 任务登记草案（`tools/agents/tasks.json`）
 
@@ -309,7 +330,7 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 | ID | writes | deps | 额外校验 |
 |---|---|---|---|
 | ENG-dressup-a1-glbio | `tools/model3d/dressup/{glb_io.py,common.py,meshopt_decode.mjs,inspect.py,selftest.py,README.md}` | — | `inspect.py --json <正本>` 退出 0 |
-| ENG-dressup-a2-skeleton | `tools/model3d/dressup/export_skeleton.py`、`assets/default/model3d/dressup/templates/tpl_f_medium/{skeleton.json,regions.npy,manifest.yaml}` | a1 | `export_skeleton.py --check` |
+| ENG-dressup-a2-skeleton | `tools/model3d/dressup/{normalize_rig.py,export_skeleton.py}`、`assets/default/model3d/dressup/templates/tpl_f_medium/{body.glb,skeleton.json,regions.npy,skull_profile.json,manifest.yaml}` | a1 | `normalize_rig.py --check`、`export_skeleton.py --check` |
 | ENG-dressup-a3-prop | `tools/model3d/dressup/normalize_prop.py` | a1 | 实跑 3 件，报告写数字 |
 | ENG-dressup-a4-garment | `tools/model3d/dressup/{fit_garment.py,refit_template.py}` | a1, a2 | 实跑 3 件 + 恒等回归 |
 | ENG-dressup-a5-gate | `tools/model3d/dressup/{validate.py,textures.py,pack_glb.mjs,ingest.py}`、`apps/game/build/dressup-assets*.ts`、`package.json`、`pnpm-lock.yaml`（只为 meshoptimizer） | a1 | `pnpm test -- apps/game/build/dressup-assets` |
