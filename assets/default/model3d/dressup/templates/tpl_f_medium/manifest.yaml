@@ -9,11 +9,17 @@
   tool: tripo-studio-web（过渡期正本：复制自 npc_zhujue__ch00_f_bald_base_body/anim_idle_walk_run.glb，Tripo 项目 0e8cd219-a69e-48cd-83dc-0199e5037404 导出）
   skeleton: skeleton.json            # 由 tools/model3d/dressup/export_skeleton.py 生成（ENG-dressup-a2-skeleton）
   regions: regions.npy
+  skullProfile: skull_profile.json
+  skullProfileSha: 284ae20a89323ac76f91157607193825e805c638d1a2660248ca82372689d63c
+  heightMu: 0.97955321
+  mPerMu: 1.68444142
+  ringSha: b9acbb24d69a4d150e1895a40d4240f352f8504cadf58f441fff645bae6aa4c2
+  skeletonSha: dd486e75337713620889a5e7604ef010da47daaa11debabfcaa082a3e0a2bcbd
   source:
     tripo_project_id: 0e8cd219-a69e-48cd-83dc-0199e5037404
     copied_from: assets/default/model3d/npc_zhujue__ch00_f_bald_base_body/anim_idle_walk_run.glb
-  sha256: 647c674f2e3139d407714ead2fef5ddfa2abb05643d5cfdee2f730cdafb31748
-  size_bytes: 9637236
+  sha256: 346a5b7c2a27c4f621b13e609839b8ddcc0c8e550a2b3335f93294f0e2669f15
+  size_bytes: 9722404
   joints: 65
   vertices: 105991
   triangles: 198436
