@@ -50581,7 +50581,7 @@
     "tools/model3d/dressup/tests_plate.py"
    ],
    "sparse_include": [
-    "assets/default/character/female/ch00/threeview"
+    "assets/default/character/female/ch00/threeview/*.png"
    ],
    "validate": {
     "exists": [
