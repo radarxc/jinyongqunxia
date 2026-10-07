@@ -3,7 +3,7 @@
 | 项 | 内容 |
 |---|---|
 | 文档 | `docs/tech/10-paper-doll-3d.md`（简称 `tech/10-dressup`） |
-| 版本 | v1.1（2026-10-07，AR-102 / AR-103；AR-104 五项拍板已回写：30° 窄 A、模板路 A、男三型命名身高、允许 Blender 兜底、点数） |
+| 版本 | v1.1（2026-10-07，AR-102 / AR-103；AR-104 五项拍板已回写；AR-105：素体图走 agy、规范窄 A 改 25°、女中等底图定稿；模板路 A、男三型命名身高、允许 Blender 兜底、点数） |
 | 上游基准 | `docs/decisions/author-requirements.md` AR-97 / AR-99（素体铁律与体型分型）、AR-100（Tripo 单连接队列）、AR-102（模板化、头身分离、三模板、骨架唯一、代码化成 Skill）、AR-103（方案 + spec 先行，代码交 traex） |
 | 平行文档 | `tech/11-paper-doll-3d-impl-spec.md`（实现契约，与本文冲突处以本文 §6 的核验结论为准并回改 spec）、`tech/09-character-rig.md`（2D 分层 rig，仍是战斗主线）、`tech/06`（素材键与 manifest）、`tech/07`（出图管线）、`.claude/skills/tripo-web/SKILL.md`、`.claude/skills/gemini-imagegen/SKILL.md` |
 | 本文职责 | 总体思路；作者 5 个问题的根因与解法；素体模板与头的定义；装备 3D 资产离线流水线；three.js 运行时；数据与 schema；按周落地计划；已核验 / 被驳倒 / 待实测断言；需作者拍板的开放问题 |
@@ -59,7 +59,7 @@
 
 **脸不一样怎么办**：模板永远只到规范颈环；脸是每个角色的头资产，入库时颈口被压到同一规范环、尺寸被归一到规范头尺寸（用"颈切面轮廓 ↔ 规范环"的相似缩放 + 脸高 ±8% 钳位，不用下巴→颅顶），运行时以 `inv(IBM_neck)` 为 bindMatrix 绑到当前模板骨架。模板共用与脸各不相同互不冲突，换装只碰颈以下；Gemini 出衣图时脸怎么漂都无所谓，因为衣图产出的网格只取颈以下。肤色以头为身份、身体迁就头：按头的 Lab 选模板皮肤 3 档变体（fair / medium / tan），余差用 `MeshBasicMaterial.color` 乘法补，颈带 8 mm 内贴图渐变。
 
-**模板应有娇小 / 中等 / 修长三种**：女 `tpl_f_small` 1.58 m / `tpl_f_medium` 1.66 m / `tpl_f_tall` 1.72 m，男 `tpl_m_lean` 精悍 1.76 / `tpl_m_medium` 中等 1.81 / `tpl_m_bulk` 魁梧 1.86 m（AR-104 已定）。三套共享骨架命名顺序、规范颈环、颅骨表、17 区、插槽名、动作名；不共享顶点与骨长。生成方式按 AR-104 走**路 A**：中等模板以 30° 窄 A 光头底图一次生成，娇小 / 修长由分骨长度缩放 + LBS 派生（0 点、共拓扑、比例精确命中规格）；路 B（三张比例板各生成、腿型变体）留作魁梧型将军肚 / 粗四肢派生不像时的补救，届时另报点数。
+**模板应有娇小 / 中等 / 修长三种**：女 `tpl_f_small` 1.58 m / `tpl_f_medium` 1.66 m / `tpl_f_tall` 1.72 m，男 `tpl_m_lean` 精悍 1.76 / `tpl_m_medium` 中等 1.81 / `tpl_m_bulk` 魁梧 1.86 m（AR-104 已定）。三套共享骨架命名顺序、规范颈环、颅骨表、17 区、插槽名、动作名；不共享顶点与骨长。生成方式按 AR-104 走**路 A**：中等模板以 25° 窄 A 光头底图一次生成，娇小 / 修长由分骨长度缩放 + LBS 派生（0 点、共拓扑、比例精确命中规格）；路 B（三张比例板各生成、腿型变体）留作魁梧型将军肚 / 粗四肢派生不像时的补救，届时另报点数。
 
 ---
 
@@ -118,7 +118,7 @@
 （41 个现有 NPC 实测骨盆高占比 0.52~0.59、肩关节距 0.134~0.203 mu，上表落在实测分布内。注意该比值是骨盆高占比，不是腿长占比。）
 
 **生成（AR-104 定路 A；路 B 只作补救）**
-- 路 A（**采用**；中等模板 65 + 20 点，派生 0 点）：中等模板以 30° 窄 A 光头底图生成（女底图由现光头底图图像编辑到 30°，男底图新出），中等模板一次 `image_to_model`（65）+ `rig`（20）+ `retarget`（0）后，娇小 / 修长由 `derive_template.py` 做分骨长度缩放（UpLeg / Leg / Foot、Spine*、Arm*、肩宽）+ LBS 派生：本机演示把 `temp_fresh_body.glb` 的腿骨按 k = 1.0816 / 0.9245 缩放后髋高比精确命中 0.5879 / 0.5567，各 1.5 s，顶点最大位移 0.037 mu、无 NaN。三套共拓扑、共骨架层级，`refit_template.py` 退化为同一组分骨变换。代价：只改骨长不改围度，是"拉伸的同一个人"。
+- 路 A（**采用**；中等模板 65 + 20 点，派生 0 点）：中等模板以 25° 窄 A 光头底图生成（女底图 `por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png` 已由 agy 图像编辑定稿，男底图同法新出），中等模板一次 `image_to_model`（65）+ `rig`（20）+ `retarget`（0）后，娇小 / 修长由 `derive_template.py` 做分骨长度缩放（UpLeg / Leg / Foot、Spine*、Arm*、肩宽）+ LBS 派生：本机演示把 `temp_fresh_body.glb` 的腿骨按 k = 1.0816 / 0.9245 缩放后髋高比精确命中 0.5879 / 0.5567，各 1.5 s，顶点最大位移 0.037 mu、无 NaN。三套共拓扑、共骨架层级，`refit_template.py` 退化为同一组分骨变换。代价：只改骨长不改围度，是"拉伸的同一个人"。
 - 路 B（补救，不默认；AR-99 腿型体块）：`make_template_plate.py` 以 `assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png` 为唯一底图，脖子线以下按目标骨盆高占比纵向重采样（复用 `stretch_apose.py` 逐行拉伸）、肩宽横向重采样，出 3 张板；Gemini 在板上只改腿型（筷子腿 / 猎豹腿）出 frail / martial 两变体；`check_plate.py` 门禁：头顶 / 脚底 y 偏差 < 2%、臂张角与底图差 < 3°、跨度 / 身高比差 < 3%，不合格 0 点重出。Tripo：martial 板 `image_to_model` × 3 → `rig` × 3 → `retarget` → `exportGlb`；frail 变体只生成不绑骨，`transfer_rig.py` 从同模板 martial 取权重。生成后**必须**再跑 `fix_proportion.py`（同路 A 的骨长校正）把关节比例收敛到规格表 —— Tripo 同图重跑尺度自动一致（高 0.98 ± 0.3%）但比例离散约 1%（同图）/ 髋 ±2%（同构图微调），multiview 重建可差 −5.4%；校正量 > 8%（顶点位移 > 0.04 mu）才重出。
 - 共同后处理：`normalize_rig.py`（§1.1 校验 + yaw + 丢轨道 + Head/Neck 关节平移归一并重算这两根 IBM）→ `conform_ring.py` 切颈压环 → `export_skeleton.py` 出 `skeleton.json`（65 关节 bind 世界 / IBM、从蒙皮网格量的地标与插槽、17 区、颈环 sha、颅骨表引用、`heightMu` 实测 / `mPerMu`）→ `ingest.py --category model3d-template`。
 
@@ -135,8 +135,8 @@
 ### 2.1 出图规范（以模板图为底做图像编辑）
 
 - 输入：2D 装备图（`assets/default/item/<类>/`，共 1,009 张）+ 当前模板的 A-pose 板（光头、裸足、薄裹胸三角裤）。
-- Gemini 提示词固定模板："同一人物、同一站姿、同一构图（头顶 / 脚底像素位置不变）、光头、白底，穿上〈装备图〉；手露出袖口；裙摆离地可见鞋；领高不超过颈根"。规范 A 字张角 **30° ± 3°**（AR-104，与 tripo-web 技能窄 A 铁律一致：束袖、直筒裙、双臂展开 30°、空手）；现底图 39°~43° 宽 A 只作过渡期正本，六张模板板与所有衣图统一 30°。
-- `check_plate.py` 2D 轮廓门禁（Pillow 前景分割 + 轮廓叠加）：头顶 / 脚底 y 偏差 < 2%、脸 / 手 / 脚轮廓 IoU ≥ 0.9、跨度 / 身高比与板差 < 3%、臂上沿角与板差 < 3°（模板板本身另验绝对角 30° ± 3°）；不合格 0 点重出。此门禁的职责是保证姿态 / 轮廓 / 绑骨前提，不指望它控制 Tripo 的 ~1% 比例抖动。
+- Gemini 提示词固定模板："同一人物、同一站姿、同一构图（头顶 / 脚底像素位置不变）、光头、白底，穿上〈装备图〉；手露出袖口；裙摆离地可见鞋；领高不超过颈根"。规范 A 字张角 **25° ± 3°**（AR-105 由 AR-104 的 30° 改定；窄 A：束袖、直筒裙、双臂展开、空手）；现底图 39°~43° 宽 A 只作过渡期正本，六张模板板与所有衣图统一 30°。
+- `check_plate.py` 2D 轮廓门禁（Pillow 前景分割 + 轮廓叠加）：头顶 / 脚底 y 偏差 < 2%、脸 / 手 / 脚轮廓 IoU ≥ 0.9、跨度 / 身高比与板差 < 3%、臂上沿角与板差 < 3°（模板板本身另验绝对角 25° ± 3°）；不合格 0 点重出。此门禁的职责是保证姿态 / 轮廓 / 绑骨前提，不指望它控制 Tripo 的 ~1% 比例抖动。
 - 注意：画布留白不影响 3D 尺度（bald 底图人物占画幅 89.6%，charmhigh 占 96.6%，3D 高度都是 0.98 mu）；`SKILL.md:282`"男主减少留白让男高于女"在 3D 上无效，男高于女只能靠 `heightM`。
 
 ### 2.2 Tripo 生成与绑骨选型
@@ -292,7 +292,7 @@ Avatar3dSchema = {
 
 | 周 | 里程碑 | 验收标准 |
 |---|---|---|
-| W1 | 最小实验（≤ 105 点，§5.1）+ 30° 女中等模板（阶段 T） | 30° 底图过 2D 门禁；`tpl_f_medium` 新正本生成、绑骨、normalize、skeleton.json；娇小 / 修长派生；合体绑骨与 unlit 两项报告落盘（张角与路线已由 AR-104 定） |
+| W1 | 最小实验（≤ 105 点，§5.1）+ 25° 女中等模板（阶段 T） | 25° 底图过 2D 门禁；`tpl_f_medium` 新正本生成、绑骨、normalize、skeleton.json；娇小 / 修长派生；合体绑骨与 unlit 两项报告落盘（张角与路线已由 AR-104 定） |
 | W2 | 阶段 A 离线基础（traex a1~a5：glb_io / inspect / export_skeleton / normalize_prop / fit_garment / refit / validate / textures / pack / ingest） | `selftest.py` 退出 0；正本 skeleton.json 全字段；剑 `measuredLengthMu ≈ 1.44`、`scaleApplied ≈ 0.41`；流仙裙高置信率 ≥ 0.85、bind 残留 0、耗时 < 60 s、report ≥ draft；`pnpm check` 全绿 |
 | W3 | 阶段 B 运行时（b1 runtime + b2 预览页"换装 v2"） | `pnpm size` 出现 `render-dressup` ≤ 24 KiB 且 render 主块不增长；`/character-3d` 加载正本 + 流仙裙 + 马尾 + 青锋剑播 walk：裙随腿动、剑在右手、马尾贴颅顶；`stats()` drawCalls = 1 + 装备数、boneTextureUploads 每帧 1；ΔE2000 < 1.5 |
 | W4 | 阶段 C 端到端 + Skill（c1 / c2） | 1 模板 + 3 道具 + 2 衣物 + 1 发型全部有 glb / fit / report / manifest；`.claude/skills/dressup-3d/SKILL.md` 每条命令 `--help` 核对，按 SKILL 从零重跑一件道具复现 report |
@@ -302,8 +302,8 @@ Avatar3dSchema = {
 
 ### 5.1 第一周最小实验（必做三件 + 一件可选）
 
-0. **30° 女中等模板（阶段 T，85 点）**：现光头底图（39°~43°）图像编辑到 30° → `check_plate.py` 过门禁（臂角 30° ± 3°、头顶 / 脚底 < 2%、脸区不变）→ 协调者看图 → Tripo `image_to_model` + `rig` + `retarget` → `normalize_rig.py` + `export_skeleton.py` 替换 `tpl_f_medium` 正本 → `derive_template.py` 派生 `tpl_f_small` / `tpl_f_tall`。
-1. **模板图像编辑出一件衣服 + 2D 轮廓门禁 + 65 点生成 + 关节级 Umeyama 残差报告**：以 30° 底图为底，Gemini 画"同一人物穿仙侠长裙"；`check_plate.py` 过门禁（头顶 / 脚底 < 2%、IoU ≥ 0.9、跨度比 < 3%）才投递 `image_to_model`（65）+ `rig`（20，仅为取关节）；对正本做 ≥ 6 个躯干关节 Umeyama（可判镜像），分开报告"可消部分（尺度 / 平移 / 旋转）"与"不可消部分（x/y 比、肢长比、逐关节残差）"；通过线：躯干关节残差 ≤ 2% H，腕 / 脚单独报告，穿戴件相对模板 x/y 尺度比 ≤ 1.02。
+0. **25° 女中等模板（阶段 T，85 点）**：现光头底图（39°~43°）图像编辑到 25° → `check_plate.py` 过门禁（臂角 25° ± 3°、头顶 / 脚底 < 2%、脸区不变）→ 协调者看图 → Tripo `image_to_model` + `rig` + `retarget` → `normalize_rig.py` + `export_skeleton.py` 替换 `tpl_f_medium` 正本 → `derive_template.py` 派生 `tpl_f_small` / `tpl_f_tall`。
+1. **模板图像编辑出一件衣服 + 2D 轮廓门禁 + 65 点生成 + 关节级 Umeyama 残差报告**：以 25° 底图为底，Gemini 画"同一人物穿仙侠长裙"；`check_plate.py` 过门禁（头顶 / 脚底 < 2%、IoU ≥ 0.9、跨度比 < 3%）才投递 `image_to_model`（65）+ `rig`（20，仅为取关节）；对正本做 ≥ 6 个躯干关节 Umeyama（可判镜像），分开报告"可消部分（尺度 / 平移 / 旋转）"与"不可消部分（x/y 比、肢长比、逐关节残差）"；通过线：躯干关节残差 ≤ 2% H，腕 / 脚单独报告，穿戴件相对模板 x/y 尺度比 ≤ 1.02。
 2. **一次 20 点"合体上传整体绑骨"**：正本（减到 ≤ 7 万三角）+ 第 1 项对齐后的裙子（≤ 3 万三角）合成一个 GLB，Studio 上传 → Auto Rig；比较绑骨前后顶点集合（最近点最大差应 ≈ 1e-4 mu）与顺序是否打乱，按位置匹配取回裙子 JOINTS / WEIGHTS 并绑回正本骨架，播 walk 统计穿透率；给出"顶点是否不变、权重可否复用"的明确结论写进 SKILL。
 3. **unlit 并排 ΔE2000**：`scene.ts` 加 unlit 开关（NoToneMapping + MeshBasic 替换），对正本脸部 UV 固定块在同一浏览器画布读像素，与 Tripo 预览截图同块取均值算 ΔE2000；目标 < 1.5；同时记录 Tripo 预览是否纯 baseColor（待实测）。
 4. 可选：`segment v2`（40 点，`ref_image` = 裙身掩码）实测是否独立 node、贴图 / UV / 顶点 / skin 保留。
@@ -320,7 +320,7 @@ Avatar3dSchema = {
 
 | 风险 | 等级 | 缓解 |
 |---|---|---|
-| 模板板 A 字张角不一致，各模板骨架姿态差 > 10° 会污染所有装备对齐 | 中（AR-104 已定 30°） | 六张板统一 30°；`check_plate.py` 臂角门禁 30° ± 3° |
+| 模板板 A 字张角不一致，各模板骨架姿态差 > 10° 会污染所有装备对齐 | 中（AR-105 已定 25°） | 六张板统一 30°；`check_plate.py` 臂角门禁 25° ± 3° |
 | Tripo 三次独立生成比例离散（同图 ~1%、multiview −5.4%） | 中 | 3D 比例门禁 + `fix_proportion.py` 确定性校正；校正量 > 8% 才重出；不靠 freeRetry |
 | 现有 NPC 切头质量上限（纹素低、高领 / 披肩 / 斗笠进切面、胡须干扰下巴检测） | 中 | 领口检测 + 程序颈套；S 级角色改胸像重出 |
 | 男性魁梧模板粗颈被压到规范环后 15 mm 混合带内收腰 | 中 | 男环按性别派生并实测一套再定 |
@@ -364,7 +364,7 @@ Avatar3dSchema = {
 | # | 问题 | 作者决定 |
 |---|---|---|
 | 1 | 男性三型命名与身高；女修长 1.72 m 高于 AR-99 上限 | 精悍 `tpl_m_lean` 1.76 / 中等 `tpl_m_medium` 1.81 / 魁梧 `tpl_m_bulk` 1.86 m；女 1.58 / 1.66 / 1.72 m，接受 |
-| 2 | 规范 A 字张角 | 30°（± 3°），所有板与衣图统一；现素体只作过渡期正本 |
+| 2 | 规范 A 字张角 | 25°（± 3°；AR-105 由 30° 改），所有板与衣图统一；现素体只作过渡期正本 |
 | 3 | 模板生成路线 | 路 A：中等一次生成（65 + 20 点）+ 分骨缩放派生（0 点）；路 B 只作补救 |
 | 4 | Blender | 允许安装作对照 / 兜底，主链不依赖 |
 | 5 | 点数预算 | W1 105 点、新角色出头 65 点 / 人、首批装备兜底约 620 点，同意（男中等模板 85 点随路 A） |
