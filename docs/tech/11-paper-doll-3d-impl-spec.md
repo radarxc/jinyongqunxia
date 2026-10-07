@@ -99,7 +99,7 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
 | | `ART-dressup-e2-merge-rig-test` | 20 点实验：合体上传整体绑骨，核对顶点数是否不变、按坐标取回权重 | t2 | §10.E |
 
 阶段 A / B / C 不花 Tripo 点数、不需要浏览器，只用仓库现有文件，可以立刻开工。T / E 的出图与 Tripo 调用也由 traex 执行（AR-103）：
-- 出图：按 `tools/agents/prompts/_imagegen.md` 在沙箱里转调本机 Codex（`gpt-6-astra` image_gen，`-i` 参考图），任务登记 `web: true`；
+- 出图：首选按 `tools/agents/prompts/_imagegen.md` 在沙箱里转调本机 Codex（image_gen，`-i` 参考图），任务登记 `web: true`。2026-10-07 13:30 实测 Codex 的 ChatGPT 账号对 `gpt-6-astra` / `gpt-6.1-sol` 均返回 400，Codex 通道不可用期间改走作者 Chrome 里的 Gemini 网页版：经常驻进程 HTTP `POST /open` 新开前台 Gemini 标签页、`POST /eval` 注入 `tools/imagegen/gemini_g.js`、专用道 `claudeLane=D`、参考图 base64 → `__g.idbPut` 暂存、`prepareNext → gate → send → waitGen → saveFull` 后取 `window.__fullBlob`（做法见 `ART-dressup-t1-plate30-f` 任务说明）；
 - Tripo：经作者 Chrome 里的常驻进程 `tools/imagegen/tri_pipeline_runner.mjs`（AR-100 单连接，HTTP `127.0.0.1:9223`）：`GET /status` 先查 `cdpConnected` 与 Tripo 会话，`POST /tripo/task {npcId, ref, subject, notes}` 入队；常驻进程依次 generate → rig → retarget idle/walk/run → 导出 → `fix_anim_offset.py` → `tools/model3d/ingest.py` 落到**主检出** `assets/default/model3d/<npcId>/` 并提交主分支；任务从主检出绝对路径只读取产物再做后处理。Tripo 会话失效（`/status` 报 Session not found）时任务停下写报告，由协调者恢复会话，不得自行重启常驻进程或驱动浏览器；
 - 不输密码、不买点数、不点条款同意；每个 Tripo 任务报告写清消耗点数与余额。
 
