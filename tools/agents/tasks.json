@@ -51034,6 +51034,184 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-e2-extract",
+   "title": "3D 纸娃娃换装 · E2 · 网格层：劲装整身抽衣壳 → 贴合（两种权重来源对比）→ 门禁 → 入库 + 娇小 / 修长重贴合",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ENG-dressup-e2-extract.md",
+   "deps": [
+    "ART-dressup-e1-garment-gen",
+    "ENG-dressup-a4-garment",
+    "ENG-dressup-a5-gate"
+   ],
+   "review": true,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 2026-10-08「同时试试吧」：网格层",
+   "writes": [
+    "tools/model3d/dressup/extract_garment.py",
+    "tools/model3d/dressup/tests_extract.py",
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/tests_garment.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/extract_garment.py",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/manifest.yaml",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/fit.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/report.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_extract.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-e3-texlayer",
+   "title": "3D 纸娃娃换装 · E3 · 贴图层：劲装颜色烘焙到模板 UV（三模板共用层贴图）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ENG-dressup-e3-texlayer.md",
+   "deps": [
+    "ART-dressup-e1-garment-gen",
+    "ENG-dressup-a4-garment"
+   ],
+   "review": true,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 2026-10-08「同时试试吧」：贴图层",
+   "writes": [
+    "tools/model3d/dressup/bake_texture_layer.py",
+    "tools/model3d/dressup/tests_texlayer.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/bake_texture_layer.py",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/eq_jinzhuang.layer.png",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/layer.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_texlayer.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-b3-layers",
+   "title": "3D 纸娃娃换装 · B3 · 运行时贴图层叠加 + 预览页「贴图层」开关",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b3-layers.md",
+   "deps": [
+    "ENG-dressup-b2-preview"
+   ],
+   "review": true,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 2026-10-08「同时试试吧」：贴图层运行时",
+   "writes": [
+    "packages/render/src/dressup/types.ts",
+    "packages/render/src/dressup/actor.ts",
+    "packages/render/src/dressup/runtime.ts",
+    "packages/render/src/dressup/*.test.ts",
+    "packages/render/CLAUDE.md",
+    "apps/game/build/dressup-assets.ts",
+    "apps/game/build/dressup-assets.test.ts",
+    "apps/game/src/pages/Character3dPage.vue"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/actor.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   }
   }
  ]
 }
