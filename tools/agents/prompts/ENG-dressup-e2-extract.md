@@ -2,6 +2,8 @@
 
 本任务写代码并实跑。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`docs/tech/11-paper-doll-3d-impl-spec.md`（§0、§4、§5.1、§5.3~§5.5、§6、§7、§10 D / E、§11）、`docs/tech/10-paper-doll-3d.md` §2.2~§2.4、`tools/model3d/dressup/README.md`，以及 A1 / A2 / A4 / A5 / E1 报告第 7 节（基础库、skeleton.json、`fit_garment.py` / `refit_template.py`、`validate.py` / `textures.py` / `pack_glb.mjs` / `ingest.py`、源件交接）。
 
+> 工具链口径（协调者 2026-10-08 07:25）：以根 `package.json` 为准——`packageManager: pnpm@9.15.9`、`engines.node >=22.12.0`（本机 Node 22.22.1）。公共说明 `_code.md` 里的 Node ≥ 24 / pnpm 12 是旧口径，与之不同**不算偏离**，报告注明一句即可，审核不得据此判 FAIL。
+
 ## 作者要求
 **AR-102**：衣服穿到模板素体上、不穿模、随动作运动、三种体型自动重贴合。作者 2026-10-08 在本地预览看到旧衣服穿模，同意**贴图层与网格层两条路同时试**（「同时试试吧」）；本任务是**网格层**，贴图层是 E3。旧道具（流仙裙等）不是在模板上做的，只作诊断；本件是第一件按新流程（模板底图编辑 → Tripo 整身 → 本地抽壳贴合）做出的衣服，要拿它证明流程可用。
 

@@ -2,6 +2,8 @@
 
 本任务写代码并实跑。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`docs/tech/11-paper-doll-3d-impl-spec.md` **§4 新增的"插槽坐标系约定"**（本任务规格）、§5.2、§6、§11，`docs/tech/10-paper-doll-3d.md` §2.5 与 §3.2，A2 / A3 / A5 / B1a / B2 报告第 7 节，现有 `tools/model3d/dressup/{export_skeleton.py,normalize_prop.py,validate.py,ingest.py,textures.py,pack_glb.mjs}` 与 `packages/render/src/dressup/actor.ts`（只读：运行时把道具挂在 `socket · gripAdjust` 上）。
 
+> 工具链口径（协调者 2026-10-08 07:25）：以根 `package.json` 为准——`packageManager: pnpm@9.15.9`、`engines.node >=22.12.0`（本机 Node 22.22.1）。公共说明 `_code.md` 里的 Node ≥ 24 / pnpm 12 是旧口径，与之不同**不算偏离**，报告注明一句即可，审核不得据此判 FAIL。
+
 ## 作者要求
 **AR-102** 第 4、5 条：饰品自动缩放到合适大小、与人物结合；手能拿武器。协调者 2026-10-08 03:30 在本地 `/character-3d` 实测（三件道具经运行时挂上，`drawCalls=4`、`triangles=221846`）：**插槽位置都对**（gripR 紧挨右手骨、headTop 在头顶、chest 在前胸），**道具网格也对**（剑沿 +Y 长 0.59 mu、斗笠锥顶在原点开口 −Y、玉佩自原点下垂 0.047 mu），但**朝向全错**——待机姿势下剑身沿前臂竖直朝上、剑尖高过头顶并穿过肩头（剑 +Y 世界方向 ≈ (0.12, 0.99, 0.01)）；斗笠整个横躺（+Y 世界方向 ≈ (0.99, 0.00, 0.15)）；玉佩歪 23°。根因：`export_skeleton._frame_quaternion` 让插槽 +Z = 表面法线、+X = 骨局部 x 轴，而 `normalize_prop` 约定道具 +Y = 主轴，两边约定没对上（spec 原先漏写，协调者已补进 §4）。另外斗笠以外锥尖顶在头顶，头会穿出帽面；玉佩挂点在体表上，会嵌进胸口。
 
