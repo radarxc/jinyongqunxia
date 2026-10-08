@@ -51456,7 +51456,8 @@
     "packages/render/CLAUDE.md",
     "apps/game/build/dressup-assets.ts",
     "apps/game/build/dressup-assets.test.ts",
-    "apps/game/src/pages/Character3dPage.vue"
+    "apps/game/src/pages/Character3dPage.vue",
+    "apps/game/build/content-plugin.test.ts"
    ],
    "validate": {
     "exists": [

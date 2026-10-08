@@ -28,6 +28,12 @@
 3. **异步失败不能吞**：`unequip` 是同步签名，里面触发的遮罩重算 Promise 必须 `.catch`，失败写入 `stats().hideMapError`（字符串）并 `console.warn`，预览页把它显示出来；不得出现未处理的 rejection。
 4. `setHead` 里不要靠 `this`（解构调用会断）：改为闭包内直接调用同一个 `equip` 实现。
 
+## 协调者实测意见（第 2 轮，2026-10-08 16:30；改由 traex 执行，审核按此判定）
+第 3 次运行**没有落实第 1 轮四条**：遮罩仍借用贴图层合成器（`DRESSUP_LAYER_SIZE_MISMATCH` 照旧，2048 底图 + 1024 遮罩必抛）、输出仍是 `SRGBColorSpace`、没有 `stats().hideMapError`、没有真实尺寸测试、`setHead` 仍靠 `this`。本轮起改由 traex 执行，第 1 轮四条全部照做，另加：
+5. **`content-plugin.test.ts` 桩文件**：索引现在对所有 kind 读 fit.json 取 `hideMask`，该测试 "publishes non-rejected dressup triplets…" 写的桩 `fit.json` 内容是文件名字符串（非法 JSON）。本任务写集已加入 `apps/game/build/content-plugin.test.ts`，**只允许**把桩 fit.json 的内容改成合法 JSON（如 `{}`），其余不动；索引代码遇到真实素材里的坏 fit.json 仍须报错，不得吞掉。
+6. 工作区已由协调者挪到含 `ENG-dressup-alloc-steady` 的新基点（分配采样用例已改为"等到稳态"，不要再动它）；`dressup-assets.test.ts` 的 300 s 超时与 `AGY-dressup-pytimeouts` 逐字一致，保持即可。
+7. 合入前在 5173 `/character-3d`「换装 v2」由协调者实测：劲装（G1 遮罩）穿上不抛错、遮罩开 / 关可对比、换模板遮罩跟着换；挂头后身体乘 skinTint。代码里给 `window.__dressup` 暴露 `hideMapError` 与当前遮罩尺寸，便于实测。
+
 ## 约束
 - 只写 `packages/render/src/dressup/{types,materials,actor,runtime}.ts` 与同目录 `*.test.ts`、`packages/render/CLAUDE.md`（补一段 hide map API）、`apps/game/build/dressup-assets.ts`、`apps/game/build/dressup-assets.test.ts`、`apps/game/src/pages/Character3dPage.vue` 与本任务报告。
 - 不加依赖；不改门禁阈值；运行时只经 `import('@tianshu/render/dressup')` 动态引入；只用 render 主块已有的 three 核心 API（新增 three 模块会让主块增长）。
