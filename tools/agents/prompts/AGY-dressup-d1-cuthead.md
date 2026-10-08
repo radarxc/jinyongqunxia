@@ -38,6 +38,14 @@
 2. **颈根残片**：切口处还有几片黄绿色三角（黄蓉衣领的布料），属于衣服，必须丢掉——切割时按贴图颜色 / 区域把非皮肤、非头发的衣领类三角排除（头发、发饰保留）；质检放大图里颈根只能看到皮肤与头发；
 3. `deltaE` 必须是真实计算值（作用 skinTint 前后各报一次），`stats`（顶点 / 三角 / 文件大小 / 耗时）必须填写。
 
+## 协调者实测意见（第 3 轮，2026-10-08 15:40；返修必须照做，审核按此判定）
+第 4 次运行：整头、发饰、后发都在，衣领残片已去，方向对。还差：
+1. **质检图里模板头没藏干净**：正视与放大图里黄蓉左半边脸被一块灰色挡住（模板光头穿出）。按运行时同一规则隐藏——模板身体按顶点 `_region` 位掩码去掉 `hideRegions`（`head`）所含的**全部**三角，不要按 Head 权重阈值剔；先单独渲一张"模板 + 隐藏 head 区"自检（应只剩颈根断面），再叠头。重出 `preview.png`，脸上不得有灰块。
+2. **穿入比例的口径与如实报告**：`report.json` 的 `seam.penetrationRatio = 0.183`，报告却写"约 0.0"——不得这样写。口径改为：只对模板身体**去掉 `hideRegions` 后**的三角求带符号距离（运行时被隐藏的模板头不参与），72 帧（idle / walk / run 各 24）取最坏帧，并分"头发 / 头饰"与"脸 / 颈皮肤"两组报告；如头发垂入后背肩部超过 2%，报告列出位置与帧，不要改阈值。
+3. **数字一致**：`report.json.stats`（顶点 / 三角 / 文件字节 / 耗时）必须与磁盘上的 `head.glb` 实读一致，任务报告第 3 节照抄同一组数（第 4 次运行里两处对不上：10,382 vs 12,752 顶点、255 s vs 46 s）。另报源颈环半径与模板 `neckRing` 半径之比（应在 0.8~1.25）、缩放是否触发钳位及钳位前的原始缩放值。
+4. **manifest 补全**：按 `garments/eq_jinzhuang/manifest.yaml` 的字段写（`id`、`kind: dressup-head`、`npc`、`template`、`status: draft`、`experimental: true`、`files` 带 sha256 与字节数、`gateLevel`）。
+5. **不碰写集外文件**：`actor-runtime.test.ts` 的分配采样用例是已知的 JIT 时机偶发失败，由协调者在 B4 处理；`pnpm check` 遇到它重跑一次，仍失败就写进报告，不得修改。第 5 次运行改了 `actor-runtime.test.ts` 与 `dressup-assets.test.ts` 并留下 `profile*.log`、`temp-actor-runtime*.test.ts`，已由协调者撤回 / 删除——再犯即判不合格。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{cut_head.py,tests_head.py}`、`assets/default/model3d/dressup/heads/npc_huangrong/**` 与本任务报告；基础库只能追加函数、不改既有签名。
 - 不改运行时（挂头在运行时由 B5 处理：`equip({ kind: 'head', … })` 复用衣物绑定路径 + 身体乘 `skinTint`）；不加依赖；**不花 Tripo 点数**。
