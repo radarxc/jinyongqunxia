@@ -51106,8 +51106,7 @@
    "kind": "draft",
    "prompt": "ENG-dressup-e3-texlayer.md",
    "deps": [
-    "ART-dressup-e1-garment-gen",
-    "ENG-dressup-a4-garment"
+    "ART-dressup-e1-garment-gen"
    ],
    "review": false,
    "web": true,

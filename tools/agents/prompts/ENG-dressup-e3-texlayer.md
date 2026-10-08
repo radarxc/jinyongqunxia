@@ -1,6 +1,6 @@
 # 本任务：3D 纸娃娃换装 · 阶段 E3 · 贴图层：把劲装颜色从整身模型烘焙到模板 UV（三套模板共用一张层贴图；AR-102）
 
-本任务写代码并实跑。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`docs/tech/11-paper-doll-3d-impl-spec.md`（§0、§4、§5.1、§5.5、§7、§11）、`docs/tech/10-paper-doll-3d.md` §1.3（路 A 三模板共拓扑、共 UV）、`tools/model3d/dressup/README.md`，以及 A1 / A4 / A5 / E1 报告第 7 节。
+本任务写代码并实跑。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`docs/tech/11-paper-doll-3d-impl-spec.md`（§0、§4、§5.1、§5.5、§7、§11）、`docs/tech/10-paper-doll-3d.md` §1.3（路 A 三模板共拓扑、共 UV）、`tools/model3d/dressup/README.md`，以及 A1 / A5 / E1 报告第 7 节（A4 尚未合入，本任务不依赖它）。
 
 ## 作者要求
 作者 2026-10-08 看到本地预览衣服穿模，问"为啥要用生图来换上衣服，衣服不是贴图贴到模型上吗"，随后同意**贴图层与网格层两条路同时试**（「同时试试吧」）。本任务是**贴图层**：身体网格不变，把贴身衣服画进身体贴图——**永不穿模、零额外 draw call、三套模板共用**（路 A 派生模板与中等模板共拓扑、共 UV）；代价是没有厚度与轮廓（领口、腰带结、衣摆外扩出不来），所以紧身件适合、宽松件要配网格层。网格层是 E2，两者并排给作者看。
@@ -12,7 +12,7 @@
 
 ## 要做的事
 1. **`tools/model3d/dressup/bake_texture_layer.py`**：`--dressed <整身 glb> --body <模板 body.glb> --skeleton <skeleton.json> --slot body --id <id> --out <dir> [--plate … --base-plate …] [--size 2048] [--max-distance-mm 60] [--json]`：
-   - **对齐**：复用 A4 `fit_garment.align_joints`（Umeyama + Tripo 权重逐骨姿态校正）把整身模型摆到模板 bind 空间；残差换算 %H 写进 `layer.json`。
+   - **对齐**（协调者 2026-10-08 02:25：本任务不等 A4，自己实现，语义与 A4 `fit_garment.align_joints` 相同）：用 A1 `common.umeyama`（`allow_mirror=False`，det 必须 +1）在 ≥ 6 个对称躯干关节（Hips / Spine / Spine1 / Spine2 / Neck / LeftArm / RightArm / LeftUpLeg / RightUpLeg，按清洗后的骨名配对）上做粗配；再逐骨姿态校正：每个源骨的变换 `T_i = W_i^模板bind · inv(粗配 · W_i^源bind)`，用整身模型**自带的 Tripo 权重**做 LBS（A1 `common.lbs` 或等价写法）把顶点摆到模板 bind 姿态；残差（粗配后各关节距离）换算 %H、每骨校正角写进 `layer.json.align`。A4 合入后由阶段 C 统一改为复用 `fit_garment.align_joints`，本任务不 import A4 的文件。
    - **烘焙**：在模板 UV 空间光栅化模板三角（逐纹素重心 → bind 位置与法线；UV 按 glTF 约定，原点左上），对每个纹素找对齐后整身表面上的几何最近点（A1 `nearest_triangle`，k 候选 + 精确点-三角；距离上限 `--max-distance-mm`），在命中三角的 UV 处双线性采样整身 baseColor 得颜色；
    - **衣服判定**（逐纹素 alpha）：命中点颜色在 Lab 空间按底板样本分类为衣服的概率（不写死颜色常数），乘以区域约束（劲装允许 torsoUpper / torsoLower / hips / upperArmL/R / forearmL/R / thighL/R；head / neck / handL/R / footL/R / shinL/R 恒为 0），边缘 1~2 px 羽化；alpha = 0 的纹素 RGB 置 0；UV 岛外向外扩边 4 px 防接缝；
    - **输出**（`<out>` = `assets/default/model3d/dressup/garments/eq_jinzhuang_tex/`）：`eq_jinzhuang.layer.png`（RGBA，与模板 baseColor 同尺寸，非预乘）；`layer.json`（`schema: "tianshu-dressup-layer.v1"`、`kind: "layer"`、`slot`、`id`、`item: "eq_jinzhuang"`、`uv: { template: "tpl_f_medium", bodySha256, size }`、`templates: ["tpl_f_medium","tpl_f_small","tpl_f_tall"]`（逐套核对 UV 与三角索引逐位相同才列入）、`align`、`coverageByRegion`（每区被衣服覆盖的 UV 面积占比）、`alpha: { opaque, partial }`、`source: { file, sha256 }`、`stats: { elapsedSec, peakMemoryMiB }`）；
@@ -27,7 +27,7 @@
 
 ## 约束
 - 只写 `tools/model3d/dressup/{bake_texture_layer.py,tests_texlayer.py}`、`assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**` 与本任务报告。
-- 不改基础库（只能追加函数）、不改 A4 / A5 / E2 的文件；不加依赖；不花 Tripo 点数。运行时如何叠层是后续 B3 的事，本任务不改 `packages/**`、`apps/**`。
+- 不改基础库（只能追加函数）、不改也不 import A4（`fit_garment.py` / `refit_template.py`）/ A5 / E2 的文件；不加依赖；不花 Tripo 点数。运行时如何叠层是后续 B3 的事，本任务不改 `packages/**`、`apps/**`。
 
 检查：
 - `python3 tools/model3d/dressup/tests_texlayer.py`
