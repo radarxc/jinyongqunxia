@@ -50924,6 +50924,59 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-b2-preview",
+   "title": "3D 纸娃娃换装 · B2 · /character-3d 预览页「换装 v2」面板（导入预览页基线、素材索引、unlit、实穿）",
+   "phase": "PROD",
+   "wave": 36,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b2-preview.md",
+   "deps": [
+    "ENG-dressup-b1b-chunk",
+    "ENG-dressup-a4-garment"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "writes": [
+    "apps/game/src/pages/Character3dPage.vue",
+    "packages/render/src/character-viewer/**",
+    "packages/render/package.json",
+    "apps/game/src/main.ts",
+    "apps/game/build/dressup-assets.ts",
+    "apps/game/build/dressup-assets.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/Character3dPage.vue",
+     "packages/render/src/character-viewer/scene.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   }
   }
  ]
 }
