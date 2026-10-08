@@ -46,6 +46,16 @@
 4. **manifest 补全**：按 `garments/eq_jinzhuang/manifest.yaml` 的字段写（`id`、`kind: dressup-head`、`npc`、`template`、`status: draft`、`experimental: true`、`files` 带 sha256 与字节数、`gateLevel`）。
 5. **不碰写集外文件**：`actor-runtime.test.ts` 的分配采样用例是已知的 JIT 时机偶发失败，由协调者在 B4 处理；`pnpm check` 遇到它重跑一次，仍失败就写进报告，不得修改。第 5 次运行改了 `actor-runtime.test.ts` 与 `dressup-assets.test.ts` 并留下 `profile*.log`、`temp-actor-runtime*.test.ts`，已由协调者撤回 / 删除——再犯即判不合格。
 
+## 协调者裁定（第 4 轮，2026-10-08 16:00；改由 traex 执行，审核按此判定）
+第 6 次运行脸露出来了，但**下巴到颈口塌了**：嘴唇以下没有下巴形状，皮肤被竖向拉到颈环，右下颌有洞、透出模板灰色（放大图 `/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/coord/_dressup/d1/run6_chin.png`）；`sourceTemplateNeckRatio = 1.247`，`penetrationRatioSkin = 0.61` / `Hair = 0.37`（口径不对，见第 5 条）。协调者实测源模型（单位 mu，身高约 1.0）：Neck 关节 y = 0.801、Head 关节 y = 0.859；正面衣领盖到 y ≈ 0.815，皮肤从 0.82 往上才出现，背面颈部全是头发——**这件立领长裙把脖子几乎全挡住了，源模型上没有一圈完整的颈部皮肤可切**。把衣领去掉后硬把下巴吸到规范环，就是塌下巴的原因。改用"颈桥"做法：
+1. **切口高度按骨骼比例换算**：模板颈环中心在 Neck→Head 骨段的比例 f_tpl（tpl_f_medium 实测 0.224，按 `skeleton.json` 的 `bindWorld` 与 `neckRing.centerMu` 计算，不写死）；源切面 = 源 Neck→Head 骨段同一比例处、垂直于源颈轴的平面（黄蓉约 y = 0.814）。不再用"皮肤截面找颈环"。
+2. **保留**切面以上的脸、颅、耳、头发、头饰（含垂过切面的长发 / 发带，权重沿用第 1 轮做法）；**丢弃**衣服三角（非皮肤、非头发，按贴图颜色 + 区域判定）。
+3. **颈桥**：取头部皮肤的下边界（下巴下方、耳后），按绕颈轴的角度重采样成 64 点（与模板 `neckRing` 同角度序；没有皮肤的角度段——如被头发盖住的后颈——用相邻角度插值补齐），从这一圈向下放样 K（≥ 4）圈到模板 64 点规范环；**颈桥最底一圈与模板 `neckRing` 64 点逐点重合**（位差 < 0.01 mm），蒙皮权重与模板该环一致，向上渐变到 Head。颈桥贴图取源模型颈 / 下巴的皮肤色（可在贴图里写一块皮肤色小岛，或复用源图集里的颈部皮肤 UV），作用 skinTint 后与脸、与模板颈部 ΔE2000 < 3。
+4. **头尺寸**：按颅宽（耳高处，只计皮肤）与脸高（下巴 → 眉心）对齐模板 `measures` / `skullProfile`，缩放钳位 ±8%，报告钳位前原值；脸的比例保持不变（下巴最低点 → 嘴角 / 鼻尖的距离与源模型之比在 0.95~1.05）。
+5. **穿入口径**：模板身体去掉 `hideRegions`（head）后是开口网格，颈口上方的点就近三角取到颈口边缘，带符号距离的符号会判反——脸、颅不参与计算。只对"颈桥 + 规范环以上 40 mm 内"的顶点算穿入（72 帧最坏帧，必须为 0）；垂到肩背的头发单独报 72 帧最坏的穿入比例（只报不判）。
+6. **质检图**：正 / 侧 / 背三视 + 颈部放大（正、侧两张），用贴图色着色，模板按 `_region` 隐藏 head 区；协调者要看到完整的下巴、连续的皮肤脖子、无洞、无灰色穿出。
+7. 测试 `tests_head.py` 补：合成"球头 + 高立领遮住的颈"——颈桥底圈与规范环逐点重合、权重一致、下巴不被拉伸；骨骼比例切面。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{cut_head.py,tests_head.py}`、`assets/default/model3d/dressup/heads/npc_huangrong/**` 与本任务报告；基础库只能追加函数、不改既有签名。
 - 不改运行时（挂头在运行时由 B5 处理：`equip({ kind: 'head', … })` 复用衣物绑定路径 + 身体乘 `skinTint`）；不加依赖；**不花 Tripo 点数**。
