@@ -19,8 +19,14 @@
 4. **质检图**：`preview_front.png` / `preview_back.png` / `preview_compare.png`（与变体衣图并排）。
 5. **测试** `tools/model3d/dressup/tests_variant.py`：合成"带 UV 的圆柱衣 + 两张纯色底板"：正面纹素取变体色、背面按 LUT 映射、几何逐字节不变；只写临时目录。
 
+## 协调者实测意见（第 1 轮，2026-10-08 14:30；返修必须照做，审核按此判定）
+变体衣图（agy 出图）合格：轮廓、交领、腰带、姿势与劲装底板一致，面料换成灰褐粗麻。但：
+1. **网格变体贴图大片空白**：`eq_buyi.glb` 的新贴图只填了部分 UV 岛，其余是黑色（与版型件贴图并排看，版型件每个岛都有颜色），穿上会出现大块黑色。要求：版型件贴图里有内容的每个纹素在变体里都必须有颜色——正面可见处用投影，其余**全部**走 LUT 映射版型件原色；输出前统计"版型件有效纹素中变体已填比例"，必须 ≥ 99.5%，写进报告与 fit.json。
+2. **身体贴图层坏了**：`eq_buyi.layer.png` 的质检图只是散在皮肤上的灰色斑块。改为直接复用 E3 的 `bake_texture_layer.py` 烘焙流程（体表纹素沿法线射线、取最外侧交点、3D 上定衣服度、只在真实分界羽化），只是把"整身模型"换成"贴合后的变体网格件（bind 姿态）"；质检标准同 E3 第 4 版。
+3. 新增网格变体的质检图 `garments/eq_buyi/preview_mesh_front.png` / `preview_mesh_back.png`（模板 + 变体件 bind 姿态，用新贴图着色），协调者要能看出是灰褐粗麻短褐。
+
 ## 约束
-- 只写 `tools/model3d/dressup/{retexture_variant.py,tests_variant.py}`、`assets/default/model3d/dressup/garments/{eq_buyi,eq_buyi_tex}/**`、`assets/default/character/female/ch00/threeview/{por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png,manifest.yaml}`（manifest 只追加一条）与本任务报告。
+- 只写 `tools/model3d/dressup/{retexture_variant.py,tests_variant.py}`（可 import 但不改 `bake_texture_layer.py`）、`assets/default/model3d/dressup/garments/{eq_buyi,eq_buyi_tex}/**`、`assets/default/character/female/ch00/threeview/{por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png,manifest.yaml}`（manifest 只追加一条）与本任务报告。
 - 不改版型件 `garments/eq_jinzhuang/**`、不改其他工具；不加依赖；**不花 Tripo 点数**。
 - 本任务由 agy 执行：必须把出图、代码、实跑、检查全部做完再结束；不执行改变仓库状态的 git 命令。
 

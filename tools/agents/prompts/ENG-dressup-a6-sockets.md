@@ -50,6 +50,11 @@
 ## 协调者补充（2026-10-08 12:42）
 `apps/game/build/dressup-assets.test.ts` 的"indexes template metadata and prop sockets, then loads all real packed props"用例把真实道具插槽写死为 `['chest','gripR','headTop']`；青锋剑按作者裁定改为佩剑态挂 `waistL` 后应为 `['chest','headTop','waistL']`。本任务写集已加入该测试文件，只允许改**这个用例**：把其中所有写死的真实素材数字（道具插槽列表、`actor.stats()` 的三角总数等）都改成从各件 manifest / fit.json / report.json（或打包 GLB 实读）推出期望值，不再写死；其余用例不动。（协调者 2026-10-08 13:02 补：第 12 次运行只改了插槽，三角总数 221846→221848 又失败。）
 
+## 协调者补充（2026-10-08 14:30，依据审核 r5）
+- 护手峰窗口改为距端点 **5%~35%**（按峰的实际位置、不是 bin 中心判断）；找到护手峰时**禁止**再回退"窄端 = 柄"；`fit.json.handleDetection` 写 `method: guard-peak`、峰位置与所选端。`tests_prop.py` 真实青锋剑用例必须断言 `guard-peak` 且柄在护手外侧（短侧）、握点在柄段；不得接受 fallback。
+- `check_sockets.py` 的鞘身 / 刃身顶点划分必须由所选柄端推出（护手以外为柄、以内为鞘 / 刃），并在 `sockets_check.json` 写划分顶点数，与报告一致。
+- `dressup-assets.test.ts` 该用例：**插槽列表与 `actor.stats()` 三角总数都改为从各件 manifest / fit / 打包 GLB 读出**，测试代码里不得出现 221846 / 221848 这类写死的数；这是第 3 次提出，审核按此判定。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{export_skeleton.py,tests_skeleton.py,normalize_prop.py,tests_prop.py,check_sockets.py}`、`assets/default/model3d/dressup/templates/{tpl_f_medium,tpl_f_small,tpl_f_tall}/{skeleton.json,manifest.yaml}`、`assets/default/model3d/dressup/props/**` 与本任务报告。
 - 不改运行时（`packages/**`）、不改 validate / ingest / textures / pack、不改 fit_garment / refit / derive；不加依赖；不改门禁阈值；不花 Tripo 点数。
