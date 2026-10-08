@@ -206,6 +206,7 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
 ### 5.5 材质与进包
 - 所有换装资产：`KHR_materials_unlit`，只留 baseColorTexture（≤ 2048² JPEG q85），删除 normal / metallicRoughness 及其 image / bufferView；衣物 / 发型 `doubleSided: true`。
 - `pack_glb.mjs --simplify <ratio>`：锁边界，保留 UV / JOINTS / WEIGHTS / _REGION；目标三角数：模板 ≤ 8 万、衣物 ≤ 3 万、发型 ≤ 2 万、小件 ≤ 1 万；再 meshopt 编码。
+- 待办（阶段 C 处理，协调者 2026-10-07 记）：A5 版 `pack_glb.mjs` 减面后保留了全部原顶点（只重建索引），三件道具减到约 8,600 三角仍各 4.4~4.5 MB；应在减面后做未引用顶点压缩（three 自带 simplifier 的 `compactMesh` 或等价重排：删除未引用顶点、按保留顶点原值重排属性、不拆点），预计每件降到 1.5 MB 左右。
 
 ## 6. 门禁 `validate.py` → `report.json`
 

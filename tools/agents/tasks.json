@@ -50815,6 +50815,57 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-b1a-runtime",
+   "title": "3D 纸娃娃换装 · B1a · three.js 运行时核心 packages/render/src/dressup（共享骨架 / 插槽 / unlit / 区域遮罩）",
+   "phase": "PROD",
+   "wave": 34,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b1a-runtime.md",
+   "deps": [
+    "ENG-dressup-a5-gate",
+    "ART-dressup-t2-tpl-f-medium"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "writes": [
+    "packages/render/src/dressup/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/runtime.ts",
+     "packages/render/src/dressup/actor.ts",
+     "packages/render/src/dressup/materials.ts",
+     "packages/render/src/dressup/skeleton-frame.ts",
+     "packages/render/src/dressup/types.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
