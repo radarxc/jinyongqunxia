@@ -15,9 +15,10 @@
 2. **素材索引**（`apps/game/build/dressup-assets.ts` + 测试）：manifest `kind: dressup-layer` 的条目进 `index.json` 的 `layer` 分组（`{ kind: 'layer', id, file, fit, status, slot, template }`）；layer 条目没有 `report` 字段时不报错。
 3. **预览页**（`apps/game/src/pages/Character3dPage.vue`「换装 v2」）：装备列表新增「贴图层」分组（来自索引），点选叠上、再点去掉，可多选（按列表顺序叠）；与网格衣物可同时穿，便于作者对比"同一件劲装：网格层 vs 贴图层"；切换模板时保留已选层（三套共 UV）；`window.__dressup` 增加 `layers`。保留现有全部功能。
 4. 测试：合成顺序、缓存共享与引用计数释放、空列表恢复原贴图、并发调用只保留最后一次、`dispose` 不泄漏（假合成器计数）；索引分组测试。
+5. **修并发测试竞态**（协调者 2026-10-08 02:30，E1 合入时 `pnpm check` 偶发失败）：`apps/game/build/dressup-assets.test.ts` 的 ingest 用例调用 `ingest.py` 把 `gate_*_<pid>` 夹具直接写进真实的 `assets/default/model3d/dressup/props/`，同时 `content-plugin.test.ts` 的"runtime asset publishing integration"按真实仓库根扫描全部 manifest，扫到写到一半 / 正在清理的夹具就 `ENOENT: …/props/gate_approved_53222/gate_approved_53222.glb`。修法：给 `tools/model3d/dressup/ingest.py` 加 `--asset-root <dir>`（默认仍是仓库 `assets/default/model3d/dressup`，行为不变；`--commit` 与 `--asset-root` 同时给出时报错），`dressup-assets.test.ts` 全部 ingest 用例改写到 `mkdtemp` 临时根并在临时根上调用 `publishDressupAssets`，**任何测试不得再写真实 `assets/` 目录**；补一条用例断言跑完 ingest 测试后真实 `props/` 下没有 `gate_` 开头的目录。
 
 ## 约束
-- 只写 `packages/render/src/dressup/{types,actor,runtime}.ts` 与同目录 `*.test.ts`、`packages/render/CLAUDE.md`（补一段贴图层 API）、`apps/game/build/dressup-assets.ts`、`apps/game/build/dressup-assets.test.ts`、`apps/game/src/pages/Character3dPage.vue` 与本任务报告。
+- 只写 `packages/render/src/dressup/{types,actor,runtime}.ts` 与同目录 `*.test.ts`、`packages/render/CLAUDE.md`（补一段贴图层 API）、`apps/game/build/dressup-assets.ts`、`apps/game/build/dressup-assets.test.ts`、`apps/game/src/pages/Character3dPage.vue`、`tools/model3d/dressup/ingest.py`（只加第 5 条的 `--asset-root`）与本任务报告。
 - 不改门禁阈值、不加依赖；运行时仍只能经 `import('@tianshu/render/dressup')` 动态引入。
 
 检查：

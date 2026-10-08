@@ -51181,7 +51181,8 @@
     "packages/render/CLAUDE.md",
     "apps/game/build/dressup-assets.ts",
     "apps/game/build/dressup-assets.test.ts",
-    "apps/game/src/pages/Character3dPage.vue"
+    "apps/game/src/pages/Character3dPage.vue",
+    "tools/model3d/dressup/ingest.py"
    ],
    "validate": {
     "exists": [
