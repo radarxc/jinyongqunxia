@@ -1,0 +1,29 @@
+- id: dressup__layer__eq_jinzhuang
+  file: eq_jinzhuang.layer.png
+  category: model3d
+  fit: layer.json
+  kind: dressup-layer
+  slot: body
+  template: tpl_f_medium
+  item: eq_jinzhuang
+  tool: tools/model3d/dressup/bake_texture_layer.py
+  source:
+    tripo_project_id: b01f6451-81a6-46ac-a769-0cdf1d374df3
+    glb:
+      path: assets/default/model3d/dressup/garments/eq_jinzhuang/source/tripo_dressed_rig.glb
+      sha256: 4da5eab6ff1f218719c4ba187fa824099b40ccf539855b1f265e0a27c11de956
+    plate:
+      path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
+      sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
+    base_plate:
+      path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+      sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+  sha256: 2958771938118a52f304c6fc12c3c1522e40de727cbb7a3fa19f5f291da6421e
+  size_bytes: 1254928
+  status: draft
+  created: '2026-10-08T03:07:06-07:00'
+  notes: >-
+    AR-106 贴图层对照稿；2048² 非预乘 RGBA，tpl_f_medium / small / tall
+    已逐位核对索引与 UV 共用；逐纹素射线、3D 两环平滑与岛外 8 px 扩边。
+    交领、腰带与袖口从 E1 整身模型烘焙；
+    无厚度、腰带结和衣摆外扩，待作者与 E2 网格层并排审核后再改状态。
