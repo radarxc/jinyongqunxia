@@ -301,7 +301,7 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 - `python3 tools/model3d/dressup/selftest.py` 退出码 0；`inspect.py --json` 正本：joints 65、rest=bind 差 < 1e-5、A 姿势角 39.2 ± 0.5°。
 - `export_skeleton.py` 输出含 §4 全部字段；`measures.headWidthMu` 0.097 ± 0.003、`neckRing.radiusMu` 0.03~0.04；`sockets.gripR.pos` 在 RightHand 局部系内 |pos| < 0.06。
 - `normalize_prop.py`：剑 measuredLengthMu ≈ 1.44、scaleApplied ≈ 0.41、锚点 |pos| < 1e-4、主轴 +Y；斗笠锥顶在原点；玉佩绳顶在原点。
-- `fit_garment.py` 流仙裙：权重高置信率 ≥ 0.85、bind 姿势残留 0、耗时 < 60 s；马尾：hideRegions 为空或仅 head，挂点 headCenter。
+- `fit_garment.py`：从正本躯干 / 髋 / 大腿顶点壳外扩 4 mm 加 ±3 mm 噪声的"贴身合成件"在严格模式下 `fitted`（高置信率 ≥ 0.85、残留 0、安全距不足 0、翻面 0、边长合格 ≥ 99%）、耗时 < 60 s；旧道具（流仙裙 / 夜行衣 / 马尾）只作 draft 诊断如实报数，"流仙裙高置信 ≥ 0.85"移到阶段 E 用模板底图编辑出的新衣物验收（协调者 2026-10-07 调整，依据 A4 审核 r3）。
 - `validate.py` 对以上每件给出 report，流仙裙至少 draft（动态穿透 ≤ 2%）；`textures.py + pack_glb.mjs` 把正本副本压到 ≤ 12 MB、贴图 ≤ 2048²。
 - `pnpm check` 全绿（含 `dressup-assets.test.ts`）。
 
