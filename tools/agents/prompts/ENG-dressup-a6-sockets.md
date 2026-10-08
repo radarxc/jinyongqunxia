@@ -39,6 +39,14 @@
 3. 改完重跑青锋剑全流程（normalize_prop → textures → pack → validate → ingest）与 tiltSweep（握对端之后各倾角的深穿要重算，按已有裁定取深穿最小者），三件 `sockets_check.json` 重生成；报告写清前后对比（握点到护手的距离、刃向、倾角选择）。
 4. 斗笠帽檐压到眉眼：保持现有颅骨间隙算法，报告里记一句"帽檐最低点相对眉弓的高度"，供作者判断是否要再抬。
 
+## 作者裁定（2026-10-08 11:05，覆盖上一节第 1~3 条里关于青锋剑握持的部分）
+作者原话："剑拿反了。而且如果拿手里，应该是拔出来的状态，挂在腰上才是放到剑鞘的状态"。据此：
+- **武器分两态、两个资产**：持（出鞘剑，握 `gripR`，slot `mainHand`）与佩（入鞘剑，挂腰 `waistL`，slot `waist`）。现有 `item_qingfeng_sword` 是**带鞘整剑**，只能作"佩"：改挂 `waistL`，**不再挂 gripR**；出鞘的持剑资产由后续任务用龙泉剑物品图另行生成。
+- **佩剑姿态**（写进该件 fit.json 的 gripAdjust，并记录参数）：柄端朝前、略向上，鞘身沿身体左外侧向后下斜挂，鞘轴与水平面约 35°、与身体左侧面平行并外移到不与髋 / 大腿相交；柄端判定仍按上一节的"护手峰"规则（护手外侧为柄）；`realSizeM` 0.9。
+- check_sockets 对佩剑的判定：bind 时柄端朝前（柄端点 z 坐标 > 鞘尾 z）、鞘轴与水平夹角 35° ± 5°；72 帧鞘身顶点深穿按衣物分级（approved ≤ 0.5% / draft ≤ 2%）；若 35° 下 walk / run 摆腿扫到鞘身超过 draft，可在 25°~50° 间取深穿最小者并记录 sweep。
+- 原"持剑倾角扫描（tiltSweep）"对本件取消；gripR 插槽约定（+Y 刃向 Pinky→Index、+Z 掌心法线）保留，供后续出鞘剑使用，check_sockets 的握持检查对"slot mainHand"的件才执行。
+- manifest：本件 `slot: waist`、`socket: waistL`，notes 写"入鞘·佩剑态"。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{export_skeleton.py,tests_skeleton.py,normalize_prop.py,tests_prop.py,check_sockets.py}`、`assets/default/model3d/dressup/templates/{tpl_f_medium,tpl_f_small,tpl_f_tall}/{skeleton.json,manifest.yaml}`、`assets/default/model3d/dressup/props/**` 与本任务报告。
 - 不改运行时（`packages/**`）、不改 validate / ingest / textures / pack、不改 fit_garment / refit / derive；不加依赖；不改门禁阈值；不花 Tripo 点数。
