@@ -48,7 +48,7 @@
 - manifest：本件 `slot: waist`、`socket: waistL`，notes 写"入鞘·佩剑态"。
 
 ## 协调者补充（2026-10-08 12:42）
-`apps/game/build/dressup-assets.test.ts` 的"indexes template metadata and prop sockets, then loads all real packed props"用例把真实道具插槽写死为 `['chest','gripR','headTop']`；青锋剑按作者裁定改为佩剑态挂 `waistL` 后应为 `['chest','headTop','waistL']`。本任务写集已加入该测试文件，**只允许**改这一处期望（最好改成从各件 manifest / fit.json 读出期望值，而不是再写死），其余用例不动。
+`apps/game/build/dressup-assets.test.ts` 的"indexes template metadata and prop sockets, then loads all real packed props"用例把真实道具插槽写死为 `['chest','gripR','headTop']`；青锋剑按作者裁定改为佩剑态挂 `waistL` 后应为 `['chest','headTop','waistL']`。本任务写集已加入该测试文件，只允许改**这个用例**：把其中所有写死的真实素材数字（道具插槽列表、`actor.stats()` 的三角总数等）都改成从各件 manifest / fit.json / report.json（或打包 GLB 实读）推出期望值，不再写死；其余用例不动。（协调者 2026-10-08 13:02 补：第 12 次运行只改了插槽，三角总数 221846→221848 又失败。）
 
 ## 约束
 - 只写 `tools/model3d/dressup/{export_skeleton.py,tests_skeleton.py,normalize_prop.py,tests_prop.py,check_sockets.py}`、`assets/default/model3d/dressup/templates/{tpl_f_medium,tpl_f_small,tpl_f_tall}/{skeleton.json,manifest.yaml}`、`assets/default/model3d/dressup/props/**` 与本任务报告。
