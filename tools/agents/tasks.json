@@ -50866,6 +50866,64 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-b1b-chunk",
+   "title": "3D 纸娃娃换装 · B1b · 换装运行时独立懒加载块 render-dressup、体积预算、构建期发布接线与性能门",
+   "phase": "PROD",
+   "wave": 35,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b1b-chunk.md",
+   "deps": [
+    "ENG-dressup-b1a-runtime",
+    "ENG-dressup-a5-gate"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "writes": [
+    "apps/game/build/content-plugin.ts",
+    "apps/game/build/content-plugin.test.ts",
+    "apps/game/vite.config.ts",
+    "packages/render/package.json",
+    "packages/render/src/index.ts",
+    "packages/render/src/dressup/performance.test.ts",
+    "packages/render/CLAUDE.md",
+    "tools/perf/budgets.json",
+    "tools/perf/check_size.mjs",
+    "tools/perf/check_size.test.mjs",
+    "vitest.config.ts",
+    "package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/performance.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   }
   }
  ]
 }
