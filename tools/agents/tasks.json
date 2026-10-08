@@ -51674,6 +51674,55 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "high",
+   "profile": "code",
+   "id": "AGY-dressup-pytimeouts",
+   "title": "3D 纸娃娃换装 · dressup-assets 调 Python 用例超时改 300 s（负载误报）",
+   "prompt": "AGY-dressup-pytimeouts.md",
+   "deps": [
+    "ENG-dressup-alloc-steady"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "apps/game/build/dressup-assets.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/build/dressup-assets.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/build/dressup-assets.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
