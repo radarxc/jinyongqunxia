@@ -1,0 +1,164 @@
+import type {
+  ColorRepresentation, Group, Skeleton,
+} from 'three';
+import type { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+export enum DressupError {
+  InvalidHeight = 'DRESSUP_INVALID_HEIGHT',
+  NoSkinnedBody = 'DRESSUP_NO_SKINNED_BODY',
+  RegionAttributeMissing = 'DRESSUP_REGION_ATTRIBUTE_MISSING',
+  RegionUnknown = 'DRESSUP_REGION_UNKNOWN',
+  RegionLimit = 'DRESSUP_REGION_LIMIT',
+  SocketUnknown = 'DRESSUP_SOCKET_UNKNOWN',
+  SocketBoneUnknown = 'DRESSUP_SOCKET_BONE_UNKNOWN',
+  BoneUnknown = 'DRESSUP_BONE_UNKNOWN',
+  BoneLengthRange = 'DRESSUP_BONE_LENGTH_RANGE',
+  BoneLengthLate = 'DRESSUP_BONE_LENGTH_LATE',
+  ClipUnknown = 'DRESSUP_CLIP_UNKNOWN',
+  Disposed = 'DRESSUP_DISPOSED',
+}
+
+export type DressupVec3 = readonly [number, number, number];
+export type DressupQuat = readonly [number, number, number, number];
+export type DressupMat4 = readonly number[];
+
+export interface DressupSourceRef {
+  readonly file: string;
+  readonly sha256: string;
+  readonly generator?: string;
+}
+
+export interface DressupSocketFrame {
+  readonly bone: string;
+  readonly pos: DressupVec3;
+  readonly quat: DressupQuat;
+  readonly normalLocal?: DressupVec3;
+  readonly palmNormalLocal?: DressupVec3;
+  readonly palmOffsetMu?: number;
+  readonly radiusMu?: number;
+}
+
+export interface DressupNeckRingSample {
+  readonly pos: DressupVec3;
+  readonly normal: DressupVec3;
+  readonly weights: Readonly<Record<string, number>>;
+}
+
+export interface DressupNeckRing {
+  readonly localYMu: number;
+  readonly centerMu: DressupVec3;
+  readonly radiusMu: Readonly<{ x: number; z: number }>;
+  readonly samples: number;
+  readonly profile: readonly DressupNeckRingSample[];
+  readonly lipOffsetMu: number;
+  readonly sha256: string;
+}
+
+export interface DressupMeasures {
+  readonly headWidthMu: number;
+  readonly headDepthMu: number;
+  readonly headCircumferenceMu: number;
+  readonly headTopMu: DressupVec3;
+  readonly shoulderSkinWidthMu: number;
+  readonly chestWidthMu: number;
+  readonly waistWidthMu: number;
+  readonly hipWidthMu: number;
+  readonly handLengthMu: Readonly<{ L: number; R: number }>;
+  readonly handThicknessMu: Readonly<{ L: number; R: number }>;
+  readonly footLengthMu: number;
+}
+
+export interface DressupRegions {
+  readonly ids: Readonly<Record<string, number>>;
+  readonly jointToRegion: Readonly<Record<string, string>>;
+  readonly file: string;
+  readonly triangleRule?: string;
+  readonly triangles?: number;
+  readonly crossTriangleRatio?: number;
+}
+
+export interface DressupSkeletonFrame {
+  readonly schema: 'tianshu-dressup-skeleton.v1';
+  readonly source: DressupSourceRef;
+  readonly unit: 'mu';
+  readonly heightMu: number;
+  readonly defaultHeightM: number;
+  readonly mPerMu: number;
+  readonly joints: readonly string[];
+  readonly parents: readonly number[];
+  readonly bindWorld: Readonly<Record<string, DressupMat4>>;
+  readonly restPose: Readonly<{ armAngleDeg: number; forearmAngleDeg: number }>;
+  readonly measures: DressupMeasures;
+  readonly neckRing: DressupNeckRing;
+  readonly skullProfile: Readonly<{ file: string; stepMu: number; sha256: string }>;
+  readonly sockets: Readonly<Record<string, DressupSocketFrame>>;
+  readonly regions: DressupRegions;
+  readonly fingerPose: Readonly<{
+    fist: Readonly<Record<string, DressupQuat>>;
+    tightenDeg?: Readonly<Record<string, number>>;
+  }>;
+}
+
+export interface DressupGripAdjust {
+  readonly pos: DressupVec3;
+  readonly quat: DressupQuat;
+}
+
+export interface DressupFit {
+  readonly schema: 'tianshu-dressup-fit.v1';
+  readonly kind: 'garment' | 'hair' | 'prop';
+  readonly id: string;
+  readonly template?: string;
+  readonly slot?: string;
+  readonly socket?: string;
+  readonly anchor?: string;
+  readonly gripAdjust?: DressupGripAdjust;
+  readonly hideRegions?: readonly string[];
+  readonly neverHide?: readonly string[];
+  readonly fitVersion?: number;
+  readonly class?: string;
+  readonly source?: DressupSourceRef;
+  readonly body?: DressupSourceRef;
+  readonly weights?: Readonly<{
+    method?: string; highConfidence?: number; maxBones?: number;
+    jointsAllowed?: readonly string[];
+  }>;
+  readonly align?: Readonly<Record<string, unknown>>;
+  readonly [key: string]: unknown;
+}
+
+export interface DressupEquipSpec {
+  readonly kind: 'garment' | 'hair' | 'prop';
+  readonly id: string;
+  readonly url: string;
+  readonly fit: DressupFit;
+}
+
+export interface DressupStats {
+  readonly drawCalls: number;
+  readonly triangles: number;
+  readonly boneTextureUploads: number;
+}
+
+export interface DressupActor {
+  readonly root: Group;
+  readonly skeleton: Skeleton;
+  readonly frame: DressupSkeletonFrame;
+  setHead(url: string | null, options?: { readonly skinTint?: ColorRepresentation }): Promise<void>;
+  equip(spec: DressupEquipSpec): Promise<void>;
+  unequip(id: string): void;
+  setHideMask(regions: readonly string[]): void;
+  setBoneLength(tweaks: Readonly<Record<string, number>>): void;
+  playClip(name: string, fade?: number): void;
+  update(dt: number): void;
+  stats(): DressupStats;
+  dispose(): void;
+}
+
+export interface DressupActorOptions {
+  readonly bodyUrl: string;
+  readonly frameUrl: string;
+  readonly heightM: number;
+  readonly loader?: GLTFLoader;
+  readonly unlit?: boolean;
+}
