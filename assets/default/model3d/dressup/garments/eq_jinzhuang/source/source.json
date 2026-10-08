@@ -1,0 +1,129 @@
+{
+  "schema": "tianshu-dressup-source.v1",
+  "id": "eq_jinzhuang",
+  "kind": "dressed-body",
+  "template": "tpl_f_medium",
+  "item": "eq_jinzhuang",
+  "tripo": {
+    "project_id": "b01f6451-81a6-46ac-a769-0cdf1d374df3",
+    "generate_op": "f22f7d8b-d0c9-4473-8091-79c4c9f39b17",
+    "rig_op": "65b0e36c-2354-4003-be2b-8079a974a4a7",
+    "export_op": "4794c17e-417e-44da-b627-11fdd35ae29a"
+  },
+  "options": {
+    "generate": {
+      "mode": "image_to_model",
+      "ai_model": "H3.1 Best Quality",
+      "model_version": "v3.1-20260211",
+      "geometry_quality": "detailed",
+      "texture": true,
+      "texture_quality": "extreme",
+      "pbr": true,
+      "delight": true,
+      "topology": "triangle",
+      "face_limit": 200000,
+      "texture_alignment": "original_image",
+      "generate_parts": false,
+      "smart_poly": false,
+      "enable_image_autofix": true,
+      "visibility": "private"
+    },
+    "rig": {
+      "rig_type": "biped",
+      "skeleton_preset": "mixamo",
+      "model_version": "v3.0-20260909"
+    },
+    "export": {
+      "format": "gltf",
+      "texture_size": 2048,
+      "with_animation": true,
+      "animations": [],
+      "animate_in_place": true,
+      "export_orientation": "-y"
+    }
+  },
+  "credits": {
+    "generate": 65,
+    "rig": 20,
+    "before": 17410,
+    "after": 17325
+  },
+  "plate": {
+    "path": "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png",
+    "sha256": "3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369"
+  },
+  "glb": {
+    "file": "tripo_dressed_rig.glb",
+    "sha256": "4da5eab6ff1f218719c4ba187fa824099b40ccf539855b1f265e0a27c11de956",
+    "size_bytes": 8122740,
+    "vertices": 103565,
+    "triangles": 189775,
+    "joints": 65
+  },
+  "inspect": {
+    "height_mu": 0.9801023979816819,
+    "rest_bind_max_diff": 7.5089777282766335e-06,
+    "arm_angle_deg": 26.041158806917704,
+    "forearm_angle_deg": 30.18320772014891,
+    "heads_ratio": 8.38,
+    "hips_ratio": 0.545,
+    "connected_components": 194,
+    "boundary_edges": 16967,
+    "non_manifold_edges": 0,
+    "world_bounds_mu": {
+      "min": [-0.24130240082740784, 1.4108081813901663e-07, -0.08240468055009842],
+      "max": [0.2413024604320526, 0.9801025390625, 0.08240504562854767]
+    },
+    "source_size_bytes": 9460488,
+    "base_color": {
+      "width_px": 2048,
+      "height_px": 2048,
+      "mime_type": "image/jpeg",
+      "quality": 85
+    },
+    "pbr_textures_removed": ["normal", "metallicRoughness"],
+    "material": "KHR_materials_unlit"
+  },
+  "joints_check": {
+    "ok": true,
+    "chk": {
+      "joints": true,
+      "hips": true,
+      "head": true,
+      "top": true,
+      "feet": true,
+      "hands": true
+    },
+    "n": 65,
+    "extra": [],
+    "Hips": [0.002, 0.542, -0.002],
+    "Head": [-0.01, 0.882, -0.002],
+    "HeadTop_End": [0.018, 1.001, -0.002],
+    "LeftHand": [-0.009, 0.548, -0.199],
+    "RightHand": [-0.009, 0.548, 0.197],
+    "handOut": [0.197, 0.199],
+    "LeftFoot": [-0.04, 0.071, -0.086],
+    "RightFoot": [-0.04, 0.071, 0.082],
+    "meshY": [0, 0.98],
+    "bytes": 14556412,
+    "file": "65b0e36c-2354-4003-be2b-8079a974a4a7/tripo_rigging_65b0e36c-2354-4003-be2b-8079a974a4a7_meshopt.glb"
+  },
+  "alignment": {
+    "method": "9-torso-joint height-normalized Umeyama; hands and feet reported out of fit",
+    "template": "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "fit_joints": [
+      "Hips", "Spine", "Spine1", "Spine2", "Neck",
+      "LeftArm", "RightArm", "LeftUpLeg", "RightUpLeg"
+    ],
+    "scale": 1.0087396112186098,
+    "mirrored": false,
+    "torso_rms_percent_height": 1.916449526669021,
+    "torso_max_percent_height": 3.683475256341921,
+    "all_13_rms_percent_height": 3.2254257652665674,
+    "all_13_max_percent_height": 6.059837881779137,
+    "torso_max_joint": "Spine1",
+    "all_max_joints": ["LeftFoot", "RightFoot"]
+  },
+  "qc": "通过：封面为交领右衽；腰带结、垂带、翻袖口及髋部长衣摆与底图一致；脸、光头、双耳、双手、双脚完整，A 姿一致，未见大片粘连、破洞或破面。仅正面封面，背面与动态穿模交 E2 实测。",
+  "created": "2026-10-08T01:55:30-07:00"
+}
