@@ -51470,9 +51470,12 @@
      ],
      [
       "pnpm",
-      "--filter",
-      "@tianshu/render",
-      "test"
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup",
+      "--config",
+      "vitest.workspace.ts"
      ],
      [
       "pnpm",
