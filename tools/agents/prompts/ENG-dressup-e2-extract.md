@@ -32,6 +32,16 @@
 4. `tests_garment.py` 会重写 `garments/_fixture_bodysuit/**` 的计时字段——那是 A4 的产物，不在本任务写集：提交前 `git checkout -- assets/default/model3d/dressup/garments/_fixture_bodysuit` 还原。
 5. 候选 A / B 只保留选中的正式件；对比数字写报告，`candidate_a/` `candidate_b/` 目录不要入库。
 
+## 协调者裁定（2026-10-08 06:35，看第 3 次运行产物并在 5173 实测后）
+第 3 次运行抽壳已达标（1 个连通块、4 个开口、覆盖率达标），但三体型 `report.level` 均 fail（中码动态穿透 8.3~8.9%、静态残留 71、翻面 267），按原规则不能入库，执行器因此没有写 manifest，任务卡在"缺文件"。协调者把中码件临时挂到 5173 实测（三种穿法并排）：
+- 网格层按区隐藏身体：有体积与垂坠，但 **V 领与胯下出现黑洞**（torsoUpper / hips 整区被隐藏，而交领开口与衣摆下方本应露皮肤）；
+- **网格层 + E3 贴图层、不隐藏身体**：黑洞消失，穿透处露出的是贴图层画的衣服色，效果最好（作者将据此定默认路线）。
+据此：
+1. **实验件入库**（AR-106 对比用）：report.level 为 fail 时**仍按标准布局入库**——`garments/eq_jinzhuang/{eq_jinzhuang.glb, fit.json, report.json, manifest.yaml}`，small / tall 用 `fits:` 变体（`eq_jinzhuang.tpl_f_small.glb` 等）；manifest 由本任务直接写（不经 ingest.py 的 fail 拦截），条目字段：`status: draft`、`experimental: true`、`gateLevel: fail`，notes 写全身口径的门禁数字。删除 `package_*` 目录。
+2. **`hideRegions` 置空**：fit.json 的 `hideRegions: []`，原计算结果另存 `hideRegionsComputed`；notes 写明"与贴图层 `dressup__layer__eq_jinzhuang` 叠穿使用"。
+3. **毛边清理**：领口 / 袖口 / 衣摆的切边目前是白色碎齿。去掉只挂两条边界边的"齿状"三角、沿每个开口环做边界平滑（只动边界附近 1~2 环顶点），边界附近贴图呈皮肤色的三角删除；可选沿开口向内折 3~5 mm 的窄边（用相邻衣服色）以盖住切口。前后对比写进报告，出 `extract_edges_detail.png`。
+4. validate 照常跑、数字如实写；不改门禁阈值；不改 validate / ingest。
+
 ## 验收（协调者会实测）
 - 躯干关节对齐残差 ≤ 2% H；衣服壳开口环 = 4（领、两袖、下摆），无头 / 手 / 脚 / 小腿三角；
 - 正式件严格模式：`highConfidence ≥ 0.85`、静态残留 0、安全距不足 0、翻面 0、边长合格 ≥ 99%；动态穿透 draft ≤ 2%（争取 approved ≤ 0.5%）；`hideRegions` 含 torsoUpper / torsoLower / hips，不含 neverHide；
