@@ -17,9 +17,12 @@
 3. `tools/model3d/dressup/pack_glb.mjs <in.glb> <out.glb> [--simplify <ratio>] [--no-meshopt]`：可选减面（LockBorder，保留 UV / JOINTS / WEIGHTS / _REGION，蒙皮属性一并重采样），EXT_meshopt_compression 编码；打印前后三角数与体积。
 4. `tools/model3d/dressup/ingest.py <kind> <id> --src <dir> [--template tpl_f_medium] [--slot body] [--item eq_xxx] [--commit]`：按 spec §7 写 `assets/default/model3d/dressup/<kind>/<id>/manifest.yaml`（status 由 report.level 决定），复制 glb / fit.json / report.json，`--commit` 时只按该目录路径提交（撞 index.lock 重试），默认不提交。
 5. `apps/game/build/dressup-assets.ts`：`publishDressupAssets(root, copy, copied?, references?)`，只扫 `file / fit / report / status` 四个字段；`apps/game/build/dressup-assets.test.ts` 用临时目录造 manifest 验证复制与 `rejected` 跳过。**不要改 `content-plugin.ts`**（B1 负责接线）。
-6. 实跑：
-   - 若工作区已有 A3 / A4 产物（`assets/default/model3d/dressup/{props,garments,hair}/*`），逐件 validate 并 ingest（不 --commit）；没有就用自己写的合成蒙皮小网格跑通 validate 并在报告里说明；
-   - `textures.py` + `pack_glb.mjs --simplify 0.4` 跑正本副本（输出到临时目录，不覆盖 `templates/tpl_f_medium/body.glb`），报告前后三角数 / 体积 / 贴图尺寸。
+6. 实跑（协调者 2026-10-07 17:15 调整：A4 衣物正按新正本重做，本任务**不再要求对 A4 产物出报告**，真实衣物 / 发型的逐件报告留给阶段 C 的 `ENG-dressup-c1-e2e`）：
+   - 正本：当前 `assets/default/model3d/dressup/templates/tpl_f_medium/body.glb` 已是 T2 新正本（项目 be15d34a，25° 窄 A），工作区基点已挪到含它的提交；
+   - 刚性件：对 A3 已合入的三件道具（`assets/default/model3d/dressup/props/{item_qingfeng_sword,item_bamboo_hat,luxury_jade_pendant}/`）逐件跑 validate（真实 fit.json 格式，hat 用锥顶—开口语义轴）→ textures → pack（`--simplify`）→ ingest（不 --commit），报告逐件写 level 与各检查值；
+   - 蒙皮件：用合成蒙皮件（基于新正本骨架、带 JOINTS/WEIGHTS/_REGION，含故意穿透 / 翻面 / 越界关节 / 缺字段的负例与一个合规正例）覆盖 garment / hair 两条路径的全部检查，包括 idle / walk / run 各 24 帧动态穿透（全部顶点、可分块，距离一律调用 `common.signed_distance`）；
+   - `textures.py` + `pack_glb.mjs --simplify 0.4` 跑新正本副本（输出到临时目录，不覆盖 body.glb），报告前后三角数 / 体积 / 贴图尺寸；
+   - `pnpm test -- apps/game/build/dressup-assets` 通过。
 
 ## 约束
 - 只写 `tools/model3d/dressup/{validate.py,textures.py,pack_glb.mjs,ingest.py}`、`apps/game/build/dressup-assets.ts`、`apps/game/build/dressup-assets.test.ts`、`package.json`、`pnpm-lock.yaml`（只为 meshoptimizer）、`assets/default/model3d/dressup/**/manifest.yaml`、`**/report.json` 与本任务报告。
