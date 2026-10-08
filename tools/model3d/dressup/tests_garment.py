@@ -500,6 +500,27 @@ def test_fixture_strict_fit() -> None:
     assert accessor["componentType"] == 5121 and accessor["type"] == "SCALAR"
 
 
+def test_align_none_uses_template_weights() -> None:
+    """已在模板 bind 空间的无 skin 壳不得再次做 landmark/joint 对齐。"""
+    root = Path(__file__).resolve().parents[3]
+    template = root / "assets/default/model3d/dressup/templates/tpl_f_medium"
+    fixture = root / "assets/default/model3d/dressup/garments/_fixture_bodysuit"
+    raw = fixture / "_fixture_bodysuit_raw.glb"
+    assert raw.is_file(), "test_fixture_strict_fit 必须先生成 raw fixture"
+    with tempfile.TemporaryDirectory() as temporary:
+        result = fit_file(template / "body.glb", template / "skeleton.json", raw,
+                          Path(temporary), "garment", "body", "_fixture_none",
+                          push_mm=3.0, iters=80, align_mode="none",
+                          notes=["unit-test-none"])
+        assert result["align"]["requestedMode"] == "none"
+        assert result["align"]["bodySpaceIdentity"]
+        assert result["weights"]["method"].startswith("nearest-triangle")
+        assert result["template"] == "tpl_f_medium" and result["notes"] == ["unit-test-none"]
+        output = load_world_mesh(load_glb(Path(temporary) / "_fixture_none.glb"), skinned_only=True)
+        source = load_world_mesh(load_glb(raw))
+        assert len(output.positions) == len(source.positions)
+
+
 def test_file_identity_and_region() -> None:
     root = Path(__file__).resolve().parents[3]
     template = root / "assets/default/model3d/dressup/templates/tpl_f_medium"
@@ -526,7 +547,8 @@ def main() -> int:
     tests = [test_weight_transfer_and_filter, test_surface_query_is_geometric_nearest,
              test_legacy_normal_selected_output_has_real_residual,
              test_push_out, test_hide_regions, test_refit_identity,
-             test_refit_changed_bone_lengths, test_fixture_strict_fit, test_file_nonidentity_refit,
+             test_refit_changed_bone_lengths, test_fixture_strict_fit, test_align_none_uses_template_weights,
+             test_file_nonidentity_refit,
              test_units_skull_and_regions, test_alignment_no_mirror, test_alignment_continuous_pca_yaw,
              test_joint_alignment_mirror_detection, test_joint_alignment_bone_length_scale,
              test_push_gate_failure, test_push_draft_is_explicit, test_file_identity_and_region]
