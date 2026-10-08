@@ -1,0 +1,33 @@
+- id: dressup__template__tpl_f_tall
+  file: body.glb
+  category: model3d
+  kind: dressup-template
+  template: tpl_f_tall
+  gender: female
+  archetype: tall
+  derivedFrom:
+    template: tpl_f_medium
+    file: ../tpl_f_medium/body.glb
+    sha256: 1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f
+  heightM: 1.72
+  heightMu: 1.01552799
+  heightRatio: 1.03614455
+  mPerMu: 1.69370023
+  hipsRatio: 0.58500002
+  shoulderRatio: 0.16
+  skeleton: skeleton.json
+  skeletonSha: 22738eb5b872ded63ec0ae6775048ced7fbef3f9eb190d6b4e758f2ae50d5c5e
+  ringSha: 9b3d0323f7f90e99cb60f77490211875c5b5cbda6cad4afab4394f313e5b3fbc
+  regions: regions.npy
+  regionsSha: 3f73cf8c2fee98bdc2b3a916eba78208f7735043597268b7543766b46d9830fa
+  skullProfile: skull_profile.json
+  skullProfileSha: 35c65ab97d256fcfbf725ba71b279cc5622683f9a73d08dfe02bee8d6ef70295
+  derive: derive.json
+  deriveSha: 005f09e12c69f4189ea62b636a091cc06dd7ab33c5d2db5f63c7f751cc039861
+  sha256: fc6772d64fb84a26f87346d9043e8e7cf508395dcb4658e92a0aa60e75da907d
+  size_bytes: 9596296
+  vertices: 105082
+  triangles: 196022
+  joints: 65
+  status: draft
+  notes: AR-104 / AR-105 25° 当前正本派生；路 A 共拓扑、0 点；源正本变化后须重派生
