@@ -7,7 +7,7 @@
 
 ## 规格
 - spec §6 门禁阈值与 `report.json`（含几何质量：翻面 0、边长比 [0.7, 1.4] 内三角 ≥ 99%、贴身区距离 p90 差 < 5 mm；遮罩禁区：颈环带 / 手 / 脚不得被盖）；§7 `manifest.yaml`（含 `fits` 按模板变体）与进包；§5.5 材质与面数目标。
-- `pack_glb.mjs --simplify`：JOINTS / `_REGION` 不作误差通道，用 `vertex_lock` 锁颈环与区域边界顶点 + `LockBorder`；减面只重建索引不改顶点。
+- `pack_glb.mjs --simplify`：JOINTS / `_REGION` 不作误差通道，用 `vertex_lock` 锁颈环与区域边界顶点 + `LockBorder`；减面只重建索引不改顶点。**协调者 2026-10-07 20:40 定口径**（审核 r2 与 r6 意见相反）：打包阶段**不拆点、不复制顶点、不改任何顶点 accessor 的 count 与字节**，只新增索引 accessor；跨区域三角的拆点不属于本任务（`_REGION` 只用于素体，按 provoking vertex 显示，是否在正本导出时拆点留到阶段 B 评估）。
 - 动态穿透：对模板 idle / walk / run 各采 24 帧，自己从 GLB 读 animation sampler（LINEAR 插值；CUBICSPLINE 报不支持），**装备与模板同骨架，直接用模板 clip，不做任何 retarget**；带符号距离 < −1 mm 为穿透。
 - Node 侧允许且只允许新增一个 devDependency：`meshoptimizer`（1.3.x，`pnpm add -Dw`），供 `pack_glb.mjs` 编码；减面用 three 自带 `three/examples/jsm/libs/meshopt_simplifier.module.js`。
 
