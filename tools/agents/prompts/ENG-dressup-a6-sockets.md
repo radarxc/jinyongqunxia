@@ -21,6 +21,12 @@
    - 输出每件的最小 / 中位数值与是否通过，写 `<prop>/sockets_check.json`。
 6. **测试**：`tests_skeleton.py` 加约定校验用例（合成骨架上非握持插槽 bind 世界旋转 = I、握持插槽轴向与 Pinky→Index 一致、左右手 det = +1）；`tests_prop.py` 加 weapon 倾角符号、hat 抬升（合成球形颅骨 + 圆锥帽：抬升后间隙 = 3 mm ± 0.1）、pendant 外移用例；`check_sockets.py` 在三件真实道具上退出 0。
 
+## 协调者裁定（2026-10-08 05:00，依据审核 r1）
+- **武器动态深穿门禁**：通用 idle / walk / run 不是持械动作，1 m 长剑随摆臂扫过大腿 / 髋部，做不到 0。改为与衣物同一分级：全部 72 帧刃身顶点采样中"带符号距离 < −5 mm"的占比 **approved ≤ 0.5%、draft ≤ 2%、> 2% 判 fail（退出 2）**；`check_sockets.py` 必须如实判定（删除豁免），级别写进 `sockets_check.json`（`level`）与该道具 manifest 的 notes；`status` 取 validate 与 sockets_check 两者中较低的级别。
+- **`restTiltDeg` 默认值**：在 {0, 20, 40, 60} 度与反握（刃向朝前臂方向，约 −150°）中按"动态深穿占比最小"选取，各候选数字写进 `sockets_check.json.tiltSweep` 与报告；选定值写入 fit.json。
+- 持械专用动作（armed idle / walk / run）留给后续阶段，届时把武器深穿收紧到 0。
+- 审核 r1 的其他意见照做：全部待判顶点用严格最近三角带符号距离（或证明不漏报的保守宽相）；斗笠按 `regions=head` 的三角判定；补"最近顶点与最近三角符号不一致"回归测试；报告第 7 节写交接约定。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{export_skeleton.py,tests_skeleton.py,normalize_prop.py,tests_prop.py,check_sockets.py}`、`assets/default/model3d/dressup/templates/{tpl_f_medium,tpl_f_small,tpl_f_tall}/{skeleton.json,manifest.yaml}`、`assets/default/model3d/dressup/props/**` 与本任务报告。
 - 不改运行时（`packages/**`）、不改 validate / ingest / textures / pack、不改 fit_garment / refit / derive；不加依赖；不改门禁阈值；不花 Tripo 点数。
