@@ -50933,8 +50933,7 @@
    "kind": "draft",
    "prompt": "ENG-dressup-b2-preview.md",
    "deps": [
-    "ENG-dressup-b1b-chunk",
-    "ENG-dressup-a4-garment"
+    "ENG-dressup-b1b-chunk"
    ],
    "review": false,
    "web": true,

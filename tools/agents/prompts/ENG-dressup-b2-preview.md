@@ -5,6 +5,8 @@
 ## 作者要求
 作者原始需求（AR-102）：在 `http://localhost:5173/character-3d` 预览纸娃娃换装；本地预览要与 Tripo 的 unlit 观感一致；头发、衣服、饰品、武器都要正确地穿戴到素体上、随动作运动、大小合适、武器在手里。本任务把阶段 A / T / B1 的成果接到这个页面上，让作者能看到效果。
 
+> 协调者 2026-10-08 01:10：本任务不再等 A4。页面只读 `index.json`，A4 的衣物 / 发型合入后会自动出现在列表里；现在可用的是三套女模板（small / medium / tall）与三件道具（剑 mainHand / 斗笠 headTop / 玉佩 chest）。作者要尽快在本地看到效果，先保证模板切换、unlit 对比、道具插槽与动作切换可用。
+
 ## 第 0 步：导入预览页基线（主检出里未提交的现有文件，只读拷贝）
 以下文件只存在于主检出 `/Users/bytedance/Projects/jinyongqunxia` 的工作区（未提交），先原样拷进你的工作区，再在其上开发：
 - `apps/game/src/pages/Character3dPage.vue`
