@@ -51247,7 +51247,8 @@
     "assets/default/model3d/dressup/templates/tpl_f_small/manifest.yaml",
     "assets/default/model3d/dressup/templates/tpl_f_tall/skeleton.json",
     "assets/default/model3d/dressup/templates/tpl_f_tall/manifest.yaml",
-    "assets/default/model3d/dressup/props/**"
+    "assets/default/model3d/dressup/props/**",
+    "apps/game/build/dressup-assets.test.ts"
    ],
    "validate": {
     "exists": [
