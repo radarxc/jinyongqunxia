@@ -50976,6 +50976,64 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-e1-garment-gen",
+   "title": "3D 纸娃娃换装 · E1 · 江湖劲装整身生成（Tripo 生成 + 绑骨 → 源件，85 点；贴图层 / 网格层共用）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ART-dressup-e1-garment-gen.md",
+   "deps": [
+    "ART-dressup-t2-tpl-f-medium"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-08「同时试试吧」：贴图层与网格层同时试；经 tri_pipeline_runner /open /eval 驱动 Tripo",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/source/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source/tripo_dressed_rig.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source/source.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source/cover.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/garments/eq_jinzhuang/source/tripo_dressed_rig.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
