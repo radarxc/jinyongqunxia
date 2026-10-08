@@ -20,6 +20,12 @@
 2. **入库**：在 `garments/eq_jinzhuang_tex/manifest.yaml` 写一个条目（字段照 spec §7：`id: dressup__layer__eq_jinzhuang`、`file: eq_jinzhuang.layer.png`、`fit: layer.json`、`kind: dressup-layer`、`slot: body`、`template: tpl_f_medium`、`item`、`tool`、`source`（E1 Tripo 项目 ID、源件与底板 sha256）、`sha256`、`size_bytes`、`status: draft`（作者看图后再改）、`created`、`notes`）。不写 `report`（层贴图没有几何门禁，自检数字写进 `layer.json`）。
 3. **`tools/model3d/dressup/tests_texlayer.py`**：合成"带 UV 的圆柱身体 + 外套筒（套筒贴图一半衣服色、一半皮肤色）"，验证纹素光栅化覆盖、最近点采样颜色、区域约束、羽化与扩边、`templates` 共 UV 核对（改一个 UV 即被剔除）。
 
+## 协调者实测意见（2026-10-08 03:25，看第 1 轮质检图后补充；返修必须照做）
+第 1 轮覆盖率数字达标，但质检图上交领糊成一团、腰带断成碎块、衣摆与袖口边缘呈锯齿，不满足下方"交领、腰带、袖口在正 / 背面都在、与底板一致"。协调者核对了对齐：逐骨校正后露出皮肤到模板体表 p50 头 2.9 mm、手约 2 mm、小腿 6–8 mm（只粗配时 15–44 mm），**对齐没问题，问题在烘焙方式**：劲装离体表 1–3 cm（躯干 p90 约 27 mm），逐纹素取"几何最近点"会在腰带、交领叠襟、衣摆外扩处取错表面。改法：
+1. **沿模板法线射线烘焙**（标准 cage / ray bake）：从纹素 bind 位置沿插值法线向外，起点 `p − 5 mm·n`，取与对齐后整身表面的**最外侧**交点（射程上限 `--max-distance-mm`），用该交点的 UV 采样颜色；射线无命中才回退最近点，并把回退纹素数写进 `layer.json`。射线求交用 numpy 向量化 + 三角包围盒网格 / KD 分桶，不加依赖。
+2. **alpha 清理**：逐 UV 岛对衣服判定做形态学开 / 闭（去孤点、补小洞），再按区域边界把衣摆 / 袖口拉成平滑边（轮廓平滑后羽化 1~2 px），质检图上不得有锯齿状撕边与孤立色块。
+3. 新增质检图 `preview_front_detail.png`（上半身放大到胸口、腰带、袖口）；报告第 3 节写射线命中率、回退数、清理前后衣服纹素数。
+
 ## 验收（协调者会实测）
 - 质检图上劲装的交领、腰带、袖口在正 / 背面都在、与底板一致；手、脸、颈、小腿无衣服色；三套模板都能用同一张层；
 - `layer.json.coverageByRegion`：torsoUpper / torsoLower ≥ 0.9、upperArm / forearm ≥ 0.8、head / hand / foot / shin = 0；
