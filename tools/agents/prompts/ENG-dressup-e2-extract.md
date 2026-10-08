@@ -24,6 +24,14 @@
 5. **跨模板**：`refit_template.py` 到 `tpl_f_small` / `tpl_f_tall`，各跑 `validate.py`（用目标模板自己的 clip），结果写进 manifest 的 `fits:`（不过门禁的写 `status: draft` 并如实记数）。
 6. **`tools/model3d/dressup/tests_extract.py`**：合成"圆柱身体 + 外套筒（不同颜色贴图）+ 露出的手 / 头"的整身网格，验证分割标签、开口环计数、区域约束（手 / 头不进衣服）、输出两种 GLB 的顶点与源一致（skinned 版坐标逐位相等）。
 
+## 协调者实测意见（第 1 轮中途，2026-10-08 04:55；第 1 次运行因 GPT-5.6-Sol 速率限制中断，续作时照做）
+看了 `extract_run/extract_front.png` 与 `extract.json`：衣服壳胸口中间缺一大块**矩形**、右上臂只抽到一半、衣摆块状缺口；48 个连通块、14 个开口环（应为 4）；覆盖率 torsoUpper 0.42 / upperArmR 0.48 / forearmL 0.52；候选 A / B 都 draft（静态残留 246、动态穿透 5–6%、翻面 521）。
+1. **矩形块状缺口像 UV 采样错了**（整块 UV 岛被判成皮肤）：检查贴图采样是否按 glTF 约定（UV 原点左上、`v` 向下，Pillow 行 0 = 图像顶，不要再 `1 − v`），对照 E3 的 `bake_texture_layer.py`（同一张 Tripo 贴图、颜色位置正确）逐点核对；再出一张"按采样颜色给整身模型上色"的质检图 `extract_color_check_front.png` 证明采样正确（应与 E1 封面一致）。
+2. 分割以颜色为主、距离为辅：劲装贴身处离体表只有几毫米，距离判据会把它判成身体；颜色样本取自衣图底板人物区"与模板底图差异大"的像素，Lab 空间分类后再做区域约束与网格平滑。
+3. 达到验收前不要进入贴合：开口环 = 4、torsoUpper / torsoLower ≥ 0.9、双臂 ≥ 0.85、连通块 1（允许腰带垂带另成 1~2 块，写进报告）。
+4. `tests_garment.py` 会重写 `garments/_fixture_bodysuit/**` 的计时字段——那是 A4 的产物，不在本任务写集：提交前 `git checkout -- assets/default/model3d/dressup/garments/_fixture_bodysuit` 还原。
+5. 候选 A / B 只保留选中的正式件；对比数字写报告，`candidate_a/` `candidate_b/` 目录不要入库。
+
 ## 验收（协调者会实测）
 - 躯干关节对齐残差 ≤ 2% H；衣服壳开口环 = 4（领、两袖、下摆），无头 / 手 / 脚 / 小腿三角；
 - 正式件严格模式：`highConfidence ≥ 0.85`、静态残留 0、安全距不足 0、翻面 0、边长合格 ≥ 99%；动态穿透 draft ≤ 2%（争取 approved ≤ 0.5%）；`hideRegions` 含 torsoUpper / torsoLower / hips，不含 neverHide；
