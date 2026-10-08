@@ -1,0 +1,336 @@
+{
+  "align": {
+    "bodySpaceIdentity": false,
+    "determinant": 1.0,
+    "headTop": {
+      "bone": "mixamorig:Head",
+      "posMu": [
+        -0.01739401,
+        0.09054991,
+        0.00484864
+      ],
+      "worldMu": [
+        -0.000593075,
+        0.978394881,
+        -0.011500541
+      ]
+    },
+    "landmarks": 0,
+    "method": "landmarks",
+    "mirrored": false,
+    "residualMu": {
+      "feetMu": null,
+      "headTopMu": 0.0
+    },
+    "scale": 0.620990319,
+    "skullFit": {
+      "minimumCavityMarginMu": -0.005208337,
+      "profileMaxWidthMu": 0.12891026,
+      "rowsChecked": 24,
+      "sections": [
+        {
+          "marginXMu": 0.09600231,
+          "marginZMu": 0.219514023,
+          "sourceRadiusXMu": 0.10967306,
+          "sourceRadiusZMu": 0.230005373,
+          "yMu": -0.02409224
+        },
+        {
+          "marginXMu": 0.098329037,
+          "marginZMu": 0.209273893,
+          "sourceRadiusXMu": 0.116350417,
+          "sourceRadiusZMu": 0.229693263,
+          "yMu": -0.01909224
+        },
+        {
+          "marginXMu": 0.091975523,
+          "marginZMu": 0.200424745,
+          "sourceRadiusXMu": 0.114013413,
+          "sourceRadiusZMu": 0.225548565,
+          "yMu": -0.01409224
+        },
+        {
+          "marginXMu": 0.049840623,
+          "marginZMu": 0.19454552,
+          "sourceRadiusXMu": 0.110929583,
+          "sourceRadiusZMu": 0.22214189,
+          "yMu": -0.00909224
+        },
+        {
+          "marginXMu": 0.062741777,
+          "marginZMu": 0.18703429,
+          "sourceRadiusXMu": 0.109955657,
+          "sourceRadiusZMu": 0.21791798,
+          "yMu": -0.00409224
+        },
+        {
+          "marginXMu": 0.061170464,
+          "marginZMu": 0.178434681,
+          "sourceRadiusXMu": 0.111773724,
+          "sourceRadiusZMu": 0.209980811,
+          "yMu": 0.00090776
+        },
+        {
+          "marginXMu": 0.053709491,
+          "marginZMu": 0.162648619,
+          "sourceRadiusXMu": 0.111585071,
+          "sourceRadiusZMu": 0.199620639,
+          "yMu": 0.00590776
+        },
+        {
+          "marginXMu": 0.046673307,
+          "marginZMu": 0.147584682,
+          "sourceRadiusXMu": 0.107158697,
+          "sourceRadiusZMu": 0.189039482,
+          "yMu": 0.01090776
+        },
+        {
+          "marginXMu": 0.039981763,
+          "marginZMu": 0.13517246,
+          "sourceRadiusXMu": 0.101881043,
+          "sourceRadiusZMu": 0.17986927,
+          "yMu": 0.01590776
+        },
+        {
+          "marginXMu": 0.040336852,
+          "marginZMu": 0.115228537,
+          "sourceRadiusXMu": 0.098022952,
+          "sourceRadiusZMu": 0.160977097,
+          "yMu": 0.02090776
+        },
+        {
+          "marginXMu": 0.041171769,
+          "marginZMu": 0.090133481,
+          "sourceRadiusXMu": 0.096268889,
+          "sourceRadiusZMu": 0.142673551,
+          "yMu": 0.02590776
+        },
+        {
+          "marginXMu": 0.031636745,
+          "marginZMu": 0.08900996,
+          "sourceRadiusXMu": 0.085089695,
+          "sourceRadiusZMu": 0.13661571,
+          "yMu": 0.03090776
+        },
+        {
+          "marginXMu": 0.017456795,
+          "marginZMu": 0.03792061,
+          "sourceRadiusXMu": 0.074557605,
+          "sourceRadiusZMu": 0.08319331,
+          "yMu": 0.03590776
+        },
+        {
+          "marginXMu": 0.008973869,
+          "marginZMu": 0.034963375,
+          "sourceRadiusXMu": 0.071222979,
+          "sourceRadiusZMu": 0.080297865,
+          "yMu": 0.04090776
+        },
+        {
+          "marginXMu": 0.008522264,
+          "marginZMu": 0.033421284,
+          "sourceRadiusXMu": 0.072977394,
+          "sourceRadiusZMu": 0.077891694,
+          "yMu": 0.04590776
+        },
+        {
+          "marginXMu": 0.008087818,
+          "marginZMu": 0.031735366,
+          "sourceRadiusXMu": 0.062482418,
+          "sourceRadiusZMu": 0.075243866,
+          "yMu": 0.05090776
+        },
+        {
+          "marginXMu": -0.004599585,
+          "marginZMu": 0.030323998,
+          "sourceRadiusXMu": 0.054655145,
+          "sourceRadiusZMu": 0.073063848,
+          "yMu": 0.05590776
+        },
+        {
+          "marginXMu": 0.002321984,
+          "marginZMu": 0.027390126,
+          "sourceRadiusXMu": 0.055785964,
+          "sourceRadiusZMu": 0.072337336,
+          "yMu": 0.06090776
+        },
+        {
+          "marginXMu": -0.000587093,
+          "marginZMu": 0.023750507,
+          "sourceRadiusXMu": 0.051844077,
+          "sourceRadiusZMu": 0.066024447,
+          "yMu": 0.06590776
+        },
+        {
+          "marginXMu": 0.002123993,
+          "marginZMu": 0.01943327,
+          "sourceRadiusXMu": 0.049669403,
+          "sourceRadiusZMu": 0.05781352,
+          "yMu": 0.07090776
+        },
+        {
+          "marginXMu": 0.005510107,
+          "marginZMu": 0.010211387,
+          "sourceRadiusXMu": 0.050997107,
+          "sourceRadiusZMu": 0.048055817,
+          "yMu": 0.07590776
+        },
+        {
+          "marginXMu": 0.001942351,
+          "marginZMu": 0.014578562,
+          "sourceRadiusXMu": 0.040588901,
+          "sourceRadiusZMu": 0.046079142,
+          "yMu": 0.08090776
+        },
+        {
+          "marginXMu": -0.005208337,
+          "marginZMu": 0.011139686,
+          "sourceRadiusXMu": 0.028819153,
+          "sourceRadiusZMu": 0.037703386,
+          "yMu": 0.08590776
+        },
+        {
+          "marginXMu": -0.000268941,
+          "marginZMu": 0.011836968,
+          "sourceRadiusXMu": 0.023710109,
+          "sourceRadiusZMu": 0.029221528,
+          "yMu": 0.09090776
+        }
+      ],
+      "sourceTopWidthMu": 0.207588196
+    },
+    "translationMu": [
+      -0.058766536,
+      0.679874908,
+      -0.002278449
+    ],
+    "yawDeg": -84.398812075
+  },
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+    "skeleton": "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "skeletonSha256": "79844b4ef2a28a69f981092f1984c5397610cda09da3b4c3cf84d2ec5b358c48"
+  },
+  "coverage": 0.65,
+  "coverageByRegion": {
+    "footL": 0.000917254,
+    "footR": 0.0,
+    "forearmL": 0.0,
+    "forearmR": 0.00172201,
+    "handL": 0.000303442,
+    "handR": 0.000231114,
+    "head": 0.290476347,
+    "hips": 0.2018783,
+    "neck": 0.04418403,
+    "shinL": 0.001506206,
+    "shinR": 0.000691825,
+    "thighL": 0.057636832,
+    "thighR": 0.004017791,
+    "torsoLower": 0.205126633,
+    "torsoUpper": 0.0906214,
+    "upperArmL": 0.178888259,
+    "upperArmR": 0.039917799
+  },
+  "fitVersion": 1,
+  "hideRegions": [],
+  "id": "hair_ponytail",
+  "kind": "hair",
+  "neverHide": [
+    "neck",
+    "handL",
+    "handR",
+    "footL",
+    "footR"
+  ],
+  "pushOut": {
+    "centroidDriftMu": 0.000550491,
+    "clearancePassed": false,
+    "degenerateTriangles": 0,
+    "draft": true,
+    "flippedTriangles": 0,
+    "insufficientMargin": 37762,
+    "iters": 3,
+    "minimumDistanceMu": -0.054548503,
+    "movedVertices": 50559,
+    "passed": false,
+    "pushMm": 3.0,
+    "pushMu": 0.00177127,
+    "residual": 27584,
+    "rounds": [
+      {
+        "afterInside": 27584,
+        "afterInsufficientMargin": 37762,
+        "inside": 43465,
+        "insufficientMargin": 48027,
+        "maximumCorrectionMu": 0.058734522,
+        "minimumDistanceMu": -0.056958075,
+        "moved": 50559,
+        "topologyStepHalvings": 24
+      },
+      {
+        "afterInside": 27584,
+        "afterInsufficientMargin": 37762,
+        "inside": 27584,
+        "insufficientMargin": 37762,
+        "maximumCorrectionMu": 0.056324949,
+        "minimumDistanceMu": -0.054548503,
+        "moved": 0,
+        "topologyStepHalvings": 24
+      },
+      {
+        "afterInside": 27584,
+        "afterInsufficientMargin": 37762,
+        "inside": 27584,
+        "insufficientMargin": 37762,
+        "maximumCorrectionMu": 0.056324949,
+        "minimumDistanceMu": -0.054548503,
+        "moved": 0,
+        "topologyStepHalvings": 24
+      }
+    ],
+    "stretchOutliers": 44873,
+    "stretchWithinRatio": 0.846642037,
+    "topologyPassed": false
+  },
+  "schema": "tianshu-dressup-fit.v1",
+  "slot": "head",
+  "source": {
+    "file": "apps/game/public/models/props/hair_ponytail_raw.glb",
+    "sha256": "c008a8e7ccdc06e22ae4273c9ac77370e868e01d6e2af52def525b38928b264f"
+  },
+  "spring": null,
+  "stats": {
+    "boundaryEdges": 29329,
+    "elapsedSec": 37.8288445,
+    "fileBytes": 12992864,
+    "nearestTriangleCandidates": 16,
+    "nonManifoldEdges": 0,
+    "peakMemoryMiB": 1839.671875,
+    "primitiveCount": 1,
+    "removedStubTriangles": 0,
+    "triangles": 292603,
+    "vertices": 161333
+  },
+  "status": "draft",
+  "weights": {
+    "diffusedVertices": 0,
+    "directConfidenceVertices": 15404,
+    "directUsableVertices": 10988,
+    "farFallbackThresholdMm": 100.0,
+    "farSemanticFallbackVertices": 39250,
+    "filteredVertices": 123854,
+    "highConfidence": 0.095479536,
+    "highConfidenceVertices": 15404,
+    "jointsAllowed": [
+      "mixamorig:Spine2",
+      "mixamorig:Neck",
+      "mixamorig:Head"
+    ],
+    "lowConfidenceVertices": 145929,
+    "maxBones": 4,
+    "method": "nearest-triangle-barycentric+low-confidence-joint-segment",
+    "normalizedVertices": 161333,
+    "semanticFallbackVertices": 150345
+  }
+}

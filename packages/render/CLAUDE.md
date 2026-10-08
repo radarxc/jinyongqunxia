@@ -86,7 +86,10 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 
 - 运行时只从 `@tianshu/render/dressup` 动态导入 `createDressupActor()`；根入口仅导出 `DressupActor`、`DressupActorOptions`、`DressupEquipSpec`、`DressupFit`、`DressupSkeletonFrame`、`DressupStats` 类型，禁止静态转出运行时值。
 - `packages/render/src/dressup/**` 固定进入 `render-dressup` 独立懒加载块，gzip 预算 24 KiB；允许它静态依赖已归入 `battle-model3d` 的 `GLTFLoader` / `SkeletonUtils`，不得把换装实现拉回 render 主闭包。
-- `createDressupActor({ bodyUrl, frameUrl, heightM })` 返回共享 Skeleton 的 actor；调用方按需 `equip()` / `unequip()`、`playClip()`、逐帧 `update(dt)`，最终幂等 `dispose()`。素材必须使用构建期发布的 non-rejected manifest `file / fit / report`。
+- `createDressupActor({ bodyUrl, frameUrl, heightM })` 返回共享 Skeleton 的 actor；调用方按需 `equip()` / `unequip()`、`playClip()`、逐帧 `update(dt)`，最终幂等 `dispose()`。网格/道具素材必须使用构建期发布的 non-rejected manifest `file / fit / report`；贴图层使用 `file / fit`，允许没有几何 `report`。
+- 身体贴图层调用 `setBodyLayers(DressupLayerSpec[])`；按 `order`（缺省传入顺序）把 RGBA 层叠到原始 baseColor，空数组恢复原图。输出固定 sRGB、`flipY=false` 并继承原图采样参数；层 ID 序列相同的合成纹理跨 actor 引用计数共享，最后释放者销毁。
+- `createDressupActor({ ..., compositor? })` 可注入纯内存合成器；默认实现依次使用 OffscreenCanvas / DOM canvas 与 ImageBitmap / ImageLoader。异步调用以最后一次为准，`dispose()` 同时释放当前或尚未采用的合成纹理引用。
+- `stats()` 除原有结构统计外给出 `bodyLayers` 与 RGBA8 `layerTextureBytes` 估计；贴图层不新增 mesh 或 draw call，`update(dt)` 不参与合成且仍不得逐帧分配。
 - 100 actor × 平均 4 件合成装备的 `update(dt)` + `skeleton.update()` P95 必须 `< 2.0 ms`；只由 perf project / `pnpm check:perf` 收集，不进 `pnpm check`，不得按系统负载跳过或放宽。
 
 ## 招式 VFX API（ENG-11）

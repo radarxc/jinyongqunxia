@@ -1,0 +1,899 @@
+{
+  "align": {
+    "bodySpaceIdentity": false,
+    "determinant": 1.0,
+    "landmarks": 0,
+    "method": "landmarks",
+    "mirrored": false,
+    "residualMu": {
+      "feetMu": 0.287083417,
+      "neckTopMu": 0.011276602
+    },
+    "scale": 1.0,
+    "translationMu": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "yawDeg": 0.094854582
+  },
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+    "skeleton": "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "skeletonSha256": "79844b4ef2a28a69f981092f1984c5397610cda09da3b4c3cf84d2ec5b358c48"
+  },
+  "coverage": 0.65,
+  "coverageByRegion": {
+    "footL": 0.0,
+    "footR": 0.0,
+    "forearmL": 0.0,
+    "forearmR": 0.0,
+    "handL": 0.0,
+    "handR": 0.0,
+    "head": 0.0,
+    "hips": 0.987969788,
+    "neck": 0.0,
+    "shinL": 0.0,
+    "shinR": 0.0,
+    "thighL": 0.980561804,
+    "thighR": 0.982035301,
+    "torsoLower": 0.995534237,
+    "torsoUpper": 0.91083153,
+    "upperArmL": 0.0,
+    "upperArmR": 0.0
+  },
+  "fitVersion": 1,
+  "fixtureInput": {
+    "aggregationVoxelMu": 0.014,
+    "baseOffsetMm": 4.0,
+    "noiseAmplitudeMm": 3.0,
+    "noiseComponentRangeMm": [
+      -2.9895285477596647,
+      2.9891072304802164
+    ],
+    "noiseVectorMaxMm": 2.9999698943445843,
+    "prefitInsideFraction": 0.023529411764705882,
+    "seed": 102
+  },
+  "hideRegions": [
+    "torsoUpper",
+    "torsoLower",
+    "hips",
+    "thighL",
+    "thighR"
+  ],
+  "id": "_fixture_bodysuit",
+  "kind": "garment",
+  "neverHide": [
+    "neck",
+    "handL",
+    "handR",
+    "footL",
+    "footR"
+  ],
+  "pushOut": {
+    "centroidDriftMu": 2.9786e-05,
+    "clearancePassed": true,
+    "degenerateTriangles": 0,
+    "draft": false,
+    "flippedTriangles": 0,
+    "insufficientMargin": 0,
+    "iters": 80,
+    "minimumDistanceMu": 0.001771096,
+    "movedVertices": 1870,
+    "passed": true,
+    "pushMm": 3.0,
+    "pushMu": 0.00177127,
+    "residual": 0,
+    "rounds": [
+      {
+        "afterInside": 2,
+        "afterInsufficientMargin": 1012,
+        "inside": 49,
+        "insufficientMargin": 1869,
+        "maximumCorrectionMu": 0.003613834,
+        "minimumDistanceMu": -0.001837387,
+        "moved": 1870,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 456,
+        "inside": 2,
+        "insufficientMargin": 1012,
+        "maximumCorrectionMu": 0.002190525,
+        "minimumDistanceMu": -0.000414078,
+        "moved": 1867,
+        "topologyStepHalvings": 2
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 106,
+        "inside": 0,
+        "insufficientMargin": 456,
+        "maximumCorrectionMu": 0.00151716,
+        "minimumDistanceMu": 0.000259287,
+        "moved": 1682,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 38,
+        "inside": 0,
+        "insufficientMargin": 106,
+        "maximumCorrectionMu": 0.001437681,
+        "minimumDistanceMu": 0.000338766,
+        "moved": 544,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 22,
+        "inside": 0,
+        "insufficientMargin": 38,
+        "maximumCorrectionMu": 0.001322724,
+        "minimumDistanceMu": 0.000453723,
+        "moved": 153,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 19,
+        "inside": 0,
+        "insufficientMargin": 22,
+        "maximumCorrectionMu": 0.001205096,
+        "minimumDistanceMu": 0.00057135,
+        "moved": 81,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 16,
+        "inside": 0,
+        "insufficientMargin": 19,
+        "maximumCorrectionMu": 0.001150809,
+        "minimumDistanceMu": 0.000625638,
+        "moved": 71,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 14,
+        "inside": 0,
+        "insufficientMargin": 16,
+        "maximumCorrectionMu": 0.001046441,
+        "minimumDistanceMu": 0.000730006,
+        "moved": 60,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 15,
+        "inside": 0,
+        "insufficientMargin": 14,
+        "maximumCorrectionMu": 0.000951003,
+        "minimumDistanceMu": 0.000825444,
+        "moved": 55,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 13,
+        "inside": 0,
+        "insufficientMargin": 15,
+        "maximumCorrectionMu": 0.000907507,
+        "minimumDistanceMu": 0.00086894,
+        "moved": 56,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 10,
+        "inside": 0,
+        "insufficientMargin": 13,
+        "maximumCorrectionMu": 0.000824368,
+        "minimumDistanceMu": 0.000952079,
+        "moved": 43,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 11,
+        "inside": 0,
+        "insufficientMargin": 10,
+        "maximumCorrectionMu": 0.000748731,
+        "minimumDistanceMu": 0.001027716,
+        "moved": 34,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 8,
+        "inside": 0,
+        "insufficientMargin": 11,
+        "maximumCorrectionMu": 0.000714359,
+        "minimumDistanceMu": 0.001062088,
+        "moved": 36,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 10,
+        "inside": 0,
+        "insufficientMargin": 8,
+        "maximumCorrectionMu": 0.000648736,
+        "minimumDistanceMu": 0.001127711,
+        "moved": 30,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 9,
+        "inside": 0,
+        "insufficientMargin": 10,
+        "maximumCorrectionMu": 0.00061892,
+        "minimumDistanceMu": 0.001157527,
+        "moved": 35,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 7,
+        "inside": 0,
+        "insufficientMargin": 9,
+        "maximumCorrectionMu": 0.000561933,
+        "minimumDistanceMu": 0.001214514,
+        "moved": 32,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 7,
+        "inside": 0,
+        "insufficientMargin": 7,
+        "maximumCorrectionMu": 0.000510123,
+        "minimumDistanceMu": 0.001266324,
+        "moved": 31,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 8,
+        "inside": 0,
+        "insufficientMargin": 7,
+        "maximumCorrectionMu": 0.000486583,
+        "minimumDistanceMu": 0.001289864,
+        "moved": 29,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 8,
+        "inside": 0,
+        "insufficientMargin": 8,
+        "maximumCorrectionMu": 0.000441632,
+        "minimumDistanceMu": 0.001334815,
+        "moved": 35,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 4,
+        "inside": 0,
+        "insufficientMargin": 8,
+        "maximumCorrectionMu": 0.000421218,
+        "minimumDistanceMu": 0.001355229,
+        "moved": 30,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 5,
+        "inside": 0,
+        "insufficientMargin": 4,
+        "maximumCorrectionMu": 0.000382253,
+        "minimumDistanceMu": 0.001394194,
+        "moved": 27,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 7,
+        "inside": 0,
+        "insufficientMargin": 5,
+        "maximumCorrectionMu": 0.000346871,
+        "minimumDistanceMu": 0.001429576,
+        "moved": 27,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 6,
+        "inside": 0,
+        "insufficientMargin": 7,
+        "maximumCorrectionMu": 0.000330819,
+        "minimumDistanceMu": 0.001445628,
+        "moved": 31,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 5,
+        "inside": 0,
+        "insufficientMargin": 6,
+        "maximumCorrectionMu": 0.000300168,
+        "minimumDistanceMu": 0.001476279,
+        "moved": 29,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 5,
+        "inside": 0,
+        "insufficientMargin": 5,
+        "maximumCorrectionMu": 0.000272347,
+        "minimumDistanceMu": 0.001504099,
+        "moved": 30,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 5,
+        "inside": 0,
+        "insufficientMargin": 5,
+        "maximumCorrectionMu": 0.000259732,
+        "minimumDistanceMu": 0.001516715,
+        "moved": 27,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 5,
+        "inside": 0,
+        "insufficientMargin": 5,
+        "maximumCorrectionMu": 0.000235644,
+        "minimumDistanceMu": 0.001540803,
+        "moved": 28,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 4,
+        "inside": 0,
+        "insufficientMargin": 5,
+        "maximumCorrectionMu": 0.000213782,
+        "minimumDistanceMu": 0.001562664,
+        "moved": 29,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 4,
+        "inside": 0,
+        "insufficientMargin": 4,
+        "maximumCorrectionMu": 0.000203866,
+        "minimumDistanceMu": 0.001572581,
+        "moved": 27,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 3,
+        "inside": 0,
+        "insufficientMargin": 4,
+        "maximumCorrectionMu": 0.000184954,
+        "minimumDistanceMu": 0.001591493,
+        "moved": 27,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 4,
+        "inside": 0,
+        "insufficientMargin": 3,
+        "maximumCorrectionMu": 0.000176374,
+        "minimumDistanceMu": 0.001600073,
+        "moved": 23,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 3,
+        "inside": 0,
+        "insufficientMargin": 4,
+        "maximumCorrectionMu": 0.000160005,
+        "minimumDistanceMu": 0.001616442,
+        "moved": 23,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 3,
+        "inside": 0,
+        "insufficientMargin": 3,
+        "maximumCorrectionMu": 0.000145148,
+        "minimumDistanceMu": 0.001631299,
+        "moved": 23,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 3,
+        "maximumCorrectionMu": 0.000138407,
+        "minimumDistanceMu": 0.00163804,
+        "moved": 23,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 0.000125549,
+        "minimumDistanceMu": 0.001650898,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 0.000113885,
+        "minimumDistanceMu": 0.001662562,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 0.0001086,
+        "minimumDistanceMu": 0.001667846,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 9.8518e-05,
+        "minimumDistanceMu": 0.001677929,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 9.3931e-05,
+        "minimumDistanceMu": 0.001682516,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 8.5203e-05,
+        "minimumDistanceMu": 0.001691244,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 7.7283e-05,
+        "minimumDistanceMu": 0.001699164,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 7.3687e-05,
+        "minimumDistanceMu": 0.00170276,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 6.6831e-05,
+        "minimumDistanceMu": 0.001709616,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 6.0625e-05,
+        "minimumDistanceMu": 0.001715822,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 5.7802e-05,
+        "minimumDistanceMu": 0.001718645,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 5.2425e-05,
+        "minimumDistanceMu": 0.001724022,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 4.999e-05,
+        "minimumDistanceMu": 0.001726457,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 4.5343e-05,
+        "minimumDistanceMu": 0.001731104,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 4.1127e-05,
+        "minimumDistanceMu": 0.00173532,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 3.9207e-05,
+        "minimumDistanceMu": 0.001737239,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 3.5568e-05,
+        "minimumDistanceMu": 0.001740879,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 3.2263e-05,
+        "minimumDistanceMu": 0.001744184,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 3.076e-05,
+        "minimumDistanceMu": 0.001745687,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 2.7901e-05,
+        "minimumDistanceMu": 0.001748546,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 2.5312e-05,
+        "minimumDistanceMu": 0.001751135,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 2.4129e-05,
+        "minimumDistanceMu": 0.001752318,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 2.1882e-05,
+        "minimumDistanceMu": 0.001754565,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 2.086e-05,
+        "minimumDistanceMu": 0.001755587,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.8919e-05,
+        "minimumDistanceMu": 0.001757528,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.7152e-05,
+        "minimumDistanceMu": 0.001759295,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.6358e-05,
+        "minimumDistanceMu": 0.001760089,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.484e-05,
+        "minimumDistanceMu": 0.001761606,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.3462e-05,
+        "minimumDistanceMu": 0.001762985,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.2842e-05,
+        "minimumDistanceMu": 0.001763604,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.1645e-05,
+        "minimumDistanceMu": 0.001764802,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.1097e-05,
+        "minimumDistanceMu": 0.00176535,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 1.006e-05,
+        "minimumDistanceMu": 0.001766386,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 9.127e-06,
+        "minimumDistanceMu": 0.00176732,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 8.703e-06,
+        "minimumDistanceMu": 0.001767744,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 7.901e-06,
+        "minimumDistanceMu": 0.001768545,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 7.545e-06,
+        "minimumDistanceMu": 0.001768902,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 6.836e-06,
+        "minimumDistanceMu": 0.00176961,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 6.203e-06,
+        "minimumDistanceMu": 0.001770244,
+        "moved": 5,
+        "topologyStepHalvings": 4
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 1,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 5.911e-06,
+        "minimumDistanceMu": 0.001770536,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      },
+      {
+        "afterInside": 0,
+        "afterInsufficientMargin": 0,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumCorrectionMu": 5.355e-06,
+        "minimumDistanceMu": 0.001771092,
+        "moved": 5,
+        "topologyStepHalvings": 3
+      }
+    ],
+    "stretchOutliers": 5,
+    "stretchWithinRatio": 0.998636859,
+    "topologyPassed": true
+  },
+  "schema": "tianshu-dressup-fit.v1",
+  "slot": "body",
+  "source": {
+    "file": "assets/default/model3d/dressup/garments/_fixture_bodysuit/_fixture_bodysuit_raw.glb",
+    "sha256": "7a3a251860dea7f6b88d5ac44e2d45fff78f88fd82620255d39a9bee50ba7fbc"
+  },
+  "spring": null,
+  "stats": {
+    "boundaryEdges": 208,
+    "elapsedSec": 1.527969958,
+    "fileBytes": 136652,
+    "nearestTriangleCandidates": 16,
+    "nonManifoldEdges": 140,
+    "peakMemoryMiB": 386.234375,
+    "primitiveCount": 1,
+    "removedStubTriangles": 0,
+    "triangles": 3668,
+    "vertices": 1870
+  },
+  "status": "fitted",
+  "weights": {
+    "diffusedVertices": 0,
+    "directConfidenceVertices": 1843,
+    "directUsableVertices": 1843,
+    "farFallbackThresholdMm": 100.0,
+    "farSemanticFallbackVertices": 0,
+    "filteredVertices": 1,
+    "highConfidence": 0.985561497,
+    "highConfidenceVertices": 1843,
+    "jointsAllowed": [
+      "mixamorig:Hips",
+      "mixamorig:LeftUpLeg",
+      "mixamorig:LeftLeg",
+      "mixamorig:RightUpLeg",
+      "mixamorig:RightLeg",
+      "mixamorig:Spine",
+      "mixamorig:Spine1",
+      "mixamorig:Spine2",
+      "mixamorig:LeftShoulder",
+      "mixamorig:LeftArm",
+      "mixamorig:LeftForeArm",
+      "mixamorig:LeftHand",
+      "mixamorig:Neck",
+      "mixamorig:RightShoulder",
+      "mixamorig:RightArm",
+      "mixamorig:RightForeArm",
+      "mixamorig:RightHand"
+    ],
+    "lowConfidenceVertices": 27,
+    "maxBones": 4,
+    "method": "nearest-triangle-barycentric+low-confidence-joint-segment",
+    "normalizedVertices": 1870,
+    "semanticFallbackVertices": 27
+  }
+}

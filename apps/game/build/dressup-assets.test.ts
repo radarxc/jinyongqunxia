@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { access, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, readFile, readdir, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -8,7 +8,7 @@ import { createCharacterViewerLoader } from '../../../packages/render/src/charac
 import { createDressupActor } from '../../../packages/render/src/dressup/actor';
 import { publishDressupAssets } from './dressup-assets';
 
-const roots: string[] = []; const createdAssets: string[] = [];
+const roots: string[] = [];
 async function root(): Promise<string> {
   const value = await mkdtemp(join(tmpdir(), 'tianshu-dressup-assets-'));
   roots.push(value);
@@ -131,10 +131,21 @@ async function variants(base: string): Promise<void> {
     report: tall-report.json
 `);
 }
+async function layer(base: string): Promise<void> {
+  const directory = join(base, 'assets/default/model3d/dressup/garments/eq_jinzhuang_tex');
+  await mkdir(directory, { recursive: true });
+  await writeFile(join(directory, 'eq_jinzhuang.layer.png'), 'rgba-layer');
+  await writeFile(join(directory, 'layer.json'), JSON.stringify({
+    schema: 'tianshu-dressup-layer.v1', kind: 'layer', slot: 'body', id: 'eq_jinzhuang',
+  }));
+  await writeFile(join(directory, 'manifest.yaml'),
+    '- id: dressup__layer__eq_jinzhuang\n  file: eq_jinzhuang.layer.png\n' +
+    '  kind: dressup-layer\n  template: tpl_f_medium\n  slot: body\n' +
+    '  fit: layer.json\n  status: draft\n');
+}
 afterEach(async () => {
   vi.unstubAllGlobals();
   await Promise.all(roots.splice(0).map(path => rm(path, { recursive: true })));
-  await Promise.all(createdAssets.splice(0).map(path => rm(path, { recursive: true })));
 });
 
 describe('dressup asset publishing', () => {
@@ -170,41 +181,45 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
   }, 120_000);
 
   it('ingest accepts only complete validator-bound approved or draft reports', async () => {
+    const ingestBase = await root();
+    const assetRoot = join(ingestBase, 'assets/default/model3d/dressup');
     const approvedId = 'gate_approved_' + process.pid;
     const approved = await validatedProp(approvedId, 'approved');
-    const approvedDest = join(process.cwd(), 'assets/default/model3d/dressup/props', approvedId);
-    createdAssets.push(approvedDest);
+    const approvedDest = join(assetRoot, 'props', approvedId);
     const result = run('python3', ['tools/model3d/dressup/ingest.py', 'prop', approvedId,
-      '--src', approved, '--slot', 'accessory', '--item', 'eq_test']);
+      '--src', approved, '--slot', 'accessory', '--item', 'eq_test', '--asset-root', assetRoot]);
     expect(JSON.parse(result.stdout)).toMatchObject({ status: 'candidate' });
     const manifest = await readFile(join(approvedDest, 'manifest.yaml'), 'utf8');
     expect(manifest).toContain('status: candidate'); expect(manifest).toContain('triangles: 12');
     expect(manifest).toContain('fit: fit.json'); expect(manifest).toContain('slot: accessory');
 
     const draftId = 'gate_draft_' + process.pid; const draft = await validatedProp(draftId, 'draft');
-    const draftDest = join(process.cwd(), 'assets/default/model3d/dressup/props', draftId);
-    createdAssets.push(draftDest);
+    const draftDest = join(assetRoot, 'props', draftId);
     const draftResult = run('python3', ['tools/model3d/dressup/ingest.py', 'prop', draftId,
-      '--src', draft]);
+      '--src', draft, '--asset-root', assetRoot]);
     expect(JSON.parse(draftResult.stdout)).toMatchObject({ status: 'draft' });
     expect(await readFile(join(draftDest, 'manifest.yaml'), 'utf8')).toContain('status: draft');
+    expect((await publishDressupAssets(ingestBase, false)).filter(path => path.includes('/gate_')))
+      .toHaveLength(6);
   }, 120_000);
 
   it('ingest merges three template fits and publisher skips a rejected variant', async () => {
+    const ingestBase = await root();
+    const assetRoot = join(ingestBase, 'assets/default/model3d/dressup');
     const id = 'gate_variants_' + process.pid;
-    const destination = join(process.cwd(), 'assets/default/model3d/dressup/props', id);
-    createdAssets.push(destination);
+    const destination = join(assetRoot, 'props', id);
     const medium = await validatedProp(id, 'approved', 'tpl_f_medium');
     const small = await validatedProp(id, 'draft', 'tpl_f_small');
     const tall = await validatedProp(id, 'approved', 'tpl_f_tall');
     run('python3', ['tools/model3d/dressup/ingest.py', 'prop', id, '--src', medium,
-      '--template', 'tpl_f_small'], 2);
+      '--template', 'tpl_f_small', '--asset-root', assetRoot], 2);
     run('python3', ['tools/model3d/dressup/ingest.py', 'prop', id, '--src', medium,
-      '--template', 'tpl_f_medium', '--slot', 'accessory', '--item', 'eq_variants']);
+      '--template', 'tpl_f_medium', '--slot', 'accessory', '--item', 'eq_variants',
+      '--asset-root', assetRoot]);
     run('python3', ['tools/model3d/dressup/ingest.py', 'prop', id, '--src', small,
-      '--template', 'tpl_f_small']);
+      '--template', 'tpl_f_small', '--asset-root', assetRoot]);
     run('python3', ['tools/model3d/dressup/ingest.py', 'prop', id, '--src', tall,
-      '--template', 'tpl_f_tall']);
+      '--template', 'tpl_f_tall', '--asset-root', assetRoot]);
     let manifest = await readFile(join(destination, 'manifest.yaml'), 'utf8');
     expect(manifest).toContain('status: candidate'); expect(manifest).toContain('item: eq_variants');
     expect(manifest).toContain('directory: external-workdir');
@@ -216,7 +231,7 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
     expect(await sha256(join(destination, 'fit.tpl_f_tall.json'))).toBe(await sha256(join(tall, 'fit.json')));
     manifest = manifest.replace(/(tpl_f_tall:[\s\S]*?status:) candidate/u, '$1 rejected');
     await writeFile(join(destination, 'manifest.yaml'), manifest);
-    const own = (await publishDressupAssets(process.cwd(), false))
+    const own = (await publishDressupAssets(ingestBase, false))
       .filter(path => path.includes('/' + id + '/'));
     expect(own.some(path => path.includes('tpl_f_small'))).toBe(true);
     expect(own.some(path => path.includes('tpl_f_tall'))).toBe(false);
@@ -225,10 +240,12 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
   }, 120_000);
 
   it('ingest rejects forged checks, failed checks, and stale asset or fit digests', async () => {
+    const assetRoot = join(await root(), 'assets/default/model3d/dressup');
     const id = 'gate_reject_' + process.pid; const source = await validatedProp(id, 'approved');
     const reportPath = join(source, 'report.json');
     const original = JSON.parse(await readFile(reportPath, 'utf8')) as { checks: Record<string, unknown>[] };
-    const attempt = () => run('python3', ['tools/model3d/dressup/ingest.py', 'prop', id, '--src', source], 2);
+    const attempt = () => run('python3', ['tools/model3d/dressup/ingest.py', 'prop', id,
+      '--src', source, '--asset-root', assetRoot], 2);
     await writeFile(reportPath, JSON.stringify({ ...original, template: undefined }));
     attempt();
     await writeFile(reportPath, JSON.stringify({ ...original, checks: [{ name: 'budget.triangles' }] }));
@@ -245,13 +262,22 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
 
     const fitId = 'gate_fit_' + process.pid; const fitSource = await validatedProp(fitId, 'approved');
     await writeFile(join(fitSource, 'fit.json'), '{}');
-    run('python3', ['tools/model3d/dressup/ingest.py', 'prop', fitId, '--src', fitSource], 2);
+    run('python3', ['tools/model3d/dressup/ingest.py', 'prop', fitId, '--src', fitSource,
+      '--asset-root', assetRoot], 2);
     for (const bad of ['', '..', '../escape', '/absolute', 'nested/id']) {
       const escaped = spawnSync('python3', ['tools/model3d/dressup/ingest.py', 'prop', bad,
-        '--src', fitSource], { cwd: process.cwd(), encoding: 'utf8' });
+        '--src', fitSource, '--asset-root', assetRoot], { cwd: process.cwd(), encoding: 'utf8' });
       expect(escaped.status).toBe(2);
     }
+    const conflict = run('python3', ['tools/model3d/dressup/ingest.py', 'prop', fitId,
+      '--src', fitSource, '--asset-root', assetRoot, '--commit'], 2);
+    expect(conflict.stderr).toContain('--commit 与 --asset-root');
   }, 120_000);
+
+  it('leaves the real dressup props root free of gate fixtures', async () => {
+    const entries = await readdir(join(process.cwd(), 'assets/default/model3d/dressup/props'));
+    expect(entries.filter(name => name.startsWith('gate_'))).toEqual([]);
+  });
 
   it('fails validation for stale body identities, wrong units, and missing bindings', async () => {
     const id = 'gate_binding_' + process.pid; const source = await validatedProp(id, 'approved');
@@ -491,7 +517,26 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
     expect(index.groups.head).toEqual([]);
     expect(index.groups.hair).toEqual([]);
     expect(index.groups.prop).toEqual([]);
+    expect(index.groups.layer).toEqual([]);
   }, 120_000);
+
+  it('publishes a report-free texture layer into the layer index group', async () => {
+    const base = await root(); await layer(base);
+    const result = await publishDressupAssets(base, true);
+    expect(result).toEqual([
+      'assets/default/model3d/dressup/garments/eq_jinzhuang_tex/eq_jinzhuang.layer.png',
+      'assets/default/model3d/dressup/garments/eq_jinzhuang_tex/layer.json',
+    ]);
+    const index = JSON.parse(await readFile(join(base,
+      'apps/game/public/assets/default/model3d/dressup/index.json'), 'utf8')) as {
+      groups: { layer: Record<string, unknown>[] } };
+    expect(index.groups.layer).toEqual([{
+      kind: 'layer', id: 'dressup__layer__eq_jinzhuang', template: 'tpl_f_medium',
+      file: '/assets/default/model3d/dressup/garments/eq_jinzhuang_tex/eq_jinzhuang.layer.png',
+      fit: '/assets/default/model3d/dressup/garments/eq_jinzhuang_tex/layer.json',
+      report: null, status: 'draft', slot: 'body',
+    }]);
+  });
 
   it('validates selected files even in no-copy mode', async () => {
     const base = await root(); await leaf(base, 'eq_missing', 'draft');
@@ -566,7 +611,8 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
         url: new URL(prop.file, 'http://localhost').href, fit });
     }
     actor.update(1 / 60);
-    expect(actor.stats()).toEqual({ drawCalls: 4, triangles: 221846, boneTextureUploads: 1 });
+    expect(actor.stats()).toEqual({ drawCalls: 4, triangles: 221846, boneTextureUploads: 1,
+      bodyLayers: [], layerTextureBytes: 0 });
     const fingerName = 'mixamorig:RightHandIndex1';
     const finger = actor.skeleton.bones.find(bone => bone.name.endsWith('RightHandIndex1'))!;
     expect(finger).toBeDefined();
