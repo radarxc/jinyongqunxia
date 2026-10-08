@@ -32,6 +32,13 @@
 ## check_sockets 速度（协调者 2026-10-08 10:25）
 第 7 次运行后的严格逐点版本协调者实测要 **24.7 分钟**（三件全过），加上机器睡眠导致校验超时。要求：全量严格计算（全部顶点 × 72 帧 × 三件，以及 tiltSweep 各候选）在本机 **≤ 5 分钟**完成，报告写实测耗时。做法：直接用 A1 `common.nearest_triangle` / `signed_distance`（k 候选 + 包围半径扩候选，结果精确，无需自造宽相）；每帧只对刃身 / 帽身 / 挂件顶点查询，模板体表三角按帧 LBS 一次后建树复用；tiltSweep 各候选共享同一组帧的体表树。不得为提速降低精度或抽样。
 
+## 作者实测反馈（2026-10-08 10:50）与协调者补充要求
+作者在 5173 原话："挂载点不对，斗笠斜着的，剑不是手握着，而且尺寸偏宽。"（作者看到的是主干上的旧插槽；协调者把本任务产物临时挂上复核：斗笠已扶正、玉佩贴胸，**但剑握在鞘尖**——护手与红剑穗在远端。）
+1. **剑柄端判定错了**：青锋剑是带鞘整体，鞘尖比护手一端更窄，"窄端 = 柄"把方向判反。改 `normalize_prop.py` weapon 柄端判定：沿主轴做宽度剖面，找距端点 5%~30% 内的**护手峰**（宽度局部极大且 ≥ 1.4 × 两侧邻段中位宽），护手外侧（较短的一侧）为柄；找不到护手峰才退回"窄端 = 柄"；把判定依据（剖面、峰位置、所选端）写进 fit.json。补测试：合成"细长鞘 + 护手 + 短柄"的带鞘剑，断言柄端在护手外侧。
+2. **尺寸**：作者嫌宽。青锋剑 `realSizeM` 由 1.0 改 0.9（宽度随之等比缩小），fit.json 记录。
+3. 改完重跑青锋剑全流程（normalize_prop → textures → pack → validate → ingest）与 tiltSweep（握对端之后各倾角的深穿要重算，按已有裁定取深穿最小者），三件 `sockets_check.json` 重生成；报告写清前后对比（握点到护手的距离、刃向、倾角选择）。
+4. 斗笠帽檐压到眉眼：保持现有颅骨间隙算法，报告里记一句"帽檐最低点相对眉弓的高度"，供作者判断是否要再抬。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{export_skeleton.py,tests_skeleton.py,normalize_prop.py,tests_prop.py,check_sockets.py}`、`assets/default/model3d/dressup/templates/{tpl_f_medium,tpl_f_small,tpl_f_tall}/{skeleton.json,manifest.yaml}`、`assets/default/model3d/dressup/props/**` 与本任务报告。
 - 不改运行时（`packages/**`）、不改 validate / ingest / textures / pack、不改 fit_garment / refit / derive；不加依赖；不改门禁阈值；不花 Tripo 点数。
