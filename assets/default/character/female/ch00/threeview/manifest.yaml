@@ -169,3 +169,39 @@
   status: approved
   created: '2026-10-07T15:49:51-07:00'
   notes: 作者 2026-10-07 选定（AR-105「接受25度」）。Codex 账号出图 400、Gemini 网页版出不了素体，按作者指示改用 agy CLI 出图（AR-105）。图像模型不认精确角度，8 轮里没有落在 30° ± 3° 的，作者接受 25° 为规范窄 A；脸区 IoU 0.972、髋高比差 0.002、头身比 9.06（底图 8.94）。
+- id: por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front
+  file: por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体穿「江湖劲装」eq_jinzhuang 的窄 A 字全身衣图底板（换装阶段 E 首件；Tripo 整身生成与绑骨的输入）
+  prompt: 'You have an image generation tool. Use it exactly once, passing BOTH reference images: ./ref_narrow.png (the woman, pose and framing to keep) and ./jinzhuang.png (the garment to put on her). Instruction for the image tool: Dress the woman from ./ref_narrow.png in the jacket shown in ./jinzhuang.png: the same dark blue-grey cotton cross-collar wrap jacket (Han style, the wearer''s left panel over the right), the same tied fabric belt at the waist with the knot and hanging ends, the same narrow long sleeves ending at the wrists with turned-back cuffs, hem at hip length. The jacket fits the body closely like a martial outfit; the collar stays at the base of the neck and does not cover the neck. Keep EVERYTHING else identical to ./ref_narrow.png: the same face and features, the same bald head and head size, the same arm pose (arms spread away from the body in the same narrow A-pose, hands empty and fully visible outside the cuffs), the same body proportions, the same bare legs and bare feet, the same briefs where visible below the hem, the same standing pose, the same plain beige background and the same full-body framing with head and feet fully visible. Do not add hair, hat, shoes, trousers, jewelry, text or watermark. After the tool returns, copy the generated image file into ./out/garment_jinzhuang_r1 with its original extension. Do not modify the references and do not write or run any code that alters pixels. Reply with only the output file path.'
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+    use: 人物、姿态与构图底板（只加衣服，其余不变）
+  - path: assets/default/item/clothing/eq_jinzhuang.png
+    sha256: c2b7f6a0a0f10cc3e7cc6e8010532a791618363959ee092f0dcdf733a58d7348
+    use: 衣服款式、颜色、腰带与翻袖口
+  tool: agy CLI（Antigravity generate_image 图像编辑；agy --model gemini-3.1-pro-high --sandbox -p）
+  model: Antigravity 图像工具（对话模型 gemini-3.1-pro-high）
+  effort: n/a
+  source_path: .agents/coord/_dressup_review/garment_jinzhuang_r1_source.jpg
+  source_size: 848x1264
+  size: 1024x1536
+  sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
+  normalization: 整图 LANCZOS 缩放 ×1.20614 使人物高与底图同为 1375 px，脚底对齐 y=1474、头顶冠带中心对齐 x=511.9，背景色 RGB(219,212,195) 补边；无局部改动
+  check_plate:
+    target_arm_angle_deg: 25
+    tolerance_deg: 3
+    left_arm_angle_deg: 26.781
+    right_arm_angle_deg: 26.759
+    face_iou: 0.965776
+    hips_ratio_delta: 0.001094
+    arm_span_ratio_delta: 0.001329
+    head_top_delta_ratio: 0.000726
+    feet_bottom_delta_ratio: 0.0
+    pass: true
+  rounds: 2（取第 1 轮；第 2 轮只是加强三角裤可见度，作者看过第 1 轮说三角裤被衣摆遮住、不缺）
+  status: candidate
+  created: '2026-10-08T01:45:00-07:00'
+  notes: 协调者按 AR-105 用 agy 出图（素体衣图底板）。作者 2026-10-08 同意贴图 / 网格两条路同时试（「同时试试吧」），本图是两条路共用的 Tripo 整身输入。
