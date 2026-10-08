@@ -21,6 +21,13 @@
 7. **分配采样用例（协调者 2026-10-08 15:45 改派）**：已拆给 `ENG-dressup-alloc-steady` 单独修；B4 **不改** `actor-runtime.test.ts` 里 "samples no steady update allocations…" 这个用例，`update` 热路径也不得新增每帧分配。
 8. **测试**：合成器并集与缓存释放（假合成器计数）、换模板重算、开关、没有遮罩时 shader 分支关闭；`pnpm size`：render 主块不增长，`render-dressup` ≤ 24 KiB（前后数字写报告）。
 
+## 协调者实测意见（第 1 轮，2026-10-08 16:05；审核按此判定）
+第 2 次运行方向对（材质 `uHideMap` 丢弃、并集、开关、挂头乘 skinTint 都有），但：
+1. **遮罩尺寸与底图不同会直接抛错**：遮罩合成复用了贴图层合成器，合成器要求每张图与身体底图同尺寸（`DRESSUP_LAYER_SIZE_MISMATCH`）。模板 baseColor 是 2048²，G1 烘的 `hidemask.png` 是 1024²（`--size` 默认 1024）——真穿劲装必抛。改为遮罩走自己的合成：画布取参与合成的遮罩里最大的边长，各遮罩按 UV 等比缩放画上（线性插值），并集用逐像素 max（`lighter` 会把半透明边缘加过 1，可以但须钳位），**不与 baseColor 比尺寸**；输出纹理是数据纹理：`NoColorSpace`、`flipY = false`（与 glTF UV 左上原点一致）、线性过滤。缓存键含各遮罩 URL 与尺寸。
+2. **补一条用真实尺寸的测试**：底图 2048 + 两张 1024 / 512 遮罩（假图像对象即可）合成不抛、输出尺寸 = 最大遮罩边长、像素为并集；再加一条 `dressup-assets.test.ts` 断言：索引里每件带 `hideMask` 的 fit，其 PNG 实际尺寸 = fit 里写的 `size`（从文件读，不写死）。
+3. **异步失败不能吞**：`unequip` 是同步签名，里面触发的遮罩重算 Promise 必须 `.catch`，失败写入 `stats().hideMapError`（字符串）并 `console.warn`，预览页把它显示出来；不得出现未处理的 rejection。
+4. `setHead` 里不要靠 `this`（解构调用会断）：改为闭包内直接调用同一个 `equip` 实现。
+
 ## 约束
 - 只写 `packages/render/src/dressup/{types,materials,actor,runtime}.ts` 与同目录 `*.test.ts`、`packages/render/CLAUDE.md`（补一段 hide map API）、`apps/game/build/dressup-assets.ts`、`apps/game/build/dressup-assets.test.ts`、`apps/game/src/pages/Character3dPage.vue` 与本任务报告。
 - 不加依赖；不改门禁阈值；运行时只经 `import('@tianshu/render/dressup')` 动态引入；只用 render 主块已有的 three 核心 API（新增 three 模块会让主块增长）。
