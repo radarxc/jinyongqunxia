@@ -50523,7 +50523,8 @@
     "package.json",
     "pnpm-lock.yaml",
     "assets/default/model3d/dressup/**/manifest.yaml",
-    "assets/default/model3d/dressup/**/report.json"
+    "assets/default/model3d/dressup/**/report.json",
+    "assets/default/model3d/dressup/props/**"
    ],
    "vars": {},
    "validate": {
