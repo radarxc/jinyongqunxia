@@ -150,6 +150,13 @@ assets/default/model3d/dressup/        资产（每叶目录一份 manifest.yaml
 }
 ```
 
+**插槽坐标系约定（协调者 2026-10-08 03:40 补定；5173 实测：斗笠横置、剑沿前臂竖起、玉佩歪 23°——插槽位置都对，错在本节原先没定"道具哪根轴对插槽哪根轴"）**：
+- **道具坐标系**（`normalize_prop.py` 输出，原点 = 语义锚点）：+Y = 主轴——weapon 握点 → 剑尖；hat 开口 → 顶点（戴正时朝上）；pendant / pouch 朝上（挂绳顶在原点、物件在 −Y 侧下垂）；+Z = 正面 / 刃面法线。
+- **插槽 `quat`** = 插槽坐标系相对父骨的局部旋转，道具坐标系原样挂上即正确：
+  - 非握持插槽（headTop / headCenter / neck / chest / back / waistL / waistR / waistBack / footL / footR）：bind 姿势下插槽三轴与模板世界轴一致（+Y 上、+Z 角色正前、+X 角色左手侧），即 `quat = inv(R_父骨,bind)`；表面法线另存 `normalLocal`（**在插槽系内表达**），供道具在 `gripAdjust` 里自行外移。
+  - 握持插槽 gripR / gripL：+Y = 刃向 = `Pinky1 → Index1` 连线去掉手指方向（`Hand → Middle1`）分量后归一（拳握时刃从虎口侧伸出）；+Z = 掌心法线（手部 PCA 最薄轴、朝拇指侧）对 +Y 正交化；+X = Y × Z（det = +1）。左右手用同一公式，不镜像。
+- **道具默认 `gripAdjust`**（写进 `fit.json`，并记录所用参数）：weapon 在掌面内把刃向朝手指方向转 `restTiltDeg`（默认 40°，剑尖斜向前下）；hat 沿插槽 +Y 抬到"颅骨轮廓（skullProfile，24 行）全周间隙 ≥ 3 mm"的最低位置，记 `clearanceMm`；pendant / pouch 沿插槽 `normalLocal` 外移"物件沿法线半厚 + 2 mm"，记 `offsetMm`。
+
 插槽求法（核验修正后的做法，§11 第 4 条）：
 - `gripR/L`：取该手 `RightHand` 权重 > 0.9 的掌心核心顶点在骨局部系的质心；掌面法线取手部顶点 PCA 最薄轴，朝掌心侧（拇指所在侧）；握轴点 = 质心 + (palmOffsetMu + 柄半径) × 掌心法线；握轴方向 = Index1 → Pinky1 连线；左右分别算，不镜像。
 - `headTop`：Head 权重 ≥ 0.5 顶点中 y 最高 3 mm 簇的质心（不用 `HeadTop_End`，它比网格顶高 0.038 且前偏 0.042 mu）。
