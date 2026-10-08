@@ -1,0 +1,168 @@
+{
+  "align": {
+    "bodySpaceIdentity": false,
+    "determinant": 1.0,
+    "landmarks": 0,
+    "method": "landmarks",
+    "mirrored": false,
+    "poseResidualDeg": {
+      "bodyArmDeg": 23.6293773,
+      "leftResidualDeg": 22.272509306,
+      "rightResidualDeg": 23.936950585,
+      "sourceLeftArmDeg": 45.901886606,
+      "sourceRightArmDeg": 47.566327885
+    },
+    "residualMu": {
+      "feetMu": 0.0,
+      "neckTopMu": 0.0
+    },
+    "scale": 0.865733245,
+    "translationMu": [
+      -0.004541021,
+      0.424042315,
+      0.020705107
+    ],
+    "yawDeg": -90.112485142
+  },
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+    "skeleton": "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "skeletonSha256": "79844b4ef2a28a69f981092f1984c5397610cda09da3b4c3cf84d2ec5b358c48"
+  },
+  "coverage": 0.65,
+  "coverageByRegion": {
+    "footL": 0.447032838,
+    "footR": 0.670334931,
+    "forearmL": 0.001995741,
+    "forearmR": 0.000518162,
+    "handL": 0.0,
+    "handR": 0.000774153,
+    "head": 0.000580189,
+    "hips": 0.579962371,
+    "neck": 0.309836792,
+    "shinL": 0.567923344,
+    "shinR": 0.61650163,
+    "thighL": 0.589423999,
+    "thighR": 0.560900623,
+    "torsoLower": 0.304647512,
+    "torsoUpper": 0.50025724,
+    "upperArmL": 0.351757214,
+    "upperArmR": 0.282511938
+  },
+  "fitVersion": 1,
+  "hideRegions": [],
+  "id": "cloth_black_assassin",
+  "kind": "garment",
+  "neverHide": [
+    "neck",
+    "handL",
+    "handR",
+    "footL",
+    "footR"
+  ],
+  "pushOut": {
+    "centroidDriftMu": 0.001077134,
+    "clearancePassed": false,
+    "degenerateTriangles": 0,
+    "draft": true,
+    "flippedTriangles": 0,
+    "insufficientMargin": 8954,
+    "iters": 3,
+    "minimumDistanceMu": -0.028399626,
+    "movedVertices": 42582,
+    "passed": false,
+    "pushMm": 3.0,
+    "pushMu": 0.00177127,
+    "residual": 3686,
+    "rounds": [
+      {
+        "afterInside": 8998,
+        "afterInsufficientMargin": 25448,
+        "inside": 34115,
+        "insufficientMargin": 39287,
+        "maximumCorrectionMu": 0.051442929,
+        "minimumDistanceMu": -0.049666483,
+        "moved": 42582,
+        "topologyStepHalvings": 19
+      },
+      {
+        "afterInside": 5798,
+        "afterInsufficientMargin": 15559,
+        "inside": 8998,
+        "insufficientMargin": 25448,
+        "maximumCorrectionMu": 0.041692077,
+        "minimumDistanceMu": -0.03991563,
+        "moved": 39989,
+        "topologyStepHalvings": 23
+      },
+      {
+        "afterInside": 3686,
+        "afterInsufficientMargin": 8954,
+        "inside": 5798,
+        "insufficientMargin": 15559,
+        "maximumCorrectionMu": 0.03668191,
+        "minimumDistanceMu": -0.034905463,
+        "moved": 35324,
+        "topologyStepHalvings": 24
+      }
+    ],
+    "stretchOutliers": 29547,
+    "stretchWithinRatio": 0.895792481,
+    "topologyPassed": false
+  },
+  "schema": "tianshu-dressup-fit.v1",
+  "slot": "body",
+  "source": {
+    "file": "apps/game/public/models/props/cloth_black_assassin_raw.glb",
+    "sha256": "143f080128c781b30fd10b0db623cf2ca323ac59eb0dee5cc7bdfb38907d501c"
+  },
+  "spring": null,
+  "stats": {
+    "boundaryEdges": 18594,
+    "elapsedSec": 31.024751958,
+    "fileBytes": 12421528,
+    "nearestTriangleCandidates": 16,
+    "nonManifoldEdges": 0,
+    "peakMemoryMiB": 1339.90625,
+    "primitiveCount": 1,
+    "removedStubTriangles": 0,
+    "triangles": 283540,
+    "vertices": 151223
+  },
+  "status": "draft",
+  "weights": {
+    "diffusedVertices": 0,
+    "directConfidenceVertices": 64116,
+    "directUsableVertices": 60449,
+    "farFallbackThresholdMm": 100.0,
+    "farSemanticFallbackVertices": 12418,
+    "filteredVertices": 25822,
+    "highConfidence": 0.423983124,
+    "highConfidenceVertices": 64116,
+    "jointsAllowed": [
+      "mixamorig:Hips",
+      "mixamorig:LeftUpLeg",
+      "mixamorig:LeftLeg",
+      "mixamorig:RightUpLeg",
+      "mixamorig:RightLeg",
+      "mixamorig:Spine",
+      "mixamorig:Spine1",
+      "mixamorig:Spine2",
+      "mixamorig:LeftShoulder",
+      "mixamorig:LeftArm",
+      "mixamorig:LeftForeArm",
+      "mixamorig:LeftHand",
+      "mixamorig:Neck",
+      "mixamorig:RightShoulder",
+      "mixamorig:RightArm",
+      "mixamorig:RightForeArm",
+      "mixamorig:RightHand"
+    ],
+    "lowConfidenceVertices": 87107,
+    "maxBones": 4,
+    "method": "nearest-triangle-barycentric+low-confidence-joint-segment",
+    "normalizedVertices": 151223,
+    "semanticFallbackVertices": 90774
+  }
+}
