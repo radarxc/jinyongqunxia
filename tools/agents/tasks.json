@@ -51182,7 +51182,8 @@
     "apps/game/build/dressup-assets.ts",
     "apps/game/build/dressup-assets.test.ts",
     "apps/game/src/pages/Character3dPage.vue",
-    "tools/model3d/dressup/ingest.py"
+    "tools/model3d/dressup/ingest.py",
+    "apps/game/src/pages/*.ts"
    ],
    "validate": {
     "exists": [

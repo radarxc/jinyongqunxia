@@ -6,6 +6,7 @@
 作者 2026-10-08 同意**贴图层与网格层两条路同时试**（「同时试试吧」），要在本地 `/character-3d` 直接对比。贴图层 = 身体网格不变、把贴身衣服画进身体贴图：不穿模、零额外 draw call、三套模板共用一张层（共 UV）。E3 离线烘焙出 `assets/default/model3d/dressup/garments/eq_jinzhuang_tex/eq_jinzhuang.layer.png`；本任务让运行时与预览页能叠上它。E3 未合入前用测试夹具开发，合入后页面按 `index.json` 自动列出，无需改代码。
 
 ## 要做的事
+0. **第 0 步：修 B2 的索引响应式 bug（协调者 2026-10-08 03:20 在 5173 实测发现，最优先）**：`apps/game/src/pages/Character3dPage.vue` 里 `let dressupIndex: DressupIndex | null = null;` 是普通变量，`dressupTemplates` / 装备分组的 `computed` 在索引加载前求值后被缓存，`fetch` 回来再赋值也不刷新——实测 `window.__dressup.index.groups` 有 3 模板 3 道具、actor 已建（196,022 三角），面板却显示"体型模板"无按钮、"道具：索引暂无可用素材"。改成 `shallowRef<DressupIndex | null>(null)`（读写 `.value`），并排查同类问题：模板 / 动作 / 装备状态、`dressupActor`、stats 等凡是模板或 `computed` 读到的状态都必须是响应式的（大对象用 `shallowRef` / `markRaw`，不要把 three 对象放进 deep reactive）。为防回归，把索引加载与分组逻辑抽成可测的组合函数（如 `useDressupIndex(fetchImpl)`，放在页面同目录或 `apps/game/src/pages/` 下），用 Vitest 断言"异步加载完成后模板 3 个、道具 3 个、garment / hair 为空"会在 `computed` 上体现。
 1. **运行时**（`packages/render/src/dressup/`）：
    - `types.ts` 加 `DressupLayerSpec { id: string; url: string; order?: number }`；
    - `actor.ts` 加 `setBodyLayers(layers: readonly DressupLayerSpec[]): Promise<void>`：按 `order`（缺省按传入顺序）把各层 alpha 叠到模板原始 baseColor 上，得到一张合成贴图换给身体材质的 `map`（`colorSpace = SRGBColorSpace`、`flipY = false`、沿用原贴图的 wrap / filter / anisotropy）；空列表恢复原贴图；同一组合（按层 id 序列为键）在模块级缓存里引用计数共享，最后一个使用者释放时 `dispose`；`dispose()` 释放本 actor 持有的合成贴图引用；并发调用以最后一次为准（先发后至的结果丢弃并释放）。
