@@ -29,6 +29,7 @@ export default defineConfig({
           exclude: [
             ...configDefaults.exclude,
             'packages/render/src/rig/performance.test.ts',
+            'packages/render/src/dressup/performance.test.ts',
             'packages/core/bench/battle-session.performance.test.ts',
             'packages/core/bench/combat.performance.test.ts',
           ],
@@ -49,6 +50,7 @@ export default defineConfig({
           environment: 'node',
           include: [
             'packages/render/src/rig/performance.test.ts',
+            'packages/render/src/dressup/performance.test.ts',
             'packages/core/bench/battle-session.performance.test.ts',
             'packages/core/bench/combat.performance.test.ts',
           ],

@@ -23,7 +23,8 @@ async function gzipKiB(file) {
 }
 
 function findEntry() {
-  const entries = Object.entries(manifest).filter(([, item]) => item.isEntry);
+  const entries = Object.entries(manifest).filter(([key, item]) =>
+    item.isEntry && (sourceMatches(item.src ?? key, 'src/main.ts') || key === 'index.html'));
   if (entries.length !== 1) throw new Error(`SIZE_ENTRY_COUNT:${entries.length}`);
   return entries[0];
 }
@@ -213,15 +214,21 @@ const existingRecords = await Promise.all(
   }),
 );
 const renderRecord = existingRecords.find((record) => record.name === 'render');
-async function appendRenderLazyRecord(name, target) {
+async function appendRenderLazyRecord(name, target, excludedTargets = []) {
   if (!target) {
-    existingRecords.push({ name, file: 'not emitted', size: null, budget: budgets.chunks[name] });
+    existingRecords.push({
+      name, file: 'not emitted', size: null, budget: budgets.chunks[name],
+      ...(name === 'render-dressup' ? { status: 'FAIL' } : {}),
+    });
     return;
   }
   const [key] = target;
   const alreadyBudgeted = new Set(entryFiles);
   if (renderRecord?.key)
     for (const file of staticClosure(renderRecord.key)) alreadyBudgeted.add(file);
+  for (const excluded of excludedTargets) {
+    if (excluded) for (const file of staticClosure(excluded[0])) alreadyBudgeted.add(file);
+  }
   const files = withoutFiles(staticClosure(key), alreadyBudgeted);
   existingRecords.push({
     name,
@@ -243,6 +250,29 @@ const model3dTarget = findManifestChunk('render-model3d', {
   manifestNames: ['battle-model3d', 'render-model3d'],
 });
 await appendRenderLazyRecord('render-model3d', model3dTarget);
+const dressupTarget = findManifestChunk('render-dressup', {
+  sources: ['packages/render/src/dressup/runtime.ts'],
+  manifestNames: ['render-dressup'],
+});
+await appendRenderLazyRecord(
+  'render-dressup',
+  dressupTarget,
+  [model3dTarget],
+);
+const dressupClosure = dressupTarget ? staticClosure(dressupTarget[0]) : new Set();
+const orphanDressupFiles = emittedJs
+  .filter((file) => file.startsWith('render-dressup-'))
+  .map((file) => `assets/${file}`)
+  .filter((file) => !dressupClosure.has(file));
+if (orphanDressupFiles.length > 0) {
+  existingRecords.push({
+    name: 'dressup orphan',
+    file: orphanDressupFiles.join(', '),
+    size: await gzipFiles(orphanDressupFiles),
+    budget: 0,
+    status: 'FAIL',
+  });
+}
 const bookFiles = emittedJs.filter((file) => file.startsWith('book-'));
 if (bookFiles.length === 0)
   existingRecords.push({

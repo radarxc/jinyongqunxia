@@ -15,7 +15,7 @@ async function fixture(options = {}) {
   await mkdir(join(root, 'apps/game/dist/.vite'), { recursive: true });
   await mkdir(join(root, 'apps/game/dist/assets'), { recursive: true });
   await mkdir(join(root, 'tools/perf'), { recursive: true });
-  const manifest = options.manifest ?? {
+  const manifest = JSON.parse(JSON.stringify(options.manifest ?? {
     'src/main.ts': {
       file: 'assets/entry.js',
       isEntry: true,
@@ -23,7 +23,15 @@ async function fixture(options = {}) {
       assets: options.entryAssets ?? [],
     },
     '_shell.js': { file: 'assets/shell.js' },
-  };
+  }));
+  if (!options.missingDressup && !manifest['packages/render/src/dressup/runtime.ts']) {
+    manifest['packages/render/src/dressup/runtime.ts'] = {
+      file: 'assets/render-dressup.js',
+      name: 'render-dressup',
+      isEntry: true,
+      imports: ['_shell.js'],
+    };
+  }
   const groups = options.groups ?? {
     schemaVersion: 'size-groups.v1',
     groups: {
@@ -56,6 +64,7 @@ async function fixture(options = {}) {
     region: 'export{};',
     battle: 'export{};',
     town: 'export{};',
+    'render-dressup': 'export{};',
     ...(options.files ?? {}),
   };
   for (const [name, value] of Object.entries(files))
@@ -69,6 +78,7 @@ async function fixture(options = {}) {
         render: options.renderBudget ?? 180,
         'render-rig': options.rigBudget ?? 20,
         'render-model3d': options.model3dBudget ?? 24,
+        'render-dressup': options.dressupBudget ?? 24,
         'render-webgpu': 300,
         basis: 255,
         devtools: 130,
@@ -95,6 +105,7 @@ describe('three-level size gate', () => {
     expect(result.stdout).toContain('标题页 entry 闭包（预算 170 KiB gzip）');
     expect(result.stdout).toMatch(/render-rig\s+—\s+20\s+not emitted/);
     expect(result.stdout).toMatch(/render-model3d\s+—\s+24\s+not emitted/);
+    expect(result.stdout).toMatch(/render-dressup\s+\d+\.\d+\s+24\s+PASS/);
     expect(result.stdout).toContain('首次会话闭包（预算 110 KiB gzip）');
     expect(result.stdout).toMatch(
       /worker shell[\s\S]*session static[\s\S]*base content[\s\S]*session total/,
@@ -229,6 +240,50 @@ describe('three-level size gate', () => {
     const result = run(root);
     expect(result.status, result.stdout + result.stderr).toBe(1);
     expect(result.stdout).toMatch(/render-model3d\s+\d+\.\d+\s+0\.1\s+FAIL/);
+  });
+
+  it('fails closed when the required dressup chunk is missing', async () => {
+    const root = await fixture({ missingDressup: true });
+    const result = run(root);
+    expect(result.status).toBe(1);
+    expect(result.stdout).toMatch(/render-dressup\s+—\s+24\s+FAIL/);
+  });
+
+  it('fails when the dressup lazy closure exceeds its separate budget', async () => {
+    const root = await fixture({
+      dressupBudget: 0.1,
+      files: { 'render-dressup': noisy(2_000) },
+    });
+    const result = run(root);
+    expect(result.status).toBe(1);
+    expect(result.stdout).toMatch(/render-dressup\s+\d+\.\d+\s+0\.1\s+FAIL/);
+  });
+
+  it('fails when an emitted dressup-prefixed chunk is outside its manifest closure', async () => {
+    const root = await fixture({
+      files: { 'render-dressup-worker-copy': noisy(2_000) },
+    });
+    const result = run(root);
+    expect(result.status).toBe(1);
+    expect(result.stdout).toMatch(/dressup orphan\s+\d+\.\d+\s+0\s+FAIL/);
+  });
+
+  it('does not charge render or battle-model3d closure bytes to dressup', async () => {
+    const manifest = renderFixtureManifest('render.js', 'render-host.js');
+    manifest['_battle-model3d.js'] = {
+      file: 'assets/battle-model3d.js', name: 'battle-model3d', imports: ['_render.js'],
+    };
+    manifest['packages/render/src/dressup/runtime.ts'] = {
+      file: 'assets/render-dressup.js', name: 'render-dressup',
+      imports: ['_render.js', '_battle-model3d.js'],
+    };
+    const root = await fixture({ manifest, dressupBudget: 0.1, files: {
+      render: noisy(2_000), 'render-host': 'export{};', rig: 'export{};',
+      'battle-model3d': noisy(2_000), 'render-dressup': 'export{};',
+    } });
+    const result = run(root);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout).toMatch(/render-dressup\s+\d+\.\d+\s+0\.1\s+PASS/);
   });
 });
 
