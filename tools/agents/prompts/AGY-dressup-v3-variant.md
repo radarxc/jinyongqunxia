@@ -33,6 +33,14 @@
 4. **V 领浅色方块**：底板 V 领处是皮肤，不能投到衣服内侧；同上，只投"衣服区"像素。
 5. 改完重出 `preview_mesh_front.png` / `preview_mesh_back.png` / `preview_compare.png`（身体用正确肤色）。
 
+## 协调者实测意见（第 3 轮，2026-10-08 15:25；返修必须照做，审核按此判定）
+第 4 次运行的变体衣图是**写脚本给劲装衣图改色加噪**做出来的，违反第 1 步"不写代码改像素"；第 5 次运行又把写集外的 `packages/render/src/dressup/actor-runtime.test.ts` 分配断言从 `toBe` 放宽成 `toBeLessThan(10000)`（协调者已撤回，并删除 `test-alloc.js`）。改法：
+1. **衣图用图像工具的产物**：协调者已取回你第 1 次运行图像工具出的图并对齐到底板画布：`/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/coord/_dressup/v3/agy_imagetool_eq_buyi_front.aligned.png`（原图同目录 `agy_imagetool_eq_buyi_front.jpg`；对齐：整图缩放 1.2072、偏移 (0, 5)、背景色补边）。直接复制为 `por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png`，覆盖脚本改色版；manifest 条目写图像工具提示词、references、normalization（上述数字）、check_plate 数字、IoU，`status: candidate`。
+2. **衣服区 IoU 口径固定**：衣服区 = 与模板底图 `por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png` 逐像素 RGB 最大通道差 > 25 的像素（不做形态学）；变体与劲装衣图各按此求衣服区再算 IoU，门禁 ≥ 0.95（协调者实测这张为 0.956）；阈值 40 / 60 的值只报不判。把这一算法写进 `retexture_variant.py`（如 `--iou-only` 子功能）并在报告里列三组数字。
+3. **布料上的白色划痕**：网格变体贴图的布料岛里有成串白色短线（对比图 `…/_dressup/v3/tex_compare_jinzhuang_vs_buyi_run4.png` 右半），穿上就是白道。查明来源（多半是投影取到了衣服区边缘 / 缝线外的浅色像素，或 LUT 外推）并修掉；验收：布料岛内亮度高于变体衣图衣服区第 99 百分位亮度的纹素占比 < 0.1%，写进报告与 fit.json。
+4. **网格质检渲染器 UV 采样错了**：`preview_mesh_front.png` 里模板身体和衣服都是一块块肤色 / 深色迷彩——连身体都花了，说明是渲染器的问题（变体贴图本身布料岛颜色正常）。按 `bake_texture_layer.py` 同一 UV 约定采样材质 `baseColorTexture`；先用同一渲染器渲劲装版型件（应是深蓝劲装、无肤色补丁）做自检，再渲布衣。重出 `preview_mesh_front.png` / `preview_mesh_back.png`，协调者要看到正常肤色身体上的灰褐粗麻短褐。
+5. **不碰写集外文件**：`actor-runtime.test.ts` 的分配采样用例是已知的 JIT 时机偶发失败，由协调者在 B4 处理；你的 `pnpm check` 遇到它，重跑一次，仍失败就在报告里写明，不得修改。结束前删除工作区里所有不在写集的文件。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{retexture_variant.py,tests_variant.py}`（可 import 但不改 `bake_texture_layer.py`）、`assets/default/model3d/dressup/garments/{eq_buyi,eq_buyi_tex}/**`、`assets/default/character/female/ch00/threeview/{por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png,manifest.yaml}`（manifest 只追加一条）与本任务报告。
 - 不改版型件 `garments/eq_jinzhuang/**`、不改其他工具；不加依赖；**不花 Tripo 点数**。
