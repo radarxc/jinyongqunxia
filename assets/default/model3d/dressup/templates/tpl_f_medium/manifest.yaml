@@ -5,23 +5,79 @@
   template: tpl_f_medium
   gender: female
   archetype: medium
-  heightM: 1.65
-  tool: tripo-studio-web（过渡期正本：复制自 npc_zhujue__ch00_f_bald_base_body/anim_idle_walk_run.glb，Tripo 项目 0e8cd219-a69e-48cd-83dc-0199e5037404 导出）
-  skeleton: skeleton.json            # 由 tools/model3d/dressup/export_skeleton.py 生成（ENG-dressup-a2-skeleton）
+  heightM: 1.66
+  tool: tripo-studio-web（经 tri_pipeline_runner /eval）
+  tripo_model:
+    project_id: be15d34a-5d1e-409b-a0aa-c1a96446a267
+    generate_op: 7b274dfc-6dfc-4b28-9947-3f9fd304cb7a
+    rig_op: 39873f3c-82bf-4c4c-8e35-d4d95b3bbda2
+    animation_ops:
+      idle: 1766c700-f11c-4a9d-b861-1d5abb1d191e
+      walk: 20191347-5fbf-45ef-93f0-73f24301a1fb
+      run: 44c682ef-baa5-476d-915a-6a3ecf4fd58c
+  options:
+    generate:
+      mode: image_to_model
+      ai_model: H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed
+      texture: true
+      texture_quality: extreme
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 200000
+      texture_alignment: original_image
+      generate_parts: false
+      smart_poly: false
+      enable_image_autofix: true
+      visibility: private
+    rig:
+      rig_type: biped
+      skeleton_preset: mixamo
+      model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_size: 2048
+      export_skeleton: true
+      animate_in_place: true
+      orientation: -y
+      animations: [idle, walk, run]
+  credits:
+    generate: 65
+    rig: 20
+    before: 17495
+    after: 17410
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+    use: AR-105 作者定稿的 25° 窄 A 光头女中等素体单图
+  skeleton: skeleton.json
   regions: regions.npy
+  skullProfile: skull_profile.json
+  skullProfileSha: 595524a8e872ef72c063eab01d3f8db312c32eb38c8d3c38dfd822b4a6b4cf8d
+  heightMu: 0.98010258
+  mPerMu: 1.69370027
+  ringSha: 9bf82630d92bb15e666438a6953a9202bfb9020f79c9f9abce21c418e67cd9de
+  skeletonSha: 79844b4ef2a28a69f981092f1984c5397610cda09da3b4c3cf84d2ec5b358c48
   source:
-    tripo_project_id: 0e8cd219-a69e-48cd-83dc-0199e5037404
-    copied_from: assets/default/model3d/npc_zhujue__ch00_f_bald_base_body/anim_idle_walk_run.glb
-  sha256: 647c674f2e3139d407714ead2fef5ddfa2abb05643d5cfdee2f730cdafb31748
-  size_bytes: 9637236
+    tripo_project_id: be15d34a-5d1e-409b-a0aa-c1a96446a267
+  sha256: 1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f
+  size_bytes: 9595864
   joints: 65
-  vertices: 105991
-  triangles: 198436
+  vertices: 105082
+  triangles: 196022
   animations:
+  - idle (15.333s)
   - walk (2.333s)
   - run (1.25s)
-  - idle (15.333s)
+  armAngleDeg3d: 23.6293773
+  headsRatio: 8.25
+  hipsRatio: 0.54881107
   preview: preview.png
   status: candidate
-  created: '2026-10-07T11:38:13-07:00'
-  notes: AR-102 过渡期素体正本（唯一骨架来源）。1 primitive、rest=bind、Mixamo 65 关节、原地 idle/walk/run；材质带 KHR_materials_unlit 扩展但仍含 normal/MR 贴图，进包前由 textures.py 处理。AR-102 新模板（娇小/中等/修长）到位后替换本文件并重算 skeleton.json。
+  created: '2026-10-07T15:56:55-07:00'
+  notes: >-
+    AR-104 / AR-105 女中等模板新正本，替换旧 Tripo 项目 0e8cd219 的
+    anim_idle_walk_run.glb 过渡期正本；65 关节、rest=bind、+Z，含原地
+    idle/walk/run，作为换装系统唯一骨架来源。当前 candidate 仍含 PBR normal/MR
+    贴图，阶段 C 进包时由 textures.py 转 unlit。

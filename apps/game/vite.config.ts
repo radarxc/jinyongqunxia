@@ -51,6 +51,7 @@ export default defineConfig({
         globIgnores: [
           '**/assets/book-*.js',
           '**/assets/rig-demo-*.js',
+          '**/assets/render-dressup-*.js',
           '**/assets/vfx-*.js',
           '**/assets/default/**',
           '**/content/**',
@@ -76,7 +77,10 @@ export default defineConfig({
   ],
   worker: {
     format: 'es',
-    plugins: () => [gameContentPlugin({ copyAssets: false }), sizeGroupsPlugin()],
+    plugins: () => [
+      gameContentPlugin({ copyAssets: false, emitDressupEntry: false }),
+      sizeGroupsPlugin(),
+    ],
     rollupOptions: { treeshake },
   },
   build: {

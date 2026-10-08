@@ -21,6 +21,10 @@ export * from './core/context-guard';
 export * from './quality';
 export type { ClipPlayOptions, PartPose, PartPoseBuffer, RigBoneLengthKey, RigClipEventType } from './rig/types';
 export type { RigClip, RigClipEvent } from './rig/clip';
+export type {
+  DressupActor, DressupActorOptions, DressupEquipSpec, DressupFit, DressupSkeletonFrame,
+  DressupStats,
+} from './dressup/types';
 export interface RenderWorld {
   render(timeMs: number): void;
   resize(width: number, height: number, pixelRatio?: number): void;

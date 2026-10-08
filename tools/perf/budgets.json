@@ -6,6 +6,7 @@
     "render": 180,
     "render-rig": 20,
     "render-model3d": 24,
+    "render-dressup": 24,
     "render-webgpu": 300,
     "basis": 255,
     "devtools": 130

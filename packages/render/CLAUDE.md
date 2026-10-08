@@ -82,6 +82,13 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - SkinnedMesh 克隆必须使用 `SkeletonUtils.clone()`。3D SkinnedMesh 不属于 2D `RigBatch` 的双材质合批，不能承诺 2 draw call：当前作者 GLB 静态解析为 10,022 triangles，关闭描边时每实例约 1 draw；20 个克隆约 200,440 triangles / 20 draws，另加并排 2D rig 的 2 draws。
 - 当前生产构建 render 为 161.24 / 180 KiB gzip，余量 18.76 KiB；仅保留两个开发模块路径字符串，GLTFLoader/试点实现未进入生产产物。CPU 帧时间必须以页面 HUD 的 120 帧平均值在目标浏览器分别记录 1 / 20 实例，Node 测试与三角面推算不能替代浏览器实测。
 
+## 3D 纸娃娃换装 API（ENG-dressup-b1）
+
+- 运行时只从 `@tianshu/render/dressup` 动态导入 `createDressupActor()`；根入口仅导出 `DressupActor`、`DressupActorOptions`、`DressupEquipSpec`、`DressupFit`、`DressupSkeletonFrame`、`DressupStats` 类型，禁止静态转出运行时值。
+- `packages/render/src/dressup/**` 固定进入 `render-dressup` 独立懒加载块，gzip 预算 24 KiB；允许它静态依赖已归入 `battle-model3d` 的 `GLTFLoader` / `SkeletonUtils`，不得把换装实现拉回 render 主闭包。
+- `createDressupActor({ bodyUrl, frameUrl, heightM })` 返回共享 Skeleton 的 actor；调用方按需 `equip()` / `unequip()`、`playClip()`、逐帧 `update(dt)`，最终幂等 `dispose()`。素材必须使用构建期发布的 non-rejected manifest `file / fit / report`。
+- 100 actor × 平均 4 件合成装备的 `update(dt)` + `skeleton.update()` P95 必须 `< 2.0 ms`；只由 perf project / `pnpm check:perf` 收集，不进 `pnpm check`，不得按系统负载跳过或放宽。
+
 ## 招式 VFX API（ENG-11）
 
 - 从 `@tianshu/render/vfx` 动态导入 `createBattleVfxStage(canvas)`；VFX 单独产出 `vfx` chunk，战斗首次结算才加载。应用把 `onMoveResolved` 的只读施招者、目标与事件传给 `play()`，不得在表现层重算命中、伤害、范围或朝向。

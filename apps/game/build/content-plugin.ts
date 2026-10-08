@@ -19,6 +19,7 @@ import {
   publishBattleModels,
   readBattleModelDirectories,
 } from './battle-model-assets';
+import { publishDressupAssets } from './dressup-assets';
 
 const root = resolve(import.meta.dirname, '../../..');
 const virtualId = 'virtual:tianshu-content';
@@ -94,6 +95,9 @@ export function battleModelLazyChunk(id: string): string | undefined {
     ? 'battle-model3d'
     : undefined;
 }
+export function dressupLazyChunk(id: string): string | undefined {
+  return id.includes('/packages/render/src/dressup/') ? 'render-dressup' : undefined;
+}
 export function configureBattleModelChunks(outputOptions: {
   manualChunks?: (
     id: string,
@@ -110,12 +114,29 @@ export function configureBattleModelChunks(outputOptions: {
     groups: [
       {
         name: (id: string, context: { getModuleInfo: (id: string) => unknown }) =>
-          battleModelLazyChunk(id) ?? configured(id, { getModuleInfo: context.getModuleInfo }),
+          battleModelLazyChunk(id) ?? dressupLazyChunk(id) ??
+          configured(id, { getModuleInfo: context.getModuleInfo }),
         includeDependenciesRecursively: false,
       },
     ],
   };
   return outputOptions;
+}
+export async function publishRuntimeAssets(
+  buildRoot: string,
+  copy: boolean,
+  copied?: Set<string>,
+  references?: CopiedAssetReferenceMap,
+): Promise<void> {
+  await Promise.all([
+    publishVfxRuntime(buildRoot, copy, copied, references),
+    publishDressupAssets(buildRoot, copy, copied, references),
+  ]);
+}
+export function offlineEligibleAssets(paths: Iterable<string>): string[] {
+  // Dressup GLBs are fetched on demand and can exceed the offline system's immutable 8 MiB
+  // single-file cap. Publishing them must not weaken or bypass that separate offline gate.
+  return [...paths].filter(path => !path.startsWith('assets/default/model3d/dressup/'));
 }
 function chapterForAsset(
   id: string,
@@ -206,7 +227,9 @@ async function readCatalogs(): Promise<{
 }
 
 /** Build-time content projection: YAML parsers never enter the browser. */
-export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugin {
+export function gameContentPlugin(
+  options: { copyAssets?: boolean; emitDressupEntry?: boolean } = {},
+): Plugin {
   const copied = new Set<string>();
   const assetReferences: CopiedAssetReferenceMap = new Map();
   let townsPromise: Promise<TownRuntimeDefinition[]> | undefined;
@@ -214,7 +237,7 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
   let assetGroups: Promise<ReturnType<typeof chapterAssetGroups>> | undefined;
   let modelCatalogs:
     Promise<Record<string, ReturnType<typeof buildBattleModelCatalog>>> | undefined;
-  let vfxRuntime: ReturnType<typeof publishVfxRuntime> | undefined;
+  let runtimeAssets: ReturnType<typeof publishRuntimeAssets> | undefined;
   const towns = () => (townsPromise ??= readTowns());
   const assets = async () =>
     (assetManifest ??= readAssetManifest(
@@ -256,8 +279,10 @@ export function gameContentPlugin(options: { copyAssets?: boolean } = {}): Plugi
         ]),
       ),
     ));
-  const vfx = () =>
-    (vfxRuntime ??= publishVfxRuntime(root, options.copyAssets !== false, copied, assetReferences));
+  const publishRuntime = () =>
+    (runtimeAssets ??= publishRuntimeAssets(
+      root, options.copyAssets !== false, copied, assetReferences,
+    ));
   const content = () =>
     (siteContentPromise ??= buildContent({
       rootDir: root,
@@ -347,10 +372,16 @@ export async function loadTown(id){switch(id){${definitions
       );
     },
     async buildStart() {
+      // B2 will request this public subpath with import(); emit it now so the size gate can
+      // fail closed before a page depends on the runtime. It remains outside the entry closure.
+      if (options.emitDressupEntry !== false) {
+        this.emitFile({ type: 'chunk', id: '@tianshu/render/dressup', name: 'render-dressup',
+          preserveSignature: 'strict' });
+      }
       const built = await content();
       const failed = built.diagnostics.find((entry) => entry.severity === 'error');
       if (failed) throw new Error(`${failed.code}:${failed.message}`);
-      const [, , catalogs] = await Promise.all([groupedAssets(), vfx(), models()]);
+      const [, , catalogs] = await Promise.all([groupedAssets(), publishRuntime(), models()]);
       await publishBattleModels(
         root,
         options.copyAssets !== false,
@@ -361,7 +392,7 @@ export async function loadTown(id){switch(id){${definitions
     },
     async closeBundle() {
       if (options.copyAssets !== false) {
-        await writeCopiedAssetManifest(root, [...copied], undefined, assetReferences);
+        await writeCopiedAssetManifest(root, offlineEligibleAssets(copied), undefined, assetReferences);
         await buildOfflineClosures({
           publicDir: resolve(root, 'apps/game/public'),
           outDir: resolve(root, 'apps/game/dist'),

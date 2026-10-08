@@ -1,0 +1,24 @@
+- id: dressup__prop__luxury_jade_pendant
+  file: luxury_jade_pendant.glb
+  category: model3d
+  kind: dressup-prop
+  template: tpl_f_medium
+  sha256: 6bc4cb609b31831d27e680a4dc6d346115d47f25f27a028353c1d82a9381c88c
+  size_bytes: 4396452
+  triangles: 8580
+  report: report.json
+  status: candidate
+  tool: tools/model3d/dressup/ingest.py v1
+  created: '2026-10-07T21:04:54-07:00'
+  slot: accessory
+  fit: fit.json
+  fits:
+    tpl_f_medium:
+      file: luxury_jade_pendant.glb
+      fit: fit.json
+      report: report.json
+      status: candidate
+  source:
+    directory: external-workdir
+    references: []
+  notes: validate level=approved；status 按 tech/11 §6 映射。

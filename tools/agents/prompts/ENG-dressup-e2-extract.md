@@ -1,0 +1,44 @@
+# 本任务：3D 纸娃娃换装 · 阶段 E2 · 网格层：从劲装整身模型抽出衣服壳 → 贴合 → 门禁 → 入库（含娇小 / 修长重贴合；AR-102 / AR-104）
+
+本任务写代码并实跑。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`docs/tech/11-paper-doll-3d-impl-spec.md`（§0、§4、§5.1、§5.3~§5.5、§6、§7、§10 D / E、§11）、`docs/tech/10-paper-doll-3d.md` §2.2~§2.4、`tools/model3d/dressup/README.md`，以及 A1 / A2 / A4 / A5 / E1 报告第 7 节（基础库、skeleton.json、`fit_garment.py` / `refit_template.py`、`validate.py` / `textures.py` / `pack_glb.mjs` / `ingest.py`、源件交接）。
+
+## 作者要求
+**AR-102**：衣服穿到模板素体上、不穿模、随动作运动、三种体型自动重贴合。作者 2026-10-08 在本地预览看到旧衣服穿模，同意**贴图层与网格层两条路同时试**（「同时试试吧」）；本任务是**网格层**，贴图层是 E3。旧道具（流仙裙等）不是在模板上做的，只作诊断；本件是第一件按新流程（模板底图编辑 → Tripo 整身 → 本地抽壳贴合）做出的衣服，要拿它证明流程可用。
+
+## 输入
+- E1 源件：`assets/default/model3d/dressup/garments/eq_jinzhuang/source/tripo_dressed_rig.glb`（穿劲装的整身 Tripo 模型，带 Tripo 65 骨绑骨与贴图）与 `source.json`。
+- 模板：`assets/default/model3d/dressup/templates/tpl_f_medium/`（`body.glb`、`skeleton.json`、`regions.npy` 为逐顶点 u8 区域、17 区见 `skeleton.json.regions.ids`）；派生 `tpl_f_small` / `tpl_f_tall`（共拓扑、共骨名）。
+- 衣图底板与模板底图（同画布）：`assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png`、`…/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png`（可用来建立"衣服色 / 皮肤色"样本：两图人物区内差异大的像素是衣服，差异小的是皮肤与三角裤）。
+
+## 要做的事
+1. **`tools/model3d/dressup/extract_garment.py`**：`--dressed <整身 glb> --body <模板 body.glb> --skeleton <skeleton.json> --slot body --id <id> --out <dir> [--plate <衣图> --base-plate <模板底图>] [--keep-regions …] [--json]`：
+   - **对齐**：复用 A4 `fit_garment.align_joints`（≥ 6 个对称躯干关节 Umeyama，det = +1，再用 Tripo 自带权重做逐骨姿态校正）把整身模型摆到模板 bind 空间；`align.residualMu` 换算成 %H 写进 `extract.json`（躯干关节验收 ≤ 2% H，腕 / 脚单独报告）。
+   - **分割**：对每个三角给"衣服 / 身体"标签，依据三项并写出各自贡献：① 到模板体表的带符号距离（A1 `signed_distance`，几何最近面）；② 贴图颜色（在 UV 处采 baseColor，用底板样本在 Lab 空间分类，不写死颜色常数）；③ 最近模板顶点的区域（劲装 slot body 允许 torsoUpper / torsoLower / hips / upperArmL/R / forearmL/R / thighL/R，永不包含 head / neck / handL/R / footL/R / shinL/R）。三角邻接图上做多数平滑、去掉小岛、补小洞；报告每一步的三角数变化。
+   - **输出**：① 衣服壳子网格，**保留源件 skin 与原坐标**（`<out>/<id>_raw_skinned.glb`，供 fit_garment 的关节对齐路径）；② 同一子网格对齐到模板 bind 空间、去掉 skin（`<out>/<id>_raw_aligned.glb`）；③ `extract.json`（对齐残差、各标签依据的计数、开口边界环数量与周长（预期领口 1、袖口 2、下摆 1）、连通块、到体表距离 p50 / p90 / max mm、覆盖区域面积占比）；④ 质检图 `extract_front.png` / `extract_back.png`：Pillow 软光栅正交前视 / 后视，模板轮廓灰色、衣服壳按标签着色（协调者不开浏览器也能看）。
+2. **`fit_garment.py` 加 `--align auto|joints|landmarks|none`**（默认 `auto` = 现行为，**不改既有输出**）：`none` 表示输入已在模板 bind 空间，跳过对齐，走模板权重转移。只追加分支与测试，`tests_garment.py` 原有用例全部照过。
+3. **贴合两种权重来源并比较**（劲装 slot body，严格模式，`--push-mm 3`，`--iters` 按需但为真上限）：
+   - A：`<id>_raw_skinned.glb` 走关节对齐 + 源件权重过滤（`--align joints`）；
+   - B：`<id>_raw_aligned.glb` 走 `--align none` + 模板权重转移；
+   - 两者都跑 `validate.py`（同骨架 idle / walk / run 各 24 帧动态穿透、静态残留、翻面、边长、遮罩禁区），报告并排写数字，**选动态穿透更低者**作为正式件（并列时选 B），选择依据写进 `fit.json.notes` 与报告。
+4. **进包与入库**：`textures.py --double-sided` → `pack_glb.mjs --simplify`（目标 ≤ 3 万三角）→ 对打包件再跑 `validate.py` → `ingest.py garment eq_jinzhuang --src <dir> --template tpl_f_medium --slot body --item eq_jinzhuang`，写 `assets/default/model3d/dressup/garments/eq_jinzhuang/manifest.yaml`（`source:` 记 E1 的 Tripo 项目 ID、源件与底板 sha256；status 按 report.level）。`source/` 目录原样保留，不进 manifest 的 `file`。
+5. **跨模板**：`refit_template.py` 到 `tpl_f_small` / `tpl_f_tall`，各跑 `validate.py`（用目标模板自己的 clip），结果写进 manifest 的 `fits:`（不过门禁的写 `status: draft` 并如实记数）。
+6. **`tools/model3d/dressup/tests_extract.py`**：合成"圆柱身体 + 外套筒（不同颜色贴图）+ 露出的手 / 头"的整身网格，验证分割标签、开口环计数、区域约束（手 / 头不进衣服）、输出两种 GLB 的顶点与源一致（skinned 版坐标逐位相等）。
+
+## 验收（协调者会实测）
+- 躯干关节对齐残差 ≤ 2% H；衣服壳开口环 = 4（领、两袖、下摆），无头 / 手 / 脚 / 小腿三角；
+- 正式件严格模式：`highConfidence ≥ 0.85`、静态残留 0、安全距不足 0、翻面 0、边长合格 ≥ 99%；动态穿透 draft ≤ 2%（争取 approved ≤ 0.5%）；`hideRegions` 含 torsoUpper / torsoLower / hips，不含 neverHide；
+- 三套模板都有文件与 report，manifest 与 report.level 一致；打包件 ≤ 3 万三角、贴图 ≤ 2048²。
+
+## 约束
+- 只写 `tools/model3d/dressup/{extract_garment.py,tests_extract.py,fit_garment.py,tests_garment.py}`、`assets/default/model3d/dressup/garments/eq_jinzhuang/**`（`source/` 只读）与本任务报告；`fit_garment.py` / `tests_garment.py` 只做第 2 条的追加。
+- 不改基础库（`glb_io.py` / `common.py` 只能追加函数）、不改 validate / textures / pack / ingest；不加依赖；不改门禁阈值；不花 Tripo 点数。
+
+检查：
+- `python3 tools/model3d/dressup/tests_extract.py`
+- `python3 tools/model3d/dressup/tests_garment.py`
+- `python3 tools/model3d/dressup/selftest.py`
+- `pnpm install --frozen-lockfile`
+- `pnpm check`
+
+## 报告
+第 3 节写：对齐残差（%H，躯干 / 腕 / 脚分开）、分割各依据计数与平滑前后三角数、开口环、A / B 两种权重来源的 validate 并排数字与选择、正式件 fit / report 关键量、三模板 refit 结果、耗时与峰值内存；第 4 节写分割失败模式（衣服与皮肤同色、腰带结、衣摆开衩）；第 7 节写给 C2（Skill 手册）的命令序列与给 E3 的复用接口。报告 ≤ 80 行。

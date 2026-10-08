@@ -1,0 +1,24 @@
+- id: dressup__prop__item_qingfeng_sword
+  file: item_qingfeng_sword.glb
+  category: model3d
+  kind: dressup-prop
+  template: tpl_f_medium
+  sha256: 581adc336358c88d1a7310dfd67aff963e1d2b82f3af16fc1fd91dd94329c57d
+  size_bytes: 4536072
+  triangles: 8676
+  report: report.json
+  status: candidate
+  tool: tools/model3d/dressup/ingest.py v1
+  created: '2026-10-07T21:04:53-07:00'
+  slot: mainHand
+  fit: fit.json
+  fits:
+    tpl_f_medium:
+      file: item_qingfeng_sword.glb
+      fit: fit.json
+      report: report.json
+      status: candidate
+  source:
+    directory: external-workdir
+    references: []
+  notes: validate level=approved；status 按 tech/11 §6 映射。
