@@ -18,7 +18,8 @@
    - 素材索引 `head` 分组列出 heads 条目（含 fit URL）；预览页「换装 v2」加「头」分组（选中即挂、再点卸下）；
    - D1 尚未合入时用测试夹具开发，合入后页面按索引自动出现。
 6. **测试超时（协调者 2026-10-08 15:20）**：`apps/game/build/dressup-assets.test.ts` 里凡是调用 Python 门禁 / 工具的用例（如"uses strict nearest triangles for signed distance…"默认 5 s、"runs all 72 dynamic frames…" 120 s），在多任务并行时会超时误报（10-08 G1 校验两次撞线）。给这些用例显式设 300 s 超时；**只改超时上限，不跳过、不放宽任何断言或门禁阈值**。
-7. **测试**：合成器并集与缓存释放（假合成器计数）、换模板重算、开关、没有遮罩时 shader 分支关闭；`pnpm size`：render 主块不增长，`render-dressup` ≤ 24 KiB（前后数字写报告）。
+7. **分配采样用例改成"等到稳态"（协调者 2026-10-08 15:30 裁定，不是放宽）**：`packages/render/src/dressup/actor-runtime.test.ts` 的 "samples no steady update allocations…" 单独跑 6/6 失败（多出 16952 / 20384 字节）、全量偶发失败。协调者探针：强制 GC 后**第 1 个** 600 帧窗口里多出的保留字节记在 `Math.atan2`、three 的 `evaluate` / `_updateTime` / `updateMatrixWorld` 名下（未优化代码装箱浮点数，GC 后重新优化的过渡期），**其后 11 个窗口全部为 0**——稳态确实无分配，失败来自测量窗口落在 JIT 过渡期。改法：GC 后按 600 帧一个窗口连续取 `getSamplingProfile`，每窗比较 `update` 子树字节与上一窗是否**完全相等**（阈值仍是 0，不许改成"小于某值"）；要求 **10 个窗口内出现连续 3 个干净窗口**，否则失败（真有每帧分配时每个窗口都会变化，必然失败）；失败信息列出最后一个脏窗口按函数名的字节差。不得加任何"按负载跳过 / 放宽"逻辑；其余断言（`root` / `skeleton` / `stats` / `boneMatrices` 同一引用、`boneTextureUploads === 1`）原样保留。补一条反向自检：在同一套 harness 里让一个假的 `update` 每帧 `new Float32Array(4)` 并保留到下一帧，确认该判定会失败。
+8. **测试**：合成器并集与缓存释放（假合成器计数）、换模板重算、开关、没有遮罩时 shader 分支关闭；`pnpm size`：render 主块不增长，`render-dressup` ≤ 24 KiB（前后数字写报告）。
 
 ## 约束
 - 只写 `packages/render/src/dressup/{types,materials,actor,runtime}.ts` 与同目录 `*.test.ts`、`packages/render/CLAUDE.md`（补一段 hide map API）、`apps/game/build/dressup-assets.ts`、`apps/game/build/dressup-assets.test.ts`、`apps/game/src/pages/Character3dPage.vue` 与本任务报告。
