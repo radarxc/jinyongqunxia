@@ -51438,7 +51438,7 @@
    "effort": "xhigh",
    "profile": "code",
    "id": "AGY-dressup-b4-hidemap",
-   "title": "3D 纸娃娃换装 · B4 · 运行时身体遮罩 + 预览开关（agy；AR-108 V2）",
+   "title": "3D 纸娃娃换装 · B4 · 运行时身体遮罩 + 挂头 + 预览开关（agy；AR-108 V2 / V4）",
    "prompt": "AGY-dressup-b4-hidemap.md",
    "deps": [
     "ENG-dressup-a6-sockets"
