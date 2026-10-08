@@ -51047,7 +51047,7 @@
     "ENG-dressup-a4-garment",
     "ENG-dressup-a5-gate"
    ],
-   "review": true,
+   "review": false,
    "web": true,
    "vars": {},
    "agent_args": [
@@ -51109,7 +51109,7 @@
     "ART-dressup-e1-garment-gen",
     "ENG-dressup-a4-garment"
    ],
-   "review": true,
+   "review": false,
    "web": true,
    "vars": {},
    "agent_args": [
@@ -51163,7 +51163,7 @@
    "deps": [
     "ENG-dressup-b2-preview"
    ],
-   "review": true,
+   "review": false,
    "web": true,
    "vars": {},
    "agent_args": [
