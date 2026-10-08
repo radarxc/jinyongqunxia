@@ -51309,6 +51309,67 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-e4-sword-held",
+   "title": "3D 纸娃娃换装 · E4 · 出鞘持剑：龙泉剑（Tripo 生成 → 归一化 → 握右手 → 门禁 → 入库，AR-107）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ART-dressup-e4-sword-held.md",
+   "deps": [
+    "ENG-dressup-a6-sockets"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-08：手里拿出鞘剑、带鞘剑挂腰（AR-107）",
+   "sparse_include": [
+    "assets/default/item/weapons/eq_longquanjian.png",
+    "assets/default/item/weapons/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/props/eq_longquanjian/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/props/eq_longquanjian/eq_longquanjian.glb",
+     "assets/default/model3d/dressup/props/eq_longquanjian/fit.json",
+     "assets/default/model3d/dressup/props/eq_longquanjian/report.json",
+     "assets/default/model3d/dressup/props/eq_longquanjian/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/check_sockets.py",
+      "--template",
+      "assets/default/model3d/dressup/templates/tpl_f_medium",
+      "--props",
+      "assets/default/model3d/dressup/props/eq_longquanjian"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
