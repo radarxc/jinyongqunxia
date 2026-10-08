@@ -134,6 +134,15 @@ async function showTitle(status = ''): Promise<void> {
   }));
 }
 async function start(): Promise<void> {
+  if (import.meta.env.DEV && (
+    location.pathname === '/character-3d' || location.pathname === '/character-3d/' ||
+    location.pathname === '/model3d' || location.pathname === '/model3d/' ||
+    location.search.includes('character-3d')
+  )) {
+    const { default: Character3dPage } = await import('./pages/Character3dPage.vue');
+    mount(Character3dPage, {});
+    return;
+  }
   if (import.meta.env.DEV && (location.pathname === '/rig-demo' || location.pathname === '/rig-demo/')) {
     const canvas = document.createElement('canvas'); canvas.id = 'scene'; root!.append(canvas);
     const { mountRigDemo } = await import('./rig-demo');

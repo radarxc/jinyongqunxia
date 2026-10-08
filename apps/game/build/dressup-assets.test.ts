@@ -1,11 +1,11 @@
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { access, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
-import { GLTFLoader } from '../../../packages/render/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
-import { MeshoptDecoder } from '../../../packages/render/node_modules/three/examples/jsm/libs/meshopt_decoder.module.js';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { createCharacterViewerLoader } from '../../../packages/render/src/character-viewer/scene';
+import { createDressupActor } from '../../../packages/render/src/dressup/actor';
 import { publishDressupAssets } from './dressup-assets';
 
 const roots: string[] = []; const createdAssets: string[] = [];
@@ -98,7 +98,8 @@ async function leaf(base: string, name: string, status: string): Promise<void> {
     writeFile(join(directory, 'private.png'), 'not runtime'),
   ]);
   await writeFile(join(directory, 'manifest.yaml'), '- id: dressup__garment__' + name + '\n' +
-    '  file: ' + name + '.glb\n  category: model3d\n  fit: fit.json\n' +
+    '  file: ' + name + '.glb\n  category: model3d\n  kind: dressup-garment\n' +
+    '  template: tpl_f_medium\n  slot: body\n  fit: fit.json\n' +
     '  report: report.json\n  status: ' + status + '\n  source:\n' +
     '    file: must-not-be-scanned.glb\n');
 }
@@ -111,6 +112,9 @@ async function variants(base: string): Promise<void> {
     .map(name => writeFile(join(directory, name), name)));
   await writeFile(join(directory, 'manifest.yaml'), `- id: dressup__garment__eq_variants
   file: base.glb
+  kind: dressup-garment
+  template: tpl_f_medium
+  slot: body
   fit: fit.json
   report: base-report.json
   status: candidate
@@ -128,6 +132,7 @@ async function variants(base: string): Promise<void> {
 `);
 }
 afterEach(async () => {
+  vi.unstubAllGlobals();
   await Promise.all(roots.splice(0).map(path => rm(path, { recursive: true })));
   await Promise.all(createdAssets.splice(0).map(path => rm(path, { recursive: true })));
 });
@@ -471,6 +476,21 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
       'eq_kept/private.png'))).rejects.toThrow();
     expect(references.get('assets/default/model3d/dressup/garments/eq_kept/manifest.yaml'))
       .toEqual(new Set(result.map(path => '/' + path)));
+    const index = JSON.parse(await readFile(join(base,
+      'apps/game/public/assets/default/model3d/dressup/index.json'), 'utf8')) as {
+      schema: string; groups: Record<string, Record<string, unknown>[]> };
+    expect(index.schema).toBe('tianshu-dressup-index.v1');
+    expect(index.groups.garment).toEqual([{
+      kind: 'garment', id: 'dressup__garment__eq_kept', template: 'tpl_f_medium',
+      file: '/assets/default/model3d/dressup/garments/eq_kept/eq_kept.glb',
+      fit: '/assets/default/model3d/dressup/garments/eq_kept/fit.json',
+      report: '/assets/default/model3d/dressup/garments/eq_kept/report.json',
+      status: 'candidate', slot: 'body',
+    }]);
+    expect(index.groups.template).toEqual([]);
+    expect(index.groups.head).toEqual([]);
+    expect(index.groups.hair).toEqual([]);
+    expect(index.groups.prop).toEqual([]);
   }, 120_000);
 
   it('validates selected files even in no-copy mode', async () => {
@@ -481,7 +501,7 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
 
   it('publishes candidate/draft fits and ignores rejected fits and source fields', async () => {
     const base = await root(); await variants(base);
-    const result = await publishDressupAssets(base, false);
+    const result = await publishDressupAssets(base, true);
     expect(result).toEqual([
       'assets/default/model3d/dressup/garments/eq_variants/base-report.json',
       'assets/default/model3d/dressup/garments/eq_variants/base.glb',
@@ -492,6 +512,66 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
     ]);
     expect(result.some(path => path.includes('rejected'))).toBe(false);
     expect(result.some(path => path.includes('tall'))).toBe(false);
+    const index = JSON.parse(await readFile(join(base,
+      'apps/game/public/assets/default/model3d/dressup/index.json'), 'utf8')) as {
+      groups: { garment: { template: string; status: string; file: string }[] } };
+    expect(index.groups.garment).toHaveLength(2);
+    expect(index.groups.garment.map(entry => [entry.template, entry.status, entry.file])).toEqual([
+      ['tpl_f_medium', 'candidate',
+        '/assets/default/model3d/dressup/garments/eq_variants/base.glb'],
+      ['tpl_f_small', 'draft',
+        '/assets/default/model3d/dressup/garments/eq_variants/small.glb'],
+    ]);
+  }, 120_000);
+
+  it('indexes template metadata and prop sockets, then loads all real packed props', async () => {
+    const base = await root();
+    await mkdir(join(base, 'assets/default/model3d'), { recursive: true });
+    await symlink(join(process.cwd(), 'assets/default/model3d/dressup'),
+      join(base, 'assets/default/model3d/dressup'));
+    await publishDressupAssets(base, true);
+    const index = JSON.parse(await readFile(
+      join(base, 'apps/game/public/assets/default/model3d/dressup/index.json'), 'utf8')) as {
+      groups: { template: { template: string; skeleton?: string; heightM?: number; file: string }[];
+        prop: { id: string; file: string; fit: string | null; socket?: string }[] } };
+    const medium = index.groups.template.find(entry => entry.template === 'tpl_f_medium')!;
+    expect(medium).toMatchObject({
+      skeleton: '/assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json',
+      heightM: 1.66,
+    });
+    expect(index.groups.prop.map(entry => entry.socket).sort()).toEqual(['chest', 'gripR', 'headTop']);
+
+    const nativeFetch = globalThis.fetch;
+    vi.stubGlobal('fetch', vi.fn(async (input: string | URL | Request) => {
+      const url = typeof input === 'string' ? input : input instanceof URL ? input.pathname : input.url;
+      if (url.startsWith('blob:')) return nativeFetch(input);
+      const path = new URL(url, 'http://localhost').pathname.replace(/^\//u, '');
+      const file = join(base, 'apps/game/public', path);
+      if (file.endsWith('.json')) return new Response(await readFile(file));
+      return new Response(await readFile(file));
+    }));
+    vi.stubGlobal('ProgressEvent', class {
+      constructor(readonly type: string, readonly init?: unknown) {}
+    });
+    vi.stubGlobal('self', globalThis);
+    vi.stubGlobal('createImageBitmap', vi.fn(async () => ({ close() {} })));
+    const actor = await createDressupActor({
+      bodyUrl: new URL(medium.file, 'http://localhost').href,
+      frameUrl: new URL(medium.skeleton!, 'http://localhost').href, heightM: medium.heightM!,
+      loader: createCharacterViewerLoader(),
+    });
+    for (const prop of index.groups.prop) {
+      const fit = JSON.parse(await readFile(prop.fit!.replace(/^\//u, ''), 'utf8'));
+      await actor.equip({ kind: 'prop', id: prop.id,
+        url: new URL(prop.file, 'http://localhost').href, fit });
+    }
+    actor.update(1 / 60);
+    expect(actor.stats()).toEqual({ drawCalls: 4, triangles: 221846, boneTextureUploads: 1 });
+    const fingerName = 'mixamorig:RightHandIndex1';
+    const finger = actor.skeleton.bones.find(bone => bone.name.endsWith('RightHandIndex1'))!;
+    expect(finger).toBeDefined();
+    expect(finger.quaternion.toArray()).toEqual(actor.frame.fingerPose.fist[fingerName]);
+    actor.dispose();
   }, 120_000);
 
   it('packs rigid props without changing vertex accessors', async () => {
@@ -564,7 +644,7 @@ print(json.dumps({'animation':[m[0,3],m[0,0],rejected],'realAnimation':real_anim
     const packed = glb(await readFile(packedPath));
     expect(packed.document.buffers).toHaveLength(1);
     expect(packed.document.bufferViews.every((view: { buffer?: number }) => (view.buffer ?? 0) === 0)).toBe(true);
-    const loaded = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).parseAsync(
+    const loaded = await createCharacterViewerLoader().parseAsync(
       bytesToArrayBuffer(await readFile(packedPath)), '');
     let meshCount = 0; loaded.scene.traverse(object => { if (object.type === 'SkinnedMesh') meshCount += 1; });
     expect(meshCount).toBe(1);
