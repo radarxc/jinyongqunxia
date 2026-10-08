@@ -1,5 +1,5 @@
 import type {
-  ColorRepresentation, Group, Skeleton,
+  ColorRepresentation, Group, Skeleton, Texture,
 } from 'three';
 import type { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -134,10 +134,23 @@ export interface DressupEquipSpec {
   readonly fit: DressupFit;
 }
 
+export interface DressupLayerSpec {
+  readonly id: string;
+  readonly url: string;
+  readonly order?: number;
+}
+
+/** A compositor returns a newly owned texture; the actor cache controls its disposal. */
+export interface DressupLayerCompositor {
+  composite(base: Texture, layers: readonly DressupLayerSpec[]): Promise<Texture>;
+}
+
 export interface DressupStats {
   readonly drawCalls: number;
   readonly triangles: number;
   readonly boneTextureUploads: number;
+  readonly bodyLayers: readonly string[];
+  readonly layerTextureBytes: number;
 }
 
 export interface DressupActor {
@@ -145,6 +158,7 @@ export interface DressupActor {
   readonly skeleton: Skeleton;
   readonly frame: DressupSkeletonFrame;
   setHead(url: string | null, options?: { readonly skinTint?: ColorRepresentation }): Promise<void>;
+  setBodyLayers(layers: readonly DressupLayerSpec[]): Promise<void>;
   equip(spec: DressupEquipSpec): Promise<void>;
   unequip(id: string): void;
   setHideMask(regions: readonly string[]): void;
@@ -161,4 +175,5 @@ export interface DressupActorOptions {
   readonly heightM: number;
   readonly loader?: GLTFLoader;
   readonly unlit?: boolean;
+  readonly compositor?: DressupLayerCompositor;
 }

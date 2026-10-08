@@ -1,7 +1,7 @@
 import {
   AnimationMixer, BufferAttribute, Group, InterleavedBufferAttribute, Matrix4, Mesh, Object3D,
-  PropertyBinding, Quaternion, SkinnedMesh, Vector3, type AnimationAction, type AnimationClip, type Bone,
-  type ColorRepresentation, type Material, type Skeleton, type Texture,
+  PropertyBinding, Quaternion, SkinnedMesh, SRGBColorSpace, TextureLoader, Vector3, type AnimationAction,
+  type AnimationClip, type Bone, type ColorRepresentation, type Material, type Skeleton, type Texture,
 } from 'three';
 import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { clone as cloneSkeleton } from 'three/examples/jsm/utils/SkeletonUtils.js';
@@ -9,7 +9,8 @@ import { prepareBodyRegionMesh, setRegionHideMask, toUnlit } from './materials';
 import { createDressupSkeletonFrameAccess, loadDressupSkeletonFrame,
   type DressupSkeletonFrameAccess } from './skeleton-frame';
 import { DressupError, type DressupActor, type DressupActorOptions, type DressupEquipSpec,
-  type DressupGripAdjust, type DressupSkeletonFrame, type DressupStats } from './types';
+  type DressupGripAdjust, type DressupLayerCompositor, type DressupLayerSpec,
+  type DressupSkeletonFrame, type DressupStats } from './types';
 
 interface BodySkeleton {
   readonly skeleton: Skeleton;
@@ -26,8 +27,101 @@ interface Equipment {
   readonly triangles: number;
 }
 interface FingerBone { readonly bone: Bone; readonly pose: readonly number[] }
+interface LayerCacheEntry { readonly promise: Promise<Texture>; refs: number; texture?: Texture }
+interface LayerLease { readonly key: string; readonly texture: Texture }
+type MappableMaterial = Material & { map?: Texture | null };
+type SizedImage = CanvasImageSource & { readonly width: number; readonly height: number };
 
 type SkinAttribute = BufferAttribute | InterleavedBufferAttribute;
+
+const layerCache = new Map<string, LayerCacheEntry>();
+
+function orderedLayers(layers: readonly DressupLayerSpec[]): readonly DressupLayerSpec[] {
+  return layers.map((layer, index) => ({ layer, index }))
+    .sort((left, right) => (left.layer.order ?? left.index) - (right.layer.order ?? right.index)
+      || left.index - right.index)
+    .map(value => value.layer);
+}
+function textureImage(texture: Texture): SizedImage {
+  const image = texture.source.data as Partial<SizedImage> | null;
+  if (!image || !Number.isFinite(image.width) || !Number.isFinite(image.height)
+    || image.width! <= 0 || image.height! <= 0) throw new Error('DRESSUP_TEXTURE_IMAGE_MISSING');
+  return image as SizedImage;
+}
+function textureBytes(texture: Texture): number {
+  const image = texture.source.data as Partial<SizedImage> | null;
+  return image && Number.isFinite(image.width) && Number.isFinite(image.height)
+    ? Math.max(0, image.width! * image.height! * 4) : 0;
+}
+async function loadLayerImage(url: string): Promise<{ image: SizedImage; close(): void }> {
+  if (typeof createImageBitmap === 'function' && typeof fetch === 'function') {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`DRESSUP_LAYER_HTTP_${response.status}`);
+    const image = await createImageBitmap(await response.blob(), {
+      colorSpaceConversion: 'none', premultiplyAlpha: 'none',
+    });
+    return { image, close: () => image.close() };
+  }
+  // TextureLoader delegates image decoding to three's ImageLoader. It is already shared by GLTFLoader.
+  const texture = await new TextureLoader().loadAsync(url);
+  return { image: texture.image as SizedImage, close: () => texture.dispose() };
+}
+function createCanvas(width: number, height: number): OffscreenCanvas | HTMLCanvasElement {
+  if (typeof OffscreenCanvas !== 'undefined') return new OffscreenCanvas(width, height);
+  if (typeof document === 'undefined') throw new Error('DRESSUP_CANVAS_UNAVAILABLE');
+  const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height;
+  return canvas;
+}
+const defaultLayerCompositor: DressupLayerCompositor = {
+  async composite(base, layers) {
+    const baseImage = textureImage(base);
+    const canvas = createCanvas(baseImage.width, baseImage.height);
+    const context = canvas.getContext('2d');
+    if (!context) throw new Error('DRESSUP_CANVAS_CONTEXT_UNAVAILABLE');
+    context.clearRect(0, 0, baseImage.width, baseImage.height);
+    context.drawImage(baseImage, 0, 0);
+    for (const layer of layers) {
+      const loaded = await loadLayerImage(layer.url);
+      try {
+        if (loaded.image.width !== baseImage.width || loaded.image.height !== baseImage.height)
+          throw new Error(`DRESSUP_LAYER_SIZE_MISMATCH:${layer.id}`);
+        context.drawImage(loaded.image, 0, 0);
+      } finally { loaded.close(); }
+    }
+    const texture = base.clone();
+    const SourceType = base.source.constructor as new (data?: CanvasImageSource) => Texture['source'];
+    texture.source = new SourceType(canvas);
+    return texture;
+  },
+};
+function configureLayerTexture(texture: Texture, base: Texture): void {
+  texture.colorSpace = SRGBColorSpace; texture.flipY = false;
+  texture.wrapS = base.wrapS; texture.wrapT = base.wrapT;
+  texture.magFilter = base.magFilter; texture.minFilter = base.minFilter;
+  texture.anisotropy = base.anisotropy; texture.generateMipmaps = base.generateMipmaps;
+  texture.needsUpdate = true;
+}
+async function acquireLayerTexture(base: Texture, layers: readonly DressupLayerSpec[],
+  compositor: DressupLayerCompositor): Promise<LayerLease> {
+  const key = layers.map(layer => layer.id).join('\u001f');
+  let entry = layerCache.get(key);
+  if (!entry) {
+    entry = { refs: 0, promise: compositor.composite(base, layers).then(texture => {
+      configureLayerTexture(texture, base); entry!.texture = texture; return texture;
+    }) };
+    layerCache.set(key, entry);
+  }
+  entry.refs += 1;
+  try { return { key, texture: await entry.promise }; }
+  catch (error) { entry.refs -= 1; if (entry.refs === 0) layerCache.delete(key); throw error; }
+}
+function releaseLayerTexture(lease: LayerLease | undefined): void {
+  if (!lease) return;
+  const entry = layerCache.get(lease.key);
+  if (!entry) return;
+  entry.refs -= 1;
+  if (entry.refs === 0) { layerCache.delete(lease.key); entry.texture?.dispose(); }
+}
 
 function component(attribute: SkinAttribute, index: number, item: number): number {
   if (item === 0) return attribute.getX(index);
@@ -249,12 +343,22 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
   const clips = new Map<string, AnimationClip>();
   for (const clip of bodyGltf.animations) clips.set(clip.name, clip);
   const equipment = new Map<string, Equipment>();
-  const bodyMaterials: Material[] = [];
+  const bodyMaterialSet = new Set<Material>();
   for (const mesh of body.meshes) {
     for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
-      bodyMaterials.push(material);
+      bodyMaterialSet.add(material);
     }
   }
+  const bodyMaterials = [...bodyMaterialSet];
+  const originalBodyMaps = new Map<MappableMaterial, Texture | null>();
+  for (const material of bodyMaterials) {
+    const mappable = material as MappableMaterial;
+    if ('map' in mappable) originalBodyMaps.set(mappable, mappable.map ?? null);
+  }
+  const baseTextures = new Set([...originalBodyMaps.values()].filter(
+    (value): value is Texture => value !== null));
+  const bodyBaseTexture = baseTextures.size === 1 ? [...baseTextures][0] : undefined;
+  const compositor = options.compositor ?? defaultLayerCompositor;
   const leftFingers = collectFingerBones(body.skeleton, access, 'Left');
   const rightFingers = collectFingerBones(body.skeleton, access, 'Right');
   const originalBonePositions = new Map<string, Vector3>();
@@ -266,9 +370,12 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
     drawCalls: baseDrawCalls,
     triangles: baseTriangles,
     boneTextureUploads: 1,
+    bodyLayers: [],
+    layerTextureBytes: 0,
   };
   let debugMask = 0; let action: AnimationAction | undefined;
   let leftHeld = false; let rightHeld = false; let updated = false; let disposed = false;
+  let layerLease: LayerLease | undefined; let layerRequest = 0;
 
   const requireActive = (): void => { if (disposed) throw new Error(DressupError.Disposed); };
   const refreshState = (): void => {
@@ -288,6 +395,15 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
     if (!value) return;
     equipment.delete(id); disposeTree(value.root, value.textures); refreshState();
   };
+  const applyBodyMap = (texture: Texture | undefined): void => {
+    for (const [material, original] of originalBodyMaps) {
+      material.map = texture ?? original; material.needsUpdate = true;
+    }
+  };
+  const setLayerStats = (layers: readonly DressupLayerSpec[], texture?: Texture): void => {
+    (stat as { bodyLayers: readonly string[] }).bodyLayers = layers.map(layer => layer.id);
+    (stat as { layerTextureBytes: number }).layerTextureBytes = texture ? textureBytes(texture) : 0;
+  };
 
   return {
     root, skeleton: body.skeleton, frame,
@@ -296,6 +412,20 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
       // Phase D will bind the authored head with:
       // bindMatrix = inverse(IBM_neck_target) * IBM_neck_author.
       // Runtime neck.matrixWorld is intentionally never part of that calculation.
+    },
+    async setBodyLayers(layers) {
+      requireActive(); const request = ++layerRequest; const ordered = orderedLayers(layers);
+      if (ordered.length === 0) {
+        applyBodyMap(undefined); releaseLayerTexture(layerLease); layerLease = undefined;
+        setLayerStats([]); return;
+      }
+      if (!bodyBaseTexture) throw new Error(baseTextures.size === 0
+        ? 'DRESSUP_BODY_BASE_TEXTURE_MISSING' : 'DRESSUP_BODY_BASE_TEXTURE_AMBIGUOUS');
+      const acquired = await acquireLayerTexture(bodyBaseTexture, ordered, compositor);
+      if (disposed || request !== layerRequest) { releaseLayerTexture(acquired); return; }
+      applyBodyMap(acquired.texture);
+      releaseLayerTexture(layerLease); layerLease = acquired;
+      setLayerStats(ordered, acquired.texture);
     },
     async equip(spec) {
       requireActive();
@@ -363,12 +493,15 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
     },
     stats: () => stat,
     dispose() {
-      if (disposed) return; disposed = true; mixer.stopAllAction(); mixer.uncacheRoot(bodyRoot);
+      if (disposed) return; disposed = true; layerRequest += 1; mixer.stopAllAction(); mixer.uncacheRoot(bodyRoot);
       for (const value of equipment.values()) disposeTree(value.root, value.textures);
-      equipment.clear(); disposeTree(bodyRoot, bodyTextures); body.skeleton.boneTexture?.dispose(); root.clear();
+      equipment.clear(); applyBodyMap(undefined);
+      releaseLayerTexture(layerLease); layerLease = undefined;
+      disposeTree(bodyRoot, bodyTextures); body.skeleton.boneTexture?.dispose(); root.clear();
       (stat as { drawCalls: number }).drawCalls = 0;
       (stat as { triangles: number }).triangles = 0;
       (stat as { boneTextureUploads: number }).boneTextureUploads = 0;
+      setLayerStats([]);
     },
   };
 }

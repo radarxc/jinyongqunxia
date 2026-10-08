@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /* global window, location, clearInterval, HTMLCanvasElement, HTMLInputElement, Event */
-import { ref, onMounted, onBeforeUnmount, reactive, computed } from 'vue';
+import { ref, shallowRef, onMounted, onBeforeUnmount, reactive, computed } from 'vue';
 import {
   createCharacterViewer,
   createCharacterViewerLoader,
@@ -9,6 +9,7 @@ import {
   type CharacterViewerController,
 } from '@tianshu/render/character-viewer';
 import type { DressupActor, DressupFit, DressupStats } from '@tianshu/render';
+import { useDressupIndex, type DressupIndexEntry } from './useDressupIndex';
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 let viewer: CharacterViewerController | null = null;
@@ -17,28 +18,10 @@ let statsTimer = 0;
 const isLoading = ref(true);
 const loadingProgress = ref('正在加载 3D 模型...');
 
-type DressupIndexKind = 'template' | 'head' | 'garment' | 'hair' | 'prop';
-interface DressupIndexEntry {
-  readonly kind: DressupIndexKind;
-  readonly id: string;
-  readonly template: string;
-  readonly file: string;
-  readonly fit: string | null;
-  readonly report: string | null;
-  readonly status: string;
-  readonly slot?: string;
-  readonly socket?: string;
-  readonly skeleton?: string;
-  readonly heightM?: number;
-}
-interface DressupIndex {
-  readonly schema: 'tianshu-dressup-index.v1';
-  readonly groups: Readonly<Record<DressupIndexKind, readonly DressupIndexEntry[]>>;
-}
-
 const DRESSUP_INDEX_URL = '/assets/default/model3d/dressup/index.json';
-let dressupActor: DressupActor | null = null;
-let dressupIndex: DressupIndex | null = null;
+const dressupActor = shallowRef<DressupActor | null>(null);
+const { index: dressupIndex, templates: dressupTemplates, equipmentGroups: dressupGroups,
+  layers: dressupLayers, load: loadDressupIndex } = useDressupIndex(window.fetch.bind(window));
 let dressupFrameId = 0;
 let dressupLastFrame = 0;
 let dressupLoadSeq = 0;
@@ -50,42 +33,44 @@ const selectedTemplate = ref('tpl_f_medium');
 const selectedDressupClip = ref('idle');
 const isUnlitMode = ref(true);
 const equippedDressupSlots = reactive<Record<string, string>>({});
+const selectedBodyLayers = ref<string[]>([]);
+const bodyLayersPending = ref(false);
 type MutableDressupStats = { -readonly [Key in keyof DressupStats]: DressupStats[Key] };
 const dressupStats = reactive<MutableDressupStats>({
-  drawCalls: 0, triangles: 0, boneTextureUploads: 0,
+  drawCalls: 0, triangles: 0, boneTextureUploads: 0, bodyLayers: [], layerTextureBytes: 0,
 });
-
-const dressupTemplates = computed(() => dressupIndex?.groups.template ?? []);
-const dressupGroups = computed(() => ([
-  { kind: 'garment' as const, label: '衣物', entries: dressupIndex?.groups.garment ?? [] },
-  { kind: 'hair' as const, label: '发型', entries: dressupIndex?.groups.hair ?? [] },
-  { kind: 'prop' as const, label: '道具', entries: dressupIndex?.groups.prop ?? [] },
-]));
 
 function dressupSlot(entry: DressupIndexEntry): string {
   return entry.slot ?? entry.socket ?? entry.kind;
 }
+function dressupLayerLabel(entry: DressupIndexEntry): string {
+  const id = entry.id.replace(/^dressup__layer__/u, '');
+  return id === 'eq_jinzhuang' ? '贴图层 · 江湖劲装' : `贴图层 · ${id}`;
+}
 
 function setDressupDebug(): void {
   (window as unknown as { __dressup?: unknown }).__dressup = {
-    actor: dressupActor, viewer, index: dressupIndex,
-    stats: () => dressupActor?.stats() ?? null,
+    actor: dressupActor.value, viewer, index: dressupIndex.value,
+    layers: [...selectedBodyLayers.value],
+    stats: () => dressupActor.value?.stats() ?? null,
   };
 }
 
 function syncDressupStats(): void {
-  const next = dressupActor?.stats();
+  const next = dressupActor.value?.stats();
   if (!next) return;
   dressupStats.drawCalls = next.drawCalls;
   dressupStats.triangles = next.triangles;
   dressupStats.boneTextureUploads = next.boneTextureUploads;
+  dressupStats.bodyLayers = next.bodyLayers;
+  dressupStats.layerTextureBytes = next.layerTextureBytes;
 }
 
 function dressupLoop(now: number): void {
-  if (dressupActor) {
+  if (dressupActor.value) {
     const dt = dressupLastFrame === 0 ? 0 : Math.min((now - dressupLastFrame) / 1000, 0.1);
     dressupLastFrame = now;
-    dressupActor.update(dt);
+    dressupActor.value.update(dt);
     syncDressupStats();
   }
   dressupFrameId = window.requestAnimationFrame(dressupLoop);
@@ -523,22 +508,25 @@ const equippedCount = computed(() => {
 });
 
 function clearDressupActor(): void {
-  if (!dressupActor) return;
-  viewer?.detachExternal(dressupActor.root);
-  dressupActor.dispose();
-  dressupActor = null;
+  const actor = dressupActor.value;
+  if (!actor) return;
+  viewer?.detachExternal(actor.root);
+  actor.dispose();
+  dressupActor.value = null;
   for (const slot of Object.keys(dressupEquipSeq)) dressupEquipSeq[slot] = (dressupEquipSeq[slot] ?? 0) + 1;
   for (const slot of Object.keys(pendingDressupSlots)) delete pendingDressupSlots[slot];
   for (const slot of Object.keys(equippedDressupSlots)) delete equippedDressupSlots[slot];
   dressupStats.drawCalls = 0;
   dressupStats.triangles = 0;
   dressupStats.boneTextureUploads = 0;
+  dressupStats.bodyLayers = [];
+  dressupStats.layerTextureBytes = 0;
   setDressupDebug();
 }
 
 async function loadDressupTemplate(templateId: string, restoreIds: readonly string[] = []): Promise<void> {
-  if (!viewer || !dressupIndex) return;
-  const template = dressupIndex.groups.template.find(entry => entry.template === templateId);
+  if (!viewer || !dressupIndex.value) return;
+  const template = dressupIndex.value.groups.template.find(entry => entry.template === templateId);
   if (!template?.skeleton || !template.heightM) {
     dressupError.value = `模板 ${templateId} 缺少 skeleton 或 heightM`;
     return;
@@ -557,7 +545,7 @@ async function loadDressupTemplate(templateId: string, restoreIds: readonly stri
     });
     if (seq !== dressupLoadSeq || !viewer) { next.dispose(); return; }
     clearDressupActor();
-    dressupActor = next;
+    dressupActor.value = next;
     selectedTemplate.value = templateId;
     selectedModelId.value = '';
     viewer.attachExternal(next.root);
@@ -565,10 +553,11 @@ async function loadDressupTemplate(templateId: string, restoreIds: readonly stri
     viewer.setUnlitMode(isUnlitMode.value);
     next.playClip(selectedDressupClip.value, 0);
     for (const id of restoreIds) {
-      const entry = Object.values(dressupIndex.groups).flat().find(value =>
+      const entry = Object.values(dressupIndex.value.groups).flat().find(value =>
         value.id === id && value.template === templateId);
       if (entry) await toggleDressup(entry);
     }
+    await applyBodyLayers();
     dressupReady.value = true;
     syncDressupStats();
     setDressupDebug();
@@ -581,18 +570,18 @@ async function loadDressupTemplate(templateId: string, restoreIds: readonly stri
 }
 
 async function toggleDressup(entry: DressupIndexEntry): Promise<void> {
-  if (!dressupActor || !entry.fit || entry.template !== selectedTemplate.value) return;
+  if (!dressupActor.value || !entry.fit || entry.template !== selectedTemplate.value) return;
   const slot = dressupSlot(entry);
   if (pendingDressupSlots[slot] === entry.id) return;
   const current = equippedDressupSlots[slot];
   if (current === entry.id) {
-    dressupActor.unequip(entry.id);
+    dressupActor.value.unequip(entry.id);
     delete equippedDressupSlots[slot];
     syncDressupStats();
     return;
   }
-  if (current) dressupActor.unequip(current);
-  const actor = dressupActor;
+  if (current) dressupActor.value.unequip(current);
+  const actor = dressupActor.value;
   const seq = (dressupEquipSeq[slot] ?? 0) + 1;
   dressupEquipSeq[slot] = seq;
   pendingDressupSlots[slot] = entry.id;
@@ -606,14 +595,14 @@ async function toggleDressup(entry: DressupIndexEntry): Promise<void> {
     }
     if (entry.kind !== 'garment' && entry.kind !== 'hair' && entry.kind !== 'prop') return;
     await actor.equip({ kind: entry.kind, id: entry.id, url: entry.file, fit });
-    if (seq !== dressupEquipSeq[slot] || actor !== dressupActor) {
+    if (seq !== dressupEquipSeq[slot] || actor !== dressupActor.value) {
       actor.unequip(entry.id);
       return;
     }
     equippedDressupSlots[slot] = entry.id;
     syncDressupStats();
   } catch (error) {
-    if (seq !== dressupEquipSeq[slot] || actor !== dressupActor) return;
+    if (seq !== dressupEquipSeq[slot] || actor !== dressupActor.value) return;
     dressupError.value = error instanceof Error ? error.message : String(error);
     console.error('Failed to equip dressup asset', error);
   } finally {
@@ -621,9 +610,37 @@ async function toggleDressup(entry: DressupIndexEntry): Promise<void> {
   }
 }
 
+async function applyBodyLayers(): Promise<void> {
+  const actor = dressupActor.value;
+  if (!actor) return;
+  const entries = dressupLayers.value.filter(entry => selectedBodyLayers.value.includes(entry.id));
+  bodyLayersPending.value = true; dressupError.value = '';
+  try {
+    await actor.setBodyLayers(entries.map((entry, order) => ({
+      id: entry.id, url: entry.file, order,
+    })));
+    if (actor === dressupActor.value) { syncDressupStats(); setDressupDebug(); }
+  } catch (error) {
+    if (actor === dressupActor.value) {
+      dressupError.value = error instanceof Error ? error.message : String(error);
+      console.error('Failed to apply dressup body layers', error);
+    }
+  } finally {
+    if (actor === dressupActor.value) bodyLayersPending.value = false;
+  }
+}
+
+async function toggleBodyLayer(entry: DressupIndexEntry): Promise<void> {
+  const selected = selectedBodyLayers.value;
+  selectedBodyLayers.value = selected.includes(entry.id)
+    ? selected.filter(id => id !== entry.id) : [...selected, entry.id];
+  setDressupDebug();
+  await applyBodyLayers();
+}
+
 function playDressupClip(name: string): void {
   selectedDressupClip.value = name;
-  try { dressupActor?.playClip(name, 0.16); }
+  try { dressupActor.value?.playClip(name, 0.16); }
   catch (error) { dressupError.value = error instanceof Error ? error.message : String(error); }
 }
 
@@ -760,7 +777,7 @@ async function switchModel(id: string): Promise<void> {
   if (!target || !viewer) return;
 
   selectedModelId.value = id;
-  if (dressupActor) { clearDressupActor(); dressupReady.value = false; viewer.setUnlitMode(false); }
+  if (dressupActor.value) { clearDressupActor(); dressupReady.value = false; viewer.setUnlitMode(false); }
   isLoading.value = true;
   loadingProgress.value = `正在加载 ${target.label}...`;
 
@@ -893,10 +910,7 @@ onMounted(async () => {
   window.addEventListener('resize', handleResize);
 
   try {
-    const response = await window.fetch(DRESSUP_INDEX_URL);
-    if (!response.ok) throw new Error(`INDEX_HTTP_${response.status}`);
-    dressupIndex = await response.json() as DressupIndex;
-    if (dressupIndex.schema !== 'tianshu-dressup-index.v1') throw new Error('DRESSUP_INDEX_SCHEMA');
+    await loadDressupIndex(DRESSUP_INDEX_URL);
     await loadDressupTemplate(selectedTemplate.value);
   } catch (error) {
     dressupError.value = error instanceof Error ? error.message : String(error);
@@ -1103,7 +1117,9 @@ onBeforeUnmount(() => {
           @click="activeTab = 'dressupV2'"
         >
           🧩 换装 v2
-          <span class="badge-count">{{ Object.keys(equippedDressupSlots).length }}</span>
+          <span class="badge-count">
+            {{ Object.keys(equippedDressupSlots).length + selectedBodyLayers.length }}
+          </span>
         </button>
         <button
           type="button"
@@ -1186,11 +1202,32 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="glass-card compact dressup-v2-card">
+          <div class="card-header"><span class="card-icon">🎨</span><h3>贴图层</h3></div>
+          <p class="v2-empty">可多选并按列表顺序叠加；可与网格衣物同时启用作对比。</p>
+          <p v-if="dressupLayers.length === 0" class="v2-empty">索引暂无可用素材；E3 合入后会自动出现。</p>
+          <button
+            v-for="entry in dressupLayers"
+            :key="entry.id"
+            type="button"
+            class="v2-equip-row"
+            :class="{ equipped: selectedBodyLayers.includes(entry.id) }"
+            :disabled="!dressupReady || bodyLayersPending"
+            @click="toggleBodyLayer(entry)"
+          >
+            <span>{{ dressupLayerLabel(entry) }}</span>
+            <span class="v2-status" :class="entry.status">{{ entry.status }}</span>
+            <small>{{ entry.slot || 'body' }} · 三体型共 UV</small>
+          </button>
+        </div>
+
+        <div class="glass-card compact dressup-v2-card">
           <div class="card-header"><span class="card-icon">📈</span><h3>Actor stats</h3></div>
           <div class="v2-stats">
             <span>draw {{ dressupStats.drawCalls }}</span>
             <span>tri {{ dressupStats.triangles.toLocaleString() }}</span>
             <span>boneTexture {{ dressupStats.boneTextureUploads }}</span>
+            <span>layers {{ dressupStats.bodyLayers.join(' → ') || '—' }}</span>
+            <span>layerTexture {{ (dressupStats.layerTextureBytes / 1048576).toFixed(1) }} MiB</span>
           </div>
           <p v-if="dressupError" class="v2-error">{{ dressupError }}</p>
         </div>

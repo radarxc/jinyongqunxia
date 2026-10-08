@@ -21,7 +21,7 @@ interface DressupManifestVariant extends DressupManifestRow {
   template: string;
 }
 
-type DressupIndexKind = 'template' | 'head' | 'garment' | 'hair' | 'prop';
+type DressupIndexKind = 'template' | 'head' | 'garment' | 'hair' | 'prop' | 'layer';
 
 export interface DressupAssetIndexEntry {
   readonly kind: DressupIndexKind;
@@ -82,7 +82,7 @@ function runtimeRows(text: string): readonly DressupManifestRow[] {
 function indexKind(row: DressupManifestRow, manifest: string): DressupIndexKind {
   const declared = row.kind?.replace(/^dressup-/u, '');
   if (declared === 'template' || declared === 'head' || declared === 'garment' ||
-      declared === 'hair' || declared === 'prop') return declared;
+      declared === 'hair' || declared === 'prop' || declared === 'layer') return declared;
   const directory = manifest.split(sep).at(-3);
   const inferred: Record<string, DressupIndexKind> = {
     templates: 'template', heads: 'head', garments: 'garment', hairs: 'hair', props: 'prop',
@@ -203,7 +203,7 @@ export async function publishDressupAssets(
   }
   if (copy) {
     const groups: Record<DressupIndexKind, DressupAssetIndexEntry[]> = {
-      template: [], head: [], garment: [], hair: [], prop: [],
+      template: [], head: [], garment: [], hair: [], prop: [], layer: [],
     };
     for (const entry of [...indexed.values()].sort((left, right) =>
       [left.kind, left.id, left.template].join(':').localeCompare(

@@ -204,7 +204,8 @@ describe('dressup actor runtime', () => {
     expect(actor.root).toBe(root); expect(actor.skeleton).toBe(skeleton); expect(actor.stats()).toBe(stats);
     expect(skeleton.boneMatrices).toBe(matrices); expect(root.getObjectByName('dressupSocket:gripR')).toBe(socket);
     expect(stats.boneTextureUploads).toBe(1);
-    actor.dispose(); expect(stats).toEqual({ drawCalls: 0, triangles: 0, boneTextureUploads: 0 });
+    actor.dispose(); expect(stats).toEqual({ drawCalls: 0, triangles: 0, boneTextureUploads: 0,
+      bodyLayers: [], layerTextureBytes: 0 });
   });
 
   it('overrides the equipped hand finger pose after the mixer update', async () => {

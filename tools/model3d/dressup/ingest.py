@@ -178,6 +178,8 @@ def _commit(directory: Path, asset_id: str) -> str:
 
 
 def ingest(args: argparse.Namespace) -> dict[str, Any]:
+    if args.commit and args.asset_root is not None:
+        raise ValueError("--commit 与 --asset-root 不得同时使用")
     source = args.src.resolve()
     if not source.is_dir(): raise ValueError(f"源目录不存在：{source}")
     fit_source = source / "fit.json"; fit_name = "fit.json" if fit_source.is_file() else None
@@ -185,7 +187,8 @@ def ingest(args: argparse.Namespace) -> dict[str, Any]:
     glb = _source_glb(source, args.kind, args.id)
     report_path, report = _report(source, args.kind, args.id, args.template, glb,
                                   fit_source if fit_name else None)
-    kind_root = (ROOT / KINDS[args.kind]).resolve()
+    asset_root = args.asset_root.resolve() if args.asset_root is not None else ROOT
+    kind_root = (asset_root / KINDS[args.kind]).resolve()
     destination = (kind_root / args.id).resolve()
     if destination.parent != kind_root:
         raise ValueError("目标目录越过 kind 根目录")
@@ -212,7 +215,9 @@ def ingest(args: argparse.Namespace) -> dict[str, Any]:
         "status": STATUS[report["level"]]}
     manifest_path.write_text(
         yaml.safe_dump([row], allow_unicode=True, sort_keys=False, width=120), encoding="utf-8")
-    result = {"directory": str(destination.relative_to(REPO)), "status": STATUS[report["level"]],
+    try: display_directory = str(destination.relative_to(REPO))
+    except ValueError: display_directory = str(destination)
+    result = {"directory": display_directory, "status": STATUS[report["level"]],
               "files": sorted(path.name for path in destination.iterdir())}
     if args.commit: result["commit"] = _commit(destination, args.id)
     return result
@@ -226,6 +231,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--template", default="tpl_f_medium", help="制作所用模板（默认 tpl_f_medium）")
     parser.add_argument("--slot", default="body", help="装备槽（默认 body）")
     parser.add_argument("--item", help="关联 eq_xxx 物品 ID")
+    parser.add_argument("--asset-root", type=Path,
+                        help="资产根目录（默认 assets/default/model3d/dressup；测试可传临时目录）")
     parser.add_argument("--commit", action="store_true", help="仅提交该资产目录（index.lock 时重试）")
     args = parser.parse_args(argv)
     try:
