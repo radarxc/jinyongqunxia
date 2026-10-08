@@ -25,6 +25,14 @@
 2. **身体贴图层坏了**：`eq_buyi.layer.png` 的质检图只是散在皮肤上的灰色斑块。改为直接复用 E3 的 `bake_texture_layer.py` 烘焙流程（体表纹素沿法线射线、取最外侧交点、3D 上定衣服度、只在真实分界羽化），只是把"整身模型"换成"贴合后的变体网格件（bind 姿态）"；质检标准同 E3 第 4 版。
 3. 新增网格变体的质检图 `garments/eq_buyi/preview_mesh_front.png` / `preview_mesh_back.png`（模板 + 变体件 bind 姿态，用新贴图着色），协调者要能看出是灰褐粗麻短褐。
 
+## 协调者实测意见（第 2 轮，2026-10-08 15:05）
+第 2 次运行网格变体已填满、正面系带腰带可辨（方向对了）。还差：
+1. 审核 r2 两条：删除写集外文件（`project_front_pixels.py` / `render_layered.py` / `render_utils.py` / `out*.log` 等，辅助代码并入 `retexture_variant.py` 或测试文件）；**衣服区轮廓 IoU**（变体衣图 vs 劲装衣图，衣服区 = 与模板底图差异大的像素）真实计算并 ≥ 0.95，写报告与 manifest。
+2. **质检渲染用错贴图**：身体被画成蓝紫色——模板 body.glb 有 normal / basecolor / rm 三张图，渲染必须取材质 `baseColorTexture` 指向的那张，不得取第 0 张。
+3. **边缘浅色描边**：衣服轮廓边一圈浅色线是正面投影在掠射角取到了底板背景。投影只用于 `|n·z| ≥ 0.35` 且投影像素属于底板"衣服区"的纹素，其余走 LUT。
+4. **V 领浅色方块**：底板 V 领处是皮肤，不能投到衣服内侧；同上，只投"衣服区"像素。
+5. 改完重出 `preview_mesh_front.png` / `preview_mesh_back.png` / `preview_compare.png`（身体用正确肤色）。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{retexture_variant.py,tests_variant.py}`（可 import 但不改 `bake_texture_layer.py`）、`assets/default/model3d/dressup/garments/{eq_buyi,eq_buyi_tex}/**`、`assets/default/character/female/ch00/threeview/{por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png,manifest.yaml}`（manifest 只追加一条）与本任务报告。
 - 不改版型件 `garments/eq_jinzhuang/**`、不改其他工具；不加依赖；**不花 Tripo 点数**。
