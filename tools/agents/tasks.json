@@ -51213,6 +51213,102 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-a6-sockets",
+   "title": "3D 纸娃娃换装 · A6 · 插槽坐标系约定修正 + 道具默认 gripAdjust（剑进手、斗笠戴正、挂件贴胸）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a6-sockets.md",
+   "deps": [
+    "ENG-dressup-b2-preview"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "协调者 10-08 5173 实测：插槽位置对、朝向错（spec §4 补约定）",
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "tools/model3d/dressup/normalize_prop.py",
+    "tools/model3d/dressup/tests_prop.py",
+    "tools/model3d/dressup/check_sockets.py",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/manifest.yaml",
+    "assets/default/model3d/dressup/templates/tpl_f_small/skeleton.json",
+    "assets/default/model3d/dressup/templates/tpl_f_small/manifest.yaml",
+    "assets/default/model3d/dressup/templates/tpl_f_tall/skeleton.json",
+    "assets/default/model3d/dressup/templates/tpl_f_tall/manifest.yaml",
+    "assets/default/model3d/dressup/props/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/check_sockets.py",
+     "assets/default/model3d/dressup/props/item_qingfeng_sword/sockets_check.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_prop.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_sockets.py",
+      "--template",
+      "assets/default/model3d/dressup/templates/tpl_f_medium",
+      "--props",
+      "assets/default/model3d/dressup/props/item_qingfeng_sword",
+      "assets/default/model3d/dressup/props/item_bamboo_hat",
+      "assets/default/model3d/dressup/props/luxury_jade_pendant"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
