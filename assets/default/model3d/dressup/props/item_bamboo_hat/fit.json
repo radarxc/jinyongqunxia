@@ -2,14 +2,14 @@
   "anchor": "tip",
   "body": {
     "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
-    "sha256": "647c674f2e3139d407714ead2fef5ddfa2abb05643d5cfdee2f730cdafb31748"
+    "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
   },
   "class": "hat",
   "diagnostics": {
     "anchorPositionMu": [
-      -9.36366136143492e-12,
+      -4.960880191488699e-13,
       0.0,
-      5.539649547162381e-12
+      -3.7206601436165245e-12
     ],
     "anchorSourceMu": [
       -0.005487842,
@@ -59,10 +59,10 @@
   },
   "id": "item_bamboo_hat",
   "kind": "prop",
-  "mPerMu": 1.684441398,
+  "mPerMu": 1.69370027,
   "measuredLengthMu": 0.953571626,
   "realSizeM": 0.45,
-  "scaleApplied": 0.280158167,
+  "scaleApplied": 0.27862664,
   "schema": "tianshu-dressup-fit.v1",
   "sizeAxis": "width",
   "socket": "headTop",
@@ -78,5 +78,6 @@
     "triangles": 285748,
     "vertices": 160426
   },
+  "template": "tpl_f_medium",
   "up": "+Y"
 }

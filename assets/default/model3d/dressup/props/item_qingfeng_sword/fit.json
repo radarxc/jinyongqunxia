@@ -2,13 +2,13 @@
   "anchor": "grip",
   "body": {
     "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
-    "sha256": "647c674f2e3139d407714ead2fef5ddfa2abb05643d5cfdee2f730cdafb31748"
+    "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
   },
   "class": "weapon",
   "diagnostics": {
     "anchorPositionMu": [
       0.0,
-      7.82310966007671e-10,
+      1.1175871339474952e-10,
       0.0
     ],
     "anchorSourceMu": [
@@ -59,10 +59,10 @@
   },
   "id": "item_qingfeng_sword",
   "kind": "prop",
-  "mPerMu": 1.684441398,
+  "mPerMu": 1.69370027,
   "measuredLengthMu": 1.441032896,
   "realSizeM": 1.0,
-  "scaleApplied": 0.41197437,
+  "scaleApplied": 0.409722249,
   "schema": "tianshu-dressup-fit.v1",
   "sizeAxis": "length",
   "socket": "gripR",
@@ -78,5 +78,6 @@
     "triangles": 289300,
     "vertices": 157844
   },
+  "template": "tpl_f_medium",
   "up": "+Y"
 }
