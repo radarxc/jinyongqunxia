@@ -55,6 +55,14 @@
 - `check_sockets.py` 的鞘身 / 刃身顶点划分必须由所选柄端推出（护手以外为柄、以内为鞘 / 刃），并在 `sockets_check.json` 写划分顶点数，与报告一致。
 - `dressup-assets.test.ts` 该用例：**插槽列表与 `actor.stats()` 三角总数都改为从各件 manifest / fit / 打包 GLB 读出**，测试代码里不得出现 221846 / 221848 这类写死的数；这是第 3 次提出，审核按此判定。
 
+## 协调者补充（2026-10-08 15:35，依据审核 r6；最后一轮，审核按此判定）
+1. **护手峰位置的算法写死如下**（14:30 已提，第 15 次运行仍按"bin 中心 / bin 与 30% 区间相交"实现，必须改）：沿剑轴取坐标 t ∈ [0, L]，算截面宽度剖面；峰的**实际位置** t* = 峰所在邻域内截面半径最大的那个顶点的轴向坐标（或对峰 bin 与左右邻 bin 做抛物线插值得到的极值点，二选一并写明）；f = min(t*, L − t*) / L，**0.05 ≤ f ≤ 0.35** 才算合格护手峰，柄端 = 离 t* 较近的那一端（护手外侧短段）。有合格峰就不得回退"窄端 = 柄"；没有任何合格峰时才允许回退，并写 `method: narrow-end`。
+2. `fit.json` **顶层** `handleDetection: { method, peakFraction, peakAxialMu, handleEnd: "min" | "max", handleSegmentVertices, bladeSegmentVertices }`；`diagnostics.handleEndEvidence` 可保留作附加审计。`check_sockets.py` 的柄段 / 鞘身划分只读顶层 `handleDetection`，`sockets_check.json` 写总数、柄段数、鞘身数。
+3. `tests_prop.py`：删掉"跨过 30% 的 bin 即合格"的断言；合成用例覆盖峰在 3%（不合格）、20%（合格）、40%（不合格）三档；真实青锋剑断言顶层 `handleDetection.method == 'guard-peak'`、柄端在护手短侧、握点落在柄段。
+4. **`dressup-assets.test.ts` 的"validates real A3 fit format…"用例（协调者裁定，允许改这一处）**：AR-107 改了剑的柄端约定，旧的"语义方向"断言对护手峰判定的剑已不适用，但**不得用 `guard or legacy` 跳过**。改为同样严格的断言：对 `handleDetection.method == 'guard-peak'` 的道具，断言握点位于护手短侧的柄段，并且把网格沿剑轴镜像后重跑护手峰判定，所选柄端随之翻到镜像的同一物理端；斗笠、玉佩仍走原断言、一字不改。该文件其余用例不动。
+5. 用修正后的结果重跑青锋剑 normalize → textures → pack → validate → ingest 与三件 `check_sockets`（≤ 5 分钟），刷新 fit / report / manifest / sockets_check 与报告数字；报告去掉"bin 相交即合格"的说法。
+6. 工具链按根 `package.json`（Node ≥22.12、pnpm 9.15.9），不算偏离（见文首口径），报告照此写。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{export_skeleton.py,tests_skeleton.py,normalize_prop.py,tests_prop.py,check_sockets.py}`、`assets/default/model3d/dressup/templates/{tpl_f_medium,tpl_f_small,tpl_f_tall}/{skeleton.json,manifest.yaml}`、`assets/default/model3d/dressup/props/**` 与本任务报告。
 - 不改运行时（`packages/**`）、不改 validate / ingest / textures / pack、不改 fit_garment / refit / derive；不加依赖；不改门禁阈值；不花 Tripo 点数。
