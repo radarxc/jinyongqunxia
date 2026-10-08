@@ -14,6 +14,7 @@
   4. 顶点：用源权重做 LBS——每顶点 v' = Σ w_i · M'_i · IBM_i · v（M' 为新 bind 世界矩阵），即"按新骨长摆回 bind 姿态"；法线同变换后归一；
   5. 动画：rotation 轨道原样保留；Hips translation 轨道按 k_leg 缩放（根运动随腿长）；其他 translation / scale 轨道应已被 normalize_rig 剥离（若存在则报错退出 2）；
   6. 写 GLB（拓扑、UV、贴图、skin joints 顺序不变，IBM 新值）；打印实测身高（按 `heightM` 换算比例）、髋高占比、肩宽比、最大顶点位移、是否有 NaN；
+  6a. **位移门禁（协调者 2026-10-07 20:30 修订，依据审核 r2）**：源与派生都放在脚底 y = 0 的规范坐标里逐顶点比较，不得用整体平移压低位移；上限 `maxVertexDisplacementMu ≤ max(0.04, 2 × |目标高度 mu − 源高度 mu|)`（原 0.04 mu 来自只缩腿的实验，正常身高差必然让头顶移动约 |ΔH|、长臂宽肩让手再外移，原上限与身高规格自相矛盾）；Hips 动画 translation 严格 `source × k_leg`，不加任何额外偏移；`Neck` 计入 `k_spine` 的子骨 translation 缩放，`Head` translation 与颈环截面不缩放。
   7. 写 `<out>/derive.json`（源 sha、目标 id、各链 k 值、实测比例、误差）。
 - 派生后在输出目录跑 `export_skeleton.py` 生成该模板的 `skeleton.json` 等，并比较颈环半径与源差 < 2 mm（换算到米）。
 

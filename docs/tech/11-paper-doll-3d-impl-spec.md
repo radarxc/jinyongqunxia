@@ -317,7 +317,7 @@ export async function createDressupActor(opts: { bodyUrl: string; frameUrl: stri
 **T 25° 模板**
 - `check_plate.py` 对 25° 底图：上臂与竖直夹角 25° ± 3°（左右各测）、头顶 / 脚底 y 与原底图差 < 2%、脸区（头顶到下巴）与原底图 IoU ≥ 0.9、跨度 / 身高比落在 30° 理论值 ± 3%；协调者并排看图确认同一人、同比例后才放行 Tripo。
 - Tripo 新正本：65 关节、rest = bind、`normalize_rig.py --check` 通过、上臂角约 23° ± 3°（3D 测；2D 板 41.5° 对应现素体 3D 39.2°，2D 25° 预计 3D 约 23°，以实测为准）、头身比 8.0~8.5、髋高占比与中等规格 0.565 差 ≤ 2%（超出由 `derive_template.py` 校正，校正量 > 8% 重出）；消耗 85 点。
-- `derive_template.py`：娇小 / 修长的身高（1.58 / 1.72 m 比例）与髋高占比（0.545 / 0.585）、肩宽比命中规格 ± 0.5%；顶点无 NaN、最大位移 ≤ 0.04 mu；三套共拓扑、骨名与顺序一致；每套 `skeleton.json` 颈环半径差 < 2 mm（派生只改骨长，颈环不变）。
+- `derive_template.py`：娇小 / 修长的身高（1.58 / 1.72 m 比例）与髋高占比（0.545 / 0.585）、肩宽比命中规格 ± 0.5%；顶点无 NaN、最大位移 ≤ max(0.04, 2 × |ΔheightMu|)（脚底 y = 0 规范坐标里量；原 0.04 mu 与身高规格矛盾，协调者 2026-10-07 依 t3 审核 r2 修订）；三套共拓扑、骨名与顺序一致；每套 `skeleton.json` 颈环半径差 < 2 mm（派生只改骨长，颈环不变）。
 
 **D / E**：模板三套 skeleton.json 的 neckRing 半径差 < 2 mm、头尺寸归一后差 < 1%；refit 后 small / tall 的 report ≥ draft；首件 Gemini 编辑衣服的 2D 轮廓 IoU ≥ 0.9、Tripo 绑骨后躯干关节 Umeyama 残差 ≤ 2% H、腕 / 脚残差单独报告；合体绑骨实验给出"顶点是否不变"的明确结论。
 
