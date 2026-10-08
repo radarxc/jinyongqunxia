@@ -25,6 +25,7 @@
    - `pnpm test -- apps/game/build/dressup-assets` 通过。
 
 ## 约束
+- 允许重写 `assets/default/model3d/dressup/props/**`，但只能用现成的 `tools/model3d/dressup/normalize_prop.py`（A3 已合入，不得修改该脚本）按当前 T2 正本重新生成三件道具的 GLB 与 fit.json（协调者 2026-10-07 20:00 加，依据审核 r5）。
 - 只写 `tools/model3d/dressup/{validate.py,textures.py,pack_glb.mjs,ingest.py}`、`apps/game/build/dressup-assets.ts`、`apps/game/build/dressup-assets.test.ts`、`package.json`、`pnpm-lock.yaml`（只为 meshoptimizer）、`assets/default/model3d/dressup/**/manifest.yaml`、`**/report.json` 与本任务报告。
 - 不改基础库与 A2–A4 脚本；不改门禁阈值；不改 `content-plugin.ts`。
 
