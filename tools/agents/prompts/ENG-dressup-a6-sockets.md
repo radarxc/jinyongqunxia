@@ -29,6 +29,9 @@
 - 持械专用动作（armed idle / walk / run）留给后续阶段，届时把武器深穿收紧到 0。
 - 审核 r1 的其他意见照做：全部待判顶点用严格最近三角带符号距离（或证明不漏报的保守宽相）；斗笠按 `regions=head` 的三角判定；补"最近顶点与最近三角符号不一致"回归测试；报告第 7 节写交接约定。
 
+## check_sockets 速度（协调者 2026-10-08 10:25）
+第 7 次运行后的严格逐点版本协调者实测要 **24.7 分钟**（三件全过），加上机器睡眠导致校验超时。要求：全量严格计算（全部顶点 × 72 帧 × 三件，以及 tiltSweep 各候选）在本机 **≤ 5 分钟**完成，报告写实测耗时。做法：直接用 A1 `common.nearest_triangle` / `signed_distance`（k 候选 + 包围半径扩候选，结果精确，无需自造宽相）；每帧只对刃身 / 帽身 / 挂件顶点查询，模板体表三角按帧 LBS 一次后建树复用；tiltSweep 各候选共享同一组帧的体表树。不得为提速降低精度或抽样。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{export_skeleton.py,tests_skeleton.py,normalize_prop.py,tests_prop.py,check_sockets.py}`、`assets/default/model3d/dressup/templates/{tpl_f_medium,tpl_f_small,tpl_f_tall}/{skeleton.json,manifest.yaml}`、`assets/default/model3d/dressup/props/**` 与本任务报告。
 - 不改运行时（`packages/**`）、不改 validate / ingest / textures / pack、不改 fit_garment / refit / derive；不加依赖；不改门禁阈值；不花 Tripo 点数。
