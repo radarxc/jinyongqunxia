@@ -1,0 +1,46 @@
+- id: dressup__garment__eq_jinzhuang
+  file: eq_jinzhuang.glb
+  category: model3d
+  kind: dressup-garment
+  slot: body
+  template: tpl_f_medium
+  item: eq_jinzhuang
+  fit: fit.json
+  report: report.json
+  fits:
+    tpl_f_medium:
+      file: eq_jinzhuang.glb
+      fit: fit.json
+      report: report.json
+      status: draft
+      gateLevel: fail
+    tpl_f_small:
+      file: eq_jinzhuang.tpl_f_small.glb
+      fit: fit.tpl_f_small.json
+      report: report.tpl_f_small.json
+      status: draft
+      gateLevel: fail
+    tpl_f_tall:
+      file: eq_jinzhuang.tpl_f_tall.glb
+      fit: fit.tpl_f_tall.json
+      report: report.tpl_f_tall.json
+      status: draft
+      gateLevel: fail
+  sha256: bf792c421d65ddc8991c6ea905d8d23a5b09b37f3e717a238fb8482394f3a233
+  size_bytes: 1574804
+  triangles: 25836
+  status: draft
+  experimental: true
+  gateLevel: fail
+  tool: tools/model3d/dressup/extract_garment.py + fit_garment.py + validate.py
+  created: '2026-10-08T06:35:00-07:00'
+  source:
+    tripo_project_id: b01f6451-81a6-46ac-a769-0cdf1d374df3
+    references:
+    - path: source/tripo_dressed_rig.glb
+      sha256: 4da5eab6ff1f218719c4ba187fa824099b40ccf539855b1f265e0a27c11de956
+    - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
+      sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
+    - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+      sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+  notes: 全身口径门禁：tpl_f_medium bind=149，idle/walk/run=8.9330%/9.9619%/9.3196%，翻面=309，边长合格=88.5005%；tpl_f_small bind=27，idle/walk/run=10.8362%/12.1744%/10.0987%，翻面=49，边长合格=98.1034%；tpl_f_tall bind=27，idle/walk/run=8.4156%/9.5337%/7.9041%，翻面=48，边长合格=98.1808%。与贴图层 dressup__layer__eq_jinzhuang 叠穿；hideRegions 置空以避免 V 领与胯下黑洞。

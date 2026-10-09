@@ -2,6 +2,8 @@
 
 本任务写代码并实跑。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`docs/tech/11-paper-doll-3d-impl-spec.md` **§4 新增的"插槽坐标系约定"**（本任务规格）、§5.2、§6、§11，`docs/tech/10-paper-doll-3d.md` §2.5 与 §3.2，A2 / A3 / A5 / B1a / B2 报告第 7 节，现有 `tools/model3d/dressup/{export_skeleton.py,normalize_prop.py,validate.py,ingest.py,textures.py,pack_glb.mjs}` 与 `packages/render/src/dressup/actor.ts`（只读：运行时把道具挂在 `socket · gripAdjust` 上）。
 
+> 工具链口径（协调者 2026-10-08 07:25）：以根 `package.json` 为准——`packageManager: pnpm@9.15.9`、`engines.node >=22.12.0`（本机 Node 22.22.1）。公共说明 `_code.md` 里的 Node ≥ 24 / pnpm 12 是旧口径，与之不同**不算偏离**，报告注明一句即可，审核不得据此判 FAIL。
+
 ## 作者要求
 **AR-102** 第 4、5 条：饰品自动缩放到合适大小、与人物结合；手能拿武器。协调者 2026-10-08 03:30 在本地 `/character-3d` 实测（三件道具经运行时挂上，`drawCalls=4`、`triangles=221846`）：**插槽位置都对**（gripR 紧挨右手骨、headTop 在头顶、chest 在前胸），**道具网格也对**（剑沿 +Y 长 0.59 mu、斗笠锥顶在原点开口 −Y、玉佩自原点下垂 0.047 mu），但**朝向全错**——待机姿势下剑身沿前臂竖直朝上、剑尖高过头顶并穿过肩头（剑 +Y 世界方向 ≈ (0.12, 0.99, 0.01)）；斗笠整个横躺（+Y 世界方向 ≈ (0.99, 0.00, 0.15)）；玉佩歪 23°。根因：`export_skeleton._frame_quaternion` 让插槽 +Z = 表面法线、+X = 骨局部 x 轴，而 `normalize_prop` 约定道具 +Y = 主轴，两边约定没对上（spec 原先漏写，协调者已补进 §4）。另外斗笠以外锥尖顶在头顶，头会穿出帽面；玉佩挂点在体表上，会嵌进胸口。
 
@@ -26,6 +28,40 @@
 - **`restTiltDeg` 默认值**：在 {0, 20, 40, 60} 度与反握（刃向朝前臂方向，约 −150°）中按"动态深穿占比最小"选取，各候选数字写进 `sockets_check.json.tiltSweep` 与报告；选定值写入 fit.json。
 - 持械专用动作（armed idle / walk / run）留给后续阶段，届时把武器深穿收紧到 0。
 - 审核 r1 的其他意见照做：全部待判顶点用严格最近三角带符号距离（或证明不漏报的保守宽相）；斗笠按 `regions=head` 的三角判定；补"最近顶点与最近三角符号不一致"回归测试；报告第 7 节写交接约定。
+
+## check_sockets 速度（协调者 2026-10-08 10:25）
+第 7 次运行后的严格逐点版本协调者实测要 **24.7 分钟**（三件全过），加上机器睡眠导致校验超时。要求：全量严格计算（全部顶点 × 72 帧 × 三件，以及 tiltSweep 各候选）在本机 **≤ 5 分钟**完成，报告写实测耗时。做法：直接用 A1 `common.nearest_triangle` / `signed_distance`（k 候选 + 包围半径扩候选，结果精确，无需自造宽相）；每帧只对刃身 / 帽身 / 挂件顶点查询，模板体表三角按帧 LBS 一次后建树复用；tiltSweep 各候选共享同一组帧的体表树。不得为提速降低精度或抽样。
+
+## 作者实测反馈（2026-10-08 10:50）与协调者补充要求
+作者在 5173 原话："挂载点不对，斗笠斜着的，剑不是手握着，而且尺寸偏宽。"（作者看到的是主干上的旧插槽；协调者把本任务产物临时挂上复核：斗笠已扶正、玉佩贴胸，**但剑握在鞘尖**——护手与红剑穗在远端。）
+1. **剑柄端判定错了**：青锋剑是带鞘整体，鞘尖比护手一端更窄，"窄端 = 柄"把方向判反。改 `normalize_prop.py` weapon 柄端判定：沿主轴做宽度剖面，找距端点 5%~30% 内的**护手峰**（宽度局部极大且 ≥ 1.4 × 两侧邻段中位宽），护手外侧（较短的一侧）为柄；找不到护手峰才退回"窄端 = 柄"；把判定依据（剖面、峰位置、所选端）写进 fit.json。补测试：合成"细长鞘 + 护手 + 短柄"的带鞘剑，断言柄端在护手外侧。
+2. **尺寸**：作者嫌宽。青锋剑 `realSizeM` 由 1.0 改 0.9（宽度随之等比缩小），fit.json 记录。
+3. 改完重跑青锋剑全流程（normalize_prop → textures → pack → validate → ingest）与 tiltSweep（握对端之后各倾角的深穿要重算，按已有裁定取深穿最小者），三件 `sockets_check.json` 重生成；报告写清前后对比（握点到护手的距离、刃向、倾角选择）。
+4. 斗笠帽檐压到眉眼：保持现有颅骨间隙算法，报告里记一句"帽檐最低点相对眉弓的高度"，供作者判断是否要再抬。
+
+## 作者裁定（2026-10-08 11:05，覆盖上一节第 1~3 条里关于青锋剑握持的部分）
+作者原话："剑拿反了。而且如果拿手里，应该是拔出来的状态，挂在腰上才是放到剑鞘的状态"。据此：
+- **武器分两态、两个资产**：持（出鞘剑，握 `gripR`，slot `mainHand`）与佩（入鞘剑，挂腰 `waistL`，slot `waist`）。现有 `item_qingfeng_sword` 是**带鞘整剑**，只能作"佩"：改挂 `waistL`，**不再挂 gripR**；出鞘的持剑资产由后续任务用龙泉剑物品图另行生成。
+- **佩剑姿态**（写进该件 fit.json 的 gripAdjust，并记录参数）：柄端朝前、略向上，鞘身沿身体左外侧向后下斜挂，鞘轴与水平面约 35°、与身体左侧面平行并外移到不与髋 / 大腿相交；柄端判定仍按上一节的"护手峰"规则（护手外侧为柄）；`realSizeM` 0.9。
+- check_sockets 对佩剑的判定：bind 时柄端朝前（柄端点 z 坐标 > 鞘尾 z）、鞘轴与水平夹角 35° ± 5°；72 帧鞘身顶点深穿按衣物分级（approved ≤ 0.5% / draft ≤ 2%）；若 35° 下 walk / run 摆腿扫到鞘身超过 draft，可在 25°~50° 间取深穿最小者并记录 sweep。
+- 原"持剑倾角扫描（tiltSweep）"对本件取消；gripR 插槽约定（+Y 刃向 Pinky→Index、+Z 掌心法线）保留，供后续出鞘剑使用，check_sockets 的握持检查对"slot mainHand"的件才执行。
+- manifest：本件 `slot: waist`、`socket: waistL`，notes 写"入鞘·佩剑态"。
+
+## 协调者补充（2026-10-08 12:42）
+`apps/game/build/dressup-assets.test.ts` 的"indexes template metadata and prop sockets, then loads all real packed props"用例把真实道具插槽写死为 `['chest','gripR','headTop']`；青锋剑按作者裁定改为佩剑态挂 `waistL` 后应为 `['chest','headTop','waistL']`。本任务写集已加入该测试文件，只允许改**这个用例**：把其中所有写死的真实素材数字（道具插槽列表、`actor.stats()` 的三角总数等）都改成从各件 manifest / fit.json / report.json（或打包 GLB 实读）推出期望值，不再写死；其余用例不动。（协调者 2026-10-08 13:02 补：第 12 次运行只改了插槽，三角总数 221846→221848 又失败。）
+
+## 协调者补充（2026-10-08 14:30，依据审核 r5）
+- 护手峰窗口改为距端点 **5%~35%**（按峰的实际位置、不是 bin 中心判断）；找到护手峰时**禁止**再回退"窄端 = 柄"；`fit.json.handleDetection` 写 `method: guard-peak`、峰位置与所选端。`tests_prop.py` 真实青锋剑用例必须断言 `guard-peak` 且柄在护手外侧（短侧）、握点在柄段；不得接受 fallback。
+- `check_sockets.py` 的鞘身 / 刃身顶点划分必须由所选柄端推出（护手以外为柄、以内为鞘 / 刃），并在 `sockets_check.json` 写划分顶点数，与报告一致。
+- `dressup-assets.test.ts` 该用例：**插槽列表与 `actor.stats()` 三角总数都改为从各件 manifest / fit / 打包 GLB 读出**，测试代码里不得出现 221846 / 221848 这类写死的数；这是第 3 次提出，审核按此判定。
+
+## 协调者补充（2026-10-08 15:35，依据审核 r6；最后一轮，审核按此判定）
+1. **护手峰位置的算法写死如下**（14:30 已提，第 15 次运行仍按"bin 中心 / bin 与 30% 区间相交"实现，必须改）：沿剑轴取坐标 t ∈ [0, L]，算截面宽度剖面；峰的**实际位置** t* = 峰所在邻域内截面半径最大的那个顶点的轴向坐标（或对峰 bin 与左右邻 bin 做抛物线插值得到的极值点，二选一并写明）；f = min(t*, L − t*) / L，**0.05 ≤ f ≤ 0.35** 才算合格护手峰，柄端 = 离 t* 较近的那一端（护手外侧短段）。有合格峰就不得回退"窄端 = 柄"；没有任何合格峰时才允许回退，并写 `method: narrow-end`。
+2. `fit.json` **顶层** `handleDetection: { method, peakFraction, peakAxialMu, handleEnd: "min" | "max", handleSegmentVertices, bladeSegmentVertices }`；`diagnostics.handleEndEvidence` 可保留作附加审计。`check_sockets.py` 的柄段 / 鞘身划分只读顶层 `handleDetection`，`sockets_check.json` 写总数、柄段数、鞘身数。
+3. `tests_prop.py`：删掉"跨过 30% 的 bin 即合格"的断言；合成用例覆盖峰在 3%（不合格）、20%（合格）、40%（不合格）三档；真实青锋剑断言顶层 `handleDetection.method == 'guard-peak'`、柄端在护手短侧、握点落在柄段。
+4. **`dressup-assets.test.ts` 的"validates real A3 fit format…"用例（协调者裁定，允许改这一处）**：AR-107 改了剑的柄端约定，旧的"语义方向"断言对护手峰判定的剑已不适用，但**不得用 `guard or legacy` 跳过**。改为同样严格的断言：对 `handleDetection.method == 'guard-peak'` 的道具，断言握点位于护手短侧的柄段，并且把网格沿剑轴镜像后重跑护手峰判定，所选柄端随之翻到镜像的同一物理端；斗笠、玉佩仍走原断言、一字不改。该文件其余用例不动。
+5. 用修正后的结果重跑青锋剑 normalize → textures → pack → validate → ingest 与三件 `check_sockets`（≤ 5 分钟），刷新 fit / report / manifest / sockets_check 与报告数字；报告去掉"bin 相交即合格"的说法。
+6. 工具链按根 `package.json`（Node ≥22.12、pnpm 9.15.9），不算偏离（见文首口径），报告照此写。
 
 ## 约束
 - 只写 `tools/model3d/dressup/{export_skeleton.py,tests_skeleton.py,normalize_prop.py,tests_prop.py,check_sockets.py}`、`assets/default/model3d/dressup/templates/{tpl_f_medium,tpl_f_small,tpl_f_tall}/{skeleton.json,manifest.yaml}`、`assets/default/model3d/dressup/props/**` 与本任务报告。

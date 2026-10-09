@@ -16,8 +16,9 @@ import tempfile
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import compose_matrix, matrix_to_quaternion  # noqa: E402
-from export_skeleton import (REGION_IDS, _flex_axis, _grip_point, _plane_basis, _socket, _surface_vertex,
+from common import compose_matrix, matrix_to_quaternion, quaternion_to_matrix  # noqa: E402
+from export_skeleton import (REGION_IDS, _flex_axis, _grip_frame, _grip_point, _plane_basis, _rotation_part,
+                             _socket, _surface_vertex,
                              derive_regions, embed_regions, find_neck_ring, fit_ellipse, main as export_main)  # noqa: E402
 from glb_io import GLBBuilder, Mesh, PrimitiveRange, load_glb  # noqa: E402
 from normalize_rig import facing_yaw, normalize, strip_constant_tracks  # noqa: E402
@@ -68,9 +69,26 @@ class _SocketGLB:
 
 def test_socket_round_trip() -> None:
     glb = _SocketGLB(); local = np.array([.2, .3, -.1]); world = (glb.transform @ np.r_[local, 1])[:3]
-    result = _socket(glb, "bone", world, np.array([0., 0., 1.]), np.array([1., 0., 0.]))
+    result = _socket(glb, "bone", world, np.array([0., 0., 1.]))
     _assert_close(result["pos"], local)
     _assert_close((glb.transform @ np.r_[result["pos"], 1])[:3], world)
+    frame = _rotation_part(glb.transform) @ quaternion_to_matrix(result["quat"])
+    _assert_close(frame, np.eye(3), 1e-7)
+    _assert_close(result["normalLocal"], [0, 0, 1])
+
+
+def test_grip_frames_follow_projected_pinky_to_index() -> None:
+    finger = np.array([0.2, 0.95, -0.1])
+    for side, blade, palm in (
+            ("L", np.array([1.0, 0.3, 0.2]), np.array([0.1, 0.1, 1.0])),
+            ("R", np.array([-1.0, 0.3, 0.2]), np.array([-0.1, 0.1, 1.0]))):
+        frame = _grip_frame(blade, finger, palm)
+        projected = blade - finger / np.linalg.norm(finger) * np.dot(blade, finger / np.linalg.norm(finger))
+        projected /= np.linalg.norm(projected)
+        _assert_close(frame[:, 1], projected)
+        _assert_close(frame.T @ frame, np.eye(3))
+        _assert_close(np.linalg.det(frame), 1.0)
+        assert np.dot(frame[:, 2], palm) > 0, side
 
 
 def test_grip_surface_and_flex_axes() -> None:
@@ -183,7 +201,8 @@ def test_real_normalize_round_trip() -> None:
 
 
 def main() -> int:
-    tests = [test_region_mapping, test_neck_ring_and_ellipse, test_socket_round_trip, test_grip_surface_and_flex_axes,
+    tests = [test_region_mapping, test_neck_ring_and_ellipse, test_socket_round_trip,
+             test_grip_frames_follow_projected_pinky_to_index, test_grip_surface_and_flex_axes,
              test_track_strip_and_yaw, test_region_glb_attribute, test_check_rejects_nested_damage, test_real_normalize_round_trip]
     for test in tests:
         test(); print(f"PASS {test.__name__}")

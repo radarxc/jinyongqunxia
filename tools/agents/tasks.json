@@ -51247,7 +51247,8 @@
     "assets/default/model3d/dressup/templates/tpl_f_small/manifest.yaml",
     "assets/default/model3d/dressup/templates/tpl_f_tall/skeleton.json",
     "assets/default/model3d/dressup/templates/tpl_f_tall/manifest.yaml",
-    "assets/default/model3d/dressup/props/**"
+    "assets/default/model3d/dressup/props/**",
+    "apps/game/build/dressup-assets.test.ts"
    ],
    "validate": {
     "exists": [
@@ -51302,6 +51303,422 @@
       "pnpm",
       "install",
       "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-e4-sword-held",
+   "title": "3D 纸娃娃换装 · E4 · 出鞘持剑：龙泉剑（Tripo 生成 → 归一化 → 握右手 → 门禁 → 入库，AR-107）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ART-dressup-e4-sword-held.md",
+   "deps": [
+    "ENG-dressup-a6-sockets"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-08：手里拿出鞘剑、带鞘剑挂腰（AR-107）",
+   "sparse_include": [
+    "assets/default/item/weapons/eq_longquanjian.png",
+    "assets/default/item/weapons/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/props/eq_longquanjian/**",
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/tests_prop.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/props/eq_longquanjian/eq_longquanjian.glb",
+     "assets/default/model3d/dressup/props/eq_longquanjian/fit.json",
+     "assets/default/model3d/dressup/props/eq_longquanjian/report.json",
+     "assets/default/model3d/dressup/props/eq_longquanjian/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/check_sockets.py",
+      "--template",
+      "assets/default/model3d/dressup/templates/tpl_f_medium",
+      "--props",
+      "assets/default/model3d/dressup/props/eq_longquanjian"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-g1-hidemask",
+   "title": "3D 纸娃娃换装 · G1 · 身体遮罩离线烘焙 + validate 可见穿透（AR-108 V2）",
+   "prompt": "ENG-dressup-g1-hidemask.md",
+   "deps": [
+    "ENG-dressup-e2-extract"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/bake_hide_mask.py",
+    "tools/model3d/dressup/tests_hidemask.py",
+    "tools/model3d/dressup/validate.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/tests_garment.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/bake_hide_mask.py",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/hidemask.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "AGY-dressup-b4-hidemap",
+   "title": "3D 纸娃娃换装 · B4 · 运行时身体遮罩 + 挂头 + 预览开关（agy；AR-108 V2 / V4）",
+   "prompt": "AGY-dressup-b4-hidemap.md",
+   "deps": [
+    "ENG-dressup-a6-sockets"
+   ],
+   "model": "gemini-3.1-pro-high",
+   "note": "agy 执行器：supervise --bin tools/agents/agy_exec.py",
+   "writes": [
+    "packages/render/src/dressup/types.ts",
+    "packages/render/src/dressup/materials.ts",
+    "packages/render/src/dressup/actor.ts",
+    "packages/render/src/dressup/runtime.ts",
+    "packages/render/src/dressup/*.test.ts",
+    "packages/render/CLAUDE.md",
+    "apps/game/build/dressup-assets.ts",
+    "apps/game/build/dressup-assets.test.ts",
+    "apps/game/src/pages/Character3dPage.vue",
+    "apps/game/build/content-plugin.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/materials.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "AGY-dressup-v3-variant",
+   "title": "3D 纸娃娃换装 · V3 · 贴图变体：粗布短褐（同版型改图 + 烘焙，0 点；agy；AR-108 V3）",
+   "prompt": "AGY-dressup-v3-variant.md",
+   "deps": [
+    "ENG-dressup-e2-extract"
+   ],
+   "model": "gemini-3.1-pro-high",
+   "note": "agy 执行器：supervise --bin tools/agents/agy_exec.py",
+   "writes": [
+    "tools/model3d/dressup/retexture_variant.py",
+    "tools/model3d/dressup/tests_variant.py",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/retexture_variant.py",
+     "assets/default/model3d/dressup/garments/eq_buyi/manifest.yaml",
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png",
+      "--arm-angle-deg",
+      "25"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "AGY-dressup-d1-cuthead",
+   "title": "3D 纸娃娃换装 · D1 · 切头：黄蓉（规范颈环、肤色匹配，0 点；agy；AR-108 V4）",
+   "prompt": "AGY-dressup-d1-cuthead.md",
+   "deps": [
+    "ART-dressup-t2-tpl-f-medium"
+   ],
+   "model": "gemini-3.1-pro-high",
+   "note": "agy 执行器：supervise --bin tools/agents/agy_exec.py",
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/cut_head.py",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "high",
+   "profile": "code",
+   "id": "ENG-dressup-alloc-steady",
+   "title": "3D 纸娃娃换装 · actor 分配采样用例改为等到稳态（JIT 过渡期误报）",
+   "prompt": "ENG-dressup-alloc-steady.md",
+   "deps": [
+    "ENG-dressup-b3-layers"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "packages/render/src/dressup/actor-runtime.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/actor-runtime.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup/actor-runtime.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup/actor-runtime.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup/actor-runtime.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "high",
+   "profile": "code",
+   "id": "AGY-dressup-pytimeouts",
+   "title": "3D 纸娃娃换装 · dressup-assets 调 Python 用例超时改 300 s（负载误报）",
+   "prompt": "AGY-dressup-pytimeouts.md",
+   "deps": [
+    "ENG-dressup-alloc-steady"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "apps/game/build/dressup-assets.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/build/dressup-assets.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/build/dressup-assets.test.ts",
+      "--config",
+      "vitest.workspace.ts"
      ],
      [
       "pnpm",

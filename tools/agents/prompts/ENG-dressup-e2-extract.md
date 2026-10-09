@@ -2,6 +2,8 @@
 
 本任务写代码并实跑。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`docs/tech/11-paper-doll-3d-impl-spec.md`（§0、§4、§5.1、§5.3~§5.5、§6、§7、§10 D / E、§11）、`docs/tech/10-paper-doll-3d.md` §2.2~§2.4、`tools/model3d/dressup/README.md`，以及 A1 / A2 / A4 / A5 / E1 报告第 7 节（基础库、skeleton.json、`fit_garment.py` / `refit_template.py`、`validate.py` / `textures.py` / `pack_glb.mjs` / `ingest.py`、源件交接）。
 
+> 工具链口径（协调者 2026-10-08 07:25）：以根 `package.json` 为准——`packageManager: pnpm@9.15.9`、`engines.node >=22.12.0`（本机 Node 22.22.1）。公共说明 `_code.md` 里的 Node ≥ 24 / pnpm 12 是旧口径，与之不同**不算偏离**，报告注明一句即可，审核不得据此判 FAIL。
+
 ## 作者要求
 **AR-102**：衣服穿到模板素体上、不穿模、随动作运动、三种体型自动重贴合。作者 2026-10-08 在本地预览看到旧衣服穿模，同意**贴图层与网格层两条路同时试**（「同时试试吧」）；本任务是**网格层**，贴图层是 E3。旧道具（流仙裙等）不是在模板上做的，只作诊断；本件是第一件按新流程（模板底图编辑 → Tripo 整身 → 本地抽壳贴合）做出的衣服，要拿它证明流程可用。
 
@@ -31,6 +33,19 @@
 3. 达到验收前不要进入贴合：开口环 = 4、torsoUpper / torsoLower ≥ 0.9、双臂 ≥ 0.85、连通块 1（允许腰带垂带另成 1~2 块，写进报告）。
 4. `tests_garment.py` 会重写 `garments/_fixture_bodysuit/**` 的计时字段——那是 A4 的产物，不在本任务写集：提交前 `git checkout -- assets/default/model3d/dressup/garments/_fixture_bodysuit` 还原。
 5. 候选 A / B 只保留选中的正式件；对比数字写报告，`candidate_a/` `candidate_b/` 目录不要入库。
+
+## 协调者裁定（2026-10-08 06:35，看第 3 次运行产物并在 5173 实测后）
+第 3 次运行抽壳已达标（1 个连通块、4 个开口、覆盖率达标），但三体型 `report.level` 均 fail（中码动态穿透 8.3~8.9%、静态残留 71、翻面 267），按原规则不能入库，执行器因此没有写 manifest，任务卡在"缺文件"。协调者把中码件临时挂到 5173 实测（三种穿法并排）：
+- 网格层按区隐藏身体：有体积与垂坠，但 **V 领与胯下出现黑洞**（torsoUpper / hips 整区被隐藏，而交领开口与衣摆下方本应露皮肤）；
+- **网格层 + E3 贴图层、不隐藏身体**：黑洞消失，穿透处露出的是贴图层画的衣服色，效果最好（作者将据此定默认路线）。
+据此：
+1. **实验件入库**（AR-106 对比用）：report.level 为 fail 时**仍按标准布局入库**——`garments/eq_jinzhuang/{eq_jinzhuang.glb, fit.json, report.json, manifest.yaml}`，small / tall 用 `fits:` 变体（`eq_jinzhuang.tpl_f_small.glb` 等）；manifest 由本任务直接写（不经 ingest.py 的 fail 拦截），条目字段：`status: draft`、`experimental: true`、`gateLevel: fail`，notes 写全身口径的门禁数字。删除 `package_*` 目录。
+2. **`hideRegions` 置空**：fit.json 的 `hideRegions: []`，原计算结果另存 `hideRegionsComputed`；notes 写明"与贴图层 `dressup__layer__eq_jinzhuang` 叠穿使用"。
+3. **毛边清理**：领口 / 袖口 / 衣摆的切边目前是白色碎齿。去掉只挂两条边界边的"齿状"三角、沿每个开口环做边界平滑（只动边界附近 1~2 环顶点），边界附近贴图呈皮肤色的三角删除；可选沿开口向内折 3~5 mm 的窄边（用相邻衣服色）以盖住切口。前后对比写进报告，出 `extract_edges_detail.png`。
+4. validate 照常跑、数字如实写；不改门禁阈值；不改 validate / ingest。
+
+## 协调者裁定（2026-10-08 12:50，依据审核 r1 第 1 条）
+`garments/_fixture_bodysuit/**` 的计时字段改动是 A4 的 `tests_garment.py` 每次校验重写夹具造成的（A4 遗留设计，任何跑该测试的任务都会出现）。step.py finish 只提交写集内文件，这些改动不会合入；**审核不得据此判本任务写集越界**。该测试改为写临时目录的修复另行登记（阶段 C），本任务不必处理。
 
 ## 验收（协调者会实测）
 - 躯干关节对齐残差 ≤ 2% H；衣服壳开口环 = 4（领、两袖、下摆），无头 / 手 / 脚 / 小腿三角；

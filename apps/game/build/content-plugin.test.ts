@@ -89,7 +89,7 @@ describe('runtime asset publishing integration', () => {
     }));
     for (const name of ['kept.glb', 'fit.json', 'report.json', 'rejected.glb',
       'rejected-fit.json', 'rejected-report.json']) {
-      await writeFile(join(directory, name), name);
+      await writeFile(join(directory, name), name.endsWith('fit.json') ? '{}' : name);
     }
     await writeFile(join(directory, 'manifest.yaml'), `- id: dressup__garment__kept
   file: kept.glb

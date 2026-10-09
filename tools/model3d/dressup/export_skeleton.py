@@ -18,11 +18,11 @@ import numpy as np
 from scipy.spatial import ConvexHull
 
 try:
-    from .common import compose_matrix, matrix_to_quaternion, pca
+    from .common import compose_matrix, matrix_to_quaternion, pca, quaternion_to_matrix
     from .glb_io import GLB, Mesh, load_glb
     from .normalize_rig import _serialize, rest_bind_max_diff
 except ImportError:
-    from common import compose_matrix, matrix_to_quaternion, pca
+    from common import compose_matrix, matrix_to_quaternion, pca, quaternion_to_matrix
     from glb_io import GLB, Mesh, load_glb
     from normalize_rig import _serialize, rest_bind_max_diff
 
@@ -251,22 +251,40 @@ def derive_skull_profile(glb: GLB, mesh: Mesh, positions: np.ndarray, slots: dic
             "stepMu": step, "rows": rows}
 
 
-def _frame_quaternion(primary_axis: np.ndarray, normal: np.ndarray) -> np.ndarray:
-    x = np.array(primary_axis, dtype=float, copy=True); x /= np.linalg.norm(x)
-    z = np.array(normal, dtype=float, copy=True); z -= x * np.dot(x, z); z /= np.linalg.norm(z)
-    y = np.cross(z, x); y /= np.linalg.norm(y)
-    return matrix_to_quaternion(np.column_stack((x, y, z)))
+def _rotation_part(matrix: np.ndarray) -> np.ndarray:
+    """取仿射矩阵最接近的无缩放右手旋转。"""
+    u, _, vt = np.linalg.svd(np.asarray(matrix, dtype=float)[:3, :3])
+    rotation = u @ vt
+    if np.linalg.det(rotation) < 0:
+        u[:, -1] *= -1
+        rotation = u @ vt
+    return rotation
+
+
+def _grip_frame(blade_axis: np.ndarray, finger_direction: np.ndarray, palm_normal: np.ndarray) -> np.ndarray:
+    """返回列为 +X/+Y/+Z 的世界握持帧（§4：X = Y × Z）。"""
+    finger = np.asarray(finger_direction, dtype=float); finger /= np.linalg.norm(finger)
+    y_axis = np.asarray(blade_axis, dtype=float) - finger * np.dot(blade_axis, finger)
+    if np.linalg.norm(y_axis) <= 1e-8: raise SkeletonError("Pinky→Index 与手指方向平行，不能派生握持刃向")
+    y_axis /= np.linalg.norm(y_axis)
+    z_axis = np.asarray(palm_normal, dtype=float) - y_axis * np.dot(palm_normal, y_axis)
+    if np.linalg.norm(z_axis) <= 1e-8: raise SkeletonError("掌心法线与刃向平行，不能派生握持帧")
+    z_axis /= np.linalg.norm(z_axis)
+    x_axis = np.cross(y_axis, z_axis); x_axis /= np.linalg.norm(x_axis)
+    return np.column_stack((x_axis, y_axis, z_axis))
 
 
 def _socket(glb: GLB, bone: str, world_pos: np.ndarray, world_normal: np.ndarray | None = None,
-            world_axis: np.ndarray | None = None, **extra: Any) -> dict[str, Any]:
+            world_frame: np.ndarray | None = None, **extra: Any) -> dict[str, Any]:
     names = _names(glb); node = glb.skin().joints[names.index(bone)]; world = glb.world_matrix(node); inverse = np.linalg.inv(world)
     local_pos = (inverse @ np.r_[world_pos, 1.0])[:3]
-    # 方向只乘仿射线性部分；平移不会作用于向量。
-    local_normal = inverse[:3, :3] @ world_normal if world_normal is not None else np.array([0.0, 0.0, 1.0])
-    local_axis = inverse[:3, :3] @ world_axis if world_axis is not None else np.array([1.0, 0.0, 0.0])
-    result = {"bone": bone, "pos": _round(local_pos), "quat": _round(_frame_quaternion(local_axis, local_normal))}
-    if world_normal is not None: result["normalLocal"] = _round(local_normal / np.linalg.norm(local_normal))
+    parent_rotation = _rotation_part(world)
+    socket_world = np.eye(3) if world_frame is None else np.asarray(world_frame, dtype=float)
+    socket_local = parent_rotation.T @ socket_world
+    result = {"bone": bone, "pos": _round(local_pos), "quat": _round(matrix_to_quaternion(socket_local))}
+    if world_normal is not None:
+        normal_local = socket_world.T @ np.asarray(world_normal, dtype=float)
+        result["normalLocal"] = _round(normal_local / np.linalg.norm(normal_local))
     result.update(extra); return result
 
 
@@ -306,10 +324,13 @@ def derive_sockets(glb: GLB, mesh: Mesh, positions: np.ndarray, normals: np.ndar
         if np.dot(thumb - center, thin) < 0: thin = -thin
         index_world = glb.world_matrix(nodes[slots[f"mixamorig:{side}HandIndex1"]])[:3, 3]
         pinky_world = glb.world_matrix(nodes[slots[f"mixamorig:{side}HandPinky1"]])[:3, 3]
-        world_normal = world[:3, :3] @ thin; world_axis = pinky_world - index_world
+        middle_world = glb.world_matrix(nodes[slots[f"mixamorig:{side}HandMiddle1"]])[:3, 3]
+        hand_world = world[:3, 3]
+        world_normal = world[:3, :3] @ thin
+        world_frame = _grip_frame(index_world - pinky_world, middle_world - hand_world, world_normal)
         grip_local = _grip_point(center, thin)
         grip_world = (world @ np.r_[grip_local, 1])[:3]
-        sockets[f"grip{short}"] = _socket(glb, bone, grip_world, world_normal, world_axis,
+        sockets[f"grip{short}"] = _socket(glb, bone, grip_world, world_normal, world_frame,
                                                 palmNormalLocal=_round(thin), palmOffsetMu=0.0153, radiusMu=0.014)
     head = _shell(mesh, positions, slots, "mixamorig:Head")
     head_ids = np.flatnonzero(_bone_weights(mesh, slots["mixamorig:Head"]) >= 0.5)
@@ -339,7 +360,7 @@ def derive_sockets(glb: GLB, mesh: Mesh, positions: np.ndarray, normals: np.ndar
     for side, short in (("Left", "L"), ("Right", "R")):
         foot_ids = np.flatnonzero(_bone_weights(mesh, slots[f"mixamorig:{side}Foot"]) >= 0.5)
         point, normal = _surface_vertex(positions, normals, foot_ids, np.array([0, -1, 0.0]))
-        sockets[f"foot{short}"] = _socket(glb, f"mixamorig:{side}Foot", point, normal, np.array([0, 0, -1.0]))
+        sockets[f"foot{short}"] = _socket(glb, f"mixamorig:{side}Foot", point, normal)
     return sockets
 
 
@@ -542,6 +563,37 @@ def _check_quaternion(value: Any, label: str) -> None:
     if abs(float(np.linalg.norm(quat)) - 1.0) > 1e-4: raise SkeletonError(f"{label} 必须归一化")
 
 
+def _bind_matrix(data: dict[str, Any], name: str) -> np.ndarray:
+    """还原 skeleton.json 中列主序保存的 bindWorld。"""
+    return _finite_vector(data["bindWorld"][name], 16, f"bindWorld.{name}").reshape(4, 4).T
+
+
+def _check_socket_frames(data: dict[str, Any]) -> None:
+    """校验插槽世界轴契约；握持轴只依赖 bind 关节点，因而可离线复核。"""
+    non_grips = set(data["sockets"]) - {"gripL", "gripR"}
+    for name in non_grips:
+        socket = data["sockets"][name]
+        parent = _rotation_part(_bind_matrix(data, socket["bone"]))
+        world_frame = parent @ quaternion_to_matrix(socket["quat"])
+        if np.max(np.abs(world_frame - np.eye(3))) >= 1e-5:
+            raise SkeletonError(f"sockets.{name} bind 世界旋转必须为单位阵")
+    for side, short in (("Left", "L"), ("Right", "R")):
+        socket = data["sockets"][f"grip{short}"]
+        parent = _rotation_part(_bind_matrix(data, socket["bone"]))
+        frame = parent @ quaternion_to_matrix(socket["quat"])
+        orth_error = float(np.max(np.abs(frame.T @ frame - np.eye(3))))
+        determinant = float(np.linalg.det(frame))
+        if orth_error >= 1e-5 or abs(determinant - 1.0) >= 1e-5:
+            raise SkeletonError(f"sockets.grip{short} 必须为 det=+1 的正交帧")
+        point = lambda suffix: _bind_matrix(data, f"mixamorig:{side}Hand{suffix}")[:3, 3]
+        hand = _bind_matrix(data, f"mixamorig:{side}Hand")[:3, 3]
+        finger = point("Middle1") - hand; finger /= np.linalg.norm(finger)
+        expected = point("Index1") - point("Pinky1")
+        expected -= finger * np.dot(expected, finger); expected /= np.linalg.norm(expected)
+        angle = math.degrees(math.acos(float(np.clip(np.dot(frame[:, 1], expected), -1, 1))))
+        if angle >= 1.0: raise SkeletonError(f"sockets.grip{short}.+Y 与 Pinky→Index 投影夹角必须 <1°")
+
+
 def _check_neck_ring(ring: Any) -> None:
     required = {"localYMu", "centerMu", "centerLocalMu", "radiusMu", "samples", "profile",
                 "lipOffsetMu", "neckDominance", "sliceAspectRatio", "sliceVertices", "axisLocal", "sha256"}
@@ -627,6 +679,7 @@ def check_outputs(out_dir: Path) -> dict[str, Any]:
         if "normalLocal" not in socket: raise SkeletonError(f"sockets.{name} 缺真实表面法线")
         normal = _finite_vector(socket["normalLocal"], 3, f"sockets.{name}.normalLocal")
         if abs(float(np.linalg.norm(normal)) - 1) > 1e-4: raise SkeletonError(f"sockets.{name}.normalLocal 未归一化")
+    _check_socket_frames(data)
     for name in ("gripL", "gripR"):
         if not {"palmNormalLocal", "palmOffsetMu", "radiusMu"} <= set(data["sockets"][name]): raise SkeletonError(f"{name} 握轴字段不齐")
         normal = _finite_vector(data["sockets"][name]["palmNormalLocal"], 3, f"{name}.palmNormalLocal")

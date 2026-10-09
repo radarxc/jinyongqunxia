@@ -35,6 +35,7 @@ export interface DressupAssetIndexEntry {
   readonly socket?: string;
   readonly skeleton?: string;
   readonly heightM?: number;
+  readonly hideMask?: string;
 }
 
 export interface DressupAssetIndex {
@@ -114,11 +115,15 @@ async function indexEntry(root: string, manifest: string, row: DressupManifestRo
   const heightText = variant.heightM ?? row.heightM;
   const heightM = heightText === undefined ? undefined : Number(heightText);
   let socket = variant.socket ?? row.socket;
-  if (!socket && fit && kind === 'prop') {
+  let hideMask: string | undefined;
+  if (fit) {
     const fitPath = resolve(root, runtimeUrl(root, manifest, fit).slice(1));
-    const fitDocument = JSON.parse(await readFile(fitPath, 'utf8')) as { socket?: unknown };
-    if (typeof fitDocument.socket === 'string' && fitDocument.socket.length > 0) {
+    const fitDocument = JSON.parse(await readFile(fitPath, 'utf8')) as { socket?: unknown; hideMask?: { file?: string } };
+    if (!socket && kind === 'prop' && typeof fitDocument.socket === 'string' && fitDocument.socket.length > 0) {
       socket = fitDocument.socket;
+    }
+    if (fitDocument.hideMask && typeof fitDocument.hideMask.file === 'string') {
+      hideMask = fitDocument.hideMask.file;
     }
   }
   if (heightM !== undefined && (!Number.isFinite(heightM) || heightM <= 0))
@@ -132,6 +137,7 @@ async function indexEntry(root: string, manifest: string, row: DressupManifestRo
     ...(socket ? { socket } : {}),
     ...(skeleton ? { skeleton: runtimeUrl(root, manifest, skeleton) } : {}),
     ...(heightM === undefined ? {} : { heightM }),
+    ...(hideMask ? { hideMask: runtimeUrl(root, manifest, hideMask) } : {}),
   };
 }
 
@@ -179,6 +185,12 @@ export async function publishDressupAssets(
             const path = relative(root, source).split(sep).join('/');
             if (!path.startsWith('assets/default/model3d/dressup/'))
               throw new Error('DRESSUP_ASSET_OUTSIDE_ROOT');
+            paths.add(path);
+          }
+          if (entry.hideMask) {
+            const source = resolve(root, entry.hideMask.slice(1));
+            await access(source);
+            const path = relative(root, source).split(sep).join('/');
             paths.add(path);
           }
         }

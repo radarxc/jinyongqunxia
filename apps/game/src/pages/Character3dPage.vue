@@ -28,20 +28,33 @@ let dressupLoadSeq = 0;
 const dressupEquipSeq: Record<string, number> = {};
 const pendingDressupSlots = reactive<Record<string, string>>({});
 const dressupReady = ref(false);
+const allEquipmentGroups = computed(() => [
+  { kind: 'head', label: '头', entries: dressupIndex.value?.groups.head ?? [] },
+  ...dressupGroups.value,
+].map(group => ({ ...group, entries: selectDressupVariants(group.entries) })));
 const dressupError = ref('');
 const selectedTemplate = ref('tpl_f_medium');
 const selectedDressupClip = ref('idle');
 const isUnlitMode = ref(true);
+const hideMapEnabled = ref(true);
 const equippedDressupSlots = reactive<Record<string, string>>({});
 const selectedBodyLayers = ref<string[]>([]);
 const bodyLayersPending = ref(false);
 type MutableDressupStats = { -readonly [Key in keyof DressupStats]: DressupStats[Key] };
 const dressupStats = reactive<MutableDressupStats>({
-  drawCalls: 0, triangles: 0, boneTextureUploads: 0, bodyLayers: [], layerTextureBytes: 0,
+  drawCalls: 0, triangles: 0, boneTextureUploads: 0, bodyLayers: [], layerTextureBytes: 0, hideMaps: [],
 });
 
 function dressupSlot(entry: DressupIndexEntry): string {
+  if (entry.kind === 'head') return 'head';
   return entry.slot ?? entry.socket ?? entry.kind;
+}
+function selectDressupVariants(entries: readonly DressupIndexEntry[]): DressupIndexEntry[] {
+  const selected = new Map<string, DressupIndexEntry>();
+  for (const entry of entries) {
+    if (!selected.has(entry.id) || entry.template === selectedTemplate.value) selected.set(entry.id, entry);
+  }
+  return [...selected.values()];
 }
 function dressupLayerLabel(entry: DressupIndexEntry): string {
   const id = entry.id.replace(/^dressup__layer__/u, '');
@@ -52,6 +65,9 @@ function setDressupDebug(): void {
   (window as unknown as { __dressup?: unknown }).__dressup = {
     actor: dressupActor.value, viewer, index: dressupIndex.value,
     layers: [...selectedBodyLayers.value],
+    hideMap: hideMapEnabled.value,
+    get hideMapError() { return dressupActor.value?.stats().hideMapError ?? ''; },
+    get hideMapSize() { return dressupActor.value?.stats().hideMapSize ?? 0; },
     stats: () => dressupActor.value?.stats() ?? null,
   };
 }
@@ -64,6 +80,9 @@ function syncDressupStats(): void {
   dressupStats.boneTextureUploads = next.boneTextureUploads;
   dressupStats.bodyLayers = next.bodyLayers;
   dressupStats.layerTextureBytes = next.layerTextureBytes;
+  dressupStats.hideMaps = next.hideMaps;
+  dressupStats.hideMapSize = next.hideMapSize ?? 0;
+  dressupStats.hideMapError = next.hideMapError ?? '';
 }
 
 function dressupLoop(now: number): void {
@@ -521,10 +540,12 @@ function clearDressupActor(): void {
   dressupStats.boneTextureUploads = 0;
   dressupStats.bodyLayers = [];
   dressupStats.layerTextureBytes = 0;
+  dressupStats.hideMaps = []; dressupStats.hideMapSize = 0; dressupStats.hideMapError = '';
   setDressupDebug();
 }
 
-async function loadDressupTemplate(templateId: string, restoreIds: readonly string[] = []): Promise<void> {
+async function loadDressupTemplate(templateId: string,
+  restoreIds: readonly string[] = Object.values(equippedDressupSlots)): Promise<void> {
   if (!viewer || !dressupIndex.value) return;
   const template = dressupIndex.value.groups.template.find(entry => entry.template === templateId);
   if (!template?.skeleton || !template.heightM) {
@@ -541,6 +562,7 @@ async function loadDressupTemplate(templateId: string, restoreIds: readonly stri
     const next = await createDressupActor({
       bodyUrl: template.file, frameUrl: template.skeleton, heightM: template.heightM,
       loader: createCharacterViewerLoader(),
+      templateId,
       unlit: isUnlitMode.value,
     });
     if (seq !== dressupLoadSeq || !viewer) { next.dispose(); return; }
@@ -551,10 +573,10 @@ async function loadDressupTemplate(templateId: string, restoreIds: readonly stri
     viewer.attachExternal(next.root);
     viewer.clearProps();
     viewer.setUnlitMode(isUnlitMode.value);
+    next.setHideMapEnabled(hideMapEnabled.value);
     next.playClip(selectedDressupClip.value, 0);
     for (const id of restoreIds) {
-      const entry = Object.values(dressupIndex.value.groups).flat().find(value =>
-        value.id === id && value.template === templateId);
+      const entry = allEquipmentGroups.value.flatMap(group => group.entries).find(value => value.id === id);
       if (entry) await toggleDressup(entry);
     }
     await applyBodyLayers();
@@ -570,7 +592,7 @@ async function loadDressupTemplate(templateId: string, restoreIds: readonly stri
 }
 
 async function toggleDressup(entry: DressupIndexEntry): Promise<void> {
-  if (!dressupActor.value || !entry.fit || entry.template !== selectedTemplate.value) return;
+  if (!dressupActor.value || !entry.fit) return;
   const slot = dressupSlot(entry);
   if (pendingDressupSlots[slot] === entry.id) return;
   const current = equippedDressupSlots[slot];
@@ -593,8 +615,10 @@ async function toggleDressup(entry: DressupIndexEntry): Promise<void> {
     if (entry.socket && !fit.socket) {
       Object.assign(fit, { socket: entry.socket });
     }
-    if (entry.kind !== 'garment' && entry.kind !== 'hair' && entry.kind !== 'prop') return;
-    await actor.equip({ kind: entry.kind, id: entry.id, url: entry.file, fit });
+    if (entry.kind !== 'garment' && entry.kind !== 'hair' && entry.kind !== 'prop' && entry.kind !== 'head') return;
+    const hideMask = (entry as DressupIndexEntry & { readonly hideMask?: string }).hideMask;
+    await actor.equip({ kind: entry.kind, id: entry.id, url: entry.file, fit,
+      ...(hideMask ? { hideMapUrl: hideMask } : {}) });
     if (seq !== dressupEquipSeq[slot] || actor !== dressupActor.value) {
       actor.unequip(entry.id);
       return;
@@ -649,6 +673,12 @@ async function toggleUnlitMode(): Promise<void> {
   isUnlitMode.value = !isUnlitMode.value;
   viewer?.setUnlitMode(isUnlitMode.value);
   await loadDressupTemplate(selectedTemplate.value, restoreIds);
+}
+
+function toggleHideMap(): void {
+  hideMapEnabled.value = !hideMapEnabled.value;
+  dressupActor.value?.setHideMapEnabled(hideMapEnabled.value);
+  setDressupDebug();
 }
 
 // 装备穿脱操作
@@ -1180,10 +1210,13 @@ onBeforeUnmount(() => {
             <button type="button" class="toggle-btn" :class="{ active: isUnlitMode }" @click="toggleUnlitMode">
               {{ isUnlitMode ? 'unlit（Tripo）' : '原灯光（ACES）' }}
             </button>
+            <button type="button" class="toggle-btn" :class="{ active: hideMapEnabled }" @click="toggleHideMap">
+              身体遮罩：{{ hideMapEnabled ? '开' : '关' }}
+            </button>
           </div>
         </div>
 
-        <div v-for="group in dressupGroups" :key="group.kind" class="glass-card compact dressup-v2-card">
+        <div v-for="group in allEquipmentGroups" :key="group.kind" class="glass-card compact dressup-v2-card">
           <div class="card-header"><span class="card-icon">📦</span><h3>{{ group.label }}</h3></div>
           <p v-if="group.entries.length === 0" class="v2-empty">索引暂无可用素材；后续合入会自动出现。</p>
           <button
@@ -1192,10 +1225,10 @@ onBeforeUnmount(() => {
             type="button"
             class="v2-equip-row"
             :class="{ equipped: equippedDressupSlots[dressupSlot(entry)] === entry.id }"
-            :disabled="entry.template !== selectedTemplate || !entry.fit"
+            :disabled="!dressupReady || !entry.fit"
             @click="toggleDressup(entry)"
           >
-            <span>{{ entry.id.replace(/^dressup__(?:garment|hair|prop)__/u, '') }}</span>
+            <span>{{ entry.id.replace(/^dressup__(?:garment|hair|prop|head)__/u, '') }}</span>
             <span class="v2-status" :class="entry.status">{{ entry.status }}</span>
             <small>{{ entry.socket || entry.slot || '—' }} · {{ entry.template }}</small>
           </button>
@@ -1228,8 +1261,11 @@ onBeforeUnmount(() => {
             <span>boneTexture {{ dressupStats.boneTextureUploads }}</span>
             <span>layers {{ dressupStats.bodyLayers.join(' → ') || '—' }}</span>
             <span>layerTexture {{ (dressupStats.layerTextureBytes / 1048576).toFixed(1) }} MiB</span>
+            <span>hideMaps {{ dressupStats.hideMaps.join(' + ') || '—' }}</span>
+            <span>hideMap {{ dressupStats.hideMapSize || 0 }} px</span>
           </div>
           <p v-if="dressupError" class="v2-error">{{ dressupError }}</p>
+          <p v-if="dressupStats.hideMapError" class="v2-error">身体遮罩：{{ dressupStats.hideMapError }}</p>
         </div>
       </div>
 

@@ -58,7 +58,7 @@
   heightMu: 0.98010258
   mPerMu: 1.69370027
   ringSha: 9bf82630d92bb15e666438a6953a9202bfb9020f79c9f9abce21c418e67cd9de
-  skeletonSha: 79844b4ef2a28a69f981092f1984c5397610cda09da3b4c3cf84d2ec5b358c48
+  skeletonSha: 5f516445505069b98f9c9a32e841c6c862c4d7f5da99b1c9a4f5352f218e580e
   source:
     tripo_project_id: be15d34a-5d1e-409b-a0aa-c1a96446a267
   sha256: 1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f
@@ -80,4 +80,5 @@
     AR-104 / AR-105 女中等模板新正本，替换旧 Tripo 项目 0e8cd219 的
     anim_idle_walk_run.glb 过渡期正本；65 关节、rest=bind、+Z，含原地
     idle/walk/run，作为换装系统唯一骨架来源。当前 candidate 仍含 PBR normal/MR
-    贴图，阶段 C 进包时由 textures.py 转 unlit。
+    贴图，阶段 C 进包时由 textures.py 转 unlit。A6 已按 tech/11 §4 重导插槽帧：
+    非握持 bind 世界轴对齐，握持 +Y 为投影后的 Pinky1→Index1。

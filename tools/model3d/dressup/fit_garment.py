@@ -41,6 +41,7 @@ except ImportError:
     from glb_io import GLB, ImageData, Mesh, PrimitiveRange, load_glb, write_skinned_glb
 
 KINDS = ("garment", "hair")
+ALIGN_MODES = ("auto", "joints", "landmarks", "none")
 SLOTS = ("body", "innerBody", "hands", "feet", "waist", "cape", "shoulder", "head")
 NEVER_HIDE = ("neck", "handL", "handR", "footL", "footR")
 SLOT_BONES = {
@@ -951,10 +952,12 @@ def _round(value: Any) -> Any:
 def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_dir: Path,
              kind: str, slot: str, asset_id: str, *, remove_stub: bool = False,
              push_mm: float = 3.0, iters: int = 3, coverage: float = 0.65,
-             allow_draft: bool = False, k: int = 16) -> dict[str, Any]:
+             allow_draft: bool = False, k: int = 16, align_mode: str = "auto",
+             notes: Sequence[str] = ()) -> dict[str, Any]:
     """执行完整贴合流水线并返回 fit.json 内容。"""
     started = time.perf_counter()
-    if (kind not in KINDS or slot not in SLOTS or push_mm < 0 or iters < 0
+    if (kind not in KINDS or slot not in SLOTS or align_mode not in ALIGN_MODES
+            or push_mm < 0 or iters < 0
             or not 0 <= coverage <= 1 or k < 1):
         raise GarmentError("kind/slot/push-mm/iters/coverage 参数无效")
     if not asset_id or any(value in asset_id for value in ("/", "\\", "..")):
@@ -966,8 +969,11 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
     body_faces = body_mesh.indices.reshape(-1, 3)
     surface = SurfaceIndex(body_mesh.positions, body_faces, body_mesh.normals, k=k)
     source_glb = load_glb(garment_path); garment = load_world_mesh(source_glb)
-    source_skin = source_glb.json.get("skins", [])
-    if source_skin:
+    source_skin = bool(source_glb.json.get("skins", []))
+    use_joint_alignment = align_mode == "joints" or (align_mode == "auto" and source_skin)
+    if align_mode == "joints" and not source_skin:
+        raise GarmentError("--align joints 要求输入 GLB 带 skin")
+    if use_joint_alignment:
         if garment.joints is None or garment.weights is None:
             raise GarmentError("自带 skin 的衣物缺少 JOINTS_0 / WEIGHTS_0")
         positions, normals, align, source_to_target = align_joints(
@@ -976,6 +982,14 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
         if np.any(source_to_target[garment.joints][used] < 0):
             raise GarmentError("衣物权重引用目标骨架中不存在的骨名")
         garment.joints = source_to_target[garment.joints].astype(np.uint16)
+    elif align_mode == "none":
+        positions = garment.positions.astype(np.float32).copy()
+        normals = None if garment.normals is None else garment.normals.astype(np.float32).copy()
+        align = {"method": "landmarks", "requestedMode": "none", "scale": 1.0,
+                 "yawDeg": 0.0, "mirrored": False, "landmarks": 0,
+                 "determinant": 1.0, "translationMu": [0.0, 0.0, 0.0],
+                 "bodySpaceIdentity": True,
+                 "residualMu": {"neckTopMu": 0.0, "feetMu": 0.0}}
     else:
         skull = load_skull_profile(skeleton, skeleton_path) if kind == "hair" else None
         positions, normals, align = align_landmarks(
@@ -985,7 +999,7 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
     if remove_stub:
         garment, removed = remove_body_stub(garment, surface, 0.001 / float(skeleton["mPerMu"]))
     faces = garment.indices.reshape(-1, 3)
-    if source_skin:
+    if use_joint_alignment:
         garment.joints, garment.weights, weight_stats = filter_existing_weights(
             garment.joints, garment.weights, garment.positions, skeleton, slot)
     else:
@@ -1032,6 +1046,11 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
                   "nearestTriangleCandidates": k,
                   "elapsedSec": time.perf_counter() - started, "peakMemoryMiB": peak_mib},
     }
+    # auto 是历史默认，保持其 JSON 字段逐项不变；显式新模式补 A5 绑定身份。
+    if align_mode != "auto":
+        fit["template"] = body_path.parent.name; fit["mPerMu"] = float(skeleton["mPerMu"])
+    if notes:
+        fit["notes"] = [str(value) for value in notes]
     fit = _round(fit); temporary = output_dir / ".fit.json.tmp"
     temporary.write_text(json.dumps(fit, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     temporary.replace(output_dir / "fit.json"); (output_dir / "fit.json").chmod(0o644)
@@ -1046,6 +1065,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--kind", choices=KINDS, required=True); parser.add_argument("--slot", choices=SLOTS, required=True)
     parser.add_argument("--id", required=True, help="资产 ID 和输出 GLB 文件名")
     parser.add_argument("--out", type=Path, required=True, help="输出目录")
+    parser.add_argument("--align", choices=ALIGN_MODES, default="auto",
+                        help="auto 保持既有行为；none 表示输入已在模板 bind 空间")
+    parser.add_argument("--note", action="append", default=[], help="写入 fit.json.notes，可重复")
     parser.add_argument("--remove-body-stub", action="store_true", help="删除距体表 <1mm 且法线反向的假人三角")
     parser.add_argument("--push-mm", type=float, default=3.0); parser.add_argument("--iters", type=int, default=3)
     parser.add_argument("--k", type=int, default=16, help="最近三角质心候选数（默认 16）")
@@ -1060,7 +1082,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         result = fit_file(args.body, args.skeleton, args.garment, args.out, args.kind, args.slot, args.id,
                           remove_stub=args.remove_body_stub, push_mm=args.push_mm, iters=args.iters,
-                          coverage=args.coverage, allow_draft=args.allow_draft, k=args.k)
+                          coverage=args.coverage, allow_draft=args.allow_draft, k=args.k,
+                          align_mode=args.align, notes=args.note)
     except GarmentGateError as error:
         print(f"门禁失败：{error}", file=sys.stderr); return 3
     except (OSError, ValueError, json.JSONDecodeError, RuntimeError, NotImplementedError) as error:
@@ -1070,7 +1093,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     return 0
 
 
-__all__ = ["GarmentError", "GarmentGateError", "SurfaceIndex", "align_landmarks", "allowed_joint_indices",
+__all__ = ["ALIGN_MODES", "GarmentError", "GarmentGateError", "SurfaceIndex", "align_landmarks", "allowed_joint_indices",
            "align_joints", "derive_regions", "filter_existing_weights", "fit_file",
            "hide_regions", "load_skull_profile", "load_world_mesh", "mm_to_mu", "push_out",
            "transfer_weights", "vertex_normals"]

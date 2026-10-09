@@ -410,7 +410,7 @@ def _worker(a) -> int:
                 return 1
             set_status(tid, "RUNNING", runs=runs, reviews=reviews, detail="reviewing")
             argv = [PY, "tools/agents/gpt_review.py", tid, "--model", a.review_model, "--effort", a.review_effort,
-                    "--bin", a.bin, "--timeout-min", str(a.review_timeout_min), "--max-images", str(a.max_images)]
+                    "--bin", a.review_bin, "--timeout-min", str(a.review_timeout_min), "--max-images", str(a.max_images)]
             if a.checks:
                 argv += ["--checks", a.checks]
             rc, out = sh(argv, timeout=(a.review_timeout_min + 5) * 60)
@@ -506,6 +506,8 @@ def main() -> int:
     ap.add_argument("--bin", default=os.environ.get("TRAEX_BIN") or os.environ.get("CODEX_BIN") or TRAEX)
     ap.add_argument("--model", default="GPT-6-Astra", help="执行模型；启动时探测，不应答回退 step.py 的 FALLBACK_MODELS（GPT-5.6-Sol）")
     ap.add_argument("--effort", default="max", help="执行推理强度（traex：max / ultra / xhigh …）")
+    ap.add_argument("--review-bin", default=os.environ.get("TRAEX_BIN") or TRAEX,
+                    help="审核用的命令行（默认 traex）；与 --bin 分开，agy 等执行器的任务审核仍走 GPT（AR-108）")
     ap.add_argument("--review-model", default="GPT-5.6-Sol")
     ap.add_argument("--review-effort", default="xhigh", help="审核推理强度（xhigh / max）")
     ap.add_argument("--review-timeout-min", type=float, default=60)

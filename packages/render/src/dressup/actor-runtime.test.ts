@@ -21,13 +21,76 @@ function sampledBytes(node: HeapSampleNode, matches: (node: HeapSampleNode) => b
   for (const child of node.children) total += sampledBytes(child, matches);
   return total;
 }
-function sampledSubtreeBytes(
+interface AllocationDifference { readonly functionName: string; readonly bytes: number }
+interface SteadyAllocationResult {
+  readonly steady: boolean;
+  readonly cleanWindows: readonly number[];
+  readonly lastDirtyWindow: number | undefined;
+  readonly lastDirtyDifferences: readonly AllocationDifference[];
+}
+const allocationWindowFrames = 600;
+const maximumAllocationWindows = 10;
+const requiredCleanAllocationWindows = 3;
+
+function addSampledBytesByFunction(node: HeapSampleNode, result: Map<string, number>): void {
+  const name = node.callFrame.functionName || '<anonymous>';
+  result.set(name, (result.get(name) ?? 0) + node.selfSize);
+  for (const child of node.children) addSampledBytesByFunction(child, result);
+}
+function sampledSubtreeBytesByFunction(
   node: HeapSampleNode, matches: (node: HeapSampleNode) => boolean,
-): number {
-  if (matches(node)) return sampledBytes(node, () => true);
+): ReadonlyMap<string, number> {
+  const result = new Map<string, number>();
+  if (matches(node)) { addSampledBytesByFunction(node, result); return result; }
+  for (const child of node.children) {
+    const childResult = sampledSubtreeBytesByFunction(child, matches);
+    for (const [name, bytes] of childResult) result.set(name, (result.get(name) ?? 0) + bytes);
+  }
+  return result;
+}
+function allocationDifferences(
+  before: ReadonlyMap<string, number>, after: ReadonlyMap<string, number>,
+): readonly AllocationDifference[] {
+  const names = new Set([...before.keys(), ...after.keys()]);
+  return [...names].map(functionName => ({
+    functionName, bytes: (after.get(functionName) ?? 0) - (before.get(functionName) ?? 0),
+  })).filter(value => value.bytes !== 0).sort((left, right) => right.bytes - left.bytes
+    || left.functionName.localeCompare(right.functionName));
+}
+function totalSampledBytes(values: ReadonlyMap<string, number>): number {
   let total = 0;
-  for (const child of node.children) total += sampledSubtreeBytes(child, matches);
+  for (const bytes of values.values()) total += bytes;
   return total;
+}
+async function sampleUntilAllocationSteady(
+  session: Session, runWindow: () => void, matches: (node: HeapSampleNode) => boolean,
+): Promise<SteadyAllocationResult> {
+  let previous = await session.post('HeapProfiler.getSamplingProfile');
+  let cleanStreak: number[] = []; let lastDirtyWindow: number | undefined;
+  let lastDirtyDifferences: readonly AllocationDifference[] = [];
+  for (let window = 1; window <= maximumAllocationWindows; window += 1) {
+    await Promise.resolve().then(runWindow);
+    const current = await session.post('HeapProfiler.getSamplingProfile');
+    const beforeBytes = sampledSubtreeBytesByFunction(previous.profile.head, matches);
+    const afterBytes = sampledSubtreeBytesByFunction(current.profile.head, matches);
+    const differences = allocationDifferences(beforeBytes, afterBytes);
+    if (totalSampledBytes(afterBytes) === totalSampledBytes(beforeBytes)) {
+      cleanStreak = [...cleanStreak, window];
+      if (cleanStreak.length === requiredCleanAllocationWindows) {
+        return { steady: true, cleanWindows: cleanStreak, lastDirtyWindow, lastDirtyDifferences };
+      }
+    } else {
+      cleanStreak = []; lastDirtyWindow = window; lastDirtyDifferences = differences;
+    }
+    previous = current;
+  }
+  return { steady: false, cleanWindows: cleanStreak, lastDirtyWindow, lastDirtyDifferences };
+}
+function allocationFailure(result: SteadyAllocationResult): string {
+  const detail = result.lastDirtyDifferences
+    .map(value => `${value.functionName}=${value.bytes > 0 ? '+' : ''}${value.bytes} B`).join(', ');
+  return `no ${requiredCleanAllocationWindows} consecutive clean windows within `
+    + `${maximumAllocationWindows}; last dirty window ${result.lastDirtyWindow ?? 'none'}: ${detail || 'none'}`;
 }
 function shortLivedAllocationProbe(): number {
   const values: object[] = [];
@@ -52,7 +115,7 @@ function fixtureFrame(): DressupSkeletonFrame {
       radiusMu: { x: .03, z: .03 }, samples: 0, profile: [], lipOffsetMu: 0, sha256: 'r' },
     skullProfile: { file: 's', stepMu: .005, sha256: 's' },
     sockets: { gripR: { bone: 'hand', pos: [.1, .2, .3], quat: [0, 0, 0, 1] } },
-    regions: { ids: { torso: 0, handR: 1 }, jointToRegion: {}, file: 'r' },
+    regions: { ids: { torso: 0, handR: 1, head: 2 }, jointToRegion: {}, file: 'r' },
     fingerPose: { fist: { RightHandIndex1: [0, 0, .70710678, .70710678] } },
   };
 }
@@ -92,7 +155,7 @@ describe('dressup actor runtime', () => {
     const body = bodyGltf(); const prop = propGltf();
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
       gripAdjust: { pos: [0, .5, 0], quat: [0, 0, 0, 1] },
@@ -112,7 +175,7 @@ describe('dressup actor runtime', () => {
     const body = bodyGltf(); const prop = propGltf();
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
       hideRegions: ['torso', 'handR'], neverHide: ['handR'],
@@ -144,7 +207,7 @@ describe('dressup actor runtime', () => {
     const propDisposes = propTextures.map(texture => vi.spyOn(texture, 'dispose'));
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
     } });
@@ -175,7 +238,7 @@ describe('dressup actor runtime', () => {
     body.gltf.animations[0]!.duration = 10_000;
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await expect(actor.setHead('head.glb', { skinTint: '#cca080' })).resolves.toBeUndefined();
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
@@ -189,30 +252,50 @@ describe('dressup actor runtime', () => {
     await session.post('HeapProfiler.startSampling', { samplingInterval: 1 });
     expect(shortLivedAllocationProbe()).toBe(10_000);
     await session.post('HeapProfiler.collectGarbage');
-    for (let index = 0; index < 600; index += 1) actor.update(1 / 60);
-    const before = await session.post('HeapProfiler.getSamplingProfile');
-    for (let index = 0; index < 600; index += 1) actor.update(1 / 60);
+    const steady = await sampleUntilAllocationSteady(session, () => {
+      for (let index = 0; index < allocationWindowFrames; index += 1) actor.update(1 / 60);
+    }, node => node.callFrame.functionName === 'update'
+      && node.callFrame.url.includes('/dressup/actor.ts'));
     const after = await session.post('HeapProfiler.getSamplingProfile');
     await session.post('HeapProfiler.stopSampling'); session.disconnect();
     expect(sampledBytes(after.profile.head,
       node => node.callFrame.functionName === 'shortLivedAllocationProbe'))
       .toBeGreaterThan(0);
-    const updateBytes = (profile: HeapSampleNode): number => sampledSubtreeBytes(profile,
-      node => node.callFrame.functionName === 'update'
-        && node.callFrame.url.includes('/dressup/actor.ts'));
-    expect(updateBytes(after.profile.head)).toBe(updateBytes(before.profile.head));
+    process.stdout.write(`actor allocation clean windows: ${steady.cleanWindows.join(',')}\n`);
+    expect(steady.steady, allocationFailure(steady)).toBe(true);
     expect(actor.root).toBe(root); expect(actor.skeleton).toBe(skeleton); expect(actor.stats()).toBe(stats);
     expect(skeleton.boneMatrices).toBe(matrices); expect(root.getObjectByName('dressupSocket:gripR')).toBe(socket);
     expect(stats.boneTextureUploads).toBe(1);
     actor.dispose(); expect(stats).toEqual({ drawCalls: 0, triangles: 0, boneTextureUploads: 0,
-      bodyLayers: [], layerTextureBytes: 0 });
+      bodyLayers: [], hideMaps: [], layerTextureBytes: 0 });
   });
+
+  it('rejects an update that allocates and retains a typed array every frame', async () => {
+    const retained: Float32Array[] = [];
+    function fakeUpdate(): void { retained.push(new Float32Array(4)); }
+    const session = new Session(); session.connect();
+    await session.post('HeapProfiler.enable');
+    await session.post('HeapProfiler.startSampling', { samplingInterval: 1 });
+    await session.post('HeapProfiler.collectGarbage');
+    const steady = await sampleUntilAllocationSteady(session, function allocatingUpdateWindow() {
+      for (let index = 0; index < allocationWindowFrames; index += 1) fakeUpdate();
+    }, node => node.callFrame.functionName === 'allocatingUpdateWindow'
+      && node.callFrame.url.includes('/dressup/actor-runtime.test.ts'));
+    await session.post('HeapProfiler.stopSampling'); session.disconnect();
+    process.stdout.write(`fake update last dirty: ${steady.lastDirtyWindow}; `
+      + `${steady.lastDirtyDifferences.map(value => `${value.functionName}:${value.bytes}`).join(',')}\n`);
+    expect(retained).toHaveLength(allocationWindowFrames * maximumAllocationWindows);
+    expect(steady.steady).toBe(false);
+    expect(steady.cleanWindows).toEqual([]);
+    expect(steady.lastDirtyWindow).toBe(maximumAllocationWindows);
+    expect(steady.lastDirtyDifferences.some(value => value.bytes > 0)).toBe(true);
+  }, 15_000);
 
   it('overrides the equipped hand finger pose after the mixer update', async () => {
     const body = bodyGltf(); const prop = propGltf();
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
     } });
@@ -220,5 +303,39 @@ describe('dressup actor runtime', () => {
     const finger = actor.skeleton.getBoneByName('RightHandIndex1')!;
     expect(finger.quaternion.toArray()).toEqual([0, 0, .70710678, .70710678]);
     actor.dispose();
+  });
+
+  it('binds one head to the shared skeleton, multiplies body tint, and supports detached setHead', async () => {
+    const body = bodyGltf(); const first = bodyGltf(); const second = bodyGltf();
+    first.mesh.name = 'firstHead'; second.mesh.name = 'secondHead';
+    const bind = new Matrix4().makeTranslation(0, .25, 0);
+    first.mesh.bindMatrix.copy(bind);
+    const disposed = vi.spyOn(first.mesh.geometry, 'dispose');
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
+    const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
+      loader: fakeLoader({ body: body.gltf, first: first.gltf, second: second.gltf }) });
+    const inverses = actor.skeleton.boneInverses.map(matrix => matrix.toArray());
+    const material = (actor.root.getObjectByName('body') as SkinnedMesh).material as MeshBasicMaterial;
+    const original = material.color.clone();
+    await actor.equip({ kind: 'head', id: 'npc_first', url: 'first', fit: {
+      schema: 'tianshu-dressup-fit.v1', kind: 'head', id: 'npc_first',
+      hideRegions: ['head'], neverHide: ['handR'], skinTint: [.6, .7, .8],
+    } });
+    expect(first.mesh.skeleton).toBe(actor.skeleton); expect(first.mesh.bindMatrix.equals(bind)).toBe(true);
+    expect(actor.skeleton.boneInverses.map(matrix => matrix.toArray())).toEqual(inverses);
+    expect(material.color.toArray()).toEqual([original.r * .6, original.g * .7, original.b * .8]);
+    const shader = { uniforms: {} as Record<string, { value: unknown }>,
+      vertexShader: '#include <common>\n#include <begin_vertex>',
+      fragmentShader: '#include <common>\n#include <alphatest_fragment>' };
+    material.onBeforeCompile(shader as never, {} as never);
+    expect(shader.uniforms['uHideMask']!.value).toBe(4);
+    const { setHead } = actor;
+    await setHead('second', { skinTint: '#cca080' });
+    expect(actor.root.getObjectByName('firstHead')).toBeUndefined();
+    expect(second.mesh.skeleton).toBe(actor.skeleton); expect(disposed).toHaveBeenCalledOnce();
+    expect(actor.stats().drawCalls).toBe(2);
+    await setHead(null);
+    expect(material.color.equals(original)).toBe(true); expect(shader.uniforms['uHideMask']!.value).toBe(0);
+    expect(actor.stats().drawCalls).toBe(1); actor.dispose();
   });
 });
