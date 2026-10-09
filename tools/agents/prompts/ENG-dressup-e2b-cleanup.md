@@ -17,7 +17,8 @@
 4. **重打包**：用 pack-compact 后的 `pack_glb.mjs` 打包三模板（输出不含未引用顶点）。
 5. **重烘遮罩**：用 G1b 的可见性模式重烘三模板 `hidemask*.png`，重跑 `validate.py`，三模板 level 至少 `draft`（几何门、可见穿透门、holes 门全过），manifest 同步（可去掉 `experimental`：只有三项门全过时）。
 6. **重生成布衣变体**：用 `retexture_variant.py` 以新劲装为版型、原变体衣图为输入，重生成 `garments/eq_buyi/**` 与 `garments/eq_buyi_tex/**`，fit 引用同一张 `hideMask`（几何相同），重跑 validate；报告布衣变体皮肤色占比（应随版型清理降到 < 0.1%）。
-7. **测试**：`tests_garment.py` 补防翻面约束的合成回归（一个会被旧推离折叠的薄片，新选项下翻面为 0）；贴图清理的合成回归（皮肤色纹素被布料色替换、非衣物纹素不动）。
+7. **清理**：删除 `garments/eq_jinzhuang/` 下 G1b 留下的 `bake.*.log` 等非素材文件（日志放系统临时目录），manifest 只列真实交付文件。
+8. **测试**：`tests_garment.py` 补防翻面约束的合成回归（一个会被旧推离折叠的薄片，新选项下翻面为 0）；贴图清理的合成回归（皮肤色纹素被布料色替换、非衣物纹素不动）。
 
 ## 约束
 - 只写 `tools/model3d/dressup/{fit_garment.py,tests_garment.py,extract_garment.py}`、`assets/default/model3d/dressup/garments/{eq_jinzhuang,eq_buyi,eq_buyi_tex}/**` 与本任务报告。
