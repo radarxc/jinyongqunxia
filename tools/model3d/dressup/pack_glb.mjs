@@ -1,19 +1,12 @@
 #!/usr/bin/env node
-/** 换装 GLB 减面（只重建索引）并编码 EXT_meshopt_compression。 */
+/** 换装 GLB 减面、无损清除未引用顶点并编码 EXT_meshopt_compression。 */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import process from 'node:process';
 import { TextDecoder, TextEncoder } from 'node:util';
-import { MeshoptEncoder } from 'meshoptimizer';
-
-const renderRequire = createRequire(new URL('../../../packages/render/package.json', import.meta.url));
-const simplifierUrl = pathToFileURL(renderRequire.resolve(
-  'three/examples/jsm/libs/meshopt_simplifier.module.js',
-));
-const { MeshoptSimplifier } = await import(simplifierUrl.href);
+import { MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier } from 'meshoptimizer';
 const MAGIC = 0x46546c67; const JSON_CHUNK = 0x4e4f534a; const BIN_CHUNK = 0x004e4942;
 const COMPONENT = { 5120: [Int8Array, 1], 5121: [Uint8Array, 1], 5122: [Int16Array, 2],
   5123: [Uint16Array, 2], 5125: [Uint32Array, 4], 5126: [Float32Array, 4] };
@@ -33,8 +26,6 @@ function parse(bytes, source) {
     else if (type === BIN_CHUNK) binary = payload;
   }
   if (!document) throw new Error('GLB 缺 JSON chunk');
-  if ((document.extensionsUsed ?? []).includes('EXT_meshopt_compression'))
-    throw new Error('输入已含 EXT_meshopt_compression，请勿重复 pack');
   return { document, binary };
 }
 function encode(document, binary) {
@@ -53,6 +44,41 @@ function append(binary, payload) {
   const offset = pad4(binary.length); const result = new Uint8Array(offset + payload.length);
   result.set(binary); result.set(payload, offset); return [result, offset];
 }
+async function decodeCompression(document, input) {
+  if (!(document.extensionsUsed ?? []).includes('EXT_meshopt_compression'))
+    return { binary: input, decoded: false };
+  await MeshoptDecoder.ready;
+  let binary = new Uint8Array();
+  for (const view of document.bufferViews ?? []) {
+    const extension = view.extensions?.EXT_meshopt_compression;
+    let payload;
+    if (extension) {
+      if (extension.buffer !== 0) throw new Error('只支持 GLB 内嵌 buffer 0 的 meshopt 数据');
+      const source = input.subarray(extension.byteOffset ?? 0,
+        (extension.byteOffset ?? 0) + extension.byteLength);
+      payload = await MeshoptDecoder.decodeGltfBufferAsync(extension.count,
+        extension.byteStride, source, extension.mode, extension.filter ?? 'NONE');
+      const remaining = { ...(view.extensions ?? {}) };
+      delete remaining.EXT_meshopt_compression;
+      if (Object.keys(remaining).length) view.extensions = remaining;
+      else delete view.extensions;
+      view.byteLength = payload.length;
+    } else {
+      if ((view.buffer ?? 0) !== 0) throw new Error('bufferView 指向外部 buffer');
+      payload = input.slice(view.byteOffset ?? 0, (view.byteOffset ?? 0) + view.byteLength);
+    }
+    let offset; [binary, offset] = append(binary, payload);
+    view.buffer = 0; view.byteOffset = offset;
+  }
+  document.extensionsUsed = (document.extensionsUsed ?? [])
+    .filter(name => name !== 'EXT_meshopt_compression');
+  document.extensionsRequired = (document.extensionsRequired ?? [])
+    .filter(name => name !== 'EXT_meshopt_compression');
+  if (!document.extensionsUsed.length) delete document.extensionsUsed;
+  if (!document.extensionsRequired.length) delete document.extensionsRequired;
+  document.buffers = [{ byteLength: binary.length }];
+  return { binary, decoded: true };
+}
 function accessorData(document, binary, index) {
   const accessor = document.accessors[index]; const view = document.bufferViews[accessor.bufferView];
   if ((view.buffer ?? 0) !== 0 || accessor.sparse) throw new Error('accessor 不支持外部 buffer/sparse: ' + index);
@@ -63,7 +89,87 @@ function accessorData(document, binary, index) {
   const packed = new Uint8Array(accessor.count * item);
   for (let row = 0; row < accessor.count; row++)
     packed.set(binary.subarray(start + row * stride, start + row * stride + item), row * item);
-  return { array: new Type(packed.buffer), accessor, width, bytes };
+  return { array: new Type(packed.buffer), packed, accessor, width, bytes };
+}
+function appendAccessor(document, binary, source, rows, target) {
+  const data = accessorData(document, binary, source);
+  const item = data.width * data.bytes; const payload = new Uint8Array(rows.length * item);
+  for (let row = 0; row < rows.length; row++)
+    payload.set(data.packed.subarray(rows[row] * item, (rows[row] + 1) * item), row * item);
+  let offset; [binary, offset] = append(binary, payload);
+  const viewIndex = document.bufferViews.length;
+  document.bufferViews.push({ buffer: 0, byteOffset: offset, byteLength: payload.length, target });
+  const accessor = { ...data.accessor, bufferView: viewIndex, byteOffset: 0, count: rows.length };
+  delete accessor.sparse;
+  if (accessor.min || accessor.max) {
+    const selected = rows.map(row => data.array.subarray(row * data.width, (row + 1) * data.width));
+    accessor.min = Array.from({ length: data.width }, (_, column) =>
+      selected.reduce((value, itemValue) => Math.min(value, itemValue[column]), Infinity));
+    accessor.max = Array.from({ length: data.width }, (_, column) =>
+      selected.reduce((value, itemValue) => Math.max(value, itemValue[column]), -Infinity));
+  }
+  document.accessors.push(accessor);
+  return { binary, index: document.accessors.length - 1 };
+}
+function appendIndices(document, binary, values) {
+  const max = values.reduce((value, item) => Math.max(value, item), 0);
+  const Type = max <= 65535 ? Uint16Array : Uint32Array;
+  const array = Type.from(values); const payload = new Uint8Array(array.buffer);
+  let offset; [binary, offset] = append(binary, payload);
+  const viewIndex = document.bufferViews.length;
+  document.bufferViews.push({ buffer: 0, byteOffset: offset, byteLength: payload.length, target: 34963 });
+  document.accessors.push({ bufferView: viewIndex, byteOffset: 0,
+    componentType: Type === Uint16Array ? 5123 : 5125, count: array.length, type: 'SCALAR',
+    min: [array.reduce((a, b) => Math.min(a, b), Infinity)],
+    max: [max] });
+  return { binary, index: document.accessors.length - 1 };
+}
+function appendVertexMap(document, binary, values) {
+  const array = Uint32Array.from(values); const payload = new Uint8Array(array.buffer);
+  let offset; [binary, offset] = append(binary, payload);
+  const viewIndex = document.bufferViews.length;
+  document.bufferViews.push({ buffer: 0, byteOffset: offset, byteLength: payload.length });
+  document.accessors.push({ bufferView: viewIndex, byteOffset: 0, componentType: 5125,
+    count: array.length, type: 'SCALAR', min: [array.reduce((a, b) => Math.min(a, b), Infinity)],
+    max: [array.reduce((a, b) => Math.max(a, b), 0)] });
+  return { binary, index: document.accessors.length - 1 };
+}
+function accessorReferences(document) {
+  const refs = [];
+  for (const mesh of document.meshes ?? []) for (const primitive of mesh.primitives ?? []) {
+    if (primitive.indices !== undefined) refs.push([primitive, 'indices']);
+    const sourceMap = primitive.extras?.tianshuSourceVertexAccessor;
+    if (sourceMap !== undefined) refs.push([primitive.extras, 'tianshuSourceVertexAccessor']);
+    for (const attributes of [primitive.attributes, ...(primitive.targets ?? [])])
+      for (const name of Object.keys(attributes ?? {})) refs.push([attributes, name]);
+  }
+  for (const skin of document.skins ?? [])
+    if (skin.inverseBindMatrices !== undefined) refs.push([skin, 'inverseBindMatrices']);
+  for (const animation of document.animations ?? []) for (const sampler of animation.samplers ?? [])
+    refs.push([sampler, 'input'], [sampler, 'output']);
+  for (const node of document.nodes ?? []) {
+    const attributes = node.extensions?.EXT_mesh_gpu_instancing?.attributes;
+    for (const name of Object.keys(attributes ?? {})) refs.push([attributes, name]);
+  }
+  return refs;
+}
+function prune(document, binary) {
+  const refs = accessorReferences(document); const usedAccessors = [...new Set(refs.map(([owner, key]) => owner[key]))];
+  const accessorMap = new Map(usedAccessors.map((old, index) => [old, index]));
+  document.accessors = usedAccessors.map(index => document.accessors[index]);
+  for (const [owner, key] of refs) owner[key] = accessorMap.get(owner[key]);
+  const usedViews = [...new Set([...document.accessors.map(value => value.bufferView),
+    ...(document.images ?? []).map(value => value.bufferView)].filter(value => value !== undefined))];
+  const viewMap = new Map(usedViews.map((old, index) => [old, index])); let packed = new Uint8Array();
+  document.bufferViews = usedViews.map(index => {
+    const view = document.bufferViews[index]; const source = binary.slice(view.byteOffset ?? 0,
+      (view.byteOffset ?? 0) + view.byteLength); let offset; [packed, offset] = append(packed, source);
+    return { ...view, buffer: 0, byteOffset: offset };
+  });
+  for (const accessor of document.accessors) accessor.bufferView = viewMap.get(accessor.bufferView);
+  for (const image of document.images ?? [])
+    if (image.bufferView !== undefined) image.bufferView = viewMap.get(image.bufferView);
+  document.buffers = [{ byteLength: packed.length }]; return packed;
 }
 function floats(data) {
   if (data.array instanceof Float32Array) return new Float32Array(data.array);
@@ -149,6 +255,42 @@ async function simplify(document, binary, ratio) {
   document.buffers[0].byteLength = binary.length;
   return { binary, before, after, locked };
 }
+function compactVertices(document, binary) {
+  let before = 0; let after = 0;
+  for (const mesh of document.meshes ?? []) for (const primitive of mesh.primitives ?? []) {
+    if (primitive.indices === undefined || primitive.attributes?.POSITION === undefined) continue;
+    const position = accessorData(document, binary, primitive.attributes.POSITION);
+    const sourceIndices = accessorData(document, binary, primitive.indices).array;
+    const rows = [...new Set(Array.from(sourceIndices, Number))].sort((left, right) => left - right);
+    const previousMap = primitive.extras?.tianshuSourceVertexAccessor;
+    const previousRows = previousMap === undefined ? undefined :
+      accessorData(document, binary, previousMap).array;
+    const sourceRows = previousRows === undefined ? rows : rows.map(row => Number(previousRows[row]));
+    const remap = new Int32Array(position.accessor.count); remap.fill(-1);
+    for (let index = 0; index < rows.length; index++) {
+      if (rows[index] < 0 || rows[index] >= remap.length) throw new Error('primitive 索引越过 POSITION');
+      remap[rows[index]] = index;
+    }
+    const indices = Uint32Array.from(sourceIndices, value => remap[Number(value)]);
+    if (!rows.length) throw new Error('不支持空索引 primitive');
+    before += position.accessor.count; after += rows.length;
+    for (const attributes of [primitive.attributes, ...(primitive.targets ?? [])])
+      for (const name of Object.keys(attributes ?? {})) {
+        const source = attributes[name]; const accessor = document.accessors[source];
+        if (accessor.count !== position.accessor.count)
+          throw new Error(`${name} 顶点数与 POSITION 不同`);
+        const result = appendAccessor(document, binary, source, rows, 34962);
+        binary = result.binary; attributes[name] = result.index;
+      }
+    const result = appendIndices(document, binary, indices);
+    binary = result.binary; primitive.indices = result.index;
+    const mapping = appendVertexMap(document, binary, sourceRows);
+    binary = mapping.binary; primitive.extras = { ...(primitive.extras ?? {}),
+      tianshuSourceVertexAccessor: mapping.index };
+  }
+  document.buffers[0].byteLength = binary.length;
+  return { binary: prune(document, binary), before, after };
+}
 
 async function compress(document, original) {
   // EXT 的 fallback 与压缩 payload 同属 GLB 唯一 BIN；即使 required，
@@ -201,7 +343,7 @@ function triangles(document) {
 export async function main(argv = process.argv.slice(2)) {
   if (argv.includes('-h') || argv.includes('--help')) {
     process.stdout.write('用法：node pack_glb.mjs <输入.glb> <输出.glb> [--simplify <ratio>] [--no-meshopt]\n');
-    process.stdout.write('减面只重建索引；LockBorder + vertex_lock 锁拓扑边界和 _REGION 边界。\n');
+    process.stdout.write('减面后按索引无损压缩全部顶点属性；LockBorder + vertex_lock 锁拓扑与 _REGION 边界。\n');
     return 0;
   }
   const positional = []; let ratio; let meshopt = true;
@@ -215,16 +357,20 @@ export async function main(argv = process.argv.slice(2)) {
   if (ratio !== undefined && !(ratio > 0 && ratio <= 1)) return fail('--simplify 必须在 (0, 1]');
   try {
     const input = new Uint8Array(await readFile(positional[0]));
-    let { document, binary } = parse(input, positional[0]); const before = triangles(document);
+    let { document, binary } = parse(input, positional[0]);
+    const decoded = await decodeCompression(document, binary); binary = decoded.binary;
+    const before = triangles(document);
     let stats = { before, after: before, locked: 0 };
     if (ratio !== undefined && ratio < 1) {
       const result = await simplify(document, binary, ratio); binary = result.binary; stats = result;
     }
+    const vertices = compactVertices(document, binary); binary = vertices.binary;
     if (meshopt) binary = await compress(document, binary);
     const output = encode(document, binary); await mkdir(dirname(positional[1]), { recursive: true });
     await writeFile(positional[1], output);
     process.stdout.write(JSON.stringify({ trianglesBefore: before, trianglesAfter: triangles(document),
-      lockedVertices: stats.locked, inputBytes: input.length, outputBytes: output.length, meshopt }) + '\n');
+      verticesBefore: vertices.before, verticesAfter: vertices.after, lockedVertices: stats.locked,
+      inputBytes: input.length, outputBytes: output.length, decodedMeshopt: decoded.decoded, meshopt }) + '\n');
     return 0;
   } catch (error) { return fail(error instanceof Error ? error.message : String(error)); }
 }

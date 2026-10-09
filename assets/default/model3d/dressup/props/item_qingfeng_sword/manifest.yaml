@@ -3,8 +3,8 @@
   category: model3d
   kind: dressup-prop
   template: tpl_f_medium
-  sha256: d766097ef7b03e08792a865c3192f8abe3f8c7c0fffe26567c7504356b51bd23
-  size_bytes: 4547124
+  sha256: 9d7cc29520cb099c14a24a7d0acf74048066a94c70b90c908489202e18dd007c
+  size_bytes: 1021552
   triangles: 8676
   report: report.json
   status: candidate

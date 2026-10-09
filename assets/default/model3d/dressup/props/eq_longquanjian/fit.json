@@ -9,7 +9,7 @@
   "diagnostics": {
     "anchorPositionMu": [
       0.0,
-      1.043081288010228e-09,
+      0.0,
       0.0
     ],
     "anchorSourceMu": [
@@ -126,17 +126,17 @@
     ]
   },
   "handleDetection": {
-    "bladeSegmentVertices": 71780,
+    "bladeSegmentVertices": 7279,
     "handleEnd": "min",
-    "handleSegmentVertices": 35864,
+    "handleSegmentVertices": 926,
     "method": "guard-peak",
-    "peakAxialMu": 0.11153683,
+    "peakAxialMu": 0.111497291,
     "peakFraction": 0.268852587
   },
   "id": "eq_longquanjian",
   "kind": "prop",
   "mPerMu": 1.69370027,
-  "measuredLengthMu": 1.564723398,
+  "measuredLengthMu": 1.563119776,
   "realSizeM": 0.95,
   "restTiltDeg": 60.0,
   "scaleApplied": 0.35846724,
@@ -144,7 +144,7 @@
   "sizeAxis": "length",
   "socket": "gripR",
   "source": {
-    "file": "tripo__dressup_eq_longquanjian.glb",
+    "file": "apps/game/public/models/props/eq_longquanjian_raw.glb",
     "sha256": "d75b051dee5a4606b7f8c329c35a7958efbdeb86e28dcfc394075cdfa10526ac"
   },
   "stats": {

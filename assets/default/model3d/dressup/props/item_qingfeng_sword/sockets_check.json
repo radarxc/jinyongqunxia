@@ -1,7 +1,7 @@
 {
   "animated": {
     "distanceMethod": "strict nearest-triangle signed distance for every selected vertex",
-    "insideRatio": 0.002380556939600288,
+    "insideRatio": 0.0023770968277694736,
     "insideVertexCount": {
       "max": 331,
       "median": 0.0,
@@ -9,25 +9,25 @@
       "samples": 72,
       "verticesPerFrame": 4014
     },
-    "insideVertexTotal": 688,
+    "insideVertexTotal": 687,
     "level": "approved",
     "minSignedDistanceMm": {
-      "median": 75.8465729973941,
-      "min": -400.9105023077204
+      "median": 75.83827180676514,
+      "min": -400.8860923143931
     },
     "surface": "full body triangles"
   },
   "bind": {
-    "handleForwardDeltaMu": 0.44302191752796916,
+    "handleForwardDeltaMu": 0.4430219144763902,
     "handlePointWorldMu": [
-      0.129889544419103,
-      0.6135083481918089,
-      0.06814115044151517
+      0.12988954341914927,
+      0.6135181066752197,
+      0.06815508700274997
     ],
     "scabbardTailWorldMu": [
-      0.12872811641219806,
-      0.3436822045501863,
-      -0.37488076708645396
+      0.12872811541224433,
+      0.3436919651703353,
+      -0.37486682747364025
     ],
     "sheatheAngleDeg": 34.99999018930638,
     "sidePlaneDot": 2.7111633314383e-09
@@ -51,12 +51,12 @@
   "sheatheSweep": [
     {
       "candidate": "35",
-      "insideRatio": 0.002380556939600288,
-      "insideVertexTotal": 688,
+      "insideRatio": 0.0023770968277694736,
+      "insideVertexTotal": 687,
       "level": "approved",
       "minSignedDistanceMm": {
-        "median": 75.8465729973941,
-        "min": -400.9105023077204
+        "median": 75.83827180676514,
+        "min": -400.8860923143931
       },
       "sheatheAngleDeg": 35.0
     }
@@ -66,7 +66,7 @@
     "bladeSegmentVertices": 4014,
     "handleEnd": "min",
     "handleSegmentVertices": 3249,
-    "peakAxialMu": 0.134607306,
+    "peakAxialMu": 0.134590299,
     "peakFraction": 0.323316028,
     "scabbardSegmentVertices": 4014,
     "source": "fit.handleDetection",

@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "6bc4cb609b31831d27e680a4dc6d346115d47f25f27a028353c1d82a9381c88c",
-      "sizeBytes": 4396452
+      "sha256": "759f2cf9a69c3c9876ad85c869d74cc250b4eb86acad5527fcb25aa85efdaad2",
+      "sizeBytes": 876260
     },
     "fit": {
-      "sha256": "2fd32c1c6978d786b93ba18356eb411a017cdd534cc98c26a5e8ed905b0348d9",
-      "sizeBytes": 1366
+      "sha256": "b0b27a2efb2caf7c4c0458f639f5f10af4e96378f0bcceec29267068cb41e423",
+      "sizeBytes": 1310
     }
   },
   "checks": [
@@ -130,7 +130,7 @@
     {
       "name": "geometry.maxResidualMu",
       "pass": true,
-      "value": 1.8801107099273625e-09,
+      "value": 1.892199330449883e-09,
       "threshold": "finite"
     },
     {
@@ -200,14 +200,14 @@
       "pass": true,
       "value": {
         "computed": [
-          -7.095986992444736e-12,
-          -1.3369250368225338e-12,
-          3.6035271988588136e-10
+          -7.275957614183426e-12,
+          -7.275957614183426e-12,
+          -7.408247626461417e-11
         ],
         "recorded": [
-          4.2582349111276675e-14,
-          8.95836212435349e-14,
-          -1.6454462449036723e-12
+          0.0,
+          0.0,
+          0.0
         ]
       },
       "threshold": "norm < 1e-4 and match"
@@ -217,7 +217,7 @@
       "pass": true,
       "value": {
         "up": "+Y",
-        "alignment": 0.9999999999999998
+        "alignment": 0.9999990340909048
       },
       "threshold": "+Y and >= 0.999"
     },
@@ -225,8 +225,8 @@
       "name": "prop.semanticDirection",
       "pass": true,
       "value": {
-        "anchorNormMu": 3.604250509159357e-10,
-        "medianYMu": -0.025266176089644432
+        "anchorNormMu": 7.479366431750734e-11,
+        "medianYMu": -0.025762584060430527
       },
       "threshold": "weapon body +Y; hat opening -Y; pendant/pouch string top y=0"
     },
@@ -240,15 +240,15 @@
       "name": "prop.declaredLengthMu",
       "pass": true,
       "value": {
-        "mesh": 0.047233860939741135,
-        "declared": 0.04723385917342242
+        "mesh": 0.04722694307565689,
+        "declared": 0.04722694308354455
       },
       "threshold": "差 <= 1e-4 mu"
     },
     {
       "name": "prop.realSizeError",
       "pass": true,
-      "value": 3.7834775069856e-08,
+      "value": 0.00014642201856627374,
       "threshold": "<= 0.02"
     }
   ]

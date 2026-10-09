@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "b10602452492b8254c5a1c124d3556304bb3c24b0a37d7ff5a00c9a85a266ea0",
-      "sizeBytes": 2380764
+      "sha256": "969037f31dddd449bf22de880a2f5fde40361b76b390867e60aa4b1843f5eaa3",
+      "sizeBytes": 842696
     },
     "fit": {
-      "sha256": "cfe2b78dffaee3a1c42e4f965347108aa1fceb9c23f4b82640307134b995071b",
-      "sizeBytes": 3998
+      "sha256": "94c6e7dcef7078f3934a0f4e4b8e7a20fd01857cca358a10240d3f7df148c840",
+      "sizeBytes": 3997
     }
   },
   "checks": [
@@ -130,7 +130,7 @@
     {
       "name": "geometry.maxResidualMu",
       "pass": true,
-      "value": 2.9767788413274493e-08,
+      "value": 5.9261671565848935e-08,
       "threshold": "finite"
     },
     {
@@ -201,12 +201,12 @@
       "value": {
         "computed": [
           0.0,
-          6.938893903907228e-18,
+          -1.0430812810713341e-09,
           0.0
         ],
         "recorded": [
           0.0,
-          1.043081288010228e-09,
+          0.0,
           0.0
         ]
       },
@@ -217,7 +217,7 @@
       "pass": true,
       "value": {
         "up": "+Y",
-        "alignment": 0.9999999999999999
+        "alignment": 0.9999505998654719
       },
       "threshold": "+Y and >= 0.999"
     },
@@ -227,14 +227,14 @@
       "value": {
         "method": "guard-peak",
         "handleEnd": "min",
-        "peakAxialMu": 0.11153683,
-        "gripAxialMu": 6.938893903907228e-18,
+        "peakAxialMu": 0.111497291,
+        "gripAxialMu": -1.0430812810713341e-09,
         "gripOnHandleSide": true,
-        "handleSegmentVertices": 35865,
-        "bladeSegmentVertices": 71779,
+        "handleSegmentVertices": 926,
+        "bladeSegmentVertices": 7279,
         "recordedCountDelta": {
-          "handle": 1,
-          "blade": -1
+          "handle": 0,
+          "blade": 0
         },
         "recordedCountsMatch": true
       },
@@ -250,16 +250,29 @@
       "name": "prop.declaredLengthMu",
       "pass": true,
       "value": {
-        "mesh": 0.5609020590782166,
-        "declared": 0.5609020778444815
+        "mesh": 0.5603272318840027,
+        "declared": 0.5603272318921383
       },
       "threshold": "差 <= 1e-4 mu"
     },
     {
       "name": "prop.realSizeError",
       "pass": true,
-      "value": 3.2732282849080645e-08,
+      "value": 0.0010248590207494995,
       "threshold": "<= 0.02"
+    },
+    {
+      "name": "prop.fullBladeMainAxisY",
+      "pass": true,
+      "value": {
+        "method": "end-to-end-area-weighted-blade-axis",
+        "fullBladeAlignment": 0.9999705214720778,
+        "endSliceFraction": 0.02,
+        "bladeTriangles": 8402,
+        "lowEndTriangles": 23,
+        "highEndTriangles": 209
+      },
+      "threshold": "report only"
     }
   ]
 }

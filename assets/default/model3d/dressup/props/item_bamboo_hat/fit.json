@@ -5,12 +5,12 @@
     "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
   },
   "class": "hat",
-  "clearanceMm": 3.000002558,
+  "clearanceMm": 2.999999404,
   "diagnostics": {
     "anchorPositionMu": [
-      -4.960880191488699e-13,
       0.0,
-      -3.7206601436165245e-12
+      0.0,
+      0.0
     ],
     "anchorSourceMu": [
       -0.005487842,
@@ -48,7 +48,7 @@
   "gripAdjust": {
     "pos": [
       0.0,
-      0.031280993,
+      0.028369872251565155,
       0.0
     ],
     "quat": [
@@ -60,9 +60,9 @@
   },
   "id": "item_bamboo_hat",
   "kind": "prop",
-  "liftMu": 0.031280993,
+  "liftMu": 0.028369872,
   "mPerMu": 1.69370027,
-  "measuredLengthMu": 0.953571626,
+  "measuredLengthMu": 0.95259481,
   "realSizeM": 0.45,
   "scaleApplied": 0.27862664,
   "schema": "tianshu-dressup-fit.v1",

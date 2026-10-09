@@ -12,8 +12,8 @@
     "insideVertexTotal": 141,
     "level": "approved",
     "minSignedDistanceMm": {
-      "median": 87.84056327122664,
-      "min": -39.212384067313536
+      "median": 87.77747352797891,
+      "min": -39.219075977065955
     },
     "surface": "full body triangles"
   },
@@ -33,7 +33,7 @@
     "bladeSegmentVertices": 7279,
     "handleEnd": "min",
     "handleSegmentVertices": 926,
-    "peakAxialMu": 0.11153683,
+    "peakAxialMu": 0.111497291,
     "peakFraction": 0.268852587,
     "source": "fit.handleDetection",
     "totalVertices": 8205,
@@ -42,34 +42,34 @@
   "tiltSweep": [
     {
       "candidate": "0",
-      "insideRatio": 0.01991268641907466,
-      "insideVertexTotal": 10436,
+      "insideRatio": 0.01991650257208713,
+      "insideVertexTotal": 10438,
       "level": "draft",
       "minSignedDistanceMm": {
-        "median": 118.60165629037581,
-        "min": -71.53672408239403
+        "median": 118.53546367636554,
+        "min": -71.47646311635923
       },
       "restTiltDeg": -0.0
     },
     {
       "candidate": "20",
-      "insideRatio": 0.037188411106531725,
-      "insideVertexTotal": 19490,
+      "insideRatio": 0.03718650303002549,
+      "insideVertexTotal": 19489,
       "level": "fail",
       "minSignedDistanceMm": {
-        "median": 109.85937254162027,
-        "min": -73.07052638023106
+        "median": 109.79855884279695,
+        "min": -73.09208213809157
       },
       "restTiltDeg": 20.0
     },
     {
       "candidate": "40",
-      "insideRatio": 0.006359618995283235,
-      "insideVertexTotal": 3333,
+      "insideRatio": 0.006351986689258292,
+      "insideVertexTotal": 3329,
       "level": "draft",
       "minSignedDistanceMm": {
-        "median": 114.36900644754046,
-        "min": -55.24042481446061
+        "median": 114.33872739792096,
+        "min": -55.221062148488436
       },
       "restTiltDeg": 40.0
     },
@@ -79,8 +79,8 @@
       "insideVertexTotal": 141,
       "level": "approved",
       "minSignedDistanceMm": {
-        "median": 87.84056327122664,
-        "min": -39.212384067313536
+        "median": 87.77747352797891,
+        "min": -39.219075977065955
       },
       "restTiltDeg": 60.0
     }

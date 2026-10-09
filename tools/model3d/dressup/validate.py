@@ -69,12 +69,16 @@ def _faces(mesh: Mesh) -> np.ndarray:
 def _result(fit: dict[str, Any], asset_path: Path, fit_path: Path,
             checks: list[dict[str, Any]], requested: str) -> dict[str, Any]:
     passed = all(check["pass"] for check in checks)
-    return {"schema": SCHEMA, "level": requested if passed else "fail",
-            "template": fit.get("template"),
-            "subject": {"kind": fit.get("kind"), "id": fit.get("id")},
-            "inputs": {"asset": _input_record(asset_path),
-                       "fit": _input_record(fit_path)},
-            "checks": checks}
+    result: dict[str, Any] = {
+        "schema": SCHEMA, "level": requested if passed else "fail",
+        "template": fit.get("template"),
+        "subject": {"kind": fit.get("kind"), "id": fit.get("id")},
+        "inputs": {"asset": _input_record(asset_path), "fit": _input_record(fit_path)},
+        "checks": checks}
+    waivers = [str(check["name"]) for check in checks if check.get("waived") is True]
+    if waivers:
+        result["waivers"] = waivers
+    return result
 
 
 def _world_mesh(glb: GLB) -> Mesh:
@@ -250,6 +254,35 @@ def _positive_number(value: Any) -> float | None:
 
 def _present(value: Any) -> bool:
     return value is not None and value != "" and value != [] and value != {}
+
+
+def _axis_check_waiver(fit: dict[str, Any]) -> dict[str, Any] | None:
+    waiver = fit.get("axisCheckWaiver")
+    if waiver is None:
+        return None
+    if not isinstance(waiver, dict):
+        raise ValueError("axisCheckWaiver 必须是对象")
+    missing = [name for name in ("reason", "approvedBy", "date", "evidence")
+               if not _present(waiver.get(name))]
+    if missing:
+        raise ValueError(f"axisCheckWaiver 缺少必填字段：{', '.join(missing)}")
+    if not all(isinstance(waiver[name], str) for name in ("reason", "approvedBy", "date")):
+        raise ValueError("axisCheckWaiver reason/approvedBy/date 必须是非空字符串")
+    if not isinstance(waiver["evidence"], dict):
+        raise ValueError("axisCheckWaiver.evidence 必须是非空对象")
+    return waiver
+
+
+def _prop_main_axis_check(fit: dict[str, Any], alignment: float,
+                          axis_details: dict[str, Any],
+                          waiver: dict[str, Any] | None) -> dict[str, Any]:
+    value = {"up": fit.get("up"), "alignment": alignment}
+    if waiver is not None and "fullBladeAlignment" in axis_details:
+        value["fullBladeAlignment"] = axis_details["fullBladeAlignment"]
+    passed = fit.get("up") == "+Y" and alignment >= 0.999
+    extra = {"waived": True, "waiver": waiver} if waiver is not None else {}
+    return _check("prop.mainAxisY", passed or waiver is not None, value,
+                  "+Y and >= 0.999", **extra)
 
 
 def _recorded_template(path: Any) -> str | None:
@@ -835,22 +868,128 @@ def _geometry_checks(source: np.ndarray, final: Mesh, body: Mesh | None,
     return checks
 
 
-def _prop_axis_and_anchor(vertices: np.ndarray, fit: dict[str, Any]) -> tuple[float, np.ndarray, float]:
-    prop_class = fit.get("class"); axes = pca(vertices)[2]
-    axis = axes[0] if prop_class != "hat" else max(axes, key=lambda value: abs(float(value[1])))
+def _prop_axis_and_anchor(vertices: np.ndarray, fit: dict[str, Any],
+                          faces: np.ndarray | None = None,
+                          axis_details: dict[str, Any] | None = None
+                          ) -> tuple[float, np.ndarray, float]:
+    def surface_axes(surface: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        """Return exact area-weighted surface centroid and PCA axes."""
+        cross = np.cross(surface[:, 1] - surface[:, 0], surface[:, 2] - surface[:, 0])
+        twice_area = np.linalg.norm(cross, axis=1)
+        keep = twice_area > np.finfo(np.float64).eps
+        surface, areas = surface[keep], twice_area[keep] * .5
+        if not len(surface):
+            raise ValueError("faces 没有非退化三角")
+        summed = surface.sum(axis=1); total_area = float(areas.sum())
+        center = np.einsum("n,ni->i", areas, summed / 3.0) / total_area
+        diagonal = np.einsum("n,nki,nkj->ij", areas, surface, surface)
+        summed_outer = np.einsum("n,ni,nj->ij", areas, summed, summed)
+        covariance = (diagonal + summed_outer) / (12.0 * total_area) - np.outer(center, center)
+        values, vectors = np.linalg.eigh(covariance)
+        return center, vectors[:, np.argsort(values)[::-1]].T
+
+    prop_class = fit.get("class")
+    triangles = None
+    if faces is None:
+        axes = pca(vertices)[2]
+    else:
+        face_indices = np.asarray(faces, dtype=np.int64)
+        if face_indices.size % 3:
+            raise ValueError("faces 必须可重排为 N×3 三角索引")
+        triangles = np.asarray(vertices, dtype=np.float64)[face_indices.reshape(-1, 3)]
+        _, axes = surface_axes(triangles)
+        if prop_class == "hat":
+            cross = np.cross(triangles[:, 1] - triangles[:, 0],
+                             triangles[:, 2] - triangles[:, 0])
+            twice_area = np.linalg.norm(cross, axis=1)
+            values = np.asarray(vertices)
+            crown_cutoff = values[:, 1].max() - .01 * np.ptp(values[:, 1])
+            crown_center = values[values[:, 1] >= crown_cutoff].mean(axis=0)
+            radius = np.linalg.norm(values[:, (0, 2)] - crown_center[[0, 2]], axis=1)
+            outer = radius >= np.quantile(radius, .95)
+            outer_faces = np.all(outer[face_indices.reshape(-1, 3)], axis=1)
+            normals = np.divide(cross, twice_area[:, None],
+                                out=np.zeros_like(cross), where=twice_area[:, None] > 0)
+            flat_outer = outer_faces & (np.abs(normals[:, 1]) >= .7)
+            if not np.any(flat_outer):
+                raise ValueError("hat 没有可拟合帽檐外圈平面的三角")
+            oriented = normals[flat_outer] * np.where(
+                normals[flat_outer, 1:2] < 0.0, -1.0, 1.0)
+            axis = np.einsum("n,ni->i", twice_area[flat_outer], oriented)
+            axis /= np.linalg.norm(axis)
+        elif prop_class == "weapon" and isinstance(fit.get("handleDetection"), dict):
+            detection = fit["handleDetection"]; peak = _positive_number(detection.get("peakAxialMu"))
+            handle_end = detection.get("handleEnd")
+            if peak is None or handle_end not in ("min", "max"):
+                raise ValueError("weapon handleDetection 缺少有效刃段边界")
+            centers = triangles.mean(axis=1)
+            blade = centers[:, 1] > peak if handle_end == "min" else centers[:, 1] < peak
+            blade_triangles = triangles[blade]
+            if not len(blade_triangles):
+                # 镜像反例会故意令既有分段失效；整面轴仅供其继续推导锚点，
+                # 正式门禁仍会由 prop.semanticDirection 的空刃段明确判失败。
+                axis = axes[0]
+                blade_triangles = None
+            if blade_triangles is not None:
+                _, full_axes = surface_axes(blade_triangles)
+                full_axis = full_axes[0]
+                # 完整刃段 PCA 只确定投影方向和两端。护手附近的穗子不进入
+                # 两端各 2% 截片，因此不会把剑身语义轴拉向一侧。
+                WEAPON_END_SLICE_FRACTION = .02
+                centers = blade_triangles.mean(axis=1)
+                areas = np.linalg.norm(np.cross(
+                    blade_triangles[:, 1] - blade_triangles[:, 0],
+                    blade_triangles[:, 2] - blade_triangles[:, 0]), axis=1) * .5
+                projections = centers @ full_axis
+                projection_min = float(projections.min())
+                projection_max = float(projections.max())
+                slice_width = (projection_max - projection_min) * WEAPON_END_SLICE_FRACTION
+                low = projections <= projection_min + slice_width
+                high = projections >= projection_max - slice_width
+                if not np.any(low) or not np.any(high) or slice_width <= 0:
+                    raise ValueError("weapon 刃段无法形成两端 2% 截片")
+                low_center = np.einsum("n,ni->i", areas[low], centers[low]) / areas[low].sum()
+                high_center = np.einsum("n,ni->i", areas[high], centers[high]) / areas[high].sum()
+                axis = high_center - low_center
+                axis_norm = float(np.linalg.norm(axis))
+                if axis_norm <= np.finfo(np.float64).eps:
+                    raise ValueError("weapon 刃段两端质心重合")
+                axis /= axis_norm
+                if axis_details is not None:
+                    axis_details.update({
+                        "method": "end-to-end-area-weighted-blade-axis",
+                        "fullBladeAlignment": abs(float(np.dot(full_axis, [0, 1, 0]))),
+                        "endSliceFraction": WEAPON_END_SLICE_FRACTION,
+                        "bladeTriangles": int(len(blade_triangles)),
+                        "lowEndTriangles": int(np.count_nonzero(low)),
+                        "highEndTriangles": int(np.count_nonzero(high)),
+                    })
+        else:
+            axis = axes[0]
+    if faces is None:
+        axis = axes[0] if prop_class != "hat" else max(axes, key=lambda value: abs(float(value[1])))
     alignment = abs(float(np.dot(axis, [0, 1, 0])))
+    # 语义锚点与尺寸必须来自最终受检表面；源模型只用于上游逐字节几何核验。
+    measured_vertices = np.asarray(vertices)
     if prop_class == "weapon":
-        span = float(np.ptp(vertices[:, 1])); ratio = float(fit.get("gripRatio", 0.07))
-        anchor = np.array([0.0, float(vertices[:, 1].min()) + ratio * span, 0.0])
+        span = float(np.ptp(measured_vertices[:, 1])); ratio = float(fit.get("gripRatio") or 0.07)
+        detection = fit.get("handleDetection", {})
+        handle_end = detection.get("handleEnd") if isinstance(detection, dict) else None
+        if handle_end not in (None, "min", "max"):
+            raise ValueError("weapon handleDetection.handleEnd 必须为 min 或 max")
+        end = float(measured_vertices[:, 1].max() if handle_end == "max"
+                    else measured_vertices[:, 1].min())
+        grip_y = end - ratio * span if handle_end == "max" else end + ratio * span
+        anchor = np.array([0.0, grip_y, 0.0])
     elif prop_class == "hat":
-        cutoff = vertices[:, 1].max() - .01 * np.ptp(vertices[:, 1])
-        anchor = vertices[vertices[:, 1] >= cutoff].mean(axis=0)
-        anchor[1] = vertices[:, 1].max()
+        cutoff = measured_vertices[:, 1].max() - .01 * np.ptp(measured_vertices[:, 1])
+        anchor = measured_vertices[measured_vertices[:, 1] >= cutoff].mean(axis=0)
+        anchor[1] = measured_vertices[:, 1].max()
     elif prop_class in ("pendant", "pouch"):
-        cutoff = vertices[:, 1].max() - .01 * np.ptp(vertices[:, 1])
-        anchor = vertices[vertices[:, 1] >= cutoff].mean(axis=0)
-    else: anchor = (vertices.min(axis=0) + vertices.max(axis=0)) / 2
-    spans = np.ptp(vertices, axis=0); size_axis = fit.get("sizeAxis", "length")
+        cutoff = measured_vertices[:, 1].max() - .01 * np.ptp(measured_vertices[:, 1])
+        anchor = measured_vertices[measured_vertices[:, 1] >= cutoff].mean(axis=0)
+    else: anchor = (measured_vertices.min(axis=0) + measured_vertices.max(axis=0)) / 2
+    spans = np.ptp(measured_vertices, axis=0); size_axis = fit.get("sizeAxis", "length")
     dimension = max(float(spans[0]), float(spans[2])) if size_axis == "width" else float(spans[1])
     return alignment, anchor, dimension
 
@@ -917,6 +1056,7 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
     body, asset = load_glb(body_path), load_glb(asset_path)
     skeleton = json.loads(skeleton_path.read_text(encoding="utf-8"))
     fit = json.loads(fit_path.read_text(encoding="utf-8"))
+    axis_waiver = _axis_check_waiver(fit)
     body_mesh, asset_mesh = _mesh(body), _mesh(asset)
     checks = _binding_checks(body_path, skeleton, fit)
     kind = fit.get("kind")
@@ -985,7 +1125,17 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
         source = _expanded_source(source, asset_mesh.positions)
         checks.extend(_geometry_checks(source, asset_mesh, body_mesh, m_per_mu))
     elif kind == "prop":
-        source = _expanded_source(_source_geometry(fit, fit_path), asset_mesh.positions)
+        full_source = _source_geometry(fit, fit_path)
+        primitive = asset.json.get("meshes", [{}])[0].get("primitives", [{}])[0]
+        accessor = primitive.get("extras", {}).get("tianshuSourceVertexAccessor")
+        if accessor is None:
+            source = _expanded_source(full_source, asset_mesh.positions)
+        else:
+            rows = np.asarray(asset.accessor(int(accessor)), dtype=np.int64).reshape(-1)
+            if (len(rows) != len(asset_mesh.positions) or len(np.unique(rows)) != len(rows) or
+                    (len(rows) and (int(rows.min()) < 0 or int(rows.max()) >= len(full_source)))):
+                raise ValueError("压紧顶点源映射数量、唯一性或边界无效")
+            source = full_source[rows]
         checks.extend(_geometry_checks(source, asset_mesh, None, m_per_mu))
     checks.append(_region_check(asset, asset_mesh, skinned))
 
@@ -1009,7 +1159,9 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
                                  ("matrix", "translation", "rotation", "scale") if key in node})
         anchor_spec = fit.get("diagnostics", {}).get("anchorPositionMu")
         anchor_ok = isinstance(anchor_spec, list) and len(anchor_spec) == 3
-        axis_alignment, computed_anchor, axis_length_mu = _prop_axis_and_anchor(asset_mesh.positions, fit)
+        axis_details: dict[str, Any] = {}
+        axis_alignment, computed_anchor, axis_length_mu = _prop_axis_and_anchor(
+            asset_mesh.positions, fit, _faces(asset_mesh), axis_details)
         anchor = computed_anchor if anchor_ok else np.full(3, math.inf)
         recorded_anchor = np.asarray(anchor_spec if anchor_ok else [math.inf] * 3, dtype=float)
         size_ok = all(name in fit for name in ("measuredLengthMu", "scaleApplied", "realSizeM"))
@@ -1026,14 +1178,15 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
                    _check("prop.anchorMu", anchor_ok and float(np.linalg.norm(anchor)) < 1e-4 and
                           np.allclose(recorded_anchor, anchor, atol=1e-7),
                           {"computed": anchor.tolist(), "recorded": recorded_anchor.tolist()}, "norm < 1e-4 and match"),
-                   _check("prop.mainAxisY", fit.get("up") == "+Y" and axis_alignment >= 0.999,
-                          {"up": fit.get("up"), "alignment": axis_alignment}, "+Y and >= 0.999"),
+                   _prop_main_axis_check(fit, axis_alignment, axis_details, axis_waiver),
                    _check("prop.semanticDirection", direction_ok, direction_value,
                           "weapon body +Y; hat opening -Y; pendant/pouch string top y=0"),
                    _check("prop.realSizeEvidence", size_ok, size_ok, True),
                    _check("prop.declaredLengthMu", size_ok and abs(axis_length_mu - declared_length_mu) <= 1e-4,
                           {"mesh": axis_length_mu, "declared": declared_length_mu}, "差 <= 1e-4 mu"),
                    _check("prop.realSizeError", size_error <= 0.02, size_error, "<= 0.02")]
+        if prop_class == "weapon" and "fullBladeAlignment" in axis_details:
+            checks.append(_check("prop.fullBladeMainAxisY", True, axis_details, "report only"))
 
     return _result(fit, asset_path, fit_path, checks, requested)
 
