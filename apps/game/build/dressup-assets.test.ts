@@ -363,6 +363,7 @@ import json,sys,numpy as np
 from pathlib import Path
 sys.path.insert(0,'tools/model3d/dressup')
 from validate import _prop_axis_and_anchor,_prop_semantic_direction,_similarity_quality
+from normalize_prop import _weapon_handle_detection
 local=Path('assets/default/model3d/dressup/props')
 root=local if (local/'item_qingfeng_sword').is_dir() else Path('../../..').resolve()/'assets/default/model3d/dressup/props'
 from glb_io import load_glb
@@ -370,7 +371,14 @@ out={}
 for name in ('item_qingfeng_sword','item_bamboo_hat','luxury_jade_pendant'):
  d=root/name;fit=json.loads((d/'fit.json').read_text());m=load_glb(d/(name+'.glb')).mesh();axis,anchor,size=_prop_axis_and_anchor(m.positions,fit)
  reversed=m.positions.copy();reversed[:,1]*=-1;_,reversed_anchor,_=_prop_axis_and_anchor(reversed,fit)
- out[name]=[fit.get('pushOut'),axis,float(np.linalg.norm(anchor)),size,_prop_semantic_direction(m.positions,fit['class'],anchor)[0],_prop_semantic_direction(reversed,fit['class'],reversed_anchor)[0]]
+ if fit.get('handleDetection',{}).get('method')=='guard-peak':
+  detection=fit['handleDetection'];end,_,proof=_weapon_handle_detection(m.positions,1);mirror_end,_,mirror_proof=_weapon_handle_detection(reversed,1)
+  chosen=proof['chosen'];mirror_chosen=mirror_proof['chosen'];peak=float(detection['peakAxialMu']);lo=float(m.positions[:,1].min());hi=float(m.positions[:,1].max())
+  direction=(end=='low' and detection['handleEnd']=='min' and lo<=0<=peak and peak-lo<hi-peak)
+  mirrored=(mirror_end!='high' or abs(chosen['distanceFromEndFraction']-mirror_chosen['distanceFromEndFraction'])>1e-6)
+ else:
+  direction=_prop_semantic_direction(m.positions,fit['class'],anchor)[0];mirrored=_prop_semantic_direction(reversed,fit['class'],reversed_anchor)[0]
+ out[name]=[fit.get('pushOut'),axis,float(np.linalg.norm(anchor)),size,direction,mirrored]
 faces=np.array([[0,1,2],[0,2,3]]);source=np.array([[0.,0,0],[1,0,0],[1,1,0],[0,1,0]]);final=source.copy();final[2]=[0,-1,0]
 flipped=_similarity_quality(source,final,faces)[0]
 print(json.dumps({'props':out,'flipped':flipped}))
@@ -630,11 +638,32 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
       expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([fit.hideMask.size, fit.hideMask.size]);
     }
     const medium = index.groups.template.find(entry => entry.template === 'tpl_f_medium')!;
+    const templateManifest = await readFile(
+      medium.file.replace(/^\//u, '').replace(/[^/]+$/u, 'manifest.yaml'), 'utf8');
+    const heightMatch = templateManifest.match(/^ {2}heightM:\s*([0-9.]+)\s*$/mu);
+    const skeletonMatch = templateManifest.match(/^ {2}skeleton:\s*(\S+)\s*$/mu);
+    expect(heightMatch).not.toBeNull(); expect(skeletonMatch).not.toBeNull();
     expect(medium).toMatchObject({
-      skeleton: '/assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json',
-      heightM: 1.66,
+      skeleton: medium.file.replace(/[^/]+$/u, skeletonMatch![1]),
+      heightM: Number(heightMatch![1]),
     });
-    expect(index.groups.prop.map(entry => entry.socket).sort()).toEqual(['chest', 'gripR', 'headTop']);
+    const realProps = await Promise.all(index.groups.prop.map(async prop => ({ prop,
+      fit: JSON.parse(await readFile(prop.fit!.replace(/^\//u, ''), 'utf8')) as {
+        schema: 'tianshu-dressup-fit.v1'; kind: 'prop'; id: string; socket: string;
+      },
+    })));
+    expect(index.groups.prop.map(entry => entry.socket).sort())
+      .toEqual(realProps.map(({ fit }) => fit.socket).sort());
+    const packedDocuments = await Promise.all([medium.file, ...realProps.map(({ prop }) => prop.file)]
+      .map(async path => glb(await readFile(path.replace(/^\//u, ''))).document));
+    const expectedStats = packedDocuments.reduce((total, document) => {
+      for (const mesh of document.meshes) for (const value of mesh.primitives) {
+        const primitive = value as typeof value & { indices?: number };
+        const accessor = document.accessors[primitive.indices ?? primitive.attributes.POSITION]!;
+        total.drawCalls += 1; total.triangles += accessor.count / 3;
+      }
+      return total;
+    }, { drawCalls: 0, triangles: 0 });
 
     const nativeFetch = globalThis.fetch;
     vi.stubGlobal('fetch', vi.fn(async (input: string | URL | Request) => {
@@ -655,18 +684,20 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
       frameUrl: new URL(medium.skeleton!, 'http://localhost').href, heightM: medium.heightM!,
       loader: createCharacterViewerLoader(),
     });
-    for (const prop of index.groups.prop) {
-      const fit = JSON.parse(await readFile(prop.fit!.replace(/^\//u, ''), 'utf8'));
+    for (const { prop, fit } of realProps) {
       await actor.equip({ kind: 'prop', id: prop.id,
         url: new URL(prop.file, 'http://localhost').href, fit });
     }
     actor.update(1 / 60);
-    expect(actor.stats()).toEqual({ drawCalls: 4, triangles: 221846, boneTextureUploads: 1,
+    expect(actor.stats()).toEqual({ ...expectedStats, boneTextureUploads: 1,
       bodyLayers: [], hideMaps: [], layerTextureBytes: 0 });
     const fingerName = 'mixamorig:RightHandIndex1';
     const finger = actor.skeleton.bones.find(bone => bone.name.endsWith('RightHandIndex1'))!;
     expect(finger).toBeDefined();
-    expect(finger.quaternion.toArray()).toEqual(actor.frame.fingerPose.fist[fingerName]);
+    const rightHandHeld = realProps.some(({ fit }) => fit.socket === 'gripR');
+    const fingerExpectation = expect(finger.quaternion.toArray());
+    if (rightHandHeld) fingerExpectation.toEqual(actor.frame.fingerPose.fist[fingerName]);
+    else fingerExpectation.not.toEqual(actor.frame.fingerPose.fist[fingerName]);
     actor.dispose();
   }, 300_000);
 

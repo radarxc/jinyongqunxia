@@ -16,7 +16,7 @@
   hipsRatio: 0.58500002
   shoulderRatio: 0.16
   skeleton: skeleton.json
-  skeletonSha: 22738eb5b872ded63ec0ae6775048ced7fbef3f9eb190d6b4e758f2ae50d5c5e
+  skeletonSha: 9db4ecb73b04c8b9dd189f520480cc2b2ab222e5abbac0fb58094adacac7e9f5
   ringSha: 9b3d0323f7f90e99cb60f77490211875c5b5cbda6cad4afab4394f313e5b3fbc
   regions: regions.npy
   regionsSha: 3f73cf8c2fee98bdc2b3a916eba78208f7735043597268b7543766b46d9830fa
@@ -30,4 +30,4 @@
   triangles: 196022
   joints: 65
   status: draft
-  notes: AR-104 / AR-105 25° 当前正本派生；路 A 共拓扑、0 点；源正本变化后须重派生
+  notes: AR-104 / AR-105 25° 当前正本派生；路 A 共拓扑、0 点；A6 已按 tech/11 §4 重导插槽帧；源正本变化后须重派生

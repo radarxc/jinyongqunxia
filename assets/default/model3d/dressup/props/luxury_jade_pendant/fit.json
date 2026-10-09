@@ -23,9 +23,9 @@
   "forward": "+Z",
   "gripAdjust": {
     "pos": [
-      0.0,
-      0.0,
-      0.0
+      -0.000151268,
+      0.000710976,
+      0.010193064
     ],
     "quat": [
       0.0,
@@ -38,6 +38,7 @@
   "kind": "prop",
   "mPerMu": 1.69370027,
   "measuredLengthMu": 0.999062362,
+  "offsetMm": 17.307837809,
   "realSizeM": 0.08,
   "scaleApplied": 0.047278189,
   "schema": "tianshu-dressup-fit.v1",

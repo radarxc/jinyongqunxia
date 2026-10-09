@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "581adc336358c88d1a7310dfd67aff963e1d2b82f3af16fc1fd91dd94329c57d",
-      "sizeBytes": 4536072
+      "sha256": "d766097ef7b03e08792a865c3192f8abe3f8c7c0fffe26567c7504356b51bd23",
+      "sizeBytes": 4547124
     },
     "fit": {
-      "sha256": "a40e9ceaea035207521425382905e54cfde6373c7ceb5c853283fb7f9176f1f4",
-      "sizeBytes": 1705
+      "sha256": "0c54bffb5c59cea94fffc75a967ccaec9ce5b422934a2061e54d560eed1b7c22",
+      "sizeBytes": 4196
     }
   },
   "checks": [
@@ -130,7 +130,7 @@
     {
       "name": "geometry.maxResidualMu",
       "pass": true,
-      "value": 3.007954243163785e-08,
+      "value": 1.502510890835195e-08,
       "threshold": "finite"
     },
     {
@@ -201,12 +201,12 @@
       "value": {
         "computed": [
           0.0,
-          -1.490116086078075e-10,
+          1.490116155467014e-10,
           0.0
         ],
         "recorded": [
           0.0,
-          1.1175871339474952e-10,
+          1.9744038626257066e-09,
           0.0
         ]
       },
@@ -225,10 +225,19 @@
       "name": "prop.semanticDirection",
       "pass": true,
       "value": {
-        "lowWidthMu": 0.042818889021873474,
-        "highWidthMu": 0.05348972976207733
+        "bladeSegmentVertices": 95244,
+        "handleEnd": "min",
+        "handleSegmentVertices": 62600,
+        "method": "guard-peak",
+        "peakAxialMu": 0.134607306,
+        "peakFraction": 0.323316028
       },
-      "threshold": "weapon body +Y; hat opening -Y; pendant/pouch string top y=0"
+      "threshold": "sheathed weapon handle side proven by qualified guard peak",
+      "legacyValue": {
+        "lowWidthMu": 0.0481407530605793,
+        "highWidthMu": 0.03853699937462807
+      },
+      "supersededLegacyNarrowEndRule": true
     },
     {
       "name": "prop.realSizeEvidence",
@@ -240,15 +249,15 @@
       "name": "prop.declaredLengthMu",
       "pass": true,
       "value": {
-        "mesh": 0.5904232263565063,
-        "declared": 0.5904232390321031
+        "mesh": 0.5313808917999268,
+        "declared": 0.5313809149847896
       },
       "threshold": "差 <= 1e-4 mu"
     },
     {
       "name": "prop.realSizeError",
       "pass": true,
-      "value": 2.21057141480685e-08,
+      "value": 4.453958152911891e-08,
       "threshold": "<= 0.02"
     }
   ]

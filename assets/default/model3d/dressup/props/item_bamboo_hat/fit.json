@@ -5,6 +5,7 @@
     "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
   },
   "class": "hat",
+  "clearanceMm": 3.000002558,
   "diagnostics": {
     "anchorPositionMu": [
       -4.960880191488699e-13,
@@ -47,7 +48,7 @@
   "gripAdjust": {
     "pos": [
       0.0,
-      0.0,
+      0.031280993,
       0.0
     ],
     "quat": [
@@ -59,6 +60,7 @@
   },
   "id": "item_bamboo_hat",
   "kind": "prop",
+  "liftMu": 0.031280993,
   "mPerMu": 1.69370027,
   "measuredLengthMu": 0.953571626,
   "realSizeM": 0.45,
