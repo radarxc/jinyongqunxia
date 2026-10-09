@@ -32,7 +32,10 @@
 第 3 次运行**没有落实第 1 轮四条**：遮罩仍借用贴图层合成器（`DRESSUP_LAYER_SIZE_MISMATCH` 照旧，2048 底图 + 1024 遮罩必抛）、输出仍是 `SRGBColorSpace`、没有 `stats().hideMapError`、没有真实尺寸测试、`setHead` 仍靠 `this`。本轮起改由 traex 执行，第 1 轮四条全部照做，另加：
 5. **`content-plugin.test.ts` 桩文件**：索引现在对所有 kind 读 fit.json 取 `hideMask`，该测试 "publishes non-rejected dressup triplets…" 写的桩 `fit.json` 内容是文件名字符串（非法 JSON）。本任务写集已加入 `apps/game/build/content-plugin.test.ts`，**只允许**把桩 fit.json 的内容改成合法 JSON（如 `{}`），其余不动；索引代码遇到真实素材里的坏 fit.json 仍须报错，不得吞掉。
 6. 工作区已由协调者挪到含 `ENG-dressup-alloc-steady` 的新基点（分配采样用例已改为"等到稳态"，不要再动它）；`dressup-assets.test.ts` 的 300 s 超时与 `AGY-dressup-pytimeouts` 逐字一致，保持即可。
-7. 合入前在 5173 `/character-3d`「换装 v2」由协调者实测：劲装（G1 遮罩）穿上不抛错、遮罩开 / 关可对比、换模板遮罩跟着换；挂头后身体乘 skinTint。代码里给 `window.__dressup` 暴露 `hideMapError` 与当前遮罩尺寸，便于实测。
+7. **浏览器验收不是本任务的合入闸门（协调者 2026-10-08 17:20 裁定）**：真实 G1 遮罩 / D1 头要等 G1、D1 合入后才有，协调者在 G1 / B4 / D1 都合入集成分支后、并主干前，到 5173 `/character-3d`「换装 v2」统一实测（三模板 idle / walk / run、遮罩开关、挂头 / 换头 / 卸头、`window.__dressup.hideMapError === ''`、`hideMapSize` 与模板遮罩一致），发现问题另起返修。本任务审核只按代码与自动测试判定；代码里给 `window.__dressup` 暴露 `hideMapError` 与当前遮罩尺寸。
+
+## 协调者裁定（2026-10-08 17:20，依据审核 r1）
+审核 r1 的代码项全部通过。两条 FAIL 均出自任务说明本身，已改：①检查清单里的 `pnpm --filter @tianshu/render test` 含 rig CPU 性能门禁（`packages/render/src/rig/performance.test.ts`），按根 `CLAUDE.md` 性能规则只在机器负载低时由 `pnpm check:perf` 单独跑、不在任务校验里跑，已换成只跑 `packages/render/src/dressup`；协调者并主干前会在低负载下跑一次 `pnpm check:perf`。②浏览器实测改为协调者在 G1 / D1 合入后统一做（见第 7 条），不作为本任务闸门。
 
 ## 约束
 - 只写 `packages/render/src/dressup/{types,materials,actor,runtime}.ts` 与同目录 `*.test.ts`、`packages/render/CLAUDE.md`（补一段 hide map API）、`apps/game/build/dressup-assets.ts`、`apps/game/build/dressup-assets.test.ts`、`apps/game/src/pages/Character3dPage.vue` 与本任务报告。
@@ -41,7 +44,7 @@
 
 检查：
 - `pnpm install --frozen-lockfile`
-- `pnpm --filter @tianshu/render test`
+- `pnpm exec vitest run packages/render/src/dressup --config vitest.workspace.ts`
 - `pnpm check`
 - `pnpm --filter ./apps/game build`
 
