@@ -29,6 +29,14 @@
 5. 两把剑的 `fit.json.handleDetection` 分段计数在压缩后网格上重算并写回（fit 变化后 validate / check_sockets 按新 fit 重跑），使计数与受检几何一致。
 6. 四份 report 必须用标准 `validate.py` CLI 对当前压缩 GLB 生成；若斗笠按帽檐平面法线仍 < 0.999，如实写 fail 并在报告中交回协调者，不得改数。
 
+## 协调者裁定（第 3 轮，2026-10-09 04:25，依据审核 r2；审核按此判定）
+审核 r2：第 4 次运行用 `_sourcePairs / full_source`（减面前完整源模型）算锚点与尺寸，A3 用例加载未跟踪的 raw GLB——仍是"拿旧几何掩盖当前结果"，撤回。去掉后，按当前压缩网格算得的锚点：斗笠偏 2.09e-3 mu、玉佩 1.29e-4 mu，两剑对不上 recorded anchor。根因：锚点是在减面前的高精网格上定的，而游戏里显示的是减面后的网格。裁定：
+1. **锚点以最终网格为准，重新定锚**：对四件道具，用当前压缩网格按类别语义推导锚点（帽：冠顶区域；挂件：顶端挂环区域；剑：按 `handleDetection` 的握点），把网格整体**平移**使该锚点落在原点（只平移，不旋转、不缩放、不改拓扑 / UV / 贴图），fit 的 recorded anchor 同步为原点；平移量写进报告。
+2. 平移后重跑 `check_sockets.py` 重新推导 `gripAdjust`（斗笠 3 mm 颅骨间隙的 `liftMu`、玉佩外移、剑 `restTiltDeg`），再用标准 `validate.py` CLI 对当前 GLB 生成 report；阈值一律不变，不过就如实 fail。
+3. `_prop_axis_and_anchor` 传入 `faces` 时只能用当前 `vertices / faces`；删除 `_sourcePairs / full_source` 对语义锚点与尺寸的影响（源映射如保留，只能用于逐字节无损几何核验）。
+4. A3 用例恢复仓库自包含：移除 `_source_geometry`、raw GLB 加载与 `_sourcePairs` 注入，只在原两处调用传入 `m.indices`；补"当前冠顶 / 挂环缺失或偏移时不能被源模型救回"的负例。
+5. 平移用一次性命令实现（写进报告，不新建写集外脚本）；第 7 节写给量产 P1：**锚点推导放到减面打包之后**。
+
 ## 约束
 - 只写 `tools/model3d/dressup/pack_glb.mjs`、`tools/model3d/dressup/validate.py`（只改 `_prop_axis_and_anchor` 及其调用）、`apps/game/build/dressup-assets.test.ts`（只改上述打包用例与 A3 用例的两处调用）、`assets/default/model3d/dressup/props/**` 与本任务报告。
 - 衣物 / 头不在本任务（另有任务在改劲装与黄蓉头，避免冲突）；不改运行时；不加依赖；不改门禁阈值；不花点数。
