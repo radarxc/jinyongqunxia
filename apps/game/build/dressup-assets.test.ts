@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createCharacterViewerLoader } from '../../../packages/render/src/character-viewer/scene';
 import { createDressupActor } from '../../../packages/render/src/dressup/actor';
-import { publishDressupAssets } from './dressup-assets';
+import { publishDressupAssets, type DressupAssetIndex } from './dressup-assets';
 
 const roots: string[] = [];
 async function root(): Promise<string> {
@@ -109,7 +109,7 @@ async function variants(base: string): Promise<void> {
   await Promise.all(['base.glb', 'fit.json', 'base-report.json', 'small.glb', 'small-fit.json',
     'small-report.json', 'tall.glb', 'tall-fit.json', 'tall-report.json', 'rejected.glb',
     'rejected-fit.json', 'rejected-report.json']
-    .map(name => writeFile(join(directory, name), name)));
+    .map(name => writeFile(join(directory, name), name.endsWith('.json') ? "{}" : name)));
   await writeFile(join(directory, 'manifest.yaml'), `- id: dressup__garment__eq_variants
   file: base.glb
   kind: dressup-garment
@@ -149,6 +149,49 @@ afterEach(async () => {
 });
 
 describe('dressup asset publishing', () => {
+  it('publishes head fits and template-specific PNG masks with their declared dimensions', async () => {
+    const base = await root(); await variants(base);
+    const directory = join(base, 'assets/default/model3d/dressup/garments/eq_variants');
+    const head = join(base, 'assets/default/model3d/dressup/heads/npc_fixture');
+    await mkdir(head, { recursive: true });
+    await writeFile(join(head, 'head.glb'), 'head');
+    await writeFile(join(head, 'fit.json'), JSON.stringify({ kind: 'head', hideRegions: ['head'],
+      skinTint: [.6, .7, .8], neverHide: ['neck'] }));
+    await writeFile(join(head, 'manifest.yaml'), '- id: npc_fixture\n  kind: dressup-head\n' +
+      '  file: head.glb\n  fit: fit.json\n  template: tpl_f_medium\n  status: candidate\n');
+    for (const [fit, file, size] of [['fit.json', 'hidemask.png', 1024],
+      ['small-fit.json', 'hidemask-small.png', 512]] as const) {
+      await writeFile(join(directory, fit), JSON.stringify({ hideMask: { file, size } }));
+      python('from PIL import Image; import sys; Image.new("L",(int(sys.argv[2]),)*2,255).save(sys.argv[1])',
+        join(directory, file), String(size));
+    }
+    const copied = new Set<string>(); const references = new Map<string, Set<string>>();
+    await publishDressupAssets(base, true, copied, references);
+    const index = JSON.parse(await readFile(join(base,
+      'apps/game/public/assets/default/model3d/dressup/index.json'), 'utf8')) as DressupAssetIndex;
+    expect(index.groups.head).toEqual([expect.objectContaining({ id: 'npc_fixture', kind: 'head',
+      file: '/assets/default/model3d/dressup/heads/npc_fixture/head.glb',
+      fit: '/assets/default/model3d/dressup/heads/npc_fixture/fit.json' })]);
+    expect(index.groups.garment.map(entry => entry.hideMask)).toEqual([
+      '/assets/default/model3d/dressup/garments/eq_variants/hidemask.png',
+      '/assets/default/model3d/dressup/garments/eq_variants/hidemask-small.png',
+    ]);
+    for (const entry of Object.values(index.groups).flat()) {
+      if (!entry.fit) continue;
+      const fit = JSON.parse(await readFile(join(base, 'apps/game/public', entry.fit), 'utf8'));
+      if (!fit.hideMask) continue;
+      expect(entry.hideMask).toBeDefined();
+      const png = await readFile(join(base, 'apps/game/public', entry.hideMask!));
+      expect(png.subarray(1, 4).toString()).toBe('PNG');
+      expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([fit.hideMask.size, fit.hideMask.size]);
+      expect(copied.has(entry.hideMask!.slice(1))).toBe(true);
+      expect(references.get('assets/default/model3d/dressup/garments/eq_variants/manifest.yaml'))
+        .toContain(entry.hideMask);
+    }
+    await writeFile(join(directory, 'fit.json'), 'invalid JSON');
+    await expect(publishDressupAssets(base, false)).rejects.toThrow(SyntaxError);
+  }, 300_000);
+
   it('textures removes PBR image BIN blocks, reindexes, resizes, and adds unlit', async () => {
     const base = await root(); const input = join(base, 'textures.glb'); const output = join(base, 'clean.glb');
     const evidence = JSON.parse(python(`
@@ -576,9 +619,16 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
       join(base, 'assets/default/model3d/dressup'));
     await publishDressupAssets(base, true);
     const index = JSON.parse(await readFile(
-      join(base, 'apps/game/public/assets/default/model3d/dressup/index.json'), 'utf8')) as {
-      groups: { template: { template: string; skeleton?: string; heightM?: number; file: string }[];
-        prop: { id: string; file: string; fit: string | null; socket?: string }[] } };
+      join(base, 'apps/game/public/assets/default/model3d/dressup/index.json'), 'utf8')) as DressupAssetIndex;
+    for (const entry of Object.values(index.groups).flat()) {
+      if (!entry.fit) continue;
+      const fit = JSON.parse(await readFile(join(base, entry.fit), 'utf8'));
+      if (!fit.hideMask) continue;
+      expect(entry.hideMask).toBeDefined();
+      const png = await readFile(join(base, entry.hideMask!));
+      expect(png.subarray(1, 4).toString()).toBe('PNG');
+      expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([fit.hideMask.size, fit.hideMask.size]);
+    }
     const medium = index.groups.template.find(entry => entry.template === 'tpl_f_medium')!;
     expect(medium).toMatchObject({
       skeleton: '/assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json',
@@ -612,7 +662,7 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
     }
     actor.update(1 / 60);
     expect(actor.stats()).toEqual({ drawCalls: 4, triangles: 221846, boneTextureUploads: 1,
-      bodyLayers: [], layerTextureBytes: 0 });
+      bodyLayers: [], hideMaps: [], layerTextureBytes: 0 });
     const fingerName = 'mixamorig:RightHandIndex1';
     const finger = actor.skeleton.bones.find(bone => bone.name.endsWith('RightHandIndex1'))!;
     expect(finger).toBeDefined();

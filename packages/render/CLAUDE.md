@@ -92,6 +92,15 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - `stats()` 除原有结构统计外给出 `bodyLayers` 与 RGBA8 `layerTextureBytes` 估计；贴图层不新增 mesh 或 draw call，`update(dt)` 不参与合成且仍不得逐帧分配。
 - 100 actor × 平均 4 件合成装备的 `update(dt)` + `skeleton.update()` P95 必须 `< 2.0 ms`；只由 perf project / `pnpm check:perf` 收集，不进 `pnpm check`，不得按系统负载跳过或放宽。
 
+### 身体遮罩与挂头（B4，AR-108 V2 / V4）
+
+- `equip({ kind: 'head', ... })` 复用衣物的骨名重映射与显式 bindMatrix，共享身体 Skeleton；新头替换旧头，`fit.skinTint` 乘原身体颜色，卸下恢复。`setHead(url | null, { skinTint })` 是同一路径的便捷入口，可解构调用。
+- `fit.hideMask.file` 相对装备 URL 解析；索引可用 `hideMapUrl` 显式传发布 URL。页面按当前模板优先选择 fits 变体，无对应变体时用主件；换模板恢复已选装备并重算遮罩。
+- 遮罩独立于 baseColor 合成：取各遮罩最大边长，Canvas 平滑缩放后逐像素 max；输出 `NoColorSpace`、`flipY=false`、线性过滤、无 mipmap。可注入 `hideMapCompositor`，不使用贴图层的 sRGB 合成器。
+- 复用模块级纹理引用计数缓存；键含模板 ID/body URL、有序遮罩 ID、URL 和声明尺寸。最后释放者 dispose，并发过期或 actor 已销毁的结果同样释放；`update(dt)` 不参与合成。
+- `setHideMapEnabled(on)` 默认开启；无遮罩时 `uHideMapOn=false`。身体和可选深度材质固定 program key，声明原 UV，按红通道 `>0.5` discard，与区域 `uHideMask` 独立。
+- `stats()` 给出 `hideMaps`、可选 `hideMapSize`（无图时缺省）和 `hideMapError`（失败时字符串）；同步 `unequip` 捕获后台失败并 warn，关闭旧遮罩，重试成功清错误。预览 `window.__dressup` 提供 `hideMap`、实时 `hideMapSize`（无图为 0）与 `hideMapError`（无错为空串）。
+
 ## 招式 VFX API（ENG-11）
 
 - 从 `@tianshu/render/vfx` 动态导入 `createBattleVfxStage(canvas)`；VFX 单独产出 `vfx` chunk，战斗首次结算才加载。应用把 `onMoveResolved` 的只读施招者、目标与事件传给 `play()`，不得在表现层重算命中、伤害、范围或朝向。
@@ -120,6 +129,8 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 当前 `rig/character.ts` 的 `setMotion()` 会对镜头引发的 `Dir8` 变化启动约 160 ms 转身混合，与 tech/09 §4.3“转镜头不另开视图动画”不符；留给 rig 后续任务增加镜头重定向的无转身入口。
 
 ## 参考资料与验证
+
+- [Three Texture](https://threejs.org/docs/pages/Texture.html)、[Material](https://threejs.org/docs/pages/Material.html)、[MDN imageSmoothingEnabled](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled)：2026-10-08 联网核实 NoColorSpace、flipY、线性过滤、shader hook / program key 和 Canvas 缩放；本地 Three 0.186.1 UV chunk 同时核对 USE_UV。无付费服务或配额。
 
 - [Three InstancedMesh](https://threejs.org/docs/pages/InstancedMesh.html)：同 geometry / material 的实例渲染用于减少 draw call。
 - [Three DataArrayTexture](https://threejs.org/docs/pages/DataArrayTexture.html)、[DataTexture](https://threejs.org/docs/pages/DataTexture.html)：地形分层纹理与 RGBA8 索引图；[Raycaster](https://threejs.org/docs/pages/Raycaster.html)：mesh / instance 拾取；2026-10-03 联网返回 HTTP 200。

@@ -106,7 +106,7 @@ export interface DressupGripAdjust {
 
 export interface DressupFit {
   readonly schema: 'tianshu-dressup-fit.v1';
-  readonly kind: 'garment' | 'hair' | 'prop';
+  readonly kind: 'garment' | 'hair' | 'prop' | 'head';
   readonly id: string;
   readonly template?: string;
   readonly slot?: string;
@@ -115,6 +115,7 @@ export interface DressupFit {
   readonly gripAdjust?: DressupGripAdjust;
   readonly hideRegions?: readonly string[];
   readonly neverHide?: readonly string[];
+  readonly hideMask?: Readonly<{ file: string; size?: number; [key: string]: unknown }>;
   readonly fitVersion?: number;
   readonly class?: string;
   readonly source?: DressupSourceRef;
@@ -124,14 +125,16 @@ export interface DressupFit {
     jointsAllowed?: readonly string[];
   }>;
   readonly align?: Readonly<Record<string, unknown>>;
+  readonly skinTint?: readonly [number, number, number];
   readonly [key: string]: unknown;
 }
 
 export interface DressupEquipSpec {
-  readonly kind: 'garment' | 'hair' | 'prop';
+  readonly kind: 'garment' | 'hair' | 'prop' | 'head';
   readonly id: string;
   readonly url: string;
   readonly fit: DressupFit;
+  readonly hideMapUrl?: string;
 }
 
 export interface DressupLayerSpec {
@@ -145,12 +148,27 @@ export interface DressupLayerCompositor {
   composite(base: Texture, layers: readonly DressupLayerSpec[]): Promise<Texture>;
 }
 
+export interface DressupHideMapSpec {
+  readonly id: string;
+  readonly url: string;
+  readonly size?: number;
+}
+/** Independent of body baseColor size; returns a newly owned data texture. */
+export interface DressupHideMapCompositor {
+  composite(maps: readonly DressupHideMapSpec[]): Promise<Texture>;
+}
+
 export interface DressupStats {
   readonly drawCalls: number;
   readonly triangles: number;
   readonly boneTextureUploads: number;
   readonly bodyLayers: readonly string[];
   readonly layerTextureBytes: number;
+  readonly hideMaps: readonly string[];
+  /** Absent when no hide map is active. */
+  readonly hideMapSize?: number;
+  /** Present after a failed composition; cleared on retry or removal. */
+  readonly hideMapError?: string;
 }
 
 export interface DressupActor {
@@ -162,6 +180,7 @@ export interface DressupActor {
   equip(spec: DressupEquipSpec): Promise<void>;
   unequip(id: string): void;
   setHideMask(regions: readonly string[]): void;
+  setHideMapEnabled(on: boolean): void;
   setBoneLength(tweaks: Readonly<Record<string, number>>): void;
   playClip(name: string, fade?: number): void;
   update(dt: number): void;
@@ -176,4 +195,6 @@ export interface DressupActorOptions {
   readonly loader?: GLTFLoader;
   readonly unlit?: boolean;
   readonly compositor?: DressupLayerCompositor;
+  readonly hideMapCompositor?: DressupHideMapCompositor;
+  readonly templateId?: string;
 }

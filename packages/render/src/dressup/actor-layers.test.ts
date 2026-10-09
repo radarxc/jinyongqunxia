@@ -87,7 +87,7 @@ describe('dressup body texture layers', () => {
     const value = await actor(base, { async composite() { return result; } });
     await value.setBodyLayers([{ id: 'coat', url: 'coat.png' }]);
     await value.setBodyLayers([]);
-    expect(materialMap(value)).toBe(base); expect(value.stats()).toMatchObject({ bodyLayers: [], layerTextureBytes: 0 });
+    expect(materialMap(value)).toBe(base); expect(value.stats()).toMatchObject({ bodyLayers: [], hideMaps: [], layerTextureBytes: 0 });
     expect(dispose).toHaveBeenCalledOnce(); value.dispose();
   });
 
@@ -116,6 +116,6 @@ describe('dressup body texture layers', () => {
     value.dispose(); resolve(); await pending;
     expect(dispose).toHaveBeenCalledOnce();
     expect(value.stats()).toEqual({ drawCalls: 0, triangles: 0, boneTextureUploads: 0,
-      bodyLayers: [], layerTextureBytes: 0 });
+      bodyLayers: [], hideMaps: [], layerTextureBytes: 0 });
   });
 });

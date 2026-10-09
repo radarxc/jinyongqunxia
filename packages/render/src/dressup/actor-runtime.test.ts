@@ -115,7 +115,7 @@ function fixtureFrame(): DressupSkeletonFrame {
       radiusMu: { x: .03, z: .03 }, samples: 0, profile: [], lipOffsetMu: 0, sha256: 'r' },
     skullProfile: { file: 's', stepMu: .005, sha256: 's' },
     sockets: { gripR: { bone: 'hand', pos: [.1, .2, .3], quat: [0, 0, 0, 1] } },
-    regions: { ids: { torso: 0, handR: 1 }, jointToRegion: {}, file: 'r' },
+    regions: { ids: { torso: 0, handR: 1, head: 2 }, jointToRegion: {}, file: 'r' },
     fingerPose: { fist: { RightHandIndex1: [0, 0, .70710678, .70710678] } },
   };
 }
@@ -155,7 +155,7 @@ describe('dressup actor runtime', () => {
     const body = bodyGltf(); const prop = propGltf();
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
       gripAdjust: { pos: [0, .5, 0], quat: [0, 0, 0, 1] },
@@ -175,7 +175,7 @@ describe('dressup actor runtime', () => {
     const body = bodyGltf(); const prop = propGltf();
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
       hideRegions: ['torso', 'handR'], neverHide: ['handR'],
@@ -207,7 +207,7 @@ describe('dressup actor runtime', () => {
     const propDisposes = propTextures.map(texture => vi.spyOn(texture, 'dispose'));
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
     } });
@@ -238,7 +238,7 @@ describe('dressup actor runtime', () => {
     body.gltf.animations[0]!.duration = 10_000;
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await expect(actor.setHead('head.glb', { skinTint: '#cca080' })).resolves.toBeUndefined();
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
@@ -267,7 +267,7 @@ describe('dressup actor runtime', () => {
     expect(skeleton.boneMatrices).toBe(matrices); expect(root.getObjectByName('dressupSocket:gripR')).toBe(socket);
     expect(stats.boneTextureUploads).toBe(1);
     actor.dispose(); expect(stats).toEqual({ drawCalls: 0, triangles: 0, boneTextureUploads: 0,
-      bodyLayers: [], layerTextureBytes: 0 });
+      bodyLayers: [], hideMaps: [], layerTextureBytes: 0 });
   });
 
   it('rejects an update that allocates and retains a typed array every frame', async () => {
@@ -295,7 +295,7 @@ describe('dressup actor runtime', () => {
     const body = bodyGltf(); const prop = propGltf();
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
     const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
-      loader: fakeLoader({ body: body.gltf, prop: prop.gltf }) });
+      loader: fakeLoader({ body: body.gltf, prop: prop.gltf, 'head.glb': prop.gltf }) });
     await actor.equip({ kind: 'prop', id: 'sword', url: 'prop', fit: {
       schema: 'tianshu-dressup-fit.v1', kind: 'prop', id: 'sword', socket: 'gripR',
     } });
@@ -303,5 +303,39 @@ describe('dressup actor runtime', () => {
     const finger = actor.skeleton.getBoneByName('RightHandIndex1')!;
     expect(finger.quaternion.toArray()).toEqual([0, 0, .70710678, .70710678]);
     actor.dispose();
+  });
+
+  it('binds one head to the shared skeleton, multiplies body tint, and supports detached setHead', async () => {
+    const body = bodyGltf(); const first = bodyGltf(); const second = bodyGltf();
+    first.mesh.name = 'firstHead'; second.mesh.name = 'secondHead';
+    const bind = new Matrix4().makeTranslation(0, .25, 0);
+    first.mesh.bindMatrix.copy(bind);
+    const disposed = vi.spyOn(first.mesh.geometry, 'dispose');
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify(fixtureFrame()))));
+    const actor = await createDressupActor({ bodyUrl: 'body', frameUrl: 'frame', heightM: 1,
+      loader: fakeLoader({ body: body.gltf, first: first.gltf, second: second.gltf }) });
+    const inverses = actor.skeleton.boneInverses.map(matrix => matrix.toArray());
+    const material = (actor.root.getObjectByName('body') as SkinnedMesh).material as MeshBasicMaterial;
+    const original = material.color.clone();
+    await actor.equip({ kind: 'head', id: 'npc_first', url: 'first', fit: {
+      schema: 'tianshu-dressup-fit.v1', kind: 'head', id: 'npc_first',
+      hideRegions: ['head'], neverHide: ['handR'], skinTint: [.6, .7, .8],
+    } });
+    expect(first.mesh.skeleton).toBe(actor.skeleton); expect(first.mesh.bindMatrix.equals(bind)).toBe(true);
+    expect(actor.skeleton.boneInverses.map(matrix => matrix.toArray())).toEqual(inverses);
+    expect(material.color.toArray()).toEqual([original.r * .6, original.g * .7, original.b * .8]);
+    const shader = { uniforms: {} as Record<string, { value: unknown }>,
+      vertexShader: '#include <common>\n#include <begin_vertex>',
+      fragmentShader: '#include <common>\n#include <alphatest_fragment>' };
+    material.onBeforeCompile(shader as never, {} as never);
+    expect(shader.uniforms['uHideMask']!.value).toBe(4);
+    const { setHead } = actor;
+    await setHead('second', { skinTint: '#cca080' });
+    expect(actor.root.getObjectByName('firstHead')).toBeUndefined();
+    expect(second.mesh.skeleton).toBe(actor.skeleton); expect(disposed).toHaveBeenCalledOnce();
+    expect(actor.stats().drawCalls).toBe(2);
+    await setHead(null);
+    expect(material.color.equals(original)).toBe(true); expect(shader.uniforms['uHideMask']!.value).toBe(0);
+    expect(actor.stats().drawCalls).toBe(1); actor.dispose();
   });
 });
