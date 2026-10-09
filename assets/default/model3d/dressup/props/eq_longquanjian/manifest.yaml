@@ -1,0 +1,31 @@
+- id: dressup__prop__eq_longquanjian
+  file: eq_longquanjian.glb
+  category: model3d
+  kind: dressup-prop
+  template: tpl_f_medium
+  sha256: b10602452492b8254c5a1c124d3556304bb3c24b0a37d7ff5a00c9a85a266ea0
+  size_bytes: 2380764
+  triangles: 9578
+  report: report.json
+  status: candidate
+  tool: tools/model3d/dressup/ingest.py v1
+  created: '2026-10-08T20:44:35-07:00'
+  slot: mainHand
+  socket: gripR
+  item: eq_longquanjian
+  fit: fit.json
+  fits:
+    tpl_f_medium:
+      file: eq_longquanjian.glb
+      fit: fit.json
+      report: report.json
+      status: candidate
+  source:
+    directory: external-workdir
+    tripo_project_id: a3002088-7ec0-4640-8caf-33be4afa84f8
+    references:
+    - path: assets/default/item/weapons/eq_longquanjian.png
+      sha256: faa19930515dd212aa2b68de7a0102e480098a361ea4b756d9c7b21dc6a0da3f
+    - path: tripo__dressup_eq_longquanjian.glb
+      sha256: d75b051dee5a4606b7f8c329c35a7958efbdeb86e28dcfc394075cdfa10526ac
+  notes: 出鞘·持剑态；restTilt=60.000°；validate level=approved；sockets_check level=approved；联合 level=approved，status=candidate。
