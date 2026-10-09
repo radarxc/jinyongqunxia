@@ -35,3 +35,6 @@
 
 ## 报告
 `tools/agents/reports/ENG-dressup-e2b-cleanup.md`：第 3 节写畸变来源定位、三模板修复前后几何门数字、皮肤色清理前后占比、遮罩 holes / penetration、布衣变体数字与 level；第 7 节写给量产 P2 / P3：新的贴合选项与默认参数。报告 ≤ 50 行。
+
+## 协调者裁定（2026-10-09 11:10）
+`tests_garment.py` 的 `test_fixture_strict_fit` / `test_file_nonidentity_refit` 会按当前模板正本重生成 `garments/_fixture_bodysuit/**`（A6 修正了模板 `skeleton.json` 的插槽坐标系，夹具里记的 `skeletonSha256` 已过期，`elapsedSec` / `peakMemoryMiB` 每次也会变）。这些文件的变化是既有测试的副产物，已加入本任务写集：保留测试重生成的结果，不要还原、不要手改；审核不因此判写集越界。
