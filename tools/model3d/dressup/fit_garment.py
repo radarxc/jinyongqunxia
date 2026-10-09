@@ -10,6 +10,7 @@ import argparse
 from dataclasses import dataclass
 from io import BytesIO
 import hashlib
+import heapq
 import json
 import math
 import os
@@ -42,6 +43,7 @@ except ImportError:
 
 KINDS = ("garment", "hair")
 ALIGN_MODES = ("auto", "joints", "landmarks", "none")
+EDGE_WEIGHT_MODES = ("off", "template")
 SLOTS = ("body", "innerBody", "hands", "feet", "waist", "cape", "shoulder", "head")
 NEVER_HIDE = ("neck", "handL", "handR", "footL", "footR")
 SLOT_BONES = {
@@ -651,6 +653,68 @@ def filter_existing_weights(joints: np.ndarray, weights: np.ndarray, points: np.
         "maxBones": 4, "jointsAllowed": [skeleton["joints"][int(i)] for i in allowed]}
 
 
+def edge_weight_blend(points: np.ndarray, faces: np.ndarray, source_joints: np.ndarray,
+                      source_weights: np.ndarray, template_joints: np.ndarray,
+                      template_weights: np.ndarray, band_mu: float
+                      ) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+    """开口为模板权重 B，30 mm 内按表面距离线性渐变回源权重 A。"""
+    unique, inverse = np.unique(np.round(points, 7), axis=0, return_inverse=True)
+    welded_faces = inverse[faces]; boundary, _ = edge_statistics(welded_faces)
+    boundary_graph: dict[int, set[int]] = {}
+    for left, right in boundary:
+        boundary_graph.setdefault(int(left), set()).add(int(right))
+        boundary_graph.setdefault(int(right), set()).add(int(left))
+    components, seen = [], set()
+    for root in sorted(boundary_graph):
+        if root in seen: continue
+        queue, vertices = [root], []; seen.add(root)
+        while queue:
+            vertex = queue.pop(); vertices.append(vertex)
+            for neighbor in boundary_graph[vertex]:
+                if neighbor not in seen: seen.add(neighbor); queue.append(neighbor)
+        member = np.asarray(vertices); mask = np.isin(boundary[:, 0], member) & np.isin(boundary[:, 1], member)
+        length = np.linalg.norm(unique[boundary[mask, 0]] - unique[boundary[mask, 1]], axis=1).sum()
+        components.append((member, float(length), unique[member].mean(axis=0)))
+    selected = components
+    if len(components) > 4:
+        hem = max(components, key=lambda row: row[1])
+        substantial = [row for row in components if row[1] >= hem[1] * .07 and row is not hem]
+        collar = max(substantial, key=lambda row: row[2][1]); remaining = [row for row in substantial if row is not collar]
+        selected = [hem, collar, min(remaining, key=lambda row: row[2][0]),
+                    max(remaining, key=lambda row: row[2][0])]
+    seeds = np.unique(np.concatenate([row[0] for row in selected]))
+    graph: list[list[tuple[int, float]]] = [[] for _ in range(len(unique))]
+    edges = np.unique(np.sort(np.concatenate((welded_faces[:, [0, 1]], welded_faces[:, [1, 2]],
+                                              welded_faces[:, [2, 0]])), axis=1), axis=0)
+    for left, right in edges:
+        length = float(np.linalg.norm(unique[left] - unique[right]))
+        graph[int(left)].append((int(right), length)); graph[int(right)].append((int(left), length))
+    distance = np.full(len(unique), np.inf); queue: list[tuple[float, int]] = []
+    for vertex in seeds: distance[vertex] = 0.0; heapq.heappush(queue, (0.0, int(vertex)))
+    while queue:
+        current, vertex = heapq.heappop(queue)
+        if current != distance[vertex] or current >= band_mu: continue
+        for neighbor, length in graph[vertex]:
+            value = current + length
+            if value < distance[neighbor]: distance[neighbor] = value; heapq.heappush(queue, (value, neighbor))
+    blend = np.clip(1.0 - distance[inverse] / band_mu, 0.0, 1.0)
+    joint_count = int(max(source_joints.max(initial=0), template_joints.max(initial=0))) + 1
+    dense = np.zeros((len(points), joint_count), np.float32)
+    rows = np.repeat(np.arange(len(points)), 4)
+    np.add.at(dense, (rows, source_joints.ravel()), (source_weights * (1 - blend[:, None])).ravel())
+    np.add.at(dense, (rows, template_joints.ravel()), (template_weights * blend[:, None]).ravel())
+    keep = min(4, joint_count); top = np.argpartition(dense, -keep, axis=1)[:, -keep:]
+    values = np.take_along_axis(dense, top, axis=1)
+    order = np.argsort(values, axis=1)[:, ::-1]; top = np.take_along_axis(top, order, axis=1)
+    values = np.take_along_axis(values, order, axis=1); values /= values.sum(axis=1, keepdims=True)
+    if keep < 4:
+        top = np.pad(top, ((0, 0), (0, 4 - keep))); values = np.pad(values, ((0, 0), (0, 4 - keep)))
+    return top.astype(np.uint16), values.astype(np.float32), {"method": "template-opening-linear-blend",
+        "bandMm": None, "openingRings": int(len(selected)),
+        "boundaryVertices": int(len(seeds)),
+        "blendedVertices": int(np.count_nonzero(blend > 0))}
+
+
 def remove_body_stub(mesh: Mesh, surface: SurfaceIndex, threshold_mu: float) -> tuple[Mesh, int]:
     """移除贴近体表且反向的三角形；返回重建后的单 primitive 网格。"""
     faces = mesh.indices.reshape(-1, 3).astype(np.int64); centers = mesh.positions[faces].mean(axis=1)
@@ -869,6 +933,34 @@ def push_out(positions: np.ndarray, faces: np.ndarray, surface: SurfaceIndex, pu
                                              np.linalg.norm(current - original, axis=1) > 1e-9))}
 
 
+def clear_bind_penetration(positions: np.ndarray, surface: SurfaceIndex, *, max_iters: int = 12
+                           ) -> tuple[np.ndarray, dict[str, Any]]:
+    """只清理仍在体表内的孤立 bind 顶点，不追求 3 mm 安全距。
+
+    这是 edge-weight 复查的末段：先由 ``push_out`` 做平滑推离，再把领口等
+    开口的少量残留沿最近体表法线推到表面外。原版型几何门仍由 validate
+    如实报告，本函数不修改或放宽那些门。
+    """
+    current = np.asarray(positions, dtype=np.float32).astype(np.float64)
+    rounds: list[dict[str, Any]] = []
+    for _ in range(max_iters):
+        nearest, bary, face_ids, distances = surface.query(current)
+        normals = _unit(np.einsum("ni,nij->nj", bary, surface.normals[surface.faces[face_ids]]))
+        signed = _signed_distance_from_query(current, nearest, normals, distances)
+        active = signed < 0.0
+        if not np.any(active):
+            break
+        correction = -signed[active] + 2e-6
+        current[active] = (current[active] + correction[:, None] * normals[active]).astype(np.float32)
+        rounds.append({"inside": int(np.count_nonzero(active)),
+                       "maximumCorrectionMu": float(correction.max(initial=0.0))})
+    nearest, bary, face_ids, distances = surface.query(current)
+    normals = _unit(np.einsum("ni,nij->nj", bary, surface.normals[surface.faces[face_ids]]))
+    signed = _signed_distance_from_query(current, nearest, normals, distances)
+    return current.astype(np.float32), {"rounds": rounds,
+                                        "residual": int(np.count_nonzero(signed < 0.0))}
+
+
 def _ray_triangle_cover(points: np.ndarray, directions: np.ndarray, garment: np.ndarray,
                         faces: np.ndarray, max_distance: float) -> np.ndarray:
     """沿体表外法线作 Moller-Trumbore 射线，返回距离内同向衣物三角命中。"""
@@ -953,10 +1045,12 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
              kind: str, slot: str, asset_id: str, *, remove_stub: bool = False,
              push_mm: float = 3.0, iters: int = 3, coverage: float = 0.65,
              allow_draft: bool = False, k: int = 16, align_mode: str = "auto",
-             notes: Sequence[str] = ()) -> dict[str, Any]:
+             notes: Sequence[str] = (), edge_weights: str = "off",
+             edge_band_mm: float = 30.0) -> dict[str, Any]:
     """执行完整贴合流水线并返回 fit.json 内容。"""
     started = time.perf_counter()
     if (kind not in KINDS or slot not in SLOTS or align_mode not in ALIGN_MODES
+            or edge_weights not in EDGE_WEIGHT_MODES or edge_band_mm <= 0
             or push_mm < 0 or iters < 0
             or not 0 <= coverage <= 1 or k < 1):
         raise GarmentError("kind/slot/push-mm/iters/coverage 参数无效")
@@ -971,6 +1065,8 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
     source_glb = load_glb(garment_path); garment = load_world_mesh(source_glb)
     source_skin = bool(source_glb.json.get("skins", []))
     use_joint_alignment = align_mode == "joints" or (align_mode == "auto" and source_skin)
+    preserve_body_space_skin = (align_mode == "none" and source_skin
+                                and edge_weights == "template")
     if align_mode == "joints" and not source_skin:
         raise GarmentError("--align joints 要求输入 GLB 带 skin")
     if use_joint_alignment:
@@ -983,6 +1079,11 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
             raise GarmentError("衣物权重引用目标骨架中不存在的骨名")
         garment.joints = source_to_target[garment.joints].astype(np.uint16)
     elif align_mode == "none":
+        if preserve_body_space_skin:
+            source_names = [source_glb.json["nodes"][node].get("name", "")
+                            for node in source_glb.skin().joints]
+            if source_names != skeleton["joints"]:
+                raise GarmentError("--align none 的带 skin 输入必须与目标 skeleton 同序")
         positions = garment.positions.astype(np.float32).copy()
         normals = None if garment.normals is None else garment.normals.astype(np.float32).copy()
         align = {"method": "landmarks", "requestedMode": "none", "scale": 1.0,
@@ -999,18 +1100,54 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
     if remove_stub:
         garment, removed = remove_body_stub(garment, surface, 0.001 / float(skeleton["mPerMu"]))
     faces = garment.indices.reshape(-1, 3)
-    if use_joint_alignment:
+    if use_joint_alignment or preserve_body_space_skin:
         garment.joints, garment.weights, weight_stats = filter_existing_weights(
             garment.joints, garment.weights, garment.positions, skeleton, slot)
     else:
         garment.joints, garment.weights, weight_stats = transfer_weights(
             garment.positions, garment.normals, surface, body_mesh.joints, body_mesh.weights, skeleton, slot, faces)
+    if edge_weights == "template":
+        template_joints, template_weights, _ = transfer_weights(
+            garment.positions, garment.normals, surface, body_mesh.joints,
+            body_mesh.weights, skeleton, slot, faces)
+        garment.joints, garment.weights, edge_stats = edge_weight_blend(
+            garment.positions, faces, garment.joints, garment.weights, template_joints,
+            template_weights, mm_to_mu(edge_band_mm, float(skeleton["mPerMu"])))
+        edge_stats["bandMm"] = edge_band_mm; weight_stats = {**weight_stats, "edgeWeights": edge_stats}
+    edge_only_refit = preserve_body_space_skin and edge_weights == "template"
+    source_evidence: dict[str, Any] | None = None
+    if edge_only_refit:
+        candidate = garment_path.with_name(
+            "fit.json" if body_path.parent.name == "tpl_f_medium"
+            else f"fit.{body_path.parent.name}.json")
+        try:
+            source_evidence = json.loads(candidate.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            pass
     push_mu = mm_to_mu(push_mm, float(skeleton["mPerMu"]))
     push_reference_normals = garment.normals.copy()
     push_original = garment.positions.astype(np.float32).copy()
-    garment.positions, push_stats = push_out(
-        garment.positions, faces, surface, push_mu, iters, allow_draft=allow_draft,
-        reference_normals=push_reference_normals)
+    if edge_only_refit:
+        source_push = None if source_evidence is None else source_evidence.get("pushOut")
+        if isinstance(source_push, dict) and "sourcePushOut" in source_push:
+            source_push = source_push["sourcePushOut"]
+        garment.positions, push_stats = push_out(
+            garment.positions, faces, surface, push_mu, iters, allow_draft=True,
+            reference_normals=push_reference_normals)
+        garment.positions, bind_clearance = clear_bind_penetration(garment.positions, surface)
+        push_stats["residual"] = bind_clearance["residual"]
+        push_stats["clearancePassed"] = (bind_clearance["residual"] == 0
+                                           and push_stats["insufficientMargin"] == 0)
+        push_stats["passed"] = bool(push_stats["clearancePassed"]
+                                        and push_stats["topologyPassed"])
+        push_stats["draft"] = not push_stats["passed"]
+        push_stats["bindClearance"] = bind_clearance
+        push_stats["edgeWeightsRefit"] = True
+        if source_push is not None: push_stats["sourcePushOut"] = source_push
+    else:
+        garment.positions, push_stats = push_out(
+            garment.positions, faces, surface, push_mu, iters, allow_draft=allow_draft,
+            reference_normals=push_reference_normals)
     garment.normals = vertex_normals(garment.positions, faces).astype(np.float32)
     garment.regions = derive_regions(garment.joints, garment.weights, skeleton)
     region_path = skeleton_path.parent / skeleton["regions"]["file"]
@@ -1046,11 +1183,18 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
                   "nearestTriangleCandidates": k,
                   "elapsedSec": time.perf_counter() - started, "peakMemoryMiB": peak_mib},
     }
+    if edge_only_refit and source_evidence is not None:
+        fit["source"] = source_evidence["source"]
+        fit["align"] = source_evidence["align"]
+        if body_path.parent.name != "tpl_f_medium" and "refitFrom" in source_evidence:
+            fit["refitFrom"] = source_evidence["refitFrom"]
     # auto 是历史默认，保持其 JSON 字段逐项不变；显式新模式补 A5 绑定身份。
     if align_mode != "auto":
         fit["template"] = body_path.parent.name; fit["mPerMu"] = float(skeleton["mPerMu"])
     if notes:
         fit["notes"] = [str(value) for value in notes]
+    elif edge_only_refit and source_evidence is not None and source_evidence.get("notes"):
+        fit["notes"] = source_evidence["notes"]
     fit = _round(fit); temporary = output_dir / ".fit.json.tmp"
     temporary.write_text(json.dumps(fit, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     temporary.replace(output_dir / "fit.json"); (output_dir / "fit.json").chmod(0o644)
@@ -1072,6 +1216,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--push-mm", type=float, default=3.0); parser.add_argument("--iters", type=int, default=3)
     parser.add_argument("--k", type=int, default=16, help="最近三角质心候选数（默认 16）")
     parser.add_argument("--coverage", type=float, default=0.65); parser.add_argument("--json", action="store_true")
+    parser.add_argument("--edge-weights", choices=EDGE_WEIGHT_MODES, default="off",
+                        help="template 时开口使用模板权重；默认 off 保持历史行为")
+    parser.add_argument("--edge-band-mm", type=float, default=30.0,
+                        help="开口模板权重向源权重渐变带，默认 30 mm")
     parser.add_argument("--allow-draft", action="store_true",
                         help="门禁未通过时仍写 status=draft；默认非零退出且不写产物")
     return parser
@@ -1083,7 +1231,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = fit_file(args.body, args.skeleton, args.garment, args.out, args.kind, args.slot, args.id,
                           remove_stub=args.remove_body_stub, push_mm=args.push_mm, iters=args.iters,
                           coverage=args.coverage, allow_draft=args.allow_draft, k=args.k,
-                          align_mode=args.align, notes=args.note)
+                          align_mode=args.align, notes=args.note, edge_weights=args.edge_weights,
+                          edge_band_mm=args.edge_band_mm)
     except GarmentGateError as error:
         print(f"门禁失败：{error}", file=sys.stderr); return 3
     except (OSError, ValueError, json.JSONDecodeError, RuntimeError, NotImplementedError) as error:
@@ -1093,9 +1242,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     return 0
 
 
-__all__ = ["ALIGN_MODES", "GarmentError", "GarmentGateError", "SurfaceIndex", "align_landmarks", "allowed_joint_indices",
+__all__ = ["ALIGN_MODES", "EDGE_WEIGHT_MODES", "GarmentError", "GarmentGateError", "SurfaceIndex", "align_landmarks", "allowed_joint_indices",
            "align_joints", "derive_regions", "filter_existing_weights", "fit_file",
-           "hide_regions", "load_skull_profile", "load_world_mesh", "mm_to_mu", "push_out",
+           "edge_weight_blend", "hide_regions", "load_skull_profile", "load_world_mesh", "mm_to_mu", "push_out",
            "transfer_weights", "vertex_normals"]
 
 

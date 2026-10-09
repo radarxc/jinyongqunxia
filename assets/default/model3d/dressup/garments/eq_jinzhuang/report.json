@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "bf792c421d65ddc8991c6ea905d8d23a5b09b37f3e717a238fb8482394f3a233",
-      "sizeBytes": 1574804
+      "sha256": "298b495e38699d708fceedda59bf1eaf1fa0d84b60842a63400f6a90f87b9198",
+      "sizeBytes": 1574792
     },
     "fit": {
-      "sha256": "f4ee8bb33eeb4e1ad790f6eb0b19fcfa6dd31628ff861e39aabf9abedbfda828",
-      "sizeBytes": 14930
+      "sha256": "f1911599504d32e628acadd34dece5de6a137a596ab87c0077382f1b979f8615",
+      "sizeBytes": 38699
     }
   },
   "checks": [
@@ -163,7 +163,7 @@
     {
       "name": "weights.sumMaxError",
       "pass": true,
-      "value": 1.1920928955078125e-07,
+      "value": 1.7881393432617188e-07,
       "threshold": "<= 1e-3"
     },
     {
@@ -186,12 +186,14 @@
         "mixamorig:LeftArm",
         "mixamorig:LeftForeArm",
         "mixamorig:LeftHand",
+        "mixamorig:LeftLeg",
         "mixamorig:LeftShoulder",
         "mixamorig:LeftUpLeg",
         "mixamorig:Neck",
         "mixamorig:RightArm",
         "mixamorig:RightForeArm",
         "mixamorig:RightHand",
+        "mixamorig:RightLeg",
         "mixamorig:RightShoulder",
         "mixamorig:RightUpLeg",
         "mixamorig:Spine",
@@ -219,29 +221,56 @@
       ]
     },
     {
-      "name": "penetration.bindVertices",
-      "pass": false,
-      "value": 149,
+      "name": "penetration.bindVertices.all",
+      "pass": true,
+      "value": 0,
+      "threshold": "report only"
+    },
+    {
+      "name": "penetration.bindVertices.visible",
+      "pass": true,
+      "value": 0,
       "threshold": 0
     },
     {
-      "name": "penetration.idle",
-      "pass": false,
-      "value": 0.08933031997145235,
+      "name": "penetration.idle.all",
+      "pass": true,
+      "value": 0.08873557749494469,
+      "threshold": "report only",
+      "frames": 24
+    },
+    {
+      "name": "penetration.idle.visible",
+      "pass": true,
+      "value": 0.005947424765076721,
       "threshold": "<= 0.02",
       "frames": 24
     },
     {
-      "name": "penetration.walk",
-      "pass": false,
-      "value": 0.09961936481503508,
+      "name": "penetration.walk.all",
+      "pass": true,
+      "value": 0.10009515879624123,
+      "threshold": "report only",
+      "frames": 24
+    },
+    {
+      "name": "penetration.walk.visible",
+      "pass": true,
+      "value": 0.005531105031521351,
       "threshold": "<= 0.02",
       "frames": 24
     },
     {
-      "name": "penetration.run",
-      "pass": false,
-      "value": 0.09319614606875223,
+      "name": "penetration.run.all",
+      "pass": true,
+      "value": 0.08463185440704175,
+      "threshold": "report only",
+      "frames": 24
+    },
+    {
+      "name": "penetration.run.visible",
+      "pass": true,
+      "value": 0.00469846556441061,
       "threshold": "<= 0.02",
       "frames": 24
     },
@@ -266,28 +295,28 @@
     {
       "name": "geometry.flippedTriangles",
       "pass": false,
-      "value": 309,
+      "value": 504,
       "threshold": 0
     },
     {
       "name": "geometry.edgeRatioInRange",
       "pass": false,
-      "value": 0.8850054187954792,
+      "value": 0.8832249574237498,
       "threshold": ">= 0.99"
     },
     {
       "name": "geometry.maxResidualMu",
       "pass": true,
-      "value": 0.0425130299887845,
+      "value": 0.05185013402886671,
       "threshold": "finite"
     },
     {
       "name": "geometry.closeFitP90DeltaMm",
       "pass": true,
-      "value": 1.4796311384758891,
+      "value": 1.4641526613529896,
       "threshold": "< 5",
       "sourceP90Mm": 31.950248141308563,
-      "finalP90Mm": 30.470617002832675
+      "finalP90Mm": 30.486095479955573
     },
     {
       "name": "regions.u8Scalar",

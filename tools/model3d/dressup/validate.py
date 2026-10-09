@@ -21,7 +21,9 @@ from scipy.spatial import cKDTree
 _HERE = Path(__file__).resolve().parent
 if str(_HERE) not in sys.path:
     sys.path.insert(0, str(_HERE))
-from common import compose_matrix, lbs, pca, signed_distance, umeyama  # noqa: E402
+from common import (closest_point_on_triangle, compose_matrix, lbs, pca,
+                    signed_distance, umeyama)  # noqa: E402
+from fit_garment import SurfaceIndex  # noqa: E402
 from glb_io import GLB, Mesh, load_glb  # noqa: E402
 
 SCHEMA = "tianshu-dressup-report.v1"
@@ -126,6 +128,35 @@ def _vertex_normals(vertices: np.ndarray, faces: np.ndarray) -> np.ndarray:
     return np.divide(normal, length, out=np.zeros_like(normal), where=length > 1e-12)
 
 
+def _surface_distances(points: np.ndarray, vertices: np.ndarray, faces: np.ndarray,
+                       normals: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """用向量化严格最近面索引返回带符号距离、面号与重心。"""
+    if len(points) <= 8:
+        triangles = np.asarray(vertices)[faces]
+        query = np.asarray(points)[:, None, :]
+        nearest, bary = closest_point_on_triangle(
+            query, triangles[None, :, 0], triangles[None, :, 1], triangles[None, :, 2])
+        distance2 = np.sum((nearest - query) ** 2, axis=2)
+        face_ids = np.argmin(distance2, axis=1); rows = np.arange(len(points))
+        chosen = nearest[rows, face_ids]; chosen_bary = bary[rows, face_ids]
+        interpolated = np.einsum("ni,nij->nj", chosen_bary, normals[faces[face_ids]])
+        length = np.linalg.norm(interpolated, axis=1, keepdims=True)
+        interpolated = np.divide(interpolated, length, out=np.zeros_like(interpolated),
+                                 where=length > 1e-12)
+        sign = np.sign(np.einsum("ij,ij->i", np.asarray(points) - chosen, interpolated))
+        sign[sign == 0.0] = 1.0
+        return sign * np.sqrt(distance2[rows, face_ids]), face_ids, chosen_bary
+    surface = SurfaceIndex(vertices, faces, normals, k=16)
+    nearest, bary, face_ids, unsigned = surface.query(points)
+    interpolated = np.einsum("ni,nij->nj", bary, normals[faces[face_ids]])
+    length = np.linalg.norm(interpolated, axis=1, keepdims=True)
+    interpolated = np.divide(interpolated, length, out=np.zeros_like(interpolated),
+                             where=length > 1e-12)
+    sign = np.sign(np.einsum("ij,ij->i", np.asarray(points) - nearest, interpolated))
+    sign[sign == 0.0] = 1.0
+    return sign * unsigned, face_ids, bary
+
+
 def _signed_distances(points: np.ndarray, vertices: np.ndarray, faces: np.ndarray,
                       normals: np.ndarray, k: int = 16) -> np.ndarray:
     """分块调用基础库的严格最近三角带符号距离，覆盖全部查询点。"""
@@ -135,6 +166,59 @@ def _signed_distances(points: np.ndarray, vertices: np.ndarray, faces: np.ndarra
         output[start:start + len(block)] = signed_distance(
             block, vertices, faces, normals, k=k).distances_mu
     return output
+
+
+def _load_hide_mask(fit: dict[str, Any], fit_path: Path, body_mesh: Mesh) -> np.ndarray | None:
+    """读取与模板共 UV 的 L8 遮罩；无遮罩返回 None，保持旧件行为不变。"""
+    spec = fit.get("hideMask")
+    if spec is None:
+        return None
+    if not isinstance(spec, dict) or not isinstance(spec.get("file"), str):
+        raise ValueError("hideMask 必须含 file")
+    size = spec.get("size")
+    if not isinstance(size, int) or size <= 0:
+        raise ValueError("hideMask.size 必须是正整数")
+    if body_mesh.uvs is None:
+        raise ValueError("hideMask 需要模板 TEXCOORD_0")
+    recorded = Path(spec["file"]); path = recorded if recorded.is_absolute() else fit_path.parent / recorded
+    if not path.is_file() and not recorded.is_absolute():
+        path = REPO / recorded
+    if not path.is_file():
+        raise ValueError(f"找不到 hideMask：{path}")
+    with Image.open(path) as image:
+        if image.mode != "L" or image.size != (size, size):
+            raise ValueError(f"hideMask 必须是 {size}x{size} L8 PNG")
+        return np.asarray(image, dtype=np.float32) / 255.0
+
+
+def _sample_hide_mask(mask: np.ndarray, uvs: np.ndarray) -> np.ndarray:
+    """按本管线 glTF 左上 UV 约定双线性采样身体遮罩。"""
+    coords = np.asarray(uvs, dtype=np.float64); height, width = mask.shape
+    x = np.clip(coords[:, 0], 0, 1) * (width - 1)
+    y = np.clip(coords[:, 1], 0, 1) * (height - 1)
+    x0, y0 = np.floor(x).astype(np.int64), np.floor(y).astype(np.int64)
+    x1, y1 = np.minimum(x0 + 1, width - 1), np.minimum(y0 + 1, height - 1)
+    wx, wy = x - x0, y - y0
+    return ((1 - wy) * ((1 - wx) * mask[y0, x0] + wx * mask[y0, x1])
+            + wy * ((1 - wx) * mask[y1, x0] + wx * mask[y1, x1]))
+
+
+def _distances_and_visibility(points: np.ndarray, body_vertices: np.ndarray,
+                              body_mesh: Mesh, body_normals: np.ndarray,
+                              mask: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """返回带符号距离及最近体表点是否未隐藏；每帧重算最近三角。"""
+    faces = _faces(body_mesh); distances = np.empty(len(points), np.float64)
+    visible = np.empty(len(points), bool)
+    assert body_mesh.uvs is not None
+    for start in range(0, len(points), 4096):
+        block = np.asarray(points[start:start + 4096], dtype=np.float64)
+        values, face_ids, bary = _surface_distances(
+            block, body_vertices, faces, body_normals)
+        distances[start:start + len(block)] = values
+        tri = faces[face_ids]
+        uv = np.einsum("ni,nij->nj", bary, body_mesh.uvs[tri])
+        visible[start:start + len(block)] = _sample_hide_mask(mask, uv) < 0.5
+    return distances, visible
 
 
 def _check(name: str, passed: bool, value: Any, threshold: Any, **extra: Any) -> dict[str, Any]:
@@ -306,17 +390,19 @@ def _world_matrices(glb: GLB, animation: dict[str, Any], time: float) -> np.ndar
     return world
 
 
-def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh, m_per_mu: float) -> dict[str, float]:
+def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
+                         m_per_mu: float, hide_mask: np.ndarray | None = None
+                         ) -> dict[str, float | dict[str, float]]:
     if asset_mesh.joints is None or asset_mesh.weights is None or body_mesh.joints is None or body_mesh.weights is None:
         return {}
     by_name = {str(item.get("name", "")).lower(): item for item in body.json.get("animations", [])}
-    result: dict[str, float] = {}; body_skin = body.skin(); asset_skin = asset.skin()
+    result: dict[str, float | dict[str, float]] = {}; body_skin = body.skin(); asset_skin = asset.skin()
     for clip in ("idle", "walk", "run"):
         animation = next((value for name, value in by_name.items() if clip in name), None)
         if animation is None: raise ValueError(f"正本缺 {clip} 动画")
         ends = [float(np.asarray(body.accessor(s["input"])).max(initial=0)) for s in animation.get("samplers", [])]
         duration = max(ends, default=0.0)
-        worst = 0.0
+        worst_all = 0.0; worst_visible = 0.0
         for time in np.linspace(0.0, duration, 24, endpoint=False):
             world = _world_matrices(body, animation, float(time))
             body_world = world[np.asarray(body_skin.joints)]
@@ -325,22 +411,46 @@ def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mes
             asset_pos = lbs(asset_mesh.positions, asset_mesh.joints, asset_mesh.weights,
                             asset_world, asset_skin.inverse_bind_matrices)
             body_normals = _vertex_normals(body_pos, _faces(body_mesh))
-            distances = _signed_distances(asset_pos, body_pos, _faces(body_mesh), body_normals) * m_per_mu
-            worst = max(worst, float(np.count_nonzero(distances < -0.001) / len(distances)))
-        result[clip] = worst
+            if hide_mask is None:
+                distances = _signed_distances(
+                    asset_pos, body_pos, _faces(body_mesh), body_normals) * m_per_mu
+                worst_all = max(worst_all, float(
+                    np.count_nonzero(distances < -0.001) / len(distances)))
+                continue
+            distances, face_ids, bary = _surface_distances(
+                asset_pos, body_pos, _faces(body_mesh), body_normals)
+            unhidden = None
+            if hide_mask is not None:
+                assert body_mesh.uvs is not None
+                uv = np.einsum("ni,nij->nj", bary, body_mesh.uvs[_faces(body_mesh)[face_ids]])
+                unhidden = _sample_hide_mask(hide_mask, uv) < 0.5
+            penetrating = distances * m_per_mu < -0.001
+            worst_all = max(worst_all, float(np.count_nonzero(penetrating) / len(distances)))
+            if unhidden is not None:
+                worst_visible = max(worst_visible, float(np.count_nonzero(penetrating & unhidden)
+                                                        / len(distances)))
+        result[clip] = worst_all if hide_mask is None else {"all": worst_all, "visible": worst_visible}
     return result
 
 
 def _penetration_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
-                       m_per_mu: float) -> tuple[int, dict[str, float]]:
+                       m_per_mu: float, hide_mask: np.ndarray | None = None
+                       ) -> tuple[int | dict[str, int], dict[str, float | dict[str, float]]]:
     """独立计算 bind 与三段 clip 穿透；供门禁与合成回归共用。"""
     body_faces = _faces(body_mesh)
     body_normals = (body_mesh.normals if body_mesh.normals is not None
                     else _vertex_normals(body_mesh.positions, body_faces))
-    bind = _signed_distances(asset_mesh.positions, body_mesh.positions,
-                             body_faces, body_normals) * m_per_mu
-    return int(np.count_nonzero(bind < -1e-9)), _dynamic_penetration(
-        body, asset, body_mesh, asset_mesh, m_per_mu)
+    if hide_mask is None:
+        bind = _signed_distances(asset_mesh.positions, body_mesh.positions,
+                                 body_faces, body_normals) * m_per_mu
+        static: int | dict[str, int] = int(np.count_nonzero(bind < -1e-9))
+    else:
+        bind, unhidden = _distances_and_visibility(asset_mesh.positions, body_mesh.positions,
+                                                   body_mesh, body_normals, hide_mask)
+        penetrating = bind * m_per_mu < -1e-9
+        static = {"all": int(np.count_nonzero(penetrating)),
+                  "visible": int(np.count_nonzero(penetrating & unhidden))}
+    return static, _dynamic_penetration(body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask)
 
 
 def _texture_sizes(glb: GLB) -> list[list[int]]:
@@ -689,14 +799,31 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
     m_per_mu = _positive_number(skeleton.get("mPerMu")) or 1.0
     body_normals = body_mesh.normals if body_mesh.normals is not None else _vertex_normals(body_mesh.positions, body_faces)
     if skinned:
+        hide_mask = _load_hide_mask(fit, fit_path, body_mesh)
         static_inside, dynamic = _penetration_rates(
-            body, asset, body_mesh, asset_mesh, m_per_mu)
-        checks.append(_check("penetration.bindVertices", static_inside == 0, static_inside, 0))
+            body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask)
         threshold = 0.005 if requested == "approved" else 0.02
-        for clip in ("idle", "walk", "run"):
-            present = clip in dynamic; value = dynamic.get(clip)
-            checks.append(_check(f"penetration.{clip}", present and value <= threshold, value,
-                                 f"<= {threshold}", frames=24))
+        if hide_mask is None:
+            checks.append(_check("penetration.bindVertices", static_inside == 0, static_inside, 0))
+            for clip in ("idle", "walk", "run"):
+                present = clip in dynamic; value = dynamic.get(clip)
+                checks.append(_check(f"penetration.{clip}", present and value <= threshold, value,
+                                     f"<= {threshold}", frames=24))
+        else:
+            assert isinstance(static_inside, dict)
+            checks.append(_check("penetration.bindVertices.all", True, static_inside["all"], "report only"))
+            checks.append(_check("penetration.bindVertices.visible", static_inside["visible"] == 0,
+                                 static_inside["visible"], 0))
+            for clip in ("idle", "walk", "run"):
+                values = dynamic.get(clip); present = isinstance(values, dict)
+                assert not present or isinstance(values, dict)
+                all_value = values.get("all") if present else None
+                visible_value = values.get("visible") if present else None
+                checks.append(_check(f"penetration.{clip}.all", True, all_value,
+                                     "report only", frames=24))
+                checks.append(_check(f"penetration.{clip}.visible",
+                                     present and visible_value is not None and visible_value <= threshold,
+                                     visible_value, f"<= {threshold}", frames=24))
 
         checks.extend(_mask_checks(fit, skeleton))
 

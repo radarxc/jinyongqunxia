@@ -12,7 +12,8 @@ import traceback
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from fit_garment import (GarmentGateError, SurfaceIndex, align_joints, align_landmarks, derive_regions, fit_file,
+from fit_garment import (GarmentGateError, SurfaceIndex, _signed_distance_from_query, align_joints,
+                         align_landmarks, clear_bind_penetration, derive_regions, fit_file, edge_weight_blend,
                          hide_regions, load_world_mesh, mm_to_mu, push_out, transfer_weights,
                          vertex_normals)  # noqa: E402
 from common import nearest_triangle, signed_distance  # noqa: E402
@@ -216,6 +217,38 @@ def test_weight_transfer_and_filter() -> None:
     _, _, far_stats = transfer_weights(far, normals, surface, joints, weights, skeleton(), "body", faces)
     assert far_stats["farSemanticFallbackVertices"] >= 24
     assert far_stats["farFallbackThresholdMm"] == 100.0
+
+
+def test_edge_template_weights_blend_thirty_mm() -> None:
+    points = np.array([[x * .02, y * .02, 0] for y in range(5) for x in range(5)], np.float32)
+    faces = []
+    for y in range(4):
+        for x in range(4):
+            a = y * 5 + x; faces.extend(((a, a + 5, a + 1), (a + 1, a + 5, a + 6)))
+    faces = np.asarray(faces, np.int64); count = len(points)
+    source_j = np.zeros((count, 4), np.uint16); source_w = np.zeros((count, 4), np.float32); source_w[:, 0] = 1
+    template_j = np.ones((count, 4), np.uint16); template_w = np.zeros((count, 4), np.float32); template_w[:, 0] = 1
+    joints, weights, stats = edge_weight_blend(
+        points, faces, source_j, source_w, template_j, template_w, .03)
+    dense = np.zeros((count, 2)); rows = np.repeat(np.arange(count), 4)
+    np.add.at(dense, (rows, joints.ravel()), weights.ravel())
+    assert np.allclose(dense[[0, 4, 20, 24], 1], 1.0)  # 开口完全用 B。
+    assert dense[12, 1] == 0 and 0 < dense[7, 1] < 1  # 30 mm 外 A；带内渐变。
+    assert stats["boundaryVertices"] == 16 and stats["blendedVertices"] == 24
+
+
+def test_edge_refit_clears_bind_penetration() -> None:
+    body, body_faces = cylinder(1.0, (0.0, .5, 1.0))
+    normals = body.copy(); normals[:, 1] = 0.0
+    normals /= np.maximum(np.linalg.norm(normals, axis=1, keepdims=True), 1e-12)
+    surface = SurfaceIndex(body, body_faces, normals)
+    garment = body.copy(); garment[:, :][garment[:, 1] > .75] *= np.array([.995, 1., .995])
+    cleared, stats = clear_bind_penetration(garment, surface)
+    nearest, bary, face_ids, distances = surface.query(cleared)
+    body_normal = np.einsum("ni,nij->nj", bary, normals[body_faces[face_ids]])
+    signed = _signed_distance_from_query(cleared, nearest, body_normal, distances)
+    assert stats["rounds"] and stats["residual"] == 0
+    assert np.count_nonzero(signed < 0.0) == 0
 
 
 def test_surface_query_is_geometric_nearest() -> None:
@@ -519,8 +552,6 @@ def test_align_none_uses_template_weights() -> None:
         output = load_world_mesh(load_glb(Path(temporary) / "_fixture_none.glb"), skinned_only=True)
         source = load_world_mesh(load_glb(raw))
         assert len(output.positions) == len(source.positions)
-
-
 def test_file_identity_and_region() -> None:
     root = Path(__file__).resolve().parents[3]
     template = root / "assets/default/model3d/dressup/templates/tpl_f_medium"
@@ -544,7 +575,9 @@ def test_file_identity_and_region() -> None:
 
 
 def main() -> int:
-    tests = [test_weight_transfer_and_filter, test_surface_query_is_geometric_nearest,
+    tests = [test_weight_transfer_and_filter, test_edge_template_weights_blend_thirty_mm,
+             test_edge_refit_clears_bind_penetration,
+             test_surface_query_is_geometric_nearest,
              test_legacy_normal_selected_output_has_real_residual,
              test_push_out, test_hide_regions, test_refit_identity,
              test_refit_changed_bone_lengths, test_fixture_strict_fit, test_align_none_uses_template_weights,
