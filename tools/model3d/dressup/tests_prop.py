@@ -12,6 +12,7 @@ import numpy as np
 
 import normalize_prop
 import check_sockets
+import validate
 from common import quaternion_to_matrix
 from glb_io import GLBBuilder, Mesh, PrimitiveRange, load_glb
 
@@ -132,6 +133,35 @@ def _socket_skeleton() -> dict:
 
 
 class NormalizePropTests(unittest.TestCase):
+    def test_validate_guard_peak_accepts_unsheathed_sword_with_narrow_tip(self) -> None:
+        # 柄/护手在低端，剑尖是全剑最窄端；旧“窄端=柄”规则会误报。
+        vertices = np.array([
+            [-.04, -.10, -.02], [.04, -.10, .02],
+            [-.20, .10, -.03], [.20, .10, .03],
+            [-.07, .50, -.02], [.07, .50, .02],
+            [-.005, 1.00, -.005], [.005, 1.00, .005],
+        ])
+        detection = {"method": "guard-peak", "handleEnd": "min",
+                     "peakAxialMu": .10, "handleSegmentVertices": 4,
+                     "bladeSegmentVertices": 4}
+        old_ok, _ = validate._prop_semantic_direction(
+            vertices, "weapon", np.array([0., 0., 0.]))
+        new_ok, value = validate._prop_semantic_direction(
+            vertices, "weapon", np.array([0., 0., 0.]),
+            {"handleDetection": detection})
+        self.assertFalse(old_ok); self.assertTrue(new_ok)
+        self.assertTrue(value["gripOnHandleSide"]); self.assertTrue(value["recordedCountsMatch"])
+
+    def test_validate_guard_peak_rejects_grip_on_blade_end(self) -> None:
+        vertices = np.array([[-.1, -.2, 0.], [.1, -.2, 0.],
+                             [-.2, .1, 0.], [.2, .1, 0.],
+                             [-.01, 1., 0.], [.01, 1., 0.]])
+        fit = {"handleDetection": {"method": "guard-peak",
+               "handleEnd": "min", "peakAxialMu": .1}}
+        valid, value = validate._prop_semantic_direction(
+            vertices, "weapon", np.array([0., .8, 0.]), fit)
+        self.assertFalse(valid); self.assertFalse(value["gripOnHandleSide"])
+
     def test_strict_triangle_sign_catches_nearest_vertex_disagreement(self) -> None:
         # 查询点最近顶点是 A，其法线朝 -Z，最近顶点法会误判为外部；
         # 最近点位于三角内部，重心插值法线朝 +Z，严格结果必须为负。
@@ -214,6 +244,61 @@ class NormalizePropTests(unittest.TestCase):
         self.assertEqual(signed, -150.0)
         self.assertIs(selected, metrics[-1])
         self.assertIsNone(check_sockets._ANIM_CONTEXT)
+
+    def test_tilt_sweep_disallows_reverse_only_when_explicit(self) -> None:
+        positive = check_sockets.TILT_CANDIDATES[:-1]
+        ratios = [.013, .015, .006, .0016]
+        metrics = [{"insideRatio": ratio, "insideVertexTotal": index,
+                    "minSignedDistanceMm": {"min": -index, "median": index}}
+                   for index, ratio in enumerate(ratios)]
+        rows_stub = [
+            {"candidate": label, "restTiltDeg": value,
+             "level": check_sockets._weapon_level(metric["insideRatio"]),
+             **metric, "_animated": metric}
+            for (label, value), metric in zip(positive, metrics)
+        ]
+        fit = {"allowReverse": False}
+        self.assertEqual(check_sockets._tilt_candidates(fit), positive)
+        with mock.patch.object(check_sockets, "_parallel_frame_sweep",
+                               return_value=rows_stub) as sweep:
+            rows, _adjust, signed, selected = check_sockets._tilt_sweep(
+                object(), object(), object(), fit, _socket_skeleton(), [])
+        self.assertEqual(sweep.call_args.args[6], positive)
+        self.assertEqual([row["candidate"] for row in rows], ["0", "20", "40", "60"])
+        expected_signed = check_sockets._tilt_adjust(_socket_skeleton(), 60.0)[1]
+        self.assertEqual(signed, expected_signed)
+        self.assertIs(selected, metrics[-1])
+        self.assertEqual(check_sockets._tilt_candidates({}), check_sockets.TILT_CANDIDATES)
+        self.assertEqual(check_sockets._tilt_candidates(
+            {"gripAdjust": {"allowReverse": False}}), positive)
+
+    def test_nested_allow_reverse_survives_grip_adjust_writeback(self) -> None:
+        fit = {"gripAdjust": {"allowReverse": False}}
+        selected = {"pos": [0., 0., 0.], "quat": [0., 0., .5, .866025404]}
+        fit["gripAdjust"] = check_sockets._grip_adjust_record(fit, selected)
+        reread = json.loads(json.dumps(fit))
+        self.assertIs(reread["gripAdjust"]["allowReverse"], False)
+        self.assertEqual(check_sockets._tilt_candidates(reread),
+                         check_sockets.TILT_CANDIDATES[:-1])
+
+        legacy = {"gripAdjust": {"pos": [1., 2., 3.]}}
+        legacy["gripAdjust"] = check_sockets._grip_adjust_record(legacy, selected)
+        self.assertNotIn("allowReverse", legacy["gripAdjust"])
+        self.assertEqual(check_sockets._tilt_candidates(legacy),
+                         check_sockets.TILT_CANDIDATES)
+
+    def test_manifest_records_selected_positive_grip_tilt(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="tianshu-socket-manifest-") as directory:
+            root = Path(directory); manifest = root / "manifest.yaml"
+            manifest.write_text(
+                "- id: synthetic\n  status: candidate\n  fits: {tpl_f_medium: {status: candidate}}\n",
+                encoding="utf-8")
+            record = {"class": "weapon", "bind": {"bladeAngleDeg": .000013},
+                      "tiltSweep": [{"restTiltDeg": 40., "insideRatio": .006},
+                                    {"restTiltDeg": 60., "insideRatio": .0002}]}
+            check_sockets._update_manifest(root, "approved", "approved", record)
+            row = check_sockets.yaml.safe_load(manifest.read_text(encoding="utf-8"))[0]
+            self.assertIn("出鞘·持剑态；restTilt=60.000°", row["notes"])
 
     def test_all_socket_failures_reject_status_and_cli(self) -> None:
         cases = (
@@ -483,6 +568,10 @@ class NormalizePropTests(unittest.TestCase):
         self.assertEqual(geometry["totalVertices"],
                          geometry["handleSegmentVertices"] + geometry["bladeSegmentVertices"])
         self.assertGreater(geometry["verticesPerFrame"], 0)
+        anchor = normalize_prop._output_anchor(mesh.positions, fit["anchor"], .07)
+        direction_ok, direction = validate._prop_semantic_direction(
+            mesh.positions, "weapon", anchor, fit)
+        self.assertTrue(direction_ok); self.assertEqual(direction["method"], "guard-peak")
 
     def test_hat_cone_tip_is_origin_and_opening_negative_y(self) -> None:
         result = normalize_prop.normalize_mesh(_cone(), "hat", 0.45, 1.5, size_axis="width")

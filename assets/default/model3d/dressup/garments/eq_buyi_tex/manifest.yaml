@@ -1,0 +1,20 @@
+- id: dressup__layer__eq_buyi
+  file: eq_buyi.layer.png
+  category: model3d
+  fit: layer.json
+  kind: dressup-layer
+  slot: body
+  template: tpl_f_medium
+  item: eq_buyi
+  tool: tools/model3d/dressup/retexture_variant.py
+  source:
+    base_plate:
+      path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
+      sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
+    plate:
+      path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png
+      sha256: 3f1881b361bb2ca696da6f2abb338748b6896a4d2b9c9727da6653e317f1fc5c
+  sha256: dcacef9b1d96ed625c5bf4239856d04f9fff339d2283f1636519549509f70b41
+  size_bytes: 1710658
+  status: draft
+  created: '2026-10-08T15:59:29-07:00'

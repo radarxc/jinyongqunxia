@@ -760,12 +760,52 @@ def _terminal_width(vertices: np.ndarray, high: bool) -> float:
     return max(float(np.ptp(points[:, 0])), float(np.ptp(points[:, 2])))
 
 
+def _guard_peak_direction(vertices: np.ndarray, anchor: np.ndarray,
+                          detection: dict[str, Any]) -> tuple[bool, dict[str, Any]]:
+    """用护手分隔柄/刃；剑尖比柄窄时不能再以端宽猜柄端。"""
+    y = np.asarray(vertices[:, 1], dtype=float)
+    peak = _positive_number(detection.get("peakAxialMu"))
+    handle_end = detection.get("handleEnd")
+    if peak is None or handle_end not in ("min", "max"):
+        return False, {"method": "guard-peak", "error": "invalid handle detection"}
+    tolerance = 1e-7
+    # 顶点计数严格复现 normalize_prop 的 1e-9 分割；较宽容差只用于
+    # float32 锚点落在护手柄侧的判断。
+    handle = y <= peak + 1e-9 if handle_end == "min" else y >= peak - 1e-9
+    blade = ~handle
+    grip_y = float(anchor[1])
+    grip_on_handle = grip_y <= peak + tolerance if handle_end == "min" else grip_y >= peak - tolerance
+    handle_count = int(np.count_nonzero(handle)); blade_count = int(np.count_nonzero(blade))
+    recorded_handle = detection.get("handleSegmentVertices")
+    recorded_blade = detection.get("bladeSegmentVertices")
+    # peakAxialMu 按 fit 的 9 位小数落盘；恰在护手切面上的一个 float32
+    # 顶点可能跨过 1e-9 边界，允许总量不变前提下两段各差一个。
+    handle_delta = (0 if recorded_handle is None else handle_count - int(recorded_handle))
+    blade_delta = (0 if recorded_blade is None else blade_count - int(recorded_blade))
+    counts_match = (abs(handle_delta) <= 1 and abs(blade_delta) <= 1 and
+                    handle_delta + blade_delta == 0)
+    value = {"method": "guard-peak", "handleEnd": handle_end,
+             "peakAxialMu": peak, "gripAxialMu": grip_y,
+             "gripOnHandleSide": grip_on_handle,
+             "handleSegmentVertices": handle_count, "bladeSegmentVertices": blade_count,
+             "recordedCountDelta": {"handle": handle_delta, "blade": blade_delta},
+             "recordedCountsMatch": counts_match}
+    return grip_on_handle and handle_count > 0 and blade_count > 0 and counts_match, value
+
+
 def _prop_semantic_direction(vertices: np.ndarray, prop_class: str | None,
-                             anchor: np.ndarray) -> tuple[bool, Any]:
-    if prop_class in ("weapon", "hat"):
+                             anchor: np.ndarray, fit: dict[str, Any] | None = None
+                             ) -> tuple[bool, Any]:
+    if prop_class == "weapon":
+        detection = (fit or {}).get("handleDetection")
+        if isinstance(detection, dict) and detection.get("method") == "guard-peak":
+            return _guard_peak_direction(vertices, anchor, detection)
+        # 没有合格护手证据的历史道具继续使用旧“窄端=柄”规则。
         low = _terminal_width(vertices, False); high = _terminal_width(vertices, True)
-        valid = high >= low if prop_class == "weapon" else high <= low
-        return valid, {"lowWidthMu": low, "highWidthMu": high}
+        return high >= low, {"lowWidthMu": low, "highWidthMu": high}
+    if prop_class == "hat":
+        low = _terminal_width(vertices, False); high = _terminal_width(vertices, True)
+        return high <= low, {"lowWidthMu": low, "highWidthMu": high}
     if prop_class in ("pendant", "pouch"):
         norm = float(np.linalg.norm(anchor)); median_y = float(np.median(vertices[:, 1]))
         return norm < 1e-4 and median_y < 0, {"anchorNormMu": norm, "medianYMu": median_y}
@@ -867,7 +907,8 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
         declared_length_mu = measured * scale
         size_error = abs(actual_m - real_m) / real_m if size_ok and real_m > 0 else math.inf
         prop_class = fit.get("class")
-        direction_ok, direction_value = _prop_semantic_direction(asset_mesh.positions, prop_class, anchor)
+        direction_ok, direction_value = _prop_semantic_direction(
+            asset_mesh.positions, prop_class, anchor, fit)
         checks += [_check("prop.noNodeTransform", not transform_keys, transform_keys, []),
                    _check("prop.anchorEvidence", anchor_ok, anchor_ok, True),
                    _check("prop.anchorMu", anchor_ok and float(np.linalg.norm(anchor)) < 1e-4 and

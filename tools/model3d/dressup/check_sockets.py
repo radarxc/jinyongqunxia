@@ -299,6 +299,26 @@ def _tilt_adjust(skeleton: dict[str, Any], candidate: float) -> tuple[dict[str, 
     return weapon_grip_adjust(skeleton, candidate)
 
 
+def _tilt_candidates(fit: dict[str, Any]) -> tuple[tuple[str, float], ...]:
+    """显式禁用反握时只扫描 AR-107 的四档正握；缺省保持旧行为。"""
+    grip_adjust = fit.get("gripAdjust")
+    nested = grip_adjust.get("allowReverse") if isinstance(grip_adjust, dict) else None
+    allow_reverse = fit.get("allowReverse", nested)
+    return (TILT_CANDIDATES if allow_reverse is not False else
+            tuple(row for row in TILT_CANDIDATES if row[0] != "reverse"))
+
+
+def _grip_adjust_record(fit: dict[str, Any], selected: dict[str, Any]) -> dict[str, Any]:
+    """写回插槽变换，并持久化显式的嵌套禁反握策略。"""
+    record = {
+        "pos": [round(float(value), 9) for value in selected["pos"]],
+        "quat": [round(float(value), 9) for value in selected["quat"]]}
+    previous = fit.get("gripAdjust")
+    if isinstance(previous, dict) and previous.get("allowReverse") is False:
+        record["allowReverse"] = False
+    return record
+
+
 def _tilt_worker(candidate: float) -> dict[str, Any]:
     """fork 子进程共享只读 GLB/网格，避免五档串行超过校验时限。"""
     if _ANIM_CONTEXT is None:  # pragma: no cover - 只代表调用方违反内部约定
@@ -311,13 +331,14 @@ def _tilt_worker(candidate: float) -> dict[str, Any]:
 def _tilt_sweep(body: Any, body_mesh: Mesh, mesh: Mesh, fit: dict[str, Any],
                 skeleton: dict[str, Any], frames: list[dict[str, Any]]
                 ) -> tuple[list[dict[str, Any]], dict[str, Any], float, dict[str, Any]]:
+    candidates = _tilt_candidates(fit)
     rows = _parallel_frame_sweep(
-        body, body_mesh, mesh, fit, skeleton, frames, TILT_CANDIDATES, False)
+        body, body_mesh, mesh, fit, skeleton, frames, candidates, False)
     for row in rows:
         _adjust, row["restTiltDeg"] = _tilt_adjust(
             skeleton, -150.0 if row["candidate"] == "reverse" else float(row["candidate"]))
     best = min(rows, key=lambda row: (float(row["insideRatio"]),
-                                      next(i for i, item in enumerate(TILT_CANDIDATES)
+                                      next(i for i, item in enumerate(candidates)
                                            if item[0] == row["candidate"])))
     adjust, signed = _tilt_adjust(
         skeleton, -150.0 if best["candidate"] == "reverse" else float(best["candidate"]))
@@ -484,7 +505,10 @@ def _update_manifest(directory: Path, validate_level: str, sockets_level: str,
         if "sheatheSweep" in record:
             state = f"入鞘·佩剑态；sheatheAngle={record['bind']['sheatheAngleDeg']:.3f}°；"
         else:
-            state = f"持剑态；restTilt={record.get('bind', {}).get('bladeAngleDeg', 0):.6f}°；"
+            selected = min(record.get("tiltSweep", []),
+                           key=lambda value: float(value["insideRatio"]), default=None)
+            rest_tilt = 0.0 if selected is None else float(selected["restTiltDeg"])
+            state = f"出鞘·持剑态；restTilt={rest_tilt:.3f}°；"
     row["notes"] = (state + f"validate level={validate_level}；sockets_check level={sockets_level}；"
                     f"联合 level={combined}，status={status}。")
     path.write_text(yaml.safe_dump(rows, allow_unicode=True, sort_keys=False, width=120), encoding="utf-8")
@@ -517,9 +541,7 @@ def check(template: Path, prop_dirs: list[Path]) -> dict[str, Any]:
                 sweep, selected_adjust, selected_tilt, animated = _tilt_sweep(
                     body, body_mesh, mesh, fit, skeleton, frames)
                 fit["restTiltDeg"] = selected_tilt; sweep_key = "tiltSweep"
-            fit["gripAdjust"] = {
-                "pos": [round(float(value), 9) for value in selected_adjust["pos"]],
-                "quat": [round(float(value), 9) for value in selected_adjust["quat"]]}
+            fit["gripAdjust"] = _grip_adjust_record(fit, selected_adjust)
             (directory / "fit.json").write_text(
                 json.dumps(fit, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         bind = _bind_metrics(fit["class"], fit, skeleton, mesh, skull)
