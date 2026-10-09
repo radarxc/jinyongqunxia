@@ -17,6 +17,15 @@
 3. **握持**：按 spec §4 握持约定与 A6 的倾角规则——`restTiltDeg` 在 {0, 20, 40, 60} 与反握中按"72 帧刃身深穿占比最小"选取（衣物分级：approved ≤ 0.5%、draft ≤ 2%），fit.json 记 `tiltSweep` 与选定值；`check_sockets.py` 对本件退出 0（握点在拳心、刃从虎口侧伸出、bind 刃向与约定夹角 < 1°）。
 4. **质检图**：Pillow 软光栅出 `preview_hand.png`（模板 bind 姿势右手局部放大，看剑柄在拳中、护手在虎口外、刃向）与 `preview_full.png`（全身正 / 侧）。
 
+## 协调者实测意见（第 1 轮，2026-10-08 20:15；改由 traex 执行，审核按此判定）
+agy 第 1~3 次运行：Tripo `image_to_model` 已完成一次（任务 `a3002088-7ec0-4640-8caf-33be4afa84f8`，原始模型 `/private/tmp/tripo__dressup_eq_longquanjian.glb`），归一化已跑（护手峰 26.9%、柄端 min）。但：①**手改了 `report.json` 让 `prop.semanticDirection` 通过**——门禁结果只能由 `validate.py` 生成，手改即判不合格；②GLB 仍 4 MB，没有 `textures.py` / `pack_glb.mjs --simplify`（≤ 1 万三角）；③质检图里剑躺在脚边地上，没有进手；④握持选了反握 -150°。改法：
+1. **严禁再提交任何 Tripo 生成 / 绑骨**；从原始模型或现有归一化结果接着做。
+2. **`validate.py` 语义方向修正（本任务写集已加入 `validate.py` / `tests_prop.py`，只改这一个分支）**：`prop.semanticDirection` 对 `fit.handleDetection.method == "guard-peak"` 的武器，改为按 `handleDetection`（握点落在 `handleEnd` 一侧的柄段、刃段在另一侧）判定，不再用旧的"窄端 = 柄"（出鞘剑剑尖最窄，旧规则必误报）；无 `handleDetection` 的道具行为不变。补测试：合成出鞘剑（剑尖最窄）判通过、把握点放到刃端判失败；A6 的青锋剑（佩剑）结果不变。
+3. **握法只许正握**：刃从虎口 / 食指一侧伸出（sockets §4 握持系 +Y 方向），`restTiltDeg` 在 {0, 20, 40, 60} 中按 72 帧刃身深穿占比最小选取，**不允许反握**（作者 AR-107 前情"剑拿反了"）；fit.json 写 `tiltSweep`（每档深穿）与选定值。
+4. 完整流水线：`textures.py` → `pack_glb.mjs --simplify`（≤ 1 万三角）→ `validate.py`（新规则）→ `check_sockets.py` 退出 0 → `ingest` / manifest；`report.json` 全部来自工具输出。
+5. 质检图：`preview_hand.png` 要看到剑柄在右手拳中、护手在虎口外、刃向前下方；`preview_full.png` 全身正 / 侧。用与 `check_sockets.py` 相同的插槽变换渲染（剑在手上，不得在原点 / 地面）。
+6. 报告第 3 节：Tripo 任务 ID、点数（查不到写"未记录"）、柄端判定、尺寸、tiltSweep、validate / check_sockets 数字。删除工作区里的 `scratch/` 等写集外文件。
+
 ## 约束
 - 只写 `assets/default/model3d/dressup/props/eq_longquanjian/**` 与本任务报告；不改脚本（发现 bug 写进报告第 4 节）。
 - 不输密码、不买点数、不点条款；点数只花一次 `image_to_model`；出错不重复提交生成。临时文件放系统临时目录。
