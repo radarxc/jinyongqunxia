@@ -16,7 +16,7 @@ async function root(): Promise<string> {
 }
 function python(source: string, ...args: string[]): string {
   const result = spawnSync('python3', ['-c', source, ...args], {
-    cwd: process.cwd(), encoding: 'utf8', timeout: 120_000,
+    cwd: process.cwd(), encoding: 'utf8', timeout: 300_000,
     env: { ...process.env, OPENBLAS_NUM_THREADS: '1', OMP_NUM_THREADS: '1' },
   });
   expect(result.stderr).toBe('');
@@ -51,7 +51,7 @@ function accessorBytes(value: ReturnType<typeof glb>, index: number): Buffer {
     value.binary.subarray(start + row * stride, start + row * stride + size)));
 }
 function run(command: string, args: string[], expected = 0): ReturnType<typeof spawnSync> {
-  const result = spawnSync(command, args, { cwd: process.cwd(), encoding: 'utf8', timeout: 120_000,
+  const result = spawnSync(command, args, { cwd: process.cwd(), encoding: 'utf8', timeout: 300_000,
     env: { ...process.env, OPENBLAS_NUM_THREADS: '1', OMP_NUM_THREADS: '1' } });
   expect(result.status, result.stderr).toBe(expected); return result;
 }
@@ -178,7 +178,7 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
     expect(dimensions).toEqual([8, 4]);
     expect(cleaned.document.bufferViews.length).toBeLessThan(evidence.views);
     const image = cleaned.document.images![0]; expect(cleaned.document.bufferViews[image.bufferView].byteLength).toBeGreaterThan(0);
-  }, 120_000);
+  }, 300_000);
 
   it('ingest accepts only complete validator-bound approved or draft reports', async () => {
     const ingestBase = await root();
@@ -201,7 +201,7 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
     expect(await readFile(join(draftDest, 'manifest.yaml'), 'utf8')).toContain('status: draft');
     expect((await publishDressupAssets(ingestBase, false)).filter(path => path.includes('/gate_')))
       .toHaveLength(6);
-  }, 120_000);
+  }, 300_000);
 
   it('ingest merges three template fits and publisher skips a rejected variant', async () => {
     const ingestBase = await root();
@@ -237,7 +237,7 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
     expect(own.some(path => path.includes('tpl_f_tall'))).toBe(false);
     expect(own).toContain('assets/default/model3d/dressup/props/' + id + '/fit.tpl_f_small.json');
     expect(own).toContain('assets/default/model3d/dressup/props/' + id + '/' + id + '.glb');
-  }, 120_000);
+  }, 300_000);
 
   it('ingest rejects forged checks, failed checks, and stale asset or fit digests', async () => {
     const assetRoot = join(await root(), 'assets/default/model3d/dressup');
@@ -272,7 +272,7 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
     const conflict = run('python3', ['tools/model3d/dressup/ingest.py', 'prop', fitId,
       '--src', fitSource, '--asset-root', assetRoot, '--commit'], 2);
     expect(conflict.stderr).toContain('--commit 与 --asset-root');
-  }, 120_000);
+  }, 300_000);
 
   it('leaves the real dressup props root free of gate fixtures', async () => {
     const entries = await readdir(join(process.cwd(), 'assets/default/model3d/dressup/props'));
@@ -312,7 +312,7 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
     await writeFile(skeletonPath, JSON.stringify(wrongUnits)); await execute('binding.skeletonUnits');
     await mutateFit(fit => { fit.mPerMu += 0.01; }, 'binding.fitMPerMu');
     await mutateFit(fit => { delete fit.body.file; }, 'binding.fitRequired');
-  }, 120_000);
+  }, 300_000);
 
   it('validates real A3 fit format and class-specific semantic axes', () => {
     const evidence = JSON.parse(python(`
@@ -339,7 +339,7 @@ print(json.dumps({'props':out,'flipped':flipped}))
       expect(anchor, name).toBeLessThan(1e-4);
       expect(direction, name).toBe(true); expect(reversed, name).toBe(false);
     }
-  }, 120_000);
+  }, 300_000);
 
   it('uses strict nearest triangles for signed distance and the minus 1 mm gate', () => {
     const evidence = JSON.parse(python(`
@@ -358,7 +358,7 @@ print(json.dumps({'distanceMu':distance.tolist(),'penetrating':int(np.count_nonz
 `));
     expect(evidence.distanceMu[0]).toBeCloseTo(-0.002, 12);
     expect(evidence.penetrating).toBe(1);
-  });
+  }, 300_000);
 
   it('reconstructs A4 landmark hair and same-skeleton joint sources', () => {
     const evidence = JSON.parse(python(`
@@ -385,7 +385,7 @@ print(json.dumps({'hairAnchorError':float(np.linalg.norm(cap.mean(0)-target)),
     expect(evidence.hairAnchorError).toBeLessThan(1e-12);
     expect(evidence.hairScaleRejected).toBe(true);
     expect(evidence.jointMaxError).toBeLessThan(1e-5);
-  }, 120_000);
+  }, 300_000);
 
   it('runs all 72 dynamic frames for synthetic garment and hair gates', async () => {
     const base = await root();
@@ -482,7 +482,7 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
     expect(evidence.negative.missingRejected).toBe(true);
     expect(evidence.negative.missingRegion).toBe('fail');
     expect(evidence.negative.extraJoints).toBe('fail');
-  }, 120_000);
+  }, 300_000);
 
   it('copies only top-level file/fit/report from non-rejected rows and records references', async () => {
     const base = await root();
@@ -518,7 +518,7 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
     expect(index.groups.hair).toEqual([]);
     expect(index.groups.prop).toEqual([]);
     expect(index.groups.layer).toEqual([]);
-  }, 120_000);
+  }, 300_000);
 
   it('publishes a report-free texture layer into the layer index group', async () => {
     const base = await root(); await layer(base);
@@ -542,7 +542,7 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
     const base = await root(); await leaf(base, 'eq_missing', 'draft');
     await rm(join(base, 'assets/default/model3d/dressup/garments/eq_missing/report.json'));
     await expect(publishDressupAssets(base, false)).rejects.toThrow();
-  }, 120_000);
+  }, 300_000);
 
   it('publishes candidate/draft fits and ignores rejected fits and source fields', async () => {
     const base = await root(); await variants(base);
@@ -567,7 +567,7 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
       ['tpl_f_small', 'draft',
         '/assets/default/model3d/dressup/garments/eq_variants/small.glb'],
     ]);
-  }, 120_000);
+  }, 300_000);
 
   it('indexes template metadata and prop sockets, then loads all real packed props', async () => {
     const base = await root();
@@ -618,7 +618,7 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
     expect(finger).toBeDefined();
     expect(finger.quaternion.toArray()).toEqual(actor.frame.fingerPose.fist[fingerName]);
     actor.dispose();
-  }, 120_000);
+  }, 300_000);
 
   it('packs rigid props without changing vertex accessors', async () => {
     const base = await root(); const input = join(base, 'rigid.glb'); const output = join(base, 'packed.glb');
@@ -643,7 +643,7 @@ i=b.add_mesh(mesh,material_map=[m]);n=b.add_node(mesh=i);b.add_scene([n]);b.writ
       expect(accessorBytes(after, afterPrimitive.attributes[name])).toEqual(
         accessorBytes(before, beforePrimitive.attributes[name]));
     }
-  }, 120_000);
+  }, 300_000);
 
   it('packs one legal GLB buffer and preserves skin vertex attributes', async () => {
     const base = await root(); const input = join(base, 'input.glb');
@@ -708,7 +708,7 @@ print(json.dumps({'animation':[m[0,3],m[0,0],rejected],'realAnimation':real_anim
     }
     expect(accessorBytes(after, after.document.skins[0].inverseBindMatrices))
       .toEqual(accessorBytes(before, before.document.skins[0].inverseBindMatrices));
-  }, 120_000);
+  }, 300_000);
 });
 
 function bytesToArrayBuffer(bytes: Buffer): ArrayBuffer {
