@@ -26,6 +26,10 @@
 4. **开口处贴身权重**：领口 / 袖口 / 衣摆 30 mm 带内的衣物顶点改用模板权重转移（B），向内按距离渐变回源权重（A），使衣边随身体同步；本任务写集加入 `fit_garment.py` / `tests_garment.py`，只追加 `--edge-weights template --edge-band-mm 30` 选项（默认关闭，既有行为不变）并补测试；对劲装三模板重跑贴合 → 遮罩 → validate。
 5. 目标：三模板 idle / walk / run **可见穿透 ≤ 2%**（draft），静态可见残留 0；做不到时报告逐区（领 / 袖 / 摆 / 躯干）列出剩余穿透来源。
 
+## 协调者裁定（2026-10-08 20:20，依据审核 r1）
+审核 r1 的第 1、2、3、5、6 条照做（开口留边按首个命中层所属开口环的衣面测地距离 15 mm；三模板做真正的"贴合 → edge weights → 推离复查"，`edge_only_refit` 不得以零轮 verify_only 跳过推离，领口推到体表外使 `bindVertices.visible` = 0；清除 preview 里衣服轮廓内的胸腹、腰胯、背部未遮岛；补 80 mm 斜射线独有命中、首层所属开口环、形态学后跨 UV 岛最终像素一致、三模板 bind visible = 0 的测试；重跑四条检查并更新报告）。
+**第 4 条（版型件翻面 309/84/126、边长合格率 < 99%、small close-fit P90 5.16 mm）不在本任务范围**：这是 E2 抽取留下的版型件几何问题，另开 E2b 任务清理（连同胸口 V 领内侧的肤色贴图）。本任务只要求 V2 的遮罩与可见穿透口径达标：三模板动态 visible ≤ 2%、`bindVertices.visible` = 0；旧几何门仍 fail 时 manifest 保持 `experimental: true`、`gateLevel` 如实写，审核不因第 4 条判 FAIL。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{bake_hide_mask.py,tests_hidemask.py,validate.py,fit_garment.py,tests_garment.py}`（`fit_garment.py` / `tests_garment.py` 只追加 `--edge-weights` 选项与测试）、`garments/eq_jinzhuang/**`（只加遮罩文件、改 fit / report / manifest）与本任务报告；`validate.py` 只追加可见穿透分支。
 - 不改运行时（遮罩在运行时的使用由 B4 负责：格式即上文 `hidemask.png` 白 = 隐藏、与 baseColor 同 UV）；不加依赖；不改门禁阈值；不花点数。
