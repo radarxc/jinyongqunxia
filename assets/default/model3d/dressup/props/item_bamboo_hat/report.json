@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "55d07101e457c075c3df74b3b266e0ddc22932c4f4ee8271b6c068d0fac0e07d",
-      "sizeBytes": 4516664
+      "sha256": "fd2922a17db87c87b0dbee96f7e34227576bc0a96a0c4bc788c88310fcec9271",
+      "sizeBytes": 997268
     },
     "fit": {
-      "sha256": "ffd28458eee85a1b6ce129035fe6723e6858cd69a91da5e51a3432af6bc28a9b",
-      "sizeBytes": 1775
+      "sha256": "a174a123e809f920863bac69e357642a732b9f00e2f99e61cdf90fee7b49cede",
+      "sizeBytes": 1744
     }
   },
   "checks": [
@@ -130,7 +130,7 @@
     {
       "name": "geometry.maxResidualMu",
       "pass": true,
-      "value": 1.5085070498562856e-08,
+      "value": 1.5292823647861855e-08,
       "threshold": "finite"
     },
     {
@@ -200,14 +200,14 @@
       "pass": true,
       "value": {
         "computed": [
-          1.8454474060014547e-10,
+          1.396983917434369e-10,
           0.0,
-          -2.116642278116032e-11
+          -6.984919587171845e-11
         ],
         "recorded": [
-          -4.960880191488699e-13,
           0.0,
-          -3.7206601436165245e-12
+          0.0,
+          0.0
         ]
       },
       "threshold": "norm < 1e-4 and match"
@@ -217,7 +217,7 @@
       "pass": true,
       "value": {
         "up": "+Y",
-        "alignment": 1.0
+        "alignment": 0.9992398336503081
       },
       "threshold": "+Y and >= 0.999"
     },
@@ -225,8 +225,8 @@
       "name": "prop.semanticDirection",
       "pass": true,
       "value": {
-        "lowWidthMu": 0.085274338722229,
-        "highWidthMu": 0.03604493290185928
+        "lowWidthMu": 0.08202643692493439,
+        "highWidthMu": 0.023613009601831436
       },
       "threshold": "weapon body +Y; hat opening -Y; pendant/pouch string top y=0"
     },
@@ -240,15 +240,15 @@
       "name": "prop.declaredLengthMu",
       "pass": true,
       "value": {
-        "mesh": 0.2656904458999634,
-        "declared": 0.2656904581517166
+        "mesh": 0.26541829109191895,
+        "declared": 0.2654182911917384
       },
       "threshold": "差 <= 1e-4 mu"
     },
     {
       "name": "prop.realSizeError",
       "pass": true,
-      "value": 4.453958152911891e-08,
+      "value": 0.0010243749215073834,
       "threshold": "<= 0.02"
     }
   ]

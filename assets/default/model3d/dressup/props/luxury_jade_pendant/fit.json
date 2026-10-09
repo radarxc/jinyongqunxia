@@ -7,9 +7,9 @@
   "class": "pendant",
   "diagnostics": {
     "anchorPositionMu": [
-      4.2582349111276675e-14,
-      8.95836212435349e-14,
-      -1.6454462449036723e-12
+      0.0,
+      0.0,
+      0.0
     ],
     "anchorSourceMu": [
       -0.113788241,
@@ -23,9 +23,9 @@
   "forward": "+Z",
   "gripAdjust": {
     "pos": [
-      -0.000151268,
-      0.000710976,
-      0.010193064
+      -0.000150894,
+      0.000709219,
+      0.010167876
     ],
     "quat": [
       0.0,
@@ -37,8 +37,8 @@
   "id": "luxury_jade_pendant",
   "kind": "prop",
   "mPerMu": 1.69370027,
-  "measuredLengthMu": 0.999062362,
-  "offsetMm": 17.307837809,
+  "measuredLengthMu": 0.998916077,
+  "offsetMm": 17.265067158,
   "realSizeM": 0.08,
   "scaleApplied": 0.047278189,
   "schema": "tianshu-dressup-fit.v1",

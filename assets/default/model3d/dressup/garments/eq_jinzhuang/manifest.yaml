@@ -46,4 +46,4 @@
       sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
     - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
       sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
-  notes: UV hide mask 覆盖率 medium/small/tall=59.6130%/59.3870%/59.4412%，80 mm 九向射线、首命中衣面测地开口留边 15 mm；最终 PNG seam 采样均 0/229449 不一致，动态 visible 均 <=0.6602%，bind visible=0/0/0。E2b 范围的旧版型翻面/边长门仍未过，故继续 experimental/fail。与贴图层 dressup__layer__eq_jinzhuang 叠穿。
+  notes: UV hide mask bind 覆盖率 medium/small/tall=47.3369%/46.8256%/47.9252%，动画内侧开口回补 68137/69677/67579 纹素后最终覆盖率=30.4698%/29.5957%/31.1675%；bind 用仰角 [-15°,80°] 全周 128 视角逐三角正交 z-buffer 与 2 mm 深度容差判隐藏，idle/walk/run 各 6 帧仅回补“直接可见且仍在衣物里侧”的纹素，另以同范围 8 视角复查全部 24 帧。holes 最坏=0.0622%（medium run 略超 0.05%），bind visible=0/0/0；动态 penetration visible=4.37%~9.08%，超过 2%，逐区以 torsoUpper/torsoLower 为主并含袖口/衣摆邻接肢体，未以扩大遮罩规避，交 E2b 修版型几何/蒙皮。E2b 既有翻面/边长（small 另有 close-fit）门仍未过，故继续 experimental/fail。与贴图层 dressup__layer__eq_jinzhuang 叠穿。

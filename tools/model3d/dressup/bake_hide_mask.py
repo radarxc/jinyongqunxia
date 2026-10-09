@@ -28,13 +28,21 @@ try:
                                      bilinear_sample, rasterize_uv, raycast_outermost)
     from .glb_io import GLB, Mesh, load_glb
     from .fit_garment import SurfaceIndex
+    from .common import lbs
 except ImportError:
     from bake_texture_layer import (_ray_scene, _rays_in_aabb, Raster, RayHits,
                                     bilinear_sample, rasterize_uv, raycast_outermost)
     from glb_io import GLB, Mesh, load_glb
     from fit_garment import SurfaceIndex
+    from common import lbs
 
 NEVER_HIDE = frozenset({"head", "neck", "handL", "handR", "footL", "footR"})
+VIEW_ELEVATION_DEG = (-15.0, 80.0)
+HOLE_CHECK_VIEWS = np.asarray([
+    [0., 0., 1.], [0., 0., -1.], [1., 0., 0.], [-1., 0., 0.],
+    [0., 1., 1.], [0., 1., -1.], [1., 1., 0.], [-1., 1., 0.],
+], dtype=np.float64)
+HOLE_CHECK_VIEWS /= np.linalg.norm(HOLE_CHECK_VIEWS, axis=1)[:, None]
 
 
 class BakeError(ValueError):
@@ -48,6 +56,35 @@ class MaskBake:
     raw: np.ndarray
     opening_safe: np.ndarray
     stats: dict[str, Any]
+
+
+@dataclass(frozen=True)
+class PosedMeshes:
+    """同一 bind/动画时刻的身体与衣物表面。"""
+
+    label: str
+    body_positions: np.ndarray
+    body_normals: np.ndarray
+    garment_positions: np.ndarray
+    garment_normals: np.ndarray
+
+
+@dataclass(frozen=True)
+class OrthoFrame:
+    right: np.ndarray
+    up: np.ndarray
+    direction: np.ndarray
+    low: np.ndarray
+    scale: float
+    size: int
+
+
+@dataclass(frozen=True)
+class TriangleFragments:
+    pixels: np.ndarray
+    depths: np.ndarray
+    faces: np.ndarray
+    barycentric: np.ndarray
 
 
 def _memory_mib() -> float:
@@ -401,7 +438,131 @@ def _synchronize_uv_seams(mask: np.ndarray, protected: np.ndarray, body: Mesh) -
     return changed
 
 
-def bake_mask(body: Mesh, garment: Mesh, raster: Raster, regions: np.ndarray,
+def _vertex_normals(positions: np.ndarray, faces: np.ndarray) -> np.ndarray:
+    normals = np.zeros_like(positions, dtype=np.float64)
+    triangles = positions[faces]
+    face_normals = np.cross(triangles[:, 1] - triangles[:, 0],
+                            triangles[:, 2] - triangles[:, 0])
+    np.add.at(normals, faces.ravel(), np.repeat(face_normals, 3, axis=0))
+    lengths = np.linalg.norm(normals, axis=1)
+    return normals / np.maximum(lengths[:, None], 1e-12)
+
+
+def fibonacci_directions(count: int = 128,
+                         elevation_deg: tuple[float, float] = VIEW_ELEVATION_DEG
+                         ) -> np.ndarray:
+    """在游戏相机可达球带内按球面面积确定性均匀采样。"""
+    if count < 2:
+        raise ValueError("视角数至少为 2")
+    low_deg, high_deg = elevation_deg
+    if not -90.0 <= low_deg < high_deg <= 90.0:
+        raise ValueError("视角仰角范围必须满足 -90 <= low < high <= 90")
+    index = np.arange(count, dtype=np.float64)
+    low_y, high_y = math.sin(math.radians(low_deg)), math.sin(math.radians(high_deg))
+    y = low_y + (high_y - low_y) * index / (count - 1)
+    radius = np.sqrt(np.maximum(0.0, 1.0 - y * y))
+    azimuth = index * (math.pi * (3.0 - math.sqrt(5.0)))
+    return np.column_stack((radius * np.cos(azimuth), y, radius * np.sin(azimuth)))
+
+
+def orthographic_frame(meshes: Sequence[np.ndarray], direction: np.ndarray,
+                       size: int) -> OrthoFrame:
+    reference = np.array([0., 1., 0.]) if abs(float(direction[1])) < .9 else np.array([1., 0., 0.])
+    right = np.cross(reference, direction); right /= np.linalg.norm(right)
+    up = np.cross(direction, right)
+    combined = np.concatenate(tuple(meshes), axis=0)
+    projected = np.column_stack((combined @ right, combined @ up))
+    low, high = projected.min(axis=0), projected.max(axis=0)
+    span = max(float((high - low).max()), 1e-9); padding = span * .01
+    return OrthoFrame(right, up, direction, low - padding,
+                      (size - 1) / (span + 2 * padding), size)
+
+
+def project_points(points: np.ndarray, frame: OrthoFrame
+                   ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    columns = np.rint((points @ frame.right - frame.low[0]) * frame.scale).astype(np.int64)
+    rows = np.rint((points @ frame.up - frame.low[1]) * frame.scale).astype(np.int64)
+    return (np.clip(rows, 0, frame.size - 1),
+            np.clip(columns, 0, frame.size - 1), points @ frame.direction)
+
+
+def rasterize_triangles(positions: np.ndarray, faces: np.ndarray, frame: OrthoFrame,
+                        *, fragments: bool = False
+                        ) -> tuple[np.ndarray, TriangleFragments | None]:
+    """逐三角重心插值的正交 z-buffer；无屏幕空间膨胀。"""
+    screen = np.column_stack(((positions @ frame.right - frame.low[0]) * frame.scale,
+                              (positions @ frame.up - frame.low[1]) * frame.scale))
+    vertex_depth = positions @ frame.direction
+    depth = np.full(frame.size * frame.size, -np.inf, np.float64)
+    pixel_parts: list[np.ndarray] = []; depth_parts: list[np.ndarray] = []
+    face_parts: list[np.ndarray] = []; bary_parts: list[np.ndarray] = []
+    all_faces = np.asarray(faces, dtype=np.int64)
+    for start in range(0, len(all_faces), 8192):
+        face_ids = np.arange(start, min(start + 8192, len(all_faces)))
+        batch_faces = all_faces[face_ids]; tri = screen[batch_faces]
+        low = np.maximum(0, np.ceil(tri.min(axis=1)).astype(np.int64))
+        high = np.minimum(frame.size - 1, np.floor(tri.max(axis=1)).astype(np.int64))
+        widths = np.maximum(0, high[:, 0] - low[:, 0] + 1)
+        heights = np.maximum(0, high[:, 1] - low[:, 1] + 1); counts = widths * heights
+        expanded = np.repeat(np.arange(len(batch_faces)), counts)
+        if not len(expanded): continue
+        offsets = np.arange(int(counts.sum())) - np.repeat(np.cumsum(counts) - counts, counts)
+        xx = low[expanded, 0] + offsets % widths[expanded]
+        yy = low[expanded, 1] + offsets // widths[expanded]
+        selected = tri[expanded]
+        denom = ((selected[:, 1, 1] - selected[:, 2, 1]) *
+                 (selected[:, 0, 0] - selected[:, 2, 0])
+                 + (selected[:, 2, 0] - selected[:, 1, 0]) *
+                 (selected[:, 0, 1] - selected[:, 2, 1]))
+        valid = np.abs(denom) >= 1e-12
+        w0 = np.zeros(len(denom)); w1 = np.zeros(len(denom))
+        w0[valid] = ((selected[valid, 1, 1] - selected[valid, 2, 1]) * (xx[valid] - selected[valid, 2, 0])
+                     + (selected[valid, 2, 0] - selected[valid, 1, 0]) *
+                     (yy[valid] - selected[valid, 2, 1])) / denom[valid]
+        w1[valid] = ((selected[valid, 2, 1] - selected[valid, 0, 1]) * (xx[valid] - selected[valid, 2, 0])
+                     + (selected[valid, 0, 0] - selected[valid, 2, 0]) *
+                     (yy[valid] - selected[valid, 2, 1])) / denom[valid]
+        bary = np.column_stack((w0, w1, 1.0 - w0 - w1))
+        inside = valid & np.all(bary >= -1e-9, axis=1)
+        if not np.any(inside): continue
+        rows, columns, weights = yy[inside], xx[inside], bary[inside]
+        selected_faces = batch_faces[expanded[inside]]
+        selected_ids = face_ids[expanded[inside]]
+        pixels = rows * frame.size + columns
+        values = np.einsum("ni,ni->n", weights, vertex_depth[selected_faces])
+        np.maximum.at(depth, pixels, values)
+        if fragments:
+            pixel_parts.append(pixels); depth_parts.append(values)
+            face_parts.append(selected_ids); bary_parts.append(weights)
+    if not fragments:
+        return depth.reshape(frame.size, frame.size), None
+    if not pixel_parts:
+        empty_i = np.empty(0, np.int64); empty_f = np.empty(0, np.float64)
+        return depth.reshape(frame.size, frame.size), TriangleFragments(
+            empty_i, empty_f, empty_i, np.empty((0, 3), np.float64))
+    return depth.reshape(frame.size, frame.size), TriangleFragments(
+        np.concatenate(pixel_parts), np.concatenate(depth_parts), np.concatenate(face_parts),
+        np.concatenate(bary_parts))
+
+
+def _view_visibility(points: np.ndarray, normals: np.ndarray, body_positions: np.ndarray,
+                     body_faces: np.ndarray, garment_positions: np.ndarray,
+                     garment_faces: np.ndarray, direction: np.ndarray,
+                     candidates: np.ndarray, tolerance_mu: float, depth_size: int) -> np.ndarray:
+    """真正三角 z-buffer 下返回候选纹素中当前视角可见者。"""
+    frame = orthographic_frame((body_positions, garment_positions), direction, depth_size)
+    body_depth, _ = rasterize_triangles(body_positions, body_faces, frame)
+    cloth_depth, _ = rasterize_triangles(garment_positions, garment_faces, frame)
+    body_flat, cloth_flat = body_depth.ravel(), cloth_depth.ravel()
+    ids = np.flatnonzero(candidates); rows, columns, depths = project_points(points[ids], frame)
+    pixels = rows * depth_size + columns
+    facing = np.einsum("ij,j->i", normals[ids], direction) > .05
+    self_front = body_flat[pixels] <= depths + tolerance_mu
+    cloth_clear = cloth_flat[pixels] <= depths + tolerance_mu
+    return ids[facing & self_front & cloth_clear]
+
+
+def _bake_rays_mask(body: Mesh, garment: Mesh, raster: Raster, regions: np.ndarray,
               region_names: dict[int, str], *, m_per_mu: float,
               max_distance_mm: float, opening_margin_mm: float,
               morph_radius_px: int = 4, gutter_px: int = 4) -> MaskBake:
@@ -551,6 +712,232 @@ def bake_mask(body: Mesh, garment: Mesh, raster: Raster, regions: np.ndarray,
     return MaskBake((padded.astype(np.uint8) * 255), vertex_covered, raw, opening_safe, stats)
 
 
+def _bind_pose(body: Mesh, garment: Mesh) -> PosedMeshes:
+    faces = np.asarray(body.indices, dtype=np.int64).reshape(-1, 3)
+    garment_faces = np.asarray(garment.indices, dtype=np.int64).reshape(-1, 3)
+    normals = (np.asarray(body.normals, dtype=np.float64) if body.normals is not None
+               else _vertex_normals(body.positions, faces))
+    garment_normals = (np.asarray(garment.normals, dtype=np.float64)
+                       if garment.normals is not None
+                       else _vertex_normals(garment.positions, garment_faces))
+    return PosedMeshes("bind", np.asarray(body.positions, dtype=np.float64), normals,
+                       np.asarray(garment.positions, dtype=np.float64), garment_normals)
+
+
+def _lbs_normals(normals: np.ndarray, joints: np.ndarray, weights: np.ndarray,
+                 bone_world: np.ndarray, inverse_bind: np.ndarray) -> np.ndarray:
+    """用与位置 LBS 同一骨矩阵的逆转置变换并归一化逐顶点法线。"""
+    matrices = np.asarray(bone_world, dtype=np.float64) @ np.asarray(
+        inverse_bind, dtype=np.float64)
+    normal_matrices = np.linalg.inv(matrices[:, :3, :3]).transpose(0, 2, 1)
+    transformed = np.einsum(
+        "nkij,nj->nki", normal_matrices[np.asarray(joints, dtype=np.int64)],
+        np.asarray(normals, dtype=np.float64))
+    result = np.einsum("nk,nki->ni", np.asarray(weights, dtype=np.float64), transformed)
+    return result / np.maximum(np.linalg.norm(result, axis=1)[:, None], 1e-12)
+
+
+def animation_poses(body_glb: GLB, garment_glb: GLB, body: Mesh, garment: Mesh,
+                    frames_per_clip: int = 6) -> list[PosedMeshes]:
+    """按 validate 相同的采样与 LBS 生成 bind + 三段动作姿态。"""
+    if frames_per_clip < 6:
+        raise ValueError("idle/walk/run 每段至少采样 6 帧")
+    if body.joints is None or body.weights is None or garment.joints is None or garment.weights is None:
+        raise BakeError("visibility 模式要求身体与衣物都有 JOINTS_0/WEIGHTS_0")
+    from validate import _world_matrices
+    body_skin, garment_skin = body_glb.skin(), garment_glb.skin()
+    animations = {str(item.get("name", "")).lower(): item
+                  for item in body_glb.json.get("animations", [])}
+    poses = [_bind_pose(body, garment)]
+    faces = np.asarray(body.indices).reshape(-1, 3)
+    garment_faces = np.asarray(garment.indices).reshape(-1, 3)
+    body_normals = (body.normals if body.normals is not None
+                    else _vertex_normals(body.positions, faces))
+    garment_normals = (garment.normals if garment.normals is not None
+                       else _vertex_normals(garment.positions, garment_faces))
+    for clip in ("idle", "walk", "run"):
+        animation = next((value for name, value in animations.items() if clip in name), None)
+        if animation is None:
+            raise BakeError(f"正本缺 {clip} 动画")
+        ends = [float(np.asarray(body_glb.accessor(s["input"])).max(initial=0))
+                for s in animation.get("samplers", [])]
+        duration = max(ends, default=0.0)
+        for frame, sample_time in enumerate(np.linspace(0.0, duration, frames_per_clip, endpoint=False)):
+            world = _world_matrices(body_glb, animation, float(sample_time))
+            body_world = world[np.asarray(body_skin.joints)]
+            garment_world = world[np.asarray(garment_skin.joints)]
+            body_positions = lbs(body.positions, body.joints, body.weights, body_world,
+                                 body_skin.inverse_bind_matrices)
+            garment_positions = lbs(garment.positions, garment.joints, garment.weights, garment_world,
+                                    garment_skin.inverse_bind_matrices)
+            poses.append(PosedMeshes(f"{clip}:{frame}", body_positions,
+                                     _lbs_normals(body_normals, body.joints, body.weights,
+                                                  body_world, body_skin.inverse_bind_matrices),
+                                     garment_positions,
+                                     _lbs_normals(garment_normals, garment.joints, garment.weights,
+                                                  garment_world, garment_skin.inverse_bind_matrices)))
+    return poses
+
+
+def _hole_safety_poses(body_glb: GLB, garment_glb: GLB, body: Mesh, garment: Mesh
+                       ) -> list[PosedMeshes]:
+    """返回 validate 使用的全部 24 帧动画姿态（不含 bind）。"""
+    return [pose for pose in animation_poses(body_glb, garment_glb, body, garment, 24)
+            if pose.label != "bind"]
+
+
+def _inside_garment(points: np.ndarray, garment_positions: np.ndarray,
+                    garment_faces: np.ndarray, garment_normals: np.ndarray) -> np.ndarray:
+    """按最近衣面外法线返回点是否在衣物里侧（带符号距离 < 0）。"""
+    nearest, bary, face_ids, _ = SurfaceIndex(
+        garment_positions, garment_faces, garment_normals).query(points)
+    interpolated = np.einsum(
+        "ni,nij->nj", bary, garment_normals[garment_faces[face_ids]])
+    interpolated /= np.maximum(np.linalg.norm(interpolated, axis=1)[:, None], 1e-12)
+    signed = np.einsum("ij,ij->i", points - nearest, interpolated)
+    return signed < 0.0
+
+
+def _animation_backfill(poses: Sequence[PosedMeshes], directions: np.ndarray,
+                        bind_raw: np.ndarray, backfilled: np.ndarray, rows: np.ndarray,
+                        columns: np.ndarray, bary: np.ndarray, pixel_faces: np.ndarray,
+                        body_faces: np.ndarray, garment_faces: np.ndarray,
+                        tolerance_mu: float, depth_size: int
+                        ) -> tuple[int, int, int]:
+    """只回补动画中直接可见且仍位于衣物里侧的 bind 隐藏纹素。"""
+    visible_count = outside_count = evaluated = 0
+    for pose in poses:
+        points = np.einsum("ni,nij->nj", bary, pose.body_positions[pixel_faces])
+        normals = np.einsum("ni,nij->nj", bary, pose.body_normals[pixel_faces])
+        normals /= np.maximum(np.linalg.norm(normals, axis=1)[:, None], 1e-12)
+        local_candidates = bind_raw[rows, columns] & ~backfilled[rows, columns]
+        visible_in_pose = np.zeros(len(rows), dtype=bool)
+        for direction in directions:
+            found = _view_visibility(points, normals, pose.body_positions, body_faces,
+                                     pose.garment_positions, garment_faces, direction,
+                                     local_candidates, tolerance_mu, depth_size)
+            visible_in_pose[found] = True; local_candidates[found] = False; evaluated += 1
+        visible_ids = np.flatnonzero(visible_in_pose)
+        if len(visible_ids):
+            inside = _inside_garment(points[visible_ids], pose.garment_positions,
+                                     garment_faces, pose.garment_normals)
+            inside_ids = visible_ids[inside]
+            backfilled[rows[inside_ids], columns[inside_ids]] = True
+            visible_count += int(len(visible_ids)); outside_count += int(np.count_nonzero(~inside))
+    return visible_count, outside_count, evaluated
+
+
+def _bake_visibility_mask(body: Mesh, garment: Mesh, raster: Raster, regions: np.ndarray,
+                          region_names: dict[int, str], *, m_per_mu: float,
+                          poses: Sequence[PosedMeshes] | None = None, view_count: int = 128,
+                          depth_size: int = 256, morph_radius_px: int = 2,
+                          gutter_px: int = 4, safety_poses: Sequence[PosedMeshes] = ()) -> MaskBake:
+    """bind 决定隐藏；动画只回补可见且仍在衣物里侧的开口露肤。"""
+    if body.uvs is None:
+        raise BakeError("模板缺 TEXCOORD_0")
+    if view_count < 128:
+        raise ValueError("visibility 模式至少需要 128 个视角")
+    if depth_size < 64:
+        raise ValueError("visibility 深度图边长至少为 64")
+    never_ids = {key for key, value in region_names.items() if value in NEVER_HIDE}
+    forbidden = np.isin(raster.regions, list(never_ids))
+    candidates = raster.covered & ~forbidden
+    preserved = np.zeros_like(raster.covered, dtype=bool)
+    rows, columns = np.nonzero(raster.covered)
+    body_faces = np.asarray(body.indices, dtype=np.int64).reshape(-1, 3)
+    pixel_faces = body_faces[raster.face_indices[rows, columns]]
+    bary = raster.barycentric[rows, columns]
+    garment_faces = np.asarray(garment.indices, dtype=np.int64).reshape(-1, 3)
+    directions = fibonacci_directions(view_count)
+    tolerance_mu = .002 / m_per_mu
+    configured = list(poses) if poses is not None else [_bind_pose(body, garment)]
+    bind_poses = [pose for pose in configured if pose.label == "bind"]
+    if len(bind_poses) != 1:
+        raise BakeError("visibility 模式要求且只允许一个 bind 姿态")
+    bind = bind_poses[0]
+    points = np.einsum("ni,nij->nj", bary, bind.body_positions[pixel_faces])
+    normals = np.einsum("ni,nij->nj", bary, bind.body_normals[pixel_faces])
+    normals /= np.maximum(np.linalg.norm(normals, axis=1)[:, None], 1e-12)
+    local_candidates = candidates[rows, columns].copy()
+    bind_evaluated = 0
+    for direction in directions:
+        found = _view_visibility(points, normals, bind.body_positions, body_faces,
+                                 bind.garment_positions, garment_faces, direction,
+                                 local_candidates, tolerance_mu, depth_size)
+        preserved[rows[found], columns[found]] = True
+        local_candidates[found] = False; bind_evaluated += 1
+    bind_raw = candidates & ~preserved
+
+    backfilled = np.zeros_like(raster.covered, dtype=bool)
+    animation_visible_texels, animation_outside_texels, animation_evaluated = _animation_backfill(
+        [pose for pose in configured if pose.label != "bind"], directions, bind_raw, backfilled,
+        rows, columns, bary, pixel_faces, body_faces, garment_faces, tolerance_mu, depth_size)
+    safety_visible, safety_outside, safety_evaluated = _animation_backfill(
+        safety_poses, HOLE_CHECK_VIEWS, bind_raw, backfilled, rows, columns, bary, pixel_faces,
+        body_faces, garment_faces, tolerance_mu, 192)
+    animation_visible_texels += safety_visible; animation_outside_texels += safety_outside
+    preserved |= backfilled
+    raw = candidates & ~preserved
+    clean = binary_opening(raw, structure=_disk(morph_radius_px))
+    # 开运算后的孔只在原始证据同样“从未可见”时才允许回填；绝不把可见纹素改隐藏。
+    holes, count = label(binary_fill_holes(clean) & ~clean & raw)
+    filled = 0
+    for component in range(1, count + 1):
+        member = holes == component
+        if int(member.sum()) < 400:
+            clean |= member; filled += 1
+    protected = preserved | forbidden
+    seam_pixels = _synchronize_uv_seams(clean, protected, body)
+    clean &= raw
+    padded = _gutter(clean, raster.covered, gutter_px)
+    seam_pixels += _synchronize_uv_seams(padded, protected, body)
+    vertex_hidden = _sample_scalar(clean.astype(np.float32), body.uvs) >= .5
+    vertex_hidden = _weld_boolean(body.positions, vertex_hidden, mode="all")
+    allowed_texels = raster.covered & ~forbidden
+    stats = {
+        "mode": "visibility", "views": view_count, "poses": len(configured),
+        "viewElevationDeg": list(VIEW_ELEVATION_DEG),
+        "poseLabels": [pose.label for pose in configured],
+        "bindViewPosePairs": bind_evaluated,
+        "animationViewPosePairs": animation_evaluated, "depthMapSize": depth_size,
+        "holeSafetyPoses": len(safety_poses), "holeSafetyViewPosePairs": safety_evaluated,
+        "depthToleranceMm": 2.0, "rasterizedTexels": int(raster.covered.sum()),
+        "bindVisibleTexels": int(np.count_nonzero(preserved & ~backfilled & candidates)),
+        "bindHiddenTexels": int(bind_raw.sum()),
+        "bindCoveredRatio": float(bind_raw.sum() / allowed_texels.sum())
+        if allowed_texels.any() else 0.0,
+        "animationVisibleHiddenTexels": animation_visible_texels,
+        "animationOutsideVisibleTexels": animation_outside_texels,
+        "animationBackfilledTexels": int(backfilled.sum()),
+        "rawHiddenTexels": int(raw.sum()), "hiddenTexels": int(clean.sum()),
+        "filledSmallIslands": filled, "synchronizedSeamPixels": seam_pixels,
+        "gutterTexels": int(np.count_nonzero(padded & ~raster.covered)),
+        "coveredRatio": float(clean.sum() / allowed_texels.sum()) if allowed_texels.any() else 0.0,
+        "morphology": {"order": "open-fill-invisible-small-islands",
+                       "radiusPx": morph_radius_px, "islandAreaLimitPx": 400},
+        "gutterPx": gutter_px,
+    }
+    return MaskBake(padded.astype(np.uint8) * 255, vertex_hidden, raw, protected, stats)
+
+
+def bake_mask(body: Mesh, garment: Mesh, raster: Raster, regions: np.ndarray,
+              region_names: dict[int, str], *, m_per_mu: float,
+              max_distance_mm: float = 80.0, opening_margin_mm: float = 15.0,
+              morph_radius_px: int = 4, gutter_px: int = 4, mode: str = "visibility",
+              poses: Sequence[PosedMeshes] | None = None, view_count: int = 128,
+              depth_size: int = 256, safety_poses: Sequence[PosedMeshes] = ()) -> MaskBake:
+    if mode == "rays":
+        return _bake_rays_mask(body, garment, raster, regions, region_names, m_per_mu=m_per_mu,
+                               max_distance_mm=max_distance_mm, opening_margin_mm=opening_margin_mm,
+                               morph_radius_px=morph_radius_px, gutter_px=gutter_px)
+    if mode != "visibility":
+        raise ValueError(f"未知模式：{mode}")
+    return _bake_visibility_mask(body, garment, raster, regions, region_names,
+                                 m_per_mu=m_per_mu, poses=poses, view_count=view_count,
+                                 depth_size=depth_size, morph_radius_px=min(morph_radius_px, 2),
+                                 gutter_px=gutter_px, safety_poses=safety_poses)
+
+
 def _render_view(mesh: Mesh, texture: Image.Image, mask: np.ndarray, *, back: bool,
                  width: int = 480, height: int = 720) -> Image.Image:
     positions = np.asarray(mesh.positions, dtype=np.float64); faces = mesh.indices.reshape(-1, 3)
@@ -631,7 +1018,9 @@ def _save_preview(path: Path, body_glb: GLB, body: Mesh, garment: Mesh, mask: np
 
 def bake(body_path: Path, skeleton_path: Path, garment_path: Path, fit_path: Path,
          out_dir: Path, *, size: int = 1024, max_distance_mm: float = 80.0,
-         opening_margin_mm: float = 15.0) -> dict[str, Any]:
+         opening_margin_mm: float = 15.0, mode: str = "visibility",
+         view_count: int = 128, frames_per_clip: int = 6,
+         depth_size: int = 256) -> dict[str, Any]:
     started = time.perf_counter(); out_dir.mkdir(parents=True, exist_ok=True)
     skeleton = json.loads(skeleton_path.read_text(encoding="utf-8"))
     fit = json.loads(fit_path.read_text(encoding="utf-8"))
@@ -644,19 +1033,36 @@ def bake(body_path: Path, skeleton_path: Path, garment_path: Path, fit_path: Pat
     regions = np.load(skeleton_path.with_name(skeleton["regions"]["file"]), allow_pickle=False)
     names = {int(value): str(name) for name, value in skeleton["regions"]["ids"].items()}
     raster = rasterize_uv(body, regions, size)
+    poses = (animation_poses(body_glb, garment_glb, body, garment, frames_per_clip)
+             if mode == "visibility" else None)
+    safety_poses = (_hole_safety_poses(body_glb, garment_glb, body, garment)
+                    if mode == "visibility" and frames_per_clip < 24 else ())
     result = bake_mask(body, garment, raster, regions, names, m_per_mu=float(skeleton["mPerMu"]),
-                       max_distance_mm=max_distance_mm, opening_margin_mm=opening_margin_mm)
+                       max_distance_mm=max_distance_mm, opening_margin_mm=opening_margin_mm,
+                       mode=mode, poses=poses, view_count=view_count, depth_size=depth_size,
+                       safety_poses=safety_poses)
     template = str(fit.get("template", "")); suffix = "" if template == "tpl_f_medium" else f".{template}"
     mask_name = f"hidemask{suffix}.png"; preview_name = f"hidemask_preview{suffix}.png"
     Image.fromarray(result.mask, "L").save(out_dir / mask_name, optimize=True)
     _save_preview(out_dir / preview_name, body_glb, body, garment, result.mask)
     fit["hideMask"] = {"file": mask_name, "size": size,
                        "coveredRatio": result.stats["coveredRatio"],
-                       "marginMm": opening_margin_mm,
-                       "maxDistanceMm": max_distance_mm}
+                       "bindCoveredRatio": result.stats.get("bindCoveredRatio"),
+                       "animationBackfilledTexels": result.stats.get("animationBackfilledTexels"),
+                       "holeSafetyPoses": result.stats.get("holeSafetyPoses"),
+                       "holeSafetyViews": len(HOLE_CHECK_VIEWS) if mode == "visibility" else None,
+                       "depthMapSize": depth_size if mode == "visibility" else None,
+                       "mode": mode, "views": view_count if mode == "visibility" else 9,
+                       "bindPoses": 1 if mode == "visibility" else None,
+                       "animationPoses": len(poses) - 1 if poses is not None else None,
+                       "viewElevationDeg": list(VIEW_ELEVATION_DEG) if mode == "visibility" else None,
+                       "depthToleranceMm": 2.0 if mode == "visibility" else None,
+                       "marginMm": opening_margin_mm if mode == "rays" else None,
+                       "maxDistanceMm": max_distance_mm if mode == "rays" else None}
+    fit["hideMask"] = {key: value for key, value in fit["hideMask"].items() if value is not None}
     fit_path.write_text(json.dumps(fit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     elapsed = time.perf_counter() - started
-    return {"ok": True, "template": template, "file": mask_name,
+    return {"ok": True, "template": template, "file": mask_name, "mode": mode,
             "preview": preview_name, **result.stats,
             "elapsedSec": elapsed, "peakMemoryMiB": _memory_mib()}
 
@@ -671,20 +1077,29 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--size", type=int, default=1024, help="方图边长，默认 1024")
     parser.add_argument("--max-distance-mm", type=float, default=80.0)
     parser.add_argument("--opening-margin-mm", type=float, default=15.0)
+    parser.add_argument("--mode", choices=("visibility", "rays"), default="visibility")
+    parser.add_argument("--views", type=int, default=128,
+                        help="visibility 游戏相机球带视角数（>=128，仰角 -15~80 度）")
+    parser.add_argument("--frames-per-clip", type=int, default=6, help="每段动画采样帧数（>=6）")
+    parser.add_argument("--depth-size", type=int, default=256, help="正交软深度图边长（>=64）")
     parser.add_argument("--json", action="store_true")
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.size < 16 or args.max_distance_mm <= 0 or args.opening_margin_mm < 0:
-        print("错误：--size >= 16、--max-distance-mm > 0、--opening-margin-mm >= 0", file=sys.stderr); return 2
+    if (args.size < 16 or args.max_distance_mm <= 0 or args.opening_margin_mm < 0
+            or (args.mode == "visibility" and
+                (args.views < 128 or args.frames_per_clip < 6 or args.depth_size < 64))):
+        print("错误：尺寸/距离参数非法；visibility 要求 views>=128、frames>=6、depth-size>=64", file=sys.stderr); return 2
     try:
         for path in (args.body, args.skeleton, args.garment, args.fit):
             if not path.is_file():
                 raise BakeError(f"文件不存在：{path}")
         result = bake(args.body, args.skeleton, args.garment, args.fit, args.out, size=args.size,
-                      max_distance_mm=args.max_distance_mm, opening_margin_mm=args.opening_margin_mm)
+                      max_distance_mm=args.max_distance_mm, opening_margin_mm=args.opening_margin_mm,
+                      mode=args.mode, view_count=args.views, frames_per_clip=args.frames_per_clip,
+                      depth_size=args.depth_size)
         print(json.dumps(result, ensure_ascii=False) if args.json else
               f"烘焙完成：{result['file']}，覆盖 {result['coveredRatio']:.2%}，{result['elapsedSec']:.2f}s")
         return 0

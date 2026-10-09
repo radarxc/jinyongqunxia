@@ -12,16 +12,16 @@
     "insideVertexTotal": 0,
     "level": "approved",
     "minSignedDistanceMm": {
-      "median": 4.842793046640391,
-      "min": 3.6241871794324667
+      "median": 2.420771991809633,
+      "min": 1.7135745713703487
     },
     "surface": "regions=head triangles (vertex-majority)"
   },
   "bind": {
-    "clearanceMm": 3.000002558,
+    "clearanceMm": 2.999999404,
     "packedRayClearanceMm": {
-      "median": 75.60440921186435,
-      "min": 5.076107653673924
+      "median": 71.57977762063439,
+      "min": 2.9999994036827418
     },
     "upAngleDeg": 8.537736462515939e-07
   },

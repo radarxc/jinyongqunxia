@@ -51778,6 +51778,127 @@
      ]
     ]
    }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-pack-compact",
+   "title": "3D 纸娃娃换装 · 打包压缩未引用顶点 + 重打包四件道具",
+   "prompt": "ENG-dressup-pack-compact.md",
+   "deps": [
+    "ART-dressup-e4-sword-held"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/pack_glb.mjs",
+    "apps/game/build/dressup-assets.test.ts",
+    "assets/default/model3d/dressup/props/**",
+    "tools/model3d/dressup/validate.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/pack_glb.mjs"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_sockets.py",
+      "--template",
+      "assets/default/model3d/dressup/templates/tpl_f_medium",
+      "--props",
+      "assets/default/model3d/dressup/props/item_qingfeng_sword",
+      "assets/default/model3d/dressup/props/item_bamboo_hat",
+      "assets/default/model3d/dressup/props/luxury_jade_pendant",
+      "assets/default/model3d/dressup/props/eq_longquanjian"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-e2b-cleanup",
+   "title": "3D 纸娃娃换装 · E2b · 劲装版型件清理 + 重打包 + 重烘遮罩 + 重生成布衣变体",
+   "prompt": "ENG-dressup-e2b-cleanup.md",
+   "deps": [
+    "ENG-dressup-g1b-visibility",
+    "ENG-dressup-pack-compact"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/tests_garment.py",
+    "tools/model3d/dressup/extract_garment.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/hidemask.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }

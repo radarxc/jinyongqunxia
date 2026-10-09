@@ -1,0 +1,46 @@
+- id: dressup__head__npc_huangrong
+  file: head.glb
+  category: model3d
+  kind: dressup-head
+  template: tpl_f_medium
+  sha256: 54e5daf1aaee24e5aa37d60fabef1f88977a0afbcb417d2c33820a2fde18ceed
+  size_bytes: 1415828
+  triangles: 17509
+  report: report.json
+  status: draft
+  tool: tools/model3d/dressup/ingest.py v1
+  created: '2026-10-09T08:37:23-07:00'
+  fit: fit.json
+  fits:
+    tpl_f_medium:
+      file: head.glb
+      fit: fit.json
+      report: report.json
+      status: draft
+  source:
+    directory: assets/default/model3d/dressup/heads/npc_huangrong
+    references: []
+  notes: validate level=draft；status 按 tech/11 §6 映射。
+  npc: npc_huangrong
+  experimental: true
+  gateLevel: pass
+  vertices: 10717
+  files:
+    head.glb:
+      sha256: 54e5daf1aaee24e5aa37d60fabef1f88977a0afbcb417d2c33820a2fde18ceed
+      bytes: 1415828
+    fit.json:
+      sha256: 766a9f4276092605ae3caf4e3d00f9ab3e02d6d462d2f9ab7bbfee5b6dd75518
+      bytes: 8713
+    report.json:
+      sha256: d0b6df4ef8a35393780e34fcd3e7cdea16b1436739a9c1be450c822be86d7afb
+      bytes: 16697
+    hidemask.png:
+      sha256: 91930c0f32fe467d0caa0ec849b9ff90e2bdaf9db7471d7cf6453975a147b7a0
+      bytes: 17245
+    preview.png:
+      sha256: af21d2b01f6373072de8ac4746364d5beb583bd1607bd2d7e68149fd145c79f0
+      bytes: 385095
+    self_check_preview.png:
+      sha256: fb7b6d2ab6d048f58e6365edbd9c26e6dceb29f8e1fe09b823765a8e55848ef7
+      bytes: 42462

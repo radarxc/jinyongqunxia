@@ -3,8 +3,8 @@
   category: model3d
   kind: dressup-prop
   template: tpl_f_medium
-  sha256: b10602452492b8254c5a1c124d3556304bb3c24b0a37d7ff5a00c9a85a266ea0
-  size_bytes: 2380764
+  sha256: 969037f31dddd449bf22de880a2f5fde40361b76b390867e60aa4b1843f5eaa3
+  size_bytes: 842696
   triangles: 9578
   report: report.json
   status: candidate
@@ -26,6 +26,6 @@
     references:
     - path: assets/default/item/weapons/eq_longquanjian.png
       sha256: faa19930515dd212aa2b68de7a0102e480098a361ea4b756d9c7b21dc6a0da3f
-    - path: tripo__dressup_eq_longquanjian.glb
+    - path: apps/game/public/models/props/eq_longquanjian_raw.glb
       sha256: d75b051dee5a4606b7f8c329c35a7958efbdeb86e28dcfc394075cdfa10526ac
   notes: 出鞘·持剑态；restTilt=60.000°；validate level=approved；sockets_check level=approved；联合 level=approved，status=candidate。

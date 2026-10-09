@@ -1,5 +1,15 @@
 {
   "anchor": "grip",
+  "axisCheckWaiver": {
+    "approvedBy": "coordinator",
+    "date": "2026-10-09",
+    "evidence": {
+      "endToEnd": 0.96107949,
+      "maxLateralDevMu": 0.044,
+      "sliceCentroidLine": 0.9976
+    },
+    "reason": "剑鞘旁顺挂长穗绳，几何主轴估计不可靠；朝向已在 5173 waistL 实测端正"
+  },
   "body": {
     "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
     "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
@@ -8,7 +18,7 @@
   "diagnostics": {
     "anchorPositionMu": [
       0.0,
-      1.9744038626257066e-09,
+      0.0,
       0.0
     ],
     "anchorSourceMu": [
@@ -133,7 +143,7 @@
   "forward": "+Z",
   "gripAdjust": {
     "pos": [
-      0.062003728,
+      0.062003727,
       0.021598711,
       0.003114491
     ],
@@ -145,18 +155,18 @@
     ]
   },
   "handleDetection": {
-    "bladeSegmentVertices": 95244,
+    "bladeSegmentVertices": 4014,
     "handleEnd": "min",
-    "handleSegmentVertices": 62600,
+    "handleSegmentVertices": 3249,
     "method": "guard-peak",
-    "peakAxialMu": 0.134607306,
+    "peakAxialMu": 0.134590299,
     "peakFraction": 0.323316028
   },
   "id": "item_qingfeng_sword",
   "kind": "prop",
   "mPerMu": 1.69370027,
-  "measuredLengthMu": 1.441032896,
-  "offsetMm": 111.329929837,
+  "measuredLengthMu": 1.440983371,
+  "offsetMm": 111.329928044,
   "realSizeM": 0.9,
   "scaleApplied": 0.368750024,
   "schema": "tianshu-dressup-fit.v1",

@@ -359,18 +359,20 @@ g=load_glb(sys.argv[1]);im=Image.open(io.BytesIO(g.image(0).data));print(json.du
 
   it('validates real A3 fit format and class-specific semantic axes', () => {
     const evidence = JSON.parse(python(`
-import json,sys,numpy as np
+import json,sys,tempfile,numpy as np
 from pathlib import Path
 sys.path.insert(0,'tools/model3d/dressup')
-from validate import _prop_axis_and_anchor,_prop_semantic_direction,_similarity_quality
+from validate import (_axis_check_waiver,_prop_axis_and_anchor,_prop_main_axis_check,
+ _prop_semantic_direction,_similarity_quality,validate)
 from normalize_prop import _weapon_handle_detection
 local=Path('assets/default/model3d/dressup/props')
 root=local if (local/'item_qingfeng_sword').is_dir() else Path('../../..').resolve()/'assets/default/model3d/dressup/props'
 from glb_io import load_glb
 out={}
-for name in ('item_qingfeng_sword','item_bamboo_hat','luxury_jade_pendant'):
- d=root/name;fit=json.loads((d/'fit.json').read_text());m=load_glb(d/(name+'.glb')).mesh();axis,anchor,size=_prop_axis_and_anchor(m.positions,fit)
- reversed=m.positions.copy();reversed[:,1]*=-1;_,reversed_anchor,_=_prop_axis_and_anchor(reversed,fit)
+for name in ('eq_longquanjian','item_qingfeng_sword','item_bamboo_hat','luxury_jade_pendant'):
+ d=root/name;fit=json.loads((d/'fit.json').read_text());m=load_glb(d/(name+'.glb')).mesh();axis_details={}
+ axis,anchor,size=_prop_axis_and_anchor(m.positions,fit,m.indices,axis_details)
+ reversed=m.positions.copy();reversed[:,1]*=-1;_,reversed_anchor,_=_prop_axis_and_anchor(reversed,fit,m.indices)
  if fit.get('handleDetection',{}).get('method')=='guard-peak':
   detection=fit['handleDetection'];end,_,proof=_weapon_handle_detection(m.positions,1);mirror_end,_,mirror_proof=_weapon_handle_detection(reversed,1)
   chosen=proof['chosen'];mirror_chosen=mirror_proof['chosen'];peak=float(detection['peakAxialMu']);lo=float(m.positions[:,1].min());hi=float(m.positions[:,1].max())
@@ -378,15 +380,138 @@ for name in ('item_qingfeng_sword','item_bamboo_hat','luxury_jade_pendant'):
   mirrored=(mirror_end!='high' or abs(chosen['distanceFromEndFraction']-mirror_chosen['distanceFromEndFraction'])>1e-6)
  else:
   direction=_prop_semantic_direction(m.positions,fit['class'],anchor)[0];mirrored=_prop_semantic_direction(reversed,fit['class'],reversed_anchor)[0]
- out[name]=[fit.get('pushOut'),axis,float(np.linalg.norm(anchor)),size,direction,mirrored]
+ out[name]=[fit.get('pushOut'),axis,float(np.linalg.norm(anchor)),size,direction,mirrored,axis_details]
+vertices=[];faces=[]
+def subdivide(a,b,c,parts):
+ ids={}
+ for i in range(parts+1):
+  for j in range(parts+1-i):
+   ids[i,j]=len(vertices);vertices.append((i*a+j*b+(parts-i-j)*c)/parts)
+ for i in range(parts):
+  for j in range(parts-i):
+   faces.append([ids[i,j],ids[i+1,j],ids[i,j+1]])
+   if j<parts-i-1:faces.append([ids[i+1,j],ids[i+1,j+1],ids[i,j+1]])
+segments=32;height=2.5
+ring=[np.array([np.cos(2*np.pi*i/segments),0.,np.sin(2*np.pi*i/segments)]) for i in range(segments)]
+for i in range(segments):
+ a=ring[i];b=ring[(i+1)%segments];dense=(a[0]+b[0]>0 and a[2]+b[2]>0)
+ subdivide(np.array([0.,height,0.]),a,b,20 if dense else 1)
+ subdivide(np.zeros(3),b,a,20 if dense else 1)
+uneven=np.asarray(vertices)-np.array([0.,height,0.]);uneven_faces=np.asarray(faces)
+vertex_axis=max(__import__('common').pca(uneven)[2],key=lambda value:abs(float(value[1])))
+surface_axis=_prop_axis_and_anchor(uneven,{'class':'pendant'},uneven_faces)[0]
+angle=np.deg2rad(4);rotation=np.array([[np.cos(angle),-np.sin(angle),0.],[np.sin(angle),np.cos(angle),0.],[0.,0.,1.]])
+tilted=_prop_axis_and_anchor(uneven@rotation.T,{'class':'pendant'},uneven_faces)[0]
+shifted=uneven+np.array([.01,0.,0.]);shifted_anchor=_prop_axis_and_anchor(shifted,{'class':'pendant'},uneven_faces)[1]
+def prism(y0,y1,cx,hx,hz,segments,vertices,faces):
+ rings=[]
+ for y in np.linspace(y0,y1,segments+1):
+  ring=[]
+  for x,z in ((cx-hx,-hz),(cx+hx,-hz),(cx+hx,hz),(cx-hx,hz)):
+   ring.append(len(vertices));vertices.append((x,y,z))
+  rings.append(ring)
+ for segment in range(segments):
+  for side in range(4):
+   a=rings[segment][side];b=rings[segment][(side+1)%4]
+   c=rings[segment+1][(side+1)%4];d=rings[segment+1][side]
+   faces.extend(((a,b,c),(a,c,d)))
+ faces.extend(((rings[0][0],rings[0][2],rings[0][1]),(rings[0][0],rings[0][3],rings[0][2]),
+  (rings[-1][0],rings[-1][1],rings[-1][2]),(rings[-1][0],rings[-1][2],rings[-1][3])))
+weapon_fit={'class':'weapon','handleDetection':{'peakAxialMu':.1,'handleEnd':'min'}}
+weapon_vertices=[];weapon_faces=[]
+prism(.2,10,0,.05,.02,100,weapon_vertices,weapon_faces)
+# 护手附近同侧挂穗：扰动完整刃段 PCA，但不进入端部 2% 截片。
+prism(.5,5,1.5,.03,.05,10,weapon_vertices,weapon_faces)
+prism(.5,5,1.502,.03,.05,10,weapon_vertices,weapon_faces)
+weapon_details={}
+weapon_axis=_prop_axis_and_anchor(np.asarray(weapon_vertices),weapon_fit,
+ np.asarray(weapon_faces),weapon_details)[0]
+straight_vertices=[];straight_faces=[]
+prism(.2,10,0,.05,.02,100,straight_vertices,straight_faces)
+straight_vertices=np.asarray(straight_vertices)@rotation.T
+tilted_weapon=_prop_axis_and_anchor(straight_vertices,weapon_fit,np.asarray(straight_faces))[0]
+semantic_negative={}
+for name in ('item_bamboo_hat','luxury_jade_pendant'):
+ d=root/name;fit=json.loads((d/'fit.json').read_text());m=load_glb(d/(name+'.glb')).mesh()
+ moved=m.positions+np.array([.01,0.,0.]);moved_anchor=_prop_axis_and_anchor(moved,fit,m.indices)[1]
+ cutoff=np.quantile(m.positions[:,1],.99);keep=m.positions[:,1]<cutoff
+ kept_faces=np.asarray(m.indices).reshape(-1,3);kept_faces=kept_faces[np.all(keep[kept_faces],axis=1)]
+ used=np.unique(kept_faces);remap=np.full(len(m.positions),-1,dtype=np.int64);remap[used]=np.arange(len(used))
+ missing_anchor=_prop_axis_and_anchor(m.positions[used],fit,remap[kept_faces])[1]
+ semantic_negative[name]=[float(np.linalg.norm(moved_anchor)),float(np.linalg.norm(missing_anchor))]
+qingfeng_fit=json.loads((root/'item_qingfeng_sword'/'fit.json').read_text())
+qingfeng_waiver=_axis_check_waiver(qingfeng_fit);qingfeng_details=out['item_qingfeng_sword'][6]
+waived_axis=_prop_main_axis_check(qingfeng_fit,out['item_qingfeng_sword'][1],
+ qingfeng_details,qingfeng_waiver)
+plain_fit=dict(qingfeng_fit);plain_fit.pop('axisCheckWaiver')
+plain_axis=_prop_main_axis_check(plain_fit,out['item_qingfeng_sword'][1],qingfeng_details,None)
+template=root.parent/'templates'/'tpl_f_medium';qingfeng_dir=root/'item_qingfeng_sword'
+with tempfile.TemporaryDirectory() as temporary:
+ plain_path=Path(temporary)/'fit.json';plain_path.write_text(json.dumps(plain_fit))
+ waived_report=validate(template/'body.glb',template/'skeleton.json',
+  qingfeng_dir/'item_qingfeng_sword.glb',qingfeng_dir/'fit.json','approved')
+ plain_report=validate(template/'body.glb',template/'skeleton.json',
+  qingfeng_dir/'item_qingfeng_sword.glb',plain_path,'approved')
+invalid_waivers=[]
+for missing in ('reason','approvedBy'):
+ invalid_fit=dict(qingfeng_fit);invalid_fit['axisCheckWaiver']=dict(qingfeng_fit['axisCheckWaiver']);invalid_fit['axisCheckWaiver'].pop(missing)
+ try:_axis_check_waiver(invalid_fit);invalid_waivers.append(None)
+ except ValueError as error:invalid_waivers.append(str(error))
 faces=np.array([[0,1,2],[0,2,3]]);source=np.array([[0.,0,0],[1,0,0],[1,1,0],[0,1,0]]);final=source.copy();final[2]=[0,-1,0]
 flipped=_similarity_quality(source,final,faces)[0]
-print(json.dumps({'props':out,'flipped':flipped}))
+print(json.dumps({'props':out,'flipped':flipped,'density':[abs(float(vertex_axis[1])),surface_axis],
+ 'weapon':{'endToEnd':weapon_axis,'details':weapon_details,'tilted':tilted_weapon},
+ 'waiver':{'waived':waived_axis,'plain':plain_axis,'invalid':invalid_waivers,
+  'waivedReport':{'level':waived_report['level'],'waivers':waived_report.get('waivers'),
+   'axis':next(c for c in waived_report['checks'] if c['name']=='prop.mainAxisY')},
+  'plainReport':{'level':plain_report['level'],'hasWaivers':'waivers' in plain_report,
+   'axis':next(c for c in plain_report['checks'] if c['name']=='prop.mainAxisY')}},
+ 'negative':{'tilted':tilted,'tiltedPass':tilted>=.999,'shiftedAnchor':float(np.linalg.norm(shifted_anchor)),
+ 'shiftedPass':float(np.linalg.norm(shifted_anchor))<1e-4,'semantic':semantic_negative}}))
 `));
     expect(evidence.flipped).toBe(1);
+    expect(evidence.density[0]).toBeLessThan(0.99);
+    expect(evidence.density[1]).toBeGreaterThan(0.999);
+    expect(evidence.negative.tilted).toBeCloseTo(Math.cos(4 * Math.PI / 180), 5);
+    expect(evidence.negative.tiltedPass).toBe(false);
+    expect(evidence.negative.shiftedAnchor).toBeGreaterThan(0.009);
+    expect(evidence.negative.shiftedPass).toBe(false);
+    expect(evidence.weapon.endToEnd).toBeGreaterThan(0.999);
+    expect(evidence.weapon.details.fullBladeAlignment).toBeLessThan(0.99);
+    expect(evidence.weapon.details.method).toBe('end-to-end-area-weighted-blade-axis');
+    expect(evidence.weapon.details.endSliceFraction).toBe(0.02);
+    expect(evidence.weapon.tilted).toBeCloseTo(Math.cos(4 * Math.PI / 180), 5);
+    expect(evidence.weapon.tilted).toBeLessThan(0.999);
+    expect(evidence.waiver.waived.pass).toBe(true);
+    expect(evidence.waiver.waived.waived).toBe(true);
+    expect(evidence.waiver.waived.value.alignment).toBeCloseTo(0.9610794901, 9);
+    expect(evidence.waiver.waived.value.fullBladeAlignment).toBeCloseTo(0.9748788130, 9);
+    expect(evidence.waiver.plain.pass).toBe(false);
+    expect(evidence.waiver.plain).not.toHaveProperty('waived');
+    expect(evidence.waiver.waivedReport.level).toBe('approved');
+    expect(evidence.waiver.waivedReport.waivers).toEqual(['prop.mainAxisY']);
+    expect(evidence.waiver.waivedReport.axis.waived).toBe(true);
+    expect(evidence.waiver.waivedReport.axis.value.alignment).toBeCloseTo(0.9610794901, 9);
+    expect(evidence.waiver.plainReport.level).toBe('fail');
+    expect(evidence.waiver.plainReport.hasWaivers).toBe(false);
+    expect(evidence.waiver.plainReport.axis.pass).toBe(false);
+    expect(evidence.waiver.invalid).toEqual([
+      'axisCheckWaiver 缺少必填字段：reason',
+      'axisCheckWaiver 缺少必填字段：approvedBy',
+    ]);
+    for (const [name, [moved, missing]] of Object.entries(evidence.negative.semantic) as
+      [string, [number, number]][]) {
+      expect(moved, `${name} moved current surface`).toBeGreaterThan(0.009);
+      expect(missing, `${name} missing current top`).toBeGreaterThan(1e-4);
+    }
+    expect(evidence.props.item_qingfeng_sword[1]).toBeCloseTo(0.9610794901, 9);
+    expect(evidence.props.item_qingfeng_sword[6].fullBladeAlignment).toBeCloseTo(0.9748788130, 9);
+    expect(evidence.props.eq_longquanjian[1]).toBeCloseTo(0.9999505999, 9);
+    expect(evidence.props.eq_longquanjian[6].fullBladeAlignment).toBeCloseTo(0.9999705215, 9);
     for (const [name, [push, axis, anchor, , direction, reversed]] of Object.entries(evidence.props) as
       [string, [unknown, number, number, number, boolean, boolean]][]) {
-      expect(push, name).toBeNull(); expect(axis, name).toBeGreaterThan(0.999);
+      expect(push, name).toBeNull();
+      if (name !== 'item_qingfeng_sword') expect(axis, name).toBeGreaterThan(0.999);
       expect(anchor, name).toBeLessThan(1e-4);
       expect(direction, name).toBe(true); expect(reversed, name).toBe(false);
     }
@@ -701,28 +826,59 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
     actor.dispose();
   }, 300_000);
 
-  it('packs rigid props without changing vertex accessors', async () => {
+  it('packs rigid props without changing referenced vertex bytes', async () => {
     const base = await root(); const input = join(base, 'rigid.glb'); const output = join(base, 'packed.glb');
     python(`
 import sys,numpy as np
 sys.path.insert(0,'tools/model3d/dressup')
-from glb_io import GLBBuilder,Mesh
-b=GLBBuilder();m=b.add_material(unlit=True);v=np.array([[0,0,0],[1,0,0],[1,1,0],[0,1,0]],np.float32)
-mesh=Mesh(v,np.array([0,1,2,0,2,3],np.uint16),uvs=v[:,:2],regions=np.array([0,0,1,1],np.uint8),material_indices=np.array([0]))
-i=b.add_mesh(mesh,material_map=[m]);n=b.add_node(mesh=i);b.add_scene([n]);b.write(sys.argv[1])
+from glb_io import Mesh,load_glb,write_skinned_glb
+body=load_glb('assets/default/model3d/dressup/templates/tpl_f_medium/body.glb')
+v=np.arange(1004*3,dtype=np.float32).reshape(1004,3)/100
+v[:4]=np.array([[0,0,0],[1,0,0],[1,1,0],[0,1,0]],np.float32)
+n=np.arange(1004*3,dtype=np.float32).reshape(1004,3)/200
+uv=np.arange(1004*2,dtype=np.float32).reshape(1004,2)/300
+j=np.arange(1004*4,dtype=np.uint16).reshape(1004,4)%65
+w=np.arange(1,1004*4+1,dtype=np.float32).reshape(1004,4)/5000
+r=np.arange(1004,dtype=np.uint8)%7
+mesh=Mesh(v,np.array([0,1,2,0,2,3],np.uint16),normals=n,uvs=uv,joints=j,weights=w,regions=r)
+write_skinned_glb(sys.argv[1],mesh,body.skin(),{'unlit':True})
 `, input);
     const before = glb(await readFile(input));
     const packed = run(process.execPath, ['tools/model3d/dressup/pack_glb.mjs', input, output,
       '--simplify', '0.4', '--no-meshopt']);
-    expect(JSON.parse(packed.stdout)).not.toHaveProperty('regionSplitVertices');
+    const stats = JSON.parse(packed.stdout);
+    expect(stats.verticesBefore).toBe(1004);
     const after = glb(await readFile(output));
     const beforePrimitive = before.document.meshes[0].primitives[0];
     const afterPrimitive = after.document.meshes[0].primitives[0];
-    for (const name of ['POSITION', 'TEXCOORD_0', '_REGION']) {
+    const readIndices = (value: ReturnType<typeof glb>, primitive: typeof beforePrimitive): number[] => {
+      const accessorIndex = (primitive as unknown as { indices: number }).indices;
+      const accessor = value.document.accessors[accessorIndex]; const bytes = accessorBytes(value, accessorIndex);
+      return Array.from({ length: accessor.count }, (_, index) => accessor.componentType === 5123
+        ? bytes.readUInt16LE(index * 2) : bytes.readUInt32LE(index * 4));
+    };
+    const indices = readIndices(after, afterPrimitive);
+    const sourceAccessor = (afterPrimitive as unknown as {
+      extras: { tianshuSourceVertexAccessor: number };
+    }).extras.tianshuSourceVertexAccessor;
+    const sourceBytes = accessorBytes(after, sourceAccessor);
+    const sourceRows = Array.from({ length: after.document.accessors[sourceAccessor].count },
+      (_, index) => sourceBytes.readUInt32LE(index * 4));
+    expect(stats.verticesAfter).toBe(new Set(indices).size);
+    expect(stats.verticesAfter).toBeLessThanOrEqual(4);
+    expect(sourceRows).toHaveLength(stats.verticesAfter);
+    expect(new Set(sourceRows).size).toBe(stats.verticesAfter);
+    for (const name of ['POSITION', 'NORMAL', 'TEXCOORD_0', 'JOINTS_0', 'WEIGHTS_0', '_REGION']) {
       const original = before.document.accessors[beforePrimitive.attributes[name]];
-      expect(after.document.accessors[afterPrimitive.attributes[name]].count).toBe(original.count);
-      expect(accessorBytes(after, afterPrimitive.attributes[name])).toEqual(
-        accessorBytes(before, beforePrimitive.attributes[name]));
+      const compacted = after.document.accessors[afterPrimitive.attributes[name]];
+      const originalBytes = accessorBytes(before, beforePrimitive.attributes[name]);
+      const compactedBytes = accessorBytes(after, afterPrimitive.attributes[name]);
+      const rowSize = originalBytes.length / original.count;
+      expect(compacted.count).toBe(new Set(indices).size);
+      for (let corner = 0; corner < indices.length; corner++)
+        expect(compactedBytes.subarray(indices[corner] * rowSize, (indices[corner] + 1) * rowSize))
+          .toEqual(originalBytes.subarray(sourceRows[indices[corner]] * rowSize,
+            (sourceRows[indices[corner]] + 1) * rowSize));
     }
   }, 300_000);
 
