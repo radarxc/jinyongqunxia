@@ -41,6 +41,12 @@
 4. **网格质检渲染器 UV 采样错了**：`preview_mesh_front.png` 里模板身体和衣服都是一块块肤色 / 深色迷彩——连身体都花了，说明是渲染器的问题（变体贴图本身布料岛颜色正常）。按 `bake_texture_layer.py` 同一 UV 约定采样材质 `baseColorTexture`；先用同一渲染器渲劲装版型件（应是深蓝劲装、无肤色补丁）做自检，再渲布衣。重出 `preview_mesh_front.png` / `preview_mesh_back.png`，协调者要看到正常肤色身体上的灰褐粗麻短褐。
 5. **不碰写集外文件**：`actor-runtime.test.ts` 的分配采样用例是已知的 JIT 时机偶发失败，由协调者在 B4 处理；你的 `pnpm check` 遇到它，重跑一次，仍失败就在报告里写明，不得修改。结束前删除工作区里所有不在写集的文件。
 
+## 协调者裁定（2026-10-08 18:40）
+1. **胸口肤色块不作本任务门禁**：它在版型件劲装（E2 抽取）上原样存在，根子在 `extract_garment` 把 V 领内侧皮肤纹素带进了衣服贴图；修版型件后同版型所有变体自动干净，归入后续任务（E2 抽取清理）。本任务把"变体贴图皮肤色纹素占比"如实写进报告与 fit.json（只报不判），不要为它牺牲填充率。
+2. **填充率必须 ≥ 99.5%**：第 12 次运行 `variantFillRatio` 从此前的 100% 掉到 98.3%（多半是皮肤修补把纹素清空了），这是本轮新出的退步，必须修回。
+3. 审核 r3 第 1 条（真实测试）照做：正面 ≈ 变体色、背面 = LUT(版型色)、输出 GLB 除图片外字节相同、IoU 对已知掩码给已知值、错误输入会失败；第 12 次运行的测试只有一条中位色断言，不够。
+4. 本任务的审核从现在起由 GPT-5.6-Sol 做（此前 supervise 误把 agy 当审核器，已修）。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{retexture_variant.py,tests_variant.py}`（可 import 但不改 `bake_texture_layer.py`）、`assets/default/model3d/dressup/garments/{eq_buyi,eq_buyi_tex}/**`、`assets/default/character/female/ch00/threeview/{por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png,manifest.yaml}`（manifest 只追加一条）与本任务报告。
 - 不改版型件 `garments/eq_jinzhuang/**`、不改其他工具；不加依赖；**不花 Tripo 点数**。
