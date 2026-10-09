@@ -205,3 +205,33 @@
   status: candidate
   created: '2026-10-08T01:45:00-07:00'
   notes: 协调者按 AR-105 用 agy 出图（素体衣图底板）。作者 2026-10-08 同意贴图 / 网格两条路同时试（「同时试试吧」），本图是两条路共用的 Tripo 整身输入。
+- id: por_npc_zhujue__ch00_f_dressup_eq_buyi_front
+  file: por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体穿「粗布短褐」eq_buyi 的窄 A 字全身衣图底板（同版型换色变体）
+  status: candidate
+  created: '2026-10-08T14:21:00-07:00'
+  notes: 变体，粗麻质地，带同色腰带。
+  sha256: 3f1881b361bb2ca696da6f2abb338748b6896a4d2b9c9727da6653e317f1fc5c
+  prompt: 'Replace the dark blue-grey jacket with the coarse hemp short jacket shown in eq_buyi.png. The new jacket should have a grey-brown color (灰褐粗麻), coarse woven texture, and un-dyed ties. The tied fabric belt at the waist MUST keep its exact shape but change to match the clothing color. Keep EVERYTHING else identical to por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png: the contour, the cross-collar line, the sleeve length, the hemline, the same face and features, the same bald head, the same arm pose, the same body proportions, the same bare legs and feet, the same background and the same full-body framing. Do not add hair, hat, shoes, trousers, jewelry, text or watermark.'
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
+    sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
+  - path: assets/default/item/clothing/eq_buyi.png
+  normalization: 整图缩放 1.2072、偏移 (0, 5)、背景色补边
+  check_plate:
+    target_arm_angle_deg: 25
+    tolerance_deg: 3
+    left_arm_angle_deg: 26.673
+    right_arm_angle_deg: 26.616
+    face_iou: 0.963193
+    hips_ratio_delta: 0.001452
+    arm_span_ratio_delta: 0.001669
+    head_top_delta_ratio: 0.000726
+    feet_bottom_delta_ratio: 0.000726
+    pass: true
+  clothes_iou:
+    threshold_25: 0.956281
+    threshold_40: 0.922671
+    threshold_60: 0.783253

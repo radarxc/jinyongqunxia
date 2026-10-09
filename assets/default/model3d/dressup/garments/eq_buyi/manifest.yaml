@@ -1,0 +1,50 @@
+- id: dressup__garment__eq_buyi
+  file: eq_buyi.glb
+  category: model3d
+  kind: dressup-garment
+  slot: body
+  template: tpl_f_medium
+  item: eq_buyi
+  fit: fit.json
+  report: report.json
+  base: eq_jinzhuang
+  fits:
+    tpl_f_medium:
+      file: eq_buyi.glb
+      fit: fit.json
+      report: report.json
+      status: draft
+      gateLevel: fail
+      sha256: 4785bd32246b5b78e59f20af7862c424ee74ff67cc5f104fd38f9cbc57636e82
+      size_bytes: 1553356
+    tpl_f_small:
+      file: eq_buyi.tpl_f_small.glb
+      fit: fit.tpl_f_small.json
+      report: report.tpl_f_small.json
+      status: draft
+      gateLevel: fail
+      sha256: fe7529a1fbd5824d2aa478a7f9df9eabcca8f5847f9853f7323c00ea14e14b50
+      size_bytes: 1553340
+    tpl_f_tall:
+      file: eq_buyi.tpl_f_tall.glb
+      fit: fit.tpl_f_tall.json
+      report: report.tpl_f_tall.json
+      status: draft
+      gateLevel: fail
+      sha256: 5b9d0dbb2b52e38a74030f69376735c465b1c27efa14cd10794fb45bfa2b41cd
+      size_bytes: 1553352
+  sha256: 4785bd32246b5b78e59f20af7862c424ee74ff67cc5f104fd38f9cbc57636e82
+  size_bytes: 1553356
+  triangles: 25836
+  status: draft
+  experimental: true
+  gateLevel: fail
+  tool: tools/model3d/dressup/retexture_variant.py
+  created: '2026-10-08T15:59:28-07:00'
+  source:
+    base_plate:
+      path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
+      sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
+    plate:
+      path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png
+      sha256: 3f1881b361bb2ca696da6f2abb338748b6896a4d2b9c9727da6653e317f1fc5c
