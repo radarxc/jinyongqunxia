@@ -1361,8 +1361,20 @@
   "hideMask": {
     "file": "hidemask.tpl_f_tall.png",
     "size": 1024,
-    "coveredRatio": 0.594411974775277,
-    "marginMm": 15.0,
-    "maxDistanceMm": 80.0
+    "coveredRatio": 0.3116747090795067,
+    "bindCoveredRatio": 0.4792523169117135,
+    "animationBackfilledTexels": 67579,
+    "holeSafetyPoses": 72,
+    "holeSafetyViews": 8,
+    "depthMapSize": 256,
+    "mode": "visibility",
+    "views": 128,
+    "bindPoses": 1,
+    "animationPoses": 18,
+    "viewElevationDeg": [
+      -15.0,
+      80.0
+    ],
+    "depthToleranceMm": 2.0
   }
 }

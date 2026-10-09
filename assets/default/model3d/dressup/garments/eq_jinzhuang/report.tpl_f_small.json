@@ -12,8 +12,8 @@
       "sizeBytes": 1574812
     },
     "fit": {
-      "sha256": "56775e348c2a2076b458ec6c3bb2f71d9e70b57a3d6e78d3ffea9c7b9102f920",
-      "sizeBytes": 42044
+      "sha256": "7c4e8eb664b24415b94cb774b2a53aa63e481377a3704205c7bb97764a616ea0",
+      "sizeBytes": 42335
     }
   },
   "checks": [
@@ -241,8 +241,8 @@
     },
     {
       "name": "penetration.idle.visible",
-      "pass": true,
-      "value": 0.005947424765076721,
+      "pass": false,
+      "value": 0.0756512430117759,
       "threshold": "<= 0.02",
       "frames": 24
     },
@@ -255,8 +255,8 @@
     },
     {
       "name": "penetration.walk.visible",
-      "pass": true,
-      "value": 0.00642321874628286,
+      "pass": false,
+      "value": 0.09081717616272154,
       "threshold": "<= 0.02",
       "frames": 24
     },
@@ -269,10 +269,42 @@
     },
     {
       "name": "penetration.run.visible",
-      "pass": true,
-      "value": 0.006601641489235161,
+      "pass": false,
+      "value": 0.07535387177352207,
       "threshold": "<= 0.02",
       "frames": 24
+    },
+    {
+      "name": "holes.bind.visible",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "= 0 (tolerance <= 0.0005)",
+      "frames": 1,
+      "views": 8
+    },
+    {
+      "name": "holes.idle.visible",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "= 0 (tolerance <= 0.0005)",
+      "frames": 24,
+      "views": 8
+    },
+    {
+      "name": "holes.walk.visible",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "= 0 (tolerance <= 0.0005)",
+      "frames": 24,
+      "views": 8
+    },
+    {
+      "name": "holes.run.visible",
+      "pass": true,
+      "value": 0.00040024014408645187,
+      "threshold": "= 0 (tolerance <= 0.0005)",
+      "frames": 24,
+      "views": 8
     },
     {
       "name": "mask.knownRegions",

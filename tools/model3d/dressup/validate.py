@@ -25,6 +25,7 @@ from common import (closest_point_on_triangle, compose_matrix, lbs, pca,
                     signed_distance, umeyama)  # noqa: E402
 from fit_garment import SurfaceIndex  # noqa: E402
 from glb_io import GLB, Mesh, load_glb  # noqa: E402
+from bake_hide_mask import (orthographic_frame, rasterize_triangles)  # noqa: E402
 
 SCHEMA = "tianshu-dressup-report.v1"
 FORBIDDEN_HIDE = {"neck", "handL", "handR", "footL", "footR"}
@@ -34,6 +35,12 @@ REPO = Path(__file__).resolve().parents[3]
 SKELETON_SCHEMA = "tianshu-dressup-skeleton.v1"
 FIT_SCHEMA = "tianshu-dressup-fit.v1"
 UNIT_TOLERANCE = 1e-6
+HOLE_TOLERANCE = 0.0005
+HOLE_VIEWS = np.asarray([
+    [0., 0., 1.], [0., 0., -1.], [1., 0., 0.], [-1., 0., 0.],
+    [0., 1., 1.], [0., 1., -1.], [1., 1., 0.], [-1., 1., 0.],
+], dtype=np.float64)
+HOLE_VIEWS /= np.linalg.norm(HOLE_VIEWS, axis=1)[:, None]
 
 
 def _fail(message: str) -> int:
@@ -453,6 +460,100 @@ def _penetration_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
     return static, _dynamic_penetration(body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask)
 
 
+def _hole_view(body_positions: np.ndarray, body_faces: np.ndarray, body_uvs: np.ndarray,
+               garment_positions: np.ndarray, garment_faces: np.ndarray,
+               hide_mask: np.ndarray, direction: np.ndarray, tolerance_mu: float,
+               size: int = 192) -> tuple[int, int, np.ndarray]:
+    """光栅完整身体/隐藏身体/衣物，找最前方直接暴露的隐藏片元。"""
+    frame = orthographic_frame((body_positions, garment_positions), direction, size)
+    body_depth, fragments = rasterize_triangles(
+        body_positions, body_faces, frame, fragments=True)
+    garment_depth, _ = rasterize_triangles(garment_positions, garment_faces, frame)
+    assert fragments is not None
+    fragment_uv = np.einsum(
+        "ni,nij->nj", fragments.barycentric, body_uvs[body_faces[fragments.faces]])
+    triangles = body_positions[body_faces]
+    face_normals = np.cross(triangles[:, 1] - triangles[:, 0],
+                            triangles[:, 2] - triangles[:, 0])
+    front_facing = face_normals @ direction > 0.0
+    rendered_body = front_facing[fragments.faces]
+    hidden = _sample_hide_mask(hide_mask, fragment_uv) >= .5
+    hidden_depth = np.full(size * size, -np.inf, np.float64)
+    visible_body_depth = np.full(size * size, -np.inf, np.float64)
+    np.maximum.at(hidden_depth, fragments.pixels[hidden & rendered_body],
+                  fragments.depths[hidden & rendered_body])
+    np.maximum.at(visible_body_depth, fragments.pixels[~hidden & rendered_body],
+                  fragments.depths[~hidden & rendered_body])
+    body_flat, garment_flat = body_depth.ravel(), garment_depth.ravel()
+    remaining_depth = np.maximum(visible_body_depth, garment_flat)
+    holes = (np.isfinite(hidden_depth)
+             & (hidden_depth >= body_flat - tolerance_mu)
+             & ~np.isfinite(remaining_depth))
+    silhouette = np.isfinite(np.maximum(body_flat, garment_flat))
+    preview = silhouette.astype(np.uint8); preview[holes] = 2
+    return int(holes.sum()), int(silhouette.sum()), preview.reshape(size, size)
+
+
+def _holes_for_pose(body_positions: np.ndarray, garment_positions: np.ndarray,
+                    body_mesh: Mesh, garment_mesh: Mesh, hide_mask: np.ndarray,
+                    m_per_mu: float, size: int = 192) -> tuple[float, list[np.ndarray]]:
+    assert body_mesh.uvs is not None
+    body_faces, garment_faces = _faces(body_mesh), _faces(garment_mesh)
+    worst = 0.0; views: list[np.ndarray] = []
+    for direction in HOLE_VIEWS:
+        holes, silhouette, image = _hole_view(
+            body_positions, body_faces, body_mesh.uvs, garment_positions, garment_faces,
+            hide_mask, direction, .002 / m_per_mu, size)
+        worst = max(worst, holes / silhouette if silhouette else 0.0); views.append(image)
+    return worst, views
+
+
+def _hole_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
+                hide_mask: np.ndarray, m_per_mu: float) -> tuple[dict[str, float], list[np.ndarray]]:
+    rates: dict[str, float] = {}; preview: list[np.ndarray] = []
+    bind_rate, bind_views = _holes_for_pose(body_mesh.positions, asset_mesh.positions, body_mesh,
+                                            asset_mesh, hide_mask, m_per_mu)
+    preview_indices = (0, 2, 1)
+    rates["bind"] = bind_rate; preview = [bind_views[index] for index in preview_indices]
+    preview_holes = [int(np.count_nonzero(image == 2)) for image in preview]
+    by_name = {str(item.get("name", "")).lower(): item for item in body.json.get("animations", [])}
+    body_skin, asset_skin = body.skin(), asset.skin()
+    for clip in ("idle", "walk", "run"):
+        animation = next((value for name, value in by_name.items() if clip in name), None)
+        if animation is None: raise ValueError(f"正本缺 {clip} 动画")
+        ends = [float(np.asarray(body.accessor(s["input"])).max(initial=0))
+                for s in animation.get("samplers", [])]
+        duration = max(ends, default=0.0); worst = 0.0
+        for sample_time in np.linspace(0.0, duration, 24, endpoint=False):
+            world = _world_matrices(body, animation, float(sample_time))
+            body_positions = lbs(body_mesh.positions, body_mesh.joints, body_mesh.weights,
+                                 world[np.asarray(body_skin.joints)], body_skin.inverse_bind_matrices)
+            garment_positions = lbs(asset_mesh.positions, asset_mesh.joints, asset_mesh.weights,
+                                    world[np.asarray(body_skin.joints)], asset_skin.inverse_bind_matrices)
+            rate, images = _holes_for_pose(body_positions, garment_positions, body_mesh, asset_mesh,
+                                           hide_mask, m_per_mu)
+            worst = max(worst, rate)
+            for slot, view_index in enumerate(preview_indices):
+                count = int(np.count_nonzero(images[view_index] == 2))
+                if count > preview_holes[slot]:
+                    preview_holes[slot] = count; preview[slot] = images[view_index]
+        rates[clip] = worst
+    return rates, preview
+
+
+def _save_holes_preview(path: Path, views: list[np.ndarray]) -> None:
+    panels: list[Image.Image] = []
+    for surface in views:
+        pixels = np.full((*surface.shape, 3), [226, 220, 205], np.uint8)
+        pixels[surface == 1] = [115, 108, 101]
+        pixels[surface == 2] = [255, 0, 180]
+        panels.append(Image.fromarray(np.flipud(pixels), "RGB").resize(
+            (384, 384), Image.Resampling.NEAREST))
+    canvas = Image.new("RGB", (384 * len(panels), 384), (226, 220, 205))
+    for index, panel in enumerate(panels): canvas.paste(panel, (384 * index, 0))
+    canvas.save(path, optimize=True)
+
+
 def _texture_sizes(glb: GLB) -> list[list[int]]:
     sizes: list[list[int]] = []
     for index in range(len(glb.json.get("images", []))):
@@ -864,6 +965,17 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
                 checks.append(_check(f"penetration.{clip}.visible",
                                      present and visible_value is not None and visible_value <= threshold,
                                      visible_value, f"<= {threshold}", frames=24))
+            holes, preview_views = _hole_rates(
+                body, asset, body_mesh, asset_mesh, hide_mask, m_per_mu)
+            for clip in ("bind", "idle", "walk", "run"):
+                value = holes[clip]
+                checks.append(_check(f"holes.{clip}.visible", value <= HOLE_TOLERANCE, value,
+                                     f"= 0 (tolerance <= {HOLE_TOLERANCE})",
+                                     frames=1 if clip == "bind" else 24, views=8))
+            template = str(fit.get("template", ""))
+            preview_name = ("holes_preview.png" if template == "tpl_f_medium"
+                            else f"holes_preview.{template}.png")
+            _save_holes_preview(fit_path.with_name(preview_name), preview_views)
 
         checks.extend(_mask_checks(fit, skeleton))
 

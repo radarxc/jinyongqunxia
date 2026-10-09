@@ -1284,8 +1284,20 @@
   "hideMask": {
     "file": "hidemask.png",
     "size": 1024,
-    "coveredRatio": 0.5961300606229532,
-    "marginMm": 15.0,
-    "maxDistanceMm": 80.0
+    "coveredRatio": 0.3046978433558637,
+    "bindCoveredRatio": 0.4733685805867187,
+    "animationBackfilledTexels": 68137,
+    "holeSafetyPoses": 72,
+    "holeSafetyViews": 8,
+    "depthMapSize": 256,
+    "mode": "visibility",
+    "views": 128,
+    "bindPoses": 1,
+    "animationPoses": 18,
+    "viewElevationDeg": [
+      -15.0,
+      80.0
+    ],
+    "depthToleranceMm": 2.0
   }
 }

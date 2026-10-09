@@ -62,7 +62,7 @@ class HideMaskTests(unittest.TestCase):
         cls.raster = rasterize_uv(cls.body, cls.regions, 192)
         cls.result = hide.bake_mask(
             cls.body, cls.garment, cls.raster, cls.regions, {2: "torsoUpper", 9: "handL"},
-            m_per_mu=1.0, max_distance_mm=80.0, opening_margin_mm=15.0)
+            m_per_mu=1.0, max_distance_mm=80.0, opening_margin_mm=15.0, mode="rays")
 
     def test_sleeve_covered_segment_is_hidden(self) -> None:
         core = self.raster.covered & (self.raster.positions[..., 1] > .4) & (self.raster.positions[..., 1] < .52)
@@ -95,7 +95,7 @@ class HideMaskTests(unittest.TestCase):
         garment = _tube([.2, 1.8], radius=.997)
         result = hide.bake_mask(
             self.body, garment, self.raster, self.regions, {2: "torsoUpper", 9: "handL"},
-            m_per_mu=1.0, max_distance_mm=80.0, opening_margin_mm=15.0)
+            m_per_mu=1.0, max_distance_mm=80.0, opening_margin_mm=15.0, mode="rays")
         near = self.raster.covered & (np.abs(self.raster.positions[..., 1] - .2) < .014)
         near |= self.raster.covered & (np.abs(self.raster.positions[..., 1] - 1.8) < .014)
         self.assertGreater(result.stats["bindPenetratingVertices"], 0)
@@ -111,7 +111,7 @@ class HideMaskTests(unittest.TestCase):
                        np.concatenate((outer.uvs, inner.uvs)))
         result = hide.bake_mask(
             self.body, garment, self.raster, self.regions, {2: "torsoUpper", 9: "handL"},
-            m_per_mu=1.0, max_distance_mm=80.0, opening_margin_mm=15.0)
+            m_per_mu=1.0, max_distance_mm=80.0, opening_margin_mm=15.0, mode="rays")
         overlapped = (self.raster.covered & (self.raster.positions[..., 1] > .19)
                       & (self.raster.positions[..., 1] < .214)
                       & (self.raster.regions != 9))
@@ -217,6 +217,188 @@ class HideMaskTests(unittest.TestCase):
             checks = {row["name"]: row for row in report["checks"]}
             self.assertEqual(checks["penetration.bindVertices.visible"]["value"], 0, name)
             self.assertTrue(checks["penetration.bindVertices.visible"]["pass"], name)
+
+
+class VisibilityMaskTests(unittest.TestCase):
+    def setUp(self) -> None:
+        # 身体半径 1 m；短筒裙内壁离体 30 mm，下摆以下身体完全暴露。
+        self.body = _tube(np.linspace(0.0, 2.0, 41).tolist(), radius=1.0,
+                          segments=64, split_bands=True)
+        self.garment = _tube(np.linspace(.75, 1.45, 15).tolist(), radius=1.03,
+                             segments=64, split_bands=True)
+        self.regions = np.full(len(self.body.positions), 2, np.uint8)
+        self.raster = rasterize_uv(self.body, self.regions, 160)
+        self.result = hide.bake_mask(
+            self.body, self.garment, self.raster, self.regions, {2: "torsoLower"},
+            m_per_mu=1.0, mode="visibility", poses=[hide._bind_pose(self.body, self.garment)],
+            view_count=128, depth_size=128, morph_radius_px=1)
+
+    def test_short_skirt_hem_below_body_stays_visible(self) -> None:
+        below = self.raster.covered & (self.raster.positions[..., 1] < .68)
+        self.assertGreater(int(below.sum()), 500)
+        self.assertEqual(int(self.result.mask[below].max(initial=0)), 0)
+        legacy = hide.bake_mask(
+            self.body, self.garment, self.raster, self.regions, {2: "torsoLower"},
+            m_per_mu=1.0, mode="rays", max_distance_mm=800.0,
+            opening_margin_mm=0.0, morph_radius_px=1)
+        self.assertGreater(int(np.count_nonzero(legacy.mask[below] >= 128)), 0)
+
+    def test_fully_enclosed_tube_body_is_hidden(self) -> None:
+        inside = (self.raster.covered & (self.raster.positions[..., 1] > 1.0)
+                  & (self.raster.positions[..., 1] < 1.2))
+        self.assertGreater(int(inside.sum()), 500)
+        self.assertGreater(float((self.result.mask[inside] >= 128).mean()), .80)
+
+    def test_camera_band_hides_torso_and_preserves_skin_below_hem(self) -> None:
+        # 短上衣下缘以下可从正面看到，衣内躯干则在游戏相机球带内被包住。
+        torso = (self.raster.covered & (self.raster.positions[..., 1] > 1.0)
+                  & (self.raster.positions[..., 1] < 1.2))
+        below_hem = (self.raster.covered & (self.raster.positions[..., 1] > .3)
+                     & (self.raster.positions[..., 1] < .6))
+        elevations = np.degrees(np.arcsin(hide.fibonacci_directions(128)[:, 1]))
+        self.assertAlmostEqual(float(elevations.min()), -15.0, places=10)
+        self.assertAlmostEqual(float(elevations.max()), 80.0, places=10)
+        self.assertGreater(float((self.result.mask[torso] >= 128).mean()), .80)
+        self.assertEqual(int(self.result.mask[below_hem].max(initial=0)), 0)
+
+    def test_walk_body_piercing_front_stays_hidden_below_hem_stays_visible(self) -> None:
+        # walk 中衣内躯干整体穿到前片外侧：它可见但带符号距离为正，不能回补。
+        bind = hide._bind_pose(self.body, self.garment)
+        walk_positions = self.body.positions.astype(np.float64).copy()
+        torso_vertices = ((walk_positions[:, 1] > .9) & (walk_positions[:, 1] < 1.3))
+        radial = walk_positions[torso_vertices][:, [0, 2]]
+        radial /= np.maximum(np.linalg.norm(radial, axis=1)[:, None], 1e-12)
+        walk_positions[torso_vertices, 0] += .12 * radial[:, 0]
+        walk_positions[torso_vertices, 2] += .12 * radial[:, 1]
+        walk = hide.PosedMeshes(
+            "walk:0", walk_positions,
+            hide._vertex_normals(walk_positions, self.body.indices.reshape(-1, 3)),
+            self.garment.positions.astype(np.float64), bind.garment_normals)
+        result = hide.bake_mask(
+            self.body, self.garment, self.raster, self.regions, {2: "torsoLower"},
+            m_per_mu=1.0, mode="visibility", poses=[bind, walk],
+            view_count=128, depth_size=128, morph_radius_px=1)
+        torso = (self.raster.covered & (self.raster.positions[..., 1] > 1.0)
+                  & (self.raster.positions[..., 1] < 1.2))
+        below_hem = (self.raster.covered & (self.raster.positions[..., 1] > .3)
+                     & (self.raster.positions[..., 1] < .6))
+        self.assertGreater(result.stats["animationOutsideVisibleTexels"], 0)
+        self.assertGreater(float((result.mask[torso] >= 128).mean()), .80)
+        self.assertEqual(int(result.mask[below_hem].max(initial=0)), 0)
+
+    def test_synthetic_hole_count_is_zero(self) -> None:
+        # 已知正确遮罩只隐藏筒内 0.80~1.40 m 区间；验证器应报告零黑洞。
+        hidden_uv = np.zeros_like(self.result.mask, dtype=np.float32)
+        enclosed = (self.raster.covered & (self.raster.positions[..., 1] > .80)
+                    & (self.raster.positions[..., 1] < 1.40))
+        hidden_uv[enclosed] = 1.0
+        # 斜上视角能越过开口看到筒内，故正确包覆场景使用封住上下视野的长筒。
+        close_garment = _tube(np.linspace(-3.0, 5.0, 81).tolist(), radius=1.03,
+                              segments=64, split_bands=True)
+        rate, _ = validate._holes_for_pose(
+            self.body.positions, close_garment.positions, self.body, close_garment,
+            hidden_uv, m_per_mu=1.0)
+        self.assertEqual(rate, 0.0)
+
+    def test_face_center_mask_hole_is_reported_when_vertices_are_clear(self) -> None:
+        body = Mesh(
+            np.array([[-1, -1, 0], [1, -1, 0], [1, 1, 0], [-1, 1, 0]], np.float32),
+            np.array([0, 1, 2, 0, 2, 3], np.uint16),
+            np.tile([0, 0, 1], (4, 1)).astype(np.float32),
+            np.array([[0, 0], [1, 0], [1, 1], [0, 1]], np.float32))
+        garment = Mesh(np.array([[3, 3, -1], [4, 3, -1], [3, 4, -1]], np.float32),
+                       np.array([0, 1, 2], np.uint16))
+        mask = np.zeros((64, 64), np.float32); mask[24:40, 24:40] = 1
+        self.assertTrue(np.all(validate._sample_hide_mask(mask, body.uvs) == 0))
+        rate, _ = validate._holes_for_pose(
+            body.positions, garment.positions, body, garment, mask, 1.0, size=128)
+        self.assertGreater(rate, .01)
+
+    def test_hidden_body_with_garment_behind_is_not_a_background_hole(self) -> None:
+        body = Mesh(
+            np.array([[-1, -1, .1], [1, -1, .1], [1, 1, .1], [-1, 1, .1]], np.float32),
+            np.array([0, 1, 2, 0, 2, 3], np.uint16),
+            np.tile([0, 0, 1], (4, 1)).astype(np.float32),
+            np.array([[0, 0], [1, 0], [1, 1], [0, 1]], np.float32))
+        garment = Mesh(
+            np.array([[-1, -1, 0], [1, -1, 0], [1, 1, 0], [-1, 1, 0]], np.float32),
+            np.array([0, 1, 2, 0, 2, 3], np.uint16))
+        mask = np.ones((32, 32), np.float32)
+        holes, _, _ = validate._hole_view(
+            body.positions, body.indices.reshape(-1, 3), body.uvs,
+            garment.positions, garment.indices.reshape(-1, 3), mask,
+            np.array([0., 0., 1.]), .002, 128)
+        self.assertEqual(holes, 0)
+
+    def test_unhidden_backface_does_not_fill_front_body_hole(self) -> None:
+        front = [[-1, -1, .1], [1, -1, .1], [1, 1, .1], [-1, 1, .1]]
+        back = [[-1, -1, 0], [-1, 1, 0], [1, 1, 0], [1, -1, 0]]
+        body = Mesh(
+            np.asarray(front + back, np.float32),
+            np.array([0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7], np.uint16),
+            uvs=np.array([[.4, .4], [.6, .4], [.6, .6], [.4, .6],
+                          [0, 0], [.1, 0], [.1, .1], [0, .1]], np.float32))
+        garment = Mesh(np.array([[3, 3, -1], [4, 3, -1], [3, 4, -1]], np.float32),
+                       np.array([0, 1, 2], np.uint16))
+        mask = np.zeros((64, 64), np.float32); mask[20:44, 20:44] = 1
+        holes, _, _ = validate._hole_view(
+            body.positions, body.indices.reshape(-1, 3), body.uvs,
+            garment.positions, garment.indices.reshape(-1, 3), mask,
+            np.array([0., 0., 1.]), .002, 128)
+        self.assertGreater(holes, 0)
+
+    def test_fibonacci_is_uniform_in_camera_reachable_band(self) -> None:
+        directions = hide.fibonacci_directions(128)
+        self.assertEqual(directions.shape, (128, 3))
+        elevations = np.degrees(np.arcsin(directions[:, 1]))
+        self.assertAlmostEqual(float(elevations.min()), -15.0, places=10)
+        self.assertAlmostEqual(float(elevations.max()), 80.0, places=10)
+        self.assertTrue(np.allclose(np.diff(directions[:, 1]), np.diff(directions[:, 1])[0]))
+        hole_elevations = np.degrees(np.arcsin(validate.HOLE_VIEWS[:, 1]))
+        self.assertEqual(sorted(np.round(hole_elevations, 8).tolist()), [0.0] * 4 + [45.0] * 4)
+        self.assertEqual(self.result.stats["mode"], "visibility")
+        self.assertEqual(self.result.stats["views"], 128)
+        self.assertEqual(self.result.stats["viewElevationDeg"], [-15.0, 80.0])
+
+
+class TriangleRasterTests(unittest.TestCase):
+    def test_large_oblique_triangle_covers_inside_not_bbox_outside(self) -> None:
+        positions = np.array([[-1., -1., .2], [1., -.7, .8], [-.6, 1., .5]])
+        faces = np.array([[0, 1, 2]])
+        frame = hide.orthographic_frame((positions,), np.array([0., 0., 1.]), 128)
+        depth, _ = hide.rasterize_triangles(positions, faces, frame)
+        centroid = positions.mean(axis=0, keepdims=True)
+        rows, columns, expected = hide.project_points(centroid, frame)
+        self.assertAlmostEqual(float(depth[rows[0], columns[0]]), float(expected[0]), delta=.02)
+        self.assertTrue(np.isneginf(depth[120, 120]))
+
+    def test_thirty_mm_opening_survives_at_256_and_512(self) -> None:
+        body_positions = np.array([[-.5, -.5, 0.], [.5, -.5, 0.],
+                                   [.5, .5, 0.], [-.5, .5, 0.]])
+        body_faces = np.array([[0, 1, 2], [0, 2, 3]])
+        left = [[-.5, -.5, .1], [-.015, -.5, .1], [-.015, .5, .1], [-.5, .5, .1]]
+        right = [[.015, -.5, .1], [.5, -.5, .1], [.5, .5, .1], [.015, .5, .1]]
+        garment_positions = np.asarray(left + right)
+        garment_faces = np.array([[0, 1, 2], [0, 2, 3], [4, 5, 6], [4, 6, 7]])
+        for size in (256, 512):
+            found = hide._view_visibility(
+                np.array([[0., 0., 0.]]), np.array([[0., 0., 1.]]),
+                body_positions, body_faces, garment_positions, garment_faces,
+                np.array([0., 0., 1.]), np.array([True]), .002, size)
+            self.assertEqual(found.tolist(), [0], size)
+
+    def test_depth_maps_converge_at_256_and_512(self) -> None:
+        positions = np.array([[-.8, -.8, .2], [.9, -.6, .8], [-.5, .9, .5]])
+        faces = np.array([[0, 1, 2]])
+        samples = []
+        for size in (256, 512):
+            frame = hide.orthographic_frame((positions,), np.array([0., 0., 1.]), size)
+            depth, _ = hide.rasterize_triangles(positions, faces, frame)
+            row, column, _ = hide.project_points(
+                np.array([[0., 0., .5294117647]]), frame)
+            samples.append(float(depth[row[0], column[0]]))
+            self.assertTrue(np.isfinite(samples[-1]))
+        self.assertAlmostEqual(samples[0], samples[1], delta=.003)
 
 
 if __name__ == "__main__":
