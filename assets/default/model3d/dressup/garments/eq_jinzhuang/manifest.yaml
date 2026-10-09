@@ -12,22 +12,25 @@
       file: eq_jinzhuang.glb
       fit: fit.json
       report: report.json
+      hideMask: hidemask.png
       status: draft
       gateLevel: fail
     tpl_f_small:
       file: eq_jinzhuang.tpl_f_small.glb
       fit: fit.tpl_f_small.json
       report: report.tpl_f_small.json
+      hideMask: hidemask.tpl_f_small.png
       status: draft
       gateLevel: fail
     tpl_f_tall:
       file: eq_jinzhuang.tpl_f_tall.glb
       fit: fit.tpl_f_tall.json
       report: report.tpl_f_tall.json
+      hideMask: hidemask.tpl_f_tall.png
       status: draft
       gateLevel: fail
-  sha256: bf792c421d65ddc8991c6ea905d8d23a5b09b37f3e717a238fb8482394f3a233
-  size_bytes: 1574804
+  sha256: 298b495e38699d708fceedda59bf1eaf1fa0d84b60842a63400f6a90f87b9198
+  size_bytes: 1574792
   triangles: 25836
   status: draft
   experimental: true
@@ -43,4 +46,4 @@
       sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
     - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
       sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
-  notes: 全身口径门禁：tpl_f_medium bind=149，idle/walk/run=8.9330%/9.9619%/9.3196%，翻面=309，边长合格=88.5005%；tpl_f_small bind=27，idle/walk/run=10.8362%/12.1744%/10.0987%，翻面=49，边长合格=98.1034%；tpl_f_tall bind=27，idle/walk/run=8.4156%/9.5337%/7.9041%，翻面=48，边长合格=98.1808%。与贴图层 dressup__layer__eq_jinzhuang 叠穿；hideRegions 置空以避免 V 领与胯下黑洞。
+  notes: UV hide mask 覆盖率 medium/small/tall=59.6130%/59.3870%/59.4412%，80 mm 九向射线、首命中衣面测地开口留边 15 mm；最终 PNG seam 采样均 0/229449 不一致，动态 visible 均 <=0.6602%，bind visible=0/0/0。E2b 范围的旧版型翻面/边长门仍未过，故继续 experimental/fail。与贴图层 dressup__layer__eq_jinzhuang 叠穿。

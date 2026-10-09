@@ -4,16 +4,16 @@
   "template": "tpl_f_small",
   "subject": {
     "kind": "garment",
-    "id": "eq_jinzhuang"
+    "id": "eq_jinzhuang.tpl_f_small"
   },
   "inputs": {
     "asset": {
-      "sha256": "f2132ebf936f989874c89159ce2c2768d94b2b78c9a86a59cdb9953174aede38",
-      "sizeBytes": 1574788
+      "sha256": "835212bc4d7406003c052f052777126aee9aa6ee0860ad52c3bcac1638978521",
+      "sizeBytes": 1574812
     },
     "fit": {
-      "sha256": "958e182d976c4c9ad5f4bc720e29b3221934c8c8156584f4032ce110a64ada6e",
-      "sizeBytes": 18210
+      "sha256": "56775e348c2a2076b458ec6c3bb2f71d9e70b57a3d6e78d3ffea9c7b9102f920",
+      "sizeBytes": 42044
     }
   },
   "checks": [
@@ -163,7 +163,7 @@
     {
       "name": "weights.sumMaxError",
       "pass": true,
-      "value": 1.1920928955078125e-07,
+      "value": 1.7881393432617188e-07,
       "threshold": "<= 1e-3"
     },
     {
@@ -186,12 +186,14 @@
         "mixamorig:LeftArm",
         "mixamorig:LeftForeArm",
         "mixamorig:LeftHand",
+        "mixamorig:LeftLeg",
         "mixamorig:LeftShoulder",
         "mixamorig:LeftUpLeg",
         "mixamorig:Neck",
         "mixamorig:RightArm",
         "mixamorig:RightForeArm",
         "mixamorig:RightHand",
+        "mixamorig:RightLeg",
         "mixamorig:RightShoulder",
         "mixamorig:RightUpLeg",
         "mixamorig:Spine",
@@ -219,29 +221,56 @@
       ]
     },
     {
-      "name": "penetration.bindVertices",
-      "pass": false,
-      "value": 27,
+      "name": "penetration.bindVertices.all",
+      "pass": true,
+      "value": 0,
+      "threshold": "report only"
+    },
+    {
+      "name": "penetration.bindVertices.visible",
+      "pass": true,
+      "value": 0,
       "threshold": 0
     },
     {
-      "name": "penetration.idle",
-      "pass": false,
-      "value": 0.10836207921969787,
+      "name": "penetration.idle.all",
+      "pass": true,
+      "value": 0.11377423575591769,
+      "threshold": "report only",
+      "frames": 24
+    },
+    {
+      "name": "penetration.idle.visible",
+      "pass": true,
+      "value": 0.005947424765076721,
       "threshold": "<= 0.02",
       "frames": 24
     },
     {
-      "name": "penetration.walk",
-      "pass": false,
-      "value": 0.1217437849411205,
+      "name": "penetration.walk.all",
+      "pass": true,
+      "value": 0.12513381705721421,
+      "threshold": "report only",
+      "frames": 24
+    },
+    {
+      "name": "penetration.walk.visible",
+      "pass": true,
+      "value": 0.00642321874628286,
       "threshold": "<= 0.02",
       "frames": 24
     },
     {
-      "name": "penetration.run",
-      "pass": false,
-      "value": 0.10098727251100273,
+      "name": "penetration.run.all",
+      "pass": true,
+      "value": 0.10045200428214583,
+      "threshold": "report only",
+      "frames": 24
+    },
+    {
+      "name": "penetration.run.visible",
+      "pass": true,
+      "value": 0.006601641489235161,
       "threshold": "<= 0.02",
       "frames": 24
     },
@@ -266,28 +295,28 @@
     {
       "name": "geometry.flippedTriangles",
       "pass": false,
-      "value": 49,
+      "value": 171,
       "threshold": 0
     },
     {
       "name": "geometry.edgeRatioInRange",
       "pass": false,
-      "value": 0.9810342158228827,
+      "value": 0.9796021055891004,
       "threshold": ">= 0.99"
     },
     {
       "name": "geometry.maxResidualMu",
       "pass": true,
-      "value": 0.026421320616153574,
+      "value": 0.02912290234680689,
       "threshold": "finite"
     },
     {
       "name": "geometry.closeFitP90DeltaMm",
       "pass": false,
-      "value": 5.136444957645973,
+      "value": 5.240060356398468,
       "threshold": "< 5",
-      "sourceP90Mm": 24.50320319615425,
-      "finalP90Mm": 29.639648153800223
+      "sourceP90Mm": 24.425998216491575,
+      "finalP90Mm": 29.666058572890044
     },
     {
       "name": "regions.u8Scalar",

@@ -26,6 +26,9 @@ agy 第 1~3 次运行：Tripo `image_to_model` 已完成一次（任务 `a300208
 5. 质检图：`preview_hand.png` 要看到剑柄在右手拳中、护手在虎口外、刃向前下方；`preview_full.png` 全身正 / 侧。用与 `check_sockets.py` 相同的插槽变换渲染（剑在手上，不得在原点 / 地面）。
 6. 报告第 3 节：Tripo 任务 ID、点数（查不到写"未记录"）、柄端判定、尺寸、tiltSweep、validate / check_sockets 数字。删除工作区里的 `scratch/` 等写集外文件。
 
+## 协调者裁定（第 2 轮，2026-10-08 21:15，依据审核 r1）
+审核 r1 指出的根因：`check_sockets.py` 自己会扫倾角（含 `reverse`）并把选中的 -150° 回写 fit，覆盖了执行器选好的正握 60°。本任务写集已加入 `check_sockets.py`，**只允许追加一个开关**：fit 的 `gripAdjust`（或顶层）写 `allowReverse: false` 时，握持倾角扫描不得包含 `reverse` 候选（只在 {0, 20, 40, 60} 里按深穿最小选）；未写该字段的道具行为不变（A6 三件结果不得变化）。补 `tests_prop.py`：`allowReverse: false` 时不产出 reverse、选中正握最小深穿档；不写时与原行为一致。然后按审核 r1 第 2~7 条：最终 fit 固定 60° 正握且 fit / `tiltSweep` / `sockets_check.json` / manifest / 报告一致；用最终 fit 重跑 `validate.py`（`report.json` 的 fit sha256 与实际一致）；质检图用同一最终变换且右手是握拳姿势（套用 `skeleton.json` 的 `fingerPose.fist`）；manifest notes 写"出鞘·持剑态"与 60°。严禁再提交 Tripo 生成。
+
 ## 约束
 - 只写 `assets/default/model3d/dressup/props/eq_longquanjian/**` 与本任务报告；不改脚本（发现 bug 写进报告第 4 节）。
 - 不输密码、不买点数、不点条款；点数只花一次 `image_to_model`；出错不重复提交生成。临时文件放系统临时目录。

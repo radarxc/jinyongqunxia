@@ -51340,7 +51340,8 @@
    "writes": [
     "assets/default/model3d/dressup/props/eq_longquanjian/**",
     "tools/model3d/dressup/validate.py",
-    "tools/model3d/dressup/tests_prop.py"
+    "tools/model3d/dressup/tests_prop.py",
+    "tools/model3d/dressup/check_sockets.py"
    ],
    "validate": {
     "exists": [
