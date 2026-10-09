@@ -51802,7 +51802,8 @@
    "writes": [
     "tools/model3d/dressup/pack_glb.mjs",
     "apps/game/build/dressup-assets.test.ts",
-    "assets/default/model3d/dressup/props/**"
+    "assets/default/model3d/dressup/props/**",
+    "tools/model3d/dressup/validate.py"
    ],
    "validate": {
     "exists": [

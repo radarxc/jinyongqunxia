@@ -13,8 +13,15 @@
 3. **重打包四件道具**（`props/{eq_longquanjian,item_bamboo_hat,item_qingfeng_sword,luxury_jade_pendant}`）：在现有成品 GLB 上做无损压缩（不重新减面、不改贴图、不改 fit 变换），然后对每件重跑 `validate.py` 与 `check_sockets.py`，刷新 report / sockets_check / manifest 的哈希与字节数；门禁等级与插槽结果必须与压缩前一致（报告列出压缩前后顶点数、文件大小、level 对比）。
 4. 测试：合成"含 1000 个未引用顶点的小网格"压缩后只剩被引用顶点、三角属性逐字节相同、skinned 网格的 JOINTS / WEIGHTS 同步压缩。
 
+## 协调者裁定（2026-10-09 00:40，依据第 1 次校验失败）
+压缩后 `dressup-assets.test.ts` 的 "validates real A3 fit format and class-specific semantic axes" 失败：`item_bamboo_hat` 主轴对齐度 0.979 < 0.999。根因：`validate.py::_prop_axis_and_anchor` 用**顶点**做 PCA，以前的成品里 95% 的未引用顶点其实是减面前的高精网格、分布均匀，掩盖了问题；压缩后只剩减面顶点、疏密不均，扁宽帽檐的 PCA 主轴就偏了。这是度量方法的缺陷，不是压缩的错，也不得靠保留未引用顶点绕过。改法（本任务写集已加入 `validate.py`，只改这一个函数及其调用）：
+1. `_prop_axis_and_anchor(vertices, fit, faces=None)`：传入 `faces` 时 PCA 改为**按三角面积加权**（用三角重心与面积，或在表面均匀采样），对顶点疏密不敏感；`faces=None` 时行为完全不变。`validate.py` 内部调用传入成品三角。
+2. A3 用例（本任务写集已有 `dressup-assets.test.ts`，允许改这个用例的这两处调用）只把 `m.indices` 作为 `faces` 一并传入，阈值 0.999 与其余断言一字不改。
+3. 测试：合成"同一扁圆锥、一侧顶点加密 20 倍"的网格，面积加权主轴对齐度 > 0.999，纯顶点 PCA 明显偏离（证明修的是度量）。
+4. 重跑四件道具 validate / check_sockets，结果与压缩前一致。
+
 ## 约束
-- 只写 `tools/model3d/dressup/pack_glb.mjs`、`apps/game/build/dressup-assets.test.ts`（只改上述一个用例）、`assets/default/model3d/dressup/props/**` 与本任务报告。
+- 只写 `tools/model3d/dressup/pack_glb.mjs`、`tools/model3d/dressup/validate.py`（只改 `_prop_axis_and_anchor` 及其调用）、`apps/game/build/dressup-assets.test.ts`（只改上述打包用例与 A3 用例的两处调用）、`assets/default/model3d/dressup/props/**` 与本任务报告。
 - 衣物 / 头不在本任务（另有任务在改劲装与黄蓉头，避免冲突）；不改运行时；不加依赖；不改门禁阈值；不花点数。
 
 检查：
