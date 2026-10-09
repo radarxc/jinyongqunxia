@@ -6,7 +6,7 @@ import type {
   WorldMapCommand,
   WorldMapProjection,
 } from '@tianshu/core';
-import { createIndexedDbStorage, downloadBytes, type TianshuStorage } from '@tianshu/platform';
+import { createIndexedDbStorage, downloadBytes, defaultAudioManager, type TianshuStorage } from '@tianshu/platform';
 import {
   flowT,
   recoveredAutosaveText,
@@ -374,8 +374,10 @@ export function createGameController(
           : undefined;
       if (event.t === 'world/eraChanged' && typeof payload?.['worldYear'] === 'number')
         wakeYear.value = payload['worldYear'];
-      if (event.t === 'chapter/woke' && typeof payload?.['chapterId'] === 'string')
+      if (event.t === 'chapter/woke' && typeof payload?.['chapterId'] === 'string') {
         chapterId.value = payload['chapterId'];
+        defaultAudioManager.playRandomByBook(payload['chapterId']);
+      }
       const presentation = presentedEvent(event);
       if (presentation) consumePresentation(presentation);
       if (
@@ -386,6 +388,12 @@ export function createGameController(
       ) {
         coldEntryStage.value = 'movement';
         flowStage.value = 'game';
+        defaultAudioManager.playRandomByBook('白马啸西风');
+      } else if (event.t === 'world/regionMounted' && typeof payload?.['regionId'] === 'string') {
+        const rid = payload['regionId'];
+        if (rid.includes('taihu')) defaultAudioManager.playRandomByBook('越女剑');
+        else if (rid.includes('beijiang') || rid.includes('xiyu')) defaultAudioManager.playRandomByBook('白马啸西风');
+        else if (rid.includes('dali')) defaultAudioManager.playRandomByBook('天龙八部');
       }
       if (
         event.t === 'dialogue/started' &&
@@ -440,7 +448,15 @@ export function createGameController(
     }
     try {
       const result = await host.dispatch(command);
-      if (!result.accepted) throw new GameplayRejection(result.error);
+      if (!result.accepted) {
+        console.error('[CORE_DISPATCH_REJECTED]', result.error, command);
+        throw new GameplayRejection(result.error);
+      }
+      if (command.t === 'inventory/use') {
+        defaultAudioManager.playItemSfx(command.itemId);
+      } else if (command.t === 'inventory/equip') {
+        defaultAudioManager.playSfx('sword_clash');
+      }
       if (firstSleep) {
         await saves!.checkpoint('save_wake_ch10');
         savedRevision = dirtyRevision;
@@ -799,16 +815,26 @@ export function createGameController(
     }, true);
     return update?.accepted ?? false;
   }
-  async function enterTown(nodeId?: string): Promise<boolean> {
+  async function enterTown(_nodeId?: string): Promise<boolean> {
     let update: GameUpdate | undefined;
     await run(async () => {
-      if (nodeId && worldmap.value && worldmap.value.positionNodeId !== nodeId) {
-        await host.dispatch({ t: 'worldmap/travel', nodeId });
+      if (town.value && townRuntime.value) {
+        return;
       }
-      const result = await host.dispatch({ t: 'worldmap/enter' });
-      if (result.accepted) {
-        notice.value = '';
-        update = result;
+      if (worldmap.value?.journey) {
+        return;
+      }
+      try {
+        if (worldmap.value?.scene?.kind === 'town') {
+          await host.dispatch({ t: 'worldmap/leave' });
+        }
+        const result = await host.dispatch({ t: 'worldmap/enter' });
+        if (result.accepted) {
+          notice.value = '';
+          update = result;
+        }
+      } catch (err) {
+        console.warn('enterTown dispatch error ignored', err);
       }
     }, true);
     return update?.accepted ?? false;
@@ -837,6 +863,7 @@ export function createGameController(
     playing,
     pendingCreation,
     firstSleepAllocation,
+    host,
     wakeYear,
     chapterId,
     trackedQuestId,

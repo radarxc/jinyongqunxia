@@ -3,6 +3,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { uiBus, useUiStore, type MenuPage } from '@tianshu/ui/runtime';
+import { defaultAudioManager, SOUND_EFFECT_CUES, type TrackMeta } from '@tianshu/platform';
 import type { Command } from '@tianshu/core';
 import type { GameController } from '../game-controller';
 import type { M1FlowStage } from '../flow/stage';
@@ -108,6 +109,76 @@ async function mountFeiyi(): Promise<void> {
   await props.controller.mountRegion('rg_xiyu_beijiang', 'sc_10_fengshi_feiyi', 'cold_open');
   emit('switch-scene', 'ruin');
 }
+
+const novelList = [
+  '越女剑', '天龙八部', '射雕英雄传', '神雕侠侣', '倚天屠龙记',
+  '笑傲江湖', '侠客行', '碧血剑', '鹿鼎记', '书剑恩仇录',
+  '连城诀', '雪山飞狐', '飞狐外传', '白马啸西风', '鸳鸯刀',
+] as const;
+
+const currentPlayingTrack = ref<TrackMeta | null>(defaultAudioManager.getCurrentTrack());
+const currentPlayingBook = ref<string | null>(defaultAudioManager.getCurrentBook());
+
+function playBookMusic(book: string): void {
+  currentPlayingBook.value = book;
+  const track = defaultAudioManager.playRandomByBook(book);
+  if (track) {
+    currentPlayingTrack.value = track;
+  }
+}
+
+function stopMusic(): void {
+  defaultAudioManager.stopMusic();
+  currentPlayingTrack.value = null;
+  currentPlayingBook.value = null;
+}
+
+function playSfx(cue: string): void {
+  defaultAudioManager.playSfx(cue);
+}
+
+const sfxCategoryFilter = ref<'all' | 'novel' | 'combat' | 'item_life'>('novel');
+const selectedNovelSfx = ref<string>('all');
+
+const filteredSfxList = computed(() => {
+  return SOUND_EFFECT_CUES.filter((s) => {
+    if (sfxCategoryFilter.value === 'novel') {
+      if (s.category !== 'novel') return false;
+      if (selectedNovelSfx.value !== 'all' && s.book !== selectedNovelSfx.value) return false;
+      return true;
+    }
+    if (sfxCategoryFilter.value === 'combat') {
+      return s.category === 'combat';
+    }
+    if (sfxCategoryFilter.value === 'item_life') {
+      return s.category === 'item' || s.category === 'life' || s.category === 'ui';
+    }
+    return true;
+  });
+});
+
+function getSfxIcon(cue: string): string {
+  if (cue.includes('bamboo') || cue.includes('stick') || cue.includes('dagou')) return '🎋';
+  if (cue.includes('liumai') || cue.includes('laser')) return '⚡';
+  if (cue.includes('beiming') || cue.includes('absorb') || cue.includes('xixing')) return '🌀';
+  if (cue.includes('lingbo') || cue.includes('steps') || cue.includes('dodge')) return '💨';
+  if (cue.includes('xianglong') || cue.includes('dragon')) return '🐉';
+  if (cue.includes('xuantie') || cue.includes('tulong') || cue.includes('cleave')) return '🪓';
+  if (cue.includes('anran') || cue.includes('palm') || cue.includes('punch') || cue.includes('baihua')) return '👊';
+  if (cue.includes('needle') || cue.includes('dart') || cue.includes('cone') || cue.includes('tanzhi')) return '🎯';
+  if (cue.includes('yitian') || cue.includes('draw') || cue.includes('sword') || cue.includes('dugu') || cue.includes('bixie') || cue.includes('miaojia') || cue.includes('rouyun') || cue.includes('jinshe')) return '⚔️';
+  if (cue.includes('saber') || cue.includes('hujia') || cue.includes('xuedao') || cue.includes('dual')) return '🔪';
+  if (cue.includes('musket') || cue.includes('thunder') || cue.includes('bomb')) return '💣';
+  if (cue.includes('dice')) return '🎲';
+  if (cue.includes('horse')) return '🐎';
+  if (cue.includes('wind') || cue.includes('snow') || cue.includes('desert') || cue.includes('jump')) return '🌪️';
+  if (cue.includes('potion') || cue.includes('drink')) return '🍶';
+  if (cue.includes('food') || cue.includes('eating')) return '🥢';
+  if (cue.includes('book') || cue.includes('flip')) return '📜';
+  if (cue.includes('click') || cue.includes('token')) return '🔔';
+  if (cue.includes('taiji') || cue.includes('circle') || cue.includes('qiankun') || cue.includes('taixuan') || cue.includes('shenzhao') || cue.includes('renzhe')) return '☯️';
+  return '🔊';
+}
 </script>
 
 <template>
@@ -174,6 +245,20 @@ async function mountFeiyi(): Promise<void> {
             >
               🏛️ 秘境遗迹 (Ruin)
             </button>
+          </div>
+        </section>
+
+        <!-- 3D Character Showcase Direct Access -->
+        <section class="dev-section">
+          <div class="dev-section-title">💃 3D 人物模型专页 (高精素体 · 动作检视)</div>
+          <div class="dev-button-row">
+            <a
+              href="/character-3d"
+              class="dev-btn dev-btn-primary"
+              style="text-decoration: none; text-align: center; display: block; width: 100%;"
+            >
+              🌟 进入 3D 角色模型检视台 (/character-3d)
+            </a>
           </div>
         </section>
 
@@ -287,6 +372,104 @@ async function mountFeiyi(): Promise<void> {
               @click="toggleClean3d"
             >
               {{ clean3d ? '👁️ 恢复 UI' : '👁️ 纯净 3D 沉浸' }}
+            </button>
+          </div>
+        </section>
+
+        <!-- Jin Yong Novel Music Jukebox -->
+        <section class="dev-section">
+          <div class="dev-section-title">🎵 经典武侠书目配乐（按书目随机播放）</div>
+          <div v-if="currentPlayingTrack" class="dev-audio-current">
+            <span class="dev-audio-title">▶ {{ currentPlayingTrack.title }}</span>
+            <button type="button" class="dev-audio-stop" @click="stopMusic">⏹ 停止</button>
+          </div>
+          <div class="dev-tag-row">
+            <button
+              v-for="b in novelList"
+              :key="b"
+              type="button"
+              class="dev-pill"
+              :class="{ active: currentPlayingBook === b }"
+              @click="playBookMusic(b)"
+            >
+              {{ b }}
+            </button>
+          </div>
+        </section>
+
+        <!-- Martial Arts & Life Sound Effects -->
+        <section class="dev-section">
+          <div class="dev-section-title">💥 金庸天书与江湖音效库 ({{ SOUND_EFFECT_CUES.length }} 款)</div>
+          
+          <!-- Category Tabs -->
+          <div class="dev-tag-row" style="margin-bottom: 8px;">
+            <button
+              type="button"
+              class="dev-pill"
+              :class="{ active: sfxCategoryFilter === 'novel' }"
+              @click="sfxCategoryFilter = 'novel'"
+            >
+              📖 天书绝技 (37)
+            </button>
+            <button
+              type="button"
+              class="dev-pill"
+              :class="{ active: sfxCategoryFilter === 'combat' }"
+              @click="sfxCategoryFilter = 'combat'"
+            >
+              ⚔️ 刀剑拳脚 (10)
+            </button>
+            <button
+              type="button"
+              class="dev-pill"
+              :class="{ active: sfxCategoryFilter === 'item_life' }"
+              @click="sfxCategoryFilter = 'item_life'"
+            >
+              🍶 药食翻书 (4)
+            </button>
+            <button
+              type="button"
+              class="dev-pill"
+              :class="{ active: sfxCategoryFilter === 'all' }"
+              @click="sfxCategoryFilter = 'all'"
+            >
+              🌟 全部 (51)
+            </button>
+          </div>
+
+          <!-- Book Filter (active when novel category is selected) -->
+          <div v-if="sfxCategoryFilter === 'novel'" class="dev-tag-row" style="margin-bottom: 8px; max-height: 80px; overflow-y: auto;">
+            <button
+              type="button"
+              class="dev-pill"
+              :class="{ active: selectedNovelSfx === 'all' }"
+              @click="selectedNovelSfx = 'all'"
+            >
+              全部书目
+            </button>
+            <button
+              v-for="b in novelList"
+              :key="b"
+              type="button"
+              class="dev-pill"
+              :class="{ active: selectedNovelSfx === b }"
+              @click="selectedNovelSfx = b"
+            >
+              {{ b }}
+            </button>
+          </div>
+
+          <!-- Sound Cues Grid -->
+          <div class="dev-button-grid" style="max-height: 200px; overflow-y: auto;">
+            <button
+              v-for="sfx in filteredSfxList"
+              :key="sfx.cue"
+              type="button"
+              class="dev-btn"
+              :title="sfx.desc || sfx.name"
+              @click="playSfx(sfx.cue)"
+            >
+              {{ getSfxIcon(sfx.cue) }} {{ sfx.name }}
             </button>
           </div>
         </section>
@@ -588,5 +771,39 @@ async function mountFeiyi(): Promise<void> {
   background: rgba(212, 175, 55, 0.15);
   padding: 1px 4px;
   border-radius: 3px;
+}
+
+.dev-audio-current {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.dev-audio-title {
+  color: #ffd97d;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dev-audio-stop {
+  background: rgba(181, 56, 43, 0.5);
+  border: 1px solid #b5382b;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.dev-audio-stop:hover {
+  background: rgba(181, 56, 43, 0.85);
 }
 </style>
