@@ -32,6 +32,12 @@ G1 已合入主干：劲装三模板可见穿透 ≤ 0.7%、bind 0，但运行�
 3. 门禁不变：`holes.*` ≤ 0.05%（全部帧、同一视角范围）、`penetration.*.visible` ≤ 2%、`bindVertices.visible` = 0。报告列出 bind 隐藏覆盖率、动画回补纹素数、最终覆盖率。
 4. 保留真三角 z-buffer、面片级 holes 检查与已有回归；补一条回归："短上衣 + 躯干，walk 帧躯干从衣服前片穿出"——穿出处保持隐藏（不回补），衣摆下正面皮肤仍保留。
 
+## 协调者裁定（第 4 轮，2026-10-09 05:00，依据第 5 次运行结果；审核按此判定）
+第 5 次运行（bind 判可见 + 动画回补开口露出）：bind 隐藏 47.3%、回补 68,137 纹素、最终 30.5%；holes 0~0.062%；`penetration.*.visible` 4.4%~9.1%。协调者判断**根因在版型件，不在遮罩算法**：劲装在动画中与身体的整体穿插 `penetration.*.all` 就有 9%~12%（版型件主体沿用 Tripo 源权重，与模板身体权重不一致），无论按射线（G1：穿透 0.7% 但衣摆黑洞）还是按可见性（本任务：无黑洞但穿透 4%~9%）都两头不讨好。裁定：
+1. **本任务按"工具"验收**：真三角 z-buffer、bind 可见性 + 动画开口回补、面片级 holes 检查、seam 一致、测试与报告真实——这些达标即可合入。
+2. **劲装资产的 `penetration.*.visible ≤ 2%` 与 `holes ≤ 0.05%` 门禁转由 E2b 达成**（E2b 先改版型件权重 / 贴合，再用本工具重烘）；本任务的劲装 report 如实为 fail，manifest 保持 `experimental: true`，报告第 4 节写明根因与交接。
+3. 审核不因第 2 条的资产门禁判 FAIL；其余（算法正确性、测试、报告真实、无写集外文件、素材目录无日志）照常判定。
+
 ## 约束
 - 只写 `tools/model3d/dressup/{bake_hide_mask.py,tests_hidemask.py,validate.py}`（validate 只追加 holes 分支）、`assets/default/model3d/dressup/garments/eq_jinzhuang/**` 与本任务报告。
 - 不改运行时、不改 B4 遮罩格式（L8、白 = 隐藏、与 baseColor 同 UV）、不加依赖、不改既有门禁阈值、不花点数。

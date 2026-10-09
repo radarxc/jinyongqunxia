@@ -12,13 +12,14 @@
 
 ## 要做的事
 1. **定位畸变来源**：分别统计 E2 原始抽取、fit、G1 的 edge-weights 重贴合与推离各阶段后的翻面数 / 边长合格率，报告来源（不要猜）。
-2. **从根上修**（`fit_garment.py` 为主，必要时 `extract_garment.py`）：在贴合 / 推离中加入防翻面与保形约束（例如每轮检测翻面三角并做局部拉普拉斯 / ARAP 式松弛、位移场平滑、步长回退），新增选项默认关闭、既有行为不变；对劲装三模板重跑，目标**翻面 0、边长合格率 ≥ 99%、close-fit P90 < 5 mm**，同时保持 G1b 口径下 `bindVertices.visible = 0`、`penetration.*.visible ≤ 2%`、`holes.* = 0`。
-3. **衣物贴图皮肤色清理**：只对衣物网格实际引用的纹素，按 Lab 距离（相对源模型皮肤均值，阈值写明）找出皮肤色纹素，用同一 UV 岛内邻近布料颜色修补（不改 UV、不改几何）；报告清理前后皮肤色纹素占比（目标 < 0.1%）。
-4. **重打包**：用 pack-compact 后的 `pack_glb.mjs` 打包三模板（输出不含未引用顶点）。
-5. **重烘遮罩**：用 G1b 的可见性模式重烘三模板 `hidemask*.png`，重跑 `validate.py`，三模板 level 至少 `draft`（几何门、可见穿透门、holes 门全过），manifest 同步（可去掉 `experimental`：只有三项门全过时）。
-6. **重生成布衣变体**：用 `retexture_variant.py` 以新劲装为版型、原变体衣图为输入，重生成 `garments/eq_buyi/**` 与 `garments/eq_buyi_tex/**`，fit 引用同一张 `hideMask`（几何相同），重跑 validate；报告布衣变体皮肤色占比（应随版型清理降到 < 0.1%）。
-7. **清理**：删除 `garments/eq_jinzhuang/` 下 G1b 留下的 `bake.*.log` 等非素材文件（日志放系统临时目录），manifest 只列真实交付文件。
-8. **测试**：`tests_garment.py` 补防翻面约束的合成回归（一个会被旧推离折叠的薄片，新选项下翻面为 0）；贴图清理的合成回归（皮肤色纹素被布料色替换、非衣物纹素不动）。
+2. **先改权重（协调者 2026-10-09 05:00 加）**：G1b 查明劲装在动画中与身体整体穿插 `penetration.*.all` 9%~12%，根因多半是版型件主体沿用 Tripo 源权重。对三模板评估"整件改用模板身体权重转移（最近点 + 平滑，`fit_garment.py` 的权重源 B 全件版）"与现状（源 A + 开口 30 mm 模板带）的 idle / walk / run `penetration.*.all`，取更低者并写进报告；目标是 all 显著下降（< 3%），为后面的遮罩达标打底。
+3. **从根上修**（`fit_garment.py` 为主，必要时 `extract_garment.py`）：在贴合 / 推离中加入防翻面与保形约束（例如每轮检测翻面三角并做局部拉普拉斯 / ARAP 式松弛、位移场平滑、步长回退），新增选项默认关闭、既有行为不变；对劲装三模板重跑，目标**翻面 0、边长合格率 ≥ 99%、close-fit P90 < 5 mm**，同时保持 G1b 口径下 `bindVertices.visible = 0`、`penetration.*.visible ≤ 2%`、`holes.* = 0`。
+4. **衣物贴图皮肤色清理**：只对衣物网格实际引用的纹素，按 Lab 距离（相对源模型皮肤均值，阈值写明）找出皮肤色纹素，用同一 UV 岛内邻近布料颜色修补（不改 UV、不改几何）；报告清理前后皮肤色纹素占比（目标 < 0.1%）。
+5. **重打包**：用 pack-compact 后的 `pack_glb.mjs` 打包三模板（输出不含未引用顶点）。
+6. **重烘遮罩**：用 G1b 的可见性模式重烘三模板 `hidemask*.png`，重跑 `validate.py`，三模板 level 至少 `draft`（几何门、`penetration.*.visible ≤ 2%`、`holes ≤ 0.05%` 全过——这两项门禁由 G1b 转交本任务达成），manifest 同步（可去掉 `experimental`：只有三项门全过时）。
+7. **重生成布衣变体**：用 `retexture_variant.py` 以新劲装为版型、原变体衣图为输入，重生成 `garments/eq_buyi/**` 与 `garments/eq_buyi_tex/**`，fit 引用同一张 `hideMask`（几何相同），重跑 validate；报告布衣变体皮肤色占比（应随版型清理降到 < 0.1%）。
+8. **清理**：删除 `garments/eq_jinzhuang/` 下 G1b 留下的 `bake.*.log` 等非素材文件（日志放系统临时目录），manifest 只列真实交付文件。
+9. **测试**：`tests_garment.py` 补防翻面约束的合成回归（一个会被旧推离折叠的薄片，新选项下翻面为 0）；贴图清理的合成回归（皮肤色纹素被布料色替换、非衣物纹素不动）。
 
 ## 约束
 - 只写 `tools/model3d/dressup/{fit_garment.py,tests_garment.py,extract_garment.py}`、`assets/default/model3d/dressup/garments/{eq_jinzhuang,eq_buyi,eq_buyi_tex}/**` 与本任务报告。
