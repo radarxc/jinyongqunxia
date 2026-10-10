@@ -51969,7 +51969,73 @@
     "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
     "assets/default/model3d/dressup/garments/eq_buyi/**",
     "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
-    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**"
+    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**",
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/untangle_glb.py",
+    "tools/model3d/dressup/variant_base.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/hidemask.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ],
+    "shrink_exempt": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/fit*.json"
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-e2c-skinning",
+   "title": "3D 纸娃娃换装 · E2c · 劲装动画穿插（宽袖 / 下摆按姿势蒙皮）+ 模板胸下倒置面",
+   "prompt": "ENG-dressup-e2c-skinning.md",
+   "deps": [
+    "ENG-dressup-e2b-cleanup"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/tests_garment.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**"
    ],
    "validate": {
     "exists": [

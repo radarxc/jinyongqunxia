@@ -44,6 +44,29 @@ except ImportError:
 KINDS = ("garment", "hair")
 ALIGN_MODES = ("auto", "joints", "landmarks", "none")
 EDGE_WEIGHT_MODES = ("off", "template")
+WEIGHT_SOURCE_MODES = ("auto", "template")
+PUSH_MODES = ("vertex", "volume")
+# --push-mode volume（体表位移场推离，见 volume_push）
+VOLUME_SIGMA_MM = 40.0          # 首轮高斯核宽 σ（胸部量级的大位移用宽核，层叠的交领整体平移）
+VOLUME_SIGMA_MIN_MM = 16.0      # 逐轮收窄的下限
+VOLUME_STEP_SIGMA = 1.0         # 单轮外移量上限（× 当轮 σ）
+VOLUME_DECAY = 0.7              # 每轮 σ 乘数
+VOLUME_NODE_MM = 8.0            # 体表节点的体素边长（体表顶点约 3 mm 一个；σ ≥ 12 mm 时 8 mm 节点足够）
+VOLUME_NEAR_MM = 40.0           # 离体表这一距离内全额取场
+VOLUME_FAR_MM = 80.0            # 到这一距离渐隐到 0（宽松袖口 / 下摆不随胸部外移）
+VOLUME_ROUNDS = 8                # 首段推离最多轮数（之后的残差由垂坠交替里的推离收尾）
+# 体表位移场推完后的限拉伸垂坠（DrapeRelaxer）与再推离交替
+DRAPE_CYCLES = 6                # 交替次数（0 关闭）
+DRAPE_RELAX_ITERS = 4           # 每次限拉伸松弛的投影动力学迭代数
+DRAPE_PUSH_ROUNDS = 6           # 每次松弛后体表位移场再推的最多轮数（σ = VOLUME_SIGMA_MIN_MM）
+DRAPE_STRAIN_MIN = 0.75         # 边长目标下限（× 静止长度）
+DRAPE_STRAIN_MAX = 1.3          # 边长目标上限（validate 门禁 1.4，留余量）
+DRAPE_ANCHOR = 1e-3             # 对松弛前位置的弱锚定（相对拉普拉斯对角均值），防整体漂移
+DRAPE_PIN = 1e3                 # 新翻面顶点的钉住权重（同上口径）
+DRAPE_PIN_ATTEMPTS = 8          # 每步最多加钉重解次数
+# --clean-skin-texture：交付贴图按 JPEG q95 编码；编码后解码复测，统计记编码后的真实值
+SKIN_REPLACE_MARGIN = 6.0       # 填补色须比肤色阈值再远这么多（ΔE76；实测 q95 重编码漂移 ≤ 3.5）
+SKIN_ENCODE_ATTEMPTS = 6        # 解码后仍有肤色纹素时在解码图上再修再编码的最多轮数（劲装实测：35 → 12 → 8 → 1 → 0）
 SLOTS = ("body", "innerBody", "hands", "feet", "waist", "cape", "shoulder", "head")
 NEVER_HIDE = ("neck", "handL", "handR", "footL", "footR")
 SLOT_BONES = {
@@ -445,7 +468,8 @@ def _effective_bone_children(names: Sequence[str], parents: np.ndarray,
 
 def align_joints(positions: np.ndarray, normals: np.ndarray | None, source: GLB,
                  skeleton: dict[str, Any], joints: np.ndarray | None = None,
-                 weights: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray | None, dict[str, Any], np.ndarray]:
+                 weights: np.ndarray | None = None, *, preserve_shape: bool = False
+                 ) -> tuple[np.ndarray, np.ndarray | None, dict[str, Any], np.ndarray]:
     """用对称躯干关节作 det=+1 Umeyama，并返回来源 skin slot 到目标 slot 映射。"""
     skin = source.skin(); source_names = [source.json["nodes"][index].get("name", "") for index in skin.joints]
     target_names = skeleton["joints"]; target_index = {name: index for index, name in enumerate(target_names)}
@@ -487,7 +511,7 @@ def align_joints(positions: np.ndarray, normals: np.ndarray | None, source: GLB,
             source_world = source_worlds[source_slot]; target_world = target_worlds[int(target_slot)]
             local = np.eye(4); source_child = int(source_children[source_slot])
             target_child = int(target_children[int(target_slot)])
-            if (source_child >= 0 and target_child >= 0
+            if (not preserve_shape and source_child >= 0 and target_child >= 0
                     and source_names[source_child] == target_names[target_child]):
                 source_vector = source_points[source_child] - source_points[source_slot]
                 target_vector = target_points[target_child] - target_points[int(target_slot)]
@@ -509,7 +533,7 @@ def align_joints(positions: np.ndarray, normals: np.ndarray | None, source: GLB,
         out_normals = None
     residual = {name: float(value) for name, value in zip(common, fit.residuals)}
     return aligned.astype(np.float32), None if out_normals is None else out_normals.astype(np.float32), {
-        "method": "joints", "scale": fit.scale,
+        "method": "joints", "scale": fit.scale, "preserveShape": bool(preserve_shape),
         "yawDeg": math.degrees(math.atan2(fit.rotation[0, 2], fit.rotation[0, 0])),
         "mirrored": fit.mirrored, "landmarks": len(common), "determinant": float(np.linalg.det(fit.rotation)),
         "residualMu": residual, "poseCorrectionDeg": pose_angles, "boneLengthScale": length_ratios,
@@ -636,6 +660,61 @@ def transfer_weights(points: np.ndarray, garment_normals: np.ndarray, surface: S
              "filteredVertices": int(np.count_nonzero(filtered)),
              "maxBones": 4, "jointsAllowed": [skeleton["joints"][int(i)] for i in allowed]}
     return result_joints, result_weights, stats
+
+
+def transfer_template_weights(points: np.ndarray, faces_garment: np.ndarray, surface: SurfaceIndex,
+                              body_joints: np.ndarray, body_weights: np.ndarray,
+                              skeleton: dict[str, Any], slot: str, *, smooth_rounds: int = 3
+                              ) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+    """把整件衣物绑定到最近模板面，并在衣物拓扑上平滑稠密权重场。
+
+    与 ``transfer_weights`` 的低置信语义骨段回退不同，本模式是 P2 权重源 B：
+    每个顶点都取真实最近模板三角的重心权重，再平滑以避免一条衣片跨骨区时跳变。
+    """
+    points = np.asarray(points, dtype=np.float64)
+    nearest, bary, face_ids, distances = surface.query(points)
+    del nearest
+    body_faces = surface.faces[face_ids]
+    joint_count = len(skeleton["joints"]); allowed = allowed_joint_indices(skeleton["joints"], slot)
+    allowed_mask = np.zeros(joint_count, dtype=bool); allowed_mask[allowed] = True
+    dense = np.zeros((len(points), joint_count), dtype=np.float32)
+    for column in range(3):
+        rows = np.repeat(np.arange(len(points)), 4)
+        joints = body_joints[body_faces[:, column]]
+        values = body_weights[body_faces[:, column]] * bary[:, column, None]
+        np.add.at(dense, (rows, joints.ravel()), values.ravel())
+    filtered = np.any((dense > 1e-7) & ~allowed_mask[None, :], axis=1)
+    dense[:, ~allowed_mask] = 0.0
+    tri = np.asarray(faces_garment, dtype=np.int64)
+    source = np.concatenate((tri[:, 0], tri[:, 1], tri[:, 2], tri[:, 1], tri[:, 2], tri[:, 0]))
+    target = np.concatenate((tri[:, 1], tri[:, 2], tri[:, 0], tri[:, 0], tri[:, 1], tri[:, 2]))
+    degree = np.bincount(source, minlength=len(points)).astype(np.float32)[:, None]
+    for _ in range(max(0, smooth_rounds)):
+        summed = np.zeros_like(dense); np.add.at(summed, source, dense[target])
+        average = np.divide(summed, degree, out=dense.copy(), where=degree > 0)
+        dense = .5 * dense + .5 * average
+        dense[:, ~allowed_mask] = 0.0
+    totals = dense.sum(axis=1); low = totals <= 1e-8
+    if np.any(low):
+        fallback_joints, fallback_weights = _segment_weights(points[low], skeleton, allowed, slot)
+        dense[low] = 0.0
+        rows = np.repeat(np.flatnonzero(low), 4)
+        np.add.at(dense, (rows, fallback_joints.ravel()), fallback_weights.ravel())
+        totals = dense.sum(axis=1)
+    dense /= totals[:, None]
+    top = np.argpartition(dense, -4, axis=1)[:, -4:]
+    values = np.take_along_axis(dense, top, axis=1)
+    order = np.argsort(values, axis=1)[:, ::-1]
+    top = np.take_along_axis(top, order, axis=1); values = np.take_along_axis(values, order, axis=1)
+    values /= values.sum(axis=1, keepdims=True)
+    return top.astype(np.uint16), values.astype(np.float32), {
+        "method": "template-nearest-triangle-barycentric+topology-smooth",
+        "smoothRounds": int(smooth_rounds), "templateVertices": int(len(points)),
+        "semanticFallbackVertices": int(np.count_nonzero(low)),
+        "filteredVertices": int(np.count_nonzero(filtered)), "maxBones": 4,
+        "distanceMm": {"p50": float(np.quantile(distances, .5) * skeleton["mPerMu"] * 1000),
+                       "p90": float(np.quantile(distances, .9) * skeleton["mPerMu"] * 1000)},
+        "jointsAllowed": [skeleton["joints"][int(index)] for index in allowed]}
 
 
 def filter_existing_weights(joints: np.ndarray, weights: np.ndarray, points: np.ndarray,
@@ -824,8 +903,9 @@ def _topology_metrics(before: np.ndarray, after: np.ndarray, faces: np.ndarray
 
 
 def _topology_safe_displacement(original: np.ndarray, current: np.ndarray,
-                                displacement: np.ndarray, faces: np.ndarray) -> tuple[np.ndarray, int]:
-    """本轮内按最终 float32 几何回溯新翻面/退化，不额外查询体表。"""
+                                displacement: np.ndarray, faces: np.ndarray, *,
+                                preserve_stretch: bool = False) -> tuple[np.ndarray, int]:
+    """按最终 float32 几何回溯新翻面/退化；可同时阻止新边长越界。"""
     limited = np.asarray(displacement, dtype=np.float64).copy(); passes = 0
     tri = np.asarray(faces, dtype=np.int64)
     moved = np.linalg.norm(limited, axis=1) > 1e-12
@@ -833,11 +913,13 @@ def _topology_safe_displacement(original: np.ndarray, current: np.ndarray,
     if not np.any(affected):
         return limited, 0
     local_faces = tri[affected]
-    old_flip, old_degenerate, _ = _topology_metrics(original, current, local_faces)
+    old_flip, old_degenerate, old_stretch = _topology_metrics(original, current, local_faces)
     for passes in range(24):
         candidate = (current + limited).astype(np.float32).astype(np.float64)
-        flip, degenerate, _ = _topology_metrics(original, candidate, local_faces)
+        flip, degenerate, stretch = _topology_metrics(original, candidate, local_faces)
         newly_bad = (flip & ~old_flip) | (degenerate & ~old_degenerate)
+        if preserve_stretch:
+            newly_bad |= stretch & ~old_stretch
         if not np.any(newly_bad):
             return candidate - current, passes
         bad_faces = local_faces[newly_bad]
@@ -849,8 +931,10 @@ def _topology_safe_displacement(original: np.ndarray, current: np.ndarray,
     # 仍属于当前 rounds[] 记录的步长选择，既不查询体表，也不在 --iters 外修形。
     for _ in range(24):
         candidate = (current + limited).astype(np.float32).astype(np.float64)
-        flip, degenerate, _ = _topology_metrics(original, candidate, local_faces)
+        flip, degenerate, stretch = _topology_metrics(original, candidate, local_faces)
         newly_bad = (flip & ~old_flip) | (degenerate & ~old_degenerate)
+        if preserve_stretch:
+            newly_bad |= stretch & ~old_stretch
         if not np.any(newly_bad):
             return candidate - current, passes + 1
         limited[np.unique(local_faces[newly_bad])] = 0.0
@@ -860,7 +944,8 @@ def _topology_safe_displacement(original: np.ndarray, current: np.ndarray,
 def push_out(positions: np.ndarray, faces: np.ndarray, surface: SurfaceIndex, push_mu: float,
              iters: int, *, verify_only: bool = False,
              allow_draft: bool = False,
-             reference_normals: np.ndarray | None = None) -> tuple[np.ndarray, dict[str, Any]]:
+             reference_normals: np.ndarray | None = None,
+             preserve_shape: bool = False) -> tuple[np.ndarray, dict[str, Any]]:
     """逐点沿最近体表法线推离，平滑位移场并在每轮后复查。"""
     # 后续 GLB POSITION 固定写 float32；从首次查询起就在该表示上工作，避免
     # 内存 float64 通过门禁、序列化后却翻面的口径分裂。
@@ -886,7 +971,7 @@ def push_out(positions: np.ndarray, faces: np.ndarray, surface: SurfaceIndex, pu
         raw = np.zeros_like(current); raw[active] = required[active, None] * normals[active]
         displacement = _smooth_push(raw, tri, active, normals, required, enforce_clearance=True)
         displacement, topology_halvings = _topology_safe_displacement(
-            original, current, displacement, tri)
+            original, current, displacement, tri, preserve_stretch=preserve_shape)
         current = (current + displacement).astype(np.float32).astype(np.float64)
         moved_mask = np.linalg.norm(displacement, axis=1) > 1e-12
         check_nearest = nearest.copy(); check_bary = bary.copy(); check_faces = face_ids.copy()
@@ -929,8 +1014,244 @@ def push_out(positions: np.ndarray, faces: np.ndarray, surface: SurfaceIndex, pu
                                              current.mean(axis=0) - original.mean(axis=0))),
                                          "passed": passed, "topologyPassed": topology_passed,
                                          "clearancePassed": clearance_passed, "draft": not passed,
+                                         "preserveShape": bool(preserve_shape),
                                          "movedVertices": int(np.count_nonzero(
                                              np.linalg.norm(current - original, axis=1) > 1e-9))}
+
+
+def _smoothstep(x: np.ndarray) -> np.ndarray:
+    x = np.clip(x, 0.0, 1.0); return x * x * (3.0 - 2.0 * x)
+
+
+class PseudoNormalSign:
+    """带符号距离的稳健符号（角度加权伪法向，Bærentzen & Aanæs 2005）：最近点在面内取面法向、在边上取两侧面
+    法向之和、在顶点上取按角度加权的邻面法向；封闭网格上符号严格正确。插值顶点法向在胸下 / 腋下这类凹处会把
+    离体 5 cm 的衣物点判成"体内 5 cm"（E2b 实测：射线奇偶为体外的 3 个点），体表位移场便每轮把那片布再往外推。"""
+
+    def __init__(self, surface: SurfaceIndex) -> None:
+        faces = surface.faces; tri = surface.triangles
+        normals = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
+        self.face_normals = _unit(normals)
+        corner_angles = np.zeros((len(faces), 3))
+        for k in range(3):
+            a = tri[:, (k + 1) % 3] - tri[:, k]; b = tri[:, (k + 2) % 3] - tri[:, k]
+            cosine = np.einsum("ij,ij->i", _unit(a), _unit(b))
+            corner_angles[:, k] = np.arccos(np.clip(cosine, -1.0, 1.0))
+        self.vertex_normals = np.zeros((len(surface.vertices), 3))
+        for k in range(3):
+            np.add.at(self.vertex_normals, faces[:, k], corner_angles[:, k, None] * self.face_normals)
+        self.vertex_normals = _unit(self.vertex_normals)
+        edges = np.sort(np.stack((faces[:, [0, 1]], faces[:, [1, 2]], faces[:, [2, 0]]), axis=1).reshape(-1, 2), axis=1)
+        self.edge_keys, inverse = np.unique(edges, axis=0, return_inverse=True)
+        self.edge_of = inverse.reshape(-1, 3)                     # 面 f 的边 k：角 k → 角 k+1
+        self.edge_normals = np.zeros((len(self.edge_keys), 3))
+        np.add.at(self.edge_normals, self.edge_of.reshape(-1), np.repeat(self.face_normals, 3, axis=0))
+        self.edge_normals = _unit(self.edge_normals)
+        self.faces = faces
+
+    def signed(self, points: np.ndarray, nearest: np.ndarray, bary: np.ndarray, face_ids: np.ndarray,
+               distances: np.ndarray, tolerance: float = 1e-7) -> np.ndarray:
+        normal = self.face_normals[face_ids].copy()
+        zero = bary <= tolerance
+        on_vertex = zero.sum(axis=1) == 2; on_edge = zero.sum(axis=1) == 1
+        if np.any(on_vertex):
+            corner = np.argmax(bary[on_vertex], axis=1)
+            normal[on_vertex] = self.vertex_normals[self.faces[face_ids[on_vertex], corner]]
+        if np.any(on_edge):
+            # 重心坐标为 0 的角对着的边：角 k 为 0 → 边 (k+1, k+2) = 边序号 (k+1) % 3
+            missing = np.argmax(zero[on_edge], axis=1)
+            normal[on_edge] = self.edge_normals[self.edge_of[face_ids[on_edge], (missing + 1) % 3]]
+        sign = np.sign(np.einsum("ij,ij->i", np.asarray(points) - nearest, normal)); sign[sign == 0.0] = 1.0
+        return sign * np.asarray(distances, dtype=np.float64)
+
+
+class DrapeRelaxer:
+    """限拉伸松弛（投影动力学弹簧，Liu et al. 2013 "Fast simulation of mass-spring systems"）。
+
+    布料按位置焊接（UV 缝的重复点合一，否则拉伸摊不过缝），每条边的目标长度夹到静止长度的
+    [DRAPE_STRAIN_MIN, DRAPE_STRAIN_MAX] 倍，再整体解一次拉普拉斯方程组（矩阵只分解一次）。只拉回超限的边：
+    胸前被体表位移场竖直拉长的布由此把胸下的布往上、往前带，形成垂坠，而不是在胸下收回体表。
+    不做碰撞（逐点碰撞投影让相邻点沿不同法向外推，是折面的主要来源），穿入交给下一轮体表位移场。
+    每步对照对齐件（静止形状）查翻面：新翻面的顶点以 DRAPE_PIN 强锚定钉在上一步位置、重新分解再解，
+    邻点随之平滑让开；DRAPE_PIN_ATTEMPTS 次后仍有新翻面则停止本次松弛。"""
+
+    def __init__(self, rest: np.ndarray, faces: np.ndarray) -> None:
+        from scipy.sparse import coo_matrix, identity
+        from scipy.sparse.linalg import splu
+        rest = np.asarray(rest, dtype=np.float64); faces = np.asarray(faces, dtype=np.int64)
+        _, self.first, inverse = np.unique(rest, axis=0, return_index=True, return_inverse=True)
+        self.inverse = inverse.reshape(-1)
+        welded = self.inverse[faces]
+        edges = np.sort(np.concatenate((welded[:, [0, 1]], welded[:, [1, 2]], welded[:, [2, 0]])), axis=1)
+        edges = np.unique(edges[edges[:, 0] != edges[:, 1]], axis=0)
+        self.edges = edges; rest_welded = rest[self.first]
+        self.rest_lengths = np.linalg.norm(rest_welded[edges[:, 1]] - rest_welded[edges[:, 0]], axis=1)
+        count = len(self.first); ones = np.ones(len(edges))
+        self.laplacian = coo_matrix((np.concatenate((ones, ones, -ones, -ones)),
+                                     (np.concatenate((edges[:, 0], edges[:, 1], edges[:, 0], edges[:, 1])),
+                                      np.concatenate((edges[:, 0], edges[:, 1], edges[:, 1], edges[:, 0])))),
+                                    shape=(count, count)).tocsc()
+        self.anchor = DRAPE_ANCHOR * float(np.mean(self.laplacian.diagonal()))
+        self.solver = splu((self.laplacian + self.anchor * identity(count, format="csc")).tocsc())
+
+    def relax(self, current: np.ndarray, original: np.ndarray, faces: np.ndarray, iterations: int
+              ) -> tuple[np.ndarray, dict[str, int]]:
+        from scipy.sparse import diags
+        from scipy.sparse.linalg import splu
+        x = np.asarray(current, dtype=np.float64)[self.first].copy(); anchor = x.copy()
+        old_flip, _, _ = _topology_metrics(original, original, faces)
+        frozen = np.zeros(len(x), bool); done = 0; solver = self.solver
+        pin = DRAPE_PIN * float(np.mean(self.laplacian.diagonal()))
+        for _ in range(iterations):
+            vectors = x[self.edges[:, 1]] - x[self.edges[:, 0]]
+            lengths = np.linalg.norm(vectors, axis=1)
+            target = np.clip(lengths, DRAPE_STRAIN_MIN * self.rest_lengths, DRAPE_STRAIN_MAX * self.rest_lengths)
+            spring = vectors * (target / np.maximum(lengths, 1e-30))[:, None]
+            base = self.anchor * anchor
+            np.add.at(base, self.edges[:, 1], spring); np.add.at(base, self.edges[:, 0], -spring)
+            for _attempt in range(DRAPE_PIN_ATTEMPTS):
+                # 新翻面的顶点钉在上一步位置（强锚定进方程重解）：邻点随之平滑让开，而不是只把翻面点硬拉回去。
+                rhs = base + (pin * frozen)[:, None] * x
+                solved = np.column_stack([solver.solve(rhs[:, axis]) for axis in range(3)])
+                candidate = solved[self.inverse].astype(np.float32).astype(np.float64)
+                flip, degenerate, _ = _topology_metrics(original, candidate, faces)
+                bad = (flip & ~old_flip) | degenerate
+                if not np.any(bad): break
+                frozen[np.unique(self.inverse[faces[bad]])] = True
+                solver = splu((self.laplacian + diags(self.anchor + pin * frozen)).tocsc())
+            else:
+                break
+            x = solved; done += 1
+        return x[self.inverse].astype(np.float32).astype(np.float64), {"iterations": done,
+                                                                      "frozenVertices": int(np.count_nonzero(frozen))}
+
+
+def volume_push(positions: np.ndarray, faces: np.ndarray, surface: SurfaceIndex, push_mu: float,
+                m_per_mu: float, *, sigma_mm: float = VOLUME_SIGMA_MM, rounds: int = VOLUME_ROUNDS,
+                allow_draft: bool = False) -> tuple[np.ndarray, dict[str, Any]]:
+    """体表位移场推离 + 限拉伸垂坠（``--push-mode volume``，E2b）。
+
+    逐点推离把交领重叠的几层布各推各的：模板胸部顶穿 Tripo 平胸衣物达 5 cm 时，内层要外移 5 cm、外层不必动，
+    内层便从外层穿出、折出翻面。这里先把各点所需外移量落到体表节点（体素抽样的体表顶点）上，同一节点上方
+    各层取最大；再以 3D 高斯核把节点位移 D(b)·n(b) 插值成空间平滑场 V(x) = ΣK(x−b)D(b)n(b) / ΣK(x−b)。
+    贴体一侧该场沿法向几乎不变（平面上严格不变），重叠的几层布取同一场值整体平移，层序与层间距不变；离体
+    VOLUME_NEAR_MM → VOLUME_FAR_MM 渐隐到 0（宽松的袖口 / 下摆不动）。核宽 σ 逐轮乘 VOLUME_DECAY 收窄到
+    VOLUME_SIGMA_MIN_MM；单轮外移量封顶 VOLUME_STEP_SIGMA·σ。
+
+    只往外推时胸前的布被竖直拉长 1.5–3.6 倍（胸高点外移 5 cm、胸下的布仍贴着胸下体表）。推完后交替
+    DRAPE_CYCLES 次：限拉伸松弛（DrapeRelaxer，胸下的布被带向前形成垂坠）→ 体表位移场再推 DRAPE_PUSH_ROUNDS 轮
+    （松弛带进身体的部分成层地推出来）。两步都对照对齐件查翻面：位移场在新翻面顶点周围按高斯局部压低场，
+    松弛把新翻面顶点钉住重解。穿入的符号用角度加权伪法向（PseudoNormalSign），凹处不误判；其余门禁口径与
+    ``push_out`` 相同。"""
+    unit = 1.0 / (1000.0 * m_per_mu)
+    current = np.asarray(positions, dtype=np.float32).astype(np.float64)
+    original = current.copy(); tri = np.asarray(faces, dtype=np.int64)
+    tolerance = max(1e-7, push_mu * 1e-4)
+    voxel = VOLUME_NODE_MM * unit
+    _, first = np.unique(np.floor(surface.vertices / voxel).astype(np.int64), axis=0, return_index=True)
+    nodes = surface.vertices[first]; node_normals = surface.normals[first]
+    node_tree = cKDTree(nodes)
+    old_flip, _, _ = _topology_metrics(original, original, tri)
+    records: list[dict[str, Any]] = []
+
+    sign = PseudoNormalSign(surface)
+
+    def measure(points: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        nearest, bary, face_ids, distances = surface.query(points)
+        return nearest, distances, sign.signed(points, nearest, bary, face_ids, distances)
+
+    def push_round(current: np.ndarray, sigma: float, stage: str) -> tuple[np.ndarray, bool]:
+        nearest, distances, signed = measure(current)
+        active = signed < push_mu - tolerance
+        if not np.any(active): return current, False
+        need = np.minimum(np.maximum(push_mu + tolerance + 5e-6 - signed, 0.0), VOLUME_STEP_SIGMA * sigma)
+        lists = node_tree.query_ball_point(nearest[active], 1.5 * voxel, workers=-1)
+        counts = np.fromiter((len(row) for row in lists), dtype=np.int64, count=len(lists))
+        demand = np.zeros(len(nodes))
+        if counts.sum():
+            np.maximum.at(demand, np.concatenate(lists).astype(np.int64), np.repeat(need[active], counts))
+        hot = demand > 0.0
+        field = np.zeros_like(current)
+        if np.any(hot):
+            reach, _ = cKDTree(nodes[hot]).query(current, distance_upper_bound=3.0 * sigma, workers=-1)
+            candidates = np.flatnonzero(np.isfinite(reach))
+            for chunk in np.array_split(candidates, max(1, len(candidates) // 2048)):
+                if not len(chunk): continue
+                neighbours = node_tree.query_ball_point(current[chunk], 3.0 * sigma, workers=-1)
+                sizes = np.fromiter((len(row) for row in neighbours), dtype=np.int64, count=len(chunk))
+                if not sizes.sum(): continue
+                owners = np.repeat(np.arange(len(chunk)), sizes); ids = np.concatenate(neighbours).astype(np.int64)
+                kernel = np.exp(-np.sum((current[chunk][owners] - nodes[ids]) ** 2, axis=1) / (2.0 * sigma * sigma))
+                numerator = np.zeros((len(chunk), 3)); denominator = np.zeros(len(chunk))
+                np.add.at(numerator, owners, (kernel * demand[ids])[:, None] * node_normals[ids])
+                np.add.at(denominator, owners, kernel)
+                field[chunk] = np.divide(numerator, denominator[:, None], out=np.zeros_like(numerator),
+                                         where=denominator[:, None] > 0.0)
+        field *= (1.0 - _smoothstep((distances - VOLUME_NEAR_MM * unit)
+                                    / ((VOLUME_FAR_MM - VOLUME_NEAR_MM) * unit)))[:, None]
+        # 新翻面只在其顶点周围按高斯（σ/2）把场压低，别处照推；连续 8 次仍有新翻面才整体折半（单个折角就
+        # 让整体步长折半到 0 时，其余几百个点也跟着停推）。
+        step = 1.0; halvings = 0; damped: set[int] = set(); damping = np.ones(len(current))
+        for attempt in range(16):
+            candidate = (current + step * damping[:, None] * field).astype(np.float32).astype(np.float64)
+            flip, degenerate, _ = _topology_metrics(original, candidate, tri)
+            bad = (flip & ~old_flip) | degenerate
+            if not np.any(bad): break
+            if attempt < 8:
+                fresh = [int(v) for v in np.unique(tri[bad]) if int(v) not in damped] or [int(v) for v in np.unique(tri[bad])]
+                damped.update(fresh)
+                near = cKDTree(current[fresh]).query(current, distance_upper_bound=1.5 * sigma, workers=-1)[0]
+                damping *= np.where(np.isfinite(near), 1.0 - np.exp(-near ** 2 / (2.0 * (0.5 * sigma) ** 2)), 1.0)
+            else:
+                step *= 0.5; halvings += 1
+        else:
+            candidate = current
+        moved = float(np.linalg.norm(candidate - current, axis=1).max(initial=0.0))
+        records.append({"stage": stage, "sigmaMm": sigma / unit, "insufficientMargin": int(np.count_nonzero(active)),
+                        "inside": int(np.count_nonzero(signed < 0.0)), "minimumDistanceMu": float(signed.min(initial=np.inf)),
+                        "maximumDemandMu": float(demand.max(initial=0.0)), "hotNodes": int(np.count_nonzero(hot)),
+                        "maximumMoveMu": moved, "stepHalvings": halvings, "dampedVertices": len(damped)})
+        return candidate, moved > 0.0
+
+    for round_index in range(rounds):
+        sigma = max(sigma_mm * VOLUME_DECAY ** round_index, VOLUME_SIGMA_MIN_MM) * unit
+        current, moved = push_round(current, sigma, "push")
+        if not moved: break
+    drape: list[dict[str, Any]] = []
+    relaxer = DrapeRelaxer(original, tri) if DRAPE_CYCLES > 0 else None
+    for cycle in range(DRAPE_CYCLES if relaxer is not None else 0):
+        relaxed, relax_stats = relaxer.relax(current, original, tri, DRAPE_RELAX_ITERS)
+        current = relaxed
+        for _ in range(DRAPE_PUSH_ROUNDS):
+            current, moved = push_round(current, VOLUME_SIGMA_MIN_MM * unit, f"drape{cycle}")
+            if not moved: break
+        _, _, good, _ = _triangle_metrics(original, current, tri)
+        drape.append({**relax_stats, "stretchWithinRatio": good})
+    _, _, signed = measure(current)
+    residual = int(np.count_nonzero(signed < 0.0))
+    insufficient = int(np.count_nonzero(signed < push_mu - tolerance))
+    flipped, outliers, good_ratio, degenerate = _triangle_metrics(original, current, tri)
+    topology_passed = flipped == 0 and degenerate == 0 and good_ratio >= 0.99
+    clearance_passed = residual == 0 and insufficient == 0
+    passed = clearance_passed and topology_passed
+    if not passed and not allow_draft:
+        raise GarmentGateError("体表位移场推离门禁失败："
+                               f"inside={residual}, margin={insufficient}, flipped={flipped}, "
+                               f"stretchGood={good_ratio:.6f}")
+    return current.astype(np.float32), {
+        "mode": "volume", "rounds": records, "drape": drape, "residual": residual,
+        "insufficientMargin": insufficient, "flippedTriangles": flipped, "degenerateTriangles": degenerate,
+        "stretchOutliers": outliers, "stretchWithinRatio": good_ratio,
+        "minimumDistanceMu": float(signed.min(initial=np.inf)),
+        "centroidDriftMu": float(np.linalg.norm(current.mean(axis=0) - original.mean(axis=0))),
+        "passed": passed, "topologyPassed": topology_passed, "clearancePassed": clearance_passed,
+        "draft": not passed, "nodes": int(len(nodes)),
+        "volume": {"sigmaMm": sigma_mm, "sigmaMinMm": VOLUME_SIGMA_MIN_MM, "decay": VOLUME_DECAY,
+                   "nodeMm": VOLUME_NODE_MM, "nearMm": VOLUME_NEAR_MM, "farMm": VOLUME_FAR_MM,
+                   "stepSigma": VOLUME_STEP_SIGMA, "roundsLimit": rounds, "drapeCycles": DRAPE_CYCLES,
+                   "drapeRelaxIters": DRAPE_RELAX_ITERS, "drapePushRounds": DRAPE_PUSH_ROUNDS,
+                   "strainRange": [DRAPE_STRAIN_MIN, DRAPE_STRAIN_MAX], "drapeAnchor": DRAPE_ANCHOR},
+        "movedVertices": int(np.count_nonzero(np.linalg.norm(current - original, axis=1) > 1e-9))}
 
 
 def clear_bind_penetration(positions: np.ndarray, surface: SurfaceIndex, *, max_iters: int = 12
@@ -1034,6 +1355,33 @@ def _base_color(source: GLB) -> tuple[dict[str, Any], list[ImageData]]:
     return config, [ImageData(payload, mime, image.name)]
 
 
+def encode_skin_clean_texture(texture: Image.Image, uvs: np.ndarray, faces: np.ndarray,
+                              skin_lab_mean: np.ndarray, threshold: float,
+                              margin: float = SKIN_REPLACE_MARGIN, attempts: int = SKIN_ENCODE_ATTEMPTS
+                              ) -> tuple[bytes, dict[str, Any]]:
+    """清理衣物 UV 岛内的肤色纹素并编码成交付用 JPEG（q95）。
+
+    有损编码会把填补色往回拉，所以编码后解码复测；仍有肤色纹素就在解码图上再修、再编码。
+    返回最后一次编码的字节与统计（encoded* 为解码复测值）。"""
+    from extract_garment import repair_skin_texels
+    image, stats = repair_skin_texels(texture, uvs, faces, skin_lab_mean, threshold, margin)
+    payload = b""; remaining = 0; attempt = 0
+    for attempt in range(1, max(1, attempts) + 1):
+        stream = BytesIO(); image.save(stream, format="JPEG", quality=95, optimize=True)
+        payload = stream.getvalue()
+        with Image.open(BytesIO(payload)) as decoded:
+            repaired, check = repair_skin_texels(decoded.convert("RGB"), uvs, faces, skin_lab_mean,
+                                                 threshold, margin)
+        remaining = int(check["skinTexelsBefore"])
+        if remaining == 0 or attempt == attempts:
+            break
+        image = repaired; stats["replacedTexels"] += int(check["replacedTexels"])
+    total = int(stats["referencedTexels"])
+    stats.update({"encoding": "image/jpeg q95", "encodeAttempts": attempt, "encodedSkinTexelsAfter": remaining,
+                  "encodedSkinRatioAfter": remaining / total if total else 0.0})
+    return payload, stats
+
+
 def _round(value: Any) -> Any:
     if isinstance(value, float): return round(value, 9)
     if isinstance(value, list): return [_round(item) for item in value]
@@ -1046,12 +1394,18 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
              push_mm: float = 3.0, iters: int = 3, coverage: float = 0.65,
              allow_draft: bool = False, k: int = 16, align_mode: str = "auto",
              notes: Sequence[str] = (), edge_weights: str = "off",
-             edge_band_mm: float = 30.0) -> dict[str, Any]:
+             edge_band_mm: float = 30.0, weight_source: str = "auto",
+             weight_smooth_rounds: int = 3, preserve_shape: bool = False,
+             clean_skin_texture: bool = False, skin_delta_e: float = 18.0,
+             skin_lab_mean: Sequence[float] | None = None, push_mode: str = "vertex",
+             volume_sigma_mm: float = VOLUME_SIGMA_MM, volume_rounds: int = VOLUME_ROUNDS) -> dict[str, Any]:
     """执行完整贴合流水线并返回 fit.json 内容。"""
     started = time.perf_counter()
     if (kind not in KINDS or slot not in SLOTS or align_mode not in ALIGN_MODES
-            or edge_weights not in EDGE_WEIGHT_MODES or edge_band_mm <= 0
-            or push_mm < 0 or iters < 0
+            or edge_weights not in EDGE_WEIGHT_MODES or weight_source not in WEIGHT_SOURCE_MODES
+            or edge_band_mm <= 0 or weight_smooth_rounds < 0 or skin_delta_e <= 0
+            or push_mm < 0 or iters < 0 or push_mode not in PUSH_MODES
+            or volume_sigma_mm <= 0 or volume_rounds < 0
             or not 0 <= coverage <= 1 or k < 1):
         raise GarmentError("kind/slot/push-mm/iters/coverage 参数无效")
     if not asset_id or any(value in asset_id for value in ("/", "\\", "..")):
@@ -1073,7 +1427,8 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
         if garment.joints is None or garment.weights is None:
             raise GarmentError("自带 skin 的衣物缺少 JOINTS_0 / WEIGHTS_0")
         positions, normals, align, source_to_target = align_joints(
-            garment.positions, garment.normals, source_glb, skeleton, garment.joints, garment.weights)
+            garment.positions, garment.normals, source_glb, skeleton, garment.joints, garment.weights,
+            preserve_shape=preserve_shape)
         used = garment.weights > 1e-7
         if np.any(source_to_target[garment.joints][used] < 0):
             raise GarmentError("衣物权重引用目标骨架中不存在的骨名")
@@ -1086,7 +1441,8 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
                 raise GarmentError("--align none 的带 skin 输入必须与目标 skeleton 同序")
         positions = garment.positions.astype(np.float32).copy()
         normals = None if garment.normals is None else garment.normals.astype(np.float32).copy()
-        align = {"method": "landmarks", "requestedMode": "none", "scale": 1.0,
+        align = {"method": "joints" if source_skin else "landmarks",
+                 "requestedMode": "none", "scale": 1.0,
                  "yawDeg": 0.0, "mirrored": False, "landmarks": 0,
                  "determinant": 1.0, "translationMu": [0.0, 0.0, 0.0],
                  "bodySpaceIdentity": True,
@@ -1100,7 +1456,11 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
     if remove_stub:
         garment, removed = remove_body_stub(garment, surface, 0.001 / float(skeleton["mPerMu"]))
     faces = garment.indices.reshape(-1, 3)
-    if use_joint_alignment or preserve_body_space_skin:
+    if weight_source == "template":
+        garment.joints, garment.weights, weight_stats = transfer_template_weights(
+            garment.positions, faces, surface, body_mesh.joints, body_mesh.weights,
+            skeleton, slot, smooth_rounds=weight_smooth_rounds)
+    elif use_joint_alignment or preserve_body_space_skin:
         garment.joints, garment.weights, weight_stats = filter_existing_weights(
             garment.joints, garment.weights, garment.positions, skeleton, slot)
     else:
@@ -1133,7 +1493,7 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
             source_push = source_push["sourcePushOut"]
         garment.positions, push_stats = push_out(
             garment.positions, faces, surface, push_mu, iters, allow_draft=True,
-            reference_normals=push_reference_normals)
+            reference_normals=push_reference_normals, preserve_shape=preserve_shape)
         garment.positions, bind_clearance = clear_bind_penetration(garment.positions, surface)
         push_stats["residual"] = bind_clearance["residual"]
         push_stats["clearancePassed"] = (bind_clearance["residual"] == 0
@@ -1144,10 +1504,14 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
         push_stats["bindClearance"] = bind_clearance
         push_stats["edgeWeightsRefit"] = True
         if source_push is not None: push_stats["sourcePushOut"] = source_push
+    elif push_mode == "volume":
+        garment.positions, push_stats = volume_push(
+            garment.positions, faces, surface, push_mu, float(skeleton["mPerMu"]),
+            sigma_mm=volume_sigma_mm, rounds=volume_rounds, allow_draft=allow_draft)
     else:
         garment.positions, push_stats = push_out(
             garment.positions, faces, surface, push_mu, iters, allow_draft=allow_draft,
-            reference_normals=push_reference_normals)
+            reference_normals=push_reference_normals, preserve_shape=preserve_shape)
     garment.normals = vertex_normals(garment.positions, faces).astype(np.float32)
     garment.regions = derive_regions(garment.joints, garment.weights, skeleton)
     region_path = skeleton_path.parent / skeleton["regions"]["file"]
@@ -1157,7 +1521,41 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
     # 交付约定固定 1 primitive；源资产均为单 primitive，若未来不是则显式合并材质。
     garment.primitives = [PrimitiveRange(0, len(garment.positions), 0, len(garment.indices), 0)]
     garment.material_indices = np.array([0]); garment.name = asset_id
-    material, images = _base_color(source_glb); output_dir.mkdir(parents=True, exist_ok=True)
+    material, images = _base_color(source_glb); texture_cleanup = None
+    if clean_skin_texture:
+        if garment.uvs is None or not images:
+            raise GarmentError("--clean-skin-texture 要求衣物含 UV 与 baseColorTexture")
+        from extract_garment import _srgb_to_lab
+        if skin_lab_mean is None:
+            skin_glb = source_glb
+            extract_record = garment_path.parent / "extract.json"
+            if extract_record.exists():
+                record = json.loads(extract_record.read_text(encoding="utf-8"))
+                dressed = record.get("inputs", {}).get("dressed", {}).get("file")
+                if isinstance(dressed, str):
+                    candidate = Path(dressed)
+                    if not candidate.is_absolute(): candidate = Path.cwd() / candidate
+                    if candidate.exists(): skin_glb = load_glb(candidate)
+            if not skin_glb.json.get("skins"):
+                raise GarmentError("自动皮肤均值要求带 skin 的源模型")
+            source_mesh = load_world_mesh(skin_glb, skinned_only=True)
+            source_names = [skin_glb.json["nodes"][node].get("name", "")
+                            for node in skin_glb.skin().joints]
+            hand_slots = np.asarray([index for index, name in enumerate(source_names)
+                                     if name.endswith("LeftHand") or name.endswith("RightHand")])
+            if not len(hand_slots) or source_mesh.joints is None or source_mesh.weights is None:
+                raise GarmentError("源 GLB 没有可用于皮肤均值的手部权重")
+            hand_weight = np.sum(source_mesh.weights * np.isin(source_mesh.joints, hand_slots), axis=1)
+            sampled = __import__("extract_garment").sample_base_color(skin_glb, source_mesh)
+            samples = sampled[hand_weight >= .5]
+            if len(samples) < 16:
+                raise GarmentError("源 GLB 手部皮肤样本不足")
+            skin_lab_mean = np.median(_srgb_to_lab(samples), axis=0)
+        with Image.open(BytesIO(images[0].data)) as texture:
+            payload, texture_cleanup = encode_skin_clean_texture(
+                texture, garment.uvs, faces, np.asarray(skin_lab_mean), skin_delta_e)
+        images = [ImageData(payload, "image/jpeg", images[0].name)]
+    output_dir.mkdir(parents=True, exist_ok=True)
     glb_path = output_dir / f"{asset_id}.glb"
     write_skinned_glb(glb_path, garment, body_glb.skin(), material, images); glb_path.chmod(0o644)
     serialized = load_world_mesh(load_glb(glb_path), skinned_only=True)
@@ -1183,6 +1581,7 @@ def fit_file(body_path: Path, skeleton_path: Path, garment_path: Path, output_di
                   "nearestTriangleCandidates": k,
                   "elapsedSec": time.perf_counter() - started, "peakMemoryMiB": peak_mib},
     }
+    if texture_cleanup is not None: fit["textureCleanup"] = texture_cleanup
     if edge_only_refit and source_evidence is not None:
         fit["source"] = source_evidence["source"]
         fit["align"] = source_evidence["align"]
@@ -1214,12 +1613,26 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--note", action="append", default=[], help="写入 fit.json.notes，可重复")
     parser.add_argument("--remove-body-stub", action="store_true", help="删除距体表 <1mm 且法线反向的假人三角")
     parser.add_argument("--push-mm", type=float, default=3.0); parser.add_argument("--iters", type=int, default=3)
+    parser.add_argument("--push-mode", choices=PUSH_MODES, default="vertex",
+                        help="vertex：逐点沿法向推离（默认，既有行为）；volume：体表位移场整体推离（交领等多层不互穿）")
+    parser.add_argument("--volume-sigma-mm", type=float, default=VOLUME_SIGMA_MM, help="volume 模式首轮核宽 σ")
+    parser.add_argument("--volume-rounds", type=int, default=VOLUME_ROUNDS, help="volume 模式最多轮数")
     parser.add_argument("--k", type=int, default=16, help="最近三角质心候选数（默认 16）")
     parser.add_argument("--coverage", type=float, default=0.65); parser.add_argument("--json", action="store_true")
     parser.add_argument("--edge-weights", choices=EDGE_WEIGHT_MODES, default="off",
                         help="template 时开口使用模板权重；默认 off 保持历史行为")
     parser.add_argument("--edge-band-mm", type=float, default=30.0,
                         help="开口模板权重向源权重渐变带，默认 30 mm")
+    parser.add_argument("--weight-source", choices=WEIGHT_SOURCE_MODES, default="auto",
+                        help="template 将整件改用模板最近面权重；默认 auto 保持历史行为")
+    parser.add_argument("--weight-smooth-rounds", type=int, default=3)
+    parser.add_argument("--preserve-shape", action="store_true",
+                        help="推离时同时回退新增边长越界；默认关闭")
+    parser.add_argument("--clean-skin-texture", action="store_true",
+                        help="按源手部皮肤 Lab 均值清理衣物 UV 岛内肤色纹素")
+    parser.add_argument("--skin-delta-e", type=float, default=18.0)
+    parser.add_argument("--skin-lab-mean", nargs=3, type=float, metavar=("L", "A", "B"),
+                        help="显式源皮肤 Lab 均值；省略时从最初带 skin 的源模型取手部中位数")
     parser.add_argument("--allow-draft", action="store_true",
                         help="门禁未通过时仍写 status=draft；默认非零退出且不写产物")
     return parser
@@ -1232,7 +1645,12 @@ def main(argv: Sequence[str] | None = None) -> int:
                           remove_stub=args.remove_body_stub, push_mm=args.push_mm, iters=args.iters,
                           coverage=args.coverage, allow_draft=args.allow_draft, k=args.k,
                           align_mode=args.align, notes=args.note, edge_weights=args.edge_weights,
-                          edge_band_mm=args.edge_band_mm)
+                          edge_band_mm=args.edge_band_mm, weight_source=args.weight_source,
+                          weight_smooth_rounds=args.weight_smooth_rounds,
+                          preserve_shape=args.preserve_shape,
+                          clean_skin_texture=args.clean_skin_texture, skin_delta_e=args.skin_delta_e,
+                          skin_lab_mean=args.skin_lab_mean, push_mode=args.push_mode,
+                          volume_sigma_mm=args.volume_sigma_mm, volume_rounds=args.volume_rounds)
     except GarmentGateError as error:
         print(f"门禁失败：{error}", file=sys.stderr); return 3
     except (OSError, ValueError, json.JSONDecodeError, RuntimeError, NotImplementedError) as error:
@@ -1242,10 +1660,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     return 0
 
 
-__all__ = ["ALIGN_MODES", "EDGE_WEIGHT_MODES", "GarmentError", "GarmentGateError", "SurfaceIndex", "align_landmarks", "allowed_joint_indices",
+__all__ = ["ALIGN_MODES", "EDGE_WEIGHT_MODES", "PUSH_MODES", "WEIGHT_SOURCE_MODES", "GarmentError", "GarmentGateError", "SurfaceIndex", "align_landmarks", "allowed_joint_indices",
            "align_joints", "derive_regions", "filter_existing_weights", "fit_file",
-           "edge_weight_blend", "hide_regions", "load_skull_profile", "load_world_mesh", "mm_to_mu", "push_out",
-           "transfer_weights", "vertex_normals"]
+           "edge_weight_blend", "encode_skin_clean_texture", "hide_regions", "load_skull_profile", "load_world_mesh", "mm_to_mu", "push_out", "volume_push",
+           "transfer_template_weights", "transfer_weights", "vertex_normals"]
 
 
 if __name__ == "__main__":

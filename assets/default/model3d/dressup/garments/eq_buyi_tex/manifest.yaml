@@ -14,7 +14,7 @@
     plate:
       path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png
       sha256: 3f1881b361bb2ca696da6f2abb338748b6896a4d2b9c9727da6653e317f1fc5c
-  sha256: dcacef9b1d96ed625c5bf4239856d04f9fff339d2283f1636519549509f70b41
-  size_bytes: 1710658
+  sha256: 04e28fe98ea3252d65887dbaad62a674d43a5f747819120894dbb74eaf048b92
+  size_bytes: 1710142
   status: draft
   created: '2026-10-08T15:59:29-07:00'

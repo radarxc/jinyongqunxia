@@ -31,6 +31,7 @@ for _index, _value in _removed:
 
 import numpy as np
 from PIL import Image, ImageDraw
+from scipy.ndimage import distance_transform_edt
 from scipy.spatial import cKDTree
 
 try:
@@ -194,6 +195,104 @@ def classify_lab(rgb: np.ndarray, garment_samples: np.ndarray, skin_samples: np.
     # 近黑衣纹理可离底板画风样本较远，但与肤色仍有巨大间隔；用距离比而非
     # 写死 RGB 常数，阴影肤色则因更接近 skin 样本被拒。
     return garment_distance < 0.80 * skin_distance
+
+
+def _uv_island_labels(uvs: np.ndarray, faces: np.ndarray, width: int, height: int) -> tuple[np.ndarray, int]:
+    """把衣物三角按共享边连通分成 UV 岛并光栅化：返回逐纹素岛编号（0 = 未被引用）与岛数。"""
+    tri = np.asarray(faces, dtype=np.int64).reshape(-1, 3)
+    if np.any(tri < 0) or np.any(tri >= len(uvs)):
+        raise ExtractError("衣物索引越过 UV 数组")
+    adjacency, _ = triangle_adjacency(tri)
+    components = _components(np.ones(len(tri), dtype=bool), adjacency)
+    island_map = Image.new("I", (width, height), 0); draw = ImageDraw.Draw(island_map)
+    pixels = np.asarray(uvs, dtype=np.float64) * np.asarray([width, height]) - .5
+    for island_id, component in enumerate(components, 1):
+        for face_id in component:
+            polygon = [(float(pixels[index, 0]), float(pixels[index, 1]))
+                       for index in tri[int(face_id)]]
+            draw.polygon(polygon, fill=island_id)
+    return np.asarray(island_map, dtype=np.int32), len(components)
+
+
+def _fill_from_nearest(rgb: np.ndarray, labels: np.ndarray, islands: int, bad: np.ndarray,
+                       preferred: np.ndarray, fallback: np.ndarray) -> int:
+    """逐岛把 bad 纹素换成同岛最近 preferred 纹素的颜色（岛内没有时用 fallback）；原位修改 rgb，返回替换数。"""
+    replaced = 0
+    for island_id in range(1, islands + 1):
+        island = labels == island_id; target = island & bad
+        if not np.any(target):
+            continue
+        good = island & preferred
+        if not np.any(good):
+            good = island & fallback
+        if not np.any(good):
+            continue
+        rows, cols = np.nonzero(island); y0, y1 = rows.min(), rows.max() + 1
+        x0, x1 = cols.min(), cols.max() + 1
+        _, nearest = distance_transform_edt(~good[y0:y1, x0:x1], return_indices=True)
+        local = target[y0:y1, x0:x1]; source_y, source_x = nearest[:, local]
+        target_y, target_x = np.nonzero(local)
+        rgb[y0 + target_y, x0 + target_x] = rgb[y0 + source_y, x0 + source_x]
+        replaced += len(target_y)
+    return replaced
+
+
+def _skin_distance(rgb: np.ndarray, skin_lab_mean: np.ndarray) -> np.ndarray:
+    lab = _srgb_to_lab(rgb.reshape(-1, 3)).reshape(rgb.shape[0], rgb.shape[1], 3)
+    return np.linalg.norm(lab - np.asarray(skin_lab_mean)[None, None, :], axis=2)
+
+
+def repair_skin_texels(image: Image.Image, uvs: np.ndarray, faces: np.ndarray,
+                       skin_lab_mean: np.ndarray, threshold: float = 18.0, margin: float = 0.0
+                       ) -> tuple[Image.Image, dict[str, Any]]:
+    """只在衣物 UV 岛内，把接近源皮肤均值的纹素替换为最近布料色。
+
+    margin > 0 时只从 Delta E 超过 threshold + margin 的布料纹素取色（岛内没有时退回任一非肤色纹素），
+    免得填进去的是紧贴阈值的过渡色、有损编码后又落回阈值内。"""
+    if threshold <= 0:
+        raise ExtractError("skin Delta E 阈值必须大于零")
+    if margin < 0:
+        raise ExtractError("skin Delta E 余量不能为负")
+    rgb = np.asarray(image.convert("RGB"), dtype=np.uint8).copy(); height, width = rgb.shape[:2]
+    labels, islands = _uv_island_labels(uvs, faces, width, height); covered = labels > 0
+    distance = _skin_distance(rgb, skin_lab_mean)
+    skin = covered & (distance <= threshold); before = int(np.count_nonzero(skin))
+    replaced = _fill_from_nearest(rgb, labels, islands, skin, distance > threshold + margin, ~skin)
+    after = int(np.count_nonzero(covered & (_skin_distance(rgb, skin_lab_mean) <= threshold)))
+    total = int(np.count_nonzero(covered))
+    return Image.fromarray(rgb, "RGB"), {
+        "method": "CIE-Lab-mean-deltaE+same-uv-island-nearest",
+        "deltaEThreshold": float(threshold), "replacementMarginDeltaE": float(margin),
+        "skinLabMean": np.asarray(skin_lab_mean).tolist(),
+        "referencedTexels": total, "skinTexelsBefore": before, "skinTexelsAfter": after,
+        "skinRatioBefore": before / total if total else 0.0,
+        "skinRatioAfter": after / total if total else 0.0, "replacedTexels": replaced}
+
+
+def repair_by_reference(image: Image.Image, reference: Image.Image, uvs: np.ndarray, faces: np.ndarray,
+                        skin_lab_mean: np.ndarray, threshold: float = 18.0, margin: float = 6.0
+                        ) -> tuple[Image.Image, dict[str, Any]]:
+    """按来源修补：污染区由参考图（抽取件原贴图）判定，而不是看 image 当前的颜色。
+
+    污染区 = 衣物纹素中参考图相对源皮肤均值 Delta E ≤ threshold + margin 的部分（含肤色与布料交界的过渡环）；
+    这些纹素换成同一 UV 岛内最近的、参考图上 Delta E > threshold + 2 × margin 的纹素在 image 里的颜色。
+    其余纹素逐字节不动。用于给贴图变体准备版型副本：版型清理后的填补色经颜色映射仍可能落在变体的浅色里。"""
+    if threshold <= 0 or margin < 0:
+        raise ExtractError("skin Delta E 阈值须大于零、余量不能为负")
+    rgb = np.asarray(image.convert("RGB"), dtype=np.uint8).copy(); height, width = rgb.shape[:2]
+    ref = np.asarray(reference.convert("RGB"), dtype=np.uint8)
+    if ref.shape != rgb.shape:
+        raise ExtractError(f"参考图尺寸 {ref.shape[:2]} 与贴图 {rgb.shape[:2]} 不一致")
+    labels, islands = _uv_island_labels(uvs, faces, width, height); covered = labels > 0
+    distance = _skin_distance(ref, skin_lab_mean)
+    target = covered & (distance <= threshold + margin)
+    replaced = _fill_from_nearest(rgb, labels, islands, target, distance > threshold + 2 * margin, ~target)
+    total = int(np.count_nonzero(covered))
+    return Image.fromarray(rgb, "RGB"), {
+        "method": "reference-provenance+same-uv-island-nearest",
+        "deltaEThreshold": float(threshold), "marginDeltaE": float(margin),
+        "skinLabMean": np.asarray(skin_lab_mean).tolist(), "referencedTexels": total,
+        "targetTexels": int(np.count_nonzero(target)), "replacedTexels": replaced}
 
 
 def triangle_adjacency(faces: np.ndarray) -> tuple[list[np.ndarray], dict[tuple[int, int], list[int]]]:
@@ -896,7 +995,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 __all__ = ["Evidence", "ExtractError", "boundary_loops", "build_evidence",
            "classify_lab", "clean_triangle_mask", "extract_file",
            "compact_indexed_mesh", "plate_lab_samples", "require_four_openings",
-           "segment_triangles", "subset_mesh",
+           "repair_by_reference", "repair_skin_texels", "sample_base_color", "segment_triangles", "subset_mesh",
            "triangle_adjacency"]
 
 

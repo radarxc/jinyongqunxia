@@ -15,6 +15,9 @@
       hideMask: hidemask.png
       status: draft
       gateLevel: fail
+      sha256: 0c342d6def45a4501a18ad053e13bb107285f98c48d43af54b67617a4a6b41f7
+      size_bytes: 1479448
+      triangles: 25836
     tpl_f_small:
       file: eq_jinzhuang.tpl_f_small.glb
       fit: fit.tpl_f_small.json
@@ -22,6 +25,9 @@
       hideMask: hidemask.tpl_f_small.png
       status: draft
       gateLevel: fail
+      sha256: 092f700ec8bb2afe8ddbc9da391da6e283618b79c33638c3b95b32b3499c94ac
+      size_bytes: 1479604
+      triangles: 25838
     tpl_f_tall:
       file: eq_jinzhuang.tpl_f_tall.glb
       fit: fit.tpl_f_tall.json
@@ -29,21 +35,33 @@
       hideMask: hidemask.tpl_f_tall.png
       status: draft
       gateLevel: fail
-  sha256: 298b495e38699d708fceedda59bf1eaf1fa0d84b60842a63400f6a90f87b9198
-  size_bytes: 1574792
+      sha256: 6da0e7849f598ecd7aadc6742b492eae6b50d83ead38d6724042e9cb7442ea3a
+      size_bytes: 1480440
+      triangles: 25834
+  sha256: 0c342d6def45a4501a18ad053e13bb107285f98c48d43af54b67617a4a6b41f7
+  size_bytes: 1479448
   triangles: 25836
   status: draft
   experimental: true
   gateLevel: fail
-  tool: tools/model3d/dressup/extract_garment.py + fit_garment.py + validate.py
+  tool: tools/model3d/dressup/fit_garment.py --push-mode volume + pack_glb.mjs --simplify 0.25 + untangle_glb.py + bake_hide_mask.py
+    --mode visibility + validate.py
   created: '2026-10-08T06:35:00-07:00'
   source:
     tripo_project_id: b01f6451-81a6-46ac-a769-0cdf1d374df3
     references:
+    - path: assets/default/model3d/dressup/garments/eq_jinzhuang/extract_run/eq_jinzhuang_raw_skinned.glb
+      sha256: 317268c69992465091df48150d32bc1c9f647a5093c9a4472f8b8e549b35c26d
     - path: source/tripo_dressed_rig.glb
       sha256: 4da5eab6ff1f218719c4ba187fa824099b40ccf539855b1f265e0a27c11de956
     - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
       sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
     - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
       sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
-  notes: UV hide mask bind 覆盖率 medium/small/tall=47.3369%/46.8256%/47.9252%，动画内侧开口回补 68137/69677/67579 纹素后最终覆盖率=30.4698%/29.5957%/31.1675%；bind 用仰角 [-15°,80°] 全周 128 视角逐三角正交 z-buffer 与 2 mm 深度容差判隐藏，idle/walk/run 各 6 帧仅回补“直接可见且仍在衣物里侧”的纹素，另以同范围 8 视角复查全部 24 帧。holes 最坏=0.0622%（medium run 略超 0.05%），bind visible=0/0/0；动态 penetration visible=4.37%~9.08%，超过 2%，逐区以 torsoUpper/torsoLower 为主并含袖口/衣摆邻接肢体，未以扩大遮罩规避，交 E2b 修版型几何/蒙皮。E2b 既有翻面/边长（small 另有 close-fit）门仍未过，故继续 experimental/fail。与贴图层 dressup__layer__eq_jinzhuang 叠穿。
+  notes: 'E2b（2026-10-09，Claude 收尾，AR-110）：fit 真实源为 extract_run/eq_jinzhuang_raw_skinned.glb（E2 抽取件），preserve-shape 关节对齐 +
+    整件模板权重 + 体表位移场推离 + 限拉伸垂坠（--push-mode volume），全分辨率贴合后 pack_glb 减面 0.25、untangle_glb 翻边修复细长翻面三角，再重烘可见性遮罩。三模板几何门全过（翻面 0、边长
+    ≥ 99%、close-fit < 5 mm），bind 穿透 0；贴图肤色纹素 1.68% → 0（ΔE76 ≤ 18，相对源模型手部肤色中位数；交付 JPEG 解码复测）。仍未过：idle / walk 可见穿透（垂手宽袖碰髋 /
+    大腿、下摆碰大腿，LBS 蒙皮问题）与 run holes，拆给 E2c；各模板未过项：{"tpl_f_medium": ["penetration.idle.visible", "penetration.walk.visible",
+    "holes.run.visible"], "tpl_f_small": ["penetration.idle.visible", "penetration.walk.visible", "holes.run.visible"], "tpl_f_tall":
+    ["penetration.idle.visible", "penetration.walk.visible", "holes.run.visible"]}。故继续 experimental/fail。与贴图层 dressup__layer__eq_jinzhuang
+    叠穿。'
