@@ -52186,6 +52186,69 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-d2b-huangrong-recut",
+   "title": "3D 纸娃娃换装 · D2b · 黄蓉三体型用新工具重切（方案 2：身体染色对准切口颈色）",
+   "phase": "PROD",
+   "wave": 40,
+   "kind": "draft",
+   "prompt": "ART-dressup-d2b-huangrong-recut.md",
+   "deps": [
+    "ART-dressup-d2-head-gen"
+   ],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10 方案 2；D2 第 10 条约定库内黄蓉随后重切；Claude 直接执行（AR-110），supervise --from validate + GPT 审核",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/model3d/npc_huangrong"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_small.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_huangrong/report.json",
+     "assets/default/model3d/dressup/heads/npc_huangrong/shots/recut.tpl_f_medium.jpg"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
