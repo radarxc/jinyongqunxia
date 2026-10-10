@@ -10,6 +10,7 @@ import { prepareBodyRegionMesh, setRegionHideMask, toUnlit, setHideMap, createDr
   loadDressupImage, defaultHideMapCompositor, configureHideMapTexture } from './materials';
 import { createDressupSkeletonFrameAccess, loadDressupSkeletonFrame,
   type DressupSkeletonFrameAccess } from './skeleton-frame';
+import { DressupCullingBounds } from './culling';
 import { DressupError, type DressupActor, type DressupActorOptions, type DressupEquipSpec, type DressupFit,
   type DressupGripAdjust, type DressupHideMapSpec, type DressupLayerCompositor, type DressupLayerSpec,
   type DressupSkeletonFrame, type DressupStats } from './types';
@@ -20,6 +21,7 @@ interface BodySkeleton {
 }
 interface Equipment {
   readonly root: Object3D;
+  readonly skinnedMeshes: readonly SkinnedMesh[];
   readonly textures: ReadonlySet<Texture>;
   readonly hideMask: number;
   readonly neverMask: number;
@@ -340,6 +342,8 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
   const mixer = new AnimationMixer(bodyRoot);
   const clips = new Map<string, AnimationClip>();
   for (const clip of bodyGltf.animations) clips.set(clip.name, clip);
+  const culling = new DressupCullingBounds(root, bodyRoot, bodyGltf.animations);
+  culling.add(bodyRoot);
   const equipment = new Map<string, Equipment>();
   const bodyMaterialSet = new Set<Material>();
   for (const mesh of body.meshes) {
@@ -412,7 +416,8 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
     const value = equipment.get(id);
     if (!value) return;
     if (headId === id) headId = undefined;
-    equipment.delete(id); disposeTree(value.root, value.textures); refreshState();
+    equipment.delete(id); culling.remove(value.skinnedMeshes);
+    disposeTree(value.root, value.textures); refreshState();
   };
   const applyBodyMap = (texture: Texture | undefined): void => {
     for (const [material, original] of originalBodyMaps) {
@@ -483,15 +488,18 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
     const equipmentTextures = collectTextures(gltf.scene);
     if (disposed) { disposeTree(gltf.scene, equipmentTextures); throw new Error(DressupError.Disposed); }
     if (spec.kind === 'head' && request !== headRequest) { disposeTree(gltf.scene, equipmentTextures); return; }
+    let skinnedMeshes: readonly SkinnedMesh[] = [];
     try {
       if (spec.kind !== 'prop') configureSkinnedEquipment(gltf.scene, body.skeleton);
       prepareEquipmentMaterials(gltf.scene, options.unlit ?? true);
       const attached = attachEquipmentRoot(gltf.scene, spec, root, sockets, gripMatrix);
       removeEquipment(spec.id);
       if (spec.kind === 'head' && headId) removeEquipment(headId);
+      root.updateMatrixWorld(true);
+      skinnedMeshes = culling.add(attached);
       const socket = spec.fit.socket ?? '';
       equipment.set(spec.id, {
-        root: attached, textures: equipmentTextures, hideMask, neverMask,
+        root: attached, skinnedMeshes, textures: equipmentTextures, hideMask, neverMask,
         rightHand: spec.kind === 'prop' && socket === 'gripR',
         leftHand: spec.kind === 'prop' && socket === 'gripL',
         ...(hideMap ? { hideMap } : {}),
@@ -499,8 +507,8 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
         ...equipmentMetrics(attached),
       });
       if (spec.kind === 'head') { headId = spec.id; pendingHeadId = undefined; }
-      root.updateMatrixWorld(true); refreshState();
-    } catch (error) { disposeTree(gltf.scene, equipmentTextures); throw error; }
+      refreshState();
+    } catch (error) { culling.remove(skinnedMeshes); disposeTree(gltf.scene, equipmentTextures); throw error; }
     // A failed mask leaves valid equipment attached, with masking disabled and an explicit error.
     await updateHideMaps();
   };
@@ -565,6 +573,7 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
         bone.position.multiplyScalar(scale);
       }
       root.updateMatrixWorld(true);
+      culling.refreshMotion();
     },
     playClip(name, fade = 0.16) {
       requireActive();
