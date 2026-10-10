@@ -19,7 +19,7 @@
       "z": 0.021584576
     },
     "scale": 0.92,
-    "residualMu": 9e-09
+    "residualMu": 5e-09
   },
   "hideRegions": [],
   "hideMask": {
@@ -28,9 +28,9 @@
   },
   "neverHide": [],
   "skinTint": [
-    0.996649409,
-    0.950649925,
-    0.949798527
+    0.939930825,
+    0.870094195,
+    0.864768118
   ],
   "weights": {
     "jointsAllowed": [
@@ -102,8 +102,9 @@
     ]
   },
   "deltaEBefore": 4.992215429,
-  "deltaE": 0.022481326,
-  "deltaEFaceMean": 3.481192303,
+  "deltaE": 0.020803967,
+  "deltaEFaceMean": 1.868729944,
+  "deltaESameHeight": 1.853790257,
   "diagnostics": {
     "npc": "npc_huangrong",
     "params": {
@@ -169,8 +170,8 @@
       ],
       "headFloorMm": 18.0,
       "maskPlaneMm": 0.0,
-      "regionADeg": 286.0,
-      "probeAngles": 288
+      "regionADeg": 269.0,
+      "probeAngles": 272
     },
     "measurements": {
       "sourceEarWidthMu": 0.109303062,
@@ -188,10 +189,10 @@
     "head": {
       "vertices": 10168,
       "triangles": 16372,
-      "neckSkinVertices": 343
+      "neckSkinVertices": 349
     },
     "collarRemnants": {
-      "candidates": 3,
+      "candidates": 4,
       "dropped": 0,
       "redTextureDropped": 0,
       "droppedClusters": [],
@@ -225,13 +226,33 @@
         2,
         3,
         4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
         174,
         175,
         176,
         177,
         178,
         179,
-        180,
         181,
         182,
         183,
@@ -241,25 +262,6 @@
         187,
         188,
         189,
-        191,
-        192,
-        193,
-        194,
-        195,
-        196,
-        197,
-        340,
-        341,
-        342,
-        343,
-        344,
-        345,
-        346,
-        347,
-        348,
-        349,
-        350,
-        351,
         352,
         353,
         354,
@@ -270,46 +272,78 @@
         359
       ]
     },
+    "neckCenter": {
+      "probeMm": 0.5,
+      "hHeadMm": 18.0,
+      "headCenterMm": [
+        -2.635128461,
+        -1.14195166
+      ],
+      "templateCenterMm": [
+        3.909988185,
+        7.636090605
+      ],
+      "shiftMm": [
+        6.545116646,
+        8.778042265
+      ],
+      "shiftNormMm": 10.949546927,
+      "headMeanRadiusMm": 38.848670782,
+      "templateMeanRadiusMm": 42.955805675,
+      "headAngles": 286,
+      "templateAngles": 286,
+      "anglesDeg": [
+        [
+          0,
+          229
+        ],
+        [
+          304,
+          359
+        ]
+      ],
+      "hHeadAfterMm": 18.0
+    },
     "neckFit": {
       "rampMm": 20.0,
       "maxMm": 4.0,
       "shell": 1.12,
       "smoothDeg": 3,
       "freeZoneMm": 8.0,
-      "activeAngles": 87,
-      "movedVertices": 48,
-      "amountMaxMm": 4.0,
-      "maxShrinkMm": 4.0,
+      "activeAngles": 19,
+      "movedVertices": 9,
+      "amountMaxMm": 0.166676012,
+      "maxShrinkMm": 0.157905054,
       "hHeadBeforeMm": 18.0,
       "hHeadAfterMm": 18.0
     },
     "patch": {
-      "vertices": 5763,
-      "triangles": 10948,
+      "vertices": 5911,
+      "triangles": 11251,
       "uvSeamDuplicates": 53,
       "boundaryLoops": 2,
       "sideBoundaryPinned": 0,
       "constrained": {
         "bottom": 1300,
-        "top": 1899,
+        "top": 2047,
         "g1Skirt": 1247
       },
-      "skinMissingInRegionA": 74,
-      "displacementMaxMm": 19.189120804,
+      "skinMissingInRegionA": 83,
+      "displacementMaxMm": 8.847220997,
       "skinInset": {
-        "moved": 1006,
-        "maxMoveMm": 0.842967055
+        "moved": 948,
+        "maxMoveMm": 0.935710725
       },
       "solve": {
         "freeVertices": 1317,
-        "constrainedVertices": 4446,
-        "residualMaxMu": 9e-09,
-        "displacementMaxMu": 0.011329703
+        "constrainedVertices": 4594,
+        "residualMaxMu": 5e-09,
+        "displacementMaxMu": 0.005223605
       },
       "orientation": {
-        "interiorEdges": 16133,
+        "interiorEdges": 16591,
         "consistentEdgeRatio": 1.0,
-        "boundaryEdges": 578,
+        "boundaryEdges": 571,
         "nonManifoldEdges": 0,
         "outwardAreaRatio": 1.0,
         "outwardFaceRatio": 1.0
@@ -348,22 +382,24 @@
         0.609540682
       ],
       "tintedTemplateSrgb": [
-        0.785351351,
-        0.677765302,
-        0.59543141
+        0.76508371,
+        0.651223641,
+        0.570504199
       ],
       "averageSpace": "sRGB arithmetic mean",
       "skinTint": [
-        0.996649409,
-        0.950649925,
-        0.949798527
+        0.939930825,
+        0.870094195,
+        0.864768118
       ],
       "deltaEBefore": 4.992215429,
-      "deltaE": 0.022481326,
+      "deltaE": 0.020803967,
       "sourceSamples": 1618,
       "templateSamples": 9795,
-      "deltaEFaceMean": 3.481192303,
+      "deltaEFaceMean": 1.868729944,
+      "deltaESameHeight": 1.853790257,
       "neckMatch": {
+        "reference": "headCut/bodySeam",
         "faceTint": [
           0.895050602,
           0.829012123,
@@ -371,66 +407,73 @@
         ],
         "faceDeltaE": 7.5071e-05,
         "gainBefore": [
-          1.113511803,
-          1.146726204,
-          1.09504602
+          1.050142666,
+          1.049555454,
+          0.997012376
         ],
         "clipped": false,
         "residualGain": [
-          1.000001311,
-          1.000001645,
-          1.000001036
-        ]
+          1.0,
+          1.0,
+          1.0
+        ],
+        "residualGainSameHeight": [
+          1.052016175,
+          1.086675274,
+          1.095395633
+        ],
+        "seamAngles": 1538,
+        "seamBandMm": 2.0
       },
       "strip": {
-        "coveredRatio": 0.323942765,
+        "coveredRatio": 0.359283258,
         "gainMean": [
-          1.000001311,
-          1.000001645,
-          1.000001036
+          1.052016175,
+          1.086675274,
+          1.095395633
         ]
       }
     },
     "checks": {
       "color": {
         "bottom": {
-          "mean": 0.428111629,
-          "p95": 0.807282555,
-          "max": 1.793199075,
+          "mean": 0.353306122,
+          "p95": 0.920801688,
+          "max": 1.509364932,
           "samples": 1308
         },
         "top": {
-          "mean": 0.577658702,
-          "p95": 1.438387859,
-          "max": 1.782324365,
-          "angles": 264
+          "mean": 0.619449154,
+          "p95": 1.363364669,
+          "max": 2.121416141,
+          "angles": 247
         }
       },
       "g1": {
-        "meanDeg": 0.500120331,
-        "p95Deg": 2.068454782,
-        "maxDeg": 3.62695513,
-        "angles": 264,
-        "radialStepMeanMm": 0.302350279,
-        "radialStepMaxMm": 0.454162345,
-        "worstDeg": 194,
-        "worstStepDeg": 201
+        "meanDeg": 0.42044482,
+        "p95Deg": 1.623652337,
+        "maxDeg": 3.334798379,
+        "angles": 247,
+        "radialStepMeanMm": 0.303530647,
+        "radialStepMaxMm": 0.419910633,
+        "worstDeg": 86,
+        "worstStepDeg": 86
       },
       "g1Bottom": {
-        "meanDeg": 0.20628114,
+        "meanDeg": 0.202738557,
         "p95Deg": 0.72181829,
         "maxDeg": 1.154146626,
         "angles": 360,
-        "stepMeanMm": 0.347171278,
+        "stepMeanMm": 0.347108704,
         "stepMinMm": 0.299109507,
         "stepMaxMm": 0.469502544
       },
       "shape": {
-        "angles": 264,
+        "angles": 247,
         "maxTurningPoints": 1,
         "anglesOverOneTurn": 0,
-        "maxBulgeMm": 0.30368154,
-        "maxWaistMm": 3.059383466
+        "maxBulgeMm": 0.0,
+        "maxWaistMm": 3.283689694
       },
       "motion": {
         "penetration": {
@@ -464,7 +507,7 @@
           "run": {
             "ratio": 0.0,
             "count": 0,
-            "evaluated": 375,
+            "evaluated": 374,
             "time": 0.0,
             "minimumMm": -0.42549996
           }
@@ -476,10 +519,10 @@
           "run": 453
         },
         "aboveCutExcluded": {
-          "bind": 5968,
-          "idle": 5599,
-          "walk": 5598,
-          "run": 5831
+          "bind": 6122,
+          "idle": 5753,
+          "walk": 5752,
+          "run": 5986
         },
         "bottomOverlapMinMm": {
           "bind": 0.292596857,
@@ -494,58 +537,58 @@
           "run": 0.0
         },
         "topExposedMaxMm": {
-          "bind": -0.299960846,
-          "idle": -0.218877302,
-          "walk": -0.242020807,
-          "run": -0.19768872
+          "bind": -0.299963484,
+          "idle": -0.214515209,
+          "walk": -0.249058806,
+          "run": -0.221014746
         },
         "topExposedP99Mm": {
-          "bind": -0.299972701,
-          "idle": -0.234806097,
-          "walk": -0.262714649,
-          "run": -0.228550634
+          "bind": -0.299975541,
+          "idle": -0.225883737,
+          "walk": -0.266508846,
+          "run": -0.227495682
         },
         "topExposedWorst": {
           "bind": {
             "time": 0.0,
-            "thetaDeg": 314.489978253,
-            "heightMm": 22.000042522
+            "thetaDeg": 105.034394957,
+            "heightMm": 20.790530557
           },
           "idle": {
-            "time": 7.666666508,
-            "thetaDeg": 189.712279847,
-            "heightMm": 22.000039794
+            "time": 14.69444414,
+            "thetaDeg": 358.096327908,
+            "heightMm": 21.999989901
           },
           "walk": {
             "time": 1.361111065,
-            "thetaDeg": 356.145309802,
-            "heightMm": 22.000029637
+            "thetaDeg": 7.084720756,
+            "heightMm": 22.000008314
           },
           "run": {
-            "time": 0.364583333,
-            "thetaDeg": 19.593388514,
-            "heightMm": 21.999967082
+            "time": 0.15625,
+            "thetaDeg": 135.494394533,
+            "heightMm": 21.999998729
           }
         },
         "topEvaluated": {
-          "bind": 822,
-          "idle": 822,
-          "walk": 822,
-          "run": 820
+          "bind": 767,
+          "idle": 768,
+          "walk": 767,
+          "run": 765
         },
         "topExposedAnyMaxMm": {
-          "bind": -0.299960846,
-          "idle": -0.218877302,
-          "walk": -0.242020807,
-          "run": -0.19768872
+          "bind": -0.299963484,
+          "idle": -0.214515209,
+          "walk": -0.249058806,
+          "run": -0.221014746
         },
         "hairPenetration": {
-          "bind": 0.011361981,
-          "idle": 0.046904588,
-          "walk": 0.046467589,
-          "run": 0.173051712
+          "bind": 0.022286963,
+          "idle": 0.054042243,
+          "walk": 0.049235251,
+          "run": 0.178878369
         },
-        "topCoverFaces": 175,
+        "topCoverFaces": 178,
         "frames": 73,
         "framesPerClip": {
           "bind": 1,
@@ -553,31 +596,31 @@
           "walk": 24,
           "run": 24
         },
-        "topUnderSkinMinMm": 0.299960846,
+        "topUnderSkinMinMm": 0.299963484,
         "penetrationThresholdMm": 1.0,
         "penetrationScope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
       },
       "transitionReportOnly": {
         "angles": 22,
-        "g1MaxDeg": 25.26772309,
-        "g1P95Deg": 2.787022592,
-        "stepMaxMm": 0.653921619,
-        "bulgeMaxMm": 0.901737505,
-        "colorP95": 1.765430849,
-        "worstG1Deg": 229
+        "g1MaxDeg": 5.037088182,
+        "g1P95Deg": 3.027848774,
+        "stepMaxMm": 0.397897536,
+        "bulgeMaxMm": 0.0,
+        "colorP95": 1.718344778,
+        "worstG1Deg": 228
       },
       "neckHoles": {
-        "bind": 0.000972447,
-        "idle": 0.001171303,
-        "walk": 0.000818107,
-        "run": 0.001278178
+        "bind": 0.0,
+        "idle": 0.000621118,
+        "walk": 0.000273299,
+        "run": 0.000527593
       }
     },
     "stats": {
-      "vertices": 15984,
-      "triangles": 27320,
-      "fileSize": 1938968,
-      "durationMs": 209599
+      "vertices": 16132,
+      "triangles": 27623,
+      "fileSize": 1949320,
+      "durationMs": 219005
     },
     "gateLevel": "pass"
   }

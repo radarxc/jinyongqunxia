@@ -3,13 +3,13 @@
   category: model3d
   kind: dressup-head
   template: tpl_f_medium
-  sha256: 0b192aebeba190385dc9d751294ce6bb7c91bf3d9a8513b97568fbe76b68f6b2
-  size_bytes: 1960016
-  triangles: 27924
+  sha256: b736be3c67985d9ce2cbce2db34eebedf311e2af326e10298a54a5ec77fe2f19
+  size_bytes: 1966712
+  triangles: 28130
   report: report.json
   status: draft
   tool: tools/model3d/dressup/ingest.py v1
-  created: '2026-10-10T10:17:40-07:00'
+  created: '2026-10-10T15:56:04-07:00'
   fit: fit.json
   fits:
     tpl_f_medium:
@@ -23,80 +23,80 @@
       report: report.tpl_f_tall.json
       status: draft
       gateLevel: pass
-      sha256: f88021d95c679b26b228199407697dcd9cdaef23e21ef306ed7f474648818455
-      size_bytes: 1938968
-      vertices: 15984
-      triangles: 27320
+      sha256: 9c19ed22b75ce4188a80bc47a8e4ac886a6cb1b5b860ed904d38748eb94bf451
+      size_bytes: 1949320
+      vertices: 16132
+      triangles: 27623
     tpl_f_small:
       file: head.tpl_f_small.glb
       fit: fit.tpl_f_small.json
       report: report.tpl_f_small.json
       status: draft
       gateLevel: pass
-      sha256: 0d725fc49ec0a6aae2d119a01c71667211721fc6d0ee398bab40a9eb77b5a463
-      size_bytes: 1953680
-      vertices: 16194
-      triangles: 27703
+      sha256: a44efa3e55ef7fc89b63153d39dba823351e99b836b0ec0e8be5b906f0366024
+      size_bytes: 1962200
+      vertices: 16313
+      triangles: 27951
   source:
-    directory: external-workdir
+    directory: assets/default/model3d/dressup/heads/npc_huangrong
     references: []
   notes: validate level=draft；status 按 tech/11 §6 映射。
   npc: npc_huangrong
   experimental: true
   gateLevel: pass
-  vertices: 16283
+  vertices: 16387
   files:
     head.glb:
-      sha256: 0b192aebeba190385dc9d751294ce6bb7c91bf3d9a8513b97568fbe76b68f6b2
-      bytes: 1960016
+      sha256: b736be3c67985d9ce2cbce2db34eebedf311e2af326e10298a54a5ec77fe2f19
+      bytes: 1966712
     fit.json:
-      sha256: b25e4af2ddd35ff73f6f1e32ae0457fbfd98a0664196883756bb55ea9e8a3d7e
-      bytes: 14478
+      sha256: 323bc6391b9876472db3c65ee034011817d31dce8e50526e0d959be659aa579e
+      bytes: 15306
     report.json:
-      sha256: e677a011024c68cc59503d0a021389c2fa1bfa2bd63590396f9a978ea1f912a4
-      bytes: 26622
+      sha256: 9c337c64dbd871009484e2e766c7c8c60bdc28d69a5f44a1b7ce51569d7faf21
+      bytes: 26818
     hidemask.png:
       sha256: 722da2aa4c4e4eb8c7d9b3277d417ea20db0decd99adb1ccd1420306bf04ec7f
       bytes: 17225
     preview.png:
-      sha256: b3c8b7d5f2a40dab07b3f7bf2219eee7070db4192c552f606243b329bc4c0a76
-      bytes: 386183
+      sha256: 7471e7830cd4ae268bc67da333eaddc8b68863bceec51d67d0c37043dd8749cc
+      bytes: 383042
     self_check_preview.png:
-      sha256: 50f3646a2a7fb0ebf19b26916e49c37733ca1bc546be35c92811bc9f326b18e7
-      bytes: 43247
+      sha256: 7c63b19ecdf5930525f1e66a87600e2eb8a98f338e93a5129b5025a7a4bac5ec
+      bytes: 42636
     head.tpl_f_tall.glb:
-      sha256: f88021d95c679b26b228199407697dcd9cdaef23e21ef306ed7f474648818455
-      bytes: 1938968
+      sha256: 9c19ed22b75ce4188a80bc47a8e4ac886a6cb1b5b860ed904d38748eb94bf451
+      bytes: 1949320
     fit.tpl_f_tall.json:
-      sha256: 658693a53012db8813341c9da25b97742ace51993dfc0aecebee8ec6e88190f7
-      bytes: 14425
+      sha256: ec67aeab03025ddf0bcbd378534a6c85f032db08901ba14bbe532e32d85ae58e
+      bytes: 15293
     report.tpl_f_tall.json:
-      sha256: adabdb29a9e2e76dceb30937c90254963342929ea7009f6bd52f9aa45bc03ac4
-      bytes: 26563
+      sha256: 594b815100bd5310cb69ea7a1d88f21fc6d6eb3863042ddfd7ac407358bd2ba3
+      bytes: 26724
     hidemask.tpl_f_tall.png:
       sha256: 6dc9ff3c79c1cdecaec0d0b8bd9b9f179a5c6b9f36077ecc597e1f2c301f3a76
       bytes: 17382
     preview.tpl_f_tall.png:
-      sha256: 9b76e262a26abd014c6198281712d3045a7ed542e831043a42ccbb89dd8c2ade
-      bytes: 379013
+      sha256: a8e973ca77cd5b74bc855dc656935410244e836201de0f60308177872c5567ab
+      bytes: 373876
     self_check_preview.tpl_f_tall.png:
-      sha256: f2a560853dcd1fa23375db968bae0f9e41d93f705e4ea8802b725251f7eef1a2
-      bytes: 42211
+      sha256: 122b2623743bcc23933e584d5d77dda68302fb1dd87147c6c400b407991e4afc
+      bytes: 41406
     head.tpl_f_small.glb:
-      sha256: 0d725fc49ec0a6aae2d119a01c71667211721fc6d0ee398bab40a9eb77b5a463
-      bytes: 1953680
+      sha256: a44efa3e55ef7fc89b63153d39dba823351e99b836b0ec0e8be5b906f0366024
+      bytes: 1962200
     fit.tpl_f_small.json:
-      sha256: c26e079b67398838aa63cc259b2021aaa4462d3e2723d44ac261b8856a840796
-      bytes: 14532
+      sha256: b16e12eed3d20bda696ca5acce0d5a7ecb37ed3b9bb39efabd60b20a2a7c9f05
+      bytes: 15388
     report.tpl_f_small.json:
-      sha256: 265c38614f26e06d19157c26078c4f7a09e4b5c7c0c997f47cafdc4ccee0ec12
-      bytes: 26675
+      sha256: 661998cad5af6b0e2feab5aa9bc17aab5486ffae25882ee139edb799807f9204
+      bytes: 26870
     hidemask.tpl_f_small.png:
       sha256: 57df7475a67aa7c7b0ac904fc276da42c9a0e6630fb73d7709450c355d04f4a8
       bytes: 17759
     preview.tpl_f_small.png:
-      sha256: 8e3c2b6bedcd10cdf5f7097488a2bf067ee60b2cae58d4dac5c3bc251da73177
-      bytes: 387656
+      sha256: d79a1d971f4df932dae63797028c7b9e7e7b1d2dc5d0a85b8d852619447f8312
+      bytes: 383317
     self_check_preview.tpl_f_small.png:
-      sha256: 198c560c183d8da1e60b7df75b0a24e3879600e791e4d73aca250f6f8204279b
-      bytes: 44063
+      sha256: 99e15d63b955c5f3c704f3e4f8fa38d79795df74fca2cc68b5462b0039d376ba
+      bytes: 43147

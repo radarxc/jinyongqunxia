@@ -19,7 +19,7 @@
       "z": 0.022278174
     },
     "scale": 1.08,
-    "residualMu": 2e-09
+    "residualMu": 5e-09
   },
   "hideRegions": [],
   "hideMask": {
@@ -28,9 +28,9 @@
   },
   "neverHide": [],
   "skinTint": [
-    1.104039702,
-    1.089476326,
-    1.140311342
+    1.060303228,
+    1.023014975,
+    1.062063978
   ],
   "weights": {
     "jointsAllowed": [
@@ -102,8 +102,9 @@
     ]
   },
   "deltaEBefore": 2.524140274,
-  "deltaE": 0.044466581,
-  "deltaEFaceMean": 2.290473722,
+  "deltaE": 0.132277515,
+  "deltaEFaceMean": 0.937676402,
+  "deltaESameHeight": 1.574985308,
   "diagnostics": {
     "npc": "npc_munianci",
     "params": {
@@ -188,7 +189,7 @@
     "head": {
       "vertices": 9801,
       "triangles": 18209,
-      "neckSkinVertices": 801
+      "neckSkinVertices": 820
     },
     "collarRemnants": {
       "candidates": 0,
@@ -221,16 +222,44 @@
       "collarMm": 12.0,
       "collarDeg": []
     },
+    "neckCenter": {
+      "probeMm": 0.5,
+      "hHeadMm": 18.0,
+      "headCenterMm": [
+        -3.147620913,
+        -0.665530693
+      ],
+      "templateCenterMm": [
+        3.887039559,
+        9.517144292
+      ],
+      "shiftMm": [
+        7.034660472,
+        10.182674985
+      ],
+      "shiftNormMm": 12.376320852,
+      "headMeanRadiusMm": 43.030431514,
+      "templateMeanRadiusMm": 41.956265423,
+      "headAngles": 360,
+      "templateAngles": 360,
+      "anglesDeg": [
+        [
+          0,
+          359
+        ]
+      ],
+      "hHeadAfterMm": 18.0
+    },
     "neckFit": {
       "rampMm": 20.0,
       "maxMm": 4.0,
       "shell": 1.12,
       "smoothDeg": 3,
       "freeZoneMm": 8.0,
-      "activeAngles": 97,
-      "movedVertices": 109,
-      "amountMaxMm": 4.0,
-      "maxShrinkMm": 4.0,
+      "activeAngles": 0,
+      "movedVertices": 0,
+      "amountMaxMm": 0.0,
+      "maxShrinkMm": 0.0,
       "hHeadBeforeMm": 18.0,
       "hHeadAfterMm": 18.0
     },
@@ -246,16 +275,16 @@
         "g1Skirt": 1251
       },
       "skinMissingInRegionA": 0,
-      "displacementMaxMm": 16.06975521,
+      "displacementMaxMm": 7.440519653,
       "skinInset": {
-        "moved": 1136,
-        "maxMoveMm": 0.134205964
+        "moved": 1127,
+        "maxMoveMm": 0.143729803
       },
       "solve": {
         "freeVertices": 1317,
         "constrainedVertices": 3798,
-        "residualMaxMu": 2e-09,
-        "displacementMaxMu": 0.009487957
+        "residualMaxMu": 5e-09,
+        "displacementMaxMu": 0.004393056
       },
       "orientation": {
         "interiorEdges": 14435,
@@ -299,22 +328,24 @@
         0.609540682
       ],
       "tintedTemplateSrgb": [
-        0.821957442,
-        0.720586762,
-        0.64690935
+        0.807311342,
+        0.700510437,
+        0.626424179
       ],
       "averageSpace": "sRGB arithmetic mean",
       "skinTint": [
-        1.104039702,
-        1.089476326,
-        1.140311342
+        1.060303228,
+        1.023014975,
+        1.062063978
       ],
       "deltaEBefore": 2.524140274,
-      "deltaE": 0.044466581,
+      "deltaE": 0.132277515,
       "sourceSamples": 2686,
       "templateSamples": 9795,
-      "deltaEFaceMean": 2.290473722,
+      "deltaEFaceMean": 0.937676402,
+      "deltaESameHeight": 1.574985308,
       "neckMatch": {
+        "reference": "headCut/bodySeam",
         "faceTint": [
           1.025253498,
           0.982236691,
@@ -322,57 +353,64 @@
         ],
         "faceDeltaE": 1.1611e-05,
         "gainBefore": [
-          1.076845584,
-          1.109179016,
-          1.110677137
+          1.034186404,
+          1.041515741,
+          1.03446325
         ],
         "clipped": false,
         "residualGain": [
           1.0,
           1.0,
           1.0
-        ]
+        ],
+        "residualGainSameHeight": [
+          1.042502141,
+          1.072647118,
+          1.079128639
+        ],
+        "seamAngles": 2048,
+        "seamBandMm": 2.0
       },
       "strip": {
         "coveredRatio": 0.188693408,
         "gainMean": [
-          1.0,
-          1.0,
-          1.0
+          1.042502141,
+          1.072647118,
+          1.079128639
         ]
       }
     },
     "checks": {
       "color": {
         "bottom": {
-          "mean": 0.421748582,
-          "p95": 1.103001108,
-          "max": 1.894356999,
+          "mean": 0.749480102,
+          "p95": 1.025019823,
+          "max": 1.769450368,
           "samples": 1308
         },
         "top": {
-          "mean": 0.419118367,
-          "p95": 1.149310815,
-          "max": 2.098031173,
+          "mean": 0.398111324,
+          "p95": 1.165695307,
+          "max": 1.892590887,
           "angles": 360
         }
       },
       "g1": {
-        "meanDeg": 0.482535903,
-        "p95Deg": 1.500800136,
-        "maxDeg": 3.600679773,
+        "meanDeg": 0.397302556,
+        "p95Deg": 1.266440492,
+        "maxDeg": 2.696451096,
         "angles": 360,
-        "radialStepMeanMm": 0.304345019,
-        "radialStepMaxMm": 0.386058173,
-        "worstDeg": 189,
-        "worstStepDeg": 232
+        "radialStepMeanMm": 0.303691149,
+        "radialStepMaxMm": 0.40113117,
+        "worstDeg": 85,
+        "worstStepDeg": 85
       },
       "g1Bottom": {
-        "meanDeg": 0.204833141,
+        "meanDeg": 0.201706796,
         "p95Deg": 0.72181829,
         "maxDeg": 1.154146626,
         "angles": 360,
-        "stepMeanMm": 0.347146172,
+        "stepMeanMm": 0.347078338,
         "stepMinMm": 0.299109507,
         "stepMaxMm": 0.469502544
       },
@@ -380,8 +418,8 @@
         "angles": 360,
         "maxTurningPoints": 1,
         "anglesOverOneTurn": 0,
-        "maxBulgeMm": 0.09786407,
-        "maxWaistMm": 2.867069401
+        "maxBulgeMm": 0.0,
+        "maxWaistMm": 1.379544259
       },
       "motion": {
         "penetration": {
@@ -427,10 +465,10 @@
           "run": 453
         },
         "aboveCutExcluded": {
-          "bind": 5745,
-          "idle": 5376,
-          "walk": 5375,
-          "run": 5612
+          "bind": 5764,
+          "idle": 5395,
+          "walk": 5394,
+          "run": 5631
         },
         "bottomOverlapMinMm": {
           "bind": 0.292596857,
@@ -445,58 +483,58 @@
           "run": 0.0
         },
         "topExposedMaxMm": {
-          "bind": -0.299958136,
-          "idle": -0.136204742,
-          "walk": -0.189113767,
-          "run": -0.078673227
+          "bind": -0.299959805,
+          "idle": -0.139610703,
+          "walk": -0.191180827,
+          "run": -0.082595507
         },
         "topExposedP99Mm": {
-          "bind": -0.29997023,
-          "idle": -0.211000884,
-          "walk": -0.242042945,
-          "run": -0.170924231
+          "bind": -0.29998188,
+          "idle": -0.211862586,
+          "walk": -0.240698537,
+          "run": -0.169907685
         },
         "topExposedWorst": {
           "bind": {
             "time": 0.0,
-            "thetaDeg": 103.430526954,
-            "heightMm": 20.192764794
+            "thetaDeg": 96.076106259,
+            "heightMm": 21.999955787
           },
           "idle": {
             "time": 5.749999881,
-            "thetaDeg": 25.908153322,
-            "heightMm": 22.000045644
+            "thetaDeg": 33.091004935,
+            "heightMm": 22.000011252
           },
           "walk": {
             "time": 0.194444438,
-            "thetaDeg": 25.908153322,
-            "heightMm": 22.000045644
+            "thetaDeg": 33.091004935,
+            "heightMm": 22.000011252
           },
           "run": {
             "time": 0.416666667,
-            "thetaDeg": 25.908153322,
-            "heightMm": 22.000045644
+            "thetaDeg": 33.091004935,
+            "heightMm": 22.000011252
           }
         },
         "topEvaluated": {
-          "bind": 938,
-          "idle": 939,
-          "walk": 939,
+          "bind": 939,
+          "idle": 940,
+          "walk": 940,
           "run": 939
         },
         "topExposedAnyMaxMm": {
-          "bind": -0.299958136,
-          "idle": -0.136204742,
-          "walk": -0.189113767,
-          "run": 0.31516681
+          "bind": -0.299959805,
+          "idle": -0.139610703,
+          "walk": -0.191180827,
+          "run": 0.056059638
         },
         "hairPenetration": {
-          "bind": 0.010310889,
-          "idle": 0.036869239,
-          "walk": 0.033276051,
-          "run": 0.013279175
+          "bind": 0.010935791,
+          "idle": 0.038119044,
+          "walk": 0.031245118,
+          "run": 0.024996094
         },
-        "topCoverFaces": 443,
+        "topCoverFaces": 441,
         "frames": 73,
         "framesPerClip": {
           "bind": 1,
@@ -504,7 +542,7 @@
           "walk": 24,
           "run": 24
         },
-        "topUnderSkinMinMm": 0.299958136,
+        "topUnderSkinMinMm": 0.299959805,
         "penetrationThresholdMm": 1.0,
         "penetrationScope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
       },
@@ -518,17 +556,17 @@
         "worstG1Deg": null
       },
       "neckHoles": {
-        "bind": 0.000792236,
-        "idle": 0.000990491,
-        "walk": 0.001009285,
-        "run": 0.001132853
+        "bind": 0.000198059,
+        "idle": 0.00062448,
+        "walk": 0.000606796,
+        "run": 0.000885936
       }
     },
     "stats": {
       "vertices": 14936,
       "triangles": 27984,
-      "fileSize": 1497776,
-      "durationMs": 207184
+      "fileSize": 1498532,
+      "durationMs": 200961
     },
     "gateLevel": "pass"
   }

@@ -52036,7 +52036,12 @@
     "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
     "assets/default/model3d/dressup/garments/eq_buyi/**",
     "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
-    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**"
+    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**",
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/bake_hide_mask.py",
+    "packages/render/src/dressup/actor.ts",
+    "packages/render/src/dressup/types.ts",
+    "packages/render/src/dressup/actor-pose-offset.test.ts"
    ],
    "validate": {
     "exists": [
@@ -52232,6 +52237,81 @@
      [
       "{python}",
       "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-d2c-head-align",
+   "title": "3D 纸娃娃换装 · D2c · 拼头对位与下接缝配色（颈子截面对中 + 身体染色对准下接缝）→ 重切穆念慈 / 黄蓉三体型",
+   "phase": "PROD",
+   "wave": 40,
+   "kind": "draft",
+   "prompt": "ART-dressup-d2c-head-align.md",
+   "deps": [
+    "ART-dressup-d2b-huangrong-recut"
+   ],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10：穆念慈颈部错开 → 修对位把拼头做完美；身体颜色对齐脖子下接缝附近颜色。Claude 直接执行（AR-110）",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/model3d/npc_huangrong"
+   ],
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "assets/default/model3d/dressup/heads/npc_munianci/**",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_munianci/head.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f_small.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_munianci/shots/align.tpl_f_medium.jpg",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_small.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_huangrong/shots/align.tpl_f_medium.jpg"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
      ],
      [
       "{python}",
