@@ -52070,6 +52070,52 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-b6-cull",
+   "title": "3D 纸娃娃换装 · B6 · 运行时蒙皮网格视锥剔除修复（动作中头 / 衣物被整块剔掉）",
+   "phase": "PROD",
+   "wave": 39,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b6-cull.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "协调者 2026-10-09 D1b 实测发现；作者 2026-10-10「继续做」",
+   "writes": [
+    "packages/render/src/dressup/*.ts",
+    "packages/render/CLAUDE.md"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/actor.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
