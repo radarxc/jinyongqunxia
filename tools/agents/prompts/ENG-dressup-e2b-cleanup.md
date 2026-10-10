@@ -41,3 +41,12 @@
 
 ## 协调者说明（2026-10-09 18:50）
 traex 三次运行均在单次 200 分钟上限处被停。按作者指示（「这个你自己来跑吧」）与 AR-110，本任务由 Claude 直接收尾：在第三次运行留下的代码与产物上继续，仍走四条检查、`pnpm check` 与 GPT 审核。
+
+## 协调者裁定（2026-10-09 22:00，Claude 收尾时查明）
+1. **推离改用新选项** `fit_garment.py --push-mode volume`：体表位移场（交领等叠层整体平移，不再各推各的而互穿）+ 限拉伸垂坠（投影动力学弹簧，胸下的布被带向前形成垂坠）+ 伪法向符号；默认仍为 `vertex`，既有行为不变。劲装三模板用新选项、权重 B（整件模板权重）、贴图肤色清理。
+2. **减面顺序**：全分辨率贴合后再 `pack_glb.mjs --simplify 0.25 --no-meshopt` 减面，新增 `untangle_glb.py` 对减面器留下的少量细长翻面三角做局部翻边（只改索引、不动顶点），再 `pack_glb.mjs` 压缩。先减面再贴合时粗网格上推离不收敛（实测体内残留 50–74 点、边长合格率 97%），弃用。
+3. **validate 两处测量修正**（加入写集；阈值与输出格式不变）：
+   - 衣物 / 发型按 `tianshuSourceVertexAccessor` 回指真实源（与道具同口径）。此前衣物分支不认压紧映射，traex 把 fit.source 指向产出本身（`extract_run/eq_jinzhuang_clean*.glb`）以对上顶点数——这些文件删除，fit.source 恢复为 `extract_run/eq_jinzhuang_raw_skinned.glb`；
+   - A1 判为穿入的点在封闭身体上再用射线奇偶复核：模板三体型各有 26–31 个与着色法向相反的面（胸下 Spine1 7–8 个），A1（重心插值顶点法向定符号）在其附近把体外 22–49 mm 的胸下垂坠点判成体内，射线奇偶与伪法向一致判为体外。复核只去掉假穿透；开口网格保持 A1 口径。回归在 `tests_garment.py`。
+4. **动画穿插拆给 E2c**（`ENG-dressup-e2c-skinning`）：idle / walk 可见穿透超 2% 与 run holes 超 0.05%，伪法向确认是真穿入（垂手时宽袖碰髋 / 大腿 9–28 mm、下摆碰大腿），属 LBS 蒙皮问题，需按姿势优化权重。本任务三模板 level 如实（预计 fail），manifest 保持 experimental；第 2 条 A / B 权重对比照做并写进报告。
+5. 写集追加 `tools/model3d/dressup/{validate.py,untangle_glb.py}`；检查不变。
