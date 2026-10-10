@@ -31,8 +31,8 @@
 | 兵器 mainHand（exotic 80、sword 49、blade 43、staff 35、spear 22、whip 17） | 246 | P1：持态出鞘；剑 / 刀另出佩态入鞘 | ~60 基础形 / 名器 × 65；入鞘 ~20 × 65 | ~5,200 |
 | 暗器 offHand（dart 17、needle 8、ball 8、bolt 5、gun 4、awl 4、powder 1） | 47 | P1（小件，可共形） | ~10 × 65 | ~650 |
 | **装备小计** | **1,004** | | | **~11,300** |
-| 主要角色头（主线核心 ~110 人） | ~110 | P5：已有 3D 整身 34 人切头；其余 ~76 人 Tripo 半身生成 | ~76 × 65 | ~4,940 |
-| **合计** | | | | **~16,200**（余额 17,325） |
+| 主要角色头（主线核心 ~110 人） | ~110 | P5：已有 3D 整身 34 人切头；其余 ~76 人 Tripo 全身生成 + 绑骨（D2 实测：切头要骨架与蒙皮权重） | ~76 × 85 | ~6,460 |
+| **合计** | | | | **~17,760**（立项时余额 17,325；D2 后 17,090，差约 670，W1 前由作者定） |
 
 点数 = Tripo 网页版账户积分：生成 65、绑骨 20、动作 / 导出 / 重试 0。每次花点必须记账（§4.4）。
 
@@ -104,8 +104,8 @@
 |---|---|---|---|
 | A1 | 已有 3D 整身模型（`assets/default/model3d/npc_*`，34 人）：切头、尺寸归一、肤色匹配、模板颈片双调和拼接、身体遮罩 | `python3 tools/model3d/dressup/cut_head.py --source <model_rig.glb> --template <tpl> --id <npc> --out heads/<npc>`（迭代加 `--fast`，约 12 秒；完整约 5 分钟） | `report.json` level draft（V4 门禁），`checks_detail.transitionReportOnly` 人工过目；参数默认值在 `fit.json.diagnostics.params` |
 | A2 | 运行时截图验收 | `node tools/model3d/dressup/shoot_head.mjs --head before=<旧> --head after=heads/<npc> --out <shots> --poses bind,idle@0.6,walk@0.35,run@0.5 --views neck,neck_left,neck_back_left,neck_back_right,nape_low,under,head_back --mask both`（无头 Chrome 驱动 5173 `/character-3d`；每次定格从绑定姿势起算，姿势签名逐头比对） | 无黑缝、碎片、色阶、外凸圈、发片异常；summary 的 hideMapError 为 null；对照总图随报告提交 |
-| B1 | 无 3D 的主线核心角色（~76 人）：从立绘做"半身 + 颈桩"参考图（光头？按角色发式保留头发） | agy 图像工具；`check_plate` 头部模式 | 脸与立绘一致（AR-75 / AR-98 人脸对齐） |
-| B2 | Tripo `image_to_model`（65）→ 切头（同 A1~A2） | `tripo-web` skill；`cut_head.py` | 同上 |
+| B1 | 无 3D 的主线核心角色（~76 人）：从立绘做全身 A 字参考图（绑骨要全身）；按角色发式保留头发，去刘海 / 发饰 / 耳饰、双耳露出、束袖窄裙（tripo-web §1）；**整圈颈部裸露，领口落在颈根以下 ≥ 6 mm（建议 ≥ 10 mm）**——D2 第一版交领包到颈前，切头找不到连续颈带，白花 85 点 | agy 图像工具；`check_plate` 头部模式 | 脸与立绘一致（AR-75 / AR-98 人脸对齐）；颈部四周两指宽皮肤 |
+| B2 | Tripo `image_to_model`（65）+ 绑骨（20）→ 导出 → `textures.py` 压贴图 → 源件超过约 9 万三角时先减面到约 8.5 万（D2：18.8 万三角的源件切出 4.3 万三角的头，超 V4 预算 3 万）→ 切头（同 A1~A2） | `tripo-web` skill；`node tools/model3d/dressup/pack_glb.mjs <tripo_rig.glb> <tripo_rig_sNNN.glb> --simplify <85000/源三角数> --no-meshopt`（逐字节可复现，命令与哈希记进 `source.json.cut_source`）；`cut_head.py` | 同上；切头源件与 Tripo 导出件都入库 `heads/<npc>/source/` |
 | 3 | 运行时挂头 | `actor.setHead(url, { skinTint })`（B5） | 颈环无缝（静止 + 动作） |
 | 4 | 入库 | `ingest.py head <npc_id>` | `heads/<npc_id>/` |
 
