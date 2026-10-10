@@ -4,13 +4,15 @@
 //
 // 用法：
 //   node tools/model3d/dressup/shoot_head.mjs --head <目录> [--head 标签=<目录> ...] --out <目录>
-//        [--poses bind,idle@0.6,walk@0.35,run@0.25] [--views neck,neck_left,neck_right,neck_back,neck_3q,under,head,full]
+//        [--template tpl_f_tall] [--poses bind,idle@0.6,walk@0.35,run@0.25]
+//        [--views neck,neck_left,neck_right,neck_back,neck_3q,under,head,full]
 //        [--mask on|off|both] [--page http://localhost:5173/character-3d] [--size 1200x900] [--dpr 1.5]
 //        [--port 9333] [--close-browser] [--json]
 // 头目录须含 head.glb + fit.json（fit.hideMask.file 相对 head.glb 解析）；不给 --head 时只拍裸模板。
+// --template 先在页面切到该体型；头目录里有 head.<模板>.glb + fit.<模板>.json 时优先用之（与运行时按体型选头一致）。
 // 浏览器默认常驻（同一端口复用，迭代时省去启动时间）；--close-browser 用完即关。
 // 依赖：Node ≥ 22（内置 WebSocket / fetch），本机 Google Chrome，开发服务器已在 --page 地址运行。
-/* global Buffer, WebSocket, fetch, setTimeout, window, performance, createImageBitmap, OffscreenCanvas, btoa */
+/* global Buffer, WebSocket, fetch, setTimeout, window, document, performance, createImageBitmap, OffscreenCanvas, btoa */
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:http';
 import { mkdirSync, readFileSync, statSync, writeFileSync, existsSync } from 'node:fs';
@@ -63,7 +65,8 @@ function parseArgs(argv) {
     closeBrowser: false, json: false, timeoutSec: 120 };
   for (let i = 0; i < argv.length; i += 1) {
     const key = argv[i]; const next = () => { if (i + 1 >= argv.length) throw new Error(`${key} 缺参数`); return argv[++i]; };
-    if (key === '--head') {
+    if (key === '--template') args.template = next();
+    else if (key === '--head') {
       const value = next(); const eq = value.indexOf('=');
       const label = eq > 0 ? value.slice(0, eq) : basename(resolve(value));
       args.heads.push({ label, dir: resolve(eq > 0 ? value.slice(eq + 1) : value) });
@@ -95,7 +98,10 @@ function parseArgs(argv) {
   });
   args.masks = args.mask === 'both' ? [true, false] : [args.mask !== 'off'];
   for (const head of args.heads) {
-    for (const file of ['head.glb', 'fit.json']) {
+    const variant = args.template ? [`head.${args.template}.glb`, `fit.${args.template}.json`] : null;
+    [head.glb, head.fit] = variant && variant.every(file => existsSync(join(head.dir, file))) ? variant
+      : ['head.glb', 'fit.json'];
+    for (const file of [head.glb, head.fit]) {
       if (!existsSync(join(head.dir, file))) throw new Error(`${head.dir} 缺 ${file}`);
     }
   }
@@ -188,13 +194,30 @@ async function pageWaitReady(timeoutMs) {
   return false;
 }
 
-async function pageEquipHead(base, id) {
+async function pageSelectTemplate(template, timeoutMs) {
+  // 换装页的体型按钮文字以「<短名> ·」开头（tpl_f_tall → tall）；切换后等新 actor 出第一帧。
+  const short = template.replace(/^tpl_[a-z]+_/u, '');
+  const before = window.__dressup?.actor;
+  const button = [...document.querySelectorAll('button')].find(b => b.textContent.trim().startsWith(`${short} ·`));
+  if (!button) return 'no-button';
+  if (button.classList.contains('active')) return 'ok';
+  button.click();
+  const start = performance.now();
+  while (performance.now() - start < timeoutMs) {
+    const d = window.__dressup;
+    if (d && d.actor && d.actor !== before && d.actor.stats && d.actor.stats().drawCalls >= 1) return 'ok';
+    await new Promise(r => setTimeout(r, 200));
+  }
+  return 'timeout';
+}
+
+async function pageEquipHead(base, glb, fitName, id) {
   const d = window.__dressup; const a = d.actor;
   if (!a.__shootOriginalUpdate) { a.__shootOriginalUpdate = a.update; a.update = () => {}; }
   if (window.__shootHeadId) { try { a.unequip(window.__shootHeadId); } catch { /* ignore */ } window.__shootHeadId = undefined; }
   if (!base) return a.stats();
-  const fit = await (await fetch(base + 'fit.json', { cache: 'no-store' })).json();
-  await a.equip({ kind: 'head', id, url: base + 'head.glb', fit });
+  const fit = await (await fetch(base + fitName, { cache: 'no-store' })).json();
+  await a.equip({ kind: 'head', id, url: base + glb, fit });
   window.__shootHeadId = id;
   const expectMask = Boolean(fit.hideMask && fit.hideMask.file);
   for (let i = 0; i < 200 && expectMask; i += 1) {
@@ -398,13 +421,18 @@ async function main() {
     if (!await cdp.evaluate(pageWaitReady, args.timeoutSec * 1000)) {
       throw new Error(`页面 ${args.page} 在 ${args.timeoutSec}s 内未就绪（开发服务器在跑吗？window.__dressup.actor 不存在）`);
     }
+    if (args.template) {
+      const selected = await cdp.evaluate(pageSelectTemplate, args.template, args.timeoutSec * 1000);
+      if (selected !== 'ok') throw new Error(`切换体型 ${args.template} 失败：${selected}`);
+      summary.template = args.template;
+    }
     const heads = args.heads.length ? args.heads.map((head, i) => ({ ...head, base: `http://127.0.0.1:${port}/${i}/` }))
-      : [{ label: 'template', dir: null, base: null }];
+      : [{ label: 'template', dir: null, base: null, glb: null, fit: null }];
     const rows = [];
     for (const head of heads) {
-      const stats = await cdp.evaluate(pageEquipHead, head.base, `shoot__${head.label}`);
-      summary.heads.push({ label: head.label, dir: head.dir, stats, hideMapError: stats.hideMapError ?? null,
-        bytes: head.dir ? statSync(join(head.dir, 'head.glb')).size : 0 });
+      const stats = await cdp.evaluate(pageEquipHead, head.base, head.glb, head.fit, `shoot__${head.label}`);
+      summary.heads.push({ label: head.label, dir: head.dir, glb: head.glb, fit: head.fit, stats,
+        hideMapError: stats.hideMapError ?? null, bytes: head.dir ? statSync(join(head.dir, head.glb)).size : 0 });
       for (const pose of args.poseList) {
         const signature = await cdp.evaluate(pagePose, pose.clip, pose.t);
         const seen = summary.poseSignatures[pose.name];
@@ -431,7 +459,7 @@ async function main() {
       }
     }
     const sheet = await cdp.evaluate(pageSheet, rows, args.viewList.map(v => v.name), 420,
-      `shoot_head · ${args.heads.map(h => h.label).join(' vs ') || 'template'} · ${new Date().toISOString()}`);
+      `shoot_head · ${args.heads.map(h => h.label).join(' vs ') || 'template'}${args.template ? ` · ${args.template}` : ''} · ${new Date().toISOString()}`);
     const sheetPath = join(args.out, 'sheet.jpg');
     writeFileSync(sheetPath, Buffer.from(sheet.base64, 'base64'));
     summary.sheet = { file: sheetPath, width: sheet.width, height: sheet.height };

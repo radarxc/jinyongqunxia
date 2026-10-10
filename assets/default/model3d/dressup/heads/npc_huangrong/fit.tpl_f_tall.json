@@ -1,0 +1,434 @@
+{
+  "schema": "tianshu-dressup-fit.v1",
+  "id": "npc_huangrong",
+  "kind": "head",
+  "npc": "npc_huangrong",
+  "template": "tpl_f_tall",
+  "mPerMu": 1.69370023,
+  "source": {
+    "file": "assets/default/model3d/npc_huangrong/model_rig.glb",
+    "sha256": "cc745165bf7798c35763a813b6cb0d54bb0d6e39cc35c58951e75c54c0ad1797"
+  },
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_tall/body.glb",
+    "sha256": "fc6772d64fb84a26f87346d9043e8e7cf508395dcb4658e92a0aa60e75da907d"
+  },
+  "ring": {
+    "sourceRadiusMu": {
+      "x": 0.029523276,
+      "z": 0.021584576
+    },
+    "scale": 0.92,
+    "residualMu": 9e-09
+  },
+  "hideRegions": [],
+  "hideMask": {
+    "file": "hidemask.tpl_f_tall.png",
+    "size": 1024
+  },
+  "neverHide": [],
+  "skinTint": [
+    0.895050602,
+    0.829012123,
+    0.867359462
+  ],
+  "weights": {
+    "jointsAllowed": [
+      "mixamorig:Hips",
+      "mixamorig:LeftUpLeg",
+      "mixamorig:LeftLeg",
+      "mixamorig:LeftFoot",
+      "mixamorig:LeftToeBase",
+      "mixamorig:LeftToe_End",
+      "mixamorig:RightUpLeg",
+      "mixamorig:RightLeg",
+      "mixamorig:RightFoot",
+      "mixamorig:RightToeBase",
+      "mixamorig:RightToe_End",
+      "mixamorig:Spine",
+      "mixamorig:Spine1",
+      "mixamorig:Spine2",
+      "mixamorig:LeftShoulder",
+      "mixamorig:LeftArm",
+      "mixamorig:LeftForeArm",
+      "mixamorig:LeftHand",
+      "mixamorig:LeftHandIndex1",
+      "mixamorig:LeftHandIndex2",
+      "mixamorig:LeftHandIndex3",
+      "mixamorig:LeftHandIndex4",
+      "mixamorig:LeftHandMiddle1",
+      "mixamorig:LeftHandMiddle2",
+      "mixamorig:LeftHandMiddle3",
+      "mixamorig:LeftHandMiddle4",
+      "mixamorig:LeftHandPinky1",
+      "mixamorig:LeftHandPinky2",
+      "mixamorig:LeftHandPinky3",
+      "mixamorig:LeftHandPinky4",
+      "mixamorig:LeftHandRing1",
+      "mixamorig:LeftHandRing2",
+      "mixamorig:LeftHandRing3",
+      "mixamorig:LeftHandRing4",
+      "mixamorig:LeftHandThumb1",
+      "mixamorig:LeftHandThumb2",
+      "mixamorig:LeftHandThumb3",
+      "mixamorig:LeftHandThumb4",
+      "mixamorig:Neck",
+      "mixamorig:Head",
+      "mixamorig:HeadTop_End",
+      "mixamorig:RightShoulder",
+      "mixamorig:RightArm",
+      "mixamorig:RightForeArm",
+      "mixamorig:RightHand",
+      "mixamorig:RightHandIndex1",
+      "mixamorig:RightHandIndex2",
+      "mixamorig:RightHandIndex3",
+      "mixamorig:RightHandIndex4",
+      "mixamorig:RightHandMiddle1",
+      "mixamorig:RightHandMiddle2",
+      "mixamorig:RightHandMiddle3",
+      "mixamorig:RightHandMiddle4",
+      "mixamorig:RightHandPinky1",
+      "mixamorig:RightHandPinky2",
+      "mixamorig:RightHandPinky3",
+      "mixamorig:RightHandPinky4",
+      "mixamorig:RightHandRing1",
+      "mixamorig:RightHandRing2",
+      "mixamorig:RightHandRing3",
+      "mixamorig:RightHandRing4",
+      "mixamorig:RightHandThumb1",
+      "mixamorig:RightHandThumb2",
+      "mixamorig:RightHandThumb3",
+      "mixamorig:RightHandThumb4"
+    ]
+  },
+  "deltaEBefore": 4.992215429,
+  "deltaE": 7.5071e-05,
+  "diagnostics": {
+    "npc": "npc_huangrong",
+    "params": {
+      "patchBottomMm": -3.0,
+      "bottomBandMm": 8.0,
+      "maskOffsetMm": 3.0,
+      "bottomLiftMm": 0.3,
+      "topBandMm": 4.0,
+      "topInsetMm": 0.3,
+      "g1SkirtMm": 5.0,
+      "headFloorMarginMm": 2.0,
+      "floorCoverage": 0.97,
+      "floorRunMm": 6.0,
+      "backTopMm": 130.0,
+      "envelopeInsetMm": 3.0,
+      "hairlineMm": 12.0,
+      "hairlineBlendMm": 14.0,
+      "colorBlendMm": 14.0,
+      "weightBlendMm": 40.0,
+      "patchSubdivisions": 1,
+      "patchMergeMm": 0.05,
+      "sliverMm": 0.02,
+      "stripRows": 256,
+      "stripLowerRows": 176,
+      "stripSplitMm": 8.0,
+      "atlasSize": 2048,
+      "atlasJpeg": "q90 4:4:4",
+      "regionSmoothDeg": 5.0
+    },
+    "cut": {
+      "templateBoneFraction": 0.293436644,
+      "sourceCenterMu": [
+        0.001912508,
+        0.818162879,
+        -0.007317602
+      ],
+      "headFloorMm": 18.0,
+      "maskPlaneMm": 0.0,
+      "regionADeg": 286.0,
+      "probeAngles": 288
+    },
+    "measurements": {
+      "sourceEarWidthMu": 0.109303062,
+      "sourceFaceHeightMu": 0.060588151,
+      "targetEarWidthMu": 0.09658049,
+      "targetFaceHeightMu": 0.0575,
+      "widthScale": 0.883602785,
+      "faceScale": 0.949030448,
+      "rawScale": 0.915732465,
+      "scaleApplied": 0.92,
+      "scaleClamped": true,
+      "overallSizeDeviationRatio": 0.004660242,
+      "overallSizeGatePass": true
+    },
+    "head": {
+      "vertices": 10168,
+      "triangles": 16372,
+      "neckSkinVertices": 343
+    },
+    "patch": {
+      "vertices": 5763,
+      "triangles": 10948,
+      "uvSeamDuplicates": 53,
+      "boundaryLoops": 2,
+      "sideBoundaryPinned": 0,
+      "constrained": {
+        "bottom": 1300,
+        "top": 1899,
+        "g1Skirt": 1247
+      },
+      "skinMissingInRegionA": 74,
+      "displacementMaxMm": 19.189120804,
+      "skinInset": {
+        "moved": 1010,
+        "maxMoveMm": 0.70751027
+      },
+      "solve": {
+        "freeVertices": 1317,
+        "constrainedVertices": 4446,
+        "residualMaxMu": 9e-09,
+        "displacementMaxMu": 0.011329703
+      },
+      "orientation": {
+        "interiorEdges": 16133,
+        "consistentEdgeRatio": 1.0,
+        "boundaryEdges": 578,
+        "nonManifoldEdges": 0,
+        "outwardAreaRatio": 1.0,
+        "outwardFaceRatio": 1.0
+      }
+    },
+    "hideMask": {
+      "file": "hidemask.tpl_f_tall.png",
+      "size": 1024,
+      "mode": "L",
+      "encoding": "signed-height-zero-at-0.5",
+      "transitionRangeMu": 0.005939099,
+      "coveredTriangles": 17702,
+      "whitePixels": 110360,
+      "transitionPixels": 8160,
+      "aboveVisibleVertices": 0,
+      "aboveVisibleTriangles": 0,
+      "boundaryMaxAboveMm": 0.078925141,
+      "boundaryToleranceMm": 0.5,
+      "boundaryHeightRangeMm": [
+        -0.132775337,
+        0.078925141
+      ],
+      "boundaryWithinBand": true,
+      "belowRetainedTriangles": 23671,
+      "leakTriangles": 0
+    },
+    "color": {
+      "sourceSrgb": [
+        0.748534865,
+        0.637133716,
+        0.571283841
+      ],
+      "templateSrgb": [
+        0.78652734,
+        0.693381377,
+        0.609540682
+      ],
+      "tintedTemplateSrgb": [
+        0.748534865,
+        0.637133716,
+        0.57128449
+      ],
+      "averageSpace": "sRGB arithmetic mean",
+      "skinTint": [
+        0.895050602,
+        0.829012123,
+        0.867359462
+      ],
+      "deltaEBefore": 4.992215429,
+      "deltaE": 7.5071e-05,
+      "sourceSamples": 1618,
+      "templateSamples": 9795,
+      "strip": {
+        "coveredRatio": 0.323942765,
+        "gainMean": [
+          1.113510468,
+          1.146700456,
+          1.095005961
+        ]
+      }
+    },
+    "checks": {
+      "color": {
+        "bottom": {
+          "mean": 0.482621232,
+          "p95": 0.677018338,
+          "max": 1.634267617,
+          "samples": 1308
+        },
+        "top": {
+          "mean": 0.581717476,
+          "p95": 1.41580935,
+          "max": 1.827918887,
+          "angles": 264
+        }
+      },
+      "g1": {
+        "meanDeg": 0.535215851,
+        "p95Deg": 2.141588109,
+        "maxDeg": 4.049359845,
+        "angles": 264,
+        "radialStepMeanMm": 0.30110564,
+        "radialStepMaxMm": 0.387403801
+      },
+      "g1Bottom": {
+        "meanDeg": 0.20628114,
+        "p95Deg": 0.72181829,
+        "maxDeg": 1.154146626,
+        "angles": 360,
+        "stepMeanMm": 0.347171278,
+        "stepMinMm": 0.299109507,
+        "stepMaxMm": 0.469502544
+      },
+      "shape": {
+        "angles": 264,
+        "maxTurningPoints": 1,
+        "anglesOverOneTurn": 0,
+        "maxBulgeMm": 0.596359916,
+        "maxWaistMm": 3.059383466
+      },
+      "motion": {
+        "penetration": {
+          "bindVertices": 0,
+          "idle": 0.0,
+          "walk": 0.0,
+          "run": 0.0
+        },
+        "penetrationWorst": {
+          "bind": {
+            "ratio": 0.0,
+            "count": 0,
+            "evaluated": 191,
+            "time": 0.0,
+            "minimumMm": 0.292596857
+          },
+          "idle": {
+            "ratio": 0.0,
+            "count": 0,
+            "evaluated": 596,
+            "time": 0.0,
+            "minimumMm": 0.290254123
+          },
+          "walk": {
+            "ratio": 0.0,
+            "count": 0,
+            "evaluated": 586,
+            "time": 0.0,
+            "minimumMm": 0.274314352
+          },
+          "run": {
+            "ratio": 0.0,
+            "count": 0,
+            "evaluated": 375,
+            "time": 0.0,
+            "minimumMm": -0.42549996
+          }
+        },
+        "evaluatedVertices": {
+          "bind": 191,
+          "idle": 654,
+          "walk": 594,
+          "run": 453
+        },
+        "aboveCutExcluded": {
+          "bind": 5968,
+          "idle": 5599,
+          "walk": 5598,
+          "run": 5831
+        },
+        "bottomOverlapMinMm": {
+          "bind": 0.292596857,
+          "idle": 0.277357476,
+          "walk": 0.27918437,
+          "run": 0.26346658
+        },
+        "topExposedRatio": {
+          "bind": 0.0,
+          "idle": 0.0,
+          "walk": 0.0,
+          "run": 0.0
+        },
+        "topExposedMaxMm": {
+          "bind": -0.29996555,
+          "idle": -0.217827583,
+          "walk": -0.242020807,
+          "run": -0.19768872
+        },
+        "topExposedP99Mm": {
+          "bind": -0.299974038,
+          "idle": -0.234806097,
+          "walk": -0.262714649,
+          "run": -0.228550634
+        },
+        "topExposedWorst": {
+          "bind": {
+            "time": 0.0,
+            "thetaDeg": 87.752569571,
+            "heightMm": 18.744942186
+          },
+          "idle": {
+            "time": 7.666666508,
+            "thetaDeg": 189.712264001,
+            "heightMm": 21.999955984
+          },
+          "walk": {
+            "time": 1.361111065,
+            "thetaDeg": 356.145309802,
+            "heightMm": 22.000029637
+          },
+          "run": {
+            "time": 0.364583333,
+            "thetaDeg": 19.593388514,
+            "heightMm": 21.999967082
+          }
+        },
+        "topEvaluated": {
+          "bind": 822,
+          "idle": 822,
+          "walk": 822,
+          "run": 820
+        },
+        "hairPenetration": {
+          "bind": 0.011348756,
+          "idle": 0.046704496,
+          "walk": 0.046268005,
+          "run": 0.172850284
+        },
+        "frames": 73,
+        "framesPerClip": {
+          "bind": 1,
+          "idle": 24,
+          "walk": 24,
+          "run": 24
+        },
+        "topUnderSkinMinMm": 0.29996555,
+        "penetrationThresholdMm": 1.0,
+        "penetrationScope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
+      },
+      "transitionReportOnly": {
+        "angles": 22,
+        "g1MaxDeg": 16.996611789,
+        "g1P95Deg": 8.385928482,
+        "stepMaxMm": 0.43340931,
+        "bulgeMaxMm": 0.789908635,
+        "colorP95": 1.774995632,
+        "worstG1Deg": 229
+      },
+      "neckHoles": {
+        "bind": 0.000972447,
+        "idle": 0.001171303,
+        "walk": 0.000818107,
+        "run": 0.001278178
+      }
+    },
+    "stats": {
+      "vertices": 15984,
+      "triangles": 27320,
+      "fileSize": 1939044,
+      "durationMs": 196892
+    },
+    "gateLevel": "pass"
+  }
+}
