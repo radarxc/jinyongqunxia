@@ -3,13 +3,13 @@
   category: model3d
   kind: dressup-head
   template: tpl_f_medium
-  sha256: 8ffce7132e5bf33b6b4704b966b91ae0c327a3acf2e3af3950e073a7a4620398
-  size_bytes: 1966000
-  triangles: 27813
+  sha256: cd304929146127cade25a14bd2c23f768a71f93754cad38c8591f900448f5f59
+  size_bytes: 1960144
+  triangles: 27924
   report: report.json
   status: draft
   tool: tools/model3d/dressup/ingest.py v1
-  created: '2026-10-09T18:26:02-07:00'
+  created: '2026-10-09T20:27:59-07:00'
   fit: fit.json
   fits:
     tpl_f_medium:
@@ -17,6 +17,26 @@
       fit: fit.json
       report: report.json
       status: draft
+    tpl_f_tall:
+      file: head.tpl_f_tall.glb
+      fit: fit.tpl_f_tall.json
+      report: report.tpl_f_tall.json
+      status: draft
+      gateLevel: pass
+      sha256: 50db04f07150c369e63212e64ebda4aa923cd6f746f5d57c1010962814997540
+      size_bytes: 1939044
+      vertices: 15984
+      triangles: 27320
+    tpl_f_small:
+      file: head.tpl_f_small.glb
+      fit: fit.tpl_f_small.json
+      report: report.tpl_f_small.json
+      status: draft
+      gateLevel: pass
+      sha256: f4b3cc36f21aa52b7758ac6d4aee37ce5d3e6f608e8b2dba45eb1e52b8f02570
+      size_bytes: 1953504
+      vertices: 16194
+      triangles: 27703
   source:
     directory: assets/default/model3d/dressup/heads/npc_huangrong
     references: []
@@ -24,23 +44,59 @@
   npc: npc_huangrong
   experimental: true
   gateLevel: pass
-  vertices: 16394
+  vertices: 16283
   files:
     head.glb:
-      sha256: 8ffce7132e5bf33b6b4704b966b91ae0c327a3acf2e3af3950e073a7a4620398
-      bytes: 1966000
+      sha256: cd304929146127cade25a14bd2c23f768a71f93754cad38c8591f900448f5f59
+      bytes: 1960144
     fit.json:
-      sha256: c0bf91e5f2b916daab6fd54c0468817995b83eba93968518c0eeb63085217ce4
-      bytes: 11347
+      sha256: 2ed046afe58718c2a5ad00e7ffe9b212aded803cacc82ee6d5bf1a637f69a350
+      bytes: 11336
     report.json:
-      sha256: 2e269f3f1c67a8a00164633d5d2fc4e7b2db68c442fc2b5e339fb496b3d7337a
-      bytes: 24992
+      sha256: 4ea89517e5955ffa065723eaff05d21125b56722d4a7c4c07e85b4e14a754594
+      bytes: 24971
     hidemask.png:
       sha256: 722da2aa4c4e4eb8c7d9b3277d417ea20db0decd99adb1ccd1420306bf04ec7f
       bytes: 17225
     preview.png:
-      sha256: d730a57b81b2fc8c8bb93a84cc763b24476704c8c5fd16655589abb1c7e73aea
-      bytes: 384661
+      sha256: 20539c78a0fb1ae047ddbfda0719a5de6f49da4502f9dac85300198e9d9e31b4
+      bytes: 384507
     self_check_preview.png:
       sha256: fb7b6d2ab6d048f58e6365edbd9c26e6dceb29f8e1fe09b823765a8e55848ef7
       bytes: 42462
+    head.tpl_f_tall.glb:
+      sha256: 50db04f07150c369e63212e64ebda4aa923cd6f746f5d57c1010962814997540
+      bytes: 1939044
+    fit.tpl_f_tall.json:
+      sha256: f2f16454984845065a37464634474c133903e2454bbce80a48ed054bdef22f98
+      bytes: 11334
+    report.tpl_f_tall.json:
+      sha256: 73ffdc00abd0d876ccb7b6aaa4cd58ce7c0af622fd31c8c53948e2908b9ec6d1
+      bytes: 24897
+    hidemask.tpl_f_tall.png:
+      sha256: 6dc9ff3c79c1cdecaec0d0b8bd9b9f179a5c6b9f36077ecc597e1f2c301f3a76
+      bytes: 17382
+    preview.tpl_f_tall.png:
+      sha256: 361ba057a02859154c8f67ac6687960ac0c9ad642580f9c5a6e3d4e4f3fc5bb3
+      bytes: 377889
+    self_check_preview.tpl_f_tall.png:
+      sha256: f8a3c8d5426aba4273f787b61ec2ea77605496ae53477a37df510106d9d7ca9a
+      bytes: 41302
+    head.tpl_f_small.glb:
+      sha256: f4b3cc36f21aa52b7758ac6d4aee37ce5d3e6f608e8b2dba45eb1e52b8f02570
+      bytes: 1953504
+    fit.tpl_f_small.json:
+      sha256: 564444b6035512088a9a8592038b197df52b6621929e52b694c77b106041e84b
+      bytes: 11387
+    report.tpl_f_small.json:
+      sha256: 10db0cd9044e3b115939e039f5b3198f5a46520fef681ac0895743a0cc61de39
+      bytes: 25035
+    hidemask.tpl_f_small.png:
+      sha256: 57df7475a67aa7c7b0ac904fc276da42c9a0e6630fb73d7709450c355d04f4a8
+      bytes: 17759
+    preview.tpl_f_small.png:
+      sha256: 8e1a2fe5f154eeed60c9585e3639e158f788272e6c0d447a273ab02cbb9283af
+      bytes: 383067
+    self_check_preview.tpl_f_small.png:
+      sha256: a72046cfb00f796adb40e4911ccdd6c203a76b042ff832574db9a5b2db271d7a
+      bytes: 42734

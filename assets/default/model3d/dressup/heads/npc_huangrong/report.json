@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "8ffce7132e5bf33b6b4704b966b91ae0c327a3acf2e3af3950e073a7a4620398",
-      "sizeBytes": 1966000
+      "sha256": "cd304929146127cade25a14bd2c23f768a71f93754cad38c8591f900448f5f59",
+      "sizeBytes": 1960144
     },
     "fit": {
-      "sha256": "c0bf91e5f2b916daab6fd54c0468817995b83eba93968518c0eeb63085217ce4",
-      "sizeBytes": 11347
+      "sha256": "2ed046afe58718c2a5ad00e7ffe9b212aded803cacc82ee6d5bf1a637f69a350",
+      "sizeBytes": 11336
     }
   },
   "checks": [
@@ -337,7 +337,7 @@
     {
       "name": "budget.triangles",
       "pass": true,
-      "value": 27813,
+      "value": 27924,
       "threshold": "<= 30000"
     },
     {
@@ -384,24 +384,24 @@
       "value": 0,
       "threshold": 0,
       "frames": 1,
-      "evaluated": 876,
-      "aboveCutExcluded": 5674,
+      "evaluated": 182,
+      "aboveCutExcluded": 6257,
       "scope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
     },
     {
       "name": "penetration.idle",
       "pass": true,
-      "value": 0.000970874,
+      "value": 0.001371742,
       "threshold": "<= 0.02 (worst frame)",
       "frames": 24,
       "worst": {
-        "ratio": 0.000970874,
+        "ratio": 0.001371742,
         "count": 1,
-        "evaluated": 1030,
+        "evaluated": 729,
         "time": 1.916666627,
         "minimumMm": -5.952204831
       },
-      "aboveCutExcluded": 5540,
+      "aboveCutExcluded": 5740,
       "scope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
     },
     {
@@ -413,11 +413,11 @@
       "worst": {
         "ratio": 0.0,
         "count": 0,
-        "evaluated": 1006,
+        "evaluated": 718,
         "time": 0.0,
-        "minimumMm": 0.245142202
+        "minimumMm": 0.165446829
       },
-      "aboveCutExcluded": 5549,
+      "aboveCutExcluded": 5731,
       "scope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
     },
     {
@@ -429,21 +429,21 @@
       "worst": {
         "ratio": 0.0,
         "count": 0,
-        "evaluated": 912,
+        "evaluated": 455,
         "time": 0.0,
-        "minimumMm": 0.047684028
+        "minimumMm": -0.282356318
       },
-      "aboveCutExcluded": 5663,
+      "aboveCutExcluded": 6070,
       "scope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
     },
     {
       "name": "head.patchBottomOverlap",
       "pass": true,
       "value": {
-        "bind": 0.293143781,
-        "idle": 0.201017216,
-        "walk": 0.212561192,
-        "run": 0.041570175
+        "bind": 0.288589677,
+        "idle": 0.287190439,
+        "walk": 0.281291208,
+        "run": 0.270720049
       },
       "threshold": ">= -0.05 mm (lift 0.3 mm)",
       "frames": 73,
@@ -458,7 +458,7 @@
       "name": "head.patchTopUnderSkin",
       "pass": true,
       "value": {
-        "bindUnderSkinMinMm": 0.287884491,
+        "bindUnderSkinMinMm": 0.299969942,
         "ratio": {
           "bind": 0.0,
           "idle": 0.0,
@@ -466,37 +466,37 @@
           "run": 0.0
         },
         "p99Mm": {
-          "bind": -0.299729264,
+          "bind": -0.299976603,
           "idle": -0.236054871,
-          "walk": -0.250266119,
-          "run": -0.224613159
+          "walk": -0.253840816,
+          "run": -0.229598925
         },
         "maxMm": {
-          "bind": -0.287884491,
-          "idle": -0.198288026,
-          "walk": -0.201979587,
-          "run": 0.080287187
+          "bind": -0.299969942,
+          "idle": -0.217651572,
+          "walk": -0.240710872,
+          "run": -0.203256257
         },
         "worst": {
           "bind": {
             "time": 0.0,
-            "thetaDeg": 230.069468893,
-            "heightMm": 27.71761058
+            "thetaDeg": 79.370530932,
+            "heightMm": 25.026722922
           },
           "idle": {
-            "time": 12.138888637,
-            "thetaDeg": 304.213955087,
-            "heightMm": 26.505559351
+            "time": 14.69444414,
+            "thetaDeg": 343.822061925,
+            "heightMm": 28.0000355
           },
           "walk": {
-            "time": 1.944444378,
-            "thetaDeg": 304.213955087,
-            "heightMm": 26.505559351
+            "time": 1.361111065,
+            "thetaDeg": 356.3112796,
+            "heightMm": 27.992877172
           },
           "run": {
-            "time": 1.197916667,
-            "thetaDeg": 303.909294596,
-            "heightMm": 27.387405863
+            "time": 0.46875,
+            "thetaDeg": 356.348270996,
+            "heightMm": 27.759288243
           }
         },
         "evaluated": {
@@ -541,9 +541,9 @@
       "name": "head.patchOrientation",
       "pass": true,
       "value": {
-        "interiorEdges": 16698,
+        "interiorEdges": 17032,
         "consistentEdgeRatio": 1.0,
-        "boundaryEdges": 915,
+        "boundaryEdges": 580,
         "nonManifoldEdges": 0,
         "outwardAreaRatio": 1.0,
         "outwardFaceRatio": 1.0
@@ -554,9 +554,9 @@
       "name": "head.patchBiharmonic",
       "pass": true,
       "value": {
-        "freeVertices": 1658,
-        "constrainedVertices": 4518,
-        "residualMaxMu": 5e-09,
+        "freeVertices": 1667,
+        "constrainedVertices": 4397,
+        "residualMaxMu": 2.5e-08,
         "displacementMaxMu": 0.009211318
       },
       "threshold": "residual < 1e-6 mu"
@@ -565,10 +565,10 @@
       "name": "head.seamColorBottom",
       "pass": true,
       "value": {
-        "mean": 0.571520777,
-        "p95": 0.845256317,
-        "max": 1.406243174,
-        "samples": 1468
+        "mean": 0.581650093,
+        "p95": 0.84775749,
+        "max": 1.596006523,
+        "samples": 1348
       },
       "threshold": "ΔE2000 p95 < 2"
     },
@@ -576,9 +576,9 @@
       "name": "head.seamColorTop",
       "pass": true,
       "value": {
-        "mean": 0.586260264,
-        "p95": 1.42062208,
-        "max": 2.117261228,
+        "mean": 0.579778975,
+        "p95": 1.36976449,
+        "max": 2.111873009,
         "angles": 264
       },
       "threshold": "ΔE2000 p95 < 2 (region A, 1° bins, ±0.25–1.25 mm of the cut)"
@@ -587,12 +587,12 @@
       "name": "head.seamG1Top",
       "pass": true,
       "value": {
-        "meanDeg": 0.437828978,
-        "p95Deg": 1.454157682,
-        "maxDeg": 3.387100538,
+        "meanDeg": 0.429614595,
+        "p95Deg": 1.435028892,
+        "maxDeg": 3.366588273,
         "angles": 264,
-        "radialStepMeanMm": 0.302123556,
-        "radialStepMaxMm": 0.39024914
+        "radialStepMeanMm": 0.3021965,
+        "radialStepMaxMm": 0.390161754
       },
       "threshold": "V4: tangent angle < 5° at every region-A degree (slopes fitted 0.5–2.5 mm each side of the cut), radial step < 1 mm"
     },
@@ -600,13 +600,13 @@
       "name": "head.seamG1Bottom",
       "pass": true,
       "value": {
-        "meanDeg": 0.157034762,
-        "p95Deg": 0.48572504,
-        "maxDeg": 0.705720327,
+        "meanDeg": 0.150572972,
+        "p95Deg": 0.474111041,
+        "maxDeg": 0.702741334,
         "angles": 360,
-        "stepMeanMm": 0.338414722,
-        "stepMinMm": 0.282869847,
-        "stepMaxMm": 0.417401343
+        "stepMeanMm": 0.338460339,
+        "stepMinMm": 0.297813832,
+        "stepMaxMm": 0.417331157
       },
       "threshold": "V4: tangent angle < 5° at every degree (patch vs body over the same ±2 mm window at the visible body edge); patch outside body (step 0..1 mm)"
     },
@@ -617,18 +617,18 @@
         "angles": 264,
         "maxTurningPoints": 2,
         "anglesOverOneTurn": 3,
-        "maxBulgeMm": 0.372922445,
-        "maxWaistMm": 3.280957836
+        "maxBulgeMm": 0.474367913,
+        "maxWaistMm": 3.282752489
       },
       "threshold": "per-angle radius profile: convex bulge above both ends < 1 mm (no extra ring); > 1 turning point (0.1 mm noise) on <= 2% of angles; throat waist report-only"
     }
   ],
   "gateLevel": "pass",
   "stats": {
-    "vertices": 16394,
-    "triangles": 27813,
-    "fileSize": 1966000,
-    "durationMs": 195716
+    "vertices": 16283,
+    "triangles": 27924,
+    "fileSize": 1960144,
+    "durationMs": 197552
   },
   "measurements": {
     "sourceEarWidthMu": 0.109303062,
@@ -677,13 +677,13 @@
     "leakTriangles": 0
   },
   "patch": {
-    "vertices": 6176,
-    "triangles": 11437,
-    "uvSeamDuplicates": 48,
+    "vertices": 6064,
+    "triangles": 11548,
+    "uvSeamDuplicates": 49,
     "boundaryLoops": 2,
     "sideBoundaryPinned": 0,
     "constrained": {
-      "bottom": 1463,
+      "bottom": 1342,
       "top": 1872,
       "g1Skirt": 1183
     },
@@ -691,18 +691,18 @@
     "displacementMaxMm": 15.601211493,
     "skinInset": {
       "moved": 976,
-      "maxMoveMm": 0.272202133
+      "maxMoveMm": 0.376054304
     },
     "solve": {
-      "freeVertices": 1658,
-      "constrainedVertices": 4518,
-      "residualMaxMu": 5e-09,
+      "freeVertices": 1667,
+      "constrainedVertices": 4397,
+      "residualMaxMu": 2.5e-08,
       "displacementMaxMu": 0.009211318
     },
     "orientation": {
-      "interiorEdges": 16698,
+      "interiorEdges": 17032,
       "consistentEdgeRatio": 1.0,
-      "boundaryEdges": 915,
+      "boundaryEdges": 580,
       "nonManifoldEdges": 0,
       "outwardAreaRatio": 1.0,
       "outwardFaceRatio": 1.0
@@ -767,57 +767,57 @@
     "sourceSamples": 1562,
     "templateSamples": 9795,
     "strip": {
-      "coveredRatio": 0.366233099,
+      "coveredRatio": 0.363440305,
       "gainMean": [
-        1.105951132,
-        1.125961868,
-        1.077043215
+        1.106010072,
+        1.125996166,
+        1.07706899
       ]
     }
   },
   "checks_detail": {
     "color": {
       "bottom": {
-        "mean": 0.571520777,
-        "p95": 0.845256317,
-        "max": 1.406243174,
-        "samples": 1468
+        "mean": 0.581650093,
+        "p95": 0.84775749,
+        "max": 1.596006523,
+        "samples": 1348
       },
       "top": {
-        "mean": 0.586260264,
-        "p95": 1.42062208,
-        "max": 2.117261228,
+        "mean": 0.579778975,
+        "p95": 1.36976449,
+        "max": 2.111873009,
         "angles": 264
       }
     },
     "g1": {
-      "meanDeg": 0.437828978,
-      "p95Deg": 1.454157682,
-      "maxDeg": 3.387100538,
+      "meanDeg": 0.429614595,
+      "p95Deg": 1.435028892,
+      "maxDeg": 3.366588273,
       "angles": 264,
-      "radialStepMeanMm": 0.302123556,
-      "radialStepMaxMm": 0.39024914
+      "radialStepMeanMm": 0.3021965,
+      "radialStepMaxMm": 0.390161754
     },
     "g1Bottom": {
-      "meanDeg": 0.157034762,
-      "p95Deg": 0.48572504,
-      "maxDeg": 0.705720327,
+      "meanDeg": 0.150572972,
+      "p95Deg": 0.474111041,
+      "maxDeg": 0.702741334,
       "angles": 360,
-      "stepMeanMm": 0.338414722,
-      "stepMinMm": 0.282869847,
-      "stepMaxMm": 0.417401343
+      "stepMeanMm": 0.338460339,
+      "stepMinMm": 0.297813832,
+      "stepMaxMm": 0.417331157
     },
     "shape": {
       "angles": 264,
       "maxTurningPoints": 2,
       "anglesOverOneTurn": 3,
-      "maxBulgeMm": 0.372922445,
-      "maxWaistMm": 3.280957836
+      "maxBulgeMm": 0.474367913,
+      "maxWaistMm": 3.282752489
     },
     "motion": {
       "penetration": {
         "bindVertices": 0,
-        "idle": 0.000970874,
+        "idle": 0.001371742,
         "walk": 0.0,
         "run": 0.0
       },
@@ -825,49 +825,49 @@
         "bind": {
           "ratio": 0.0,
           "count": 0,
-          "evaluated": 876,
+          "evaluated": 182,
           "time": 0.0,
-          "minimumMm": 0.293143781
+          "minimumMm": 0.288589677
         },
         "idle": {
-          "ratio": 0.000970874,
+          "ratio": 0.001371742,
           "count": 1,
-          "evaluated": 1030,
+          "evaluated": 729,
           "time": 1.916666627,
           "minimumMm": -5.952204831
         },
         "walk": {
           "ratio": 0.0,
           "count": 0,
-          "evaluated": 1006,
+          "evaluated": 718,
           "time": 0.0,
-          "minimumMm": 0.245142202
+          "minimumMm": 0.165446829
         },
         "run": {
           "ratio": 0.0,
           "count": 0,
-          "evaluated": 912,
+          "evaluated": 455,
           "time": 0.0,
-          "minimumMm": 0.047684028
+          "minimumMm": -0.282356318
         }
       },
       "evaluatedVertices": {
-        "bind": 876,
-        "idle": 1049,
-        "walk": 1010,
-        "run": 919
+        "bind": 182,
+        "idle": 784,
+        "walk": 727,
+        "run": 499
       },
       "aboveCutExcluded": {
-        "bind": 5674,
-        "idle": 5540,
-        "walk": 5549,
-        "run": 5663
+        "bind": 6257,
+        "idle": 5740,
+        "walk": 5731,
+        "run": 6070
       },
       "bottomOverlapMinMm": {
-        "bind": 0.293143781,
-        "idle": 0.201017216,
-        "walk": 0.212561192,
-        "run": 0.041570175
+        "bind": 0.288589677,
+        "idle": 0.287190439,
+        "walk": 0.281291208,
+        "run": 0.270720049
       },
       "topExposedRatio": {
         "bind": 0.0,
@@ -876,37 +876,37 @@
         "run": 0.0
       },
       "topExposedMaxMm": {
-        "bind": -0.287884491,
-        "idle": -0.198288026,
-        "walk": -0.201979587,
-        "run": 0.080287187
+        "bind": -0.299969942,
+        "idle": -0.217651572,
+        "walk": -0.240710872,
+        "run": -0.203256257
       },
       "topExposedP99Mm": {
-        "bind": -0.299729264,
+        "bind": -0.299976603,
         "idle": -0.236054871,
-        "walk": -0.250266119,
-        "run": -0.224613159
+        "walk": -0.253840816,
+        "run": -0.229598925
       },
       "topExposedWorst": {
         "bind": {
           "time": 0.0,
-          "thetaDeg": 230.069468893,
-          "heightMm": 27.71761058
+          "thetaDeg": 79.370530932,
+          "heightMm": 25.026722922
         },
         "idle": {
-          "time": 12.138888637,
-          "thetaDeg": 304.213955087,
-          "heightMm": 26.505559351
+          "time": 14.69444414,
+          "thetaDeg": 343.822061925,
+          "heightMm": 28.0000355
         },
         "walk": {
-          "time": 1.944444378,
-          "thetaDeg": 304.213955087,
-          "heightMm": 26.505559351
+          "time": 1.361111065,
+          "thetaDeg": 356.3112796,
+          "heightMm": 27.992877172
         },
         "run": {
-          "time": 1.197916667,
-          "thetaDeg": 303.909294596,
-          "heightMm": 27.387405863
+          "time": 0.46875,
+          "thetaDeg": 356.348270996,
+          "heightMm": 27.759288243
         }
       },
       "topEvaluated": {
@@ -928,17 +928,17 @@
         "walk": 24,
         "run": 24
       },
-      "topUnderSkinMinMm": 0.287884491,
+      "topUnderSkinMinMm": 0.299969942,
       "penetrationThresholdMm": 1.0,
       "penetrationScope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
     },
     "transitionReportOnly": {
       "angles": 22,
-      "g1MaxDeg": 27.141553481,
-      "g1P95Deg": 10.229187395,
-      "stepMaxMm": 0.318184609,
-      "bulgeMaxMm": 0.669318857,
-      "colorP95": 1.448970694,
+      "g1MaxDeg": 23.17081688,
+      "g1P95Deg": 7.663009747,
+      "stepMaxMm": 0.333628606,
+      "bulgeMaxMm": 0.898930815,
+      "colorP95": 1.482602813,
       "worstG1Deg": 229
     },
     "neckHoles": {

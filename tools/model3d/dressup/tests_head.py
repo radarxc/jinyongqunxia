@@ -25,7 +25,8 @@ from cut_head import (TAU, CylinderGrid, _masked_surface, _vertex_normals, bake_
                       StripLayout, STRIP_GUARD,
                       subdivide_midpoint, PATCH_BOTTOM_MM, BOTTOM_BAND_MM, BOTTOM_LIFT_MM, STRIP_ROWS, ATLAS_SIZE,
                       TOP_BAND_MM, TOP_INSET_MM, _one_sided_weight, inset_under_skin, refine_marked,
-                      _animated_cut_plane, _bridge_penetration, _masked_positions)
+                      _animated_cut_plane, _bridge_penetration, _masked_positions, remove_slivers, sliver_faces,
+                      output_names, _write_manifest, _drop_variant)
 from common import lbs, nearest_triangle
 from export_skeleton import _world_mesh
 from glb_io import GLBBuilder, Mesh, load_glb
@@ -248,6 +249,59 @@ def test_weld_and_compact() -> None:
     assert len(kept) == 4 and remap[4] == -1 and kept_faces.max() == 3 and list(tags) == [0., 1., 2., 3.]
 
 
+def _grid(count: int = 5) -> tuple[np.ndarray, np.ndarray]:
+    """count × count 点的单位间距平面网格（z = 0，法向 +z）。"""
+    positions = np.array([[x, y, 0.] for y in range(count) for x in range(count)])
+    faces = []
+    for y in range(count - 1):
+        for x in range(count - 1):
+            a = y * count + x; b, c, d = a + 1, a + count, a + count + 1
+            faces += [(a, b, d), (a, d, c)]
+    return positions, np.asarray(faces, np.int64)
+
+
+def _directed_edges_unique(faces: np.ndarray) -> bool:
+    edges = np.concatenate((faces[:, [0, 1]], faces[:, [1, 2]], faces[:, [2, 0]]))
+    return len(np.unique(edges, axis=0)) == len(edges)
+
+
+def test_remove_slivers_keeps_manifold() -> None:
+    # 内部帽形碎条（顶点离最长边 1e-4）与针形碎条（短边 1e-3）：并点 / 翻边后无碎条、仍是一圈边界、
+    # 面积不变、逐角 UV 仍是位置的线性函数；直接删同样的碎条会开洞（D1c tall / small 颈片鼓包的根因）。
+    positions, faces = _grid()
+    faces = [tuple(face) for face in faces]
+    # 帽形：内部边 (6,12) 的两侧为 (6,12,...)；在 (6,12) 中点偏 1e-4 处加顶点 p，把含 6→12 的面一分为二并插入碎条。
+    a, b = 6, 12
+    with_ab = next(face for face in faces if any((face[k], face[(k + 1) % 3]) == (a, b) for k in range(3)))
+    c = next(v for v in with_ab if v not in (a, b))
+    mid = (positions[a] + positions[b]) / 2 + np.array([1e-4, -1e-4, 0])
+    p = len(positions); positions = np.vstack((positions, mid))
+    faces.remove(with_ab); faces += [(a, p, c), (p, b, c), (a, b, p)]
+    # 针形：内部边 (7,13) 在离 7 只有 1e-3 处劈开，两侧各生成一个针形三角。
+    v, w = 7, 13
+    n = len(positions); positions = np.vstack((positions, positions[v] + (positions[w] - positions[v]) * 1e-3 / np.sqrt(2)))
+    for face in [face for face in faces if v in face and w in face]:
+        k = next(k for k in range(3) if {face[k], face[(k + 1) % 3]} == {v, w})
+        first, second, third = face[k], face[(k + 1) % 3], face[(k + 2) % 3]
+        faces.remove(face); faces += [(first, n, third), (n, second, third)]
+    faces = np.asarray(faces, np.int64)
+    corners = positions[faces][:, :, :2].copy()                      # UV = (x, y)
+    assert sliver_faces(positions, faces, .02).sum() >= 3 and _directed_edges_unique(faces)
+    def area(face_array: np.ndarray) -> float:
+        tri = positions[face_array]
+        return float(np.linalg.norm(np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0]), axis=1).sum() / 2)
+    deleted = faces[~sliver_faces(positions, faces, .02)]
+    assert len(boundary_loops(deleted)) > 1                          # 旧做法：删内部碎条即开洞
+    out, out_corners, stats = remove_slivers(positions, faces, corners, .02, .1)
+    assert stats["remaining"] == 0 and not sliver_faces(positions, out, .02).any(), stats
+    assert stats["collapsed"] >= 1 and stats["flipped"] >= 1, stats
+    assert len(boundary_loops(out)) == 1 and _directed_edges_unique(out)
+    assert abs(area(out) - 16.) < 1e-3
+    normals = np.cross(positions[out][:, 1] - positions[out][:, 0], positions[out][:, 2] - positions[out][:, 0])
+    assert np.all(normals[:, 2] > 0)                                 # 绕序一致（全部朝 +z）
+    np.testing.assert_allclose(out_corners, positions[out][:, :, :2], atol=2e-3)
+
+
 def test_rasterize_cylinder_first_hit() -> None:
     inner, inner_faces, _ = _cylinder([(-.1, .5), (1.1, .5)])
     outer, outer_faces, _ = _cylinder([(-.1, 1.), (1.1, 1.)])
@@ -387,13 +441,15 @@ def _skin_faces(glb: Any, mesh: Mesh, faces: np.ndarray) -> np.ndarray:
     return faces[luma[faces].mean(axis=1) > .35]
 
 
-def _strict_penetration(template_dir: Path, asset: Path, frames: int = 24) -> dict[str, Any]:
+def _strict_penetration(template_dir: Path, asset: Path, frames: int = 24,
+                        files: dict[str, str] | None = None) -> dict[str, Any]:
     """标准 penetration（D1 口径）独立复算：颈片 + 颈部皮肤（图集亮度判皮、切口到切口以上 40 mm），遮罩平面按 Neck 骨骼
     逐帧变换，切面以下全部点对遮罩后可见身体的带符号距离 < −1 mm 计穿入；bind 计数，动作取各帧最坏比例。"""
+    files = files or {"glb": "head.glb", "fit": "fit.json", "mask": "hidemask.png"}
     body_glb = load_glb(template_dir / "body.glb"); body, _, _ = _world_mesh(body_glb)
-    head_glb = load_glb(asset / "head.glb"); head, _, _ = _world_mesh(head_glb)
+    head_glb = load_glb(asset / files["glb"]); head, _, _ = _world_mesh(head_glb)
     skeleton = json.loads((template_dir / "skeleton.json").read_text())
-    diagnostics = json.loads((asset / "fit.json").read_text())["diagnostics"]
+    diagnostics = json.loads((asset / files["fit"]).read_text())["diagnostics"]
     m_per_mu = float(skeleton["mPerMu"]); mm = 1 / (1000 * m_per_mu)
     names = [body_glb.json["nodes"][n].get("name", "") for n in body_glb.skin().joints]
     from cut_head import _bone_frame
@@ -401,7 +457,7 @@ def _strict_penetration(template_dir: Path, asset: Path, frames: int = 24) -> di
     center, axis = np.asarray(skeleton["neckRing"]["centerMu"], float), bone["axis"]
     plane = center + axis * diagnostics["cut"]["maskPlaneMm"] * mm
     h_head = diagnostics["cut"]["headFloorMm"] * mm
-    surface = _masked_surface(body, Image.open(asset / "hidemask.png").convert("L")); visible = surface["faces"]
+    surface = _masked_surface(body, Image.open(asset / files["mask"]).convert("L")); visible = surface["faces"]
     faces = head.indices.reshape(-1, 3); neck_id = skeleton["regions"]["ids"]["neck"]
     skin = np.unique(_skin_faces(head_glb, head, faces[np.all(head.regions[faces] != neck_id, axis=1)]))
     frame = {"center": center, "axis": axis, "right": bone["right"], "front": bone["front"]}
@@ -441,14 +497,16 @@ def _strict_penetration(template_dir: Path, asset: Path, frames: int = 24) -> di
     return result
 
 
-def _independent(template_dir: Path, asset: Path, frames: int = 0) -> dict[str, Any]:
+def _independent(template_dir: Path, asset: Path, frames: int = 0,
+                 files: dict[str, str] | None = None) -> dict[str, Any]:
     """只从写盘的 head.glb / fit.json / 模板复算：逐面朝向、底带外移、两端 G1、重叠带外露（bind + 三段动作各 frames 帧）。
 
     重叠带 = 切口以上 0.5 mm–TOP_BAND、bind 时最近皮肤面 < 1 mm 的颈片点；外露只对皮肤面量（发片甩进颈部属垂发穿插）。
     顶缝 G1 只在 A 区内部量：皮肤覆盖切口以上 10 mm 达 80% 的角度里，离任一未覆盖角 ≥ 12° 者。"""
+    files = files or {"glb": "head.glb", "fit": "fit.json", "mask": "hidemask.png"}
     body_glb = load_glb(template_dir / "body.glb"); body, _, _ = _world_mesh(body_glb)
-    head_glb = load_glb(asset / "head.glb"); head, _, _ = _world_mesh(head_glb)
-    fit = json.loads((asset / "fit.json").read_text()); skeleton = json.loads((template_dir / "skeleton.json").read_text())
+    head_glb = load_glb(asset / files["glb"]); head, _, _ = _world_mesh(head_glb)
+    fit = json.loads((asset / files["fit"]).read_text()); skeleton = json.loads((template_dir / "skeleton.json").read_text())
     diagnostics = fit["diagnostics"]; m_per_mu = float(skeleton["mPerMu"]); mm = 1 / (1000 * m_per_mu)
     neck_id = skeleton["regions"]["ids"]["neck"]
     positions = head.positions.astype(np.float64)
@@ -564,54 +622,91 @@ def test_end_to_end_with_skin_collar() -> None:
         ingested = ingest(argparse.Namespace(kind="head", id="synthetic", src=out, template="template", slot="body",
                                              item=None, asset_root=root / "ingested", commit=False))
         assert ingested["status"] in ("draft", "rejected")
+        # 同一 NPC 的第二体型：产物带 .<模板> 后缀、fit 引用带后缀的遮罩，manifest 在 fits 下追加、主体型不动。
+        template_b = root / "templates" / "template_b"; _template(template_b)
+        primary_bytes = (out / "head.glb").read_bytes()
+        report_b = process_head(source, template_b, "synthetic", out)
+        names_b = output_names(out, "template_b")
+        assert (names_b["glb"], names_b["fit"], names_b["mask"]) == (
+            "head.template_b.glb", "fit.template_b.json", "hidemask.template_b.png")
+        fit_b = json.loads((out / names_b["fit"]).read_text())
+        assert fit_b["template"] == "template_b" and fit_b["hideMask"]["file"] == "hidemask.template_b.png"
+        assert report_b["gateLevel"] == "pass" and (out / "head.glb").read_bytes() == primary_bytes
+        merged = yaml.safe_load((out / "manifest.yaml").read_text())[0]
+        assert merged["template"] == "template" and merged["file"] == "head.glb"
+        assert merged["fits"]["template_b"]["file"] == "head.template_b.glb" and set(merged["fits"]) == {
+            "template", "template_b"}
+        for name, record in merged["files"].items():
+            data = (out / name).read_bytes()
+            assert record == {"sha256": sha256(data).hexdigest(), "bytes": len(data)}, name
+        assert all(names_b[key] in merged["files"] for key in ("glb", "fit", "report", "mask", "preview", "check"))
+        # 主体型重写 manifest 时保留变体登记；变体不通过时从 fits 撤下。
+        _write_manifest(out, "synthetic", emitted, "template", output_names(out, "template"))
+        assert set(yaml.safe_load((out / "manifest.yaml").read_text())[0]["fits"]) == {"template", "template_b"}
+        _drop_variant(out, "template_b", names_b)
+        dropped = yaml.safe_load((out / "manifest.yaml").read_text())[0]
+        assert set(dropped["fits"]) == {"template"} and names_b["glb"] not in dropped["files"]
 
 
 def test_real_asset_recomputed() -> None:
-    """若黄蓉产物在库：从写盘 GLB 独立复算逐面朝向、底带外移、两端 G1，以及 bind + idle / walk / run 各 24 帧
-    （共 73 帧，与生产检查同一时刻表）的重叠带外露。"""
+    """若黄蓉产物在库：manifest 里登记的每个体型（fits）各自从写盘 GLB 独立复算逐面朝向、底带外移、两端 G1，
+    以及 bind + idle / walk / run 各 24 帧（共 73 帧，与生产检查同一时刻表）的重叠带外露与标准 penetration。"""
     root = Path(__file__).resolve().parents[3]
-    template = root / "assets/default/model3d/dressup/templates/tpl_f_medium"
     asset = root / "assets/default/model3d/dressup/heads/npc_huangrong"
-    if not (asset / "head.glb").is_file() or not template.is_dir(): return
-    report = json.loads((asset / "report.json").read_text())
-    if "patch" not in report: return                               # 旧版（D1 颈桥）产物不适用
-    independent = _independent(template, asset, frames=24)
-    assert independent["consistent"] == 1 and independent["outwardFace"] == 1, independent
-    assert BOTTOM_LIFT_MM - .05 < independent["liftMinMm"] and independent["liftMaxMm"] < BOTTOM_LIFT_MM + .05, independent
-    assert independent["bandCount"] > 500 and independent["bandWeightGapP95"] < .01, independent
-    assert independent["exposureMaxMm"]["bind"] <= -.25, independent           # bind 时整带在皮下 ≥ 0.25 mm
-    recorded_top = report["checks_detail"]["motion"]["topExposedMaxMm"]
-    assert recorded_top["bind"] <= -.25 and abs(recorded_top["bind"] - independent["exposureMaxMm"]["bind"]) < .02, (
-        recorded_top, independent["exposureMaxMm"])
-    assert max(independent["exposureMaxMm"].values()) <= .1, independent       # 73 帧逐帧重叠带都在头皮下
-    assert independent["interiorAngles"] > 200, independent
-    assert independent["g1TopAngles"] > 200 and independent["g1TopMaxDeg"] < 5, independent
-    assert independent["g1BottomAngles"] > 300 and independent["g1BottomMaxDeg"] < 5, independent
-    assert report["patch"]["orientation"]["outwardFaceRatio"] == 1
-    assert report["level"] == ("draft" if report["gateLevel"] == "pass" else "fail")
-    fit = json.loads((asset / "fit.json").read_text())
-    for key in ("source", "body"):                                  # 可移植：仓库相对路径且文件在库
-        name = fit[key]["file"]
-        assert not Path(name).is_absolute() and (root / name).is_file(), (key, name)
-        assert sha256((root / name).read_bytes()).hexdigest() == fit[key]["sha256"], key
-    assert set(fit["ring"]) == {"sourceRadiusMu", "scale", "residualMu"} and fit["ring"]["scale"] > 0
-    frames = {item["name"]: item.get("frames") for item in report["checks"]}
-    assert [frames[f"penetration.{clip}"] for clip in ("idle", "walk", "run")] == [24, 24, 24], frames
-    # 标准 penetration 独立复算 73 帧，与 report.json 对拍（同一 D1 口径，切面以下全部参与）。
-    strict = _strict_penetration(template, asset)
-    recorded = report["checks_detail"]["motion"]["penetration"]
-    assert strict["bind"] == recorded["bindVertices"] == 0 and strict["bindEvaluated"] > 0, (strict, recorded)
-    for clip in ("idle", "walk", "run"):
-        assert abs(strict[clip] - recorded[clip]) < 1e-9 and strict[clip] <= .02, (clip, strict, recorded)
+    if not (asset / "manifest.yaml").is_file(): return
     manifest = yaml.safe_load((asset / "manifest.yaml").read_text())[0]
     for name, record in manifest["files"].items():
         data = (asset / name).read_bytes()
         assert record == {"sha256": sha256(data).hexdigest(), "bytes": len(data)}, name
+    assert manifest["fits"][manifest["template"]]["file"] == manifest["file"] == "head.glb"
+    for template_name, entry in manifest["fits"].items():
+        template = root / "assets/default/model3d/dressup/templates" / template_name
+        assert template.is_dir(), template_name
+        fit = json.loads((asset / entry["fit"]).read_text())
+        names = {"glb": entry["file"], "fit": entry["fit"], "mask": fit["hideMask"]["file"]}
+        # 变体文件名与 cut_head 的命名约定一致，且全部登记在 files 摘要里（构建只发布登记过的体型）。
+        expected = {key: value for key, value in output_names(asset, template_name).items() if key != "suffix"}
+        assert {key: expected[key] for key in ("glb", "fit", "report", "mask")} == {**names, "report": entry["report"]}, (
+            template_name, names)
+        assert all(value in manifest["files"] for value in expected.values()), (template_name, expected)
+        report = json.loads((asset / entry["report"]).read_text())
+        assert "patch" in report and fit["template"] == report["template"] == template_name
+        assert entry["status"] == "draft" and report["level"] == "draft" and report["gateLevel"] == "pass", template_name
+        independent = _independent(template, asset, frames=24, files=names)
+        assert independent["consistent"] == 1 and independent["outwardFace"] == 1, (template_name, independent)
+        assert BOTTOM_LIFT_MM - .05 < independent["liftMinMm"] and independent["liftMaxMm"] < BOTTOM_LIFT_MM + .05, (
+            template_name, independent)
+        assert independent["bandCount"] > 500 and independent["bandWeightGapP95"] < .01, (template_name, independent)
+        assert independent["exposureMaxMm"]["bind"] <= -.25, (template_name, independent)   # bind 时整带在皮下 ≥ 0.25 mm
+        recorded_top = report["checks_detail"]["motion"]["topExposedMaxMm"]
+        assert recorded_top["bind"] <= -.25 and abs(recorded_top["bind"] - independent["exposureMaxMm"]["bind"]) < .02, (
+            template_name, recorded_top, independent["exposureMaxMm"])
+        assert max(independent["exposureMaxMm"].values()) <= .1, (template_name, independent)   # 73 帧逐帧都在头皮下
+        assert independent["interiorAngles"] > 200, (template_name, independent)
+        assert independent["g1TopAngles"] > 200 and independent["g1TopMaxDeg"] < 5, (template_name, independent)
+        assert independent["g1BottomAngles"] > 300 and independent["g1BottomMaxDeg"] < 5, (template_name, independent)
+        assert report["patch"]["orientation"]["outwardFaceRatio"] == 1 and report["patch"]["boundaryLoops"] == 2
+        for key in ("source", "body"):                              # 可移植：仓库相对路径且文件在库
+            name = fit[key]["file"]
+            assert not Path(name).is_absolute() and (root / name).is_file(), (template_name, key, name)
+            assert sha256((root / name).read_bytes()).hexdigest() == fit[key]["sha256"], (template_name, key)
+        assert fit["body"]["file"].endswith(f"templates/{template_name}/body.glb"), (template_name, fit["body"])
+        assert set(fit["ring"]) == {"sourceRadiusMu", "scale", "residualMu"} and fit["ring"]["scale"] > 0
+        frames = {item["name"]: item.get("frames") for item in report["checks"]}
+        assert [frames[f"penetration.{clip}"] for clip in ("idle", "walk", "run")] == [24, 24, 24], (template_name, frames)
+        # 标准 penetration 独立复算 73 帧，与 report 对拍（同一 D1 口径，切面以下全部参与）。
+        strict = _strict_penetration(template, asset, files=names)
+        recorded = report["checks_detail"]["motion"]["penetration"]
+        assert strict["bind"] == recorded["bindVertices"] == 0 and strict["bindEvaluated"] > 0, (
+            template_name, strict, recorded)
+        for clip in ("idle", "walk", "run"):
+            assert abs(strict[clip] - recorded[clip]) < 1e-9 and strict[clip] <= .02, (template_name, clip, strict, recorded)
 
 
 TESTS = [test_clip_faces_closed_cut, test_subdivide_preserves_surface, test_refine_marked_is_watertight,
          test_one_sided_transition_and_radial_inset, test_biharmonic_band_constraints,
-         test_weights_top4_and_ring_interpolation, test_weld_and_compact, test_rasterize_cylinder_first_hit, test_head_floor_and_regions, test_strip_uv_seam, test_hide_mask_plane,
+         test_weights_top4_and_ring_interpolation, test_weld_and_compact, test_remove_slivers_keeps_manifold,
+         test_rasterize_cylinder_first_hit, test_head_floor_and_regions, test_strip_uv_seam, test_hide_mask_plane,
          test_skin_match_uses_true_means, test_end_to_end_with_skin_collar, test_real_asset_recomputed]
 
 
