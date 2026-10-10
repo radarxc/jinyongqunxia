@@ -3,13 +3,13 @@
   category: model3d
   kind: dressup-head
   template: tpl_f_medium
-  sha256: cd304929146127cade25a14bd2c23f768a71f93754cad38c8591f900448f5f59
-  size_bytes: 1960144
+  sha256: 0b192aebeba190385dc9d751294ce6bb7c91bf3d9a8513b97568fbe76b68f6b2
+  size_bytes: 1960016
   triangles: 27924
   report: report.json
   status: draft
   tool: tools/model3d/dressup/ingest.py v1
-  created: '2026-10-09T20:27:59-07:00'
+  created: '2026-10-10T10:17:40-07:00'
   fit: fit.json
   fits:
     tpl_f_medium:
@@ -23,8 +23,8 @@
       report: report.tpl_f_tall.json
       status: draft
       gateLevel: pass
-      sha256: 50db04f07150c369e63212e64ebda4aa923cd6f746f5d57c1010962814997540
-      size_bytes: 1939044
+      sha256: f88021d95c679b26b228199407697dcd9cdaef23e21ef306ed7f474648818455
+      size_bytes: 1938968
       vertices: 15984
       triangles: 27320
     tpl_f_small:
@@ -33,12 +33,12 @@
       report: report.tpl_f_small.json
       status: draft
       gateLevel: pass
-      sha256: f4b3cc36f21aa52b7758ac6d4aee37ce5d3e6f608e8b2dba45eb1e52b8f02570
-      size_bytes: 1953504
+      sha256: 0d725fc49ec0a6aae2d119a01c71667211721fc6d0ee398bab40a9eb77b5a463
+      size_bytes: 1953680
       vertices: 16194
       triangles: 27703
   source:
-    directory: assets/default/model3d/dressup/heads/npc_huangrong
+    directory: external-workdir
     references: []
   notes: validate level=draft；status 按 tech/11 §6 映射。
   npc: npc_huangrong
@@ -47,56 +47,56 @@
   vertices: 16283
   files:
     head.glb:
-      sha256: cd304929146127cade25a14bd2c23f768a71f93754cad38c8591f900448f5f59
-      bytes: 1960144
+      sha256: 0b192aebeba190385dc9d751294ce6bb7c91bf3d9a8513b97568fbe76b68f6b2
+      bytes: 1960016
     fit.json:
-      sha256: 2ed046afe58718c2a5ad00e7ffe9b212aded803cacc82ee6d5bf1a637f69a350
-      bytes: 11336
+      sha256: b25e4af2ddd35ff73f6f1e32ae0457fbfd98a0664196883756bb55ea9e8a3d7e
+      bytes: 14478
     report.json:
-      sha256: 4ea89517e5955ffa065723eaff05d21125b56722d4a7c4c07e85b4e14a754594
-      bytes: 24971
+      sha256: e677a011024c68cc59503d0a021389c2fa1bfa2bd63590396f9a978ea1f912a4
+      bytes: 26622
     hidemask.png:
       sha256: 722da2aa4c4e4eb8c7d9b3277d417ea20db0decd99adb1ccd1420306bf04ec7f
       bytes: 17225
     preview.png:
-      sha256: 20539c78a0fb1ae047ddbfda0719a5de6f49da4502f9dac85300198e9d9e31b4
-      bytes: 384507
+      sha256: b3c8b7d5f2a40dab07b3f7bf2219eee7070db4192c552f606243b329bc4c0a76
+      bytes: 386183
     self_check_preview.png:
-      sha256: fb7b6d2ab6d048f58e6365edbd9c26e6dceb29f8e1fe09b823765a8e55848ef7
-      bytes: 42462
+      sha256: 50f3646a2a7fb0ebf19b26916e49c37733ca1bc546be35c92811bc9f326b18e7
+      bytes: 43247
     head.tpl_f_tall.glb:
-      sha256: 50db04f07150c369e63212e64ebda4aa923cd6f746f5d57c1010962814997540
-      bytes: 1939044
+      sha256: f88021d95c679b26b228199407697dcd9cdaef23e21ef306ed7f474648818455
+      bytes: 1938968
     fit.tpl_f_tall.json:
-      sha256: f2f16454984845065a37464634474c133903e2454bbce80a48ed054bdef22f98
-      bytes: 11334
+      sha256: 658693a53012db8813341c9da25b97742ace51993dfc0aecebee8ec6e88190f7
+      bytes: 14425
     report.tpl_f_tall.json:
-      sha256: 73ffdc00abd0d876ccb7b6aaa4cd58ce7c0af622fd31c8c53948e2908b9ec6d1
-      bytes: 24897
+      sha256: adabdb29a9e2e76dceb30937c90254963342929ea7009f6bd52f9aa45bc03ac4
+      bytes: 26563
     hidemask.tpl_f_tall.png:
       sha256: 6dc9ff3c79c1cdecaec0d0b8bd9b9f179a5c6b9f36077ecc597e1f2c301f3a76
       bytes: 17382
     preview.tpl_f_tall.png:
-      sha256: 361ba057a02859154c8f67ac6687960ac0c9ad642580f9c5a6e3d4e4f3fc5bb3
-      bytes: 377889
+      sha256: 9b76e262a26abd014c6198281712d3045a7ed542e831043a42ccbb89dd8c2ade
+      bytes: 379013
     self_check_preview.tpl_f_tall.png:
-      sha256: f8a3c8d5426aba4273f787b61ec2ea77605496ae53477a37df510106d9d7ca9a
-      bytes: 41302
+      sha256: f2a560853dcd1fa23375db968bae0f9e41d93f705e4ea8802b725251f7eef1a2
+      bytes: 42211
     head.tpl_f_small.glb:
-      sha256: f4b3cc36f21aa52b7758ac6d4aee37ce5d3e6f608e8b2dba45eb1e52b8f02570
-      bytes: 1953504
+      sha256: 0d725fc49ec0a6aae2d119a01c71667211721fc6d0ee398bab40a9eb77b5a463
+      bytes: 1953680
     fit.tpl_f_small.json:
-      sha256: 564444b6035512088a9a8592038b197df52b6621929e52b694c77b106041e84b
-      bytes: 11387
+      sha256: c26e079b67398838aa63cc259b2021aaa4462d3e2723d44ac261b8856a840796
+      bytes: 14532
     report.tpl_f_small.json:
-      sha256: 10db0cd9044e3b115939e039f5b3198f5a46520fef681ac0895743a0cc61de39
-      bytes: 25035
+      sha256: 265c38614f26e06d19157c26078c4f7a09e4b5c7c0c997f47cafdc4ccee0ec12
+      bytes: 26675
     hidemask.tpl_f_small.png:
       sha256: 57df7475a67aa7c7b0ac904fc276da42c9a0e6630fb73d7709450c355d04f4a8
       bytes: 17759
     preview.tpl_f_small.png:
-      sha256: 8e1a2fe5f154eeed60c9585e3639e158f788272e6c0d447a273ab02cbb9283af
-      bytes: 383067
+      sha256: 8e3c2b6bedcd10cdf5f7097488a2bf067ee60b2cae58d4dac5c3bc251da73177
+      bytes: 387656
     self_check_preview.tpl_f_small.png:
-      sha256: a72046cfb00f796adb40e4911ccdd6c203a76b042ff832574db9a5b2db271d7a
-      bytes: 42734
+      sha256: 198c560c183d8da1e60b7df75b0a24e3879600e791e4d73aca250f6f8204279b
+      bytes: 44063

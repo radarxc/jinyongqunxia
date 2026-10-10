@@ -26,8 +26,12 @@ from cut_head import (TAU, CylinderGrid, _masked_surface, _vertex_normals, bake_
                       subdivide_midpoint, PATCH_BOTTOM_MM, BOTTOM_BAND_MM, BOTTOM_LIFT_MM, STRIP_ROWS, ATLAS_SIZE,
                       TOP_BAND_MM, TOP_INSET_MM, _one_sided_weight, inset_under_skin, refine_marked,
                       _animated_cut_plane, _bridge_penetration, _masked_positions, remove_slivers, sliver_faces,
-                      output_names, _write_manifest, _drop_variant)
-from common import lbs, nearest_triangle
+                      output_names, _write_manifest, _drop_variant, fit_neck_to_template, hair_colors, G1_SKIRT_MM,
+                      NECK_FIT_BELOW_MM, NECK_FIT_MAX_MM, NECK_FIT_RAMP_MM, drop_collar_remnants,
+                      COLLAR_REMNANT_MIN_FACES, level_seam_tone, _srgb_to_lab, SEAM_TONE_BAND_MM, SEAM_TONE_LIGHT_MIN,
+                      SEAM_TONE_LIGHT_FULL, SEAM_TONE_REF_MM, SEAM_TONE_HOLD_MM, TOP_COVER_MM, covering_skin_faces,
+                      top_band_exposure, collar_adjacent)
+from common import closest_point_on_triangle, lbs, nearest_triangle
 from export_skeleton import _world_mesh
 from glb_io import GLBBuilder, Mesh, load_glb
 from ingest import ingest
@@ -416,6 +420,280 @@ def test_skin_match_uses_true_means() -> None:
     assert delta_e_cie2000(lab[0], lab[1]) > hue["deltaEBefore"]
 
 
+def test_hair_colors_rule() -> None:
+    """头发候选色（D2）：近中性深色、极暗任意色相、棕色算；高饱和深红 / 深蓝 / 深绿衣料与浅色布不算。
+    旧规则"均值 < 0.48 或偏棕"把穆念慈深红后领整面当头发保留，后颈出现红色碎片。"""
+    hair = np.array([[.10, .08, .07],     # 黑发
+                     [.30, .30, .30],     # 灰发
+                     [.25, .22, .20],     # 深棕灰
+                     [.45, .30, .20],     # 棕发（G/R 0.67）
+                     [.12, .03, .03]])    # 极暗（任意色相）
+    cloth = np.array([[.45, .08, .08],    # 深红领（穆念慈后领）
+                      [.55, .28, .28],    # 红领亮面（G/R 0.51，旧"棕色"线 0.5 会收成头发）
+                      [.08, .10, .40],    # 深蓝布
+                      [.10, .35, .12],    # 深绿布
+                      [.80, .80, .82]])   # 浅色布
+    assert hair_colors(hair).all() and not hair_colors(cloth).any(), (hair_colors(hair), hair_colors(cloth))
+    assert cloth[0].mean() < .48                                      # 旧规则下深红领算"深色"
+
+
+def test_neck_fit_monotone_bridge() -> None:
+    """D2 颈部粗细适配：两端都向上收而落差不足时，切口处按 Hermite 单调条件 Δ ≤ (s_b + s_t) / 3 收细，向上
+    NECK_FIT_RAMP_MM 内线性渐隐；颈壳外、切口下 NECK_FIT_BELOW_MM 以外、喉部外扩、模板外扩、落差已够、B 区一律
+    不动；单角封顶 NECK_FIT_MAX_MM；逐角收细量按周期高斯平滑（A 区跨 0° 也连续）。"""
+    bins = 360; ring_theta = (np.arange(bins) + .5) * TAU / bins
+    h_band_top, h_head, r_b, s_b, s_t = 5., 30., 50., -.2, -.3          # 单位 mm（mm = 1）
+    length = h_head - G1_SKIRT_MM - h_band_top
+    needed = r_b + length * (s_b + s_t) / 3
+
+    def bridge_rises(r_top: float) -> int:
+        """自由段三次 Hermite（底 r_b / s_b → 顶 r_top / s_t）里向上变粗的步数；0 即单调收细。"""
+        t = np.linspace(0., 1., 2001)
+        curve = ((2 * t ** 3 - 3 * t ** 2 + 1) * r_b + (t ** 3 - 2 * t ** 2 + t) * length * s_b
+                 + (-2 * t ** 3 + 3 * t ** 2) * r_top + (t ** 3 - t ** 2) * length * s_t)
+        return int(np.count_nonzero(np.diff(curve) > 1e-9))
+
+    hh, aa = (grid.ravel() for grid in np.meshgrid(np.arange(h_head - 10., h_head + 31.), ring_theta[::10],
+                                                   indexing="ij"))
+    count = len(hh)
+
+    def run(r_cut: float, head_slope: float = s_t, template_slope: float = s_b,
+            region_a: np.ndarray | None = None) -> tuple[np.ndarray, dict[str, Any]]:
+        radius = np.concatenate((r_cut + head_slope * (hh - h_head),     # 颈壳内的颈子
+                                 np.full(count, r_cut * 1.2)))            # 颈壳外（下巴 / 脸）
+        theta, height = np.tile(aa, 2), np.tile(hh, 2)
+        points = np.column_stack((radius * np.cos(theta), height, radius * np.sin(theta)))
+        fitted, stats = fit_neck_to_template(
+            points, UP, h_head, h_band_top, ring_theta, np.full(bins, r_cut), np.full(bins, head_slope),
+            np.full(bins, r_b), np.full(bins, template_slope), np.ones(bins) if region_a is None else region_a, 1.)
+        before, after = cylinder(points, UP), cylinder(fitted, UP)
+        assert np.allclose(before[1], after[1]) and np.allclose(np.cos(before[0] - after[0]), 1.)   # 只改半径
+        return before[2] - after[2], stats
+
+    r_cut = 48.5
+    skirt_bottom = r_cut - TOP_INSET_MM - s_t * G1_SKIRT_MM               # G1 裙带下沿（自由段顶端）
+    expected = skirt_bottom - needed
+    assert 0 < expected < NECK_FIT_MAX_MM
+    assert bridge_rises(skirt_bottom) > 0 and bridge_rises(skirt_bottom - expected) == 0   # 原桥 S 形，收细后单调
+    shrink, stats = run(r_cut)
+    ramp = np.clip(1 - (hh - h_head) / NECK_FIT_RAMP_MM, 0., 1.) * (hh >= h_head - NECK_FIT_BELOW_MM)
+    assert np.allclose(shrink[:count], ramp * expected, atol=1e-9) and np.abs(shrink[count:]).max() < 1e-12, stats
+    assert stats["activeAngles"] == bins and abs(stats["amountMaxMm"] - expected) < 1e-9, stats
+    assert stats["movedVertices"] == np.count_nonzero(ramp > 0) and abs(stats["freeZoneMm"] - length) < 1e-9, stats
+    for case in ({"r_cut": 45.},                                          # 落差已够
+                 {"r_cut": r_cut, "head_slope": .3},                      # 喉部往下巴变粗
+                 {"r_cut": r_cut, "template_slope": .1},                  # 模板颈子向上外扩
+                 {"r_cut": r_cut, "region_a": np.zeros(bins)}):           # B 区
+        shrink, stats = run(**case)
+        assert np.abs(shrink).max() < 1e-12 and stats["activeAngles"] == stats["movedVertices"] == 0, (case, stats)
+    shrink, stats = run(55.)                                              # 缺 9.5 mm：封顶
+    assert abs(stats["amountMaxMm"] - NECK_FIT_MAX_MM) < 1e-9 and abs(shrink.max() - NECK_FIT_MAX_MM) < 1e-9, stats
+    window = np.zeros(bins); window[:20] = window[-20:] = 1.               # A 区 340°–20°，跨 0°
+    shrink, stats = run(r_cut, region_a=window)
+    degrees = np.degrees(aa[hh == h_head]); at_cut = shrink[:count][hh == h_head]
+    full, off = (degrees < 10.6) | (degrees > 350), (degrees > 29.4) & (degrees < 330.6)   # 离窗口边 ≥ 3σ
+    assert full.sum() == 3 and np.allclose(at_cut[full], expected) and np.allclose(at_cut[off], 0., atol=1e-12)
+    edge = at_cut[~full & ~off]                                           # 窗口边上渐变
+    assert len(edge) == 2 and np.all((edge > 0) & (edge < expected)), edge
+
+
+def _remnant_head(parts: list[dict[str, Any]]) -> tuple[dict[str, np.ndarray], np.ndarray]:
+    """按柱面片拼一个裁后头（UP 框架、mm = 1）：每片 θ0..θ1（度）× h0..h1、半径固定，返回头与逐面片号。"""
+    positions, faces, colors, weights, skin, hair, uvs, tags = [], [], [], [], [], [], [], []
+    for tag, part in enumerate(parts):
+        columns, rows = part.get("columns", 10), part.get("rows", 3)
+        theta = np.radians(np.linspace(part["theta"][0], part["theta"][1], columns + 1))
+        grid_t, grid_h = np.meshgrid(theta, np.linspace(part["h"][0], part["h"][1], rows + 1), indexing="ij")
+        offset = sum(len(item) for item in positions); radius = part["radius"]
+        positions.append(np.column_stack((radius * np.cos(grid_t).ravel(), grid_h.ravel(), radius * np.sin(grid_t).ravel())))
+        for i in range(columns):
+            for j in range(rows):
+                a = offset + i * (rows + 1) + j; b = a + rows + 1
+                faces += [[a, a + 1, b], [b, a + 1, b + 1]]; tags += [tag, tag]
+        count = (columns + 1) * (rows + 1)
+        colors.append(np.tile(part.get("color", (.85, .72, .66)), (count, 1)))
+        weights.append(np.full(count, part.get("headWeight", .05)))
+        skin.append(np.full(count, part.get("skin", True))); hair.append(np.full(count, part.get("hair", False)))
+        uvs.append(np.tile(part.get("uv", (.75, .5)), (count, 1)))
+    head = {"positions": np.concatenate(positions), "faces": np.asarray(faces), "uvs": np.concatenate(uvs),
+            "skin": np.concatenate(skin), "hair": np.concatenate(hair), "headWeight": np.concatenate(weights),
+            "colors": np.concatenate(colors)}
+    return head, np.asarray(tags)
+
+
+def _surviving_tags(head: dict[str, np.ndarray], parts: list[dict[str, Any]]) -> list[int]:
+    """输出头里每片还剩几个面（按面心落在哪片的 θ / h / 半径范围判）。"""
+    theta, height, rho = cylinder(head["positions"][head["faces"]].mean(axis=1), UP)
+    degrees = np.degrees(theta); counts = []
+    for part in parts:
+        inside = ((degrees >= part["theta"][0] - 1e-6) & (degrees <= part["theta"][1] + 1e-6)
+                  & (height >= part["h"][0]) & (height <= part["h"][1]) & (np.abs(rho - part["radius"]) < .5))
+        counts.append(int(np.count_nonzero(inside)))
+    return counts
+
+
+def test_drop_collar_remnants() -> None:
+    """D2 衣领残片：裁后头上比第一层皮肤再往外、以颈部权重为主、不像发丝、成片（≥ COLLAR_REMNANT_MIN_FACES）的
+    面整片去掉；第一层皮肤、被当成皮肤的深色发丝、下巴（Head 权重高）、头发面、零星亮面、带外的面都不动。
+    给贴图时，切口顶带里贴图过半偏红的第一层面也去掉（GPU 最近纹素口径），带外与 Head 权重高的不动。"""
+    h_head = 30.
+    parts = [{"theta": (0, 360), "h": (h_head, h_head + 20), "radius": 40., "columns": 72, "rows": 10},   # 真颈皮
+             {"theta": (230, 300), "h": (h_head, h_head + 6), "radius": 46., "color": (.87, .77, .71)},  # 浅色内衬 → 删
+             {"theta": (310, 340), "h": (h_head, h_head + 3), "radius": 47., "color": (.55, .25, .25)},  # 深红立领 → 删
+             {"theta": (150, 180), "h": (h_head, h_head + 10), "radius": 50., "color": (.30, .27, .25)},  # 深色发丝
+             {"theta": (80, 100), "h": (h_head + 8, h_head + 11), "radius": 48., "headWeight": .9},       # 下巴
+             {"theta": (190, 220), "h": (h_head, h_head + 6), "radius": 46., "hair": True, "skin": False},  # 头发面
+             {"theta": (20, 22), "h": (h_head + 1, h_head + 2), "radius": 45., "columns": 1, "rows": 1},  # 零星 2 面
+             {"theta": (240, 260), "h": (h_head + 14, h_head + 16), "radius": 46.}]                       # 带外
+    head, _ = _remnant_head(parts)
+    before = _surviving_tags(head, parts)
+    out, stats = drop_collar_remnants(head, UP, h_head, 1.)
+    after = _surviving_tags(out, parts)
+    assert before == [1440, 60, 60, 60, 60, 60, 2, 60], before
+    assert after == [1440, 0, 0, 60, 60, 60, 2, 60], after
+    assert stats["dropped"] == 120 and stats["droppedClusters"] == [60, 60] and stats["redTextureDropped"] == 0, stats
+    assert stats["ignoredClusterMaxFaces"] == 2 < COLLAR_REMNANT_MIN_FACES, stats
+    assert abs(stats["droppedOutwardMaxMm"] - 7.) < .2 and len(out["colors"]) == len(out["positions"]), stats
+    assert set(out) == set(head)                                                  # 逐顶点属性随面一起压缩
+    # 贴图：左半红领、右半肤色；切口顶带（≤ 切口 + 4 mm）里贴图偏红的第一层面去掉。
+    texture = np.zeros((8, 8, 3)); texture[:, :4] = (.55, .25, .25); texture[:, 4:] = (.85, .72, .66)
+    parts = [{"theta": (0, 360), "h": (h_head, h_head + 20), "radius": 40., "columns": 72, "rows": 10},
+             {"theta": (100, 110), "h": (h_head, h_head + 2), "radius": 40., "uv": (.25, .5), "columns": 2, "rows": 1},
+             {"theta": (120, 130), "h": (h_head + 5, h_head + 7), "radius": 40., "uv": (.25, .5), "columns": 2, "rows": 1},
+             {"theta": (140, 150), "h": (h_head, h_head + 2), "radius": 40., "uv": (.25, .5), "headWeight": .9,
+              "columns": 2, "rows": 1},
+             {"theta": (160, 170), "h": (h_head, h_head + 2), "radius": 40., "uv": (.75, .5), "columns": 2, "rows": 1}]
+    head, _ = _remnant_head(parts)
+    out, stats = drop_collar_remnants(head, UP, h_head, 1., texture)
+    assert stats["redTextureDropped"] == 4 and stats["dropped"] == 0, stats
+    assert len(out["faces"]) == len(head["faces"]) - 4, (len(out["faces"]), len(head["faces"]))
+    untouched, _ = drop_collar_remnants(head, UP, h_head, 1.)                    # 不给贴图：只做几何判定
+    assert len(untouched["faces"]) == len(head["faces"])
+
+
+def test_top_band_covering_skin() -> None:
+    """D2 顶带外露口径：只对覆盖皮肤（bind 时离重叠带 ≤ TOP_COVER_MM 的头皮面）量。远处一片头皮在动作中贴到颈后
+    （头后仰时后脑贴近颈后的自接触）时，全局最近头皮面会换成它、把皮下的顶带点算成露出——覆盖皮肤口径不受影响；
+    覆盖皮肤本身塌进顶带以内（真正露出）时照样量出正值。单位：1 mu = 1 mm。"""
+    h_head, radius, columns, rows = 10., 40., 72, 20
+    theta = np.radians(np.linspace(0., 360., columns, endpoint=False)); heights = np.linspace(h_head, h_head + 20, rows + 1)
+    grid_t, grid_h = np.meshgrid(theta, heights, indexing="ij")
+    neck = np.column_stack((radius * np.cos(grid_t).ravel(), grid_h.ravel(), radius * np.sin(grid_t).ravel()))
+    faces = []
+    for i in range(columns):
+        for j in range(rows):
+            a = i * (rows + 1) + j; b = ((i + 1) % columns) * (rows + 1) + j
+            faces += [[a, a + 1, b], [b, a + 1, b + 1]]                    # 法向朝外
+    neck_faces = np.asarray(faces)
+    def flap(r: float, h: float, at: float) -> np.ndarray:                # θ = at 处一小片外法向朝外的头皮（4 mm 见方）
+        t = np.radians([at - 3, at - 3, at + 3, at + 3]); y = np.array([h - 2, h + 2, h - 2, h + 2])
+        return np.column_stack((r * np.cos(t), y, r * np.sin(t)))
+    flap_bind = flap(55., 45., 90.); flap_start = len(neck)
+    flap_faces = np.array([[0, 1, 2], [2, 1, 3]]) + flap_start
+    band_t = np.radians(np.arange(0., 360., 10.)); band_h = np.full(len(band_t), h_head + 2.)
+    band = np.column_stack(((radius - TOP_INSET_MM) * np.cos(band_t), band_h, (radius - TOP_INSET_MM) * np.sin(band_t)))
+    bind = np.concatenate((neck, flap_bind, band)); top_ids = np.arange(len(neck) + 4, len(bind))
+    skin_faces = np.concatenate((neck_faces, flap_faces))
+    cover = covering_skin_faces(bind, skin_faces, bind[top_ids], TOP_COVER_MM)
+    assert len(cover) and not np.isin(flap_faces, cover).all(axis=1).any(), "远处那片头皮不属于覆盖皮肤"
+    assert len(covering_skin_faces(bind, skin_faces, bind[top_ids][:0], TOP_COVER_MM)) == 0
+    def run(posed: np.ndarray) -> dict[str, np.ndarray]:
+        return top_band_exposure(posed, bind, top_ids, cover, skin_faces, UP, h_head, .001)
+    still = run(bind)
+    np.testing.assert_allclose(still["cover"], -TOP_INSET_MM, atol=1e-3)            # 72 边形：弦面比顶点列浅 0.3 µm 级
+    np.testing.assert_allclose(still["any"], still["cover"], atol=1e-9)    # 无自接触：两种口径逐点相同
+    contact = bind.copy(); contact[flap_start:flap_start + 4] = flap(radius - TOP_INSET_MM - .2, h_head + 2., 90.)
+    touched = run(contact)
+    assert touched["anyAbove"].all() and touched["any"].max() > .1, touched["any"].max()          # 全局口径误报露出
+    assert touched["coverAbove"].all() and touched["cover"].max() <= -.25, touched["cover"].max()  # 覆盖皮肤口径仍在皮下
+    collapsed = bind.copy(); collapsed[:len(neck)] = neck * np.array([(radius - .5) / radius, 1, (radius - .5) / radius])
+    opened = run(collapsed)
+    assert opened["cover"].max() > .1 and opened["coverAbove"].all(), opened["cover"].max()     # 真露出照样拦下
+
+
+def test_level_seam_tone() -> None:
+    """D2 切口带调平：切口带中位亮度比本人参考肤色亮 ≥ SEAM_TONE_LIGHT_MIN 的角度，切口以上 SEAM_TONE_BAND_MM 内的
+    头皮纹素向同角度参考段的颜色插值（HOLD 内全量、BAND 处归零）；BAND 以上与未触发的角度逐字节不动；全无亮带时
+    原图原样返回（黄蓉这类无污染的头不受影响）。"""
+    h_head, radius, span = 30., 40., 40.
+    columns, rows = 72, 40
+    theta = np.radians(np.linspace(0., 360., columns + 1)); heights = np.linspace(h_head, h_head + span, rows + 1)
+    grid_t, grid_h = np.meshgrid(theta, heights, indexing="ij")
+    positions = np.column_stack((radius * np.cos(grid_t).ravel(), grid_h.ravel(), radius * np.sin(grid_t).ravel()))
+    uvs = np.column_stack(((grid_t / TAU).ravel(), (1 - (grid_h - h_head) / span).ravel()))
+    faces = []
+    for i in range(columns):
+        for j in range(rows):
+            a = i * (rows + 1) + j; b = a + rows + 1
+            faces += [[a, a + 1, b], [b, a + 1, b + 1]]
+    head = {"positions": positions, "faces": np.asarray(faces), "uvs": uvs, "skin": np.ones(len(positions), bool),
+            "hair": np.zeros(len(positions), bool)}
+    width, height = 360, 160                                   # 纹素 (x, y) ↔ θ = x + 0.5 度，h = 切口 + (1 − v)·span
+    skin = np.array([204, 173, 158], np.uint8); light = np.array([230, 209, 194], np.uint8)
+    texel_theta = (np.arange(width) + .5) * 360 / width
+    texel_h = (1 - (np.arange(height) + .5) / height) * span
+    clean = np.tile(skin, (height, width, 1))
+    texture = clean.copy()
+    texture[np.ix_(texel_h < 8, texel_theta >= 180)] = light    # 后半圈切口以上 8 mm 一条亮带（白内领烘进颈皮）
+    reference = skin / 255.
+    out, stats = level_seam_tone(texture, head, UP, h_head, reference, 1.)
+    assert stats["angles"] > 150 and stats["texelsChanged"] > 0 and stats["probeExcessMaxL"] > SEAM_TONE_LIGHT_MIN, stats
+    lab_skin = _srgb_to_lab(reference[None, :])[0]
+    def lightness(block: np.ndarray) -> np.ndarray:
+        return _srgb_to_lab(block.reshape(-1, 3) / 255.)[:, 0]
+    hold = np.ix_(texel_h < SEAM_TONE_HOLD_MM - .25, (texel_theta > 200) & (texel_theta < 340))
+    assert np.abs(lightness(out[hold]) - lab_skin[0]).max() < 1.0          # 保持区内整段拉回参考段肤色
+    mid = np.ix_((texel_h > 6.5) & (texel_h < 7.5), (texel_theta > 200) & (texel_theta < 340))
+    before, after = lightness(texture[mid]), lightness(out[mid])
+    assert np.all(after < before - 1.) and np.all(after > lab_skin[0] + .5)  # 往上渐弱：只拉回一部分
+    assert np.array_equal(out[texel_h > SEAM_TONE_BAND_MM + .5], texture[texel_h > SEAM_TONE_BAND_MM + .5])
+    assert np.array_equal(out[:, (texel_theta > 20) & (texel_theta < 160)],
+                          texture[:, (texel_theta > 20) & (texel_theta < 160)])  # 未触发的角度逐字节不动
+    noisy = clean.copy(); noisy[texel_h < 6] = np.array([209, 178, 162], np.uint8)   # 只亮约 +2 L*：不算污染
+    untouched, quiet = level_seam_tone(noisy, head, UP, h_head, reference, 1.)
+    assert quiet["angles"] == 0 and quiet["texelsChanged"] == 0 and np.array_equal(untouched, noisy), quiet
+    assert SEAM_TONE_REF_MM[0] > SEAM_TONE_BAND_MM
+    # 只调贴着衣领的角度（D2 第三版素模）：切口下整圈是皮肤时同一条亮带原样保留；只有后半圈 200°–340° 贴衣领时，
+    # 只有那段被调、前半圈逐字节不动。
+    bare, bare_stats = level_seam_tone(texture, head, UP, h_head, reference, 1., np.zeros(360, bool))
+    assert np.array_equal(bare, texture) and bare_stats["texelsChanged"] == 0 and bare_stats["collarDeg"] == [], bare_stats
+    collar = np.zeros(360, bool); collar[200:340] = True
+    part, part_stats = level_seam_tone(texture, head, UP, h_head, reference, 1., collar)
+    assert part_stats["collarDeg"] == list(range(200, 340)) and part_stats["texelsChanged"] > 0, part_stats
+    assert np.abs(lightness(part[np.ix_(texel_h < SEAM_TONE_HOLD_MM - .25, (texel_theta > 215) & (texel_theta < 325))])
+                  - lab_skin[0]).max() < 1.0
+    assert np.array_equal(part[:, (texel_theta > 180) & (texel_theta < 185)], texture[:, (texel_theta > 180) & (texel_theta < 185)])
+
+
+def test_collar_adjacent() -> None:
+    """collar_adjacent：切口下方 SEAM_TONE_COLLAR_MM 内、颈壳半径 15–75 mm 处有衣料面（非皮肤、非头发）的角度。
+    颈子整圈皮肤；后半圈（180°–360°）切口下 5 mm 处一圈衣领；前半圈切口下 30 mm（带外）一圈衣料；
+    左侧一片垂到切口下的头发、前右 20°–60° 切口下一圈 100 mm 外的肩部衣料，都不算。单位 1 mu = 1 mm。"""
+    h_head = 20.
+    def ring(radius: float, lo: float, hi: float, start: float, stop: float, columns: int = 72) -> tuple[np.ndarray, np.ndarray]:
+        t = np.radians(np.linspace(start, stop, columns + 1)); y = np.array([lo, hi])
+        tt, yy = np.meshgrid(t, y, indexing="ij")
+        points = np.column_stack((radius * np.cos(tt).ravel(), yy.ravel(), radius * np.sin(tt).ravel()))
+        faces = []
+        for i in range(columns):
+            a = 2 * i; b = a + 2
+            faces += [[a, a + 1, b], [b, a + 1, b + 1]]
+        return points, np.asarray(faces)
+    parts = [("skin", ring(40., -40., 60., 0., 360., 144)), ("cloth", ring(42., 12., 17., 180., 360.)),
+             ("cloth", ring(42., -14., -8., 0., 180.)), ("hair", ring(44., 5., 30., 150., 170., 8)),
+             ("cloth", ring(100., 10., 18., 20., 60., 8))]
+    positions, faces, skin, hair = [], [], [], []
+    for kind, (points, tri) in parts:
+        faces.append(tri + sum(len(p) for p in positions)); positions.append(points)
+        skin.append(np.full(len(points), kind == "skin")); hair.append(np.full(len(points), kind == "hair"))
+    positions, faces = np.concatenate(positions), np.concatenate(faces)
+    adjacent = collar_adjacent(positions, faces, np.concatenate(skin), np.concatenate(hair), UP, h_head, 1.)
+    assert adjacent.shape == (360,)
+    assert adjacent[185:355].all() and not adjacent[5:175].any(), np.flatnonzero(adjacent)[:20]
+    assert not collar_adjacent(positions, faces, np.ones(len(positions), bool), np.zeros(len(positions), bool),
+                               UP, h_head, 1.).any()                                   # 全是皮肤：无衣领
+
+
 def _slopes(points: np.ndarray, faces: np.ndarray, frame: dict[str, np.ndarray], lo: float, hi: float,
             at: float) -> tuple[np.ndarray, np.ndarray]:
     """逐 1° 首层光栅化后线性拟合 r(h)：返回斜率与外推到 h=at 的半径。"""
@@ -439,6 +717,46 @@ def _skin_faces(glb: Any, mesh: Mesh, faces: np.ndarray) -> np.ndarray:
     colors = image[np.clip((uvs[:, 1] * height).astype(int), 0, height - 1), np.clip((uvs[:, 0] * width).astype(int), 0, width - 1)]
     luma = colors @ np.array([.2126, .7152, .0722])
     return faces[luma[faces].mean(axis=1) > .35]
+
+
+def _seam_band_light(template_dir: Path, asset: Path, files: dict[str, str], reference_srgb: Sequence[float],
+                     collar_deg: Sequence[int] | None = None) -> dict[str, Any]:
+    """交付图集上的切口亮带（D2）：逐角量切口以上 0–4 mm 头皮的中位亮度，与同角度 SEAM_TONE_REF_MM 段比、也与本人
+    参考肤色比；比上方亮 2 L* 以上、且比本人肤色亮到调平全量线 SEAM_TONE_LIGHT_FULL 以上的角度即"切口处一条亮带"
+    （穆念慈第二版调平前 93 个角度、调平后 0；下巴下方喉部的自然明暗在全量线以下）。按 GPU 最近纹素取样。
+    collar_deg（fit 的 seamTone.collarDeg）给出时只数贴着衣领的角度：切口下仍是皮肤处的亮是天然明暗（素模后颈）。"""
+    from cut_head import _bone_frame, _image_bytes
+    body_glb = load_glb(template_dir / "body.glb"); head_glb = load_glb(asset / files["glb"]); head, _, _ = _world_mesh(head_glb)
+    fit = json.loads((asset / files["fit"]).read_text()); skeleton = json.loads((template_dir / "skeleton.json").read_text())
+    mm = 1 / (1000 * float(skeleton["mPerMu"])); h_head = fit["diagnostics"]["cut"]["headFloorMm"] * mm
+    neck_id = skeleton["regions"]["ids"]["neck"]; faces = head.indices.reshape(-1, 3)
+    skin_faces = _skin_faces(head_glb, head, faces[np.all(head.regions[faces] != neck_id, axis=1)])
+    names = [body_glb.json["nodes"][n].get("name", "") for n in body_glb.skin().joints]
+    bone = _bone_frame(body_glb, {name: i for i, name in enumerate(names)})
+    frame = {"center": np.asarray(skeleton["neckRing"]["centerMu"], float), "axis": bone["axis"],
+             "right": bone["right"], "front": bone["front"]}
+    top = SEAM_TONE_REF_MM[1]
+    grid = CylinderGrid(360, h_head, h_head + top * mm, int(round(top * 4)))
+    rho, _, uv = rasterize_cylinder(head.positions.astype(np.float64), skin_faces, frame, grid,
+                                    corner_values=head.uvs.astype(np.float64)[skin_faces])
+    atlas = np.asarray(Image.open(io.BytesIO(_image_bytes(head_glb.path, head_glb.json, head_glb.bin,
+                                                          head_glb.json["textures"][0]["source"]))).convert("RGB"))
+    height, width = atlas.shape[:2]; covered = np.isfinite(rho) & np.all(np.isfinite(uv), axis=-1)
+    x = np.clip(np.floor(np.nan_to_num(uv[..., 0]) * width).astype(int), 0, width - 1)
+    y = np.clip(np.floor(np.nan_to_num(uv[..., 1]) * height).astype(int), 0, height - 1)
+    lightness = _srgb_to_lab(atlas[y, x].reshape(-1, 3) / 255.).reshape(covered.shape + (3,))[..., 0]
+    rows = (grid.h_centers() - h_head) / mm
+    band_rows, ref_rows = rows < 4, (rows >= SEAM_TONE_REF_MM[0]) & (rows < SEAM_TONE_REF_MM[1])
+    usable = (covered[:, band_rows].sum(axis=1) > 0) & (covered[:, ref_rows].sum(axis=1) > 0)
+    band = np.array([np.median(lightness[i, band_rows][covered[i, band_rows]]) if usable[i] else np.nan for i in range(360)])
+    ref = np.array([np.median(lightness[i, ref_rows][covered[i, ref_rows]]) if usable[i] else np.nan for i in range(360)])
+    reference = _srgb_to_lab(np.asarray(reference_srgb, float)[None, :])[0][0]
+    step = band - ref
+    light = usable & (step > 2.) & (band - reference > SEAM_TONE_LIGHT_FULL)
+    if collar_deg is not None: light &= np.isin(np.arange(360), np.asarray(collar_deg, dtype=int))
+    return {"angles": int(usable.sum()), "lightAngles": int(light.sum()),
+            "stepMaxL": float(np.nanmax(step)) if usable.any() else 0., "bandExcessMaxL": float(np.nanmax(band - reference))
+            if usable.any() else 0.}
 
 
 def _strict_penetration(template_dir: Path, asset: Path, frames: int = 24,
@@ -501,7 +819,8 @@ def _independent(template_dir: Path, asset: Path, frames: int = 0,
                  files: dict[str, str] | None = None) -> dict[str, Any]:
     """只从写盘的 head.glb / fit.json / 模板复算：逐面朝向、底带外移、两端 G1、重叠带外露（bind + 三段动作各 frames 帧）。
 
-    重叠带 = 切口以上 0.5 mm–TOP_BAND、bind 时最近皮肤面 < 1 mm 的颈片点；外露只对皮肤面量（发片甩进颈部属垂发穿插）。
+    重叠带 = 切口以上 0.5 mm–TOP_BAND、bind 时最近皮肤面 < 1 mm 的颈片点；外露只对覆盖皮肤量（bind 时离重叠带
+    ≤ TOP_COVER_MM 的皮肤面：发片甩进颈部属垂发穿插，后脑皮肤贴近颈后属头网格自接触）。
     顶缝 G1 只在 A 区内部量：皮肤覆盖切口以上 10 mm 达 80% 的角度里，离任一未覆盖角 ≥ 12° 者。"""
     files = files or {"glb": "head.glb", "fit": "fit.json", "mask": "hidemask.png"}
     body_glb = load_glb(template_dir / "body.glb"); body, _, _ = _world_mesh(body_glb)
@@ -534,8 +853,21 @@ def _independent(template_dir: Path, asset: Path, frames: int = 0,
     joint_total = int(max(head.joints.max(), 0)) + 1
     dense = dense_weights(head.joints, head.weights, joint_total)
     weight_gap = np.abs(dense[band] - np.einsum("ni,nij->nj", near_bary, dense[skin_faces[near_face]])).sum(axis=1)
+    # 覆盖皮肤：bind 时离任一重叠带点 ≤ TOP_COVER_MM 的皮肤面（逐带点取面心近邻、精确点-三角距离）；外露只对它们量，
+    # 法线仍按整片皮肤算。头后仰时贴近颈后的后脑皮肤不在其中（D2 口径，见 test_top_band_covering_skin）。
+    triangles = positions[skin_faces]; centers = triangles.mean(axis=1)
+    reach = float(np.linalg.norm(triangles - centers[:, None, :], axis=2).max()) + TOP_COVER_MM * mm
+    from scipy.spatial import cKDTree
+    covered = np.zeros(len(skin_faces), bool)
+    for point, near_ids in zip(positions[band], cKDTree(centers).query_ball_point(positions[band], reach)):
+        ids = np.asarray(near_ids, dtype=np.int64)
+        if not len(ids): continue
+        closest, _ = closest_point_on_triangle(np.broadcast_to(point, (len(ids), 3)), triangles[ids, 0],
+                                               triangles[ids, 1], triangles[ids, 2])
+        covered[ids[np.linalg.norm(closest - point, axis=1) <= TOP_COVER_MM * mm]] = True
+    cover_faces = skin_faces[covered]
     def exposure(points: np.ndarray) -> float:
-        return float((_signed_distances(points[band], points, skin_faces, _vertex_normals(points, skin_faces)) / mm)
+        return float((_signed_distances(points[band], points, cover_faces, _vertex_normals(points, skin_faces)) / mm)
                      .max(initial=-1))
     exposures = {"bind": exposure(positions)}
     if frames:
@@ -587,6 +919,12 @@ def test_end_to_end_with_skin_collar() -> None:
         assert fit["kind"] == "head" and fit["hideRegions"] == [] and fit["hideMask"] == {"file": "hidemask.png",
                                                                                           "size": 1024}
         assert len(fit["skinTint"]) == 3 and all(value > 0 for value in fit["skinTint"])
+        color = fit["diagnostics"]["color"]; neck = color["neckMatch"]           # 方案 2：身体染色对准切口颈色
+        assert fit["skinTint"] == color["skinTint"] and fit["deltaE"] == color["deltaE"] < 3, color
+        if not neck["clipped"]:
+            np.testing.assert_allclose(neck["residualGain"], 1, atol=1e-3)
+            np.testing.assert_allclose(np.asarray(neck["faceTint"]) * np.asarray(neck["gainBefore"]), fit["skinTint"],
+                                       rtol=1e-6)
         assert len(result.skin().joints) == len(load_glb(template / "body.glb").skin().joints)
         assert set(np.unique(mesh.regions)) == {0, 1}
         np.testing.assert_allclose(mesh.weights.sum(axis=1), 1, atol=1e-3)   # 切口处无零权重点（粗网格回归）
@@ -649,11 +987,18 @@ def test_end_to_end_with_skin_collar() -> None:
 
 
 def test_real_asset_recomputed() -> None:
-    """若黄蓉产物在库：manifest 里登记的每个体型（fits）各自从写盘 GLB 独立复算逐面朝向、底带外移、两端 G1，
-    以及 bind + idle / walk / run 各 24 帧（共 73 帧，与生产检查同一时刻表）的重叠带外露与标准 penetration。"""
+    """库内每个已切头（heads/*/manifest.yaml：D1 黄蓉、D2 穆念慈……）：manifest 里登记的每个体型（fits）各自从写盘
+    GLB 独立复算逐面朝向、底带外移、两端 G1，以及 bind + idle / walk / run 各 24 帧（共 73 帧，与生产检查同一
+    时刻表）的重叠带外露与标准 penetration。"""
     root = Path(__file__).resolve().parents[3]
-    asset = root / "assets/default/model3d/dressup/heads/npc_huangrong"
-    if not (asset / "manifest.yaml").is_file(): return
+    for manifest_path in sorted((root / "assets/default/model3d/dressup/heads").glob("*/manifest.yaml")):
+        try:
+            _check_real_head(root, manifest_path.parent)
+        except AssertionError as error:
+            raise AssertionError(f"{manifest_path.parent.name}: {error}") from error
+
+
+def _check_real_head(root: Path, asset: Path) -> None:
     manifest = yaml.safe_load((asset / "manifest.yaml").read_text())[0]
     for name, record in manifest["files"].items():
         data = (asset / name).read_bytes()
@@ -701,13 +1046,21 @@ def test_real_asset_recomputed() -> None:
             template_name, strict, recorded)
         for clip in ("idle", "walk", "run"):
             assert abs(strict[clip] - recorded[clip]) < 1e-9 and strict[clip] <= .02, (template_name, clip, strict, recorded)
+        tone = fit["diagnostics"].get("seamTone")
+        if tone:   # 切口带调平之后的头（D2 起）：贴着衣领的角度上交付图集不得留切口亮带；切口下整圈皮肤的头（素模）不得调平
+            light = _seam_band_light(template, asset, names, tone["skinReferenceSrgb"], tone.get("collarDeg"))
+            assert light["angles"] > 180 and light["lightAngles"] == 0, (template_name, light, tone)
+            if tone.get("collarDeg") == []:
+                assert tone["texelsChanged"] == 0 and tone["paddingTexels"] == 0, (template_name, tone)
 
 
 TESTS = [test_clip_faces_closed_cut, test_subdivide_preserves_surface, test_refine_marked_is_watertight,
          test_one_sided_transition_and_radial_inset, test_biharmonic_band_constraints,
          test_weights_top4_and_ring_interpolation, test_weld_and_compact, test_remove_slivers_keeps_manifold,
          test_rasterize_cylinder_first_hit, test_head_floor_and_regions, test_strip_uv_seam, test_hide_mask_plane,
-         test_skin_match_uses_true_means, test_end_to_end_with_skin_collar, test_real_asset_recomputed]
+         test_skin_match_uses_true_means, test_hair_colors_rule, test_neck_fit_monotone_bridge, test_drop_collar_remnants,
+         test_top_band_covering_skin, test_level_seam_tone, test_collar_adjacent,
+         test_end_to_end_with_skin_collar, test_real_asset_recomputed]
 
 
 if __name__ == "__main__":

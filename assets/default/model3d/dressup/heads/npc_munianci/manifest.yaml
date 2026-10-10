@@ -1,0 +1,102 @@
+- id: dressup__head__npc_munianci
+  file: head.glb
+  category: model3d
+  kind: dressup-head
+  template: tpl_f_medium
+  sha256: 908b9fc682f445b621aca7a7712fe2df66e4e26567bae3b6a48dea96d34b1139
+  size_bytes: 1516076
+  triangles: 28493
+  report: report.json
+  status: draft
+  tool: tools/model3d/dressup/ingest.py v1
+  created: '2026-10-10T09:46:30-07:00'
+  fit: fit.json
+  fits:
+    tpl_f_medium:
+      file: head.glb
+      fit: fit.json
+      report: report.json
+      status: draft
+    tpl_f_tall:
+      file: head.tpl_f_tall.glb
+      fit: fit.tpl_f_tall.json
+      report: report.tpl_f_tall.json
+      status: draft
+      gateLevel: pass
+      sha256: 6ceae6f9615ff005a96d4f36b38492e156ccdf881c3c3a5408efe4b3ad592f7f
+      size_bytes: 1497776
+      vertices: 14936
+      triangles: 27984
+    tpl_f_small:
+      file: head.tpl_f_small.glb
+      fit: fit.tpl_f_small.json
+      report: report.tpl_f_small.json
+      status: draft
+      gateLevel: pass
+      sha256: b7525087a623afc99a5a8a87cd9c4f3b4340d1375d63c2d6f270d54cb914fe6c
+      size_bytes: 1512740
+      vertices: 15153
+      triangles: 28370
+  source:
+    directory: assets/default/model3d/dressup/heads/npc_munianci
+    references: []
+  notes: validate level=draft；status 按 tech/11 §6 映射。
+  npc: npc_munianci
+  experimental: true
+  gateLevel: pass
+  vertices: 15215
+  files:
+    head.glb:
+      sha256: 908b9fc682f445b621aca7a7712fe2df66e4e26567bae3b6a48dea96d34b1139
+      bytes: 1516076
+    fit.json:
+      sha256: 412f600146deaf7a94f45e803d16deb3024458db44f5f5d67003f3fd25151acd
+      bytes: 13744
+    report.json:
+      sha256: 77112999ddd24c90e0f605c055f75ba6f89cee38b83740f744f14e5dc96bbf46
+      bytes: 26529
+    hidemask.png:
+      sha256: 722da2aa4c4e4eb8c7d9b3277d417ea20db0decd99adb1ccd1420306bf04ec7f
+      bytes: 17225
+    preview.png:
+      sha256: b9123e7b68371bcc09255eb0062b67af852b99b55cc52de8f561584eb6fcfb25
+      bytes: 376291
+    self_check_preview.png:
+      sha256: 3b178874989f85902b90f877776d4e02ba2394ee99b737d03aaa3790a923d0e1
+      bytes: 43013
+    head.tpl_f_tall.glb:
+      sha256: 6ceae6f9615ff005a96d4f36b38492e156ccdf881c3c3a5408efe4b3ad592f7f
+      bytes: 1497776
+    fit.tpl_f_tall.json:
+      sha256: 25aa2c16040e011228f70e046a37a150fa44b413780a8a7d4cacb9e3359049e9
+      bytes: 13735
+    report.tpl_f_tall.json:
+      sha256: a2677bd5d0a5661059debd0365c4d60df687bd1593555941b5673af82c68100f
+      bytes: 26468
+    hidemask.tpl_f_tall.png:
+      sha256: 6dc9ff3c79c1cdecaec0d0b8bd9b9f179a5c6b9f36077ecc597e1f2c301f3a76
+      bytes: 17382
+    preview.tpl_f_tall.png:
+      sha256: b3a01ad4cc80c218aaf671a8643212bfe5a26767495bcd52bd2820035644ce14
+      bytes: 371814
+    self_check_preview.tpl_f_tall.png:
+      sha256: 4d05bebd09691d351e1320e340c3cb6ee37b5778f9ca5c6f667ba250f3a05455
+      bytes: 41763
+    head.tpl_f_small.glb:
+      sha256: b7525087a623afc99a5a8a87cd9c4f3b4340d1375d63c2d6f270d54cb914fe6c
+      bytes: 1512740
+    fit.tpl_f_small.json:
+      sha256: 1554c7f0a035f75bbd9aacf763ad66e60432e7760480f5ce48e971a0db16941f
+      bytes: 13792
+    report.tpl_f_small.json:
+      sha256: b63affc0538d2a9b9890b187aacb7826820e991809d32f0dee05e407c78d67a9
+      bytes: 26605
+    hidemask.tpl_f_small.png:
+      sha256: 57df7475a67aa7c7b0ac904fc276da42c9a0e6630fb73d7709450c355d04f4a8
+      bytes: 17759
+    preview.tpl_f_small.png:
+      sha256: b9616d29b3ee1b571cbcf7a43885f0bc50bfb447dc4a043d6d8c5293cb9a2e81
+      bytes: 373449
+    self_check_preview.tpl_f_small.png:
+      sha256: cefba23178a0ddccfb69831cb45330a706c4b3a5e6b0cd211b9ac08b98597a65
+      bytes: 42971
