@@ -1,0 +1,12 @@
+{"time":"2026-10-10T01:54:30-07:00","task":"ART-dressup-d2-head-gen","item":"npc_munianci","op":"generate_before","pid":null,"before":17260,"after":17260,"spent":0}
+{"time":"2026-10-10T01:56:03-07:00","task":"ART-dressup-d2-head-gen","item":"npc_munianci","op":"generate:7a598801-4b85-492b-b9fd-9ed354c93d1a","pid":"98c3372a-9420-434c-bf48-0abc5c39cd31","before":17260,"after":17195,"spent":65}
+{"time":"2026-10-10T01:59:30-07:00","task":"ART-dressup-d2-head-gen","item":"npc_munianci","op":"rig_before","pid":"98c3372a-9420-434c-bf48-0abc5c39cd31","before":17195,"after":17195,"spent":0}
+{"time":"2026-10-10T01:59:36-07:00","task":"ART-dressup-d2-head-gen","item":"npc_munianci","op":"rig:d94cbed1-d141-4f25-ad5f-67b8760ded0d","pid":"98c3372a-9420-434c-bf48-0abc5c39cd31","before":17195,"after":17175,"spent":20}
+{"time":"2026-10-10T02:34:30-07:00","task":"ART-dressup-d2-head-gen","item":"npc_munianci","op":"generate_before_v2","pid":null,"before":17175,"after":17175,"spent":0}
+{"time":"2026-10-10T02:35:03-07:00","task":"ART-dressup-d2-head-gen","item":"npc_munianci","op":"generate:ec88835d-5f77-4fdb-9cc9-d34695ac6aaa","pid":"1cd0ade0-0300-4d60-9275-a96aa6277e59","before":17175,"after":17110,"spent":65}
+{"time":"2026-10-10T02:40:17-07:00","task":"ART-dressup-d2-head-gen","item":"npc_munianci","op":"rig_before_v2","pid":"1cd0ade0-0300-4d60-9275-a96aa6277e59","before":17110,"after":17110,"spent":0}
+{"time":"2026-10-10T02:40:33-07:00","task":"ART-dressup-d2-head-gen","item":"npc_munianci","op":"rig:39b02cd7-4544-4e67-b80b-3c4fc260a1ea","pid":"1cd0ade0-0300-4d60-9275-a96aa6277e59","before":17110,"after":17090,"spent":20}
+{"time": "2026-10-10T08:48:21-07:00", "task": "ART-dressup-d2-head-gen", "item": "npc_munianci", "op": "generate_before", "pid": null, "before": 17090, "after": 17090, "spent": 0}
+{"time": "2026-10-10T08:48:34-07:00", "task": "ART-dressup-d2-head-gen", "item": "npc_munianci", "op": "generate:5c0bc087-f347-4f91-994f-53066e8757ba", "pid": "e7ffcf53-5260-488d-8a22-c34804b882bb", "before": 17090, "after": 17025, "spent": 65}
+{"time": "2026-10-10T08:51:00-07:00", "task": "ART-dressup-d2-head-gen", "item": "npc_munianci", "op": "rig_before_v3", "pid": "e7ffcf53-5260-488d-8a22-c34804b882bb", "before": 17025, "after": 17025, "spent": 0}
+{"time": "2026-10-10T08:51:13-07:00", "task": "ART-dressup-d2-head-gen", "item": "npc_munianci", "op": "rig:5f717f9d-fdd2-4933-a83f-493876af27fc", "pid": "e7ffcf53-5260-488d-8a22-c34804b882bb", "before": 17025, "after": 17005, "spent": 20}
