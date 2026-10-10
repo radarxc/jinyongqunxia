@@ -35,3 +35,4 @@
 2. **工具链以仓库声明为准**：`package.json` 的 `packageManager: pnpm@9.15.9`、`engines.node >=22.12.0`。`RUNBOOK-P0` 的 Node 24 / pnpm 12 只用于 P0 期 T0–T5，不适用本任务；报告如实写实际版本。
 3. **负载**：包级 `pnpm --filter @tianshu/render test`（`vitest run src`）会带上 `src/rig/performance.test.ts` 的 CPU 门。按根 `CLAUDE.md`，它须在机器负载低时跑；高负载下的失败不放宽、不跳过，换低负载时段重跑并记 loadavg。
 4. 由 Claude 在本任务工作区直接改 `culling.test.ts` 与报告（AR-110，同 D1b / D1c / E2b），产物仍走 `supervise.py --from validate` 与 GPT 审核。
+5. （05:59，审核 r3 FAIL 后）r3 只差报告缺"修改前 → 修改后"帧时间。协调者在同一时段交替实测集成分支基线与本任务各 2 次（`dressup/performance.test.ts`，best-of-3）：基线最佳 0.343 / 0.334 ms → 本任务 0.331 / 0.328 ms，已写入报告第 1、3 节；代码与测试未改，`--from validate` 重新校验后送审。
