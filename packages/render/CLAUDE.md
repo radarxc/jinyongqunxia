@@ -90,6 +90,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 身体贴图层调用 `setBodyLayers(DressupLayerSpec[])`；按 `order`（缺省传入顺序）把 RGBA 层叠到原始 baseColor，空数组恢复原图。输出固定 sRGB、`flipY=false` 并继承原图采样参数；层 ID 序列相同的合成纹理跨 actor 引用计数共享，最后释放者销毁。
 - `createDressupActor({ ..., compositor? })` 可注入纯内存合成器；默认实现依次使用 OffscreenCanvas / DOM canvas 与 ImageBitmap / ImageLoader。异步调用以最后一次为准，`dispose()` 同时释放当前或尚未采用的合成纹理引用。
 - `stats()` 除原有结构统计外给出 `bodyLayers` 与 RGBA8 `layerTextureBytes` 估计；贴图层不新增 mesh 或 draw call，`update(dt)` 不参与合成且仍不得逐帧分配。
+- actor 创建/换装时以 24 Hz 采样全部模板 clip；每个蒙皮件按“网格局部骨骼运动球 + 受其影响顶点的最大绑定距离”生成自己的动作包络。身体、头、衣物及蒙皮持物保留离屏剔除，禁止在 `update(dt)` 逐帧重算；刚性插槽道具仍按自身几何剔除。
 - 100 actor × 平均 4 件合成装备的 `update(dt)` + `skeleton.update()` P95 必须 `< 2.0 ms`；只由 perf project / `pnpm check:perf` 收集，不进 `pnpm check`，不得按系统负载跳过或放宽。
 
 ### 身体遮罩与挂头（B4，AR-108 V2 / V4）

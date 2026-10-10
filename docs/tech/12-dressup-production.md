@@ -31,8 +31,8 @@
 | 兵器 mainHand（exotic 80、sword 49、blade 43、staff 35、spear 22、whip 17） | 246 | P1：持态出鞘；剑 / 刀另出佩态入鞘 | ~60 基础形 / 名器 × 65；入鞘 ~20 × 65 | ~5,200 |
 | 暗器 offHand（dart 17、needle 8、ball 8、bolt 5、gun 4、awl 4、powder 1） | 47 | P1（小件，可共形） | ~10 × 65 | ~650 |
 | **装备小计** | **1,004** | | | **~11,300** |
-| 主要角色头（主线核心 ~110 人） | ~110 | P5：已有 3D 整身 34 人切头；其余 ~76 人 Tripo 半身生成 | ~76 × 65 | ~4,940 |
-| **合计** | | | | **~16,200**（余额 17,325） |
+| 主要角色头（主线核心 ~110 人） | ~110 | P5：已有 3D 整身 34 人切头；其余 ~76 人 Tripo 全身生成 + 绑骨（D2 实测：切头要骨架与蒙皮权重） | ~76 × 85 | ~6,460 |
+| **合计** | | | | **~17,760**（立项时余额 17,325；D2 后 17,090，差约 670，W1 前由作者定） |
 
 点数 = Tripo 网页版账户积分：生成 65、绑骨 20、动作 / 导出 / 重试 0。每次花点必须记账（§4.4）。
 
@@ -80,18 +80,21 @@
 | 1 | 衣图底板：以模板窄 A 底图为底，agy 图像工具按版型代表物品图"穿上"衣服（同人、同姿、同构图；手露袖口；领不过颈根） | agy（AR-105 素体类图像） | `check_plate.py --plate <模板底图> --image <衣图> --arm-angle-deg 25` 通过 |
 | 2 | Tripo 整身生成 + 绑骨（85） | `tripo-web` skill §3.3~3.4（同 E1） | joints 体检通过 |
 | 3 | 抽衣壳 | `extract_garment.py`（关节对齐 + 颜色为主分割 + 网格平滑 + 补洞） | 开口环 = 版型应有数；1 个连通块 |
-| 4 | 贴合 | `fit_garment.py`（权重来源 A / B 对比取优；推离迭代） | fit.json |
-| 5 | 身体遮罩 + 贴图层 | `bake_hide_mask.py`（G1）+ `bake_texture_layer.py`（E3） | hidemask.png、layer.png |
-| 6 | 跨模板 | `refit_template.py` → small / tall | fits 变体 |
-| 7 | 门禁 | `validate.py`（**可见穿透**口径，G1） | approved / draft |
-| 8 | 入库 | `ingest.py garment <id> …`（含 layer 与 hidemask 条目） | `garments/<id>/` |
+| 4 | 贴合（每个模板各跑一次，全分辨率） | `fit_garment.py --align joints --weight-source template --weight-smooth-rounds 3 --clean-skin-texture --push-mm 3 --preserve-shape --push-mode volume --allow-draft`（E2b：整件模板权重、体表位移场推离 + 限拉伸垂坠、贴图肤色清理并按交付 JPEG 复测） | fit.json；翻面 0、拉伸合格率 ≥ 99% |
+| 5 | 减面、翻边、压缩 | `pack_glb.mjs --simplify 0.25 --no-meshopt` → `untangle_glb.py --asset … --fit … --skeleton … --out …`（退出码 2 = 仍有翻面）→ `pack_glb.mjs`；先减面后贴合不收敛，不要倒过来 | 三角 ≈ 2.6 万 |
+| 6 | 身体遮罩 + 贴图层 | `bake_hide_mask.py --mode visibility --views 128 --frames-per-clip 6 --depth-size 256 --size 1024`（G1b）+ `bake_texture_layer.py`（E3） | hidemask.png、layer.png |
+| 7 | 跨模板 | small / tall 各自重复步骤 4–6（E2b 起不再用 `refit_template.py` 派生；若用 refit，须在母版定稿后做，validate 会核对 `refitFrom.garmentSha256`） | fits 变体 |
+| 8 | 门禁 | `validate.py --level draft`（**可见穿透** + holes 口径，G1b；动作穿插按姿势蒙皮由 E2c 补） | approved / draft |
+| 9 | 入库 | `ingest.py garment <id> …`（含 layer 与 hidemask 条目） | `garments/<id>/` |
 
 ### P3 贴图变体（同版型的其余物品，0 点）
 | 步 | 做什么 | skill / 命令 | 门禁 / 产出 |
 |---|---|---|---|
 | 1 | 变体衣图：以**该版型的衣图底板**为底，agy 按目标物品图改颜色 / 纹样 / 配饰，不改轮廓 | agy 图像工具 | `check_plate.py` 对版型底板：轮廓 IoU ≥ 0.95 |
-| 2 | 烘焙：把变体衣图正面投影 + 版型件背面贴图按色相映射，写成该版型网格的新贴图与新贴图层 | `retexture_variant.py`（V3 工具） | 质检图正 / 背 / 细节 |
-| 3 | 入库 | `ingest.py garment <id> --base <版型 id>`（几何引用版型，贴图独立） | 三模板可穿 |
+| 2 | 版型副本：解压并按来源修补版型贴图里原皮肤污染区（否则经颜色映射成变体的浅色带） | `pack_glb.mjs --no-meshopt` 出未压缩版型副本 → `variant_base.py --base <副本目录> --source <版型抽取件 GLB> --out <与版型 ID 同名的目录>` | 副本贴图只改污染区、其余逐字节不变 |
+| 3 | 烘焙：把变体衣图正面投影 + 版型件背面贴图按色相映射，写成该版型网格的新贴图与新贴图层 | `retexture_variant.py --base <步骤 2 的目录>`（V3 工具）→ `pack_glb.mjs` 压缩三体型产物 → 复制版型 `hidemask*.png` 到变体目录（构建不允许跨目录引用） | 质检图正 / 背 / 细节 |
+| 4 | 门禁 | `validate.py --level draft`；肤色按来源计（交付 JPEG 解码后，原皮肤污染区内落在 retexture Lab 盒的纹素 < 0.1%），全图 `variantSkinRatio` 只作参考；5173 胸口实拍 | 与版型同级 |
+| 5 | 入库 | `ingest.py garment <id> --base <版型 id>`（几何引用版型，贴图独立） | 三模板可穿 |
 
 ### P4 贴图层件（内甲、腰带的布带部分）
 `bake_texture_layer.py` 由物品图 + 模板底图生成层贴图（或 P3 方式从版型烘焙），腰带金属扣饰走 P1 小件挂 `waistL / waistR / waistBack`。
@@ -101,8 +104,8 @@
 |---|---|---|---|
 | A1 | 已有 3D 整身模型（`assets/default/model3d/npc_*`，34 人）：切头、尺寸归一、肤色匹配、模板颈片双调和拼接、身体遮罩 | `python3 tools/model3d/dressup/cut_head.py --source <model_rig.glb> --template <tpl> --id <npc> --out heads/<npc>`（迭代加 `--fast`，约 12 秒；完整约 5 分钟） | `report.json` level draft（V4 门禁），`checks_detail.transitionReportOnly` 人工过目；参数默认值在 `fit.json.diagnostics.params` |
 | A2 | 运行时截图验收 | `node tools/model3d/dressup/shoot_head.mjs --head before=<旧> --head after=heads/<npc> --out <shots> --poses bind,idle@0.6,walk@0.35,run@0.5 --views neck,neck_left,neck_back_left,neck_back_right,nape_low,under,head_back --mask both`（无头 Chrome 驱动 5173 `/character-3d`；每次定格从绑定姿势起算，姿势签名逐头比对） | 无黑缝、碎片、色阶、外凸圈、发片异常；summary 的 hideMapError 为 null；对照总图随报告提交 |
-| B1 | 无 3D 的主线核心角色（~76 人）：从立绘做"半身 + 颈桩"参考图（光头？按角色发式保留头发） | agy 图像工具；`check_plate` 头部模式 | 脸与立绘一致（AR-75 / AR-98 人脸对齐） |
-| B2 | Tripo `image_to_model`（65）→ 切头（同 A1~A2） | `tripo-web` skill；`cut_head.py` | 同上 |
+| B1 | 无 3D 的主线核心角色（~76 人）：从立绘做全身 A 字参考图（绑骨要全身）；按角色发式保留头发，去刘海 / 发饰 / 耳饰、双耳露出、束袖窄裙（tripo-web §1）；**整圈颈部裸露，领口落在颈根以下 ≥ 6 mm（建议 ≥ 10 mm）**——D2 第一版交领包到颈前，切头找不到连续颈带，白花 85 点 | agy 图像工具；`check_plate` 头部模式 | 脸与立绘一致（AR-75 / AR-98 人脸对齐）；颈部四周两指宽皮肤 |
+| B2 | Tripo `image_to_model`（65）+ 绑骨（20）→ 导出 → `textures.py` 压贴图 → 源件超过约 9 万三角时先减面到约 8.5 万（D2：18.8 万三角的源件切出 4.3 万三角的头，超 V4 预算 3 万）→ 切头（同 A1~A2） | `tripo-web` skill；`node tools/model3d/dressup/pack_glb.mjs <tripo_rig.glb> <tripo_rig_sNNN.glb> --simplify <85000/源三角数> --no-meshopt`（逐字节可复现，命令与哈希记进 `source.json.cut_source`）；`cut_head.py` | 同上；切头源件与 Tripo 导出件都入库 `heads/<npc>/source/` |
 | 3 | 运行时挂头 | `actor.setHead(url, { skinTint })`（B5） | 颈环无缝（静止 + 动作） |
 | 4 | 入库 | `ingest.py head <npc_id>` | `heads/<npc_id>/` |
 
@@ -149,7 +152,7 @@
 | 2D 门禁 | `tools/model3d/dressup/check_plate.py` |
 | 体检 / 骨架帧 | `inspect.py`、`normalize_rig.py`、`export_skeleton.py`、`derive_template.py` |
 | 道具 | `normalize_prop.py`、`check_sockets.py` |
-| 衣物 | `extract_garment.py`、`fit_garment.py`、`refit_template.py`、`bake_texture_layer.py`、`bake_hide_mask.py`（G1）、`retexture_variant.py`（V3） |
+| 衣物 | `extract_garment.py`、`fit_garment.py`、`untangle_glb.py`（E2b）、`refit_template.py`、`bake_texture_layer.py`、`bake_hide_mask.py`（G1）、`variant_base.py`（E2b）、`retexture_variant.py`（V3） |
 | 头 | `cut_head.py`、`skin_match.py`（D1） |
 | 门禁 / 打包 / 入库 | `validate.py`、`textures.py`、`pack_glb.mjs`、`ingest.py` |
 | 预览验收 | `pnpm --filter @tianshu/game dev --port 5173` → `/character-3d`「换装 v2」；`window.__dressup` |

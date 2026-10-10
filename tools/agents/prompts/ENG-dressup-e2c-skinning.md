@@ -32,3 +32,9 @@ E2b 用体表位移场 + 限拉伸垂坠（`--push-mode volume`）修好了劲�
 
 ## 报告
 `tools/agents/reports/ENG-dressup-e2c-skinning.md`，≤ 50 行。
+
+## 协调者裁定（2026-10-10 00:20，开工时）
+1. **第 2 条（模板倒置面）本任务只做影响面对比，不实施**：E2b 已在 validate 对 A1 判穿入的点做射线奇偶复核，`--push-mode volume` 推离用伪法向，这个问题已不影响门禁。修模板会改 `body.glb` 哈希，改 A1 会改各工具穿透计数，两条路都会牵动全部头 / 道具 / 衣物素材。报告第 3 节给出两条路各自受影响的文件与数字（例：哪些素材的 penetration / holes 会变、变多少），协调者据此另起任务。
+2. **写集**：沿用登记的 `fit_garment.py`、`tests_garment.py`、`garments/{eq_jinzhuang,eq_buyi,eq_buyi_tex}/**`，追加 `garments/_fixture_bodysuit/**`（`tests_garment.py` 重生成夹具的副产物，同 E2b 11:10 裁定）。
+3. **流水线**：版型件与布衣按 E2b 报告第 7 节的 P2 / P3 命令重跑。布衣先跑 `variant_base.py` 修补版型副本，再 `retexture_variant.py`；布衣肤色按 E2b 23:40 裁定口径验收。
+4. **重点看的穿插**（5173 实拍）：idle 侧胸腋下细条露肤（衣侧与躯干相交）、垂手宽袖碰髋 / 大腿、run 时下摆碰大腿。三体型三动作的可见穿透与 holes 写进报告，附运行时截图（tall 体型用 tall 头）。
