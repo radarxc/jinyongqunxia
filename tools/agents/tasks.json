@@ -52036,7 +52036,12 @@
     "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
     "assets/default/model3d/dressup/garments/eq_buyi/**",
     "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
-    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**"
+    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**",
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/bake_hide_mask.py",
+    "packages/render/src/dressup/actor.ts",
+    "packages/render/src/dressup/types.ts",
+    "packages/render/src/dressup/actor-pose-offset.test.ts"
    ],
    "validate": {
     "exists": [
