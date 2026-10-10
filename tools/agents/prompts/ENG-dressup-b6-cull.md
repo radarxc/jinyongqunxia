@@ -29,3 +29,9 @@
 
 ## 报告
 `tools/agents/reports/ENG-dressup-b6-cull.md`：第 3 节写 three 版本剔除依据的核对结论、采用的做法与理由、包络球如何计算（采样数、余量、坐标系）、测试清单、draw call / 帧时间前后对比；第 7 节写协调者在 5173 `/character-3d` 的验收步骤（tall 模板 + 头 + 劲装，run 动作，近景后颈 / 背面机位不再丢头）。报告 ≤ 50 行。
+
+## 协调者裁定（2026-10-10 04:50，第 3 次运行后；AR-110 由 Claude 直接收尾）
+1. **属性测试不加依赖**：`_code.md` 写"数学 / 几何类用属性测试（fast-check）"，但仓库没有任何包声明 fast-check（`docs/tech/01` 只是规划），本任务约束又写明"不加依赖"。第 2 次运行从 CDN 下载、第 3 次运行静态导入未声明的包，都不可接受。改为测试内固定种子的 mulberry32 生成 100 组用例（4 组边界 + 96 组随机：1–4 骨、40 个 [-200, 200] 整数），断言与原 fast-check 版逐条相同，离线可复现。协调者已做反向验证：去掉包络里的绑定距离项后该测试失败。
+2. **工具链以仓库声明为准**：`package.json` 的 `packageManager: pnpm@9.15.9`、`engines.node >=22.12.0`。`RUNBOOK-P0` 的 Node 24 / pnpm 12 只用于 P0 期 T0–T5，不适用本任务；报告如实写实际版本。
+3. **负载**：包级 `pnpm --filter @tianshu/render test`（`vitest run src`）会带上 `src/rig/performance.test.ts` 的 CPU 门。按根 `CLAUDE.md`，它须在机器负载低时跑；高负载下的失败不放宽、不跳过，换低负载时段重跑并记 loadavg。
+4. 由 Claude 在本任务工作区直接改 `culling.test.ts` 与报告（AR-110，同 D1b / D1c / E2b），产物仍走 `supervise.py --from validate` 与 GPT 审核。
