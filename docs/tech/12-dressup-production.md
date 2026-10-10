@@ -80,18 +80,21 @@
 | 1 | 衣图底板：以模板窄 A 底图为底，agy 图像工具按版型代表物品图"穿上"衣服（同人、同姿、同构图；手露袖口；领不过颈根） | agy（AR-105 素体类图像） | `check_plate.py --plate <模板底图> --image <衣图> --arm-angle-deg 25` 通过 |
 | 2 | Tripo 整身生成 + 绑骨（85） | `tripo-web` skill §3.3~3.4（同 E1） | joints 体检通过 |
 | 3 | 抽衣壳 | `extract_garment.py`（关节对齐 + 颜色为主分割 + 网格平滑 + 补洞） | 开口环 = 版型应有数；1 个连通块 |
-| 4 | 贴合 | `fit_garment.py`（权重来源 A / B 对比取优；推离迭代） | fit.json |
-| 5 | 身体遮罩 + 贴图层 | `bake_hide_mask.py`（G1）+ `bake_texture_layer.py`（E3） | hidemask.png、layer.png |
-| 6 | 跨模板 | `refit_template.py` → small / tall | fits 变体 |
-| 7 | 门禁 | `validate.py`（**可见穿透**口径，G1） | approved / draft |
-| 8 | 入库 | `ingest.py garment <id> …`（含 layer 与 hidemask 条目） | `garments/<id>/` |
+| 4 | 贴合（每个模板各跑一次，全分辨率） | `fit_garment.py --align joints --weight-source template --weight-smooth-rounds 3 --clean-skin-texture --push-mm 3 --preserve-shape --push-mode volume --allow-draft`（E2b：整件模板权重、体表位移场推离 + 限拉伸垂坠、贴图肤色清理并按交付 JPEG 复测） | fit.json；翻面 0、拉伸合格率 ≥ 99% |
+| 5 | 减面、翻边、压缩 | `pack_glb.mjs --simplify 0.25 --no-meshopt` → `untangle_glb.py --asset … --fit … --skeleton … --out …`（退出码 2 = 仍有翻面）→ `pack_glb.mjs`；先减面后贴合不收敛，不要倒过来 | 三角 ≈ 2.6 万 |
+| 6 | 身体遮罩 + 贴图层 | `bake_hide_mask.py --mode visibility --views 128 --frames-per-clip 6 --depth-size 256 --size 1024`（G1b）+ `bake_texture_layer.py`（E3） | hidemask.png、layer.png |
+| 7 | 跨模板 | small / tall 各自重复步骤 4–6（E2b 起不再用 `refit_template.py` 派生；若用 refit，须在母版定稿后做，validate 会核对 `refitFrom.garmentSha256`） | fits 变体 |
+| 8 | 门禁 | `validate.py --level draft`（**可见穿透** + holes 口径，G1b；动作穿插按姿势蒙皮由 E2c 补） | approved / draft |
+| 9 | 入库 | `ingest.py garment <id> …`（含 layer 与 hidemask 条目） | `garments/<id>/` |
 
 ### P3 贴图变体（同版型的其余物品，0 点）
 | 步 | 做什么 | skill / 命令 | 门禁 / 产出 |
 |---|---|---|---|
 | 1 | 变体衣图：以**该版型的衣图底板**为底，agy 按目标物品图改颜色 / 纹样 / 配饰，不改轮廓 | agy 图像工具 | `check_plate.py` 对版型底板：轮廓 IoU ≥ 0.95 |
-| 2 | 烘焙：把变体衣图正面投影 + 版型件背面贴图按色相映射，写成该版型网格的新贴图与新贴图层 | `retexture_variant.py`（V3 工具） | 质检图正 / 背 / 细节 |
-| 3 | 入库 | `ingest.py garment <id> --base <版型 id>`（几何引用版型，贴图独立） | 三模板可穿 |
+| 2 | 版型副本：解压并按来源修补版型贴图里原皮肤污染区（否则经颜色映射成变体的浅色带） | `pack_glb.mjs --no-meshopt` 出未压缩版型副本 → `variant_base.py --base <副本目录> --source <版型抽取件 GLB> --out <与版型 ID 同名的目录>` | 副本贴图只改污染区、其余逐字节不变 |
+| 3 | 烘焙：把变体衣图正面投影 + 版型件背面贴图按色相映射，写成该版型网格的新贴图与新贴图层 | `retexture_variant.py --base <步骤 2 的目录>`（V3 工具）→ `pack_glb.mjs` 压缩三体型产物 → 复制版型 `hidemask*.png` 到变体目录（构建不允许跨目录引用） | 质检图正 / 背 / 细节 |
+| 4 | 门禁 | `validate.py --level draft`；肤色按来源计（交付 JPEG 解码后，原皮肤污染区内落在 retexture Lab 盒的纹素 < 0.1%），全图 `variantSkinRatio` 只作参考；5173 胸口实拍 | 与版型同级 |
+| 5 | 入库 | `ingest.py garment <id> --base <版型 id>`（几何引用版型，贴图独立） | 三模板可穿 |
 
 ### P4 贴图层件（内甲、腰带的布带部分）
 `bake_texture_layer.py` 由物品图 + 模板底图生成层贴图（或 P3 方式从版型烘焙），腰带金属扣饰走 P1 小件挂 `waistL / waistR / waistBack`。
@@ -149,7 +152,7 @@
 | 2D 门禁 | `tools/model3d/dressup/check_plate.py` |
 | 体检 / 骨架帧 | `inspect.py`、`normalize_rig.py`、`export_skeleton.py`、`derive_template.py` |
 | 道具 | `normalize_prop.py`、`check_sockets.py` |
-| 衣物 | `extract_garment.py`、`fit_garment.py`、`refit_template.py`、`bake_texture_layer.py`、`bake_hide_mask.py`（G1）、`retexture_variant.py`（V3） |
+| 衣物 | `extract_garment.py`、`fit_garment.py`、`untangle_glb.py`（E2b）、`refit_template.py`、`bake_texture_layer.py`、`bake_hide_mask.py`（G1）、`variant_base.py`（E2b）、`retexture_variant.py`（V3） |
 | 头 | `cut_head.py`、`skin_match.py`（D1） |
 | 门禁 / 打包 / 入库 | `validate.py`、`textures.py`、`pack_glb.mjs`、`ingest.py` |
 | 预览验收 | `pnpm --filter @tianshu/game dev --port 5173` → `/character-3d`「换装 v2」；`window.__dressup` |
