@@ -48,7 +48,7 @@
 | **V1 道具** | 插槽约定修正；斗笠戴正、玉佩贴胸、带鞘剑佩左腰；出鞘剑握右手 | A6、E4 | 5173 实测四件：持剑剑柄在拳中、刃从虎口侧伸出；佩剑柄朝前、鞘后下；斗笠不穿头；玉佩不嵌胸；`check_sockets.py` 全过 |
 | **V2 衣服匹配（最高优先）** | 网格层劲装 + 贴图层叠穿 + **身体遮罩（UV hide mask）** + **可见穿透门禁** | E2、G1（遮罩烘焙 / 运行时丢弃 / validate 可见穿透） | 劲装在三套模板 idle / walk / run 下：领口、袖口、衣摆附近无可见穿模；无黑洞；可见穿透 ≤ 0.5%（approved）；作者看图认可 |
 | **V3 贴图变体** | 同版型第 2 件衣服只靠改图 + 烘焙出来 | P3 工具 `retexture_variant.py` + 1 件样例 | 样例在三模板上与原版型同样贴合；颜色 / 花纹与物品图一致；0 点 |
-| **V4 头** | 切 1 个现有 NPC 头接到模板；生成 1 个新头接上 | D1（`cut_head.py` / `skin_match.py`）、B5（运行时 `setHead`）、D2（1 个生成样例） | 颈环处无缝（静止与 walk / run）；颈部按 AR-109 用双调和数值曲面接头切口与规范颈环（两端切向 < 5°、无 > 1 mm 鼓圈、从写盘 GLB 复算）；身体按规范环切面的 UV 遮罩终止（运行时 0.5 等值边界落在环上）；肤色差 ΔE2000 < 3；头尺寸：颅宽比与脸高比的几何平均归一后差 < 1%（±8% 钳位时标 `clamped`，钳位不算失败），单轴偏差只报不判（协调者 2026-10-09 裁定） |
+| **V4 头** | 切 1 个现有 NPC 头接到模板；生成 1 个新头接上 | D1 / D1b（`cut_head.py` 头颈拼接标准工具 + `shoot_head.mjs` 运行时截图）、B5（运行时挂头）、D2（1 个生成样例） | 颈部无缝（静止与 idle / walk / run，以 5173 运行时截图为准）。D1b 口径（AR-109 / AR-110，2026-10-09）：模板颈片（环下 12 mm 起，A 区到头皮切面 + 4 mm，B 区后脑到 130 mm）以余切拉普拉斯双调和位移场变形，底带位移 0 并外移 0.2 mm 与身体重叠，A 区顶带按头皮网格精确内缩 0.3 mm，切口下 5 mm G1 裙带（向下外扩量饱和）；重叠带颈片取正上方头皮三角的插值权重，头部离重叠带 4 mm 内的几何同走 ≤ 4 骨骼的颈部权重场；门禁：两端接缝 ΔE2000 p95 < 2（最终 GLB 图集，JPEG 单次 4:4:4）；A 区内部（离无头皮角 ≥ 12°）顶缝 G1 < 5°、底缝 G1 < 5°、切口台阶 < 1 mm、无外凸鼓圈（喉部内凹只报）；发际线过渡列只报；朝向一致与逐面朝外 100%；遮罩外渗 0；73 帧（bind + idle / walk / run 各 24 帧）底带外移 ≥ −0.05 mm、重叠带对头皮面逐帧外露 ≤ 0.1 mm、标准 penetration bind 0 / 动作 ≤ 2%；三角 ≤ 30,000；validate 的 holes（衣物口径）对头资产只报；肤色差 ΔE2000 < 3；头尺寸：颅宽比与脸高比的几何平均归一后差 < 1%（±8% 钳位时标 `clamped`，钳位不算失败），单轴偏差只报不判 |
 | **V5 agy 执行器** | agy 经 supervise 跑完一个真实任务（V3 或 V4 之一）并过审核合入 | 适配层 `tools/agents/agy_exec.py` | 任务从 start → validate → review → merge 全程自动；日志、报告、写集与 traex 任务同标准。**W0 结论（2026-10-08）**：agy 出图可用；代码 / 几何任务出现伪造测试、手改门禁报告、不照意见改，改由 traex 执行——量产中 agy 只做衣图 / 底板出图，代码与几何走 traex，审核一律 GPT（supervise `--review-bin`） |
 
 闸门全过后，协调者向作者汇报并申请开 **W1 量产波次**（§4）。
@@ -99,8 +99,8 @@
 ### P5 头（主要角色）
 | 步 | 做什么 | skill / 命令 | 门禁 / 产出 |
 |---|---|---|---|
-| A1 | 已有 3D 整身模型（`assets/default/model3d/npc_*`，34 人）：按规范颈环切头 | `cut_head.py`（D1） | 颈环 64 点与模板一致 |
-| A2 | 头尺寸归一、肤色匹配 | `skin_match.py`（D1） | ΔE2000 < 3 |
+| A1 | 已有 3D 整身模型（`assets/default/model3d/npc_*`，34 人）：切头、尺寸归一、肤色匹配、模板颈片双调和拼接、身体遮罩 | `python3 tools/model3d/dressup/cut_head.py --source <model_rig.glb> --template <tpl> --id <npc> --out heads/<npc>`（迭代加 `--fast`，约 12 秒；完整约 5 分钟） | `report.json` level draft（V4 门禁），`checks_detail.transitionReportOnly` 人工过目；参数默认值在 `fit.json.diagnostics.params` |
+| A2 | 运行时截图验收 | `node tools/model3d/dressup/shoot_head.mjs --head before=<旧> --head after=heads/<npc> --out <shots> --poses bind,idle@0.6,walk@0.35,run@0.5 --views neck,neck_left,neck_back_left,neck_back_right,nape_low,under,head_back --mask both`（无头 Chrome 驱动 5173 `/character-3d`；每次定格从绑定姿势起算，姿势签名逐头比对） | 无黑缝、碎片、色阶、外凸圈、发片异常；summary 的 hideMapError 为 null；对照总图随报告提交 |
 | B1 | 无 3D 的主线核心角色（~76 人）：从立绘做"半身 + 颈桩"参考图（光头？按角色发式保留头发） | agy 图像工具；`check_plate` 头部模式 | 脸与立绘一致（AR-75 / AR-98 人脸对齐） |
 | B2 | Tripo `image_to_model`（65）→ 切头（同 A1~A2） | `tripo-web` skill；`cut_head.py` | 同上 |
 | 3 | 运行时挂头 | `actor.setHead(url, { skinTint })`（B5） | 颈环无缝（静止 + 动作） |

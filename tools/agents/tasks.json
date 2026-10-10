@@ -51623,6 +51623,58 @@
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
    ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-d1b-neck-splice",
+   "title": "3D 纸娃娃换装 · D1b · 头颈拼接标准工具（运行时截图工具 + 模板颈片双调和变形 + 精确裁头 + 两端重叠接缝；Claude 直接实现，AR-110）",
+   "prompt": "ENG-dressup-d1b-neck-splice.md",
+   "deps": [
+    "AGY-dressup-d1-cuthead"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "tools/model3d/dressup/shoot_head.mjs",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/shoot_head.mjs",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
    "effort": "high",
    "profile": "code",
    "id": "ENG-dressup-alloc-steady",
