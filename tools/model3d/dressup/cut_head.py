@@ -94,6 +94,10 @@ NECK_FIT_MAX_MM = 4.0           #   单角最多收细这么多
 NECK_FIT_SHELL = 1.12           #   只动颈壳内的点（半径 ≤ 切口处头皮半径 × 该系数），下巴 / 脸不动
 NECK_FIT_BELOW_MM = 6.0         #   切口以下这一高度内的点同样收（裁切前的颈子，决定切口剖面与 G1 斜率）
 NECK_FIT_SMOOTH_DEG = 3         #   逐角收细量的周期高斯平滑 σ（度，整数）
+CUT_COLOR_ROWS = 2                # 切口头色：切口以上首两行（细网格行）
+NECK_CENTER_PROBE_MM = 0.5      # 颈子截面对中（D2c，见 center_neck_section）：在切口以上这一高度比较头皮与模板颈子截面中心
+NECK_CENTER_MAX_MM = 20.0       #   平移量上限（超出视为源头 / 模板量测异常，直接报错）
+TINT_SEAM_BAND_MM = 2.0         # 身体染色对准下接缝（D2c）：取遮罩平面上下这一高度内的颈片条带行作"下接缝附近身体色"
 ORNAMENT_MIN_MM = 35.0          # 非皮肤非头发的面（发饰、耳坠）只保留这一高度以上的
 TOP_JUMP_MM = 6.0               # 顶带目标半径相对切面处的跳变上限（防止贴到下巴等其他表面）
 REGION_SMOOTH_DEG = 5.0         # A / B 区权重的周期平滑 σ
@@ -1531,6 +1535,51 @@ def head_cut_profile(head: dict[str, np.ndarray], frame: dict[str, np.ndarray], 
     return {"grid": grid, "rho": filled, "slope": slope, "atCut": at_cut, "valid": good}
 
 
+def angle_ranges(mask: np.ndarray) -> list[list[int]]:
+    """逐度布尔量压成闭区间 [起, 止]（度序号，不跨 0 度回绕；全真为 [[0, n-1]]）。"""
+    flags = np.asarray(mask, dtype=bool); edges = np.diff(np.r_[0, flags.astype(np.int8), 0])
+    return [[int(a), int(b) - 1] for a, b in zip(np.flatnonzero(edges == 1), np.flatnonzero(edges == -1))]
+
+
+def _section_center(radius: np.ndarray, theta: np.ndarray, valid: np.ndarray) -> tuple[float, float, float, int]:
+    """逐角半径 r(θ) 在 valid 角度上拟合 R + cx·cosθ + cz·sinθ（最小二乘）：返回截面中心 (cx, cz)、平均半径与角数。"""
+    if np.count_nonzero(valid) < len(theta) // 3: return 0., 0., float("nan"), int(np.count_nonzero(valid))
+    design = np.column_stack((np.ones(np.count_nonzero(valid)), np.cos(theta[valid]), np.sin(theta[valid])))
+    (mean, cx, cz), *_ = np.linalg.lstsq(design, radius[valid], rcond=None)
+    return float(cx), float(cz), float(mean), int(np.count_nonzero(valid))
+
+
+def center_neck_section(positions: np.ndarray, frame: dict[str, np.ndarray], h_head: float, head_ring: np.ndarray,
+                        template_ring: np.ndarray, ring_theta: np.ndarray, mm: float,
+                        region_a: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+    """颈子截面对中（D2c）：头按骨骼对位（源颈骨上同比例点 → 模板规范颈环中心），柱面轴是颈骨方向；但模板颈子在
+    切口高度的截面中心不在这根轴上（tpl_f_medium 前 8 mm、右 5 mm，tall 前 10–11 mm、右 7 mm），头颈子却按轴居中，
+    于是整体偏后偏左，侧面看喉部、后颈在切口处各一道台阶（作者 2026-10-10"穆念慈的颈部还是错开的"）。
+    在切口以上 NECK_CENTER_PROBE_MM 处，只取两边都量得到的 A 区角度（region_a > 0.5），按头皮与模板颈子的逐角半径
+    各拟合截面中心，在垂直颈轴的平面内平移整个头使两中心重合。返回平移后的点、平移向量（mu）与诊断。"""
+    # 两边只在共同量得到的角度上拟合：后颈被发帘挡住时头皮缺一段，颈子截面又不是正圆，各用各的角度会把圆心拟偏
+    # （黄蓉 287 / 360 角时偏 2 mm）。
+    common = np.isfinite(head_ring) & (head_ring > 0) & np.isfinite(template_ring) & (template_ring > 0)
+    if region_a is not None:          # 只按看得见的 A 区对中：发帘下（B 区）的颈皮不看，黄蓉颈子比模板细 6 mm 时圆心随角度集合变
+        common &= np.nan_to_num(np.asarray(region_a, dtype=np.float64), nan=0.) > .5
+    hx, hz, h_mean, h_count = _section_center(head_ring, ring_theta, common)
+    tx, tz, t_mean, t_count = _section_center(template_ring, ring_theta, common)
+    if not (np.isfinite(h_mean) and np.isfinite(t_mean)):
+        raise ValueError(f"颈子截面对中缺数据：头 {h_count} 角、模板 {t_count} 角有半径")
+    dx, dz = tx - hx, tz - hz
+    if np.hypot(dx, dz) > NECK_CENTER_MAX_MM * mm:
+        raise ValueError(f"颈子截面中心相差 {np.hypot(dx, dz) / mm:.1f} mm，超过 {NECK_CENTER_MAX_MM:g} mm，疑似量测异常")
+    shift = dx * np.asarray(frame["right"], dtype=np.float64) + dz * np.asarray(frame["front"], dtype=np.float64)
+    return positions + shift, shift, {
+        "probeMm": NECK_CENTER_PROBE_MM, "hHeadMm": float(h_head / mm),
+        "headCenterMm": [float(hx / mm), float(hz / mm)], "templateCenterMm": [float(tx / mm), float(tz / mm)],
+        "shiftMm": [float(dx / mm), float(dz / mm)], "shiftNormMm": float(np.hypot(dx, dz) / mm),
+        "headMeanRadiusMm": float(h_mean / mm), "templateMeanRadiusMm": float(t_mean / mm),
+        "headAngles": h_count, "templateAngles": t_count,
+        # 非正圆截面的拟合圆心随角度集合变（黄蓉 tall 换一组 A 区角度差 1.3 mm）：记下所用角度，供独立复核同口径复量
+        "anglesDeg": angle_ranges(common)}
+
+
 def fit_neck_to_template(positions: np.ndarray, frame: dict[str, np.ndarray], h_head: float, h_band_top: float,
                          ring_theta: np.ndarray, head_ring: np.ndarray, head_slope: np.ndarray,
                          template_ring: np.ndarray, template_slope: np.ndarray, region_a: np.ndarray, mm: float
@@ -1860,13 +1909,21 @@ def bake_strip(patch: dict[str, np.ndarray], frame: dict[str, np.ndarray], grid:
     head_lin = np.zeros_like(linear)
     if np.any(head_valid):
         head_lin[head_valid] = _srgb_to_linear(np.clip(_bilinear(head_img, head_uv[head_valid]), 0, 1))
-    # 切口行：每列 h_head 之上最先有头皮的两行均值。
-    first_rows = np.flatnonzero(band)[:3]
+    # 切口行：每列 h_head 之上首两行的头皮色均值（D2c 起按任务口径严格两行；D1b 起此处曾取三行）。
+    first_rows = np.flatnonzero(band)[:CUT_COLOR_ROWS]
     row_valid = head_valid[:, first_rows]
     count = row_valid.sum(axis=1)
     head_row = np.divide((head_lin[:, first_rows] * row_valid[:, :, None]).sum(axis=1), count[:, None],
                          out=np.zeros((grid.theta_count, 3)), where=count[:, None] > 0)
     tpl_row = linear[:, first_rows].mean(axis=1)
+    # 下接缝附近的身体色（D2c，作者"身体颜色和脖子下面接缝附近颜色对齐"）：遮罩平面上下 TINT_SEAM_BAND_MM 内的条带行，
+    # 即运行时可见身体开始处；染色增益 = 切口头色 ÷ 这里的染色后身体色（不是同高度、被遮罩隐藏的模板上段颈子）。
+    mask_h = (PATCH_BOTTOM_MM + MASK_OFFSET_MM) * mm
+    seam_rows = np.flatnonzero(np.abs(h_c - mask_h) <= TINT_SEAM_BAND_MM * mm)
+    seam_valid = covered[:, seam_rows]
+    seam_count = seam_valid.sum(axis=1)
+    body_seam = np.divide((linear[:, seam_rows] * seam_valid[:, :, None]).sum(axis=1), seam_count[:, None],
+                          out=np.full((grid.theta_count, 3), np.nan), where=seam_count[:, None] > 0)
     has_head = count > 0
     gain_exact = np.where(has_head[:, None], np.clip(head_row / np.maximum(tpl_row, 1e-6), .5, 2.), 1.)
     sigma = COLOR_SMOOTH_DEG * grid.theta_count / 360
@@ -1889,7 +1946,14 @@ def bake_strip(patch: dict[str, np.ndarray], frame: dict[str, np.ndarray], grid:
     srgb = np.clip(_linear_to_srgb(np.clip(linear, 0, 1)), 0, 1)
     image = np.round(srgb.transpose(1, 0, 2)[::-1] * 255).astype(np.uint8)   # 行：h 由高到低
     region = has_head & (weight_a > .5)
+    seam_region = region & (seam_count > 0)
+    gain_seam = np.divide(head_row, body_seam, out=np.ones_like(head_row), where=np.isfinite(body_seam) & (body_seam > 1e-6))
     return image, {"coveredRatio": float(covered.mean()),
+                   "seamRows": int(len(seam_rows)), "seamAngles": int(np.count_nonzero(seam_region)),
+                   "gainSeamMean": (np.clip(gain_seam[seam_region], .5, 2.).mean(axis=0) if np.any(seam_region)
+                                    else np.ones(3)),
+                   "bodySeamSrgb": (_linear_to_srgb(body_seam[seam_region].mean(axis=0)) if np.any(seam_region)
+                                    else None),
                    "headOverlapTexels": int(np.count_nonzero(head_valid)),
                    "gainMean": gain_smooth[region].mean(axis=0) if np.any(region) else np.ones(3),
                    "headCutSrgb": _linear_to_srgb(head_row[region].mean(axis=0)) if np.any(region) else None,
@@ -2519,14 +2583,26 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
     face_trusted = trusted_flags[selected_faces].sum(axis=1) >= 2
     envelopes = head_envelopes(head_positions, selected_faces, face_skin, face_trusted, frame, mm)
     floor = head_floor(envelopes, mm)
+    ring_theta = (np.arange(ANGLE_BINS) + .5) * (TAU / ANGLE_BINS)
+    template_faces = template_mesh.indices.reshape(-1, 3)
+    # 1a) 颈子截面对中（D2c）：切口处头皮截面中心对到模板颈子截面中心，再按平移后的头重算包络与切面。
+    probe = floor["hHead"] + NECK_CENTER_PROBE_MM * mm
+    head_positions, center_shift, neck_center = center_neck_section(
+        head_positions, frame, floor["hHead"],
+        sample_grid(envelopes["skin"], envelopes["grid"], ring_theta, np.full(ANGLE_BINS, probe)),
+        _ring_radius(template_mesh.positions, template_faces, frame, probe, ring_theta), ring_theta, mm,
+        weight_a_at(ring_theta, floor))
+    transformed = transformed + center_shift                          # 衣领检测等仍用整源件坐标：随头一起平移
+    envelopes = head_envelopes(head_positions, selected_faces, face_skin, face_trusted, frame, mm)
+    floor = head_floor(envelopes, mm)
+    neck_center["hHeadAfterMm"] = float(floor["hHead"] / mm)
     # 1b) 颈部粗细适配：两端都向上收而落差不足的角度，按 Hermite 单调条件收细切口处的头侧颈子（只收不放），
     #     再按适配后的头重算包络与切面。
-    ring_theta = (np.arange(ANGLE_BINS) + .5) * (TAU / ANGLE_BINS); slope_step = 2 * mm
+    slope_step = 2 * mm
     head_ring = sample_grid(envelopes["skin"], envelopes["grid"], ring_theta, np.full(ANGLE_BINS, floor["hHead"] + .5 * mm))
     head_ring_up = sample_grid(envelopes["skin"], envelopes["grid"], ring_theta,
                                np.full(ANGLE_BINS, floor["hHead"] + .5 * mm + slope_step))
     h_band_top = PATCH_BOTTOM_MM * mm + BOTTOM_BAND_MM * mm
-    template_faces = template_mesh.indices.reshape(-1, 3)
     template_ring = _ring_radius(template_mesh.positions, template_faces, frame, h_band_top, ring_theta)
     template_ring_up = _ring_radius(template_mesh.positions, template_faces, frame, h_band_top + slope_step, ring_theta)
     hh_before = float(floor["hHead"])
@@ -2632,9 +2708,10 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
     head_uv_final = head["uvs"].copy(); head_uv_final[:, 1] *= (ATLAS_SIZE - STRIP_ROWS) / ATLAS_SIZE
     strip, strip_info = bake_strip(patch_for_bake, frame, grid, body_image, tint, {**head, "uvs": head_uv_final},
                                    canvas, floor, hair_linear, mm)
-    # 身体染色对准切口颈色（作者 2026-10-10 方案 2）：A 区颈片平均增益（切口头色 ÷ 染色后身体色）乘回 skinTint 再重烘，
-    # 身体整体与颈子同色，颈片不再从颈色渐变到身体色（D2 穆念慈增益 1.14–1.22、黄蓉 1.08–1.15，切口处一道明暗）。
-    face_tint, first_gain = tint, np.asarray(strip_info["gainMean"], dtype=np.float64)
+    # 身体染色对准切口颈色（作者 2026-10-10 方案 2）：A 区平均增益乘回 skinTint 再重烘，身体整体与颈子同色。
+    # D2c（作者"身体颜色和脖子下面接缝附近颜色对齐"）：增益 = 切口头色 ÷ 下接缝附近（遮罩平面上下 TINT_SEAM_BAND_MM）的
+    # 染色后身体色；D2 原口径是同高度、被遮罩隐藏的模板上段颈子色，模板脖子自身有上下明暗时下接缝仍差一截。
+    face_tint, first_gain = tint, np.asarray(strip_info["gainSeamMean"], dtype=np.float64)
     tint = np.clip(face_tint * first_gain, *BODY_TINT_RANGE)
     if not np.allclose(tint, face_tint, atol=1e-6):
         strip, strip_info = bake_strip(patch_for_bake, frame, grid, body_image, tint, {**head, "uvs": head_uv_final},
@@ -2642,15 +2719,21 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
     face_matching = matching
     matching = skin_match(source_colors, classified, source_positions, cut, template_colors, template_mesh, skeleton,
                           tint=tint)
-    neck_lab = _srgb_to_lab(np.stack((strip_info["headCutSrgb"], strip_info["bodyCutSrgb"]))) \
-        if strip_info["headCutSrgb"] is not None else None
+    def _neck_delta_e(body_key: str) -> float | None:
+        if strip_info["headCutSrgb"] is None or strip_info[body_key] is None: return None
+        lab = _srgb_to_lab(np.stack((strip_info["headCutSrgb"], strip_info[body_key])))
+        return float(delta_e_cie2000(lab[0], lab[1]))
+    seam_delta_e, same_height_delta_e = _neck_delta_e("bodySeamSrgb"), _neck_delta_e("bodyCutSrgb")
     matching.update({"deltaEFaceMean": matching["deltaE"],
-                     "deltaE": delta_e_cie2000(neck_lab[0], neck_lab[1]) if neck_lab is not None else matching["deltaE"],
-                     "neckMatch": {"faceTint": [float(value) for value in face_tint],
+                     "deltaE": seam_delta_e if seam_delta_e is not None else matching["deltaE"],
+                     "deltaESameHeight": same_height_delta_e,
+                     "neckMatch": {"reference": "headCut/bodySeam", "faceTint": [float(value) for value in face_tint],
                                    "faceDeltaE": float(face_matching["deltaE"]),
                                    "gainBefore": [float(value) for value in first_gain],
                                    "clipped": bool(np.any((tint <= BODY_TINT_RANGE[0]) | (tint >= BODY_TINT_RANGE[1]))),
-                                   "residualGain": [float(value) for value in strip_info["gainMean"]]}})
+                                   "residualGain": [float(value) for value in strip_info["gainSeamMean"]],
+                                   "residualGainSameHeight": [float(value) for value in strip_info["gainMean"]],
+                                   "seamAngles": int(strip_info["seamAngles"]), "seamBandMm": TINT_SEAM_BAND_MM}})
     atlas = compose_atlas(canvas, resample_strip(strip, grid, layout))
     patch_uvs, patch_faces_uv, patch_origin = patch_strip_uvs(source_patch_positions, patch["faces"], frame, layout)
     # 4) 合并：头（_REGION=head）+ 颈片（_REGION=neck）。
@@ -2743,7 +2826,7 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
            "neverHide": [], "skinTint": matching["skinTint"],
            "weights": {"jointsAllowed": template_names},
            "deltaEBefore": matching["deltaEBefore"], "deltaE": matching["deltaE"],
-           "deltaEFaceMean": matching["deltaEFaceMean"]}
+           "deltaEFaceMean": matching["deltaEFaceMean"], "deltaESameHeight": matching.get("deltaESameHeight")}
     elapsed_ms = int((time.monotonic() - started) * 1000)
     overall_ratio_before = math.sqrt(measured["earWidthMu"] * measured["faceHeightMu"] /
                                      (target["earWidthMu"] * target["faceHeightMu"]))
@@ -2781,7 +2864,8 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
                          "overallSizeGatePass": overall_deviation < .01 or clamped},
         "head": {"vertices": head_count, "triangles": int(len(head["faces"])),
                  "neckSkinVertices": int(len(neck_skin))},
-        "collarRemnants": dict(remnants), "seamTone": dict(seam_tone), "neckFit": dict(neck_fit),
+        "collarRemnants": dict(remnants), "seamTone": dict(seam_tone), "neckCenter": dict(neck_center),
+        "neckFit": dict(neck_fit),
         "patch": {"vertices": int(len(patch["positions"])), "triangles": int(len(patch["faces"])),
                   "uvSeamDuplicates": int(len(patch_origin) - len(patch["positions"])),
                   "boundaryLoops": len(loops), "sideBoundaryPinned": int(len(side)),
