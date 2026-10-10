@@ -52116,6 +52116,74 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-d2-head-gen",
+   "title": "3D 纸娃娃换装 · D2 · 生成头样例：穆念慈（Tripo 生成 + 绑骨 → 三体型切头；V4 闸门；约 85 点）",
+   "phase": "PROD",
+   "wave": 40,
+   "kind": "draft",
+   "prompt": "ART-dressup-d2-head-gen.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10 选定穆念慈并批准花点；经 tri_pipeline_runner /open /eval 驱动 Tripo",
+   "sparse_include": [
+    "assets/default/character/female/ch02/threeview/*.png",
+    "assets/default/character/female/ch02/threeview/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/heads/npc_munianci/**",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_munianci/source/tripo_rig.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/source/source.json",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_munianci/report.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/heads/npc_munianci/source/tripo_rig.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
