@@ -50,3 +50,8 @@ traex 三次运行均在单次 200 分钟上限处被停。按作者指示（「
    - A1 判为穿入的点在封闭身体上再用射线奇偶复核：模板三体型各有 26–31 个与着色法向相反的面（胸下 Spine1 7–8 个），A1（重心插值顶点法向定符号）在其附近把体外 22–49 mm 的胸下垂坠点判成体内，射线奇偶与伪法向一致判为体外。复核只去掉假穿透；开口网格保持 A1 口径。回归在 `tests_garment.py`。
 4. **动画穿插拆给 E2c**（`ENG-dressup-e2c-skinning`）：idle / walk 可见穿透超 2% 与 run holes 超 0.05%，伪法向确认是真穿入（垂手时宽袖碰髋 / 大腿 9–28 mm、下摆碰大腿），属 LBS 蒙皮问题，需按姿势优化权重。本任务三模板 level 如实（预计 fail），manifest 保持 experimental；第 2 条 A / B 权重对比照做并写进报告。
 5. 写集追加 `tools/model3d/dressup/{validate.py,untangle_glb.py}`；检查不变。
+
+## 协调者裁定（2026-10-09 23:10，Claude 收尾时查明，续）
+1. **validate 第 3 处修正**：`_refit_source` 核对 `refitFrom.garmentSha256`。G1 起 medium 劲装已重生成，旧 small / tall 的 refit 源仍记 E2 母版摘要，validate 却读新母版；所以 G1 / G1b 报告里 small / tall 的几何数字是对错源算的。阈值与输出格式不变，回归测试在 `tests_garment.py`。
+2. **肤色清理按交付编码复测**：首版只统计编码前，交付 JPEG 实测仍有 0.177%（填补色紧贴阈值，编码后落回阈值内）。`fit_garment.py` 改为填补色须比阈值远 6 ΔE；编码后解码复测，不为 0 就再修，统计记编码后的值。
+3. **删除 traex 的 `--pose-aware-weights`**（逐点 LP 按姿势权重）：动画中出尖刺且无测试，由 E2c 带平滑正则重做。
