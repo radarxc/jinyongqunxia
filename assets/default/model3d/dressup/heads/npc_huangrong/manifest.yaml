@@ -3,13 +3,13 @@
   category: model3d
   kind: dressup-head
   template: tpl_f_medium
-  sha256: 54e5daf1aaee24e5aa37d60fabef1f88977a0afbcb417d2c33820a2fde18ceed
-  size_bytes: 1415828
-  triangles: 17509
+  sha256: 8ffce7132e5bf33b6b4704b966b91ae0c327a3acf2e3af3950e073a7a4620398
+  size_bytes: 1966000
+  triangles: 27813
   report: report.json
   status: draft
   tool: tools/model3d/dressup/ingest.py v1
-  created: '2026-10-09T08:37:23-07:00'
+  created: '2026-10-09T18:26:02-07:00'
   fit: fit.json
   fits:
     tpl_f_medium:
@@ -24,23 +24,23 @@
   npc: npc_huangrong
   experimental: true
   gateLevel: pass
-  vertices: 10717
+  vertices: 16394
   files:
     head.glb:
-      sha256: 54e5daf1aaee24e5aa37d60fabef1f88977a0afbcb417d2c33820a2fde18ceed
-      bytes: 1415828
+      sha256: 8ffce7132e5bf33b6b4704b966b91ae0c327a3acf2e3af3950e073a7a4620398
+      bytes: 1966000
     fit.json:
-      sha256: 766a9f4276092605ae3caf4e3d00f9ab3e02d6d462d2f9ab7bbfee5b6dd75518
-      bytes: 8713
+      sha256: c0bf91e5f2b916daab6fd54c0468817995b83eba93968518c0eeb63085217ce4
+      bytes: 11347
     report.json:
-      sha256: d0b6df4ef8a35393780e34fcd3e7cdea16b1436739a9c1be450c822be86d7afb
-      bytes: 16697
+      sha256: 2e269f3f1c67a8a00164633d5d2fc4e7b2db68c442fc2b5e339fb496b3d7337a
+      bytes: 24992
     hidemask.png:
-      sha256: 91930c0f32fe467d0caa0ec849b9ff90e2bdaf9db7471d7cf6453975a147b7a0
-      bytes: 17245
+      sha256: 722da2aa4c4e4eb8c7d9b3277d417ea20db0decd99adb1ccd1420306bf04ec7f
+      bytes: 17225
     preview.png:
-      sha256: af21d2b01f6373072de8ac4746364d5beb583bd1607bd2d7e68149fd145c79f0
-      bytes: 385095
+      sha256: d730a57b81b2fc8c8bb93a84cc763b24476704c8c5fd16655589abb1c7e73aea
+      bytes: 384661
     self_check_preview.png:
       sha256: fb7b6d2ab6d048f58e6365edbd9c26e6dceb29f8e1fe09b823765a8e55848ef7
       bytes: 42462
