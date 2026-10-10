@@ -21,7 +21,7 @@
     "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
     "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
     "skeleton": "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
-    "skeletonSha256": "79844b4ef2a28a69f981092f1984c5397610cda09da3b4c3cf84d2ec5b358c48"
+    "skeletonSha256": "5f516445505069b98f9c9a32e841c6c862c4d7f5da99b1c9a4f5352f218e580e"
   },
   "coverage": 0.65,
   "coverageByRegion": {
@@ -83,6 +83,7 @@
     "minimumDistanceMu": 0.001771096,
     "movedVertices": 1870,
     "passed": true,
+    "preserveShape": false,
     "pushMm": 3.0,
     "pushMu": 0.00177127,
     "residual": 0,
@@ -851,11 +852,11 @@
   "spring": null,
   "stats": {
     "boundaryEdges": 208,
-    "elapsedSec": 1.527969958,
+    "elapsedSec": 1.437768625,
     "fileBytes": 136652,
     "nearestTriangleCandidates": 16,
     "nonManifoldEdges": 140,
-    "peakMemoryMiB": 386.234375,
+    "peakMemoryMiB": 396.09375,
     "primitiveCount": 1,
     "removedStubTriangles": 0,
     "triangles": 3668,

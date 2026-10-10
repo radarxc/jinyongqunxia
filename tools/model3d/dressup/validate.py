@@ -430,6 +430,73 @@ def _world_matrices(glb: GLB, animation: dict[str, Any], time: float) -> np.ndar
     return world
 
 
+def _is_closed(vertices: np.ndarray, faces: np.ndarray) -> bool:
+    """按位置焊接后每条边恰被两个三角共用（UV 缝的重复点不算开口）。"""
+    _, inverse = np.unique(np.asarray(vertices, dtype=np.float32), axis=0, return_inverse=True)
+    welded = inverse.reshape(-1)[np.asarray(faces, dtype=np.int64)]
+    edges = np.sort(np.concatenate((welded[:, [0, 1]], welded[:, [1, 2]], welded[:, [2, 0]])), axis=1)
+    edges = edges[edges[:, 0] != edges[:, 1]]
+    if not len(edges): return False
+    _, counts = np.unique(edges, axis=0, return_counts=True)
+    return bool(np.all(counts == 2))
+
+
+def _parity_inside(points: np.ndarray, vertices: np.ndarray, faces: np.ndarray) -> np.ndarray:
+    """封闭网格的射线奇偶判内：沿 +x / +y / +z 三条轴向射线各数穿越次数，奇数为内，三票取多数。
+    与三角朝向、顶点法向无关，用于复核 A1 带符号距离判为"体内"的点：A1 以重心插值顶点法向定符号，模板胸下
+    倒置面（三模板各 26–31 个与着色法向相反的面）附近会把体外 2–5 cm 的衣物垂坠点判成体内（E2b 实测）。
+    三角按投影平面上的包围盒分桶，每个查询点只测所在格子里的三角。"""
+    points = np.asarray(points, dtype=np.float64)
+    if not len(points): return np.zeros(0, bool)
+    triangles = np.asarray(vertices, dtype=np.float64)[np.asarray(faces, dtype=np.int64)]
+    votes = np.zeros(len(points), dtype=np.int64)
+    for axis in range(3):
+        u, v = (axis + 1) % 3, (axis + 2) % 3
+        plane = triangles[:, :, [u, v]]; depth = triangles[:, :, axis]
+        low, high = plane.min(axis=1), plane.max(axis=1)
+        cell = max(float(np.median(np.max(high - low, axis=1))) * 2.0, 1e-12)
+        start, stop = np.floor(low / cell).astype(np.int64), np.floor(high / cell).astype(np.int64)
+        spans = (stop - start + 1)
+        owners = np.repeat(np.arange(len(triangles)), spans[:, 0] * spans[:, 1])
+        offsets = np.arange(len(owners)) - np.repeat(np.cumsum(spans[:, 0] * spans[:, 1]) - spans[:, 0] * spans[:, 1],
+                                                      spans[:, 0] * spans[:, 1])
+        cells_u = start[owners, 0] + offsets // spans[owners, 1]; cells_v = start[owners, 1] + offsets % spans[owners, 1]
+        keys = cells_u * 1_000_003 + cells_v
+        order = np.argsort(keys, kind="stable"); keys, owners = keys[order], owners[order]
+        query = np.floor(points[:, [u, v]] / cell).astype(np.int64)
+        query_keys = query[:, 0] * 1_000_003 + query[:, 1]
+        first, last = np.searchsorted(keys, query_keys, "left"), np.searchsorted(keys, query_keys, "right")
+        counts = last - first
+        pair_points = np.repeat(np.arange(len(points)), counts)
+        pair_tris = owners[np.concatenate([np.arange(a, b) for a, b in zip(first, last)]) if counts.sum() else
+                           np.zeros(0, np.int64)]
+        if not len(pair_points): continue
+        p = points[pair_points][:, [u, v]]; t = plane[pair_tris]; z = depth[pair_tris]
+        d1, d2 = t[:, 1] - t[:, 0], t[:, 2] - t[:, 0]; dp = p - t[:, 0]
+        det = d1[:, 0] * d2[:, 1] - d1[:, 1] * d2[:, 0]
+        ok = np.abs(det) > 1e-20
+        safe = np.where(ok, det, 1.0)
+        beta = (dp[:, 0] * d2[:, 1] - dp[:, 1] * d2[:, 0]) / safe
+        gamma = (d1[:, 0] * dp[:, 1] - d1[:, 1] * dp[:, 0]) / safe
+        alpha = 1.0 - beta - gamma
+        inside = ok & (alpha >= 0) & (beta >= 0) & (gamma >= 0)
+        hit_depth = alpha * z[:, 0] + beta * z[:, 1] + gamma * z[:, 2]
+        crossing = inside & (hit_depth > points[pair_points, axis])
+        parity = np.zeros(len(points), dtype=np.int64)
+        np.add.at(parity, pair_points[crossing], 1)
+        votes += parity % 2
+    return votes >= 2
+
+
+def _confirm_inside(penetrating: np.ndarray, points: np.ndarray, vertices: np.ndarray,
+                    faces: np.ndarray, closed: bool) -> np.ndarray:
+    """A1 判为穿入的点再以射线奇偶复核（仅封闭身体；开口网格无内外，保持 A1 口径）。"""
+    if not closed or not np.any(penetrating): return penetrating
+    confirmed = penetrating.copy()
+    confirmed[penetrating] = _parity_inside(points[penetrating], vertices, faces)
+    return confirmed
+
+
 def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
                          m_per_mu: float, hide_mask: np.ndarray | None = None
                          ) -> dict[str, float | dict[str, float]]:
@@ -437,6 +504,7 @@ def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mes
         return {}
     by_name = {str(item.get("name", "")).lower(): item for item in body.json.get("animations", [])}
     result: dict[str, float | dict[str, float]] = {}; body_skin = body.skin(); asset_skin = asset.skin()
+    closed = _is_closed(body_mesh.positions, _faces(body_mesh))
     for clip in ("idle", "walk", "run"):
         animation = next((value for name, value in by_name.items() if clip in name), None)
         if animation is None: raise ValueError(f"正本缺 {clip} 动画")
@@ -454,8 +522,8 @@ def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mes
             if hide_mask is None:
                 distances = _signed_distances(
                     asset_pos, body_pos, _faces(body_mesh), body_normals) * m_per_mu
-                worst_all = max(worst_all, float(
-                    np.count_nonzero(distances < -0.001) / len(distances)))
+                penetrating = _confirm_inside(distances < -0.001, asset_pos, body_pos, _faces(body_mesh), closed)
+                worst_all = max(worst_all, float(np.count_nonzero(penetrating) / len(distances)))
                 continue
             distances, face_ids, bary = _surface_distances(
                 asset_pos, body_pos, _faces(body_mesh), body_normals)
@@ -464,7 +532,8 @@ def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mes
                 assert body_mesh.uvs is not None
                 uv = np.einsum("ni,nij->nj", bary, body_mesh.uvs[_faces(body_mesh)[face_ids]])
                 unhidden = _sample_hide_mask(hide_mask, uv) < 0.5
-            penetrating = distances * m_per_mu < -0.001
+            penetrating = _confirm_inside(distances * m_per_mu < -0.001, asset_pos, body_pos,
+                                          _faces(body_mesh), closed)
             worst_all = max(worst_all, float(np.count_nonzero(penetrating) / len(distances)))
             if unhidden is not None:
                 worst_visible = max(worst_visible, float(np.count_nonzero(penetrating & unhidden)
@@ -480,14 +549,17 @@ def _penetration_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
     body_faces = _faces(body_mesh)
     body_normals = (body_mesh.normals if body_mesh.normals is not None
                     else _vertex_normals(body_mesh.positions, body_faces))
+    closed = _is_closed(body_mesh.positions, body_faces)
     if hide_mask is None:
         bind = _signed_distances(asset_mesh.positions, body_mesh.positions,
                                  body_faces, body_normals) * m_per_mu
-        static: int | dict[str, int] = int(np.count_nonzero(bind < -1e-9))
+        static: int | dict[str, int] = int(np.count_nonzero(_confirm_inside(
+            bind < -1e-9, asset_mesh.positions, body_mesh.positions, body_faces, closed)))
     else:
         bind, unhidden = _distances_and_visibility(asset_mesh.positions, body_mesh.positions,
                                                    body_mesh, body_normals, hide_mask)
-        penetrating = bind * m_per_mu < -1e-9
+        penetrating = _confirm_inside(bind * m_per_mu < -1e-9, asset_mesh.positions, body_mesh.positions,
+                                      body_faces, closed)
         static = {"all": int(np.count_nonzero(penetrating)),
                   "visible": int(np.count_nonzero(penetrating & unhidden))}
     return static, _dynamic_penetration(body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask)
@@ -780,7 +852,9 @@ def _joint_source(source_glb: GLB, source_mesh: Mesh, skeleton: dict[str, Any]) 
 
 
 def _garment_source(fit: dict[str, Any], fit_path: Path, skeleton: dict[str, Any],
-                     final: Mesh) -> np.ndarray:
+                     final: Mesh, rows: np.ndarray | None = None) -> np.ndarray:
+    """回指真实源几何（对齐到模板）。rows 为 pack_glb 压紧时写入的 ``tianshuSourceVertexAccessor``：
+    最终第 i 个顶点 = 贴合输出（fit.stats.vertices 个顶点）第 rows[i] 个，与道具同一口径。"""
     source_glb = load_glb(_verified_source(fit, fit_path)); source_mesh = _world_mesh(source_glb)
     method = fit.get("align", {}).get("method")
     if method == "landmarks":
@@ -790,6 +864,13 @@ def _garment_source(fit: dict[str, Any], fit_path: Path, skeleton: dict[str, Any
     else:
         raise ValueError("fit.align.method 必须是 landmarks 或 joints")
     expected = int(fit.get("stats", {}).get("vertices", len(final.positions)))
+    if rows is not None:
+        if len(aligned) != expected:
+            raise ValueError("压紧件的真实源须与贴合输出同顶点数（不支持删面后再压紧）")
+        if (len(rows) != len(final.positions) or len(np.unique(rows)) != len(rows) or
+                (len(rows) and (int(rows.min()) < 0 or int(rows.max()) >= expected))):
+            raise ValueError("压紧顶点源映射数量、唯一性或边界无效")
+        return aligned[rows]
     if len(aligned) == expected:
         base = aligned
     else:
@@ -810,8 +891,12 @@ def _garment_source(fit: dict[str, Any], fit_path: Path, skeleton: dict[str, Any
 
 
 def _refit_source(fit: dict[str, Any], fit_path: Path, target: dict[str, Any]) -> np.ndarray:
-    info = fit["refitFrom"]
-    source_mesh = _mesh(load_glb(_resolve_recorded(info["garment"], fit_path)))
+    info = fit["refitFrom"]; garment_path = _resolve_recorded(info["garment"], fit_path)
+    expected = info.get("garmentSha256")
+    if expected and hashlib.sha256(garment_path.read_bytes()).hexdigest() != expected:
+        # 母版重生成后旧 refit 件会悄悄拿新母版当源（E2b 查明 G1 / G1b 的 small / tall 几何数字即如此）
+        raise ValueError("refitFrom.garmentSha256 与真实文件不符")
+    source_mesh = _mesh(load_glb(garment_path))
     source = json.loads(_resolve_recorded(info["skeleton"], fit_path).read_text(encoding="utf-8"))
     if source_mesh.joints is None or source_mesh.weights is None: raise ValueError("refit 源件缺蒙皮属性")
     source_world = np.asarray([np.asarray(source["bindWorld"][name]).reshape(4, 4).T
@@ -1120,8 +1205,13 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
         checks.extend(_mask_checks(fit, skeleton))
 
     if kind in ("garment", "hair"):
+        primitive = asset.json.get("meshes", [{}])[0].get("primitives", [{}])[0]
+        accessor = primitive.get("extras", {}).get("tianshuSourceVertexAccessor")
+        rows = None if accessor is None else np.asarray(asset.accessor(int(accessor)), dtype=np.int64).reshape(-1)
+        if rows is not None and "refitFrom" in fit:
+            raise ValueError("refit 件不支持压紧顶点源映射")
         source = (_refit_source(fit, fit_path, skeleton) if "refitFrom" in fit
-                  else _garment_source(fit, fit_path, skeleton, asset_mesh))
+                  else _garment_source(fit, fit_path, skeleton, asset_mesh, rows))
         source = _expanded_source(source, asset_mesh.positions)
         checks.extend(_geometry_checks(source, asset_mesh, body_mesh, m_per_mu))
     elif kind == "prop":

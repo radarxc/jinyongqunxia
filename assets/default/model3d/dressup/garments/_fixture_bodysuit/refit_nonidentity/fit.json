@@ -21,7 +21,7 @@
     "file": "assets/default/model3d/dressup/garments/_fixture_bodysuit/refit_nonidentity/template/body.glb",
     "sha256": "1d6eb353458858a03f21fea73bf2e2e925c5ff26e8bf5dce1e1bad41bc53db71",
     "skeleton": "assets/default/model3d/dressup/garments/_fixture_bodysuit/refit_nonidentity/template/skeleton.json",
-    "skeletonSha256": "33370f3a35496f553986f07c6902fd1d9182b5ee505355e594ce25291937e306"
+    "skeletonSha256": "8a0b196f274478fd70062e866c4326fedd704c6cd8b24878a41918517f1e0a63"
   },
   "coverage": 0.65,
   "coverageByRegion": {
@@ -83,6 +83,7 @@
     "minimumDistanceMu": 0.001771106,
     "movedVertices": 12,
     "passed": true,
+    "preserveShape": false,
     "pushMm": 3.0,
     "pushMu": 0.00177127,
     "residual": 0,
@@ -177,7 +178,7 @@
     "maxVertexDeltaMu": 0.000471801,
     "method": "inverse-source-bone-local+target-bind-effective-child-axis",
     "skeleton": "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
-    "skeletonSha256": "79844b4ef2a28a69f981092f1984c5397610cda09da3b4c3cf84d2ec5b358c48"
+    "skeletonSha256": "5f516445505069b98f9c9a32e841c6c862c4d7f5da99b1c9a4f5352f218e580e"
   },
   "schema": "tianshu-dressup-fit.v1",
   "slot": "body",
@@ -188,10 +189,10 @@
   "spring": null,
   "stats": {
     "boundaryEdges": 208,
-    "elapsedSec": 0.678905958,
+    "elapsedSec": 0.798488709,
     "fileBytes": 141720,
     "nonManifoldEdges": 140,
-    "peakMemoryMiB": 474.484375,
+    "peakMemoryMiB": 450.84375,
     "primitiveCount": 1,
     "triangles": 3668,
     "vertices": 1870

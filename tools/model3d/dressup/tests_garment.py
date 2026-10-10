@@ -8,14 +8,19 @@ from pathlib import Path
 import sys
 import tempfile
 import traceback
+from typing import Any
 
 import numpy as np
+from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fit_garment import (GarmentGateError, SurfaceIndex, _signed_distance_from_query, align_joints,
-                         align_landmarks, clear_bind_penetration, derive_regions, fit_file, edge_weight_blend,
-                         hide_regions, load_world_mesh, mm_to_mu, push_out, transfer_weights,
-                         vertex_normals)  # noqa: E402
+                         align_landmarks, clear_bind_penetration, derive_regions, encode_skin_clean_texture,
+                         fit_file, edge_weight_blend,
+                         hide_regions, load_world_mesh, mm_to_mu, push_out, PseudoNormalSign,
+                         transfer_template_weights, transfer_weights,
+                         vertex_normals, volume_push)  # noqa: E402
+from extract_garment import _srgb_to_lab, repair_by_reference, repair_skin_texels  # noqa: E402
 from common import nearest_triangle, signed_distance  # noqa: E402
 from glb_io import GLB, GLBBuilder, Mesh, PrimitiveRange, Skin, load_glb, write_skinned_glb  # noqa: E402
 from refit_template import main as refit_main, refit_file, refit_positions  # noqa: E402
@@ -235,6 +240,18 @@ def test_edge_template_weights_blend_thirty_mm() -> None:
     assert np.allclose(dense[[0, 4, 20, 24], 1], 1.0)  # 开口完全用 B。
     assert dense[12, 1] == 0 and 0 < dense[7, 1] < 1  # 30 mm 外 A；带内渐变。
     assert stats["boundaryVertices"] == 16 and stats["blendedVertices"] == 24
+
+
+def test_full_template_weight_transfer_is_normalized() -> None:
+    body, faces = cylinder(1.0, (0.0, 0.5, 1.0)); normals = vertex_normals(body, faces)
+    joints, weights = body_skin(body); garment = body * np.array([1.02, 1.0, 1.02])
+    result_j, result_w, stats = transfer_template_weights(
+        garment, faces, SurfaceIndex(body, faces, normals), joints, weights,
+        skeleton(), "body", smooth_rounds=2)
+    assert np.allclose(result_w.sum(axis=1), 1.0)
+    assert np.all(result_w[:, :-1] >= result_w[:, 1:])
+    assert np.all(result_j[result_w > 0] < len(skeleton()["joints"]))
+    assert stats["smoothRounds"] == 2 and stats["semanticFallbackVertices"] == 0
 
 
 def test_edge_refit_clears_bind_penetration() -> None:
@@ -494,6 +511,344 @@ def test_push_draft_is_explicit() -> None:
     assert stats["draft"] and not stats["passed"] and stats["residual"] == len(body)
 
 
+def test_preserve_shape_prevents_fold_and_stretch() -> None:
+    """旧式单点推离会折叠薄片；保形模式回退该步且不产生翻面/边长越界。"""
+    points = np.asarray([[0., 0., 0.], [1., 0., 0.], [0., .02, 0.],
+                         [1., .02, 0.]], dtype=np.float64)
+    faces = np.asarray([[0, 1, 2], [1, 3, 2]], dtype=np.int64)
+    class FoldSurface:
+        faces = np.asarray([[0, 1, 2]], dtype=np.int64)
+        normals = np.asarray([[0., 1., 0.]] * 3)
+        def query(self, query: np.ndarray, **_kwargs):
+            active = np.isclose(query[:, 0], 0.) & np.isclose(query[:, 1], 0.)
+            signed = np.where(active, -.04, .05)
+            nearest = query - signed[:, None] * self.normals[0]
+            return (nearest, np.tile([1., 0., 0.], (len(query), 1)),
+                    np.zeros(len(query), dtype=np.int64), np.abs(signed))
+    # 旧式“直接按短缺逐点推离”会把 0 点越过薄片对边。
+    old = points.copy(); old[0] += np.asarray([0., .04, 0.])
+    safe, stats = push_out(points, faces, FoldSurface(), .03, 1, allow_draft=True,
+                           preserve_shape=True)
+    old_n = np.cross(old[faces[:, 1]] - old[faces[:, 0]], old[faces[:, 2]] - old[faces[:, 0]])
+    src_n = np.cross(points[faces[:, 1]] - points[faces[:, 0]], points[faces[:, 2]] - points[faces[:, 0]])
+    assert np.any(np.einsum("ij,ij->i", old_n, src_n) < 0)
+    assert stats["flippedTriangles"] == 0 and stats["stretchWithinRatio"] == 1.0
+    safe_n = np.cross(safe[faces[:, 1]] - safe[faces[:, 0]], safe[faces[:, 2]] - safe[faces[:, 0]])
+    assert np.all(np.einsum("ij,ij->i", safe_n, src_n) > 0)
+
+
+def _lat_long(radius_fn, rows: int, cols: int, closed_poles: bool = True) -> tuple[np.ndarray, np.ndarray]:
+    """经纬网格：radius_fn(u, v) → 点（u ∈ [0,1] 纬向含端点，v ∈ [0,1) 经向周期）；右手绕序朝外。"""
+    points = np.asarray([radius_fn(i / (rows - 1), j / cols) for i in range(rows) for j in range(cols)], float)
+    faces = []
+    for i in range(rows - 1):
+        for j in range(cols):
+            a = i * cols + j; b = i * cols + (j + 1) % cols; c = a + cols; d = b + cols
+            faces += [(a, b, d), (a, d, c)]
+    return points, np.asarray(faces, dtype=np.int64)
+
+
+def _weld(points: np.ndarray, faces: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    unique, inverse = np.unique(np.round(points, 12), axis=0, return_inverse=True)
+    welded = inverse.reshape(-1)[faces]
+    keep = (welded[:, 0] != welded[:, 1]) & (welded[:, 1] != welded[:, 2]) & (welded[:, 0] != welded[:, 2])
+    return unique, welded[keep]
+
+
+def _sheet(z: float, half: float, count: int) -> tuple[np.ndarray, np.ndarray]:
+    xs = np.linspace(-half, half, count)
+    points = np.asarray([[x, y, z] for y in xs for x in xs])
+    faces = []
+    for r in range(count - 1):
+        for c in range(count - 1):
+            a = r * count + c; b = a + 1; d = a + count; e = d + 1
+            faces += [(a, b, e), (a, e, d)]
+    return points, np.asarray(faces, dtype=np.int64)
+
+
+def test_volume_push_keeps_layers() -> None:
+    """交领式两层薄片（相距 4 mm）被下方球面顶穿 2 cm：逐点推离把两层推到同一高度（层间距塌成 0），
+    体表位移场整体平移两层——层间距保持、无翻面、全部离开体表 ≥ 3 mm。"""
+    sphere_raw, sphere_faces_raw = _lat_long(
+        lambda u, v: .1 * np.array([math.sin(math.pi * u) * math.cos(2 * math.pi * v),
+                                    math.sin(math.pi * u) * math.sin(2 * math.pi * v), math.cos(math.pi * u)]), 33, 64)
+    sphere, sphere_faces = _weld(sphere_raw, sphere_faces_raw); sphere_faces = sphere_faces[:, [0, 2, 1]]
+    normals = vertex_normals(sphere, sphere_faces)
+    assert normals[np.argmax(sphere[:, 2]), 2] > .99                  # 朝外
+    surface = SurfaceIndex(sphere, sphere_faces, normals)
+    inner, inner_faces = _sheet(.08, .08, 33); outer, outer_faces = _sheet(.084, .08, 33)
+    garment = np.concatenate((inner, outer)); faces = np.concatenate((inner_faces, outer_faces + len(inner)))
+    center_inner = int(np.argmin(np.linalg.norm(inner[:, :2], axis=1))); center_outer = len(inner) + center_inner
+    old, _ = push_out(garment, faces, surface, .003, 3, allow_draft=True)
+    assert old[center_outer, 2] - old[center_inner, 2] < .001        # 旧推离：两层挤到同一高度（互穿 / 闪烁）
+    pushed, stats = volume_push(garment, faces, surface, .003, 1.0, allow_draft=True)
+    gaps = pushed[len(inner):, 2] - pushed[:len(inner), 2]
+    assert gaps.min() > .003, gaps.min()                              # 层间距保持（原 4 mm），无一处塌层
+    assert stats["flippedTriangles"] == 0 and stats["residual"] == 0 and stats["insufficientMargin"] == 0, stats
+    assert pushed[center_inner, 2] >= .103 - 1e-4, pushed[center_inner]
+
+
+def test_pseudo_normal_sign_on_concave_mesh() -> None:
+    """非凸封闭网格（圆环）上随机点：角度加权伪法向的符号与解析内外判定逐点一致。"""
+    major, minor = .1, .04
+    torus_raw, torus_faces_raw = _lat_long(
+        lambda u, v: np.array([(major + minor * math.cos(2 * math.pi * u)) * math.cos(2 * math.pi * v),
+                               (major + minor * math.cos(2 * math.pi * u)) * math.sin(2 * math.pi * v),
+                               minor * math.sin(2 * math.pi * u)]), 25, 48)
+    torus, torus_faces = _weld(torus_raw, torus_faces_raw)
+    normals = vertex_normals(torus, torus_faces)
+    assert normals[np.argmax(torus[:, 0]), 0] > .99                   # 朝外
+    surface = SurfaceIndex(torus, torus_faces, normals)
+    points = np.random.default_rng(7).uniform([-.16, -.16, -.06], [.16, .16, .06], (4000, 3))
+    nearest, bary, face_ids, distances = surface.query(points)
+    signed = PseudoNormalSign(surface).signed(points, nearest, bary, face_ids, distances)
+    ring = np.hypot(np.linalg.norm(points[:, :2], axis=1) - major, points[:, 2])
+    decided = np.abs(ring - minor) > .004                             # 离网格面 4 mm 以上（多边形逼近误差之外）
+    assert np.array_equal(signed[decided] < 0, ring[decided] < minor)
+
+
+def test_validate_maps_compacted_garment_to_source() -> None:
+    """pack_glb 压紧后的衣物按 tianshuSourceVertexAccessor 回指真实源（与道具同口径）；此前衣物分支不认映射，
+    压紧件只能把 fit.source 指向产出本身才对得上顶点数。"""
+    import validate
+    from types import SimpleNamespace
+    from export_skeleton import _world_mesh
+    root = Path(__file__).resolve().parents[3]
+    template = root / "assets/default/model3d/dressup/templates/tpl_f_medium"
+    source_dir = root / "assets/default/model3d/dressup/garments/_fixture_bodysuit"
+    fit_path = source_dir / "fit.json"; fit = json.loads(fit_path.read_text(encoding="utf-8"))
+    skeleton = json.loads((template / "skeleton.json").read_text(encoding="utf-8"))
+    final = _world_mesh(load_glb(source_dir / "_fixture_bodysuit.glb"))[0]
+    full = validate._garment_source(fit, fit_path, skeleton, final)
+    rows = np.arange(0, len(full), 3)[::-1].copy()
+    compacted = SimpleNamespace(positions=final.positions[rows], uvs=None)
+    assert np.array_equal(validate._garment_source(fit, fit_path, skeleton, compacted, rows), full[rows])
+    try:
+        validate._garment_source(fit, fit_path, skeleton, compacted, np.where(rows == rows[0], rows[1], rows))
+    except ValueError as error:
+        assert "唯一性" in str(error)
+    else:
+        raise AssertionError("重复映射须拒收")
+
+
+def test_validate_parity_confirms_a1_inside() -> None:
+    """A1 带符号距离以重心插值顶点法向定符号；顶点法向反了的一片（模拟模板胸下倒置面）会把体外 3 cm 的点判成
+    体内。封闭身体上以射线奇偶复核后不计入；开口网格无内外，保持 A1 口径。"""
+    import validate
+    raw, raw_faces = _lat_long(
+        lambda u, v: .1 * np.array([math.sin(math.pi * u) * math.cos(2 * math.pi * v),
+                                    math.sin(math.pi * u) * math.sin(2 * math.pi * v), math.cos(math.pi * u)]), 33, 64)
+    sphere, faces = _weld(raw, raw_faces); faces = faces[:, [0, 2, 1]]
+    normals = vertex_normals(sphere, faces); broken = normals.copy(); broken[sphere[:, 2] > .07] *= -1.0
+    points = np.asarray([[0., 0., .13], [.05, 0., 0.], [.13, 0., 0.]])   # 坏片上方体外 / 体内（最近点在好区）/ 体外
+    a1 = validate._signed_distances(points, sphere, faces, broken)
+    assert a1[0] < 0 and a1[1] < 0 and a1[2] > 0                     # 第 0 点被 A1 误判为体内
+    assert validate._is_closed(sphere, faces)
+    assert list(validate._parity_inside(points, sphere, faces)) == [False, True, False]
+    assert list(validate._confirm_inside(a1 < 0, points, sphere, faces, True)) == [False, True, False]
+    open_faces = faces[sphere[faces].mean(axis=1)[:, 2] < .09]
+    assert not validate._is_closed(sphere, open_faces)
+    assert list(validate._confirm_inside(a1 < 0, points, sphere, open_faces, False)) == [True, True, False]
+
+
+def test_skin_texture_cleanup_island_scope() -> None:
+    image = np.full((16, 32, 3), [20, 70, 120], dtype=np.uint8)
+    image[6:10, 6:10] = [210, 160, 135]
+    image[:, 20:] = [210, 160, 135]
+    uvs = np.asarray([[0., 0.], [.48, 0.], [0., 1.], [.48, 1.]])
+    faces = np.asarray([[0, 1, 2], [1, 3, 2]])
+    mean = _srgb_to_lab(np.asarray([[210., 160., 135.]]))[0]
+    cleaned, stats = repair_skin_texels(Image.fromarray(image), uvs, faces, mean, 8.)
+    output = np.asarray(cleaned)
+    assert stats["skinTexelsBefore"] > 0 and stats["skinTexelsAfter"] == 0
+    assert np.all(output[6:10, 6:10] == [20, 70, 120])
+    assert np.all(output[:, 20:] == [210, 160, 135])
+
+
+def test_skin_cleanup_survives_jpeg_encoding() -> None:
+    """岛内：左侧远离肤色的布、其余是紧贴阈值外的过渡色、过渡色里一块肤色斑。无余量时斑被填成过渡色
+    （有损编码后会落回阈值内）；带余量时取远处布色，且交付 JPEG 解码复测为 0。"""
+    from io import BytesIO
+    skin_rgb, cloth_rgb = np.asarray([210., 160., 135.]), np.asarray([20., 70., 120.])
+    mean = _srgb_to_lab(skin_rgb[None])[0]; threshold = 18.0
+    steps = np.linspace(0., 1., 401)[:, None]
+    line = np.round(skin_rgb + steps * (cloth_rgb - skin_rgb))
+    distance = np.linalg.norm(_srgb_to_lab(line) - mean, axis=1)
+    near = line[int(np.argmax((distance > threshold + 1.5) & (distance < threshold + 3.)))]
+    image = np.zeros((64, 64, 3), dtype=np.uint8); image[:] = skin_rgb.astype(np.uint8)
+    image[:, :32] = near.astype(np.uint8); image[:, :8] = cloth_rgb.astype(np.uint8)
+    image[24:40, 16:28] = skin_rgb.astype(np.uint8)
+    uvs = np.asarray([[0., 0.], [.5, 0.], [0., 1.], [.5, 1.]]); faces = np.asarray([[0, 1, 2], [1, 3, 2]])
+    def patch_distance(rgb: np.ndarray) -> np.ndarray:
+        return np.linalg.norm(_srgb_to_lab(rgb[24:40, 16:28].reshape(-1, 3).astype(np.float64)) - mean, axis=1)
+    plain, _ = repair_skin_texels(Image.fromarray(image), uvs, faces, mean, threshold)
+    assert patch_distance(np.asarray(plain)).max() < threshold + 3.
+    payload, stats = encode_skin_clean_texture(Image.fromarray(image), uvs, faces, mean, threshold)
+    assert stats["skinTexelsBefore"] == 16 * 12 and stats["replacementMarginDeltaE"] == 6.0
+    assert stats["encodedSkinTexelsAfter"] == 0 and stats["encodedSkinRatioAfter"] == 0.0
+    with Image.open(BytesIO(payload)) as decoded:
+        assert decoded.format == "JPEG"; delivered = np.asarray(decoded.convert("RGB"))
+    _, recount = repair_skin_texels(Image.fromarray(delivered), uvs, faces, mean, threshold)
+    assert recount["skinTexelsBefore"] == 0
+    assert patch_distance(delivered).min() > threshold + 6.
+    outside = np.linalg.norm(_srgb_to_lab(delivered[:, 40:].reshape(-1, 3).astype(np.float64)) - mean, axis=1)
+    assert outside.max() < 3.0
+
+
+def test_validate_refit_source_requires_matching_sha() -> None:
+    import validate
+    root = Path(__file__).resolve().parents[3]
+    fixture = root / "assets/default/model3d/dressup/garments/_fixture_bodysuit/refit_identity"
+    fit = json.loads((fixture / "fit.json").read_text(encoding="utf-8"))
+    skeleton = json.loads((root / fit["body"]["skeleton"]).read_text(encoding="utf-8"))
+    assert len(validate._refit_source(fit, fixture / "fit.json", skeleton))
+    fit["refitFrom"]["garmentSha256"] = "0" * 64
+    try:
+        validate._refit_source(fit, fixture / "fit.json", skeleton)
+    except ValueError as error:
+        assert "garmentSha256" in str(error)
+    else:
+        raise AssertionError("母版摘要不符时 refit 源必须报错")
+
+
+def test_untangle_flips_diagonal_of_flipped_sliver() -> None:
+    """四边形 a b c d 以 a-c 为对角线；贴合形状里 b 被推过对角线，三角 a b c 朝向与源相反。翻边成 b-d 后
+    两种形状下都同向、都不退化；只换索引，顶点不动。没有可行翻边时保持原样并如实报告。"""
+    from untangle_glb import untangle
+    source = np.asarray([[0., 0., 0.], [1., -.05, 0.], [1., 1., 0.], [0., 1., 0.]])
+    final = source.copy(); final[1] = [.55, .6, 0.]
+    faces = np.asarray([[0, 1, 2], [0, 2, 3]])
+    def normals(points: np.ndarray, tri: np.ndarray) -> np.ndarray:
+        corners = points[tri]; return np.cross(corners[:, 1] - corners[:, 0], corners[:, 2] - corners[:, 0])
+    assert np.einsum("ij,ij->i", normals(source, faces), normals(final, faces)).min() < 0
+    fixed, stats = untangle(source, final, faces)
+    assert stats == {"flippedBefore": 1, "edgeFlips": 1, "flippedAfter": 0}
+    assert sorted(map(sorted, fixed.tolist())) == [[0, 1, 3], [1, 2, 3]]
+    agree = np.einsum("ij,ij->i", normals(source, fixed), normals(final, fixed))
+    assert agree.min() > 0 and np.abs(normals(final, fixed)[:, 2]).min() > .3
+    lonely, lonely_stats = untangle(source, final, faces[:1])
+    assert np.array_equal(lonely, faces[:1]) and lonely_stats["flippedAfter"] == 1 and lonely_stats["edgeFlips"] == 0
+
+
+def test_untangle_writes_indices_in_place() -> None:
+    from untangle_glb import _write_indices
+    root = Path(__file__).resolve().parents[3]
+    glb = load_glb(root / "assets/default/model3d/dressup/garments/_fixture_bodysuit/_fixture_bodysuit.glb")
+    primitive = glb.json["meshes"][0]["primitives"][0]
+    faces = np.asarray(glb.accessor(primitive["indices"]), dtype=np.int64).reshape(-1, 3)
+    swapped = faces.copy(); swapped[:2] = faces[:2][:, [1, 2, 0]]
+    with tempfile.TemporaryDirectory() as tmp:
+        out = Path(tmp) / "untangled.glb"; _write_indices(glb, swapped, out); written = load_glb(out)
+        rejected = Path(tmp) / "rejected.glb"
+        try:
+            _write_indices(glb, swapped[:-1], rejected)
+        except ValueError:
+            assert not rejected.exists()
+        else:
+            raise AssertionError("面数变化时必须拒绝写回")
+    again = written.json["meshes"][0]["primitives"][0]
+    assert np.array_equal(np.asarray(written.accessor(again["indices"])).reshape(-1, 3), swapped)
+    assert len(written.bin) == len(glb.bin) + (-len(glb.bin) % 4)
+    for name, accessor in primitive["attributes"].items():
+        assert np.array_equal(np.asarray(written.accessor(again["attributes"][name])), np.asarray(glb.accessor(accessor)))
+
+
+def test_reference_repair_only_touches_contaminated_texels() -> None:
+    """污染区按参考图判：image 里该区已是"清理后的浅灰"（自身不像皮肤），仍要换成同岛远离肤色的布；
+    参考图上不像皮肤的纹素（含合法浅布）与岛外纹素逐字节不动。"""
+    skin_rgb, cloth_rgb, light_rgb = [210, 160, 135], [20, 70, 120], [190, 195, 205]   # 浅布离肤色均值 ΔE≈31
+    mean = _srgb_to_lab(np.asarray([skin_rgb], dtype=np.float64))[0]
+    reference = np.zeros((32, 64, 3), dtype=np.uint8); reference[:] = cloth_rgb
+    reference[8:20, 10:20] = skin_rgb; reference[2:6, 24:30] = light_rgb; reference[:, 32:] = skin_rgb
+    image = reference.copy(); image[8:20, 10:20] = [150, 150, 150]
+    uvs = np.asarray([[0., 0.], [.5, 0.], [0., 1.], [.5, 1.]]); faces = np.asarray([[0, 1, 2], [1, 3, 2]])
+    repaired, stats = repair_by_reference(Image.fromarray(image), Image.fromarray(reference), uvs, faces, mean)
+    output = np.asarray(repaired)
+    assert stats["targetTexels"] == 12 * 10 and stats["replacedTexels"] == 12 * 10
+    assert np.all(output[8:20, 10:20] == cloth_rgb)
+    untouched = np.ones(output.shape[:2], dtype=bool); untouched[8:20, 10:20] = False
+    assert np.array_equal(output[untouched], image[untouched])
+    assert np.all(output[2:6, 24:30] == light_rgb) and np.all(output[:, 32:] == skin_rgb)
+
+
+def test_variant_base_replaces_image_losslessly() -> None:
+    from io import BytesIO
+    from variant_base import replace_image
+    root = Path(__file__).resolve().parents[3]
+    glb = load_glb(root / "assets/default/model3d/dressup/garments/eq_jinzhuang/extract_run/eq_jinzhuang_raw_aligned.glb")
+    primitive = glb.json["meshes"][0]["primitives"][0]
+    assert glb.json["images"][0]["mimeType"] == "image/jpeg"
+    pixels = (np.arange(16 * 16 * 3) % 251).astype(np.uint8).reshape(16, 16, 3)
+    stream = BytesIO(); Image.fromarray(pixels).save(stream, format="PNG")
+    with tempfile.TemporaryDirectory() as tmp:
+        out = Path(tmp) / "base.glb"; replace_image(glb, 0, stream.getvalue(), "image/png", out); written = load_glb(out)
+    assert written.json["images"][0]["mimeType"] == "image/png"
+    with Image.open(BytesIO(written.image(0).data)) as decoded:
+        assert np.array_equal(np.asarray(decoded.convert("RGB")), pixels)
+    again = written.json["meshes"][0]["primitives"][0]
+    for name, accessor in [*primitive["attributes"].items(), ("indices", primitive["indices"])]:
+        new_accessor = again["indices"] if name == "indices" else again["attributes"][name]
+        assert np.array_equal(np.asarray(written.accessor(new_accessor)), np.asarray(glb.accessor(accessor)))
+
+
+def _variant_provenance(root: Path) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+    """版型原皮肤污染区（抽取件原贴图相对源肤色均值 ΔE ≤ 阈值 + 余量）与衣物覆盖纹素，口径同 E2b 裁定。"""
+    from io import BytesIO
+    from bake_texture_layer import rasterize_uv
+    garments = root / "assets/default/model3d/dressup/garments"
+    cleanup = json.loads((garments / "eq_jinzhuang/fit.json").read_text(encoding="utf-8"))["textureCleanup"]
+    base = load_glb(garments / "eq_jinzhuang/eq_jinzhuang.glb"); mesh = base.mesh()
+    source = load_glb(garments / "eq_jinzhuang/extract_run/eq_jinzhuang_raw_skinned.glb")
+    with Image.open(BytesIO(source.image(0).data)) as image:
+        reference = np.asarray(image.convert("RGB"))
+    covered = rasterize_uv(mesh, np.zeros(len(mesh.positions), dtype=np.uint8), reference.shape[0]).covered
+    lab = _srgb_to_lab(reference.reshape(-1, 3).astype(np.float64)).reshape(reference.shape)
+    limit = float(cleanup["deltaEThreshold"]) + float(cleanup["replacementMarginDeltaE"])
+    provenance = covered & (np.linalg.norm(lab - np.asarray(cleanup["skinLabMean"]), axis=2) <= limit)
+    return provenance, covered, cleanup
+
+
+def test_delivered_variant_skin_provenance() -> None:
+    """交付布衣（GLB 内贴图解码后）：位于版型原皮肤污染区且落在 retexture Lab 盒内的纹素 < 衣物覆盖纹素的 0.1%。"""
+    from io import BytesIO
+    from retexture_variant import rgb_to_lab
+    root = Path(__file__).resolve().parents[3]
+    provenance, covered, _ = _variant_provenance(root)
+    assert provenance.sum() > 1000, "污染区为空则本测试失去意义"
+    for suffix in ("", ".tpl_f_small", ".tpl_f_tall"):
+        glb = load_glb(root / f"assets/default/model3d/dressup/garments/eq_buyi/eq_buyi{suffix}.glb")
+        with Image.open(BytesIO(glb.image(0).data)) as image:
+            lab = rgb_to_lab(np.asarray(image.convert("RGB")).astype(np.float64) / 255.0)
+        box = ((lab[..., 0] > 65) & (lab[..., 0] < 95) & (lab[..., 1] > 2) & (lab[..., 1] < 45)
+               & (lab[..., 2] > 2) & (lab[..., 2] < 45))
+        residue = np.count_nonzero(box & provenance) / np.count_nonzero(covered)
+        assert residue < 1e-3, (suffix, residue)
+
+
+def test_variant_base_keeps_non_target_texels_of_real_base() -> None:
+    """真实版型：按来源修补只改污染区（与修补函数同一 UV 岛光栅化），其余纹素（含合法浅布）逐字节不变；污染区修补后远离肤色。"""
+    from io import BytesIO
+    from extract_garment import _uv_island_labels
+    root = Path(__file__).resolve().parents[3]
+    garments = root / "assets/default/model3d/dressup/garments"
+    cleanup = json.loads((garments / "eq_jinzhuang/fit.json").read_text(encoding="utf-8"))["textureCleanup"]
+    mean = np.asarray(cleanup["skinLabMean"]); threshold = float(cleanup["deltaEThreshold"])
+    margin = float(cleanup["replacementMarginDeltaE"])
+    base = load_glb(garments / "eq_jinzhuang/eq_jinzhuang.glb"); mesh = base.mesh(); faces = mesh.indices.reshape(-1, 3)
+    source = load_glb(garments / "eq_jinzhuang/extract_run/eq_jinzhuang_raw_skinned.glb")
+    with Image.open(BytesIO(base.image(0).data)) as texture, Image.open(BytesIO(source.image(0).data)) as reference:
+        before = np.asarray(texture.convert("RGB")); ref = np.asarray(reference.convert("RGB"))
+        repaired, stats = repair_by_reference(texture, reference, mesh.uvs, faces, mean, threshold, margin)
+    labels, _ = _uv_island_labels(mesh.uvs, faces, before.shape[1], before.shape[0])
+    distance = np.linalg.norm(_srgb_to_lab(ref.reshape(-1, 3).astype(np.float64)).reshape(ref.shape) - mean, axis=2)
+    target = (labels > 0) & (distance <= threshold + margin)
+    after = np.asarray(repaired); changed = np.any(after != before, axis=2)
+    assert stats["targetTexels"] == int(target.sum()) > 1000 and stats["replacedTexels"] == stats["targetTexels"]
+    assert not np.any(changed & ~target), int(np.count_nonzero(changed & ~target))
+    repaired_distance = np.linalg.norm(_srgb_to_lab(after[target].astype(np.float64)) - mean, axis=1)
+    assert np.median(repaired_distance) > threshold + 2 * margin
+
+
 def test_fixture_strict_fit() -> None:
     root = Path(__file__).resolve().parents[3]
     template = root / "assets/default/model3d/dressup/templates/tpl_f_medium"
@@ -576,6 +931,7 @@ def test_file_identity_and_region() -> None:
 
 def main() -> int:
     tests = [test_weight_transfer_and_filter, test_edge_template_weights_blend_thirty_mm,
+             test_full_template_weight_transfer_is_normalized,
              test_edge_refit_clears_bind_penetration,
              test_surface_query_is_geometric_nearest,
              test_legacy_normal_selected_output_has_real_residual,
@@ -584,7 +940,15 @@ def main() -> int:
              test_file_nonidentity_refit,
              test_units_skull_and_regions, test_alignment_no_mirror, test_alignment_continuous_pca_yaw,
              test_joint_alignment_mirror_detection, test_joint_alignment_bone_length_scale,
-             test_push_gate_failure, test_push_draft_is_explicit, test_file_identity_and_region]
+             test_push_gate_failure, test_push_draft_is_explicit,
+             test_preserve_shape_prevents_fold_and_stretch, test_volume_push_keeps_layers,
+             test_pseudo_normal_sign_on_concave_mesh, test_validate_maps_compacted_garment_to_source,
+             test_validate_parity_confirms_a1_inside, test_skin_texture_cleanup_island_scope,
+             test_skin_cleanup_survives_jpeg_encoding, test_validate_refit_source_requires_matching_sha,
+             test_untangle_flips_diagonal_of_flipped_sliver, test_untangle_writes_indices_in_place,
+             test_reference_repair_only_touches_contaminated_texels, test_variant_base_replaces_image_losslessly,
+             test_delivered_variant_skin_provenance, test_variant_base_keeps_non_target_texels_of_real_base,
+             test_file_identity_and_region]
     failed = 0
     for test in tests:
         try:

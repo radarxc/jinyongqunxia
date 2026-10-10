@@ -4,16 +4,16 @@
   "template": "tpl_f_tall",
   "subject": {
     "kind": "garment",
-    "id": "eq_jinzhuang.tpl_f_tall"
+    "id": "eq_jinzhuang"
   },
   "inputs": {
     "asset": {
-      "sha256": "8369709b79b07558ca4bb2d5345651bf85dd2d2ac09c70bdddd56041f1532817",
-      "sizeBytes": 1574820
+      "sha256": "6da0e7849f598ecd7aadc6742b492eae6b50d83ead38d6724042e9cb7442ea3a",
+      "sizeBytes": 1480440
     },
     "fit": {
-      "sha256": "31c2c8bce0628f8a4e67fa993f930e38b8b69274c59fa0f3aa9ba942c234c70d",
-      "sizeBytes": 42341
+      "sha256": "2a0c29fd35906aa0f41f5b5a679ea3115b4cd72550070fd23c418ccb151e5b9f",
+      "sizeBytes": 23021
     }
   },
   "checks": [
@@ -186,14 +186,12 @@
         "mixamorig:LeftArm",
         "mixamorig:LeftForeArm",
         "mixamorig:LeftHand",
-        "mixamorig:LeftLeg",
         "mixamorig:LeftShoulder",
         "mixamorig:LeftUpLeg",
         "mixamorig:Neck",
         "mixamorig:RightArm",
         "mixamorig:RightForeArm",
         "mixamorig:RightHand",
-        "mixamorig:RightLeg",
         "mixamorig:RightShoulder",
         "mixamorig:RightUpLeg",
         "mixamorig:Spine",
@@ -235,42 +233,42 @@
     {
       "name": "penetration.idle.all",
       "pass": true,
-      "value": 0.08522659688354943,
+      "value": 0.0649162953149464,
       "threshold": "report only",
       "frames": 24
     },
     {
       "name": "penetration.idle.visible",
       "pass": false,
-      "value": 0.043713572023313906,
+      "value": 0.045826809586896305,
       "threshold": "<= 0.02",
       "frames": 24
     },
     {
       "name": "penetration.walk.all",
       "pass": true,
-      "value": 0.09640775544189366,
+      "value": 0.038901601830663615,
       "threshold": "report only",
       "frames": 24
     },
     {
       "name": "penetration.walk.visible",
       "pass": false,
-      "value": 0.06940644700844534,
+      "value": 0.027640611827050465,
       "threshold": "<= 0.02",
       "frames": 24
     },
     {
       "name": "penetration.run.all",
       "pass": true,
-      "value": 0.07499702628761747,
+      "value": 0.015536553053113333,
       "threshold": "report only",
       "frames": 24
     },
     {
       "name": "penetration.run.visible",
-      "pass": false,
-      "value": 0.05322945164743666,
+      "pass": true,
+      "value": 0.007647838130796098,
       "threshold": "<= 0.02",
       "frames": 24
     },
@@ -285,7 +283,7 @@
     {
       "name": "holes.idle.visible",
       "pass": true,
-      "value": 0.0,
+      "value": 0.00014184397163120567,
       "threshold": "= 0 (tolerance <= 0.0005)",
       "frames": 24,
       "views": 8
@@ -293,15 +291,15 @@
     {
       "name": "holes.walk.visible",
       "pass": true,
-      "value": 0.0,
+      "value": 0.00043091065785693766,
       "threshold": "= 0 (tolerance <= 0.0005)",
       "frames": 24,
       "views": 8
     },
     {
       "name": "holes.run.visible",
-      "pass": true,
-      "value": 0.00014384349827387802,
+      "pass": false,
+      "value": 0.0006268282490597576,
       "threshold": "= 0 (tolerance <= 0.0005)",
       "frames": 24,
       "views": 8
@@ -326,29 +324,29 @@
     },
     {
       "name": "geometry.flippedTriangles",
-      "pass": false,
-      "value": 262,
+      "pass": true,
+      "value": 0,
       "threshold": 0
     },
     {
       "name": "geometry.edgeRatioInRange",
-      "pass": false,
-      "value": 0.9689967487227125,
+      "pass": true,
+      "value": 0.9918324688395138,
       "threshold": ">= 0.99"
     },
     {
       "name": "geometry.maxResidualMu",
       "pass": true,
-      "value": 0.02384449196848716,
+      "value": 0.039463143905857284,
       "threshold": "finite"
     },
     {
       "name": "geometry.closeFitP90DeltaMm",
       "pass": true,
-      "value": 1.4225837798477192,
+      "value": 1.7678669161671212,
       "threshold": "< 5",
-      "sourceP90Mm": 32.54170450553387,
-      "finalP90Mm": 31.11912072568615
+      "sourceP90Mm": 32.224406006722496,
+      "finalP90Mm": 33.99227292288962
     },
     {
       "name": "regions.u8Scalar",
@@ -364,7 +362,7 @@
     {
       "name": "budget.triangles",
       "pass": true,
-      "value": 25836,
+      "value": 25834,
       "threshold": "<= 30000"
     },
     {
