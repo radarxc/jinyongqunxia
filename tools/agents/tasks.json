@@ -52035,7 +52035,8 @@
     "tools/model3d/dressup/tests_garment.py",
     "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
     "assets/default/model3d/dressup/garments/eq_buyi/**",
-    "assets/default/model3d/dressup/garments/eq_buyi_tex/**"
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**"
    ],
    "validate": {
     "exists": [
