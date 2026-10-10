@@ -51675,6 +51675,58 @@
     "-c",
     "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
    ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-d1c-head-templates",
+   "title": "3D 纸娃娃换装 · D1c · 头按体型出变体（tall / small）+ 颈片保流形 / 底带原顶点 / 顶带内收与权重修正（Claude 直接实现，AR-110）",
+   "prompt": "ENG-dressup-d1c-head-templates.md",
+   "deps": [
+    "ENG-dressup-d1b-neck-splice"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "tools/model3d/dressup/shoot_head.mjs",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_small.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
    "effort": "high",
    "profile": "code",
    "id": "ENG-dressup-alloc-steady",
