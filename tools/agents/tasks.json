@@ -52003,6 +52003,9 @@
       "pnpm",
       "check"
      ]
+    ],
+    "shrink_exempt": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/fit*.json"
     ]
    }
   },

@@ -55,3 +55,4 @@ traex 三次运行均在单次 200 分钟上限处被停。按作者指示（「
 1. **validate 第 3 处修正**：`_refit_source` 核对 `refitFrom.garmentSha256`。G1 起 medium 劲装已重生成，旧 small / tall 的 refit 源仍记 E2 母版摘要，validate 却读新母版；所以 G1 / G1b 报告里 small / tall 的几何数字是对错源算的。阈值与输出格式不变，回归测试在 `tests_garment.py`。
 2. **肤色清理按交付编码复测**：首版只统计编码前，交付 JPEG 实测仍有 0.177%（填补色紧贴阈值，编码后落回阈值内）。`fit_garment.py` 改为填补色须比阈值远 6 ΔE；编码后解码复测，不为 0 就再修，统计记编码后的值。
 3. **删除 traex 的 `--pose-aware-weights`**（逐点 LP 按姿势权重）：动画中出尖刺且无测试，由 E2c 带平滑正则重做。
+4. **fit.json 行数缩短不是截断**：劲装三份 `fit*.json` 从 1303–1380 行降到 819 行，是记录内容变了（G1b 的开口模板权重逐点统计等不再写），已在 `tasks.json` 登记 `shrink_exempt`；审核以文件内容与 validate 结果为准。
