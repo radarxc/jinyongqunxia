@@ -30227,7 +30227,8 @@
     "packages/data/src/build/town-plan/doors.ts",
     "packages/data/src/build/town-plan/plan-hall.ts",
     "packages/data/src/build/town-plan/testing/**",
-    "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts"
+    "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts",
+    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts"
    ],
    "validate": {
     "exists": [

@@ -16,6 +16,9 @@
 4. **试点夹具** `packages/data/src/build/town-plan/testing/`：从三份试点布局（`assets/default/baseline/town/town_dali__ch01.layout.yaml`、`assets/default/town/city_dali__ch10/layout.yaml`、`assets/default/town/city_turpan__ch10/layout.yaml`，本任务工作区已稀疏检出）提取每栋建筑的 `LayoutBuildingInput` 写成 `pilot-buildings.json`（只含规划需要的字段），附一个 `extract-pilot-buildings.ts` 脚本说明如何重出（测试不读 YAML，只读 JSON）。
 5. **测试**（`packages/data/src/build/town-plan/__tests__/plan-hall.test.ts`）命名用例：四个算例 ±1 mm；全部试点建筑 + 合成尺寸 {6×5, 7×5, 7×6, 8×6, 9×7, 10×8, 12×9, 12×10, 13×10, 14×11, 3×2, 4×3, 5×4} × 4 个入口边：可进入者门净 ≥ 1200 × 2100、`floors` 在占地内（半开、离边 ≥ 墙厚）、`floors.length === floorY.length`；6×5 店室内 ≥ 4.2 × 2.9 m；同输入两次 JSON 逐字节相同；单栋方案 `JSON.stringify` ≤ 700 B；禁用运算 grep（沿用 p0 的源码守卫测试）。
 
+## 协调者补充（10-11）
+- p0 的 `__tests__/plan-building.test.ts` 里「p0 box planBuilding fallback」一组用例断言的是被本任务替换掉的盒子方案（如店铺得到 300 mm 内缩单 floor、`facility: 'none'` 等），换成真规划后必然失败。本任务写集已加该文件：**只许**改写这组盒子方案用例——非院落类型改为断言真规划的结果（门、floors、facility 按套件 archetype），`compound` 仍走盒子方案的部分可保留为盒子断言；文件里其他用例（坐标框、类型解析、套件夹具等）不动。报告第 6 节列出改写的用例。
+
 ## 约束
 - 只写：`packages/data/src/build/town-plan/{dims,doors,plan-hall}.ts`、`packages/data/src/build/town-plan/testing/**`、`packages/data/src/build/town-plan/__tests__/plan-hall.test.ts` 与本任务报告。不改 p0 / p1 的其他文件（类型若必须扩充，只能新增可选字段并在报告说明）。
 - 纯整数：不得用浮点参与尺寸、不得用 `/`（用 `floorDivInt` / `ceilDivInt`）、不得用三角函数 / `sqrt` / `pow` / `random` / `Date`；不新增依赖；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
