@@ -195,7 +195,12 @@ SPARSE_EXCLUDE_SUBDIRS = ("assets/default/baseline/building-map", "assets/defaul
 SPARSE_EXCLUDE_IF_NO_BUILD = ("assets/default/vfx",)
 # 2026-10-03（素材线第三波）：被排除目录里 tools 单测要直接读的少数文件，稀疏检出时总是带上
 # （tools/content/test_town_runtime.py 的 test_compiles_current_town_deterministically 读南京 ch10 的现成布局）。
-SPARSE_ALWAYS_INCLUDE = ("assets/default/town/city_nanjing__ch10/layout.yaml",)
+SPARSE_ALWAYS_INCLUDE = ("assets/default/town/city_nanjing__ch10/layout.yaml",
+                         # 2026-10-11（城镇 v2 协调者）：试点城设施文件的建筑引用在构建期按布局原文件校验，
+                         # 内容校验（pnpm check）因此要读这三份布局；每份 0.45–0.75 MB。
+                         "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+                         "assets/default/town/city_dali__ch10/layout.yaml",
+                         "assets/default/town/city_turpan__ch10/layout.yaml")
 SPARSE_EXCLUDE_FILES = ("assets/default/item/**/*.png", "assets/default/item/**/*.jpg", "assets/default/item/**/*.pdf",
                         "assets/default/character/**/*.png", "assets/default/portrait/**/*.webp")
 SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + SPARSE_EXCLUDE_SUBDIRS + ("assets/default/item", "assets/default/character",
