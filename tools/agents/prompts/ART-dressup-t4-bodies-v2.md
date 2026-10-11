@@ -38,3 +38,10 @@
 
 ## 报告
 `tools/agents/reports/ART-dressup-t4-bodies-v2.md`（≤ 60 行）：两件的 Tripo 项目 / 各 op、点数前后、封面质检、joints、3D 臂角 / 头身比 / 髋高占比 / 身高 mu、顶点 / 三角、skeleton 关键量；与现 tpl_f_medium 的颈肩线对比（截图）；给后续"三体型派生 + 衣物 / 头 / 道具重贴合 + 切换"的交接。
+
+## 协调者补充裁定（2026-10-11，执行中发现）
+1. 男中等身高按作者 AR-104 取 **1.81 m**（`docs/tech/10-paper-doll-3d.md` 男三型表、`tools/model3d/dressup/template_specs.json` 同）；上文"男性目标身高 1.82 m"是从 tripo-web 技能旧备注误抄，作废，模板 manifest `heightM` 写 1.81。
+2. `export_skeleton.py` 必须带 `--default-height-m`：女 1.66、男 1.81（脚本默认 1.65，不带会把 `mPerMu` 换算错；T2 / T3 同样带了）。
+3. 口径：头身比用 `tools/model3d/measure_heads.py` 的 `heads_crown`（T2 同口径）；髋高占比 = Hips 骨高 / 网格身高（`derive_template.metrics` 口径）。与规格（女 0.565、男 0.540）相差超过 2 个百分点只报告，由后续派生任务校正。
+4. 封面质检通过后才发现的 Tripo 瑕疵（E2c 口径的倒置面、局部贴图条带等）不阻断交付，逐项量化写进报告与模板 manifest `notes`，处理放后续任务。
+5. 两模板各附 `shots/` 截图（女：新旧颈肩对照；男：多机位 bind / 动作帧），只在模板 manifest 的 `shots` 字段列出，不另登记素材条目。
