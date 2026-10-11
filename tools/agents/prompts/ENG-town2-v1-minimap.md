@@ -13,7 +13,7 @@
    - 跟镜头转：v1 城镇镜头固定 yaw 45° / pitch 30°，`basis` 由 45° 算出（纯数学，写在适配器里）；设置 `minimapNorthUp`（`apps/game/src/settings.ts`，缺省 `false` = 跟镜头转）为真时传 `northUp`。
    - 玩家箭头、路径、终点来自投影；视野四边形用场景的 `pickPoint` 取画布四角落地点（拾取不到的角用相邻角外推，取不到就传 `null`），每帧写进预分配的 8 长 `Float32Array`，不分配。
    - 点空地 → 换算成 v1 城镇格 → 发 `town/move`（core 判可达，页面不判）；点建筑 / 设施标记 → 走到其入口格；悬停显示名称与直线距离；`M` 展开全城图（上北下南、图例、设施列表可点、Esc 关闭）。
-2. **缩放**：ActionMap 的 explore 语境 + `ZoomController`：`=`（含 Shift 即 `+`）/ 小键盘 + 放大一档，`-` / 小键盘 − 缩小一档，`0` / 小键盘 0 复位（街巷 80）；滚轮与触控板捏合在 40–112 连续；带 Ctrl / Meta / Alt 不拦截（保留浏览器缩放）；输入框 / 输入法组字时不响应。px/m 档位换算成 v1 `setZoom` 比例的函数放 `apps/game/src/explore/v1-zoom.ts`（退役即删）。**删掉旧滑杆**，小地图外圈的 `+` / `−` 接同一个 `ZoomController`。
+2. **缩放**：ActionMap 的 explore 语境 + `ZoomController`：`=`（含 Shift 即 `+`）/ 小键盘 + 放大一档，`-` / 小键盘 − 缩小一档，`0` / 小键盘 0 复位（街巷 80）；滚轮与触控板捏合在 40–112 连续（捏合按手势接：平台 `createPointerGestures` 的 `onPinchStart` → `zoom.pinchStart()`、`onPinch` → `zoom.pinch(scale)`、`onPinchEnd` → `zoom.pinchEnd()`，同一手势内比例相对起点）；带 Ctrl / Meta / Alt 不拦截（保留浏览器缩放）；输入框 / 输入法组字时不响应。px/m 档位换算成 v1 `setZoom` 比例的函数放 `apps/game/src/explore/v1-zoom.ts`（退役即删）。**删掉旧滑杆**，小地图外圈的 `+` / `−` 接同一个 `ZoomController`。
 3. **身高**：主角按性别传 `playerHeightM`（取 `packages/render/src/actors/heights.ts` 的缺省表，不写死数字；若 heights 任务已在页面里传了，就保持）。
 4. **帮助文字**：删掉 `town-help`（"点击地面寻路 · …"），快捷键提示改由小地图外圈与 ActionMap 的提示负责。
 

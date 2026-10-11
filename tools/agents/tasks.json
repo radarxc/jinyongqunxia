@@ -29582,7 +29582,9 @@
    "writes": [
     "apps/game/src/input/**",
     "apps/game/src/App.vue",
-    "apps/game/src/app-flow.test.ts"
+    "apps/game/src/app-flow.test.ts",
+    "packages/platform/src/input/pointer.ts",
+    "packages/platform/src/input/pointer.test.ts"
    ],
    "validate": {
     "exists": [
