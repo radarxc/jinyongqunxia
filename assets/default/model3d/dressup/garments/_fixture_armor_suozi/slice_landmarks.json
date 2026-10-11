@@ -1,0 +1,259 @@
+{
+  "schema": "tianshu-dressup-slice-landmarks.v1",
+  "kind": "garment",
+  "id": "_fixture_armor_suozi",
+  "class": "armor",
+  "armorType": "suozi",
+  "label": "锁子甲",
+  "elasticity": 0.3,
+  "clearanceMm": 1.0,
+  "rigid": false,
+  "legs": "tube",
+  "unit": "mu",
+  "up": "+Y",
+  "front": "+Z",
+  "frame": "测试件 GLB 原坐标（设计体 = tpl_f_medium 按 design.scale / offset 变形）；levels 为设计体标注面，collar / hem / 袖口锚点从生成的几何量出，target 为设计体上的目标面",
+  "design": {
+    "base": "tpl_f_medium",
+    "scale": [
+      0.96,
+      1.08,
+      1.05
+    ],
+    "offsetMu": [
+      0.0,
+      0.03,
+      0.008
+    ],
+    "pivotYMu": 0.537891,
+    "thicknessMm": 4.0,
+    "standoffMm": 4.0
+  },
+  "levels": {
+    "neckBase": {
+      "yMu": 0.886578
+    },
+    "shoulder": {
+      "yMu": 0.863464
+    },
+    "armpit": {
+      "yMu": 0.79093
+    },
+    "bust": {
+      "yMu": 0.778974
+    },
+    "underBust": {
+      "yMu": 0.735933
+    },
+    "waist": {
+      "yMu": 0.681732
+    },
+    "navel": {
+      "yMu": 0.648395
+    },
+    "pelvis": {
+      "yMu": 0.567891
+    },
+    "hip": {
+      "yMu": 0.522317
+    },
+    "crotch": {
+      "yMu": 0.503984
+    },
+    "belowHip": {
+      "yMu": 0.48087
+    },
+    "midThigh": {
+      "yMu": 0.401561
+    },
+    "aboveKnee": {
+      "yMu": 0.350349
+    },
+    "knee": {
+      "yMu": 0.299137
+    },
+    "calf": {
+      "yMu": 0.227194
+    },
+    "aboveAnkle": {
+      "yMu": 0.095298
+    },
+    "ankle": {
+      "yMu": 0.059327
+    }
+  },
+  "alignLevels": [
+    "aboveKnee",
+    "midThigh",
+    "belowHip",
+    "crotch",
+    "hip",
+    "pelvis",
+    "navel",
+    "waist",
+    "underBust",
+    "bust",
+    "armpit",
+    "shoulder",
+    "neckBase"
+  ],
+  "anchorRule": {
+    "sectorDeg": 90.0,
+    "binDeg": 2.5,
+    "cuffBinDeg": 10.0,
+    "cuffNeighborhood": 2.0,
+    "toleranceMm": 10.0,
+    "minKnotGapMm": 40.0
+  },
+  "collar": {
+    "anchor": {
+      "method": "backSectorUpperEnvelopeMedian",
+      "yMu": 0.888815,
+      "p10YMu": 0.88173,
+      "p90YMu": 0.888815,
+      "bins": 36,
+      "centerMu": [
+        -0.000623,
+        -0.001478
+      ]
+    },
+    "target": {
+      "level": "neckBase"
+    },
+    "designTargetYMu": 0.886578,
+    "anchorMinusDesignTargetMm": 3.787723
+  },
+  "hem": {
+    "anchor": {
+      "method": "backSectorLowerEnvelopeMedian",
+      "yMu": 0.350349,
+      "p10YMu": 0.350349,
+      "p90YMu": 0.488508,
+      "bins": 36,
+      "centerMu": [
+        -0.000623,
+        -0.001478
+      ]
+    },
+    "target": {
+      "level": "aboveKnee"
+    },
+    "designTargetYMu": 0.350349,
+    "anchorMinusDesignTargetMm": 0.0
+  },
+  "sleeves": {
+    "L": {
+      "axis": {
+        "shoulderMu": [
+          0.075343,
+          0.84078,
+          -0.010089
+        ],
+        "elbowMu": [
+          0.126797,
+          0.70847,
+          -0.010089
+        ],
+        "wristMu": [
+          0.183136,
+          0.592366,
+          0.018339
+        ],
+        "handMu": [
+          0.212731,
+          0.531549,
+          0.038548
+        ]
+      },
+      "axisSource": "设计体手臂关节（模板关节经同一设计变形）",
+      "cuff": {
+        "anchor": {
+          "method": "distalEnvelopeMedian",
+          "tMu": 0.076283,
+          "p10TMu": 0.071942,
+          "p90TMu": 0.078224,
+          "bins": 36,
+          "vertexSet": "sleeveComponent",
+          "vertices": 3582,
+          "axisPoints": [
+            "shoulder",
+            "elbow",
+            "wrist",
+            "hand"
+          ]
+        },
+        "target": {
+          "between": [
+            "shoulder",
+            "elbow"
+          ],
+          "t": 0.540702
+        },
+        "designTargetTMu": 0.076283,
+        "anchorMinusDesignTargetMm": 0.0
+      }
+    },
+    "R": {
+      "axis": {
+        "shoulderMu": [
+          -0.071668,
+          0.84078,
+          -0.010089
+        ],
+        "elbowMu": [
+          -0.123122,
+          0.70847,
+          -0.010089
+        ],
+        "wristMu": [
+          -0.184283,
+          0.592821,
+          0.018165
+        ],
+        "handMu": [
+          -0.216265,
+          0.533356,
+          0.038846
+        ]
+      },
+      "axisSource": "设计体手臂关节（模板关节经同一设计变形）",
+      "cuff": {
+        "anchor": {
+          "method": "distalEnvelopeMedian",
+          "tMu": 0.076373,
+          "p10TMu": 0.071931,
+          "p90TMu": 0.078549,
+          "bins": 36,
+          "vertexSet": "sleeveComponent",
+          "vertices": 3582,
+          "axisPoints": [
+            "shoulder",
+            "elbow",
+            "wrist",
+            "hand"
+          ]
+        },
+        "target": {
+          "between": [
+            "shoulder",
+            "elbow"
+          ],
+          "t": 0.5417
+        },
+        "designTargetTMu": 0.076373,
+        "anchorMinusDesignTargetMm": 0.0
+      }
+    }
+  },
+  "note": "锁子甲测试件：长到膝上的甲衣（腋下 3 cm 以上两侧开袖窿、前后开衩）+ 两只盖住肩头到上臂中段的短袖管，r = 0.3；按宽 0.96 / 高 1.08 / 厚 1.05 倍的高瘦体型制作并错位 (0, +51, +14) mm，用来检验竖直分段对齐、裆下两腿凸包与袖轴。",
+  "source": {
+    "file": "assets/default/model3d/dressup/garments/_fixture_armor_suozi/_fixture_armor_suozi.glb",
+    "sha256": "37c1fe0b57851ef3186edf6355b089cee544e1ae478e36396e48c79dac557815",
+    "generator": "tools/model3d/dressup/slice_fit.py armor-fixture --kind suozi"
+  },
+  "stats": {
+    "vertices": 33988,
+    "triangles": 67976,
+    "components": 3
+  }
+}

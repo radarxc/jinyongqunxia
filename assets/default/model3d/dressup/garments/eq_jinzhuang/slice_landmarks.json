@@ -1,0 +1,214 @@
+{
+  "schema": "tianshu-dressup-slice-landmarks.v1",
+  "kind": "garment",
+  "id": "eq_jinzhuang",
+  "class": "cloth",
+  "elasticity": 1.0,
+  "clearanceMm": 1.0,
+  "foldMm": 75.0,
+  "rigid": false,
+  "legs": "tube",
+  "unit": "mu",
+  "up": "+Y",
+  "front": "+Z",
+  "frame": "衣物 GLB 原坐标；在 tpl_f_medium 板上生成，设计体即该模板：levels 为设计体标注面在衣物坐标的高度（只作锚点之间的中间对应）；collar / hem / 袖口锚点从衣物几何量出，target 为设计体上的目标面",
+  "designTemplate": "tpl_f_medium",
+  "anchorRule": {
+    "sectorDeg": 90.0,
+    "binDeg": 2.5,
+    "cuffBinDeg": 10.0,
+    "cuffNeighborhood": 2.0,
+    "toleranceMm": 10.0,
+    "minKnotGapMm": 40.0
+  },
+  "levels": {
+    "neckBase": {
+      "yMu": 0.832972
+    },
+    "shoulder": {
+      "yMu": 0.81157
+    },
+    "armpit": {
+      "yMu": 0.744409
+    },
+    "bust": {
+      "yMu": 0.733338
+    },
+    "underBust": {
+      "yMu": 0.693485
+    },
+    "waist": {
+      "yMu": 0.643299
+    },
+    "navel": {
+      "yMu": 0.612432
+    },
+    "pelvis": {
+      "yMu": 0.537891
+    },
+    "hip": {
+      "yMu": 0.495693
+    },
+    "crotch": {
+      "yMu": 0.478718
+    }
+  },
+  "alignLevels": [
+    "neckBase",
+    "shoulder",
+    "armpit",
+    "bust",
+    "underBust",
+    "waist",
+    "navel",
+    "pelvis",
+    "hip",
+    "crotch"
+  ],
+  "collar": {
+    "anchor": {
+      "method": "backSectorUpperEnvelopeMedian",
+      "yMu": 0.829895,
+      "p10YMu": 0.814301,
+      "p90YMu": 0.839844,
+      "bins": 36,
+      "centerMu": [
+        0.011101,
+        0.00043
+      ]
+    },
+    "target": {
+      "level": "neckBase"
+    },
+    "designTargetYMu": 0.832972,
+    "anchorMinusDesignTargetMm": -5.211583
+  },
+  "hem": {
+    "anchor": {
+      "method": "backSectorLowerEnvelopeMedian",
+      "yMu": 0.534638,
+      "p10YMu": 0.533539,
+      "p90YMu": 0.535156,
+      "bins": 36,
+      "centerMu": [
+        0.011101,
+        0.00043
+      ]
+    },
+    "target": {
+      "level": "pelvis"
+    },
+    "designTargetYMu": 0.537891,
+    "anchorMinusDesignTargetMm": -5.510384
+  },
+  "sleeves": {
+    "L": {
+      "axis": {
+        "shoulderMu": [
+          0.078482,
+          0.790566,
+          -0.017228
+        ],
+        "elbowMu": [
+          0.13208,
+          0.668057,
+          -0.017228
+        ],
+        "wristMu": [
+          0.190767,
+          0.560553,
+          0.009847
+        ],
+        "handMu": [
+          0.221595,
+          0.504241,
+          0.029093
+        ]
+      },
+      "axisSource": "设计体 tpl_f_medium 臂点（肩 / 肘骨架关节、腕网格最细处、指根 HandMiddle1）",
+      "cuff": {
+        "anchor": {
+          "method": "distalEnvelopeMedian",
+          "tMu": 0.266578,
+          "p10TMu": 0.245457,
+          "p90TMu": 0.273729,
+          "bins": 36,
+          "vertexSet": "cuffLoopNeighborhood",
+          "vertices": 996,
+          "axisPoints": [
+            "shoulder",
+            "elbow",
+            "wrist",
+            "hand"
+          ]
+        },
+        "target": {
+          "between": [
+            "wrist",
+            "hand"
+          ],
+          "t": 0.139727
+        },
+        "designTargetTMu": 0.266578,
+        "anchorMinusDesignTargetMm": 0.0
+      }
+    },
+    "R": {
+      "axis": {
+        "shoulderMu": [
+          -0.074654,
+          0.790566,
+          -0.017228
+        ],
+        "elbowMu": [
+          -0.128252,
+          0.668057,
+          -0.017228
+        ],
+        "wristMu": [
+          -0.191961,
+          0.560974,
+          0.009681
+        ],
+        "handMu": [
+          -0.225276,
+          0.505914,
+          0.029377
+        ]
+      },
+      "axisSource": "设计体 tpl_f_medium 臂点（肩 / 肘骨架关节、腕网格最细处、指根 HandMiddle1）",
+      "cuff": {
+        "anchor": {
+          "method": "distalEnvelopeMedian",
+          "tMu": 0.268094,
+          "p10TMu": 0.238231,
+          "p90TMu": 0.273234,
+          "bins": 36,
+          "vertexSet": "cuffLoopNeighborhood",
+          "vertices": 1148,
+          "axisPoints": [
+            "shoulder",
+            "elbow",
+            "wrist",
+            "hand"
+          ]
+        },
+        "target": {
+          "between": [
+            "wrist",
+            "hand"
+          ],
+          "t": 0.13461
+        },
+        "designTargetTMu": 0.268094,
+        "anchorMinusDesignTargetMm": 0.0
+      }
+    }
+  },
+  "source": {
+    "file": "assets/default/model3d/dressup/garments/eq_jinzhuang/extract_run/eq_jinzhuang_raw_skinned.glb",
+    "sha256": "317268c69992465091df48150d32bc1c9f647a5093c9a4472f8b8e549b35c26d"
+  },
+  "generator": "tools/model3d/dressup/slice_fit.py garment-landmarks",
+  "note": "劲装（作者表 r = 1，完全贴身）：Tripo 在 tpl_f_medium 板上生成，衣物原坐标即该模板坐标（Hips / Neck 关节差 4 mm），设计体 = tpl_f_medium（levels 与袖轴取该模板标注，只作锚点之间的中间对应）。衣缘锚点从衣物几何量出：后领上沿中位在颈根下 5.2 mm（目标颈根），后中下摆可见下沿中位在胯下 5.5 mm（下摆内折，开口边在可见下沿之上约 4 cm；目标胯），袖口远端沿模板臂弦在腕—指根之间 0.14 / 0.13（左 / 右）。全件最低点是前襟腰带垂尾（下摆锚点下 72 mm）、最高点是侧颈峰（后领锚点上 21 mm），都不是衣缘。foldMm = 75：Tripo 件自带褶皱（深 5–10 mm、宽 4–8 cm），弹性位移场按 75 mm 尺度平滑，褶皱随形保留、只把最深褶谷顶到体表 + 1 mm；设 0 即作者字面的内环贴体，会压平褶皱（数字见 shots/slice_fit.tpl_f_medium.tight.json）。"
+}

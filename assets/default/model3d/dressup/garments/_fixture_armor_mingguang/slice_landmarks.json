@@ -1,0 +1,154 @@
+{
+  "schema": "tianshu-dressup-slice-landmarks.v1",
+  "kind": "garment",
+  "id": "_fixture_armor_mingguang",
+  "class": "armor",
+  "armorType": "mingguang",
+  "label": "明光铠",
+  "elasticity": 0.2,
+  "clearanceMm": 1.0,
+  "rigid": false,
+  "legs": "tube",
+  "unit": "mu",
+  "up": "+Y",
+  "front": "+Z",
+  "frame": "测试件 GLB 原坐标（设计体 = tpl_f_medium 按 design.scale / offset 变形）；levels 为设计体标注面，collar / hem / 袖口锚点从生成的几何量出，target 为设计体上的目标面",
+  "design": {
+    "base": "tpl_f_medium",
+    "scale": [
+      0.93,
+      0.95,
+      0.94
+    ],
+    "offsetMu": [
+      -0.008,
+      0.015,
+      0.006
+    ],
+    "pivotYMu": 0.537891,
+    "thicknessMm": 2.5,
+    "standoffMm": 5.0
+  },
+  "levels": {
+    "neckBase": {
+      "yMu": 0.833218
+    },
+    "shoulder": {
+      "yMu": 0.812886
+    },
+    "armpit": {
+      "yMu": 0.749083
+    },
+    "bust": {
+      "yMu": 0.738566
+    },
+    "underBust": {
+      "yMu": 0.700705
+    },
+    "waist": {
+      "yMu": 0.653029
+    },
+    "navel": {
+      "yMu": 0.623705
+    },
+    "pelvis": {
+      "yMu": 0.552891
+    },
+    "hip": {
+      "yMu": 0.512803
+    },
+    "crotch": {
+      "yMu": 0.496677
+    },
+    "belowHip": {
+      "yMu": 0.476345
+    },
+    "midThigh": {
+      "yMu": 0.406582
+    },
+    "aboveKnee": {
+      "yMu": 0.361534
+    },
+    "knee": {
+      "yMu": 0.316487
+    },
+    "calf": {
+      "yMu": 0.253204
+    },
+    "aboveAnkle": {
+      "yMu": 0.137184
+    },
+    "ankle": {
+      "yMu": 0.105543
+    }
+  },
+  "alignLevels": [
+    "belowHip",
+    "crotch",
+    "hip",
+    "pelvis",
+    "navel",
+    "waist",
+    "underBust",
+    "bust",
+    "armpit",
+    "shoulder",
+    "neckBase"
+  ],
+  "anchorRule": {
+    "sectorDeg": 90.0,
+    "binDeg": 2.5,
+    "cuffBinDeg": 10.0,
+    "cuffNeighborhood": 2.0,
+    "toleranceMm": 10.0,
+    "minKnotGapMm": 40.0
+  },
+  "collar": {
+    "anchor": {
+      "method": "backSectorUpperEnvelopeMedian",
+      "yMu": 0.834141,
+      "p10YMu": 0.759748,
+      "p90YMu": 0.834141,
+      "bins": 36,
+      "centerMu": [
+        -0.008613,
+        0.037009
+      ]
+    },
+    "target": {
+      "level": "neckBase"
+    },
+    "designTargetYMu": 0.833218,
+    "anchorMinusDesignTargetMm": 1.563861
+  },
+  "hem": {
+    "anchor": {
+      "method": "backSectorLowerEnvelopeMedian",
+      "yMu": 0.476345,
+      "p10YMu": 0.476345,
+      "p90YMu": 0.479887,
+      "bins": 36,
+      "centerMu": [
+        -0.008613,
+        0.037009
+      ]
+    },
+    "target": {
+      "level": "belowHip"
+    },
+    "designTargetYMu": 0.476345,
+    "anchorMinusDesignTargetMm": 0.0
+  },
+  "sleeves": null,
+  "note": "明光铠测试件：胸背甲 + 两面护心镜 + 腹甲（叠在胸背甲外）+ 前后分片甲裙到臀下，r = 0.2；按宽 0.93 / 高 0.95 / 厚 0.94 倍的小体型制作并错位 (−14, +25, +10) mm，用来检验放大对齐与多层层距。",
+  "source": {
+    "file": "assets/default/model3d/dressup/garments/_fixture_armor_mingguang/_fixture_armor_mingguang.glb",
+    "sha256": "0b8b4e58e2a08dfb7e50024c579776b04771acc72360c55f3b31b0c51662a905",
+    "generator": "tools/model3d/dressup/slice_fit.py armor-fixture --kind mingguang"
+  },
+  "stats": {
+    "vertices": 19248,
+    "triangles": 38324,
+    "components": 5
+  }
+}
