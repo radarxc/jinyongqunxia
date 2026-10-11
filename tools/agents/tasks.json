@@ -30076,6 +30076,75 @@
    "profile": "code"
   },
   {
+   "id": "ENG-town2-regionmap-ext",
+   "title": "城镇探索 v2 · 区域地图增量 schema（chunk 三层、town-scene.v1、FacilityNpc / Exit / MeditationSpot、MapEntry.scene）+ core 解码",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-town2-regionmap-ext.md",
+   "deps": [
+    "ENG-town2-shop-schema"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15 §2",
+   "writes": [
+    "packages/data/src/schemas/region-map.ts",
+    "packages/data/src/schemas/town-scene.ts",
+    "packages/data/src/schemas/world-map.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/region-map-town.test.ts",
+    "packages/core/src/world/region-codec.ts",
+    "packages/core/src/world/region-codec.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/town-scene.ts",
+     "packages/data/src/region-map-town.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/region-map-town.test.ts",
+      "packages/data/src/schemas",
+      "packages/core/src/world",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",
