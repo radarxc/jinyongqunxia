@@ -1,0 +1,689 @@
+{
+ "schema": "tianshu.landmark-spec.v1",
+ "id": "map_landmark_city_lhasa__ganden",
+ "node": "city_lhasa",
+ "era": "ganden",
+ "chapters": [
+  "ch07"
+ ],
+ "title": "拉萨（甘丹颇章政权，1644；布达拉宫重建前）",
+ "years": [
+  1642,
+  1644
+ ],
+ "kit": "tubo",
+ "tile_kit": "tubo",
+ "seed": 1644,
+ "footprint_grid": 9,
+ "frame": {
+  "origin": "城心：布达拉宫与大昭寺之间（拉萨无城墙）",
+  "origin_lonlat": [
+   91.1278,
+   29.6548
+  ],
+  "unit": "km",
+  "axes": "x 向东、y 向北",
+  "lonlat_to_km": "x=(lon−lon0)·111.32·cos(lat0)，y=(lat−lat0)·110.57；折点按现代地名 / 遗址线推定，精度约 ±150 m"
+ },
+ "view": {
+  "x": [
+   -2.4,
+   1.37
+  ],
+  "y": [
+   -1.05,
+   1.6
+  ]
+ },
+ "top_px": 70,
+ "manifest_v": 3,
+ "ref_use": {
+  "bld_lm_ch01_chongshengsi_pagoda": "作者已审基线方形密檐砖塔件（东西寺塔代用）",
+  "/baseline/building-map/bld_kit_": "作者已审基线建筑套件件（墨化后摆放）",
+  "city_gate": "城门楼件（看楼、双阙、对峙楼、钟鼓楼、凤凰楼、承运门等楼阁代用）",
+  "tree_cluster": "树丛件（林带、林卡、果园）",
+  "shrub__": "灌丛件（草原、河岸）",
+  "grass_tuft": "草丛件（草原）",
+  "grape_arbor": "葡萄架件（绿洲果园）",
+  "reed__": "芦苇件（江岸）",
+  "/map/kit/": "地图 kit 山形件（山、丘陵；未墨化）"
+ },
+ "walls": [],
+ "gates": [],
+ "streets": [
+  {
+   "id": "barkhor",
+   "points": [
+    [
+     0.61,
+     -0.25
+    ],
+    [
+     0.598,
+     -0.204
+    ],
+    [
+     0.563,
+     -0.165
+    ],
+    [
+     0.511,
+     -0.139
+    ],
+    [
+     0.45,
+     -0.13
+    ],
+    [
+     0.389,
+     -0.139
+    ],
+    [
+     0.337,
+     -0.165
+    ],
+    [
+     0.302,
+     -0.204
+    ],
+    [
+     0.29,
+     -0.25
+    ],
+    [
+     0.302,
+     -0.296
+    ],
+    [
+     0.337,
+     -0.335
+    ],
+    [
+     0.389,
+     -0.361
+    ],
+    [
+     0.45,
+     -0.37
+    ],
+    [
+     0.511,
+     -0.361
+    ],
+    [
+     0.563,
+     -0.335
+    ],
+    [
+     0.598,
+     -0.296
+    ],
+    [
+     0.61,
+     -0.25
+    ]
+   ],
+   "width_px": 3.0,
+   "src": [
+    "src_jokhang"
+   ],
+   "basis": "八廓街环大昭寺"
+  },
+  {
+   "id": "to_potala",
+   "points": [
+    [
+     -0.48,
+     -0.13
+    ],
+    [
+     -0.15,
+     -0.35
+    ],
+    [
+     0.15,
+     -0.27
+    ],
+    [
+     0.29,
+     -0.25
+    ]
+   ],
+   "width_px": 3.2
+  },
+  {
+   "id": "to_ramoche",
+   "points": [
+    [
+     0.45,
+     -0.13
+    ],
+    [
+     0.43,
+     0.1
+    ],
+    [
+     0.42,
+     0.25
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "to_drepung",
+   "class": "lane",
+   "points": [
+    [
+     -0.9,
+     0.12
+    ],
+    [
+     -1.3,
+     0.37
+    ],
+    [
+     -1.6,
+     0.57
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "to_sera",
+   "class": "lane",
+   "points": [
+    [
+     0.45,
+     0.55
+    ],
+    [
+     0.5,
+     0.7
+    ],
+    [
+     0.55,
+     0.85
+    ]
+   ],
+   "width_px": 2.6
+  }
+ ],
+ "water": [
+  {
+   "id": "kyichu",
+   "kind": "river",
+   "name": "拉萨河（吉曲）",
+   "points": [
+    [
+     -2.3,
+     -0.75
+    ],
+    [
+     -1.55,
+     -0.72
+    ],
+    [
+     -0.55,
+     -0.78
+    ],
+    [
+     0.45,
+     -0.81
+    ],
+    [
+     1.2,
+     -0.91
+    ]
+   ],
+   "width_px": 12.0,
+   "foot": true,
+   "foot_px": 14,
+   "src": [
+    "src_jokhang",
+    "src_norbulingka"
+   ],
+   "basis": "拉萨河自东向西流经城南，罗布林卡在其北岸"
+  }
+ ],
+ "regions": [
+  {
+   "id": "town_r",
+   "polygon": [
+    [
+     -0.05,
+     -0.61
+    ],
+    [
+     0.87,
+     -0.61
+    ],
+    [
+     0.91,
+     0.25
+    ],
+    [
+     0.67,
+     0.53
+    ],
+    [
+     0.09,
+     0.53
+    ],
+    [
+     -0.07,
+     0.05
+    ]
+   ],
+   "foot": true
+  }
+ ],
+ "landmarks": [
+  {
+   "id": "jokhang",
+   "name": "大昭寺（祖拉康）",
+   "sprite": "temple_hall",
+   "at": [
+    0.45,
+    -0.25
+   ],
+   "size_px": 60,
+   "clear": 0.1,
+   "tint": "imperial",
+   "src": [
+    "src_jokhang",
+    "src_jokhang_en"
+   ],
+   "basis": "松赞干布所建，坐东向西；金顶以金黄墨色示之"
+  },
+  {
+   "id": "ramoche",
+   "name": "小昭寺",
+   "sprite": "temple_hall",
+   "at": [
+    0.42,
+    0.33
+   ],
+   "size_px": 32,
+   "clear": 0.07,
+   "src": [
+    "src_ramoche"
+   ],
+   "basis": "641 年建，在大昭寺以北约 1 km（压缩）"
+  },
+  {
+   "id": "drepung_hall",
+   "name": "哲蚌寺措钦大殿",
+   "sprite": "temple_hall",
+   "at": [
+    -1.87,
+    0.75
+   ],
+   "size_px": 36,
+   "clear": 0.06,
+   "src": [
+    "src_drepung"
+   ]
+  },
+  {
+   "id": "ganden_phodrang",
+   "name": "甘丹颇章（达赖喇嘛在哲蚌寺的寝宫）",
+   "sprite": "palace_hall",
+   "at": [
+    -1.6,
+    0.65
+   ],
+   "size_px": 44,
+   "clear": 0.06,
+   "tint": "imperial",
+   "src": [
+    "src_ganden",
+    "src_potala_en"
+   ],
+   "basis": "1642 年后甘丹颇章政权驻此；1649 年达赖喇嘛移居布达拉宫白宫"
+  },
+  {
+   "id": "sera_hall",
+   "name": "色拉寺措钦大殿",
+   "sprite": "temple_hall",
+   "at": [
+    0.55,
+    0.97
+   ],
+   "size_px": 32,
+   "clear": 0.05,
+   "src": [
+    "src_drepung"
+   ],
+   "basis": "哲蚌、色拉为拉萨三大寺中的两座；距离向城压缩"
+  },
+  {
+   "id": "phakpa",
+   "name": "红山旧殿（帕巴拉康、法王洞，吐蕃宫室遗存）",
+   "sprite": "temple_hall",
+   "at": [
+    -0.58,
+    0.23
+   ],
+   "size_px": 30,
+   "clear": 0.08,
+   "lift_px": 40,
+   "src": [
+    "src_potala_en"
+   ],
+   "basis": "今布达拉宫西北角二殿保存早期宫室遗构；1645 年前红山上只此小殿（规模推定）"
+  }
+ ],
+ "hills": [
+  {
+   "id": "marpori",
+   "name": "红山（玛布日山）",
+   "sprite": "map_kit_shanfeng_05",
+   "at": [
+    -0.5,
+    0.27
+   ],
+   "size_px": 215,
+   "clear": 0.22,
+   "src": [
+    "src_potala"
+   ]
+  },
+  {
+   "id": "chakpori",
+   "name": "药王山（夹波日）",
+   "sprite": "map_kit_shanfeng_05",
+   "at": [
+    -1.0,
+    -0.19
+   ],
+   "size_px": 104,
+   "clear": 0.12,
+   "flip": true
+  },
+  {
+   "id": "gephel",
+   "name": "更丕乌孜山（哲蚌寺后山）",
+   "sprite": "map_kit_shanfeng_03",
+   "at": [
+    -1.85,
+    1.05
+   ],
+   "size_px": 124,
+   "clear": 0.2
+  },
+  {
+   "id": "purbuchok",
+   "name": "色拉乌孜山（色拉寺后山）",
+   "sprite": "map_kit_shanfeng_03",
+   "at": [
+    0.55,
+    1.35
+   ],
+   "size_px": 112,
+   "clear": 0.2,
+   "flip": true
+  }
+ ],
+ "groves": [
+  {
+   "id": "riverbank",
+   "polygon": [
+    [
+     -2.05,
+     -0.67
+    ],
+    [
+     1.05,
+     -0.75
+    ],
+    [
+     1.05,
+     -0.63
+    ],
+    [
+     -2.05,
+     -0.57
+    ]
+   ],
+   "trees": [
+    "tex_town_tubo_tree_cluster__willow_v01"
+   ],
+   "size_px": 26,
+   "foot": false,
+   "kit": "tubo",
+   "spacing_px": 46.8
+  },
+  {
+   "id": "drepung",
+   "polygon": [
+    [
+     -2.17,
+     0.55
+    ],
+    [
+     -1.53,
+     0.55
+    ],
+    [
+     -1.57,
+     0.85
+    ],
+    [
+     -2.13,
+     0.87
+    ]
+   ],
+   "sprites": [
+    "house_large",
+    "shop_2f",
+    "house_small",
+    "manor",
+    "courtyard"
+   ],
+   "size_px": 17,
+   "foot": true,
+   "kit": "tubo",
+   "tint": "white",
+   "basis": "哲蚌寺僧舍层叠于山坡（1416 年建）",
+   "spacing_px": 24.3
+  },
+  {
+   "id": "sera",
+   "polygon": [
+    [
+     0.25,
+     0.83
+    ],
+    [
+     0.85,
+     0.83
+    ],
+    [
+     0.83,
+     1.09
+    ],
+    [
+     0.27,
+     1.11
+    ]
+   ],
+   "sprites": [
+    "house_large",
+    "shop_2f",
+    "house_small",
+    "manor",
+    "courtyard"
+   ],
+   "size_px": 16,
+   "foot": true,
+   "kit": "tubo",
+   "tint": "white",
+   "basis": "色拉寺（1419 年建）",
+   "spacing_px": 23.4
+  },
+  {
+   "id": "lingka_e",
+   "polygon": [
+    [
+     0.95,
+     -0.61
+    ],
+    [
+     1.23,
+     -0.61
+    ],
+    [
+     1.23,
+     -0.33
+    ],
+    [
+     0.95,
+     -0.33
+    ]
+   ],
+   "trees": [
+    "tex_town_tubo_tree_cluster__willow_v01"
+   ],
+   "size_px": 26,
+   "foot": true,
+   "kit": "tubo",
+   "spacing_px": 27.7
+  },
+  {
+   "id": "lingka_w",
+   "polygon": [
+    [
+     -1.5,
+     -0.65
+    ],
+    [
+     -1.0,
+     -0.65
+    ],
+    [
+     -1.0,
+     -0.37
+    ],
+    [
+     -1.5,
+     -0.37
+    ]
+   ],
+   "trees": [
+    "tex_town_tubo_tree_cluster__willow_v01"
+   ],
+   "size_px": 26,
+   "foot": true,
+   "kit": "tubo",
+   "spacing_px": 29.2
+  }
+ ],
+ "fill": [
+  {
+   "id": "fill_town",
+   "clip": "town_r",
+   "exclude": [],
+   "bbox": [
+    -0.07,
+    0.91,
+    -0.61,
+    0.53
+   ],
+   "sprites": [
+    [
+     "house_small",
+     4
+    ],
+    [
+     "house_large",
+     3
+    ],
+    [
+     "shop_2f",
+     2
+    ],
+    [
+     "shop_1f",
+     2
+    ],
+    [
+     "courtyard",
+     2
+    ],
+    [
+     "manor",
+     1
+    ],
+    [
+     "tree:tree_cluster__willow_v01",
+     1
+    ]
+   ],
+   "size_px": 11,
+   "density": 1.0,
+   "jitter": 0.22,
+   "basis": "以大昭寺为中心的老城（八廓）街区",
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  }
+ ],
+ "notes": [
+  "拉萨历史上不筑城墙，以寺院、宫堡与街区为城",
+  "1644 年布达拉宫尚未重建（1645 年动工），红山只画吐蕃旧殿遗存；政权驻哲蚌寺甘丹颇章",
+  "吐蕃地域套件 tubo（平顶藏式）；方位按实测、距离压缩：布达拉宫—大昭寺约 ×0.68，哲蚌、色拉二寺与罗布林卡更强压缩",
+  "交付图比例约 175.2 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）"
+ ],
+ "sources": {
+  "src_drepung": {
+   "title": "维基百科（中文）《哲蚌寺》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%93%B2%E8%9A%8C%E5%AF%BA",
+   "accessed": "2026-10-11",
+   "supports": "1416 年建，拉萨西郊 5 km 更丕乌孜山下"
+  },
+  "src_ganden": {
+   "title": "维基百科（中文）《甘丹颇章》",
+   "url": "https://zh.wikipedia.org/wiki/%E7%94%98%E4%B8%B9%E9%A2%87%E7%AB%A0",
+   "accessed": "2026-10-11",
+   "supports": "达赖喇嘛在哲蚌寺的寝宫；重建布达拉宫前五世达赖住此执政，故称甘丹颇章政权"
+  },
+  "src_jokhang": {
+   "title": "维基百科（中文）《大昭寺》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%98%AD%E5%AF%BA",
+   "accessed": "2026-10-11",
+   "supports": "松赞干布所建，位于拉萨老城八廓街"
+  },
+  "src_jokhang_en": {
+   "title": "Wikipedia (English) “Jokhang”",
+   "url": "https://en.wikipedia.org/wiki/Jokhang",
+   "accessed": "2026-10-11",
+   "supports": "最早部分 652 年由松赞干布兴建"
+  },
+  "src_norbulingka": {
+   "title": "维基百科（中文）《罗布林卡》",
+   "url": "https://zh.wikipedia.org/wiki/%E7%BD%97%E5%B8%83%E6%9E%97%E5%8D%A1",
+   "accessed": "2026-10-11",
+   "supports": "布达拉宫以西约 2 km 拉萨河畔，1740 年代起建，1751 年七世达赖建格桑颇章"
+  },
+  "src_potala": {
+   "title": "维基百科（中文）《布达拉宫》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%B8%83%E8%BE%BE%E6%8B%89%E5%AE%AB",
+   "accessed": "2026-10-11",
+   "supports": "最初为吐蕃赞普松赞干布兴建于红山（玛布日山）；1642 年甘丹颇章建立，1645 年五世达赖重建宫殿、三年后白宫竣工，1653 年入住；红宫居中、东连白宫"
+  },
+  "src_potala_en": {
+   "title": "Wikipedia (English) “Potala Palace”",
+   "url": "https://en.wikipedia.org/wiki/Potala_Palace",
+   "accessed": "2026-10-11",
+   "supports": "1645 年起修建现存宫殿，主体 1694 年完工（Category: Houses completed in 1694）"
+  },
+  "src_ramoche": {
+   "title": "维基百科（中文）《小昭寺》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%B0%8F%E6%98%AD%E5%AF%BA",
+   "accessed": "2026-10-11",
+   "supports": "641 年建，在八廓街以北约 500 m、距大昭寺约 1 km"
+  }
+ },
+ "halo_px": 26.0
+}

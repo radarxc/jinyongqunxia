@@ -1,0 +1,679 @@
+{
+ "schema": "tianshu.landmark-spec.v1",
+ "id": "map_landmark_city_yining__almaliq",
+ "node": "city_yining",
+ "era": "almaliq",
+ "chapters": [
+  "ch03",
+  "ch04"
+ ],
+ "title": "阿力麻里（察合台汗国都城：市井流水交贯、城西果园，1259 / 1360）",
+ "years": [
+  1259,
+  1363
+ ],
+ "kit": "xiyu",
+ "tile_kit": "xiyu",
+ "seed": 1259,
+ "footprint_grid": 8,
+ "frame": {
+  "origin": "城心：城中心（推定）",
+  "origin_lonlat": [
+   80.9497,
+   44.0602
+  ],
+  "unit": "km",
+  "axes": "x 向东、y 向北",
+  "lonlat_to_km": "x=(lon−lon0)·111.32·cos(lat0)，y=(lat−lat0)·110.57；折点按现代地名 / 遗址线推定，精度约 ±150 m"
+ },
+ "view": {
+  "x": [
+   -1.695,
+   1.425
+  ],
+  "y": [
+   -1.375,
+   1.175
+  ]
+ },
+ "top_px": 60,
+ "manifest_v": 3,
+ "ref_use": {
+  "bld_lm_ch01_chongshengsi_pagoda": "作者已审基线方形密檐砖塔件（东西寺塔代用）",
+  "/baseline/building-map/bld_kit_": "作者已审基线建筑套件件（墨化后摆放）",
+  "city_gate": "城门楼件（看楼、双阙、对峙楼、钟鼓楼、凤凰楼、承运门等楼阁代用）",
+  "tree_cluster": "树丛件（林带、林卡、果园）",
+  "shrub__": "灌丛件（草原、河岸）",
+  "grass_tuft": "草丛件（草原）",
+  "grape_arbor": "葡萄架件（绿洲果园）",
+  "reed__": "芦苇件（江岸）",
+  "/map/kit/": "地图 kit 山形件（山、丘陵；未墨化）"
+ },
+ "walls": [
+  {
+   "id": "city",
+   "role": "city",
+   "name": "阿力麻里城",
+   "polygon": [
+    [
+     -0.725,
+     -0.575
+    ],
+    [
+     0.725,
+     -0.575
+    ],
+    [
+     0.725,
+     0.575
+    ],
+    [
+     -0.725,
+     0.575
+    ]
+   ],
+   "style": "city_earth",
+   "tower": "flat",
+   "corner_towers": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "src": [
+    "src_almaliq"
+   ],
+   "basis": "城郭形制待考（古城已不存）",
+   "thickness_px": 7.0,
+   "height_px": 12.0,
+   "corner_size_px": 16.0
+  }
+ ],
+ "gates": [
+  {
+   "id": "e",
+   "name": "东门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    0.725,
+    0.025
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  },
+  {
+   "id": "w",
+   "name": "西门",
+   "wall": "city",
+   "side": "W",
+   "at": [
+    -0.725,
+    0.025
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  },
+  {
+   "id": "s",
+   "name": "南门",
+   "wall": "city",
+   "side": "S",
+   "at": [
+    -0.025,
+    -0.575
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  },
+  {
+   "id": "n",
+   "name": "北门",
+   "wall": "city",
+   "side": "N",
+   "at": [
+    -0.025,
+    0.575
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  }
+ ],
+ "streets": [
+  {
+   "id": "ns",
+   "points": [
+    [
+     -0.025,
+     -0.575
+    ],
+    [
+     -0.025,
+     0.575
+    ]
+   ],
+   "width_px": 3.6
+  },
+  {
+   "id": "ew",
+   "points": [
+    [
+     -0.725,
+     0.025
+    ],
+    [
+     0.725,
+     0.025
+    ]
+   ],
+   "width_px": 3.6
+  }
+ ],
+ "water": [
+  {
+   "id": "ili",
+   "kind": "river",
+   "name": "伊犁河",
+   "points": [
+    [
+     -1.625,
+     1.125
+    ],
+    [
+     -1.425,
+     0.225
+    ],
+    [
+     -1.225,
+     -0.725
+    ],
+    [
+     -0.375,
+     -1.145
+    ],
+    [
+     0.725,
+     -1.225
+    ],
+    [
+     1.525,
+     -1.075
+    ]
+   ],
+   "width_px": 16.0,
+   "foot": true,
+   "foot_px": 6,
+   "src": [
+    "src_almaliq"
+   ],
+   "basis": "城在天山与伊犁河之间，城西为伊犁河（流路示意）"
+  },
+  {
+   "id": "canal_w",
+   "kind": "river",
+   "name": "穿城渠",
+   "points": [
+    [
+     -0.375,
+     0.975
+    ],
+    [
+     -0.355,
+     0.475
+    ],
+    [
+     -0.395,
+     -0.225
+    ],
+    [
+     -0.475,
+     -0.975
+    ]
+   ],
+   "width_px": 2.6,
+   "src": [
+    "src_xishiji"
+   ],
+   "basis": "《西使记》：市井皆流水交贯"
+  },
+  {
+   "id": "canal_e",
+   "kind": "river",
+   "name": "穿城渠",
+   "points": [
+    [
+     0.325,
+     0.975
+    ],
+    [
+     0.345,
+     0.475
+    ],
+    [
+     0.305,
+     -0.225
+    ],
+    [
+     0.225,
+     -0.975
+    ]
+   ],
+   "width_px": 2.6,
+   "src": [
+    "src_xishiji"
+   ]
+  },
+  {
+   "id": "canal_x",
+   "kind": "river",
+   "name": "穿城渠",
+   "points": [
+    [
+     -0.725,
+     0.225
+    ],
+    [
+     0.025,
+     0.195
+    ],
+    [
+     0.725,
+     0.175
+    ]
+   ],
+   "width_px": 2.2,
+   "src": [
+    "src_xishiji"
+   ]
+  }
+ ],
+ "regions": [
+  {
+   "id": "ordo_r",
+   "polygon": [
+    [
+     1.295,
+     0.825
+    ],
+    [
+     1.252,
+     0.935
+    ],
+    [
+     1.135,
+     1.016
+    ],
+    [
+     0.975,
+     1.045
+    ],
+    [
+     0.815,
+     1.016
+    ],
+    [
+     0.698,
+     0.935
+    ],
+    [
+     0.655,
+     0.825
+    ],
+    [
+     0.698,
+     0.715
+    ],
+    [
+     0.815,
+     0.634
+    ],
+    [
+     0.975,
+     0.605
+    ],
+    [
+     1.135,
+     0.634
+    ],
+    [
+     1.252,
+     0.715
+    ]
+   ],
+   "foot": true
+  }
+ ],
+ "landmarks": [
+  {
+   "id": "mosque",
+   "name": "礼拜寺",
+   "sprite": "temple_hall",
+   "at": [
+    -0.225,
+    -0.305
+   ],
+   "size_px": 40,
+   "clear": 0.1,
+   "src": [
+    "src_xishiji"
+   ],
+   "basis": "回纥（回回）居民礼拜之所（位置推定）"
+  },
+  {
+   "id": "minaret",
+   "name": "邦克楼",
+   "sprite": "pagoda",
+   "at": [
+    -0.055,
+    -0.145
+   ],
+   "size_px": 32,
+   "clear": 0.05
+  },
+  {
+   "id": "han_temple",
+   "name": "汉式寺观（汉民杂居，意象）",
+   "sprite": "bld:yuan_north/temple_hall",
+   "at": [
+    0.475,
+    0.355
+   ],
+   "size_px": 36,
+   "clear": 0.09,
+   "src": [
+    "src_xishiji"
+   ],
+   "basis": "《西使记》：回纥与汉民杂居，其俗渐染，颇似中国"
+  },
+  {
+   "id": "bazaar",
+   "name": "市井",
+   "sprite": "market",
+   "at": [
+    0.175,
+    -0.325
+   ],
+   "size_px": 30,
+   "clear": 0.06,
+   "src": [
+    "src_xishiji"
+   ]
+  },
+  {
+   "id": "ordo",
+   "name": "察合台汗斡耳朵（意象）",
+   "sprite": "bld:mongol/house_small",
+   "at": [
+    0.975,
+    0.795
+   ],
+   "size_px": 50,
+   "clear": 0.1,
+   "tint": "imperial",
+   "basis": "汗廷多驻毡帐（位置推定）"
+  }
+ ],
+ "hills": [
+  {
+   "id": "tianshan",
+   "name": "天山（婆罗科努山，距离压缩）",
+   "sprite": "map_kit_xueshan_02",
+   "at": [
+    -0.075,
+    1.055
+   ],
+   "size_px": 250,
+   "clear": 0.2
+  }
+ ],
+ "groves": [
+  {
+   "id": "xiguoyuan",
+   "polygon": [
+    [
+     -1.275,
+     -0.625
+    ],
+    [
+     -0.825,
+     -0.625
+    ],
+    [
+     -0.825,
+     0.725
+    ],
+    [
+     -1.275,
+     0.725
+    ]
+   ],
+   "trees": [
+    "tex_town_yuan_north_tree_cluster__scholar_tree_v01"
+   ],
+   "size_px": 15,
+   "foot": true,
+   "kit": "yuan_north",
+   "src": [
+    "src_changchun",
+    "src_almaliq"
+   ],
+   "basis": "《长春真人西游记》：宿于西果园；土人呼果为阿里马，盖多果实，以是名其城",
+   "spacing_px": 27.3
+  },
+  {
+   "id": "vines",
+   "polygon": [
+    [
+     -0.675,
+     0.655
+    ],
+    [
+     0.625,
+     0.655
+    ],
+    [
+     0.625,
+     0.925
+    ],
+    [
+     -0.675,
+     0.925
+    ]
+   ],
+   "trees": [
+    "tex_town_xiyu_grape_arbor__w4_l3_r000_v01"
+   ],
+   "size_px": 16,
+   "foot": true,
+   "kit": "xiyu",
+   "spacing_px": 41.5
+  },
+  {
+   "id": "orch_e",
+   "polygon": [
+    [
+     0.825,
+     -0.625
+    ],
+    [
+     1.175,
+     -0.625
+    ],
+    [
+     1.175,
+     0.425
+    ],
+    [
+     0.825,
+     0.425
+    ]
+   ],
+   "trees": [
+    "tex_town_xiyu_tree_cluster__huyang_v01",
+    "tex_town_xiyu_grape_arbor__w4_l3_r000_v01"
+   ],
+   "size_px": 16,
+   "foot": true,
+   "kit": "xiyu",
+   "spacing_px": 38.6
+  },
+  {
+   "id": "ordo_gers",
+   "polygon": [
+    [
+     1.275,
+     0.775
+    ],
+    [
+     1.235,
+     0.875
+    ],
+    [
+     1.125,
+     0.948
+    ],
+    [
+     0.975,
+     0.975
+    ],
+    [
+     0.825,
+     0.948
+    ],
+    [
+     0.715,
+     0.875
+    ],
+    [
+     0.675,
+     0.775
+    ],
+    [
+     0.715,
+     0.675
+    ],
+    [
+     0.825,
+     0.602
+    ],
+    [
+     0.975,
+     0.575
+    ],
+    [
+     1.125,
+     0.602
+    ],
+    [
+     1.235,
+     0.675
+    ]
+   ],
+   "sprites": [
+    "house_small",
+    "house_small",
+    "house_large",
+    "courtyard"
+   ],
+   "size_px": 24,
+   "foot": false,
+   "kit": "mongol",
+   "tint": "white",
+   "spacing_px": 27.3
+  }
+ ],
+ "fill": [
+  {
+   "id": "fill",
+   "clip": "city",
+   "exclude": [],
+   "bbox": [
+    -0.725,
+    0.725,
+    -0.575,
+    0.575
+   ],
+   "sprites": [
+    [
+     "house_small",
+     3
+    ],
+    [
+     "house_large",
+     2
+    ],
+    [
+     "courtyard",
+     2
+    ],
+    [
+     "bld:yuan_north/house_small",
+     2
+    ],
+    [
+     "bld:yuan_north/courtyard",
+     2
+    ],
+    [
+     "shop_1f",
+     1
+    ],
+    [
+     "tree:grape_arbor__w4_l3_r000_v01",
+     1.0
+    ],
+    [
+     "tree:tree_cluster__huyang_v01",
+     0.8
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.9,
+   "jitter": 0.24,
+   "basis": "回纥土屋与汉式合院杂处（西域、元北方套件混用）",
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  }
+ ],
+ "notes": [
+  "阿力麻里故址在今霍城一带，节点锚点在其东约 40 km（cities.yaml 已注）；城郭形制待考",
+  "依据：《长春真人西游记》（1221）西果园、决渠灌田；《西使记》（1259）市井皆流水交贯、多瓜葡萄石榴、回纥与汉民杂居",
+  "秃黑鲁帖木儿汗麻扎（1363）晚于 ch04（1360），不画；西域套件 xiyu 为主，汉式合院与寺观借元北方套件、汗帐借蒙古套件",
+  "交付图比例约 211.7 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）"
+ ],
+ "sources": {
+  "src_almaliq": {
+   "title": "维基百科（中文）《阿力麻里》",
+   "url": "https://zh.wikipedia.org/wiki/%E9%98%BF%E5%8A%9B%E9%BA%BB%E9%87%8C",
+   "accessed": "2026-10-11",
+   "supports": "察合台汗国都城；城在天山与伊犁河之间、城西为伊犁河；耶律楚材 1219 年见城中遍种野苹果（阿里马）；古城已不存"
+  },
+  "src_changchun": {
+   "title": "维基文库《長春真人西遊記/卷上》",
+   "url": "https://zh.wikisource.org/wiki/%E9%95%B7%E6%98%A5%E7%9C%9F%E4%BA%BA%E8%A5%BF%E9%81%8A%E8%A8%98/%E5%8D%B7%E4%B8%8A",
+   "accessed": "2026-10-11",
+   "supports": "1221 年至阿里马城，宿于西果园；土人呼果为阿里马，盖多果实，以是名其城；农者亦决渠灌田"
+  },
+  "src_xishiji": {
+   "title": "维基文库《西使記》",
+   "url": "https://zh.wikisource.org/wiki/%E8%A5%BF%E4%BD%BF%E8%A8%98",
+   "accessed": "2026-10-11",
+   "supports": "常德 1259 年西使：出关至阿里麻里城，市井皆流水交贯，有诸果，唯瓜、蒲萄、石榴最佳；回纥与汉民杂居，其俗渐染，颇似中国"
+  }
+ },
+ "halo_px": 26.0
+}

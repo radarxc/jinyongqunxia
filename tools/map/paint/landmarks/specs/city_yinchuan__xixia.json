@@ -1,0 +1,737 @@
+{
+ "schema": "tianshu.landmark-spec.v1",
+ "id": "map_landmark_city_yinchuan__xixia",
+ "node": "city_yinchuan",
+ "era": "xixia",
+ "chapters": [
+  "ch01",
+  "ch02"
+ ],
+ "title": "西夏都城兴庆府（1205 年改中兴府；西宫城、东里坊，背山面河）",
+ "years": [
+  1038,
+  1227
+ ],
+ "kit": "liao_jin_north",
+ "tile_kit": "liao_jin_north",
+ "seed": 1093,
+ "footprint_grid": 10,
+ "frame": {
+  "origin": "城心：兴庆府长方城中心",
+  "origin_lonlat": [
+   106.27,
+   38.47
+  ],
+  "unit": "km",
+  "axes": "x 向东、y 向北",
+  "lonlat_to_km": "x=(lon−lon0)·111.32·cos(lat0)，y=(lat−lat0)·110.57；折点按现代地名 / 遗址线推定，精度约 ±150 m"
+ },
+ "view": {
+  "x": [
+   -3.0,
+   2.75
+  ],
+  "y": [
+   -1.6,
+   1.55
+  ]
+ },
+ "top_px": 40,
+ "manifest_v": 3,
+ "ref_use": {
+  "bld_lm_ch01_chongshengsi_pagoda": "作者已审基线方形密檐砖塔件（东西寺塔代用）",
+  "/baseline/building-map/bld_kit_": "作者已审基线建筑套件件（墨化后摆放）",
+  "city_gate": "城门楼件（看楼、双阙、对峙楼、钟鼓楼、凤凰楼、承运门等楼阁代用）",
+  "tree_cluster": "树丛件（林带、林卡、果园）",
+  "shrub__": "灌丛件（草原、河岸）",
+  "grass_tuft": "草丛件（草原）",
+  "grape_arbor": "葡萄架件（绿洲果园）",
+  "reed__": "芦苇件（江岸）",
+  "/map/kit/": "地图 kit 山形件（山、丘陵；未墨化）"
+ },
+ "walls": [
+  {
+   "id": "city",
+   "role": "city",
+   "name": "兴庆府城（1205 年改中兴府）",
+   "polygon": [
+    [
+     -1.3,
+     -0.75
+    ],
+    [
+     1.3,
+     -0.75
+    ],
+    [
+     1.3,
+     0.75
+    ],
+    [
+     -1.3,
+     0.75
+    ]
+   ],
+   "style": "city_earth",
+   "corner_towers": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "moat": {
+    "width_px": 8.0,
+    "gap_px": 2.5
+   },
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "长方形周十八余里（约 8.2 km）、护城河阔十丈；南北各两门、东西各一门",
+   "thickness_px": 7.0,
+   "height_px": 12.0,
+   "corner_size_px": 16.0
+  },
+  {
+   "id": "palace",
+   "role": "palace",
+   "name": "西夏宫城",
+   "polygon": [
+    [
+     -1.18,
+     0.02
+    ],
+    [
+     -0.42,
+     0.02
+    ],
+    [
+     -0.42,
+     0.66
+    ],
+    [
+     -1.18,
+     0.66
+    ]
+   ],
+   "style": "palace",
+   "corner_towers": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "ground": true,
+   "ground_tone": "palace",
+   "roof": [
+    150,
+    112,
+    58
+   ],
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "宫城在西北部（「人」字形布局之首）",
+   "thickness_px": 4.5,
+   "height_px": 8.5,
+   "corner_size_px": 11.0
+  }
+ ],
+ "gates": [
+  {
+   "id": "s1",
+   "name": "南门（东）",
+   "wall": "city",
+   "side": "S",
+   "at": [
+    0.55,
+    -0.75
+   ],
+   "eaves": 2,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "门数据史料，门位推定",
+   "size_px": 19
+  },
+  {
+   "id": "s2",
+   "name": "南门（西）",
+   "wall": "city",
+   "side": "S",
+   "at": [
+    -0.55,
+    -0.75
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "门数据史料，门位推定",
+   "size_px": 19
+  },
+  {
+   "id": "n1",
+   "name": "北门（东）",
+   "wall": "city",
+   "side": "N",
+   "at": [
+    0.55,
+    0.75
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "门数据史料，门位推定",
+   "size_px": 19
+  },
+  {
+   "id": "n2",
+   "name": "北门（西）",
+   "wall": "city",
+   "side": "N",
+   "at": [
+    -0.25,
+    0.75
+   ],
+   "eaves": 1,
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "门数据史料，门位推定",
+   "size_px": 16
+  },
+  {
+   "id": "e1",
+   "name": "东门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    1.3,
+    0.0
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "门数据史料，门位推定",
+   "size_px": 19
+  },
+  {
+   "id": "w1",
+   "name": "西门",
+   "wall": "city",
+   "side": "W",
+   "at": [
+    -1.3,
+    -0.25
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "门数据史料，门位推定",
+   "size_px": 19
+  },
+  {
+   "id": "p_s",
+   "name": "宫城南门",
+   "wall": "palace",
+   "side": "S",
+   "at": [
+    -0.8,
+    0.02
+   ],
+   "eaves": 1,
+   "roof": [
+    150,
+    112,
+    58
+   ],
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "门数据史料，门位推定",
+   "size_px": 16
+  }
+ ],
+ "streets": [
+  {
+   "id": "ns_e",
+   "class": "axis",
+   "points": [
+    [
+     0.55,
+     -0.75
+    ],
+    [
+     0.55,
+     0.75
+    ]
+   ],
+   "width_px": 4.4
+  },
+  {
+   "id": "ns_w",
+   "points": [
+    [
+     -0.55,
+     -0.75
+    ],
+    [
+     -0.55,
+     0.02
+    ]
+   ],
+   "width_px": 3.6
+  },
+  {
+   "id": "ew",
+   "points": [
+    [
+     -1.3,
+     -0.25
+    ],
+    [
+     1.3,
+     -0.25
+    ]
+   ],
+   "width_px": 4.0
+  },
+  {
+   "id": "ew2",
+   "points": [
+    [
+     -0.42,
+     0.3
+    ],
+    [
+     1.3,
+     0.3
+    ]
+   ],
+   "width_px": 3.0
+  },
+  {
+   "id": "ns_n",
+   "points": [
+    [
+     -0.25,
+     0.3
+    ],
+    [
+     -0.25,
+     0.75
+    ]
+   ],
+   "width_px": 3.0
+  }
+ ],
+ "wards": [
+  {
+   "id": "fang",
+   "cols": [
+    [
+     -1.24,
+     -0.62
+    ],
+    [
+     -0.48,
+     0.0
+    ],
+    [
+     0.08,
+     0.48
+    ],
+    [
+     0.62,
+     0.98
+    ],
+    [
+     1.04,
+     1.24
+    ]
+   ],
+   "rows": [
+    [
+     -0.69,
+     -0.33
+    ],
+    [
+     -0.17,
+     0.22
+    ],
+    [
+     0.38,
+     0.69
+    ]
+   ],
+   "skip": [
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     2
+    ]
+   ],
+   "cross": true,
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "仿唐里坊，崇义坊等二十余坊；道路方格（坊界推定）"
+  }
+ ],
+ "water": [
+  {
+   "id": "huanghe",
+   "kind": "river",
+   "name": "黄河（距离压缩）",
+   "points": [
+    [
+     2.0,
+     -1.6
+    ],
+    [
+     2.2,
+     -0.6
+    ],
+    [
+     2.25,
+     0.4
+    ],
+    [
+     2.45,
+     1.4
+    ]
+   ],
+   "width_px": 20.0,
+   "foot": true,
+   "foot_px": 10,
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "怀远「背山面河」：西倚贺兰山、东临黄河（距离压缩）"
+  },
+  {
+   "id": "canal",
+   "kind": "river",
+   "name": "引黄渠（示意）",
+   "points": [
+    [
+     2.25,
+     -1.3
+    ],
+    [
+     1.6,
+     -0.95
+    ],
+    [
+     0.4,
+     -1.0
+    ],
+    [
+     -1.6,
+     -1.05
+    ]
+   ],
+   "width_px": 2.4
+  }
+ ],
+ "regions": [
+  {
+   "id": "p_r",
+   "polygon": [
+    [
+     -1.18,
+     0.02
+    ],
+    [
+     -0.42,
+     0.02
+    ],
+    [
+     -0.42,
+     0.66
+    ],
+    [
+     -1.18,
+     0.66
+    ]
+   ]
+  },
+  {
+   "id": "fields",
+   "tone": "field",
+   "alpha": 0.45,
+   "foot": true,
+   "polygon": [
+    [
+     -1.9,
+     -1.45
+    ],
+    [
+     2.1,
+     -1.45
+    ],
+    [
+     2.1,
+     -0.9
+    ],
+    [
+     -1.9,
+     -0.9
+    ]
+   ]
+  }
+ ],
+ "landmarks": [
+  {
+   "id": "dadian",
+   "name": "西夏宫殿",
+   "sprite": "temple_hall",
+   "at": [
+    -0.8,
+    0.36
+   ],
+   "size_px": 34,
+   "clear": 0.25,
+   "tint": "imperial",
+   "src": [
+    "src_xingqing"
+   ],
+   "basis": "《天龙八部》第四十六回西夏皇宫招亲即在此；殿宇形制无存，以辽金北方套件殿件示意"
+  },
+  {
+   "id": "chengtian_ta",
+   "name": "承天寺塔（1050，八角十一层）",
+   "sprite": "pagoda",
+   "at": [
+    -0.78,
+    -0.48
+   ],
+   "size_px": 26,
+   "clear": 0.12,
+   "src": [
+    "src_chengtiansi"
+   ],
+   "basis": "承天寺在城西南部"
+  },
+  {
+   "id": "chengtian_si",
+   "name": "承天寺",
+   "sprite": "temple_hall",
+   "at": [
+    -0.58,
+    -0.52
+   ],
+   "size_px": 20,
+   "clear": 0.08,
+   "src": [
+    "src_chengtiansi"
+   ]
+  },
+  {
+   "id": "zhongshu",
+   "name": "中书省 / 枢密院等官署（意象）",
+   "sprite": "yamen",
+   "at": [
+    0.2,
+    0.42
+   ],
+   "size_px": 22,
+   "clear": 0.1,
+   "src": [
+    "src_xingqing"
+   ]
+  },
+  {
+   "id": "gaotai",
+   "name": "高台寺（城东，距离压缩）",
+   "sprite": "pagoda",
+   "at": [
+    1.75,
+    0.2
+   ],
+   "size_px": 20,
+   "clear": 0.1,
+   "squash": 0.85,
+   "src": [
+    "src_xingqing"
+   ]
+  }
+ ],
+ "hills": [
+  {
+   "id": "helan_n",
+   "name": "贺兰山（距离压缩）",
+   "sprite": "map_kit_shanmai_06",
+   "at": [
+    -2.35,
+    1.05
+   ],
+   "size_px": 120,
+   "clear": 0.2
+  },
+  {
+   "id": "helan_s",
+   "name": "贺兰山",
+   "sprite": "map_kit_shanmai_06",
+   "at": [
+    -2.45,
+    -0.45
+   ],
+   "size_px": 132,
+   "clear": 0.2,
+   "flip": true
+  }
+ ],
+ "groves": [
+  {
+   "id": "belt_city",
+   "ring": {
+    "wall": "city",
+    "from_px": 10,
+    "to_px": 20,
+    "exclude_grow_px": 12.0
+   },
+   "trees": [
+    "tex_town_liao_jin_north_tree_cluster__elm_v01",
+    "tex_town_liao_jin_north_tree_cluster__pine_v01"
+   ],
+   "size_px": 11,
+   "foot": false,
+   "spacing_px": 10.0
+  },
+  {
+   "id": "kuaihuolin",
+   "polygon": [
+    [
+     -1.95,
+     -0.2
+    ],
+    [
+     -1.55,
+     -0.2
+    ],
+    [
+     -1.55,
+     0.35
+    ],
+    [
+     -1.95,
+     0.35
+    ]
+   ],
+   "trees": [
+    "tex_town_liao_jin_north_tree_cluster__elm_v01",
+    "tex_town_liao_jin_north_tree_cluster__pine_v01"
+   ],
+   "size_px": 12,
+   "foot": true,
+   "kit": "liao_jin_north",
+   "basis": "兴庆府西快活林（游览胜地）",
+   "spacing_px": 18.2
+  }
+ ],
+ "fill": [
+  {
+   "id": "fill",
+   "clip": "city",
+   "exclude": [
+    "p_r"
+   ],
+   "bbox": [
+    -1.3,
+    1.3,
+    -0.75,
+    0.75
+   ],
+   "sprites": [
+    [
+     "bld:xiyu/house_small",
+     4
+    ],
+    [
+     "bld:xiyu/house_large",
+     2
+    ],
+    [
+     "bld:xiyu/courtyard",
+     2
+    ],
+    [
+     "shop_1f",
+     1
+    ],
+    [
+     "market_stall",
+     1
+    ],
+    [
+     "tree:tree_cluster__elm_v01",
+     1.2
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.9,
+   "jitter": 0.24,
+   "basis": "一般居民均为平顶土屋或土板屋（以西域套件平顶土屋示之）",
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  }
+ ],
+ "notes": [
+  "西夏无专用套件：宫殿、寺塔用辽金北方套件 liao_jin_north，民居按史料「平顶土屋」借西域套件 xiyu 平顶件",
+  "长宽比、宫城范围与坊界推定（史料只记周长、门数、宫城在西北、二十余坊）；贺兰山、黄河距离压缩",
+  "交付图比例约 114.9 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）"
+ ],
+ "sources": {
+  "src_chengtiansi": {
+   "title": "维基百科（中文）《承天寺塔》",
+   "url": "https://zh.wikipedia.org/wiki/%E6%89%BF%E5%A4%A9%E5%AF%BA%E5%A1%94",
+   "accessed": "2026-10-11",
+   "supports": "西夏毅宗时建（1050），八角十一层砖塔，在城西部"
+  },
+  "src_xingqing": {
+   "title": "维基百科（中文）《兴庆府》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%85%B4%E5%BA%86%E5%BA%9C",
+   "accessed": "2026-10-11",
+   "supports": "西夏都城：长方形周十八余里，护城河阔十丈，南北各两门、东西各一门共 6 门；宫城在西北部（「人」字形布局）；仿唐制里坊，二十余坊；有承天寺、高台寺等十余所寺院；《天龙八部》第四十六回西夏皇宫招亲"
+  }
+ },
+ "halo_px": 26.0
+}

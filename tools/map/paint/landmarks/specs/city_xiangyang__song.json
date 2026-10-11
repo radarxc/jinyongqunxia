@@ -727,5 +727,8 @@
    "supports": "襄、樊两城汉水出其间，宋兵植木江中、联以铁锁、中造浮梁以通援兵；樊城有外郛与内城"
   }
  },
- "halo_px": 26.0
+ "halo_px": 26.0,
+ "ref_use": {
+  "/baseline/building-map/bld_kit_song_southern": "作者已审基线南宋套件件（墨化后摆放）"
+ }
 }
