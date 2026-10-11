@@ -10,7 +10,7 @@
 ## 要做的事（`packages/render/src/buildgen/mesher/`，不 import three）
 1. **`recipes/adobe.ts`**（替换桩）：墙厚 450–600、两级抹角、墙基；平顶板（顶面 3.2–3.5 m）+ `parts/parapet.ts` 女儿墙 450 带压顶；`parts/joists.ts` 每 600 一根杨木椽头伸出墙面；木出水槽；高窗花格（窗台 ≥ 1800）；雕门（门净 ≥ 1000 × 2100，可走时 ≥ 1200）。所有平顶及以上（女儿墙、椽头、出水槽）进屋顶批（进屋时淡出）。
 2. **变体部件**：`parts/iwan.ts` 前廊（2–4 根雕柱、深 1.5–2.4 m，柱下沿到廊顶净高 ≥ 2300）；`parts/trellis.ts` 葡萄架（底 ≥ 2300、立柱 + 横格，进屋顶批）；`parts/brick-lattice.ts` 晾房花砖墙（镂空砖格，用不透明几何做格，不用 alpha 测试）。
-3. **`tang_buddhist` 变体**：套件 `variantSets.tang_buddhist.forbid` 含 `dome` / `pointed_arch` 时，本配方不得产生穹顶或尖拱几何（门窗洞一律平拱或木过梁）；寺院 / 官署的屋顶用 r3 的攒尖 + 唐式塔刹宝顶（`finial: tang_stupa`：覆钵 + 相轮 5–7 重 + 宝珠，LOD1 简化为 3 重），唐式木构檐口（平顶外挑 300–450 的木檐 + 椽头）。非唐变体可用穹顶（调 r3 的 `dome.ts`）。
+3. **`tang_buddhist` 变体**（启用与否看方案：p2 规划时按城市变体把塔刹写进方案可选字段 `finial`、并已把被禁的穹顶换成攒尖；本任务在 render 的 `BuildingPlanView`（`packages/render/src/buildgen/types.ts`）里**只加**同名可选字段 `finial?: string` 镜像它，网格器据 `plan.finial === 'tang_stupa'` 出唐式塔刹）：套件 `variantSets.tang_buddhist.forbid` 含 `dome` / `pointed_arch` 时，本配方不得产生穹顶或尖拱几何（门窗洞一律平拱或木过梁）；寺院 / 官署的屋顶用 r3 的攒尖 + 唐式塔刹宝顶（`finial: tang_stupa`：覆钵 + 相轮 5–7 重 + 宝珠，LOD1 简化为 3 重），唐式木构檐口（平顶外挑 300–450 的木檐 + 椽头）。非唐变体可用穹顶（调 r3 的 `dome.ts`）。
 4. 配方注册：只替换 `adobe` 的桩。
 
 ## 测试（`packages/render/src/buildgen/__tests__/adobe.test.ts`，node 项目）

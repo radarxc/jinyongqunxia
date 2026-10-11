@@ -31617,7 +31617,8 @@
     "ENG-buildgen-r1-hall-body",
     "ENG-buildgen-r2-roof-a",
     "ENG-buildgen-r3-roof-b",
-    "ENG-buildgen-p1-kits"
+    "ENG-buildgen-p1-kits",
+    "ENG-buildgen-p2-plan-hall"
    ],
    "review": false,
    "web": true,
@@ -31636,7 +31637,8 @@
     "packages/render/src/buildgen/mesher/parts/iwan.ts",
     "packages/render/src/buildgen/mesher/parts/trellis.ts",
     "packages/render/src/buildgen/mesher/parts/brick-lattice.ts",
-    "packages/render/src/buildgen/__tests__/adobe.test.ts"
+    "packages/render/src/buildgen/__tests__/adobe.test.ts",
+    "packages/render/src/buildgen/types.ts"
    ],
    "validate": {
     "exists": [
