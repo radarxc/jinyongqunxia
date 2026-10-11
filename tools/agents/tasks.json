@@ -31153,7 +31153,18 @@
     "apps/game/src/pages/town-input.test.ts",
     "apps/game/src/explore/**",
     "apps/game/src/settings.ts",
-    "apps/game/src/settings.test.ts"
+    "apps/game/src/settings.test.ts",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/game-controller.test.ts",
+    "packages/render/src/town/scene.ts",
+    "packages/render/src/town/types.ts",
+    "packages/render/src/town/projection.ts",
+    "packages/render/src/town/scene.test.ts",
+    "packages/render/src/town/projection.test.ts",
+    "packages/ui/src/components/TxSettingsPanel.vue",
+    "packages/ui/src/components/TxSettingsPanel.test.ts",
+    "packages/ui/src/projections.ts",
+    "packages/ui/src/i18n-flow.ts"
    ],
    "validate": {
     "exists": [
