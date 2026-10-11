@@ -29127,9 +29127,14 @@
      ],
      [
       "pnpm",
-      "--filter",
-      "@tianshu/platform",
-      "test"
+      "exec",
+      "vitest",
+      "run",
+      "packages/platform/src/input",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
      ],
      [
       "pnpm",
