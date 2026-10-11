@@ -52591,6 +52591,179 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-t5-bodies-v2-derive",
+   "title": "3D 纸娃娃换装 · T5 · 新素体准备：tpl_f2 / tpl_m 倒置面翻正 + 三体型派生（女 small / tall、男 lean / bulk；0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-t5-bodies-v2-derive.md",
+   "deps": [
+    "ART-dressup-t4-bodies-v2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "作者 10-11 选定新素体后的派生准备；规格以新中等实测为基准（保留一字肩、长腿），旧 tpl_f_* 不动",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "tools/model3d/dressup/fix_inverted_faces.py",
+    "tools/model3d/dressup/tests_fix_faces.py",
+    "tools/model3d/dressup/template_specs_v2.json",
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_small/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_tall/**",
+    "assets/default/model3d/dressup/templates/tpl_m_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_m_lean/**",
+    "assets/default/model3d/dressup/templates/tpl_m_bulk/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f2_small/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f2_tall/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_lean/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_bulk/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_small/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_tall/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_m_lean/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_m_bulk/skeleton.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_fix_faces.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/fix_inverted_faces.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/fix_inverted_faces.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_small/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_tall/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_lean/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_lean"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_bulk/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_bulk"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_derive.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
