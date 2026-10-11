@@ -54,15 +54,13 @@ def classify(node, city, era):
         return 'capital', 'city_large'
     if status == '未建或废弃':
         return 'site', 'ruin'
+    if status in ('军镇', '边关'):  # tech/13 §5.2: garrisons and frontier passes are the small pass icon
+        return 'minor', 'pass'
     if importance in ('capital', 'major'):
-        tier = 'major'
-    elif importance == 'secondary':
-        tier = 'minor'
-    else:
-        return 'site', SITE_CITY_MARKERS.get(node['id'], 'village')
-    if status == '边关':
-        return tier, 'pass'
-    return tier, 'city_prefecture' if tier == 'major' else 'city_county'
+        return 'major', 'city_prefecture'
+    if importance == 'secondary':
+        return 'minor', 'city_county'
+    return 'site', SITE_CITY_MARKERS.get(node['id'], 'village')
 
 
 def road_path(road, era, paths):

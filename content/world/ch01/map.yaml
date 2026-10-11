@@ -1106,7 +1106,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -1400,7 +1400,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -1877,7 +1877,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -2179,8 +2179,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_hotan",
@@ -2786,8 +2786,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_jiujiang",
@@ -2869,7 +2869,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -3060,7 +3060,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "site",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -4016,7 +4016,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -4404,7 +4404,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -5030,8 +5030,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_shigatse",
@@ -5152,8 +5152,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_suzhou",
@@ -5462,7 +5462,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -5882,8 +5882,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_wuxi",
@@ -6181,7 +6181,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -6349,8 +6349,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_xinzhou",
@@ -6946,7 +6946,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -7106,8 +7106,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_zhangzhou",
@@ -7358,7 +7358,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {

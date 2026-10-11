@@ -31,8 +31,9 @@ class ClassifyTest(unittest.TestCase):
 
     def test_tiers_and_frontier_passes(self):
         self.assertEqual(enrich_mod.classify(node('city_b'), city('secondary'), 'ch05'), ('minor', 'city_county'))
-        self.assertEqual(enrich_mod.classify(node('city_b'), city('major', status='边关'), 'ch05'), ('major', 'pass'))
+        self.assertEqual(enrich_mod.classify(node('city_b'), city('major', status='边关'), 'ch05'), ('minor', 'pass'))
         self.assertEqual(enrich_mod.classify(node('city_b'), city('secondary', status='边关'), 'ch05'), ('minor', 'pass'))
+        self.assertEqual(enrich_mod.classify(node('city_b'), city('major', status='军镇'), 'ch05'), ('minor', 'pass'))
         self.assertEqual(enrich_mod.classify(node('city_b'), city('major', status='未建或废弃'), 'ch05'), ('site', 'ruin'))
         self.assertEqual(enrich_mod.classify(node('city_x'), city('site'), 'ch05'), ('site', 'village'))
         self.assertEqual(enrich_mod.classify(node('city_khotan_kunlun'), city('site'), 'ch05'), ('site', 'pass'))
