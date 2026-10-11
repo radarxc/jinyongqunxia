@@ -24,7 +24,7 @@
 
 检查：
 - `pnpm install --frozen-lockfile`
-- `pnpm --filter @tianshu/ui test`
+- `pnpm exec vitest run packages/ui --config vitest.config.ts --project ui`（包内 `pnpm --filter @tianshu/ui test` 缺 Vue 插件跑不通，用根配置的 ui 项目）
 - `pnpm check`
 
 ## 报告

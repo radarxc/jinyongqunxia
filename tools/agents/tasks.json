@@ -29181,9 +29181,14 @@
      ],
      [
       "pnpm",
-      "--filter",
-      "@tianshu/ui",
-      "test"
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
      ],
      [
       "pnpm",
@@ -29294,9 +29299,14 @@
      ],
      [
       "pnpm",
-      "--filter",
-      "@tianshu/ui",
-      "test"
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
      ],
      [
       "pnpm",
