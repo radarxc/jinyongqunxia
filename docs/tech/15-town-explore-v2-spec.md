@@ -468,7 +468,7 @@ interface MinimapProps {
 
 | ID | 范围 | 依赖 | 写集 | 校验 | 关键验收 |
 |---|---|---|---|---|---|
-| ENG-town2-regionmap-ext | §2.1–2.3 schema + codec 认 `blocked` / `building` | DES-town2-docsync | `packages/data/src/schemas/{region-map,town-scene,world-map}.ts`、`packages/data/src/region-map-town.test.ts`、`packages/core/src/world/region-codec.ts`（+ 测试） | Vd + Vc | 现有 Tiled 地图全部仍有效；反例：重复门格、未知 `spawnId`、层长度错误、建筑序号越界 |
+| ENG-town2-regionmap-ext | §2.1–2.3 schema + codec 认 `blocked` / `building` | — | `packages/data/src/schemas/{region-map,town-scene,world-map}.ts`、`packages/data/src/region-map-town.test.ts`、`packages/core/src/world/region-codec.ts`（+ 测试） | Vd + Vc | 现有 Tiled 地图全部仍有效；反例：重复门格、未知 `spawnId`、层长度错误、建筑序号越界 |
 | ENG-town2-chunks | §10 全部新块与预算、尺寸组；`packages/render` 导出 `./buildgen`、`./actor3d`；perf 测试注册；发布 `assets/default/buildkit/**` 与 `assets/default/model3d/*/town/**`；换装索引加 `townFile`；类型契约测试（含 tech/16 INT-01） | — | `apps/game/vite.config.ts`、`apps/game/build/{content-plugin,size-groups-plugin,dressup-assets,asset-manifest}.ts`、`tools/perf/{budgets.json,check_size.mjs,check_size.test.mjs,README.md}`、`packages/render/package.json`、`vitest.config.ts`、根 `package.json`、`apps/game/src/town-contract.test.ts` | Va | 新块产出；`render` ≤ 170；新行 `pnpm size` PASS；无孤块 |
 | ENG-town2-explore-graph | §4.1 纯函数 | regionmap-ext | `packages/core/src/world/explore/{graph,heap,astar,snap}.ts`（+ 测试） | Vc | 300 张种子随机图上与暴力 Dijkstra 同最优；3 个夹具定序金样；与 `regionEdges` 边集等价；缓存同一性；仅整数 |
 | TOOL-town2-compiler-core | §3.2 步骤 1–8；`planBuilding` 可注入 + 盒子兜底 | regionmap-ext | `packages/data/src/build/town/**` | Vd | 大理 ch01、大理 ch10、吐鲁番 ch10 布局过 I1–I6 |
