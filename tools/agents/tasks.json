@@ -29783,7 +29783,8 @@
    "kind": "draft",
    "prompt": "ENG-buildgen-p1-kits.md",
    "deps": [
-    "ENG-buildgen-p0-scaffold"
+    "ENG-buildgen-p0-scaffold",
+    "ENG-buildgen-r0-core"
    ],
    "review": false,
    "web": true,
@@ -30049,7 +30050,8 @@
    "prompt": "ENG-town2-chunks.md",
    "deps": [
     "ENG-buildgen-p0-scaffold",
-    "ENG-buildgen-r0-core"
+    "ENG-buildgen-r0-core",
+    "ENG-buildgen-p1-kits"
    ],
    "review": false,
    "web": true,
