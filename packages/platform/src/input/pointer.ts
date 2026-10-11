@@ -27,6 +27,10 @@ export interface PointerGestureOptions {
   onTap?(gesture: Readonly<TapGesture>): void;
   onDrag?(gesture: Readonly<DragGesture>): void;
   onPinch?(gesture: Readonly<PinchGesture>): void;
+  /** Fired once when two pointers start a pinch, before the first `onPinch` (scale 1). */
+  onPinchStart?(gesture: Readonly<PinchGesture>): void;
+  /** Fired once when either pinch pointer lifts or cancels, with the last scale. */
+  onPinchEnd?(gesture: Readonly<PinchGesture>): void;
 }
 
 export interface PointerGestures {
@@ -91,6 +95,10 @@ export function createPointerGestures(
       track.suppressed = true;
     }
     pinchStartDistance = distance(pinchA, pinchB);
+    pinch.scale = 1;
+    pinch.centerX = (pinchA.x + pinchB.x) / 2;
+    pinch.centerY = (pinchA.y + pinchB.y) / 2;
+    options.onPinchStart?.(pinch);
     emitPinch();
   };
   const updatePosition = (track: PointerTrack, event: PointerEvent): void => {
@@ -145,6 +153,7 @@ export function createPointerGestures(
     pointers.delete(event.pointerId);
     element.releasePointerCapture?.(event.pointerId);
     if (wasPinching) {
+      options.onPinchEnd?.(pinch);
       pinchA = undefined; pinchB = undefined; pinchStartDistance = 0;
       for (const remaining of pointers.values()) remaining.suppressed = true;
     }

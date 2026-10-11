@@ -1,10 +1,12 @@
 <script setup lang="ts">
-/* global window, KeyboardEvent, Element, MediaQueryList, MediaQueryListEvent, matchMedia */
+/* global window, document, MediaQueryList, MediaQueryListEvent, matchMedia */
 import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch, type Component } from 'vue';
 import { storeToRefs } from 'pinia';
+import { createKeyboardState, type KeyboardState } from '@tianshu/platform/input';
 import { useUiStore, type MenuPage } from '@tianshu/ui/runtime';
 import TxRotateHint from '@tianshu/ui/components/TxRotateHint.vue';
 import type { GameController } from './game-controller';
+import { actionMap, useActionContext, type GlobalPageAction } from './input/action-map';
 
 const { controller } = defineProps<{ controller: GameController }>();
 const { busy, settings } = controller;
@@ -65,6 +67,8 @@ let orientationQuery: MediaQueryList | undefined;
 
 watch(scene, (next, previous) => {
   if (next === 'battle' && previous !== 'battle') {
+    // BattleField owns the keyboard from here; stop explore walking now, not on the next key edge.
+    actionMap.cancelMovement();
     sourceScene.value = previous === 'town' ? 'town' : 'world';
     void controller.ensureBattle();
   }
@@ -295,29 +299,17 @@ const silverDisplay = computed(() => {
 });
 
 /* Keyboard navigation */
-function keyboard(event: KeyboardEvent): void {
-  if (event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey ||
-      (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable=true], [role=dialog]'))) return;
-  if (event.key === '`' || event.key === '~') {
-    event.preventDefault();
-    toggleDevPanel();
-    return;
-  }
-  const mapping: Readonly<Record<string, ExtendedPage>> = {
-    c: 'characters',
-    b: 'inventory',
-    k: 'martial',
-    j: 'quests',
-    m: 'journey',
-  };
-  const destination = mapping[event.key.toLowerCase()];
-  if (destination) {
-    event.preventDefault();
-    page.value = page.value === destination ? 'journey' : destination;
-  } else if (event.key === 'Escape') {
-    page.value = 'journey';
-  }
+function navigateByAction(destination: GlobalPageAction): void {
+  page.value = page.value === destination ? 'journey' : destination;
 }
+useActionContext('global', {
+  navigate: navigateByAction,
+  back: () => { page.value = 'journey'; return false; },
+  toggleDevPanel,
+});
+
+let keyboardState: KeyboardState | undefined;
+let releaseActionMap: (() => void) | undefined;
 
 function orientationChanged(event: MediaQueryListEvent): void {
   portrait.value = event.matches;
@@ -325,7 +317,8 @@ function orientationChanged(event: MediaQueryListEvent): void {
 }
 
 onMounted(() => {
-  window.addEventListener('keydown', keyboard);
+  keyboardState = createKeyboardState(window, document);
+  releaseActionMap = actionMap.connect(keyboardState, window, () => scene.value !== 'battle');
   if (typeof matchMedia === 'function') {
     orientationQuery = matchMedia('(orientation: portrait)');
     portrait.value = orientationQuery.matches;
@@ -335,7 +328,10 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   controller.setSceneRunsWorldTicks(false);
-  window.removeEventListener('keydown', keyboard);
+  releaseActionMap?.();
+  releaseActionMap = undefined;
+  keyboardState?.dispose();
+  keyboardState = undefined;
   orientationQuery?.removeEventListener('change', orientationChanged);
 });
 </script>

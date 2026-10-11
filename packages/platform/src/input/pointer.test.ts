@@ -91,6 +91,25 @@ describe('createPointerGestures', () => {
     expect(references[1]).toBe(references[0]);
   });
 
+  it('brackets every pinch gesture with exactly one start and one end callback', () => {
+    const target = new FakePointerTarget(); const events: string[] = [];
+    createPointerGestures(asElement(target), {
+      onPinchStart: (gesture) => events.push(`start:${gesture.scale}`),
+      onPinch: (gesture) => events.push(`pinch:${gesture.scale}`),
+      onPinchEnd: (gesture) => events.push(`end:${gesture.scale}`),
+    });
+    for (let gesture = 0; gesture < 2; gesture += 1) {
+      target.dispatch('pointerdown', { pointerId: 1, clientX: 0, clientY: 0 });
+      target.dispatch('pointerdown', { pointerId: 2, clientX: 0, clientY: 10 });
+      target.dispatch('pointermove', { pointerId: 2, clientX: 0, clientY: 20 });
+      target.dispatch('pointermove', { pointerId: 2, clientX: 0, clientY: 10 });
+      target.dispatch('pointerup', { pointerId: 2, clientX: 0, clientY: 10 });
+      target.dispatch('pointerup', { pointerId: 1, clientX: 0, clientY: 0 });
+    }
+    const one = ['start:1', 'pinch:1', 'pinch:2', 'pinch:1', 'end:1'];
+    expect(events).toEqual([...one, ...one]);
+  });
+
   it('cancels an active drag on pointercancel', () => {
     const target = new FakePointerTarget(); const phases: string[] = [];
     createPointerGestures(asElement(target), { onDrag: (gesture) => phases.push(gesture.phase) });

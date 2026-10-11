@@ -7,6 +7,7 @@ import { createIndexedDbStorage, createProjectionMainThreadHost } from '@tianshu
 import { uiBus, useUiStore } from '@tianshu/ui/runtime';
 import App from './App.vue';
 import { createGameController } from './game-controller';
+import { actionMap } from './input/action-map';
 import { createGameSession } from './runtime/session';
 import { fixtureContent } from './runtime/test-fixture';
 
@@ -84,5 +85,95 @@ describe('application shell with real session and fake IndexedDB', () => {
       expect(wrapper.classes()).toContain('text-scale-150');
       await flushPromises();
     } finally { wrapper.unmount(); controller.dispose(); }
+  }, 30_000);
+
+  it('keeps all global page, back and developer-console keyboard actions', async () => {
+    vi.stubGlobal('indexedDB', new IDBFactory()); vi.stubGlobal('IDBKeyRange', IDBKeyRange);
+    const pinia = createPinia();
+    const host = createProjectionMainThreadHost(createGameSession(fixtureContent()));
+    const controller = createGameController(host, useUiStore(pinia));
+    await controller.initialize();
+    const wrapper = mount(App, { attachTo: document.body, props: { controller },
+      global: { plugins: [pinia] } });
+    const press = async (code: string, key: string) => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { code, key, bubbles: true }));
+      window.dispatchEvent(new KeyboardEvent('keyup', { code, key, bubbles: true }));
+      await flushPromises();
+    };
+    try {
+      for (const [code, key, heading] of [
+        ['KeyC', 'c', '立身与经脉'], ['KeyB', 'b', '行囊'],
+        ['KeyK', 'k', '武学修行'], ['KeyJ', 'j', '行旅手记'],
+      ] as const) {
+        await press(code, key); expect(wrapper.text()).toContain(heading);
+        await press(code, key); expect(wrapper.find('.folio-screen').isVisible()).toBe(false);
+      }
+      await press('KeyC', 'c');
+      await press('KeyM', 'm'); expect(wrapper.find('.folio-screen').isVisible()).toBe(false);
+      await press('KeyB', 'b');
+      await press('Escape', 'Escape'); expect(wrapper.find('.folio-screen').isVisible()).toBe(false);
+      expect(wrapper.find('.dev-panel-container').classes()).toContain('is-collapsed');
+      await press('Backquote', String.fromCharCode(96));
+      expect(wrapper.find('.dev-panel-container').classes()).not.toContain('is-collapsed');
+    } finally { wrapper.unmount(); controller.dispose(); }
+  }, 30_000);
+
+  it('leaves battle keyboard input exclusively to BattleField', async () => {
+    vi.stubGlobal('indexedDB', new IDBFactory()); vi.stubGlobal('IDBKeyRange', IDBKeyRange);
+    const pinia = createPinia();
+    const host = createProjectionMainThreadHost(createGameSession(fixtureContent()));
+    const controller = createGameController(host, useUiStore(pinia));
+    await controller.initialize();
+    const wrapper = mount(App, { attachTo: document.body, props: { controller },
+      global: { plugins: [pinia] } });
+    const press = async (code: string, key: string): Promise<KeyboardEvent> => {
+      const event = new KeyboardEvent('keydown', { code, key, bubbles: true, cancelable: true });
+      window.dispatchEvent(event);
+      window.dispatchEvent(new KeyboardEvent('keyup', { code, key, bubbles: true }));
+      await flushPromises();
+      return event;
+    };
+    try {
+      await wrapper.findAll('button').find(button => button.attributes('aria-label') === '战斗')!.trigger('click');
+      await vi.waitFor(() => expect(wrapper.find('.battle-field-wrap').exists()).toBe(true),
+        { timeout: 10_000 });
+      for (const [code, key] of [
+        ['KeyC', 'c'], ['KeyB', 'b'], ['KeyK', 'k'], ['KeyJ', 'j'],
+        ['KeyM', 'm'], ['Backquote', String.fromCharCode(96)],
+      ] as const) {
+        expect((await press(code, key)).defaultPrevented).toBe(false);
+        expect(wrapper.find('.battle-screen').isVisible()).toBe(true);
+      }
+      expect(wrapper.find('.dev-panel-container').classes()).toContain('is-collapsed');
+      controller.battle.value?.setMovement(true);
+      expect(controller.battle.value?.movement.value).toBe(true);
+      expect((await press('Escape', 'Escape')).defaultPrevented).toBe(true);
+      expect(controller.battle.value?.movement.value).toBe(false);
+    } finally { wrapper.unmount(); controller.dispose(); }
+  }, 30_000);
+  it('stops a held-W explore walk the moment the scene switches to battle', async () => {
+    vi.stubGlobal('indexedDB', new IDBFactory()); vi.stubGlobal('IDBKeyRange', IDBKeyRange);
+    const pinia = createPinia();
+    const host = createProjectionMainThreadHost(createGameSession(fixtureContent()));
+    const controller = createGameController(host, useUiStore(pinia));
+    await controller.initialize();
+    const wrapper = mount(App, { attachTo: document.body, props: { controller },
+      global: { plugins: [pinia] } });
+    const move = vi.fn();
+    const popExplore = actionMap.pushContext('explore', { move });
+    try {
+      window.dispatchEvent(new KeyboardEvent('keydown', { code: 'KeyW', key: 'w', bubbles: true }));
+      await flushPromises();
+      expect(move.mock.calls).toEqual([[{ vx: 0, vy: -1 }]]);
+      // Enter battle with W still held and no further key edges.
+      await wrapper.findAll('button').find(button => button.attributes('aria-label') === '战斗')!.trigger('click');
+      await vi.waitFor(() => expect(wrapper.find('.battle-field-wrap').exists()).toBe(true),
+        { timeout: 10_000 });
+      expect(move.mock.calls).toEqual([[{ vx: 0, vy: -1 }], [{ vx: 0, vy: 0 }]]);
+    } finally {
+      popExplore();
+      window.dispatchEvent(new KeyboardEvent('keyup', { code: 'KeyW', key: 'w', bubbles: true }));
+      wrapper.unmount(); controller.dispose();
+    }
   }, 30_000);
 });
