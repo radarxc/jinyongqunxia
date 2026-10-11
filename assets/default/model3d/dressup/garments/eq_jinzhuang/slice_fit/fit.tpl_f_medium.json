@@ -1,0 +1,556 @@
+{
+  "align": {
+    "bodySpaceIdentity": true,
+    "determinant": 1.0,
+    "landmarks": 0,
+    "method": "landmarks",
+    "mirrored": false,
+    "requestedMode": "none",
+    "residualMu": {
+      "feetMu": 0.0,
+      "neckTopMu": 0.0
+    },
+    "scale": 1.0,
+    "translationMu": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "yawDeg": 0.0
+  },
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+    "skeleton": "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "skeletonSha256": "5f516445505069b98f9c9a32e841c6c862c4d7f5da99b1c9a4f5352f218e580e"
+  },
+  "coverage": 0.65,
+  "coverageByRegion": {
+    "footL": 0.000429011,
+    "footR": 0.001544249,
+    "forearmL": 0.808690441,
+    "forearmR": 0.759745139,
+    "handL": 0.101667347,
+    "handR": 0.0,
+    "head": 0.000130958,
+    "hips": 0.278354019,
+    "neck": 0.055930917,
+    "shinL": 0.000597653,
+    "shinR": 0.00302801,
+    "thighL": 0.05853943,
+    "thighR": 0.064032445,
+    "torsoLower": 0.367813687,
+    "torsoUpper": 0.540441967,
+    "upperArmL": 0.659127548,
+    "upperArmR": 0.69612065
+  },
+  "fitVersion": 1,
+  "hideRegions": [
+    "upperArmL",
+    "upperArmR",
+    "forearmL",
+    "forearmR"
+  ],
+  "id": "eq_jinzhuang",
+  "kind": "garment",
+  "mPerMu": 1.69370027,
+  "neverHide": [
+    "neck",
+    "handL",
+    "handR",
+    "footL",
+    "footR"
+  ],
+  "pushOut": {
+    "centroidDriftMu": 0.000170542,
+    "clearancePassed": true,
+    "degenerateTriangles": 0,
+    "draft": false,
+    "drape": [
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      }
+    ],
+    "flippedTriangles": 0,
+    "insufficientMargin": 0,
+    "iters": 3,
+    "minimumDistanceMu": 0.001771109,
+    "mode": "volume",
+    "movedVertices": 56853,
+    "nodes": 27505,
+    "passed": true,
+    "pushMm": 3.0,
+    "pushMu": 0.00177127,
+    "residual": 0,
+    "rounds": [
+      {
+        "dampedVertices": 0,
+        "hotNodes": 4194,
+        "inside": 0,
+        "insufficientMargin": 7579,
+        "maximumDemandMu": 0.001184769,
+        "maximumMoveMu": 0.000722583,
+        "minimumDistanceMu": 0.000591678,
+        "sigmaMm": 40.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 3891,
+        "inside": 0,
+        "insufficientMargin": 6354,
+        "maximumDemandMu": 0.001163452,
+        "maximumMoveMu": 0.000536135,
+        "minimumDistanceMu": 0.000612995,
+        "sigmaMm": 28.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 3577,
+        "inside": 0,
+        "insufficientMargin": 4980,
+        "maximumDemandMu": 0.001062642,
+        "maximumMoveMu": 0.000463762,
+        "minimumDistanceMu": 0.000713805,
+        "sigmaMm": 19.6,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 3155,
+        "inside": 0,
+        "insufficientMargin": 3290,
+        "maximumDemandMu": 0.000825193,
+        "maximumMoveMu": 0.000321446,
+        "minimumDistanceMu": 0.000951254,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 2537,
+        "inside": 0,
+        "insufficientMargin": 1795,
+        "maximumDemandMu": 0.000566913,
+        "maximumMoveMu": 0.000194588,
+        "minimumDistanceMu": 0.001209533,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 2075,
+        "inside": 0,
+        "insufficientMargin": 1021,
+        "maximumDemandMu": 0.000402983,
+        "maximumMoveMu": 0.000122833,
+        "minimumDistanceMu": 0.001373463,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1657,
+        "inside": 0,
+        "insufficientMargin": 654,
+        "maximumDemandMu": 0.000294961,
+        "maximumMoveMu": 7.9697e-05,
+        "minimumDistanceMu": 0.001481485,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1407,
+        "inside": 0,
+        "insufficientMargin": 438,
+        "maximumDemandMu": 0.00022112,
+        "maximumMoveMu": 5.6038e-05,
+        "minimumDistanceMu": 0.001555327,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1216,
+        "inside": 0,
+        "insufficientMargin": 304,
+        "maximumDemandMu": 0.0001697,
+        "maximumMoveMu": 4.3325e-05,
+        "minimumDistanceMu": 0.001606747,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1093,
+        "inside": 0,
+        "insufficientMargin": 224,
+        "maximumDemandMu": 0.00013414,
+        "maximumMoveMu": 3.0972e-05,
+        "minimumDistanceMu": 0.001642307,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 986,
+        "inside": 0,
+        "insufficientMargin": 179,
+        "maximumDemandMu": 0.000107608,
+        "maximumMoveMu": 2.3408e-05,
+        "minimumDistanceMu": 0.001668839,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 899,
+        "inside": 0,
+        "insufficientMargin": 153,
+        "maximumDemandMu": 8.6246e-05,
+        "maximumMoveMu": 1.8764e-05,
+        "minimumDistanceMu": 0.001690201,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 786,
+        "inside": 0,
+        "insufficientMargin": 125,
+        "maximumDemandMu": 7.0417e-05,
+        "maximumMoveMu": 1.5037e-05,
+        "minimumDistanceMu": 0.00170603,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 699,
+        "inside": 0,
+        "insufficientMargin": 112,
+        "maximumDemandMu": 6.0122e-05,
+        "maximumMoveMu": 1.2043e-05,
+        "minimumDistanceMu": 0.001716325,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 552,
+        "inside": 0,
+        "insufficientMargin": 89,
+        "maximumDemandMu": 5.1654e-05,
+        "maximumMoveMu": 9.657e-06,
+        "minimumDistanceMu": 0.001724793,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 451,
+        "inside": 0,
+        "insufficientMargin": 73,
+        "maximumDemandMu": 4.4375e-05,
+        "maximumMoveMu": 7.967e-06,
+        "minimumDistanceMu": 0.001732071,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 379,
+        "inside": 0,
+        "insufficientMargin": 64,
+        "maximumDemandMu": 3.8125e-05,
+        "maximumMoveMu": 6.845e-06,
+        "minimumDistanceMu": 0.001738322,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 275,
+        "inside": 0,
+        "insufficientMargin": 50,
+        "maximumDemandMu": 3.2753e-05,
+        "maximumMoveMu": 5.88e-06,
+        "minimumDistanceMu": 0.001743694,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 229,
+        "inside": 0,
+        "insufficientMargin": 43,
+        "maximumDemandMu": 2.8138e-05,
+        "maximumMoveMu": 5.054e-06,
+        "minimumDistanceMu": 0.001748309,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 150,
+        "inside": 0,
+        "insufficientMargin": 30,
+        "maximumDemandMu": 2.4172e-05,
+        "maximumMoveMu": 4.339e-06,
+        "minimumDistanceMu": 0.001752275,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 119,
+        "inside": 0,
+        "insufficientMargin": 22,
+        "maximumDemandMu": 2.0765e-05,
+        "maximumMoveMu": 3.728e-06,
+        "minimumDistanceMu": 0.001755682,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 99,
+        "inside": 0,
+        "insufficientMargin": 19,
+        "maximumDemandMu": 1.7837e-05,
+        "maximumMoveMu": 3.203e-06,
+        "minimumDistanceMu": 0.00175861,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 44,
+        "inside": 0,
+        "insufficientMargin": 10,
+        "maximumDemandMu": 1.5322e-05,
+        "maximumMoveMu": 2.751e-06,
+        "minimumDistanceMu": 0.001761125,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 37,
+        "inside": 0,
+        "insufficientMargin": 8,
+        "maximumDemandMu": 1.3161e-05,
+        "maximumMoveMu": 2.366e-06,
+        "minimumDistanceMu": 0.001763286,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 23,
+        "inside": 0,
+        "insufficientMargin": 6,
+        "maximumDemandMu": 1.1306e-05,
+        "maximumMoveMu": 2.032e-06,
+        "minimumDistanceMu": 0.001765141,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 19,
+        "inside": 0,
+        "insufficientMargin": 5,
+        "maximumDemandMu": 9.712e-06,
+        "maximumMoveMu": 1.746e-06,
+        "minimumDistanceMu": 0.001766735,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 8,
+        "inside": 0,
+        "insufficientMargin": 2,
+        "maximumDemandMu": 8.342e-06,
+        "maximumMoveMu": 1.498e-06,
+        "minimumDistanceMu": 0.001768105,
+        "sigmaMm": 16.0,
+        "stage": "drape3",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 4,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumDemandMu": 7.165e-06,
+        "maximumMoveMu": 1.289e-06,
+        "minimumDistanceMu": 0.001769282,
+        "sigmaMm": 16.0,
+        "stage": "drape3",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 4,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumDemandMu": 6.154e-06,
+        "maximumMoveMu": 1.104e-06,
+        "minimumDistanceMu": 0.001770293,
+        "sigmaMm": 16.0,
+        "stage": "drape3",
+        "stepHalvings": 0
+      }
+    ],
+    "stretchOutliers": 0,
+    "stretchWithinRatio": 1.0,
+    "topologyPassed": true,
+    "volume": {
+      "decay": 0.7,
+      "drapeAnchor": 0.001,
+      "drapeCycles": 6,
+      "drapePushRounds": 6,
+      "drapeRelaxIters": 4,
+      "farMm": 80.0,
+      "nearMm": 40.0,
+      "nodeMm": 8.0,
+      "roundsLimit": 8,
+      "sigmaMinMm": 16.0,
+      "sigmaMm": 40.0,
+      "stepSigma": 1.0,
+      "strainRange": [
+        0.75,
+        1.3
+      ]
+    }
+  },
+  "schema": "tianshu-dressup-fit.v1",
+  "slot": "body",
+  "source": {
+    "file": "assets/default/model3d/dressup/garments/eq_jinzhuang/slice_fit/_work/tpl_f_medium/eq_jinzhuang.tpl_f_medium.slice_fit.glb",
+    "sha256": "a0273f1579395f74dedfe9cee2647cc6faad9f7b6e2ca63e241f21a357f4df9d"
+  },
+  "spring": null,
+  "stats": {
+    "boundaryEdges": 10126,
+    "elapsedSec": 160.110225125,
+    "fileBytes": 4528748,
+    "nearestTriangleCandidates": 16,
+    "nonManifoldEdges": 0,
+    "peakMemoryMiB": 1188.6875,
+    "primitiveCount": 1,
+    "removedStubTriangles": 0,
+    "triangles": 103356,
+    "vertices": 56853
+  },
+  "status": "fitted",
+  "template": "tpl_f_medium",
+  "textureCleanup": {
+    "deltaEThreshold": 18.0,
+    "encodeAttempts": 5,
+    "encodedSkinRatioAfter": 0.0,
+    "encodedSkinTexelsAfter": 0,
+    "encoding": "image/jpeg q95",
+    "method": "CIE-Lab-mean-deltaE+same-uv-island-nearest",
+    "referencedTexels": 1521131,
+    "replacedTexels": 25545,
+    "replacementMarginDeltaE": 6.0,
+    "skinLabMean": [
+      72.819651453,
+      5.673477939,
+      11.047522433
+    ],
+    "skinRatioAfter": 0.0,
+    "skinRatioBefore": 0.016756611,
+    "skinTexelsAfter": 0,
+    "skinTexelsBefore": 25489
+  },
+  "weights": {
+    "distanceMm": {
+      "p50": 10.250573858,
+      "p90": 23.452149233
+    },
+    "filteredVertices": 392,
+    "jointsAllowed": [
+      "mixamorig:Hips",
+      "mixamorig:LeftUpLeg",
+      "mixamorig:LeftLeg",
+      "mixamorig:RightUpLeg",
+      "mixamorig:RightLeg",
+      "mixamorig:Spine",
+      "mixamorig:Spine1",
+      "mixamorig:Spine2",
+      "mixamorig:LeftShoulder",
+      "mixamorig:LeftArm",
+      "mixamorig:LeftForeArm",
+      "mixamorig:LeftHand",
+      "mixamorig:Neck",
+      "mixamorig:RightShoulder",
+      "mixamorig:RightArm",
+      "mixamorig:RightForeArm",
+      "mixamorig:RightHand"
+    ],
+    "maxBones": 4,
+    "method": "template-nearest-triangle-barycentric+topology-smooth",
+    "semanticFallbackVertices": 0,
+    "smoothRounds": 3,
+    "templateVertices": 56853
+  }
+}

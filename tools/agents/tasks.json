@@ -52837,6 +52837,94 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-t4b-neck-v3",
+   "title": "3D 纸娃娃换装 · T4b · 颈肩改版：女 tpl_f2_medium 平滑雕塑（颈加长 + 收细）+ 男 tpl_m_medium 按新素体图重生成（85 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ART-dressup-t4b-neck-v3.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-11：男女脖子太粗、参考逆水寒；雕塑要平滑；不行就换素体。作者定：女按平滑雕塑 v3、男用新图 B（g2）重上 Tripo（85 点）。Claude 执行",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/character/male/ch00"
+   ],
+   "writes": [
+    "tools/model3d/dressup/sculpt_neck.py",
+    "tools/model3d/dressup/tests_sculpt.py",
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_m_medium/**",
+    "assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose_v2.png",
+    "assets/default/character/male/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_sculpt.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }

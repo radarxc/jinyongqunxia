@@ -58,6 +58,25 @@ def test_neck_ring_and_ellipse() -> None:
     assert abs(float(np.dot(fitted_axes[0], ellipse_axes[:, 0]))) > .99
 
 
+def test_neck_ring_skips_wide_trapezius_slice() -> None:
+    """T4b：最低的 Neck 主导近圆段偏宽（截到斜方肌）时，取其上方第一段半径在区间内的；都偏宽时仍取最低段。"""
+    angles = np.linspace(0, 2 * math.pi, 96, endpoint=False)
+    axis, plane_u, plane_v = _plane_basis(np.array([0.0, 1.0, 0.0]))
+    def build(specs):
+        rings, weights, primary = [], [], []
+        for height, (rx, rz) in specs:
+            section = np.column_stack((rx * np.cos(angles), rz * np.sin(angles)))
+            rings.append(axis * height + section[:, :1] * plane_u + section[:, 1:] * plane_v)
+            weights.append(np.ones(len(angles))); primary.append(np.ones(len(angles), dtype=np.uint8))
+        return np.concatenate(rings), np.concatenate(weights), np.concatenate(primary)
+    points, weights, primary = build([(0.014, (0.050, 0.042)), (0.020, (0.036, 0.030))])
+    result = find_neck_ring(points, weights, primary, axis, slice_half=.0004)
+    _assert_close(result["height"], .020); _assert_close(np.sort(result["radii"]), [.030, .036], 5e-4)
+    points, weights, primary = build([(0.014, (0.050, 0.042)), (0.020, (0.049, 0.041))])
+    result = find_neck_ring(points, weights, primary, axis, slice_half=.0004)
+    _assert_close(result["height"], .014)
+
+
 class _SocketGLB:
     def __init__(self) -> None:
         self.skin_value = type("Skin", (), {"joints": (0,)})()
@@ -201,7 +220,7 @@ def test_real_normalize_round_trip() -> None:
 
 
 def main() -> int:
-    tests = [test_region_mapping, test_neck_ring_and_ellipse, test_socket_round_trip,
+    tests = [test_region_mapping, test_neck_ring_and_ellipse, test_neck_ring_skips_wide_trapezius_slice, test_socket_round_trip,
              test_grip_frames_follow_projected_pinky_to_index, test_grip_surface_and_flex_axes,
              test_track_strip_and_yaw, test_region_glb_attribute, test_check_rejects_nested_damage, test_real_normalize_round_trip]
     for test in tests:

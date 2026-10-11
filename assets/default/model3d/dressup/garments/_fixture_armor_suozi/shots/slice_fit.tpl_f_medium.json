@@ -1,0 +1,806 @@
+{
+  "schema": "tianshu-dressup-slice-fit.v1",
+  "elasticity": 0.3,
+  "rigid": false,
+  "clearanceMm": 1.0,
+  "foldMm": 0.0,
+  "envelopeIters": 3,
+  "params": {
+    "sliceMm": 4.0,
+    "angles": 144,
+    "sigmaThetaDeg": 8.0,
+    "sigmaAxialMm": 12.0,
+    "envelopeIters": 3,
+    "foldMm": 0.0,
+    "ratioSlopePerMm": 0.01,
+    "centerSigmaMm": 30.0,
+    "bodyCenterSigmaMm": 10.0,
+    "coverageMin": 0.6,
+    "partSmoothIters": 12,
+    "maxClearanceFactor": 4.0,
+    "capTiltDeg": 56.309932,
+    "rigidBumpMax": 1.15,
+    "residualPush": true,
+    "residualRounds": 8,
+    "relaxCycles": 3,
+    "relaxRings": 2,
+    "relaxIters": 16
+  },
+  "vertical": {
+    "kind": "pchip",
+    "pairs": [
+      {
+        "level": "hem",
+        "garmentMu": 0.350349,
+        "bodyMu": 0.336463
+      },
+      {
+        "level": "midThigh",
+        "garmentMu": 0.401561,
+        "bodyMu": 0.383882
+      },
+      {
+        "level": "belowHip",
+        "garmentMu": 0.48087,
+        "bodyMu": 0.457316
+      },
+      {
+        "level": "crotch",
+        "garmentMu": 0.503984,
+        "bodyMu": 0.478718
+      },
+      {
+        "level": "hip",
+        "garmentMu": 0.522317,
+        "bodyMu": 0.495693
+      },
+      {
+        "level": "pelvis",
+        "garmentMu": 0.567891,
+        "bodyMu": 0.537891
+      },
+      {
+        "level": "navel",
+        "garmentMu": 0.648395,
+        "bodyMu": 0.612432
+      },
+      {
+        "level": "waist",
+        "garmentMu": 0.681732,
+        "bodyMu": 0.643299
+      },
+      {
+        "level": "underBust",
+        "garmentMu": 0.735933,
+        "bodyMu": 0.693485
+      },
+      {
+        "level": "bust",
+        "garmentMu": 0.778974,
+        "bodyMu": 0.733338
+      },
+      {
+        "level": "armpit",
+        "garmentMu": 0.79093,
+        "bodyMu": 0.744409
+      },
+      {
+        "level": "shoulder",
+        "garmentMu": 0.863464,
+        "bodyMu": 0.81157
+      },
+      {
+        "level": "collar",
+        "garmentMu": 0.888815,
+        "bodyMu": 0.832972
+      }
+    ],
+    "required": [
+      "collar",
+      "hem"
+    ],
+    "dropped": [],
+    "endSlopes": [
+      1.0,
+      1.0
+    ]
+  },
+  "anchors": {
+    "collar": {
+      "target": {
+        "level": "neckBase"
+      },
+      "sourceYMu": 0.888815,
+      "storedMinusMeasuredMm": 0.000226,
+      "designTargetYMu": 0.886578,
+      "targetYMu": 0.832972,
+      "shiftMm": -94.581289,
+      "mappedYMu": 0.832972,
+      "mappingResidualMm": 0.0,
+      "edgePoints": 36,
+      "landedYMu": 0.834096,
+      "landingResidualMm": 1.903914,
+      "resampledYMu": 0.834191,
+      "resampledResidualMm": 2.064472
+    },
+    "hem": {
+      "target": {
+        "level": "aboveKnee"
+      },
+      "sourceYMu": 0.350349,
+      "storedMinusMeasuredMm": 0.000389,
+      "designTargetYMu": 0.350349,
+      "targetYMu": 0.336463,
+      "shiftMm": -23.518718,
+      "mappedYMu": 0.336463,
+      "mappingResidualMm": 0.0,
+      "edgePoints": 36,
+      "landedYMu": 0.336463,
+      "landingResidualMm": 0.000389,
+      "resampledYMu": 0.336463,
+      "resampledResidualMm": 0.000389
+    },
+    "cuffL": {
+      "target": {
+        "between": [
+          "shoulder",
+          "elbow"
+        ],
+        "t": 0.540702
+      },
+      "sourceTMu": 0.076283,
+      "storedMinusMeasuredMm": -0.000327,
+      "targetTMu": 0.071839,
+      "stretch": 0.941747,
+      "mappedTMu": 0.071839,
+      "mappingResidualMm": 0.0,
+      "edgePoints": 36,
+      "landedTMu": 0.071839,
+      "landingResidualMm": 0.000307,
+      "resampledTMu": 0.072049,
+      "resampledResidualMm": 0.35502
+    },
+    "cuffR": {
+      "target": {
+        "between": [
+          "shoulder",
+          "elbow"
+        ],
+        "t": 0.5417
+      },
+      "sourceTMu": 0.076373,
+      "storedMinusMeasuredMm": 4.6e-05,
+      "targetTMu": 0.071916,
+      "stretch": 0.941638,
+      "mappedTMu": 0.071916,
+      "mappingResidualMm": 0.0,
+      "edgePoints": 36,
+      "landedTMu": 0.071916,
+      "landingResidualMm": 4.6e-05,
+      "resampledTMu": 0.072149,
+      "resampledResidualMm": 0.394498
+    }
+  },
+  "verticalCheck": {
+    "mappingResidualMaxMm": 0.0,
+    "landingResidualMaxMm": 1.903914,
+    "resampledResidualMaxMm": 2.064472,
+    "pairs": [
+      {
+        "name": "hem",
+        "garmentMu": 0.350349,
+        "bodyMu": 0.336463,
+        "residualMm": 0.0
+      },
+      {
+        "name": "midThigh",
+        "garmentMu": 0.401561,
+        "bodyMu": 0.383882,
+        "residualMm": 0.0
+      },
+      {
+        "name": "belowHip",
+        "garmentMu": 0.48087,
+        "bodyMu": 0.457316,
+        "residualMm": 0.0
+      },
+      {
+        "name": "crotch",
+        "garmentMu": 0.503984,
+        "bodyMu": 0.478718,
+        "residualMm": 0.0
+      },
+      {
+        "name": "hip",
+        "garmentMu": 0.522317,
+        "bodyMu": 0.495693,
+        "residualMm": 0.0
+      },
+      {
+        "name": "pelvis",
+        "garmentMu": 0.567891,
+        "bodyMu": 0.537891,
+        "residualMm": 0.0
+      },
+      {
+        "name": "navel",
+        "garmentMu": 0.648395,
+        "bodyMu": 0.612432,
+        "residualMm": 0.0
+      },
+      {
+        "name": "waist",
+        "garmentMu": 0.681732,
+        "bodyMu": 0.643299,
+        "residualMm": 0.0
+      },
+      {
+        "name": "underBust",
+        "garmentMu": 0.735933,
+        "bodyMu": 0.693485,
+        "residualMm": 0.0
+      },
+      {
+        "name": "bust",
+        "garmentMu": 0.778974,
+        "bodyMu": 0.733338,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armpit",
+        "garmentMu": 0.79093,
+        "bodyMu": 0.744409,
+        "residualMm": 0.0
+      },
+      {
+        "name": "shoulder",
+        "garmentMu": 0.863464,
+        "bodyMu": 0.81157,
+        "residualMm": 0.0
+      },
+      {
+        "name": "collar",
+        "garmentMu": 0.888815,
+        "bodyMu": 0.832972,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armL.shoulder",
+        "garmentMu": 0.0,
+        "bodyMu": 0.0,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armL.cuff",
+        "garmentMu": 0.076283,
+        "bodyMu": 0.071839,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armL.elbow",
+        "garmentMu": 0.141082,
+        "bodyMu": 0.132863,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armL.wrist",
+        "garmentMu": 0.272281,
+        "bodyMu": 0.257385,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armL.hand",
+        "garmentMu": 0.341593,
+        "bodyMu": 0.323182,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armR.shoulder",
+        "garmentMu": 0.0,
+        "bodyMu": 0.0,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armR.cuff",
+        "garmentMu": 0.076373,
+        "bodyMu": 0.071916,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armR.elbow",
+        "garmentMu": 0.140988,
+        "bodyMu": 0.132759,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armR.wrist",
+        "garmentMu": 0.273796,
+        "bodyMu": 0.259225,
+        "residualMm": 0.0
+      },
+      {
+        "name": "armR.hand",
+        "garmentMu": 0.342938,
+        "bodyMu": 0.325111,
+        "residualMm": 0.0
+      }
+    ],
+    "dropped": []
+  },
+  "verticalStretch": {
+    "spanRatio": 0.922081,
+    "slopeMin": 0.824029,
+    "slopeMax": 0.942286,
+    "collarShiftMm": -94.581289,
+    "hemShiftMm": -23.518718,
+    "designSpanRatio": 0.995846
+  },
+  "extremes": {
+    "lowestYMu": 0.350349,
+    "lowestBelowHemAnchorMm": 0.000389,
+    "highestYMu": 0.888815,
+    "highestAboveCollarAnchorMm": -0.000226,
+    "note": "全件最低 / 最高顶点（如腰带垂尾、侧颈峰），只报；衣缘以锚点为准"
+  },
+  "horizontalOffsetMm": [
+    -0.042571,
+    -13.385603
+  ],
+  "parts": [
+    {
+      "name": "torso",
+      "slices": 230,
+      "angles": 144,
+      "spacingMu": 0.002351,
+      "coverageMean": 0.901661,
+      "maskedFraction": 0.901872,
+      "bodySlices": 230,
+      "centerSlices": 223,
+      "offset": {
+        "meanMm": [
+          0.086871,
+          -13.461096
+        ],
+        "rangeMm": [
+          1.573295,
+          4.02277
+        ]
+      },
+      "elasticDelta": {
+        "minMm": -62.75555,
+        "maxMm": 4.113754,
+        "envelopeLiftP90Mm": 3.086482
+      },
+      "ratio": {
+        "rawMin": 0.609006,
+        "rawMax": 1.02481,
+        "min": 0.745012,
+        "max": 1.02481,
+        "slopePerMm": 0.003,
+        "tightestSlice": 66,
+        "tightestAngleDeg": 5.0
+      },
+      "capCellsExcludedFromRatio": 8,
+      "clearanceFactor": {
+        "p50": 1.077198,
+        "max": 2.730717
+      },
+      "frame": {
+        "axis": "+Y"
+      },
+      "vertices": 26824
+    },
+    {
+      "name": "armL",
+      "slices": 45,
+      "angles": 144,
+      "spacingMu": 0.002332,
+      "coverageMean": 0.543056,
+      "maskedFraction": 0.540895,
+      "bodySlices": 37,
+      "centerSlices": 35,
+      "offset": {
+        "meanMm": [
+          -3.843373,
+          7.071732
+        ],
+        "rangeMm": [
+          8.426417,
+          7.057945
+        ]
+      },
+      "elasticDelta": {
+        "minMm": -64.734052,
+        "maxMm": 9.109248,
+        "envelopeLiftP90Mm": 1.064355
+      },
+      "ratio": {
+        "rawMin": 0.836203,
+        "rawMax": 1.181561,
+        "min": 0.932493,
+        "max": 1.181561,
+        "slopePerMm": 0.003,
+        "tightestSlice": 10,
+        "tightestAngleDeg": 325.0
+      },
+      "capCellsExcludedFromRatio": 15,
+      "clearanceFactor": {
+        "p50": 1.031101,
+        "max": 4.0
+      },
+      "frame": {
+        "garmentShoulderMu": [
+          0.075343,
+          0.84078,
+          -0.010089
+        ],
+        "bodyShoulderMu": [
+          0.078482,
+          0.790566,
+          -0.017228
+        ],
+        "garmentAxisDir": [
+          0.395889,
+          -0.912344,
+          0.104407
+        ],
+        "bodyAxisDir": [
+          0.436253,
+          -0.893654,
+          0.105193
+        ],
+        "axisMap": {
+          "kind": "pchip",
+          "pairs": [
+            {
+              "level": "shoulder",
+              "garmentMu": 0.0,
+              "bodyMu": 0.0
+            },
+            {
+              "level": "cuff",
+              "garmentMu": 0.076283,
+              "bodyMu": 0.071839
+            },
+            {
+              "level": "elbow",
+              "garmentMu": 0.141082,
+              "bodyMu": 0.132863
+            },
+            {
+              "level": "wrist",
+              "garmentMu": 0.272281,
+              "bodyMu": 0.257385
+            },
+            {
+              "level": "hand",
+              "garmentMu": 0.341593,
+              "bodyMu": 0.323182
+            }
+          ],
+          "required": [
+            "cuff"
+          ],
+          "dropped": [],
+          "endSlopes": [
+            0.941754,
+            0.94934
+          ]
+        },
+        "axisAngleDeg": 2.54922
+      },
+      "vertices": 3582
+    },
+    {
+      "name": "armR",
+      "slices": 45,
+      "angles": 144,
+      "spacingMu": 0.002327,
+      "coverageMean": 0.585031,
+      "maskedFraction": 0.580864,
+      "bodySlices": 39,
+      "centerSlices": 37,
+      "offset": {
+        "meanMm": [
+          -3.58925,
+          -9.629351
+        ],
+        "rangeMm": [
+          7.694153,
+          11.047143
+        ]
+      },
+      "elasticDelta": {
+        "minMm": -63.966787,
+        "maxMm": 13.107433,
+        "envelopeLiftP90Mm": 1.390783
+      },
+      "ratio": {
+        "rawMin": 0.840245,
+        "rawMax": 1.318886,
+        "min": 0.973699,
+        "max": 1.318886,
+        "slopePerMm": 0.003,
+        "tightestSlice": 9,
+        "tightestAngleDeg": 35.0
+      },
+      "capCellsExcludedFromRatio": 37,
+      "clearanceFactor": {
+        "p50": 1.037231,
+        "max": 4.0
+      },
+      "frame": {
+        "garmentShoulderMu": [
+          -0.071668,
+          0.84078,
+          -0.010089
+        ],
+        "bodyShoulderMu": [
+          -0.074654,
+          0.790566,
+          -0.017228
+        ],
+        "garmentAxisDir": [
+          -0.41131,
+          -0.905635,
+          0.103194
+        ],
+        "bodyAxisDir": [
+          -0.45253,
+          -0.885687,
+          0.103806
+        ],
+        "axisMap": {
+          "kind": "pchip",
+          "pairs": [
+            {
+              "level": "shoulder",
+              "garmentMu": 0.0,
+              "bodyMu": 0.0
+            },
+            {
+              "level": "cuff",
+              "garmentMu": 0.076373,
+              "bodyMu": 0.071916
+            },
+            {
+              "level": "elbow",
+              "garmentMu": 0.140988,
+              "bodyMu": 0.132759
+            },
+            {
+              "level": "wrist",
+              "garmentMu": 0.273796,
+              "bodyMu": 0.259225
+            },
+            {
+              "level": "hand",
+              "garmentMu": 0.342938,
+              "bodyMu": 0.325111
+            }
+          ],
+          "required": [
+            "cuff"
+          ],
+          "dropped": [],
+          "endSlopes": [
+            0.941642,
+            0.95314
+          ]
+        },
+        "axisAngleDeg": 2.624206
+      },
+      "vertices": 3582
+    }
+  ],
+  "clearance": {
+    "input": {
+      "minMm": -48.57514,
+      "p1Mm": -30.097364,
+      "p5Mm": -16.801041,
+      "p50Mm": 21.038793,
+      "insideCount": 5954,
+      "insideFraction": 0.175179,
+      "belowClearanceCount": 6273,
+      "vertices": 33988
+    },
+    "aligned": {
+      "minMm": -15.274385,
+      "p1Mm": -4.564566,
+      "p5Mm": -0.389844,
+      "p50Mm": 12.658214,
+      "insideCount": 1941,
+      "insideFraction": 0.057108,
+      "belowClearanceCount": 2660,
+      "vertices": 33988
+    },
+    "sliced": {
+      "minMm": -20.215334,
+      "p1Mm": 0.876403,
+      "p5Mm": 1.5849,
+      "p50Mm": 9.532223,
+      "insideCount": 291,
+      "insideFraction": 0.008562,
+      "belowClearanceCount": 391,
+      "vertices": 33988
+    },
+    "final": {
+      "minMm": 1.002116,
+      "p1Mm": 1.072293,
+      "p5Mm": 1.664557,
+      "p50Mm": 9.560785,
+      "insideCount": 0,
+      "insideFraction": 0.0,
+      "belowClearanceCount": 0,
+      "vertices": 33988
+    }
+  },
+  "relax": [
+    {
+      "badBefore": 340,
+      "badAfter": 215,
+      "pushRounds": 1
+    },
+    {
+      "badBefore": 215,
+      "badAfter": 153,
+      "pushRounds": 2
+    },
+    {
+      "badBefore": 153,
+      "badAfter": 137,
+      "pushRounds": 1
+    }
+  ],
+  "rigidRatioBumps": [],
+  "residualPush": {
+    "rounds": [
+      {
+        "active": 393,
+        "inside": 291,
+        "maxPushMm": 21.218722
+      },
+      {
+        "active": 7,
+        "inside": 0,
+        "maxPushMm": 0.923821
+      },
+      {
+        "active": 22,
+        "inside": 0,
+        "maxPushMm": 0.378994
+      },
+      {
+        "active": 5,
+        "inside": 0,
+        "maxPushMm": 0.155412
+      },
+      {
+        "active": 13,
+        "inside": 0,
+        "maxPushMm": 0.063729
+      },
+      {
+        "active": 4,
+        "inside": 0,
+        "maxPushMm": 0.028495
+      },
+      {
+        "active": 6,
+        "inside": 0,
+        "maxPushMm": 0.014265
+      },
+      {
+        "active": 3,
+        "inside": 0,
+        "maxPushMm": 0.007141
+      },
+      {
+        "active": 209,
+        "inside": 159,
+        "maxPushMm": 10.778202
+      },
+      {
+        "active": 177,
+        "inside": 136,
+        "maxPushMm": 9.007518
+      },
+      {
+        "active": 1,
+        "inside": 0,
+        "maxPushMm": 0.020249
+      },
+      {
+        "active": 167,
+        "inside": 126,
+        "maxPushMm": 8.093264
+      }
+    ],
+    "movedVertices": 2042,
+    "maxMm": 21.44782,
+    "p99Mm": 4.017352
+  },
+  "elapsedSec": 40.743875,
+  "thickness": {
+    "sliced": {
+      "pairs": 33912,
+      "beforeP50Mm": 3.884812,
+      "deltaP50Mm": -0.065832,
+      "absDeltaP95Mm": 0.734341,
+      "absDeltaMaxMm": 4.046926,
+      "ratioP50": 0.982998,
+      "ratioP5": 0.876694,
+      "ratioP95": 1.135304
+    },
+    "final": {
+      "pairs": 33807,
+      "beforeP50Mm": 3.884319,
+      "deltaP50Mm": -0.07002,
+      "absDeltaP95Mm": 0.698411,
+      "absDeltaMaxMm": 7.313865,
+      "ratioP50": 0.981879,
+      "ratioP5": 0.870753,
+      "ratioP95": 1.131099
+    }
+  },
+  "distortion": {
+    "sliced": {
+      "edgeRatio": {
+        "p1": 0.822319,
+        "p50": 0.95707,
+        "p99": 1.16482,
+        "min": 0.671295,
+        "max": 1.495858
+      },
+      "stretchWithinRatio": 0.997882,
+      "stretchWithinRatioScaleFree": 0.9995,
+      "flippedTriangles": 0,
+      "edges": 101964
+    },
+    "final": {
+      "edgeRatio": {
+        "p1": 0.832312,
+        "p50": 0.956683,
+        "p99": 1.149867,
+        "min": 0.22625,
+        "max": 1.438965
+      },
+      "stretchWithinRatio": 0.997985,
+      "stretchWithinRatioScaleFree": 0.998146,
+      "flippedTriangles": 0,
+      "edges": 101964
+    }
+  },
+  "displacement": {
+    "p50Mm": 65.208772,
+    "p90Mm": 87.378505,
+    "maxMm": 102.725121
+  },
+  "inputs": {
+    "body": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "bodySha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+    "bodyLandmarks": "assets/default/model3d/dressup/templates/tpl_f_medium/slice_landmarks.json",
+    "bodyLandmarksSha256": "03fc0be039fac348420289555616a0a012f2e454b70ba81b44b05fe0828e0aff",
+    "garment": "assets/default/model3d/dressup/garments/_fixture_armor_suozi/_fixture_armor_suozi.glb",
+    "garmentSha256": "37c1fe0b57851ef3186edf6355b089cee544e1ae478e36396e48c79dac557815",
+    "garmentLandmarks": "assets/default/model3d/dressup/garments/_fixture_armor_suozi/slice_landmarks.json",
+    "garmentLandmarksSha256": "635bdcc066a7c6e8258de327ed4bbdf3e259b6f4d6aae5b2edf86ee1c21165af"
+  },
+  "topology": {
+    "vertices": 33988,
+    "triangles": 67976,
+    "uvPreserved": true,
+    "indicesPreserved": true,
+    "meshes": 1,
+    "primitives": 1
+  },
+  "reproduce": {
+    "command": "python3 tools/model3d/dressup/slice_fit.py fit --body assets/default/model3d/dressup/templates/tpl_f_medium/body.glb --body-landmarks assets/default/model3d/dressup/templates/tpl_f_medium/slice_landmarks.json --garment assets/default/model3d/dressup/garments/_fixture_armor_suozi/_fixture_armor_suozi.glb --garment-landmarks assets/default/model3d/dressup/garments/_fixture_armor_suozi/slice_landmarks.json --id _fixture_armor_suozi --out assets/default/model3d/dressup/garments/_fixture_armor_suozi/shots --no-glb --json-out assets/default/model3d/dressup/garments/_fixture_armor_suozi/shots/slice_fit.tpl_f_medium.json --shots assets/default/model3d/dressup/garments/_fixture_armor_suozi/shots --shot-prefix slice_fit.tpl_f_medium --title 'suozi 测试件 → tpl_f_medium'",
+    "deterministic": true,
+    "note": "切片 GLB 为中间件，不入库；按此命令复现（同输入同代码逐字节一致）"
+  },
+  "shots": [
+    "assets/default/model3d/dressup/garments/_fixture_armor_suozi/shots/slice_fit.tpl_f_medium.views.jpg",
+    "assets/default/model3d/dressup/garments/_fixture_armor_suozi/shots/slice_fit.tpl_f_medium.sections.jpg"
+  ]
+}
