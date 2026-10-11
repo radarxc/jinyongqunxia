@@ -433,6 +433,7 @@ export function cutFacadeMask(yawDeg: number): number;
 
 ### 9.1 运行时（`packages/render/src/actor3d`，懒加载块 `render-actor3d`）
 - **主角**：`createDressupActor`（`render-dressup` 块），用城镇减面件 `*.town.glb`、`unlit: false`；播放率通过 `actor.update(dt × 倍率)` 实现，不改换装代码；装备由应用侧目录把物品映射成换装规格，render 不解析物品。男性：`tpl_m_*` 未出前用 `npc_zhujue__ch00_m` 城镇减面版。
+- **与换装线对齐（2026-10-11 换装线确认）**：走换装 actor 时模板身高一律读换装索引的 `heightM`，不写死；新模板 `tpl_f2_medium`、`tpl_m_medium` 合入换装索引前不当默认（现有衣物 / 头 / 道具只贴合 `tpl_f_*`）；`*.town.glb` 动工前先与换装线对文件名与 manifest 字段（是否登记为 fits 变体）。
 - **NPC**：每个 URL 只解析一次 GLTF；克隆共享几何、材质、贴图；骨骼用 `SkeletonUtils.clone`；片段按 Mixamo 骨架族共享；没有片段的具名 NPC（`model_rig.glb`）用 `battle/model-stage.ts` 的 `retargetBattleClips` 每模型重定向一次并缓存。
 
 ```ts
@@ -458,7 +459,7 @@ export function gaitTimeScale(speedMps: number, heightM: number, hps: number): n
 `tools/model3d/town_lod.py` 串起：① 去掉法线与金属粗糙度贴图，只留 baseColor；② `tools/model3d/dressup/textures.py --max 1024`（LOD0）或 `--max 512`（LOD1）；③ `tools/model3d/dressup/pack_glb.mjs --simplify <比例>`（已保 UV、蒙皮权重、区域边界并 meshopt 压缩）；④ 新 `tools/model3d/measure_gait.mjs`（像 `meshopt_decode.mjs` 那样在 Node 里跑 three）量 `HeadTop_End` 得 `statureMu`，按脚掌支撑滑移量出走 / 跑原生速度 `nativeHps`；⑤ 写 `town.json`；⑥ `tools/model3d/capture_validation_shots.mjs` 出转台图。
 - 产物 `assets/default/model3d/<id>/town/{lod0,lod1}.glb`；首批 `npc_generic_m/f`、`npc_zhujue__ch00_m/f`、`npc_duanyu`、`npc_liwenxiu__ch10_youth`。
 - LOD0 ≤ 25,000 三角、只 baseColor ≤ 1024²；LOD1 ≤ 9,000、512²；骨骼名与数量不变；权重和 = 1 ± 1e-3；身高 ±1%；脚底支撑滑移 ≤ 2 cm；LOD0 ≤ 1.6 MB。
-- 换装件 `tools/model3d/dressup_town_lod.py` 在源件旁写 `*.town.glb`：身体 1.2 万、头 4 千、每件衣 3.5 千、头发 2 千、道具 1.5 千，整身 ≤ 2.5 万；区域属性、UV、关节保留；遮罩过 `validate.py`。
+- 换装件 `tools/model3d/dressup_town_lod.py` 在源件旁写（skin joints 顺序与 inverseBindMatrices 与模板逐字节一致，`_REGION` 与遮罩 UV 不丢） `*.town.glb`：身体 1.2 万、头 4 千、每件衣 3.5 千、头发 2 千、道具 1.5 千，整身 ≤ 2.5 万；区域属性、UV、关节保留；遮罩过 `validate.py`。
 
 ### 9.3 身高数据（AR-79、AR-104）
 - `NpcAppearanceSchema` 加 `body?: { template: BodyTemplateId; heightCm: int 120–230 }`（随年龄，按外观存）。
