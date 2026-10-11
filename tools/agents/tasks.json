@@ -52419,7 +52419,9 @@
     "assets/default/model3d/dressup/garments/eq_jinzhuang/shots/slice_fit.*",
     "assets/default/model3d/dressup/garments/_fixture_armor_banjia/**",
     "assets/default/model3d/dressup/garments/_fixture_armor_mingguang/**",
-    "assets/default/model3d/dressup/garments/_fixture_armor_suozi/**"
+    "assets/default/model3d/dressup/garments/_fixture_armor_suozi/**",
+    "tools/model3d/dressup/slice_fit_*.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/slice_fit/**"
    ],
    "validate": {
     "exists": [

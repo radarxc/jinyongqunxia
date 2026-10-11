@@ -31,3 +31,12 @@
 - `python3 tools/model3d/dressup/selftest.py`
 - `pnpm install --frozen-lockfile`
 - `pnpm check`
+
+## 协调者裁定（2026-10-10 22:20，审核 r1 FAIL 后）
+1. **几何门量在链尾**：切片贴合是 P2 里推离之前的一步，tech/11 §6 的"翻面 0、边长比 [0.7, 1.4] 内 ≥ 99%、bind 穿透 0"是交付件门。三体型都要把切片输出接 E2b 报告第 7 节 P2 链：`fit_garment.py --align none`（其余参数同 P2 ①，含 `--push-mode volume`）→ `pack_glb.mjs --simplify 0.25 --no-meshopt` → `untangle_glb.py` → `pack_glb.mjs` 压缩 → `validate.py --level draft`；链尾 validate 的翻面、边长、bind 穿透三项必须通过（不达标如实 fail，不放宽）。动画穿透 / holes 属 E2c（姿势蒙皮尚未并入本分支），只报不判。切片这一步自身的翻面 / 边长只报不判，但须与链尾数字一起写进诊断和报告。
+2. **真实劲装回归**：`tests_slice_fit.py` 读三体型诊断与链尾 report，硬断言链尾翻面 0、边长 ≥ 99%、bind 穿透 0、切片后穿入 0、最小间隙 ≥ 1 mm、拓扑 / UV 不变；另对 medium 复跑一次切片，核对计数与落盘诊断一致（浮点允许小差）。
+3. **可复核**：写集追加 `garments/eq_jinzhuang/slice_fit/**`，放三体型链尾 GLB（压缩后）、fit 与 validate report，诊断 JSON 引用它们的路径与 SHA；切片阶段的中间 GLB 不入库，删去诊断里指向不存在文件的 SHA，改记"复现命令 + 输入 SHA"。
+4. **多 primitive**：本原型只接受单 mesh / 单 primitive / 单材质衣物（现有 Tripo 抽取件与测试甲都是），其他输入明确报错并加回归；ADR 与 CLI 文案按此范围写，多 primitive 列入下一步。
+5. **单位后缀**：诊断与标注 JSON 的公开数值字段统一用 `Mm` / `M` / `Mu` / `Deg` 后缀，读取端同步改（尚未入库，不需兼容旧名）。
+6. **拆模块**：写集追加 `tools/model3d/dressup/slice_fit_*.py`；按功能拆（标注与竖直映射、切面几何、重建与平滑、GLB 读写与诊断、出图），`slice_fit.py` 只留 CLI 与对外函数；单文件尽量 ≤ 400 行，硬上限 600 行。
+7. 报告恢复固定 7 节（自检并入第 7 节），如实写三体型切片段与链尾段的几何数字；执行者在可写环境亲自运行四条检查并记录退出码。
