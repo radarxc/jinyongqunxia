@@ -1,6 +1,6 @@
-# 本任务：城镇探索 v2 · P1 · 现有城镇页（v1）全面升级——删模拟、缩放键 / 滚轮 / 档位、右上小地图（点击寻路）、交互条、按性别身高、设置「小地图上北下南」
+# 本任务：城镇探索 v2 · P1 · 现有城镇页（v1）收尾——删模拟店铺与对话、交互条、经店员对话真实购买（小地图与缩放已由 ENG-town2-v1-minimap 接好）
 
-**第一个动作**：读五份交接报告的第 3、7 节：`tools/agents/reports/ENG-town2-txminimap.md`（`TxMinimap` / `TxContextActions` 的 props、事件、底图规格）、`ENG-town2-actionmap.md`（ActionMap 语境注册 `useActionContext()`、`ZoomController`、v1 缩放换算位置）、`ENG-town2-heights.md`（页面怎么传 `playerHeightM`）、`ENG-town2-shop-wire.md`（`facility` 投影、`ShopLayer` 入口）、`ENG-town2-input-port.md`（输入层）。再打开 `apps/game/src/pages/TownPage.vue`（模拟银两 `1280` 约 L68、李文秀对话约 L93–141、40 ms 定时器约 L262、缩放滑杆约 L290–306、侧栏 `town-panel` 约 L312–343、店铺弹窗约 L394）与 `docs/tech/15-town-explore-v2-spec.md` §6.2–6.3、§7、§8；读完直接动手，不要先写计划。
+**第一个动作**：读六份交接报告的第 3、7 节：`tools/agents/reports/ENG-town2-v1-minimap.md`（小地图与缩放已接好的部分）、`tools/agents/reports/ENG-town2-txminimap.md`（`TxMinimap` / `TxContextActions` 的 props、事件、底图规格）、`ENG-town2-actionmap.md`（ActionMap 语境注册 `useActionContext()`、`ZoomController`、v1 缩放换算位置）、`ENG-town2-heights.md`（页面怎么传 `playerHeightM`）、`ENG-town2-shop-wire.md`（`facility` 投影、`ShopLayer` 入口）、`ENG-town2-input-port.md`（输入层）。再打开 `apps/game/src/pages/TownPage.vue`（模拟银两 `1280` 约 L68、李文秀对话约 L93–141、40 ms 定时器约 L262、缩放滑杆约 L290–306、侧栏 `town-panel` 约 L312–343、店铺弹窗约 L394）与 `docs/tech/15-town-explore-v2-spec.md` §6.2–6.3、§7、§8；读完直接动手，不要先写计划。
 
 本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`（页面只消费投影、发命令意图；寻路、可达、交互合法性与价格都在 core）。
 
@@ -9,15 +9,14 @@
 
 ## 要做的事
 1. **删模拟**（tech/15 §7.4）：本地货品与银两 `1280`、开场即弹的李文秀对话、「市肆采买 / 与同行交谈 / 打开店铺」三个按钮与其弹窗、对话 article、40 ms `setInterval` 渲染兜底、对 `/img/li*.webp` 与 `/img/hero_cutout.png` 的引用、侧栏 `town-panel` 与 `town-help` 文字、页内统计行（挪开发面板，若开发面板没有现成位置就只删不挪并在报告说明）。验收：这些标识在 `apps/game/src/pages/TownPage.vue` 与 `apps/game/src/explore/**` 里 grep 为零。
-2. **缩放**：用 ActionMap 的 explore 语境 + `ZoomController`：`=`（含 Shift 即 `+`）/ 小键盘 + 放大、`-` / 小键盘 − 缩小、`0` / 小键盘 0 复位（街巷 80）；滚轮与触控板捏合连续 40–112；按钮档 48 / 64 / 80 / 96；带 Ctrl / Meta / Alt 不拦截；输入框 / 输入法组字时不响应。px/m 档位换算成 v1 `setZoom` 比例的函数放 `apps/game/src/explore/v1-zoom.ts`（退役即删）。删除旧滑杆。
-3. **右上小地图**（v1 适配器 `apps/game/src/explore/v1-minimap.ts`）：底图在挂载后的空闲回调里生成一次（v1 用 `groundRuns` 与建筑占地按设施类着色，0.25 m/px、≤ 640 px）；v1 镜头固定 45°，`basis` 由 45° 算出；玩家箭头、路径、终点、视野四边形来自投影与 render；点空地 → 发 `town/move`（目标格由 core 校验，页面不判可达）；点建筑 / NPC 标记 → 走到其入口格；悬停显示名称与直线距离；`M` 展开全城图（上北下南、图例、设施列表可点）；设置项 `minimapNorthUp`（`apps/game/src/settings.ts`，缺省 false = 跟镜头转），v1 固定 45° 时两种朝向画面不同（北向上时底图旋转）。
+2. **缩放**：已由 ENG-town2-v1-minimap 完成（读其报告第 3、7 节），本任务不重做；只确认删模拟后缩放键与滚轮仍正常。
+3. **右上小地图**：已由 ENG-town2-v1-minimap 接好（v1 适配器 `apps/game/src/explore/v1-minimap.ts`）；本任务只把 `facility` 投影里的设施补成小地图标记（店名、设施类图标），点设施标记走到其入口格后可接交互条的「交谈」。
 4. **交互条**：右下 `TxContextActions`，把锚点 + 设施（`facility` 投影）映射成 ≤ 3 个动词（交谈 / 进入 / 出城 / 打坐 / 查看），`F` / 空格 / 回车触发；对话中隐藏；店里「交谈」对象是设施店员 → 发 `town/interact` → 设施对话 → 「看看货」→ `ShopLayer`（shop-wire 已接）。
-5. **身高**：主角按性别传 `playerHeightM`（女 1.66、男 1.81，取 heights.ts 的缺省表，不写死数字）。
+5. **身高**：已由 ENG-town2-heights / ENG-town2-v1-minimap 处理，本任务不改。
 6. **测试**（`apps/game/src/pages/town-input.test.ts`、`apps/game/src/explore/*.test.ts`、`apps/game/src/settings.test.ts`，需 DOM 的文件首行 `// @vitest-environment happy-dom`）命名用例：
    - 模拟标识 grep 为零（读源码文本断言）。
-   - 缩放键：`=`、Shift+`=`、小键盘 + 放大一档；`-` 缩小；`0` 复位；Ctrl+`=` 不拦截；输入框聚焦时不响应；滚轮 deltaMode 0 / 1 连续缩放并夹到 40–112；v1 换算函数在 4 个档位的比例。
-   - 小地图点击空地 → 派发 `town/move`，目标与 `minimapToWorld` → 格换算一致；点击设施标记 → 派发走向其入口格的移动。
-   - 设置 `minimapNorthUp` 读写与缺省值。
+   - 删模拟后缩放键与小地图点击寻路仍工作（复用 v1-minimap 的测试夹具做一条冒烟用例）。
+   - 小地图上的设施标记来自 `facility` 投影（店名与图标），点击后走到入口格。
    - 经店员对话真实购买（复用 shop-wire 的全流程夹具，从页面交互条触发）。
 
 ## 约束

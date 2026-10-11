@@ -31114,8 +31114,70 @@
    "profile": "code"
   },
   {
+   "id": "ENG-town2-v1-minimap",
+   "title": "城镇探索 v2 · P1 · 现有城镇页先接新小地图与缩放快捷键（右上 TxMinimap 点击寻路、跟镜头转 / 上北下南、M 全城图、=/-/0 与滚轮）",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-town2-v1-minimap.md",
+   "deps": [
+    "ENG-town2-txminimap",
+    "ENG-town2-actionmap",
+    "ENG-town2-heights"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；作者 10-11「现在小地图还是老的」→ 从 v1-page 拆出先做、尽快并主干；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "apps/game/src/pages/TownPage.vue",
+    "apps/game/src/pages/town-input.ts",
+    "apps/game/src/pages/town-input.test.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/settings.ts",
+    "apps/game/src/settings.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/explore/v1-minimap.ts",
+     "apps/game/src/explore/v1-zoom.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
    "id": "ENG-town2-v1-page",
-   "title": "城镇探索 v2 · P1 · 现有城镇页升级（删模拟、缩放键 / 滚轮 / 档位、右上小地图点击寻路、交互条、按性别身高、上北下南设置）",
+   "title": "城镇探索 v2 · P1 · 现有城镇页收尾（删模拟店铺与对话、交互条、经店员对话真实购买）",
    "phase": "TOWN2",
    "wave": 55,
    "kind": "draft",
@@ -31124,7 +31186,8 @@
     "ENG-town2-txminimap",
     "ENG-town2-actionmap",
     "ENG-town2-heights",
-    "ENG-town2-shop-wire"
+    "ENG-town2-shop-wire",
+    "ENG-town2-v1-minimap"
    ],
    "review": false,
    "web": true,
@@ -31146,8 +31209,7 @@
    ],
    "validate": {
     "exists": [
-     "apps/game/src/explore/v1-minimap.ts",
-     "apps/game/src/explore/v1-zoom.ts"
+     "apps/game/src/pages/TownPage.vue"
     ],
     "cmd": [
      [
