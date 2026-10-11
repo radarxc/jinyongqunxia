@@ -1818,6 +1818,33 @@ onBeforeUnmount(() => {
   max-height: calc(100vh - 170px);
 }
 
+/* 右侧内容区超出屏幕时竖向滚动（标签头不动）；容器本身接收指针，滚动条才能拖 */
+.wardrobe-container,
+.specs-container {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  pointer-events: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 175, 55, 0.45) transparent;
+}
+
+.wardrobe-container > *,
+.specs-container > * {
+  flex-shrink: 0;
+}
+
+.wardrobe-container::-webkit-scrollbar,
+.specs-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wardrobe-container::-webkit-scrollbar-thumb,
+.specs-container::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.45);
+  border-radius: 3px;
+}
+
 .dressup-v2-card {
   display: grid;
   gap: 10px;
