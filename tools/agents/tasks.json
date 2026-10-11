@@ -31867,6 +31867,322 @@
    "profile": "code"
   },
   {
+   "id": "ENG-town2-explore-facility",
+   "title": "城镇探索 v2 · core 设施 / 出口 / 打坐 / 进出城（店员对话、场景记忆、打坐移植、v2 入城挂载、ShopLocator v2）",
+   "phase": "TOWN2",
+   "wave": 56,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-facility.md",
+   "deps": [
+    "ENG-town2-shop-core",
+    "ENG-town2-dialogue-facility",
+    "ENG-town2-explore-walk"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/world/explore/facility.ts",
+    "packages/core/src/world/explore/exit.ts",
+    "packages/core/src/world/explore/meditation.ts",
+    "packages/core/src/world/explore/facility.test.ts",
+    "packages/core/src/world/explore/exit.test.ts",
+    "packages/core/src/world/explore/meditation.test.ts",
+    "packages/core/src/command/explore-handler.ts",
+    "packages/core/src/command/handlers.ts",
+    "packages/core/src/command/*.test.ts",
+    "packages/core/src/world/worldmap-runtime.ts",
+    "packages/core/src/world/worldmap.test.ts",
+    "packages/core/src/economy/shop-locator.ts",
+    "packages/core/src/economy/shop-locator.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/facility.ts",
+     "packages/core/src/world/explore/exit.ts",
+     "packages/core/src/world/explore/meditation.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-perf-gates",
+   "title": "城镇探索 v2 · 引擎侧性能门（寻路、行走 tick、区域场景帧更新；world-tick 计时测试挪进 perf）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-town2-perf-gates.md",
+   "deps": [
+    "ENG-town2-explore-graph",
+    "ENG-town2-explore-walk",
+    "ENG-town2-render-core",
+    "ENG-town2-render-ports"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/bench/explore-*.ts",
+    "packages/core/bench/world-tick*.ts",
+    "packages/core/bench/perf-registration.test.ts",
+    "packages/render/src/region/explore.performance.test.ts",
+    "vitest.config.ts",
+    "package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/bench/explore-path.performance.test.ts",
+     "packages/core/bench/explore-tick.performance.test.ts",
+     "packages/render/src/region/explore.performance.test.ts",
+     "packages/core/bench/world-tick.performance.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/core/bench/perf-registration.test.ts",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-town2-worldmap-pilot",
+   "title": "城镇探索 v2 · 大地图试点接线（三座试点城节点写 entry.scene / gateId）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "TOOL-town2-worldmap-pilot.md",
+   "deps": [
+    "TOOL-town2-sources-pipeline",
+    "ENG-town2-regionmap-ext"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/content/worldmap_from_towns.py",
+    "tools/content/test_worldmap_from_towns.py",
+    "content/world/ch01/map.yaml",
+    "content/world/ch10/map.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "tools/content/test_worldmap_from_towns.py"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools/content/test_worldmap_from_towns.py"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-session-v2",
+   "title": "城镇探索 v2 · 会话层接线（townEngine 开关、预载 v2 场景、行走脏视图、previewTravel、读档纠偏、exploreCommand）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-town2-session-v2.md",
+   "deps": [
+    "ENG-town2-explore-facility",
+    "TOOL-town2-sources-pipeline",
+    "TOOL-town2-worldmap-pilot"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/runtime/**",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/region/commands.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/runtime/session.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/runtime",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-explore-page",
+   "title": "城镇探索 v2 · 探索页 ExplorePage（v2 城镇 + 遗迹：按住走、点地 / 人 / 楼、Q/E、缩放、F、M、跟镜头转小地图）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-page.md",
+   "deps": [
+    "ENG-town2-session-v2",
+    "ENG-town2-render-ports",
+    "ENG-town2-v1-page"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/pages/ExplorePage.vue",
+    "apps/game/src/pages/ExplorePage.test.ts",
+    "apps/game/src/pages/ExplorePage.strings.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/App.vue"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/ExplorePage.vue",
+     "apps/game/src/explore/v2-minimap.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",
