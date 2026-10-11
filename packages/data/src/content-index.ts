@@ -1,6 +1,8 @@
 import { compareCodePoints } from '@tianshu/shared';
 import type { ContentEntry, ContentFile, ContentValues, RegisteredContentKind } from './content-registry';
-import { contentKindOrder, parseContentFile } from './content-registry';
+import {
+  contentKindOrder, parseContentFile, validateShopFacilityReferences,
+} from './content-registry';
 
 type Identified = { readonly id?: string; readonly key?: string; readonly chapterId?: string;
   readonly lineId?: string; readonly cityId?: string; readonly chapter?: string;
@@ -316,6 +318,7 @@ export function loadContent(files: readonly ContentFile[], context: ContentRefer
     lookup.set(key, entry.value);
   }
   validateReferences(entries, lookup, context);
+  validateShopFacilityReferences(entries, context);
   entries.sort((left, right) => contentKindOrder(left.kind) - contentKindOrder(right.kind) || compareCodePoints(identity(left.kind, left.value as Identified), identity(right.kind, right.value as Identified)));
   const values = (kind: RegisteredContentKind): readonly unknown[] => entries.filter((entry) => entry.kind === kind).map((entry) => entry.value);
   const roleSlots = values('roleSlot') as ContentValues['roleSlots'];
@@ -332,7 +335,12 @@ export function loadContent(files: readonly ContentFile[], context: ContentRefer
     roleSlots,
     quests: values('quest') as ContentValues['quests'],
     acupoints: values('acupoint') as ContentValues['acupoints'], items: values('item') as ContentValues['items'],
-    shops: values('shop') as ContentValues['shops'], stories: values('story') as ContentValues['stories'],
+    shops: values('shop') as ContentValues['shops'],
+    shopTemplates: values('shopTemplate') as ContentValues['shopTemplates'],
+    priceTables: values('priceTable') as ContentValues['priceTables'],
+    townFacilities: values('townFacility') as ContentValues['townFacilities'],
+    facilityDialogues: values('facilityDialogue') as ContentValues['facilityDialogues'],
+    stories: values('story') as ContentValues['stories'],
     events: values('event') as ContentValues['events'], bookWorlds: values('bookWorld') as ContentValues['bookWorlds'],
     chapters: values('bookWorld') as ContentValues['chapters'],
     towns: values('town') as ContentValues['towns'],

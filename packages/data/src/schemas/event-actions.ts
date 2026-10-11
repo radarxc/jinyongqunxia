@@ -61,9 +61,10 @@ export const EVENT_ACTION_REGISTRY = [
     { required: { mode: /^(?:manual|balanced|default)$/u } }),
   action('ui/showTitleCard', 'presentation', { card: z.string().regex(local) },
     { required: { card: local } }),
+  action('facility/openShop', 'presentation', {}, { required: {} }),
   action('dialogue/speaker', 'presentation', {
-    speaker: z.string().regex(/^(?:npc_[a-z0-9_]+|player|narrator|book_spirit)$/),
-  }, { required: { speaker: /^(?:npc_[a-z0-9_]+|player|narrator|book_spirit)$/u } }),
+    speaker: z.string().regex(/^(?:npc_[a-z0-9_]+|player|narrator|book_spirit|interlocutor)$/),
+  }, { required: { speaker: /^(?:npc_[a-z0-9_]+|player|narrator|book_spirit|interlocutor)$/u } }),
   action('dialogue/start', 'presentation', { storyId: z.string().regex(storyId),
     knot: z.string().regex(knot), presentation: z.string().regex(local).optional(),
     skippable: z.boolean().optional(), durationSeconds: z.number().int().positive().optional() },
@@ -90,7 +91,7 @@ type ActionSchema = (typeof EVENT_ACTION_REGISTRY)[number]['schema'];
 export type EventAction = z.output<ActionSchema>;
 export type EventPresentationAction = Extract<EventAction, { readonly op:
   'battle/start' | 'tutorial/mark' | 'story/requestTransmission' | 'ui/openAllocation' |
-  'ui/showTitleCard' | 'dialogue/speaker' | 'dialogue/start' | 'ui/showText' |
+  'ui/showTitleCard' | 'facility/openShop' | 'dialogue/speaker' | 'dialogue/start' | 'ui/showText' |
   'ui/revealText' | 'ui/observeOnly' | 'world/loadScene' }>;
 export const EventActionSchema: z.ZodType<EventAction> = z.union(
   EVENT_ACTION_REGISTRY.map((entry) => entry.schema) as unknown as [ActionSchema, ActionSchema],
