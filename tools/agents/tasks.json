@@ -32311,6 +32311,76 @@
    "profile": "code"
   },
   {
+   "id": "ENG-buildgen-r10-worker",
+   "title": "城镇 3D 古建 · 网格生成进 Worker（消息协议、客户端与回退、形体模板缓存、时间切片；主线程 / Worker 哈希一致）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r10-worker.md",
+   "deps": [
+    "ENG-buildgen-r9-layer",
+    "ENG-buildgen-p4-invariants",
+    "ENG-town2-chunks",
+    "ENG-interior-r8-props"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/worker/**",
+    "packages/render/src/buildgen/mesher/shape-cache.ts",
+    "packages/render/src/buildgen/mesher/generate.ts",
+    "packages/render/src/buildgen/three/layer.ts",
+    "packages/render/src/buildgen/__tests__/worker-parity.test.ts",
+    "packages/render/src/buildgen/__tests__/shape-cache.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/worker/buildgen.worker.ts",
+     "packages/render/src/buildgen/worker/client.ts",
+     "packages/render/src/buildgen/mesher/shape-cache.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",
