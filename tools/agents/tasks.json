@@ -32385,6 +32385,82 @@
    "profile": "code"
   },
   {
+   "id": "ENG-interior-i2-more",
+   "title": "城镇 3D 古建 · 室内模板（二）12 类（布庄、书肆、当铺、钱庄、镖局、武馆、寺庙、公堂、赌坊、厩、仓、哨所）",
+   "phase": "TOWN2",
+   "wave": 56,
+   "kind": "draft",
+   "prompt": "ENG-interior-i2-more.md",
+   "deps": [
+    "ENG-interior-i1-core",
+    "DES-interior-01-facilities"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/interiors/cloth.ts",
+    "packages/data/src/build/town-plan/interiors/books.ts",
+    "packages/data/src/build/town-plan/interiors/pawnshop.ts",
+    "packages/data/src/build/town-plan/interiors/bank.ts",
+    "packages/data/src/build/town-plan/interiors/escort.ts",
+    "packages/data/src/build/town-plan/interiors/school.ts",
+    "packages/data/src/build/town-plan/interiors/temple.ts",
+    "packages/data/src/build/town-plan/interiors/office.ts",
+    "packages/data/src/build/town-plan/interiors/casino.ts",
+    "packages/data/src/build/town-plan/interiors/stable.ts",
+    "packages/data/src/build/town-plan/interiors/storehouse.ts",
+    "packages/data/src/build/town-plan/interiors/guardhouse.ts",
+    "packages/data/src/build/town-plan/interiors/solver.ts",
+    "packages/data/src/build/town-plan/__tests__/interiors-i2.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/interiors/temple.ts",
+     "packages/data/src/build/town-plan/interiors/pawnshop.ts",
+     "packages/data/src/build/town-plan/__tests__/interiors-i2.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",
