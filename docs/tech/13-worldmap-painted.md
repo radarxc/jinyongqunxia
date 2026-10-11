@@ -76,3 +76,27 @@
 3. 拖动、滚轮、双指、滑杆、定位、点城出发、停步 / 继续 / 疾行、进入此地都可用；行走中跟随正常。
 4. 空闲 5 秒内无逐帧任务（Performance 面板或 rAF 计数为 0）。
 5. `pnpm check` 全绿；`painted-view` 单测覆盖夹边、指针缩放不动点、坐标往返、标签避让确定性、道路按时代 / 开放过滤与路径字符串。
+
+## 5. 第二轮：道路走向、城镇分档、名城小景（AR-113）
+
+### 5.1 道路显示几何 `path`
+
+- 来源：`docs/design/map/road_paths.json`（`tianshu.road-paths.v1`，`tools/map/paint/road_paths.py` 在 ETOPO 高程与 GIS 水体上按最省力路线离线算出，确定性）。键为 `road.key`，值为网格浮点坐标折线（两位小数），首点 / 末点严格等于 `road.start` / `road.end` 的 `point`。
+- 数据：`worldmap.v1` 路段加可选字段 `path: [x, y][]`（2–4096 点，有限浮点，首末同上）。由 `tools/content/worldmap_enrich.py` 写进 `content/world/chNN/map.yaml`；缺失时一律回退 `points`。
+- **只用于显示**：玩法里程 `distanceLi`、寻路、可达、core 的 `worldMapPoint` 都不变。页面在行进中按当前路段进度 `offsetLi / distanceLi` 沿 `path` 弧长插值显示主角（方向按 leg 的 from→to，必要时反转折线）；不在路段上时用 core 的 `point`。
+- 绘制：`path` 用 Catmull-Rom → 三次贝塞尔平滑（张力 0.5，端点固定），其余样式同 §3.1。
+
+### 5.2 城镇分档 `tier` 与图标 `marker`
+
+- 由 `worldmap_enrich.py` 按 `docs/design/map/cities.yaml` 写进每章节点（`rs_*` 等非城市节点按 kind 处理）：
+  - `tier`：`capital`（当章 `eras[chNN].status == 都城`）> `major`（`importance ∈ {capital, major}` 且非都城）> `minor`（`secondary`，或当章为军镇 / 边关）> `site`（`importance == site` 或 `kind == ruin`）。
+  - `marker`：`capital`→大城，`major`→州府，`minor`→县镇（当章为边关 / 军镇时→关隘），`site`→遗迹（门派驻地→门派，寺院→寺庙，道观→道观；分不出就遗迹）。
+- 图标：取自 `assets/default/map/kit/` 的大城 / 州府 / 县镇 / 村落 / 关隘 / 遗迹 / 门派 / 寺庙 / 道观件，离线缩成一张图集 `assets/default/map/markers/map_markers_atlas.webp`（每格 128×128，同目录 `atlas.json` 给出各 `marker` 的格位与锚点），运行时只载这一张。
+- 尺寸（屏幕像素，随缩放在区间内线性变化，z=1 取下限、z=4 取上限）：capital 44–96，major 30–60，minor 22–40，site 18–30；名字字号 capital 17、major 14、minor 12、site 12（固定，不随缩放）。标签避让优先级先按 tier，再按 §3 原规则。
+
+### 5.3 名城小景（按年代）
+
+- 素材：`assets/default/map/landmark/<id>.webp`（透明底，水墨，与 kit 城池件同画风），同目录 `manifest.yaml` 每条另含：`node`（节点 id）、`chapters`（适用章节列表）、`anchor`（图内落在节点上的像素，通常为城心）、`footprint_grid`（显示宽度，网格单位）、`layout_basis`（布局依据摘要与来源）。
+- 构建：`asset-manifest.ts` 登记 `/map/landmark/` 与 `/map/markers/`，复制进 public，并生成 `apps/game/public/assets/default/map/landmark/index.json`（`[{ id, node, chapters, url, anchor, footprintGrid, width, height }]`）。
+- 运行时：页面载入一次 `index.json`，按当前章节选每个开放节点的小景；有小景的节点画小景（**放在地图平面里随缩放**，屏幕宽度下限 56 px），否则画 §5.2 图标；名字仍是屏幕空间固定字号、放在小景 / 图标下方。
+- 版式依据：城墙形制、城门、中轴、宫城 / 皇城、坊巷格局与标志塔寺按该年代史料（来源写进 manifest `layout_basis`）；先用程序画版式底稿（墙线、街格、宫城块与标志建筑落位），再用水墨件上墨；标志建筑缺件时才单独出图（单体建筑，参考 kit 寺庙 / 门派件画风）。

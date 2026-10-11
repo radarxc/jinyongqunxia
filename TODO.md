@@ -48,6 +48,12 @@
   - 底图 `ART-worldmap-painted`：**10-11 00:15 交付**（ace71dd37）——GIS + 仓库水墨贴图确定性合成 4096×3072，`tools/map/paint/compose_world.py --deliver` 可逐字节复现；审样两轮（山件 1234→618、平原留白、大河加宽）。待作者过目；已知瑕疵见 manifest notes（窄岛山小、平原无田畴、渭河 / 汾河 scalerank 超阈值未画）。
   - 海口、崖州坐标：主检出未提交改动曾把两城挪到吕宋岛并配两条跨海路；10-11 协调者改回海南（[304,332] / [299,346]），两条路改走雷州半岛与海南东线，14 章 map.yaml 都改了（仍未提交，备份 `refs/backup/main-wip-20261011-ar111-hainan`）。这两条路不在 `worldmap_from_towns.py` 的生成源里，重跑生成器会丢，需补进 routes.yaml。
   - `TOOL-map-compose`（AR-83）样区画风未过，停用，工具保留备查。
+  - **AR-113 第二轮（10-11 01:00 起）**：
+    - 状态栏左下去立绘、图例挪右下：协调者已改（主检出工作区，未提交）。
+    - 补渭河汾河 + 道路真实走向（`tools/map/paint/road_paths.py` → `docs/design/map/road_paths.json`，只作显示几何）：原底图子代理续作。
+    - `ENG-worldmap-tiers-paths`（traex）：schema 加 `path` / `tier` / `marker`、`tools/content/worldmap_enrich.py` 写 14 章、页面画曲线道路 + 主角沿路插值 + 分档图标 + 名城小景、构建登记 markers / landmark。
+    - `ART-worldmap-landmarks`（新 Opus 子代理）：分档图集（kit 缩成 128 格）+ 名城小景首批（北京、长安 / 西安各年代），程序按史料版式 + 年代建筑套件上墨，缺件才出单体建筑图。
+    - 待办：ch10 按 AR-26 是唐 702，但大地图仍是清初年份与地名（「西安府」应为「长安」都城），要补唐代一档城市名称与地位（内容任务）；`tools/content/worldmap_from_towns.py --check` 已坏（design/02 时间表改过），重跑生成器前先修，且生成后要再跑 `worldmap_enrich.py`。
 - **城图**：202 / 1172，city_scheduler 自己在推；`CITY-layouts-ch01-b` 审核没过，正在返修。
 - **插图**：26 份提示词还没出图，清单在 `.agents/coord/_lines/title-audit/missing_plates.tsv`。
 - **衣物与护甲出图**（AR-77 / AR-91 记入 TODO）：数据 8 批已合入，565 件待 Gemini 出图。作者方便时，先开两个 Gemini 标签页（窗口要在前台），出一组样图给作者看，再批量出。同款先出底图，其他颜色上传底图只改主色（换色件带 `edit_from`），入口见 AGENTS.md §3。
