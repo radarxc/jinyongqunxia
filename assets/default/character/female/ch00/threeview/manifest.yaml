@@ -235,3 +235,49 @@
     threshold_25: 0.956281
     threshold_40: 0.922671
     threshold_60: 0.783253
+- id: por_npc_zhujue__ch00_f_bald_base_body_apose_v2
+  file: por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体 v2（T4）：以窄 A 底板为底只改形体——颈更长、斜方肌低平、一字肩、手臂更细；脸、光头、25° 窄 A、抹胸与高叉三角裤、赤足不变。换装模板 tpl_f2_medium 的 Tripo 单图输入（替换 tpl_f_* 的候选）
+  prompt: |-
+    图像编辑：以第 1 张图为底，只改身体的形体，让她成为一具更好看的女性素体，其余保持不变。
+
+    【要改】颈部更修长（天鹅颈）；颈根到肩膀的线条低而平缓，斜方肌不隆起（不要从耳下就鼓起来的肩颈肌肉，侧面的颈肩线要平顺下滑）；肩膀平直舒展（一字肩），锁骨清晰秀气；手臂纤细修长；胸型自然饱满；腰更细，腰臀曲线柔和；双腿修长笔直，大腿匀称，小腿纤细；整体纤秀优雅、比例高挑（约 8.5 头身）。
+
+    【不变】脸、光头、五官、表情、肤色；肤色贴身抹胸和高叉三角裤的样式；姿势（正面站立，双臂伸直向身体两侧张开约 25 度的窄 A 字，手掌朝内，五指并拢，赤足，两脚间距不变）；人物在画面中的位置和大小、头顶和脚底的位置；浅暖灰米色纯色背景；写实手绘插画画风。
+
+    【不要】头发、饰物、衣服、鞋；肌肉感过强的肩颈和背、粗壮的手臂；文字、水印；第二个人；地面、投影。
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+    use: 上传第 1 张（临时件 f_plate.png，与底板逐字节相同）：图像编辑的底图，只改形体
+  tool: Gemini 网页 · Create image（作者 Chrome，Pro 模式）图像编辑一次出图，经 9223 常驻进程驱动；未做任何局部合成或修图
+  model: Gemini 网页 Pro（gemini.google.com）
+  effort: n/a
+  created: '2026-10-11T01:49:57-07:00'
+  source_path: /Users/bytedance/Downloads/gemini__tplf_body_g1.jpeg
+  source_sha256: 0ee347e662993153eb27fcae94cc61277989c3440bec66374e0fe807f1aa7766
+  source_size: 1686x2528
+  size: 1686x2528
+  sha256: 6cafc10b4f1be788c294b328f7047f532237b84e8ae01d7c96f5ed3d28268557
+  normalization: JPEG 解码后原样存 PNG（与下载件逐像素一致）；无缩放、无裁切、无局部改动
+  check_plate:
+    command: python3 tools/model3d/dressup/check_plate.py --plate <主角窄 A 底板 Lanczos 等比放大到 1686×2528 的临时副本> --image assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png --arm-angle-deg 25 --json
+    plateTemp:
+      path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/plate/zhujue_narrow_1686x2528.png
+      sha256: 651aeffcccb2b508fefb1cf1e1a61836b4a14840714a558aa15f3069fce34410
+      from: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    leftArmAngleDeg: 23.16
+    rightArmAngleDeg: 23.092
+    armSpanRatioDelta: 0.004892
+    feetBottomDeltaRatio: 0.0
+    headTopDeltaRatio: 0.000441
+    hipsRatioDelta: 0.00375
+    faceIou: 0.930907
+    headToBodyRatio2d: 9.4375
+    shoulderRatio2d: 0.185766
+    pass: true
+  selection: 作者 2026-10-11 在女性候选 A（g1）/ B（g2）中选 A，并同意上 Tripo（85 点）
+  status: candidate
+  notes: 作者 2026-10-11「基础素体要更美观，现在的素体斜方肌太明显了，很难看」。同一提示词出 g1 / g2 两张，均为一次出图。check_plate 全过：上臂 23.16° / 23.09°（25° ± 3°）、脸区 IoU 0.931、头顶 / 脚底对齐、髋高比差 0.004；2D 肩宽比 0.186（底板 0.182）。
