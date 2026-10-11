@@ -8,7 +8,8 @@
     "./schemas": "./src/schemas/index.ts",
     "./item-content": "./src/item-content.ts",
     "./tooling": "./src/tooling.ts",
-    "./build": "./src/build/index.ts"
+    "./build": "./src/build/index.ts",
+    "./town-plan": "./src/build/town-plan/index.ts"
   },
   "scripts": {
     "test": "vitest run src",
