@@ -29881,7 +29881,11 @@
     "packages/render/src/buildgen/mesher/parts/dressing.ts",
     "packages/render/src/buildgen/mesher/recipes/hall.ts",
     "packages/render/src/buildgen/mesher/core/inspect.ts",
-    "packages/render/src/buildgen/__tests__/hall.test.ts"
+    "packages/render/src/buildgen/__tests__/hall.test.ts",
+    "packages/render/src/buildgen/stubs.test.ts",
+    "packages/render/src/buildgen/testing/mini-plans.ts",
+    "packages/render/src/buildgen/generate.test.ts",
+    "packages/render/src/buildgen/inspect.test.ts"
    ],
    "validate": {
     "exists": [
