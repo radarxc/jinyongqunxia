@@ -29659,7 +29659,8 @@
     "packages/core/src/**/*.test.ts",
     "apps/game/src/runtime/core-dispatch.ts",
     "apps/game/src/runtime/*.test.ts",
-    "apps/game/src/storage/*.test.ts"
+    "apps/game/src/storage/*.test.ts",
+    "apps/game/src/storage/save-service.ts"
    ],
    "validate": {
     "exists": [

@@ -27,7 +27,7 @@
 - 现有 core / app / storage 测试在 schema 4 下全部通过。
 
 ## 约束
-- 只写：`packages/core/src/command/{index,bus,handlers,shop-handler,explore-handler}.ts`、`packages/core/src/economy/shop-types.ts`、`packages/core/src/world/explore/{types,tick,tick-hook,walk-validate}.ts`、`packages/core/src/dialogue/context-validate.ts`、`packages/core/src/state/**`、`packages/core/src/entries/{shop-command,explore-command}.ts`、`packages/core/package.json`、`packages/core/src/**/*.golden.json`、`packages/core/src/**/*.test.ts`（只增改与本任务直接相关的用例）、`apps/game/src/runtime/core-dispatch.ts`、`apps/game/src/{runtime,storage}/*.test.ts` 与本任务报告。
+- 只写：`packages/core/src/command/{index,bus,handlers,shop-handler,explore-handler}.ts`、`packages/core/src/economy/shop-types.ts`、`packages/core/src/world/explore/{types,tick,tick-hook,walk-validate}.ts`、`packages/core/src/dialogue/context-validate.ts`、`packages/core/src/state/**`、`packages/core/src/entries/{shop-command,explore-command}.ts`、`packages/core/package.json`、`packages/core/src/**/*.golden.json`、`packages/core/src/**/*.test.ts`（只增改与本任务直接相关的用例）、`apps/game/src/runtime/core-dispatch.ts`、`apps/game/src/storage/save-service.ts`（**只许**在 `STATE_MIGRATIONS` 里登记 3 → 4 迁移，照现有 1 → 2、2 → 3 的写法；导入旧存档时要能一路迁到 4）、`apps/game/src/{runtime,storage}/*.test.ts` 与本任务报告。
 - 不实现买卖、寻路、行走推进本身（后续任务）；不改 `packages/core/src/index.ts` 的导出布局；不新增依赖。
 - core 只用整数（无 `/`，用 `floorDivInt` / `ceilDivInt`）、无墙钟与隐式随机；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
 
