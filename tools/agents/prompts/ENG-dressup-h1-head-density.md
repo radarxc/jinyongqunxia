@@ -40,3 +40,13 @@
 
 ## 报告
 `tools/agents/reports/ENG-dressup-h1-head-density.md`（≤ 60 行）：岛数、缩放比、覆盖率、密度倍数；6 份门禁关键值新旧对照；截图路径；第 7 节写 `--texture` 用法与后续换模板（tpl_f2）重切时的命令。
+
+## 协调者补充裁定（2026-10-11，实现中实测）
+1. 验收第一条"头部覆盖率 ≥ 50%"是动工前按 70% 排布效率估的，作废：头部 UV 岛形状不规则，包围盒本身约有一半是空白，矩形排布实测覆盖率 45–47%（穆念慈 10 个岛、黄蓉 112 个岛，矩形占用 79–89%）；允许岛旋转 90° 的对照实验只把缩放比提高 1.0–1.6%，不值得增加旋转映射。
+2. 改为：**线性纹素密度 ≥ 现在的 2 倍**为硬门（诊断 `atlas.linearGainVsLegacy`，实测约 2.0–2.4），覆盖率只报告不判。
+3. 回归：不给 `--texture` 时，穆念慈 medium 重切的 head.glb / hidemask / preview / self_check 与已提交版本逐字节相同，fit.json 除 `durationMs` 外无差异（实跑核对）。
+
+## 协调者补充裁定（2026-10-11，审核 r1 返修）
+4. 分析隔离按 r1 意见执行：切口头色、身体增益、skinTint 与肤色诊断一律在内嵌贴图的旧图集口径上算；给 `--texture` 时 fit 的 `skinTint` / `deltaE` / `ring` / `hideMask` / `diagnostics.color`、hidemask 文件、几何 / 权重 / 颈片 UV 与不给时逐项相同（六份重切实测核对）。
+5. "只有最终图集的头部内容与头部 UV 改变"澄清：颈片条带也属最终图集内容。分析结束后按已定的 skinTint 从高清头部画布重烘一次条带（不再迭代增益），切口两侧取色来自同一张头部图；离切口 `COLOR_BLEND_MM` 以外的条带行只取模板身体色 × skinTint，与 legacy 逐像素相同。依据：条带若仍从 2K 旧画布取色，黄蓉 small 上接缝色差 p95 升到 1.99（门 < 2）；重烘后 1.36，下接缝与分析量不变。
+6. `fit.source.texture` 按契约写 `{path, sha256, size, factor, meanAbsDiffVsEmbedded}`，`path` 为仓库相对路径（本地素材库按主检出根）。

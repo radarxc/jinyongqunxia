@@ -8,14 +8,14 @@
   heightM: 1.81
   tool: tripo-studio-web（经 tri_pipeline_runner /eval）
   tripo_model:
-    project_id: 1ccfd7a9-909c-45b9-b87a-346acc5932f8
-    generate_op: bf93598e-4dc6-483f-8f36-8e59368138f2
-    rig_op: b15debfd-144c-4c78-a90c-c30fe541794a
-    export_op: 0c19ad55-73d4-4646-a53f-b3e919dab854
+    project_id: 11c688eb-413a-4276-a656-ba0265e48c5b
+    generate_op: 6adfee5f-7ca2-4f80-a521-8f436972fbd4
+    rig_op: d5105221-6b09-4626-84b2-81f4d4a08378
+    export_op: 6cac836a-2337-4ea8-8abf-c0d57c3eb11e
     animation_ops:
-      idle: 608c72e1-d4d5-47bc-bcc9-2b7354537b1c
-      walk: 1be549d0-2fa6-42bd-8172-9d15c2c4fd42
-      run: a8e604a5-4c58-4f55-ab19-d2a78805f274
+      idle: 4917e049-e49e-46b2-ba98-87e5fb8ab5c6
+      walk: 30437783-f83c-4cee-a5a0-4de9b912b4e6
+      run: e20636b3-d0b4-496e-8dd1-c3d0dcf63ae3
   options:
     generate:
       mode: image_to_model
@@ -46,43 +46,63 @@
   credits:
     generate: 65
     rig: 20
-    before: 16835
-    after: 16750
+    before: 16750
+    after: 16665
   references:
-  - path: assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose.png
-    sha256: 619c723be5b2130af3e844ea223933b1ac2644b88efc763520e654fe0f32965e
-    use: 作者 2026-10-11 选定的男性素体图（男主角脸剃光头、一字平肩、宽肩窄腰、高叉三角内裤、赤足、25° 窄 A）
+  - path: assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose_v2.png
+    sha256: 14a2ad8926ac3d0eab672c519c38b93200ad9b3d55708586bb871b53f708d09a
+    use: 作者 2026-10-11 选定的男性 v2 素体图 B（g2）：颈更长更细、斜方肌薄而平直（参考逆水寒男）；脸 / 光头 / 一字平肩 / 宽肩窄腰 / 25° 窄 A 与 v1 一致
   skeleton: skeleton.json
   regions: regions.npy
-  regionsSha: a87dd995052a837dbd7f01927dc27d3c7f7ef3339cfeac3100f1307aad5a5d50
+  regionsSha: 61591f3f73f9d212284911ffe480ceaf24c1842494ff4e92e33d0b806bb6d926
   skullProfile: skull_profile.json
-  skullProfileSha: ff75a05a5386b5be8c4770ba59635c87e6a5eb71ed0dcd3534f9dd7863182960
-  heightMu: 0.97937013
-  mPerMu: 1.84812662
-  ringSha: 05b2ad15fedf73ddbf42d1b774bc69160cf30ab6b6ba29feeb505684b214bbca
-  skeletonSha: 647d851d7e15ccca50f08afc24c0abf6fa29d10cda53b923f4fefb61d63690d3
+  skullProfileSha: 262402cadaa9c2c3d6f61a8e2a6f0917b8ff76e9d92e9a9af85a63d66c9b4336
+  heightMu: 0.97924826
+  mPerMu: 1.84835662
+  ringSha: d9342353c83776ff30dc220d357eb2404a669b901f1221efc0c39f388f184e45
+  skeletonSha: 25c45b057e3f352cb2024d27f92c731a3a7ae402dbd58794d68a3bf346ec94e4
   source:
+    tripo_project_id: 11c688eb-413a-4276-a656-ba0265e48c5b
+  supersedes:
+    task: ART-dressup-t4-bodies-v2
     tripo_project_id: 1ccfd7a9-909c-45b9-b87a-346acc5932f8
-  sha256: 4e362cbfee71c065baf98a1bb3f084aa820bf8084ee7b885e6bb30696f6bc686
-  size_bytes: 9572492
+    sha256: 4e362cbfee71c065baf98a1bb3f084aa820bf8084ee7b885e6bb30696f6bc686
+    neckToHead: 0.6857
+    chinToNeckRootMm: 26.0
+    trapSlopeDeg: 18.34
+    reason: 作者 10-11「男女脖子都太粗」：颈宽 / 头宽 0.69、颈短、斜方肌从耳下隆起；平滑雕塑 v3 仍留 16° 折角，按作者「换素体重新生成」选新图 B 重上 Tripo
+  unlit:
+    tool: tools/model3d/dressup/textures.py --max 2048 --quality 85
+    sourceSha256: a703e7c825777a98d12d898e7a6667b6d39104b5e6ceb921de55c48a685e076d   # Tripo 导出 + 规范化后、转 unlit 前
+    result: KHR_materials_unlit，只留 baseColor（2048² JPEG q85）；normal / metallicRoughness 贴图连同 image / bufferView 删除；几何、权重、_REGION、关节、IBM、动画逐字节不变
+  sha256: d9db6f2d86979df28bf082e965eacfbe067ba5407e6754ddfd8d70211471b65d
+  size_bytes: 8670272
   joints: 65
-  vertices: 103013
-  triangles: 192726
+  vertices: 105156
+  triangles: 197736
   animations:
   - idle (15.333s)
   - walk (2.333s)
   - run (1.25s)
-  armAngleDeg3d: 21.7062476
-  headsRatio: 8.16
-  hipsRatio: 0.57224802
-  preview: preview.png
+  armAngleDeg3d: 22.1094673
+  headsRatio: 8.23
+  hipsRatio: 0.56835958
+  neckToHead: 0.6028        # 正面剪影：颈最细宽 / 头宽（含耳）
+  chinToNeckRootMm: 33.0    # sculpt_neck --check-only 测量口径
+  trapSlopeDeg: 20.74       # 颈根点到肩峰点连线与水平夹角
+  preview: preview.png       # Tripo 绑骨后封面
   shots:
-  - shots/views.tpl_m_medium.jpg
+  - shots/regen_v2.before_after.jpg
+  superseded_shots:
+  - shots/views.tpl_m_medium.jpg       # T4 旧男模（1ccfd7a9，已被本版取代）
   status: candidate
-  created: '2026-10-11T08:31:00-07:00'
+  created: '2026-10-11T14:04:00-07:00'
   notes: >-
-    T4（作者 2026-10-11「要做一套很好看的女性素体，和一套很帅气的男性素体」）首个男性中等素体模板：
-    65 关节、rest=bind、+Z、原地 idle/walk/run，骨架帧按 AR-104 的 1.81 m 换算。已知瑕疵（Tripo 生成即有，未修）：
-    后脑偏下有 1 个倒置面在单面材质下露成小黑三角（全身倒置面 22 个），左大腿外侧（髋到大腿中段）有一条浅色贴图条带；
-    处理放到后续派生 / 贴合任务。男性衣物 / 头 / 道具尚无贴合，tall / small 另起任务派生。
-    当前 candidate 仍含 PBR normal/MR 贴图，进包时由 textures.py 转 unlit。
+    T4b（作者 2026-10-11「男女脖子都太粗……参考逆水寒」「如果不行就换素体重新生成」，选新素体图 B）重生成的男性中等素体模板，
+    取代 T4 的 1ccfd7a9 版：65 关节、rest=bind、+Z、原地 idle/walk/run，骨架帧按 AR-104 的 1.81 m 换算。
+    颈宽 / 头宽 0.686 → 0.603（逆水寒男约 0.68，验收 ≤ 0.62）、颈加长、颈后与斜方肌变薄，未做雕塑。
+    颈环：Tripo 把斜方肌起点也刷成 Neck 主导，export_skeleton 改为多段近圆时取半径在区间内的一段（T4b 补充裁定），环半径 0.041 / 0.039 mu。
+    已知瑕疵（Tripo 生成即有，未修）：全身倒置面 67 个，后脑偏下 1 处在单面材质下露成小黑点（截图背面列可见），交 T5 统一翻正；
+    头顶偏后有一条细的浅色贴图缝（近看可见，正面看不到），随后续贴图修整处理。T4 版左大腿外侧的浅色条带新版没有。
+    男性衣物 / 头 / 道具尚无贴合，lean / bulk 由 T5 从本模板派生。
+    已按 tech/11 模板契约转 KHR_materials_unlit、只留 baseColor（见 unlit 块）。

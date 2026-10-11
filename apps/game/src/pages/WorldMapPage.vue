@@ -1,5 +1,5 @@
 <script setup lang="ts">
-/* global Event, HTMLImageElement, HTMLInputElement, HTMLElement, MouseEvent, PointerEvent, ResizeObserver, SVGGElement, WheelEvent, cancelAnimationFrame, fetch, requestAnimationFrame, window */
+/* global Event, HTMLImageElement, HTMLInputElement, HTMLElement, MouseEvent, PointerEvent, MediaQueryList, MediaQueryListEvent, ResizeObserver, SVGGElement, WheelEvent, cancelAnimationFrame, fetch, matchMedia, requestAnimationFrame, window */
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import type { WorldMapProjection } from '@tianshu/core';
@@ -45,6 +45,21 @@ interface MarkerAtlas {
 }
 const atlasDefinition = shallowRef<MarkerAtlas | null>(null);
 const landmarkIndex = shallowRef<readonly LandmarkEntry[]>([]);
+/** The protagonist's walk / run strips rendered from the 3D model (AR-116); null keeps the standee. */
+type HeroVariant = 'male' | 'female';
+interface HeroGait { readonly url: string; readonly frames: number; readonly cycle: number }
+interface HeroSprite {
+  readonly variant: HeroVariant;
+  readonly frameWidth: number; readonly frameHeight: number; readonly anchor: Point; readonly facing: 'left' | 'right';
+  readonly walk: HeroGait; readonly run: HeroGait | null; readonly idle: string;
+}
+/** Strips per protagonist model; the page shows the one App.vue's heroModelUrl would pick (by gender). */
+const heroVariants = shallowRef<Partial<Record<HeroVariant, HeroSprite>>>({});
+const heroSprite = shallowRef<HeroSprite | null>(null);
+/** On-screen height of a hero frame; the figure itself is a few px shorter (frames keep a margin). */
+const HERO_HEIGHT = 72;
+/** Walk strips play a little faster than the clip so the brisker travel pace reads as hurrying. */
+const WALK_PLAYBACK = 0.8;
 /** Town art resampled to the base image's texel density, keyed by art key (see map-sprites.ts). */
 const mapSprites = shallowRef<ReadonlyMap<string, string>>(new Map());
 /**
@@ -86,7 +101,11 @@ const selected = computed(() => openNodes.value.find(node => node.id === selecte
 const selectedReachable = computed(() => !selected.value ||
   (mapView.value?.reachableNodeIds.includes(selected.value.id) ?? false));
 const destinationId = computed(() => mapView.value?.journey?.destination ?? selectedId.value);
-const reducedMotion = computed(() => controller.settings.value.reducedMotion);
+/** design/26: the game switch or the system preference, whichever is on (the system one is followed live). */
+const systemReducedMotion = ref(false);
+const reducedMotion = computed(() => controller.settings.value.reducedMotion || systemReducedMotion.value);
+let reducedQuery: MediaQueryList | undefined;
+const onReducedQuery = (event: MediaQueryListEvent): void => { systemReducedMotion.value = event.matches; };
 const walking = computed(() => mapView.value?.journey?.status === 'walking');
 const mapTextureUrl = computed(() => {
   const url = mapStatic.value?.mapTextureUrl;
@@ -171,6 +190,24 @@ function displayPoint(state: WorldMapProjection | null | undefined): Point {
 const actorPoint = computed(() => displayPoint(mapView.value));
 const roadImageTransform = computed(() => 'scale(' + imageSize.value.width / GRID_SIZE.width + ' ' +
   imageSize.value.height / GRID_SIZE.height + ')');
+const heroVariant = computed<HeroVariant>(() => projection.value.characters
+  ?.find(character => character.relation === 'self')?.detail?.identity?.gender === 'female' ? 'female' : 'male');
+const heroStyle = computed<Record<string, string>>(() => {
+  const sprite = heroSprite.value;
+  if (!sprite) return {};
+  const k = HERO_HEIGHT / sprite.frameHeight; const width = sprite.frameWidth * k;
+  const [ax, ay] = [sprite.anchor[0] * k, sprite.anchor[1] * k];
+  const box = { width: width + 'px', height: HERO_HEIGHT + 'px', left: -ax + 'px', top: -ay + 'px',
+    transformOrigin: `${ax}px ${ay}px` };
+  const gait = walking.value && !reducedMotion.value ? (fastTravel.value && sprite.run ? sprite.run : sprite.walk) : null;
+  if (!gait) return { ...box, backgroundImage: `url('${sprite.idle}')`, backgroundSize: '100% 100%' };
+  return { ...box, backgroundImage: `url('${gait.url}')`, backgroundSize: `${gait.frames * width}px ${HERO_HEIGHT}px`,
+    '--strip-w': `${gait.frames * width}px`, animationTimingFunction: `steps(${gait.frames})`,
+    animationDuration: `${(gait === sprite.walk ? gait.cycle * WALK_PLAYBACK : gait.cycle).toFixed(3)}s` };
+});
+/** The strips face one way; the other direction mirrors them. */
+const heroMirrored = computed(() => Boolean(heroSprite.value) && (heroSprite.value!.facing === 'left') !== facingLeft.value);
+const heroMoving = computed(() => walking.value && !reducedMotion.value);
 const progress = computed(() => {
   const journey = mapView.value?.journey;
   return journey ? Math.floor(journey.travelledLi * 100 / Math.max(1, journey.totalLi)) : 0;
@@ -410,18 +447,29 @@ function onBadgeEnter(nodeId: string): void {
 async function travel(): Promise<void> {
   if (selectedId.value) await controller.worldMapCommand({ t: 'worldmap/travel', nodeId: selectedId.value });
 }
+/**
+ * Travel beat (AR-116): one 10-li step every WALK_STEP_MS, timed from the previous step rather than from
+ * its reply, so the pace does not depend on the worker round trip. It used to wait 45 ms after each reply
+ * (about 51 ms a step); 25 ms is twice as fast. 疾行 keeps about twice the walking pace.
+ */
+const WALK_STEP_MS = 25;
+const FAST_STEP_MS = 12;
+const CALM_STEP_MS = 200;
+let lastStepAt = Number.NEGATIVE_INFINITY;
 function scheduleStep(state: WorldMapProjection | null): void {
   window.clearTimeout(stepTimer); stepTimer = 0;
   const journey = state?.journey;
   if (disposed || !journey || journey.status !== 'walking') return;
-  const delay = reducedMotion.value ? 200 : (fastTravel.value ? 12 : 45);
+  const period = reducedMotion.value ? CALM_STEP_MS : (fastTravel.value ? FAST_STEP_MS : WALK_STEP_MS);
+  const wait = Math.max(0, Math.min(period, lastStepAt + period - window.performance.now()));
   stepTimer = window.setTimeout(() => {
     stepTimer = 0;
     if (disposed) return;
+    lastStepAt = window.performance.now();
     if (controller.busy.value) { scheduleStep(mapView.value); return; }
     void controller.worldMapCommand({ t: 'worldmap/step', journeyId: journey.id,
       expectedTravelledLi: journey.travelledLi });
-  }, delay);
+  }, wait);
 }
 function bindStage(target: HTMLElement | undefined): void {
   if (target === boundStage) return;
@@ -549,12 +597,55 @@ async function loadOverlays(): Promise<void> {
   const json = async (url: string): Promise<unknown> => {
     try { const response = await fetch(url); return response.ok ? await response.json() : null; } catch { return null; }
   };
-  const [atlas, index] = await Promise.all([json('/assets/default/map/markers/atlas.json'),
-    json('/assets/default/map/landmark/index.json')]);
+  const [atlas, index, hero] = await Promise.all([json('/assets/default/map/markers/atlas.json'),
+    json('/assets/default/map/landmark/index.json'), json('/assets/default/map/hero/hero.json')]);
   if (disposed) return;
   atlasDefinition.value = parseAtlas(atlas);
   if (Array.isArray(index)) landmarkIndex.value = index.filter(isLandmarkRow);
   probeAtlas();
+  heroVariants.value = parseHero(hero);
+}
+let heroProbe = 0;
+/** Use a variant's strips only once they load; a missing run strip just keeps walking under 疾行. */
+async function pickHeroSprite(): Promise<void> {
+  const probe = ++heroProbe; const sprite = heroVariants.value[heroVariant.value] ?? null;
+  // Never keep showing the other protagonist while this one's strips load: the standee stands in.
+  if (heroSprite.value && heroSprite.value.variant !== heroVariant.value) heroSprite.value = null;
+  if (!sprite) { heroSprite.value = null; return; }
+  const [walk, idle, run] = await Promise.all([sprite.walk.url, sprite.idle, sprite.run?.url ?? null]
+    .map(url => (url ? loadImage(url) : Promise.resolve(null))));
+  if (disposed || probe !== heroProbe) return;
+  heroSprite.value = walk && idle ? (run || !sprite.run ? sprite : { ...sprite, run: null }) : null;
+}
+watch([heroVariants, heroVariant], () => { void pickHeroSprite(); });
+/** hero.json (tianshu.map-hero.v1, tools/map/hero/pack_hero.py); a malformed variant keeps the standee. */
+function parseHero(value: unknown): Partial<Record<HeroVariant, HeroSprite>> {
+  const hero = value as { schema?: unknown; variants?: unknown } | null;
+  if (!hero || hero.schema !== 'tianshu.map-hero.v1' || !hero.variants || typeof hero.variants !== 'object') return {};
+  const variants: Partial<Record<HeroVariant, HeroSprite>> = {};
+  for (const key of ['male', 'female'] as const) {
+    const sprite = parseHeroVariant((hero.variants as Record<string, unknown>)[key], key);
+    if (sprite) variants[key] = sprite;
+  }
+  return variants;
+}
+function parseHeroVariant(value: unknown, variant: HeroVariant): HeroSprite | null {
+  const hero = value as Record<string, unknown> | null;
+  const file = (name: unknown): string | null => typeof name === 'string' && /^[\w.-]+$/.test(name)
+    ? '/assets/default/map/hero/' + name : null;
+  const gait = (raw: unknown): HeroGait | null => {
+    const row = raw as { image?: unknown; frames?: unknown; cycleSeconds?: unknown } | null;
+    const url = file(row?.image);
+    return row && url && Number.isInteger(row.frames) && (row.frames as number) >= 1 && (row.frames as number) <= 64 &&
+      positive(row.cycleSeconds) ? { url, frames: row.frames as number, cycle: row.cycleSeconds } : null;
+  };
+  if (!hero || typeof hero !== 'object' || !positive(hero['frameWidth']) || !positive(hero['frameHeight']) ||
+      !pair(hero['anchor']) || (hero['facing'] !== 'left' && hero['facing'] !== 'right')) return null;
+  const [ax, ay] = hero['anchor']; const walk = gait(hero['walk']);
+  const idle = file((hero['idle'] as { image?: unknown } | null)?.image);
+  if (!walk || !idle || ax < 0 || ax > hero['frameWidth'] || ay < 0 || ay > hero['frameHeight']) return null;
+  return { variant, frameWidth: hero['frameWidth'], frameHeight: hero['frameHeight'], anchor: [ax, ay], facing: hero['facing'],
+    walk, run: hero['run'] === undefined ? null : gait(hero['run']), idle };
 }
 const positive = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value) && value > 0;
 const finite = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
@@ -584,6 +675,11 @@ function isLandmarkRow(value: unknown): value is LandmarkEntry {
     row!.anchor[0] >= 0 && row!.anchor[0] <= row!.width && row!.anchor[1] >= 0 && row!.anchor[1] <= row!.height;
 }
 onMounted(() => {
+  if (typeof matchMedia === 'function') {
+    reducedQuery = matchMedia('(prefers-reduced-motion: reduce)');
+    systemReducedMotion.value = reducedQuery.matches;
+    reducedQuery.addEventListener?.('change', onReducedQuery);
+  }
   mounted = true; bindStage(stage.value); void loadOverlays();
   if (import.meta.env.DEV) {
     const handle = Object.freeze({
@@ -603,6 +699,7 @@ onMounted(() => {
   }
 });
 onBeforeUnmount(() => {
+  reducedQuery?.removeEventListener?.('change', onReducedQuery);
   disposed = true; mounted = false;
   window.clearTimeout(stepTimer); stepTimer = 0;
   bindStage(undefined); cleanupDebug?.();
@@ -677,7 +774,8 @@ onBeforeUnmount(() => {
           :style="{ left: heroAt[0] + 'px', top: heroAt[1] + 'px' }"
         >
           <i class="map-hero-halo" />
-          <div class="map-hero-bob"><img :src="'/img/hero_cutout.png'" alt="" height="64" draggable="false"></div>
+          <i v-if="heroSprite" class="map-hero-sprite" :class="{ moving: heroMoving, mirrored: heroMirrored }" :style="heroStyle" />
+          <div v-else class="map-hero-bob"><img :src="'/img/hero_cutout.png'" alt="" height="64" draggable="false"></div>
         </div>
       </div>
     </div>
@@ -897,10 +995,15 @@ onBeforeUnmount(() => {
 .map-hero-bob img { display: block; height: 64px; width: auto; max-width: none; flex: none; }
 .map-hero.facing-left img { scale: -1 1; }
 .map-hero.walking .map-hero-bob { animation: hero-walk 0.6s ease-in-out infinite; }
+/* Walk / run strip: one frame per step of steps(n), from the first frame to just before the strip's end. */
+.map-hero-sprite { position: absolute; display: block; background-repeat: no-repeat; }
+.map-hero-sprite.moving { animation-name: hero-gait; animation-iteration-count: infinite; }
+.map-hero-sprite.mirrored { scale: -1 1; }
+@keyframes hero-gait { from { background-position-x: 0; } to { background-position-x: calc(-1 * var(--strip-w)); } }
 @keyframes hero-walk { 50% { translate: 0 -2px; } }
-.reduced-motion .map-destination, .reduced-motion .map-hero-bob { animation: none; }
+.reduced-motion .map-destination, .reduced-motion .map-hero-bob, .reduced-motion .map-hero-sprite { animation: none; }
 @media (prefers-reduced-motion: reduce) {
-  .map-destination, .map-hero.walking .map-hero-bob { animation: none; }
+  .map-destination, .map-hero.walking .map-hero-bob, .map-hero-sprite { animation: none; }
 }
 .worldmap-panel {
   position: absolute;

@@ -1,0 +1,132 @@
+- id: map_hero_male_walk
+  file: map_hero_male_walk.webp
+  subject: 大地图主角·男行走循环（AR-116）：12 帧横排、朝左、一步周期 1.1667 s；帧尺寸与地面锚点见同目录 hero.json
+  category: map
+  style: default
+  prompt: （无：程序渲染，未调用出图模型）
+  negative: （无）
+  references:
+  - path: assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb
+    sha256: d53b0e4064dda0a8ceeef4843660c6529caf5dcb2dce7a95bad913720bb24797
+    use: 主角·男 3D 模型（城镇 / 战斗 / 人物页按性别选用的同一模型）自带动画，原地播放（锁定 Hips 水平位移）
+  - path: tools/map/hero/render_hero.html
+    sha256: a6d856b5715d92f9a68063bd166daeaa76091bedf44383d3057e9f7c12848ad6
+    use: 渲染夹具：正交相机偏航 -70° / 俯角 12°，透明底 512² 画布
+  tool: node tools/map/hero/render_hero.mjs + python3 tools/map/hero/pack_hero.py（Three.js 渲染 → 统一裁框 → 预乘 Lanczos 缩放，WebP q92）
+  model: （无：确定性渲染）
+  effort: n/a
+  created: '2026-10-11T22:53:35Z'
+  status: candidate
+  size: 2292x256
+  sha256: 49dfcb0ac8de9110b01f7dc2ba6176ffa1a9ceac0b80e9049a0b72afc87bdabe
+  notes: 移动时逐帧播放，反方向时水平镜像；复核：python3 tools/map/hero/pack_hero.py <帧目录> --check。
+- id: map_hero_male_run
+  file: map_hero_male_run.webp
+  subject: 大地图主角·男奔跑循环（疾行）（AR-116）：12 帧横排、朝左、一步周期 0.625 s；帧尺寸与地面锚点见同目录 hero.json
+  category: map
+  style: default
+  prompt: （无：程序渲染，未调用出图模型）
+  negative: （无）
+  references:
+  - path: assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb
+    sha256: d53b0e4064dda0a8ceeef4843660c6529caf5dcb2dce7a95bad913720bb24797
+    use: 主角·男 3D 模型（城镇 / 战斗 / 人物页按性别选用的同一模型）自带动画，原地播放（锁定 Hips 水平位移）
+  - path: tools/map/hero/render_hero.html
+    sha256: a6d856b5715d92f9a68063bd166daeaa76091bedf44383d3057e9f7c12848ad6
+    use: 渲染夹具：正交相机偏航 -70° / 俯角 12°，透明底 512² 画布
+  tool: node tools/map/hero/render_hero.mjs + python3 tools/map/hero/pack_hero.py（Three.js 渲染 → 统一裁框 → 预乘 Lanczos 缩放，WebP q92）
+  model: （无：确定性渲染）
+  effort: n/a
+  created: '2026-10-11T22:53:35Z'
+  status: candidate
+  size: 2292x256
+  sha256: 19d56c395c3feb7c6cbc6bc09569b29b172f8c871cb798058ecffad8f6e8415c
+  notes: 移动时逐帧播放，反方向时水平镜像；复核：python3 tools/map/hero/pack_hero.py <帧目录> --check。
+- id: map_hero_male_idle
+  file: map_hero_male_idle.webp
+  subject: 大地图主角·男站立（AR-116）：idle 首帧，与行走帧同一裁框与锚点
+  category: map
+  style: default
+  prompt: （无：程序渲染，未调用出图模型）
+  negative: （无）
+  references:
+  - path: assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb
+    sha256: d53b0e4064dda0a8ceeef4843660c6529caf5dcb2dce7a95bad913720bb24797
+    use: 主角·男 3D 模型（城镇 / 战斗 / 人物页按性别选用的同一模型）自带动画，原地播放（锁定 Hips 水平位移）
+  - path: tools/map/hero/render_hero.html
+    sha256: a6d856b5715d92f9a68063bd166daeaa76091bedf44383d3057e9f7c12848ad6
+    use: 渲染夹具：正交相机偏航 -70° / 俯角 12°，透明底 512² 画布
+  tool: node tools/map/hero/render_hero.mjs + python3 tools/map/hero/pack_hero.py（Three.js 渲染 → 统一裁框 → 预乘 Lanczos 缩放，WebP q92）
+  model: （无：确定性渲染）
+  effort: n/a
+  created: '2026-10-11T22:53:35Z'
+  status: candidate
+  size: 191x256
+  sha256: 9d34ecfc56684e7fa6ff8946c91cbd23004f199aeab406a3a5d1e5c3977aee8b
+  notes: 停步、未出发或减少动效时显示。
+- id: map_hero_female_walk
+  file: map_hero_female_walk.webp
+  subject: 大地图主角·女行走循环（AR-116）：12 帧横排、朝右、一步周期 1.1667 s；帧尺寸与地面锚点见同目录 hero.json
+  category: map
+  style: default
+  prompt: （无：程序渲染，未调用出图模型）
+  negative: （无）
+  references:
+  - path: assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb
+    sha256: 4943db3e044684b7e20ff987f264fe11731b3bd9f73dc21572bfa7c8d37d6768
+    use: 主角·女 3D 模型（城镇 / 战斗 / 人物页按性别选用的同一模型）自带动画，原地播放（锁定 Hips 水平位移）
+  - path: tools/map/hero/render_hero.html
+    sha256: a6d856b5715d92f9a68063bd166daeaa76091bedf44383d3057e9f7c12848ad6
+    use: 渲染夹具：正交相机偏航 70° / 俯角 12°，透明底 512² 画布
+  tool: node tools/map/hero/render_hero.mjs + python3 tools/map/hero/pack_hero.py（Three.js 渲染 → 统一裁框 → 预乘 Lanczos 缩放，WebP q92）
+  model: （无：确定性渲染）
+  effort: n/a
+  created: '2026-10-11T22:53:35Z'
+  status: candidate
+  size: 2424x256
+  sha256: 468adf7f609aefff26357a8cb99cd1dabb2cbcc12dc209fbb6ba00bf626537a3
+  notes: 移动时逐帧播放，反方向时水平镜像；复核：python3 tools/map/hero/pack_hero.py <帧目录> --check。
+- id: map_hero_female_run
+  file: map_hero_female_run.webp
+  subject: 大地图主角·女奔跑循环（疾行）（AR-116）：12 帧横排、朝右、一步周期 0.625 s；帧尺寸与地面锚点见同目录 hero.json
+  category: map
+  style: default
+  prompt: （无：程序渲染，未调用出图模型）
+  negative: （无）
+  references:
+  - path: assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb
+    sha256: 4943db3e044684b7e20ff987f264fe11731b3bd9f73dc21572bfa7c8d37d6768
+    use: 主角·女 3D 模型（城镇 / 战斗 / 人物页按性别选用的同一模型）自带动画，原地播放（锁定 Hips 水平位移）
+  - path: tools/map/hero/render_hero.html
+    sha256: a6d856b5715d92f9a68063bd166daeaa76091bedf44383d3057e9f7c12848ad6
+    use: 渲染夹具：正交相机偏航 70° / 俯角 12°，透明底 512² 画布
+  tool: node tools/map/hero/render_hero.mjs + python3 tools/map/hero/pack_hero.py（Three.js 渲染 → 统一裁框 → 预乘 Lanczos 缩放，WebP q92）
+  model: （无：确定性渲染）
+  effort: n/a
+  created: '2026-10-11T22:53:35Z'
+  status: candidate
+  size: 2424x256
+  sha256: fd2f53ed9cc56dcec382b1295a0980f57ec8f8510e49be6ce633b22a0ae2230e
+  notes: 移动时逐帧播放，反方向时水平镜像；复核：python3 tools/map/hero/pack_hero.py <帧目录> --check。
+- id: map_hero_female_idle
+  file: map_hero_female_idle.webp
+  subject: 大地图主角·女站立（AR-116）：idle 首帧，与行走帧同一裁框与锚点
+  category: map
+  style: default
+  prompt: （无：程序渲染，未调用出图模型）
+  negative: （无）
+  references:
+  - path: assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb
+    sha256: 4943db3e044684b7e20ff987f264fe11731b3bd9f73dc21572bfa7c8d37d6768
+    use: 主角·女 3D 模型（城镇 / 战斗 / 人物页按性别选用的同一模型）自带动画，原地播放（锁定 Hips 水平位移）
+  - path: tools/map/hero/render_hero.html
+    sha256: a6d856b5715d92f9a68063bd166daeaa76091bedf44383d3057e9f7c12848ad6
+    use: 渲染夹具：正交相机偏航 70° / 俯角 12°，透明底 512² 画布
+  tool: node tools/map/hero/render_hero.mjs + python3 tools/map/hero/pack_hero.py（Three.js 渲染 → 统一裁框 → 预乘 Lanczos 缩放，WebP q92）
+  model: （无：确定性渲染）
+  effort: n/a
+  created: '2026-10-11T22:53:35Z'
+  status: candidate
+  size: 202x256
+  sha256: edb317dd872d910cf336e34a0be80e3969fbd1e7ebfa172996e39ad774b19a62
+  notes: 停步、未出发或减少动效时显示。

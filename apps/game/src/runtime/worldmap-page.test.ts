@@ -814,3 +814,137 @@ describe('WorldMapPage chapter change clears sect focus', () => {
     expect(wrapper.get('.worldmap-panel').text()).not.toContain('门派驻地');
   });
 });
+
+describe('WorldMapPage hero walk cycle and travel pace (AR-116)', () => {
+  const male = { frameWidth: 192, frameHeight: 256, anchor: [96, 240], facing: 'left',
+    walk: { image: 'map_hero_male_walk.webp', frames: 12, cycleSeconds: 1.1667 },
+    run: { image: 'map_hero_male_run.webp', frames: 12, cycleSeconds: 0.625 }, idle: { image: 'map_hero_male_idle.webp' } };
+  const female = { ...male, facing: 'right', walk: { ...male.walk, image: 'map_hero_female_walk.webp' },
+    run: { ...male.run, image: 'map_hero_female_run.webp' }, idle: { image: 'map_hero_female_idle.webp' } };
+  const heroJson = { schema: 'tianshu.map-hero.v1', variants: { male, female } };
+  const heroFetch = (hero: unknown) => vi.fn(async (url: string) => (url.endsWith('hero.json')
+    ? { ok: true, json: async () => hero } : { ok: false, json: async () => null }));
+
+  it('stands on the idle frame, plays the walk strip while walking and the run strip under 疾行', async () => {
+    vi.stubGlobal('fetch', heroFetch(heroJson));
+    const { wrapper, worldmap, settings } = setup(); await flushFrame();
+    await vi.waitFor(() => expect(wrapper.find('.map-hero-sprite').exists()).toBe(true));
+    expect(wrapper.find('.map-hero-bob').exists()).toBe(false);
+    const sprite = () => wrapper.get('.map-hero-sprite').element as HTMLElement;
+    // 72 px tall frame, anchored on the ground point.
+    expect(sprite().style.height).toBe('72px'); expect(sprite().style.width).toBe('54px');
+    expect(sprite().style.left).toBe('-27px'); expect(sprite().style.top).toBe('-67.5px');
+    expect(sprite().style.backgroundImage).toContain('map_hero_male_idle.webp');
+    expect(sprite().classList.contains('moving')).toBe(false);
+    worldmap.value = journey([300, 192]); await flushFrame();
+    expect(sprite().classList.contains('moving')).toBe(true);
+    expect(sprite().style.backgroundImage).toContain('map_hero_male_walk.webp');
+    expect(sprite().style.backgroundSize).toBe('648px 72px');
+    expect(sprite().style.animationTimingFunction).toBe('steps(12)');
+    expect(sprite().style.animationDuration).toBe('0.933s');
+    // Walking east: the strip faces west, so it is mirrored.
+    expect(sprite().classList.contains('mirrored')).toBe(true);
+    await wrapper.findAll('.map-actions button').find(button => button.text() === '疾行')!.trigger('click');
+    expect(sprite().style.backgroundImage).toContain('map_hero_male_run.webp');
+    expect(sprite().style.animationDuration).toBe('0.625s');
+    settings.value = { reducedMotion: true }; await nextTick();
+    expect(sprite().classList.contains('moving')).toBe(false);
+    expect(sprite().style.backgroundImage).toContain('map_hero_male_idle.webp');
+  });
+
+  it('shows the female strips for a female protagonist, mirrored by their own facing', async () => {
+    vi.stubGlobal('fetch', heroFetch(heroJson));
+    const { wrapper, worldmap, store } = setup();
+    store.replaceProjection({ worldmapStatic: { map, mapTextureUrl: 'assets/default/map/world/test.webp' },
+      characters: [{ key: 'hero', name: '主角', faction: '', relation: 'self', affinity: null, biography: '', portrait: null,
+        detail: { stats: [], skills: [], meridians: [], opened: 0, completed: 0, identity: { gender: 'female' } } }] } as unknown as UiProjection);
+    await flushFrame();
+    await vi.waitFor(() => expect(wrapper.find('.map-hero-sprite').exists()).toBe(true));
+    const sprite = wrapper.get('.map-hero-sprite').element as HTMLElement;
+    expect(sprite.style.backgroundImage).toContain('map_hero_female_idle.webp');
+    worldmap.value = journey([300, 192]); await flushFrame();
+    // Walking east with a strip that already faces east: not mirrored.
+    expect(sprite.style.backgroundImage).toContain('map_hero_female_walk.webp');
+    expect(sprite.classList.contains('mirrored')).toBe(false);
+  });
+
+  it('keeps the standee when hero.json is malformed or its strips fail to load', async () => {
+    vi.stubGlobal('fetch', heroFetch({ ...heroJson, variants: { male: { ...male, anchor: [500, 240] } } }));
+    const first = setup(); await flushFrame(); await flushFrame();
+    expect(first.wrapper.find('.map-hero-sprite').exists()).toBe(false);
+    expect(first.wrapper.get('.map-hero img').attributes('src')).toBe('/img/hero_cutout.png');
+    vi.stubGlobal('fetch', heroFetch(heroJson));
+    for (const clip of ['walk', 'idle']) {
+      sprites.load = (url) => Promise.resolve(url.includes(`_${clip}`) ? null : { naturalWidth: 1, naturalHeight: 1 });
+      const next = setup(); await flushFrame(); await flushFrame();
+      expect(next.wrapper.find('.map-hero-sprite').exists()).toBe(false);
+      expect(next.wrapper.get('.map-hero img').attributes('src')).toBe('/img/hero_cutout.png');
+    }
+  });
+
+  it('keeps walking under 疾行 when only the run strip fails to load', async () => {
+    vi.stubGlobal('fetch', heroFetch(heroJson));
+    sprites.load = (url) => Promise.resolve(url.includes('_run') ? null : { naturalWidth: 1, naturalHeight: 1 });
+    const { wrapper, worldmap } = setup(); await flushFrame();
+    await vi.waitFor(() => expect(wrapper.find('.map-hero-sprite').exists()).toBe(true));
+    worldmap.value = journey([300, 192]); await flushFrame();
+    await wrapper.findAll('.map-actions button').find(button => button.text() === '疾行')!.trigger('click');
+    const sprite = wrapper.get('.map-hero-sprite').element as HTMLElement;
+    expect(sprite.style.backgroundImage).toContain('map_hero_male_walk.webp');
+    expect(sprite.classList.contains('moving')).toBe(true);
+  });
+
+  it('shows the standee while a new protagonist variant loads instead of the other one', async () => {
+    vi.stubGlobal('fetch', heroFetch(heroJson));
+    const pending: Array<() => void> = [];
+    sprites.load = (url) => (url.includes('female')
+      ? new Promise(resolve => { pending.push(() => resolve({ naturalWidth: 1, naturalHeight: 1 })); })
+      : Promise.resolve({ naturalWidth: 1, naturalHeight: 1 }));
+    const { wrapper, store } = setup(); await flushFrame();
+    await vi.waitFor(() => expect(wrapper.find('.map-hero-sprite').exists()).toBe(true));
+    store.replaceProjection({ worldmapStatic: { map, mapTextureUrl: 'assets/default/map/world/test.webp' },
+      characters: [{ key: 'hero', name: '主角', faction: '', relation: 'self', affinity: null, biography: '', portrait: null,
+        detail: { stats: [], skills: [], meridians: [], opened: 0, completed: 0, identity: { gender: 'female' } } }] } as unknown as UiProjection);
+    await nextTick();
+    expect(wrapper.find('.map-hero-sprite').exists()).toBe(false);
+    expect(wrapper.get('.map-hero img').attributes('src')).toBe('/img/hero_cutout.png');
+    for (const resolve of pending) resolve();
+    await vi.waitFor(() => expect(wrapper.find('.map-hero-sprite').exists()).toBe(true));
+    expect((wrapper.get('.map-hero-sprite').element as HTMLElement).style.backgroundImage).toContain('map_hero_female_idle.webp');
+  });
+
+  it('follows the system reduce-motion preference even when the game switch is off', async () => {
+    vi.stubGlobal('fetch', heroFetch(heroJson));
+    let listener: ((event: { matches: boolean }) => void) | undefined;
+    vi.stubGlobal('matchMedia', () => ({ matches: false, addEventListener: (_: string, callback: typeof listener) => { listener = callback; },
+      removeEventListener: () => { listener = undefined; } }));
+    const { wrapper, worldmap } = setup(); await flushFrame();
+    await vi.waitFor(() => expect(wrapper.find('.map-hero-sprite').exists()).toBe(true));
+    worldmap.value = journey([300, 192]); await flushFrame();
+    expect(wrapper.get('.map-hero-sprite').classes()).toContain('moving');
+    listener!({ matches: true }); await nextTick();
+    expect(wrapper.classes()).toContain('reduced-motion');
+    expect(wrapper.get('.map-hero-sprite').classes()).not.toContain('moving');
+    expect((wrapper.get('.map-hero-sprite').element as HTMLElement).style.backgroundImage).toContain('map_hero_male_idle.webp');
+    wrapper.unmount(); expect(listener).toBeUndefined();
+    wrappers.splice(wrappers.indexOf(wrapper), 1);
+  });
+
+  it('steps every 25 ms (twice the old pace) and every 12 ms under 疾行, timed from the previous step', async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'performance'] });
+    const { wrapper, worldmap, command } = setup(journey([270, 192]));
+    const steps = () => command.mock.calls.filter(([value]) => value.t === 'worldmap/step').length;
+    await vi.advanceTimersByTimeAsync(0); expect(steps()).toBe(1);
+    // The reply arrives 6 ms later; the next step still goes out 25 ms after the previous one.
+    await vi.advanceTimersByTimeAsync(6);
+    worldmap.value = { ...journey([280, 192]), journey: { ...journey().journey!, travelledLi: 10, offsetLi: 10 } };
+    await nextTick();
+    await vi.advanceTimersByTimeAsync(18); expect(steps()).toBe(1);
+    await vi.advanceTimersByTimeAsync(1); expect(steps()).toBe(2);
+    expect(command).toHaveBeenLastCalledWith({ t: 'worldmap/step', journeyId: 1, expectedTravelledLi: 10 });
+    await wrapper.findAll('.map-actions button').find(button => button.text() === '疾行')!.trigger('click');
+    await vi.advanceTimersByTimeAsync(11); expect(steps()).toBe(2);
+    await vi.advanceTimersByTimeAsync(1); expect(steps()).toBe(3);
+  });
+});
+

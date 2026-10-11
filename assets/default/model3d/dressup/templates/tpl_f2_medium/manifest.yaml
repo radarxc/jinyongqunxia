@@ -56,15 +56,33 @@
   regions: regions.npy
   regionsSha: 34bd8a09bf2b52125fac5a000a50715a90b2b8135132a1b69d0d41d850f57e4a
   skullProfile: skull_profile.json
-  skullProfileSha: ab7398e4ff20821013257428a65d6492434d61296b9bf45f04452fb25ec920db
-  heightMu: 0.97949221
-  mPerMu: 1.6947557
-  ringSha: 0b84259f40cbb8ec5af648706ec1bd4e5c905ba185f9059dc8e7e9eef9149e38
-  skeletonSha: 795a87423b91efcb95896cacc715b134bc09dc95a03c4dfd6b5631c8deba8f3b
+  skullProfileSha: 95191b78ab308a0e83c9ca3153785e2c48dd86bc11f8906991753476ea1db95e
+  heightMu: 0.98834302
+  mPerMu: 1.67957882
+  ringSha: 33420c75af4a21be19fa3d279679c1ce99ae2aa0c2b1e038142c6a6e35fc0c9c
+  skeletonSha: 37cb9732eeea7b24c09334e962daf640aeccc3580c6e1137fb086e2f25c43819
   source:
     tripo_project_id: 56b020f5-f0fb-430e-84de-d82e4f0a572a
-  sha256: 643b91970788b354f8723866829d1c05f1ee2096391b32e513c0c14017815269
-  size_bytes: 9524192
+  sculpt:
+    task: ART-dressup-t4b-neck-v3
+    tool: tools/model3d/dressup/sculpt_neck.py
+    params: {lengthenMm: 15, kFront: 0.97, kSide: 0.87, kBack: 0.88}
+    report: sculpt.json
+    sourceSha256: 643b91970788b354f8723866829d1c05f1ee2096391b32e513c0c14017815269
+    sourceSizeBytes: 9524192
+    outputSha256: 9f843a456c3de99085adb87e646cb04356f39f15a3787dee174b2382cda78a14   # 雕塑后、转 unlit 前
+    gate: {scope: weldedMesh, flippedFaces: 0, dihedralChangeP99Deg: 0.47, dihedralChangeMaxDeg: 8.26, edgeRatio: [0.873, 1.327]}
+    anchors: {headJointMovedMm: [0, 15.0, 0], neckJointMovedMm: [0, 0, 0], restBindMaxDiffMu: 9.3e-08}
+    movedVertices: 13475
+    neckToHead: {before: 0.5714, after: 0.4745}
+    chinToNeckRootMm: {before: 39.0, after: 45.0}
+    trapSlopeDeg: {before: 19.14, after: 20.27}
+  unlit:
+    tool: tools/model3d/dressup/textures.py --max 2048 --quality 85
+    sourceSha256: 9f843a456c3de99085adb87e646cb04356f39f15a3787dee174b2382cda78a14
+    result: KHR_materials_unlit，只留 baseColor（2048² JPEG q85）；normal / metallicRoughness 贴图连同 image / bufferView 删除；几何、权重、_REGION、关节、IBM、动画逐字节不变
+  sha256: e528b178bfb8070da36ea7f382aa9aa6ca64560cd312d04d281c832b8e8d733e
+  size_bytes: 8575592
   joints: 65
   vertices: 104269
   triangles: 195433
@@ -73,11 +91,15 @@
   - walk (2.333s)
   - run (1.25s)
   armAngleDeg3d: 21.5014779
-  headsRatio: 8.24
-  hipsRatio: 0.54101585
-  preview: preview.png
+  headsRatio: 8.27
+  hipsRatio: 0.536171
+  neckToHead: 0.4745        # 正面剪影：颈最细宽 / 头宽（含耳）
+  trapSlopeDeg: 20.27       # 颈根点到肩峰点连线与水平夹角
+  preview: preview.png       # Tripo 封面（雕塑前）
   shots:
-  - shots/compare.tpl_f_vs_tpl_f2.jpg
+  - shots/neck_v3.before_after.jpg
+  superseded_shots:
+  - shots/compare.tpl_f_vs_tpl_f2.jpg   # T4：tpl_f_medium 对 雕塑前 tpl_f2_medium
   status: candidate
   created: '2026-10-11T08:15:00-07:00'
   notes: >-
@@ -86,4 +108,8 @@
     颈更细更长、斜方肌低平、肩线更宽平。衣物 / 头 / 道具须按本骨架、环与区域 SHA 重新贴合并验收后
     才切换；在此之前运行时与已贴合素材仍以 tpl_f_medium / tall / small 为准，tall / small 另起任务派生。
     Tripo 倒置面 89 个（多在脚底；tpl_f_medium 为 26 个），bind 与 idle / walk / run 实拍未见露洞，处理随后续任务。
-    当前 candidate 仍含 PBR normal/MR 贴图，进包时由 textures.py 转 unlit。
+    T4b（作者 2026-10-11「男女脖子都太粗……参考逆水寒」「算法要平滑，否则有突变」，女按平滑雕塑 v3 定稿）：
+    sculpt_neck.py 约束式双调和位移场把颈加长 15 mm、颈中段收细（前 0.97 / 侧 0.87 / 后 0.88），头部整体上移、Head 关节同步上移，
+    拓扑 / UV / 权重 / 动画轨不变；颈宽 / 头宽 0.571 → 0.475（逆水寒女约 0.5），0 翻面、二面角变化最大 8.3°。
+    身高按 1.66 m 重导出（heightMu 随颈加长变大、mPerMu 相应变小），区域 SHA 不变；倒置面仍为 89 个（雕塑不改拓扑），交 T5 处理。
+    T4b 审核后按 tech/11 模板契约转 KHR_materials_unlit、只留 baseColor（见 unlit 块）。

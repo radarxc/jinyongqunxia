@@ -1,0 +1,102 @@
+{
+  "schema": "tianshu.dressup-neck-sculpt.v1",
+  "body": "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+  "bodySha256": "643b91970788b354f8723866829d1c05f1ee2096391b32e513c0c14017815269",
+  "params": {
+    "lengthenMm": 15.0,
+    "kFront": 0.97,
+    "kSide": 0.87,
+    "kBack": 0.88,
+    "baseKSide": 1.0,
+    "baseKBack": 1.0,
+    "baseRange": [
+      -0.35,
+      -0.15
+    ],
+    "baseRho": 2.0,
+    "trapMm": 0.0,
+    "trapRho": [
+      1.5,
+      2.6
+    ],
+    "headBoundaryMm": [
+      4.0,
+      22.0,
+      30.0
+    ],
+    "rhoOut": 3.6,
+    "roiMm": [
+      90.0,
+      140.0,
+      250.0
+    ]
+  },
+  "measured": {
+    "chinMu": 0.8596,
+    "neckRootMu": 0.8365878337037014,
+    "neckCenterMu": [
+      0.00031275302171707153,
+      -0.013603678438812494
+    ],
+    "neckRadiusMm": [
+      45.17298884260242,
+      43.68785917627974
+    ],
+    "mPerMu": 1.6947557
+  },
+  "sets": {
+    "head": 7864,
+    "torso": 84902,
+    "core": 153,
+    "base": 0,
+    "trap": 0,
+    "roiFree": 4784
+  },
+  "solve": {
+    "freeVertices": 4784,
+    "constrainedVertices": 7938,
+    "residualMaxMu": 1.8986221851095265e-10,
+    "displacementMaxMu": 0.008884788701305848
+  },
+  "maxDisplacementMm": 15.057546294833681,
+  "flippedFaces": 0,
+  "edgeRatio": {
+    "min": 0.8726869919186165,
+    "p001": 0.9302738658452069,
+    "p999": 1.2093672574765095,
+    "max": 1.3265639345700424
+  },
+  "dihedralChangeDeg": {
+    "scope": "weldedMesh",
+    "edges": 293149,
+    "p99": 0.4691233070718164,
+    "p999": 2.2257048736366194,
+    "max": 8.25767361966139,
+    "overLimit": 0,
+    "worstAtMu": [
+      -0.023754174821078777,
+      0.8595579862594604,
+      -0.006874793441966176
+    ],
+    "roiInteriorMax": 8.25767361966139
+  },
+  "gate": {
+    "pass": true,
+    "problems": []
+  },
+  "output": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+    "sha256": "9f843a456c3de99085adb87e646cb04356f39f15a3787dee174b2382cda78a14",
+    "headJointMovedMm": [
+      0.0,
+      14.999999999999996,
+      1.4699662494177532e-15
+    ],
+    "neckJointMovedMm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "restBindMaxDiffMu": 9.345204043942346e-08
+  }
+}

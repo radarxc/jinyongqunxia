@@ -70,17 +70,17 @@
   - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
     sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
     use: 上传第 1 张（临时件 f_plate.png，与底板逐字节相同）：姿势、构图、背景与画风
-  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/bodies/m_ref_face.jpg
+  - path: 临时件 m_ref_face.jpg（会话草稿，未入库）
     sha256: d2b3b740d12168bacf99cf39deecffaaaff193578412da8a4af9eed75439085c
     use: 上传第 2 张（临时件）：assets/default/character/male/ch00/por_npc_zhujue__ch00_m_charmhigh_base.png 裁 (380,40)-(640,300) 后 Lanczos 放大到 768² 的脸部特写（源 sha256 887a1a127f88a5cc99dc94e59cff510424ee0f19f1144d85a4cbb2f8a7ab2731）；身份
-  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/bodies/m_ref_full.jpg
+  - path: 临时件 m_ref_full.jpg（会话草稿，未入库）
     sha256: 1de71d22555e289ff9033bb6f3c7fb2436943324be7ce82792bea6b42b31da87
     use: 上传第 3 张（临时件）：assets/default/character/male/ch00/por_npc_zhujue__ch00_m_charmhigh_base.png 全图转 JPEG（1024×1536）；只参考气质与体格
   tool: Gemini 网页 · Create image（作者 Chrome，Pro 模式）一次出图，经 9223 常驻进程驱动；未做任何局部合成或修图
   model: Gemini 网页 Pro（gemini.google.com）
   effort: n/a
   created: '2026-10-11T01:53:54-07:00'
-  source_path: /Users/bytedance/Downloads/gemini__tplm_body_g4.jpeg
+  source_path: Gemini 网页下载件 gemini__tplm_body_g4.jpeg（未入库）
   source_sha256: e4df766461507483651abf0aefd43abc7546d27ec86630192b4ee0a1ff0511e7
   source_size: 1696x2528
   size: 1686x2528
@@ -89,7 +89,7 @@
   check_plate:
     command: python3 tools/model3d/dressup/check_plate.py --plate <主角窄 A 底板 Lanczos 等比放大到 1686×2528 的临时副本> --image assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose.png --arm-angle-deg 25 --json
     plateTemp:
-      path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/plate/zhujue_narrow_1686x2528.png
+      name: zhujue_narrow_1686x2528.png（临时副本，未入库）
       sha256: 651aeffcccb2b508fefb1cf1e1a61836b4a14840714a558aa15f3069fce34410
       from: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
     leftArmAngleDeg: 23.592
@@ -106,5 +106,58 @@
     notApplicable: faceIou 对照的是女性主角底板的脸，本图是男主角本人，按设计不一致，只报不判；姿态各项全过
   selection: 作者 2026-10-11 在男性候选 A（g4）/ B（g3）中选 A，并同意上 Tripo（85 点）
   rounds: 4 张：g1 / g2 画成平角短裤、头皮有发茬，提示词加「完全的光头、无发茬」「高叉三角内裤，绝对不是平角短裤」后出 g3 / g4
-  status: candidate
+  status: rejected
   notes: 作者 2026-10-11「要做一套很好看的女性素体，和一套很帅气的男性素体」。提示词里的「约 182 cm」只作体态描述，模板身高按 AR-104 取 1.81 m。上臂 23.59° / 23.56°（25° ± 3°）、头顶 / 脚底对齐、髋高比差 0.005；2D 肩宽比 0.234、头身比 9.65（2D 口径）。
+    T4b（2026-10-11）作废：作者「男女脖子都太粗……参考逆水寒」，本图颈短、斜方肌从耳下隆起，Tripo 重建后颈宽 / 头宽 0.69（逆水寒男约 0.68，验收 ≤ 0.62），平滑雕塑仍留折角；由 por_npc_zhujue__ch00_m_bald_base_body_apose_v2 取代。
+- id: por_npc_zhujue__ch00_m_bald_base_body_apose_v2
+  file: por_npc_zhujue__ch00_m_bald_base_body_apose_v2.png
+  category: character/male/threeview
+  style: default
+  subject: 主角·男 光头素体 v2（T4b）：以 v1 为底只改颈肩——颈更长更细、斜方肌薄而平直约 20°（参考《逆水寒》男），脸 / 光头 / 一字平肩 / 宽肩窄腰 / 25° 窄 A / 高叉三角内裤 / 赤足不变。换装模板 tpl_m_medium 的 Tripo 单图输入
+  prompt: |-
+    图像编辑：以第 1 张图为底，只改颈部和肩膀，其余一律保持不变。
+
+    【要改：照第 2 张的颈肩比例和形态】只参考第 2 张的颈、锁骨、斜方肌和肩的比例和线条，不要照搬它的脸、耳环、衣服、纹饰和画风。颈部修长挺拔：颈宽约为头宽（含耳朵）的 0.65 倍，和嘴角高度的下颌差不多宽；下巴到锁骨窝约为头高的 0.4 倍（比第 1 张更长）；胸锁乳突肌和锁骨形成清楚的 V 形；斜方肌薄而平直，从颈的中下段开始以约 20 度的直线斜下到肩，不鼓包、不从耳朵下面就隆起；三角肌圆润，肩宽约为头宽的 2.7 倍。
+
+    【不变】脸、光头、五官、神情、肤色；肤色高叉三角内裤；姿势（正面站立，双臂伸直向身体两侧张开约 25 度的窄 A 字，手掌朝内，五指并拢，赤足，两脚间距不变）；胸、腹、手臂、腿的形体；人物在画面中的位置和大小、头顶和脚底的位置；浅暖灰米色纯色背景；第 1 张的写实手绘插画画风。
+
+    【不要】头发、胡子、饰物、耳环、衣服、鞋；粗短的脖子、从耳下隆起的斜方肌、耸肩；文字、水印、纹身；第二个人；地面、投影。
+  references:
+  - path: assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose.png
+    sha256: 619c723be5b2130af3e844ea223933b1ac2644b88efc763520e654fe0f32965e
+    use: 上传第 1 张（临时件 m_plate.jpg，sha256 3267ff9521272fd48283da6bf3f6e63ea83ba305a0d5a34de17001caa84999a7）：v1 素体图 Lanczos 等比缩到 1024×1536 转 JPEG；编辑底图
+  - path: .agents/coord/imagegen-reference/nishuihan/nsh_male_01.png
+    sha256: c63488406de803cca5dda5513d0267d7fbe7af86033ed3747cb23eb8f519128b
+    use: 上传第 2 张（临时件 nsh_m_neck.jpg，sha256 4e11497b70a5407846702d32338b5af34983c2aa72bbc3030f6a5a99318fd228）：主检出内部参考图（《逆水寒》端游官网 2022-07-26 男款时装展示图，不入库，出处见同目录 SOURCES.md）裁 (440,40)-(1100,980) 转 JPEG；只参考颈、锁骨、斜方肌与肩的比例
+  tool: Gemini 网页 · Create image（作者 Chrome，Pro 模式）图像编辑一次出图，经 9223 常驻进程驱动；未做任何局部合成或修图
+  model: Gemini 网页 Pro（gemini.google.com）
+  effort: n/a
+  created: '2026-10-11T12:45:25-07:00'
+  source_path: Gemini 网页下载件 gemini__tplm_neck_g2.jpeg（未入库）
+  source_sha256: f04a5c6355e1209692046dfcaf957bcfff788ca9be3ffc36c6b4ffa5bbbb7de8
+  source_size: 1686x2528
+  size: 1686x2528
+  sha256: 14a2ad8926ac3d0eab672c519c38b93200ad9b3d55708586bb871b53f708d09a
+  normalization: JPEG 原样解码存 PNG，与下载件逐像素一致；无裁切、无缩放、无局部改动
+  check_plate:
+    command: python3 tools/model3d/dressup/check_plate.py --plate <主角窄 A 底板 Lanczos 等比放大到 1686×2528 的临时副本> --image assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose_v2.png --arm-angle-deg 25 --json
+    plateTemp:
+      name: zhujue_narrow_1686x2528.png（临时副本，未入库）
+      sha256: 651aeffcccb2b508fefb1cf1e1a61836b4a14840714a558aa15f3069fce34410
+      from: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    leftArmAngleDeg: 23.605
+    rightArmAngleDeg: 23.605
+    armSpanRatioDelta: 0.017045
+    feetBottomDeltaRatio: 0.005737
+    headTopDeltaRatio: 0.003089
+    hipsRatioDelta: 0.004324
+    faceIou: 0.867229
+    headToBodyRatio2d: 8.758621
+    shoulderRatio2d: 0.233778
+    pass: false
+    posePass: true
+    notApplicable: faceIou 对照的是女性主角底板的脸，本图是男主角本人，按设计不一致，只报不判；姿态各项全过
+  selection: 作者 2026-10-11 在男性颈肩改图 A（g1）/ B（g2）中选 B，并同意重上 Tripo（85 点）
+  rounds: 2 张：同一提示词与参考各出一次（g1 / g2），女性同批另出 2 张未采用（女性改为对 3D 模板做平滑雕塑）
+  status: candidate
+  notes: 作者 2026-10-11「男女脖子都太粗（截图1，2）参考逆水寒这些的3D人物头颈肩膀来做」「如果不行就换素体重新生成」。Tripo 重建后（tpl_m_medium，T4b）3D 颈宽 / 头宽 0.603、斜方肌坡 20.7°；2D 肩宽比 0.234 与 v1 相同。

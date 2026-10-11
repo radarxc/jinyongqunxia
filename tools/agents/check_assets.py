@@ -8,7 +8,7 @@
 - 目录下有 manifest.yaml（顶层为列表，或 {assets: [...]}）；
 - 图片条目数在 [min, max] 之间（按 file 扩展名 png/jpg/jpeg/webp 计，代码类附件不计）；
 - 每条都有必填字段且非空；file 存在、确为 PNG/JPEG/WebP、短边 ≥ min-side、size 与实际一致、sha256 一致；
-- 默认 1–2 张、短边 ≥ 512（基线口径）；map/world、map/markers、map/landmark 按 PATH_DEFAULTS 取各自口径，命令行参数优先；
+- 默认 1–2 张、短边 ≥ 512（基线口径）；map/world、map/markers、map/landmark、map/hero 按 PATH_DEFAULTS 取各自口径，命令行参数优先；
 - status 为 candidate / approved / rejected 之一；
 - 条目声明了 code（如招式的可运行效果代码）时，该路径存在。
 """
@@ -40,6 +40,7 @@ PATH_DEFAULTS = (
     ("map/world", {"min": 1, "max": 2, "min_side": 1024}),
     ("map/markers", {"min": 1, "max": 1, "min_side": 128}),
     ("map/landmark", {"min": 1, "max": 1000, "min_side": 256}),
+    ("map/hero", {"min": 1, "max": 8, "min_side": 160}),
 )
 
 
