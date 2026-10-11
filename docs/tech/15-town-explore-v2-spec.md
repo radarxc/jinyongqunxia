@@ -267,7 +267,8 @@ interface ShopView { instanceKey: string; nameKey: string; facilityKind: Facilit
   buys: { itemId: string; owned: number; unitSellPrice: number }[] }
 ```
 
-- **参考价**：`item.price` 有 1,522 件是 `'auto'`、83 件为 `null`、没有数字；`'auto'` 按价目表（design/10 §13.2，按物品种类映射列）解析；`null` 不可买卖。
+- **参考价**：`item.price` 有 1,522 件是 `'auto'`、83 件为 `null`、没有数字；`'auto'` 按价目表（design/10 §13.2，按物品种类映射列）解析，价目表单元为 0 表示无参考价（§13.2 的「—」），与 `null` 一样不可买卖。
+- **店铺实例键**：`<layoutKey>/<facilityKey>`（如 `city_dali__ch01/yaopu_01`）；设施条目若带显式 `shop.instanceKey` 则优先，由一个集中函数派生。
 - **定价上下文**：`worldTier` 取 `ChapterDef.worldTier`；`townLevel` 取大地图节点 `levelRange[0]`；魅力、口才取主角（口才缺省 0）；取整沿用 `round10(x) = 10·floor((x+5)/10)`。
 - **库存**：店铺状态按 `instanceKey` 懒建在 `chapter.shops`；补货沿用 `ShopRuntime` 节奏，**不耗 RNG**；运行时用"模板 + 章节上下文"拼出 ShopDef，取代 `ShopDef.chapterId` 检查。
 - **防过期**：`expectedUnitPrice` 与当前单价不符 → `SHOP_PRICE_STALE`。

@@ -9,12 +9,12 @@
 
 ## 要做的事
 1. **定价** `packages/core/src/economy/shop-pricing.ts`（纯函数）：
-   - 参考价：物品 `price` 为数字直接用；`'auto'` 按 `price-table.v1`（物品种类 → 列、品阶 → 行，单位文）解析；`null` → 不可买卖（报 `SHOP_ITEM_UNAVAILABLE`）。
+   - 参考价：物品 `price` 为数字直接用；`'auto'` 按 `price-table.v1`（物品种类 → 列、品阶 → 行，单位文）解析，**价目表单元为 0 表示该品类 / 品阶无参考价**（design/10 §13.2 的「—」，ENG-town2-shop-schema 报告 §4），按不可买卖处理；`null` → 不可买卖（报 `SHOP_ITEM_UNAVAILABLE`）。
    - 定价上下文：`worldTier` 取当前章节 `ChapterDef.worldTier`；`townLevel` 取当前所在大地图节点的 `levelRange[0]`；魅力、口才取主角（口才缺省 0）；店类倍率沿用现有 `ShopRuntime` 的 `shopKind`（模板给 `normal | famous | blackMarket`）。
    - 买价 / 卖价**复用**现有 `calculateBuyPrice / calculateSellPrice`（`round10` 取整已在其中），不要另写一套公式。
    - 测试向量：design/12 QST-T21（`cha=50, speech=40`，买价 44,977 文）、QST-T22（卖价 19,912 文）——在单测里用与设计文档同样的参考价构造，逐文断言。
 2. **运行时店铺** `packages/core/src/economy/shop-query.ts` + `shop-locator.ts`：
-   - 店铺实例键 `instanceKey`（设施文件给出，如 `shop_city_dali__ch01_yaopu_01`）；状态按 `instanceKey` **懒建**在 `chapter.shops`（首次查询或交易时建，初始库存 = 模板 `baseStock`，`lastRestockDay` = 当天）；运行时用「模板 + 章节上下文」拼出 `ShopDef` 交给 `ShopRuntime`，取代 `ShopDef.chapterId` 的硬检查（只在拼装处做，不改 `shop.ts` 的既有行为和测试）。
+   - 店铺实例键 `instanceKey`（按 tech/15 §2.3 为 `<layoutKey>/<facilityKey>`，如 `city_dali__ch01/yaopu_01`；设施条目若有显式 `shop.instanceKey` 优先用它，否则由一个集中函数派生）；状态按 `instanceKey` **懒建**在 `chapter.shops`（首次查询或交易时建，初始库存 = 模板 `baseStock`，`lastRestockDay` = 当天）；运行时用「模板 + 章节上下文」拼出 `ShopDef` 交给 `ShopRuntime`，取代 `ShopDef.chapterId` 的硬检查（只在拼装处做，不改 `shop.ts` 的既有行为和测试）。
    - 补货沿用 `ShopRuntime.restock` 节奏（按 `clock.dayIndex`，**不耗 RNG**）。
    - `queryShop(state, content, shopKey): ShopView`（只读，不写状态）：`offers`（库存、单价、`maxGrade`、禁用原因 `SHOP_STOCK_INSUFFICIENT | SHOP_MONEY_INSUFFICIENT | null`）、`buys`（玩家持有且该店收购的物品、持有数、卖价）、`money`、`nextRestockDay`；行按 `itemId` 码点序。
    - **ShopLocator v1**（过渡，随 v1 退役删除）：`chapter.town.buildingPhase === 'inside'`，且设施文件把（当前布局，当前 `buildingId`）映射到该 `shopKey`；否则 `SHOP_NOT_HERE`。v2 的定位（在设施所属建筑内或服务格 2 格内）由 ENG-town2-explore-facility 加到同一文件，本任务留一个按引擎分派的入口函数。
