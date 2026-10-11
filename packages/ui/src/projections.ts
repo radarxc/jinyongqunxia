@@ -49,6 +49,7 @@ export interface CharacterDetailView {
   readonly meridians: readonly MeridianView[];
   readonly opened: number;
   readonly completed: number;
+  readonly identity?: { readonly name?: string; readonly gender?: string; readonly appearance?: string; readonly pronoun?: string };
 }
 export interface CharacterView {
   readonly key: string;

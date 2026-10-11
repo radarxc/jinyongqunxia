@@ -1,8 +1,10 @@
 import {
-  AmbientLight, CircleGeometry, Color, DirectionalLight, Frustum, InstancedMesh, Matrix4,
-  MeshBasicMaterial, OrthographicCamera, Raycaster, Scene, SRGBColorSpace, Vector2, Vector3, WebGLRenderer,
+  AmbientLight, AnimationMixer, CircleGeometry, Color, DirectionalLight, Frustum, Group, InstancedMesh, Matrix4,
+  MeshBasicMaterial, type MeshStandardMaterial, OrthographicCamera, Raycaster, Scene, SRGBColorSpace, Vector2, Vector3, WebGLRenderer,
+  type AnimationAction,
 } from 'three';
 import type { Intersection, Mesh, Object3D } from 'three';
+import type { PilotModel } from '../gltf/load';
 import { cameraBack, IsoCameraRotation, normalizeYaw } from '../camera/iso-camera';
 import { hexDirToRig } from '../camera/facing';
 import { createContextGuard } from '../core/context-guard';
@@ -11,7 +13,7 @@ import { getDefaultRenderQuality } from '../quality/tiers';
 import type { RigInstance } from '../rig/character';
 import { collectRegionObjects, createRegionObjectLayer } from './objects';
 import { createRegionTerrainChunk, createTerrainPlaceholderArray, prepareRegionTerrain, regionCellKey, regionHexWorld,
-  REGION_CHUNK_SIZE, REGION_UPLOADS_PER_FRAME, setRegionTerrainHighlight,
+  REGION_CHUNK_SIZE, REGION_HEX_DIRECTIONS, REGION_HEX_RADIUS, REGION_UPLOADS_PER_FRAME, setRegionTerrainHighlight,
   type RegionTerrainChunk } from './terrain';
 import type { RegionAnchorView, RegionHexPoint, RegionObjectView,
   RegionHexDir, RegionScene, RegionSceneOptions, RegionStaticView } from './types';
@@ -39,8 +41,10 @@ function initialChunkOrder(view: RegionStaticView, focus: RegionHexPoint): reado
 
 export async function createRegionScene(canvas: HTMLCanvasElement, definition: RegionStaticView,
   options: RegionSceneOptions): Promise<RegionScene> {
+  let disposed = false;
   const rig = await (options.loadRigRuntime ?? (() => import('../rig/runtime')))();
   const renderer = new WebGLRenderer({ canvas, alpha: false, antialias: false,
+    preserveDrawingBuffer: true,
     powerPreference: 'high-performance' }); renderer.setClearColor(new Color(0xd7ccb0));
   const quality = options.quality ?? getDefaultRenderQuality(); const scene = new Scene();
   const camera = new OrthographicCamera(-8, 8, 4.5, -4.5, 1, 500);
@@ -86,6 +90,67 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
     const actor = rig.createRigCharacter(rigSet, options.npcEquipment?.[object.npcId ?? ''] ?? {}, index + 2);
     npcEntries.push({ object, actor }); batch.add(actor);
   }
+
+  // 3D Animated Character Model for player (AR-92 / 图5: 小地图3D建模+贴图+行走动作)
+  const player3DContainer = new Group();
+  player3DContainer.name = 'region-player-3d-container';
+  scene.add(player3DContainer);
+
+  let player3D: PilotModel | undefined;
+  let playerMixer: AnimationMixer | undefined;
+  let idleAction: AnimationAction | undefined;
+  let walkAction: AnimationAction | undefined;
+  let currentMotion: 'idle' | 'walk' | 'run' = 'idle';
+  let currentFacingYaw = 0;
+  const playerWorldPos = new Vector3();
+  const playerTargetPos = new Vector3();
+  let playerPosInitialized = false;
+  let playerSpeed = 0;
+
+  if (typeof document !== 'undefined') {
+    const modelUrl = options.playerModelUrl ?? '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb';
+    try {
+      const { loadPilotModel } = await import('../gltf/load');
+      const pilot = await loadPilotModel(modelUrl, 3.4);
+      if (!disposed) {
+        player3D = pilot;
+        pilot.scene.name = 'region-player-3d';
+        pilot.setToon(false);
+        pilot.scene.traverse((node) => {
+          if ((node as Mesh).isMesh) {
+            const m = node as Mesh;
+            m.renderOrder = 30;
+            if (m.material) {
+              const mats = Array.isArray(m.material) ? m.material : [m.material];
+              mats.forEach((mat) => {
+                mat.transparent = true;
+                mat.depthTest = true;
+                mat.depthWrite = true;
+                if ('metalness' in mat) (mat as MeshStandardMaterial).metalness = 0.05;
+                if ('roughness' in mat) (mat as MeshStandardMaterial).roughness = 0.6;
+              });
+            }
+          }
+        });
+        playerMixer = new AnimationMixer(pilot.scene);
+        const idleClip = pilot.clips.find((c) => c.name.toLowerCase().includes('idle'));
+        const walkClip = pilot.clips.find((c) => c.name.toLowerCase().includes('walk'));
+        const runClip = pilot.clips.find((c) => c.name.toLowerCase().includes('run'));
+        if (idleClip) {
+          idleAction = playerMixer.clipAction(idleClip);
+          idleAction.play();
+        }
+        if (walkClip || runClip) {
+          walkAction = playerMixer.clipAction(walkClip || runClip!);
+        }
+        player3DContainer.add(pilot.scene);
+        player.setPosition(0, -9999, 0);
+      }
+    } catch (err) {
+      console.warn('createRegionScene loadPilotModel fallback:', err);
+    }
+  }
+
   const markerGeometry = new CircleGeometry(.22, 12); markerGeometry.rotateX(-Math.PI / 2);
   const markerMesh = new InstancedMesh(markerGeometry,
     new MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: .9 }), MARKER_CAPACITY);
@@ -103,7 +168,7 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
   let yawOffset = 0; let zoom = clampZoom(80 * (options.zoom ?? 1));
   let allowRotation = true; let width = 1; let height = 1; let deviceDpr = 1;
   let appliedPixelRatio = quality.effectivePixelRatio(1); let previousTime = 0;
-  let samplingPrevious: number | undefined; let disposed = false; let pickBlockedUntil = 0;
+  let samplingPrevious: number | undefined; let pickBlockedUntil = 0;
   let snapPickGuardPending = false; let updateGeneration = 0;
   const stats = { drawCalls: 0, triangles: 0, frameMs: 0, cpuMs: 0,
     terrainChunks: chunks.size, visibleChunks: chunks.size, queuedChunks: queue.length,
@@ -144,12 +209,26 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
       .addScaledVector(cameraBackVector, CAMERA_DISTANCE); camera.lookAt(target); camera.updateMatrixWorld();
     placeSun();
   }
+  function updatePlayer3DTarget(speed = 0): void {
+    playerSpeed = speed;
+    regionHexWorld(playerPoint.q, playerPoint.r, displayHeight(prepared, playerPoint), playerTargetPos);
+    if (!playerPosInitialized) {
+      playerWorldPos.copy(playerTargetPos);
+      player3DContainer.position.set(playerWorldPos.x, playerWorldPos.y + 0.02, playerWorldPos.z);
+      playerPosInitialized = true;
+    }
+  }
   function placeActor(actor: RigInstance, point: RegionHexPoint, facing: number, speed = 0): void {
+    if (actor === player && player3D) {
+      player.setPosition(0, -9999, 0);
+      return;
+    }
     regionHexWorld(point.q, point.r, displayHeight(prepared, point), projected);
     actor.setPosition(projected.x, projected.y + .02, projected.z);
     actor.setMotion(hexDirToRig(facing as 0, effectiveYaw()), speed, rig.weightClassForEquipment(actor.equipment));
   }
   function updateDirections(): void {
+    updatePlayer3DTarget(0);
     placeActor(player, playerPoint, playerFacing);
     for (let index = 0; index < npcEntries.length; index += 1) { const entry = npcEntries[index]!;
       placeActor(entry.actor, entry.object, entry.object.facing ?? 0);
@@ -218,6 +297,41 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
       staticLayer.updateFocus(playerPoint, dt, reducedMotion); player.update(reducedMotion ? 0 : dt);
       for (let index = 0; index < npcEntries.length; index += 1)
         npcEntries[index]!.actor.update(reducedMotion ? 0 : dt);
+      if (player3D && playerPosInitialized) {
+        const lerpFactor = reducedMotion ? 1 : Math.min(1, dt * 14);
+        playerWorldPos.lerp(playerTargetPos, lerpFactor);
+        player3DContainer.position.set(playerWorldPos.x, playerWorldPos.y + 0.02, playerWorldPos.z);
+
+        const distToTarget = playerWorldPos.distanceTo(playerTargetPos);
+        const isMoving = distToTarget > 0.04 || playerSpeed > 0.1;
+
+        const hexDir = REGION_HEX_DIRECTIONS[playerFacing] ?? [1, 0];
+        const dirWorldX = Math.sqrt(3) * REGION_HEX_RADIUS * (hexDir[0] + hexDir[1] / 2);
+        const dirWorldZ = hexDir[1];
+        const desiredYaw = Math.atan2(dirWorldX, dirWorldZ);
+
+        let diff = desiredYaw - currentFacingYaw;
+        while (diff > Math.PI) diff -= Math.PI * 2;
+        while (diff < -Math.PI) diff += Math.PI * 2;
+        currentFacingYaw += diff * Math.min(1, dt * 12);
+        player3DContainer.rotation.y = currentFacingYaw;
+
+        if (isMoving) {
+          if (currentMotion !== 'walk') {
+            idleAction?.fadeOut(0.12);
+            walkAction?.reset().fadeIn(0.12).play();
+            currentMotion = 'walk';
+          }
+        } else {
+          if (currentMotion !== 'idle') {
+            walkAction?.fadeOut(0.12);
+            idleAction?.reset().fadeIn(0.12).play();
+            currentMotion = 'idle';
+          }
+        }
+        playerMixer?.update(dt);
+        player.setPosition(0, -9999, 0);
+      }
       batch.sync();
       viewProjection.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
       frustum.setFromProjectionMatrix(viewProjection); let visible = 0;
@@ -247,11 +361,11 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
       if (disposed) return; const token = ++updateGeneration; await player.setEquipment(equipment);
       if (disposed || token !== updateGeneration) return;
       playerPoint.q = next.playerHex.q; playerPoint.r = next.playerHex.r;
-      playerFacing = next.facing; placeCamera(); updateDirections(); updateAnchors(next.interactableAnchors);
+      playerFacing = next.facing; placeCamera(); updatePlayer3DTarget(0); updateDirections(); updateAnchors(next.interactableAnchors);
     },
     setPlayerPose(point, facing, speedMps = 0) {
       if (disposed) return; playerPoint.q = point.q; playerPoint.r = point.r; playerFacing = facing;
-      placeCamera(); placeActor(player, playerPoint, playerFacing, speedMps);
+      placeCamera(); updatePlayer3DTarget(speedMps); placeActor(player, playerPoint, playerFacing, speedMps);
     },
     setTimeOfDay, setPath: applyPath,
     setZoom(value) { zoom = clampZoom(80 * value); api.resize(width, height, deviceDpr); },
@@ -281,6 +395,15 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
     dispose() {
       if (disposed) return; disposed = true; updateGeneration += 1; contextGuard.dispose(); player.dispose();
       for (let index = 0; index < npcEntries.length; index += 1) npcEntries[index]!.actor.dispose();
+      playerMixer?.stopAllAction();
+      if (player3D) {
+        player3D.scene.traverse((node) => {
+          if ((node as Mesh).isMesh) {
+            (node as Mesh).geometry?.dispose();
+          }
+        });
+      }
+      scene.remove(player3DContainer);
       batch.dispose(); rigSet.dispose();
       markerMesh.dispose(); markerMesh.geometry.dispose();
       (markerMesh.material as MeshBasicMaterial).dispose(); staticLayer.dispose();
