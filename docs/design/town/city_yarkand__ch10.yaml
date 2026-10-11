@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_yarkand"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "莎车绿洲·早期聚落（702年推定）"
+display_name: 莎车绿洲（疏勒、于阗间，待考）
 historical_year: 702
 era_kit: "xiyu"
 seed: 1103563498

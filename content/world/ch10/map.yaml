@@ -119,13 +119,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_altay",
-              "townSpec": "docs/design/town/city_altay__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -404,8 +401,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_baoshan",
-              "townSpec": "docs/design/town/city_baoshan__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -436,13 +433,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_baotou",
-              "townSpec": "docs/design/town/city_baotou__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -824,8 +818,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_chengde",
-              "townSpec": "docs/design/town/city_chengde__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -982,8 +976,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_chifeng",
-              "townSpec": "docs/design/town/city_chifeng__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -1147,8 +1141,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_datong",
-              "townSpec": "docs/design/town/city_datong__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -1526,8 +1520,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_foshan",
-              "townSpec": "docs/design/town/city_foshan__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -1808,13 +1802,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_gyantse",
-              "townSpec": "docs/design/town/city_gyantse__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -2495,8 +2486,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_jilin",
-              "townSpec": "docs/design/town/city_jilin__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -2617,8 +2608,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_jingdezhen",
-              "townSpec": "docs/design/town/city_jingdezhen__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -2656,13 +2647,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_jinghong",
-              "townSpec": "docs/design/town/city_jinghong__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -2827,13 +2815,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_jinzhou",
-              "townSpec": "docs/design/town/city_jinzhou__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                80,
-                24
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -3597,8 +3582,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_lijiang",
-              "townSpec": "docs/design/town/city_lijiang__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -3864,13 +3849,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_mohe",
-              "townSpec": "docs/design/town/city_mohe__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -4078,13 +4060,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_ngari",
-              "townSpec": "docs/design/town/city_ngari__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                80,
-                24
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -4114,8 +4093,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_ningan",
-              "townSpec": "docs/design/town/city_ningan__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -4179,13 +4158,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_ordos",
-              "townSpec": "docs/design/town/city_ordos__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                108,
-                24
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -4218,8 +4194,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_penghu",
-              "townSpec": "docs/design/town/city_penghu__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -4463,8 +4439,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_qamdo",
-              "townSpec": "docs/design/town/city_qamdo__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -4538,13 +4514,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_qinhuangdao",
-              "townSpec": "docs/design/town/city_qinhuangdao__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -4572,8 +4545,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_qiqihar",
-              "townSpec": "docs/design/town/city_qiqihar__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -4912,13 +4885,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_shangrao",
-              "townSpec": "docs/design/town/city_shangrao__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -5146,8 +5116,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_shigatse",
-              "townSpec": "docs/design/town/city_shigatse__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -5462,13 +5432,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_tangshan",
-              "townSpec": "docs/design/town/city_tangshan__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -5503,8 +5470,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_taohuadao",
-              "townSpec": "docs/design/town/city_taohuadao__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -5542,8 +5509,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_tengchong",
-              "townSpec": "docs/design/town/city_tengchong__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -5580,8 +5547,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_tianjin",
-              "townSpec": "docs/design/town/city_tianjin__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -5757,13 +5724,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_weihai",
-              "townSpec": "docs/design/town/city_weihai__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -5928,8 +5892,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_wuhu",
-              "townSpec": "docs/design/town/city_wuhu__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -6053,13 +6017,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_wuyishan",
-              "townSpec": "docs/design/town/city_wuyishan__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -6119,8 +6080,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_xiamen",
-              "townSpec": "docs/design/town/city_xiamen__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -6279,8 +6240,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_xilinhot",
-              "townSpec": "docs/design/town/city_xilinhot__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -6315,13 +6276,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_xingcheng",
-              "townSpec": "docs/design/town/city_xingcheng__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -7134,13 +7092,10 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_yushu",
-              "townSpec": "docs/design/town/city_yushu__ch10.yaml",
-              "templateYear": 702,
-              "gateId": "south_gate",
-              "spawn": [
-                48,
-                10
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -7173,8 +7128,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_zhangjiakou",
-              "townSpec": "docs/design/town/city_zhangjiakou__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -7507,8 +7462,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_zhoushan",
-              "townSpec": "docs/design/town/city_zhoushan__ch10.yaml",
-              "templateYear": 702,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -18044,7 +17999,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "985383c9390d9c61a5b1ac3443b5482cc6780a04c4c4a3ae06935285d9c27ecc"
+        "revision": "2b64aeb9d02a6ad1e2fe95d446022b5dcf8440b88ab300137acf84d63f190a1d"
       }
     }
   ]

@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_fengjie"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "夔州·白帝山连城（702年推定）"
+display_name: 夔州（奉节县）
 historical_year: 702
 era_kit: "tang"
 seed: 2363334293

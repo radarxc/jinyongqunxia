@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_shaoxing"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "越州·会稽山阴城（702年推定）"
+display_name: 越州（会稽县）
 historical_year: 702
 era_kit: "tang"
 seed: 10781903

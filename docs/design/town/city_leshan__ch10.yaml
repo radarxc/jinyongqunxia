@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_leshan"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "嘉州·龙游县江城（702年推定）"
+display_name: 嘉州（龙游县）
 historical_year: 702
 era_kit: "tang"
 seed: 1801582794

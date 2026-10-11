@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_yingkou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "建安州·高句丽旧城（702年推定）"
+display_name: 建安城（建安州）
 historical_year: 702
 era_kit: "tang"
 seed: 392542967

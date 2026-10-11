@@ -203,6 +203,8 @@ def compile_map(data, chapter):
     for city in sorted(city_by.values(), key=lambda row: row['id']):
         era = city['eras'][chapter]
         spec, path = data['towns'].get((city['id'], chapter), ({}, None))
+        if not era['open']:  # a city closed this chapter has no town to enter; its spec stays on disk, unmounted
+            spec, path = {}, None
         gate = next((g for g in spec.get('gates', []) if g.get('primary')), None)
         coord = city_coord(city, info['band'])
         levels = data['levels'].get(city['region']) if chapter == 'ch01' else None
@@ -356,6 +358,10 @@ def main():
         chapters = [chapter for chapter in chapters if chapter in wanted]
     for relative in data['unmounted_towns']:
         print(f'warning: {relative} not mounted (world-map schema townSpec pattern rejects it)')
+    closed = sorted(f'{city}__{chapter}' for city, chapter in data['towns']
+                    if not next(row for row in data['cities']['cities'] if row['id'] == city)['eras'][chapter]['open'])
+    if closed:
+        print(f'note: {len(closed)} town specs left unmounted because their city is closed that chapter')
     failures = []
     for chapter in chapters:
         value = compile_map(data, chapter)

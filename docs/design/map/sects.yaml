@@ -2277,12 +2277,12 @@
       "id": "sect_weixinbiaoju",
       "name": "威信镖局",
       "kind": "escort_network",
-      "site_name": "晋中—京城镖路总局锚点",
+      "site_name": "西安府威信镖局",
       "map_marker": "sect",
-      "city_id": "city_taiyuan",
-      "longitude": 112.56,
-      "latitude": 37.87,
-      "coordinate_precision": "city_anchor_pending_research",
+      "city_id": "city_xian",
+      "longitude": 108.94,
+      "latitude": 34.26,
+      "coordinate_precision": "city_anchor",
       "availability_ref": "design/17 §3",
       "availability": {
         "ch01": "N",
@@ -2300,13 +2300,13 @@
         "ch13": "H",
         "ch14": "H"
       },
-      "source_note": "原著：《鸳鸯刀》周威信押镖。地望：镖局所在原著未明，沿用晋中—京城镖路锚（待考）。",
+      "source_note": "原著：《鸳鸯刀》川陕总督刘於义遣周威信押送鸳鸯刀进京。地望：川陕总督驻西安，design/chapters/11 以西安府为周威信开局地，镖局挂西安；旧挂太原无依据。",
       "branches": [],
       "sources": [
         "src_sect17",
         "src_hist_sects"
       ],
-      "region": "rg_hedong_jinzhong"
+      "region": "rg_guanzhong"
     },
     {
       "id": "sect_jinlongbang",

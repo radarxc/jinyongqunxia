@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_ningbo"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "鄮县·小溪治所候选（702年推定）"
+display_name: 鄮县（越州）
 historical_year: 702
 era_kit: "tang"
 seed: 2797669541

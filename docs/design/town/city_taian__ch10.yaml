@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_taian"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "兖州属博城县（702年推定）"
+display_name: 博城县（兖州）
 historical_year: 702
 era_kit: "tang"
 seed: 1637733701

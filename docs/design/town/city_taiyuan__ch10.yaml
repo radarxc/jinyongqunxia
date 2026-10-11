@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_taiyuan"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "并州·晋阳三城（702年多城垣候选）"
+display_name: 并州（北都）
 historical_year: 702
 era_kit: "tang"
 seed: 260094335

@@ -15363,15 +15363,15 @@
           {
             "id": "sect_weixinbiaoju",
             "name": "威信镖局",
-            "siteName": "晋中—京城镖路总局锚点",
+            "siteName": "西安府威信镖局",
             "kind": "escort_network",
             "point": [
-              310,
-              187
+              289,
+              218
             ],
             "status": "O",
             "marker": "sect",
-            "cityId": "city_taiyuan"
+            "cityId": "city_xian"
           },
           {
             "id": "sect_wudang",
@@ -19343,7 +19343,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "ec1caaea3e93ac69ca4463c992a9c3503aa3cd6e27e5cf57ddb7fc8f1fde2067"
+        "revision": "e1feed8881eb39f0f62c6a5b57421be4a6a92c0514a375740d23075ddf0ecdf1"
       }
     }
   ]

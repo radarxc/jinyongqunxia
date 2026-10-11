@@ -232,7 +232,7 @@ AR-26 接口复用上表四处既有场景：`sc_01_langhuanfudi`、`sc_01_juxia
 | # | 城市 ID | 本时代显示名 | 区域 | 状态与主要势力 | 主要 NPC | 资源 / 营生重点 |
 |---:|---|---|---|---|---|---|
 | 1 | `city_dali` | 大理国都（羊苴咩城） | `rg_dali_cangshan` | 大理王府与段氏稳定；寺院按护经进度开放 | 段誉、段正淳、刀白凤 | 药材、丝茶；王府山庄 / 赌场 |
-| 2 | `city_baoshan` | 永昌府 | `rg_dali_cangshan` | 大理西南商道节点 | 木婉清、钟灵（阶段） | 马匹、粮食；镖局 |
+| 2 | `city_baoshan` | 永昌府（大理国） | `rg_dali_cangshan` | 大理西南商道节点 | 木婉清、钟灵（阶段） | 马匹、粮食；镖局 |
 | 3 | `city_kaifeng` | 东京开封府（汴梁） | `rg_zhongyuan` | 北宋都城；官府与江湖会馆并存 | 主线仅路过具名角色 | 铁器、珍宝；镖局 / 赌场 / 山庄 |
 | 4 | `city_luoyang` | 西京河南府 | `rg_zhongyuan` | 河洛商旅与丐帮活动 | 萧峰（阶段） | 粮食；镖局 / 赌场 |
 | 5 | `city_zhengzhou` | 郑州 | `rg_zhongyuan` | 聚贤庄与嵩山路中继 | 薛慕华、游骥、游驹 | 药材；山庄 |
@@ -240,19 +240,19 @@ AR-26 接口复用上表四处既有场景：`sc_01_langhuanfudi`、`sc_01_juxia
 | 7 | `city_hangzhou` | 杭州 | `rg_jiangnan_taihu` | 北宋州城、水陆商路 | 阿碧（阶段） | 丝茶；镖局 / 赌场 |
 | 8 | `city_suzhou` | 苏州 | `rg_jiangnan_taihu` | 姑苏慕容势力圈 | 王语嫣、阿朱、阿碧、慕容复 | 丝茶；山庄 / 镖局 |
 | 9 | `city_wuxi` | 无锡县 | `rg_jiangnan_taihu` | 丐帮流动分舵随杏子林改变状态 | 萧峰、段誉（阶段） | 渔猎；赌场 |
-| 10 | `city_xining` | 鄯州 / 青唐城 **（待考）** | `rg_hexilongyou` | 边市与星宿小说锚并置 | 丁春秋、阿紫 | 毒材、马匹；镖局 / 赌场 |
+| 10 | `city_xining` | 青唐城（唃厮啰） | `rg_hexilongyou` | 边市与星宿小说锚并置 | 丁春秋、阿紫 | 毒材、马匹；镖局 / 赌场 |
 | 11 | `city_datong` | 西京大同府 | `rg_hedong_jinzhong` | 辽西京、宋辽商路 | 萧峰（阶段） | 铁器；镖局 |
 | 12 | `city_shuozhou` | 朔州 | `rg_hedong_jinzhong` | 边军与民间转运 | 游坦之（旅途阶段） | 粮食；山庄 |
 | 13 | `city_xinzhou` | 忻州 | `rg_hedong_jinzhong` | 雁门南侧补给 | 萧峰（终盘） | 马匹；赌场 |
-| 14 | `city_yinchuan` | 兴庆府 | `rg_xixia_helan` | 西夏都城；一品堂与宫苑分层 | 李秋水、慕容复、鸠摩智 | 珍宝；镖局 / 山庄 |
-| 15 | `city_zhongwei` | 鸣沙州一带 **（待考）** | `rg_xixia_helan` | 贺兰商道中继 | 童姥（阶段） | 粮食；赌场 |
+| 14 | `city_yinchuan` | 兴庆府（西夏都城） | `rg_xixia_helan` | 西夏都城；一品堂与宫苑分层 | 李秋水、慕容复、鸠摩智 | 珍宝；镖局 / 山庄 |
+| 15 | `city_zhongwei` | 鸣沙县一带（西夏，待考） | `rg_xixia_helan` | 贺兰商道中继 | 童姥（阶段） | 粮食；赌场 |
 | 16 | `city_lhasa` | 逻些 / 拉萨 **（待考）** | `rg_qingzang` | 吐蕃密宗活动地 | 鸠摩智（阶段） | 药材；山庄 |
-| 17 | `city_qamdo` | 昌都地区所指治所 **（待考）** | `rg_qingzang` | 高原商旅题材城市实例 | 无稳定具名 NPC | 马匹 |
-| 18 | `city_turpan` | 高昌故地 | `rg_xiyu_beijiang` | 绿洲中继、天山入口 | 虚竹（阶段） | 丝茶 |
+| 17 | `city_qamdo` | 两江口（康区诸部，原创扩展锚点） | `rg_qingzang` | 高原商旅题材城市实例 | 无稳定具名 NPC | 马匹 |
+| 18 | `city_turpan` | 高昌（高昌回鹘王都） | `rg_xiyu_beijiang` | 绿洲中继、天山入口 | 虚竹（阶段） | 丝茶 |
 | 19 | `city_yining` | 伊犁河谷部落 **（待考）** | `rg_xiyu_beijiang` | 部落营地，不套清代建制 | 童姥（阶段） | 马匹；山庄 |
 | 20 | `city_liaoshangjing` | 上京临潢府 | `rg_monan` | 辽国都城与南北院军府 | 萧峰、阿紫；耶律洪基 ID 待补 | 马匹、铁器；镖局 / 赌场 |
-| 21 | `city_chifeng` | 上京南境 / 松州 **（待考）** | `rg_monan` | 上京南侧商旅节点 | 无稳定具名 NPC | 粮食；山庄 |
-| 22 | `city_xilinhot` | 漠南草原营地 **（待考）** | `rg_monan` | 当代草原营地，不称后世蒙古幕府 | 萧峰（骑猎阶段） | 马匹；镖局 |
+| 21 | `city_chifeng` | 松山州（辽中京道） | `rg_monan` | 上京南侧商旅节点 | 无稳定具名 NPC | 粮食；山庄 |
+| 22 | `city_xilinhot` | 漠南草原营地（辽，原创扩展锚点） | `rg_monan` | 当代草原营地，不称后世蒙古幕府 | 萧峰（骑猎阶段） | 马匹；镖局 |
 
 开放计数为 `2+4+3+1+3+2+2+2+3=22`。具名 NPC 只列稳定名录对象；萧远山已补为 `npc_xiaoyuanshan`，康敏、全冠清、耶律洪基仍只用中文名，待 `design/18` 补 ID 后接入数据。
 

@@ -2453,8 +2453,8 @@
             "levelNote": "尚无区域强度配置",
             "entry": {
               "sceneId": "city_jilin",
-              "townSpec": "docs/design/town/city_jilin__ch01.yaml",
-              "templateYear": 1093,
+              "townSpec": null,
+              "templateYear": null,
               "gateId": null,
               "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
@@ -4110,13 +4110,10 @@
             "levelNote": "design/11 §10.3 区域建议强度",
             "entry": {
               "sceneId": "city_ordos",
-              "townSpec": "docs/design/town/city_ordos__ch01.yaml",
-              "templateYear": 1093,
-              "gateId": "south_gate",
-              "spawn": [
-                64,
-                27
-              ],
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
@@ -19063,7 +19060,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "cddc6baf608acf24b708857ae85ed9fb516d47b81179f063291a583185945cc8"
+        "revision": "253b1ba071bfe3ac951bba35fc92827817fd09192fddc68528072626d69a7f56"
       }
     }
   ]

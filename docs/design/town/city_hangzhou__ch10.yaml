@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_hangzhou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "杭州州城与钱唐县城（702年推定）"
+display_name: 杭州（钱塘县）
 historical_year: 702
 era_kit: "tang"
 seed: 3477345072

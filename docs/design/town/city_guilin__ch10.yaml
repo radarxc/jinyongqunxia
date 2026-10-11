@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_guilin"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "桂州·始安县子城（702年推定）"
+display_name: 桂州（始安县）
 historical_year: 702
 era_kit: "tang"
 seed: 468092018

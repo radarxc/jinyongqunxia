@@ -300,19 +300,19 @@ chapterStart:
 | 1 | `city_guangzhou` | 广州府 | `rg_lingnan` | 商埠；袁党外围、官差与海商并存 | `npc_yuanchengzhi`（阶段） | 驿站、码头、镖局、山庄 |
 | 2 | `city_chaozhou` | 潮州府 | `rg_lingnan` | 路府州县；闽粤线中转 | 山宗联络人**（原创扩展）** | 赌场、药铺 |
 | 3 | `city_huayin` | 华阴县 | `rg_guanzhong` | 华山山门服务城 | `npc_murenqing`、`npc_musang` | 山庄、铁匠 |
-| 4 | `city_xian` | 西安府 | `rg_guanzhong` | 军民与撤离路线汇合 | 李岩 / 红娘子 | 镖局、赌场 |
+| 4 | `city_xian` | 西安府（大顺西京） | `rg_guanzhong` | 军民与撤离路线汇合 | 李岩 / 红娘子 | 镖局、赌场 |
 | 5 | `city_yanan` | 延安府 | `rg_guanzhong` | 闯军军需与流民节点 | `npc_lizicheng` | 山庄、义仓 |
 | 6 | `city_jinhua` | 金华府 | `rg_zhedong` | 石梁温家势力圈 | `npc_wenqingqing`、`npc_wenyi` | 山庄、药铺 |
 | 7 | `city_quzhou` | 衢州府 | `rg_zhedong` | 公案访证与商路 | `npc_wenfangda`、`npc_wenfangyi` | 镖局 |
 | 8 | `city_wenzhou` | 温州府 | `rg_zhedong` | 仙都山路入口 | 仙都门人**（待考）** | 赌场、道观客舍 |
-| 9 | `city_nanjing` | 应天府南京 | `rg_jianghuai` | 金龙帮、仙都来客与官府 | `npc_jiaowaner`、`npc_jiaogongli` | 镖局、山庄 |
+| 9 | `city_nanjing` | 南京应天府 | `rg_jianghuai` | 金龙帮、仙都来客与官府 | `npc_jiaowaner`、`npc_jiaogongli` | 镖局、山庄 |
 | 10 | `city_yangzhou` | 扬州府 | `rg_jianghuai` | 漕运节点与青竹帮来客 | `npc_chengqingzhu` | 赌场、码头 |
 | 11 | `city_jinan` | 济南府 | `rg_qilu` | 会盟补给城 | `npc_yuanchengzhi`（阶段） | 镖局 |
 | 12 | `city_taian` | 泰安州 | `rg_qilu` | 泰山会盟入口 | `npc_lizicheng`（阶段） | 山庄、义仓 |
 | 13 | `city_beijing` | 北京顺天府 | `rg_yanjing_zhili` | 明廷 → 闯军占领；状态不可逆 | `npc_ajiu`、`npc_chongzhen`、`npc_hetieshou` | 赌场、镖局、宫禁 |
 | 14 | `city_tianjin` | 天津卫 | `rg_yanjing_zhili` | 漕口与海运退路 | `npc_chengqingzhu`（阶段） | 镖局、码头 |
 | 15 | `city_baoding` | 保定府 | `rg_yanjing_zhili` | 驿路与难民中继 | `npc_guierniang`（支线） | 山庄、驿站 |
-| 16 | `city_shenyang` | 沈阳中卫 / 后金盛京 | `rg_liaodong` | 后金军政中心；时代副题按年份切换 | `npc_huangtaiji`、`npc_duoergun` | 山庄、军报驿 |
+| 16 | `city_shenyang` | 盛京（清都城） | `rg_liaodong` | 后金军政中心；时代副题按年份切换 | `npc_huangtaiji`、`npc_duoergun` | 山庄、军报驿 |
 
 ### 3.7 二十一个奇遇触点
 

@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_changsha"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "潭州·长沙县城（702年推定）"
+display_name: 潭州（长沙县）
 historical_year: 702
 era_kit: "tang"
 seed: 3001025984

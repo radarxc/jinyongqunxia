@@ -299,7 +299,7 @@
 | 14 | `city_taian` 泰安州 | `rg_qilu` | 泰山派门庭与大会授权票 | `rp_qilu_liangshi_01` | `biz_taian_manor_01` |
 | 15 | `city_jinan` 济南府 | `rg_qilu` | 中立票证、北南货运与丐帮耳目 | `rp_qilu_shoucai_01` | `biz_jinan_escort_01` |
 | 16 | `city_kunming` 云南府 | `rg_yundian_qianzhong` | 五仙教、蓝凤凰与药毒交易 | `rp_yundianqianzhong_ducai_01` | `biz_kunming_manor_01`、`biz_kunming_casino_01` |
-| 17 | `city_guiyang` 贵阳府 | `rg_yundian_qianzhong` | 黔中驿路、苗汉商队与药材转运 | `rp_yundianqianzhong_yaocai_01` | `biz_guiyang_escort_01` |
+| 17 | `city_guiyang` 贵州城（宣慰司、布政司同治） | `rg_yundian_qianzhong` | 黔中驿路、苗汉商队与药材转运 | `rp_yundianqianzhong_yaocai_01` | `biz_guiyang_escort_01` |
 | 18 | `city_qujing` 曲靖府 | `rg_yundian_qianzhong` | 滇东马路、茶货与五仙外围联络 | `rp_yundianqianzhong_sicha_01`、`rp_yundianqianzhong_mapi_01` | `biz_qujing_manor_01` |
 
 ### 3.4 特殊节点与专线

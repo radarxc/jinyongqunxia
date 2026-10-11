@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_jilin
 chapter_id: ch01
 book_world: ch01_tianlong
-display_name: 辽东女真诸部（待考）
+display_name: 松花江上游女真地（未建城）
 historical_year: 1093
 era_kit: liao_jin_north
 seed: 1426162809
@@ -13,6 +13,7 @@ design_intent:
   - 复原依据：history/city_jilin__northern_song.md；1093年历史拓扑缩景。
   - 吉林省地方志正文确认今永吉一带世纪末属辽东京道涑州；1093年具名城市、女真聚落位置与街网仍不可定。
   - 未获同期地籍控制点的坐标均标推定；正式场景与营生绑定不在本任务定义。
+  - 本章未开放（2026-10-11 地名档）：cities.yaml eras.ch01.open=false，当章显示名「松花江上游女真地（未建城）」；生成器不挂载本图，规格保留备用。
 grid:
   width: 128
   height: 128

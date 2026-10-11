@@ -5,7 +5,7 @@
 > 引用而不重定义：区域玩法、入口状态、资源点与旅行事件 → `design/11`；大地图交互、筛选、可访问性与响应式布局 → `design/14`；门派史、称谓、武学与 `O/H/P/N/D/M` 开放矩阵 → `design/17`；世界层与区域内可行走渲染 → `tech/02` §7；运行时格式、质量档和分包 → `tech/06`。
 > 下游：`design/11` 定稿区域边界与玩法，`design/14` 消费 SVG/数据，`design/chapters/*` 选择 `chNN` 图层，`tech/04` 定 schema，`tech/06` 定生产分包。
 > 标注约定：**（原创扩展）**＝原著没有的内容；**（待考）**＝原著或史实尚需逐字核对；**（待核实）**＝技术事实尚未联网确认；**（待实测）**＝需真机/真浏览器验证；**【建议值】**＝依赖其他文档、先给可用值并在文末登记。
-> 版本：v1.6（其余六档按章节年份逐章重填名称 / 地位 / 开放，§4 改写、§4.2 新增，研究笔记 `design/map/history/<band>.md`，2026-10-11）；v1.5（唐 702 档 `tang` 落地，ch10 地名 / 地位 / 开放按武周长安二年重填，2026-10-11）；v1.4（AR-36 具名遗迹 POI 坐标登记，2026-10-03）；v1.3（AR-26 白马唐代首书图层契约，2026-10-02）；v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.7（门派按书中地望上图：`sects.yaml` 加 `map_marker`、逐条原著出处，§3.5 / §5.2 同步，14 章地图写出 `sects`；地名同步收尾，2026-10-11）；v1.6（其余六档按章节年份逐章重填名称 / 地位 / 开放，§4 改写、§4.2 新增，研究笔记 `design/map/history/<band>.md`，2026-10-11）；v1.5（唐 702 档 `tang` 落地，ch10 地名 / 地位 / 开放按武周长安二年重填，2026-10-11）；v1.4（AR-36 具名遗迹 POI 坐标登记，2026-10-03）；v1.3（AR-26 白马唐代首书图层契约，2026-10-02）；v1.2（跨文档同步，2026-09-26）。
 
 ---
 
@@ -216,7 +216,7 @@ Y  = offsetY − s·y       // SVG y 轴向下
 
 ### 3.5 门派记录
 
-门派仅保留 `id/site_name/city_id/longitude/latitude/region/coordinate_precision/availability_ref/availability/branches` 等地图字段，不复制武学或人物关系。`region` 由所挂 `city_id` 派生；无城市锚的黑木崖按权威坐标落入 `rg_hedong_jinzhong`。图内 `branches[]` 同样保存由城市派生的 `region`。`availability` 是 `design/17` §3 的机器可读镜像；每个分支另以 `open_chapters` 限定驻点时代，且不得超出父门派 `O/H`。
+门派仅保留 `id/site_name/map_marker/city_id/longitude/latitude/region/coordinate_precision/availability_ref/availability/source_note/branches` 等地图字段（`map_marker` 取 `temple` / `daoist` / `sect`；`source_note` 写原著出处与地望，逐条见 `design/map/history/sects.md`），不复制武学或人物关系。`region` 由所挂 `city_id` 派生；无城市锚的黑木崖按权威坐标落入 `rg_hedong_jinzhong`。图内 `branches[]` 同样保存由城市派生的 `region`。`availability` 是 `design/17` §3 的机器可读镜像；每个分支另以 `open_chapters` 限定驻点时代，且不得超出父门派 `O/H`。
 
 ### 3.6 路线记录
 
@@ -368,7 +368,7 @@ Y  = offsetY − s·y       // SVG y 轴向下
 |---|---|---|---|
 | 少林 `sect_shaolin` | 登封少室山 | 现实寺址级 | 南少林独立 ID，不作分院 |
 | 南少林 `sect_nanshaolin` | 莆田候选点 | **（待考）** | 泉州另列候选分支 |
-| 天龙寺 `sect_tianlongsi` | 大理苍山 | 小说近似 | 无外部分舵 |
+| 天龙寺 `sect_tianlongsi` | 大理崇圣寺三塔（原著称天龙寺即崇圣寺） | 现实历史遗址级 | 无外部分舵 |
 | 全真 `sect_quanzhen` | 鄠邑祖庵重阳宫 | 现实历史遗址级 | 北京白云观仅 ch05 后显示 |
 | 武当 `sect_wudang` | 武当山 | 真实山体 | 北方弟子不等于分舵 |
 | 华山 `sect_huashan` | 华山玉女峰一带 | 真实山体 | 思过崖等为区域内入口 |
@@ -376,30 +376,30 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | 昆仑 `sect_kunlun` | 和田南昆仑山口 | 小说近似 | 与朱武庄、恶人谷分实例 |
 | 崆峒 `sect_kongtong` | 平凉崆峒山 | 真实山体 | 五老为席位，不是五分舵 |
 | 青城 `sect_qingcheng` | 灌县青城山 | 真实山体 | — |
-| 嵩山 `sect_songshan` | 登封太室山 | 小说近似 | 与少林同区域不同入口 |
+| 嵩山 `sect_songshan` | 太室山峻极峰（封禅台） | 真实山体 | 与少林同区域不同入口 |
 | 泰山 `sect_taishan` | 泰山 | 真实山体 | — |
 | 衡山 `sect_hengshan_nan` | 南岳衡山 | 真实山体 | 不与恒山合并 |
 | 恒山 `sect_hengshan_bei` | 北岳恒山 | 真实山体 | 不使用废弃 `sect_hengshan` |
-| 雪山 `sect_xueshan` | 藏边凌霄城 | 小说近似 | 精确省地**（待考）** |
+| 雪山 `sect_xueshan` | 西域大雪山凌霄城（天山托木尔峰南麓示意，挂阿克苏） | 小说近似**（待考）** | 原著第十六回只言西域大雪山；旧挂后藏不合原著 |
 | 无量 `sect_wuliang` | 大理无量山 | 小说近似 | 与神农帮分入口 |
 | 大理段氏 `sect_dali` | 大理皇城 | 城市锚点 | 一灯后世隐居不改本部坐标 |
 | 姑苏慕容 `sect_murong` | 苏州太湖燕子坞 | 小说近似 | 曼陀山庄是姻亲地点 |
 | 古墓 `sect_gumu` | 终南山活死人墓 | 小说近似 | 与全真分入口 |
-| 桃花岛 `sect_taohuadao` | 舟山外海桃花岛 | 小说锚点 | 图内渡船可达 |
+| 桃花岛 `sect_taohuadao` | 舟山桃花岛（同名实岛） | 现实岛屿 | 图内渡船可达 |
 | 白驼山 `sect_baituoshan` | 喀什—和田之间 | 小说近似 | 经西域商道进入 |
-| 绝情谷 `sect_jueqinggu` | 秦岭山谷锚点 | 小说近似 | 神雕任务门禁 |
+| 绝情谷 `sect_jueqinggu` | 秦岭东段山谷，挂商州 | 小说近似**（待考）** | 神雕任务门禁 |
 | 玄素庄 `sect_xuansuzhuang` | 中原交通圈 | **（待考）** | 无分舵 |
-| 石梁温家 `sect_shiliang` | 衢州府一带；当前挂 `city_jinhua` | **（待考）** | 这是邻近玩法锚，不宣称石梁在金华府；金蛇洞不是分舵 |
+| 石梁温家 `sect_shiliang` | 衢州北石梁镇，挂 `city_quzhou` | 现实地点 | 《碧血剑》第五回前后；金蛇洞不是分舵 |
 | 辽东胡家 / 苗家 | `city_shenyang` 周边 | 区域锚点 | 明层称“沈阳中卫”、清层称“盛京奉天府”；玉笔峰是终章地点 |
 | 高昌遗脉 `sect_gaochang` | 吐鲁番高昌故城 | 现实遗址级 | 迷宫结构不照搬遗址 |
 | 哈萨克部族 `sect_hasake` | 伊犁草原 | 区域锚点 | 季节迁移 |
 | 回部 `sect_huibu` | 喀什主节点 | 城市/区域 | 伊犁为第二营地 |
 | 丐帮 `sect_gaibang` | 洛阳流动总舵 | 城市锚点 | 无锡、君山、襄阳分舵 |
-| 红花会 `sect_honghuahui` | 杭州联络线 | 城市锚点 | 回疆营地为支点 |
+| 红花会 `sect_honghuahui` | 杭州六和塔（书剑第十一回盟会） | 现实地点 | 回疆营地为支点；总舵随剧情迁移 |
 | 天地会 `sect_tiandihui` | 北京青木堂锚点 | 城市锚点 | 扬州、台南联络点 |
 | 逍遥 `sect_xiaoyao` | 擂鼓山 | 小说近似 | 无量山琅嬛福地为分支 |
 | 灵鹫宫 `sect_lingjiu` | 天山缥缈峰 | 小说近似 | 仍在画布范围内 |
-| 星宿 `sect_xingxiu` | 青海星宿海 | 小说近似 | 中原队伍非分舵 |
+| 星宿 `sect_xingxiu` | 青海星宿海（玛多实地，挂西宁） | 现实地点 | 中原队伍非分舵 |
 | 明教 `sect_mingjiao` | 昆仑光明顶 | 小说近似 | 波斯总教是图外节点 |
 | 日月神教 `sect_riyue` | 平定州西北黑木崖锚点 | 小说近似**（待考）** | 原著行政表述有矛盾；两分支仅 ch05 |
 | 神龙教 `sect_shenlongjiao` | 辽东外海神龙岛 | 小说锚点 | 图内专船 |
@@ -412,8 +412,14 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | 清宫 `sect_qinggong` | 北京紫禁城 | 现实地点 | 承德、盛京为分支 |
 | 蜀中唐门 `sect_tangmen` | 成都近郊唐家堡 | **（原创扩展）** | 古龙支线投放 |
 | 白云城 `sect_baiyuncheng` | 南海飞仙岛锚点 | **（待考）（原创扩展）** | 图内专船 |
+| 汝阳王府 `sect_ruyangwangfu` | 大都万安寺（今妙应寺白塔） | 现实历史遗址级 | 倚天第二十七回羁押六大派 |
+| 聚贤庄 `sect_juxianzhuang` | 郑州西（挂 `city_zhengzhou`） | 小说近似**（待考）** | 按 `design/chapters/01` 郑州中继 |
+| 太极门 / 八卦门 / 八极拳 | 广平府 / 北京 / 开封府 | 城市锚点 | 《飞狐外传》掌门大会诸派按原著地望；天龙门挂辽阳、八仙剑挂梧州（二手资料，待核） |
+| 金乌派 / 仙都派 / 渤海派 | 紫烟岛（长江镇江段示意）/ 缙云仙都山 / 胶东沿海 | 小说近似**（待考）** | 旧挂日喀则、温州、宁安均改 |
+| 药王门 / 威信镖局 | 洞庭湖畔（挂岳阳）/ 西安府 | **（待考）** / 城市锚点 | 飞狐第九回；鸳鸯刀川陕总督驻西安 |
+| 无争山庄 / 万梅山庄 | 太原 / 姑苏 | **（待考）（原创扩展）** | 古龙原作地望据回忆与二手资料，待核 |
 
-其余 54 个次要组织、古龙组织与临时群体在 YAML 中完整列出。古龙地点统一标 `approximate_original_placement`，防止把跨作品玩法投放写成原作地理事实。
+其余次要组织、古龙组织与临时群体在 YAML 中完整列出；99 条逐条原著出处（书名与回目）、地望、经纬度与置信度见 [`design/map/history/sects.md`](map/history/sects.md)（2026-10-11 按作者「门派按照书中地理位置放到地图上」重核，20 余条改地望或依附城）。地图图标 `map_marker`：佛寺 `temple`、道观 `daoist`、其余 `sect`；14 章地图按 tech/13 §5.4 写出 `sects`（O / H / P / M，N、D 不写），由 `tools/content/worldmap_from_towns.py` 生成。古龙地点统一标 `approximate_original_placement`，防止把跨作品玩法投放写成原作地理事实。
 
 ### 5.3 海外 / 域外判定
 

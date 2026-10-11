@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_changzhou
 chapter_id: ch10
 book_world: ch10_baima
-display_name: 常州府
+display_name: 常州（晋陵县）
 historical_year: 702
 era_kit: tang
 seed: 2784800344

@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_quanzhou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "武荣州治·兴教寺周边（702年推定）"
+display_name: 武荣州
 historical_year: 702
 era_kit: "tang"
 seed: 220082196

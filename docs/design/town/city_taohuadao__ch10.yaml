@@ -7,7 +7,7 @@ display_name: 桃花岛（小说）
 historical_year: 702
 era_kit: tang
 seed: 206306721
-design_intent: {prosperity: generic_site, notes: [推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）, 依据：src_generic_layout, 复原依据：docs/design/town/history/city_taohuadao__tang_702.md, region=rg_donghai_islands; band=tang_702；按同区域海岛节点舟山与澎湖候选作一般格局参照。, tang建筑目录缺失；建筑显式使用song_southern基线，墙门与共通贴片由渲染器审计回退。]}
+design_intent: {prosperity: generic_site, notes: [推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）, 依据：src_generic_layout, 复原依据：docs/design/town/history/city_taohuadao__tang_702.md, region=rg_donghai_islands; band=tang_702；按同区域海岛节点舟山与澎湖候选作一般格局参照。, tang建筑目录缺失；建筑显式使用song_southern基线，墙门与共通贴片由渲染器审计回退。, "本章未开放（2026-10-11 地名档）：cities.yaml eras.ch10.open=false，当章显示名「桃花岛（小说）」；生成器不挂载本图，规格保留备用。"]}
 grid: {width: 64, height: 64, cell_m: 1, chunk_cells: 32}
 runtime_partition: {q_min: -32, r_min: 1, q_slot_count: 87, r_slot_count: 64, q_band_slots: [87], r_band_slots: [64], formal_scene_refs: null}
 projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}

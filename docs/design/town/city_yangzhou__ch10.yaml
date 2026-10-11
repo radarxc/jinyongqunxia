@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_yangzhou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "扬州·江都县（702年推定）"
+display_name: 扬州（江都县）
 historical_year: 702
 era_kit: "tang"
 seed: 22983651

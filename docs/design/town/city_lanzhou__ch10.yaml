@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_lanzhou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "兰州·五泉县（702年推定）"
+display_name: 兰州（金城县）
 historical_year: 702
 era_kit: "song_southern"
 seed: 1937399523

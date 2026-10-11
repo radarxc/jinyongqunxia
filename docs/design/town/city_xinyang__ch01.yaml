@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_xinyang
 chapter_id: ch01
 book_world: ch01_tianlong
-display_name: 信阳军（待考）
+display_name: 信阳军
 historical_year: 1093
 era_kit: song_north
 seed: 1545664753

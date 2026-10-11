@@ -243,16 +243,16 @@
 | `city_kaifeng` | 开封府 / 路府州县 | `rg_zhongyuan` | 侯监集、玄铁令追索、药市 | 赌场、镖局各 1 |
 | `city_luoyang` | 河南府 / 路府州县 | `rg_zhongyuan` | 玄素庄关系网、熊耳山入口 | 镖局 1 |
 | `city_zhengzhou` | 郑州 / 路府州县 | `rg_zhongyuan` | 上清观驿路、粮畜商路 | 镖局 1 |
-| `city_nanjing` | 应天府南京 / 都城 | `rg_jianghuai` | 官府与江南总商号 | 赌场、镖局各 1 |
+| `city_nanjing` | 南京应天府 / 都城 | `rg_jianghuai` | 官府与江南总商号 | 赌场、镖局各 1 |
 | `city_yangzhou` | 扬州府 / 路府州县 | `rg_jianghuai` | 盐粮水运、丁氏舟路线索 | 赌场、山庄各 1 |
 | `city_zhenjiang` | 镇江府 / 路府州县 | `rg_jianghuai` | 长乐帮总舵、河港、密账 | 镖局 1；不造赌场 / 山庄 |
 | `city_hangzhou` | 杭州府 / 路府州县 | `rg_jiangnan_taihu` | 紫烟岛导航锚、丝茶集散 | 赌场、镖局各 1 |
 | `city_suzhou` | 苏州府 / 路府州县 | `rg_jiangnan_taihu` | 玄素庄联络、竹木水网 | 山庄 1 |
 | `city_ningbo` | 宁波府 / 商埠 | `rg_zhedong` | `route_xiakedao` 起点、二使接引 | 镖局 1 |
-| `city_zhoushan` | 定海县 / 昌国卫**（待考）** / 商埠 | `rg_zhedong` | 礁港、渔场、旧牌奇遇 | 镖局 1 |
-| `city_lhasa` | 拉萨 / 乌思藏辖地**（待考）** / 路府州县 | `rg_qingzang` | 高原补给、商队换乘 | 无计数营生；`caravan` 不属三类预算 |
-| `city_shigatse` | 后藏日喀则地区所指治所**（待考）** / 路府州县 | `rg_qingzang` | 凌霄城导航锚、雪山前哨 | 赌场 1；有不下注线索路 |
-| `city_xiakedao` | 侠客岛（小说，确址待考） / 小说节点 | `rg_nanhai_islands` | 岛主、二使、旧客与石室 | 无；码头不是营生预算 |
+| `city_zhoushan` | 舟山（定海卫舟山所） / 军镇 | `rg_zhedong` | 礁港、渔场、旧牌奇遇 | 镖局 1 |
+| `city_lhasa` | 拉萨（帕竹辖，乌思藏） / 路府州县 | `rg_qingzang` | 高原补给、商队换乘 | 无计数营生；`caravan` 不属三类预算 |
+| `city_shigatse` | 桑珠孜（扎什伦布寺） / 路府州县 | `rg_qingzang` | 凌霄城导航锚、雪山前哨 | 赌场 1；有不下注线索路 |
+| `city_xiakedao` | 侠客岛（小说，待考确址） / 小说节点 | `rg_nanhai_islands` | 岛主、二使、旧客与石室 | 无；码头不是营生预算 |
 | **合计** | **14 城** | **7 区** | — | **17 个** |
 
 设施严格服从 `cities.yaml.businesses`：镇江、宁波、舟山只配镖局；拉萨没有赌场 / 镖局 / 山庄白名单；日喀则地区所指治所只配赌场。侠客岛在地图内是小说节点，不是域外图外节点，但只能经专线抵达。

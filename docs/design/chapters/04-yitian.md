@@ -271,14 +271,14 @@
 | # | 城市 ID / 本时代显示名 | 区域 | 时代状态：势力、门派、NPC | 资源点 | 营生场所 |
 |---:|---|---|---|---|---|
 | 1 | `city_ningbo` 庆元路 | `rg_zhedong` | 海商与天鹰教暗线并存；张氏归舟线 | `rp_zhedong_sicha_01` | `biz_ningbo_escort_01`、`biz_ningbo_casino_01` |
-| 2 | `city_jinhua` 婺州路 | `rg_zhedong` | 文书、药商、地方豪庄；无常驻大派 | `rp_zhedong_liangshi_01`、`rp_zhedong_mocai_01` | `biz_jinhua_manor_01` |
-| 3 | `city_wangpanshan` 王盘山岛（小说；确址待考） | `rg_donghai_islands` | 扬刀大会遗址、海帮争证 | `rp_donghai_shicai_01` | `biz_wangpanshan_escort_01` |
-| 4 | `city_binghuodao` 冰火岛（小说；确址待考） | `rg_liaodong` | 谢逊旧居，常态无人；暴风期封航 | `rp_liaodong_yaocai_01` | `biz_binghuodao_manor_01` |
-| 5 | `city_lingshedao` 灵蛇岛（小说；确址待考） | `rg_donghai_islands` | 黛绮丝 / 波斯使者剧情态；后期可建联络营 | 同上，独占固定采集不另计 `rp_*` | `biz_lingshedao_manor_01` |
+| 2 | `city_jinhua` 金华府（朱元璋据） | `rg_zhedong` | 文书、药商、地方豪庄；无常驻大派 | `rp_zhedong_liangshi_01`、`rp_zhedong_mocai_01` | `biz_jinhua_manor_01` |
+| 3 | `city_wangpanshan` 王盘山岛（小说，待考确址） | `rg_donghai_islands` | 扬刀大会遗址、海帮争证 | `rp_donghai_shicai_01` | `biz_wangpanshan_escort_01` |
+| 4 | `city_binghuodao` 冰火岛（小说，待考确址） | `rg_liaodong` | 谢逊旧居，常态无人；暴风期封航 | `rp_liaodong_yaocai_01` | `biz_binghuodao_manor_01` |
+| 5 | `city_lingshedao` 灵蛇岛（小说，待考确址） | `rg_donghai_islands` | 黛绮丝 / 波斯使者剧情态；后期可建联络营 | 同上，独占固定采集不另计 `rp_*` | `biz_lingshedao_manor_01` |
 | 6 | `city_shiyan` 均州 | `rg_jingxiang` | 武当山门户；宋远桥、俞岱岩 | `rp_jingxiang_yaocai_01` | `biz_shiyan_manor_01` |
 | 7 | `city_xiangyang` 襄阳路 | `rg_jingxiang` | 故城军镇、旧守城传说；流民与元军 | `rp_jingxiang_mucai_01` | `biz_xiangyang_escort_01`、`biz_xiangyang_casino_01` |
-| 8 | `city_wuhan` 武昌路 / 汉阳府**（待考）** | `rg_jingxiang` | 汉水商埠、常遇春与周芷若相遇线 | `rp_jingxiang_liangshi_01`、`rp_jingxiang_yaocai_02` | `biz_wuhan_escort_01` |
-| 9 | `city_jingzhou` 中兴路 / 江陵路**（待考）** | `rg_jingxiang` | 江汉水陆中转、医者与难民安置 | `rp_jingxiang_shoucai_01` | `biz_jingzhou_manor_01` |
+| 8 | `city_wuhan` 武昌路 / 汉阳府 | `rg_jingxiang` | 汉水商埠、常遇春与周芷若相遇线 | `rp_jingxiang_liangshi_01`、`rp_jingxiang_yaocai_02` | `biz_wuhan_escort_01` |
+| 9 | `city_jingzhou` 中兴路 | `rg_jingxiang` | 江汉水陆中转、医者与难民安置 | `rp_jingxiang_shoucai_01` | `biz_jingzhou_manor_01` |
 | 10 | `city_yingkou` 辽河口商泊**（待考）** | `rg_liaodong` | 辽东海运补给、元军海防与冰火岛专线起点 | 同区域冰火药材点；港内不另设 `rp_*` | `biz_yingkou_escort_01` |
 | 11 | `city_khotan_kunlun` 昆仑山道**（待考）** | `rg_xiyu_nanjiang` | 昆仑派、六派远征与朱武连环庄线 | `rp_xiyunanjiang_kuangshi_01` | `biz_khotan_kunlun_manor_01` |
 | 12 | `city_kashgar` 喀什噶尔**（待考）** | `rg_xiyu_nanjiang` | 多语商埠、明教和沙漠商队 | `rp_xiyunanjiang_mapi_01`、`rp_xiyunanjiang_yaocai_01` | `biz_kashgar_escort_01`、`biz_kashgar_casino_01` |
@@ -286,10 +286,10 @@
 | 14 | `city_baoding` 保定路 | `rg_yanjing_zhili` | 北地军需与驿马中转 | `rp_yanjing_mapi_01` | `biz_baoding_manor_01` |
 | 15 | `city_dengfeng` 登封县 | `rg_zhongyuan` | 少林山门与屠狮大会；空闻、三渡、成昆 | `rp_zhongyuan_mocai_01` | `biz_dengfeng_manor_01` |
 | 16 | `city_kaifeng` 汴梁路 | `rg_zhongyuan` | 河运、丐帮分舵、流言交易；`q_04_changsheng_01` 旧都地下库任务实例入口 **（原创扩展）** | `rp_zhongyuan_liangshi_01` | `biz_kaifeng_casino_01` |
-| 17 | `city_luoyang` 河南府 / 河南江北行省治所**（待考）** | `rg_zhongyuan` | 东西驿路枢纽、六派会合点 | 同区域粮运点 | `biz_luoyang_escort_01` |
+| 17 | `city_luoyang` 河南府路 | `rg_zhongyuan` | 东西驿路枢纽、六派会合点 | 同区域粮运点 | `biz_luoyang_escort_01` |
 | 18 | `city_leshan` 嘉定路 | `rg_bashu` | 峨眉山下水陆中转 | `rp_bashu_yaocai_01` | `biz_leshan_manor_01` |
 | 19 | `city_chengdu` 成都路 | `rg_bashu` | 巴蜀商市、峨眉补给与情报场 | `rp_bashu_sicha_01` | `biz_chengdu_casino_01` |
-| 20 | `city_nanjing` 集庆路；终幕应天府 | `rg_jianghuai` | 元末义军争衡；徐达、朱元璋 | `rp_jianghuai_tieqi_01` | `biz_nanjing_escort_01` |
+| 20 | `city_nanjing` 应天府（朱元璋据） | `rg_jianghuai` | 元末义军争衡；徐达、朱元璋 | `rp_jianghuai_tieqi_01` | `biz_nanjing_escort_01` |
 | 21 | `city_hefei` 庐州路 | `rg_jianghuai` | 濠州前线补给与流民安置 | `rp_jianghuai_liangshi_01` | `biz_hefei_manor_01` |
 
 ### 3.3a 具名遗迹场景登记
