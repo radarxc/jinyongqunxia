@@ -31051,7 +31051,8 @@
     "ENG-town2-shop-core",
     "ENG-town2-dialogue-facility",
     "ENG-town2-txshop",
-    "DES-town2-pilot-content"
+    "DES-town2-pilot-content",
+    "ENG-town2-actionmap"
    ],
    "review": false,
    "web": true,
@@ -32073,7 +32074,8 @@
    "deps": [
     "ENG-town2-explore-facility",
     "TOOL-town2-sources-pipeline",
-    "TOOL-town2-worldmap-pilot"
+    "TOOL-town2-worldmap-pilot",
+    "ENG-town2-shop-wire"
    ],
    "review": false,
    "web": true,
