@@ -17,6 +17,7 @@
    - `buy / sell` 事件 → 发 `shop/buy | sell { shopKey, itemId, count, expectedUnitPrice }`；等回复期间 `busy = true`；**每次回复后重查**（成功与拒绝都重查），拒绝码映射成一行提示（`SHOP_PRICE_STALE` 提示"价钱变了，请再看一眼"等，文案放 `ShopLayer.strings.ts`）。
    - `close` / Esc → 关闭；打开期间经现有 `setSceneRunsWorldTicks` 暂停世界 tick，关闭恢复。
 4. **银两挪顶栏**（`App.vue` + `style.css`）：把右上的银两显示挪到顶栏中部「时辰 · 地点 · 银两」（tech/15 §7.1；格式沿用 `formatWen` 的「两 / 文」），室内时地点显示店名；样式用现有主题变量，**不要黑底、不要粗框**（AR-48）。只改与银两 / 顶栏 / `ShopLayer` 挂载直接相关的行，App.vue 里其他线的改动一概不动。
+   - **顺带修顶栏晕染底**（大地图线 10-11 转来，TODO.md 大地图段待办④）：`.topbar.halo` 的晕染底是按整条顶栏居中的径向渐变，左侧「天书录」一带几乎透明，大地图页的城名会从标题字间透出来（实测出现「天怀远书录」）。改成标题区与中部信息区都有足够遮挡的宣纸晕染底（例如标题区单独一层径向晕染，或整条顶栏底部加一道渐隐的不透明带），仍用现有主题变量、不要黑底粗框；用大地图页的 happy-dom 测试或计算样式断言标题区背景不透明度 ≥ 0.85。
 5. **控制器**（`game-controller.ts`）：暴露 `queryShop(shopKey)` 与 `shopCommand(cmd)`，类型从 contracts 来。
 
 ## 测试（命名用例；`apps/**/*.test.ts` 都在根 `vitest.config.ts` 的 node 项目里跑，需要 DOM 的测试文件首行加 `// @vitest-environment happy-dom`，照 `apps/game/src/battle/BattlePage.test.ts` 的写法）
