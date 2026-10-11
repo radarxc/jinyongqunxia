@@ -14,6 +14,7 @@ import json
 import sys
 from pathlib import Path
 
+import numpy as np
 from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -81,12 +82,15 @@ def shot(row: dict, base: Image.Image, nodes: dict, zoom_key: str) -> Image.Imag
     return im.convert("RGB")
 
 
-CITY_CN = {"city_beijing": "北京", "city_xian": "长安 / 西安"}
+CITY_CN = {"city_beijing": "北京", "city_xian": "长安 / 西安", "city_kaifeng": "开封", "city_hangzhou": "杭州", "city_luoyang": "洛阳",
+           "city_nanjing": "南京", "city_dali": "大理", "city_xiangyang": "襄阳"}
+NODE_ORDER = ["city_beijing", "city_xian", "city_kaifeng", "city_luoyang", "city_hangzhou", "city_nanjing", "city_dali", "city_xiangyang"]
 
 
-def overview(rows: list[dict]) -> Image.Image:
-    rows = sorted(rows, key=lambda r: (r["node"], (r.get("years") or [0])[0]))
-    cell_w, cell_h = 330, 250
+def overview(rows: list[dict], src_dir: Path = None, title: str = "") -> Image.Image:
+    src_dir = src_dir or C.LANDMARK_DIR
+    rows = sorted(rows, key=lambda r: (NODE_ORDER.index(r["node"]) if r["node"] in NODE_ORDER else 99, (r.get("years") or [0])[0]))
+    cell_w, cell_h = 300, 225
     cols = 4
     by_node: dict[str, list[dict]] = {}
     for r in rows:
@@ -94,7 +98,7 @@ def overview(rows: list[dict]) -> Image.Image:
     nrows = sum((len(v) + cols - 1) // cols for v in by_node.values())
     sheet = Image.new("RGB", (cell_w * cols, 46 + nrows * (cell_h + 52) + 34 * len(by_node)), (233, 223, 200))
     d = ImageDraw.Draw(sheet)
-    d.text((10, 12), "名城按年代布局小景 · 首批（北京；长安 / 西安）· 按年代排列 · 底色为纸色（非底图）", font=C.font(18), fill=(40, 30, 22))
+    d.text((10, 12), title or "名城按年代布局小景 · 按年代排列 · 底色为纸色（非底图）", font=C.font(18), fill=(40, 30, 22))
     y = 46
     for node, items in by_node.items():
         d.text((10, y + 4), CITY_CN.get(node, node), font=C.font(20), fill=(120, 40, 30))
@@ -102,18 +106,53 @@ def overview(rows: list[dict]) -> Image.Image:
         for i, r in enumerate(items):
             if i and i % cols == 0:
                 y += cell_h + 52
-            im = C.load_rgba(C.LANDMARK_DIR / r["file"])
+            im = C.load_rgba(src_dir / r["file"])
             im.thumbnail((cell_w - 14, cell_h - 10), Image.LANCZOS)
             x = (i % cols) * cell_w
             sheet.paste(im.convert("RGB"), (x + (cell_w - im.width) // 2, y + (cell_h - im.height) // 2), im.getchannel("A"))
-            title = r["subject"].split("：")[0].split("·", 1)[-1]
-            head = title.split("（")[0]
-            sub = title[len(head):].strip("（）")
+            title_ = r["subject"].split("：")[0].split("·", 1)[-1]
+            head = title_.split("（")[0]
+            sub = title_[len(head):].strip("（）")
             d.text((x + cell_w / 2, y + cell_h + 2), head, font=C.font(15), fill=(40, 30, 22), anchor="mt")
             d.text((x + cell_w / 2, y + cell_h + 21), (sub[:22] + "…") if len(sub) > 22 else sub, font=C.font(11), fill=(90, 70, 50), anchor="mt")
             d.text((x + cell_w / 2, y + cell_h + 36), "章节 " + "、".join(r["chapters"]), font=C.font(11), fill=(120, 60, 40), anchor="mt")
         y += cell_h + 52
     return sheet
+
+
+def ink_compare(ids: list[str], before_dir: Path, base: Image.Image) -> Image.Image:
+    """kit 大城 / 州府件与调墨前后小景在 60 / 90 / 150 px 下并排（底为底图平原区）。"""
+    def fit(im, w):
+        a = np.asarray(im.getchannel("A"))
+        ys, xs = np.nonzero(a > 16)
+        im = im.crop((xs.min(), ys.min(), xs.max() + 1, ys.max() + 1))
+        return im.resize((w, max(1, round(im.height * w / im.width))), Image.LANCZOS)
+    rowh = 120
+    bg = Image.new("RGBA", (1180, len(ids) * 2 * rowh + 50), (230, 214, 184, 255))  # 底图平原纸色（采样中位数），不拉伸底图
+    d = ImageDraw.Draw(bg)
+    d.text((10, 8), "调墨前后对照：左 kit 大城 / 州府件（60 / 90 px），右小景（60 / 90 / 150 px）", font=C.font(15), fill=(40, 30, 22, 255))
+    kit = [C.load_rgba(C.KIT / "map_kit_dacheng_02.png"), C.load_rgba(C.KIT / "map_kit_zhoufu_01.png")]
+    row = 0
+    for i in ids:
+        for tag, src in (("调墨前", before_dir / f"{i}.webp"), ("调墨后", C.LANDMARK_DIR / f"{i}.webp")):
+            if not src.exists():
+                continue
+            y = 40 + row * rowh
+            x = 10
+            for k in kit:
+                for w in (60, 90):
+                    t = fit(k, w)
+                    bg.alpha_composite(t, (x, y + rowh // 2 - t.height // 2))
+                    x += w + 10
+            x += 24
+            im = C.load_rgba(src)
+            for w in (60, 90, 150):
+                t = fit(im, w)
+                bg.alpha_composite(t, (x, y + rowh // 2 - t.height // 2))
+                x += w + 14
+            d.text((x + 6, y + rowh // 2 - 8), f"{i.replace('map_landmark_', '')} {tag}", font=C.font(13), fill=(120, 30, 20, 255))
+            row += 1
+    return bg.convert("RGB")
 
 
 def main() -> int:
@@ -134,8 +173,14 @@ def main() -> int:
             shot(r, base, cache[ch], zk).save(C.QA_DIR / f"{r['id']}__{zk}.png")
         print("qa", r["id"])
     if not args.ids:
-        overview(rows).save(C.QA_DIR / "overview.png")
+        overview(rows, title="名城按年代布局小景（调墨 v2 后）· 按年代排列 · 底色为纸色（非底图）").save(C.QA_DIR / "overview.png")
         print("overview ->", C.rel(C.QA_DIR / "overview.png"))
+        before = C.COORD / "before_ink"
+        if (before / "manifest.yaml").exists():
+            brows = C.read_manifest(before / "manifest.yaml")
+            overview(brows, src_dir=before, title="首批 13 张 · 调墨前（2026-10-11 首批交付版，已提交 4f66ad895）").save(C.QA_DIR / "overview_before_ink.png")
+            ink_compare([r["id"] for r in sorted(brows, key=lambda r: r["id"])], before, base).save(C.QA_DIR / "ink_compare.png")
+            print("before/after ->", C.rel(C.QA_DIR / "overview_before_ink.png"), C.rel(C.QA_DIR / "ink_compare.png"))
     return 0
 
 

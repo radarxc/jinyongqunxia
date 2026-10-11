@@ -1,0 +1,612 @@
+{
+ "schema": "tianshu.landmark-spec.v1",
+ "id": "map_landmark_city_dali__dali",
+ "node": "city_dali",
+ "era": "dali",
+ "chapters": [
+  "ch01",
+  "ch02"
+ ],
+ "title": "大理国都羊苴咩城（苍山洱海之间，1093 / 1217）",
+ "years": [
+  937,
+  1253
+ ],
+ "kit": "song_dali",
+ "tile_kit": "song_north",
+ "seed": 1093,
+ "footprint_grid": 11,
+ "frame": {
+  "origin": "城心：南北两道城墙之间的城区中心",
+  "origin_lonlat": [
+   100.158,
+   25.62
+  ],
+  "unit": "km",
+  "axes": "x 向东、y 向北",
+  "lonlat_to_km": "x=(lon−lon0)·111.32·cos(lat0)，y=(lat−lat0)·110.57；折点按现代地名 / 遗址线推定，精度约 ±150 m"
+ },
+ "view": {
+  "x": [
+   -4.0,
+   4.8
+  ],
+  "y": [
+   -3.7,
+   3.75
+  ]
+ },
+ "top_px": 60,
+ "walls": [
+  {
+   "id": "city",
+   "role": "city",
+   "name": "羊苴咩城（南北两道城墙）",
+   "polygon": [
+    [
+     -2.2,
+     -1.95
+    ],
+    [
+     2.2,
+     -1.95
+    ],
+    [
+     2.2,
+     1.95
+    ],
+    [
+     -2.2,
+     1.95
+    ]
+   ],
+   "style": "city_earth",
+   "open_edges": [
+    1,
+    3
+   ],
+   "corner_towers": [],
+   "ground": true,
+   "src": [
+    "src_yjm"
+   ],
+   "basis": "推测仅筑南北两道城墙，东西以洱海、苍山为屏障；北城墙沿桃溪南侧西起苍山中和峰下东至洱海边",
+   "thickness_px": 7.0,
+   "height_px": 12.0,
+   "corner_size_px": 16.0
+  }
+ ],
+ "gates": [
+  {
+   "id": "north",
+   "name": "北门",
+   "wall": "city",
+   "side": "N",
+   "at": [
+    0.2,
+    1.95
+   ],
+   "eaves": 2,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_yjm"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "south",
+   "name": "南门",
+   "wall": "city",
+   "side": "S",
+   "at": [
+    0.2,
+    -1.95
+   ],
+   "eaves": 2,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_yjm"
+   ],
+   "size_px": 22
+  }
+ ],
+ "streets": [
+  {
+   "id": "tongqu",
+   "class": "axis",
+   "points": [
+    [
+     0.2,
+     -1.95
+    ],
+    [
+     0.2,
+     1.95
+    ]
+   ],
+   "width_px": 5.0,
+   "src": [
+    "src_yjm"
+   ],
+   "basis": "南北两门相对，中以通衢相连"
+  },
+  {
+   "id": "ew",
+   "points": [
+    [
+     -1.8,
+     0.05
+    ],
+    [
+     2.2,
+     0.05
+    ]
+   ],
+   "width_px": 3.0
+  },
+  {
+   "id": "ew2",
+   "points": [
+    [
+     -1.8,
+     -1.0
+    ],
+    [
+     2.2,
+     -1.0
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "ew3",
+   "points": [
+    [
+     -1.8,
+     1.0
+    ],
+    [
+     2.2,
+     1.0
+    ]
+   ],
+   "width_px": 2.6
+  }
+ ],
+ "water": [
+  {
+   "id": "erhai",
+   "kind": "lake",
+   "polygon": [
+    [
+     2.25,
+     -3.4
+    ],
+    [
+     3.5,
+     -3.6
+    ],
+    [
+     4.4,
+     -2.4
+    ],
+    [
+     4.7,
+     0.0
+    ],
+    [
+     4.45,
+     2.6
+    ],
+    [
+     3.5,
+     3.6
+    ],
+    [
+     2.4,
+     3.4
+    ],
+    [
+     2.2,
+     1.2
+    ],
+    [
+     2.22,
+     -1.0
+    ]
+   ],
+   "ripples": 0.4,
+   "src": [
+    "src_yjm"
+   ],
+   "basis": "洱海在城东，城东不筑墙"
+  },
+  {
+   "id": "taoxi",
+   "kind": "river",
+   "points": [
+    [
+     -3.0,
+     2.15
+    ],
+    [
+     -0.8,
+     2.1
+    ],
+    [
+     1.2,
+     2.05
+    ],
+    [
+     2.45,
+     2.0
+    ]
+   ],
+   "width_px": 2.2,
+   "src": [
+    "src_yjm"
+   ],
+   "basis": "桃溪，北城墙沿其南侧"
+  },
+  {
+   "id": "lvyu",
+   "kind": "river",
+   "points": [
+    [
+     -3.0,
+     -2.2
+    ],
+    [
+     -0.8,
+     -2.15
+    ],
+    [
+     1.2,
+     -2.1
+    ],
+    [
+     2.4,
+     -2.15
+    ]
+   ],
+   "width_px": 2.0,
+   "basis": "城南溪流（示意）"
+  },
+  {
+   "id": "zhonghe",
+   "kind": "river",
+   "points": [
+    [
+     -2.9,
+     0.55
+    ],
+    [
+     -1.0,
+     0.5
+    ],
+    [
+     1.0,
+     0.4
+    ],
+    [
+     2.3,
+     0.35
+    ]
+   ],
+   "width_px": 1.6,
+   "basis": "苍山十八溪之一（示意）"
+  }
+ ],
+ "regions": [
+  {
+   "id": "plain",
+   "tone": "field",
+   "alpha": 0.5,
+   "foot": true,
+   "polygon": [
+    [
+     -2.7,
+     -3.4
+    ],
+    [
+     2.3,
+     -3.4
+    ],
+    [
+     2.3,
+     3.4
+    ],
+    [
+     -2.7,
+     3.4
+    ]
+   ],
+   "basis": "苍山洱海之间的坝子（田野）"
+  }
+ ],
+ "landmarks": [
+  {
+   "id": "qianxun",
+   "name": "崇圣寺千寻塔",
+   "sprite": "baseline:bld_lm_ch01_chongshengsi_pagoda",
+   "at": [
+    -1.12,
+    1.3
+   ],
+   "size_px": 22,
+   "clear": 0.18,
+   "src": [
+    "src_santa"
+   ],
+   "basis": "方形十六层密檐砖塔（南诏）"
+  },
+  {
+   "id": "small_n",
+   "name": "崇圣寺北小塔",
+   "sprite": "baseline:bld_lm_ch01_chongshengsi_pagoda_small",
+   "at": [
+    -1.4,
+    1.46
+   ],
+   "size_px": 12,
+   "clear": 0.08,
+   "src": [
+    "src_santa",
+    "src_town_dali01"
+   ],
+   "basis": "八角十级楼阁式；建年说法不一（大理国时期，或 1109–1171），沿仓库 ch01 大理城图先例画入"
+  },
+  {
+   "id": "small_s",
+   "name": "崇圣寺南小塔",
+   "sprite": "baseline:bld_lm_ch01_chongshengsi_pagoda_small",
+   "at": [
+    -1.4,
+    1.14
+   ],
+   "size_px": 12,
+   "clear": 0.08,
+   "src": [
+    "src_santa",
+    "src_town_dali01"
+   ]
+  },
+  {
+   "id": "chongsheng",
+   "name": "崇圣寺",
+   "sprite": "temple_hall",
+   "at": [
+    -1.75,
+    1.3
+   ],
+   "size_px": 22,
+   "clear": 0.15
+  },
+  {
+   "id": "wanggong",
+   "name": "大理国王宫",
+   "sprite": "wangfu",
+   "at": [
+    -0.4,
+    0.35
+   ],
+   "size_px": 34,
+   "tint": "imperial",
+   "clear": 0.25,
+   "src": [
+    "src_yjm"
+   ]
+  },
+  {
+   "id": "wuhua",
+   "name": "五华楼（856）",
+   "sprite": "tile:tex_town_song_north_city_gate__k6_r000_v01",
+   "kit": "song_north",
+   "at": [
+    0.05,
+    0.15
+   ],
+   "size_px": 28,
+   "clear": 0.12,
+   "src": [
+    "src_yjm"
+   ],
+   "basis": "城中大楼，「方五里、高百尺」；套件无楼阁件，借宋北方城门楼件"
+  }
+ ],
+ "hills": [
+  {
+   "id": "cangshan_0",
+   "name": "苍山",
+   "sprite": "map_kit_shanmai_06",
+   "at": [
+    -3.15,
+    3.1
+   ],
+   "size_px": 150,
+   "clear": 0.2
+  },
+  {
+   "id": "cangshan_1",
+   "name": "苍山",
+   "sprite": "map_kit_shanfeng_02",
+   "at": [
+    -3.1,
+    1.5
+   ],
+   "size_px": 140,
+   "clear": 0.2
+  },
+  {
+   "id": "cangshan_2",
+   "name": "苍山",
+   "sprite": "map_kit_shanmai_06",
+   "at": [
+    -3.2,
+    -0.1
+   ],
+   "size_px": 160,
+   "clear": 0.2
+  },
+  {
+   "id": "cangshan_3",
+   "name": "苍山",
+   "sprite": "map_kit_shanfeng_04",
+   "at": [
+    -3.1,
+    -1.7
+   ],
+   "size_px": 140,
+   "clear": 0.2
+  },
+  {
+   "id": "cangshan_4",
+   "name": "苍山",
+   "sprite": "map_kit_shanmai_06",
+   "at": [
+    -3.15,
+    -3.1
+   ],
+   "size_px": 150,
+   "clear": 0.2
+  }
+ ],
+ "groves": [
+  {
+   "id": "lakeshore",
+   "polygon": [
+    [
+     1.95,
+     -3.3
+    ],
+    [
+     2.35,
+     -3.3
+    ],
+    [
+     2.35,
+     3.3
+    ],
+    [
+     1.95,
+     3.3
+    ]
+   ],
+   "trees": [
+    "tex_town_song_north_tree_cluster__scholar_tree_v01",
+    "tex_town_song_north_tree_cluster__willow_v01"
+   ],
+   "size_px": 10,
+   "foot": true,
+   "spacing_px": 15.0
+  }
+ ],
+ "fill": [
+  {
+   "id": "fill",
+   "clip": "city",
+   "exclude": [],
+   "bbox": [
+    -2.2,
+    2.2,
+    -1.95,
+    1.95
+   ],
+   "sprites": [
+    [
+     "house",
+     5
+    ],
+    [
+     "courtyard",
+     3
+    ],
+    [
+     "shop",
+     2
+    ],
+    [
+     "inn",
+     1
+    ],
+    [
+     "shrine",
+     1
+    ],
+    [
+     "tree:tree_cluster__scholar_tree_v01",
+     1.4
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.85,
+   "jitter": 0.24,
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  },
+  {
+   "id": "fill_out",
+   "clip": "plain",
+   "exclude": [],
+   "bbox": [
+    -2.4,
+    2.2,
+    -3.3,
+    3.3
+   ],
+   "sprites": [
+    [
+     "house",
+     1
+    ],
+    [
+     "tree:tree_cluster__scholar_tree_v01",
+     2
+    ]
+   ],
+   "size_px": 9.5,
+   "density": 0.3,
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  }
+ ],
+ "notes": [
+  "城区东西取苍山麓至洱海岸、南北两墙相距约 3.9 km（「延袤十五里」有南北长与周长两说，取中）",
+  "大理套件取作者已审基线 song_dali；苍山用 map/kit 山脉件",
+  "三塔中两小塔建年存疑，沿仓库 ch01 城图先例画入（原创扩展）",
+  "交付图比例约 75.1 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）"
+ ],
+ "sources": {
+  "src_santa": {
+   "title": "维基百科（中文）《崇圣寺三塔》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%B4%87%E5%9C%A3%E5%AF%BA%E4%B8%89%E5%A1%94",
+   "accessed": "2026-10-11",
+   "supports": "千寻塔为方形十六层密檐砖塔（南诏）；南北二小塔为八角十级楼阁式（大理国时期，或 1109–1171 年段正严、段正兴时）；三塔呈三角形，在大理古城西北苍山应乐峰下"
+  },
+  "src_town_dali01": {
+   "title": "仓库城图规格 docs/design/town/city_dali__ch01.yaml 与 assets/default/baseline/building-map（千寻塔、小塔基线件，小塔提前出现为原创扩展）",
+   "url": "docs/design/town/city_dali__ch01.yaml",
+   "accessed": "2026-10-11",
+   "supports": "ch01 大理城图已将小塔画入（先例）"
+  },
+  "src_yjm": {
+   "title": "维基百科（中文）《阳苴咩城》",
+   "url": "https://zh.wikipedia.org/wiki/%E9%98%B3%E8%8B%B4%E5%92%A9%E5%9F%8E",
+   "accessed": "2026-10-11",
+   "supports": "南诏 779 年迁都至此、大理国都城；推测仅筑南北两道城墙，东西以洱海、苍山为屏障；南北两门相对、通衢相连；北城墙沿桃溪南侧、西起苍山中和峰下东至洱海边约 5 km；856 年建五华楼"
+  }
+ },
+ "halo_px": 26.0
+}

@@ -69,6 +69,30 @@ WALL_STYLES = {
 
 INK_RAMP = (np.array([46, 41, 34], float), np.array([136, 124, 103], float), np.array([236, 224, 198], float))
 
+# ---- 调墨配置（AR-113 第二轮，ink-v2）：城墙 / 城楼 / 宫城 / 塔寺加深到 map/kit 城池件同一深浅；
+#      民居改「少而大的墨团」（每团 2–4 件 + 团下淡墨晕），坊格与胡同变淡，整体再提一次对比。
+#      目标色阶取自 kit 大城 / 州府件：平均亮度 136–146，最暗 10% ≈ 65–77，亮度 <90 约占 18–22%。
+INK_CFG = {
+    "version": "ink-v2",
+    "wall_top_mul": 0.86, "wall_face_mul": 0.72, "wall_inner_mul": 0.8,
+    "wall_line": (32, 28, 23), "wall_line_px": 1.7, "wall_inner_line_px": 0.9, "crenel_px": 1.0,
+    "tower_body": (176, 158, 128), "tower_line": (34, 30, 25), "roof": (24, 22, 19),
+    "imperial_roof_mul": 0.82,
+    "tints": {  # 名称: (饱和保留, 原色保留, 对比, 暗部改色, 改色强度, 整体压暗)
+        "ink": (0.38, 0.4, 1.3, None, 0.0, 0.99),
+        "landmark": (0.4, 0.32, 1.55, None, 0.0, 0.86),
+        "tree": (0.55, 0.5, 1.3, None, 0.0, 0.88),
+        "imperial": (0.5, 0.45, 1.45, (150, 112, 58), 0.62, 0.86),
+        "white": (0.3, 0.55, 1.18, None, 0.0, 0.98),
+        "ruin": (0.25, 0.4, 1.0, None, 0.0, 0.92),
+    },
+    "clump": {"spacing_mul": 2.4, "n": [3, 4], "size_px": [13.0, 17.0], "spread": 0.33, "tree_p": 0.5,
+              "wash_alpha": 0.28, "wash_color": (100, 90, 72), "wash_blur_px": 2.6, "wash_scale": 0.78},
+    "ward_fill": (215, 199, 167), "ward_edge": (150, 134, 106), "ward_edge_alpha": 140,
+    "hutong_alpha_mul": 0.55,
+    "contrast": 1.1, "pivot": 150.0, "gamma": 1.03,
+}
+
 
 # ============================================================ 几何
 def poly_area(poly):
@@ -187,9 +211,11 @@ def kit_sprite_path(kit: str, name: str) -> Path:
     if name.startswith("baseline:"):
         return C.ASSETS / "baseline" / "building-map" / f"{name[9:]}.png"
     if name.startswith("bld:"):
-        k, n = name[4:].split("/", 1)
-        return C.ASSETS / "building-map" / k / f"bld_kit_{k}_{n}.png"
-    return C.ASSETS / "building-map" / kit / f"bld_kit_{kit}_{name}.png"
+        kit, name = name[4:].split("/", 1)
+    p = C.ASSETS / "building-map" / kit / f"bld_kit_{kit}_{name}.png"
+    if not p.exists():  # 南宋 / 大理套件只在作者已审基线目录
+        p = C.ASSETS / "baseline" / "building-map" / f"bld_kit_{kit}_{name}.png"
+    return p
 
 
 @lru_cache(maxsize=None)
@@ -213,18 +239,11 @@ def _load_src(path_str: str) -> Image.Image:
     return C.load_rgba(Path(path_str))
 
 
-TINTS = {
-    # 名称: (饱和保留, 原色保留, 对比, 暗部改色, 暗部改色强度)
-    "ink": (0.42, 0.5, 1.25, None, 0.0),
-    "tree": (0.62, 0.55, 1.15, None, 0.0),
-    "imperial": (0.5, 0.5, 1.2, (150, 112, 58), 0.62),   # 宫殿：屋面改淡金赭（黄琉璃的淡彩意思）
-    "white": (0.3, 0.6, 1.05, None, 0.0),                # 白塔：保留亮部
-    "ruin": (0.25, 0.4, 0.9, None, 0.0),
-}
+# 墨化色调参数见 INK_CFG["tints"]
 
 
 def inkify(im: Image.Image, tint: str = "ink") -> Image.Image:
-    sat, keep, contrast, dark_col, dark_k = TINTS[tint]
+    sat, keep, contrast, dark_col, dark_k, darken = INK_CFG["tints"][tint]
     a = np.asarray(im.convert("RGBA")).astype(np.float32)
     rgb, al = a[..., :3], a[..., 3:4]
     lum = 0.30 * rgb[..., 0] + 0.59 * rgb[..., 1] + 0.11 * rgb[..., 2]
@@ -242,16 +261,20 @@ def inkify(im: Image.Image, tint: str = "ink") -> Image.Image:
         out = out * (1 - w) + dc * w
     if tint == "ruin":
         out = out * 0.55 + np.array(RUIN, np.float32) * 0.45
+    out = out * darken
     out = np.concatenate([np.clip(out, 0, 255), al], -1).astype(np.uint8)
     return Image.fromarray(out, "RGBA")
 
 
 @lru_cache(maxsize=None)
-def sprite(path_str: str, width_ss: int, flip: bool, squash: float = 1.0, ink: bool = True, tint: str = "ink"):
+def sprite(path_str: str, width_ss: int, flip: bool, squash: float = 1.0, ink: bool = True, tint: str = "ink",
+           crop_top: float = 0.0):
     """返回 (RGBA 已墨化并缩放到 width_ss 宽, 锚点 (ax, ay) 像素)。width 指 alpha 包围盒宽。"""
     src = _load_src(path_str)
     ax, ay = kit_anchor(path_str)
     l, t, r, b = C.alpha_bbox(src, 16)
+    if crop_top:
+        t = int(t + (b - t) * crop_top)
     crop = src.crop((l, t, r, b))
     sc = width_ss / max(1, (r - l))
     nw = max(1, round((r - l) * sc))
@@ -370,6 +393,33 @@ def draw_ground(cx: Ctx):
             cx.dr.polygon(P.gs(w["polygon"]), fill=col + (255,))
 
 
+def draw_bridges(cx: Ctx):
+    """桥：石桥 / 堤为亮带加墨边；浮桥为一串小舟加木板细线。"""
+    P = cx.proj
+    rng = np.random.default_rng(int(cx.spec.get("seed", 1)) + 31)
+    for b in cx.spec.get("bridges", []):
+        pts = P.gs(b["points"])
+        w = max(SS, cx.px(cx.k(b, "width", 3.0)))
+        kind = b.get("kind", "stone")
+        if kind == "pontoon":
+            cx.dr.line(pts, fill=(120, 100, 70, 255), width=max(1, round(SS * 0.9)))
+            (x0, y0), (x1, y1) = pts[0], pts[-1]
+            L = math.hypot(x1 - x0, y1 - y0)
+            n = max(3, int(L / (SS * 4.5)))
+            for i in range(n + 1):
+                u = i / n
+                X, Y = x0 + (x1 - x0) * u, y0 + (y1 - y0) * u
+                bw, bh = SS * 3.2, SS * 1.3
+                cx.dr.ellipse([X - bw, Y - bh, X + bw, Y + bh], fill=(78, 66, 50, 255))
+        else:
+            col = (206, 214, 186) if kind == "causeway" else (226, 216, 194)
+            cx.dr.line(pts, fill=tuple(INK_CFG["wall_line"]) + (230,), width=round(w + SS * 1.6), joint="curve")
+            cx.dr.line(pts, fill=col + (255,), width=round(w), joint="curve")
+        cx.dblock.line(pts, fill=255, width=round(w + SS * 2))
+        if b.get("foot", True):
+            cx.dfoot.line(pts, fill=255, width=round(w + SS * 8))
+
+
 def draw_wards(cx: Ctx):
     """唐坊：坊块（略深）+ 坊墙细线 + 十字街淡线；坊间即大街（地面色更亮）。"""
     P = cx.proj
@@ -383,8 +433,8 @@ def draw_wards(cx: Ctx):
                 x0, x1 = xs[i]
                 y0, y1 = ys[j]
                 pts = P.gs(rect(x0, y0, x1, y1))
-                cx.dr.polygon(pts, fill=WARD + (255,))
-                cx.dr.line(pts + [pts[0]], fill=WARD_EDGE + (235,), width=max(1, round(SS * 0.9)))
+                cx.dr.polygon(pts, fill=tuple(INK_CFG["ward_fill"]) + (255,))
+                cx.dr.line(pts + [pts[0]], fill=tuple(INK_CFG["ward_edge"]) + (INK_CFG["ward_edge_alpha"],), width=max(1, round(SS * 0.8)))
                 if wg.get("cross", True) and (x1 - x0) > 0.35:
                     mx, my = (x0 + x1) / 2, (y0 + y1) / 2
                     cx.dr.line([P.g(x0, my), P.g(x1, my)], fill=ROAD + (200,), width=max(1, round(SS * 0.9)))
@@ -433,7 +483,7 @@ def draw_hutongs(cx: Ctx):
         for ex in hg.get("exclude", []):
             m *= 1.0 - np.asarray(cx.region_mask(ex), np.float32) / 255.0
         m *= np.asarray(1.0 - np.asarray(cx.block, np.float32) / 255.0)
-        alpha = hg.get("alpha", 0.45)
+        alpha = hg.get("alpha", 0.45) * INK_CFG["hutong_alpha_mul"]
         col = np.array(hg.get("color", ROAD_EDGE), np.float32)
         base = np.asarray(cx.img, np.float32)
         a = (m * alpha)[..., None]
@@ -477,6 +527,12 @@ def draw_water(cx: Ctx):
                 ip = chaikin(isl["polygon"], 3)
                 cx.dr.polygon(P.gs(ip), fill=WATER_EDGE + (255,))
                 cx.dr.polygon(P.gs(offset_poly(ip, -cx.k(None, "edge", 1.0))), fill=GROUND_PALACE + (255,))
+        elif kind == "dry":
+            pts = chaikin(wt["points"], 2, closed=False) if wt.get("smooth", True) else wt["points"]
+            sp = P.gs(pts)
+            w = max(SS * 1.5, cx.px(cx.k(wt, "width", 2.5)))
+            cx.dr.line(sp, fill=(176, 160, 128, 200), width=round(w + SS * 1.2), joint="curve")
+            cx.dr.line(sp, fill=(214, 198, 160, 255), width=round(w), joint="curve")
         elif kind == "river":
             pts = chaikin(wt["points"], 2, closed=False) if wt.get("smooth", True) else wt["points"]
             sp = P.gs(pts)
@@ -523,7 +579,9 @@ def wall_items(cx: Ctx):
                 cy_ = (p0[1] + p1[1]) / 2 - ny * t / 2
                 cx_ = (p0[0] + p1[0]) / 2
                 j = rng.uniform(-7, 7)
-                st = tuple(tuple(int(max(0, min(255, c + j * (1.0 if q < 3 else 0.3)))) for c in col) for q, col in enumerate(style))
+                muls = (INK_CFG["wall_top_mul"], INK_CFG["wall_face_mul"], INK_CFG["wall_inner_mul"])
+                st = tuple(tuple(int(max(0, min(255, c * muls[q] + j))) for c in col) for q, col in enumerate(style[:3]))
+                st = st + (tuple(INK_CFG["wall_line"]) if w.get("style") != "ruin" else style[3],)
                 cx.add(cy_, cx_, _wall_seg_fn(cx, p0, p1, (nx, ny), t, hh, st, crenel and not broken))
         # 角楼
         for ci in w.get("corner_towers", []):
@@ -547,7 +605,7 @@ def _wall_seg_fn(cx, p0, p1, n, t, h, style, crenel):
         if ny < -0.3:
             face = [P.g(*p0), P.g(*p1), P.g(*p1, h), P.g(*p0, h)]
             cx.dr.polygon(face, fill=face_c + (255,))
-            cx.dr.line([P.g(*p0), P.g(*p1)], fill=line_c + (230,), width=max(1, round(SS * 0.9)))
+            cx.dr.line([P.g(*p0), P.g(*p1)], fill=line_c + (235,), width=max(1, round(SS * INK_CFG["wall_line_px"] * 0.8)))
         elif ny > 0.3:
             face = [P.g(*i0), P.g(*i1), P.g(*i1, h), P.g(*i0, h)]
             cx.dr.polygon(face, fill=inner_c + (255,))
@@ -560,8 +618,8 @@ def _wall_seg_fn(cx, p0, p1, n, t, h, style, crenel):
             cx.dr.polygon(face, fill=face_c + (110,))
         top = [P.g(*p0, h), P.g(*p1, h), P.g(*i1, h), P.g(*i0, h)]
         cx.dr.polygon(top, fill=top_c + (255,))
-        cx.dr.line([P.g(*p0, h), P.g(*p1, h)], fill=line_c + (255,), width=max(1, round(SS * 1.25)))
-        cx.dr.line([P.g(*i0, h), P.g(*i1, h)], fill=line_c + (170,), width=max(1, round(SS * 0.7)))
+        cx.dr.line([P.g(*p0, h), P.g(*p1, h)], fill=line_c + (255,), width=max(1, round(SS * INK_CFG["wall_line_px"])))
+        cx.dr.line([P.g(*i0, h), P.g(*i1, h)], fill=line_c + (190,), width=max(1, round(SS * INK_CFG["wall_inner_line_px"])))
         if crenel:
             X0, Y0 = P.g(*p0, h)
             X1, Y1 = P.g(*p1, h)
@@ -572,7 +630,7 @@ def _wall_seg_fn(cx, p0, p1, n, t, h, style, crenel):
                 u = (j + 0.5) / max(1, k)
                 X = X0 + (X1 - X0) * u
                 Y = Y0 + (Y1 - Y0) * u
-                cx.dr.line([(X, Y), (X, Y - SS * 1.3)], fill=line_c + (200,), width=max(1, round(SS * 0.8)))
+                cx.dr.line([(X, Y), (X, Y - SS * 1.4)], fill=line_c + (220,), width=max(1, round(SS * INK_CFG["crenel_px"])))
         for poly in (top,):
             cx.dcov.polygon(poly, fill=255)
     return fn
@@ -587,13 +645,20 @@ def roof(cx, Xc, Yb, w, hr, col=INK, flare=0.12, ridge=0.55, outline=None):
     pts = [(L - w * 0.02, Yb - hr * flare * 2.2), (Xc - w * ridge / 2, Yb - hr), (Xc + w * ridge / 2, Yb - hr),
            (R + w * 0.02, Yb - hr * flare * 2.2), (R - w * 0.04, Yb), (L + w * 0.04, Yb)]
     d.polygon(pts, fill=col + (255,))
-    d.line([(Xc - w * ridge / 2, Yb - hr), (Xc + w * ridge / 2, Yb - hr)], fill=(30, 27, 22, 255),
-           width=max(1, round(SS * 0.8)))
+    d.line([(Xc - w * ridge / 2, Yb - hr), (Xc + w * ridge / 2, Yb - hr)], fill=(18, 16, 13, 255),
+           width=max(1, round(SS * 0.9)))
     d.line([(L + w * 0.04, Yb), (R - w * 0.04, Yb)], fill=(122, 112, 94, 200), width=max(1, round(SS * 0.6)))
     cx.dcov.polygon(pts, fill=255)
 
 
-def _tower_fn(cx, x, y, wall_h, size, kind, style, eaves=1, side="S", body_col=(206, 190, 160), roof_col=INK):
+def _tower_fn(cx, x, y, wall_h, size, kind, style, eaves=1, side="S", body_col=None, roof_col=None):
+    body_col = tuple(INK_CFG["tower_body"]) if body_col is None else tuple(body_col)
+    if roof_col is None or tuple(roof_col) == tuple(INK):
+        roof_col = tuple(INK_CFG["roof"])
+    else:
+        roof_col = tuple(int(c * INK_CFG["imperial_roof_mul"]) for c in roof_col)
+    style = tuple(style[:3]) + (tuple(INK_CFG["tower_line"]),)
+
     def fn():
         P = cx.proj
         X, Yb = P.g(x, y, wall_h)
@@ -644,7 +709,7 @@ def gate_items(cx: Ctx):
             if bb.get("arrow_tower", True):
                 ax_, ay_ = (x, y1) if side in ("S", "N") else (x1, y)
                 cx.add(ay_ - 0.0005, ax_, _tower_fn(cx, ax_, ay_, h * 0.9, size * 0.8, "arrow", style, eaves=1,
-                                                     side=side, body_col=(196, 184, 160)))
+                                                     side=side, body_col=tuple(int(c * 1.05) for c in INK_CFG["tower_body"])))
         rc = tuple(g.get("roof", (w or {}).get("roof", INK)))
         cx.add(y - 0.0008, x, _tower_fn(cx, x, y, h, size, "gate", style, eaves=g.get("eaves", 1), side=side, roof_col=rc))
         cx.dblock.ellipse(_bbox_px(cx, x, y, size * 0.6), fill=255)
@@ -680,14 +745,14 @@ def _bbox_px(cx, x, y, r):
 
 
 def sprite_item(cx: Ctx, name: str, x: float, y: float, width_px: float, flip=False, squash=1.0, kit=None,
-                ink=True, alpha=1.0, z=0.0, tint=None):
+                ink=True, alpha=1.0, z=0.0, tint=None, crop_top=0.0):
     path = kit_sprite_path(kit or cx.kit, name)
     width_ss = max(2, int(round(width_px * SS)))
     cx.used.add(str(path))
 
     def fn():
         tt = tint or ("tree" if "tree_cluster" in path.name else "ink")
-        im, (axs, ays) = sprite(str(path), width_ss, bool(flip), float(squash), bool(ink), tt)
+        im, (axs, ays) = sprite(str(path), width_ss, bool(flip), float(squash), bool(ink), tt, float(crop_top))
         X, Y = cx.proj.g(x, y, z)
         ox, oy = int(round(X - axs)), int(round(Y - ays))
         if alpha < 1.0:
@@ -739,7 +804,43 @@ def round_altar_fn(cx, x, y, size_px):
     return fn
 
 
-PROCS = {"round_hall": round_hall_fn, "round_altar": round_altar_fn}
+def mingtang_fn(cx, x, y, size_px):
+    """武周明堂（通天宫）：方台、下层方殿、中层多边形重檐、上层圆顶加火珠（套件无此形制，程序墨线画）。"""
+    def fn():
+        X, Y = cx.proj.g(x, y)
+        s = size_px * SS
+        d = cx.dr
+        ink = tuple(INK_CFG["roof"])
+        line = tuple(INK_CFG["tower_line"])
+        d.polygon([(X - s * 0.5, Y), (X, Y + s * 0.17), (X + s * 0.5, Y), (X, Y - s * 0.17)], fill=(214, 204, 182, 255), outline=line + (255,))
+        d.rectangle([X - s * 0.36, Y - s * 0.26, X + s * 0.36, Y - s * 0.02], fill=(176, 126, 98, 255), outline=line + (255,))
+        roof(cx, X, Y - s * 0.26, s * 0.9, s * 0.16, col=ink, flare=0.12, ridge=0.75)
+        d.rectangle([X - s * 0.27, Y - s * 0.52, X + s * 0.27, Y - s * 0.36], fill=(176, 126, 98, 255), outline=line + (255,))
+        roof(cx, X, Y - s * 0.52, s * 0.7, s * 0.14, col=ink, flare=0.12, ridge=0.6)
+        d.rectangle([X - s * 0.17, Y - s * 0.74, X + s * 0.17, Y - s * 0.62], fill=(176, 126, 98, 255), outline=line + (255,))
+        d.pieslice([X - s * 0.3, Y - s * 0.98, X + s * 0.3, Y - s * 0.6], 180, 360, fill=ink + (255,))
+        d.ellipse([X - s * 0.05, Y - s * 1.1, X + s * 0.05, Y - s * 0.98], fill=(176, 140, 64, 255), outline=line + (255,))
+        cx.cov.paste(255, (int(X - s * 0.52), int(Y - s * 1.12), int(X + s * 0.52), int(Y + s * 0.18)))
+    return fn
+
+
+def pillar_fn(cx, x, y, size_px):
+    """武周天枢：八棱铜柱立于铁山之上，顶承云盖与火珠（程序墨线画）。size_px 为柱高。"""
+    def fn():
+        X, Y = cx.proj.g(x, y)
+        h = size_px * SS
+        w = h * 0.07
+        d = cx.dr
+        line = tuple(INK_CFG["tower_line"])
+        d.ellipse([X - h * 0.2, Y - h * 0.08, X + h * 0.2, Y + h * 0.06], fill=(70, 64, 56, 255), outline=line + (255,))
+        d.rectangle([X - w, Y - h, X + w, Y - h * 0.02], fill=(96, 84, 62, 255), outline=line + (255,))
+        d.ellipse([X - h * 0.16, Y - h * 1.06, X + h * 0.16, Y - h * 0.97], fill=(88, 78, 60, 255), outline=line + (255,))
+        d.ellipse([X - h * 0.05, Y - h * 1.17, X + h * 0.05, Y - h * 1.06], fill=(176, 140, 64, 255), outline=line + (255,))
+        cx.cov.paste(255, (int(X - h * 0.21), int(Y - h * 1.18), int(X + h * 0.21), int(Y + h * 0.07)))
+    return fn
+
+
+PROCS = {"round_hall": round_hall_fn, "round_altar": round_altar_fn, "mingtang": mingtang_fn, "pillar": pillar_fn}
 
 
 def landmark_items(cx: Ctx):
@@ -749,7 +850,8 @@ def landmark_items(cx: Ctx):
             cx.add(y, x, PROCS[lm["proc"]](cx, x, y, lm["size_px"]))
         else:
             sprite_item(cx, lm["sprite"], x, y, lm["size_px"], flip=lm.get("flip", False),
-                        squash=lm.get("squash", 1.0), kit=lm.get("kit"), alpha=lm.get("alpha", 1.0), tint=lm.get("tint"))
+                        squash=lm.get("squash", 1.0), kit=lm.get("kit"), alpha=lm.get("alpha", 1.0), tint=lm.get("tint") or "landmark",
+                        crop_top=lm.get("crop_top", 0.0))
         r = lm.get("clear", 0.0)
         if r:
             cx.dblock.ellipse(_bbox_px(cx, x, y, r), fill=255)
@@ -764,44 +866,81 @@ def landmark_items(cx: Ctx):
 
 
 def fill_items(cx: Ctx):
-    """坊内 / 胡同间填充：按年代套件的民居、合院、店铺等，抖动网格，避开水、街、宫城与地标。"""
+    """坊内 / 胡同间填充（调墨 v2：墨团）：按年代套件的民居、合院、店铺与树，每团 2–4 件紧挨着摆，
+    团下垫一块淡墨晕，团与团之间留出亮的街巷；避开水、街、宫城与地标。抖动网格、固定种子。"""
     P = cx.proj
+    cfg = INK_CFG["clump"]
     blk = np.asarray(cx.block)
+    wash = Image.new("L", (WS, WS), 0)
+    dw = ImageDraw.Draw(wash)
+    allow = np.zeros((WS, WS), np.float32)
     for f in cx.spec.get("fill", []):
         rng = np.random.default_rng(int(cx.spec.get("seed", 1)) + hash_str(f["id"]) % 9973)
         clip = np.asarray(cx.region_mask(f["clip"]))
         excl = [np.asarray(cx.region_mask(e)) for e in f.get("exclude", [])]
+        ok_mask = (clip > 0)
+        for e in excl:
+            ok_mask &= ~(e > 0)
+        allow = np.maximum(allow, ok_mask.astype(np.float32))
         x0, x1, y0, y1 = f["bbox"]
         if "spacing_px" in f:
-            sx, sy = (v * SS / cx.proj.S for v in f["spacing_px"])
+            sx, sy = (v * SS / cx.proj.S * cfg["spacing_mul"] for v in f["spacing_px"])
         else:
-            sx, sy = f["spacing"]
-        names = [s[0] for s in f["sprites"]]
-        weights = np.array([s[1] for s in f["sprites"]], float)
-        weights /= weights.sum()
-        size = f.get("size_px", 13)
+            sx, sy = (v * cfg["spacing_mul"] for v in f["spacing"])
+        names = [s_[0] for s_ in f["sprites"]]
+        weights = np.array([s_[1] for s_ in f["sprites"]], float)
+        bld = [i for i, n in enumerate(names) if not n.startswith("tree:")]
+        trees = [n for n in names if n.startswith("tree:")]
+        bw = weights[bld] / weights[bld].sum() if bld else None
+        scale = f.get("size_px", 10) / 10.0
         dens = f.get("density", 1.0)
+        n_lo, n_hi = f.get("clump_n", cfg["n"])
+        tree_p = cfg["tree_p"] * (2.0 if not bld else 1.0)
+
+        def free(px_, py_):
+            X, Y = P.g(px_, py_)
+            if not (0 <= int(X) < WS and 0 <= int(Y) < WS):
+                return False
+            return bool(clip[int(Y), int(X)]) and not blk[int(Y), int(X)] and not any(e[int(Y), int(X)] for e in excl)
+
         y = y1 - sy / 2
         row = 0
         while y > y0:
             x = x0 + sx / 2 + (sx / 2 if row % 2 else 0)
             while x < x1:
-                jit = f.get("jitter", 0.3)
-                jx = x + rng.uniform(-jit, jit) * sx
-                jy = y + rng.uniform(-jit, jit) * sy
-                X, Y = P.g(jx, jy)
-                ok = 0 <= int(X) < WS and 0 <= int(Y) < WS
-                if ok and clip[int(Y), int(X)] and not blk[int(Y), int(X)] and not any(e[int(Y), int(X)] for e in excl):
-                    if rng.random() < dens:
-                        name = names[int(rng.choice(len(names), p=weights))]
-                        if name.startswith("tree:"):
-                            sprite_item(cx, f"tile:tex_town_{cx.tile_kit}_{name[5:]}", jx, jy, size * rng.uniform(0.75, 1.0), kit=cx.tile_kit,
-                                        flip=bool(rng.random() < 0.5))
-                        else:
-                            sprite_item(cx, name, jx, jy, size * rng.uniform(0.85, 1.12), flip=bool(rng.random() < 0.5))
+                jit = f.get("jitter", 0.3) * 0.8
+                cxp = x + rng.uniform(-jit, jit) * sx
+                cyp = y + rng.uniform(-jit, jit) * sy
+                if free(cxp, cyp) and rng.random() < dens:
+                    X, Y = P.g(cxp, cyp)
+                    rx, ry = sx * cx.proj.S * cfg["wash_scale"] / 2, sy * cx.proj.S * K * cfg["wash_scale"] / 2
+                    if bld:
+                        dw.ellipse([X - rx, Y - ry, X + rx, Y + ry], fill=255)
+                    n = int(rng.integers(n_lo, n_hi + 1)) if bld else 0
+                    for _ in range(n):
+                        ox, oy = rng.uniform(-cfg["spread"], cfg["spread"]) * sx, rng.uniform(-cfg["spread"], cfg["spread"]) * sy
+                        if not free(cxp + ox, cyp + oy):
+                            continue
+                        name = names[bld[int(rng.choice(len(bld), p=bw))]]
+                        size = rng.uniform(*cfg["size_px"]) * scale
+                        sprite_item(cx, name, cxp + ox, cyp + oy, size, flip=bool(rng.random() < 0.5))
+                    if trees and rng.random() < tree_p:
+                        ox, oy = rng.uniform(-0.45, 0.45) * sx, rng.uniform(-0.45, 0.45) * sy
+                        if free(cxp + ox, cyp + oy):
+                            name = trees[int(rng.integers(len(trees)))]
+                            sprite_item(cx, f"tile:tex_town_{cx.tile_kit}_{name[5:]}", cxp + ox, cyp + oy,
+                                        rng.uniform(11.0, 14.0) * scale, kit=cx.tile_kit, flip=bool(rng.random() < 0.5))
                 x += sx
             y -= sy
             row += 1
+    # 团下淡墨晕：模糊后只留在可填区域内、街巷处减半
+    m = np.asarray(wash.filter(ImageFilter.GaussianBlur(cfg["wash_blur_px"] * SS)), np.float32) / 255.0
+    m *= allow * (1.0 - 0.6 * (blk > 0))
+    a = (m * cfg["wash_alpha"])[..., None]
+    base = np.asarray(cx.img, np.float32)
+    out = base * (1 - a) + np.array(cfg["wash_color"], np.float32) * a
+    cx.img.paste(Image.fromarray(np.clip(out, 0, 255).astype(np.uint8), "RGB"))
+    cx.dr = ImageDraw.Draw(cx.img, "RGBA")
 
 
 def tree_items(cx: Ctx):
@@ -887,6 +1026,9 @@ def finish(cx: Ctx) -> Image.Image:
     rgb = np.asarray(cx.img, np.float32)
     ring = np.clip(halo_full * (1 - halo_full) * 4, 0, 1)[..., None]
     rgb = rgb * (1 - ring * 0.10) + np.array([150, 138, 115], np.float32) * ring * 0.10
+    # 整体对比（调墨 v2）：围绕 pivot 拉伸，再以 gamma 压一点中间调
+    rgb = INK_CFG["pivot"] + (rgb - INK_CFG["pivot"]) * INK_CFG["contrast"]
+    rgb = 255.0 * (np.clip(rgb, 0, 255) / 255.0) ** INK_CFG["gamma"]
     # 纸纹
     grain = value_noise((WS, WS), 3, int(sp.get("seed", 1)) + 11) - 0.5
     grain2 = value_noise((WS, WS), 40, int(sp.get("seed", 1)) + 13) - 0.5
@@ -904,6 +1046,7 @@ def render(spec: dict) -> tuple[Image.Image, tuple[float, float], dict]:
     cx = Ctx(spec)
     draw_ground(cx)
     draw_water(cx)
+    draw_bridges(cx)
     draw_wards(cx)
     draw_streets(cx)
     draw_hutongs(cx)
@@ -947,7 +1090,8 @@ def deliver(spec_path: Path, check=False) -> dict:
             "sha256": C.sha256_bytes(webp), "bytes": len(webp), "used": used, "spec": C.rel(spec_path)}
 
 
-NODE_NAMES = {"city_beijing": "北京", "city_xian": "长安 / 西安"}
+NODE_NAMES = {"city_beijing": "北京", "city_xian": "长安 / 西安", "city_kaifeng": "开封", "city_hangzhou": "杭州", "city_luoyang": "洛阳",
+              "city_nanjing": "南京", "city_dali": "大理", "city_xiangyang": "襄阳"}
 
 
 def layout_basis(spec: dict) -> dict:
@@ -996,7 +1140,7 @@ def manifest_rows(results: list[dict]) -> list[dict]:
             "prompt": "（无：程序按版式规格合成，未调用出图模型）",
             "negative": "（程序不生成文字、印章、题跋）",
             "references": refs,
-            "tool": "python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）",
+            "tool": f"python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 {INK_CFG['version']}：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）",
             "model": "（无：确定性合成，固定种子）",
             "effort": "n/a",
             "created": C.keep_created(old, spec["id"], r["sha256"]),
@@ -1004,7 +1148,7 @@ def manifest_rows(results: list[dict]) -> list[dict]:
             "size": r["size"],
             "sha256": r["sha256"],
             "status": "candidate",
-            "notes": "；".join(spec.get("notes", [])) + "；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。",
+            "notes": "；".join(spec.get("notes", [])) + f"；调墨 {INK_CFG['version']}；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。",
         })
     return rows
 

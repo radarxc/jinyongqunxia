@@ -82,15 +82,15 @@
   - path: assets/default/tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__pine_v01.png
     sha256: 3e55a42659f8066955d1c09a48bafe7b61594c6c6f713a74e6704db6f1e2d61a
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:24-07:00'
   source_path: tools/map/paint/landmarks/specs/city_beijing__jin.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_beijing__jin.png，不入库）
   size: 705x483
-  sha256: 9a83c9af39ae46106caf9757f9fa681c6c5e791d1326bec0ec1ca053842f3b9e
+  sha256: 0ff12e71bce9b24d481ee3f30d2b11298f6063fd2224ca61ae581da285d657e3
   status: candidate
-  notes: ch02 名录为「中都故城 / 燕京」、ch03 为「燕京路」，均非都城：宫城画作残墙与废殿，城垣与街坊照旧；金代仿汴京规制，皇城宫城居中轴；鱼藻池与宫殿区遗址在白纸坊一带；交付图比例约 94.5 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: ch02 名录为「中都故城 / 燕京」、ch03 为「燕京路」，均非都城：宫城画作残墙与废殿，城垣与街坊照旧；金代仿汴京规制，皇城宫城居中轴；鱼藻池与宫殿区遗址在白纸坊一带；交付图比例约 94.5 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_beijing__liao
   file: map_landmark_city_beijing__liao.webp
   category: map
@@ -173,15 +173,15 @@
   - path: assets/default/tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__pine_v01.png
     sha256: 3e55a42659f8066955d1c09a48bafe7b61594c6c6f713a74e6704db6f1e2d61a
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:24-07:00'
   source_path: tools/map/paint/landmarks/specs/city_beijing__liao.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_beijing__liao.png，不入库）
   size: 693x397
-  sha256: 1c7723304ed75f28de095d4cf2b3f6988e0e215d638d541d9ab2e451be42f04e
+  sha256: ca5c04df8c33518e682b66f379a0f4d17455f91f0a9678b428091fdf9bcabf57
   status: candidate
-  notes: 天宁寺塔为辽天庆九至十年（1119–1120）所建，1093 年尚无，本图不画；唐幽州档按仓库城图规格取 9:7 文献城形，本档按唐墓志定出的城垣线（近方形）；二者均为推定；交付图比例约 106.7 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 天宁寺塔为辽天庆九至十年（1119–1120）所建，1093 年尚无，本图不画；唐幽州档按仓库城图规格取 9:7 文献城形，本档按唐墓志定出的城垣线（近方形）；二者均为推定；交付图比例约 106.7 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_beijing__ming
   file: map_landmark_city_beijing__ming.webp
   category: map
@@ -295,15 +295,15 @@
   - path: assets/default/tile/ming_north/tex_town_ming_north_tree_cluster__guohuai_v01.png
     sha256: dfe9be56b79462704500a8efdd2dee9a60b15bd265b249e40fd988ac06931fbc
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:24-07:00'
   source_path: tools/map/paint/landmarks/specs/city_beijing__ming.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_beijing__ming.png，不入库）
   size: 689x569
-  sha256: ee339607ac217626112d6d856f2f969e504715b7d88fa2fba6697799f916548d
+  sha256: d3153b574d800083d8860415e3a7ed5afe3316186c90348f1d3532a8a320afeb
   status: candidate
-  notes: 交付图比例约 72.6 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 交付图比例约 72.6 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_beijing__ming_early
   file: map_landmark_city_beijing__ming_early.webp
   category: map
@@ -413,15 +413,15 @@
   - path: assets/default/tile/ming_north/tex_town_ming_north_tree_cluster__guohuai_v01.png
     sha256: dfe9be56b79462704500a8efdd2dee9a60b15bd265b249e40fd988ac06931fbc
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:24-07:00'
   source_path: tools/map/paint/landmarks/specs/city_beijing__ming_early.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_beijing__ming_early.png，不入库）
   size: 683x570
-  sha256: 08f7aff0347c8a462fcc4e097766bd09aa0443e57324d6c11f5c83cce72cf870
+  sha256: aec19c6f949052eb12ac94ecfc637eed5ee9d6f5ffb3d1016c76e50932fb1bde
   status: candidate
-  notes: 交付图比例约 85.4 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 交付图比例约 85.4 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_beijing__qing
   file: map_landmark_city_beijing__qing.webp
   category: map
@@ -539,15 +539,15 @@
   - path: assets/default/tile/qing_north/tex_town_qing_north_tree_cluster__scholar_tree_v01.png
     sha256: 8df34f8cba7a558f58221f937a5c631e02c9dd6b5b752b9388182a95549bd72d
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:24-07:00'
   source_path: tools/map/paint/landmarks/specs/city_beijing__qing.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_beijing__qing.png，不入库）
   size: 687x565
-  sha256: 93f0c68f78c0fcdebed8e57a7ca2abc0466396c3692063bafbc3d0003dff11b4
+  sha256: df36151dadf91b813f0a0f28333ba37387dac78ae8145f37b856bd681e0836a2
   status: candidate
-  notes: 交付图比例约 72.6 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 交付图比例约 72.6 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_beijing__tang
   file: map_landmark_city_beijing__tang.webp
   category: map
@@ -624,15 +624,15 @@
   - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
     sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:24-07:00'
   source_path: tools/map/paint/landmarks/specs/city_beijing__tang.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_beijing__tang.png，不入库）
   size: 619x435
-  sha256: 8900ecadbeb6a0a5d477c0a80bd95b03837feb6593a50b848416042c0be42881
+  sha256: 4ab53a3901bbb9515c9676c8214c3271133f701183f8141a4166fd20ac7741c6
   status: candidate
-  notes: 唐代无专用建筑套件，按仓库城图规格同口径以宋代套件 song_north 代用（非唐代建筑复原）；ch10 大地图数据仍是清初「京师顺天府」，本图按 AR-26 画唐代；属已知年代数据缺口；交付图比例约 129.5 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 唐代无专用建筑套件，按仓库城图规格同口径以宋代套件 song_north 代用（非唐代建筑复原）；ch10 大地图数据仍是清初「京师顺天府」，本图按 AR-26 画唐代；属已知年代数据缺口；交付图比例约 129.5 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_beijing__yuan
   file: map_landmark_city_beijing__yuan.webp
   category: map
@@ -717,15 +717,1140 @@
   - path: assets/default/tile/yuan_north/tex_town_yuan_north_tree_cluster__scholar_tree_v01.png
     sha256: 9a08bb85679d834bc6b81a69b11b663f81e5c66d62adf949383cf5a37afcd453
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:25-07:00'
   source_path: tools/map/paint/landmarks/specs/city_beijing__yuan.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_beijing__yuan.png，不入库）
   size: 657x520
-  sha256: 02703be4d5fbf4cba16b2db0af5b405a1f17484c4f6db40c18af8c7d44bfbd5e
+  sha256: 04fe1a19f2704cad791bb573bf62edaa213912ee0c0116b593acce053c179d3d
   status: candidate
-  notes: 元大都中轴取明轴西约 150 m（明宫「比元朝偏东」）；元北方套件为 candidate 状态；庆寿寺双塔借辽金北方密檐塔件；交付图比例约 82.3 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 元大都中轴取明轴西约 150 m（明宫「比元朝偏东」）；元北方套件为 candidate 状态；庆寿寺双塔借辽金北方密檐塔件；交付图比例约 82.3 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_dali__dali
+  file: map_landmark_city_dali__dali.webp
+  category: map
+  style: default
+  subject: 大理·大理国都羊苴咩城（苍山洱海之间，1093 / 1217）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：崇圣寺千寻塔、崇圣寺北小塔、崇圣寺南小塔、崇圣寺、大理国王宫、五华楼（856）
+  node: city_dali
+  era: dali
+  chapters:
+  - ch01
+  - ch02
+  years:
+  - 937
+  - 1253
+  anchor:
+  - 326.0
+  - 326.3
+  footprint_grid: 11
+  layout_basis:
+    summary: 羊苴咩城（南北两道城墙）：推测仅筑南北两道城墙，东西以洱海、苍山为屏障；北城墙沿桃溪南侧西起苍山中和峰下东至洱海边；tongqu：南北两门相对，中以通衢相连；erhai：洱海在城东，城东不筑墙；taoxi：桃溪，北城墙沿其南侧；lvyu：城南溪流（示意）；zhonghe：苍山十八溪之一（示意）；崇圣寺千寻塔：方形十六层密檐砖塔（南诏）；崇圣寺北小塔：八角十级楼阁式；建年说法不一（大理国时期，或 1109–1171），沿仓库 ch01 大理城图先例画入；五华楼（856）：城中大楼，「方五里、高百尺」；套件无楼阁件，借宋北方城门楼件
+    sources:
+    - key: src_santa
+      title: 维基百科（中文）《崇圣寺三塔》
+      url: https://zh.wikipedia.org/wiki/%E5%B4%87%E5%9C%A3%E5%AF%BA%E4%B8%89%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 千寻塔为方形十六层密檐砖塔（南诏）；南北二小塔为八角十级楼阁式（大理国时期，或 1109–1171 年段正严、段正兴时）；三塔呈三角形，在大理古城西北苍山应乐峰下
+    - key: src_town_dali01
+      title: 仓库城图规格 docs/design/town/city_dali__ch01.yaml 与 assets/default/baseline/building-map（千寻塔、小塔基线件，小塔提前出现为原创扩展）
+      url: docs/design/town/city_dali__ch01.yaml
+      accessed: '2026-10-11'
+      supports: ch01 大理城图已将小塔画入（先例）
+    - key: src_yjm
+      title: 维基百科（中文）《阳苴咩城》
+      url: https://zh.wikipedia.org/wiki/%E9%98%B3%E8%8B%B4%E5%92%A9%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 南诏 779 年迁都至此、大理国都城；推测仅筑南北两道城墙，东西以洱海、苍山为屏障；南北两门相对、通衢相连；北城墙沿桃溪南侧、西起苍山中和峰下东至洱海边约 5 km；856 年建五华楼
+  spec: tools/map/paint/landmarks/specs/city_dali__dali.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_dali_courtyard.png
+    sha256: f6d83162d9a7e33e7c7a0be0e6b900b376ea29eb35979c6f08e4a6051bea3175
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_dali_house.png
+    sha256: d4253e828714ee9352da82aed7aa33cf61cc5428d1939f8089600344f7ecb953
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_dali_inn.png
+    sha256: 017521d157f0a6b29976ab7e0da83a829359f0de970a376c5226ef4ee4dea307
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_dali_shop.png
+    sha256: 89ef22795c9e19566646052a92f161f62c4d785db93f0ae1dcbc94131ab94c79
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_dali_shrine.png
+    sha256: 0e2b31512ae831e4a1f6d5da1047a400911d3aab41168d655229c5845e08b29f
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_dali_temple_hall.png
+    sha256: ae798a3d9fb9ba38b085be5f4af2758e8d07b82173deec2e6719836db4283755
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_dali_wangfu.png
+    sha256: 02c01927f4a3ef9cb709adc104be9c12e3934662023f3594fbf8ee84cfd39754
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_lm_ch01_chongshengsi_pagoda.png
+    sha256: f2e0b6d9d38ee9f0c3316068352ae579e24f473d16cbed7d485e4c373f1361b5
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_lm_ch01_chongshengsi_pagoda_small.png
+    sha256: 38447f87ffbac339d6985f69ff388678d7df3701b74f7e36d8d254221240ff38
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/map/kit/map_kit_shanfeng_02.png
+    sha256: 1e33f23f04e687032164013f9c56d31e2f1f81072227596b057a341362fba91d
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_shanfeng_04.png
+    sha256: 0fe95c7afa482a0657cd562438df52b716a5da539111ad390c32ca394b0150a3
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_shanmai_06.png
+    sha256: 92c5971fdab632f93cdba16ce2ea7c2114fa1be42dd1c6a1b17d493dd3bbe045
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/tile/song_north/tex_town_song_north_city_gate__k6_r000_v01.png
+    sha256: 9016be6ae1d9d71d9d195d0cd390b81e4d7805d7ad8e983b2c85554d44ff46ba
+    use: 树丛 / 城门楼件（钟鼓楼代用）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__scholar_tree_v01.png
+    sha256: 90d1ee7d55c623d0460298c6a252156a3890c56c140a49b4594f2c20bc1e54d0
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
+    sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_dali__dali.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_dali__dali.png，不入库）
+  size: 711x540
+  sha256: 5e3fa3b99aeb287c9df90b1387d04404024ca425b9815ae4ee0262e0b84d2b0a
+  status: candidate
+  notes: 城区东西取苍山麓至洱海岸、南北两墙相距约 3.9 km（「延袤十五里」有南北长与周长两说，取中）；大理套件取作者已审基线 song_dali；苍山用 map/kit 山脉件；三塔中两小塔建年存疑，沿仓库 ch01 城图先例画入（原创扩展）；交付图比例约 75.1 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_hangzhou__ming
+  file: map_landmark_city_hangzhou__ming.webp
+  category: map
+  style: default
+  subject: 杭州·明杭州府（雷峰塔嘉靖年间焚余，1582–1644）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：镇海楼（鼓楼）、杭州府治、雷峰塔（嘉靖年间焚余砖身）、保俶塔、六和塔、净慈寺
+  node: city_hangzhou
+  era: ming
+  chapters:
+  - ch06
+  - ch07
+  years:
+  - 1555
+  - 1644
+  anchor:
+  - 513.4
+  - 241.4
+  footprint_grid: 9
+  layout_basis:
+    summary: 杭州府城（元末张士诚 1359 年重筑）：南界缩至万松岭（凤凰山与南宋故宫截在城外）、东界外扩至贴沙河；明代十门；yujie：中轴大街（南宋御街故道）；xihu：西湖在城西、湖在城外；qiantang：钱塘江在城东南，皇城「南达钱塘江边」；江面宽度示意；yanqiao：盐桥河（中河），城内主运河；雷峰塔（嘉靖年间焚余砖身）：西湖南岸夕照山；明嘉靖年间倭寇焚塔，木檐尽毁仅存赭色砖身；六和塔：钱塘江畔月轮山；距离向城压缩（真实在城西南约 3 km）
+    sources:
+    - key: src_baidi
+      title: 维基百科（中文）《白堤》
+      url: https://zh.wikipedia.org/wiki/%E7%99%BD%E5%A0%A4
+      accessed: '2026-10-11'
+      supports: 唐称白沙堤，东起断桥、西止平湖秋月（孤山）
+    - key: src_baochu
+      title: 维基百科（中文）《保俶塔》
+      url: https://zh.wikipedia.org/wiki/%E4%BF%9D%E4%BF%B6%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 西湖北岸宝石山顶，吴越开宝年间（968–976）始建，屡毁屡建，明万历七年（1579）重修为七层
+    - key: src_hz_wall
+      title: 维基百科（中文）《杭州城墙》
+      url: https://zh.wikipedia.org/wiki/%E6%9D%AD%E5%B7%9E%E5%9F%8E%E5%A2%99
+      accessed: '2026-10-11'
+      supports: 南宋城墙范围（北环城北路、西西湖东岸与凤凰山西麓、南将台山、东东河）与 13 门；元末张士诚 1359 年重筑：南界缩至万松岭（凤凰山截在城外）、东界外扩至贴沙河；明代十门；顺治年间城内西侧建八旗驻防城
+    - key: src_leifeng
+      title: 维基百科（中文）《雷峰塔》
+      url: https://zh.wikipedia.org/wiki/%E9%9B%B7%E5%B3%B0%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 吴越 972–977 年建于西湖南岸夕照山；南宋重修为五层；明嘉靖年间倭寇纵火，木檐尽毁仅存砖身；1924 年倒塌
+    - key: src_linan
+      title: 维基百科（中文）《临安城》
+      url: https://zh.wikipedia.org/wiki/%E4%B8%B4%E5%AE%89%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 南宋都城；南宫北市：宫殿在南部凤凰山，御街自和宁门北行约 4.5 km；皇城方圆九里；外城南跨吴山、北至武林门、西接西湖（湖在城外）、东临钱塘江；城内四条河道（盐桥河为主）
+    - key: src_liuhe
+      title: 维基百科（中文）《六和塔》
+      url: https://zh.wikipedia.org/wiki/%E5%85%AD%E5%92%8C%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 970 年建于钱塘江畔月轮山；1121 年毁，南宋 1153–1163 年重建七层；嘉靖十二年（1533）外檐被焚，雍正十三年（1735）重建外檐
+    - key: src_sudi
+      title: 维基百科（中文）《苏堤》
+      url: https://zh.wikipedia.org/wiki/%E8%8B%8F%E5%A0%A4
+      accessed: '2026-10-11'
+      supports: 元祐四年（1089）苏轼疏浚西湖筑长堤，堤上六桥
+  spec: tools/map/paint/landmarks/specs/city_hangzhou__ming.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_courtyard.png
+    sha256: 30672b2fe8ab2e22f50b2917cbfcb6599bd41b382f12b0c2b637ab39c8fc8a03
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_house_large.png
+    sha256: abd07308c9b4a77b61092518c0033bdfe8cb269586371c6817d6307d9b37d361
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_house_small.png
+    sha256: 16b24a21e9e5d26d13028eee6607e6ea5a0cffe5805b391b02a84ffa20b59d4d
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_pagoda.png
+    sha256: f0f6a3a2411c330e7ab77ded2d3c1db10998124329309c2b8174fafc921cfef4
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_shop_1f.png
+    sha256: d618269cd48f86b7a9a9766aa9d0b4f37340d7fb60e6c64e7cfb7b47b2e6b047
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_shop_2f.png
+    sha256: 5b948cc4a7e0ed1a6450d73b5d40ca6ac9356a01559925d49ea5407a9a43eb02
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_temple_hall.png
+    sha256: 13b16f0ab5ad6836647175fdfb0d4a18fe7b636bf26a0daa59812b61e4e2749e
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_yamen.png
+    sha256: a5d3802a3e6f2eb4df2a7ad840350972ccda96be781560060a34a7c394250d16
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/map/kit/map_kit_qiuling_02.png
+    sha256: 9701e31fb30e7da5af907c08f31d7f04aebbb044222265a32776507d7502a83e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_03.png
+    sha256: d42433e5c22422ab46908865775dd0217a33b8774c2b62568a84add9ab089a89
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_04.png
+    sha256: 8d2cf33dd86a202087dcc71a63200dc7711900c3c5e6c08d8a0f809f8bdd134e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_city_gate__k6_r000_v01.png
+    sha256: 0a292ea5f2c66996280cf7d1954b39ac441b463b5202e846ec2be194309c9c25
+    use: 树丛 / 城门楼件（钟鼓楼代用）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_tree_cluster__bamboo_v01.png
+    sha256: 69e3d7b3673b0a32dc2159dd7ebdac1878c43c3aadfe6769dbbd6e3ff9639fa3
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_tree_cluster__willow_v01.png
+    sha256: c9e0ffa697c0d4232bc14862d810498d3140a575587fdadf74b64ce68f8f8e0d
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_hangzhou__ming.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_hangzhou__ming.png，不入库）
+  size: 758x689
+  sha256: 29b307f22354bfe8dd2b9854885afa07aa62a042a71a00bbff81dd8368270fc0
+  status: candidate
+  notes: 城墙折点按现代环城路、河道与城门地名推定（±200 m）；六和塔外檐 1533 年被焚、1735 年重建，小景尺度不表现；交付图比例约 96.4 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_hangzhou__ming_early
+  file: map_landmark_city_hangzhou__ming_early.webp
+  category: map
+  style: default
+  subject: 杭州·明杭州府（元末重筑城，1523）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：镇海楼（鼓楼）、杭州府治、雷峰塔、保俶塔、六和塔、净慈寺
+  node: city_hangzhou
+  era: ming_early
+  chapters:
+  - ch05
+  years:
+  - 1368
+  - 1554
+  anchor:
+  - 510.4
+  - 241.4
+  footprint_grid: 9
+  layout_basis:
+    summary: 杭州府城（元末张士诚 1359 年重筑）：南界缩至万松岭（凤凰山与南宋故宫截在城外）、东界外扩至贴沙河；明代十门；yujie：中轴大街（南宋御街故道）；xihu：西湖在城西、湖在城外；qiantang：钱塘江在城东南，皇城「南达钱塘江边」；江面宽度示意；yanqiao：盐桥河（中河），城内主运河；雷峰塔：西湖南岸夕照山；六和塔：钱塘江畔月轮山；距离向城压缩（真实在城西南约 3 km）
+    sources:
+    - key: src_baidi
+      title: 维基百科（中文）《白堤》
+      url: https://zh.wikipedia.org/wiki/%E7%99%BD%E5%A0%A4
+      accessed: '2026-10-11'
+      supports: 唐称白沙堤，东起断桥、西止平湖秋月（孤山）
+    - key: src_baochu
+      title: 维基百科（中文）《保俶塔》
+      url: https://zh.wikipedia.org/wiki/%E4%BF%9D%E4%BF%B6%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 西湖北岸宝石山顶，吴越开宝年间（968–976）始建，屡毁屡建，明万历七年（1579）重修为七层
+    - key: src_hz_wall
+      title: 维基百科（中文）《杭州城墙》
+      url: https://zh.wikipedia.org/wiki/%E6%9D%AD%E5%B7%9E%E5%9F%8E%E5%A2%99
+      accessed: '2026-10-11'
+      supports: 南宋城墙范围（北环城北路、西西湖东岸与凤凰山西麓、南将台山、东东河）与 13 门；元末张士诚 1359 年重筑：南界缩至万松岭（凤凰山截在城外）、东界外扩至贴沙河；明代十门；顺治年间城内西侧建八旗驻防城
+    - key: src_leifeng
+      title: 维基百科（中文）《雷峰塔》
+      url: https://zh.wikipedia.org/wiki/%E9%9B%B7%E5%B3%B0%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 吴越 972–977 年建于西湖南岸夕照山；南宋重修为五层；明嘉靖年间倭寇纵火，木檐尽毁仅存砖身；1924 年倒塌
+    - key: src_linan
+      title: 维基百科（中文）《临安城》
+      url: https://zh.wikipedia.org/wiki/%E4%B8%B4%E5%AE%89%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 南宋都城；南宫北市：宫殿在南部凤凰山，御街自和宁门北行约 4.5 km；皇城方圆九里；外城南跨吴山、北至武林门、西接西湖（湖在城外）、东临钱塘江；城内四条河道（盐桥河为主）
+    - key: src_liuhe
+      title: 维基百科（中文）《六和塔》
+      url: https://zh.wikipedia.org/wiki/%E5%85%AD%E5%92%8C%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 970 年建于钱塘江畔月轮山；1121 年毁，南宋 1153–1163 年重建七层；嘉靖十二年（1533）外檐被焚，雍正十三年（1735）重建外檐
+    - key: src_sudi
+      title: 维基百科（中文）《苏堤》
+      url: https://zh.wikipedia.org/wiki/%E8%8B%8F%E5%A0%A4
+      accessed: '2026-10-11'
+      supports: 元祐四年（1089）苏轼疏浚西湖筑长堤，堤上六桥
+  spec: tools/map/paint/landmarks/specs/city_hangzhou__ming_early.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_courtyard.png
+    sha256: 30672b2fe8ab2e22f50b2917cbfcb6599bd41b382f12b0c2b637ab39c8fc8a03
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_house_large.png
+    sha256: abd07308c9b4a77b61092518c0033bdfe8cb269586371c6817d6307d9b37d361
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_house_small.png
+    sha256: 16b24a21e9e5d26d13028eee6607e6ea5a0cffe5805b391b02a84ffa20b59d4d
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_pagoda.png
+    sha256: f0f6a3a2411c330e7ab77ded2d3c1db10998124329309c2b8174fafc921cfef4
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_shop_1f.png
+    sha256: d618269cd48f86b7a9a9766aa9d0b4f37340d7fb60e6c64e7cfb7b47b2e6b047
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_shop_2f.png
+    sha256: 5b948cc4a7e0ed1a6450d73b5d40ca6ac9356a01559925d49ea5407a9a43eb02
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_temple_hall.png
+    sha256: 13b16f0ab5ad6836647175fdfb0d4a18fe7b636bf26a0daa59812b61e4e2749e
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_yamen.png
+    sha256: a5d3802a3e6f2eb4df2a7ad840350972ccda96be781560060a34a7c394250d16
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/map/kit/map_kit_qiuling_02.png
+    sha256: 9701e31fb30e7da5af907c08f31d7f04aebbb044222265a32776507d7502a83e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_03.png
+    sha256: d42433e5c22422ab46908865775dd0217a33b8774c2b62568a84add9ab089a89
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_04.png
+    sha256: 8d2cf33dd86a202087dcc71a63200dc7711900c3c5e6c08d8a0f809f8bdd134e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_city_gate__k6_r000_v01.png
+    sha256: 0a292ea5f2c66996280cf7d1954b39ac441b463b5202e846ec2be194309c9c25
+    use: 树丛 / 城门楼件（钟鼓楼代用）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_tree_cluster__bamboo_v01.png
+    sha256: 69e3d7b3673b0a32dc2159dd7ebdac1878c43c3aadfe6769dbbd6e3ff9639fa3
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_tree_cluster__willow_v01.png
+    sha256: c9e0ffa697c0d4232bc14862d810498d3140a575587fdadf74b64ce68f8f8e0d
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_hangzhou__ming_early.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_hangzhou__ming_early.png，不入库）
+  size: 755x689
+  sha256: c4f468dfdfe55e6a6aca057ffd69d7ede35f981ed6ebc66faf3e7854b6cf545e
+  status: candidate
+  notes: 城墙折点按现代环城路、河道与城门地名推定（±200 m）；1523 年雷峰塔、六和塔木檐尚存（六和塔外檐 1533 年被焚）；交付图比例约 96.4 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_hangzhou__qing
+  file: map_landmark_city_hangzhou__qing.webp
+  category: map
+  style: default
+  subject: 杭州·清杭州府（城西湖滨八旗驻防营）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：镇海楼（鼓楼）、杭州府治、雷峰塔（嘉靖年间焚余砖身）、保俶塔、六和塔、净慈寺、杭州将军署
+  node: city_hangzhou
+  era: qing
+  chapters:
+  - ch08
+  - ch09
+  - ch11
+  - ch12
+  - ch13
+  - ch14
+  years:
+  - 1650
+  - 1780
+  anchor:
+  - 512.4
+  - 242.4
+  footprint_grid: 9
+  layout_basis:
+    summary: 杭州府城（元末张士诚 1359 年重筑）：南界缩至万松岭（凤凰山与南宋故宫截在城外）、东界外扩至贴沙河；明代十门；八旗驻防营（旗营）界墙：顺治年间于城内西侧西湖湖滨筑界墙，环九里余、穿城径二里；yujie：中轴大街（南宋御街故道）；xihu：西湖在城西、湖在城外；qiantang：钱塘江在城东南，皇城「南达钱塘江边」；江面宽度示意；yanqiao：盐桥河（中河），城内主运河；雷峰塔（嘉靖年间焚余砖身）：西湖南岸夕照山；明嘉靖年间倭寇焚塔，木檐尽毁仅存赭色砖身；六和塔：钱塘江畔月轮山；距离向城压缩（真实在城西南约 3 km）
+    sources:
+    - key: src_baidi
+      title: 维基百科（中文）《白堤》
+      url: https://zh.wikipedia.org/wiki/%E7%99%BD%E5%A0%A4
+      accessed: '2026-10-11'
+      supports: 唐称白沙堤，东起断桥、西止平湖秋月（孤山）
+    - key: src_baochu
+      title: 维基百科（中文）《保俶塔》
+      url: https://zh.wikipedia.org/wiki/%E4%BF%9D%E4%BF%B6%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 西湖北岸宝石山顶，吴越开宝年间（968–976）始建，屡毁屡建，明万历七年（1579）重修为七层
+    - key: src_hz_qiying
+      title: 维基百科（中文）《杭州八旗駐防營》
+      url: https://zh.wikipedia.org/wiki/%E6%9D%AD%E5%B7%9E%E5%85%AB%E6%97%97%E9%A7%90%E9%98%B2%E7%87%9F
+      accessed: '2026-10-11'
+      supports: 营地在杭州城西侧西湖湖滨一带，界墙北至井字楼、南至军将桥、西至城大西街，环九里余、穿城径二里
+    - key: src_hz_wall
+      title: 维基百科（中文）《杭州城墙》
+      url: https://zh.wikipedia.org/wiki/%E6%9D%AD%E5%B7%9E%E5%9F%8E%E5%A2%99
+      accessed: '2026-10-11'
+      supports: 南宋城墙范围（北环城北路、西西湖东岸与凤凰山西麓、南将台山、东东河）与 13 门；元末张士诚 1359 年重筑：南界缩至万松岭（凤凰山截在城外）、东界外扩至贴沙河；明代十门；顺治年间城内西侧建八旗驻防城
+    - key: src_leifeng
+      title: 维基百科（中文）《雷峰塔》
+      url: https://zh.wikipedia.org/wiki/%E9%9B%B7%E5%B3%B0%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 吴越 972–977 年建于西湖南岸夕照山；南宋重修为五层；明嘉靖年间倭寇纵火，木檐尽毁仅存砖身；1924 年倒塌
+    - key: src_linan
+      title: 维基百科（中文）《临安城》
+      url: https://zh.wikipedia.org/wiki/%E4%B8%B4%E5%AE%89%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 南宋都城；南宫北市：宫殿在南部凤凰山，御街自和宁门北行约 4.5 km；皇城方圆九里；外城南跨吴山、北至武林门、西接西湖（湖在城外）、东临钱塘江；城内四条河道（盐桥河为主）
+    - key: src_liuhe
+      title: 维基百科（中文）《六和塔》
+      url: https://zh.wikipedia.org/wiki/%E5%85%AD%E5%92%8C%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 970 年建于钱塘江畔月轮山；1121 年毁，南宋 1153–1163 年重建七层；嘉靖十二年（1533）外檐被焚，雍正十三年（1735）重建外檐
+    - key: src_sudi
+      title: 维基百科（中文）《苏堤》
+      url: https://zh.wikipedia.org/wiki/%E8%8B%8F%E5%A0%A4
+      accessed: '2026-10-11'
+      supports: 元祐四年（1089）苏轼疏浚西湖筑长堤，堤上六桥
+  spec: tools/map/paint/landmarks/specs/city_hangzhou__qing.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_courtyard.png
+    sha256: 18b5e8f7d0618856a3969c4bf921d867a0223903cb7f4de6fb9338e7baf5b0d2
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_house_large.png
+    sha256: db024f4c0ab8156544d67b64ed5363e6faf4d3a30ea41317f92770dad096719b
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_house_small.png
+    sha256: 6939b9d25233d0eb0be5518f85ea8cdba7d83e94cb358964794ce7f78fd64aff
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_pagoda.png
+    sha256: 45bfee7f0d6dcf0e95cc42ae29f9169f92e5b28d921ebd9b97f0c07a09a3ec69
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_shop_1f.png
+    sha256: 7e7941931d657af834e6842a97b3d778f2c5d4ba6b1ada59fb7b46c24e0bec90
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_shop_2f.png
+    sha256: 10d1f10e7e434d0093aa4bb2a0c320fc2fb6b925f3bc2bb5b8475b91cf109b35
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_temple_hall.png
+    sha256: b4107e3796533278bca901b1354167d7eecd547197fa6fb3a5b7670237742d4f
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_yamen.png
+    sha256: 92d62037f5895e4f31cbd8b42bddc48ac008296b24af3bbe892b6767af438ea2
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/map/kit/map_kit_qiuling_02.png
+    sha256: 9701e31fb30e7da5af907c08f31d7f04aebbb044222265a32776507d7502a83e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_03.png
+    sha256: d42433e5c22422ab46908865775dd0217a33b8774c2b62568a84add9ab089a89
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_04.png
+    sha256: 8d2cf33dd86a202087dcc71a63200dc7711900c3c5e6c08d8a0f809f8bdd134e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/tile/qing_south/tex_town_qing_south_city_gate__k6_r000_v01.png
+    sha256: fba51b22a889d1a0c444120a92d8e3f9cd3b6b48d68f49f1c4d94ac0e00c29cd
+    use: 树丛 / 城门楼件（钟鼓楼代用）
+  - path: assets/default/tile/qing_south/tex_town_qing_south_shrub__osmanthus_v01.png
+    sha256: 74880df7c164d5075ea620ae01cb7bd372f1f22a8f7b77bf096b03e05c8a64b5
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/qing_south/tex_town_qing_south_tree_cluster__willow_v01.png
+    sha256: 1c3d8be70a29abd8438428ed28a3e9e35f7e747fd0f7171b0e11daa03db77263
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_hangzhou__qing.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_hangzhou__qing.png，不入库）
+  size: 757x690
+  sha256: 8cdf92d561c3d744daa031e51be3e3431ef66bc1763e1b1167f3e856dd997647
+  status: candidate
+  notes: 城墙折点按现代环城路、河道与城门地名推定（±200 m）；六和塔外檐 1735 年前焚余，小景尺度不表现；交付图比例约 96.4 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_hangzhou__song
+  file: map_landmark_city_hangzhou__song.webp
+  category: map
+  style: default
+  subject: 杭州·南宋临安（行在，凤凰山宫城、南宫北市、西湖在城外）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：大庆殿 / 文德殿、垂拱殿、太庙、景灵宫、雷峰塔（南宋重修五层）、保俶塔、六和塔、净慈寺
+  node: city_hangzhou
+  era: song
+  chapters:
+  - ch02
+  - ch03
+  years:
+  - 1138
+  - 1276
+  anchor:
+  - 468.2
+  - 288.9
+  footprint_grid: 12
+  layout_basis:
+    summary: 临安城：腰鼓形：北至今环城北路、西傍西湖东岸与凤凰山西麓、南至将台山、东至东河；13 门；宫城偏居城内西南凤凰山；皇城（宫城）：皇城方圆九里，环绕凤凰山，北起凤山门、南达钱塘江边、东抵候潮门、西至万松岭；yujie：御街自和宁门北行约 4.5 km 至景灵宫；xihu：西湖在城西、湖在城外；qiantang：钱塘江在城东南，皇城「南达钱塘江边」；江面宽度示意；yanqiao：盐桥河（中河），城内主运河；雷峰塔（南宋重修五层）：西湖南岸夕照山；六和塔：钱塘江畔月轮山；距离向城压缩（真实在城西南约 3 km）
+    sources:
+    - key: src_baidi
+      title: 维基百科（中文）《白堤》
+      url: https://zh.wikipedia.org/wiki/%E7%99%BD%E5%A0%A4
+      accessed: '2026-10-11'
+      supports: 唐称白沙堤，东起断桥、西止平湖秋月（孤山）
+    - key: src_baochu
+      title: 维基百科（中文）《保俶塔》
+      url: https://zh.wikipedia.org/wiki/%E4%BF%9D%E4%BF%B6%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 西湖北岸宝石山顶，吴越开宝年间（968–976）始建，屡毁屡建，明万历七年（1579）重修为七层
+    - key: src_gongcheng_ns
+      title: 维基百科（中文）《南宋宫城》
+      url: https://zh.wikipedia.org/wiki/%E5%8D%97%E5%AE%8B%E5%AE%AB%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 宫城在凤凰山下，南有丽正门、北有和宁门；元初改宫殿为寺，后渐毁
+    - key: src_hz_wall
+      title: 维基百科（中文）《杭州城墙》
+      url: https://zh.wikipedia.org/wiki/%E6%9D%AD%E5%B7%9E%E5%9F%8E%E5%A2%99
+      accessed: '2026-10-11'
+      supports: 南宋城墙范围（北环城北路、西西湖东岸与凤凰山西麓、南将台山、东东河）与 13 门；元末张士诚 1359 年重筑：南界缩至万松岭（凤凰山截在城外）、东界外扩至贴沙河；明代十门；顺治年间城内西侧建八旗驻防城
+    - key: src_leifeng
+      title: 维基百科（中文）《雷峰塔》
+      url: https://zh.wikipedia.org/wiki/%E9%9B%B7%E5%B3%B0%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 吴越 972–977 年建于西湖南岸夕照山；南宋重修为五层；明嘉靖年间倭寇纵火，木檐尽毁仅存砖身；1924 年倒塌
+    - key: src_linan
+      title: 维基百科（中文）《临安城》
+      url: https://zh.wikipedia.org/wiki/%E4%B8%B4%E5%AE%89%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 南宋都城；南宫北市：宫殿在南部凤凰山，御街自和宁门北行约 4.5 km；皇城方圆九里；外城南跨吴山、北至武林门、西接西湖（湖在城外）、东临钱塘江；城内四条河道（盐桥河为主）
+    - key: src_liuhe
+      title: 维基百科（中文）《六和塔》
+      url: https://zh.wikipedia.org/wiki/%E5%85%AD%E5%92%8C%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 970 年建于钱塘江畔月轮山；1121 年毁，南宋 1153–1163 年重建七层；嘉靖十二年（1533）外檐被焚，雍正十三年（1735）重建外檐
+    - key: src_sudi
+      title: 维基百科（中文）《苏堤》
+      url: https://zh.wikipedia.org/wiki/%E8%8B%8F%E5%A0%A4
+      accessed: '2026-10-11'
+      supports: 元祐四年（1089）苏轼疏浚西湖筑长堤，堤上六桥
+  spec: tools/map/paint/landmarks/specs/city_hangzhou__song.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_courtyard.png
+    sha256: 7a6a426489256ee7ddf328420595b9960647932269d27ad4c30b7de935c9ca73
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_house.png
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_pagoda.png
+    sha256: 25f3abe13173ce40dd3d3bb6e08b31c6dd4a695e3bda22465a099865765c25bf
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_palace_hall.png
+    sha256: 3b8380abd96c1762512fa25efb105fb73a02e5dfa745a1dd183cd23eb15dd51c
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png
+    sha256: 20f82db6ea307c09ef6f7825ed18ba9de6552b9769e13ac8921d839d7f652768
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_shop_2f.png
+    sha256: bdb0d7ba47a804dc14b20c39931e2b95a6c8926cf0d3ecd10a7a808eb62d2548
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_temple_hall.png
+    sha256: 5afdcbe5c8b65b37309c46d47b26af113e83b9bcc558f0038f471591c0d6b22d
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/map/kit/map_kit_qiuling_02.png
+    sha256: 9701e31fb30e7da5af907c08f31d7f04aebbb044222265a32776507d7502a83e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_03.png
+    sha256: d42433e5c22422ab46908865775dd0217a33b8774c2b62568a84add9ab089a89
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_04.png
+    sha256: 8d2cf33dd86a202087dcc71a63200dc7711900c3c5e6c08d8a0f809f8bdd134e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__scholar_tree_v01.png
+    sha256: 90d1ee7d55c623d0460298c6a252156a3890c56c140a49b4594f2c20bc1e54d0
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
+    sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_hangzhou__song.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_hangzhou__song.png，不入库）
+  size: 757x691
+  sha256: 3b2795e6fb92a779978475e02df8c0079567c9dce7b9a7d5cbdb3ba2dde02df4
+  status: candidate
+  notes: 城墙折点按现代环城路、河道与城门地名推定（±200 m）；南宋套件取作者已审基线 song_southern；树取 song_north tile；交付图比例约 96.4 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_kaifeng__jin
+  file: map_landmark_city_kaifeng__jin.webp
+  category: map
+  style: default
+  subject: 开封·金南京开封府（汴京，1214 年迁都后；1233 年城破）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：金南京宫城正殿、后殿、大相国寺、开宝寺塔（铁塔，1049）、天清寺塔（繁塔）
+  node: city_kaifeng
+  era: jin
+  chapters:
+  - ch02
+  - ch03
+  years:
+  - 1161
+  - 1259
+  anchor:
+  - 301.7
+  - 217.6
+  footprint_grid: 11
+  layout_basis:
+    summary: 外城（罗城、新城）：外城周长 50 里 165 步（约 28 km），略呈不规则四边形；13 门与水门；内城（里城、旧城）：内城八门，规模与清代开封城相近；金南京宫城（1161 年重建于宋宫故址）：皇城东西约 1050 m、南北约 1090 m，居内城北部正中；yujie：御街：宣德门—州桥—朱雀门—南薰门；bianhe：汴河自西水门入城，贯内城，州桥（天汉桥）跨其上，出东水门；金代漕运已废，画作干涸故道；大相国寺：内城南部、汴河之南、御街之东（位置推定）；开宝寺塔（铁塔，1049）：八角十三层楼阁式琉璃砖塔；在内城东北（位置推定）；天清寺塔（繁塔）：城东南繁台上，六角楼阁式（元代尚存七层）
+    sources:
+    - key: src_bianliang
+      title: 维基百科（中文）《汴梁》
+      url: https://zh.wikipedia.org/wiki/%E6%B1%B4%E6%A2%81
+      accessed: '2026-10-11'
+      supports: 外城四面 13 门（南 3、东 3、西 3、北 4）与水门，内城 8 门（景龙、旧封丘、曹、宋、保康、朱雀、郑、梁），御街、汴河十三桥（州桥即天汉桥）；金宣宗 1214 年迁都南京开封府，1233 年城破；范成大见新城（外城）内多为废墟田地、旧城（内城）尚有市肆
+    - key: src_dongjing
+      title: 维基百科（中文）《北宋东京城遗址》
+      url: https://zh.wikipedia.org/wiki/%E5%8C%97%E5%AE%8B%E4%B8%9C%E4%BA%AC%E5%9F%8E%E9%81%97%E5%9D%80
+      accessed: '2026-10-11'
+      supports: 北宋以五代开封为基础扩建；皇城东西约 1050 m、南北约 1090 m；1155 年故宫毁于火，1158–1161 年金在其上重建开封府城（金南京）
+    - key: src_fanta
+      title: 维基百科（中文）《繁塔》
+      url: https://zh.wikipedia.org/wiki/%E7%B9%81%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 天清寺塔（繁塔）：开宝七年（974）或太平兴国二年（977）始建、约 990 年后竣工，在城东南繁台；元代尚存七层，明初铲去四级
+    - key: src_kaifeng_wall
+      title: 维基百科（中文）《开封城墙》
+      url: https://zh.wikipedia.org/wiki/%E5%BC%80%E5%B0%81%E5%9F%8E%E5%A2%99
+      accessed: '2026-10-11'
+      supports: 北宋东京外城、内城、皇城三重相套，外城周长 50 里 165 步；清代城墙与北宋内城规模大体相近
+    - key: src_tieta
+      title: 维基百科（中文）《开宝寺琉璃塔》
+      url: https://zh.wikipedia.org/wiki/%E5%BC%80%E5%AE%9D%E5%AF%BA%E7%90%89%E7%92%83%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 铁塔：皇祐元年（1049）建成，八角十三层楼阁式琉璃砖塔，高约 55.9 m，在开宝寺
+    - key: src_xiangguosi
+      title: 维基百科（中文）《大相国寺》
+      url: https://zh.wikipedia.org/wiki/%E5%A4%A7%E7%9B%B8%E5%9B%BD%E5%AF%BA
+      accessed: '2026-10-11'
+      supports: 北宋皇家寺院，规模鼎盛，兼为京城商品集散中心
+  spec: tools/map/paint/landmarks/specs/city_kaifeng__jin.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_courtyard.png
+    sha256: d4ac180452f418c521a1a3e941862aa6d8b7b92229d61235ad7c62143086988c
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_house_large.png
+    sha256: 8cf5f096fb5cfb6fb0ee89f06303537a8c086e36d24756187421f8509976722b
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_house_small.png
+    sha256: 36968b3f1183ac49ace463fbf9d754821bcb62cb1a05e585c8a04436d30f1590
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_shop_1f.png
+    sha256: 3aa5eda2863c1533ed3091c990de25c59030cd4a8bc538ad76e55010bd401007
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_shop_2f.png
+    sha256: 01df052584f3720d488bd710dc624251f2ebf90891992f1aeaf1ed7d42f2eaab
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/liao_jin_north/bld_kit_liao_jin_north_temple_hall.png
+    sha256: aed7b425e59a2cc67ffa44ce3237ee208cf66c761d54d98901bc707b15aaddd2
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_pagoda.png
+    sha256: be50a2b185e1c2135e01233ca7586eeb7fbaab2d29f04cab247b2829269d4c91
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__elm_v01.png
+    sha256: 050e341dda7a50d9b94f6c19ce4c0ef21456bb15a2594aae82a3a93efdfe5ae6
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/liao_jin_north/tex_town_liao_jin_north_tree_cluster__pine_v01.png
+    sha256: 3e55a42659f8066955d1c09a48bafe7b61594c6c6f713a74e6704db6f1e2d61a
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_kaifeng__jin.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_kaifeng__jin.png，不入库）
+  size: 605x438
+  sha256: 0dcf63cc573b96a6b5fa25e9d7c082ebd3ed3d58937be3d07e4314afdfe3e257
+  status: candidate
+  notes: 金宣宗 1214 年迁都于此、1233 年城破；ch03（1259）已入蒙古，沿用本图（城垣格局未变）；汴河宋亡后漕运废弛，画作干涸故道；外城、内城、皇城相对位置按史料尺寸与「内城居中、皇城在内城北部正中」推定，非考古测绘；交付图比例约 72.6 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_kaifeng__song
+  file: map_landmark_city_kaifeng__song.webp
+  category: map
+  style: default
+  subject: 开封·北宋东京开封府（外城 / 内城 / 皇城三重，1093）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：大庆殿、紫宸殿 / 垂拱殿、大相国寺、开宝寺塔（铁塔，1049）、天清寺塔（繁塔）
+  node: city_kaifeng
+  era: song
+  chapters:
+  - ch01
+  years:
+  - 1093
+  - 1093
+  anchor:
+  - 366.9
+  - 207.6
+  footprint_grid: 12
+  layout_basis:
+    summary: 外城（罗城、新城）：外城周长 50 里 165 步（约 28 km），略呈不规则四边形；13 门与水门；内城（里城、旧城）：内城八门，规模与清代开封城相近；皇城（宫城）：皇城东西约 1050 m、南北约 1090 m，居内城北部正中；yujie：御街：宣德门—州桥—朱雀门—南薰门；bianhe：汴河自西水门入城，贯内城，州桥（天汉桥）跨其上，出东水门；jinmingchi：金明池在城西郊顺天门外，距离向城压缩；大相国寺：内城南部、汴河之南、御街之东（位置推定）；开宝寺塔（铁塔，1049）：八角十三层楼阁式琉璃砖塔；在内城东北（位置推定）；天清寺塔（繁塔）：城东南繁台上，六角楼阁式（元代尚存七层）
+    sources:
+    - key: src_bianliang
+      title: 维基百科（中文）《汴梁》
+      url: https://zh.wikipedia.org/wiki/%E6%B1%B4%E6%A2%81
+      accessed: '2026-10-11'
+      supports: 外城四面 13 门（南 3、东 3、西 3、北 4）与水门，内城 8 门（景龙、旧封丘、曹、宋、保康、朱雀、郑、梁），御街、汴河十三桥（州桥即天汉桥）；金宣宗 1214 年迁都南京开封府，1233 年城破；范成大见新城（外城）内多为废墟田地、旧城（内城）尚有市肆
+    - key: src_dongjing
+      title: 维基百科（中文）《北宋东京城遗址》
+      url: https://zh.wikipedia.org/wiki/%E5%8C%97%E5%AE%8B%E4%B8%9C%E4%BA%AC%E5%9F%8E%E9%81%97%E5%9D%80
+      accessed: '2026-10-11'
+      supports: 北宋以五代开封为基础扩建；皇城东西约 1050 m、南北约 1090 m；1155 年故宫毁于火，1158–1161 年金在其上重建开封府城（金南京）
+    - key: src_fanta
+      title: 维基百科（中文）《繁塔》
+      url: https://zh.wikipedia.org/wiki/%E7%B9%81%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 天清寺塔（繁塔）：开宝七年（974）或太平兴国二年（977）始建、约 990 年后竣工，在城东南繁台；元代尚存七层，明初铲去四级
+    - key: src_jinmingchi
+      title: 维基百科（中文）《金明池》
+      url: https://zh.wikipedia.org/wiki/%E9%87%91%E6%98%8E%E6%B1%A0
+      accessed: '2026-10-11'
+      supports: 北宋皇家水上园林，在东京城西郊，太平兴国元年至三年（976–979）建
+    - key: src_kaifeng_wall
+      title: 维基百科（中文）《开封城墙》
+      url: https://zh.wikipedia.org/wiki/%E5%BC%80%E5%B0%81%E5%9F%8E%E5%A2%99
+      accessed: '2026-10-11'
+      supports: 北宋东京外城、内城、皇城三重相套，外城周长 50 里 165 步；清代城墙与北宋内城规模大体相近
+    - key: src_tieta
+      title: 维基百科（中文）《开宝寺琉璃塔》
+      url: https://zh.wikipedia.org/wiki/%E5%BC%80%E5%AE%9D%E5%AF%BA%E7%90%89%E7%92%83%E5%A1%94
+      accessed: '2026-10-11'
+      supports: 铁塔：皇祐元年（1049）建成，八角十三层楼阁式琉璃砖塔，高约 55.9 m，在开宝寺
+    - key: src_xiangguosi
+      title: 维基百科（中文）《大相国寺》
+      url: https://zh.wikipedia.org/wiki/%E5%A4%A7%E7%9B%B8%E5%9B%BD%E5%AF%BA
+      accessed: '2026-10-11'
+      supports: 北宋皇家寺院，规模鼎盛，兼为京城商品集散中心
+  spec: tools/map/paint/landmarks/specs/city_kaifeng__song.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/song_north/bld_kit_song_north_courtyard.png
+    sha256: 7204d748988472e7d2637d1300ac67c58dd3c5ea3ee1962b4e400b6d0a447ed7
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_house_large.png
+    sha256: 956b483bcdb1e4eff4e088f88316d5862f65933c12437537349d5258e0d5ca66
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_house_small.png
+    sha256: b9af8820d16cfa7a6637678543b5cfb63948efa15758d2dcfb5e0956e8d5cacb
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_pagoda.png
+    sha256: be50a2b185e1c2135e01233ca7586eeb7fbaab2d29f04cab247b2829269d4c91
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_palace_hall.png
+    sha256: d6aea5f766ea0e01b796ce2be9cc74b13ed15eceb69a5c270d0e1220ae94b96e
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_shop_1f.png
+    sha256: 1f0943c9bb77d6bbd2803184499c9dfe9192bf484cb84f71cf93fbc1ac72ba29
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_shop_2f.png
+    sha256: af4ee59c495109c7ebb760d20602d6888ac03d79eec7f6dfb987fbe6cbfae5dd
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_temple_hall.png
+    sha256: f66a62ac210d2ba27cde16bcdf0176df529d76b174059b50911055e5b93e76da
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__scholar_tree_v01.png
+    sha256: 90d1ee7d55c623d0460298c6a252156a3890c56c140a49b4594f2c20bc1e54d0
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
+    sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_kaifeng__song.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_kaifeng__song.png，不入库）
+  size: 679x414
+  sha256: d241ac53abc3055c44831d8053d3762c2412bb6a0554e5ad9d4dc913b64a71ff
+  status: candidate
+  notes: 艮岳（1117）、延福宫（1113）晚于 1093 年，不画；外城、内城、皇城相对位置按史料尺寸与「内城居中、皇城在内城北部正中」推定，非考古测绘；交付图比例约 68.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_luoyang__song
+  file: map_landmark_city_luoyang__song.webp
+  category: map
+  style: default
+  subject: 洛阳·北宋西京河南府（沿隋唐洛阳城，1093）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：西京宫城正殿（宋太祖重修）、后殿、河南府衙（皇城内，推定）、含嘉仓、上阳宫殿
+  node: city_luoyang
+  era: song
+  chapters:
+  - ch01
+  years:
+  - 1093
+  - 1093
+  anchor:
+  - 381.0
+  - 225.0
+  footprint_grid: 10
+  layout_basis:
+    summary: 郭城：郭城近方形、周长 27 km 余；南、东各三门，北二门，西墙无门；宫城（紫微城）：宫城、皇城建于城西北最高处；上阳宫（667）：皇城西南、洛水北岸；距离向城压缩；tianjie：定鼎门大街（天街）—天津桥—端门—应天门中轴；luoshui：洛水自西向东横贯郭城，分洛北、洛南；jiuzhou：九洲池在宫城西北部；西京宫城正殿（宋太祖重修）：紫微宫北宋时尚存；明堂（通天宫）早于唐开元年间改作乾元殿，宋时已无
+    sources:
+    - key: src_luoyang_city
+      title: 维基百科（中文）《洛阳城》
+      url: https://zh.wikipedia.org/wiki/%E6%B4%9B%E9%98%B3%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 隋唐洛阳城郭城正门定鼎门（隋建国门）为中轴线标志，沿用约 530 年
+    - key: src_luoyang_site
+      title: 维基百科（中文）《隋唐洛阳城遗址》
+      url: https://zh.wikipedia.org/wiki/%E9%9A%8B%E5%94%90%E6%B4%9B%E9%98%B3%E5%9F%8E%E9%81%97%E5%9D%80
+      accessed: '2026-10-11'
+      supports: 大业元年（605）兴建，宫城、皇城建于城西北最高处，郭城周长 27 km 余、南东各三门、北二门、西墙无门；沿用隋唐五代至北宋 500 余年，为北宋西京
+    - key: src_tianshu
+      title: 维基百科（中文）《大周万国颂德天枢》
+      url: https://zh.wikipedia.org/wiki/%E5%A4%A7%E5%91%A8%E4%B8%87%E5%9B%BD%E9%A2%82%E5%BE%B7%E5%A4%A9%E6%9E%A2
+      accessed: '2026-10-11'
+      supports: 延载元年（694）请立、天册万岁元年（695）四月成，立于端门之外中轴线上；八棱铜柱高一百五尺，下为铁山，上为腾云承露盘与火珠
+    - key: src_ziwei
+      title: 维基百科（中文）《紫微宮 (洛陽)》
+      url: https://zh.wikipedia.org/wiki/%E7%B4%AB%E5%BE%AE%E5%AE%AE%20%28%E6%B4%9B%E9%99%BD%29
+      accessed: '2026-10-11'
+      supports: 紫微宫为隋唐洛阳宫城，位于城西北部；武周时为国家统治中心，北宋时尚存，北宋末毁于战乱
+  spec: tools/map/paint/landmarks/specs/city_luoyang__song.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/song_north/bld_kit_song_north_courtyard.png
+    sha256: 7204d748988472e7d2637d1300ac67c58dd3c5ea3ee1962b4e400b6d0a447ed7
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_house_large.png
+    sha256: 956b483bcdb1e4eff4e088f88316d5862f65933c12437537349d5258e0d5ca66
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_house_small.png
+    sha256: b9af8820d16cfa7a6637678543b5cfb63948efa15758d2dcfb5e0956e8d5cacb
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_market_stall.png
+    sha256: ffecc5dd92fe42a11960da3be7a51de1038397a6a4366d669fdfe51f195d1308
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_palace_hall.png
+    sha256: d6aea5f766ea0e01b796ce2be9cc74b13ed15eceb69a5c270d0e1220ae94b96e
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_shop_1f.png
+    sha256: 1f0943c9bb77d6bbd2803184499c9dfe9192bf484cb84f71cf93fbc1ac72ba29
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_shop_2f.png
+    sha256: af4ee59c495109c7ebb760d20602d6888ac03d79eec7f6dfb987fbe6cbfae5dd
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_warehouse.png
+    sha256: d633aff81fae0e07db38dbba4a1d590d18a60b00b409e6e0afa28aca9739a85b
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_yamen.png
+    sha256: a94618489676a723933733677a42738064950f0c27d2dedf75c9734747c99787
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__scholar_tree_v01.png
+    sha256: 90d1ee7d55c623d0460298c6a252156a3890c56c140a49b4594f2c20bc1e54d0
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
+    sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_luoyang__song.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_luoyang__song.png，不入库）
+  size: 698x450
+  sha256: f1613a77060ce3c0c2bbacc2eabe8cb42da3b7f4b0483d14cf2326941b555ab1
+  status: candidate
+  notes: 北宋西京沿用隋唐郭城与宫城，城中多园林（意象，按坊散布园林树丛）；明堂已于唐开元年间改作乾元殿、北宋时无；宫城、皇城、东城与含嘉仓的相对位置为拓扑示意；洛水走向示意；交付图比例约 74.2 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_luoyang__tang
+  file: map_landmark_city_luoyang__tang.webp
+  category: map
+  style: default
+  subject: 洛阳·武周神都洛阳（长安二年 702，AR-26）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：明堂（通天宫，696 年重建）、大周万国颂德天枢（695）、贞观殿 / 徽猷殿、皇城官署、含嘉仓、上阳宫殿
+  node: city_luoyang
+  era: tang
+  chapters:
+  - ch10
+  years:
+  - 702
+  - 703
+  anchor:
+  - 378.0
+  - 225.0
+  footprint_grid: 12
+  layout_basis:
+    summary: 郭城：郭城近方形、周长 27 km 余；南、东各三门，北二门，西墙无门；宫城（紫微城）：宫城、皇城建于城西北最高处；上阳宫（667）：皇城西南、洛水北岸；距离向城压缩；tianjie：定鼎门大街（天街）—天津桥—端门—应天门中轴；luoshui：洛水自西向东横贯郭城，分洛北、洛南；jiuzhou：九洲池在宫城西北部；明堂（通天宫，696 年重建）：高二百九十四尺、方三百尺，下方、中多边、上圆、顶铜火珠；套件无此形制，程序墨线画；大周万国颂德天枢（695）：八棱铜柱高一百五尺，立于端门之外中轴
+    sources:
+    - key: src_jiutangshu22
+      title: 维基文库《舊唐書/卷22》
+      url: https://zh.wikisource.org/wiki/%E8%88%8A%E5%94%90%E6%9B%B8/%E5%8D%B722
+      accessed: '2026-10-11'
+      supports: 则天于明堂后造天堂；证圣元年（695）正月佛堂（天堂）火延烧明堂，二堂并尽；寻令依旧规制重造明堂，天册万岁二年（696）三月成，号通天宫；九州鼎置明堂之庭（未载天堂重建建成）
+    - key: src_luoyang_city
+      title: 维基百科（中文）《洛阳城》
+      url: https://zh.wikipedia.org/wiki/%E6%B4%9B%E9%98%B3%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 隋唐洛阳城郭城正门定鼎门（隋建国门）为中轴线标志，沿用约 530 年
+    - key: src_luoyang_site
+      title: 维基百科（中文）《隋唐洛阳城遗址》
+      url: https://zh.wikipedia.org/wiki/%E9%9A%8B%E5%94%90%E6%B4%9B%E9%98%B3%E5%9F%8E%E9%81%97%E5%9D%80
+      accessed: '2026-10-11'
+      supports: 大业元年（605）兴建，宫城、皇城建于城西北最高处，郭城周长 27 km 余、南东各三门、北二门、西墙无门；沿用隋唐五代至北宋 500 余年，为北宋西京
+    - key: src_mingtang_ly
+      title: 维基百科（中文）《明堂 (洛阳)》
+      url: https://zh.wikipedia.org/wiki/%E6%98%8E%E5%A0%82%20%28%E6%B4%9B%E9%98%B3%29
+      accessed: '2026-10-11'
+      supports: 明堂 688 年建于紫微宫乾阳殿旧址，号万象神宫，为宫城核心建筑
+    - key: src_tianshu
+      title: 维基百科（中文）《大周万国颂德天枢》
+      url: https://zh.wikipedia.org/wiki/%E5%A4%A7%E5%91%A8%E4%B8%87%E5%9B%BD%E9%A2%82%E5%BE%B7%E5%A4%A9%E6%9E%A2
+      accessed: '2026-10-11'
+      supports: 延载元年（694）请立、天册万岁元年（695）四月成，立于端门之外中轴线上；八棱铜柱高一百五尺，下为铁山，上为腾云承露盘与火珠
+    - key: src_ziwei
+      title: 维基百科（中文）《紫微宮 (洛陽)》
+      url: https://zh.wikipedia.org/wiki/%E7%B4%AB%E5%BE%AE%E5%AE%AE%20%28%E6%B4%9B%E9%99%BD%29
+      accessed: '2026-10-11'
+      supports: 紫微宫为隋唐洛阳宫城，位于城西北部；武周时为国家统治中心，北宋时尚存，北宋末毁于战乱
+    - key: src_zztj205
+      title: 维基文库《資治通鑑/卷205》
+      url: https://zh.wikisource.org/wiki/%E8%B3%87%E6%B2%BB%E9%80%9A%E9%91%91/%E5%8D%B7205
+      accessed: '2026-10-11'
+      supports: 天枢（695 年四月成）高一百五尺、立于端门之外；明堂北构天堂，695 年焚毁后命更造明堂、天堂；696 年新明堂成，号通天宫
+  spec: tools/map/paint/landmarks/specs/city_luoyang__tang.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/song_north/bld_kit_song_north_courtyard.png
+    sha256: 7204d748988472e7d2637d1300ac67c58dd3c5ea3ee1962b4e400b6d0a447ed7
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_house_large.png
+    sha256: 956b483bcdb1e4eff4e088f88316d5862f65933c12437537349d5258e0d5ca66
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_house_small.png
+    sha256: b9af8820d16cfa7a6637678543b5cfb63948efa15758d2dcfb5e0956e8d5cacb
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_market_stall.png
+    sha256: ffecc5dd92fe42a11960da3be7a51de1038397a6a4366d669fdfe51f195d1308
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_palace_hall.png
+    sha256: d6aea5f766ea0e01b796ce2be9cc74b13ed15eceb69a5c270d0e1220ae94b96e
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_shop_1f.png
+    sha256: 1f0943c9bb77d6bbd2803184499c9dfe9192bf484cb84f71cf93fbc1ac72ba29
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_shop_2f.png
+    sha256: af4ee59c495109c7ebb760d20602d6888ac03d79eec7f6dfb987fbe6cbfae5dd
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_warehouse.png
+    sha256: d633aff81fae0e07db38dbba4a1d590d18a60b00b409e6e0afa28aca9739a85b
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/song_north/bld_kit_song_north_yamen.png
+    sha256: a94618489676a723933733677a42738064950f0c27d2dedf75c9734747c99787
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__scholar_tree_v01.png
+    sha256: 90d1ee7d55c623d0460298c6a252156a3890c56c140a49b4594f2c20bc1e54d0
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
+    sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_luoyang__tang.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_luoyang__tang.png，不入库）
+  size: 695x453
+  sha256: c4d2d6c2400a3bbd527bd6a2716b8415c02715a59aea1b0db7fa9521942f7fb8
+  status: candidate
+  notes: 天堂 695 年与明堂同焚；《资治通鉴》载命更造而《旧唐书·礼仪志》只载明堂重建成通天宫（696），未见天堂建成——702 档不画天堂（宁缺勿滥）；702 年神都仍为正式都城（武则天 701–703 年驻长安）；唐代无专用套件，以 song_north 代用；ch10 地图名录仍为清初「河南府」，本图按 AR-26 画武周神都；宫城、皇城、东城与含嘉仓的相对位置为拓扑示意；洛水走向示意；交付图比例约 74.2 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_nanjing__ming
+  file: map_landmark_city_nanjing__ming.webp
+  category: map
+  style: default
+  subject: 南京·明应天府 / 南京（不规则京城、东侧明故宫，1523–1644）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：奉天殿（三大殿）、乾清宫、太庙、社稷坛、鼓楼（1382）、大报恩寺琉璃塔（1412–1428）、大报恩寺、应天府署
+  node: city_nanjing
+  era: ming
+  chapters:
+  - ch05
+  - ch06
+  - ch07
+  years:
+  - 1421
+  - 1644
+  anchor:
+  - 334.2
+  - 278.2
+  footprint_grid: 12
+  layout_basis:
+    summary: 京城（内城）：东傍钟山、西据石头、南凭秦淮、北控后湖，依地形呈不规则形，周长 35.267 km，13 门；正阳门偏东南；皇城：1373 年增筑皇城；宫城外东北太庙、西南社稷坛；宫城（明故宫）：钟山之南燕雀湖填地，宫城东西 790 m、南北 750 m；yudao：御道：正阳门—洪武门—午门；xuanwu：后湖（玄武湖）在城北，城墙沿其西、南岸；qinhuai_in：内秦淮；changjiang：长江在城西北；大报恩寺琉璃塔（1412–1428）：聚宝门外秦淮河畔；九层八面高约 78 m，1856 年毁
+    sources:
+    - key: src_baoen
+      title: 维基百科（中文）《大报恩寺 (南京)》
+      url: https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%8A%A5%E6%81%A9%E5%AF%BA%20%28%E5%8D%97%E4%BA%AC%29
+      accessed: '2026-10-11'
+      supports: 聚宝门外秦淮河畔长干里；琉璃塔永乐十年（1412）至宣德三年（1428）建，九层八面高约 78 m；1856 年毁于天京事变
+    - key: src_mgg
+      title: 维基百科（中文）《明故宫》
+      url: https://zh.wikipedia.org/wiki/%E6%98%8E%E6%95%85%E5%AE%AB
+      accessed: '2026-10-11'
+      supports: 吴王新宫 1366–1367 年选址元集庆城东门外、钟山之南的燕雀湖填地，宫城东西 790 m、南北 750 m，奉天、华盖、谨身三殿，午门；1373 年增筑京城与皇城；永乐迁都后渐荒废，清为江宁满城
+    - key: src_nj_gulou
+      title: 维基百科（中文）《南京鼓楼》
+      url: https://zh.wikipedia.org/wiki/%E5%8D%97%E4%BA%AC%E9%BC%93%E6%A5%BC
+      accessed: '2026-10-11'
+      supports: 明洪武十五年（1382）建，在城中北部
+    - key: src_nj_wall
+      title: 维基百科（中文）《南京城墙》
+      url: https://zh.wikipedia.org/wiki/%E5%8D%97%E4%BA%AC%E5%9F%8E%E5%A2%99
+      accessed: '2026-10-11'
+      supports: 明初宫城、皇城、内城（京城）、外郭四重；京城东傍钟山、西据石头、南凭秦淮、北控后湖，周长 35.267 km、不规则，13 门（正阳、通济、聚宝、三山、石城、清凉、定淮、仪凤、钟阜、金川、神策、太平、朝阳）；正阳门偏东南；清以明皇城改江宁满城
+    - key: src_xuanwu
+      title: 维基百科（中文）《玄武湖》
+      url: https://zh.wikipedia.org/wiki/%E7%8E%84%E6%AD%A6%E6%B9%96
+      accessed: '2026-10-11'
+      supports: 京城北侧后湖
+  spec: tools/map/paint/landmarks/specs/city_nanjing__ming.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_courtyard.png
+    sha256: 30672b2fe8ab2e22f50b2917cbfcb6599bd41b382f12b0c2b637ab39c8fc8a03
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_house_large.png
+    sha256: abd07308c9b4a77b61092518c0033bdfe8cb269586371c6817d6307d9b37d361
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_house_small.png
+    sha256: 16b24a21e9e5d26d13028eee6607e6ea5a0cffe5805b391b02a84ffa20b59d4d
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_pagoda.png
+    sha256: f0f6a3a2411c330e7ab77ded2d3c1db10998124329309c2b8174fafc921cfef4
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_shop_1f.png
+    sha256: d618269cd48f86b7a9a9766aa9d0b4f37340d7fb60e6c64e7cfb7b47b2e6b047
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_shop_2f.png
+    sha256: 5b948cc4a7e0ed1a6450d73b5d40ca6ac9356a01559925d49ea5407a9a43eb02
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_temple_hall.png
+    sha256: 13b16f0ab5ad6836647175fdfb0d4a18fe7b636bf26a0daa59812b61e4e2749e
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/ming_south/bld_kit_ming_south_yamen.png
+    sha256: a5d3802a3e6f2eb4df2a7ad840350972ccda96be781560060a34a7c394250d16
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/map/kit/map_kit_qiuling_03.png
+    sha256: d42433e5c22422ab46908865775dd0217a33b8774c2b62568a84add9ab089a89
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_04.png
+    sha256: 8d2cf33dd86a202087dcc71a63200dc7711900c3c5e6c08d8a0f809f8bdd134e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_shanfeng_04.png
+    sha256: 0fe95c7afa482a0657cd562438df52b716a5da539111ad390c32ca394b0150a3
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_city_gate__k6_r000_v01.png
+    sha256: 0a292ea5f2c66996280cf7d1954b39ac441b463b5202e846ec2be194309c9c25
+    use: 树丛 / 城门楼件（钟鼓楼代用）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_tree_cluster__bamboo_v01.png
+    sha256: 69e3d7b3673b0a32dc2159dd7ebdac1878c43c3aadfe6769dbbd6e3ff9639fa3
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/ming_south/tex_town_ming_south_tree_cluster__willow_v01.png
+    sha256: c9e0ffa697c0d4232bc14862d810498d3140a575587fdadf74b64ce68f8f8e0d
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_nanjing__ming.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_nanjing__ming.png，不入库）
+  size: 704x475
+  sha256: abc6f73d66a1ae765b20e9348de7f0681b96f274edf71b139b0877376e9fdcad
+  status: candidate
+  notes: 城墙折点按 13 门与现代地名推定（±300 m）；外郭（土城、18 门）不画；交付图比例约 44.3 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_nanjing__qing
+  file: map_landmark_city_nanjing__qing.webp
+  category: map
+  style: default
+  subject: 南京·清江宁府（城东明皇城改江宁满城）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：午门（遗存）、故宫残殿、江宁将军署、鼓楼（1382）、大报恩寺琉璃塔（1412–1428）、大报恩寺、江宁府署
+  node: city_nanjing
+  era: qing
+  chapters:
+  - ch08
+  - ch09
+  - ch11
+  - ch12
+  - ch13
+  - ch14
+  years:
+  - 1661
+  - 1780
+  anchor:
+  - 332.2
+  - 283.2
+  footprint_grid: 9
+  layout_basis:
+    summary: 江宁府城（明京城）：东傍钟山、西据石头、南凭秦淮、北控后湖，依地形呈不规则形，周长 35.267 km，13 门；正阳门偏东南；江宁满城：1645 年圈占城东明皇城为八旗营房，1649、1661 年筑墙：东南两面用京城城垣、西北两面用明皇城墙，西南角近通济门、西北角在竺桥；yudao：御道：正阳门—洪武门—午门；xuanwu：后湖（玄武湖）在城北，城墙沿其西、南岸；qinhuai_in：内秦淮；changjiang：长江在城西北；大报恩寺琉璃塔（1412–1428）：聚宝门外秦淮河畔；九层八面高约 78 m，1856 年毁
+    sources:
+    - key: src_baoen
+      title: 维基百科（中文）《大报恩寺 (南京)》
+      url: https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%8A%A5%E6%81%A9%E5%AF%BA%20%28%E5%8D%97%E4%BA%AC%29
+      accessed: '2026-10-11'
+      supports: 聚宝门外秦淮河畔长干里；琉璃塔永乐十年（1412）至宣德三年（1428）建，九层八面高约 78 m；1856 年毁于天京事变
+    - key: src_mgg
+      title: 维基百科（中文）《明故宫》
+      url: https://zh.wikipedia.org/wiki/%E6%98%8E%E6%95%85%E5%AE%AB
+      accessed: '2026-10-11'
+      supports: 吴王新宫 1366–1367 年选址元集庆城东门外、钟山之南的燕雀湖填地，宫城东西 790 m、南北 750 m，奉天、华盖、谨身三殿，午门；1373 年增筑京城与皇城；永乐迁都后渐荒废，清为江宁满城
+    - key: src_nj_gulou
+      title: 维基百科（中文）《南京鼓楼》
+      url: https://zh.wikipedia.org/wiki/%E5%8D%97%E4%BA%AC%E9%BC%93%E6%A5%BC
+      accessed: '2026-10-11'
+      supports: 明洪武十五年（1382）建，在城中北部
+    - key: src_nj_mancheng
+      title: 维基百科（中文）《江宁满城》
+      url: https://zh.wikipedia.org/wiki/%E6%B1%9F%E5%AE%81%E6%BB%A1%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 1645 年圈占城东明皇城为八旗营房，1649、1661 年两次筑墙；周长 11 km、呈方形，东南两面用京城城垣、西北两面用明皇城墙，西南角近通济门、西北角在竺桥
+    - key: src_nj_wall
+      title: 维基百科（中文）《南京城墙》
+      url: https://zh.wikipedia.org/wiki/%E5%8D%97%E4%BA%AC%E5%9F%8E%E5%A2%99
+      accessed: '2026-10-11'
+      supports: 明初宫城、皇城、内城（京城）、外郭四重；京城东傍钟山、西据石头、南凭秦淮、北控后湖，周长 35.267 km、不规则，13 门（正阳、通济、聚宝、三山、石城、清凉、定淮、仪凤、钟阜、金川、神策、太平、朝阳）；正阳门偏东南；清以明皇城改江宁满城
+    - key: src_xuanwu
+      title: 维基百科（中文）《玄武湖》
+      url: https://zh.wikipedia.org/wiki/%E7%8E%84%E6%AD%A6%E6%B9%96
+      accessed: '2026-10-11'
+      supports: 京城北侧后湖
+  spec: tools/map/paint/landmarks/specs/city_nanjing__qing.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_courtyard.png
+    sha256: 18b5e8f7d0618856a3969c4bf921d867a0223903cb7f4de6fb9338e7baf5b0d2
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_house_large.png
+    sha256: db024f4c0ab8156544d67b64ed5363e6faf4d3a30ea41317f92770dad096719b
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_house_small.png
+    sha256: 6939b9d25233d0eb0be5518f85ea8cdba7d83e94cb358964794ce7f78fd64aff
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_pagoda.png
+    sha256: 45bfee7f0d6dcf0e95cc42ae29f9169f92e5b28d921ebd9b97f0c07a09a3ec69
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_shop_1f.png
+    sha256: 7e7941931d657af834e6842a97b3d778f2c5d4ba6b1ada59fb7b46c24e0bec90
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_shop_2f.png
+    sha256: 10d1f10e7e434d0093aa4bb2a0c320fc2fb6b925f3bc2bb5b8475b91cf109b35
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_temple_hall.png
+    sha256: b4107e3796533278bca901b1354167d7eecd547197fa6fb3a5b7670237742d4f
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/building-map/qing_south/bld_kit_qing_south_yamen.png
+    sha256: 92d62037f5895e4f31cbd8b42bddc48ac008296b24af3bbe892b6767af438ea2
+    use: 建筑 / 地标件（墨化后摆放）
+  - path: assets/default/map/kit/ico_map_kit_yiji_02.png
+    sha256: 47f574e074cf6d6e71c12be92f7dc6bf65d8d81c1ceb95941011bda525d667b6
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_03.png
+    sha256: d42433e5c22422ab46908865775dd0217a33b8774c2b62568a84add9ab089a89
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_qiuling_04.png
+    sha256: 8d2cf33dd86a202087dcc71a63200dc7711900c3c5e6c08d8a0f809f8bdd134e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_shanfeng_04.png
+    sha256: 0fe95c7afa482a0657cd562438df52b716a5da539111ad390c32ca394b0150a3
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/tile/qing_south/tex_town_qing_south_city_gate__k6_r000_v01.png
+    sha256: fba51b22a889d1a0c444120a92d8e3f9cd3b6b48d68f49f1c4d94ac0e00c29cd
+    use: 树丛 / 城门楼件（钟鼓楼代用）
+  - path: assets/default/tile/qing_south/tex_town_qing_south_shrub__osmanthus_v01.png
+    sha256: 74880df7c164d5075ea620ae01cb7bd372f1f22a8f7b77bf096b03e05c8a64b5
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/qing_south/tex_town_qing_south_tree_cluster__willow_v01.png
+    sha256: 1c3d8be70a29abd8438428ed28a3e9e35f7e747fd0f7171b0e11daa03db77263
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_nanjing__qing.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_nanjing__qing.png，不入库）
+  size: 707x483
+  sha256: ae8056f187640b5fb7572f76389c113a4b01237028a2de204c3286dcc90b8428
+  status: candidate
+  notes: 城墙折点按 13 门与现代地名推定（±300 m）；外郭（土城、18 门）不画；明故宫入清后渐毁，画作残墙废殿；大报恩寺塔 1856 年毁，ch08–14 仍在；交付图比例约 44.3 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_xian__ming
   file: map_landmark_city_xian__ming.webp
   category: map
@@ -813,15 +1938,15 @@
   - path: assets/default/tile/ming_north/tex_town_ming_north_tree_cluster__guohuai_v01.png
     sha256: dfe9be56b79462704500a8efdd2dee9a60b15bd265b249e40fd988ac06931fbc
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:25-07:00'
   source_path: tools/map/paint/landmarks/specs/city_xian__ming.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_xian__ming.png，不入库）
   size: 631x439
-  sha256: 7c67125cd8a3e105387e30f0a66c612a28ec610c7292601b6abdd0ecf5c01ff0
+  sha256: 2071ee68857b50ed635ef361540c45e31959791c1e8e71180b2ca1a5269c5aa2
   status: candidate
-  notes: 大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；四门外瓮城：维基载崇祯九年（1636）修瓮城，另有洪武始建说；小景统一画瓮城；交付图比例约 130.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；四门外瓮城：维基载崇祯九年（1636）修瓮城，另有洪武始建说；小景统一画瓮城；交付图比例约 130.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_xian__ming_early
   file: map_landmark_city_xian__ming_early.webp
   category: map
@@ -908,15 +2033,15 @@
   - path: assets/default/tile/ming_north/tex_town_ming_north_tree_cluster__guohuai_v01.png
     sha256: dfe9be56b79462704500a8efdd2dee9a60b15bd265b249e40fd988ac06931fbc
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:25-07:00'
   source_path: tools/map/paint/landmarks/specs/city_xian__ming_early.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_xian__ming_early.png，不入库）
   size: 635x439
-  sha256: b2ba5e013c1804a7f6285adb5449e6d04f62f1beb762842bb5b9166c427bc357
+  sha256: 1adc1fbf1ee60d9eba12b32252e94c9650623005bafcd49b6e4094b53a004d4a
   status: candidate
-  notes: 大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；四门外瓮城：维基载崇祯九年（1636）修瓮城，另有洪武始建说；小景统一画瓮城；交付图比例约 130.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；四门外瓮城：维基载崇祯九年（1636）修瓮城，另有洪武始建说；小景统一画瓮城；交付图比例约 130.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_xian__qing
   file: map_landmark_city_xian__qing.webp
   category: map
@@ -1005,15 +2130,15 @@
   - path: assets/default/tile/qing_north/tex_town_qing_north_tree_cluster__scholar_tree_v01.png
     sha256: 8df34f8cba7a558f58221f937a5c631e02c9dd6b5b752b9388182a95549bd72d
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:25-07:00'
   source_path: tools/map/paint/landmarks/specs/city_xian__qing.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_xian__qing.png，不入库）
   size: 637x443
-  sha256: a23fddf796fe81e67b92d5a11e6c57922025a6791808c8a3f0482f853cb0dc7a
+  sha256: deaa0e1a752ffb4475dc9b040886bb61f6ac5b587d1acf989a0a679bb7138a70
   status: candidate
-  notes: 大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；四门外瓮城：维基载崇祯九年（1636）修瓮城，另有洪武始建说；小景统一画瓮城；交付图比例约 130.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；四门外瓮城：维基载崇祯九年（1636）修瓮城，另有洪武始建说；小景统一画瓮城；交付图比例约 130.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_xian__song
   file: map_landmark_city_xian__song.webp
   category: map
@@ -1086,15 +2211,15 @@
   - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
     sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:25-07:00'
   source_path: tools/map/paint/landmarks/specs/city_xian__song.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_xian__song.png，不入库）
   size: 596x415
-  sha256: 3ad4eb46c1321186318854f27a97c2885d643e09645eb4890b30cd95ace642df
+  sha256: c4cbc5a7ad5c8144f6b1e8813451c8d61525fae87938c970e64ca9faa572b0ca
   status: candidate
-  notes: 城门按韩建改筑记载（闭朱雀、延喜、安福三门，北开玄武门）取五门；宋元门名与门数有变动，属推定；大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；交付图比例约 149.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 城门按韩建改筑记载（闭朱雀、延喜、安福三门，北开玄武门）取五门；宋元门名与门数有变动，属推定；大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；交付图比例约 149.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_xian__tang
   file: map_landmark_city_xian__tang.webp
   category: map
@@ -1184,15 +2309,15 @@
   - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
     sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:25-07:00'
   source_path: tools/map/paint/landmarks/specs/city_xian__tang.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_xian__tang.png，不入库）
   size: 693x535
-  sha256: ecc756ccd4fe368cf11fe668ca7d9b8b856fc51fe7f7d8c8c5a675359c8b7712
+  sha256: 9a9bdcce2562453ee513f6fb78a13f436bc7fc147d3bae75d03393eb6d0b66e7
   status: candidate
-  notes: 兴庆宫（714）、小雁塔（707–709）晚于 702 年，本档不画；荐福寺已有（684）；唐代无专用建筑套件，以北宋套件 song_north 代用（与仓库城图规格同口径），非唐代建筑复原；ch10 大地图名录仍为清初「西安府」，本图按 AR-26 画唐代都城长安；属已知年代数据缺口；交付图比例约 62.2 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 兴庆宫（714）、小雁塔（707–709）晚于 702 年，本档不画；荐福寺已有（684）；唐代无专用建筑套件，以北宋套件 song_north 代用（与仓库城图规格同口径），非唐代建筑复原；ch10 大地图名录仍为清初「西安府」，本图按 AR-26 画唐代都城长安；属已知年代数据缺口；交付图比例约 62.2 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
 - id: map_landmark_city_xian__yuan
   file: map_landmark_city_xian__yuan.webp
   category: map
@@ -1263,12 +2388,89 @@
   - path: assets/default/tile/yuan_north/tex_town_yuan_north_tree_cluster__scholar_tree_v01.png
     sha256: 9a08bb85679d834bc6b81a69b11b663f81e5c66d62adf949383cf5a37afcd453
     use: 树丛件（城外林带、坛庙柏林）
-  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化摆放，纸纹与淡墨晕边；WebP q90）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
   model: （无：确定性合成，固定种子）
   effort: n/a
-  created: '2026-10-11T02:13:25-07:00'
+  created: '2026-10-11T02:54:25-07:00'
   source_path: tools/map/paint/landmarks/specs/city_xian__yuan.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_xian__yuan.png，不入库）
   size: 596x413
-  sha256: e8147e99ac2b960963640a3d97cebc6d09662a5772fcc03173370620742ad58c
+  sha256: c7b563e75a1bdb9d3b3d4ff6987af9372c22afbce018938006530410ff6d80b2
   status: candidate
-  notes: 城门按韩建改筑记载（闭朱雀、延喜、安福三门，北开玄武门）取五门；宋元门名与门数有变动，属推定；大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；西安西南角楼为圆形，据记沿元代旧制；小景尺度不表现；交付图比例约 149.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；未出单体建筑图（全部用仓库套件件；圆殿为程序墨线）。
+  notes: 城门按韩建改筑记载（闭朱雀、延喜、安福三门，北开玄武门）取五门；宋元门名与门数有变动，属推定；大雁塔、小雁塔在城外：按方位示意、距离压缩（真实约距南墙 1.1 / 3.4 km）；西安西南角楼为圆形，据记沿元代旧制；小景尺度不表现；交付图比例约 149.8 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。
+- id: map_landmark_city_xiangyang__song
+  file: map_landmark_city_xiangyang__song.webp
+  category: map
+  style: default
+  subject: 襄阳·南宋襄阳（郭靖守城，1259；隔汉水与樊城相望、浮梁相通）：按年代布局小景（北上略俯斜水墨，透明底，AR-113）。标志：京西南路安抚司 / 襄阳府衙（推定）、军营与仓廪、谯楼
+  node: city_xiangyang
+  era: song
+  chapters:
+  - ch03
+  years:
+  - 1259
+  - 1259
+  anchor:
+  - 392.5
+  - 346.5
+  footprint_grid: 9
+  layout_basis:
+    summary: 襄阳城（宋砖城、瓮城门）：汉水南岸，三面环水（北汉水、东西南护城河）一面靠山（南岘山）；宋改砖城、城门改屯兵瓮城；明洪武东北扩建前的方城；夫人城：城西北角的城中之城；樊城：汉水北岸，与襄阳隔江相望、互为唇齿；有外郛与内城；hanshui：汉水出襄、樊两城之间；谯楼：史载回回炮「一礮中其谯楼」
+    sources:
+    - key: src_xy
+      title: 维基百科（中文）《襄阳城》
+      url: https://zh.wikipedia.org/wiki/%E8%A5%84%E9%98%B3%E5%9F%8E
+      accessed: '2026-10-11'
+      supports: 汉水中游南岸，三面环水、一面靠山，城高池深；宋时土城改砖城、城门改瓮城；明洪武初向东北扩展（宋城无东北凸角）；夫人城（城西北角）
+    - key: src_xyfz
+      title: 维基百科（中文）《襄樊之战》
+      url: https://zh.wikipedia.org/wiki/%E8%A5%84%E6%A8%8A%E4%B9%8B%E6%88%98
+      accessed: '2026-10-11'
+      supports: 1268–1273 年元军围襄阳、樊城，封锁汉水，1273 年先破樊城、襄阳降
+    - key: src_yuanshi128
+      title: 维基文库《元史/卷128》
+      url: https://zh.wikisource.org/wiki/%E5%85%83%E5%8F%B2/%E5%8D%B7128
+      accessed: '2026-10-11'
+      supports: 襄、樊两城汉水出其间，宋兵植木江中、联以铁锁、中造浮梁以通援兵；樊城有外郛与内城
+  spec: tools/map/paint/landmarks/specs/city_xiangyang__song.json
+  prompt: （无：程序按版式规格合成，未调用出图模型）
+  negative: （程序不生成文字、印章、题跋）
+  references:
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_courtyard.png
+    sha256: 7a6a426489256ee7ddf328420595b9960647932269d27ad4c30b7de935c9ca73
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_house.png
+    sha256: 0577b5fc11a8e405fbd1130db5c4d5bda164a29f674aee0e2b2f20a887b480c7
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_shop_1f.png
+    sha256: 20f82db6ea307c09ef6f7825ed18ba9de6552b9769e13ac8921d839d7f652768
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_warehouse.png
+    sha256: 2f500eaee2c24c4e48a8604e495d13803b3cdb50550d3d66eea96e3a8de3875b
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/baseline/building-map/bld_kit_song_southern_yamen.png
+    sha256: 4a255313b6c1c776a046158f4cadb26c008500f41c304277889aea66c0b00fb0
+    use: 作者已审基线方形砖塔件（大雁塔压缩变换 / 小雁塔原比例）
+  - path: assets/default/map/kit/map_kit_qiuling_02.png
+    sha256: 9701e31fb30e7da5af907c08f31d7f04aebbb044222265a32776507d7502a83e
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/map/kit/map_kit_shanfeng_05.png
+    sha256: 3e302d0b8186a47fc5e057351bc529ebe6b12fa3aa49451e4a237c018662f6c5
+    use: 地图 kit 件（丘陵 / 遗迹）
+  - path: assets/default/tile/song_north/tex_town_song_north_city_gate__k4_r000_v01.png
+    sha256: 633df79fbe7bca944703725c8854db532a4a185958e83bf248c951f7df96bdd5
+    use: 树丛 / 城门楼件（钟鼓楼代用）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__scholar_tree_v01.png
+    sha256: 90d1ee7d55c623d0460298c6a252156a3890c56c140a49b4594f2c20bc1e54d0
+    use: 树丛件（城外林带、坛庙柏林）
+  - path: assets/default/tile/song_north/tex_town_song_north_tree_cluster__willow_v01.png
+    sha256: d303c5519a1c5b701b7d296c4f7294845dc37ddbab9fee2c4eaf9a33f7354a9a
+    use: 树丛件（城外林带、坛庙柏林）
+  tool: python3 程序合成（tools/map/paint/landmarks/render_landmark.py，调墨 ink-v2：3× 超采样画墙 / 门 / 街 / 坊 / 水，按年代套件件墨化成墨团摆放，纸纹与淡墨晕边；WebP q90）
+  model: （无：确定性合成，固定种子）
+  effort: n/a
+  created: '2026-10-11T02:54:25-07:00'
+  source_path: tools/map/paint/landmarks/specs/city_xiangyang__song.json（母版 PNG：.agents/coord/ART-worldmap-landmarks/master/map_landmark_city_xiangyang__song.png，不入库）
+  size: 768x577
+  sha256: 3b5a84e9b7a5cda70982f940bd21eb9072fe2b3b1425d47400d58c925c4278e2
+  status: candidate
+  notes: 襄阳方城按明城墙西、南墙长（1.6、1.4 km）推宋城（明初才向东北扩）；樊城与外郛尺寸推定；护城河以宽著称，画作宽水带；南宋套件取作者已审基线 song_southern；原著细节未逐字核对，只取守城意象；交付图比例约 169.4 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）；调墨 ink-v2；未出单体建筑图（建筑全部用仓库套件件；圆殿 / 圜丘 / 明堂 / 天枢为程序墨线）。

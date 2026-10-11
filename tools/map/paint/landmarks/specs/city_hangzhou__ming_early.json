@@ -1,0 +1,879 @@
+{
+ "schema": "tianshu.landmark-spec.v1",
+ "id": "map_landmark_city_hangzhou__ming_early",
+ "node": "city_hangzhou",
+ "era": "ming_early",
+ "chapters": [
+  "ch05"
+ ],
+ "title": "明杭州府（元末重筑城，1523）",
+ "years": [
+  1368,
+  1554
+ ],
+ "kit": "ming_south",
+ "tile_kit": "ming_south",
+ "seed": 1523,
+ "footprint_grid": 9,
+ "frame": {
+  "origin": "城心：城墙外轮廓形心",
+  "origin_lonlat": [
+   120.1765,
+   30.2574
+  ],
+  "unit": "km",
+  "axes": "x 向东、y 向北",
+  "lonlat_to_km": "x=(lon−lon0)·111.32·cos(lat0)，y=(lat−lat0)·110.57；折点按现代地名 / 遗址线推定，精度约 ±150 m"
+ },
+ "view": {
+  "x": [
+   -4.764,
+   1.871
+  ],
+  "y": [
+   -6.01,
+   3.61
+  ]
+ },
+ "top_px": 30,
+ "walls": [
+  {
+   "id": "city",
+   "role": "city",
+   "name": "杭州府城（元末张士诚 1359 年重筑）",
+   "polygon": [
+    [
+     -1.206,
+     -2.693
+    ],
+    [
+     -0.725,
+     -3.135
+    ],
+    [
+     0.332,
+     -3.301
+    ],
+    [
+     0.909,
+     -3.024
+    ],
+    [
+     1.39,
+     -2.803
+    ],
+    [
+     1.39,
+     -1.698
+    ],
+    [
+     1.438,
+     -0.592
+    ],
+    [
+     1.39,
+     0.514
+    ],
+    [
+     1.102,
+     2.504
+    ],
+    [
+     1.005,
+     3.168
+    ],
+    [
+     -1.11,
+     2.946
+    ],
+    [
+     -1.687,
+     2.725
+    ],
+    [
+     -1.351,
+     0.569
+    ],
+    [
+     -1.158,
+     -0.813
+    ],
+    [
+     -1.206,
+     -2.029
+    ]
+   ],
+   "style": "city_brick",
+   "corner_towers": [],
+   "moat": {},
+   "src": [
+    "src_hz_wall"
+   ],
+   "basis": "南界缩至万松岭（凤凰山与南宋故宫截在城外）、东界外扩至贴沙河；明代十门",
+   "thickness_px": 7.0,
+   "height_px": 12.0,
+   "corner_size_px": 16.0
+  }
+ ],
+ "gates": [
+  {
+   "id": "fengshan",
+   "name": "凤山门（正阳门）",
+   "wall": "city",
+   "side": "S",
+   "at": [
+    -0.725,
+    -3.135
+   ],
+   "eaves": 2,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 19
+  },
+  {
+   "id": "houchao",
+   "name": "候潮门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    0.909,
+    -3.024
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "wangjiang",
+   "name": "望江门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    1.39,
+    -1.698
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "qingtai",
+   "name": "清泰门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    1.438,
+    -0.592
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "qingchun",
+   "name": "庆春门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    1.39,
+    0.514
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "genshan",
+   "name": "艮山门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    1.102,
+    2.504
+   ],
+   "eaves": 1,
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "wulin",
+   "name": "武林门",
+   "wall": "city",
+   "side": "N",
+   "at": [
+    -1.11,
+    2.946
+   ],
+   "eaves": 2,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 19
+  },
+  {
+   "id": "qiantang",
+   "name": "钱塘门",
+   "wall": "city",
+   "side": "W",
+   "at": [
+    -1.351,
+    0.569
+   ],
+   "eaves": 2,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 19
+  },
+  {
+   "id": "yongjin",
+   "name": "涌金门",
+   "wall": "city",
+   "side": "W",
+   "at": [
+    -1.158,
+    -0.813
+   ],
+   "eaves": 2,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 19.9,
+    "d_px": 14.2
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 19
+  },
+  {
+   "id": "qingbo",
+   "name": "清波门",
+   "wall": "city",
+   "side": "W",
+   "at": [
+    -1.206,
+    -2.029
+   ],
+   "eaves": 1,
+   "barbican": {
+    "arrow_tower": true,
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_hz_wall"
+   ],
+   "size_px": 16
+  }
+ ],
+ "streets": [
+  {
+   "id": "yujie",
+   "class": "axis",
+   "points": [
+    [
+     -0.629,
+     -3.024
+    ],
+    [
+     -0.581,
+     -0.813
+    ],
+    [
+     -0.485,
+     1.177
+    ]
+   ],
+   "width_px": 5.0,
+   "src": [
+    "src_linan"
+   ],
+   "basis": "中轴大街（南宋御街故道）"
+  },
+  {
+   "id": "ew1",
+   "points": [
+    [
+     -1.158,
+     -0.813
+    ],
+    [
+     1.438,
+     -0.592
+    ]
+   ],
+   "width_px": 3.2
+  },
+  {
+   "id": "ew2",
+   "points": [
+    [
+     -1.351,
+     0.569
+    ],
+    [
+     1.39,
+     0.514
+    ]
+   ],
+   "width_px": 3.0
+  },
+  {
+   "id": "ew3",
+   "points": [
+    [
+     -1.206,
+     -2.029
+    ],
+    [
+     1.39,
+     -1.698
+    ]
+   ],
+   "width_px": 3.0
+  }
+ ],
+ "water": [
+  {
+   "id": "xihu",
+   "kind": "lake",
+   "polygon": [
+    [
+     -1.379,
+     0.293
+    ],
+    [
+     -1.418,
+     -1.366
+    ],
+    [
+     -1.591,
+     -2.527
+    ],
+    [
+     -2.36,
+     -3.135
+    ],
+    [
+     -3.322,
+     -3.024
+    ],
+    [
+     -4.091,
+     -2.361
+    ],
+    [
+     -4.38,
+     -1.034
+    ],
+    [
+     -4.091,
+     0.072
+    ],
+    [
+     -3.322,
+     0.68
+    ],
+    [
+     -2.264,
+     0.846
+    ]
+   ],
+   "islands": [
+    {
+     "polygon": [
+      [
+       -3.61,
+       -0.315
+      ],
+      [
+       -2.841,
+       -0.26
+      ],
+      [
+       -2.841,
+       0.204
+      ],
+      [
+       -3.61,
+       0.182
+      ]
+     ]
+    }
+   ],
+   "ripples": 0.5,
+   "src": [
+    "src_linan",
+    "src_hz_wall"
+   ],
+   "basis": "西湖在城西、湖在城外"
+  },
+  {
+   "id": "qiantang",
+   "kind": "river",
+   "points": [
+    [
+     -4.957,
+     -6.231
+    ],
+    [
+     -3.033,
+     -5.733
+    ],
+    [
+     -1.11,
+     -5.236
+    ],
+    [
+     0.525,
+     -4.738
+    ],
+    [
+     2.063,
+     -3.964
+    ],
+    [
+     3.025,
+     -3.135
+    ]
+   ],
+   "width_px": 26.0,
+   "foot": true,
+   "src": [
+    "src_linan"
+   ],
+   "basis": "钱塘江在城东南，皇城「南达钱塘江边」；江面宽度示意"
+  },
+  {
+   "id": "yanqiao",
+   "kind": "river",
+   "points": [
+    [
+     -0.052,
+     -3.135
+    ],
+    [
+     -0.004,
+     -0.813
+    ],
+    [
+     0.092,
+     1.398
+    ],
+    [
+     0.188,
+     3.057
+    ]
+   ],
+   "width_px": 2.2,
+   "src": [
+    "src_linan"
+   ],
+   "basis": "盐桥河（中河），城内主运河"
+  },
+  {
+   "id": "shihe",
+   "kind": "river",
+   "points": [
+    [
+     -0.293,
+     -2.693
+    ],
+    [
+     -0.293,
+     0.293
+    ],
+    [
+     -0.197,
+     2.283
+    ]
+   ],
+   "width_px": 1.6
+  }
+ ],
+ "bridges": [
+  {
+   "id": "sudi",
+   "name": "苏堤（1089）",
+   "kind": "causeway",
+   "points": [
+    [
+     -3.081,
+     -2.969
+    ],
+    [
+     -3.149,
+     -1.366
+    ],
+    [
+     -3.274,
+     0.602
+    ]
+   ],
+   "width_px": 2.6,
+   "src": [
+    "src_sudi"
+   ]
+  },
+  {
+   "id": "baidi",
+   "name": "白堤",
+   "kind": "causeway",
+   "points": [
+    [
+     -2.283,
+     0.348
+    ],
+    [
+     -2.601,
+     0.182
+    ],
+    [
+     -2.841,
+     0.016
+    ]
+   ],
+   "width_px": 2.4,
+   "src": [
+    "src_baidi"
+   ]
+  }
+ ],
+ "regions": [],
+ "landmarks": [
+  {
+   "id": "zhenhai",
+   "name": "镇海楼（鼓楼）",
+   "sprite": "tile:tex_town_ming_south_city_gate__k6_r000_v01",
+   "kit": "ming_south",
+   "at": [
+    -0.581,
+    -1.642
+   ],
+   "size_px": 24,
+   "clear": 0.08
+  },
+  {
+   "id": "fuya",
+   "name": "杭州府治",
+   "sprite": "yamen",
+   "at": [
+    -0.197,
+    -0.15
+   ],
+   "size_px": 22,
+   "clear": 0.1
+  },
+  {
+   "id": "leifeng",
+   "name": "雷峰塔",
+   "sprite": "pagoda",
+   "kit": "ming_south",
+   "at": [
+    -2.649,
+    -2.892
+   ],
+   "size_px": 20,
+   "clear": 0.08,
+   "src": [
+    "src_leifeng"
+   ],
+   "basis": "西湖南岸夕照山"
+  },
+  {
+   "id": "baochu",
+   "name": "保俶塔",
+   "sprite": "pagoda",
+   "kit": "ming_south",
+   "at": [
+    -2.553,
+    0.68
+   ],
+   "size_px": 13,
+   "squash": 1.15,
+   "clear": 0.06,
+   "src": [
+    "src_baochu"
+   ]
+  },
+  {
+   "id": "liuhe",
+   "name": "六和塔",
+   "sprite": "pagoda",
+   "kit": "ming_south",
+   "at": [
+    -3.226,
+    -5.015
+   ],
+   "size_px": 22,
+   "clear": 0.12,
+   "src": [
+    "src_liuhe"
+   ],
+   "basis": "钱塘江畔月轮山；距离向城压缩（真实在城西南约 3 km）"
+  },
+  {
+   "id": "jingci",
+   "name": "净慈寺",
+   "sprite": "temple_hall",
+   "at": [
+    -2.764,
+    -3.135
+   ],
+   "size_px": 16,
+   "clear": 0.06
+  }
+ ],
+ "hills": [
+  {
+   "id": "fenghuang",
+   "name": "凤凰山（明清城外，南宋故宫遗址）",
+   "sprite": "map_kit_qiuling_02",
+   "at": [
+    -1.591,
+    -3.909
+   ],
+   "size_px": 56,
+   "clear": 0.15
+  },
+  {
+   "id": "wushan",
+   "name": "吴山",
+   "sprite": "map_kit_qiuling_03",
+   "at": [
+    -0.918,
+    -1.974
+   ],
+   "size_px": 36,
+   "clear": 0.12
+  },
+  {
+   "id": "baoshi",
+   "name": "宝石山",
+   "sprite": "map_kit_qiuling_03",
+   "at": [
+    -2.601,
+    0.846
+   ],
+   "size_px": 34,
+   "clear": 0.1
+  },
+  {
+   "id": "nanping",
+   "name": "南屏山 / 夕照山",
+   "sprite": "map_kit_qiuling_04",
+   "at": [
+    -2.745,
+    -3.301
+   ],
+   "size_px": 50,
+   "clear": 0.1
+  }
+ ],
+ "groves": [
+  {
+   "id": "belt_city",
+   "ring": {
+    "wall": "city",
+    "from_px": 10,
+    "to_px": 30,
+    "exclude_grow_px": 12.0
+   },
+   "trees": [
+    "tex_town_ming_south_tree_cluster__willow_v01",
+    "tex_town_ming_south_tree_cluster__bamboo_v01"
+   ],
+   "size_px": 11,
+   "foot": false,
+   "spacing_px": 10.0
+  },
+  {
+   "id": "lakeshore",
+   "polygon": [
+    [
+     -4.476,
+     -3.246
+    ],
+    [
+     -1.206,
+     -3.246
+    ],
+    [
+     -1.206,
+     1.067
+    ],
+    [
+     -4.476,
+     1.067
+    ]
+   ],
+   "trees": [
+    "tex_town_ming_south_tree_cluster__willow_v01",
+    "tex_town_ming_south_tree_cluster__bamboo_v01"
+   ],
+   "size_px": 10,
+   "foot": true,
+   "basis": "湖岸与湖山林木",
+   "spacing_px": 25.8
+  }
+ ],
+ "fill": [
+  {
+   "id": "fill",
+   "clip": "city",
+   "exclude": [],
+   "bbox": [
+    -2.553,
+    1.775,
+    -5.236,
+    3.61
+   ],
+   "sprites": [
+    [
+     "house_small",
+     5
+    ],
+    [
+     "courtyard",
+     3
+    ],
+    [
+     "shop_1f",
+     2
+    ],
+    [
+     "shop_2f",
+     1
+    ],
+    [
+     "tree:tree_cluster__willow_v01",
+     1.2
+    ],
+    [
+     "house_large",
+     2
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.95,
+   "jitter": 0.22,
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  }
+ ],
+ "grids": [
+  {
+   "id": "lanes",
+   "clip": "city",
+   "bbox": [
+    -2.553,
+    1.775,
+    -5.236,
+    3.61
+   ],
+   "dir": "both",
+   "exclude": [],
+   "alpha": 0.38,
+   "spacing_px": 9.0,
+   "spacing_x_px": 20.0
+  }
+ ],
+ "notes": [
+  "城墙折点按现代环城路、河道与城门地名推定（±200 m）",
+  "1523 年雷峰塔、六和塔木檐尚存（六和塔外檐 1533 年被焚）",
+  "交付图比例约 96.4 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）"
+ ],
+ "sources": {
+  "src_baidi": {
+   "title": "维基百科（中文）《白堤》",
+   "url": "https://zh.wikipedia.org/wiki/%E7%99%BD%E5%A0%A4",
+   "accessed": "2026-10-11",
+   "supports": "唐称白沙堤，东起断桥、西止平湖秋月（孤山）"
+  },
+  "src_baochu": {
+   "title": "维基百科（中文）《保俶塔》",
+   "url": "https://zh.wikipedia.org/wiki/%E4%BF%9D%E4%BF%B6%E5%A1%94",
+   "accessed": "2026-10-11",
+   "supports": "西湖北岸宝石山顶，吴越开宝年间（968–976）始建，屡毁屡建，明万历七年（1579）重修为七层"
+  },
+  "src_hz_wall": {
+   "title": "维基百科（中文）《杭州城墙》",
+   "url": "https://zh.wikipedia.org/wiki/%E6%9D%AD%E5%B7%9E%E5%9F%8E%E5%A2%99",
+   "accessed": "2026-10-11",
+   "supports": "南宋城墙范围（北环城北路、西西湖东岸与凤凰山西麓、南将台山、东东河）与 13 门；元末张士诚 1359 年重筑：南界缩至万松岭（凤凰山截在城外）、东界外扩至贴沙河；明代十门；顺治年间城内西侧建八旗驻防城"
+  },
+  "src_leifeng": {
+   "title": "维基百科（中文）《雷峰塔》",
+   "url": "https://zh.wikipedia.org/wiki/%E9%9B%B7%E5%B3%B0%E5%A1%94",
+   "accessed": "2026-10-11",
+   "supports": "吴越 972–977 年建于西湖南岸夕照山；南宋重修为五层；明嘉靖年间倭寇纵火，木檐尽毁仅存砖身；1924 年倒塌"
+  },
+  "src_linan": {
+   "title": "维基百科（中文）《临安城》",
+   "url": "https://zh.wikipedia.org/wiki/%E4%B8%B4%E5%AE%89%E5%9F%8E",
+   "accessed": "2026-10-11",
+   "supports": "南宋都城；南宫北市：宫殿在南部凤凰山，御街自和宁门北行约 4.5 km；皇城方圆九里；外城南跨吴山、北至武林门、西接西湖（湖在城外）、东临钱塘江；城内四条河道（盐桥河为主）"
+  },
+  "src_liuhe": {
+   "title": "维基百科（中文）《六和塔》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%85%AD%E5%92%8C%E5%A1%94",
+   "accessed": "2026-10-11",
+   "supports": "970 年建于钱塘江畔月轮山；1121 年毁，南宋 1153–1163 年重建七层；嘉靖十二年（1533）外檐被焚，雍正十三年（1735）重建外檐"
+  },
+  "src_sudi": {
+   "title": "维基百科（中文）《苏堤》",
+   "url": "https://zh.wikipedia.org/wiki/%E8%8B%8F%E5%A0%A4",
+   "accessed": "2026-10-11",
+   "supports": "元祐四年（1089）苏轼疏浚西湖筑长堤，堤上六桥"
+  }
+ },
+ "halo_px": 26.0
+}
