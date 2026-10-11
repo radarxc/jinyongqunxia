@@ -45,7 +45,8 @@
 ## 3. 素材
 - **大地图**（AR-111，10-10 起，取代 AR-83 的程序拼图路线）：整张水墨底图 + 2D 叠路径 / 城镇坐标，契约 `docs/tech/13-worldmap-painted.md`。
   - 运行时 `ENG-worldmap-painted-2d`：**10-10 23:25 完成**，GPT-5.6-Sol 审核 PASS，协调者无头 Chrome 实测通过（夹边、缩放、点城出发、空闲 0 rAF）。改动在主检出工作区、与他人未提交改动交织，未提交；改前 `refs/backup/main-wip-20261010-ar111`，改后（含新文件）`refs/backup/main-wip-20261010-ar111-2d`。报告 `tools/agents/reports/ENG-worldmap-painted-2d.md`。`packages/render/src/worldmap/**` 已不被页面使用，待清理任务删除并改 render CLAUDE.md 的 ENG-08 段。
-  - 底图 `ART-worldmap-painted`：Opus 子代理，按 AR-112 用 GIS 数据加现有水墨贴图确定性合成（不用 Gemini），先样区后全图；进度 `.agents/coord/ART-worldmap-painted/STATUS.md`。正式图到位前用旧贴图裁出的临时占位 `assets/default/map/world/map_world_jianghu__base01.webp`。
+  - 底图 `ART-worldmap-painted`：**10-11 00:15 交付**（ace71dd37）——GIS + 仓库水墨贴图确定性合成 4096×3072，`tools/map/paint/compose_world.py --deliver` 可逐字节复现；审样两轮（山件 1234→618、平原留白、大河加宽）。待作者过目；已知瑕疵见 manifest notes（窄岛山小、平原无田畴、渭河 / 汾河 scalerank 超阈值未画）。
+  - 海口、崖州坐标：主检出未提交改动曾把两城挪到吕宋岛并配两条跨海路；10-11 协调者改回海南（[304,332] / [299,346]），两条路改走雷州半岛与海南东线，14 章 map.yaml 都改了（仍未提交，备份 `refs/backup/main-wip-20261011-ar111-hainan`）。这两条路不在 `worldmap_from_towns.py` 的生成源里，重跑生成器会丢，需补进 routes.yaml。
   - `TOOL-map-compose`（AR-83）样区画风未过，停用，工具保留备查。
 - **城图**：202 / 1172，city_scheduler 自己在推；`CITY-layouts-ch01-b` 审核没过，正在返修。
 - **插图**：26 份提示词还没出图，清单在 `.agents/coord/_lines/title-audit/missing_plates.tsv`。
