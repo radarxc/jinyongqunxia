@@ -22,3 +22,7 @@
 {"time": "2026-10-11T08:24:31-07:00", "task": "ART-dressup-t4-bodies-v2", "item": "tpl_m_medium", "op": "generate:bf93598e-4dc6-483f-8f36-8e59368138f2", "pid": "1ccfd7a9-909c-45b9-b87a-346acc5932f8", "before": 16835, "after": 16770, "spent": 65}
 {"time": "2026-10-11T08:28:51-07:00", "task": "ART-dressup-t4-bodies-v2", "item": "tpl_m_medium", "op": "rig_before", "pid": "1ccfd7a9-909c-45b9-b87a-346acc5932f8", "before": 16770, "after": 16770, "spent": 0}
 {"time": "2026-10-11T08:29:02-07:00", "task": "ART-dressup-t4-bodies-v2", "item": "tpl_m_medium", "op": "rig:b15debfd-144c-4c78-a90c-c30fe541794a", "pid": "1ccfd7a9-909c-45b9-b87a-346acc5932f8", "before": 16770, "after": 16750, "spent": 20}
+{"time": "2026-10-11T13:58:37-07:00", "task": "ART-dressup-t4b-neck-v3", "item": "tpl_m_medium", "op": "generate_before", "pid": null, "before": 16750, "after": 16750, "spent": 0}
+{"time": "2026-10-11T13:58:46-07:00", "task": "ART-dressup-t4b-neck-v3", "item": "tpl_m_medium", "op": "generate:6adfee5f-7ca2-4f80-a521-8f436972fbd4", "pid": "11c688eb-413a-4276-a656-ba0265e48c5b", "before": 16750, "after": 16685, "spent": 65}
+{"time": "2026-10-11T14:01:52-07:00", "task": "ART-dressup-t4b-neck-v3", "item": "tpl_m_medium", "op": "rig_before", "pid": "11c688eb-413a-4276-a656-ba0265e48c5b", "before": 16685, "after": 16685, "spent": 0}
+{"time": "2026-10-11T14:01:56-07:00", "task": "ART-dressup-t4b-neck-v3", "item": "tpl_m_medium", "op": "rig:d5105221-6b09-4626-84b2-81f4d4a08378", "pid": "11c688eb-413a-4276-a656-ba0265e48c5b", "before": 16685, "after": 16665, "spent": 20}

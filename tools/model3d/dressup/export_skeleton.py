@@ -168,9 +168,14 @@ def _plane_basis(axis: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     return direction, u, np.cross(direction, u)
 
 
+RING_RADIUS_RANGE_MU = (0.025, 0.045)   # 颈环半径合理区间（--check 同一口径）
+
+
 def find_neck_ring(local_points: np.ndarray, neck_weights: np.ndarray, primary: np.ndarray, axis: np.ndarray,
                    *, slice_half: float = 0.0025) -> dict[str, Any]:
-    """沿 Neck→Head 轴搜索 100% Neck 主导且近圆的第一段。"""
+    """沿 Neck→Head 轴搜索 100% Neck 主导且近圆的第一段；若有多段符合，取第一段半径落在
+    RING_RADIUS_RANGE_MU 内的（T4b：Tripo 把斜方肌起点也刷成 Neck 主导时，最低那段会截到斜方肌而偏宽，
+    颈环应落在其上方真正的颈柱上）；都不在区间内时仍取第一段，由 --check 报错。"""
     axis, plane_u, plane_v = _plane_basis(axis)
     axial = local_points @ axis
     candidates = []
@@ -185,7 +190,9 @@ def find_neck_ring(local_points: np.ndarray, neck_weights: np.ndarray, primary: 
         candidates.append((height, dominance, ratio, center, radii, axes, int(np.sum(ring))))
     valid = [item for item in candidates if item[1] >= 1.0 - 1e-12 and item[2] < 1.3]
     if not valid: raise SkeletonError("未找到 Neck 主导且长宽比 < 1.3 的颈环切片")
-    height, dominance, ratio, center, radii, axes, count = valid[0]
+    low, high = RING_RADIUS_RANGE_MU
+    in_range = [item for item in valid if low <= float(min(item[4])) and float(max(item[4])) <= high]
+    height, dominance, ratio, center, radii, axes, count = (in_range or valid)[0]
     return {"height": height, "dominance": dominance, "ratio": ratio, "center2d": center,
             "radii": radii, "axes": axes, "axis": axis, "planeU": plane_u, "planeV": plane_v,
             "vertices": count}
@@ -657,7 +664,7 @@ def check_outputs(out_dir: Path) -> dict[str, Any]:
             raise SkeletonError(f"measures.{key} 必须含 L/R 正有限数")
     if not 0.08 <= float(measures.get("headWidthMu", 0)) <= 0.12: raise SkeletonError("头宽不在 0.08~0.12 mu")
     radii = data["neckRing"].get("radiusMu", {})
-    if any(not 0.025 <= float(radii.get(axis, 0)) <= 0.045 for axis in ("x", "z")):
+    if any(not RING_RADIUS_RANGE_MU[0] <= float(radii.get(axis, 0)) <= RING_RADIUS_RANGE_MU[1] for axis in ("x", "z")):
         raise SkeletonError("颈环半径不在 0.025~0.045 mu")
     _check_neck_ring(data["neckRing"])
     validation = data["validation"]
