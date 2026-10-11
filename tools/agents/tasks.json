@@ -52355,24 +52355,20 @@
     "assets/default/character/female/ch00/threeview/**"
    ],
    "writes": [
-    "assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_base_body_apose_uhd.png",
-    "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_base_body_apose_uhd.png",
-    "assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_dressup_baiyi_front_uhd.png",
-    "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_dressup_hongyi_front_uhd.png",
+    "assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_base_body_apose_hd.png",
+    "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_base_body_apose_hd.png",
     "assets/default/character/female/ch02/threeview/manifest.yaml"
    ],
    "validate": {
     "exists": [
-     "assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_base_body_apose_uhd.png",
-     "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_base_body_apose_uhd.png",
-     "assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_dressup_baiyi_front_uhd.png",
-     "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_dressup_hongyi_front_uhd.png"
+     "assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_base_body_apose_hd.png",
+     "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_base_body_apose_hd.png"
     ],
     "cmd": [
      [
       "{python}",
       "-c",
-      "import hashlib,sys,yaml; from PIL import Image; from pathlib import Path; d=Path('assets/default/character/female/ch02/threeview'); m={e['file']:e for e in yaml.safe_load((d/'manifest.yaml').read_text())}; n=['por_npc_huangrong__ch02_youth_base_body_apose_uhd.png','por_npc_munianci__ch02_youth_base_body_apose_uhd.png','por_npc_huangrong__ch02_youth_dressup_baiyi_front_uhd.png','por_npc_munianci__ch02_youth_dressup_hongyi_front_uhd.png']; s={x:Image.open(d/x).size for x in n}; bad=[x for x in n if s[x][0]<2048 or s[x][1]<3072 or abs(s[x][0]*3-s[x][1]*2)>3 or x not in m or m[x].get('sha256')!=hashlib.sha256((d/x).read_bytes()).hexdigest()]; bad+=['size-pair'] if s[n[0]]!=s[n[2]] or s[n[1]]!=s[n[3]] else []; print('bad:',bad) if bad else print('ok',s); sys.exit(1 if bad else 0)"
+      "import hashlib,sys,yaml; from PIL import Image; from pathlib import Path; d=Path('assets/default/character/female/ch02/threeview'); m={e['file']:e for e in yaml.safe_load((d/'manifest.yaml').read_text())}; n=['por_npc_huangrong__ch02_youth_base_body_apose_hd.png','por_npc_munianci__ch02_youth_base_body_apose_hd.png']; s={x:Image.open(d/x).size for x in n}; bad=[x for x in n if s[x][0]<1600 or s[x][1]<2400 or abs(s[x][0]*3-s[x][1]*2)>6 or x not in m or m[x].get('sha256')!=hashlib.sha256((d/x).read_bytes()).hexdigest()]; bad+=[k for k in ('por_npc_huangrong__ch02_youth_base_body_apose_uhd.png','por_npc_munianci__ch02_youth_base_body_apose_uhd.png','por_npc_huangrong__ch02_youth_dressup_baiyi_front_uhd.png','por_npc_munianci__ch02_youth_dressup_hongyi_front_uhd.png') if k in m or (d/k).exists()]; print('bad:',bad) if bad else print('ok',s); sys.exit(1 if bad else 0)"
      ],
      [
       "pnpm",
