@@ -1,16 +1,18 @@
 <script setup lang="ts">
-/* global Event, HTMLImageElement, HTMLInputElement, HTMLElement, MouseEvent, PointerEvent, ResizeObserver, WheelEvent, cancelAnimationFrame, fetch, requestAnimationFrame, window */
+/* global Event, HTMLImageElement, HTMLInputElement, HTMLElement, MouseEvent, PointerEvent, ResizeObserver, SVGGElement, WheelEvent, cancelAnimationFrame, fetch, requestAnimationFrame, window */
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import type { WorldMapProjection } from '@tianshu/core';
 import type { WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import { useUiStore } from '@tianshu/ui/runtime';
 import type { GameController } from '../game-controller';
-import { GRID_SIZE, centerOnGrid, clampView, cleanNodeName, coverScale, drawableRoads,
-  gridToImage, gridToScreen, landmarkForNode, layoutLabels, markerSize, nearestOpenNode, panView,
+import { GRID_SIZE, centerOnGrid, centredBox, clampView, cleanNodeName, coverScale, drawableRoads,
+  gridToImage, gridToScreen, landmarkForNode, layoutLabels, nearestOpenNode, panView,
   pointAlongPath, resizeView, roadDegrees, roadPaths, screenToGrid, sectViewNodes, shortNodeName,
-  zoomAt } from '../worldmap/painted-view';
-import type { LandmarkEntry, NodeLabel, Point, Size, ViewNode, ViewSect, ViewState } from '../worldmap/painted-view';
+  townSize, zoomAt } from '../worldmap/painted-view';
+import type { IconBox, LandmarkEntry, NodeLabel, Point, Size, ViewNode, ViewSect, ViewState } from '../worldmap/painted-view';
+import { canResample, loadImage, resampleSprites } from '../worldmap/map-sprites';
+import type { SpriteJob } from '../worldmap/map-sprites';
 
 type MapNode = WorldMapRuntimeDefinition['nodes'][number];
 const { controller } = defineProps<{ controller: GameController }>();
@@ -18,6 +20,9 @@ const emit = defineEmits<{ scene: [kind: 'town' | 'ruin'] }>();
 const { projection } = storeToRefs(useUiStore());
 const stage = ref<HTMLElement>();
 const plane = ref<HTMLElement>();
+const townPlane = ref<HTMLElement>();
+const overlay = ref<HTMLElement>();
+const roadGroup = ref<SVGGElement>();
 const paintedImage = ref<HTMLImageElement>();
 const hovered = shallowRef<MapNode | null>(null);
 const selectedId = ref('');
@@ -27,19 +32,40 @@ const renderError = ref('');
 const imageReady = ref(false);
 const imageSize = shallowRef<Size>(GRID_SIZE);
 const nodeMarkers = shallowRef<readonly NodeLabel[]>([]);
-const actorScreen = shallowRef<Point>([0, 0]);
-const destinationScreen = shallowRef<Point | null>(null);
+/** Hero and destination in overlay pixels: map origin at the current scale (the overlay carries the pan). */
+const heroAt = shallowRef<Point>([0, 0]);
+const destinationAt = shallowRef<Point | null>(null);
 const facingLeft = ref(false);
-const roadTransform = ref('');
 const panelCollapsed = ref(false);
-const markerZoom = ref(1.6);
+type AtlasCell = { x: number; y: number; w: number; h: number; anchor: Point };
 /** Kit marker atlas (tech/13 §5.2); null keeps the legacy single icon. */
 interface MarkerAtlas {
   readonly url: string; readonly width: number; readonly height: number;
-  readonly markers: Readonly<Record<string, { x: number; y: number; w: number; h: number; anchor: Point }>>;
+  readonly markers: Readonly<Record<string, AtlasCell>>;
 }
-const markerAtlas = shallowRef<MarkerAtlas | null>(null);
+const atlasDefinition = shallowRef<MarkerAtlas | null>(null);
 const landmarkIndex = shallowRef<readonly LandmarkEntry[]>([]);
+/** Town art resampled to the base image's texel density, keyed by art key (see map-sprites.ts). */
+const mapSprites = shallowRef<ReadonlyMap<string, string>>(new Map());
+/**
+ * Art files that failed to load for the current map and base image: a vignette falls back to its town art,
+ * a failed atlas to the legacy icon. A new chapter or base image clears it, so a transient failure is retried.
+ */
+const failedArt = shallowRef<ReadonlySet<string>>(new Set());
+const markerAtlas = computed(() => {
+  const atlas = atlasDefinition.value;
+  return atlas && !failedArt.value.has(atlas.url) ? atlas : null;
+});
+let artGeneration = 0;
+function markArtFailed(url: string, generation = artGeneration): void {
+  if (disposed || generation !== artGeneration || failedArt.value.has(url)) return;
+  failedArt.value = new Set([...failedArt.value, url]);
+}
+/** The CSS path never learns that the atlas image is missing, so each generation checks it once. */
+function probeAtlas(): void {
+  const atlas = atlasDefinition.value; const generation = artGeneration;
+  if (atlas) void loadImage(atlas.url).then(image => { if (!image) markArtFailed(atlas.url, generation); });
+}
 const mapView = computed(() => controller.worldmap.value);
 const mapStatic = computed(() => projection.value.worldmapStatic);
 const mapDefinition = computed(() => mapStatic.value?.map);
@@ -72,23 +98,66 @@ const roadData = computed(() => {
   // Cache polylines per map definition. The inner SVG group converts grid units to image pixels.
   return { paths: roadPaths(roads, GRID_SIZE), degrees: roadDegrees(roads) };
 });
-/** Landmark vignettes for open nodes of this chapter, positioned in painted-image pixels. */
+/**
+ * Painted art in base-image pixels: whole pixels, so it shares the base image's pixel grid and is
+ * scaled with it (tech/13 §5.2–§5.3). `box` is the art around its node point, for names and hit areas.
+ */
+interface PaintedArt {
+  readonly id: string; readonly key: string; readonly left: number; readonly top: number;
+  readonly width: number; readonly height: number; readonly box: IconBox;
+}
+function placeArt(id: string, key: string, point: Point, width: number, height: number, anchor: Point): PaintedArt {
+  const [ix, iy] = gridToImage(point, imageSize.value);
+  const left = Math.round(ix - anchor[0]); const top = Math.round(iy - anchor[1]);
+  return { id, key, left, top, width, height,
+    box: { x0: left - ix, y0: top - iy, x1: left + width - ix, y1: top + height - iy } };
+}
+/**
+ * Landmark vignettes for open nodes of this chapter, `footprintGrid` wide at the base image's density.
+ * Only over a loaded base image: while it loads, or if it is missing, those nodes keep their town art.
+ */
 const landmarks = computed(() => {
   const map = mapDefinition.value; const index = landmarkIndex.value;
-  if (!map || index.length === 0) return [];
+  if (!map || index.length === 0 || !imageReady.value) return [];
   const gridPx = imageSize.value.width / GRID_SIZE.width;
   return openNodes.value.flatMap((node) => {
     const entry = landmarkForNode(index, node.id, map.era);
-    if (!entry || entry.width <= 0 || entry.height <= 0) return [];
-    const [ix, iy] = gridToImage(node.point, imageSize.value);
-    const width = entry.footprintGrid * gridPx; const k = width / entry.width;
-    return [{ id: entry.id, node: node.id, url: entry.url, footprint: width, k,
-      ax: entry.anchor[0] * k, ay: entry.anchor[1] * k,
-      left: ix - entry.anchor[0] * k, top: iy - entry.anchor[1] * k,
-      width, height: entry.height * k, below: (entry.height - entry.anchor[1]) * k }];
+    if (!entry || entry.width <= 0 || entry.height <= 0 || failedArt.value.has(entry.url)) return [];
+    const width = Math.max(1, Math.round(entry.footprintGrid * gridPx));
+    const height = Math.max(1, Math.round(entry.height * width / entry.width));
+    const anchor: Point = [entry.anchor[0] * width / entry.width, entry.anchor[1] * height / entry.height];
+    return [{ ...placeArt(node.id, `${entry.id}@${width}x${height}`, node.point, width, height, anchor),
+      url: entry.url }];
   });
 });
-const landmarkByNode = computed(() => new Map(landmarks.value.map((row) => [row.node, row])));
+const landmarkByNode = computed(() => new Map(landmarks.value.map((row) => [row.id, row])));
+/** Every other open node and drawn sect seat: its atlas cell at the tier's size, drawn south over north. */
+const townArt = computed(() => {
+  const atlas = markerAtlas.value;
+  return labelNodes.value.filter(node => !landmarkByNode.value.has(node.id)).map((node) => {
+    const marker = node.marker ?? (node.kind === 'ruin' ? 'ruin' : node.kind === 'sect' ? 'sect' : 'city_county');
+    const size = townSize(node.tier, imageSize.value); const cell = atlas?.markers[marker] ?? null;
+    const k = cell ? size / Math.max(cell.w, cell.h) : 1;
+    const width = Math.max(1, Math.round(cell ? cell.w * k : size));
+    const height = Math.max(1, Math.round(cell ? cell.h * k : size));
+    const anchor: Point = cell ? [cell.anchor[0] * width / cell.w, cell.anchor[1] * height / cell.h] : [width / 2, height / 2];
+    return { ...placeArt(node.id, atlas && cell ? `${atlas.url}#${marker}@${width}x${height}` : '', node.point,
+      width, height, anchor), kind: node.kind, quiet: Boolean(node.quiet), cell, point: node.point };
+  }).sort((a, b) => a.point[1] - b.point[1] || a.point[0] - b.point[0] || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+});
+const artBoxes = computed(() => new Map<string, IconBox>([...landmarks.value, ...townArt.value].map(art => [art.id, art.box])));
+/** Paint order of each node's art (vignettes first, then towns south over north); click areas stack the same way. */
+const artOrder = computed(() => new Map([...landmarks.value, ...townArt.value].map((art, index) => [art.id, index + 1])));
+/** Resampled sprite when ready; until then the atlas cell scaled by CSS, or the legacy single icon. */
+function townStyle(art: (typeof townArt.value)[number]): Record<string, string> {
+  const box = { left: art.left + 'px', top: art.top + 'px', width: art.width + 'px', height: art.height + 'px' };
+  const sprite = mapSprites.value.get(art.key); const atlas = markerAtlas.value; const cell = art.cell;
+  if (sprite) return { ...box, backgroundImage: `url('${sprite}')`, backgroundSize: '100% 100%' };
+  if (!atlas || !cell) return box;
+  const kx = art.width / cell.w; const ky = art.height / cell.h;
+  return { ...box, backgroundImage: `url('${atlas.url}')`, backgroundSize: `${atlas.width * kx}px ${atlas.height * ky}px`,
+    backgroundPosition: `${-cell.x * kx}px ${-cell.y * ky}px` };
+}
 /** Display position: along the current road's terrain path when walking, else core's point (tech/13 §5.1). */
 function displayPoint(state: WorldMapProjection | null | undefined): Point {
   if (!state) return [0, 0];
@@ -140,35 +209,33 @@ function paintFrame(time: number): void {
     if (fraction === 1) animation = undefined;
   }
   const transform = 'translate3d(' + view.tx + 'px, ' + view.ty + 'px, 0) scale(' + view.s + ')';
-  if (plane.value && transform !== lastTransform) {
-    plane.value.style.transform = transform; lastTransform = transform;
+  if (transform !== lastTransform) {
+    // One commit point: base image, roads, painted towns and the name overlay move in the same frame.
+    // The overlay only translates, so names stay screen-sized and a pan re-renders nothing.
+    if (plane.value) plane.value.style.transform = transform;
+    if (townPlane.value) townPlane.value.style.transform = transform;
+    if (overlay.value) overlay.value.style.transform = 'translate3d(' + view.tx + 'px, ' + view.ty + 'px, 0)';
+    roadGroup.value?.setAttribute('transform', 'translate(' + view.tx + ' ' + view.ty + ') scale(' + view.s + ')');
+    lastTransform = transform;
   }
-  roadTransform.value = 'translate(' + view.tx + ' ' + view.ty + ') scale(' + view.s + ')';
-  zoom.value = view.s / coverScale(imageSize.value, viewport);
   const z = view.s / coverScale(imageSize.value, viewport);
-  plane.value?.style.setProperty('--map-s', String(view.s));
-  const inputs = [view.s, view.tx, view.ty, viewport.width, viewport.height, imageSize.value,
-    labelNodes.value, roadData.value.degrees, selectedId.value, mapView.value?.positionNodeId,
-    destinationId.value, landmarkByNode.value, selectedSectId.value, markerAtlas.value];
+  if (zoom.value !== z) zoom.value = z;
+  // Names depend on the scale, never on the pan offset or viewport.
+  const inputs = [view.s, imageSize.value, labelNodes.value, roadData.value.degrees, selectedId.value,
+    mapView.value?.positionNodeId, destinationId.value, artBoxes.value, selectedSectId.value];
   if (inputs.some((value, index) => value !== labelInputs[index])) {
-    const halfHeight = (node: ViewNode): number => {
-      const landmark = landmarkByNode.value.get(node.id);
-      // Below-anchor part of the vignette on screen, honouring its 56px minimum width.
-      if (landmark) return landmark.below * view.s * Math.max(1, 56 / (landmark.footprint * view.s));
-      const size = markerSize(node.tier, z); const cell = markerAtlas.value?.markers[node.marker ?? ''];
-      // The node sits on the cell anchor, so the label clears the part of the icon below it.
-      return cell ? (cell.h - cell.anchor[1]) * size / Math.max(cell.w, cell.h) : size / 2;
-    };
-    nodeMarkers.value = layoutLabels(labelNodes.value, view, imageSize.value, viewport, {
+    nodeMarkers.value = layoutLabels(labelNodes.value, view.s, imageSize.value, {
       selectedId: selectedSectId.value || selectedId.value, currentNodeId: mapView.value?.positionNodeId ?? null,
       destinationId: destinationId.value,
-    }, roadData.value.degrees, halfHeight);
-    markerZoom.value = z;
+    }, roadData.value.degrees, (node: ViewNode) => artBoxes.value.get(node.id) ?? centredBox(node, imageSize.value));
     labelInputs = inputs;
   }
-  actorScreen.value = gridToScreen(actorPoint.value, view, imageSize.value);
+  const origin: ViewState = { s: view.s, tx: 0, ty: 0 };
+  const hero = gridToScreen(actorPoint.value, origin, imageSize.value);
+  if (hero[0] !== heroAt.value[0] || hero[1] !== heroAt.value[1]) heroAt.value = hero;
   const destination = openNodes.value.find(node => node.id === destinationId.value);
-  destinationScreen.value = destination ? gridToScreen(destination.point, view, imageSize.value) : null;
+  const target = destination ? gridToScreen(destination.point, origin, imageSize.value) : null;
+  if (target?.[0] !== destinationAt.value?.[0] || target?.[1] !== destinationAt.value?.[1]) destinationAt.value = target;
   // Only the bounded 200ms follow transition requests another frame.
   if (animation) queueFrame();
 }
@@ -431,6 +498,7 @@ watch(mapView, (next, previous) => {
 watch([selectedId, destinationId, openNodes], queueFrame);
 watch(mapDefinition, () => {
   selectedId.value = ''; hovered.value = null; following = true; animation = undefined; clearPointers();
+  selectedSectId.value = ''; hoveredSectId.value = '';
   if (ready()) view = centerOnGrid({ s: coverScale(imageSize.value, viewport) * 1.6, tx: 0, ty: 0 },
     mapView.value?.point ?? [256, 192], imageSize.value, viewport);
   queueFrame();
@@ -441,7 +509,41 @@ watch([fastTravel, reducedMotion], () => {
   if (reducedMotion.value && animation) { view = animation.to; animation = undefined; queueFrame(); }
 });
 watch(stage, target => { if (mounted) bindStage(target); }, { flush: 'post' });
-watch(landmarkByNode, queueFrame);
+watch(artBoxes, queueFrame);
+let spriteRun = 0;
+/**
+ * Resample the art this chapter shows once the base image fixes the texel density; results are cached by key.
+ * Every call (also one that stops early, e.g. while a new base image loads) retires the batches before it.
+ */
+async function paintSprites(): Promise<void> {
+  const run = ++spriteRun;
+  // Keep only what is shown now (also while a new base image loads or after it fails), so chapters and
+  // base images do not pile up sprites.
+  const shown = (): Set<string> => new Set([...townArt.value.map(art => art.key), ...landmarks.value.map(mark => mark.key)]);
+  const current = shown();
+  if ([...mapSprites.value.keys()].some(key => !current.has(key)))
+    mapSprites.value = new Map([...mapSprites.value].filter(([key]) => current.has(key)));
+  if (disposed || !imageReady.value || !canResample()) return;
+  const atlas = markerAtlas.value; const have = mapSprites.value;
+  const jobs = new Map<string, SpriteJob>();
+  for (const art of townArt.value) if (atlas && art.cell && !have.has(art.key))
+    jobs.set(art.key, { key: art.key, url: atlas.url, crop: [art.cell.x, art.cell.y, art.cell.w, art.cell.h],
+      width: art.width, height: art.height });
+  for (const mark of landmarks.value) if (!have.has(mark.key))
+    jobs.set(mark.key, { key: mark.key, url: mark.url, crop: null, width: mark.width, height: mark.height });
+  if (jobs.size === 0) return;
+  const { made, failed } = await resampleSprites([...jobs.values()]);
+  if (disposed || run !== spriteRun) return;
+  for (const url of failed) markArtFailed(url);
+  const still = shown();
+  mapSprites.value = new Map([...[...mapSprites.value].filter(([key]) => still.has(key)), ...made]);
+}
+watch([townArt, landmarks, imageReady], () => { void paintSprites(); });
+watch([mapDefinition, mapTextureUrl], () => {
+  artGeneration += 1;
+  if (failedArt.value.size > 0) failedArt.value = new Set();
+  probeAtlas();
+});
 /** Optional overlays: a missing or malformed file simply keeps the fallback (tech/13 §5.2–§5.3). */
 async function loadOverlays(): Promise<void> {
   const json = async (url: string): Promise<unknown> => {
@@ -450,8 +552,9 @@ async function loadOverlays(): Promise<void> {
   const [atlas, index] = await Promise.all([json('/assets/default/map/markers/atlas.json'),
     json('/assets/default/map/landmark/index.json')]);
   if (disposed) return;
-  markerAtlas.value = parseAtlas(atlas);
+  atlasDefinition.value = parseAtlas(atlas);
   if (Array.isArray(index)) landmarkIndex.value = index.filter(isLandmarkRow);
+  probeAtlas();
 }
 const positive = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value) && value > 0;
 const finite = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
@@ -480,22 +583,13 @@ function isLandmarkRow(value: unknown): value is LandmarkEntry {
     positive(row!.footprintGrid) && positive(row!.width) && positive(row!.height) &&
     row!.anchor[0] >= 0 && row!.anchor[0] <= row!.width && row!.anchor[1] >= 0 && row!.anchor[1] <= row!.height;
 }
-/** Background style for one atlas marker scaled to `size` px, anchor centred on the node. */
-function markerStyle(marker: string, size: number): Record<string, string> | null {
-  const atlas = markerAtlas.value; const cell = atlas?.markers[marker];
-  if (!atlas || !cell) return null;
-  const k = size / Math.max(cell.w, cell.h);
-  return { width: cell.w * k + 'px', height: cell.h * k + 'px',
-    backgroundImage: `url('${atlas.url}')`, backgroundSize: `${atlas.width * k}px ${atlas.height * k}px`,
-    backgroundPosition: `${-cell.x * k}px ${-cell.y * k}px`,
-    marginLeft: (cell.w / 2 - cell.anchor[0]) * k + 'px', marginTop: (cell.h / 2 - cell.anchor[1]) * k + 'px' };
-}
 onMounted(() => {
   mounted = true; bindStage(stage.value); void loadOverlays();
   if (import.meta.env.DEV) {
     const handle = Object.freeze({
       state: () => Object.freeze({ ...view, z: ready() ? view.s / coverScale(imageSize.value, viewport) : 1.6,
-        viewport: Object.freeze({ ...viewport }), image: Object.freeze({ ...imageSize.value }), following }),
+        viewport: Object.freeze({ ...viewport }), image: Object.freeze({ ...imageSize.value }), following,
+        sprites: mapSprites.value.size }),
       focus: (nodeId: string) => {
         const node = openNodes.value.find(row => row.id === nodeId);
         if (!node || !ready()) return;
@@ -528,15 +622,9 @@ onBeforeUnmount(() => {
           class="map-painted-image" :src="mapTextureUrl" alt="" decoding="async" draggable="false"
           :width="imageSize.width" :height="imageSize.height" @load="onImageLoad" @error="onImageError"
         >
-        <img
-          v-for="mark in landmarks" v-show="imageReady" :key="mark.id" class="map-landmark" :src="mark.url" alt=""
-          decoding="async" draggable="false" :data-landmark-node="mark.node"
-          :style="{ left: mark.left + 'px', top: mark.top + 'px', width: mark.width + 'px', height: mark.height + 'px',
-                    transformOrigin: mark.ax + 'px ' + mark.ay + 'px', '--fp': String(mark.footprint) }"
-        >
       </div>
       <svg class="map-roads" aria-hidden="true">
-        <g :transform="roadTransform">
+        <g ref="roadGroup">
           <g :transform="roadImageTransform">
             <g v-for="road in roadData.paths" :key="road.key" class="map-road" :class="road.className">
               <path :d="road.d" class="map-road-under" vector-effect="non-scaling-stroke" />
@@ -545,13 +633,30 @@ onBeforeUnmount(() => {
           </g>
         </g>
       </svg>
-      <div
-        v-if="destinationScreen" class="map-destination" aria-hidden="true"
-        :style="{ left: destinationScreen[0] - 13 + 'px', top: destinationScreen[1] - 13 + 'px' }"
-      />
-      <div class="map-badges-layer">
+      <!-- Towns are painted into the map: same transform and texel density as the base image (tech/13 §5.2). -->
+      <div ref="townPlane" class="map-town-plane" aria-hidden="true">
+        <img
+          v-for="mark in landmarks" :key="mark.key" class="map-landmark"
+          :class="{ selected: selectedId === mark.id, hovered: hovered?.id === mark.id }"
+          :src="mapSprites.get(mark.key) ?? mark.url" alt="" decoding="async" draggable="false" :data-landmark-node="mark.id"
+          :style="{ left: mark.left + 'px', top: mark.top + 'px', width: mark.width + 'px', height: mark.height + 'px' }"
+          @error="markArtFailed(mark.url)"
+        >
+        <span
+          v-for="art in townArt" :key="art.id" class="map-town" :data-town-node="art.id"
+          :class="[art.kind, { atlas: Boolean(art.cell), quiet: art.quiet,
+                               selected: selectedId === art.id || selectedSectId === art.id,
+                               hovered: hovered?.id === art.id || hoveredSectId === art.id }]"
+          :style="townStyle(art)"
+        />
+      </div>
+      <div ref="overlay" class="map-overlay">
+        <div
+          v-if="destinationAt" class="map-destination" aria-hidden="true"
+          :style="{ left: destinationAt[0] - 13 + 'px', top: destinationAt[1] - 13 + 'px' }"
+        />
         <button
-          v-for="marker in nodeMarkers" v-show="marker.visible" :key="marker.id" type="button"
+          v-for="marker in nodeMarkers" :key="marker.id" type="button"
           class="map-city-badge" :data-node-id="marker.id" :data-tier="marker.tier"
           :class="[marker.kind, { quiet: marker.quiet, 'no-label': marker.labelHidden,
                                   selected: selectedId === marker.id || selectedSectId === marker.id,
@@ -561,19 +666,19 @@ onBeforeUnmount(() => {
           @pointerleave="hoveredSectId = ''"
         >
           <span
-            v-if="!landmarkByNode.has(marker.id)" class="city-icon" :class="[marker.kind, { atlas: markerAtlas }]"
-            :style="markerStyle(marker.marker, markerSize(marker.tier, markerZoom)) ??
-              { width: markerSize(marker.tier, markerZoom) + 'px', height: markerSize(marker.tier, markerZoom) + 'px' }"
+            class="city-hit"
+            :style="{ left: marker.hit[0] + 'px', top: marker.hit[1] + 'px', width: marker.hit[2] + 'px', height: marker.hit[3] + 'px',
+                      zIndex: artOrder.get(marker.id) ?? 0 }"
           />
           <span class="city-name" :style="{ fontSize: marker.font + 'px', top: marker.labelY - marker.y + 'px' }">{{ marker.name }}</span>
         </button>
-      </div>
-      <div
-        class="map-hero" :class="{ walking, 'facing-left': facingLeft }" aria-label="主角当前位置"
-        :style="{ left: actorScreen[0] + 'px', top: actorScreen[1] + 'px' }"
-      >
-        <i class="map-hero-halo" />
-        <div class="map-hero-bob"><img :src="'/img/hero_cutout.png'" alt="" height="64" draggable="false"></div>
+        <div
+          class="map-hero" :class="{ walking, 'facing-left': facingLeft }" aria-label="主角当前位置"
+          :style="{ left: heroAt[0] + 'px', top: heroAt[1] + 'px' }"
+        >
+          <i class="map-hero-halo" />
+          <div class="map-hero-bob"><img :src="'/img/hero_cutout.png'" alt="" height="64" draggable="false"></div>
+        </div>
       </div>
     </div>
     <output v-if="renderError" class="map-error" role="status">{{ renderError }}</output>
@@ -705,14 +810,39 @@ onBeforeUnmount(() => {
   animation: destination-pulse 1.6s ease-in-out infinite;
 }
 @keyframes destination-pulse { 50% { opacity: 0.55; scale: 1.15; } }
-.map-badges-layer { position: absolute; inset: 0; pointer-events: none; }
-.map-landmark {
+/* Same transform as .map-painted-plane; its art is 1:1 with base-image pixels (tech/13 §5.2–§5.3). */
+.map-town-plane {
   position: absolute;
-  max-width: none;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
   pointer-events: none;
-  /* Scales with the map; never narrower than 56 screen px (tech/13 §5.3). */
-  transform: scale(max(1, calc(56 / (var(--fp) * var(--map-s, 1)))));
+  /* Own stacking context even before the first transform, so the ground mist stays above roads. */
+  isolation: isolate;
 }
+.map-landmark, .map-town { position: absolute; display: block; max-width: none; pointer-events: none; }
+.map-town { background: url('/img/ui_map_city.png') center / contain no-repeat; }
+/* Paper left blank around each town (like villages in a landscape painting), so towns in the mountains still read. */
+.map-town::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(240, 233, 217, 0.9), rgba(240, 233, 217, 0.6) 55%, rgba(240, 233, 217, 0));
+}
+.map-town.atlas { background-repeat: no-repeat; }
+.map-town.ruin:not(.atlas) { filter: sepia(0.85) hue-rotate(65deg); }
+.map-town.quiet { opacity: 0.55; }
+.map-town.hovered, .map-town.selected, .map-landmark.hovered, .map-landmark.selected {
+  filter: drop-shadow(0 0 1.5px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 4px rgba(245, 158, 11, 0.6));
+}
+.map-town.ruin:not(.atlas).hovered, .map-town.ruin:not(.atlas).selected {
+  filter: sepia(0.85) hue-rotate(65deg) drop-shadow(0 0 1.5px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 4px rgba(245, 158, 11, 0.6));
+}
+/* Names, hit areas, destination and hero: screen-sized, translated with the map in the same frame. */
+.map-overlay { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
+/* Click areas stack like the painted art below them; every name sits above every click area. */
+.city-hit { position: absolute; display: block; }
 .map-city-badge {
   position: absolute;
   pointer-events: auto;
@@ -735,23 +865,9 @@ onBeforeUnmount(() => {
   white-space: nowrap;
   transition: none;
 }
-.city-icon {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: block;
-  transform: translate(-50%, -50%);
-  background: url('/img/ui_map_city.png') center / contain no-repeat;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
-}
-.city-icon.atlas {
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 1px 2px rgba(60, 45, 30, 0.35));
-}
-.city-icon.ruin { filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45)) sepia(0.85) hue-rotate(65deg); }
-.city-icon.atlas.ruin { filter: drop-shadow(0 1px 2px rgba(60, 45, 30, 0.35)); }
 .city-name {
   position: absolute;
+  z-index: 10000;
   left: 0;
   transform: translateX(-50%);
   line-height: 1.6;
@@ -759,16 +875,12 @@ onBeforeUnmount(() => {
 }
 .map-city-badge[data-tier='capital'] .city-name { letter-spacing: 1px; }
 .map-city-badge.sect { color: #9e3b2f; }
-.map-city-badge.quiet .city-icon { opacity: 0.55; }
 .map-city-badge.no-label .city-name { display: none; }
-.map-city-badge.no-label.hovered .city-name, .map-city-badge.no-label.selected .city-name { display: block; z-index: 1; }
+.map-city-badge.no-label.hovered .city-name, .map-city-badge.no-label.selected .city-name { display: block; z-index: 10001; }
 .map-city-badge.ruin { color: #3b5045; }
 .map-city-badge:hover, .map-city-badge.hovered { color: #b5382b; }
 .map-city-badge.selected { color: #6d1c0e; text-shadow: 0 0 6px #ffd700, 1px 1px 0 #fff; }
-.map-city-badge.selected .city-icon, .map-city-badge.hovered .city-icon {
-  filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.8));
-}
-.map-hero { position: absolute; width: 0; height: 0; pointer-events: none; }
+.map-hero { position: absolute; z-index: 10002; width: 0; height: 0; pointer-events: none; }
 .map-hero-halo {
   position: absolute;
   left: -16px;

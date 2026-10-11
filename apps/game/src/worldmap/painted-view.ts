@@ -8,9 +8,9 @@ export interface ViewNode {
   readonly point: Point; readonly open: boolean; readonly tier?: MapTier | undefined; readonly marker?: string | undefined;
   /** Icon only; the name appears on hover / selection and never reserves label space (hidden sects). */
   readonly quiet?: boolean | undefined;
-  /** Fixed screen-pixel nudge for seats sharing a town's spot, so both stay readable at every zoom. */
-  readonly screenOffset?: Point | undefined;
 }
+/** Painted town art around its node, in image pixels relative to the node point (the art's anchor). */
+export interface IconBox { readonly x0: number; readonly y0: number; readonly x1: number; readonly y1: number }
 /** Sect seat as published in the map definition (tech/13 §5.4). */
 export interface ViewSect {
   readonly id: string; readonly name: string; readonly siteName: string; readonly point: Point;
@@ -31,12 +31,18 @@ export interface LabelPriority {
   readonly selectedId?: string | null; readonly currentNodeId?: string | null;
   readonly destinationId?: string | null;
 }
+/**
+ * One node's name and hit area. Positions are pixels from the map origin at the current scale, so a pan
+ * only moves the overlay that holds them (tech/13 §5.2); only a scale change lays them out again.
+ */
 export interface NodeLabel {
   readonly id: string; readonly name: string; readonly kind: 'town' | 'ruin' | 'sect'; readonly quiet: boolean;
-  /** Name hidden until hover / selection: quiet seats, or sect names that would overlap a label. */
+  /** Name hidden until hover / selection: quiet seats, or a name that would overlap an earlier label. */
   readonly labelHidden: boolean;
   readonly x: number; readonly y: number; readonly width: number; readonly height: number;
-  readonly labelX: number; readonly labelY: number; readonly visible: boolean;
+  readonly labelX: number; readonly labelY: number;
+  /** Painted art under the node at this scale, relative to (x, y): [left, top, width, height]. */
+  readonly hit: readonly [number, number, number, number];
   readonly tier: MapTier; readonly marker: string; readonly font: number;
 }
 export const GRID_SIZE: Size = { width: 512, height: 384 };
@@ -168,16 +174,20 @@ export function pointAlongPath(path: readonly Point[], fraction: number, reverse
   return ordered[ordered.length - 1]!;
 }
 const TIER_RANK: Readonly<Record<MapTier, number>> = { capital: 4, major: 3, sect: 2, minor: 1, site: 0 };
-const MARKER_RANGE: Readonly<Record<MapTier, readonly [number, number]>> = {
-  capital: [44, 96], major: [26, 50], sect: [18, 32], minor: [18, 32], site: [16, 26],
-};
+/**
+ * Town art edge in grid units. The art is painted into the map plane at the base image's own texel
+ * density, so it scales with the mountains instead of floating over them (tech/13 §5.2, AR-113).
+ * Sized for the measured spacing of open towns (a quarter of them sit 4.5 grid units or less apart).
+ */
+export const TOWN_SIZE: Readonly<Record<MapTier, number>> = { capital: 7.2, major: 5.2, sect: 3.6, minor: 3.8, site: 3.0 };
 /** Label font size per tier; fixed on screen at every zoom. */
 export const LABEL_FONT: Readonly<Record<MapTier, number>> = { capital: 17, major: 14, sect: 12, minor: 12, site: 12 };
-/** Fan-out slots (screen px) for seats that share a town's grid spot: NE, SE, E, N, NW, W. */
-const SECT_FAN: readonly Point[] = [[17, -17], [17, 17], [24, 0], [0, -24], [-17, -17], [-24, 0]];
+/** Fan-out slots (grid units) for seats that share a town's grid spot: NE, SE, E, N, NW, W. */
+const SECT_FAN: readonly Point[] = [[2.8, -2.4], [2.8, 2.4], [3.8, 0], [0, -3.6], [-2.8, -2.4], [-3.8, 0]];
 /**
  * Open (O) and hidden-but-triggerable (H) seats are drawn; H stays quiet. P / M are not drawn.
- * Seats within 0.75 grid units of an open town (or of each other) take fan-out slots by id order.
+ * Seats within 0.75 grid units of an open town (or of each other) take fan-out slots by id order;
+ * the returned point is where the seat is drawn.
  */
 export function sectViewNodes(sects: readonly ViewSect[], towns: readonly ViewNode[] = []): ViewNode[] {
   const drawn = sects.filter(sect => sect.status === 'O' || sect.status === 'H')
@@ -189,16 +199,14 @@ export function sectViewNodes(sects: readonly ViewSect[], towns: readonly ViewNo
       drawn.some(other => other !== sect && near(other.point, sect.point));
     const slot = crowded ? taken.filter(point => near(point, sect.point)).length : -1;
     taken.push(sect.point);
-    return { id: sect.id, name: sect.name, kind: 'sect' as const, point: sect.point, open: true,
-      tier: 'sect' as const, marker: sect.marker, quiet: sect.status === 'H',
-      ...(slot >= 0 ? { screenOffset: SECT_FAN[slot % SECT_FAN.length]! } : {}) };
+    const fan = slot >= 0 ? SECT_FAN[slot % SECT_FAN.length]! : [0, 0] as const;
+    return { id: sect.id, name: sect.name, kind: 'sect' as const, point: [sect.point[0] + fan[0], sect.point[1] + fan[1]],
+      open: true, tier: 'sect' as const, marker: sect.marker, quiet: sect.status === 'H' };
   });
 }
-/** Marker edge in screen px: lower bound at z = 1, upper bound at z = 4, linear between. */
-export function markerSize(tier: MapTier | undefined, z: number): number {
-  const [low, high] = MARKER_RANGE[tier ?? 'minor'];
-  const t = Math.min(1, Math.max(0, (z - 1) / 3));
-  return low + (high - low) * t;
+/** Edge of a node's painted art in image pixels for an image of `image.width` pixels across. */
+export function townSize(tier: MapTier | undefined, image: Size): number {
+  return TOWN_SIZE[tier ?? 'minor'] * image.width / GRID_SIZE.width;
 }
 export function landmarkForNode(index: readonly LandmarkEntry[], nodeId: string, chapter: string): LandmarkEntry | null {
   let found: LandmarkEntry | null = null;
@@ -214,9 +222,18 @@ export function shortNodeName(name: string): string {
   const short = cleanNodeName(name).replace(/（[^（）]*）|\([^()]*\)/g, '').trim();
   return short || cleanNodeName(name);
 }
-export function layoutLabels(nodes: readonly ViewNode[], view: ViewState, image: Size, viewport: Size,
+/** Default art box: a square of the tier's edge centred on the node. */
+export function centredBox(node: ViewNode, image: Size): IconBox {
+  const half = townSize(node.tier, image) / 2;
+  return { x0: -half, y0: -half, x1: half, y1: half };
+}
+/**
+ * Names for every open node at map scale `scale`, independent of the viewport so panning never lays them
+ * out again. Painted art is never hidden; a name that would overlap an earlier one waits for hover.
+ */
+export function layoutLabels(nodes: readonly ViewNode[], scale: number, image: Size,
   priority: LabelPriority = {}, degrees: ReadonlyMap<string, number> = new Map(),
-  iconHalfHeight: (node: ViewNode) => number = () => 11): NodeLabel[] {
+  iconBox: (node: ViewNode) => IconBox = node => centredBox(node, image)): NodeLabel[] {
   const important = new Set([priority.selectedId, priority.currentNodeId, priority.destinationId]);
   const ordered = nodes.filter(node => node.open).sort((a, b) =>
     Number(important.has(b.id)) - Number(important.has(a.id)) ||
@@ -224,25 +241,24 @@ export function layoutLabels(nodes: readonly ViewNode[], view: ViewState, image:
     (degrees.get(b.id) ?? 0) - (degrees.get(a.id) ?? 0) ||
     Number(b.kind === 'town') - Number(a.kind === 'town') || Number(Boolean(a.quiet)) - Number(Boolean(b.quiet)) ||
     (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const origin: ViewState = { s: scale, tx: 0, ty: 0 };
   const occupied: NodeLabel[] = [];
   return ordered.map(node => {
-    const base = gridToScreen(node.point, view, image); const nudge = node.screenOffset ?? [0, 0];
-    const x = base[0] + nudge[0]; const y = base[1] + nudge[1]; const name = shortNodeName(node.name);
+    const [x, y] = gridToScreen(node.point, origin, image); const name = shortNodeName(node.name);
     const font = LABEL_FONT[node.tier ?? 'minor'];
     const width = Math.max(44, [...name].length * (font + 1) + 6); const height = font + 10;
-    // The icon (or landmark) is centred on the node; the text box starts 2px below it.
-    const labelX = x - width / 2; const labelY = y + iconHalfHeight(node) + 2;
-    const onScreen = x >= 0 && x <= viewport.width && y >= 0 && y <= viewport.height;
+    // The art hangs from its anchor on the node; the text box starts 2px below the art.
+    const box = iconBox(node);
+    const labelX = x - width / 2; const labelY = y + box.y1 * scale + 2;
     const quiet = Boolean(node.quiet);
     const collides = occupied.some(other => labelX < other.labelX + other.width &&
       labelX + width > other.labelX && labelY < other.labelY + other.height && labelY + height > other.labelY);
-    // Sect seats always keep their icon; only the name yields to an earlier label.
-    const sect = node.kind === 'sect';
-    const visible = onScreen && (quiet || sect || !collides);
-    const labelHidden = quiet || (sect && collides);
-    const label = { id: node.id, name, kind: node.kind, quiet, labelHidden, x, y, width, height, labelX, labelY, visible,
-      tier: node.tier ?? 'minor', marker: node.marker ?? (node.kind === 'ruin' ? 'ruin' : sect ? 'sect' : 'city_county'), font };
-    if (visible && !labelHidden) occupied.push(label);
+    const labelHidden = quiet || collides;
+    const label: NodeLabel = { id: node.id, name, kind: node.kind, quiet, labelHidden, x, y, width, height, labelX, labelY,
+      hit: [box.x0 * scale, box.y0 * scale, (box.x1 - box.x0) * scale, (box.y1 - box.y0) * scale],
+      tier: node.tier ?? 'minor', marker: node.marker ?? (node.kind === 'ruin' ? 'ruin' : node.kind === 'sect' ? 'sect' : 'city_county'),
+      font };
+    if (!labelHidden) occupied.push(label);
     return label;
   });
 }
