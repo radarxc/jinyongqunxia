@@ -127,7 +127,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -520,7 +519,6 @@
       "open_chapters": [
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -597,7 +595,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -621,7 +618,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -790,7 +786,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -940,7 +935,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -987,7 +981,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1062,7 +1055,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1725,7 +1717,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1766,7 +1757,6 @@
       "open_chapters": [
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1855,7 +1845,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1907,11 +1896,47 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
         "ch14"
+      ],
+      "service": "scheduled",
+      "regions": [
+        "rg_hedong_jinzhong"
+      ]
+    },
+    {
+      "id": "route_taiyuan_shuozhou",
+      "name": "雁门道（唐）",
+      "kind": "post_road",
+      "from": "city_taiyuan",
+      "to": "city_shuozhou",
+      "via": [
+        "city_xinzhou"
+      ],
+      "geometry": [
+        [
+          112.56,
+          37.87
+        ],
+        [
+          112.73,
+          38.42
+        ],
+        [
+          112.86,
+          39.07
+        ],
+        [
+          112.43,
+          39.33
+        ]
+      ],
+      "duration_days": 3,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch10"
       ],
       "service": "scheduled",
       "regions": [
@@ -2167,7 +2192,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -2478,6 +2502,107 @@
       "regions": [
         "rg_lingnan",
         "rg_guangxi"
+      ]
+    },
+    {
+      "id": "route_guangzhou_haikou",
+      "name": "琼州海峡驿路",
+      "kind": "coastal_mixed",
+      "from": "city_guangzhou",
+      "to": "city_haikou",
+      "via": [],
+      "geometry": [
+        [
+          113.25,
+          23.12
+        ],
+        [
+          112.01,
+          21.8
+        ],
+        [
+          110.38,
+          21.26
+        ],
+        [
+          110.2,
+          20.38
+        ],
+        [
+          110.35,
+          20.03
+        ]
+      ],
+      "duration_days": 2,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled",
+      "regions": [
+        "rg_lingnan"
+      ],
+      "worldmap_road": true
+    },
+    {
+      "id": "route_haikou_sanya",
+      "name": "海南东线驿路",
+      "kind": "post_road",
+      "from": "city_haikou",
+      "to": "city_sanya",
+      "via": [],
+      "geometry": [
+        [
+          110.35,
+          20.03
+        ],
+        [
+          110.53,
+          19.22
+        ],
+        [
+          110.38,
+          18.84
+        ],
+        [
+          109.51,
+          18.25
+        ]
+      ],
+      "duration_days": 1.5,
+      "fee_tier": "low",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch05",
+        "ch06",
+        "ch07",
+        "ch08",
+        "ch09",
+        "ch10",
+        "ch11",
+        "ch12",
+        "ch13",
+        "ch14"
+      ],
+      "service": "scheduled",
+      "regions": [
+        "rg_lingnan"
       ]
     },
     {
@@ -3121,7 +3246,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -3265,7 +3389,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",

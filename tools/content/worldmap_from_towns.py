@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
-"""Compile navigation overlays. Distances are equivalent game li, not surveys."""
+"""Compile navigation overlays. Distances are equivalent game li, not surveys.
+
+Writes content/world/chNN/map.yaml as canonical pretty JSON (indent=2, ensure_ascii=False, no
+trailing newline); tools/content/worldmap_enrich.py then adds the display-only tier / marker / path:
+    python3 tools/content/worldmap_from_towns.py            # write the 14 maps
+    python3 tools/content/worldmap_from_towns.py --out DIR  # dry run into DIR/chNN/map.yaml
+    python3 tools/content/worldmap_from_towns.py --chapters ch10,ch11  # only these chapters
+    python3 tools/content/worldmap_from_towns.py --check    # drift check; ignores tier / marker / path
+    python3 tools/content/worldmap_enrich.py                # always run after a write
+Year ranges come from the design/02 §1.5 table by book-world name (白马 → ch10); its 序 column is
+play order (Canon v1.9 puts 白马 first), never a chapter key. Only overland route kinds become
+roads; a water-kind route opts in with `worldmap_road: true` when its short crossing is folded
+into duration_days (琼州海峡). A route without via stops is drawn along its routes.yaml geometry.
+"""
 from __future__ import annotations
 
 import argparse
@@ -20,6 +33,16 @@ WIDTH, HEIGHT = 512, 384
 LI_PER_HOUR = 10  # 【建议值】单位换算；源路网 duration_days 保持不变。
 CHAPTERS = ['tianlong', 'shediao', 'shendiao', 'yitian', 'xiaoao', 'xiake',
             'bixue', 'luding', 'liancheng', 'baima', 'yuanyang', 'shujian', 'feihu', 'xueshan']
+BOOKS = {'天龙': 'ch01', '射雕': 'ch02', '神雕': 'ch03', '倚天': 'ch04', '笑傲': 'ch05', '侠客': 'ch06',
+         '碧血': 'ch07', '鹿鼎': 'ch08', '连城': 'ch09', '白马': 'ch10', '鸳鸯': 'ch11', '书剑': 'ch12',
+         '飞狐': 'ch13', '雪山': 'ch14'}
+WATER_KINDS = ['river', 'canal', 'sea', 'coastal_mixed']
+DISPLAY_ONLY = {'nodes': ['tier', 'marker'], 'roads': ['path']}  # written by worldmap_enrich.py
+LEG_NOTE = '等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）'
+GEOMETRY_NOTE = '等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）'
+# Mirror of MapEntrySchema.townSpec in packages/data/src/schemas/world-map.ts. A spec the schema would
+# reject (city keys with '_') is left unmounted with a warning; relax both together.
+TOWN_SPEC_PATTERN = re.compile(r'^docs/design/town/city_[a-z0-9]+__ch[0-9]{2}\.yaml$')
 RELIC_LOCATIONS = {
     'rs_shaolin_cangjingge': 'sect_shaolin', 'rs_huashan': 'sect_huashan',
     'rs_gumu': 'sect_gumu', 'rs_wudang': 'sect_wudang', 'rs_emei': 'sect_emei',
@@ -34,28 +57,35 @@ def compact(value):
 
 
 def years(text):
+    """design/02 §1.5 → {chNN: [start, end]}, keyed by the 书界 column (序 is play order)."""
+    lines = text.splitlines()
+    start = next((i for i, line in enumerate(lines) if line.startswith('### 1.5 ')), None)
+    if start is None:
+        raise ValueError('design/02 §1.5 timeline table missing')
     result = {}
-    for line in text.splitlines():
+    for line in lines[start + 1:]:
+        if line.startswith('#'):
+            break
         fields = [field.strip() for field in line.split('|')]
-        if len(fields) < 5 or not fields[1].isdigit() or not 1 <= int(fields[1]) <= 14:
+        if len(fields) < 5 or not fields[1].isdigit() or fields[2] not in BOOKS:
             continue
-        match = re.match(r'(?:约 )?([0-9]{4})(?:–([0-9]{4}))?', fields[3])
-        if match:
-            result[f'ch{int(fields[1]):02}'] = [int(match[1]), int(match[2] or match[1])]
+        chapter = BOOKS[fields[2]]
+        match = re.match(r'(?:约 ?)?([0-9]{1,4})(?:–([0-9]{1,4}))?', fields[3])
+        if not match or chapter in result:
+            raise ValueError(f'design/02 timeline row unreadable: {fields[2]}')
+        result[chapter] = [int(match[1]), int(match[2] or match[1])]
     if len(result) != 14:
         raise ValueError('design/02 timeline table changed')
     return result
 
 
 def relics(text):
-    names = ['天龙', '射雕', '神雕', '倚天', '笑傲', '侠客', '碧血', '鹿鼎',
-             '连城', '白马', '鸳鸯', '书剑', '飞狐', '雪山']
     result = []
     for line in text.splitlines():
         fields = [field.strip().strip(chr(96)) for field in line.split('|')]
         if len(fields) != 6 or fields[2] not in RELIC_LOCATIONS:
             continue
-        eras = [f'ch{i + 1:02}' for i, name in enumerate(names) if name in fields[3]]
+        eras = [chapter for name, chapter in BOOKS.items() if name in fields[3]]
         result.append(dict(id=fields[2], name=fields[1], eras=eras, accessNote=fields[4]))
     if len(result) != 12:
         raise ValueError('design/02 relic table changed')
@@ -102,10 +132,14 @@ def source_data():
             for key in ['cities', 'routes', 'regions', 'sects']}
     text = (ROOT / 'docs/design/02-timeline-and-world-tiers.md').read_text()
     data['years'], data['relics'] = years(text), relics(text)
-    data['towns'] = {}
+    data['towns'], data['unmounted_towns'] = {}, []
     for path in sorted((ROOT / 'docs/design/town').glob('city_*.yaml')):
+        relative = str(path.relative_to(ROOT))
+        if not TOWN_SPEC_PATTERN.match(relative):
+            data['unmounted_towns'].append(relative)
+            continue
         town = load_yaml(path)
-        data['towns'][(town['city_id'], town['chapter_id'])] = (town, str(path.relative_to(ROOT)))
+        data['towns'][(town['city_id'], town['chapter_id'])] = (town, relative)
     data['levels'] = {}
     text = (ROOT / 'docs/design/11-open-world.md').read_text()
     for line in text.splitlines():
@@ -155,20 +189,28 @@ def compile_map(data, chapter):
     def endpoint(value):
         return travel_by[value]['city_id'] if value in travel_by else value
     for route in sorted(data['routes']['routes'], key=lambda row: row['id']):
-        # Boarding, timetables, fares and off-map express journeys belong to a later flow.
-        if route['kind'] in ['river', 'canal', 'sea', 'coastal_mixed'] or chapter not in route['open_chapters']:
+        # Boarding, timetables, fares and off-map express journeys belong to a later flow; a water
+        # kind is walked here only when routes.yaml opts in (crossing folded into duration_days).
+        if route['kind'] in WATER_KINDS and route.get('worldmap_road') is not True:
+            continue
+        if chapter not in route['open_chapters']:
             continue
         stops = [endpoint(value) for value in [route['from'], *route['via'], route['to']]]
         stops = [value for value in stops if by_id[value]['open']]
         if len(stops) < 2 or stops[0] != endpoint(route['from']) or stops[-1] != endpoint(route['to']):
             continue
         hours, legs = round(route['duration_days'] * 24), len(stops) - 1
+        drawn = None
+        if not route['via']:  # one leg: follow the authoritative geometry between the two node points
+            drawn = [by_id[stops[0]]['point'], *(project(*pair) for pair in route['geometry'][1:-1]),
+                     by_id[stops[-1]]['point']]
+            drawn = [point for i, point in enumerate(drawn) if i == 0 or point != drawn[i - 1]]
         for i, (a, b) in enumerate(zip(stops, stops[1:])):
             leg_hours = (hours * (i + 1)) // legs - (hours * i) // legs
             roads.append(dict(key=route['id'] + ':' + str(i), routeId=route['id'], start=a, end=b,
-                distanceLi=leg_hours * LI_PER_HOUR, points=[by_id[a]['point'], by_id[b]['point']],
+                distanceLi=leg_hours * LI_PER_HOUR, points=drawn or [by_id[a]['point'], by_id[b]['point']],
                 kind=route['kind'], eras=route['open_chapters'], sourceHours=leg_hours,
-                note='等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）'))
+                note=GEOMETRY_NOTE if drawn else LEG_NOTE))
     connected = {value for road in roads for value in [road['start'], road['end']]}
     # Only existing relics get preview approach lanes, never new inter-city shortcuts.
     for relic in data['relics']:
@@ -221,49 +263,66 @@ def validate_map(value):
             raise ValueError('road era endpoint')
 
 
+def pretty(doc):
+    """Canonical pretty JSON shared with worldmap_enrich.py: indent=2, ensure_ascii=False, no trailing newline."""
+    return json.dumps(doc, ensure_ascii=False, indent=2, allow_nan=False)
+
+
 def encode(value):
     # event.v1 is the available registry extension point, not a story reward.
     # The application validates mountWorldMap parameters before exposing the map.
     header = dict(schemaVersion='event.v1', id='ev_' + value['era'][2:] + '_ditu',
                   chapterId=value['chapterId'], event='world/mapRegistered', once=False)
-    lines = [compact(header)[:-1] + ',"actions":[{"op":"mountWorldMap","map":{']
-    keys = list(value)
-    for index, key in enumerate(keys):
-        suffix = ',' if index < len(keys) - 1 else ''
-        if key in ['nodes', 'roads']:
-            lines.append(compact(key) + ':[')
-            lines.extend(compact(row) + (',' if i < len(value[key]) - 1 else '') for i, row in enumerate(value[key]))
-            lines.append(']' + suffix)
-        else:
-            lines.append(compact(key) + ':' + compact(value[key]) + suffix)
-    lines.append('}}]}')
-    return chr(10).join(lines) + chr(10)
+    return pretty(dict(header, actions=[dict(op='mountWorldMap', map=value)]))
+
+
+def without_display_fields(text):
+    """The compiled document hidden under worldmap_enrich.py's display-only fields."""
+    doc = json.loads(text)
+    for key, fields in DISPLAY_ONLY.items():
+        for row in doc['actions'][0]['map'][key]:
+            for field in fields:
+                row.pop(field, None)
+    return pretty(doc)
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--check', action='store_true')
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument('--check', action='store_true',
+                        help='exit 1 when a map differs from the sources (enrich-only tier / marker / path ignored)')
+    parser.add_argument('--out', type=Path, help='directory for chNN/map.yaml (default content/world); use for dry runs')
+    parser.add_argument('--chapters', help='comma-separated chNN subset (default: all 14)')
     args = parser.parse_args()
+    out = (args.out if args.out else ROOT / 'content/world').resolve()
     data = source_data()
+    chapters = sorted(data['cities']['chapters'])
+    if args.chapters:
+        wanted = [value.strip() for value in args.chapters.split(',') if value.strip()]
+        unknown = sorted(set(wanted) - set(chapters))
+        if unknown:
+            raise SystemExit('unknown chapters: ' + ', '.join(unknown))
+        chapters = [chapter for chapter in chapters if chapter in wanted]
+    for relative in data['unmounted_towns']:
+        print(f'warning: {relative} not mounted (world-map schema townSpec pattern rejects it)')
     failures = []
-    for chapter in sorted(data['cities']['chapters']):
+    for chapter in chapters:
         value = compile_map(data, chapter)
-        path = ROOT / 'content/world' / chapter / 'map.yaml'
+        path = out / chapter / 'map.yaml'
         output = encode(value)
         if args.check:
-            if not path.exists() or path.read_text() != output:
-                failures.append(str(path.relative_to(ROOT)))
+            text = path.read_text(encoding='utf-8') if path.exists() else None
+            if text is None or pretty(json.loads(text)) != text or without_display_fields(text) != output:
+                failures.append(str(path))
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
-            # Each physical write stays within the task's 150-line limit.
-            with path.open('w', encoding='utf-8', newline='') as stream:
-                lines = output.splitlines(keepends=True)
-                for offset in range(0, len(lines), 120):
-                    stream.writelines(lines[offset:offset + 120])
+            path.write_text(output, encoding='utf-8')
         visible = sum(node['open'] for node in value['nodes'])
-        print(f'{chapter}: nodes={len(value["nodes"])} visible={visible} roads={len(value["roads"])} bytes={len(output.encode())}')
+        print(f'{chapter}: nodes={len(value["nodes"])} visible={visible} roads={len(value["roads"])} '
+              f'years={value["years"]} revision={value["revision"][:12]}')
     if failures:
         raise SystemExit('worldmap drift: ' + ', '.join(failures))
+    if not args.check and out == (ROOT / 'content/world').resolve():
+        print('next: python3 tools/content/worldmap_enrich.py  (adds display-only tier / marker / path)')
 
 
 if __name__ == '__main__':

@@ -5,7 +5,7 @@
 > 引用而不重定义：区域玩法、入口状态、资源点与旅行事件 → `design/11`；大地图交互、筛选、可访问性与响应式布局 → `design/14`；门派史、称谓、武学与 `O/H/P/N/D/M` 开放矩阵 → `design/17`；世界层与区域内可行走渲染 → `tech/02` §7；运行时格式、质量档和分包 → `tech/06`。
 > 下游：`design/11` 定稿区域边界与玩法，`design/14` 消费 SVG/数据，`design/chapters/*` 选择 `chNN` 图层，`tech/04` 定 schema，`tech/06` 定生产分包。
 > 标注约定：**（原创扩展）**＝原著没有的内容；**（待考）**＝原著或史实尚需逐字核对；**（待核实）**＝技术事实尚未联网确认；**（待实测）**＝需真机/真浏览器验证；**【建议值】**＝依赖其他文档、先给可用值并在文末登记。
-> 版本：v1.4（AR-36 具名遗迹 POI 坐标登记，2026-10-03）；v1.3（AR-26 白马唐代首书图层契约，2026-10-02）；v1.2（跨文档同步，2026-09-26）。
+> 版本：v1.5（唐 702 档 `tang` 落地，ch10 地名 / 地位 / 开放按武周长安二年重填，2026-10-11）；v1.4（AR-36 具名遗迹 POI 坐标登记，2026-10-03）；v1.3（AR-26 白马唐代首书图层契约，2026-10-02）；v1.2（跨文档同步，2026-09-26）。
 
 ---
 
@@ -13,10 +13,10 @@
 
 1. 全作使用一张 **73°E–135°E、18°N–54°N** 的中国及周边江湖底图。它是导航层 / UI 资产，不是可行走地形；玩家选目的地并结算旅行，进入区域后才加载 `tech/02` 的区域地图。
 2. 数据采用 WGS84，经纬度保留 **0.01°**。默认投影为球面 Albers 等积圆锥：标准纬线 25°N / 47°N、中央经线 105°E、原点纬线 35°N。4096 × 3072 默认画布留 150 px 边距。
-3. `cities.yaml` 收录 **189 个城市 / 历史治所 / 小说锚点**；每条有 6 个历史时期并展开为 14 个 `chNN` 状态。全部点均通过 Natural Earth 陆地多边形或显式小岛、岸线、小说锚点掩膜校验。
+3. `cities.yaml` 收录 **189 个城市 / 历史治所 / 小说锚点**；每条有 7 个历史时期（含唐 702 档 `tang`）并展开为 14 个 `chNN` 状态。全部点均通过 Natural Earth 陆地多边形或显式小岛、岸线、小说锚点掩膜校验。
 4. `sects.yaml` 恰收录 `design/17` 的 **99 个 `sect_*`**，没有另造门派 ID；每派落在真实城市、真实山脉或标明精度的小说锚点，并逐格引用 17 的 14 时代开放矩阵。
 5. 真正超出画布的节点只有 **3 个**：波斯明教总教、罗刹国、撒麻尔罕。它们只由一条两端式 `offmap_special` 专线连接驿站或货船码头，`via=[]`、`no_intermediate_stops=true`，途中城市不可见、不可停。
-6. `routes.yaml` 含 **24 座驿站、28 个码头、48 条常规官道/驿路/水路、3 条图外专线**。时长与费用是大地图建议档，不替代 `design/11` 的旅行事件与经济终值。
+6. `routes.yaml` 含 **24 座驿站、28 个码头、51 条常规官道/驿路/水路、3 条图外专线**（2026-10-11 补海南两路与唐代层雁门道）。时长与费用是大地图建议档，不替代 `design/11` 的旅行事件与经济终值。
 7. `regions.yaml` 已按 `design/11` §2 的终稿迁为 **30 个正式 `rg_*`**，保留 81 个简化陆地多边形、14 组河流和 11 组山脉。189 城、99 门派、18 个图内分支、52 个旅行节点与 51 条路线的派生区域在同一批次更新。
 8. `tools/map/render_map.py` 仅需 Python 3.9+ 标准库；四个 `.yaml` 使用 JSON-compatible YAML 1.2，故无 PyYAML 也能读。校验器强制三十区有序闭集及城市 / 门派 / 分支 / 驿站 / 码头 / 路线的派生区域一致；`--check` 与全量 `--render` 均为提交门禁。
 9. 展示书序固定为 `ch10,ch01,ch02,ch03,ch04,ch05,ch06,ch07,ch08,ch09,ch11,ch12,ch13,ch14`；`ch10_baima` / `era-ch10` 仍是稳定键，但白马以 702–703 年武周唐代层作为序章后的首个正式书界。规则见 Canon §2、`design/02` §1 与 `design/chapters/10-baima` §1。
@@ -72,7 +72,7 @@
 
 ### 1.4 历史地名与治所迁移原则
 
-1. `city_*` 表示跨时代地理语义；`history.<band>` 只是六期检索摘要，不能直接驱动书界。
+1. `city_*` 表示跨时代地理语义；`history.<band>` 只是七期检索摘要，不能直接驱动书界。
 2. `eras[chNN]` 是逐章显示名、行政地位与开放状态的权威值；同属一带的 1217/1259、1755/1769 可分别覆盖。
 3. `chapters[]` 必须严格等于 `eras[chNN].open=true` 的有序投影，不另作一套事实。
 4. 治所确实迁移时写 `seat_moves[]` 的适用时期与 WGS84，渲染点、标签和路线首尾同步迁移。
@@ -196,17 +196,17 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | `ch07` 碧血 | 1644，明末清初 | `ming` |
 | `ch08` 鹿鼎 | 1685，清初康熙 | `qing_early` |
 | `ch09` 连城 | 1708，清初**（原创扩展定年）** | `qing_early` |
-| `ch10` 白马 | 702–703，武周长安年间·西州 / 庭州 / 铁延部**（原创扩展）（待考）** | —（现有六期摘要无唐代 `band`；待地图归属任务扩展 schema 或逐章覆写） |
+| `ch10` 白马 | 702–703，武周长安年间·西州 / 庭州 / 铁延部**（原创扩展）（待考）** | `tang`（只服务 ch10；逐城依据见 `design/map/history/tang_702.md`） |
 | `ch11` 鸳鸯 | 1740，乾隆初**（原创扩展定年）** | `qing_middle` |
 | `ch12` 书剑 | 1755，乾隆 | `qing_middle` |
 | `ch13` 飞狐 | 1769，乾隆 | `qing_middle` |
 | `ch14` 雪山 | 1780，乾隆 | `qing_middle` |
 
-这张映射只复制 `design/02` 的定年，不在本文重定义年代。六期 `history` 用于摘要和编辑起点，最终消费 14 格 `eras[chNN]`；关键年份必须逐章覆盖，不能机械复制同一 `band`。当前 `design/map/cities.yaml` 与既有 `jianghu-ch10.svg` 仍把 ch10 投影为清初旧稿，不符合本表，必须由地图资产归属任务整体重建，不能只改顶层年份。
+这张映射只复制 `design/02` 的定年，不在本文重定义年代。七期 `history` 用于摘要和编辑起点，最终消费 14 格 `eras[chNN]`；关键年份必须逐章覆盖，不能机械复制同一 `band`。2026-10-11 起 `design/map/cities.yaml` 已加 `history.tang` 并按 702 年重填全部 189 城的 `eras.ch10`（名称、地位、开放），`chapters.ch10` 为 `year=702 / band=tang`；`content/world/ch10/map.yaml` 由生成器同步。设计预览 `jianghu-ch10.svg` / `jianghu-base.svg` 仍是清初旧稿，需用 `render_map.py --render` 重出。
 
 ### 3.3 城市记录
 
-核心字段为 `id/modern_name/longitude/latitude/region/importance/history/eras/chapters/sects/businesses/seat_moves/sources`；小说地点另有 `location_confidence`。`region` 必须属于 `design/11` §2 的 30 区闭集。`history` 存 6 期摘要，`eras` 存 14 格权威状态，`chapters` 是其 `open` 投影；`importance` 仅取 `capital/major/secondary/site`。行政地位只取都城、路府州县、军镇、商埠、边关、未建或废弃。
+核心字段为 `id/modern_name/longitude/latitude/region/importance/history/eras/chapters/sects/businesses/seat_moves/sources`；小说地点另有 `location_confidence`。`region` 必须属于 `design/11` §2 的 30 区闭集。`history` 存 7 期摘要（`tang/northern_song/southern_song_jin_mongol/yuan/ming/qing_early/qing_middle`），`eras` 存 14 格权威状态，`chapters` 是其 `open` 投影；`importance` 仅取 `capital/major/secondary/site`。行政地位只取都城、路府州县、军镇、商埠、边关、未建或废弃。
 
 ### 3.4 治所迁移
 
@@ -307,6 +307,27 @@ Y  = offsetY − s·y       // SVG y 轴向下
 | `city_taohuadao` | 桃花岛 | 小说岛屿锚点 | 小说岛屿锚点 | — | — | — | 图内，不是图外节点 |
 | `city_xiakedao` | 侠客岛 | — | — | — | 小说岛屿锚点 | — | ch06 岛使专船 |
 | `city_shenlongdao` | 神龙岛 | — | — | — | — | 小说岛屿锚点 | ch08 辽东外海专船 |
+
+### 4.1 唐 702 档（`tang`，仅 ch10）
+
+白马以武周长安二年（702）为图层年份；逐城名称、地位、开放与史料出处见 [`design/map/history/tang_702.md`](map/history/tang_702.md)（两唐书地理志、元和郡县图志、唐会要、资治通鉴与 CHGIS 702 时间切片）。189 城中都城 4、路府州县 110、军镇 8、边关 13、商埠 2、未建或废弃 52，开放 136。要点：
+
+| 城市 ID | 702 显示名 | 地位 | 说明 |
+|---|---|---|---|
+| `city_xian` | 长安（京城·雍州） | 都城 | 702 年武则天驻长安；雍州 713 年才改京兆府 |
+| `city_luoyang` | 神都（洛州） | 都城 | 武周正式都城（684–705），713 年才改河南府 |
+| `city_taiyuan` | 并州（北都） | 都城 | 北都 690–705，按本数据陪都惯例记都城 |
+| `city_beijing` | 幽州（蓟城） | 路府州县 | 幽州大都督府 |
+| `city_fuzhou` / `city_quanzhou` | 泉州（闽县）/ 武荣州 | 路府州县 | 今福州 702 年名泉州，今泉州为武荣州（711 年互改） |
+| `city_yantai` / `city_penglai` | 登州（牟平县）/ 蓬莱镇 | 路府州县 / 军镇 | 登州 692 年治牟平，707 年移蓬莱 |
+| `city_datong` | 云州故城 | 未建或废弃 | 682 年废，开元中复置 |
+| `city_turpan` / `city_hami` / `city_dunhuang` | 西州 / 伊州 / 沙州 | 路府州县 | 白马核心；640 年灭高昌置西州 |
+| `city_urumqi` | 轮台县（庭州） | 路府州县 | 庭州 702 年十二月改北庭都护府；庭州城（今吉木萨尔）无城市键 |
+| `city_kuqa` / `city_kashgar` / `city_hotan` | 安西都护府（龟兹）/ 疏勒镇 / 于阗镇 | 军镇 | 702 年四镇为龟兹、于阗、疏勒、碎叶 |
+| `city_yining` | 弓月城（伊丽水） | 边关 | 突骑施小牙；章节内铁延部营地为场景，不另设城市 |
+| `city_lhasa` | 逻些（吐蕃） | 都城 | 吐蕃赞普都城 |
+
+唐代层另在 `routes.yaml` 关闭京云官道、雁门驿路、京辽驿路、盛京—宁古塔驿路、川藏茶马道、会通河—御河与渤海—辽东海路，新增仅 ch10 开放的雁门道（并州—忻州—朔州）；理由见研究笔记 §6。
 
 ---
 
@@ -742,7 +763,7 @@ python3 tools/map/render_map.py --check
 ```text
 OK: map data validation passed
   cities=189, sects=99, offmap=3
-  posts=24, ports=28, routes=48, special=3
+  posts=24, ports=28, routes=51, special=3
   land_polygons=81, rivers=14, mountains=11
 ```
 
@@ -840,6 +861,8 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 16. 法鼓文理学院佛教地名规范资料库“九老洞”，地名与坐标交叉核对，访问 2026-10-03：https://authority.dila.edu.tw/place/search.php?code=PL000000036095
 17. 四川省地方志资料（峨眉山卷），九老洞位于仙峰寺附近的地望交叉核对，访问 2026-10-03：http://scdfz.sc.gov.cn/Upload/main/ContentManage/Article/File/201701102024030112.pdf
 
+17a. 唐长安二年（702）地名研究笔记（两唐书地理志、元和郡县图志卷 4 / 40、唐会要卷 73、资治通鉴卷 206–207、新唐书卷 215 下，维基文库本；CHGIS TGAZ 702 时间切片），访问 2026-10-11：`docs/design/map/history/tang_702.md`
+
 ### 13.2 投影与 SVG
 
 18. EPSG Guidance Note / EPSG method 9822，Albers Equal Area 正算形式，访问 2026-09-26：https://epsg.io/9822-method
@@ -915,7 +938,7 @@ python3 tools/map/render_map.py --render --width 2048 --height 1536 --out /priva
 |---|---|
 | `MAP-V001` | 各组 ID 符合前缀且组内、全局唯一 |
 | `MAP-V002` | 城市/治所/门派/分舵/驿站/码头坐标为有限数、在范围与区域 bounds 内，并位于陆地环或合法岛屿掩膜 |
-| `MAP-V003` | 每城恰有六期 `history`、14 格 `eras`、严格布尔 `open`；`chapters` 与开放格一致；城市按 0.01° 量化 |
+| `MAP-V003` | 每城恰有七期 `history`（与 `chapters[].band` 集合一致）、14 格 `eras`、严格布尔 `open`；`chapters` 与开放格一致；城市按 0.01° 量化 |
 | `MAP-V004` | 每派恰有 14 格合法矩阵；分舵章节不超父派 `O/H`，绑定城市当章开放 |
 | `MAP-V005` | 常规路线种类/费用/时长合法；`geometry` 首尾匹配端点、经过 `via`，非水路逐段在陆地侧 |
 | `MAP-V006` | 图外专线恰一图外端 + 一 `post_*`/`port_*`，`via=[]`、布尔 `no_intermediate_stops=true`，章节与节点相同 |

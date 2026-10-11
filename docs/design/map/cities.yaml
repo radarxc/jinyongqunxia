@@ -60,9 +60,9 @@
     },
     "ch10": {
       "title": "白马啸西风",
-      "year": 1725,
-      "era": "清初·雍正（原创扩展定年）",
-      "band": "qing_early"
+      "year": 702,
+      "era": "唐·武周长安年间（原创扩展定年）",
+      "band": "tang"
     },
     "ch11": {
       "title": "鸳鸯刀",
@@ -161,6 +161,12 @@
       "path": "docs/design/17-sects-compendium.md",
       "accessed": "2026-09-26",
       "use": "小说与古龙支线驻地的上游语义。"
+    },
+    "src_tang_702": {
+      "title": "唐长安二年（702）地名研究笔记（ch10 唐代层逐城依据）",
+      "path": "docs/design/map/history/tang_702.md",
+      "accessed": "2026-10-11",
+      "use": "ch10 唐代层名称、地位、开放的逐城依据；一手史料（两唐书地理志、唐会要、资治通鉴）与 CHGIS 702 时间切片见笔记。"
     }
   },
   "cities": [
@@ -172,6 +178,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "幽州（蓟城）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "南京析津府（燕京）",
           "status": "都城",
@@ -291,9 +302,9 @@
           "open": true
         },
         "ch10": {
-          "name": "京师顺天府",
-          "status": "都城",
-          "note": "",
+          "name": "幽州（蓟城）",
+          "status": "路府州县",
+          "note": "幽州大都督府治蓟县；长安二年以幽州刺史张仁愿专知幽、平、妫、檀防御（通鉴）",
           "open": true
         },
         "ch11": {
@@ -324,7 +335,8 @@
       "sources": [
         "src_geonames",
         "src_chgis",
-        "src_beijing_zhongdu"
+        "src_beijing_zhongdu",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -336,6 +348,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "海河口一带（幽、沧二州间，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "直沽寨一带（待考）",
           "status": "军镇",
@@ -376,7 +393,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -447,10 +463,10 @@
           "open": true
         },
         "ch10": {
-          "name": "天津卫",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "海河口一带（幽、沧二州间，未建城）",
+          "status": "未建或废弃",
+          "note": "702 年无州县治所；直沽寨、海津镇均为金元以后",
+          "open": false
         },
         "ch11": {
           "name": "天津府",
@@ -479,7 +495,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -491,6 +508,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "清苑县（瀛州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "保州",
           "status": "路府州县",
@@ -604,9 +626,9 @@
           "open": true
         },
         "ch10": {
-          "name": "保定府",
+          "name": "清苑县（瀛州）",
           "status": "路府州县",
-          "note": "",
+          "note": "贞观元年改属瀛州，景云二年（711）始属莫州（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -636,7 +658,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -648,6 +671,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "恒州（中山县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "真定府",
           "status": "路府州县",
@@ -760,9 +788,9 @@
           "open": true
         },
         "ch10": {
-          "name": "正定府",
+          "name": "恒州（中山县）",
           "status": "路府州县",
-          "note": "",
+          "note": "恒州治真定，载初元年改中山县，神龙元年（705）复旧（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -792,7 +820,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -804,6 +833,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "沧州（清池县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "沧州",
           "status": "路府州县",
@@ -919,9 +953,9 @@
           "open": true
         },
         "ch10": {
-          "name": "沧州",
+          "name": "沧州（清池县）",
           "status": "路府州县",
-          "note": "",
+          "note": "沧州治清池（今沧县旧州）；锚点今沧州市区为长芦县，贞观元年起属沧州",
           "open": true
         },
         "ch11": {
@@ -951,7 +985,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -963,6 +998,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "瀛州（河间县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "河间府",
           "status": "路府州县",
@@ -1075,7 +1115,7 @@
           "open": true
         },
         "ch10": {
-          "name": "河间府",
+          "name": "瀛州（河间县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -1107,7 +1147,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -1119,6 +1160,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "滦河上游奚地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "热河谷地聚落（待考）",
           "status": "未建或废弃",
@@ -1153,7 +1199,6 @@
       "chapters": [
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1226,10 +1271,10 @@
           "open": true
         },
         "ch10": {
-          "name": "热河行宫 / 承德州",
-          "status": "军镇",
-          "note": "",
-          "open": true
+          "name": "滦河上游奚地（未建城）",
+          "status": "未建或废弃",
+          "note": "饶乐都督府故地；营州之乱后奚附后突厥，702 年无唐城",
+          "open": false
         },
         "ch11": {
           "name": "承德府",
@@ -1258,7 +1303,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -1270,6 +1316,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "妫州北境（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "野狐岭南麓（待考）",
           "status": "边关",
@@ -1310,7 +1361,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1384,10 +1434,10 @@
           "open": true
         },
         "ch10": {
-          "name": "张家口堡",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "妫州北境（未建城）",
+          "status": "未建或废弃",
+          "note": "妫州长安二年移治清夷军城（今怀来，旧唐书），锚点在其西北约 90 km，无唐城",
+          "open": false
         },
         "ch11": {
           "name": "张家口厅口外商埠",
@@ -1416,7 +1466,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -1428,6 +1479,11 @@
       "region": "rg_liaoxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "临渝关（平州石城县）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "榆关一带（待考）",
           "status": "边关",
@@ -1539,9 +1595,9 @@
           "open": true
         },
         "ch10": {
-          "name": "山海关",
+          "name": "临渝关（平州石城县）",
           "status": "边关",
-          "note": "",
+          "note": "石城县本临渝，万岁通天二年（697）更名，县有临渝关（新唐书）；关址今地有异说（待考）",
           "open": true
         },
         "ch11": {
@@ -1571,7 +1627,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -1583,6 +1640,11 @@
       "region": "rg_liaoxi",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "碣石海口（平州石城县境，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "碣石海口（待考）",
           "status": "商埠",
@@ -1623,7 +1685,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1694,10 +1755,10 @@
           "open": true
         },
         "ch10": {
-          "name": "临榆海口（待考）",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "碣石海口（平州石城县境，未建城）",
+          "status": "未建或废弃",
+          "note": "702 年无州县治所",
+          "open": false
         },
         "ch11": {
           "name": "临榆海口（待考）",
@@ -1726,7 +1787,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -1738,6 +1800,11 @@
       "region": "rg_yanjing_zhili",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "平州西境（未定治所，待考）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "滦州西境所指治所（待考）",
           "status": "路府州县",
@@ -1772,7 +1839,6 @@
       "chapters": [
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -1843,10 +1909,10 @@
           "open": true
         },
         "ch10": {
-          "name": "滦州西境所指治所（待考）",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "平州西境（未定治所，待考）",
+          "status": "未建或废弃",
+          "note": "平州领卢龙、石城二县；石城县治今地有唐山开平等说，暂不开放（待考）",
+          "open": false
         },
         "ch11": {
           "name": "滦州西境所指治所（待考）",
@@ -1875,7 +1941,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -1887,6 +1954,11 @@
       "region": "rg_zhongyuan",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "汴州（浚仪县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "东京开封府（汴梁）",
           "status": "都城",
@@ -2003,7 +2075,7 @@
           "open": true
         },
         "ch10": {
-          "name": "开封府",
+          "name": "汴州（浚仪县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -2035,7 +2107,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -2047,6 +2120,11 @@
       "region": "rg_zhongyuan",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "神都（洛州）",
+          "status": "都城",
+          "note": ""
+        },
         "northern_song": {
           "name": "西京河南府",
           "status": "都城",
@@ -2164,9 +2242,9 @@
           "open": true
         },
         "ch10": {
-          "name": "河南府",
-          "status": "路府州县",
-          "note": "",
+          "name": "神都（洛州）",
+          "status": "都城",
+          "note": "光宅元年（684）改东都为神都，武周定都于此；神龙元年复称东都，开元元年（713）洛州始改河南府。702 年武则天驻长安",
           "open": true
         },
         "ch11": {
@@ -2196,7 +2274,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -2208,6 +2287,11 @@
       "region": "rg_zhongyuan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "郑州（管城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "郑州",
           "status": "路府州县",
@@ -2320,7 +2404,7 @@
           "open": true
         },
         "ch10": {
-          "name": "郑州",
+          "name": "郑州（管城县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -2352,7 +2436,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -2364,6 +2449,11 @@
       "region": "rg_zhongyuan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "登封县（洛州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "登封县",
           "status": "路府州县",
@@ -2479,9 +2569,9 @@
           "open": true
         },
         "ch10": {
-          "name": "登封县",
+          "name": "登封县（洛州）",
           "status": "路府州县",
-          "note": "",
+          "note": "万岁登封元年（696）改嵩阳为登封，属神都畿内洛州",
           "open": true
         },
         "ch11": {
@@ -2511,7 +2601,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -2523,6 +2614,11 @@
       "region": "rg_zhongyuan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "相州（安阳县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "相州",
           "status": "路府州县",
@@ -2635,7 +2731,7 @@
           "open": true
         },
         "ch10": {
-          "name": "彰德府",
+          "name": "相州（安阳县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -2667,7 +2763,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -2679,6 +2776,11 @@
       "region": "rg_zhongyuan",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "卫州",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "卫州",
           "status": "路府州县",
@@ -2791,9 +2893,9 @@
           "open": true
         },
         "ch10": {
-          "name": "卫辉府",
+          "name": "卫州",
           "status": "路府州县",
-          "note": "",
+          "note": "卫州治汲县（今卫辉），锚点新乡为卫州新乡县",
           "open": true
         },
         "ch11": {
@@ -2823,7 +2925,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -2835,6 +2938,11 @@
       "region": "rg_zhongyuan",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "怀州",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "怀州",
           "status": "路府州县",
@@ -2949,9 +3057,9 @@
           "open": true
         },
         "ch10": {
-          "name": "怀庆府",
+          "name": "怀州",
           "status": "路府州县",
-          "note": "",
+          "note": "怀州治河内（今沁阳），锚点焦作在其东约 31 km",
           "open": true
         },
         "ch11": {
@@ -2981,7 +3089,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -2993,6 +3102,11 @@
       "region": "rg_zhongyuan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "宋州（宋城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "应天府南京",
           "status": "都城",
@@ -3105,7 +3219,7 @@
           "open": true
         },
         "ch10": {
-          "name": "归德府",
+          "name": "宋州（宋城县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -3137,7 +3251,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -3149,6 +3264,11 @@
       "region": "rg_zhongyuan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "武台县（邓州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "邓州",
           "status": "路府州县",
@@ -3261,9 +3381,9 @@
           "open": true
         },
         "ch10": {
-          "name": "南阳府",
+          "name": "武台县（邓州）",
           "status": "路府州县",
-          "note": "",
+          "note": "南阳县圣历元年（698）改武台，神龙初复旧（新唐书）；邓州治穰县（今邓州）",
           "open": true
         },
         "ch11": {
@@ -3293,7 +3413,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -3305,6 +3426,11 @@
       "region": "rg_zhongyuan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "申州（义阳县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "信阳军（待考）",
           "status": "军镇",
@@ -3417,7 +3543,7 @@
           "open": true
         },
         "ch10": {
-          "name": "信阳州",
+          "name": "申州（义阳县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -3449,7 +3575,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -3461,6 +3588,11 @@
       "region": "rg_zhongyuan",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "许州（长社县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "颍昌府",
           "status": "路府州县",
@@ -3573,7 +3705,7 @@
           "open": true
         },
         "ch10": {
-          "name": "许州",
+          "name": "许州（长社县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -3605,7 +3737,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -3617,6 +3750,11 @@
       "region": "rg_zhongyuan",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "汝州",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "汝州",
           "status": "路府州县",
@@ -3731,7 +3869,7 @@
         "ch10": {
           "name": "汝州",
           "status": "路府州县",
-          "note": "",
+          "note": "汝州治梁县（今汝州市），锚点平顶山在其东南约 64 km",
           "open": true
         },
         "ch11": {
@@ -3761,7 +3899,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -3773,6 +3912,11 @@
       "region": "rg_guanzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "长安（京城·雍州）",
+          "status": "都城",
+          "note": ""
+        },
         "northern_song": {
           "name": "京兆府",
           "status": "路府州县",
@@ -3890,9 +4034,9 @@
           "open": true
         },
         "ch10": {
-          "name": "西安府",
-          "status": "路府州县",
-          "note": "",
+          "name": "长安（京城·雍州）",
+          "status": "都城",
+          "note": "新唐书：上都初曰京城，天宝元年曰西京；雍州开元元年（713）始改京兆府。长安元年十月至三年十月武则天驻此，702 年朝廷在长安",
           "open": true
         },
         "ch11": {
@@ -3922,7 +4066,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -3934,6 +4079,11 @@
       "region": "rg_guanzhong",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "咸阳县（雍州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "咸阳县",
           "status": "路府州县",
@@ -4046,7 +4196,7 @@
           "open": true
         },
         "ch10": {
-          "name": "咸阳县",
+          "name": "咸阳县（雍州）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -4078,7 +4228,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -4090,6 +4241,11 @@
       "region": "rg_guanzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "仙掌县（太州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "华阴县",
           "status": "路府州县",
@@ -4204,9 +4360,9 @@
           "open": true
         },
         "ch10": {
-          "name": "华阴县",
+          "name": "仙掌县（太州）",
           "status": "路府州县",
-          "note": "",
+          "note": "华州垂拱二年改太州、华阴改仙掌，神龙元年并复旧（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -4236,7 +4392,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -4248,6 +4405,11 @@
       "region": "rg_guanzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "陈仓县（岐州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "凤翔府",
           "status": "路府州县",
@@ -4360,9 +4522,9 @@
           "open": true
         },
         "ch10": {
-          "name": "凤翔府",
+          "name": "陈仓县（岐州）",
           "status": "路府州县",
-          "note": "",
+          "note": "至德二载（757）陈仓改宝鸡、岐州升凤翔府；岐州治雍县（今凤翔）",
           "open": true
         },
         "ch11": {
@@ -4392,7 +4554,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -4404,6 +4567,11 @@
       "region": "rg_guanzhong",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "渭南县（雍州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "同州",
           "status": "路府州县",
@@ -4516,9 +4684,9 @@
           "open": true
         },
         "ch10": {
-          "name": "同州府",
+          "name": "渭南县（雍州）",
           "status": "路府州县",
-          "note": "",
+          "note": "武德五年渭南还属雍州（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -4548,7 +4716,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -4560,6 +4729,11 @@
       "region": "rg_qinba",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "梁州（南郑县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "兴元府",
           "status": "路府州县",
@@ -4672,9 +4846,9 @@
           "open": true
         },
         "ch10": {
-          "name": "汉中府",
+          "name": "梁州（南郑县）",
           "status": "路府州县",
-          "note": "",
+          "note": "兴元元年（784）始升兴元府",
           "open": true
         },
         "ch11": {
@@ -4704,7 +4878,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -4716,6 +4891,11 @@
       "region": "rg_qinba",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "金州（西城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "金州",
           "status": "路府州县",
@@ -4828,7 +5008,7 @@
           "open": true
         },
         "ch10": {
-          "name": "兴安州",
+          "name": "金州（西城县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -4860,7 +5040,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -4872,6 +5053,11 @@
       "region": "rg_guanzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "延州（肤施县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "延安府",
           "status": "路府州县",
@@ -4986,7 +5172,7 @@
           "open": true
         },
         "ch10": {
-          "name": "延安府",
+          "name": "延州（肤施县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -5018,7 +5204,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -5030,6 +5217,11 @@
       "region": "rg_guanzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "银州（儒林县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "银州 / 夏州边地（待考）",
           "status": "边关",
@@ -5141,9 +5333,9 @@
           "open": true
         },
         "ch10": {
-          "name": "榆林府境",
-          "status": "边关",
-          "note": "",
+          "name": "银州（儒林县）",
+          "status": "路府州县",
+          "note": "贞观二年析绥州置；702 年突厥寇盐、夏二州（通鉴），属北边",
           "open": true
         },
         "ch11": {
@@ -5173,7 +5365,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -5185,6 +5378,11 @@
       "region": "rg_qinba",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "商州（上洛县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "商州",
           "status": "路府州县",
@@ -5297,7 +5495,7 @@
           "open": true
         },
         "ch10": {
-          "name": "商州",
+          "name": "商州（上洛县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -5329,7 +5527,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -5341,6 +5540,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "云州故城（永淳元年废）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "西京大同府",
           "status": "都城",
@@ -5382,7 +5586,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -5457,10 +5660,10 @@
           "open": true
         },
         "ch10": {
-          "name": "大同府",
-          "status": "军镇",
-          "note": "",
-          "open": true
+          "name": "云州故城（永淳元年废）",
+          "status": "未建或废弃",
+          "note": "云州永淳元年（682）为突厥所破而废、徙民朔州，开元二十年（旧唐书；新唐书作十八年）复置",
+          "open": false
         },
         "ch11": {
           "name": "大同府",
@@ -5489,7 +5692,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -5501,6 +5705,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "并州（北都）",
+          "status": "都城",
+          "note": ""
+        },
         "northern_song": {
           "name": "太原府",
           "status": "路府州县",
@@ -5617,9 +5826,9 @@
           "open": true
         },
         "ch10": {
-          "name": "太原府",
-          "status": "路府州县",
-          "note": "",
+          "name": "并州（北都）",
+          "status": "都城",
+          "note": "天授元年（690）置北都，神龙元年（705）罢（新唐书）；陪都，非朝廷驻地。并州开元十一年（723）始改太原府；702 年三月突厥寇并州（通鉴）",
           "open": true
         },
         "ch11": {
@@ -5649,7 +5858,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -5661,6 +5871,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "平遥县（汾州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "平遥县",
           "status": "路府州县",
@@ -5772,7 +5987,7 @@
           "open": true
         },
         "ch10": {
-          "name": "平遥县",
+          "name": "平遥县（汾州）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -5804,7 +6019,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -5816,6 +6032,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "安邑县（蒲州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "解州",
           "status": "路府州县",
@@ -5928,9 +6149,9 @@
           "open": true
         },
         "ch10": {
-          "name": "解州",
+          "name": "安邑县（蒲州）",
           "status": "路府州县",
-          "note": "",
+          "note": "贞观十七年废虞州，安邑、解县属蒲州；县有盐池（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -5960,7 +6181,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -5972,6 +6194,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "晋州（临汾县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "平阳府",
           "status": "路府州县",
@@ -6084,7 +6311,7 @@
           "open": true
         },
         "ch10": {
-          "name": "平阳府",
+          "name": "晋州（临汾县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -6116,7 +6343,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -6128,6 +6356,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "潞州（上党县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "隆德府 / 潞州（待考）",
           "status": "路府州县",
@@ -6240,7 +6473,7 @@
           "open": true
         },
         "ch10": {
-          "name": "潞安府",
+          "name": "潞州（上党县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -6272,7 +6505,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -6284,6 +6518,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "忻州（秀容县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "忻州",
           "status": "路府州县",
@@ -6396,7 +6635,7 @@
           "open": true
         },
         "ch10": {
-          "name": "忻州",
+          "name": "忻州（秀容县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -6428,7 +6667,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -6440,6 +6680,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "朔州（善阳县）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "朔州",
           "status": "军镇",
@@ -6552,9 +6797,9 @@
           "open": true
         },
         "ch10": {
-          "name": "朔州",
+          "name": "朔州（善阳县）",
           "status": "边关",
-          "note": "",
+          "note": "云州废后为北边前沿；大同军城开元五年以后始见",
           "open": true
         },
         "ch11": {
@@ -6584,7 +6829,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -6596,6 +6842,11 @@
       "region": "rg_hedong_jinzhong",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "泽州（晋城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "泽州",
           "status": "路府州县",
@@ -6708,7 +6959,7 @@
           "open": true
         },
         "ch10": {
-          "name": "泽州府",
+          "name": "泽州（晋城县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -6740,7 +6991,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -6752,6 +7004,11 @@
       "region": "rg_qilu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "齐州（历城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "济南府",
           "status": "路府州县",
@@ -6866,7 +7123,7 @@
           "open": true
         },
         "ch10": {
-          "name": "济南府",
+          "name": "齐州（历城县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -6898,7 +7155,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -6910,6 +7168,11 @@
       "region": "rg_qilu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "曲阜县（兖州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "仙源县 / 曲阜县（待考）",
           "status": "路府州县",
@@ -7022,7 +7285,7 @@
           "open": true
         },
         "ch10": {
-          "name": "曲阜县",
+          "name": "曲阜县（兖州）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -7054,7 +7317,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -7066,6 +7330,11 @@
       "region": "rg_qilu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "博城县（兖州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "兖州奉符县",
           "status": "路府州县",
@@ -7180,9 +7449,9 @@
           "open": true
         },
         "ch10": {
-          "name": "泰安府",
+          "name": "博城县（兖州）",
           "status": "路府州县",
-          "note": "",
+          "note": "乾封元年改乾封、总章元年复博城，神龙元年（705）再改乾封（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -7212,7 +7481,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -7224,6 +7494,11 @@
       "region": "rg_qilu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "青州（益都县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "青州",
           "status": "路府州县",
@@ -7336,7 +7611,7 @@
           "open": true
         },
         "ch10": {
-          "name": "青州府",
+          "name": "青州（益都县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -7368,7 +7643,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -7380,6 +7656,11 @@
       "region": "rg_qilu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "德州",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "德州",
           "status": "路府州县",
@@ -7494,7 +7775,7 @@
         "ch10": {
           "name": "德州",
           "status": "路府州县",
-          "note": "",
+          "note": "德州治安德（今陵城），锚点今德州市区为长河县",
           "open": true
         },
         "ch11": {
@@ -7524,7 +7805,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -7536,6 +7818,11 @@
       "region": "rg_qilu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "博州（聊城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "博州",
           "status": "路府州县",
@@ -7648,7 +7935,7 @@
           "open": true
         },
         "ch10": {
-          "name": "东昌府",
+          "name": "博州（聊城县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -7680,7 +7967,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -7692,6 +7980,11 @@
       "region": "rg_qilu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "沂州（临沂县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "沂州",
           "status": "路府州县",
@@ -7804,7 +8097,7 @@
           "open": true
         },
         "ch10": {
-          "name": "沂州府",
+          "name": "沂州（临沂县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -7836,7 +8129,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -7848,6 +8142,11 @@
       "region": "rg_qilu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "登州（牟平县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "登州海防（待考）",
           "status": "军镇",
@@ -7957,9 +8256,9 @@
           "open": true
         },
         "ch10": {
-          "name": "福山县海口（待考）",
-          "status": "商埠",
-          "note": "",
+          "name": "登州（牟平县）",
+          "status": "路府州县",
+          "note": "如意元年（692）置登州，以牟平为治所；神龙三年（707）始移治蓬莱（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -7989,7 +8288,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -8001,6 +8301,11 @@
       "region": "rg_qilu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "蓬莱镇（黄县，待考）",
+          "status": "军镇",
+          "note": ""
+        },
         "northern_song": {
           "name": "登州",
           "status": "路府州县",
@@ -8115,9 +8420,9 @@
           "open": true
         },
         "ch10": {
-          "name": "登州府",
-          "status": "路府州县",
-          "note": "",
+          "name": "蓬莱镇（黄县，待考）",
+          "status": "军镇",
+          "note": "神龙三年黄县改蓬莱县、登州移治于此；702 年尚为黄县属镇（镇名据地方志，待考）",
           "open": true
         },
         "ch11": {
@@ -8147,7 +8452,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -8159,6 +8465,11 @@
       "region": "rg_qilu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "文登县北境海岸（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "文登县海寨（待考）",
           "status": "商埠",
@@ -8197,7 +8508,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -8268,10 +8578,10 @@
           "open": true
         },
         "ch10": {
-          "name": "威海卫",
-          "status": "军镇",
-          "note": "",
-          "open": true
+          "name": "文登县北境海岸（未建城）",
+          "status": "未建或废弃",
+          "note": "702 年属登州文登县；威海卫明初始置",
+          "open": false
         },
         "ch11": {
           "name": "威海卫",
@@ -8300,7 +8610,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -8312,6 +8623,11 @@
       "region": "rg_qilu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "淄州（淄川县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "淄川 / 临淄诸县所指治所（待考）",
           "status": "路府州县",
@@ -8421,7 +8737,7 @@
           "open": true
         },
         "ch10": {
-          "name": "淄川 / 临淄诸县所指治所（待考）",
+          "name": "淄州（淄川县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -8453,7 +8769,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -8465,6 +8782,11 @@
       "region": "rg_qilu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "郓州（须昌县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "郓州 / 东平府（待考）",
           "status": "路府州县",
@@ -8579,7 +8901,7 @@
           "open": true
         },
         "ch10": {
-          "name": "东平州",
+          "name": "郓州（须昌县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -8611,7 +8933,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -8623,6 +8946,11 @@
       "region": "rg_jianghuai",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "江宁县（润州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "江宁府 / 升州（待考）",
           "status": "路府州县",
@@ -8739,9 +9067,9 @@
           "open": true
         },
         "ch10": {
-          "name": "江宁府",
+          "name": "江宁县（润州）",
           "status": "路府州县",
-          "note": "",
+          "note": "隋平陈后金陵降为县，唐初江宁县属润州；至德二载（757）始置江宁郡",
           "open": true
         },
         "ch11": {
@@ -8771,7 +9099,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -8783,6 +9112,11 @@
       "region": "rg_jianghuai",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "扬州（江都县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "扬州",
           "status": "路府州县",
@@ -8899,9 +9233,9 @@
           "open": true
         },
         "ch10": {
-          "name": "扬州府",
+          "name": "扬州（江都县）",
           "status": "路府州县",
-          "note": "",
+          "note": "扬州大都督府",
           "open": true
         },
         "ch11": {
@@ -8931,7 +9265,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -8943,6 +9278,11 @@
       "region": "rg_jianghuai",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "润州（丹徒县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "镇江府",
           "status": "路府州县",
@@ -9057,7 +9397,7 @@
           "open": true
         },
         "ch10": {
-          "name": "镇江府",
+          "name": "润州（丹徒县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -9089,7 +9429,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -9101,6 +9442,11 @@
       "region": "rg_jianghuai",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "徐州（彭城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "徐州",
           "status": "路府州县",
@@ -9213,7 +9559,7 @@
           "open": true
         },
         "ch10": {
-          "name": "徐州府",
+          "name": "徐州（彭城县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -9245,7 +9591,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -9257,6 +9604,11 @@
       "region": "rg_jianghuai",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "海州（朐山县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "海州",
           "status": "路府州县",
@@ -9369,7 +9721,7 @@
           "open": true
         },
         "ch10": {
-          "name": "海州直隶州",
+          "name": "海州（朐山县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -9401,7 +9753,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -9413,6 +9766,11 @@
       "region": "rg_jianghuai",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "庐州（合肥县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "庐州",
           "status": "路府州县",
@@ -9525,7 +9883,7 @@
           "open": true
         },
         "ch10": {
-          "name": "庐州府",
+          "name": "庐州（合肥县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -9557,7 +9915,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -9569,6 +9928,11 @@
       "region": "rg_jianghuai",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "舒州（怀宁县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "舒州",
           "status": "路府州县",
@@ -9681,9 +10045,9 @@
           "open": true
         },
         "ch10": {
-          "name": "安庆府",
+          "name": "舒州（怀宁县）",
           "status": "路府州县",
-          "note": "",
+          "note": "舒州治怀宁（今潜山），锚点安庆在其东南约 48 km；安庆城南宋始筑",
           "open": true
         },
         "ch11": {
@@ -9713,7 +10077,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -9725,6 +10090,11 @@
       "region": "rg_jianghuai",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "芜湖（当涂县境，未置县）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "芜湖县",
           "status": "商埠",
@@ -9766,7 +10136,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -9837,10 +10206,10 @@
           "open": true
         },
         "ch10": {
-          "name": "芜湖县",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "芜湖（当涂县境，未置县）",
+          "status": "未建或废弃",
+          "note": "隋并芜湖入当涂（宣州），南唐始复置芜湖县（待考）",
+          "open": false
         },
         "ch11": {
           "name": "芜湖县",
@@ -9869,7 +10238,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -9881,6 +10251,11 @@
       "region": "rg_jianghuai",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "颍州（汝阴县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "颍州",
           "status": "路府州县",
@@ -9993,7 +10368,7 @@
           "open": true
         },
         "ch10": {
-          "name": "颍州",
+          "name": "颍州（汝阴县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -10025,7 +10400,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -10037,6 +10413,11 @@
       "region": "rg_jianghuai",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "歙州（歙县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "歙州",
           "status": "路府州县",
@@ -10149,7 +10530,7 @@
           "open": true
         },
         "ch10": {
-          "name": "徽州府",
+          "name": "歙州（歙县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -10181,7 +10562,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -10193,6 +10575,11 @@
       "region": "rg_jiangnan_taihu",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "杭州（钱塘县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "杭州",
           "status": "路府州县",
@@ -10310,7 +10697,7 @@
           "open": true
         },
         "ch10": {
-          "name": "杭州府",
+          "name": "杭州（钱塘县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -10342,7 +10729,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -10354,6 +10742,11 @@
       "region": "rg_jiangnan_taihu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "苏州（吴县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "苏州",
           "status": "路府州县",
@@ -10470,7 +10863,7 @@
           "open": true
         },
         "ch10": {
-          "name": "苏州府",
+          "name": "苏州（吴县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -10502,7 +10895,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -10514,6 +10908,11 @@
       "region": "rg_jiangnan_taihu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "无锡县（常州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "无锡县",
           "status": "路府州县",
@@ -10628,7 +11027,7 @@
           "open": true
         },
         "ch10": {
-          "name": "无锡县",
+          "name": "无锡县（常州）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -10660,7 +11059,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -10672,6 +11072,11 @@
       "region": "rg_jiangnan_taihu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "嘉兴县（苏州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "秀州",
           "status": "路府州县",
@@ -10786,9 +11191,9 @@
           "open": true
         },
         "ch10": {
-          "name": "嘉兴府",
+          "name": "嘉兴县（苏州）",
           "status": "路府州县",
-          "note": "",
+          "note": "秀州五代后晋始置",
           "open": true
         },
         "ch11": {
@@ -10818,7 +11223,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -10830,6 +11236,11 @@
       "region": "rg_jiangnan_taihu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "越州（会稽县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "越州",
           "status": "路府州县",
@@ -10942,9 +11353,9 @@
           "open": true
         },
         "ch10": {
-          "name": "绍兴府",
+          "name": "越州（会稽县）",
           "status": "路府州县",
-          "note": "",
+          "note": "越州中都督府，治会稽、山阴两县",
           "open": true
         },
         "ch11": {
@@ -10974,7 +11385,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -10986,6 +11398,11 @@
       "region": "rg_zhedong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "鄮县（越州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "明州",
           "status": "商埠",
@@ -11100,9 +11517,9 @@
           "open": true
         },
         "ch10": {
-          "name": "宁波府",
-          "status": "商埠",
-          "note": "",
+          "name": "鄮县（越州）",
+          "status": "路府州县",
+          "note": "明州开元二十六年（738）始置；702 年鄮县属越州，县治今地待考",
           "open": true
         },
         "ch11": {
@@ -11132,7 +11549,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -11144,6 +11562,11 @@
       "region": "rg_zhedong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "海中洲（鄮县境，未置县）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "昌国县",
           "status": "商埠",
@@ -11185,7 +11608,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -11258,10 +11680,10 @@
           "open": true
         },
         "ch10": {
-          "name": "定海县",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "海中洲（鄮县境，未置县）",
+          "status": "未建或废弃",
+          "note": "翁山县开元二十六年（738）始置",
+          "open": false
         },
         "ch11": {
           "name": "定海县",
@@ -11290,7 +11712,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -11302,6 +11725,11 @@
       "region": "rg_zhedong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "温州（永嘉县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "温州",
           "status": "路府州县",
@@ -11414,9 +11842,9 @@
           "open": true
         },
         "ch10": {
-          "name": "温州府",
+          "name": "温州（永嘉县）",
           "status": "路府州县",
-          "note": "",
+          "note": "上元二年（675）置温州",
           "open": true
         },
         "ch11": {
@@ -11446,7 +11874,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -11458,6 +11887,11 @@
       "region": "rg_zhedong",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "婺州（金山县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "婺州",
           "status": "路府州县",
@@ -11572,9 +12006,9 @@
           "open": true
         },
         "ch10": {
-          "name": "金华府",
+          "name": "婺州（金山县）",
           "status": "路府州县",
-          "note": "",
+          "note": "金华县垂拱四年（688）改金山，神龙元年复旧（新唐书）",
           "open": true
         },
         "ch11": {
@@ -11604,7 +12038,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -11616,6 +12051,11 @@
       "region": "rg_zhedong",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "衢州（信安县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "衢州",
           "status": "路府州县",
@@ -11728,9 +12168,9 @@
           "open": true
         },
         "ch10": {
-          "name": "衢州府",
+          "name": "衢州（信安县）",
           "status": "路府州县",
-          "note": "",
+          "note": "垂拱二年（686）复置衢州",
           "open": true
         },
         "ch11": {
@@ -11760,7 +12200,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -11772,6 +12213,11 @@
       "region": "rg_jiangnan_taihu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "湖州（乌程县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "湖州",
           "status": "路府州县",
@@ -11884,7 +12330,7 @@
           "open": true
         },
         "ch10": {
-          "name": "湖州府",
+          "name": "湖州（乌程县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -11916,7 +12362,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -11928,6 +12375,11 @@
       "region": "rg_jiangnan_taihu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "常州（晋陵县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "常州",
           "status": "路府州县",
@@ -12040,7 +12492,7 @@
           "open": true
         },
         "ch10": {
-          "name": "常州府",
+          "name": "常州（晋陵县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -12072,7 +12524,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -12084,6 +12537,11 @@
       "region": "rg_fujian",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "泉州（闽县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "福州",
           "status": "路府州县",
@@ -12200,9 +12658,9 @@
           "open": true
         },
         "ch10": {
-          "name": "福州府",
+          "name": "泉州（闽县）",
           "status": "路府州县",
-          "note": "",
+          "note": "唐初泉州治闽县（今福州），景云二年（711）改闽州、开元十三年改福州；今泉州 702 年为武荣州",
           "open": true
         },
         "ch11": {
@@ -12232,7 +12690,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -12244,6 +12703,11 @@
       "region": "rg_fujian",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "武荣州",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "泉州",
           "status": "商埠",
@@ -12358,9 +12822,9 @@
           "open": true
         },
         "ch10": {
-          "name": "泉州府",
-          "status": "商埠",
-          "note": "",
+          "name": "武荣州",
+          "status": "路府州县",
+          "note": "圣历二年（699）置、次年废，久视元年（700）复置于南安县东南（今泉州鲤城）；景云二年改称泉州",
           "open": true
         },
         "ch11": {
@@ -12390,7 +12854,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -12402,6 +12867,11 @@
       "region": "rg_fujian",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "莆田县（武荣州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "兴化军",
           "status": "路府州县",
@@ -12516,9 +12986,9 @@
           "open": true
         },
         "ch10": {
-          "name": "兴化府",
+          "name": "莆田县（武荣州）",
           "status": "路府州县",
-          "note": "",
+          "note": "久视元年以南安、莆田、龙溪置武荣州（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -12548,7 +13018,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -12560,6 +13031,11 @@
       "region": "rg_fujian",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "嘉禾屿（南安县境，未置县）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "嘉禾屿（待考）",
           "status": "商埠",
@@ -12598,7 +13074,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -12671,10 +13146,10 @@
           "open": true
         },
         "ch10": {
-          "name": "厦门厅 / 同安县海口（待考）",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "嘉禾屿（南安县境，未置县）",
+          "status": "未建或废弃",
+          "note": "702 年无州县治所",
+          "open": false
         },
         "ch11": {
           "name": "厦门厅",
@@ -12703,7 +13178,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -12715,6 +13191,11 @@
       "region": "rg_fujian",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "龙溪县（武荣州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "漳州",
           "status": "路府州县",
@@ -12827,9 +13308,9 @@
           "open": true
         },
         "ch10": {
-          "name": "漳州府",
+          "name": "龙溪县（武荣州）",
           "status": "路府州县",
-          "note": "",
+          "note": "漳州垂拱二年（686）置于漳浦西林（今云霄），开元二十九年龙溪始属漳州，贞元二年（786）漳州移治龙溪",
           "open": true
         },
         "ch11": {
@@ -12859,7 +13340,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -12871,6 +13353,11 @@
       "region": "rg_fujian",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "建阳县北境（未置县）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "崇安县",
           "status": "路府州县",
@@ -12912,7 +13399,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -12983,10 +13469,10 @@
           "open": true
         },
         "ch10": {
-          "name": "崇安县",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "建阳县北境（未置县）",
+          "status": "未建或废弃",
+          "note": "崇安县宋初始置（待考）",
+          "open": false
         },
         "ch11": {
           "name": "崇安县",
@@ -13015,7 +13501,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -13027,6 +13514,11 @@
       "region": "rg_jiangxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "洪州（豫章县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "洪州",
           "status": "路府州县",
@@ -13141,9 +13633,9 @@
           "open": true
         },
         "ch10": {
-          "name": "南昌府",
+          "name": "洪州（豫章县）",
           "status": "路府州县",
-          "note": "",
+          "note": "洪州都督府；豫章县宝应元年（762）改钟陵",
           "open": true
         },
         "ch11": {
@@ -13173,7 +13665,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -13185,6 +13678,11 @@
       "region": "rg_jiangxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "江州（浔阳县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "江州",
           "status": "路府州县",
@@ -13297,7 +13795,7 @@
           "open": true
         },
         "ch10": {
-          "name": "九江府",
+          "name": "江州（浔阳县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -13329,7 +13827,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -13341,6 +13840,11 @@
       "region": "rg_jiangxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "虔州（赣县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "虔州",
           "status": "路府州县",
@@ -13453,7 +13957,7 @@
           "open": true
         },
         "ch10": {
-          "name": "赣州府",
+          "name": "虔州（赣县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -13485,7 +13989,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -13497,6 +14002,11 @@
       "region": "rg_jiangxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "新平镇（饶州鄱阳县境，未置县）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "景德镇",
           "status": "商埠",
@@ -13538,7 +14048,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -13609,10 +14118,10 @@
           "open": true
         },
         "ch10": {
-          "name": "景德镇",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "新平镇（饶州鄱阳县境，未置县）",
+          "status": "未建或废弃",
+          "note": "新平县武德四年置、八年废，开元四年（716）复置，天宝元年改浮梁",
+          "open": false
         },
         "ch11": {
           "name": "景德镇",
@@ -13641,7 +14150,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -13653,6 +14163,11 @@
       "region": "rg_jiangxi",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "上饶（未置县）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "信州",
           "status": "路府州县",
@@ -13694,7 +14209,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -13765,10 +14279,10 @@
           "open": true
         },
         "ch10": {
-          "name": "广信府",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "上饶（未置县）",
+          "status": "未建或废弃",
+          "note": "信州与上饶县乾元元年（758）始置",
+          "open": false
         },
         "ch11": {
           "name": "广信府",
@@ -13797,7 +14311,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -13809,6 +14324,11 @@
       "region": "rg_jingxiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "鄂州（江夏）/ 沔州（汉阳）",
+          "status": "商埠",
+          "note": ""
+        },
         "northern_song": {
           "name": "鄂州 / 汉阳军",
           "status": "商埠",
@@ -13869,6 +14389,7 @@
       "seat_moves": [
         {
           "eras": [
+            "tang",
             "northern_song",
             "southern_song_jin_mongol"
           ],
@@ -13944,9 +14465,9 @@
           "open": true
         },
         "ch10": {
-          "name": "武昌府 / 汉阳府",
+          "name": "鄂州（江夏）/ 沔州（汉阳）",
           "status": "商埠",
-          "note": "",
+          "note": "江南岸鄂州治江夏县，北岸沔州治汉阳县",
           "open": true
         },
         "ch11": {
@@ -13976,7 +14497,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -13988,6 +14510,11 @@
       "region": "rg_jingxiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "襄州（襄阳县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "襄阳府",
           "status": "军镇",
@@ -14103,8 +14630,8 @@
           "open": true
         },
         "ch10": {
-          "name": "襄阳府",
-          "status": "军镇",
+          "name": "襄州（襄阳县）",
+          "status": "路府州县",
           "note": "",
           "open": true
         },
@@ -14135,7 +14662,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -14147,6 +14675,11 @@
       "region": "rg_jingxiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "荆州（江陵县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "江陵府",
           "status": "路府州县",
@@ -14263,9 +14796,9 @@
           "open": true
         },
         "ch10": {
-          "name": "荆州府",
+          "name": "荆州（江陵县）",
           "status": "路府州县",
-          "note": "",
+          "note": "荆州大都督府",
           "open": true
         },
         "ch11": {
@@ -14295,7 +14828,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -14307,6 +14841,11 @@
       "region": "rg_huxiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "岳州（巴陵县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "岳州",
           "status": "路府州县",
@@ -14421,7 +14960,7 @@
           "open": true
         },
         "ch10": {
-          "name": "岳州府",
+          "name": "岳州（巴陵县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -14453,7 +14992,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -14465,6 +15005,11 @@
       "region": "rg_huxiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "潭州（长沙县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "潭州",
           "status": "路府州县",
@@ -14579,7 +15124,7 @@
           "open": true
         },
         "ch10": {
-          "name": "长沙府",
+          "name": "潭州（长沙县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -14611,7 +15156,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -14623,6 +15169,11 @@
       "region": "rg_huxiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "衡州（临蒸县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "衡州",
           "status": "路府州县",
@@ -14737,9 +15288,9 @@
           "open": true
         },
         "ch10": {
-          "name": "衡州府",
+          "name": "衡州（临蒸县）",
           "status": "路府州县",
-          "note": "",
+          "note": "武德四年复名临蒸，开元二十年（732）复名衡阳（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -14769,7 +15320,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -14781,6 +15333,11 @@
       "region": "rg_huxiang",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "郴州（郴县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "郴州",
           "status": "路府州县",
@@ -14893,7 +15450,7 @@
           "open": true
         },
         "ch10": {
-          "name": "郴州",
+          "name": "郴州（郴县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -14925,7 +15482,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -14937,6 +15495,11 @@
       "region": "rg_jingxiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "均州（武当县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "均州",
           "status": "路府州县",
@@ -15051,9 +15614,9 @@
           "open": true
         },
         "ch10": {
-          "name": "均州",
+          "name": "均州（武当县）",
           "status": "路府州县",
-          "note": "",
+          "note": "均州治武当（旧均州城，今丹江口），锚点十堰在其西约 36 km",
           "open": true
         },
         "ch11": {
@@ -15083,7 +15646,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -15095,6 +15659,11 @@
       "region": "rg_jingxiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "峡州（夷陵县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "峡州",
           "status": "路府州县",
@@ -15207,9 +15776,9 @@
           "open": true
         },
         "ch10": {
-          "name": "夷陵州",
+          "name": "峡州（夷陵县）",
           "status": "路府州县",
-          "note": "",
+          "note": "旧唐书作硖州",
           "open": true
         },
         "ch11": {
@@ -15239,7 +15808,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -15251,6 +15821,11 @@
       "region": "rg_jingxiang",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "施州（清江县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "施州",
           "status": "路府州县",
@@ -15363,7 +15938,7 @@
           "open": true
         },
         "ch10": {
-          "name": "施南府",
+          "name": "施州（清江县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -15395,7 +15970,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -15407,6 +15983,11 @@
       "region": "rg_huxiang",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "辰州（沅陵县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "辰州",
           "status": "路府州县",
@@ -15521,7 +16102,7 @@
           "open": true
         },
         "ch10": {
-          "name": "辰州府",
+          "name": "辰州（沅陵县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -15553,7 +16134,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -15565,6 +16147,11 @@
       "region": "rg_jingxiang",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "长林县（荆州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "荆门军",
           "status": "路府州县",
@@ -15677,9 +16264,9 @@
           "open": true
         },
         "ch10": {
-          "name": "荆门州",
+          "name": "长林县（荆州）",
           "status": "路府州县",
-          "note": "",
+          "note": "荆门县贞元二十一年（805）始析长林置",
           "open": true
         },
         "ch11": {
@@ -15709,7 +16296,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -15721,6 +16309,11 @@
       "region": "rg_lingnan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "广州（南海县）",
+          "status": "商埠",
+          "note": ""
+        },
         "northern_song": {
           "name": "广州",
           "status": "商埠",
@@ -15835,9 +16428,9 @@
           "open": true
         },
         "ch10": {
-          "name": "广州府",
+          "name": "广州（南海县）",
           "status": "商埠",
-          "note": "",
+          "note": "广州中都督府，海舶互市之港",
           "open": true
         },
         "ch11": {
@@ -15867,7 +16460,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -15879,6 +16473,11 @@
       "region": "rg_lingnan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "季华乡（南海县境，未成镇）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "季华乡 / 佛山堡（待考）",
           "status": "未建或废弃",
@@ -15916,7 +16515,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -15990,10 +16588,10 @@
           "open": true
         },
         "ch10": {
-          "name": "佛山镇",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "季华乡（南海县境，未成镇）",
+          "status": "未建或废弃",
+          "note": "佛山镇宋明以后始兴",
+          "open": false
         },
         "ch11": {
           "name": "佛山镇",
@@ -16022,7 +16620,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -16034,6 +16633,11 @@
       "region": "rg_lingnan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "端州（高要县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "端州",
           "status": "路府州县",
@@ -16146,7 +16750,7 @@
           "open": true
         },
         "ch10": {
-          "name": "肇庆府",
+          "name": "端州（高要县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -16178,7 +16782,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -16190,6 +16795,11 @@
       "region": "rg_lingnan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "潮州（海阳县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "潮州",
           "status": "路府州县",
@@ -16302,7 +16912,7 @@
           "open": true
         },
         "ch10": {
-          "name": "潮州府",
+          "name": "潮州（海阳县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -16334,7 +16944,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -16346,6 +16957,11 @@
       "region": "rg_lingnan",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "韶州（曲江县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "韶州",
           "status": "路府州县",
@@ -16458,7 +17074,7 @@
           "open": true
         },
         "ch10": {
-          "name": "韶州府",
+          "name": "韶州（曲江县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -16490,7 +17106,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -16502,6 +17119,11 @@
       "region": "rg_guangxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "桂州（始安县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "桂州静江府（待考）",
           "status": "路府州县",
@@ -16616,9 +17238,9 @@
           "open": true
         },
         "ch10": {
-          "name": "桂林府",
+          "name": "桂州（始安县）",
           "status": "路府州县",
-          "note": "",
+          "note": "桂州都督府；始安县至德二载（757）改临桂",
           "open": true
         },
         "ch11": {
@@ -16648,7 +17270,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -16660,6 +17283,11 @@
       "region": "rg_guangxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "柳州（马平县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "柳州",
           "status": "路府州县",
@@ -16772,7 +17400,7 @@
           "open": true
         },
         "ch10": {
-          "name": "柳州府",
+          "name": "柳州（马平县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -16804,7 +17432,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -16816,6 +17445,11 @@
       "region": "rg_guangxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "邕州（宣化县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "邕州",
           "status": "路府州县",
@@ -16928,9 +17562,9 @@
           "open": true
         },
         "ch10": {
-          "name": "南宁府",
+          "name": "邕州（宣化县）",
           "status": "路府州县",
-          "note": "",
+          "note": "邕州都督府",
           "open": true
         },
         "ch11": {
@@ -16960,7 +17594,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -16972,6 +17607,11 @@
       "region": "rg_lingnan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "崖州（舍城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "琼州海口浦（待考）",
           "status": "商埠",
@@ -17084,9 +17724,9 @@
           "open": true
         },
         "ch10": {
-          "name": "琼州府海口",
-          "status": "商埠",
-          "note": "",
+          "name": "崖州（舍城县）",
+          "status": "路府州县",
+          "note": "唐崖州治舍城（今海口琼山一带），与后世三亚崖州异地",
           "open": true
         },
         "ch11": {
@@ -17116,7 +17756,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -17128,6 +17769,11 @@
       "region": "rg_lingnan",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "振州（宁远县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "吉阳军境（待考）",
           "status": "路府州县",
@@ -17240,9 +17886,9 @@
           "open": true
         },
         "ch10": {
-          "name": "崖州",
+          "name": "振州（宁远县）",
           "status": "路府州县",
-          "note": "",
+          "note": "振州治宁远（今三亚崖城），锚点在其东约 38 km",
           "open": true
         },
         "ch11": {
@@ -17272,7 +17918,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -17284,6 +17931,11 @@
       "region": "rg_bashu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "益州（成都县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "成都府",
           "status": "路府州县",
@@ -17401,9 +18053,9 @@
           "open": true
         },
         "ch10": {
-          "name": "成都府",
+          "name": "益州（成都县）",
           "status": "路府州县",
-          "note": "",
+          "note": "益州大都督府，治成都、蜀二县；至德二载（757）升成都府",
           "open": true
         },
         "ch11": {
@@ -17433,7 +18085,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -17445,6 +18098,11 @@
       "region": "rg_bashu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "渝州（巴县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "渝州",
           "status": "路府州县",
@@ -17557,7 +18215,7 @@
           "open": true
         },
         "ch10": {
-          "name": "重庆府",
+          "name": "渝州（巴县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -17589,7 +18247,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -17601,6 +18260,11 @@
       "region": "rg_bashu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "导江县（彭州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "永康军 / 导江县（待考）",
           "status": "路府州县",
@@ -17715,9 +18379,9 @@
           "open": true
         },
         "ch10": {
-          "name": "灌县",
+          "name": "导江县（彭州）",
           "status": "路府州县",
-          "note": "",
+          "note": "导江县旧治灌口城，垂拱二年（686）属新置彭州（旧唐书）；新唐书称贞观中曰灌宁（待考）",
           "open": true
         },
         "ch11": {
@@ -17747,7 +18411,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -17759,6 +18424,11 @@
       "region": "rg_bashu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "嘉州（龙游县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "嘉州",
           "status": "路府州县",
@@ -17873,7 +18543,7 @@
           "open": true
         },
         "ch10": {
-          "name": "嘉定府",
+          "name": "嘉州（龙游县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -17905,7 +18575,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -17917,6 +18588,11 @@
       "region": "rg_bashu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "眉州（通义县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "眉州",
           "status": "路府州县",
@@ -18029,7 +18705,7 @@
           "open": true
         },
         "ch10": {
-          "name": "眉州",
+          "name": "眉州（通义县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -18061,7 +18737,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -18073,6 +18750,11 @@
       "region": "rg_bashu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "雅州（严道县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "雅州",
           "status": "路府州县",
@@ -18185,7 +18867,7 @@
           "open": true
         },
         "ch10": {
-          "name": "雅州府",
+          "name": "雅州（严道县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -18217,7 +18899,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -18229,6 +18912,11 @@
       "region": "rg_bashu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "通州（通川县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "达州",
           "status": "路府州县",
@@ -18341,9 +19029,9 @@
           "open": true
         },
         "ch10": {
-          "name": "绥定府",
+          "name": "通州（通川县）",
           "status": "路府州县",
-          "note": "",
+          "note": "北宋乾德三年（965）始改达州",
           "open": true
         },
         "ch11": {
@@ -18373,7 +19061,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -18385,6 +19074,11 @@
       "region": "rg_bashu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "巴州（化城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "巴州",
           "status": "路府州县",
@@ -18497,7 +19191,7 @@
           "open": true
         },
         "ch10": {
-          "name": "巴州",
+          "name": "巴州（化城县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -18529,7 +19223,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -18541,6 +19236,11 @@
       "region": "rg_bashu",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "夔州（奉节县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "夔州",
           "status": "路府州县",
@@ -18653,7 +19353,7 @@
           "open": true
         },
         "ch10": {
-          "name": "夔州府",
+          "name": "夔州（奉节县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -18685,7 +19385,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -18697,6 +19398,11 @@
       "region": "rg_bashu",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "隆州（阆中县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "阆州",
           "status": "路府州县",
@@ -18809,9 +19515,9 @@
           "open": true
         },
         "ch10": {
-          "name": "保宁府",
+          "name": "隆州（阆中县）",
           "status": "路府州县",
-          "note": "",
+          "note": "先天元年（712）改阆州（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -18841,7 +19547,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -18853,6 +19560,11 @@
       "region": "rg_yundian_qianzhong",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "昆州（益宁县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "鄯阐府（大理国）",
           "status": "都城",
@@ -18971,9 +19683,9 @@
           "open": true
         },
         "ch10": {
-          "name": "云南府",
+          "name": "昆州（益宁县）",
           "status": "路府州县",
-          "note": "",
+          "note": "戎州都督府辖，领益宁、晋宁、安宁等县，爨氏大姓据地",
           "open": true
         },
         "ch11": {
@@ -19003,7 +19715,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -19015,6 +19728,11 @@
       "region": "rg_dali_cangshan",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "洱海河蛮城邑（羁縻曾州，待考）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "大理国都（羊苴咩城）",
           "status": "都城",
@@ -19135,9 +19853,9 @@
           "open": true
         },
         "ch10": {
-          "name": "大理府",
-          "status": "路府州县",
-          "note": "",
+          "name": "洱海河蛮城邑（羁縻曾州，待考）",
+          "status": "边关",
+          "note": "六诏并立，蒙舍诏在巍山；洱海西岸河蛮诸城，唐以羁縻曾州、姚州都督府（今姚安）遥领，吐蕃势力南下（待考）",
           "open": true
         },
         "ch11": {
@@ -19168,7 +19886,8 @@
       "sources": [
         "src_geonames",
         "src_chgis",
-        "src_dali_yuan"
+        "src_dali_yuan",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -19180,6 +19899,11 @@
       "region": "rg_dali_cangshan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "三赕么些蛮地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "丽江一带部落（待考）",
           "status": "路府州县",
@@ -19221,7 +19945,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -19292,10 +20015,10 @@
           "open": true
         },
         "ch10": {
-          "name": "丽江府",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "三赕么些蛮地（未建城）",
+          "status": "未建或废弃",
+          "note": "越析诏、么些诸部之地，吐蕃据铁桥一带；无唐城（待考）",
+          "open": false
         },
         "ch11": {
           "name": "丽江府",
@@ -19324,7 +20047,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -19336,6 +20060,11 @@
       "region": "rg_dali_cangshan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "永昌故郡（哀牢地，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "永昌府（大理国）",
           "status": "路府州县",
@@ -19377,7 +20106,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -19449,10 +20177,10 @@
           "open": true
         },
         "ch10": {
-          "name": "永昌府",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "永昌故郡（哀牢地，未建城）",
+          "status": "未建或废弃",
+          "note": "南诏永昌城为八世纪中叶以后",
+          "open": false
         },
         "ch11": {
           "name": "永昌府",
@@ -19481,7 +20209,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -19493,6 +20222,11 @@
       "region": "rg_dali_cangshan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "越赕（未建城，待考）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "腾冲府一带（大理国，待考）",
           "status": "边关",
@@ -19534,7 +20268,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -19606,10 +20339,10 @@
           "open": true
         },
         "ch10": {
-          "name": "腾越州",
-          "status": "边关",
-          "note": "",
-          "open": true
+          "name": "越赕（未建城，待考）",
+          "status": "未建或废弃",
+          "note": "腾充城为南诏时期所筑之说（待考）",
+          "open": false
         },
         "ch11": {
           "name": "腾越厅",
@@ -19638,7 +20371,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -19650,6 +20384,11 @@
       "region": "rg_yundian_qianzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "郎州（味县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "石城郡 / 东川一带（待考）",
           "status": "路府州县",
@@ -19762,9 +20501,9 @@
           "open": true
         },
         "ch10": {
-          "name": "曲靖府",
+          "name": "郎州（味县）",
           "status": "路府州县",
-          "note": "",
+          "note": "武德元年置南宁州，贞观八年改郎州，开元五年复为南宁州（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -19794,7 +20533,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -19806,6 +20546,11 @@
       "region": "rg_yundian_qianzhong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "矩州（羁縻）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "矩州一带（待考）",
           "status": "路府州县",
@@ -19920,9 +20665,9 @@
           "open": true
         },
         "ch10": {
-          "name": "贵阳府",
-          "status": "路府州县",
-          "note": "",
+          "name": "矩州（羁縻）",
+          "status": "边关",
+          "note": "黔州都督府辖羁縻矩州，武德四年置（新唐书）；治所今地待考",
           "open": true
         },
         "ch11": {
@@ -19952,7 +20697,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -19964,6 +20710,11 @@
       "region": "rg_yundian_qianzhong",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "播州（遵义县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "播州",
           "status": "路府州县",
@@ -20076,9 +20827,9 @@
           "open": true
         },
         "ch10": {
-          "name": "遵义府",
+          "name": "播州（遵义县）",
           "status": "路府州县",
-          "note": "",
+          "note": "贞观十六年罗蒙县更名遵义（新唐书）",
           "open": true
         },
         "ch11": {
@@ -20108,7 +20859,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -20120,6 +20872,11 @@
       "region": "rg_dali_cangshan",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "勐泐傣部（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "车里部（待考）",
           "status": "路府州县",
@@ -20161,7 +20918,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -20233,10 +20989,10 @@
           "open": true
         },
         "ch10": {
-          "name": "车里宣慰司",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "勐泐傣部（未建城）",
+          "status": "未建或废弃",
+          "note": "景陇国十二世纪始兴（待考）",
+          "open": false
         },
         "ch11": {
           "name": "车里宣慰司",
@@ -20265,7 +21021,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -20277,6 +21034,11 @@
       "region": "rg_qingzang",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "逻些（吐蕃）",
+          "status": "都城",
+          "note": ""
+        },
         "northern_song": {
           "name": "逻些 / 拉萨（待考）",
           "status": "路府州县",
@@ -20391,9 +21153,9 @@
           "open": true
         },
         "ch10": {
-          "name": "拉萨",
+          "name": "逻些（吐蕃）",
           "status": "都城",
-          "note": "",
+          "note": "吐蕃赞普都城；702 年赞普为器弩悉弄（都松芒波杰，704 年殁）",
           "open": true
         },
         "ch11": {
@@ -20423,7 +21185,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -20435,6 +21198,11 @@
       "region": "rg_qingzang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "年楚河谷（吐蕃，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "后藏日喀则地区所指治所（待考）",
           "status": "路府州县",
@@ -20473,7 +21241,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -20547,10 +21314,10 @@
           "open": true
         },
         "ch10": {
-          "name": "后藏日喀则地区所指治所（待考）",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "年楚河谷（吐蕃，未建城）",
+          "status": "未建或废弃",
+          "note": "702 年无可考城邑（待考）",
+          "open": false
         },
         "ch11": {
           "name": "后藏日喀则地区所指治所（待考）",
@@ -20579,7 +21346,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -20591,6 +21359,11 @@
       "region": "rg_qingzang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "两江口（吐蕃辖，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "昌都地区所指治所（待考）",
           "status": "路府州县",
@@ -20632,7 +21405,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -20706,10 +21478,10 @@
           "open": true
         },
         "ch10": {
-          "name": "昌都地区所指治所（待考）",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "两江口（吐蕃辖，未建城）",
+          "status": "未建或废弃",
+          "note": "702 年无可考城邑（待考）",
+          "open": false
         },
         "ch11": {
           "name": "昌都地区所指治所（待考）",
@@ -20738,7 +21510,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -20750,6 +21523,11 @@
       "region": "rg_qingzang",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "年楚河上游（吐蕃，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "江孜宗一带所指治所（待考）",
           "status": "路府州县",
@@ -20788,7 +21566,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -20860,10 +21637,10 @@
           "open": true
         },
         "ch10": {
-          "name": "江孜宗一带所指治所（待考）",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "年楚河上游（吐蕃，未建城）",
+          "status": "未建或废弃",
+          "note": "702 年无可考城邑（待考）",
+          "open": false
         },
         "ch11": {
           "name": "江孜宗一带所指治所（待考）",
@@ -20892,7 +21669,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -20904,6 +21682,11 @@
       "region": "rg_qingzang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "羊同故地（吐蕃，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "古格 / 阿里诸部（待考）",
           "status": "边关",
@@ -20945,7 +21728,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -21019,10 +21801,10 @@
           "open": true
         },
         "ch10": {
-          "name": "阿里地区（待考）",
-          "status": "边关",
-          "note": "",
-          "open": true
+          "name": "羊同故地（吐蕃，未建城）",
+          "status": "未建或废弃",
+          "note": "象雄（羊同）七世纪中叶并于吐蕃；古格十世纪始兴",
+          "open": false
         },
         "ch11": {
           "name": "阿里地区（待考）",
@@ -21051,7 +21833,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -21063,6 +21846,11 @@
       "region": "rg_qingzang",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "通天河渡口一带（吐蕃，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "结古一带所指治所（待考）",
           "status": "路府州县",
@@ -21104,7 +21892,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -21178,10 +21965,10 @@
           "open": true
         },
         "ch10": {
-          "name": "结古一带所指治所（待考）",
-          "status": "路府州县",
-          "note": "",
-          "open": true
+          "name": "通天河渡口一带（吐蕃，未建城）",
+          "status": "未建或废弃",
+          "note": "唐蕃古道所经，702 年无城邑（待考）",
+          "open": false
         },
         "ch11": {
           "name": "结古一带所指治所（待考）",
@@ -21210,7 +21997,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -21222,6 +22010,11 @@
       "region": "rg_hexilongyou",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "兰州（金城县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "兰州",
           "status": "路府州县",
@@ -21336,9 +22129,9 @@
           "open": true
         },
         "ch10": {
-          "name": "兰州府",
+          "name": "兰州（金城县）",
           "status": "路府州县",
-          "note": "",
+          "note": "五泉县咸亨二年（671）复为金城，天宝元年（742）改五泉（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -21368,7 +22161,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -21380,6 +22174,11 @@
       "region": "rg_hexilongyou",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "秦州（上邽县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "秦州",
           "status": "路府州县",
@@ -21492,7 +22291,7 @@
           "open": true
         },
         "ch10": {
-          "name": "秦州",
+          "name": "秦州（上邽县）",
           "status": "路府州县",
           "note": "",
           "open": true
@@ -21524,7 +22323,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -21536,6 +22336,11 @@
       "region": "rg_hexilongyou",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "平凉县（原州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "渭州 / 平凉府（待考）",
           "status": "路府州县",
@@ -21650,9 +22455,9 @@
           "open": true
         },
         "ch10": {
-          "name": "平凉府",
+          "name": "平凉县（原州）",
           "status": "路府州县",
-          "note": "",
+          "note": "原州治平高（今固原）",
           "open": true
         },
         "ch11": {
@@ -21682,7 +22487,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -21694,6 +22500,11 @@
       "region": "rg_hexilongyou",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "凉州（姑臧县）",
+          "status": "军镇",
+          "note": ""
+        },
         "northern_song": {
           "name": "西凉府（西夏）",
           "status": "军镇",
@@ -21807,9 +22618,9 @@
           "open": true
         },
         "ch10": {
-          "name": "凉州府",
+          "name": "凉州（姑臧县）",
           "status": "军镇",
-          "note": "",
+          "note": "凉州中都督府，赤水军驻城内（新唐书）",
           "open": true
         },
         "ch11": {
@@ -21839,7 +22650,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -21851,6 +22663,11 @@
       "region": "rg_hexilongyou",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "甘州（张掖县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "甘州（西夏）",
           "status": "军镇",
@@ -21964,9 +22781,9 @@
           "open": true
         },
         "ch10": {
-          "name": "甘州府",
-          "status": "军镇",
-          "note": "",
+          "name": "甘州（张掖县）",
+          "status": "路府州县",
+          "note": "西北百九十里有建康军，证圣元年（695）王孝杰置（新唐书）",
           "open": true
         },
         "ch11": {
@@ -21996,7 +22813,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -22008,6 +22826,11 @@
       "region": "rg_hexilongyou",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "肃州（酒泉县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "肃州（西夏）",
           "status": "边关",
@@ -22121,8 +22944,8 @@
           "open": true
         },
         "ch10": {
-          "name": "肃州",
-          "status": "边关",
+          "name": "肃州（酒泉县）",
+          "status": "路府州县",
           "note": "",
           "open": true
         },
@@ -22153,7 +22976,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -22165,6 +22989,11 @@
       "region": "rg_hexilongyou",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "沙州（敦煌县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "沙州（西夏）",
           "status": "边关",
@@ -22278,9 +23107,9 @@
           "open": true
         },
         "ch10": {
-          "name": "敦煌县境（待考）",
-          "status": "边关",
-          "note": "",
+          "name": "沙州（敦煌县）",
+          "status": "路府州县",
+          "note": "沙州下都督府；豆卢军神龙元年（705）始置（新唐书）",
           "open": true
         },
         "ch11": {
@@ -22310,7 +23139,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -22322,6 +23152,11 @@
       "region": "rg_xixia_helan",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "怀远县（灵州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "兴庆府（西夏都城）",
           "status": "都城",
@@ -22438,9 +23273,9 @@
           "open": true
         },
         "ch10": {
-          "name": "宁夏府",
+          "name": "怀远县（灵州）",
           "status": "路府州县",
-          "note": "",
+          "note": "灵州大都督府治回乐（今吴忠北）",
           "open": true
         },
         "ch11": {
@@ -22470,7 +23305,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -22482,6 +23318,11 @@
       "region": "rg_xixia_helan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "丰安军",
+          "status": "军镇",
+          "note": ""
+        },
         "northern_song": {
           "name": "鸣沙州一带（西夏，待考）",
           "status": "边关",
@@ -22595,9 +23436,9 @@
           "open": true
         },
         "ch10": {
-          "name": "中卫",
-          "status": "边关",
-          "note": "",
+          "name": "丰安军",
+          "status": "军镇",
+          "note": "万岁通天初（696）置，在灵武郡西黄河外一百八十余里（元和郡县图志卷四，今中宁石空）",
           "open": true
         },
         "ch11": {
@@ -22627,7 +23468,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -22639,6 +23481,11 @@
       "region": "rg_hexilongyou",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "鄯城县（鄯州）",
+          "status": "军镇",
+          "note": ""
+        },
         "northern_song": {
           "name": "鄯州 / 青唐城（待考）",
           "status": "边关",
@@ -22754,9 +23601,9 @@
           "open": true
         },
         "ch10": {
-          "name": "西宁府",
-          "status": "边关",
-          "note": "",
+          "name": "鄯城县（鄯州）",
+          "status": "军镇",
+          "note": "仪凤三年（678）置，河源军驻（新唐书）；鄯州治湟水（今乐都）",
           "open": true
         },
         "ch11": {
@@ -22786,7 +23633,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -22798,6 +23646,11 @@
       "region": "rg_xiyu_nanjiang",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "疏勒镇（疏勒都督府）",
+          "status": "军镇",
+          "note": ""
+        },
         "northern_song": {
           "name": "喀什噶尔 / 疏勒（待考）",
           "status": "商埠",
@@ -22916,9 +23769,9 @@
           "open": true
         },
         "ch10": {
-          "name": "喀什噶尔",
-          "status": "商埠",
-          "note": "",
+          "name": "疏勒镇（疏勒都督府）",
+          "status": "军镇",
+          "note": "安西四镇之一；长寿元年（692）王孝杰复四镇",
           "open": true
         },
         "ch11": {
@@ -22948,7 +23801,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -22960,6 +23814,11 @@
       "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "于阗镇（毗沙都督府）",
+          "status": "军镇",
+          "note": ""
+        },
         "northern_song": {
           "name": "于阗 / 和阗（待考）",
           "status": "商埠",
@@ -23075,9 +23934,9 @@
           "open": true
         },
         "ch10": {
-          "name": "和阗",
-          "status": "商埠",
-          "note": "",
+          "name": "于阗镇（毗沙都督府）",
+          "status": "军镇",
+          "note": "于阗王城；上元二年（675）置毗沙都督府（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -23107,7 +23966,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -23119,6 +23979,11 @@
       "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "莎车绿洲（疏勒、于阗间，待考）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "押儿牵 / 莎车（待考）",
           "status": "商埠",
@@ -23234,9 +24099,9 @@
           "open": true
         },
         "ch10": {
-          "name": "叶尔羌",
-          "status": "商埠",
-          "note": "",
+          "name": "莎车绿洲（疏勒、于阗间，待考）",
+          "status": "边关",
+          "note": "唐代建置与城址史料不足（待考）",
           "open": true
         },
         "ch11": {
@@ -23266,7 +24131,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -23278,6 +24144,11 @@
       "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "拨换城（姑墨州）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "龟兹以西诸城（待考）",
           "status": "商埠",
@@ -23393,9 +24264,9 @@
           "open": true
         },
         "ch10": {
-          "name": "阿克苏",
-          "status": "商埠",
-          "note": "",
+          "name": "拨换城（姑墨州）",
+          "status": "边关",
+          "note": "龟兹都督府辖，安西至疏勒道所经",
           "open": true
         },
         "ch11": {
@@ -23425,7 +24296,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -23437,6 +24309,11 @@
       "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "安西都护府（龟兹）",
+          "status": "军镇",
+          "note": ""
+        },
         "northern_song": {
           "name": "龟兹故地（待考）",
           "status": "商埠",
@@ -23550,9 +24427,9 @@
           "open": true
         },
         "ch10": {
-          "name": "库车",
-          "status": "商埠",
-          "note": "",
+          "name": "安西都护府（龟兹）",
+          "status": "军镇",
+          "note": "长寿元年复四镇，于龟兹置安西都护府（旧唐书）",
           "open": true
         },
         "ch11": {
@@ -23582,7 +24459,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -23594,6 +24472,11 @@
       "region": "rg_xiyu_nanjiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "焉耆都督府",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "焉耆一带（待考）",
           "status": "商埠",
@@ -23707,9 +24590,9 @@
           "open": true
         },
         "ch10": {
-          "name": "喀喇沙尔 / 库尔勒一带（待考）",
-          "status": "商埠",
-          "note": "",
+          "name": "焉耆都督府",
+          "status": "边关",
+          "note": "焉耆王城在博格达沁故城（锚点东北约 40 km）；702 年四镇为龟兹、于阗、疏勒、碎叶，焉耆开元七年（719）才复备四镇",
           "open": true
         },
         "ch11": {
@@ -23739,7 +24622,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -23751,6 +24635,11 @@
       "region": "rg_xiyu_beijiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "西州（高昌县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "高昌故地",
           "status": "商埠",
@@ -23866,9 +24755,9 @@
           "open": true
         },
         "ch10": {
-          "name": "吐鲁番",
-          "status": "商埠",
-          "note": "",
+          "name": "西州（高昌县）",
+          "status": "路府州县",
+          "note": "西州中都督府；贞观十四年（640）灭高昌置",
           "open": true
         },
         "ch11": {
@@ -23898,7 +24787,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -23910,6 +24800,11 @@
       "region": "rg_xiyu_beijiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "伊州（伊吾县）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "伊州 / 哈密一带（待考）",
           "status": "边关",
@@ -24023,8 +24918,8 @@
           "open": true
         },
         "ch10": {
-          "name": "哈密",
-          "status": "边关",
+          "name": "伊州（伊吾县）",
+          "status": "路府州县",
           "note": "",
           "open": true
         },
@@ -24055,7 +24950,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -24067,6 +24963,11 @@
       "region": "rg_xiyu_beijiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "轮台县（庭州）",
+          "status": "路府州县",
+          "note": ""
+        },
         "northern_song": {
           "name": "北庭以西草原（待考）",
           "status": "未建或废弃",
@@ -24099,6 +25000,7 @@
         }
       },
       "chapters": [
+        "ch10",
         "ch13",
         "ch14"
       ],
@@ -24170,10 +25072,10 @@
           "open": false
         },
         "ch10": {
-          "name": "迪化城（始建于1758后）",
-          "status": "未建或废弃",
-          "note": "",
-          "open": false
+          "name": "轮台县（庭州）",
+          "status": "路府州县",
+          "note": "贞观十四年与庭州同置（旧唐书）；长安二年（702）十二月庭州改置北庭都护府、置烛龙军（通鉴、元和郡县图志卷四十）；县城今址有乌拉泊古城等说（待考）",
+          "open": true
         },
         "ch11": {
           "name": "迪化州",
@@ -24202,7 +25104,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -24214,6 +25117,11 @@
       "region": "rg_xiyu_beijiang",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "弓月城（伊丽水）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "伊犁河谷部落（待考）",
           "status": "商埠",
@@ -24331,9 +25239,9 @@
           "open": true
         },
         "ch10": {
-          "name": "固勒扎一带（待考）",
-          "status": "商埠",
-          "note": "",
+          "name": "弓月城（伊丽水）",
+          "status": "边关",
+          "note": "庭州西行至弓月城、渡伊丽河至碎叶界（新唐书）；突骑施乌质勒以弓月城、伊丽水为小牙",
           "open": true
         },
         "ch11": {
@@ -24363,7 +25271,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -24375,6 +25284,11 @@
       "region": "rg_xiyu_beijiang",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "金山诸部（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "阿尔泰山诸部（待考）",
           "status": "边关",
@@ -24416,7 +25330,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -24490,10 +25403,10 @@
           "open": true
         },
         "ch10": {
-          "name": "阿尔泰山诸部（待考）",
-          "status": "边关",
-          "note": "",
-          "open": true
+          "name": "金山诸部（未建城）",
+          "status": "未建或废弃",
+          "note": "葛逻禄、后突厥游牧之地，702 年无城邑",
+          "open": false
         },
         "ch11": {
           "name": "阿尔泰山诸部（待考）",
@@ -24522,7 +25435,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -24535,6 +25449,11 @@
       "importance": "site",
       "location_confidence": "approximate_pending_research",
       "history": {
+        "tang": {
+          "name": "昆仑山道（于阗南山，通吐蕃）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "昆仑山道（待考）",
           "status": "边关",
@@ -24574,7 +25493,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -24648,10 +25566,10 @@
           "open": true
         },
         "ch10": {
-          "name": "昆仑山道（待考）",
+          "name": "昆仑山道（于阗南山，通吐蕃）",
           "status": "边关",
-          "note": "",
-          "open": true
+          "note": "山口交通锚点；702 年不开放（待考）",
+          "open": false
         },
         "ch11": {
           "name": "昆仑山道（待考）",
@@ -24680,7 +25598,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -24692,6 +25611,11 @@
       "region": "rg_liaodong",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "新城（安东都督府，今抚顺）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "沈州",
           "status": "军镇",
@@ -24809,9 +25733,9 @@
           "open": true
         },
         "ch10": {
-          "name": "盛京奉天府",
-          "status": "都城",
-          "note": "",
+          "name": "新城（安东都督府，今抚顺）",
+          "status": "边关",
+          "note": "仪凤二年（677）安东都护府移新城，圣历元年（698）改安东都督府（旧唐书）；锚点沈阳在新城西约 30 km（待考）",
           "open": true
         },
         "ch11": {
@@ -24841,7 +25765,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -24853,6 +25778,11 @@
       "region": "rg_liaodong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "辽东城（辽城州）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "东京辽阳府",
           "status": "都城",
@@ -24965,9 +25895,9 @@
           "open": true
         },
         "ch10": {
-          "name": "辽阳州",
-          "status": "路府州县",
-          "note": "",
+          "name": "辽东城（辽城州）",
+          "status": "边关",
+          "note": "安东都督府辖羁縻辽城州都督府（高句丽辽东城）；营州陷后与朝廷陆路隔绝（待考）",
           "open": true
         },
         "ch11": {
@@ -24997,7 +25927,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -25009,6 +25940,11 @@
       "region": "rg_liaoxi",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "辽西走廊（营州陷后无唐城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "锦州",
           "status": "军镇",
@@ -25050,7 +25986,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -25121,10 +26056,10 @@
           "open": true
         },
         "ch10": {
-          "name": "锦州府",
-          "status": "军镇",
-          "note": "",
-          "open": true
+          "name": "辽西走廊（营州陷后无唐城）",
+          "status": "未建或废弃",
+          "note": "万岁通天二年（697）营州为契丹所陷，神龙元年（705）侨治幽州界（旧唐书）",
+          "open": false
         },
         "ch11": {
           "name": "锦州府",
@@ -25153,7 +26088,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -25165,6 +26101,11 @@
       "region": "rg_liaoxi",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "辽西走廊南段（无唐城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "兴城一带（待考）",
           "status": "边关",
@@ -25203,7 +26144,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -25274,10 +26214,10 @@
           "open": true
         },
         "ch10": {
-          "name": "宁远州",
-          "status": "边关",
+          "name": "辽西走廊南段（无唐城）",
+          "status": "未建或废弃",
           "note": "",
-          "open": true
+          "open": false
         },
         "ch11": {
           "name": "宁远州",
@@ -25306,7 +26246,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -25318,6 +26259,11 @@
       "region": "rg_liaodong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "泊汋城（鸭绿江口）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "鸭绿江口军寨（待考）",
           "status": "边关",
@@ -25430,9 +26376,9 @@
           "open": true
         },
         "ch10": {
-          "name": "安东边地（待考）",
+          "name": "泊汋城（鸭绿江口）",
           "status": "边关",
-          "note": "",
+          "note": "高句丽泊汋城，安东都督府辖（待考）",
           "open": true
         },
         "ch11": {
@@ -25462,7 +26408,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -25474,6 +26421,11 @@
       "region": "rg_liaodong",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "建安城（建安州）",
+          "status": "边关",
+          "note": ""
+        },
         "northern_song": {
           "name": "辽河口商泊（待考）",
           "status": "商埠",
@@ -25583,9 +26535,9 @@
           "open": true
         },
         "ch10": {
-          "name": "没沟营 / 辽河口（待考）",
-          "status": "商埠",
-          "note": "",
+          "name": "建安城（建安州）",
+          "status": "边关",
+          "note": "羁縻建安州都督府，高句丽建安城在今盖州青石岭（锚点南约 30 km，待考）",
           "open": true
         },
         "ch11": {
@@ -25615,7 +26567,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -25627,6 +26580,11 @@
       "region": "rg_dongbei",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "粟末水靺鞨地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "辽东女真诸部（待考）",
           "status": "边关",
@@ -25668,7 +26626,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -25739,10 +26696,10 @@
           "open": true
         },
         "ch10": {
-          "name": "吉林乌拉",
-          "status": "边关",
-          "note": "",
-          "open": true
+          "name": "粟末水靺鞨地（未建城）",
+          "status": "未建或废弃",
+          "note": "698 年大祚荣于东牟山（今敦化）建震国",
+          "open": false
         },
         "ch11": {
           "name": "吉林乌拉",
@@ -25771,7 +26728,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -25783,6 +26741,11 @@
       "region": "rg_dongbei",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "粟末水下游靺鞨地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "松花江渡口（待考）",
           "status": "未建或废弃",
@@ -25879,7 +26842,7 @@
           "open": false
         },
         "ch10": {
-          "name": "阿勒锦村落（待考）",
+          "name": "粟末水下游靺鞨地（未建城）",
           "status": "未建或废弃",
           "note": "",
           "open": false
@@ -25911,7 +26874,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -25923,6 +26887,11 @@
       "region": "rg_dongbei",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "忽汗水靺鞨地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "渤海故地",
           "status": "未建或废弃",
@@ -25960,7 +26929,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -26033,10 +27001,10 @@
           "open": true
         },
         "ch10": {
-          "name": "宁古塔",
-          "status": "军镇",
-          "note": "",
-          "open": true
+          "name": "忽汗水靺鞨地（未建城）",
+          "status": "未建或废弃",
+          "note": "渤海上京八世纪中叶始建",
+          "open": false
         },
         "ch11": {
           "name": "宁古塔",
@@ -26065,7 +27033,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -26077,6 +27046,11 @@
       "region": "rg_dongbei",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "安车骨部地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "完颜部聚落 / 生女真地（待考）",
           "status": "未建或废弃",
@@ -26179,7 +27153,7 @@
           "open": false
         },
         "ch10": {
-          "name": "阿勒楚喀一带（待考）",
+          "name": "安车骨部地（未建城）",
           "status": "未建或废弃",
           "note": "",
           "open": false
@@ -26212,7 +27186,8 @@
       "sources": [
         "src_geonames",
         "src_chgis",
-        "src_acheng_jin"
+        "src_acheng_jin",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -26224,6 +27199,11 @@
       "region": "rg_dongbei",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "嫩江室韦地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "嫩江诸部（待考）",
           "status": "未建或废弃",
@@ -26258,7 +27238,6 @@
       "chapters": [
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -26329,10 +27308,10 @@
           "open": true
         },
         "ch10": {
-          "name": "齐齐哈尔城",
-          "status": "军镇",
+          "name": "嫩江室韦地（未建城）",
+          "status": "未建或废弃",
           "note": "",
-          "open": true
+          "open": false
         },
         "ch11": {
           "name": "黑龙江将军驻齐齐哈尔",
@@ -26361,7 +27340,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -26373,6 +27353,11 @@
       "region": "rg_dongbei",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "黑水靺鞨地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "黑水部落地（待考）",
           "status": "边关",
@@ -26478,8 +27463,8 @@
           "open": false
         },
         "ch10": {
-          "name": "瑷珲城",
-          "status": "边关",
+          "name": "黑水靺鞨地（未建城）",
+          "status": "未建或废弃",
           "note": "",
           "open": false
         },
@@ -26510,7 +27495,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -26522,6 +27508,11 @@
       "region": "rg_dongbei",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "室韦北境（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "黑龙江上游部落地（待考）",
           "status": "边关",
@@ -26556,7 +27547,6 @@
       "chapters": [
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -26627,10 +27617,10 @@
           "open": true
         },
         "ch10": {
-          "name": "黑龙江上游部落地（待考）",
-          "status": "边关",
+          "name": "室韦北境（未建城）",
+          "status": "未建或废弃",
           "note": "",
-          "open": true
+          "open": false
         },
         "ch11": {
           "name": "黑龙江上游部落地（待考）",
@@ -26659,7 +27649,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -26671,6 +27662,11 @@
       "region": "rg_dongbei",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "黑水北岸（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "黑龙江北岸部落地（待考）",
           "status": "边关",
@@ -26772,8 +27768,8 @@
           "open": false
         },
         "ch10": {
-          "name": "雅克萨城",
-          "status": "军镇",
+          "name": "黑水北岸（未建城）",
+          "status": "未建或废弃",
           "note": "",
           "open": false
         },
@@ -26804,7 +27800,8 @@
       },
       "sources": [
         "src_geonames_ru",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -26816,6 +27813,11 @@
       "region": "rg_monan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "松漠故地（契丹，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "上京临潢府南境 / 松州（待考）",
           "status": "军镇",
@@ -26857,7 +27859,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -26932,10 +27933,10 @@
           "open": true
         },
         "ch10": {
-          "name": "昭乌达盟（待考）",
-          "status": "军镇",
-          "note": "",
-          "open": true
+          "name": "松漠故地（契丹，未建城）",
+          "status": "未建或废弃",
+          "note": "贞观二十二年置松漠都督府；营州之乱后契丹附后突厥",
+          "open": false
         },
         "ch11": {
           "name": "昭乌达盟（待考）",
@@ -26964,7 +27965,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -26976,6 +27978,11 @@
       "region": "rg_monan",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "潢水契丹地（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "上京临潢府",
           "status": "都城",
@@ -27077,9 +28084,9 @@
           "open": false
         },
         "ch10": {
-          "name": "临潢故城",
+          "name": "潢水契丹地（未建城）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "辽上京神册三年（918）始建",
           "open": false
         },
         "ch11": {
@@ -27109,7 +28116,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -27121,6 +28129,11 @@
       "region": "rg_monan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "单于故城（安北都护辖，待考）",
+          "status": "军镇",
+          "note": ""
+        },
         "northern_song": {
           "name": "丰州一带（待考）",
           "status": "军镇",
@@ -27235,9 +28248,9 @@
           "open": true
         },
         "ch10": {
-          "name": "归化城",
-          "status": "商埠",
-          "note": "",
+          "name": "单于故城（安北都护辖，待考）",
+          "status": "军镇",
+          "note": "单于大都护府垂拱二年降为镇守使，圣历元年（698）改隶安北都护（唐会要卷七三，CHGIS 标安北都护府 698–707）；元和郡县图志称安北此时权理删丹西安城，治所两说待考",
           "open": true
         },
         "ch11": {
@@ -27267,7 +28280,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -27279,6 +28293,11 @@
       "region": "rg_monan",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "河北岸（未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "河套部落地（待考）",
           "status": "未建或废弃",
@@ -27313,7 +28332,6 @@
       "chapters": [
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -27387,10 +28405,10 @@
           "open": true
         },
         "ch10": {
-          "name": "包头村落（待考）",
-          "status": "商埠",
-          "note": "",
-          "open": true
+          "name": "河北岸（未建城）",
+          "status": "未建或废弃",
+          "note": "中受降城景龙二年（708）始筑；此前朔方军与突厥以河为界（唐会要）",
+          "open": false
         },
         "ch11": {
           "name": "包头村落（待考）",
@@ -27419,7 +28437,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -27431,6 +28450,11 @@
       "region": "rg_monan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "河南地（胜州、夏州间，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "河套 / 鄂尔多斯部地（待考）",
           "status": "边关",
@@ -27472,7 +28496,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -27546,10 +28569,10 @@
           "open": true
         },
         "ch10": {
-          "name": "河套 / 鄂尔多斯部地（待考）",
-          "status": "边关",
-          "note": "",
-          "open": true
+          "name": "河南地（胜州、夏州间，未建城）",
+          "status": "未建或废弃",
+          "note": "胜州治榆林（今准格尔旗十二连城），锚点无唐城",
+          "open": false
         },
         "ch11": {
           "name": "河套 / 鄂尔多斯部地（待考）",
@@ -27578,7 +28601,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -27590,6 +28614,11 @@
       "region": "rg_monan",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "漠南草原（奚、后突厥牧地，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "漠南草原营地（待考）",
           "status": "边关",
@@ -27631,7 +28660,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -27705,10 +28733,10 @@
           "open": true
         },
         "ch10": {
-          "name": "漠南草原营地（待考）",
-          "status": "边关",
+          "name": "漠南草原（奚、后突厥牧地，未建城）",
+          "status": "未建或废弃",
           "note": "",
-          "open": true
+          "open": false
         },
         "ch11": {
           "name": "漠南草原营地（待考）",
@@ -27737,7 +28765,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -27749,6 +28778,11 @@
       "region": "rg_mobei",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "于都斤山东麓（后突厥牙帐一带，未建城）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "漠北草原",
           "status": "未建或废弃",
@@ -27853,9 +28887,9 @@
           "open": false
         },
         "ch10": {
-          "name": "哈拉和林故址",
+          "name": "于都斤山东麓（后突厥牙帐一带，未建城）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "后突厥牙帐为游牧帐落，非城邑（待考）",
           "open": false
         },
         "ch11": {
@@ -27885,7 +28919,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -27897,6 +28932,11 @@
       "region": "rg_donghai_islands",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "流求北部（未设治）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "台北盆地聚落（待考）",
           "status": "未建或废弃",
@@ -28001,7 +29041,7 @@
           "open": false
         },
         "ch10": {
-          "name": "台北府未建（艋舺聚落尚晚）",
+          "name": "流求北部（未设治）",
           "status": "未建或废弃",
           "note": "",
           "open": false
@@ -28033,7 +29073,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -28045,6 +29086,11 @@
       "region": "rg_donghai_islands",
       "importance": "capital",
       "history": {
+        "tang": {
+          "name": "流求西南（未设治）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "大员一带原住民聚落（待考）",
           "status": "未建或废弃",
@@ -28151,8 +29197,8 @@
           "open": false
         },
         "ch10": {
-          "name": "承天府 / 台湾府",
-          "status": "路府州县",
+          "name": "流求西南（未设治）",
+          "status": "未建或废弃",
           "note": "",
           "open": false
         },
@@ -28184,7 +29230,8 @@
       "sources": [
         "src_geonames",
         "src_chgis",
-        "src_tainan_history"
+        "src_tainan_history",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -28196,6 +29243,11 @@
       "region": "rg_donghai_islands",
       "importance": "secondary",
       "history": {
+        "tang": {
+          "name": "流求西南沿海（未设治）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "打狗一带原住民聚落（待考）",
           "status": "未建或废弃",
@@ -28299,8 +29351,8 @@
           "open": false
         },
         "ch10": {
-          "name": "打狗港",
-          "status": "商埠",
+          "name": "流求西南沿海（未设治）",
+          "status": "未建或废弃",
           "note": "",
           "open": false
         },
@@ -28331,7 +29383,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -28343,6 +29396,11 @@
       "region": "rg_donghai_islands",
       "importance": "major",
       "history": {
+        "tang": {
+          "name": "澎湖屿（未设治）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "澎湖屿（待考）",
           "status": "商埠",
@@ -28384,7 +29442,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -28457,10 +29514,10 @@
           "open": true
         },
         "ch10": {
-          "name": "澎湖水师协",
-          "status": "军镇",
-          "note": "",
-          "open": true
+          "name": "澎湖屿（未设治）",
+          "status": "未建或废弃",
+          "note": "南宋始隶泉州晋江县（待考）",
+          "open": false
         },
         "ch11": {
           "name": "澎湖水师协",
@@ -28489,7 +29546,8 @@
       },
       "sources": [
         "src_geonames",
-        "src_chgis"
+        "src_chgis",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -28502,6 +29560,11 @@
       "importance": "site",
       "location_confidence": "approximate_pending_research",
       "history": {
+        "tang": {
+          "name": "桃花岛（小说）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "桃花岛（小说）",
           "status": "未建或废弃",
@@ -28542,7 +29605,6 @@
         "ch07",
         "ch08",
         "ch09",
-        "ch10",
         "ch11",
         "ch12",
         "ch13",
@@ -28614,8 +29676,8 @@
         "ch10": {
           "name": "桃花岛（小说）",
           "status": "未建或废弃",
-          "note": "",
-          "open": true
+          "note": "小说锚点，702 年唐代层不开放",
+          "open": false
         },
         "ch11": {
           "name": "桃花岛（小说）",
@@ -28644,7 +29706,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -28657,6 +29720,11 @@
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
+        "tang": {
+          "name": "神龙岛（小说，待考确址）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "神龙岛（小说，待考确址）",
           "status": "未建或废弃",
@@ -28757,7 +29825,7 @@
         "ch10": {
           "name": "神龙岛（小说，待考确址）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "小说锚点，702 年唐代层不开放",
           "open": false
         },
         "ch11": {
@@ -28787,7 +29855,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -28800,6 +29869,11 @@
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
+        "tang": {
+          "name": "侠客岛（小说，待考确址）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "侠客岛（小说，待考确址）",
           "status": "未建或废弃",
@@ -28900,7 +29974,7 @@
         "ch10": {
           "name": "侠客岛（小说，待考确址）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "小说锚点，702 年唐代层不开放",
           "open": false
         },
         "ch11": {
@@ -28930,7 +30004,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -28943,6 +30018,11 @@
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
+        "tang": {
+          "name": "灵蛇岛（小说，待考确址）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "灵蛇岛（小说，待考确址）",
           "status": "未建或废弃",
@@ -29041,7 +30121,7 @@
         "ch10": {
           "name": "灵蛇岛（小说，待考确址）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "小说锚点，702 年唐代层不开放",
           "open": false
         },
         "ch11": {
@@ -29071,7 +30151,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -29084,6 +30165,11 @@
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
+        "tang": {
+          "name": "冰火岛（小说，待考确址）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "冰火岛（小说，待考确址）",
           "status": "未建或废弃",
@@ -29182,7 +30268,7 @@
         "ch10": {
           "name": "冰火岛（小说，待考确址）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "小说锚点，702 年唐代层不开放",
           "open": false
         },
         "ch11": {
@@ -29212,7 +30298,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -29225,6 +30312,11 @@
       "importance": "site",
       "location_confidence": "approximate_fictional",
       "history": {
+        "tang": {
+          "name": "王盘山岛（小说，待考确址）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "王盘山岛（小说，待考确址）",
           "status": "未建或废弃",
@@ -29323,7 +30415,7 @@
         "ch10": {
           "name": "王盘山岛（小说，待考确址）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "小说锚点，702 年唐代层不开放",
           "open": false
         },
         "ch11": {
@@ -29353,7 +30445,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -29366,6 +30459,11 @@
       "importance": "site",
       "location_confidence": "approximate_original_placement",
       "history": {
+        "tang": {
+          "name": "南海飞仙岛白云城（待考）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "南海飞仙岛白云城（待考）",
           "status": "未建或废弃",
@@ -29467,7 +30565,7 @@
         "ch10": {
           "name": "南海飞仙岛白云城（待考）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "小说锚点，702 年唐代层不开放",
           "open": false
         },
         "ch11": {
@@ -29497,7 +30595,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     },
@@ -29510,6 +30609,11 @@
       "importance": "site",
       "location_confidence": "approximate_original_placement",
       "history": {
+        "tang": {
+          "name": "蝙蝠岛（待考）",
+          "status": "未建或废弃",
+          "note": ""
+        },
         "northern_song": {
           "name": "蝙蝠岛（待考）",
           "status": "未建或废弃",
@@ -29611,7 +30715,7 @@
         "ch10": {
           "name": "蝙蝠岛（待考）",
           "status": "未建或废弃",
-          "note": "",
+          "note": "小说锚点，702 年唐代层不开放",
           "open": false
         },
         "ch11": {
@@ -29641,7 +30745,8 @@
       },
       "sources": [
         "src_sect17",
-        "src_ne"
+        "src_ne",
+        "src_tang_702"
       ],
       "coordinate_precision": "0.01 degree; WGS84"
     }
