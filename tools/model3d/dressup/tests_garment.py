@@ -118,6 +118,21 @@ def write_target_body(source_body: Path, source_skeleton: Path, output: Path) ->
     return body_path, skeleton_path
 
 
+FIXTURE_VOLATILE_STATS = ("elapsedSec", "peakMemoryMiB")
+
+
+def _keep_volatile_stats(path: Path, previous: str | None) -> None:
+    """入库夹具的 fit.json 里耗时 / 峰值内存是非确定统计：重生成后沿用上一版的值，夹具文件逐字节可复现。"""
+    if previous is None or not path.exists():
+        return
+    old = json.loads(previous).get("stats", {})
+    data = json.loads(path.read_text(encoding="utf-8"))
+    for key in FIXTURE_VOLATILE_STATS:
+        if key in old and key in data.get("stats", {}):
+            data["stats"][key] = old[key]
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
 def build_bodysuit_fixture(root: Path) -> tuple[Path, Path, dict]:
     """从当前正本确定性生成无 skin 贴身壳，并以严格模式贴合。"""
     template = root / "assets/default/model3d/dressup/templates/tpl_f_medium"
@@ -190,6 +205,7 @@ def build_bodysuit_fixture(root: Path) -> tuple[Path, Path, dict]:
     mesh_index = builder.add_mesh(mesh); node = builder.add_node(name=mesh.name, mesh=mesh_index)
     builder.add_scene([node], name="FixtureScene"); output.mkdir(parents=True, exist_ok=True)
     raw_path = output / "_fixture_bodysuit_raw.glb"; builder.write(raw_path); raw_path.chmod(0o644)
+    fit_path = output / "fit.json"; previous = fit_path.read_text(encoding="utf-8") if fit_path.exists() else None
     result = fit_file(body_path, skeleton_path, raw_path, output, "garment", "body",
                       "_fixture_bodysuit", push_mm=3.0, iters=80, coverage=0.65)
     result["fixtureInput"] = {"seed": 102, "baseOffsetMm": 4.0, "noiseAmplitudeMm": 3.0,
@@ -197,8 +213,8 @@ def build_bodysuit_fixture(root: Path) -> tuple[Path, Path, dict]:
                               "aggregationVoxelMu": voxel_mu,
                               "noiseComponentRangeMm": [float(noise_mm.min()), float(noise_mm.max())],
                               "prefitInsideFraction": prefit_inside}
-    (output / "fit.json").write_text(
-        json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    fit_path.write_text(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    _keep_volatile_stats(fit_path, previous)
     return raw_path, output / "_fixture_bodysuit.glb", result
 
 
@@ -352,6 +368,7 @@ def test_file_nonidentity_refit() -> None:
     template = root / "assets/default/model3d/dressup/templates/tpl_f_medium"
     source_dir = root / "assets/default/model3d/dressup/garments/_fixture_bodysuit"
     target_dir = source_dir / "refit_nonidentity"; target_template = target_dir / "template"
+    fit_path = target_dir / "fit.json"; previous = fit_path.read_text(encoding="utf-8") if fit_path.exists() else None
     body_path, skeleton_path = write_target_body(
         template / "body.glb", template / "skeleton.json", target_template)
     result = refit_file(template / "body.glb", template / "skeleton.json",
@@ -373,6 +390,7 @@ def test_file_nonidentity_refit() -> None:
                        "--garment", str(source_dir / "_fixture_bodysuit.glb"),
                        "--fit", str(source_dir / "fit.json"), "--out", str(target_dir),
                        "--json"]) == 0
+    _keep_volatile_stats(fit_path, previous)
 
 
 def test_units_skull_and_regions() -> None:
@@ -929,6 +947,173 @@ def test_file_identity_and_region() -> None:
         assert accessor["componentType"] == 5121 and accessor["type"] == "SCALAR"
 
 
+class _NodeTree:
+    """apply_arm_abduction 只读 json["nodes"] 的名字与 parents（子 → 父）。"""
+
+    def __init__(self, names: list[str], parents: dict[int, int]) -> None:
+        self.json = {"nodes": [{"name": name} for name in names]}; self.parents = parents
+
+
+def _rigid(rng: np.random.Generator) -> np.ndarray:
+    q, _ = np.linalg.qr(rng.normal(size=(3, 3))); q *= np.sign(np.linalg.det(q))
+    matrix = np.eye(4); matrix[:3, :3] = q; matrix[:3, 3] = rng.normal(size=3); return matrix
+
+
+def test_arm_abduction_rotates_arm_subtrees_about_model_forward() -> None:
+    """E2c 外展（与运行时 actor 同口径）：左右 Arm 子树在各自动画后的肩关节处绕模型 +Z 转 ±θ，其余节点逐字节不变；
+    0 度原样返回；名字带命名空间也认；fit 只认 garment 的 0..20 度。"""
+    from validate import _world_matrices, apply_arm_abduction, arm_abduction_deg
+    names = ["mixamorig:Hips", "mixamorig:Spine", "mixamorig:LeftShoulder", "mixamorig:LeftArm",
+             "mixamorig:LeftForeArm", "mixamorig:RightShoulder", "mixamorig:RightArm", "mixamorig:RightForeArm",
+             "mixamorig:Head"]
+    tree = _NodeTree(names, {1: 0, 2: 1, 3: 2, 4: 3, 5: 1, 6: 5, 7: 6, 8: 1})
+    world = np.stack([_rigid(np.random.default_rng(index)) for index in range(len(names))])
+    assert apply_arm_abduction(tree, world, 0.0) is world
+    turned = apply_arm_abduction(tree, world, 6.0)
+    for root, nodes, sign in ((3, (3, 4), 1.0), (6, (6, 7), -1.0)):
+        angle = math.radians(sign * 6.0); c, s = math.cos(angle), math.sin(angle)
+        pivot = world[root][:3, 3]; rotate = np.eye(4); rotate[:2, :2] = [[c, -s], [s, c]]
+        expected = np.eye(4); expected[:3, 3] = pivot; back = np.eye(4); back[:3, 3] = -pivot
+        for node in nodes:
+            np.testing.assert_allclose(turned[node], expected @ rotate @ back @ world[node], atol=1e-12)
+    for node in (0, 1, 2, 5, 8):
+        assert np.array_equal(turned[node], world[node])
+    try:
+        apply_arm_abduction(_NodeTree(names + ["LeftArm"], {1: 0, 2: 1, 3: 2, 4: 3, 5: 1, 6: 5, 7: 6, 8: 1}),
+                            np.concatenate((world, world[:1])), 6.0)
+    except ValueError as error:
+        assert "LeftArm" in str(error)
+    else:
+        raise AssertionError("重名 LeftArm 应报错")
+    assert arm_abduction_deg({"kind": "garment", "poseOffset": {"armAbductionDeg": 6}}) == 6.0
+    assert arm_abduction_deg({"kind": "head", "poseOffset": {"armAbductionDeg": 6}}) == 0.0
+    assert arm_abduction_deg({"kind": "garment"}) == 0.0
+    for bad in (25, -1, True, "6", float("nan")):
+        try:
+            arm_abduction_deg({"kind": "garment", "poseOffset": {"armAbductionDeg": bad}})
+        except ValueError:
+            continue
+        raise AssertionError(f"{bad!r} 应报错")
+    # 真实模板：带外展的动作采样 = 不带外展的采样再外展；双手向外移
+    root = Path(__file__).resolve().parents[3]
+    body = load_glb(root / "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb")
+    idle = next(item for item in body.json["animations"] if "idle" in str(item.get("name", "")).lower())
+    plain, sampled = _world_matrices(body, idle, .4), _world_matrices(body, idle, .4, 6.0)
+    np.testing.assert_allclose(sampled, apply_arm_abduction(body, plain, 6.0), atol=1e-12)
+    short = [str(node.get("name", "")).rsplit(":", 1)[-1] for node in body.json["nodes"]]
+    for side, sign in (("Left", 1.0), ("Right", -1.0)):
+        hand = short.index(f"{side}Hand")
+        assert sign * (sampled[hand][0, 3] - plain[hand][0, 3]) > .01, side
+
+
+def _pose_grid(x0: float, columns: int, z: float, step: float = 5.0) -> tuple[np.ndarray, np.ndarray]:
+    xs, ys = np.meshgrid(x0 + step * np.arange(columns), step * np.arange(9), indexing="ij")
+    points = np.column_stack((xs.ravel(), ys.ravel(), np.full(xs.size, z)))
+    index = np.arange(xs.size).reshape(xs.shape); faces = []
+    for i in range(columns - 1):
+        for j in range(8):
+            a, b, c, d = index[i, j], index[i + 1, j], index[i, j + 1], index[i + 1, j + 1]
+            faces += [(a, b, d), (a, d, c)]
+    return points, np.asarray(faces, dtype=np.int64)
+
+
+def test_pose_skin_solver_local_tear_and_collision() -> None:
+    """E2c 平滑姿势蒙皮（合成，1 mu = 1 mm）：骨 0、2 静止，骨 1 在 walk 帧右移 120 mm、run 帧下沉 10 mm。
+    ① 撕裂带：左半绑 0、右半绑 1 → 交界边伸长 120 mm；解后最大伸长回到伸长铰链阈附近（去掉伸长铰链与撕裂平滑时为
+    44 mm，已实测）。② 远处棋盘格（骨 0 / 骨 2 交替，二者都不动、无问题）：局部化下保持强先验，最高频图案也只被基础平滑
+    抹掉约 0.15（先验处处弱时约 0.6，已实测）。
+    ③ 碰撞带：整片绑 1、离地面 5 mm，下沉 10 mm → 可见穿入 5 mm；解后不再穿入。④ 地面全被遮罩隐藏时碰撞带不改。
+    ⑤ 同输入两次逐位相同；每行至多 4 骨、和为 1。"""
+    from fit_garment import POSE_SKIN_STRETCH_MM, PoseFrame, _pose_skin_solve
+    tear_points, tear_faces = _pose_grid(0.0, 61, 30.0)                 # x 0..300，交界 x = 150
+    hit_points, hit_faces = _pose_grid(400.0, 13, 5.0)                  # x 400..460，贴地 5 mm
+    points = np.concatenate((tear_points, hit_points))
+    faces = np.concatenate((tear_faces, hit_faces + len(tear_points)))
+    edges = np.unique(np.sort(np.concatenate((faces[:, [0, 1]], faces[:, [1, 2]], faces[:, [2, 0]])), axis=1), axis=0)
+    base = np.zeros((len(points), 3)); moving = points[:, 0] >= 150.0
+    base[~moving, 0] = 1.0; base[moving, 1] = 1.0
+    far = np.flatnonzero(points[:, 0] <= 15.0)                          # 棋盘格：骨 0 / 骨 2 交替
+    checker = far[(np.round(points[far, 0] / 5.0) + np.round(points[far, 1] / 5.0)) % 2 == 1]
+    base[checker, 0], base[checker, 2] = 0.0, 1.0
+    allowed = np.ones_like(base, dtype=bool); loose = np.ones(len(points))
+    gx, gy = np.meshgrid(np.arange(-20.0, 600.0, 2.5), np.arange(-20.0, 65.0, 2.5), indexing="ij")
+    ground = np.column_stack((gx.ravel(), gy.ravel(), np.zeros(gx.size)))
+    up = np.tile([0.0, 0.0, 1.0], (len(ground), 1))
+
+    def bones(offset: tuple[float, float, float]) -> np.ndarray:
+        matrices = np.stack((np.eye(4), np.eye(4), np.eye(4))); matrices[1, :3, 3] = offset; return matrices
+    frames = [PoseFrame("idle", bones((0.0, 0.0, 0.0)), ground, up),
+              PoseFrame("walk", bones((120.0, 0.0, 0.0)), ground, up),
+              PoseFrame("run", bones((0.0, 0.0, -10.0)), ground, up)]
+
+    def solve(hidden: np.ndarray | None) -> np.ndarray:
+        return _pose_skin_solve(points, edges, base, allowed, loose, frames, 1.0, hidden, rounds=6, refit_rounds=4)[0]
+    weights = solve(None)
+    assert np.array_equal(weights, solve(None))
+    assert np.all(weights >= 0) and np.all(np.count_nonzero(weights, axis=1) <= 4)
+    np.testing.assert_allclose(weights.sum(axis=1), 1.0, atol=1e-9)
+    rest = np.linalg.norm(points[edges[:, 1]] - points[edges[:, 0]], axis=1)
+    growth = 0.0
+    for frame in frames:
+        posed = np.einsum("vj,jab,vb->va", weights, frame.skin, np.c_[points, np.ones(len(points))])[:, :3]
+        growth = max(growth, float((np.linalg.norm(posed[edges[:, 1]] - posed[edges[:, 0]], axis=1) - rest).max()))
+    assert growth <= POSE_SKIN_STRETCH_MM + 5.0, growth
+    assert np.abs(weights[far] - base[far]).max() < .25, np.abs(weights[far] - base[far]).max()
+    hit = len(tear_points) + np.arange(len(hit_points))
+    sunk = np.einsum("vj,jab,vb->va", weights[hit], frames[2].skin, np.c_[hit_points, np.ones(len(hit_points))])[:, 2]
+    assert sunk.min() > -1.0, sunk.min()
+    hidden_weights = solve(np.ones(len(ground), dtype=bool))
+    assert np.abs(hidden_weights[hit] - base[hit]).max() < .02
+
+
+def _dynamic_topology(template: Path, garment: Path, fit: dict[str, Any]) -> tuple[float, int]:
+    """72 帧（idle / walk / run 各 24，含 fit 声明的手臂外展）边最大伸长（mm）与塌缩三角数（面积 < bind 5%）。"""
+    from validate import _world_matrices, arm_abduction_deg
+    from common import lbs
+    body = load_glb(template / "body.glb"); asset = load_glb(garment)
+    mesh = load_world_mesh(asset, skinned_only=True)
+    skeleton_doc = json.loads((template / "skeleton.json").read_text(encoding="utf-8"))
+    mm = 1000.0 * float(skeleton_doc["mPerMu"]); degrees = arm_abduction_deg(fit)
+    faces = mesh.indices.reshape(-1, 3)
+    edges = np.unique(np.sort(np.concatenate((faces[:, [0, 1]], faces[:, [1, 2]], faces[:, [2, 0]])), axis=1), axis=0)
+    points = mesh.positions.astype(np.float64)
+    rest = np.linalg.norm(points[edges[:, 1]] - points[edges[:, 0]], axis=1) * mm
+    def areas(x: np.ndarray) -> np.ndarray:
+        return .5 * np.linalg.norm(np.cross(x[faces[:, 1]] - x[faces[:, 0]], x[faces[:, 2]] - x[faces[:, 0]]), axis=1)
+    bind_area = areas(points); collapsed = np.zeros(len(faces), dtype=bool); growth = 0.0
+    skin = body.skin(); joints = np.asarray(skin.joints)
+    for clip in ("idle", "walk", "run"):
+        animation = next(item for item in body.json["animations"] if clip in str(item.get("name", "")).lower())
+        duration = max(float(np.asarray(body.accessor(item["input"])).max(initial=0)) for item in animation["samplers"])
+        for time_sec in np.linspace(0.0, duration, 24, endpoint=False):
+            world = _world_matrices(body, animation, float(time_sec), degrees)[joints]
+            posed = lbs(mesh.positions, mesh.joints, mesh.weights, world, asset.skin().inverse_bind_matrices)
+            length = np.linalg.norm(posed[edges[:, 1]] - posed[edges[:, 0]], axis=1) * mm
+            growth = max(growth, float((length - rest).max()))
+            collapsed |= (bind_area > 1e-12) & (areas(posed) < .05 * bind_area)
+    return growth, int(np.count_nonzero(collapsed))
+
+def test_delivered_garments_dynamic_topology() -> None:
+    """E2c 72 帧动态拓扑门（裁定 10-10 14:30 第 3 条）：劲装 / 布衣三体型交付件声明了手臂外展，按声明角度采样 idle /
+    walk / run 各 24 帧，边最大伸长 ≤ 30 mm（E2c 前主干 E2b 版 103 mm、traex 版 659 mm）。塌缩三角（任一帧面积 < bind 5%）
+    只打印不设门：主干 E2b 版同口径已有百余个，都在胯、腋下、肘、胸下折痕（见 E2c 报告与补充裁定）。"""
+    from validate import arm_abduction_deg
+    from fit_garment import POSE_SKIN_TEAR_MM
+    root = Path(__file__).resolve().parents[3]
+    garments = root / "assets/default/model3d/dressup/garments"
+    for garment in ("eq_jinzhuang", "eq_buyi"):
+        for template in ("tpl_f_medium", "tpl_f_tall", "tpl_f_small"):
+            suffix = "" if template == "tpl_f_medium" else f".{template}"
+            fit = json.loads((garments / garment / f"fit{suffix}.json").read_text(encoding="utf-8"))
+            assert arm_abduction_deg(fit) > 0.0, (garment, template)
+            # 裁定 10-10 14:30 第 2 条：采样中伸长超过 8 mm 的边加强平滑；产物与工具常量都不得漂移
+            assert fit["weights"]["poseSkin"]["params"]["tearMm"] == POSE_SKIN_TEAR_MM == 8.0, (garment, template)
+            growth, collapsed = _dynamic_topology(root / "assets/default/model3d/dressup/templates" / template,
+                                                  garments / garment / f"{garment}{suffix}.glb", fit)
+            print(f"  {garment}{suffix}: 72 帧最大边伸长 {growth:.1f} mm，塌缩三角 {collapsed}")
+            assert growth <= 30.0, (garment, template, growth)
+
+
 def main() -> int:
     tests = [test_weight_transfer_and_filter, test_edge_template_weights_blend_thirty_mm,
              test_full_template_weight_transfer_is_normalized,
@@ -948,7 +1133,8 @@ def main() -> int:
              test_untangle_flips_diagonal_of_flipped_sliver, test_untangle_writes_indices_in_place,
              test_reference_repair_only_touches_contaminated_texels, test_variant_base_replaces_image_losslessly,
              test_delivered_variant_skin_provenance, test_variant_base_keeps_non_target_texels_of_real_base,
-             test_file_identity_and_region]
+             test_file_identity_and_region, test_arm_abduction_rotates_arm_subtrees_about_model_forward,
+             test_pose_skin_solver_local_tear_and_collision, test_delivered_garments_dynamic_topology]
     failed = 0
     for test in tests:
         try:

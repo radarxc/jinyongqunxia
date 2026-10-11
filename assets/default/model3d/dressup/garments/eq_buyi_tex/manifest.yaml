@@ -14,7 +14,8 @@
     plate:
       path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png
       sha256: 3f1881b361bb2ca696da6f2abb338748b6896a4d2b9c9727da6653e317f1fc5c
-  sha256: 04e28fe98ea3252d65887dbaad62a674d43a5f747819120894dbb74eaf048b92
-  size_bytes: 1710142
+  sha256: 6f9aeb2ad8183428666e0862471ac77b8c74417d371742fd46fc6c4dce1dc1ce
+  size_bytes: 1713186
   status: draft
   created: '2026-10-08T15:59:29-07:00'
+  notes: E2c（2026-10-10）随布衣按 E2c 劲装版型重出：layer.json 的 source 指向交付的 eq_buyi.glb（仓库相对路径、哈希与文件一致）；贴图层与 E2b 版相比 0.18% 像素有 ≤ 48 级差异（逐骨 LBS 对齐用到新权重），透明度逐像素不变。

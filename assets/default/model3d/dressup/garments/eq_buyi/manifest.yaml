@@ -15,34 +15,33 @@
       report: report.json
       hideMask: hidemask.png
       status: draft
-      gateLevel: fail
-      sha256: be45941ee30c0abb9f99a775bc69b30fe2f3c5f017ba0ef84c63d4454c646373
-      size_bytes: 1246696
+      gateLevel: draft
+      sha256: 54e3753c64a8b7bbfdc81bd8a3f2473d08ee48a45c3476fb37192c327a696eca
+      size_bytes: 1242128
     tpl_f_small:
       file: eq_buyi.tpl_f_small.glb
       fit: fit.tpl_f_small.json
       report: report.tpl_f_small.json
       hideMask: hidemask.tpl_f_small.png
       status: draft
-      gateLevel: fail
-      sha256: 7b2209e2f57a47f18d1099d296ee5e49eb3b010d802d954594858c328c7491ca
-      size_bytes: 1246852
+      gateLevel: draft
+      sha256: 8aadbba93c702760e57abfe35b0d8bd512cfbbc874f7fe8f417fb3d68becffc0
+      size_bytes: 1240084
     tpl_f_tall:
       file: eq_buyi.tpl_f_tall.glb
       fit: fit.tpl_f_tall.json
       report: report.tpl_f_tall.json
       hideMask: hidemask.tpl_f_tall.png
       status: draft
-      gateLevel: fail
-      sha256: e202c43e2620a056aea0d0657112492b1371625ca9c24a736bc54ada2f8ea905
-      size_bytes: 1247688
-  sha256: be45941ee30c0abb9f99a775bc69b30fe2f3c5f017ba0ef84c63d4454c646373
-  size_bytes: 1246696
+      gateLevel: draft
+      sha256: e4483b9a3ac4310477233dd27e83d9fbf69940f79dd1c343f9133b3e58889c18
+      size_bytes: 1243436
+  sha256: 54e3753c64a8b7bbfdc81bd8a3f2473d08ee48a45c3476fb37192c327a696eca
+  size_bytes: 1242128
   triangles: 25836
   status: draft
-  experimental: true
-  gateLevel: fail
-  tool: tools/model3d/dressup/variant_base.py + retexture_variant.py + pack_glb.mjs
+  gateLevel: draft
+  tool: tools/model3d/dressup/variant_base.py + retexture_variant.py + pack_glb.mjs（版型为 E2c 劲装）
   created: '2026-10-08T15:59:28-07:00'
   source:
     base_plate:
@@ -51,8 +50,7 @@
     plate:
       path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png
       sha256: 3f1881b361bb2ca696da6f2abb338748b6896a4d2b9c9727da6653e317f1fc5c
-  notes: 'E2b（2026-10-09）以新劲装为版型重生成（版型副本先经 variant_base.py 按来源修补原皮肤污染区）：几何与遮罩同劲装（hidemask*.png 为劲装同名遮罩的逐字节副本——构建不允许跨目录引用），三模板
-    validate 几何门全过、bind 穿透 0；肤色残留按来源计（交付 JPEG 解码后，原皮肤污染区内落在 retexture Lab 盒的纹素）0.0008%（12 / 1,502,618）；全图 variantSkinRatio=0.001193
-    为参考指标（含布衣自身浅色布面高光，原画衣服区 1.85% 落在同一盒内），variantFillRatio=1.0。未过项同劲装（动画穿插拆给 E2c）：{"tpl_f_medium": ["penetration.idle.visible",
-    "penetration.walk.visible", "holes.run.visible"], "tpl_f_small": ["penetration.idle.visible", "penetration.walk.visible",
-    "holes.run.visible"], "tpl_f_tall": ["penetration.idle.visible", "penetration.walk.visible", "holes.run.visible"]}。'
+  notes: E2c（2026-10-10，Claude 实现，AR-110）：以 E2c 劲装为版型重生成（几何、权重、外展、遮罩同劲装；遮罩为劲装同名文件的逐字节副本）；劲装在 E2b 交付网格上按姿势重解蒙皮（fit_garment.py --pose-skin，几何 /
+    贴图 / 源映射不变），fit.json 声明 poseOffset.armAbductionDeg = 6（运行时 actor、validate、遮罩烘焙同口径外展）；固定目标的高斯-牛顿 + LM 线搜索：边平滑（撕裂边加强）+ 贴近原权重（只在撕裂 / 可见穿入点附近放松）+
+    穿入与伸长铰链，截 4 骨后再解，收尾对 72 帧仍超 28 mm 的少数边做局部拉普拉斯平滑；随后按外展重烘可见性遮罩。三模板三项门全过：可见穿透 idle ≤ 0.56%、walk ≤ 0.68%、run ≤ 1.26%，holes ≤ 0.016%，bind 0；72
+    帧最大边伸长 ≤ 27.9 mm（E2b 版 94.9–103.1 mm）。去掉 experimental，保留 status / gateLevel = draft。布衣肤色验收口径同 E2b（按来源计）。

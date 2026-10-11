@@ -14,6 +14,7 @@ export enum DressupError {
   BoneUnknown = 'DRESSUP_BONE_UNKNOWN',
   BoneLengthRange = 'DRESSUP_BONE_LENGTH_RANGE',
   BoneLengthLate = 'DRESSUP_BONE_LENGTH_LATE',
+  PoseOffsetRange = 'DRESSUP_POSE_OFFSET_RANGE',
   ClipUnknown = 'DRESSUP_CLIP_UNKNOWN',
   Disposed = 'DRESSUP_DISPOSED',
 }
@@ -99,6 +100,12 @@ export interface DressupSkeletonFrame {
   }>;
 }
 
+/** 衣物声明的姿势偏移；validate、遮罩烘焙与 fit_garment 姿势蒙皮按同一角度采样。 */
+export interface DressupPoseOffset {
+  /** 左右 Arm 骨（连同子骨）绕模型 +Z（身体前向）在肩关节处向外转的角度，0..20 度。 */
+  readonly armAbductionDeg?: number;
+}
+
 export interface DressupGripAdjust {
   readonly pos: DressupVec3;
   readonly quat: DressupQuat;
@@ -126,6 +133,7 @@ export interface DressupFit {
   }>;
   readonly align?: Readonly<Record<string, unknown>>;
   readonly skinTint?: readonly [number, number, number];
+  readonly poseOffset?: DressupPoseOffset;
   readonly [key: string]: unknown;
 }
 
@@ -169,6 +177,8 @@ export interface DressupStats {
   readonly hideMapSize?: number;
   /** Present after a failed composition; cleared on retry or removal. */
   readonly hideMapError?: string;
+  /** Present while an equipped garment declares a non-zero arm abduction (max over garments). */
+  readonly armAbductionDeg?: number;
 }
 
 export interface DressupActor {

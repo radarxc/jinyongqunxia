@@ -738,8 +738,8 @@ def _lbs_normals(normals: np.ndarray, joints: np.ndarray, weights: np.ndarray,
 
 
 def animation_poses(body_glb: GLB, garment_glb: GLB, body: Mesh, garment: Mesh,
-                    frames_per_clip: int = 6) -> list[PosedMeshes]:
-    """按 validate 相同的采样与 LBS 生成 bind + 三段动作姿态。"""
+                    frames_per_clip: int = 6, arm_abduction: float = 0.0) -> list[PosedMeshes]:
+    """按 validate 相同的采样与 LBS 生成 bind + 三段动作姿态（含衣物声明的手臂外展）。"""
     if frames_per_clip < 6:
         raise ValueError("idle/walk/run 每段至少采样 6 帧")
     if body.joints is None or body.weights is None or garment.joints is None or garment.weights is None:
@@ -763,7 +763,7 @@ def animation_poses(body_glb: GLB, garment_glb: GLB, body: Mesh, garment: Mesh,
                 for s in animation.get("samplers", [])]
         duration = max(ends, default=0.0)
         for frame, sample_time in enumerate(np.linspace(0.0, duration, frames_per_clip, endpoint=False)):
-            world = _world_matrices(body_glb, animation, float(sample_time))
+            world = _world_matrices(body_glb, animation, float(sample_time), arm_abduction)
             body_world = world[np.asarray(body_skin.joints)]
             garment_world = world[np.asarray(garment_skin.joints)]
             body_positions = lbs(body.positions, body.joints, body.weights, body_world,
@@ -779,10 +779,10 @@ def animation_poses(body_glb: GLB, garment_glb: GLB, body: Mesh, garment: Mesh,
     return poses
 
 
-def _hole_safety_poses(body_glb: GLB, garment_glb: GLB, body: Mesh, garment: Mesh
-                       ) -> list[PosedMeshes]:
+def _hole_safety_poses(body_glb: GLB, garment_glb: GLB, body: Mesh, garment: Mesh,
+                       arm_abduction: float = 0.0) -> list[PosedMeshes]:
     """返回 validate 使用的全部 24 帧动画姿态（不含 bind）。"""
-    return [pose for pose in animation_poses(body_glb, garment_glb, body, garment, 24)
+    return [pose for pose in animation_poses(body_glb, garment_glb, body, garment, 24, arm_abduction)
             if pose.label != "bind"]
 
 
@@ -1028,14 +1028,16 @@ def bake(body_path: Path, skeleton_path: Path, garment_path: Path, fit_path: Pat
         raise BakeError("--skeleton schema 不受支持")
     if fit.get("schema") != "tianshu-dressup-fit.v1":
         raise BakeError("--fit schema 不受支持")
+    from validate import arm_abduction_deg
+    abduction = arm_abduction_deg(fit)
     body_glb, garment_glb = load_glb(body_path), load_glb(garment_path)
     body, garment = body_glb.mesh(), garment_glb.mesh()
     regions = np.load(skeleton_path.with_name(skeleton["regions"]["file"]), allow_pickle=False)
     names = {int(value): str(name) for name, value in skeleton["regions"]["ids"].items()}
     raster = rasterize_uv(body, regions, size)
-    poses = (animation_poses(body_glb, garment_glb, body, garment, frames_per_clip)
+    poses = (animation_poses(body_glb, garment_glb, body, garment, frames_per_clip, abduction)
              if mode == "visibility" else None)
-    safety_poses = (_hole_safety_poses(body_glb, garment_glb, body, garment)
+    safety_poses = (_hole_safety_poses(body_glb, garment_glb, body, garment, abduction)
                     if mode == "visibility" and frames_per_clip < 24 else ())
     result = bake_mask(body, garment, raster, regions, names, m_per_mu=float(skeleton["mPerMu"]),
                        max_distance_mm=max_distance_mm, opening_margin_mm=opening_margin_mm,
@@ -1057,6 +1059,7 @@ def bake(body_path: Path, skeleton_path: Path, garment_path: Path, fit_path: Pat
                        "animationPoses": len(poses) - 1 if poses is not None else None,
                        "viewElevationDeg": list(VIEW_ELEVATION_DEG) if mode == "visibility" else None,
                        "depthToleranceMm": 2.0 if mode == "visibility" else None,
+                       "armAbductionDeg": abduction if mode == "visibility" and abduction else None,
                        "marginMm": opening_margin_mm if mode == "rays" else None,
                        "maxDistanceMm": max_distance_mm if mode == "rays" else None}
     fit["hideMask"] = {key: value for key, value in fit["hideMask"].items() if value is not None}

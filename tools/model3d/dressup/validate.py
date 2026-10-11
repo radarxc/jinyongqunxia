@@ -41,6 +41,9 @@ HOLE_VIEWS = np.asarray([
     [0., 1., 1.], [0., 1., -1.], [1., 1., 0.], [-1., 1., 0.],
 ], dtype=np.float64)
 HOLE_VIEWS /= np.linalg.norm(HOLE_VIEWS, axis=1)[:, None]
+# 衣物 poseOffset：左右 Arm 绕模型 +Z 的转向符号（+Z 朝前、左臂在 +X）
+ARM_ABDUCTION_JOINTS = (("LeftArm", 1.0), ("RightArm", -1.0))
+ARM_ABDUCTION_MAX_DEG = 20.0
 
 
 def _fail(message: str) -> int:
@@ -395,7 +398,46 @@ def _sample(glb: GLB, sampler: dict[str, Any], time: float, rotation: bool) -> n
     return _quat_slerp(values[left], values[right], alpha) if rotation else values[left] * (1 - alpha) + values[right] * alpha
 
 
-def _world_matrices(glb: GLB, animation: dict[str, Any], time: float) -> np.ndarray:
+def arm_abduction_deg(fit: dict[str, Any] | None) -> float:
+    """衣物 fit.json `poseOffset.armAbductionDeg`（度）；头 / 道具 / 无该字段的衣物为 0。"""
+    if not isinstance(fit, dict) or fit.get("kind") != "garment" or "poseOffset" not in fit:
+        return 0.0
+    offset = fit["poseOffset"]
+    value = offset.get("armAbductionDeg", 0.0) if isinstance(offset, dict) else None
+    if (isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value)
+            or not 0.0 <= value <= ARM_ABDUCTION_MAX_DEG):
+        raise ValueError(f"poseOffset.armAbductionDeg 须为 0..{ARM_ABDUCTION_MAX_DEG:g} 度")
+    return float(value)
+
+
+def apply_arm_abduction(glb: GLB, world: np.ndarray, degrees: float) -> np.ndarray:
+    """左右 Arm 骨连同子骨在肩关节处绕模型 +Z（身体前向，离线归一保证）向外转 degrees 度。
+
+    world 为全部节点的世界矩阵。validate 动态门、bake_hide_mask 动作采样、fit_garment 姿势蒙皮
+    与运行时 actor（packages/render/src/dressup/actor.ts）同一口径；0 度原样返回。"""
+    if degrees == 0.0:
+        return world
+    names = [str(node.get("name", "")).rsplit(":", 1)[-1] for node in glb.json.get("nodes", [])]
+    children: dict[int, list[int]] = {}
+    for child, parent in glb.parents.items():
+        children.setdefault(parent, []).append(child)
+    result = world.copy()
+    for joint, sign in ARM_ABDUCTION_JOINTS:
+        found = [index for index, name in enumerate(names) if name == joint]
+        if len(found) != 1:
+            raise ValueError(f"手臂外展需要唯一的 {joint} 节点，实际 {len(found)} 个")
+        angle = math.radians(sign * degrees); cos, sin = math.cos(angle), math.sin(angle)
+        rotate = np.eye(4); rotate[:2, :2] = [[cos, -sin], [sin, cos]]
+        pivot = world[found[0]][:3, 3]; rotate[:3, 3] = pivot - rotate[:3, :3] @ pivot
+        stack = [found[0]]
+        while stack:
+            index = stack.pop(); result[index] = rotate @ world[index]
+            stack.extend(children.get(index, ()))
+    return result
+
+
+def _world_matrices(glb: GLB, animation: dict[str, Any], time: float,
+                    arm_abduction: float = 0.0) -> np.ndarray:
     local = [glb.local_matrix(index) for index in range(len(glb.json.get("nodes", [])))]
     animated: dict[int, dict[str, Any]] = {}
     for channel in animation.get("channels", []):
@@ -427,7 +469,7 @@ def _world_matrices(glb: GLB, animation: dict[str, Any], time: float) -> np.ndar
                 world[index] = local[index] if parent is None else world[parent] @ local[index]
                 pending.remove(index); progressed = True
         if not progressed: raise ValueError("节点层级含环")
-    return world
+    return apply_arm_abduction(glb, world, arm_abduction)
 
 
 def _is_closed(vertices: np.ndarray, faces: np.ndarray) -> bool:
@@ -498,8 +540,8 @@ def _confirm_inside(penetrating: np.ndarray, points: np.ndarray, vertices: np.nd
 
 
 def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
-                         m_per_mu: float, hide_mask: np.ndarray | None = None
-                         ) -> dict[str, float | dict[str, float]]:
+                         m_per_mu: float, hide_mask: np.ndarray | None = None,
+                         arm_abduction: float = 0.0) -> dict[str, float | dict[str, float]]:
     if asset_mesh.joints is None or asset_mesh.weights is None or body_mesh.joints is None or body_mesh.weights is None:
         return {}
     by_name = {str(item.get("name", "")).lower(): item for item in body.json.get("animations", [])}
@@ -512,7 +554,7 @@ def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mes
         duration = max(ends, default=0.0)
         worst_all = 0.0; worst_visible = 0.0
         for time in np.linspace(0.0, duration, 24, endpoint=False):
-            world = _world_matrices(body, animation, float(time))
+            world = _world_matrices(body, animation, float(time), arm_abduction)
             body_world = world[np.asarray(body_skin.joints)]
             asset_world = world[np.asarray(body_skin.joints)]
             body_pos = lbs(body_mesh.positions, body_mesh.joints, body_mesh.weights, body_world, body_skin.inverse_bind_matrices)
@@ -543,7 +585,8 @@ def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mes
 
 
 def _penetration_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
-                       m_per_mu: float, hide_mask: np.ndarray | None = None
+                       m_per_mu: float, hide_mask: np.ndarray | None = None,
+                       arm_abduction: float = 0.0
                        ) -> tuple[int | dict[str, int], dict[str, float | dict[str, float]]]:
     """独立计算 bind 与三段 clip 穿透；供门禁与合成回归共用。"""
     body_faces = _faces(body_mesh)
@@ -562,7 +605,8 @@ def _penetration_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
                                       body_faces, closed)
         static = {"all": int(np.count_nonzero(penetrating)),
                   "visible": int(np.count_nonzero(penetrating & unhidden))}
-    return static, _dynamic_penetration(body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask)
+    return static, _dynamic_penetration(body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask,
+                                        arm_abduction)
 
 
 def _hole_view(body_positions: np.ndarray, body_faces: np.ndarray, body_uvs: np.ndarray,
@@ -614,7 +658,8 @@ def _holes_for_pose(body_positions: np.ndarray, garment_positions: np.ndarray,
 
 
 def _hole_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
-                hide_mask: np.ndarray, m_per_mu: float) -> tuple[dict[str, float], list[np.ndarray]]:
+                hide_mask: np.ndarray, m_per_mu: float, arm_abduction: float = 0.0
+                ) -> tuple[dict[str, float], list[np.ndarray]]:
     rates: dict[str, float] = {}; preview: list[np.ndarray] = []
     bind_rate, bind_views = _holes_for_pose(body_mesh.positions, asset_mesh.positions, body_mesh,
                                             asset_mesh, hide_mask, m_per_mu)
@@ -630,7 +675,7 @@ def _hole_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
                 for s in animation.get("samplers", [])]
         duration = max(ends, default=0.0); worst = 0.0
         for sample_time in np.linspace(0.0, duration, 24, endpoint=False):
-            world = _world_matrices(body, animation, float(sample_time))
+            world = _world_matrices(body, animation, float(sample_time), arm_abduction)
             body_positions = lbs(body_mesh.positions, body_mesh.joints, body_mesh.weights,
                                  world[np.asarray(body_skin.joints)], body_skin.inverse_bind_matrices)
             garment_positions = lbs(asset_mesh.positions, asset_mesh.joints, asset_mesh.weights,
@@ -1142,6 +1187,8 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
     skeleton = json.loads(skeleton_path.read_text(encoding="utf-8"))
     fit = json.loads(fit_path.read_text(encoding="utf-8"))
     axis_waiver = _axis_check_waiver(fit)
+    abduction = arm_abduction_deg(fit)
+    pose_extra = {"armAbductionDeg": abduction} if abduction else {}
     body_mesh, asset_mesh = _mesh(body), _mesh(asset)
     checks = _binding_checks(body_path, skeleton, fit)
     kind = fit.get("kind")
@@ -1167,14 +1214,14 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
     if skinned:
         hide_mask = _load_hide_mask(fit, fit_path, body_mesh)
         static_inside, dynamic = _penetration_rates(
-            body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask)
+            body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask, abduction)
         threshold = 0.005 if requested == "approved" else 0.02
         if hide_mask is None:
             checks.append(_check("penetration.bindVertices", static_inside == 0, static_inside, 0))
             for clip in ("idle", "walk", "run"):
                 present = clip in dynamic; value = dynamic.get(clip)
                 checks.append(_check(f"penetration.{clip}", present and value <= threshold, value,
-                                     f"<= {threshold}", frames=24))
+                                     f"<= {threshold}", frames=24, **pose_extra))
         else:
             assert isinstance(static_inside, dict)
             checks.append(_check("penetration.bindVertices.all", True, static_inside["all"], "report only"))
@@ -1186,17 +1233,18 @@ def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: P
                 all_value = values.get("all") if present else None
                 visible_value = values.get("visible") if present else None
                 checks.append(_check(f"penetration.{clip}.all", True, all_value,
-                                     "report only", frames=24))
+                                     "report only", frames=24, **pose_extra))
                 checks.append(_check(f"penetration.{clip}.visible",
                                      present and visible_value is not None and visible_value <= threshold,
-                                     visible_value, f"<= {threshold}", frames=24))
+                                     visible_value, f"<= {threshold}", frames=24, **pose_extra))
             holes, preview_views = _hole_rates(
-                body, asset, body_mesh, asset_mesh, hide_mask, m_per_mu)
+                body, asset, body_mesh, asset_mesh, hide_mask, m_per_mu, abduction)
             for clip in ("bind", "idle", "walk", "run"):
                 value = holes[clip]
                 checks.append(_check(f"holes.{clip}.visible", value <= HOLE_TOLERANCE, value,
                                      f"= 0 (tolerance <= {HOLE_TOLERANCE})",
-                                     frames=1 if clip == "bind" else 24, views=8))
+                                     frames=1 if clip == "bind" else 24, views=8,
+                                     **({} if clip == "bind" else pose_extra)))
             template = str(fit.get("template", ""))
             preview_name = ("holes_preview.png" if template == "tpl_f_medium"
                             else f"holes_preview.{template}.png")
