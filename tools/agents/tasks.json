@@ -29137,6 +29137,8 @@
       "node"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29191,6 +29193,8 @@
       "ui"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29257,6 +29261,8 @@
       "--strict"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29309,6 +29315,8 @@
       "ui"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29369,6 +29377,8 @@
       "typecheck"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29436,6 +29446,8 @@
       "typecheck"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29536,6 +29548,8 @@
       "node"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29592,6 +29606,8 @@
       "node"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29678,6 +29694,8 @@
       "node"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29812,6 +29830,8 @@
       "typecheck"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29881,6 +29901,8 @@
       "typecheck"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -29948,6 +29970,8 @@
       "typecheck"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -30078,6 +30102,8 @@
       "node"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
@@ -30148,6 +30174,8 @@
       "content:validate"
      ],
      [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
       "pnpm",
       "check"
      ]
