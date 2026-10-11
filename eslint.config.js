@@ -15,6 +15,9 @@ const ignored = [
   'tools/vfx/**',
   'tools/imagegen/**', // 出图线注入 Gemini 网页的驱动脚本（用浏览器全局），不属于源码
   'tools/agents/reports/**', // 任务报告与调研原型脚本（如 RESEARCH-anim-proto），不属于源码
+  'tools/agents/*.mjs',
+  'tools/*.mjs',
+  'tools/model3d/**',
 ];
 
 const restrictedMath = [

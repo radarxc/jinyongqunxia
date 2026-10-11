@@ -142,7 +142,7 @@ describe('game content plugin town integration', () => {
     expect(chapter).not.toEqual(expect.stringContaining('npc_duanyu'));
     expect(leaf.mapText).toMatchObject({
       'event.ev_10_ditu.actions.0.map.name': '白马啸西风',
-      'event.ev_10_ditu.actions.0.map.nodes.26.name': '大理府',
+      'event.ev_10_ditu.actions.0.map.nodes.26.name': '洱海河蛮城邑（羁縻曾州，待考）',
       'event.ev_10_ditu.actions.0.map.nodes.26.levelNote': '尚无区域强度配置',
       'event.ev_10_ditu.actions.0.map.nodes.26.entry.accessNote':
         '城门进入；内部场景由 ENG-09 装配',
