@@ -375,6 +375,9 @@
 <path id="ch10-route_grand_canal_south" data-map-id="route_grand_canal_south" class="water-route" d="M2928.33 1942.26 L2955.33 1907.94 L2941.75 1874.1 L2922.62 1859.41 L2902.69 1849.38 L2872.67 1825.05 L2869.83 1813.03"><title>江南运河 · 5日 · medium</title></path>
 <path id="ch10-route_east_sea" data-map-id="route_east_sea" class="water-route" d="M3007.33 1956.34 L3041.65 1943.25 L2890.97 2296.73"><title>东海沿岸海路 · 5日 · medium</title></path>
 <path id="ch10-route_south_sea" data-map-id="route_south_sea" class="water-route" d="M2890.97 2296.73 L2865.33 2327.84 L2593.39 2444.04"><title>南海沿岸海路 · 5日 · medium</title></path>
+<path id="ch10-route_xizhou_tingzhou" data-map-id="route_xizhou_tingzhou" class="road" d="M1380.88 1126.34 L1379.09 1099.9 L1382.18 1080.81 L1393.33 1054.55"><title>交河—北庭道（金沙岭） · 3日 · medium</title></path>
+<path id="ch10-route_yizhou_tingzhou" data-map-id="route_yizhou_tingzhou" class="road" d="M1577.73 1161.4 L1553.72 1163.75 L1521.58 1123.94 L1440.28 1078.11 L1410.66 1061.21 L1393.33 1054.55"><title>伊州—北庭道（蒲类） · 7日 · high</title></path>
+<path id="ch10-route_tingzhou_luntai" data-map-id="route_tingzhou_luntai" class="road" d="M1393.33 1054.55 L1366.14 1052.06 L1338.2 1053.85 L1318.6 1060.23"><title>北庭—轮台道 · 2日 · medium</title></path>
 </g>
 <g class="travel-nodes">
 <rect id="ch10-post_beijing" data-map-id="post_beijing" class="post" x="2649.24" y="1344.65" width="10" height="10"><title>京师驿</title></rect>
@@ -543,6 +546,7 @@
 <circle id="ch10-city_turpan" data-map-id="city_turpan" class="city-major" cx="1380.88" cy="1126.34" r="7"><title>西州（高昌县） · 吐鲁番 · 路府州县</title></circle>
 <circle id="ch10-city_hami" data-map-id="city_hami" class="city-major" cx="1577.73" cy="1161.4" r="7"><title>伊州（伊吾县） · 哈密 · 路府州县</title></circle>
 <circle id="ch10-city_urumqi" data-map-id="city_urumqi" class="city-major" cx="1318.6" cy="1060.23" r="7"><title>轮台县（庭州） · 乌鲁木齐 · 路府州县</title></circle>
+<circle id="ch10-city_tingzhou" data-map-id="city_tingzhou" class="city-major" cx="1393.33" cy="1054.55" r="7"><title>庭州（北庭都护府） · 吉木萨尔（北庭故城） · 军镇</title></circle>
 <circle id="ch10-city_yining" data-map-id="city_yining" class="city-major" cx="1040.48" cy="993.97" r="7"><title>弓月城（伊丽水） · 伊宁 · 边关</title></circle>
 <circle id="ch10-city_shenyang" data-map-id="city_shenyang" class="city-major" cx="2965.96" cy="1179.37" r="7"><title>新城（安东都督府，今抚顺） · 沈阳 · 边关</title></circle>
 <circle id="ch10-city_liaoyang" data-map-id="city_liaoyang" class="city-major" cx="2963.36" cy="1214.09" r="7"><title>辽东城（辽城州） · 辽阳 · 边关</title></circle>
@@ -645,6 +649,7 @@
 <text class="label major vertical" x="1382.82" y="1121.58">西州（高昌县）</text>
 <text class="label major vertical" x="1581.18" y="1154.86">伊州（伊吾县）</text>
 <text class="label major vertical" x="1325.91" y="1042.87">轮台县（庭州）</text>
+<text class="label major" x="1401.71" y="1040.84">庭州（北庭都护府）</text>
 <text class="label major" x="1060.62" y="986.56">弓月城（伊丽水）</text>
 <text class="label major" x="2972.55" y="1174.02">新城（安东都督府，今抚顺）</text>
 <text class="label major" x="2970.23" y="1200.28">辽东城（辽城州）</text>

@@ -5355,6 +5355,38 @@
             "marker": "city_prefecture"
           },
           {
+            "id": "city_tingzhou",
+            "name": "别失八里（蒙古行尚书省）",
+            "kind": "town",
+            "point": [
+              174,
+              132
+            ],
+            "regionId": "rg_xiyu_beijiang",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10",
+              "ch14"
+            ],
+            "open": true,
+            "levelRange": null,
+            "levelNote": "尚无区域强度配置",
+            "entry": {
+              "sceneId": "city_tingzhou",
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
+              "accessNote": "城门进入；内部场景由 ENG-09 装配"
+            },
+            "coordinateNote": "design/map 城市治所投影",
+            "tier": "major",
+            "marker": "city_prefecture"
+          },
+          {
             "id": "city_turpan",
             "name": "火州（畏兀儿亦都护）",
             "kind": "town",
@@ -14546,6 +14578,75 @@
             ]
           },
           {
+            "key": "route_xizhou_tingzhou:0",
+            "routeId": "route_xizhou_tingzhou",
+            "start": "city_turpan",
+            "end": "city_tingzhou",
+            "distanceLi": 720,
+            "points": [
+              [
+                172,
+                141
+              ],
+              [
+                172,
+                137
+              ],
+              [
+                173,
+                135
+              ],
+              [
+                174,
+                132
+              ]
+            ],
+            "kind": "mountain_road",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10"
+            ],
+            "sourceHours": 72,
+            "note": "等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）",
+            "path": [
+              [
+                172,
+                141
+              ],
+              [
+                172.05,
+                137.86
+              ],
+              [
+                172.31,
+                136.28
+              ],
+              [
+                172.81,
+                135.22
+              ],
+              [
+                173.31,
+                134.44
+              ],
+              [
+                173.81,
+                133.94
+              ],
+              [
+                174.05,
+                133.27
+              ],
+              [
+                174,
+                132
+              ]
+            ]
+          },
+          {
             "key": "route_yanjing_kaifeng:0",
             "routeId": "route_yanjing_kaifeng",
             "start": "city_beijing",
@@ -15211,6 +15312,123 @@
               [
                 252,
                 114
+              ]
+            ]
+          },
+          {
+            "key": "route_yizhou_tingzhou:0",
+            "routeId": "route_yizhou_tingzhou",
+            "start": "city_hami",
+            "end": "city_tingzhou",
+            "distanceLi": 1680,
+            "points": [
+              [
+                197,
+                145
+              ],
+              [
+                194,
+                145
+              ],
+              [
+                190,
+                140
+              ],
+              [
+                180,
+                135
+              ],
+              [
+                176,
+                132
+              ],
+              [
+                174,
+                132
+              ]
+            ],
+            "kind": "caravan_road",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10"
+            ],
+            "sourceHours": 168,
+            "note": "等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）",
+            "path": [
+              [
+                197,
+                145
+              ],
+              [
+                194.42,
+                145.05
+              ],
+              [
+                192.69,
+                144.19
+              ],
+              [
+                190.94,
+                142.44
+              ],
+              [
+                190.06,
+                141.19
+              ],
+              [
+                190.06,
+                140.44
+              ],
+              [
+                189.44,
+                139.69
+              ],
+              [
+                188.19,
+                138.94
+              ],
+              [
+                186.91,
+                137.91
+              ],
+              [
+                185.59,
+                136.59
+              ],
+              [
+                184.5,
+                135.72
+              ],
+              [
+                183.62,
+                135.28
+              ],
+              [
+                182.38,
+                135.06
+              ],
+              [
+                180.75,
+                135.06
+              ],
+              [
+                179.19,
+                134.31
+              ],
+              [
+                177.69,
+                132.81
+              ],
+              [
+                176.2,
+                132.05
+              ],
+              [
+                174,
+                132
               ]
             ]
           }
@@ -19394,7 +19612,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "8f3fe87795233f97ac04920a402a5af26f6fbdce9c127753b6282cb82ccfe582"
+        "revision": "80646df64c81dba4cb805f1815d1caddb0f0423e424b1769cb2f35a7a6d76010"
       }
     }
   ]

@@ -3628,6 +3628,162 @@
         "rg_lingnan",
         "rg_nanhai_islands"
       ]
+    },
+    {
+      "id": "route_xizhou_tingzhou",
+      "name": "交河—北庭道（金沙岭）",
+      "kind": "mountain_road",
+      "from": "city_turpan",
+      "to": "city_tingzhou",
+      "via": [],
+      "geometry": [
+        [
+          89.18,
+          42.95
+        ],
+        [
+          89.05,
+          43.35
+        ],
+        [
+          89.05,
+          43.65
+        ],
+        [
+          89.2,
+          44.08
+        ]
+      ],
+      "duration_days": 3,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch10"
+      ],
+      "service": "scheduled",
+      "regions": [
+        "rg_xiyu_beijiang"
+      ]
+    },
+    {
+      "id": "route_yizhou_tingzhou",
+      "name": "伊州—北庭道（蒲类）",
+      "kind": "caravan_road",
+      "from": "city_hami",
+      "to": "city_tingzhou",
+      "via": [],
+      "geometry": [
+        [
+          93.51,
+          42.83
+        ],
+        [
+          93.0,
+          42.75
+        ],
+        [
+          92.2,
+          43.3
+        ],
+        [
+          90.3,
+          43.83
+        ],
+        [
+          89.6,
+          44.02
+        ],
+        [
+          89.2,
+          44.08
+        ]
+      ],
+      "duration_days": 7,
+      "fee_tier": "high",
+      "open_chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch10"
+      ],
+      "service": "scheduled",
+      "regions": [
+        "rg_xiyu_beijiang"
+      ]
+    },
+    {
+      "id": "route_tingzhou_luntai",
+      "name": "北庭—轮台道",
+      "kind": "caravan_road",
+      "from": "city_tingzhou",
+      "to": "city_urumqi",
+      "via": [],
+      "geometry": [
+        [
+          89.2,
+          44.08
+        ],
+        [
+          88.6,
+          44.05
+        ],
+        [
+          88.0,
+          43.95
+        ],
+        [
+          87.6,
+          43.8
+        ]
+      ],
+      "duration_days": 2,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch10"
+      ],
+      "service": "scheduled",
+      "regions": [
+        "rg_xiyu_beijiang"
+      ]
+    },
+    {
+      "id": "route_dihua_jimsa",
+      "name": "迪化—济木萨驿路（阜康）",
+      "kind": "post_road",
+      "from": "city_urumqi",
+      "to": "city_tingzhou",
+      "via": [],
+      "geometry": [
+        [
+          87.6,
+          43.8
+        ],
+        [
+          87.98,
+          44.15
+        ],
+        [
+          88.6,
+          44.1
+        ],
+        [
+          89.2,
+          44.08
+        ]
+      ],
+      "duration_days": 2,
+      "fee_tier": "medium",
+      "open_chapters": [
+        "ch14"
+      ],
+      "service": "scheduled",
+      "regions": [
+        "rg_xiyu_beijiang"
+      ]
     }
   ],
   "special_routes": [

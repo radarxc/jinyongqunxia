@@ -25353,6 +25353,165 @@
       "coordinate_precision": "0.01 degree; WGS84"
     },
     {
+      "id": "city_tingzhou",
+      "modern_name": "吉木萨尔（北庭故城）",
+      "longitude": 89.2,
+      "latitude": 44.08,
+      "region": "rg_xiyu_beijiang",
+      "importance": "major",
+      "history": {
+        "tang": {
+          "name": "庭州（北庭都护府）",
+          "status": "军镇",
+          "note": ""
+        },
+        "northern_song": {
+          "name": "别失八里（高昌回鹘夏都）",
+          "status": "都城",
+          "note": ""
+        },
+        "southern_song_jin_mongol": {
+          "name": "别失八里（畏兀儿）（1217） → 别失八里（蒙古行尚书省）（1259）",
+          "status": "商埠",
+          "note": "同档各章不同，逐章见 eras.ch02/ch03；地位取本档首章"
+        },
+        "yuan": {
+          "name": "别失八里（东察合台汗国）",
+          "status": "商埠",
+          "note": ""
+        },
+        "ming": {
+          "name": "北庭故城（别失八里废墟）",
+          "status": "未建或废弃",
+          "note": ""
+        },
+        "qing_early": {
+          "name": "北庭故城（准噶尔牧地）",
+          "status": "未建或废弃",
+          "note": ""
+        },
+        "qing_middle": {
+          "name": "北庭故城（准噶尔牧地）（1740） → 北庭故城（准噶尔覆亡）（1755） → 北庭故城（济木萨屯区）（1769） → 济木萨（恺安城）（1780）",
+          "status": "未建或废弃",
+          "note": "同档各章不同，逐章见 eras.ch11/ch12/ch13/ch14；地位取本档首章"
+        }
+      },
+      "chapters": [
+        "ch01",
+        "ch02",
+        "ch03",
+        "ch04",
+        "ch10",
+        "ch14"
+      ],
+      "sects": [],
+      "businesses": [
+        "inn",
+        "market",
+        "caravan",
+        "post_station"
+      ],
+      "note": "唐庭州 / 北庭都护府、元别失八里故城，今吉木萨尔县北庭故城遗址（县城北约 12 km）；CHGIS 以 89.19E 44.00N 记庭州与北庭都护府。清乾隆三十七年（1772）在故城南另筑恺安城（今吉木萨尔县城），ch14 借本键表示，不另设治所迁移。由城镇线修正包 TOOL-town-gaps-1 并入（2026-10-11）。",
+      "seat_moves": [],
+      "eras": {
+        "ch01": {
+          "name": "别失八里（高昌回鹘夏都）",
+          "status": "都城",
+          "note": "高昌回鹘以高昌（火州）为冬都、别失八里（北庭故城）为夏都（通说），按陪都惯例记都城",
+          "open": true
+        },
+        "ch02": {
+          "name": "别失八里（畏兀儿）",
+          "status": "商埠",
+          "note": "1209 年畏兀儿亦都护归附成吉思汗，别失八里为天山北麓重镇",
+          "open": true
+        },
+        "ch03": {
+          "name": "别失八里（蒙古行尚书省）",
+          "status": "路府州县",
+          "note": "蒙哥汗元年（1251）置别失八里等处行尚书省（元史·宪宗纪）",
+          "open": true
+        },
+        "ch04": {
+          "name": "别失八里（东察合台汗国）",
+          "status": "商埠",
+          "note": "元末属东察合台汗国（明称其国为别失八里），城邑尚存（待考）",
+          "open": true
+        },
+        "ch05": {
+          "name": "北庭故城（别失八里废墟）",
+          "status": "未建或废弃",
+          "note": "东察合台汗国十五世纪初西迁亦力把里，别失八里城渐废（待考）",
+          "open": false
+        },
+        "ch06": {
+          "name": "北庭故城（别失八里废墟）",
+          "status": "未建或废弃",
+          "note": "别失八里城已废，地属卫拉特 / 东察合台游牧（待考）",
+          "open": false
+        },
+        "ch07": {
+          "name": "北庭故城（别失八里废墟）",
+          "status": "未建或废弃",
+          "note": "别失八里城已废（待考）",
+          "open": false
+        },
+        "ch08": {
+          "name": "北庭故城（准噶尔牧地）",
+          "status": "未建或废弃",
+          "note": "准噶尔牧地，无城邑",
+          "open": false
+        },
+        "ch09": {
+          "name": "北庭故城（准噶尔牧地）",
+          "status": "未建或废弃",
+          "note": "准噶尔牧地，无城邑",
+          "open": false
+        },
+        "ch10": {
+          "name": "庭州（北庭都护府）",
+          "status": "军镇",
+          "note": "贞观十四年（640）置庭州，治金满县；长安二年（702）十二月改置北庭都护府、置烛龙军（新唐书·地理志、资治通鉴、旧唐书·地理志）；故城在今吉木萨尔县北庭故城",
+          "open": true
+        },
+        "ch11": {
+          "name": "北庭故城（准噶尔牧地）",
+          "status": "未建或废弃",
+          "note": "准噶尔牧地，无城邑",
+          "open": false
+        },
+        "ch12": {
+          "name": "北庭故城（准噶尔覆亡）",
+          "status": "未建或废弃",
+          "note": "1755 年清平准，尚未屯垦设治",
+          "open": false
+        },
+        "ch13": {
+          "name": "北庭故城（济木萨屯区）",
+          "status": "未建或废弃",
+          "note": "乾隆三十二年（1767）起济木萨屯田；恺安城乾隆三十七年（1772）才筑（清史稿·地理志·孚远），1769 年尚无城邑",
+          "open": false
+        },
+        "ch14": {
+          "name": "济木萨（恺安城）",
+          "status": "军镇",
+          "note": "乾隆三十七年（1772）为驻防筑恺安城，四十一年（1776）设济木萨县丞、治恺安，属阜康县（清史稿·地理志·孚远）；恺安城即今吉木萨尔县城，在锚点（北庭故城）南约 12 km",
+          "open": true
+        }
+      },
+      "sources": [
+        "src_chgis",
+        "src_tang_702",
+        "src_hist_northern_song",
+        "src_hist_southern_song_jin_mongol",
+        "src_hist_yuan",
+        "src_hist_ming",
+        "src_hist_qing_early",
+        "src_hist_qing_middle"
+      ],
+      "coordinate_precision": "0.01 degree; WGS84"
+    },
+    {
       "id": "city_yining",
       "modern_name": "伊宁",
       "longitude": 81.32,

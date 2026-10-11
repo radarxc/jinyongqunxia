@@ -382,6 +382,7 @@
 <path id="ch14-route_south_sea" data-map-id="route_south_sea" class="water-route" d="M2890.97 2296.73 L2865.33 2327.84 L2593.39 2444.04"><title>南海沿岸海路 · 5日 · medium</title></path>
 <path id="ch14-route_bohai" data-map-id="route_bohai" class="water-route" d="M2697.6 1394.79 L2806.52 1327.63 L2920.21 1471.38 L2923.15 1260.84"><title>渤海—辽东海路 · 5日 · medium</title></path>
 <path id="ch14-route_taiwan" data-map-id="route_taiwan" class="water-route" d="M2865.33 2327.84 L2959.56 2373.06 L3001.65 2403.26"><title>闽台海路 · 4日 · medium</title></path>
+<path id="ch14-route_dihua_jimsa" data-map-id="route_dihua_jimsa" class="road" d="M1318.6 1060.23 L1339.5 1041.01 L1366.67 1048.89 L1393.33 1054.55"><title>迪化—济木萨驿路（阜康） · 2日 · medium</title></path>
 </g>
 <g class="travel-nodes">
 <rect id="ch14-post_beijing" data-map-id="post_beijing" class="post" x="2649.24" y="1344.65" width="10" height="10"><title>京师驿</title></rect>
@@ -582,6 +583,7 @@
 <circle id="ch14-city_turpan" data-map-id="city_turpan" class="city-major" cx="1380.88" cy="1126.34" r="7"><title>吐鲁番 · 吐鲁番 · 商埠</title></circle>
 <circle id="ch14-city_hami" data-map-id="city_hami" class="city-major" cx="1577.73" cy="1161.4" r="7"><title>哈密 · 哈密 · 边关</title></circle>
 <circle id="ch14-city_urumqi" data-map-id="city_urumqi" class="city-major" cx="1318.6" cy="1060.23" r="7"><title>迪化州 · 乌鲁木齐 · 路府州县</title></circle>
+<circle id="ch14-city_tingzhou" data-map-id="city_tingzhou" class="city-major" cx="1393.33" cy="1054.55" r="7"><title>济木萨（恺安城） · 吉木萨尔（北庭故城） · 军镇</title></circle>
 <circle id="ch14-city_yining" data-map-id="city_yining" class="city-major" cx="1040.48" cy="993.97" r="7"><title>惠远城（伊犁将军驻） · 伊宁 · 军镇</title></circle>
 <circle id="ch14-city_khotan_kunlun" data-map-id="city_khotan_kunlun" class="city-site" cx="790.98" cy="1439.48" r="8"><title>昆仑山道（待考） · 昆仑山口 · 边关</title></circle>
 <circle id="ch14-city_shenyang" data-map-id="city_shenyang" class="city-capital" cx="2965.96" cy="1179.37" r="10"><title>盛京奉天府 · 沈阳 · 都城</title></circle>
@@ -716,6 +718,7 @@
 <text class="label major vertical" x="1382.82" y="1121.58">吐鲁番</text>
 <text class="label major vertical" x="1581.18" y="1154.86">哈密</text>
 <text class="label major vertical" x="1325.91" y="1042.87">迪化州</text>
+<text class="label major" x="1401.71" y="1040.84">济木萨（恺安城）</text>
 <text class="label major" x="1060.62" y="986.56">惠远城（伊犁将军驻）</text>
 <text class="label capital vertical" x="2973.55" y="1176.02">盛京奉天府</text>
 <text class="label major vertical" x="2971.23" y="1202.28">辽阳州</text>

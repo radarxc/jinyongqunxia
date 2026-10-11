@@ -5355,6 +5355,38 @@
             "marker": "city_prefecture"
           },
           {
+            "id": "city_tingzhou",
+            "name": "济木萨（恺安城）",
+            "kind": "town",
+            "point": [
+              174,
+              132
+            ],
+            "regionId": "rg_xiyu_beijiang",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10",
+              "ch14"
+            ],
+            "open": true,
+            "levelRange": null,
+            "levelNote": "尚无区域强度配置",
+            "entry": {
+              "sceneId": "city_tingzhou",
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
+              "accessNote": "城门进入；内部场景由 ENG-09 装配"
+            },
+            "coordinateNote": "design/map 城市治所投影",
+            "tier": "minor",
+            "marker": "pass"
+          },
+          {
             "id": "city_turpan",
             "name": "吐鲁番",
             "kind": "town",
@@ -9307,6 +9339,79 @@
               [
                 310,
                 187
+              ]
+            ]
+          },
+          {
+            "key": "route_dihua_jimsa:0",
+            "routeId": "route_dihua_jimsa",
+            "start": "city_urumqi",
+            "end": "city_tingzhou",
+            "distanceLi": 480,
+            "points": [
+              [
+                165,
+                132
+              ],
+              [
+                167,
+                130
+              ],
+              [
+                171,
+                131
+              ],
+              [
+                174,
+                132
+              ]
+            ],
+            "kind": "post_road",
+            "eras": [
+              "ch14"
+            ],
+            "sourceHours": 48,
+            "note": "等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）",
+            "path": [
+              [
+                165,
+                132
+              ],
+              [
+                166.64,
+                130.45
+              ],
+              [
+                167.88,
+                129.94
+              ],
+              [
+                169.25,
+                129.94
+              ],
+              [
+                170.22,
+                130.22
+              ],
+              [
+                170.78,
+                130.78
+              ],
+              [
+                171.56,
+                131.06
+              ],
+              [
+                172.56,
+                131.06
+              ],
+              [
+                173.3,
+                131.3
+              ],
+              [
+                174,
+                132
               ]
             ]
           },
@@ -19485,7 +19590,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "f5887cd50940b641cadf04686cb6c2f03be236dd2bd5ff02dc81698369656677"
+        "revision": "de02a6b40db4749989500b0fc029ff959340446bb23772298a9c67e7e7b4d9c2"
       }
     }
   ]

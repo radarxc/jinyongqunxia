@@ -5355,6 +5355,38 @@
             "marker": "city_prefecture"
           },
           {
+            "id": "city_tingzhou",
+            "name": "北庭故城（准噶尔覆亡）",
+            "kind": "town",
+            "point": [
+              174,
+              132
+            ],
+            "regionId": "rg_xiyu_beijiang",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10",
+              "ch14"
+            ],
+            "open": false,
+            "levelRange": null,
+            "levelNote": "尚无区域强度配置",
+            "entry": {
+              "sceneId": "city_tingzhou",
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
+              "accessNote": "城门进入；内部场景由 ENG-09 装配"
+            },
+            "coordinateNote": "design/map 城市治所投影",
+            "tier": "site",
+            "marker": "ruin"
+          },
+          {
             "id": "city_turpan",
             "name": "吐鲁番",
             "kind": "town",
@@ -19643,7 +19675,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "0aff1a2fb1cd5e87e7a1e487d93e1f1ef0953f5ec5f97020417b9660208bcf9b"
+        "revision": "8eebcf466e6a375a137017a19dc8424e5775a852f0bdbda26f3f8864960d6125"
       }
     }
   ]
