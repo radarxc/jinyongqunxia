@@ -6,6 +6,7 @@ import type { BattleSessionState, BattleRewardStats } from '../battle/types';
 import type { WorldMapState } from '../world/worldmap-types';
 import type { TownSessionState } from '../world/town-runtime';
 import type { MountedRegionState, PendingRegionMount } from '../world/region-types';
+import type { SceneMemoryEntry } from '../world/explore/types';
 
 export type EquipmentSlot = 'mainHand' | 'offHand' | 'head' | 'body' | 'innerBody' | 'hands' | 'shoulder' | 'cape' | 'waist' | 'feet' | 'accessory';
 export type SkillState = SkillInstance;
@@ -98,6 +99,7 @@ export interface WorldNavigationState {
 }
 export interface WorldState {
   readonly navigation: WorldNavigationState;
+  readonly sceneMemory: readonly SceneMemoryEntry[];
   readonly pendingTimeAdvance: { readonly remainingTicks: number; readonly reason: 'rest' | 'story' } | null;
   /** Idempotency receipts survive clearing the active session. */
   readonly battleReceipts?: readonly { readonly battleId: string; readonly outcomeSeq: number }[];
@@ -110,6 +112,8 @@ export interface DialogueState {
   readonly choices?: readonly { readonly choiceIndex: number; readonly textKey: string;
     readonly unavailableReason: string | null }[];
   readonly history?: readonly { readonly speakerId: string; readonly textKey: string }[];
+  readonly context?: { readonly kind: 'facility'; readonly sceneId: string;
+    readonly facilityKey: string; readonly roleKey: string; readonly shopKey: string | null };
 }
 export type PrologueMode = 'full' | 'summary' | 'skip';
 export type PrologueRouteNodeId = 'n_c01' | 'n_summary' | 'n_skip_direct';

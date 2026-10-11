@@ -175,7 +175,7 @@ describe('ch00 to ch10 book-sleep transaction', () => {
     expect(state.chapter.clock.elapsedTicks).toBe(CH10.startTick);
     expect(state.world).toEqual({ navigation: { locationId: CH10.wake.sceneId,
       selectedDestinationId: null, pendingMount: CH10.wake, mountedRegion: null },
-      pendingTimeAdvance: null });
+      pendingTimeAdvance: null, sceneMemory: [] });
     expect(state.party.inventory.stacks).toEqual([]); expect(state.party.money).toBe(0);
     expect(state.party.equipment.entries.every((entry) => entry.itemId === null)).toBe(true);
     expect(state.profile.companions).toEqual([]);

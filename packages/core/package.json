@@ -20,6 +20,8 @@
     "./difficulty": "./src/entries/difficulty.ts",
     "./chapter": "./src/entries/chapter.ts",
     "./region-command": "./src/entries/region-command.ts",
+    "./shop-command": "./src/entries/shop-command.ts",
+    "./explore-command": "./src/entries/explore-command.ts",
     "./region": "./src/world/index.ts",
     "./region-runtime": "./src/entries/region-runtime.ts",
     "./battle": "./src/battle/index.ts",

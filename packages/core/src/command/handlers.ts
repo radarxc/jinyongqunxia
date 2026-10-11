@@ -7,6 +7,7 @@ import type { Command, CommandHandler, CoreContent, CoreTransaction,
 import type { GameState } from '../state';
 import type { TownCommand, WorldMapCommand } from '../world';
 import { eventPayload } from './transaction';
+import { exploreTickHook } from '../world/explore/tick-hook';
 
 const DOMAIN_REJECTIONS = new Set<RejectReason>([
   'MAP_UNAVAILABLE', 'MAP_STILL_TRAVELLING', 'MAP_NODE_CLOSED', 'MAP_SCENE_BUSY',
@@ -29,7 +30,8 @@ const DOMAIN_REJECTIONS = new Set<RejectReason>([
   'QUEST_ROUTE_MISMATCH',
   'REGION_UNAVAILABLE', 'REGION_CONTENT_MISMATCH', 'REGION_SPAWN_UNKNOWN',
   'REGION_NOT_MOUNTED', 'REGION_PATH_NOT_STANDABLE', 'REGION_PATH_BLOCKED',
-  'REGION_PATH_HEIGHT', 'REGION_PATH_QINGGONG', 'REGION_ANCHOR_UNKNOWN',
+  'REGION_PATH_HEIGHT', 'REGION_PATH_QINGGONG', 'REGION_PATH_UNREACHABLE',
+  'REGION_ANCHOR_UNKNOWN',
   'REGION_ANCHOR_OUT_OF_RANGE', 'REGION_ANCHOR_NOT_VISIBLE', 'REGION_ANCHOR_CONSUMED',
   'REGION_INTERACTION_UNSUPPORTED', 'REGION_LOOT_UNKNOWN', 'REGION_LOOT_CAPACITY',
   'REGION_EXIT_PENDING', 'REGION_INTERACTION_BUSY',
@@ -37,6 +39,9 @@ const DOMAIN_REJECTIONS = new Set<RejectReason>([
   'REGION_EVENT_ACTION', 'REGION_EVENT_REFERENCE', 'REGION_EVENT_INVENTORY',
   'REGION_GATE_QINGGONG', 'REGION_GATE_ITEM', 'REGION_GATE_QUEST',
   'REGION_GATE_FLAG', 'REGION_GATE_CAPABILITY', 'REGION_GATE_LOCKED',
+  'SHOP_UNKNOWN', 'SHOP_NOT_HERE', 'SHOP_CLOSED', 'SHOP_ITEM_UNAVAILABLE',
+  'SHOP_STOCK_INSUFFICIENT', 'SHOP_MONEY_INSUFFICIENT', 'SHOP_PRICE_STALE',
+  'SHOP_INVENTORY_FULL', 'SHOP_BUSY',
 ]);
 const FIELD_EFFECTS = new Set(['healPct', 'mpPct', 'staPct', 'dispel', 'permStat', 'permMaxPct']);
 export function rejectionFrom(error: unknown): RejectReason | null {
@@ -59,6 +64,8 @@ function worldTickApply(tx: CoreTransaction): void {
     const { t, ...payload } = fact;
     tx.emit({ t, payload: eventPayload(payload) });
   }
+  if (tx.state.world.navigation.mountedRegion?.walk !== null &&
+      tx.state.world.navigation.mountedRegion?.walk !== undefined) exploreTickHook()(tx);
 }
 export function worldPaused(state: Readonly<GameState>): boolean {
   return state.dialogue !== null || state.battle !== null ||

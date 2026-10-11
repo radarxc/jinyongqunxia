@@ -5,8 +5,10 @@ import type { Command, CommandHandler, CoreContent, RejectReason } from '.';
 import { inventoryHandler, rejectionFrom, townHandler, worldMapHandler, worldTickHandler } from './handlers';
 import { dialogueHandler, difficultyHandler, questChoiceHandler } from './story-handlers';
 import { bookSleepHandler } from './chapter-handler';
-import { regionHandler } from './region-handler';
+import { exploreRegionHandler } from './explore-handler';
 import { battleHandler } from './battle-handler';
+import { exploreHandler } from './explore-handler';
+import { shopHandler } from './shop-handler';
 import { CommandAbort, MutableCoreTransaction } from './transaction';
 
 export type DispatchResult =
@@ -35,9 +37,15 @@ const HANDLERS: Readonly<Record<string, CommandHandler>> = {
   'quest/choose': questChoiceHandler as CommandHandler,
   'rules/setDifficulty': difficultyHandler as CommandHandler,
   'chapter/bookSleep': bookSleepHandler as CommandHandler,
-  'world/mountRegion': regionHandler as CommandHandler,
-  'world/walkTo': regionHandler as CommandHandler,
-  'world/interact': regionHandler as CommandHandler,
+  'world/mountRegion': exploreRegionHandler as CommandHandler,
+  'world/walkTo': exploreRegionHandler as CommandHandler,
+  'world/interact': exploreRegionHandler as CommandHandler,
+  'world/travelTo': exploreHandler as CommandHandler,
+  'world/steer': exploreHandler as CommandHandler,
+  'world/stop': exploreHandler as CommandHandler,
+  'world/meditate': exploreHandler as CommandHandler,
+  'shop/buy': shopHandler as CommandHandler,
+  'shop/sell': shopHandler as CommandHandler,
   'battle/enter': battleHandler as CommandHandler,
   'battle/act': battleHandler as CommandHandler,
   'battle/setAuto': battleHandler as CommandHandler,
@@ -101,7 +109,9 @@ export function dispatchCommand(state: GameState, command: Command, content: Cor
     return { ok: true, stateVersion: state.meta.stateVersion, events: [] };
   const tx = new MutableCoreTransaction(state, content);
   try {
-    handler.apply(tx, command); assertPendingEvents(tx); tx.commitRng();
+    handler.apply(tx, command);
+    if (command.t === 'chapter/bookSleep') tx.set(['world', 'sceneMemory'], []);
+    assertPendingEvents(tx); tx.commitRng();
     const version = state.meta.stateVersion + 1;
     if (!Number.isSafeInteger(version)) throw new RangeError('STATE_VERSION_OVERFLOW');
     const ordinal = state.meta.nextRuntimeOrdinal;

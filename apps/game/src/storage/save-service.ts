@@ -18,7 +18,13 @@ import {
   type TianshuStorage,
   type ZipEntry,
 } from '@tianshu/platform';
-import { SAVE_SCHEMA, migrateBookSleepV2, migrateUiSessionV1, projectGameStateSummary } from '@tianshu/core';
+import {
+  SAVE_SCHEMA,
+  migrateBookSleepV2,
+  migrateExploreV3,
+  migrateUiSessionV1,
+  projectGameStateSummary,
+} from '@tianshu/core';
 import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import type { SessionSnapshot } from '../runtime/contracts';
 
@@ -39,6 +45,9 @@ const STATE_MIGRATIONS = new Map([[1, ((value, context) => migrateUiSessionV1(
   value as JsonValue, { fromContentHash: context.fromContentHash,
     targetSchema: context.toSchema, remapVersion: 'none' })) as SaveMigration],
   [2, ((value, context) => migrateBookSleepV2(value as JsonValue, {
+    fromContentHash: context.fromContentHash, targetSchema: context.toSchema,
+    remapVersion: 'none' })) as SaveMigration],
+  [3, ((value, context) => migrateExploreV3(value as JsonValue, {
     fromContentHash: context.fromContentHash, targetSchema: context.toSchema,
     remapVersion: 'none' })) as SaveMigration]]);
 
