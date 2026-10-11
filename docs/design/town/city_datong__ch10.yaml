@@ -3,11 +3,11 @@ kind: "CitySpec"
 city_id: "city_datong"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "云州旧城遗址（702年推定）"
+display_name: 云州故城（永淳元年废）
 historical_year: 702
 era_kit: "tang"
 seed: 3709930445
-design_intent: {"prosperity": "tang_702_research_candidate", "notes": ["复原依据：history/city_datong__tang_702.md；AR-26的702–703年为原创扩展，覆盖名录旧年代。", "682年废云州、730年复置；702处于废置期。不设置在任州署。", "压缩拓扑不是真实地籍；唐套件缺项回退宋基线，具体替代写manifest；不据贴片证明历史建筑。"]}
+design_intent: {"prosperity": "tang_702_research_candidate", "notes": ["复原依据：history/city_datong__tang_702.md；AR-26的702–703年为原创扩展，覆盖名录旧年代。", "682年废云州、730年复置；702处于废置期。不设置在任州署。", "压缩拓扑不是真实地籍；唐套件缺项回退宋基线，具体替代写manifest；不据贴片证明历史建筑。", "本章未开放（2026-10-11 地名档）：cities.yaml eras.ch10.open=false，当章显示名「云州故城（永淳元年废）」；生成器不挂载本图，规格保留备用。"]}
 grid: {"width": 96, "height": 96, "cell_m": 1, "chunk_cells": 32}
 runtime_partition: {"q_min": -48, "r_min": 1, "q_slot_count": 131, "r_slot_count": 96, "q_band_slots": [96, 35], "r_band_slots": [96], "formal_scene_refs": null}
 projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}

@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_cangzhou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "沧州·清池县（702年推定）"
+display_name: 沧州（清池县）
 historical_year: 702
 era_kit: "song_southern"
 seed: 70210016

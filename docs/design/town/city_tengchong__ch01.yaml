@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_tengchong
 chapter_id: ch01
 book_world: ch01_tianlong
-display_name: 腾冲府一带（大理国，待考）
+display_name: 腾冲府（大理国）
 historical_year: 1093
 era_kit: song_dali
 seed: 3458619162

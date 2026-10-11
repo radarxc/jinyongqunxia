@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_yining"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "弓月城·伊丽水北岸（702年推定）"
+display_name: 弓月城（伊丽水）
 historical_year: 702
 era_kit: "xiyu"
 seed: 2569148027

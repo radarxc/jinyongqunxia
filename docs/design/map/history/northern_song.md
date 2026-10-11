@@ -415,10 +415,12 @@
 
 ## 8. 城图规格与章节设计的出入
 
+（2026-10-11 第三轮已处理：城图 `display_name` 全部按当章地名对齐；当章关闭城市的城图在 `design_intent.notes` 标「本章未开放」，生成器不再挂载；`design/chapters/*` 城市表显示名已同步。）
+
 - `city_jilin__ch01`、`city_ordos__ch01` 两份城图规格对应的城市在 1093 年无城邑、本轮关闭（与唐 702 档同标准）；若天龙需要女真部 / 河套场景，请 CITY 线或作者决定改挂或恢复开放。
 - 显示名与 ch01 城图规格不一致、需 CITY 线同步的：`city_chifeng`（规格「上京临潢府南境 / 松州」→ 松山州）、`city_dandong`（鸭绿江口军寨 → 来远城）、`city_kunming`（鄯阐府（大理国）→ 鄯阐府（大理国东都））、`city_nanyang`（邓州 → 南阳县（邓州属））、`city_qujing`（石城郡 / 东川一带 → 石城郡（大理国））、`city_shangqiu`（应天府南京 → 南京应天府）、`city_tengchong`（腾冲府一带 → 腾冲府（大理国））、`city_xinyang`（去「待考」）、`city_xilinhot`（加「原创扩展锚点」）。
 - `design/chapters/01` §3.4 表中 `city_xining`、`city_zhongwei`、`city_turpan`、`city_qamdo`、`city_chifeng` 的显示名已随本档更新，章节文档（不在本轮写集）待同步。
-- `tools/town/test_generic_city.py` 的 `test_tubo_uses_regional_buddhist_hall` 以 `city_yushu` 的 northern_song 开放章取样；玉树 1093 年无城邑、本轮关闭，该用例会报 StopIteration，需改用 ch01 仍开放的 `city_lhasa` 或 `city_qamdo`（tools/town 不在本轮写集）。
+- `tools/town/test_generic_city.py` 的 `test_tubo_uses_regional_buddhist_hall` 以 `city_yushu` 的 northern_song 开放章取样；玉树 1093 年无城邑、本轮关闭，该用例会报 StopIteration，需改用 ch01 仍开放的 `city_lhasa` 或 `city_qamdo`（tools/town 不在本轮写集）。（协调者已修正该用例，`tools/town` 135 例现全过。）
 
 ## 9. 门派驻地
 

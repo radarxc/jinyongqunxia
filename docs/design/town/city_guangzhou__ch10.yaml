@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_guangzhou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "广州·南海县旧子城与江岸（702年推定）"
+display_name: 广州（南海县）
 historical_year: 702
 era_kit: "tang"
 seed: 504701920

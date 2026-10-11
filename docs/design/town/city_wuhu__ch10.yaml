@@ -3,11 +3,11 @@ kind: "CitySpec"
 city_id: "city_wuhu"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "当涂属地·芜湖江口镇（702年推定）"
+display_name: 芜湖（当涂县境，未置县）
 historical_year: 702
 era_kit: "tang"
 seed: 2287068008
-design_intent: {"prosperity": "tang_major_study_candidate", "notes": ["地方统计部门历史简介记唐代芜湖为当涂属镇；取长江与青弋江相接的江口聚落。", "702年镇址轮廓未明；无围城是保守默认，并非已证实唐代绝无栅垣。", "复原依据：history/city_wuhu__tang_702.md；AR-26与基准v1.10的702–703覆盖名录旧清初带。", "major是本批资源画幅档位，不表示702年均为大城；所有地籍与数量（原创扩展）。", "era_kit=tang；唐贴片目录缺失，墙门与地表由工具回退宋基线；建筑显式借用song_southern，不代表唐式考据。"]}
+design_intent: {"prosperity": "tang_major_study_candidate", "notes": ["地方统计部门历史简介记唐代芜湖为当涂属镇；取长江与青弋江相接的江口聚落。", "702年镇址轮廓未明；无围城是保守默认，并非已证实唐代绝无栅垣。", "复原依据：history/city_wuhu__tang_702.md；AR-26与基准v1.10的702–703覆盖名录旧清初带。", "major是本批资源画幅档位，不表示702年均为大城；所有地籍与数量（原创扩展）。", "era_kit=tang；唐贴片目录缺失，墙门与地表由工具回退宋基线；建筑显式借用song_southern，不代表唐式考据。", "本章未开放（2026-10-11 地名档）：cities.yaml eras.ch10.open=false，当章显示名「芜湖（当涂县境，未置县）」；生成器不挂载本图，规格保留备用。"]}
 grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
 runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
 projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}

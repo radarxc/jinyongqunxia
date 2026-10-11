@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_dengfeng"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "登封县（702年推定）"
+display_name: 登封县（洛州）
 historical_year: 702
 era_kit: "tang"
 seed: 1910069323

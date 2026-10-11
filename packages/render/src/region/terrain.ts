@@ -1,6 +1,6 @@
 import {
-  BufferGeometry, DataArrayTexture, DataTexture, DoubleSide, Float32BufferAttribute, GLSL3, Mesh,
-  MeshStandardMaterial, NearestFilter, RGBAFormat, ShaderMaterial, SRGBColorSpace,
+  BufferGeometry, DataArrayTexture, DataTexture, DoubleSide, Float32BufferAttribute, GLSL3, LinearFilter, Mesh,
+  MeshStandardMaterial, NearestFilter, RepeatWrapping, RGBAFormat, ShaderMaterial, SRGBColorSpace,
   UnsignedByteType, Vector3,
 } from 'three';
 import type { RegionChunkView, RegionHexPoint, RegionStaticView } from './types';
@@ -90,7 +90,7 @@ export function terrainPlaceholderColor(terrainId: string): number {
     case 'tr_tiesuoqiao': case 'tr_dumuqiao': case 'tr_zhandao':
     case 'tr_yunhaizhandao': case 'tr_chuanjiaban': return 0x856e50;
     case 'tr_shinei': case 'tr_dongku': case 'tr_migong': return 0x625a50;
-    case 'tr_shizhen': case 'tr_jiguan': case 'tr_mushi': case 'tr_shibi': return 0x747168;
+    case 'tr_shizhen': case 'tr_jiguan': case 'tr_mushi': case 'tr_shibi': return 0x827e74;
     case 'tr_huoyan': case 'tr_rongyan': return 0xa73b27;
     case 'tr_liubai': return 0xd8d0bb;
     case 'tr_wuding': return 0x758083;
@@ -100,40 +100,136 @@ export function terrainPlaceholderColor(terrainId: string): number {
   }
 }
 export function createTerrainPlaceholderArray(terrainTable: readonly string[]): DataArrayTexture {
-  const depth = Math.max(1, terrainTable.length); const pixels = new Uint8Array(depth * 4);
+  const depth = Math.max(1, terrainTable.length);
+  const size = 32;
+  const pixels = new Uint8Array(size * size * depth * 4);
   for (let layer = 0; layer < depth; layer += 1) {
-    const color = terrainPlaceholderColor(terrainTable[layer] ?? 'tr_pingdi');
-    pixels[layer * 4] = color >> 16; pixels[layer * 4 + 1] = color >> 8 & 255;
-    pixels[layer * 4 + 2] = color & 255; pixels[layer * 4 + 3] = 255;
+    const terrainId = terrainTable[layer] ?? 'tr_pingdi';
+    const baseColor = terrainPlaceholderColor(terrainId);
+    const r0 = (baseColor >> 16) & 255;
+    const g0 = (baseColor >> 8) & 255;
+    const b0 = baseColor & 255;
+    const layerOffset = layer * size * size * 4;
+
+    for (let y = 0; y < size; y += 1) {
+      for (let x = 0; x < size; x += 1) {
+        const pixelOffset = layerOffset + (y * size + x) * 4;
+        let r = r0;
+        let g = g0;
+        let b = b0;
+
+        const hash = Math.sin(x * 12.9898 + y * 78.233 + layer * 37.719) * 43758.5453;
+        const noise = (hash - Math.floor(hash)) * 2 - 1;
+
+        if (terrainId.includes('zhulin') || terrainId.includes('milin') || terrainId.includes('jingji')) {
+          const stalk = (x % 6 === 0 || x % 6 === 1) ? -18 : (x % 6 === 3 ? 14 : 0);
+          const ring = (y % 16 === 0) ? -22 : 0;
+          const varVal = stalk + ring + noise * 12;
+          r = Math.min(255, Math.max(0, r + varVal * 0.7));
+          g = Math.min(255, Math.max(0, g + varVal * 1.2));
+          b = Math.min(255, Math.max(0, b + varVal * 0.6));
+        } else if (terrainId.includes('caodi') || terrainId.includes('qinghuacong')) {
+          const blade = (x + y * 2) % 4 === 0 ? 10 : -8;
+          const varVal = blade + noise * 14;
+          r = Math.min(255, Math.max(0, r + varVal * 0.8));
+          g = Math.min(255, Math.max(0, g + varVal * 1.3));
+          b = Math.min(255, Math.max(0, b + varVal * 0.6));
+        } else if (terrainId.includes('huacong')) {
+          const isFlower = (x * 7 + y * 13) % 19 === 0;
+          if (isFlower) {
+            r = 230; g = 140; b = 160;
+          } else {
+            const varVal = noise * 15;
+            r = Math.min(255, Math.max(0, r + varVal));
+            g = Math.min(255, Math.max(0, g + varVal * 1.2));
+            b = Math.min(255, Math.max(0, b + varVal * 0.8));
+          }
+        } else if (terrainId.includes('shui') || terrainId.includes('dajiang') || terrainId.includes('pubu')) {
+          const wave = Math.sin(y * 0.6 + Math.cos(x * 0.4) * 2.0) * 18 + noise * 6;
+          r = Math.min(255, Math.max(0, r + wave * 0.5));
+          g = Math.min(255, Math.max(0, g + wave * 0.9));
+          b = Math.min(255, Math.max(0, b + wave * 1.3));
+        } else if (terrainId.includes('suishi') || terrainId.includes('taijie') || terrainId.includes('shizhen')) {
+          const seam = (x % 16 === 0 || y % 16 === 0) ? -28 : 0;
+          const varVal = seam + noise * 16;
+          r = Math.min(255, Math.max(0, r + varVal));
+          g = Math.min(255, Math.max(0, g + varVal));
+          b = Math.min(255, Math.max(0, b + varVal));
+        } else if (terrainId.includes('qiao') || terrainId.includes('zhandao') || terrainId.includes('chuan')) {
+          const seam = (y % 8 === 0) ? -32 : ((y % 8 === 4) ? 12 : 0);
+          const varVal = seam + noise * 10;
+          r = Math.min(255, Math.max(0, r + varVal * 1.1));
+          g = Math.min(255, Math.max(0, g + varVal * 0.9));
+          b = Math.min(255, Math.max(0, b + varVal * 0.7));
+        } else if (terrainId.includes('qiang') || terrainId.includes('wuding') || terrainId.includes('shibi') || terrainId.includes('mushi')) {
+          const course = (y % 8 === 0 || (y % 8 === 4 && x % 16 === 0)) ? -26 : 10;
+          const varVal = course + noise * 10;
+          r = Math.min(255, Math.max(0, r + varVal * 1.05));
+          g = Math.min(255, Math.max(0, g + varVal));
+          b = Math.min(255, Math.max(0, b + varVal * 0.95));
+        } else {
+          const varVal = noise * 12;
+          r = Math.min(255, Math.max(0, r + varVal));
+          g = Math.min(255, Math.max(0, g + varVal * 0.95));
+          b = Math.min(255, Math.max(0, b + varVal * 0.85));
+        }
+
+        pixels[pixelOffset] = r;
+        pixels[pixelOffset + 1] = g;
+        pixels[pixelOffset + 2] = b;
+        pixels[pixelOffset + 3] = 255;
+      }
+    }
   }
-  const texture = new DataArrayTexture(pixels, 1, 1, depth); texture.colorSpace = SRGBColorSpace;
-  texture.minFilter = NearestFilter; texture.magFilter = NearestFilter; texture.needsUpdate = true;
+  const texture = new DataArrayTexture(pixels, size, size, depth);
+  texture.colorSpace = SRGBColorSpace;
+  texture.minFilter = LinearFilter;
+  texture.magFilter = LinearFilter;
+  texture.wrapS = RepeatWrapping;
+  texture.wrapT = RepeatWrapping;
+  texture.needsUpdate = true;
   return texture;
 }
 
 const TERRAIN_VERTEX = `
 in float slotIndex; in float neighborLayer; in float edgeWeight; in float faceShade;
-flat out float vSlot; flat out float vNeighborLayer; out float vEdge; out float vShade; out vec3 vWorld;
+flat out float vSlot; flat out float vNeighborLayer; out float vEdge; out float vShade;
+out vec3 vWorld; out vec3 vNormal;
 void main() {
   vSlot=slotIndex; vNeighborLayer=neighborLayer; vEdge=edgeWeight; vShade=faceShade;
   vec4 world=modelMatrix*vec4(position,1.0); vWorld=world.xyz;
+  vNormal=normalize(mat3(modelMatrix)*normal);
   gl_Position=projectionMatrix*viewMatrix*world;
 }`;
 const TERRAIN_FRAGMENT = `
 precision highp float; precision highp sampler2DArray;
 uniform sampler2DArray terrainAlbedo; uniform sampler2D terrainIndex;
-flat in float vSlot; flat in float vNeighborLayer; in float vEdge; in float vShade; in vec3 vWorld;
+flat in float vSlot; flat in float vNeighborLayer; in float vEdge; in float vShade;
+in vec3 vWorld; in vec3 vNormal;
 out vec4 outColor;
 void main() {
   int slot=int(vSlot+.5); ivec2 cell=ivec2(slot%32,slot/32);
   vec4 data=texelFetch(terrainIndex,cell,0); float layer=floor(data.r*255.0+.5);
-  vec2 uv=fract(vWorld.xz*.5+data.g);
+  vec3 n = normalize(vNormal);
+  vec2 uv;
+  if (abs(n.y) < 0.65) {
+    float horiz = dot(vWorld.xz, vec2(-n.z, n.x));
+    uv = fract(vec2(horiz * 0.75, vWorld.y * 0.6) + data.g);
+  } else {
+    uv = fract(vWorld.xz * .5 + data.g);
+  }
   vec3 primary=texture(terrainAlbedo,vec3(uv,layer)).rgb;
   vec3 neighbor=texture(terrainAlbedo,vec3(uv,vNeighborLayer)).rgb;
   float noise=fract(sin(dot(vWorld.xz,vec2(12.9898,78.233)))*43758.5453)-.5;
   float bleed=smoothstep(.72,1.02,vEdge+noise*.14)*step(.5,abs(layer-vNeighborLayer));
   vec3 color=mix(primary,neighbor,bleed*.42)*mix(.55,1.0,vShade)*mix(.72,1.0,data.b);
-  color=mix(color,vec3(.93,.73,.25),data.a*.42); outColor=vec4(color,1.0);
+  color=mix(color,vec3(.93,.73,.25),data.a*.42);
+  vec3 sunDir = normalize(vec3(0.4, 0.85, 0.35));
+  float NdotL = max(0.0, dot(n, sunDir));
+  float hemi = mix(0.72, 1.15, n.y * 0.5 + 0.5);
+  float light = hemi * (0.65 + 0.35 * NdotL);
+  color *= light;
+  outColor=vec4(color,1.0);
 }`;
 export function createRegionTerrainMaterial(terrainTable: readonly string[], indexTexture: DataTexture,
   suppliedAlbedo?: DataArrayTexture): RegionTerrainMaterial {
@@ -141,6 +237,7 @@ export function createRegionTerrainMaterial(terrainTable: readonly string[], ind
   const material = new ShaderMaterial({ glslVersion: GLSL3,
     uniforms: { terrainAlbedo: { value: albedo }, terrainIndex: { value: indexTexture } },
     vertexShader: TERRAIN_VERTEX, fragmentShader: TERRAIN_FRAGMENT,
+    side: DoubleSide,
   });
   return { material, albedo, ownsAlbedo: suppliedAlbedo === undefined,
     restore() { indexTexture.needsUpdate = true; albedo.needsUpdate = true; material.needsUpdate = true; },
@@ -228,11 +325,18 @@ export function createRegionTerrainChunk(view: RegionStaticView, chunk: RegionCh
       appendVertex(positions, slots, neighbors, edges, shades, a, cell.slot, neighborLayer, 1, 1);
       appendVertex(positions, slots, neighbors, edges, shades, b, cell.slot, neighborLayer, 1, 1);
       appendTriangle(cellByTriangle, cell);
-      const lower = neighbor ? neighbor.height : prepared.minimumHeight - 1;
+      let lower: number;
+      if (neighbor) {
+        lower = neighbor.height;
+      } else if (chunk.water.length > 0) {
+        lower = prepared.minimumHeight - 1;
+      } else {
+        lower = cell.height > 0 ? Math.max(0, prepared.minimumHeight) : 0;
+      }
       if (lower >= Math.min(a.y, b.y)) continue;
       lowA.copy(a).setY(lower); lowB.copy(b).setY(lower);
-      for (const point of [a, lowA, lowB, a, lowB, b])
-        appendVertex(positions, slots, neighbors, edges, shades, point, cell.slot, cell.layer, 1, .7);
+      for (const point of [a, b, lowB, a, lowB, lowA])
+        appendVertex(positions, slots, neighbors, edges, shades, point, cell.slot, cell.layer, 1, .75);
       appendTriangle(cellByTriangle, cell); appendTriangle(cellByTriangle, cell);
     }
   }

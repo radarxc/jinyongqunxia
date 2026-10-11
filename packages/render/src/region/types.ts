@@ -80,6 +80,7 @@ export interface RegionSceneOptions {
   readonly npcEquipment?: Readonly<Record<string, EquipmentVisuals>>; readonly rig?: RigManifestInput;
   /** Optional production array texture; the scene retains ownership in the caller. */
   readonly terrainAlbedo?: DataArrayTexture;
+  readonly playerModelUrl?: string;
   readonly zoom?: number; readonly reducedMotion?: boolean; readonly quality?: RenderQualitySource;
   readonly onContextStateChange?: (state: ContextState) => void;
   readonly onContextLoss?: (sessionLossCount: number) => void;

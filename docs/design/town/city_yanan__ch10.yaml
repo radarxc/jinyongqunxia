@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_yanan"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "延州·肤施县（702年推定）"
+display_name: 延州（肤施县）
 historical_year: 702
 era_kit: "tang"
 seed: 1591045054

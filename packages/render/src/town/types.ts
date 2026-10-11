@@ -57,6 +57,10 @@ export interface TownSceneStats {
 }
 export interface TownScreenPoint { x: number; y: number; visible: boolean }
 export interface TownSceneOptions { readonly projection: TownSceneProjection; readonly zoom?: number;
+  /** Cutout figure URL for `'player'` or an npcId; null/undefined keeps that actor sprite-less. */
+  readonly spriteFor?: (actorId: string) => string | null | undefined;
+  /** 3D model URL for the player (or fallback) */
+  readonly playerModelUrl?: string | null;
   /** Test seam; production loads the rig runtime when the town is first entered. */
   readonly loadRigRuntime?: () => Promise<typeof RigRuntime> }
 export interface TownScene {
@@ -68,5 +72,9 @@ export interface TownScene {
   pickPoint(clientX: number, clientY: number, bounds: DOMRect): TownPoint | null;
   pickAnchor(clientX: number, clientY: number, bounds: DOMRect): TownAnchorView | null;
   project(point: TownPoint, elevationCm: number, out: TownScreenPoint): void;
+  readonly scene?: unknown;
+  readonly camera?: unknown;
+  readonly canvas?: HTMLCanvasElement;
+  readonly renderer?: unknown;
   dispose(): void;
 }

@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_quzhou
 chapter_id: ch10
 book_world: ch10_baima
-display_name: 衢州府
+display_name: 衢州（信安县）
 historical_year: 702
 era_kit: tang
 seed: 751030651

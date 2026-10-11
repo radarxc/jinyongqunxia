@@ -40,7 +40,7 @@ function requestDraw(): void {
 }
 function draw(time: number): void {
   framePending = false; if (disposed) return; requestDraw();
-  if (document.visibilityState === 'hidden' || !view) return;
+  if ((document.visibilityState === 'hidden' && !import.meta.env?.DEV) || !view) return;
   view.render(time, controller.settings.value.reducedMotion);
   cameraYaw.value = view.camera.yawDeg; cameraRotating.value = view.camera.rotating;
   cameraAllow.value = view.camera.allowRotation;
@@ -68,8 +68,12 @@ async function mountScene(restoredYaw = 45): Promise<boolean> {
     onContextLoss: () => undefined, onContextRecreate: () => token === generation
       ? recreateScene() : Promise.resolve(false), requestFrame: requestDraw });
   if (disposed || token !== generation) { created.dispose(); return false; }
-  view = created; mountedSceneKey = sceneKey; pendingSceneKey = '';
-  view.setTimeOfDay((game.value.worldTick / TICKS_PER_HOUR) % 24);
+  view = created; (window as unknown as { __regionScene?: unknown }).__regionScene = created;
+  mountedSceneKey = sceneKey; pendingSceneKey = '';
+  const currentHour = Number.isFinite(game.value?.worldTick)
+    ? (game.value.worldTick / TICKS_PER_HOUR) % 24
+    : 12;
+  view.setTimeOfDay(currentHour);
   const steps = Math.round((restoredYaw - view.camera.yawDeg + 360) % 360 / 90);
   for (let index = 0; index < steps && view.camera.allowRotation; index += 1)
     void view.camera.rotate(1, true);
@@ -90,7 +94,10 @@ async function updateProjection(next: RegionDynamicView): Promise<void> {
   const target = view; const token = generation; if (!target) return;
   await target.update(next, equipment());
   if (disposed || token !== generation || view !== target) return;
-  target.setTimeOfDay((game.value.worldTick / TICKS_PER_HOUR) % 24);
+  const currentHour = Number.isFinite(game.value?.worldTick)
+    ? (game.value.worldTick / TICKS_PER_HOUR) % 24
+    : 12;
+  target.setTimeOfDay(currentHour);
 }
 async function retry(low: boolean): Promise<void> {
   const current = quality ?? await createRenderQuality(); if (disposed) return;

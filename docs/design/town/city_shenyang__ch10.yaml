@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_shenyang"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "沈水流域聚落（702年推定）"
+display_name: 新城（安东都督府，今抚顺）
 historical_year: 702
 era_kit: "tang"
 seed: 3318193926

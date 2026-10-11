@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_hefei"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "庐州·合肥县（702年推定）"
+display_name: 庐州（合肥县）
 historical_year: 702
 era_kit: "tang"
 seed: 2751445481

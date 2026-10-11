@@ -789,8 +789,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_chengdu",
@@ -1100,8 +1100,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_dazhou",
@@ -1340,7 +1340,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -1811,7 +1811,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -1988,7 +1988,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -2379,7 +2379,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -2696,8 +2696,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_jiujiang",
@@ -2776,7 +2776,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -2884,7 +2884,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -2961,7 +2961,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "site",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -3878,7 +3878,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -3911,8 +3911,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_ningbo",
@@ -4012,8 +4012,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_penglai",
@@ -4354,8 +4354,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_quanzhou",
@@ -4712,7 +4712,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -4975,7 +4975,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -5273,7 +5273,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -5483,7 +5483,7 @@
             },
             "coordinateNote": "design/map 城市治所投影",
             "tier": "minor",
-            "marker": "city_county"
+            "marker": "pass"
           },
           {
             "id": "city_weinan",
@@ -5681,8 +5681,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_wuxi",
@@ -5903,8 +5903,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_xianyang",
@@ -6050,7 +6050,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -6557,8 +6557,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_yingkou",
@@ -6712,7 +6712,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -6863,8 +6863,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "minor",
+            "marker": "pass"
           },
           {
             "id": "city_zhangzhou",
@@ -7103,7 +7103,7 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
+            "tier": "minor",
             "marker": "pass"
           },
           {
@@ -7422,7 +7422,7 @@
             "accessNote": "需段氏好感",
             "kind": "ruin",
             "point": [
-              228,
+              229,
               287
             ],
             "regionId": "rg_dali_cangshan",
@@ -14787,6 +14787,645 @@
             ]
           }
         ],
+        "sects": [
+          {
+            "id": "sect_baiyuncheng",
+            "name": "白云城",
+            "siteName": "南海白云城支线",
+            "kind": "island_city",
+            "point": [
+              319,
+              341
+            ],
+            "status": "M",
+            "marker": "sect",
+            "cityId": "city_baiyuncheng"
+          },
+          {
+            "id": "sect_chuangwangjun",
+            "name": "闯王军",
+            "siteName": "陕北流动军营",
+            "kind": "mobile_army",
+            "point": [
+              292,
+              199
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_yanan"
+          },
+          {
+            "id": "sect_daqimen",
+            "name": "大旗门",
+            "siteName": "大旗门边塞营寨",
+            "kind": "mobile_camp",
+            "point": [
+              220,
+              169
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_jiuquan"
+          },
+          {
+            "id": "sect_emei",
+            "name": "峨眉派",
+            "siteName": "峨眉山金顶一带",
+            "kind": "headquarters",
+            "point": [
+              252,
+              257
+            ],
+            "status": "H",
+            "marker": "temple",
+            "cityId": "city_leshan"
+          },
+          {
+            "id": "sect_erengu",
+            "name": "恶人谷",
+            "siteName": "昆仑恶人谷支线秘境",
+            "kind": "hidden_valley",
+            "point": [
+              90,
+              180
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_khotan_kunlun"
+          },
+          {
+            "id": "sect_gaibang",
+            "name": "丐帮",
+            "siteName": "丐帮流动总舵",
+            "kind": "mobile_headquarters",
+            "point": [
+              312,
+              213
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_luoyang"
+          },
+          {
+            "id": "sect_gumu",
+            "name": "古墓派",
+            "siteName": "终南山活死人墓小说锚点",
+            "kind": "headquarters",
+            "point": [
+              288,
+              220
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_xian"
+          },
+          {
+            "id": "sect_hasake",
+            "name": "哈萨克部族",
+            "siteName": "伊犁草原季节营地",
+            "kind": "seasonal_camp",
+            "point": [
+              128,
+              121
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_yining"
+          },
+          {
+            "id": "sect_hengshan_bei",
+            "name": "恒山派",
+            "siteName": "北岳恒山见性峰一带",
+            "kind": "headquarters",
+            "point": [
+              316,
+              172
+            ],
+            "status": "H",
+            "marker": "temple",
+            "cityId": "city_datong"
+          },
+          {
+            "id": "sect_hengshan_nan",
+            "name": "衡山派",
+            "siteName": "南岳衡山",
+            "kind": "headquarters",
+            "point": [
+              318,
+              273
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_hengyang"
+          },
+          {
+            "id": "sect_huashan",
+            "name": "华山派",
+            "siteName": "华山玉女峰一带",
+            "kind": "headquarters",
+            "point": [
+              296,
+              216
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_huayin"
+          },
+          {
+            "id": "sect_huibu",
+            "name": "回部",
+            "siteName": "南北疆回部主节点",
+            "kind": "regional_network",
+            "point": [
+              90,
+              151
+            ],
+            "status": "P",
+            "marker": "sect",
+            "cityId": "city_kashgar"
+          },
+          {
+            "id": "sect_jinqianbang",
+            "name": "金钱帮",
+            "siteName": "金钱帮钱庄网络总节点",
+            "kind": "distributed_network",
+            "point": [
+              312,
+              213
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_luoyang"
+          },
+          {
+            "id": "sect_kongqueshanzhuang",
+            "name": "孔雀山庄",
+            "siteName": "孔雀山庄支线锚点",
+            "kind": "manor",
+            "point": [
+              357,
+              234
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_nanjing"
+          },
+          {
+            "id": "sect_kongtong",
+            "name": "崆峒派",
+            "siteName": "崆峒山",
+            "kind": "headquarters",
+            "point": [
+              273,
+              208
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_pingliang"
+          },
+          {
+            "id": "sect_kuaihuowangfu",
+            "name": "快活王一系",
+            "siteName": "楼兰方向快活王支线城",
+            "kind": "desert_court",
+            "point": [
+              183,
+              164
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_dunhuang"
+          },
+          {
+            "id": "sect_kunlun",
+            "name": "昆仑派",
+            "siteName": "昆仑派山门小说锚点",
+            "kind": "headquarters",
+            "point": [
+              98,
+              181
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_khotan_kunlun"
+          },
+          {
+            "id": "sect_lingjiu",
+            "name": "灵鹫宫",
+            "siteName": "天山缥缈峰灵鹫宫小说锚点",
+            "kind": "mountain_palace",
+            "point": [
+              154,
+              136
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_yining"
+          },
+          {
+            "id": "sect_menggu",
+            "name": "蒙古诸部 / 幕府",
+            "siteName": "和林与漠北行营",
+            "kind": "mobile_court",
+            "point": [
+              252,
+              114
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_karakorum"
+          },
+          {
+            "id": "sect_mizong",
+            "name": "吐蕃密宗",
+            "siteName": "大轮寺小说锚点（确址待考）",
+            "kind": "regional_monastery",
+            "point": [
+              163,
+              244
+            ],
+            "status": "H",
+            "marker": "temple",
+            "cityId": "city_lhasa"
+          },
+          {
+            "id": "sect_nanshaolin",
+            "name": "南少林",
+            "siteName": "南少林候选驻地（莆田说）",
+            "kind": "candidate_headquarters",
+            "point": [
+              364,
+              283
+            ],
+            "status": "H",
+            "marker": "temple",
+            "cityId": "city_putian"
+          },
+          {
+            "id": "sect_nanshaolin__quanzhou",
+            "name": "南少林",
+            "siteName": "泉州候选点",
+            "kind": "branch",
+            "point": [
+              362,
+              287
+            ],
+            "status": "H",
+            "marker": "temple",
+            "cityId": "city_quanzhou"
+          },
+          {
+            "id": "sect_qingcheng",
+            "name": "青城派",
+            "siteName": "青城山",
+            "kind": "headquarters",
+            "point": [
+              254,
+              246
+            ],
+            "status": "H",
+            "marker": "daoist",
+            "cityId": "city_dujiangyan"
+          },
+          {
+            "id": "sect_qinggong",
+            "name": "清宫",
+            "siteName": "北京紫禁城",
+            "kind": "court",
+            "point": [
+              332,
+              169
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_beijing"
+          },
+          {
+            "id": "sect_qinggong__chengde",
+            "name": "清宫",
+            "siteName": "承德行宫",
+            "kind": "branch",
+            "point": [
+              340,
+              159
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_chengde"
+          },
+          {
+            "id": "sect_qinggong__shengjing",
+            "name": "清宫",
+            "siteName": "盛京",
+            "kind": "branch",
+            "point": [
+              371,
+              147
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_shenyang"
+          },
+          {
+            "id": "sect_qinglonghui",
+            "name": "青龙会",
+            "siteName": "青龙会数据总节点（无唯一总坛）",
+            "kind": "distributed_network",
+            "point": [
+              355,
+              230
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_nanjing"
+          },
+          {
+            "id": "sect_quanzhen",
+            "name": "全真教",
+            "siteName": "鄠邑祖庵重阳宫历史遗址",
+            "kind": "headquarters",
+            "point": [
+              286,
+              219
+            ],
+            "status": "H",
+            "marker": "daoist",
+            "cityId": "city_xian"
+          },
+          {
+            "id": "sect_quanzhen__baiyunguan",
+            "name": "全真教",
+            "siteName": "北京白云观后世别院",
+            "kind": "branch",
+            "point": [
+              332,
+              169
+            ],
+            "status": "H",
+            "marker": "daoist",
+            "cityId": "city_beijing"
+          },
+          {
+            "id": "sect_renyizhuang",
+            "name": "仁义庄",
+            "siteName": "中原仁义庄支线锚点",
+            "kind": "manor",
+            "point": [
+              327,
+              213
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_kaifeng"
+          },
+          {
+            "id": "sect_riyue",
+            "name": "日月神教",
+            "siteName": "河北黑木崖小说锚点（待考）",
+            "kind": "cliff_headquarters",
+            "point": [
+              316,
+              186
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": null
+          },
+          {
+            "id": "sect_shaolin",
+            "name": "少林",
+            "siteName": "少室山少林寺",
+            "kind": "headquarters",
+            "point": [
+              315,
+              214
+            ],
+            "status": "H",
+            "marker": "temple",
+            "cityId": "city_dengfeng"
+          },
+          {
+            "id": "sect_shenjianshanzhuang",
+            "name": "神剑山庄",
+            "siteName": "翠云峰绿水湖神剑山庄支线锚点",
+            "kind": "manor",
+            "point": [
+              358,
+              251
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_hangzhou"
+          },
+          {
+            "id": "sect_shenshuigong",
+            "name": "神水宫",
+            "siteName": "神水宫水域秘境",
+            "kind": "hidden_palace",
+            "point": [
+              330,
+              251
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_wuhan"
+          },
+          {
+            "id": "sect_taishan",
+            "name": "泰山派",
+            "siteName": "泰山",
+            "kind": "headquarters",
+            "point": [
+              340,
+              198
+            ],
+            "status": "H",
+            "marker": "daoist",
+            "cityId": "city_taian"
+          },
+          {
+            "id": "sect_tangmen",
+            "name": "蜀中唐门",
+            "siteName": "蜀中唐家堡支线锚点",
+            "kind": "fortified_manor",
+            "point": [
+              259,
+              250
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_chengdu"
+          },
+          {
+            "id": "sect_taohuadao",
+            "name": "桃花岛",
+            "siteName": "桃花岛",
+            "kind": "island_headquarters",
+            "point": [
+              381,
+              244
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_taohuadao"
+          },
+          {
+            "id": "sect_tiandihui",
+            "name": "天地会",
+            "siteName": "北京青木堂联络锚点",
+            "kind": "secret_network",
+            "point": [
+              332,
+              169
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_beijing"
+          },
+          {
+            "id": "sect_tianlongsi",
+            "name": "天龙寺",
+            "siteName": "苍山天龙寺小说锚点",
+            "kind": "headquarters",
+            "point": [
+              229,
+              287
+            ],
+            "status": "H",
+            "marker": "temple",
+            "cityId": "city_dali"
+          },
+          {
+            "id": "sect_tiejian",
+            "name": "铁剑门",
+            "siteName": "华北游方临时据点",
+            "kind": "mobile_lineage",
+            "point": [
+              330,
+              168
+            ],
+            "status": "H",
+            "marker": "daoist",
+            "cityId": "city_beijing"
+          },
+          {
+            "id": "sect_wanjia",
+            "name": "万家门",
+            "siteName": "荆州万府",
+            "kind": "manor",
+            "point": [
+              313,
+              249
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_jingzhou"
+          },
+          {
+            "id": "sect_wanmeishanzhuang",
+            "name": "万梅山庄",
+            "siteName": "万梅山庄",
+            "kind": "manor",
+            "point": [
+              367,
+              234
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_suzhou"
+          },
+          {
+            "id": "sect_wudang",
+            "name": "武当派",
+            "siteName": "武当山宫观群",
+            "kind": "headquarters",
+            "point": [
+              303,
+              232
+            ],
+            "status": "H",
+            "marker": "daoist",
+            "cityId": "city_shiyan"
+          },
+          {
+            "id": "sect_wuxian",
+            "name": "五仙教",
+            "siteName": "云南五仙教小说锚点",
+            "kind": "headquarters",
+            "point": [
+              249,
+              296
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_kunming"
+          },
+          {
+            "id": "sect_wuzhengshanzhuang",
+            "name": "无争山庄",
+            "siteName": "太原无争山庄",
+            "kind": "manor",
+            "point": [
+              309,
+              188
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_taiyuan"
+          },
+          {
+            "id": "sect_xiandu",
+            "name": "仙都派",
+            "siteName": "浙南仙都派小说锚点（待考）",
+            "kind": "headquarters",
+            "point": [
+              368,
+              256
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_jinhua"
+          },
+          {
+            "id": "sect_xuedaomen",
+            "name": "血刀门",
+            "siteName": "藏边血刀门寺院 / 雪谷小说锚点",
+            "kind": "mountain_monastery",
+            "point": [
+              193,
+              235
+            ],
+            "status": "O",
+            "marker": "temple",
+            "cityId": "city_qamdo"
+          },
+          {
+            "id": "sect_xueyumen",
+            "name": "血雨门",
+            "siteName": "江南血雨门案件副本",
+            "kind": "movable_dungeon",
+            "point": [
+              363,
+              242
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_hangzhou"
+          },
+          {
+            "id": "sect_yihuagong",
+            "name": "移花宫",
+            "siteName": "移花宫支线秘境",
+            "kind": "hidden_palace",
+            "point": [
+              294,
+              226
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_xian"
+          }
+        ],
         "terrain": {
           "land": [
             [
@@ -18665,7 +19304,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "dc44a40e408e384722f6d1381ad578a5894102b44063fc7cae53957e6bd23d73"
+        "revision": "92e5b15ac06c1bbedce0694adc2a86f23b22ac243e531de8e02ce4904b339c91"
       }
     }
   ]

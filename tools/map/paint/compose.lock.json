@@ -6,7 +6,7 @@
   1750
  ],
  "check_window_sha256": "4d44ddc3a28719779339e46d1aee967b74327d5512e4e8133b4bbb5909bcb56d",
- "config_sha256": "27d1c6bca6b7ac1110d84c3d44460aa2f7aeb9c5143b82964703cce5d6a35275",
+ "config_sha256": "3d7affd330d0f48ac6b97c8991e107259dac9d52cd236e135c3e5cb5ec274d24",
  "inputs": {
   "etopo2022_60s/etopo2022_60s_surface_mosaic.npy": "7604138131e120385727d49a3db2a5285b39caa7acd5dd5fd68ef2516c6bb93a",
   "ne_10m_geography_regions_polys/ne_10m_geography_regions_polys.zip": "cb7b9db200284ed1551f20eacc7f3333e9b5f311c19f7cb2670694529f688682",
@@ -65,9 +65,9 @@
   "assets/default/map/tiles/map_tile_shuimian_02.png": "10f4a7842628374483ee15efe2d3886a6d2d8c0dda34395056a36709f2f71f0c"
  },
  "outputs": {
-  ".agents/coord/ART-worldmap-painted/full/compose_full_4096.png": "816022b4f76c73860ab6cd2a66d82a6fed84ffcd40a62d30c0d8667a8328f852",
-  "assets/default/map/world/map_world_jianghu__base01.webp": "520c33c3c34e190062ff5ad06439350a565e5e42cd4e5ed6be692c0114474bea",
-  "assets/default/map/world/map_world_jianghu__base01_preview.webp": "66d0ec079010222f8ecb799efc2a6158cee1346aea9865f6340214bed9c226b0"
+  ".agents/coord/ART-worldmap-painted/full/compose_full_4096.png": "b63fe955a8896627326611ef4ad600e7d538cca0a5e1c3aec25a1df10793248c",
+  "assets/default/map/world/map_world_jianghu__base01.webp": "132270420bdb236a7e5be39105f66920de2326451d3240849f87f707efbd9e71",
+  "assets/default/map/world/map_world_jianghu__base01_preview.webp": "eceb6f06db87abbae4d0af47f0bf6633c02c28a27192cde2068b52d9769fcae1"
  },
  "schema": "tianshu.worldmap-paint-lock.v1"
 }

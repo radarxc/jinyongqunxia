@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_pingliang"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "原州辖境·颉河北平凉旧治（702年推定）"
+display_name: 平凉县（原州）
 historical_year: 702
 era_kit: "tang"
 seed: 484337696

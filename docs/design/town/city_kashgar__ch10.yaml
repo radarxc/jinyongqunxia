@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_kashgar"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "疏勒镇·汗诺依城候选（702年推定）"
+display_name: 疏勒镇（疏勒都督府）
 historical_year: 702
 era_kit: "xiyu"
 seed: 2524062232

@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_haikou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "崖州·舍城旧治候选（海口南部内陆）（702年推定）"
+display_name: 崖州（舍城县）
 historical_year: 702
 era_kit: "tang"
 seed: 1834549198

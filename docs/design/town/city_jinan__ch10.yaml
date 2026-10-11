@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_jinan"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "齐州·历城县（702年推定）"
+display_name: 齐州（历城县）
 historical_year: 702
 era_kit: "tang"
 seed: 404849860

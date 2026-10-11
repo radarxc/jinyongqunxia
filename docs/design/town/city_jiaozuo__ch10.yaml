@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_jiaozuo
 chapter_id: ch10
 book_world: ch10_baima
-display_name: 怀庆府
+display_name: 怀州
 historical_year: 702
 era_kit: tang
 seed: 261047804

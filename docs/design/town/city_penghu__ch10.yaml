@@ -3,11 +3,11 @@ kind: "CitySpec"
 city_id: "city_penghu"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "澎湖海岛泊地聚落（702年推定）"
+display_name: 澎湖屿（未设治）
 historical_year: 702
 era_kit: "tang"
 seed: 3947315145
-design_intent: {"prosperity": "tang_major_study_candidate", "notes": ["考古把汉人活动推至唐末，可靠文献始于南宋；702固定城防与聚落位置均无证。", "不套明清妈宫城及近世港街。", "复原依据：history/city_penghu__tang_702.md；AR-47要求702年代带全量。", "major/capital是资源画幅档，不等于702年行政等级；全部坐标与建筑配额为游戏缩景。", "era_kit=tang；唐贴片目录缺失，墙门与地表由工具回退；建筑显式借用song_southern，不作为唐式考据。"]}
+design_intent: {"prosperity": "tang_major_study_candidate", "notes": ["考古把汉人活动推至唐末，可靠文献始于南宋；702固定城防与聚落位置均无证。", "不套明清妈宫城及近世港街。", "复原依据：history/city_penghu__tang_702.md；AR-47要求702年代带全量。", "major/capital是资源画幅档，不等于702年行政等级；全部坐标与建筑配额为游戏缩景。", "era_kit=tang；唐贴片目录缺失，墙门与地表由工具回退；建筑显式借用song_southern，不作为唐式考据。", "本章未开放（2026-10-11 地名档）：cities.yaml eras.ch10.open=false，当章显示名「澎湖屿（未设治）」；生成器不挂载本图，规格保留备用。"]}
 grid: {"width": 160, "height": 160, "cell_m": 1, "chunk_cells": 32}
 runtime_partition: {"q_min": -80, "r_min": 1, "q_slot_count": 219, "r_slot_count": 160, "q_band_slots": [73, 73, 73], "r_band_slots": [80, 80], "formal_scene_refs": null}
 projection: {"tile_px": [64, 32], "pitch_deg": 30, "yaw_deg": 45}

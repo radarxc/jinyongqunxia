@@ -310,11 +310,11 @@
 | `city_fuzhou` | 福州府 | `rg_fujian` | 江南海陆线或莆田后 | 官府、商帮 | 海路补给与转运 |
 | `city_lanzhou` | 兰州府 | `rg_hexilongyou` | 阶段 3 后 | 官驿、商队、红花暗线 | 马匹、粮食、西行补给 |
 | `city_jiuquan` | 肃州 | `rg_hexilongyou` | 兰州—肃州路线 | 边关军镇 | 铁器、矿料、关牒 |
-| `city_dunhuang` | 敦煌县境 **（待考）** | `rg_hexilongyou` | 肃州后 | 边驿与商队 | 戈壁补水、沙漠入口 |
-| `city_kashgar` | 喀什噶尔 | `rg_xiyu_nanjiang` | 会师或商队许可 | `sect_huibu` 开放 | 商贸、马匹、民众信任 |
+| `city_dunhuang` | 沙州卫 | `rg_hexilongyou` | 肃州后 | 边驿与商队 | 戈壁补水、沙漠入口 |
+| `city_kashgar` | 喀什噶尔（大小和卓据） | `rg_xiyu_nanjiang` | 会师或商队许可 | `sect_huibu` 开放 | 商贸、马匹、民众信任 |
 | `city_yarkand` | 叶尔羌 | `rg_xiyu_nanjiang` | 会师阶段 | 回部营地与多方密市 | 假旗情报、粮畜 |
 | `city_khotan_kunlun` | 昆仑山道 **（待考）** | `rg_xiyu_nanjiang` | qg2 或向导 | 隐世传承节点 | 玉峰、药材、洞文 |
-| `city_yining` | 伊犁营城 **（待考）** | `rg_xiyu_beijiang` | 黑水阶段后 | 军镇 / 河谷部落 | 马场、战区补给 |
+| `city_yining` | 固勒扎（准噶尔覆亡） | `rg_xiyu_beijiang` | 黑水阶段后 | 军镇 / 河谷部落 | 马场、战区补给 |
 | `city_turpan` | 吐鲁番 | `rg_xiyu_beijiang` | 敦煌专线或南疆商路 | 商队与高昌旧迹线索 | 丝茶、驼队、前代遗迹 |
 
 ### 3.11 十八个资源点

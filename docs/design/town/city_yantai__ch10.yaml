@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_yantai"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "芝罘湾沿岸聚落（702年推定）"
+display_name: 登州（牟平县）
 historical_year: 702
 era_kit: "tang"
 seed: 3030739750

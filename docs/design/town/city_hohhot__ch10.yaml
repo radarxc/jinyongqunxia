@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_hohhot"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "单于大都护府·土城子北城（702年推定）"
+display_name: 单于故城（安北都护辖，待考）
 historical_year: 702
 era_kit: "tang"
 seed: 4141584468

@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_zibo
 chapter_id: ch10
 book_world: ch10_baima
-display_name: 淄川 / 临淄诸县所指治所（待考）
+display_name: 淄州（淄川县）
 historical_year: 702
 era_kit: tang
 seed: 1711578083

@@ -248,16 +248,16 @@ chapterMapLayer:
 
 | 城市 ID | 本时代显示名 | 区域 | 状态与势力 | 门派 / NPC | 主要服务与资源入口 |
 |---|---|---|---|---|---|
-| `city_yining` | 伊丽水草原营地 **（原创扩展；水名写法待考）** | `rg_xiyu_beijiang` | 铁延部季节营地与商旅节点；不出现后世伊宁 / 固勒扎建制 | `sect_hasake`、李文秀一行、韩禾 | 马市、补给、牧场、毡帐议事 |
-| `city_turpan` | 西州 / 高昌县 | `rg_xiyu_beijiang` | 唐置西州及高昌故城入口；小说迷宫与现实遗址严格分开 | `sect_gaochang` 外围寻路人 **（原创扩展）** | 药材、地图摹印、商队护卫 |
-| `city_hami` | 伊州 | `rg_xiyu_beijiang` | 唐代丝路军驿与商路节点 | 沈青禾、追图探子 | 水囊、驮马、护商会合点 |
-| `city_dunhuang` | 沙州 / 敦煌县 | `rg_hexilongyou` | 河西军驿、石窟寺与商旅节点 | 段霜、驿卒生成 NPC | 驿路、食肆消息点、矿 / 墨料交易 |
-| `city_jiuquan` | 肃州 | `rg_hexilongyou` | 旧案向东追查的第一处稳定城镇 | 段霜、商队护卫 | 护商、皮草与铁器转运 |
-| `city_zhangye` | 甘州 | `rg_hexilongyou` | 河西粮运与驿传节点 | 沈青禾商队、庄园生成 NPC | 粮食、护院、药材采购 |
-| `city_wuwei` | 凉州 | `rg_hexilongyou` | 军驿与商旅混合，灰色消息聚集 | 旧案证人生成 NPC | 食肆、军旅吐纳师父、皮草 |
-| `city_lanzhou` | 兰州 | `rg_hexilongyou` | 东西商路转折；可继续追旧案或返回北疆 | 沈青禾、护商主管生成 NPC | 护商、药行、铁器 |
-| `city_xian` | 长安 | `rg_guanzhong` | 东归过渡枢纽和通行武学补栏点 | 游方武师、段霜 | 宅院 / 教场、粮田、清风剑链 |
-| `city_taiyuan` | 并州 / 太原府地 | `rg_hedong_jinzhong` | 吕梁与晋威号旧账调查终点之一 | 旧案关系 NPC；不设虚构门派 ID | 行册、木材、百战剑高阶考验 |
+| `city_yining` | 弓月城（伊丽水） | `rg_xiyu_beijiang` | 铁延部季节营地与商旅节点；不出现后世伊宁 / 固勒扎建制 | `sect_hasake`、李文秀一行、韩禾 | 马市、补给、牧场、毡帐议事 |
+| `city_turpan` | 西州（高昌县） | `rg_xiyu_beijiang` | 唐置西州及高昌故城入口；小说迷宫与现实遗址严格分开 | `sect_gaochang` 外围寻路人 **（原创扩展）** | 药材、地图摹印、商队护卫 |
+| `city_hami` | 伊州（伊吾县） | `rg_xiyu_beijiang` | 唐代丝路军驿与商路节点 | 沈青禾、追图探子 | 水囊、驮马、护商会合点 |
+| `city_dunhuang` | 沙州（敦煌县） | `rg_hexilongyou` | 河西军驿、石窟寺与商旅节点 | 段霜、驿卒生成 NPC | 驿路、食肆消息点、矿 / 墨料交易 |
+| `city_jiuquan` | 肃州（酒泉县） | `rg_hexilongyou` | 旧案向东追查的第一处稳定城镇 | 段霜、商队护卫 | 护商、皮草与铁器转运 |
+| `city_zhangye` | 甘州（张掖县） | `rg_hexilongyou` | 河西粮运与驿传节点 | 沈青禾商队、庄园生成 NPC | 粮食、护院、药材采购 |
+| `city_wuwei` | 凉州（姑臧县） | `rg_hexilongyou` | 军驿与商旅混合，灰色消息聚集 | 旧案证人生成 NPC | 食肆、军旅吐纳师父、皮草 |
+| `city_lanzhou` | 兰州（金城县） | `rg_hexilongyou` | 东西商路转折；可继续追旧案或返回北疆 | 沈青禾、护商主管生成 NPC | 护商、药行、铁器 |
+| `city_xian` | 长安（京城·雍州） | `rg_guanzhong` | 东归过渡枢纽和通行武学补栏点 | 游方武师、段霜 | 宅院 / 教场、粮田、清风剑链 |
+| `city_taiyuan` | 并州（北都） | `rg_hedong_jinzhong` | 吕梁与晋威号旧账调查终点之一 | 旧案关系 NPC；不设虚构门派 ID | 行册、木材、百战剑高阶考验 |
 
 上述 `city_*` 为稳定地理键，不声称其旧显示名可直接用于 702 年。`city_yining` 尤其只作营地挂载键；`rg_qingzang` 不计入十座可制作街区，使用野外安全点。官号与水名上线前仍须专项考据。
 

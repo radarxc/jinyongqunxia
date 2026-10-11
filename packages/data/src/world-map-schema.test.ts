@@ -57,6 +57,8 @@ describe('WorldMapDefinitionSchema', () => {
     expect(() => WorldMapDefinitionSchema.parse({ ...map, sects: [sect, sect] })).toThrow();
     expect(() => WorldMapDefinitionSchema.parse({ ...map, sects: [{ ...sect, cityId: 'city_zz' }] })).toThrow();
     expect(() => WorldMapDefinitionSchema.parse({ ...map, sects: [{ ...sect, status: 'N' }] })).toThrow();
+    expect(() => WorldMapDefinitionSchema.parse({ ...map, sects: [{ ...sect, marker: 'city_large' }] })).toThrow();
+    expect(WorldMapDefinitionSchema.parse({ ...map, sects: [{ ...sect, marker: 'daoist' }] }).sects![0]!.marker).toBe('daoist');
   });
 
   it('rejects geometry, era and envelope identities that disagree with the map', () => {

@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_shanhaiguan"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "榆关通道据点（702年推定）"
+display_name: 临渝关（平州石城县）
 historical_year: 702
 era_kit: "tang"
 seed: 20977184

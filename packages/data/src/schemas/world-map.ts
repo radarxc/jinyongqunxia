@@ -36,7 +36,7 @@ export const WorldMapNodeSchema = z.strictObject({
 export const MapSectSchema = z.strictObject({
   id: z.string().regex(/^sect_[a-z0-9_]+$/), name: z.string().min(1), siteName: z.string(),
   kind: z.string().min(1), point: MapPointSchema, status: z.enum(['O', 'H', 'P', 'M']),
-  marker: MapMarkerSchema, cityId: MapNodeIdSchema.nullable(),
+  marker: z.enum(['sect', 'temple', 'daoist']), cityId: MapNodeIdSchema.nullable(),
 });
 
 export const WorldMapRoadSchema = z.strictObject({

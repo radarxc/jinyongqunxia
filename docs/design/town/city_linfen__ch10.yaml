@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_linfen"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "晋州·临汾县（702年推定）"
+display_name: 晋州（临汾县）
 historical_year: 702
 era_kit: "tang"
 seed: 3995506615

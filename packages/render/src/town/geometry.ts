@@ -1,5 +1,5 @@
-import { CanvasTexture, DynamicDrawUsage, Group, InstancedBufferAttribute, InstancedMesh,
-  LinearFilter, Matrix4, PlaneGeometry, Quaternion, SRGBColorSpace, ShaderMaterial, Texture,
+import { Box3, CanvasTexture, DynamicDrawUsage, Group, InstancedBufferAttribute, InstancedMesh,
+  LinearFilter, Matrix4, Mesh, MeshBasicMaterial, PlaneGeometry, Quaternion, Sphere, SRGBColorSpace, ShaderMaterial, Texture,
   Vector3 } from 'three';
 import { planningCellCenterToTownWorld, planningToTownWorld, townBillboardQuaternion,
   TOWN_PIXELS_PER_WORLD, TOWN_VERTICAL_PIXELS_PER_WORLD } from './projection';
@@ -63,6 +63,8 @@ export async function loadTownAtlas(source: TownRuntimeView['assets']['tile']): 
       }
     }
     texture = new CanvasTexture(canvas); texture.colorSpace = SRGBColorSpace;
+    // atlasUv() addresses cells in canvas (top-down) rows, so the upload must not flip.
+    texture.flipY = false;
     texture.minFilter = LinearFilter; texture.magFilter = LinearFilter; texture.generateMipmaps = true;
   }
   for (const asset of packed) cells.set(asset.entry.id, { u0: asset.x / atlasWidth,
@@ -81,10 +83,12 @@ const FRAGMENT = `uniform sampler2D map; varying vec2 vUv; varying vec2 vLocalUv
 varying vec4 vClip; varying float vOpacity;
 void main(){ if(vLocalUv.x<vClip.x||vLocalUv.y<vClip.y||vLocalUv.x>vClip.z||vLocalUv.y>vClip.w) discard;
 vec4 texel=texture2D(map,vUv); float alpha=texel.a*vOpacity;
-if(alpha<0.025) discard; gl_FragColor=vec4(texel.rgb,alpha); }`;
-function material(texture: Texture, depthWrite = true): ShaderMaterial {
+if(alpha<0.025) discard; gl_FragColor=vec4(texel.rgb,alpha);
+#include <colorspace_fragment>
+}`;
+function material(texture: Texture, depthWrite = true, depthTest = true): ShaderMaterial {
   return new ShaderMaterial({ uniforms: { map: { value: texture } }, vertexShader: VERTEX,
-    fragmentShader: FRAGMENT, transparent: true, depthWrite, depthTest: true });
+    fragmentShader: FRAGMENT, transparent: true, depthWrite, depthTest });
 }
 function configure(mesh: InstancedMesh, cells: Float32Array, opacity: Float32Array, dynamic = false,
   clips?: Float32Array): void {
@@ -96,7 +100,7 @@ function configure(mesh: InstancedMesh, cells: Float32Array, opacity: Float32Arr
   const alpha = new InstancedBufferAttribute(opacity, 1);
   if (dynamic) alpha.setUsage(DynamicDrawUsage);
   mesh.geometry.setAttribute('townOpacity', alpha);
-  mesh.instanceMatrix.needsUpdate = true; mesh.computeBoundingSphere(); mesh.computeBoundingBox();
+  mesh.instanceMatrix.needsUpdate = true;
 }
 function byKind(town: TownRuntimeView, kind: string): TownAssetEntry | undefined {
   return town.assets.tile.entries.find((entry) => entry.kind === kind);
@@ -166,12 +170,15 @@ function createGroundChunks(town: TownRuntimeView, atlas: TownAtlas): readonly I
   for (const [chunk, instances] of groundInstances(town)) {
     const uv = new Float32Array(instances.length * 4); const clips = new Float32Array(instances.length * 4);
     const alpha = new Float32Array(instances.length); alpha.fill(1);
-    const mesh = new InstancedMesh(new PlaneGeometry(1, 1), material(atlas.texture), instances.length);
-    mesh.name = `town-ground-chunk-${chunk}`; mesh.renderOrder = 0;
+    const mesh = new InstancedMesh(new PlaneGeometry(1, 1), material(atlas.texture, false, false), instances.length);
+    mesh.name = `town-ground-chunk-${chunk}`; mesh.renderOrder = 0; mesh.frustumCulled = true;
+    const min = new Vector3(Infinity, Infinity, Infinity);
+    const max = new Vector3(-Infinity, -Infinity, -Infinity);
     instances.forEach((instance, index) => {
       const x = instance.cell % town.grid.width; const z = Math.floor(instance.cell / town.grid.width);
       const elevation = town.groundPalette[palettes[instance.cell]!]!.elevationCm;
       planningCellCenterToTownWorld([x, z], town.grid.height, elevation, point); point.y += instance.lift;
+      min.min(point); max.max(point);
       matrix.compose(point, rotation, scale); mesh.setMatrixAt(index, matrix);
       uv.set(atlasUv(atlas, instance.asset), index * 4);
       const [left, top, right, bottom] = instance.crop ?? [0, 0,
@@ -179,7 +186,13 @@ function createGroundChunks(town: TownRuntimeView, atlas: TownAtlas): readonly I
       clips.set([left / (instance.asset?.width ?? 1), 1 - bottom / (instance.asset?.height ?? 1),
         right / (instance.asset?.width ?? 1), 1 - top / (instance.asset?.height ?? 1)], index * 4);
     });
-    configure(mesh, uv, alpha, false, clips); chunks.push(mesh);
+    configure(mesh, uv, alpha, false, clips);
+    if (instances.length > 0) {
+      mesh.geometry.boundingBox = new Box3(min.clone().subScalar(3), max.clone().addScalar(3));
+      mesh.geometry.boundingSphere = new Sphere();
+      mesh.geometry.boundingBox.getBoundingSphere(mesh.geometry.boundingSphere);
+    }
+    chunks.push(mesh);
   }
   return chunks;
 }
@@ -190,9 +203,11 @@ function createBuildingLayer(town: TownRuntimeView, atlas: TownAtlas): {
   const count = town.buildings.length; const uv = new Float32Array(count * 4);
   const values = new Float32Array(count); values.fill(1);
   const mesh = new InstancedMesh(new PlaneGeometry(1, 1), material(atlas.texture), count);
-  mesh.name = 'town-building-instances'; mesh.renderOrder = 20;
+  mesh.name = 'town-building-instances'; mesh.renderOrder = 20; mesh.frustumCulled = false;
   const matrix = new Matrix4(); const point = new Vector3(); const rotation = townBillboardQuaternion(new Quaternion());
   const ids: string[] = [];
+  const min = new Vector3(Infinity, Infinity, Infinity);
+  const max = new Vector3(-Infinity, -Infinity, -Infinity);
   town.buildings.forEach((building, index) => {
     const asset = town.assets.building.entries.find((entry) => entry.id === building.assetId);
     const width = asset?.width ?? 64; const height = asset?.height ?? 64;
@@ -200,6 +215,7 @@ function createBuildingLayer(town: TownRuntimeView, atlas: TownAtlas): {
     const centreX = building.origin[0] + building.size[0] / 2;
     const centreZ = building.origin[1] + building.size[1] / 2;
     planningToTownWorld(centreX, centreZ, town.grid.height, 0, point);
+    min.min(point); max.max(point);
     const footprintPx = 32 * (building.size[0] + building.size[1]);
     const ratio = footprintPx / (asset?.footprintWidthPx ?? footprintPx);
     const rightOffset = (width / 2 - anchor[0]) * ratio / TOWN_PIXELS_PER_WORLD;
@@ -210,6 +226,11 @@ function createBuildingLayer(town: TownRuntimeView, atlas: TownAtlas): {
     mesh.setMatrixAt(index, matrix); uv.set(atlasUv(atlas, asset), index * 4); ids.push(building.id);
   });
   configure(mesh, uv, values, true);
+  if (count > 0) {
+    mesh.geometry.boundingBox = new Box3(min.clone().subScalar(5), max.clone().addScalar(5));
+    mesh.geometry.boundingSphere = new Sphere();
+    mesh.geometry.boundingBox.getBoundingSphere(mesh.geometry.boundingSphere);
+  }
   return { mesh, ids, alpha: mesh.geometry.getAttribute('townOpacity') as InstancedBufferAttribute };
 }
 
@@ -217,7 +238,7 @@ function createInteriorLayer(town: TownRuntimeView, atlas: TownAtlas): Instanced
   const entries = town.buildings.filter((building) => building.enterable);
   const uv = new Float32Array(entries.length * 2 * 4); const alpha = new Float32Array(entries.length * 2);
   const mesh = new InstancedMesh(new PlaneGeometry(1, 1), material(atlas.texture, false), entries.length * 2);
-  mesh.name = 'town-interior-instances'; mesh.renderOrder = 10; mesh.visible = false;
+  mesh.name = 'town-interior-instances'; mesh.renderOrder = 10; mesh.visible = false; mesh.frustumCulled = false;
   const matrix = new Matrix4(); const point = new Vector3(); const rotation = townBillboardQuaternion(new Quaternion());
   entries.forEach((building, buildingIndex) => {
     const ground = byKind(town, 'rammed_earth') ?? town.assets.tile.entries[0];
@@ -239,6 +260,17 @@ function createInteriorLayer(town: TownRuntimeView, atlas: TownAtlas): Instanced
 export function createTownGeometry(town: TownRuntimeView, tileAtlas: TownAtlas,
   buildingAtlas: TownAtlas): TownGeometry {
   const group = new Group(); group.name = 'town-static-geometry';
+  // Gap filler behind the billboard tiles: drawn first and never writes depth, otherwise the
+  // horizontal plane slices through every camera-facing tile/building quad and hides the town.
+  const foundation = new Mesh(
+    new PlaneGeometry(town.grid.width * 4, town.grid.height * 4),
+    new MeshBasicMaterial({ color: 0x8f8a6c, depthWrite: false, depthTest: false })
+  );
+  foundation.name = 'town-ground-foundation';
+  foundation.rotation.x = -Math.PI / 2;
+  foundation.position.y = -0.06;
+  foundation.renderOrder = -100;
+  group.add(foundation);
   const groundChunks = createGroundChunks(town, tileAtlas);
   const buildingLayer = createBuildingLayer(town, buildingAtlas);
   const interiors = createInteriorLayer(town, tileAtlas);
