@@ -32183,6 +32183,132 @@
    "profile": "code"
   },
   {
+   "id": "ENG-actor3d-d1-schema",
+   "title": "城镇 3D 人物 · 身高数据 schema（NpcAppearance.body、CharacterTemplate.body、pickTemplateHeightCm）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-actor3d-d1-schema.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/schemas/character.ts",
+    "packages/data/src/schemas/character.test.ts",
+    "packages/data/src/character-body.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/character.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/schemas",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-actor3d-t1-lod",
+   "title": "城镇 3D 人物 · 城镇减面工具链 town_lod.py + measure_gait.mjs；首批六个模型 LOD0 / LOD1",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "TOOL-actor3d-t1-lod.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/model3d/town_lod.py",
+    "tools/model3d/measure_gait.mjs",
+    "tools/model3d/measure_gait.test.mjs",
+    "tools/model3d/tests_town_lod.py",
+    "assets/default/model3d/npc_generic_m/town/**",
+    "assets/default/model3d/npc_generic_f/town/**",
+    "assets/default/model3d/npc_zhujue__ch00_m/town/**",
+    "assets/default/model3d/npc_zhujue__ch00_f/town/**",
+    "assets/default/model3d/npc_duanyu/town/**",
+    "assets/default/model3d/npc_liwenxiu__ch10_youth/town/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/town_lod.py",
+     "tools/model3d/measure_gait.mjs",
+     "assets/default/model3d/npc_generic_m/town/town.json",
+     "assets/default/model3d/npc_generic_f/town/town.json",
+     "assets/default/model3d/npc_zhujue__ch00_m/town/town.json",
+     "assets/default/model3d/npc_zhujue__ch00_f/town/town.json",
+     "assets/default/model3d/npc_duanyu/town/town.json",
+     "assets/default/model3d/npc_liwenxiu__ch10_youth/town/town.json"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools/model3d/tests_town_lod.py"
+     ],
+     [
+      "node",
+      "--test",
+      "tools/model3d/measure_gait.test.mjs"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",
