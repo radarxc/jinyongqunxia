@@ -7677,7 +7677,7 @@
             "accessNote": "需段氏好感",
             "kind": "ruin",
             "point": [
-              228,
+              229,
               287
             ],
             "regionId": "rg_dali_cangshan",
@@ -7910,7 +7910,7 @@
                 288
               ],
               [
-                228,
+                229,
                 287
               ]
             ],
@@ -7928,7 +7928,7 @@
                 288
               ],
               [
-                228,
+                229,
                 287
               ]
             ]
@@ -14858,6 +14858,333 @@
             ]
           }
         ],
+        "sects": [
+          {
+            "id": "sect_dali",
+            "name": "大理段氏",
+            "siteName": "大理皇城 / 镇南王府",
+            "kind": "court_and_clan",
+            "point": [
+              229,
+              288
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_dali"
+          },
+          {
+            "id": "sect_gaibang",
+            "name": "丐帮",
+            "siteName": "丐帮流动总舵",
+            "kind": "mobile_headquarters",
+            "point": [
+              312,
+              213
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_luoyang"
+          },
+          {
+            "id": "sect_gaibang__wuxi",
+            "name": "丐帮",
+            "siteName": "无锡杏子林节点",
+            "kind": "branch",
+            "point": [
+              366,
+              233
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_wuxi"
+          },
+          {
+            "id": "sect_hasake",
+            "name": "哈萨克部族",
+            "siteName": "伊犁草原季节营地",
+            "kind": "seasonal_camp",
+            "point": [
+              128,
+              121
+            ],
+            "status": "H",
+            "marker": "sect",
+            "cityId": "city_yining"
+          },
+          {
+            "id": "sect_huibu",
+            "name": "回部",
+            "siteName": "南北疆回部主节点",
+            "kind": "regional_network",
+            "point": [
+              90,
+              151
+            ],
+            "status": "P",
+            "marker": "sect",
+            "cityId": "city_kashgar"
+          },
+          {
+            "id": "sect_juxianzhuang",
+            "name": "聚贤庄",
+            "siteName": "聚贤庄小说锚点（待考）",
+            "kind": "manor",
+            "point": [
+              316,
+              212
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_zhengzhou"
+          },
+          {
+            "id": "sect_lingjiu",
+            "name": "灵鹫宫",
+            "siteName": "天山缥缈峰灵鹫宫小说锚点",
+            "kind": "mountain_palace",
+            "point": [
+              154,
+              136
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_yining"
+          },
+          {
+            "id": "sect_menggu",
+            "name": "蒙古诸部 / 幕府",
+            "siteName": "和林与漠北行营",
+            "kind": "mobile_court",
+            "point": [
+              252,
+              114
+            ],
+            "status": "P",
+            "marker": "sect",
+            "cityId": "city_karakorum"
+          },
+          {
+            "id": "sect_mingjiao",
+            "name": "明教",
+            "siteName": "昆仑山光明顶小说锚点",
+            "kind": "headquarters",
+            "point": [
+              94,
+              177
+            ],
+            "status": "P",
+            "marker": "sect",
+            "cityId": "city_khotan_kunlun"
+          },
+          {
+            "id": "sect_mizong",
+            "name": "吐蕃密宗",
+            "siteName": "大轮寺小说锚点（确址待考）",
+            "kind": "regional_monastery",
+            "point": [
+              163,
+              244
+            ],
+            "status": "O",
+            "marker": "temple",
+            "cityId": "city_lhasa"
+          },
+          {
+            "id": "sect_murong",
+            "name": "姑苏慕容",
+            "siteName": "太湖燕子坞小说锚点",
+            "kind": "headquarters",
+            "point": [
+              367,
+              235
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_suzhou"
+          },
+          {
+            "id": "sect_penglai",
+            "name": "蓬莱派",
+            "siteName": "蓬莱派锚点（待考）",
+            "kind": "headquarters",
+            "point": [
+              361,
+              182
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_penglai"
+          },
+          {
+            "id": "sect_qidan",
+            "name": "契丹（辽）",
+            "siteName": "辽上京与南京军府",
+            "kind": "court_and_camps",
+            "point": [
+              345,
+              134
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_liaoshangjing"
+          },
+          {
+            "id": "sect_qidan__nanjing",
+            "name": "契丹（辽）",
+            "siteName": "南京析津府",
+            "kind": "branch",
+            "point": [
+              332,
+              169
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_beijing"
+          },
+          {
+            "id": "sect_qingcheng",
+            "name": "青城派",
+            "siteName": "青城山",
+            "kind": "headquarters",
+            "point": [
+              254,
+              246
+            ],
+            "status": "O",
+            "marker": "daoist",
+            "cityId": "city_dujiangyan"
+          },
+          {
+            "id": "sect_qinjiazhai",
+            "name": "秦家寨",
+            "siteName": "云州秦家寨锚点",
+            "kind": "fort",
+            "point": [
+              313,
+              169
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_datong"
+          },
+          {
+            "id": "sect_shaolin",
+            "name": "少林",
+            "siteName": "少室山少林寺",
+            "kind": "headquarters",
+            "point": [
+              315,
+              214
+            ],
+            "status": "O",
+            "marker": "temple",
+            "cityId": "city_dengfeng"
+          },
+          {
+            "id": "sect_shennong",
+            "name": "神农帮",
+            "siteName": "无量山神农帮锚点",
+            "kind": "mountain_gang",
+            "point": [
+              231,
+              294
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_dali"
+          },
+          {
+            "id": "sect_sidaeren",
+            "name": "四大恶人",
+            "siteName": "大理—西夏游走锚点",
+            "kind": "mobile_group",
+            "point": [
+              229,
+              288
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_dali"
+          },
+          {
+            "id": "sect_tianlongsi",
+            "name": "天龙寺",
+            "siteName": "苍山天龙寺小说锚点",
+            "kind": "headquarters",
+            "point": [
+              229,
+              287
+            ],
+            "status": "O",
+            "marker": "temple",
+            "cityId": "city_dali"
+          },
+          {
+            "id": "sect_wuliang",
+            "name": "无量剑派",
+            "siteName": "无量山剑湖宫小说锚点",
+            "kind": "headquarters",
+            "point": [
+              231,
+              294
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_dali"
+          },
+          {
+            "id": "sect_xiaoyao",
+            "name": "逍遥派",
+            "siteName": "擂鼓山小说锚点（待考）",
+            "kind": "lineage_network",
+            "point": [
+              309,
+              217
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_luoyang"
+          },
+          {
+            "id": "sect_xiaoyao__wuliang",
+            "name": "逍遥派",
+            "siteName": "无量山琅嬛福地",
+            "kind": "branch",
+            "point": [
+              231,
+              294
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_dali"
+          },
+          {
+            "id": "sect_xingxiu",
+            "name": "星宿派",
+            "siteName": "星宿海",
+            "kind": "headquarters",
+            "point": [
+              218,
+              212
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_xining"
+          },
+          {
+            "id": "sect_yipintang",
+            "name": "西夏一品堂",
+            "siteName": "兴庆府一品堂",
+            "kind": "court_agency",
+            "point": [
+              271,
+              184
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_yinchuan"
+          }
+        ],
         "terrain": {
           "land": [
             [
@@ -18736,7 +19063,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "f6a191f0d12473942912d353f773eb7d7a9679bef3e3ab9b5fce21130e41dced"
+        "revision": "cddc6baf608acf24b708857ae85ed9fb516d47b81179f063291a583185945cc8"
       }
     }
   ]

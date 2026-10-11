@@ -400,7 +400,7 @@
 | `sect_xiakedao` | 侠客岛 | N | N | N | N | N | O | D | D | D | N | D | D | D | D |
 | `sect_yipintang` | 西夏一品堂 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
 | `sect_qidan` | 契丹（辽） | O | D | D | D | D | D | D | D | D | P | D | D | D | D |
-| `sect_menggu` | 蒙古诸部 / 幕府 | H | O | O | O | H | H | H | O | H | P | H | H | H | H |
+| `sect_menggu` | 蒙古诸部 / 幕府 | P | O | O | O | M | M | H | O | H | P | H | H | H | H |
 | `sect_ruyangwangfu` | 汝阳王府 | N | N | N | O | D | D | D | D | D | N | D | D | D | D |
 | `sect_qinggong` | 清宫 | N | N | N | N | N | N | N | O | H | N | O | O | O | O |
 | `sect_muwangfu` | 沐王府 | N | N | N | N | N | N | P | O | D | N | D | D | D | D |
@@ -425,7 +425,7 @@
 | `sect_jinqianbang` | 金钱帮 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
 | `sect_shenjianshanzhuang` | 神剑山庄 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
 | `sect_wanmeishanzhuang` | 万梅山庄 | N | N | N | N | N | H | O | H | H | N | H | H | H | H |
-| `sect_baiyuncheng` | 白云城 | N | N | N | N | N | H | O | H | H | N | H | H | H | H |
+| `sect_baiyuncheng` | 白云城 | N | N | N | N | N | H | O | M | M | N | M | M | M | M |
 | `sect_renyizhuang` | 仁义庄 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
 
 ### 3.5 矩阵解释与导出约束
@@ -1329,7 +1329,7 @@
 - **身份与真实性**：`COURT/FOREIGN`；`HIST + JINYONG`。1206 年铁木真被尊为成吉思汗、蒙古诸部完成新的政治整合（史实）[H26]；郭靖金刀驸马、金轮法王入幕等为小说叙事。
 - **历史**：《射雕》铁木真、拖雷、华筝、哲别与郭靖大漠成长线；《神雕》蒙哥、忽必烈幕府攻宋；《倚天》元廷另由汝阳王府表现；《鹿鼎》葛尔丹支线与前代并非同一军府。
 - **驻地与位置**：射雕漠北行营、和林；神雕襄阳外蒙古大营；后世游牧/军府节点按时代图层切换。
-- **时代开放**：SD/SHD/YT/LD `O`，其余 `H`；`H` 是部族存在，不是同一幕府。
+- **时代开放**：SD/SHD/YT/LD `O`；TL 与 BM 为 `P`（1093 年蒙古诸部未兴、天龙原著无蒙古线；702 年为蒙兀室韦）；XA/XK 为 `M`（笑傲、侠客原著无蒙古情节，1523 / 1582 年和林无城，额尔德尼召 1585 年才建）；其余 `H`；`H` 是部族存在，不是同一幕府。（2026-10-11 按原著与年代修正，地图驻地见 `design/map/history/sects.md`）
 - **职级**：T08/T07；部众/军士—队正—亲随/百户—将领/万户—大汗幕府统领。真实军政制度须由时代文档细分，本表只是五级接口。
 - **武学与参考**：见 `skills-wujue` §11。
 
@@ -1689,7 +1689,7 @@
 - **名称、分类与真实性**：白云城；`GULONG/CLAN`（城主府组织标签）；`GULONG:陆小凤传奇·决战前后 + ORIGINAL`，无历史城市原型。
 - **历史**：**（古龙·《决战前后》）** 叶孤城号白云城主，以“天外飞仙”和同西门吹雪的决战著称；白云城并非可对应到现实行政城市。**（原创扩展）** BX 以海外来访使团/剑客支线投放，不介入明清政权更替主线。
 - **驻地与位置**：原作白云城位于南海飞仙岛的说法需版本核对 **（待考）**；正式挂 `rg_nanhai_islands` / `city_baiyuncheng`，经港口航线进入，与侠客岛分开。
-- **时代开放**：XK `H`、BX `O`、LD–XS `H`，此前 `N`；BX 代表叶孤城及城主府剑客。
+- **时代开放**：XK `H`、BX `O`、LD–XS `M`（白云城岛小说锚点自鹿鼎起不开放，原著线收束，只作仅提及；原创扩展），此前 `N`；BX 代表叶孤城及城主府剑客。
 - **职级**：T11/T08；岛民/侍从—府卫—剑侍—统领/总管—城主。城主是领地身份，不因武学等级自动取得。
 - **武学（均待 `skills-gulong` 收录）**：
 

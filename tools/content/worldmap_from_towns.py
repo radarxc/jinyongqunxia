@@ -12,6 +12,9 @@ Year ranges come from the design/02 §1.5 table by book-world name (白马 → c
 play order (Canon v1.9 puts 白马 first), never a chapter key. Only overland route kinds become
 roads; a water-kind route opts in with `worldmap_road: true` when its short crossing is folded
 into duration_days (琼州海峡). A route without via stops is drawn along its routes.yaml geometry.
+Sect seats (tech/13 §5.4) come from docs/design/map/sects.yaml: each chapter lists the main seat and
+every in-map branch whose availability is O / H / P / M (N and D are left out), projected from the
+book-geography coordinates; branch ids are `<sect_id>__<branch>`.
 """
 from __future__ import annotations
 
@@ -38,6 +41,9 @@ BOOKS = {'天龙': 'ch01', '射雕': 'ch02', '神雕': 'ch03', '倚天': 'ch04',
          '飞狐': 'ch13', '雪山': 'ch14'}
 WATER_KINDS = ['river', 'canal', 'sea', 'coastal_mixed']
 DISPLAY_ONLY = {'nodes': ['tier', 'marker'], 'roads': ['path']}  # written by worldmap_enrich.py
+SECT_STATUSES = ('O', 'H', 'P', 'M')  # written to the map; N 尚未创立 / D 已消亡 are left out (tech/13 §5.4)
+SECT_MARKERS = ('sect', 'temple', 'daoist')
+SECT_ID_PATTERN = re.compile(r'^sect_[a-z0-9_]+$')
 LEG_NOTE = '等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）'
 GEOMETRY_NOTE = '等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）'
 # Mirror of MapEntrySchema.townSpec in packages/data/src/schemas/world-map.ts. A spec the schema would
@@ -151,6 +157,40 @@ def source_data():
     return data
 
 
+def branch_key(sect_id, branch_id):
+    """Stable map id for a sects.yaml branch: `<sect_id>__<branch>`, dropping `site_` and the sect's own key."""
+    key = branch_id.removeprefix('site_')
+    own = sect_id.removeprefix('sect_') + '_'
+    if key.startswith(own):
+        key = key[len(own):]
+    return f'{sect_id}__{key}'
+
+
+def compile_sects(data, chapter, project, node_ids):
+    """Sect seats for one chapter (tech/13 §5.4): main seat plus in-map branches, by book geography."""
+    seats = []
+    for sect in data['sects']['sects']:
+        status = sect['availability'][chapter]
+        if status not in SECT_STATUSES:
+            continue
+        marker = sect.get('map_marker', 'sect')
+        if marker not in SECT_MARKERS:
+            raise ValueError(f"{sect['id']}: map_marker {marker!r} not in {SECT_MARKERS}")
+
+        def seat(seat_id, site_name, kind, row):
+            city = row.get('city_id')
+            return dict(id=seat_id, name=sect['name'], siteName=site_name, kind=kind,
+                        point=project(row['longitude'], row['latitude']), status=status, marker=marker,
+                        cityId=city if city in node_ids else None)
+        seats.append(seat(sect['id'], sect['site_name'], sect['kind'], sect))
+        for branch in sect.get('branches', []):
+            if branch.get('offmap_id') or chapter not in branch.get('open_chapters', []):
+                continue
+            seats.append(seat(branch_key(sect['id'], branch['id']), branch['name'], 'branch', branch))
+    seats.sort(key=lambda row: row['id'])
+    return seats
+
+
 def compile_map(data, chapter):
     info = data['cities']['chapters'][chapter]
     projection = CanvasProjection(WIDTH, HEIGHT, margin=18)
@@ -232,7 +272,8 @@ def compile_map(data, chapter):
         grid=dict(width=WIDTH, height=HEIGHT, projection='Albers 25N/47N/105E'),
         travel=dict(liPerHour=LI_PER_HOUR, stepLi=LI_PER_HOUR,
             note='等效里，非实测里程；按 design/11 小时精度调用 ENG-05 travelByMinutes'),
-        startNodeId='city_dali', nodes=nodes, roads=roads, terrain=geometry(data['regions'], project),
+        startNodeId='city_dali', nodes=nodes, roads=roads, sects=compile_sects(data, chapter, project, by_id),
+        terrain=geometry(data['regions'], project),
         sources=['docs/design/02-timeline-and-world-tiers.md', 'docs/design/11-open-world.md',
             'docs/design/map/cities.yaml', 'docs/design/map/routes.yaml', 'docs/design/map/sects.yaml',
             'docs/design/map/regions.yaml', *sorted(path for _, path in data['towns'].values())])
@@ -261,6 +302,17 @@ def validate_map(value):
             raise ValueError('road endpoints')
         if not nodes[road['start']]['open'] or not nodes[road['end']]['open']:
             raise ValueError('road era endpoint')
+    seen = set()
+    for sect in value['sects']:
+        if not SECT_ID_PATTERN.match(sect['id']) or sect['id'] in seen:
+            raise ValueError(f"sect identity {sect['id']}")
+        seen.add(sect['id'])
+        if sect['status'] not in SECT_STATUSES or sect['marker'] not in SECT_MARKERS:
+            raise ValueError(f"sect status / marker {sect['id']}")
+        if any(type(x) is not int for x in sect['point']):
+            raise ValueError(f"sect integer point {sect['id']}")
+        if sect['cityId'] is not None and sect['cityId'] not in nodes:
+            raise ValueError(f"sect city {sect['id']}")
 
 
 def pretty(doc):
@@ -317,8 +369,9 @@ def main():
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(output, encoding='utf-8')
         visible = sum(node['open'] for node in value['nodes'])
+        sects = ''.join(f'{k}{sum(s["status"] == k for s in value["sects"])}' for k in SECT_STATUSES)
         print(f'{chapter}: nodes={len(value["nodes"])} visible={visible} roads={len(value["roads"])} '
-              f'years={value["years"]} revision={value["revision"][:12]}')
+              f'sects={len(value["sects"])}({sects}) years={value["years"]} revision={value["revision"][:12]}')
     if failures:
         raise SystemExit('worldmap drift: ' + ', '.join(failures))
     if not args.check and out == (ROOT / 'content/world').resolve():

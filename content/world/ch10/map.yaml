@@ -7800,7 +7800,7 @@
             "accessNote": "需段氏好感",
             "kind": "ruin",
             "point": [
-              228,
+              229,
               287
             ],
             "regionId": "rg_dali_cangshan",
@@ -14060,6 +14060,112 @@
             ]
           }
         ],
+        "sects": [
+          {
+            "id": "sect_gaochang",
+            "name": "高昌遗脉",
+            "siteName": "高昌故城",
+            "kind": "ruin_lineage",
+            "point": [
+              174,
+              142
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_turpan"
+          },
+          {
+            "id": "sect_hasake",
+            "name": "哈萨克部族",
+            "siteName": "伊犁草原季节营地",
+            "kind": "seasonal_camp",
+            "point": [
+              128,
+              121
+            ],
+            "status": "O",
+            "marker": "sect",
+            "cityId": "city_yining"
+          },
+          {
+            "id": "sect_huibu",
+            "name": "回部",
+            "siteName": "南北疆回部主节点",
+            "kind": "regional_network",
+            "point": [
+              90,
+              151
+            ],
+            "status": "P",
+            "marker": "sect",
+            "cityId": "city_kashgar"
+          },
+          {
+            "id": "sect_menggu",
+            "name": "蒙古诸部 / 幕府",
+            "siteName": "和林与漠北行营",
+            "kind": "mobile_court",
+            "point": [
+              252,
+              114
+            ],
+            "status": "P",
+            "marker": "sect",
+            "cityId": "city_karakorum"
+          },
+          {
+            "id": "sect_mingjiao",
+            "name": "明教",
+            "siteName": "昆仑山光明顶小说锚点",
+            "kind": "headquarters",
+            "point": [
+              94,
+              177
+            ],
+            "status": "P",
+            "marker": "sect",
+            "cityId": "city_khotan_kunlun"
+          },
+          {
+            "id": "sect_mizong",
+            "name": "吐蕃密宗",
+            "siteName": "大轮寺小说锚点（确址待考）",
+            "kind": "regional_monastery",
+            "point": [
+              163,
+              244
+            ],
+            "status": "P",
+            "marker": "temple",
+            "cityId": "city_lhasa"
+          },
+          {
+            "id": "sect_qidan",
+            "name": "契丹（辽）",
+            "siteName": "辽上京与南京军府",
+            "kind": "court_and_camps",
+            "point": [
+              345,
+              134
+            ],
+            "status": "P",
+            "marker": "sect",
+            "cityId": "city_liaoshangjing"
+          },
+          {
+            "id": "sect_shaolin",
+            "name": "少林",
+            "siteName": "少室山少林寺",
+            "kind": "headquarters",
+            "point": [
+              315,
+              214
+            ],
+            "status": "H",
+            "marker": "temple",
+            "cityId": "city_dengfeng"
+          }
+        ],
         "terrain": {
           "land": [
             [
@@ -17938,7 +18044,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "c4fe2b833c69737f01a2082cbeedf731e2b8a5a9e43789fe9598414e70ef14de"
+        "revision": "985383c9390d9c61a5b1ac3443b5482cc6780a04c4c4a3ae06935285d9c27ecc"
       }
     }
   ]

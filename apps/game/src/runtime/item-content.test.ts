@@ -40,6 +40,12 @@ describe('item content leaves', () => {
       ({ name, levelNote, entry: entry.accessNote, accessNote })))
       .toEqual(sourceMap.nodes.map(({ name, levelNote, entry, accessNote }) =>
         ({ name, levelNote, entry: entry.accessNote, accessNote })));
+    // Sect seats (tech/13 §5.4) travel through text keys like node names and come back verbatim.
+    expect(sourceMap.sects?.length).toBeGreaterThan(0);
+    expect(map?.sects?.map(({ id, name, siteName, status, marker, cityId }) =>
+      ({ id, name, siteName, status, marker, cityId })))
+      .toEqual(sourceMap.sects?.map(({ id, name, siteName, status, marker, cityId }) =>
+        ({ id, name, siteName, status, marker, cityId })));
     await expect(loadGameContent(fixtureContent(), { readJson: async (path) =>
       values.get(path) }, 'ch10_baima', async () => ({ assets: {}, mapText: {} })))
       .rejects.toThrow('ITEM_RULES_UNAVAILABLE:CONTENT_TEXT_REF_MISSING:' +
