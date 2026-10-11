@@ -40,6 +40,7 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
+              "ch02",
               "ch11",
               "ch12",
               "ch13",
@@ -102,29 +103,15 @@
           },
           {
             "id": "city_altay",
-            "name": "阿尔泰山诸部（待考）",
+            "name": "阿尔泰山诸部（未建城）",
             "kind": "town",
             "point": [
               173,
               101
             ],
             "regionId": "rg_xiyu_beijiang",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
-            "open": true,
+            "eras": [],
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -136,8 +123,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "minor",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_ankang",
@@ -297,6 +284,7 @@
             ],
             "regionId": "rg_yanjing_zhili",
             "eras": [
+              "ch01",
               "ch02",
               "ch03",
               "ch04",
@@ -368,7 +356,7 @@
           },
           {
             "id": "city_baoshan",
-            "name": "永昌府（待考）",
+            "name": "永昌府",
             "kind": "town",
             "point": [
               221,
@@ -694,7 +682,7 @@
           },
           {
             "id": "city_changzhou",
-            "name": "常州路",
+            "name": "常州府（朱元璋据）",
             "kind": "town",
             "point": [
               363,
@@ -938,13 +926,6 @@
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
               "ch13",
               "ch14"
             ],
@@ -1045,7 +1026,7 @@
           },
           {
             "id": "city_dandong",
-            "name": "婆娑府一带（待考）",
+            "name": "婆娑府",
             "kind": "town",
             "point": [
               379,
@@ -1324,7 +1305,7 @@
           },
           {
             "id": "city_dunhuang",
-            "name": "沙州",
+            "name": "沙州路",
             "kind": "town",
             "point": [
               202,
@@ -1989,6 +1970,7 @@
             "regionId": "rg_dongbei",
             "eras": [
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -2006,8 +1988,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_hejian",
@@ -2099,10 +2081,10 @@
             ],
             "regionId": "rg_monan",
             "eras": [
+              "ch01",
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
               "ch06",
               "ch07",
               "ch08",
@@ -2170,7 +2152,7 @@
           },
           {
             "id": "city_huangshan",
-            "name": "徽州路",
+            "name": "兴安府（徽州）",
             "kind": "town",
             "point": [
               355,
@@ -2370,7 +2352,7 @@
           },
           {
             "id": "city_jilin",
-            "name": "女真诸部（待考）",
+            "name": "松花江上游女真地（未建城）",
             "kind": "town",
             "point": [
               386,
@@ -2378,13 +2360,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
               "ch08",
               "ch09",
               "ch11",
@@ -2392,7 +2367,7 @@
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -2404,8 +2379,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_jinan",
@@ -2607,7 +2582,7 @@
           },
           {
             "id": "city_jingzhou",
-            "name": "中兴路 / 江陵路（待考）",
+            "name": "中兴路",
             "kind": "town",
             "point": [
               313,
@@ -2647,7 +2622,7 @@
           },
           {
             "id": "city_jinhua",
-            "name": "婺州路",
+            "name": "金华府（朱元璋据）",
             "kind": "town",
             "point": [
               364,
@@ -2726,7 +2701,7 @@
           },
           {
             "id": "city_jiujiang",
-            "name": "江州路",
+            "name": "江州（陈汉都城）",
             "kind": "town",
             "point": [
               339,
@@ -2761,8 +2736,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "capital",
+            "marker": "city_large"
           },
           {
             "id": "city_jiuquan",
@@ -2855,6 +2830,7 @@
             "regionId": "rg_donghai_islands",
             "eras": [
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -2877,7 +2853,7 @@
           },
           {
             "id": "city_karakorum",
-            "name": "和林宣慰司一带（待考）",
+            "name": "和宁路（岭北行省治）",
             "kind": "town",
             "point": [
               252,
@@ -2887,7 +2863,14 @@
             "eras": [
               "ch02",
               "ch03",
-              "ch04"
+              "ch04",
+              "ch07",
+              "ch08",
+              "ch09",
+              "ch11",
+              "ch12",
+              "ch13",
+              "ch14"
             ],
             "open": true,
             "levelRange": null,
@@ -3103,7 +3086,7 @@
           },
           {
             "id": "city_langzhong",
-            "name": "保宁府（待考）",
+            "name": "保宁府",
             "kind": "town",
             "point": [
               270,
@@ -3223,7 +3206,7 @@
           },
           {
             "id": "city_lhasa",
-            "name": "乌思藏宣慰司辖境（待考）",
+            "name": "拉萨（帕竹辖，乌思藏）",
             "kind": "town",
             "point": [
               168,
@@ -3596,7 +3579,7 @@
           },
           {
             "id": "city_luoyang",
-            "name": "河南府 / 河南江北行省治所（待考）",
+            "name": "河南府路",
             "kind": "town",
             "point": [
               312,
@@ -3683,14 +3666,7 @@
               61
             ],
             "regionId": "rg_dongbei",
-            "eras": [
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
+            "eras": [],
             "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
@@ -3703,8 +3679,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "minor",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_nanchang",
@@ -3748,7 +3724,7 @@
           },
           {
             "id": "city_nanjing",
-            "name": "集庆路",
+            "name": "应天府（朱元璋据）",
             "kind": "town",
             "point": [
               355,
@@ -3915,8 +3891,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch05",
-              "ch06",
               "ch07",
               "ch08",
               "ch09",
@@ -3982,29 +3956,15 @@
           },
           {
             "id": "city_ordos",
-            "name": "河套 / 鄂尔多斯部地（待考）",
+            "name": "河套鄂尔多斯地（未建城）",
             "kind": "town",
             "point": [
               294,
               173
             ],
             "regionId": "rg_monan",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
-            "open": true,
+            "eras": [],
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -4016,8 +3976,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_penghu",
@@ -4029,12 +3989,9 @@
             ],
             "regionId": "rg_donghai_islands",
             "eras": [
-              "ch01",
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
-              "ch06",
               "ch07",
               "ch08",
               "ch09",
@@ -4188,6 +4145,9 @@
             ],
             "regionId": "rg_hedong_jinzhong",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -4257,7 +4217,7 @@
           },
           {
             "id": "city_qamdo",
-            "name": "昌都地区所指治所（待考）",
+            "name": "两江口（未建城）",
             "kind": "town",
             "point": [
               211,
@@ -4266,9 +4226,6 @@
             "regionId": "rg_qingzang",
             "eras": [
               "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -4279,7 +4236,7 @@
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -4291,8 +4248,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_qingzhou",
@@ -4336,7 +4293,7 @@
           },
           {
             "id": "city_qinhuangdao",
-            "name": "榆关海口（待考）",
+            "name": "榆关海口（未成港）",
             "kind": "town",
             "point": [
               351,
@@ -4344,9 +4301,6 @@
             ],
             "regionId": "rg_liaoxi",
             "eras": [
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -4357,7 +4311,7 @@
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -4369,8 +4323,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "minor",
-            "marker": "city_county"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_qiqihar",
@@ -4382,7 +4336,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch08",
               "ch09",
               "ch11",
               "ch12",
@@ -4526,7 +4479,7 @@
           },
           {
             "id": "city_quzhou",
-            "name": "衢州路",
+            "name": "龙游府（衢州）",
             "kind": "town",
             "point": [
               359,
@@ -4566,7 +4519,7 @@
           },
           {
             "id": "city_sanya",
-            "name": "吉阳军境（待考）",
+            "name": "吉阳军",
             "kind": "town",
             "point": [
               299,
@@ -4686,7 +4639,7 @@
           },
           {
             "id": "city_shangrao",
-            "name": "信州路",
+            "name": "广信府（朱元璋据）",
             "kind": "town",
             "point": [
               354,
@@ -5115,7 +5068,9 @@
             ],
             "regionId": "rg_donghai_islands",
             "eras": [
+              "ch07",
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -5208,7 +5163,7 @@
           },
           {
             "id": "city_tangshan",
-            "name": "滦州西境所指治所（待考）",
+            "name": "滦州西境（石城县已省）",
             "kind": "town",
             "point": [
               343,
@@ -5216,6 +5171,12 @@
             ],
             "regionId": "rg_yanjing_zhili",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch05",
+              "ch06",
+              "ch07",
               "ch08",
               "ch09",
               "ch11",
@@ -5235,8 +5196,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "minor",
-            "marker": "city_county"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_taohuadao",
@@ -5278,7 +5239,7 @@
           },
           {
             "id": "city_tengchong",
-            "name": "腾冲府（待考）",
+            "name": "腾冲府",
             "kind": "town",
             "point": [
               216,
@@ -5491,7 +5452,7 @@
           },
           {
             "id": "city_weihai",
-            "name": "文登县海寨（待考）",
+            "name": "文登县北境海岸（未建城）",
             "kind": "town",
             "point": [
               369,
@@ -5499,7 +5460,6 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -5510,7 +5470,7 @@
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -5522,12 +5482,12 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "minor",
-            "marker": "city_county"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_weinan",
-            "name": "同州",
+            "name": "渭南县（华州属）",
             "kind": "town",
             "point": [
               293,
@@ -5607,7 +5567,7 @@
           },
           {
             "id": "city_wuhan",
-            "name": "武昌路 / 汉阳府（待考）",
+            "name": "武昌路 / 汉阳府",
             "kind": "town",
             "point": [
               327,
@@ -5686,7 +5646,7 @@
           },
           {
             "id": "city_wuwei",
-            "name": "西凉州 / 永昌路（待考）",
+            "name": "西凉州（永昌路属）",
             "kind": "town",
             "point": [
               249,
@@ -5726,7 +5686,7 @@
           },
           {
             "id": "city_wuxi",
-            "name": "无锡州 / 无锡县（待考）",
+            "name": "无锡州",
             "kind": "town",
             "point": [
               366,
@@ -5988,7 +5948,7 @@
           },
           {
             "id": "city_xilinhot",
-            "name": "漠南草原营地（待考）",
+            "name": "漠南草原（未建城）",
             "kind": "town",
             "point": [
               326,
@@ -5998,19 +5958,11 @@
             "eras": [
               "ch01",
               "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
               "ch12",
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -6022,8 +5974,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_xingcheng",
@@ -6365,8 +6317,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_yanan",
@@ -6410,7 +6362,7 @@
           },
           {
             "id": "city_yangzhou",
-            "name": "扬州路",
+            "name": "淮海府（扬州）",
             "kind": "town",
             "point": [
               359,
@@ -6450,7 +6402,7 @@
           },
           {
             "id": "city_yantai",
-            "name": "登州海防（待考）",
+            "name": "福山县（登州属）",
             "kind": "town",
             "point": [
               365,
@@ -6458,6 +6410,9 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -6644,7 +6599,7 @@
           },
           {
             "id": "city_yining",
-            "name": "察合台汗国辖境（待考）",
+            "name": "阿力麻里（东察合台汗国）",
             "kind": "town",
             "point": [
               130,
@@ -6679,8 +6634,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "capital",
+            "marker": "city_large"
           },
           {
             "id": "city_yueyang",
@@ -6724,7 +6679,7 @@
           },
           {
             "id": "city_yulin",
-            "name": "榆林北境（待考）",
+            "name": "榆林河谷（未建城）",
             "kind": "town",
             "point": [
               293,
@@ -6734,7 +6689,6 @@
             "eras": [
               "ch01",
               "ch02",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -6746,7 +6700,7 @@
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -6758,8 +6712,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_yuncheng",
@@ -6803,7 +6757,7 @@
           },
           {
             "id": "city_yushu",
-            "name": "结古一带所指治所（待考）",
+            "name": "通天河渡口一带（未建城）",
             "kind": "town",
             "point": [
               211,
@@ -6811,10 +6765,6 @@
             ],
             "regionId": "rg_qingzang",
             "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -6825,7 +6775,7 @@
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -6837,12 +6787,12 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "minor",
-            "marker": "city_county"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_zhangjiakou",
-            "name": "宣德府北境（待考）",
+            "name": "野狐岭南（宣德府北境，未建城）",
             "kind": "town",
             "point": [
               322,
@@ -6851,8 +6801,6 @@
             "regionId": "rg_yanjing_zhili",
             "eras": [
               "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -6863,7 +6811,7 @@
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -6875,8 +6823,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_zhangye",
@@ -7080,7 +7028,7 @@
           },
           {
             "id": "city_zhenjiang",
-            "name": "镇江路",
+            "name": "镇江府（朱元璋据）",
             "kind": "town",
             "point": [
               359,
@@ -7120,7 +7068,7 @@
           },
           {
             "id": "city_zhongwei",
-            "name": "应理州（待考）",
+            "name": "应理州",
             "kind": "town",
             "point": [
               265,
@@ -7199,7 +7147,7 @@
           },
           {
             "id": "city_zibo",
-            "name": "淄川 / 临淄诸县所指治所（待考）",
+            "name": "般阳府路（淄川）",
             "kind": "town",
             "point": [
               345,
@@ -7207,6 +7155,9 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -7891,81 +7842,12 @@
             "key": "route_beijing_datong:0",
             "routeId": "route_beijing_datong",
             "start": "city_beijing",
-            "end": "city_zhangjiakou",
-            "distanceLi": 480,
-            "points": [
-              [
-                332,
-                169
-              ],
-              [
-                322,
-                162
-              ]
-            ],
-            "kind": "post_road",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
-            "sourceHours": 48,
-            "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
-            "path": [
-              [
-                332,
-                169
-              ],
-              [
-                331.58,
-                168.02
-              ],
-              [
-                330.84,
-                167.09
-              ],
-              [
-                329.66,
-                165.91
-              ],
-              [
-                328.09,
-                165.34
-              ],
-              [
-                326.16,
-                165.41
-              ],
-              [
-                324.39,
-                164.58
-              ],
-              [
-                322,
-                162
-              ]
-            ]
-          },
-          {
-            "key": "route_beijing_datong:1",
-            "routeId": "route_beijing_datong",
-            "start": "city_zhangjiakou",
             "end": "city_datong",
-            "distanceLi": 480,
+            "distanceLi": 960,
             "points": [
               [
-                322,
-                162
+                332,
+                169
               ],
               [
                 313,
@@ -7988,20 +7870,60 @@
               "ch13",
               "ch14"
             ],
-            "sourceHours": 48,
+            "sourceHours": 96,
             "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
             "path": [
               [
-                322,
-                162
+                332,
+                169
               ],
               [
-                316.23,
-                167.3
+                331.58,
+                168.02
               ],
               [
-                313.98,
-                169.05
+                330.84,
+                167.09
+              ],
+              [
+                329.66,
+                165.91
+              ],
+              [
+                327.97,
+                165.38
+              ],
+              [
+                325.78,
+                165.5
+              ],
+              [
+                323.84,
+                165.91
+              ],
+              [
+                322.16,
+                166.59
+              ],
+              [
+                320.47,
+                167.53
+              ],
+              [
+                318.78,
+                168.72
+              ],
+              [
+                316.84,
+                169.34
+              ],
+              [
+                314.66,
+                169.41
+              ],
+              [
+                313.42,
+                169.33
               ],
               [
                 313,
@@ -8013,154 +7935,12 @@
             "key": "route_beijing_karakorum:0",
             "routeId": "route_beijing_karakorum",
             "start": "city_beijing",
-            "end": "city_zhangjiakou",
-            "distanceLi": 880,
-            "points": [
-              [
-                332,
-                169
-              ],
-              [
-                322,
-                162
-              ]
-            ],
-            "kind": "steppe_road",
-            "eras": [
-              "ch02",
-              "ch03",
-              "ch04"
-            ],
-            "sourceHours": 88,
-            "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
-            "path": [
-              [
-                332,
-                169
-              ],
-              [
-                331.58,
-                168.02
-              ],
-              [
-                330.84,
-                167.09
-              ],
-              [
-                329.66,
-                165.91
-              ],
-              [
-                328.09,
-                165.34
-              ],
-              [
-                326.16,
-                165.41
-              ],
-              [
-                324.39,
-                164.58
-              ],
-              [
-                322,
-                162
-              ]
-            ]
-          },
-          {
-            "key": "route_beijing_karakorum:1",
-            "routeId": "route_beijing_karakorum",
-            "start": "city_zhangjiakou",
-            "end": "city_xilinhot",
-            "distanceLi": 880,
-            "points": [
-              [
-                322,
-                162
-              ],
-              [
-                326,
-                136
-              ]
-            ],
-            "kind": "steppe_road",
-            "eras": [
-              "ch02",
-              "ch03",
-              "ch04"
-            ],
-            "sourceHours": 88,
-            "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
-            "path": [
-              [
-                322,
-                162
-              ],
-              [
-                322.61,
-                161.11
-              ],
-              [
-                322.81,
-                158.75
-              ],
-              [
-                322.81,
-                154.62
-              ],
-              [
-                322.97,
-                152.06
-              ],
-              [
-                323.28,
-                151.06
-              ],
-              [
-                323.62,
-                150.38
-              ],
-              [
-                324,
-                150
-              ],
-              [
-                324.25,
-                148.41
-              ],
-              [
-                324.38,
-                145.59
-              ],
-              [
-                324.72,
-                143.81
-              ],
-              [
-                325.28,
-                143.06
-              ],
-              [
-                325.67,
-                141.02
-              ],
-              [
-                326,
-                136
-              ]
-            ]
-          },
-          {
-            "key": "route_beijing_karakorum:2",
-            "routeId": "route_beijing_karakorum",
-            "start": "city_xilinhot",
             "end": "city_karakorum",
-            "distanceLi": 880,
+            "distanceLi": 2640,
             "points": [
               [
-                326,
-                136
+                332,
+                169
               ],
               [
                 252,
@@ -8173,176 +7953,176 @@
               "ch03",
               "ch04"
             ],
-            "sourceHours": 88,
+            "sourceHours": 264,
             "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
             "path": [
               [
-                326,
-                136
+                332,
+                169
               ],
               [
-                322.58,
-                136.05
+                331.58,
+                168.02
+              ],
+              [
+                330.84,
+                167.09
+              ],
+              [
+                329.66,
+                165.91
+              ],
+              [
+                328.09,
+                165.34
+              ],
+              [
+                326.16,
+                165.41
+              ],
+              [
+                324.5,
+                164.94
+              ],
+              [
+                323.12,
+                163.94
+              ],
+              [
+                321.97,
+                163.41
               ],
               [
                 321.03,
-                135.69
+                163.34
               ],
               [
                 320.22,
-                134.94
+                162.97
               ],
               [
-                319.59,
-                134.56
+                319.53,
+                162.28
               ],
               [
-                319.16,
-                134.56
+                318.94,
+                161.94
               ],
               [
-                318.78,
-                134.41
+                318.44,
+                161.94
               ],
               [
-                318.47,
-                134.09
+                316.91,
+                160.81
               ],
               [
-                317.78,
-                133.94
+                314.34,
+                158.56
               ],
               [
-                316.72,
-                133.94
+                312.53,
+                157.16
               ],
               [
-                315.59,
-                133.62
+                311.47,
+                156.59
               ],
               [
-                314.41,
-                133
+                309.44,
+                156.16
               ],
               [
-                311.66,
-                132.62
+                306.44,
+                155.84
               ],
               [
-                307.34,
-                132.5
+                303.84,
+                154.75
               ],
               [
-                304.94,
-                132.38
+                301.66,
+                152.88
               ],
               [
-                304.44,
-                132.25
+                298.19,
+                149.56
               ],
               [
-                303.94,
-                131.94
+                293.44,
+                144.81
               ],
               [
-                303.44,
-                131.44
+                290.5,
+                142.44
               ],
               [
-                300.31,
-                131.03
+                289.38,
+                142.44
               ],
               [
-                294.56,
-                130.72
+                288.5,
+                142.12
               ],
               [
-                291.41,
-                130.38
+                287.88,
+                141.5
               ],
               [
-                290.84,
-                130
+                286.97,
+                141.19
               ],
               [
-                289.59,
-                129.75
+                285.78,
+                141.19
               ],
               [
-                287.66,
-                129.62
+                284.66,
+                140.72
               ],
               [
-                286.47,
-                129.41
+                283.59,
+                139.78
               ],
               [
-                286.03,
-                129.09
+                282.62,
+                139.31
               ],
               [
-                285.53,
-                128.94
+                281.75,
+                139.31
               ],
               [
-                284.97,
-                128.94
+                281.06,
+                139.19
               ],
               [
-                284.41,
-                128.72
+                280.56,
+                138.94
               ],
               [
-                283.84,
-                128.28
+                277.06,
+                135.56
               ],
               [
-                282.16,
-                128.06
+                270.56,
+                129.06
               ],
               [
-                279.34,
-                128.06
+                267,
+                125.66
               ],
               [
-                277.16,
-                127.47
+                266.38,
+                125.34
               ],
               [
-                275.59,
-                126.28
+                263.88,
+                123.09
               ],
               [
-                274.47,
-                125.69
-              ],
-              [
-                273.78,
-                125.69
-              ],
-              [
-                272.97,
-                125.28
-              ],
-              [
-                272.03,
-                124.47
-              ],
-              [
-                269.44,
-                123.56
-              ],
-              [
-                265.19,
-                122.56
-              ],
-              [
-                261.62,
-                120.75
-              ],
-              [
-                258.75,
-                118.12
+                259.5,
+                118.91
               ],
               [
                 256.72,
@@ -9165,7 +8945,7 @@
             "routeId": "route_chengdu_lhasa",
             "start": "city_chengdu",
             "end": "city_yaan",
-            "distanceLi": 1920,
+            "distanceLi": 2880,
             "points": [
               [
                 257,
@@ -9192,7 +8972,7 @@
               "ch13",
               "ch14"
             ],
-            "sourceHours": 192,
+            "sourceHours": 288,
             "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
             "path": [
               [
@@ -9233,16 +9013,16 @@
             "key": "route_chengdu_lhasa:1",
             "routeId": "route_chengdu_lhasa",
             "start": "city_yaan",
-            "end": "city_qamdo",
-            "distanceLi": 1920,
+            "end": "city_lhasa",
+            "distanceLi": 2880,
             "points": [
               [
                 250,
                 253
               ],
               [
-                211,
-                242
+                168,
+                249
               ]
             ],
             "kind": "caravan_road",
@@ -9261,7 +9041,7 @@
               "ch13",
               "ch14"
             ],
-            "sourceHours": 192,
+            "sourceHours": 288,
             "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
             "path": [
               [
@@ -9313,265 +9093,260 @@
                 251.62
               ],
               [
-                241.53,
-                251.47
+                241.97,
+                251.34
               ],
               [
-                239.97,
-                251.53
+                241.28,
+                251.16
               ],
               [
-                238.88,
-                251.47
-              ],
-              [
-                238.25,
-                251.28
-              ],
-              [
-                237.53,
-                251.28
-              ],
-              [
-                236.72,
-                251.47
-              ],
-              [
-                236.25,
-                251.41
-              ],
-              [
-                236.12,
-                251.09
-              ],
-              [
-                235.78,
-                250.97
-              ],
-              [
-                235.22,
-                251.03
-              ],
-              [
-                234.84,
-                250.97
-              ],
-              [
-                234.66,
+                240.66,
                 250.78
               ],
               [
-                233.62,
-                250.78
+                240.09,
+                250.22
               ],
               [
-                231.75,
-                250.97
+                239.34,
+                248.81
               ],
               [
-                230.28,
-                250.69
+                238.41,
+                246.56
               ],
               [
-                229.22,
-                249.94
+                237.06,
+                244.41
               ],
               [
-                228.41,
-                248.72
+                235.31,
+                242.34
               ],
               [
-                227.84,
-                247.03
+                233.66,
+                240.62
               ],
               [
-                226.56,
-                245.41
+                232.09,
+                239.25
               ],
               [
-                224.56,
-                243.84
+                231.19,
+                237.97
               ],
               [
-                223.28,
-                243
+                230.94,
+                236.78
               ],
               [
-                222.72,
-                242.88
+                229.97,
+                235.44
               ],
               [
-                222.25,
-                242.97
+                228.28,
+                233.94
               ],
               [
-                221.88,
-                243.28
+                227.22,
+                233.16
               ],
               [
-                221.09,
-                243.38
+                226.78,
+                233.09
               ],
               [
-                219.91,
-                243.25
+                225.69,
+                232.03
               ],
               [
-                219.03,
-                243.31
+                223.94,
+                229.97
               ],
               [
-                218.47,
-                243.56
+                222.38,
+                228.84
               ],
               [
-                217.38,
-                243.03
+                221,
+                228.66
               ],
               [
-                215.75,
-                241.72
+                219.69,
+                227.97
               ],
               [
-                214.22,
-                241.06
+                218.44,
+                226.78
               ],
               [
-                212.78,
-                241.06
+                217.44,
+                226.16
               ],
               [
-                211.8,
-                241.3
+                216.69,
+                226.09
               ],
               [
-                211,
-                242
-              ]
-            ]
-          },
-          {
-            "key": "route_chengdu_lhasa:2",
-            "routeId": "route_chengdu_lhasa",
-            "start": "city_qamdo",
-            "end": "city_lhasa",
-            "distanceLi": 1920,
-            "points": [
-              [
-                211,
-                242
+                215.47,
+                226.03
               ],
               [
-                168,
-                249
-              ]
-            ],
-            "kind": "caravan_road",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
-            "sourceHours": 192,
-            "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
-            "path": [
-              [
-                211,
-                242
+                213.78,
+                225.97
               ],
               [
-                209.92,
-                241.39
+                212.72,
+                226.12
               ],
               [
-                209.03,
-                241.28
+                212.28,
+                226.5
               ],
               [
-                207.97,
-                241.47
+                211.69,
+                226.69
               ],
               [
-                206.88,
-                241.09
+                210.94,
+                226.69
               ],
               [
-                205.75,
-                240.16
+                210.41,
+                226.56
               ],
               [
-                204.78,
-                239.53
+                210.09,
+                226.31
               ],
               [
-                203.97,
-                239.22
+                208.81,
+                226.22
               ],
               [
-                203.16,
-                238.62
+                206.56,
+                226.28
               ],
               [
-                202.34,
-                237.75
+                205.28,
+                226.41
               ],
               [
-                200.94,
-                237.31
+                204.97,
+                226.59
               ],
               [
-                198.94,
-                237.31
+                204.22,
+                226.62
               ],
               [
-                197.62,
-                237.09
+                203.03,
+                226.5
               ],
               [
-                197,
-                236.66
+                202.28,
+                226.56
               ],
               [
-                196.25,
-                236.44
+                201.97,
+                226.81
               ],
               [
-                195.38,
-                236.44
+                201.44,
+                226.94
               ],
               [
-                193.19,
-                237.12
+                200.69,
+                226.94
               ],
               [
-                189.69,
-                238.5
+                200.03,
+                227.19
               ],
               [
-                186.53,
-                239.22
+                199.47,
+                227.69
               ],
               [
-                183.72,
-                239.28
+                198.44,
+                228.03
               ],
               [
-                180.62,
-                241.28
+                196.94,
+                228.22
               ],
               [
-                177.25,
-                245.22
+                195.06,
+                229.31
+              ],
+              [
+                192.81,
+                231.31
+              ],
+              [
+                191.28,
+                232.56
+              ],
+              [
+                190.47,
+                233.06
+              ],
+              [
+                189.84,
+                233.31
+              ],
+              [
+                189.41,
+                233.31
+              ],
+              [
+                188.91,
+                233.59
+              ],
+              [
+                188.34,
+                234.16
+              ],
+              [
+                187.59,
+                234.66
+              ],
+              [
+                186.66,
+                235.09
+              ],
+              [
+                186.03,
+                235.47
+              ],
+              [
+                185.72,
+                235.78
+              ],
+              [
+                185.56,
+                236.22
+              ],
+              [
+                185.56,
+                236.78
+              ],
+              [
+                184.41,
+                237.97
+              ],
+              [
+                182.09,
+                239.78
+              ],
+              [
+                179.59,
+                242.31
+              ],
+              [
+                176.91,
+                245.56
               ],
               [
                 175.16,
@@ -12451,7 +12226,7 @@
             "routeId": "route_lanzhou_lhasa",
             "start": "city_lanzhou",
             "end": "city_xining",
-            "distanceLi": 1760,
+            "distanceLi": 2640,
             "points": [
               [
                 256,
@@ -12479,7 +12254,7 @@
               "ch13",
               "ch14"
             ],
-            "sourceHours": 176,
+            "sourceHours": 264,
             "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
             "path": [
               [
@@ -12536,16 +12311,16 @@
             "key": "route_lanzhou_lhasa:1",
             "routeId": "route_lanzhou_lhasa",
             "start": "city_xining",
-            "end": "city_yushu",
-            "distanceLi": 1760,
+            "end": "city_lhasa",
+            "distanceLi": 2640,
             "points": [
               [
                 243,
                 199
               ],
               [
-                211,
-                227
+                168,
+                249
               ]
             ],
             "kind": "caravan_road",
@@ -12565,7 +12340,7 @@
               "ch13",
               "ch14"
             ],
-            "sourceHours": 176,
+            "sourceHours": 264,
             "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
             "path": [
               [
@@ -12609,277 +12384,159 @@
                 205
               ],
               [
-                228.88,
-                205.44
+                228.78,
+                205.53
               ],
               [
-                228.75,
-                205.94
+                228.47,
+                206.22
               ],
               [
-                228.41,
-                206.28
+                228.09,
+                206.56
               ],
               [
-                227.84,
-                206.47
+                227.66,
+                206.56
               ],
               [
-                226.41,
-                207.84
+                226.84,
+                207.16
               ],
               [
-                224.09,
-                210.41
+                225.66,
+                208.34
               ],
               [
-                222.84,
+                224.69,
+                209.06
+              ],
+              [
+                223.94,
+                209.31
+              ],
+              [
+                222.78,
+                210.25
+              ],
+              [
+                221.22,
+                211.88
+              ],
+              [
+                218.31,
+                212.69
+              ],
+              [
+                214.06,
+                212.69
+              ],
+              [
+                211.84,
+                212.78
+              ],
+              [
+                211.66,
                 212.97
               ],
               [
-                222.66,
-                215.53
+                209.75,
+                213.16
               ],
               [
-                220.84,
-                218.62
+                206.12,
+                213.34
               ],
               [
-                217.41,
-                222.25
+                203.66,
+                213.91
               ],
               [
-                215.47,
-                224.06
+                202.34,
+                214.84
               ],
               [
-                215.03,
-                224.06
+                200.06,
+                215.59
               ],
               [
-                214.25,
-                224.66
+                196.81,
+                216.16
               ],
               [
-                213.12,
-                225.84
+                193.16,
+                218.41
               ],
               [
-                212.17,
-                226.58
+                189.09,
+                222.34
               ],
               [
-                211,
-                227
-              ]
-            ]
-          },
-          {
-            "key": "route_lanzhou_lhasa:2",
-            "routeId": "route_lanzhou_lhasa",
-            "start": "city_yushu",
-            "end": "city_lhasa",
-            "distanceLi": 1760,
-            "points": [
-              [
-                211,
-                227
+                186.12,
+                225.06
               ],
               [
-                168,
-                249
-              ]
-            ],
-            "kind": "caravan_road",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch10",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
-            "sourceHours": 176,
-            "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
-            "path": [
-              [
-                211,
-                227
+                184.25,
+                226.56
               ],
               [
-                210.77,
-                227.61
+                181.47,
+                229.47
               ],
               [
-                210.06,
-                227.72
+                177.78,
+                233.78
               ],
               [
-                208.81,
-                227.53
+                175.38,
+                236.41
               ],
               [
-                207.88,
-                227.75
+                174.25,
+                237.34
               ],
               [
-                207.25,
-                228.38
+                173.41,
+                238.81
               ],
               [
-                206.41,
-                228.69
+                172.84,
+                240.81
               ],
               [
-                205.34,
-                228.69
+                172.06,
+                242.62
               ],
               [
-                204.44,
-                228.97
+                171.06,
+                244.25
               ],
               [
-                203.69,
-                229.53
+                170.75,
+                245.31
               ],
               [
-                202.88,
-                229.84
+                171.12,
+                245.81
               ],
               [
-                202,
-                229.91
+                171.22,
+                246.66
               ],
               [
-                200.91,
-                230.19
+                171.03,
+                247.84
               ],
               [
-                199.59,
-                230.69
+                170.59,
+                248.69
               ],
               [
-                197.41,
-                230.97
+                169.91,
+                249.19
               ],
               [
-                194.34,
-                231.03
-              ],
-              [
-                192.44,
-                231.44
-              ],
-              [
-                191.69,
-                232.19
-              ],
-              [
-                190.78,
-                232.75
-              ],
-              [
-                189.72,
-                233.12
-              ],
-              [
-                188.91,
-                233.59
-              ],
-              [
-                188.34,
-                234.16
-              ],
-              [
-                187.59,
-                234.66
-              ],
-              [
-                186.66,
-                235.09
-              ],
-              [
-                186.03,
-                235.47
-              ],
-              [
-                185.72,
-                235.78
-              ],
-              [
-                185.56,
-                236.22
-              ],
-              [
-                185.56,
-                236.78
-              ],
-              [
-                184.41,
-                237.97
-              ],
-              [
-                182.09,
-                239.78
-              ],
-              [
-                179.59,
-                242.31
-              ],
-              [
-                176.91,
-                245.56
-              ],
-              [
-                175.16,
-                247.25
-              ],
-              [
-                174.34,
-                247.38
-              ],
-              [
-                173.66,
-                247.66
-              ],
-              [
-                173.09,
-                248.09
-              ],
-              [
-                172.38,
-                248.34
-              ],
-              [
-                171.5,
-                248.41
-              ],
-              [
-                170.84,
-                248.66
-              ],
-              [
-                170.41,
-                249.09
-              ],
-              [
-                169.84,
-                249.34
-              ],
-              [
-                169.16,
-                249.41
-              ],
-              [
-                168.61,
+                169.17,
                 249.33
               ],
               [
@@ -15294,8 +14951,8 @@
             "key": "route_yining_karakorum:0",
             "routeId": "route_yining_karakorum",
             "start": "city_yining",
-            "end": "city_altay",
-            "distanceLi": 1680,
+            "end": "city_karakorum",
+            "distanceLi": 3360,
             "points": [
               [
                 130,
@@ -15304,6 +14961,10 @@
               [
                 173,
                 101
+              ],
+              [
+                252,
+                114
               ]
             ],
             "kind": "steppe_road",
@@ -15312,8 +14973,8 @@
               "ch03",
               "ch04"
             ],
-            "sourceHours": 168,
-            "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
+            "sourceHours": 336,
+            "note": "等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）",
             "path": [
               [
                 130,
@@ -15404,55 +15065,20 @@
                 106.69
               ],
               [
-                168.75,
-                105.78
+                169.22,
+                105.19
               ],
               [
-                170.38,
-                104.22
+                171.78,
+                102.44
               ],
               [
-                171.64,
-                102.83
+                173.12,
+                101.81
               ],
               [
-                173,
-                101
-              ]
-            ]
-          },
-          {
-            "key": "route_yining_karakorum:1",
-            "routeId": "route_yining_karakorum",
-            "start": "city_altay",
-            "end": "city_karakorum",
-            "distanceLi": 1680,
-            "points": [
-              [
-                173,
-                101
-              ],
-              [
-                252,
-                114
-              ]
-            ],
-            "kind": "steppe_road",
-            "eras": [
-              "ch02",
-              "ch03",
-              "ch04"
-            ],
-            "sourceHours": 168,
-            "note": "等效里程=源路段小时×10；via 等时分段与示意线（原创扩展、建议值）",
-            "path": [
-              [
-                173,
-                101
-              ],
-              [
-                173.23,
-                103.3
+                173.25,
+                103.31
               ],
               [
                 173.62,
@@ -19559,7 +19185,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "1e2f617d8ba2de624bb61f3f2d22f71bdf367bc21e903ef805ebd21140dc57e8"
+        "revision": "c17650cd96d1e810d62e6d7c71b703cbca27b8685ed29ef92e7c3923a9f1ac40"
       }
     }
   ]

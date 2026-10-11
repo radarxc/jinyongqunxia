@@ -4,7 +4,7 @@
 > 上游：`docs/decisions/author-requirements.md` AR-04、AR-07、AR-08，`docs/decisions/author-decisions.md`，`docs/00-canon.md` §2、§12–§13、§16、§18，`docs/decisions/rulings-v1.md` §3。
 > 引用而不重定义：加入条件、门规、贡献、晋升机制、叛出、任务链与招募细则 → `design/12`；月钱与资源 → `design/16`；区域/城市正式 ID、坐标与时代地名 → `design/11`、`design/19`；武学条目、数值与招式 → 各 `design/catalog/skills-*.md`；战斗与阵法 → `design/09`。
 > 标注约定：**（史实）** = 有史料或权威机构来源；**（小说）** = 金庸小说设定；**（古龙·书名）** = 古龙小说设定；**（原创扩展）** = 本作为串联时代所加；**（待考）** = 尚须以三联/广州修订版或可靠史料逐字核对；**（待核实）** = 网页可用性或资料版本尚未完全确认；**【建议值】** = 待唯一归属文档定稿。
-> 版本记录：v1.2（跨文档同步，2026-09-26）；初稿 S1（2026-09-26）；审校 S1.R（2026-09-26，修正史实、矩阵状态、裁定品阶与交叉引用，并补史实抽检）；F1b 对齐正式图鉴 ID、品阶、类别、蓬莱六门授艺与 `design/16` 月钱／资源接口；全局审计（2026-09-26）：回填三十区正式落点与图鉴正式 ID；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）：补叠劲拳授艺与无毒隔离，收拢日月 / 五仙旧索引。
+> 版本记录：v1.2（跨文档同步，2026-09-26）；初稿 S1（2026-09-26）；审校 S1.R（2026-09-26，修正史实、矩阵状态、裁定品阶与交叉引用，并补史实抽检）；F1b 对齐正式图鉴 ID、品阶、类别、蓬莱六门授艺与 `design/16` 月钱／资源接口；全局审计（2026-09-26）：回填三十区正式落点与图鉴正式 ID；经脉落地终审（2026-09-29）；经脉落地终审（2026-09-30）：补叠劲拳授艺与无毒隔离，收拢日月 / 五仙旧索引；v1.3（2026-10-11，CONTENT-tang-placenames）：白马改唐 702 后 BM 列唐代化（§0.3、§3.5），清宫承德 / 盛京、南少林泉州、全真白云观四个分舵不再挂 ch10。
 
 ---
 
@@ -47,7 +47,7 @@
 
 ### 0.3 十四书界列名
 
-以下所有矩阵均按基准 §2 的固定顺序：`TL` 天龙（1093–1094）、`SD` 射雕（1217–1227）、`SHD` 神雕（1237–1259）、`YT` 倚天（1336–1363）、`XA` 笑傲（明中叶）、`XK` 侠客（明）、`BX` 碧血（1630s–1645）、`LD` 鹿鼎（1669–1690）、`LC` 连城（清初）、`BM` 白马（清初）、`YY` 鸳鸯（乾隆初）、`SJ` 书剑（1753–1759）、`FH` 飞狐（1766–1771）、`XS` 雪山（1780）。年代不详处仍使用基准的玩法排序，不外推精确公元年。
+以下所有矩阵均按基准 §2 的固定顺序：`TL` 天龙（1093–1094）、`SD` 射雕（1217–1227）、`SHD` 神雕（1237–1259）、`YT` 倚天（1336–1363）、`XA` 笑傲（明中叶）、`XK` 侠客（明）、`BX` 碧血（1630s–1645）、`LD` 鹿鼎（1669–1690）、`LC` 连城（清初）、`BM` 白马（唐·武周长安二年 702，原创扩展定年；列序仍按基准 §2 玩法顺序）、`YY` 鸳鸯（乾隆初）、`SJ` 书剑（1753–1759）、`FH` 飞狐（1766–1771）、`XS` 雪山（1780）。年代不详处仍使用基准的玩法排序，不外推精确公元年。
 
 ---
 
@@ -314,31 +314,31 @@
 | ID | 名称 | TL | SD | SHD | YT | XA | XK | BX | LD | LC | BM | YY | SJ | FH | XS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | `sect_shaolin` | 少林 | O | O | O | O | O | O | H | O | H | H | H | O | H | H |
-| `sect_nanshaolin` | 南少林 | N | N | N | N | H | H | H | H | H | H | H | O | H | H |
-| `sect_tianlongsi` | 天龙寺 | O | H | H | H | H | H | H | H | H | H | H | H | H | H |
-| `sect_quanzhen` | 全真教 | N | O | O | H | H | H | H | H | H | H | H | H | H | H |
-| `sect_wudang` | 武当派 | N | N | N | O | O | O | H | H | H | H | H | O | O | H |
-| `sect_shangqingguan` | 上清观 | N | N | N | N | N | O | D | D | D | D | D | D | D | D |
-| `sect_tiejian` | 铁剑门 | N | N | N | N | N | N | O | O | H | H | H | H | H | H |
-| `sect_huashan` | 华山派 | N | N | N | O | O | H | O | H | H | H | H | H | O | H |
-| `sect_emei` | 峨眉派 | N | N | P | O | H | H | H | H | H | H | H | H | H | H |
-| `sect_kunlun` | 昆仑派 | N | N | P | O | H | H | H | H | H | H | H | H | H | H |
-| `sect_kongtong` | 崆峒派 | N | N | P | O | H | H | H | H | H | H | H | H | H | H |
-| `sect_qingcheng` | 青城派 | O | H | H | H | O | H | H | H | H | H | H | H | O | H |
-| `sect_songshan` | 嵩山派 | N | N | N | N | O | D | D | D | D | D | D | D | D | D |
-| `sect_taishan` | 泰山派 | N | N | N | N | O | H | H | H | H | H | H | H | H | H |
-| `sect_hengshan_nan` | 衡山派 | N | N | N | N | O | H | H | H | H | H | H | H | H | H |
-| `sect_hengshan_bei` | 恒山派 | N | N | N | N | O | H | H | H | H | H | H | H | H | H |
-| `sect_xueshan` | 雪山派 | N | N | N | N | N | O | D | D | D | D | D | D | D | D |
-| `sect_wuliang` | 无量剑派 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_xiandu` | 仙都派 | N | N | N | N | N | N | O | H | H | H | H | H | H | H |
+| `sect_nanshaolin` | 南少林 | N | N | N | N | H | H | H | H | H | N | H | O | H | H |
+| `sect_tianlongsi` | 天龙寺 | O | H | H | H | H | H | H | H | H | N | H | H | H | H |
+| `sect_quanzhen` | 全真教 | N | O | O | H | H | H | H | H | H | N | H | H | H | H |
+| `sect_wudang` | 武当派 | N | N | N | O | O | O | H | H | H | N | H | O | O | H |
+| `sect_shangqingguan` | 上清观 | N | N | N | N | N | O | D | D | D | N | D | D | D | D |
+| `sect_tiejian` | 铁剑门 | N | N | N | N | N | N | O | O | H | N | H | H | H | H |
+| `sect_huashan` | 华山派 | N | N | N | O | O | H | O | H | H | N | H | H | O | H |
+| `sect_emei` | 峨眉派 | N | N | P | O | H | H | H | H | H | N | H | H | H | H |
+| `sect_kunlun` | 昆仑派 | N | N | P | O | H | H | H | H | H | N | H | H | H | H |
+| `sect_kongtong` | 崆峒派 | N | N | P | O | H | H | H | H | H | N | H | H | H | H |
+| `sect_qingcheng` | 青城派 | O | H | H | H | O | H | H | H | H | N | H | H | O | H |
+| `sect_songshan` | 嵩山派 | N | N | N | N | O | D | D | D | D | N | D | D | D | D |
+| `sect_taishan` | 泰山派 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
+| `sect_hengshan_nan` | 衡山派 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
+| `sect_hengshan_bei` | 恒山派 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
+| `sect_xueshan` | 雪山派 | N | N | N | N | N | O | D | D | D | N | D | D | D | D |
+| `sect_wuliang` | 无量剑派 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_xiandu` | 仙都派 | N | N | N | N | N | N | O | H | H | N | H | H | H | H |
 | `sect_taijimen` | 太极门 | N | N | N | N | N | N | N | N | N | N | N | O | O | H |
 | `sect_baguamen` | 八卦门 | N | N | N | N | N | N | N | N | N | N | N | O | O | O |
 | `sect_tianlongmen` | 天龙门 | N | N | N | N | N | N | N | N | N | N | N | H | O | O |
-| `sect_fuwei` | 福威镖局 | N | N | N | N | O | D | D | D | D | D | D | D | D | D |
-| `sect_penglai` | 蓬莱派 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_jinwupai` | 金乌派 | N | N | N | N | N | O | D | D | D | D | D | D | D | D |
-| `sect_taibai` | 太白三英 | N | N | N | N | N | N | O | D | D | D | D | D | D | D |
+| `sect_fuwei` | 福威镖局 | N | N | N | N | O | D | D | D | D | N | D | D | D | D |
+| `sect_penglai` | 蓬莱派 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_jinwupai` | 金乌派 | N | N | N | N | N | O | D | D | D | N | D | D | D | D |
+| `sect_taibai` | 太白三英 | N | N | N | N | N | N | O | D | D | N | D | D | D | D |
 | `sect_weituomen` | 韦陀门 | N | N | N | N | N | N | N | N | N | N | N | H | O | H |
 | `sect_baxianjian` | 八仙剑 | N | N | N | N | N | N | N | N | N | N | N | H | O | H |
 | `sect_bajiquan` | 八极拳 | N | N | N | N | N | N | N | N | N | N | N | H | O | H |
@@ -347,86 +347,86 @@
 
 | ID | 名称 | TL | SD | SHD | YT | XA | XK | BX | LD | LC | BM | YY | SJ | FH | XS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| `sect_dali` | 大理段氏 | O | O | O | M | D | D | D | D | D | D | D | D | D | D |
-| `sect_murong` | 姑苏慕容 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_gumu` | 古墓派 | N | N | O | H | H | H | H | H | H | H | H | H | H | H |
-| `sect_taohuadao` | 桃花岛 | N | O | O | H | H | H | H | H | H | H | H | H | H | H |
-| `sect_baituoshan` | 白驼山 | N | O | O | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_jueqinggu` | 绝情谷 | N | N | O | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_xuansuzhuang` | 玄素庄 | N | N | N | N | N | O | D | D | D | D | D | D | D | D |
-| `sect_shiliang` | 石梁温家 | N | N | N | N | N | N | O | D | D | D | D | D | D | D |
+| `sect_dali` | 大理段氏 | O | O | O | M | D | D | D | D | D | N | D | D | D | D |
+| `sect_murong` | 姑苏慕容 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_gumu` | 古墓派 | N | N | O | H | H | H | H | H | H | N | H | H | H | H |
+| `sect_taohuadao` | 桃花岛 | N | O | O | H | H | H | H | H | H | N | H | H | H | H |
+| `sect_baituoshan` | 白驼山 | N | O | O | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_jueqinggu` | 绝情谷 | N | N | O | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_xuansuzhuang` | 玄素庄 | N | N | N | N | N | O | D | D | D | N | D | D | D | D |
+| `sect_shiliang` | 石梁温家 | N | N | N | N | N | N | O | D | D | N | D | D | D | D |
 | `sect_hujia` | 辽东胡家 | N | N | N | N | N | N | N | N | N | N | H | H | O | O |
 | `sect_miaojia` | 苗家 | N | N | N | N | N | N | N | N | N | N | H | H | O | O |
 | `sect_shangjiabao` | 商家堡 | N | N | N | N | N | N | N | N | N | N | N | H | O | D |
-| `sect_jindaozhai` | 金刀寨 | N | N | N | N | N | O | D | D | D | D | D | D | D | D |
-| `sect_qinjiazhai` | 秦家寨 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_zhuwulianhuanzhuang` | 朱武连环庄 | N | N | N | O | D | D | D | D | D | D | D | D | D | D |
-| `sect_wanjia` | 万家门 | N | N | N | N | N | N | N | N | O | D | D | D | D | D |
-| `sect_jiangnanqiguai` | 江南七怪 | N | O | M | D | D | D | D | D | D | D | D | D | D | D |
+| `sect_jindaozhai` | 金刀寨 | N | N | N | N | N | O | D | D | D | N | D | D | D | D |
+| `sect_qinjiazhai` | 秦家寨 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_zhuwulianhuanzhuang` | 朱武连环庄 | N | N | N | O | D | D | D | D | D | N | D | D | D | D |
+| `sect_wanjia` | 万家门 | N | N | N | N | N | N | N | N | O | N | D | D | D | D |
+| `sect_jiangnanqiguai` | 江南七怪 | N | O | M | D | D | D | D | D | D | N | D | D | D | D |
 | `sect_yaowangmen` | 药王门 | N | N | N | N | N | N | N | N | N | N | H | H | O | O |
 | `sect_gaochang` | 高昌遗脉 | N | N | N | N | N | N | N | N | N | O | D | D | D | D |
 | `sect_hasake` | 哈萨克部族 | H | H | H | H | H | H | H | H | H | O | H | H | H | H |
 | `sect_huibu` | 回部 | P | P | P | P | P | P | P | P | P | P | H | O | O | O |
-| `sect_bohai` | 渤海派 | N | N | N | N | N | N | O | D | D | D | D | D | D | D |
+| `sect_bohai` | 渤海派 | N | N | N | N | N | N | O | D | D | N | D | D | D | D |
 | `sect_jiulongbian` | 九龙鞭 | N | N | N | N | N | N | N | N | N | N | N | H | O | H |
 
 ### 3.3 帮会、教派、异域与朝廷（33）
 
 | ID | 名称 | TL | SD | SHD | YT | XA | XK | BX | LD | LC | BM | YY | SJ | FH | XS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| `sect_gaibang` | 丐帮 | O | O | O | O | O | H | O | O | H | H | H | H | H | H |
-| `sect_tiezhangbang` | 铁掌帮 | N | O | M | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_changlebang` | 长乐帮 | N | N | N | N | N | O | D | D | D | D | D | D | D | D |
+| `sect_gaibang` | 丐帮 | O | O | O | O | O | H | O | O | H | N | H | H | H | H |
+| `sect_tiezhangbang` | 铁掌帮 | N | O | M | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_changlebang` | 长乐帮 | N | N | N | N | N | O | D | D | D | N | D | D | D | D |
 | `sect_honghuahui` | 红花会 | N | N | N | N | N | N | N | N | N | N | P | O | H | H |
-| `sect_tiandihui` | 天地会 | N | N | N | N | N | N | N | O | H | H | H | H | O | O |
-| `sect_wangwu` | 王屋派 | N | N | N | N | N | N | N | O | D | D | D | D | D | D |
-| `sect_haisha` | 海沙派 | N | N | N | O | D | D | D | D | D | D | D | D | D | D |
-| `sect_jujing` | 巨鲸帮 | N | N | N | O | D | D | D | D | D | D | D | D | D | D |
-| `sect_shenquan` | 神拳门 | N | N | N | O | D | D | D | D | D | D | D | D | D | D |
+| `sect_tiandihui` | 天地会 | N | N | N | N | N | N | N | O | H | N | H | H | O | O |
+| `sect_wangwu` | 王屋派 | N | N | N | N | N | N | N | O | D | N | D | D | D | D |
+| `sect_haisha` | 海沙派 | N | N | N | O | D | D | D | D | D | N | D | D | D | D |
+| `sect_jujing` | 巨鲸帮 | N | N | N | O | D | D | D | D | D | N | D | D | D | D |
+| `sect_shenquan` | 神拳门 | N | N | N | O | D | D | D | D | D | N | D | D | D | D |
 | `sect_weixinbiaoju` | 威信镖局 | N | N | N | N | N | N | N | N | N | N | O | O | H | H |
-| `sect_jinlongbang` | 金龙帮 | N | N | N | N | N | N | O | D | D | D | D | D | D | D |
-| `sect_xiaoyao` | 逍遥派 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_lingjiu` | 灵鹫宫 | O | H | H | H | H | H | H | H | H | H | H | H | H | H |
-| `sect_xingxiu` | 星宿派 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_mingjiao` | 明教 | P | P | P | O | D | D | D | D | D | D | D | D | D | D |
-| `sect_tianyingjiao` | 天鹰教 | N | N | N | O | D | D | D | D | D | D | D | D | D | D |
-| `sect_riyue` | 日月神教 | N | N | N | N | O | H | H | H | H | H | H | H | H | H |
-| `sect_wudu` | 五毒教 | N | N | N | N | N | N | O | D | D | D | D | D | D | D |
-| `sect_wuxian` | 五仙教 | N | N | N | N | O | H | H | H | H | H | H | H | H | H |
-| `sect_shenlongjiao` | 神龙教 | N | N | N | N | N | N | N | O | D | D | D | D | D | D |
-| `sect_xuedaomen` | 血刀门 | N | N | N | N | N | N | N | H | O | D | D | D | D | D |
-| `sect_shennong` | 神农帮 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_mizong` | 吐蕃密宗 | O | H | O | O | H | H | H | O | H | H | H | H | H | H |
-| `sect_xiakedao` | 侠客岛 | N | N | N | N | N | O | D | D | D | D | D | D | D | D |
-| `sect_yipintang` | 西夏一品堂 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_qidan` | 契丹（辽） | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_menggu` | 蒙古诸部 / 幕府 | H | O | O | O | H | H | H | O | H | H | H | H | H | H |
-| `sect_ruyangwangfu` | 汝阳王府 | N | N | N | O | D | D | D | D | D | D | D | D | D | D |
-| `sect_qinggong` | 清宫 | N | N | N | N | N | N | N | O | H | H | O | O | O | O |
-| `sect_muwangfu` | 沐王府 | N | N | N | N | N | N | P | O | D | D | D | D | D | D |
-| `sect_chuangwangjun` | 闯王军 | N | N | N | N | N | N | O | M | H | H | H | H | H | H |
-| `sect_sidaeren` | 四大恶人 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
-| `sect_juxianzhuang` | 聚贤庄 | O | D | D | D | D | D | D | D | D | D | D | D | D | D |
+| `sect_jinlongbang` | 金龙帮 | N | N | N | N | N | N | O | D | D | N | D | D | D | D |
+| `sect_xiaoyao` | 逍遥派 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_lingjiu` | 灵鹫宫 | O | H | H | H | H | H | H | H | H | N | H | H | H | H |
+| `sect_xingxiu` | 星宿派 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_mingjiao` | 明教 | P | P | P | O | D | D | D | D | D | P | D | D | D | D |
+| `sect_tianyingjiao` | 天鹰教 | N | N | N | O | D | D | D | D | D | N | D | D | D | D |
+| `sect_riyue` | 日月神教 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
+| `sect_wudu` | 五毒教 | N | N | N | N | N | N | O | D | D | N | D | D | D | D |
+| `sect_wuxian` | 五仙教 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
+| `sect_shenlongjiao` | 神龙教 | N | N | N | N | N | N | N | O | D | N | D | D | D | D |
+| `sect_xuedaomen` | 血刀门 | N | N | N | N | N | N | N | H | O | N | D | D | D | D |
+| `sect_shennong` | 神农帮 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_mizong` | 吐蕃密宗 | O | H | O | O | H | H | H | O | H | P | H | H | H | H |
+| `sect_xiakedao` | 侠客岛 | N | N | N | N | N | O | D | D | D | N | D | D | D | D |
+| `sect_yipintang` | 西夏一品堂 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_qidan` | 契丹（辽） | O | D | D | D | D | D | D | D | D | P | D | D | D | D |
+| `sect_menggu` | 蒙古诸部 / 幕府 | H | O | O | O | H | H | H | O | H | P | H | H | H | H |
+| `sect_ruyangwangfu` | 汝阳王府 | N | N | N | O | D | D | D | D | D | N | D | D | D | D |
+| `sect_qinggong` | 清宫 | N | N | N | N | N | N | N | O | H | N | O | O | O | O |
+| `sect_muwangfu` | 沐王府 | N | N | N | N | N | N | P | O | D | N | D | D | D | D |
+| `sect_chuangwangjun` | 闯王军 | N | N | N | N | N | N | O | M | H | N | H | H | H | H |
+| `sect_sidaeren` | 四大恶人 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
+| `sect_juxianzhuang` | 聚贤庄 | O | D | D | D | D | D | D | D | D | N | D | D | D | D |
 
 ### 3.4 古龙组织（15）
 
 | ID | 名称 | TL | SD | SHD | YT | XA | XK | BX | LD | LC | BM | YY | SJ | FH | XS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| `sect_yihuagong` | 移花宫 | N | N | N | N | H | O | H | H | H | H | H | H | H | H |
-| `sect_erengu` | 恶人谷 | N | N | N | N | H | O | H | H | H | H | H | H | H | H |
-| `sect_daqimen` | 大旗门 | N | N | N | N | O | H | H | H | H | H | H | H | H | H |
-| `sect_shenshuigong` | 神水宫 | N | N | N | N | H | O | H | H | H | H | H | H | H | H |
-| `sect_wuzhengshanzhuang` | 无争山庄 | N | N | N | N | H | O | H | H | H | H | H | H | H | H |
-| `sect_qinglonghui` | 青龙会 | N | N | N | N | N | H | O | O | O | O | O | O | O | O |
-| `sect_kuaihuowangfu` | 快活王一系 | N | N | N | N | O | H | H | H | H | H | H | H | H | H |
-| `sect_xueyumen` | 血雨门 | N | N | N | N | N | N | H | O | H | H | H | H | H | H |
-| `sect_tangmen` | 蜀中唐门 | N | N | N | N | H | O | H | H | H | H | H | H | H | H |
-| `sect_kongqueshanzhuang` | 孔雀山庄 | N | N | N | N | N | H | O | O | H | H | H | H | H | H |
-| `sect_jinqianbang` | 金钱帮 | N | N | N | N | H | O | H | H | H | H | H | H | H | H |
-| `sect_shenjianshanzhuang` | 神剑山庄 | N | N | N | N | H | O | H | H | H | H | H | H | H | H |
-| `sect_wanmeishanzhuang` | 万梅山庄 | N | N | N | N | N | H | O | H | H | H | H | H | H | H |
-| `sect_baiyuncheng` | 白云城 | N | N | N | N | N | H | O | H | H | H | H | H | H | H |
-| `sect_renyizhuang` | 仁义庄 | N | N | N | N | O | H | H | H | H | H | H | H | H | H |
+| `sect_yihuagong` | 移花宫 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
+| `sect_erengu` | 恶人谷 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
+| `sect_daqimen` | 大旗门 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
+| `sect_shenshuigong` | 神水宫 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
+| `sect_wuzhengshanzhuang` | 无争山庄 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
+| `sect_qinglonghui` | 青龙会 | N | N | N | N | N | H | O | O | O | N | O | O | O | O |
+| `sect_kuaihuowangfu` | 快活王一系 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
+| `sect_xueyumen` | 血雨门 | N | N | N | N | N | N | H | O | H | N | H | H | H | H |
+| `sect_tangmen` | 蜀中唐门 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
+| `sect_kongqueshanzhuang` | 孔雀山庄 | N | N | N | N | N | H | O | O | H | N | H | H | H | H |
+| `sect_jinqianbang` | 金钱帮 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
+| `sect_shenjianshanzhuang` | 神剑山庄 | N | N | N | N | H | O | H | H | H | N | H | H | H | H |
+| `sect_wanmeishanzhuang` | 万梅山庄 | N | N | N | N | N | H | O | H | H | N | H | H | H | H |
+| `sect_baiyuncheng` | 白云城 | N | N | N | N | N | H | O | H | H | N | H | H | H | H |
+| `sect_renyizhuang` | 仁义庄 | N | N | N | N | O | H | H | H | H | N | H | H | H | H |
 
 ### 3.5 矩阵解释与导出约束
 
@@ -434,6 +434,7 @@
 - `P` 只用于确有地点、宗教、共同体或组织前身而名称未立的情形：峨眉/昆仑/崆峒的早期地方传统、明教的摩尼教前身、沐王府的明军前身、红花会的反清结社前身，以及清代“回部”称谓形成前的西域地方共同体。
 - 古龙门派 `N/H/O` 是投放状态，不是历史年代判断；统一在明代中后段至清初开放，借难度曲线让中低武书界获得高机制、低数值的支线对手。
 - 若后续考据证明某派创立年晚于矩阵中的 `O/H`，优先将该格改 `P` 或 `N`，不得倒推虚构创始人。
+- **BM 列（2026-10-11 起为唐·武周长安二年 702）**：按上条规则，702 年已存续者只有少林（`H`）；有前身者记 `P`（明教＝摩尼教 694 年入华、吐蕃密宗＝吐蕃佛教初传、契丹（辽）＝契丹部族、蒙古＝蒙兀室韦、回部＝西域地方共同体）；白马主线高昌遗脉、哈萨克部族照原著记 `O`（原创扩展定年）；其余一律 `N`，古龙组织同 TL–YT 记 `N`。正文各条目中「其后 / 其余 / BX–XS」等区间写法不含 BM（BM 是全书界最早的年代），以本矩阵为准。分舵 `open_chapters` 不得含父门派为 `N/P` 的 ch10。
 
 ---
 
@@ -900,7 +901,7 @@
 - **身份与真实性**：`FOREIGN`；`HIST + JINYONG`。这是部族共同体数据标签，不是武林门派。国家民委资料以 1456 年克烈汗、贾尼别克汗率诸部建立哈萨克汗国为重要形成节点，并记 18 世纪中叶后相关部众在伊犁、塔城、阿勒泰等地的迁徙与游牧 [H20]。
 - **历史**：《白马啸西风》描写苏普、阿曼等草原人物（姓名与亲缘待考）。小说年代与哈萨克迁徙史存在不确定性，基准已决定不把 1757 年后推论作为硬约束；本作只在 BM 主开放。
 - **驻地与位置**：天山北路草原、河谷营地，正式挂接 `rg_xiyu_beijiang` / `city_yining`；营地季节迁移，不造永久“总舵”。
-- **时代开放**：BM `O`；其余 `H` 表示地图上的真实族群/商旅可能出现，不代表提供完整门派线。
+- **时代开放**：BM `O`；其余 `H` 表示地图上的真实族群/商旅可能出现，不代表提供完整门派线。白马书界定年为唐 702（原创扩展），早于哈萨克族形成（15 世纪），BM `O` 只服从原著，不作族源史判断。
 - **职级**：T07 部族变体；L1 客人/牧人，L2 勇士，L3 亲随，L4 长老/头人，L5 部族首领。称谓需由民族史顾问复核（待考）。
 - **武学（待 `skills-kangxi` 收录）**：
 
@@ -1012,7 +1013,7 @@
 - **身份与真实性**：别名洪门相关称谓（关系复杂，待考）；`GUILD`；`HIST + JINYONG`。现代研究常把天地会形成置于 18 世纪中叶，起源说法多元 [H12]；《鹿鼎记》把陈近南领导的天地会放在康熙初年，这是小说时间线，两者并列而不互证。
 - **历史**：小说中陈近南任总舵主，十堂以省籍/香堂组织，韦小宝任青木堂香主；台湾郑氏集团与天地会既合作又牵制（堂名、人物关系待考）。本作后续 `H/O` 是会党支线，不声明真实组织连续。
 - **驻地与位置**：秘密会址随剧情迁移；建议 `city_beijing` 青木堂、`city_yangzhou` 联络点、台湾郑氏船线。不得在地图上常显“总舵”。
-- **时代开放**：LD `O`；LC/BM/YY/SJ 为 `H`；FH/XS `O` 用于史实年代会党支线（原创扩展）。
+- **时代开放**：LD `O`；LC/YY/SJ 为 `H`；BM（唐 702）为 `N`；FH/XS `O` 用于史实年代会党支线（原创扩展）。
 - **职级**：T05B；韦小宝作为香主映射 L3，堂主/舵主 L4，总舵主 L5；军师、传功等为横向职责。
 - **武学（待 `skills-kangxi` 收录）**：
 
@@ -1362,7 +1363,7 @@
 - **身份与真实性**：`COURT`；`HIST + JINYONG`。紫禁城、侍卫制度与八旗骑射为史实背景；故宫资料显示顺治以来箭亭/射殿与清代弓马考校传统 [H27]。海大富、鳌拜武功、乾隆江湖身世等是小说设定。
 - **历史**：鹿鼎以康熙朝宫廷、侍卫与布库房为主；鸳鸯、书剑、飞狐、雪山均有乾隆朝官军/大内势力。每书人物独立配置，不把同一 NPC 跨几十年复制。
 - **驻地与位置**：北京紫禁城主锚挂 `rg_yanjing_zhili` / `city_beijing`；承德、盛京分支分别为 `site_qinggong_chengde`（同区 / `city_chengde`）与 `site_qinggong_shengjing`（`rg_liaodong` / `city_shenyang`）。
-- **时代开放**：LD/FH/XS `O`，LC/BM `H`，YY/SJ `O`；此前 `N`。
+- **时代开放**：LD/FH/XS `O`，LC `H`，YY/SJ `O`；此前及 BM（唐 702）`N`。承德分舵 `site_qinggong_chengde` 自 LC 起（热河行宫 1703 年始建，LD 1685 年无城），盛京分舵 `site_qinggong_shengjing` 自 LD 起；两分舵均不挂 BM。
 - **职级**：T08 内廷列：侍卫学员/小太监—三等侍卫—一等侍卫/亲随—统领/供奉—大内总管/总教头。帝王、皇子不属于武学晋升线。
 - **武学（待 `skills-kangxi` / `skills-qianlong` 收录）**：
 

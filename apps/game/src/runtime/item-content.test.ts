@@ -32,7 +32,9 @@ describe('item content leaves', () => {
     const map = loaded.worldMaps?.[0];
     const dali = map?.nodes.find((node) => node.id === 'city_dali');
     expect(map).toMatchObject({ chapterId: 'ch10_baima', era: 'ch10', name: '白马啸西风' });
-    expect(dali).toMatchObject({ name: '大理府', levelNote: '尚无区域强度配置',
+    // ch10 names follow the era band (Tang 702 since AR-26); compare with the compiled source map.
+    expect(dali).toMatchObject({ name: sourceMap.nodes.find((node) => node.id === 'city_dali')!.name,
+      levelNote: '尚无区域强度配置',
       entry: { accessNote: '城门进入；内部场景由 ENG-09 装配' } });
     expect(map?.nodes.map(({ name, levelNote, entry, accessNote }) =>
       ({ name, levelNote, entry: entry.accessNote, accessNote })))

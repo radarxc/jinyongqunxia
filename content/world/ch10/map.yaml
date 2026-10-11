@@ -40,6 +40,7 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
+              "ch02",
               "ch11",
               "ch12",
               "ch13",
@@ -112,21 +113,7 @@
               101
             ],
             "regionId": "rg_xiyu_beijiang",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
+            "eras": [],
             "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
@@ -312,6 +299,7 @@
             ],
             "regionId": "rg_yanjing_zhili",
             "eras": [
+              "ch01",
               "ch02",
               "ch03",
               "ch04",
@@ -986,13 +974,6 @@
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
               "ch13",
               "ch14"
             ],
@@ -2088,6 +2069,7 @@
             "regionId": "rg_dongbei",
             "eras": [
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -2201,10 +2183,10 @@
             ],
             "regionId": "rg_monan",
             "eras": [
+              "ch01",
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
               "ch06",
               "ch07",
               "ch08",
@@ -2501,13 +2483,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
               "ch08",
               "ch09",
               "ch11",
@@ -3005,6 +2980,7 @@
             "regionId": "rg_donghai_islands",
             "eras": [
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -3037,7 +3013,14 @@
             "eras": [
               "ch02",
               "ch03",
-              "ch04"
+              "ch04",
+              "ch07",
+              "ch08",
+              "ch09",
+              "ch11",
+              "ch12",
+              "ch13",
+              "ch14"
             ],
             "open": false,
             "levelRange": null,
@@ -3875,14 +3858,7 @@
               61
             ],
             "regionId": "rg_dongbei",
-            "eras": [
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
+            "eras": [],
             "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
@@ -4125,8 +4101,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch05",
-              "ch06",
               "ch07",
               "ch08",
               "ch09",
@@ -4199,21 +4173,7 @@
               173
             ],
             "regionId": "rg_monan",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
+            "eras": [],
             "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
@@ -4242,12 +4202,9 @@
             ],
             "regionId": "rg_donghai_islands",
             "eras": [
-              "ch01",
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
-              "ch06",
               "ch07",
               "ch08",
               "ch09",
@@ -4407,6 +4364,9 @@
             ],
             "regionId": "rg_hedong_jinzhong",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -4488,9 +4448,6 @@
             "regionId": "rg_qingzang",
             "eras": [
               "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -4566,9 +4523,6 @@
             ],
             "regionId": "rg_liaoxi",
             "eras": [
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -4607,7 +4561,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch08",
               "ch09",
               "ch11",
               "ch12",
@@ -5385,7 +5338,9 @@
             ],
             "regionId": "rg_donghai_islands",
             "eras": [
+              "ch07",
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -5489,6 +5444,12 @@
             ],
             "regionId": "rg_yanjing_zhili",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch05",
+              "ch06",
+              "ch07",
               "ch08",
               "ch09",
               "ch11",
@@ -5781,7 +5742,6 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -6310,14 +6270,6 @@
             "eras": [
               "ch01",
               "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
               "ch12",
               "ch13",
               "ch14"
@@ -6797,6 +6749,9 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -7088,7 +7043,6 @@
             "eras": [
               "ch01",
               "ch02",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -7165,10 +7119,6 @@
             ],
             "regionId": "rg_qingzang",
             "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -7208,8 +7158,6 @@
             "regionId": "rg_yanjing_zhili",
             "eras": [
               "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -7579,6 +7527,9 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -17987,7 +17938,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "b6503b425a0ddd03b0e6a86e3465d926d51ed34a4998189f4779d8027393846c"
+        "revision": "c4fe2b833c69737f01a2082cbeedf731e2b8a5a9e43789fe9598414e70ef14de"
       }
     }
   ]

@@ -32,7 +32,7 @@
         "nodes": [
           {
             "id": "city_acheng",
-            "name": "阿勒楚喀城（待考）",
+            "name": "阿勒楚喀城（副都统驻）",
             "kind": "town",
             "point": [
               385,
@@ -40,6 +40,7 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
+              "ch02",
               "ch11",
               "ch12",
               "ch13",
@@ -102,29 +103,15 @@
           },
           {
             "id": "city_altay",
-            "name": "阿尔泰山诸部（待考）",
+            "name": "阿尔泰山诸部（未建城）",
             "kind": "town",
             "point": [
               173,
               101
             ],
             "regionId": "rg_xiyu_beijiang",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
-            "open": true,
+            "eras": [],
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -136,12 +123,12 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "minor",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_ankang",
-            "name": "兴安府",
+            "name": "兴安州",
             "kind": "town",
             "point": [
               290,
@@ -297,6 +284,7 @@
             ],
             "regionId": "rg_yanjing_zhili",
             "eras": [
+              "ch01",
               "ch02",
               "ch03",
               "ch04",
@@ -774,7 +762,7 @@
           },
           {
             "id": "city_chengde",
-            "name": "承德府",
+            "name": "热河厅",
             "kind": "town",
             "point": [
               340,
@@ -926,7 +914,7 @@
           },
           {
             "id": "city_chifeng",
-            "name": "昭乌达盟（待考）",
+            "name": "翁牛特旗地（未设治）",
             "kind": "town",
             "point": [
               345,
@@ -938,17 +926,10 @@
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
               "ch13",
               "ch14"
             ],
-            "open": true,
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -960,8 +941,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "city_prefecture"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_chongqing",
@@ -1045,7 +1026,7 @@
           },
           {
             "id": "city_dandong",
-            "name": "安东边地（待考）",
+            "name": "中江（中朝互市地）",
             "kind": "town",
             "point": [
               379,
@@ -1081,7 +1062,7 @@
             },
             "coordinateNote": "design/map 城市治所投影",
             "tier": "major",
-            "marker": "pass"
+            "marker": "city_prefecture"
           },
           {
             "id": "city_datong",
@@ -1124,7 +1105,7 @@
           },
           {
             "id": "city_dazhou",
-            "name": "绥定府",
+            "name": "达州",
             "kind": "town",
             "point": [
               280,
@@ -1324,7 +1305,7 @@
           },
           {
             "id": "city_dunhuang",
-            "name": "敦煌县境（待考）",
+            "name": "沙州卫",
             "kind": "town",
             "point": [
               202,
@@ -1719,7 +1700,7 @@
           },
           {
             "id": "city_gyantse",
-            "name": "江孜宗一带所指治所（待考）",
+            "name": "江孜宗（白居寺）",
             "kind": "town",
             "point": [
               157,
@@ -1989,6 +1970,7 @@
             "regionId": "rg_dongbei",
             "eras": [
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -2099,10 +2081,10 @@
             ],
             "regionId": "rg_monan",
             "eras": [
+              "ch01",
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
               "ch06",
               "ch07",
               "ch08",
@@ -2378,13 +2360,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
               "ch08",
               "ch09",
               "ch11",
@@ -2855,6 +2830,7 @@
             "regionId": "rg_donghai_islands",
             "eras": [
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -2877,7 +2853,7 @@
           },
           {
             "id": "city_karakorum",
-            "name": "哈拉和林故址",
+            "name": "额尔德尼召（哈拉和林故址）",
             "kind": "town",
             "point": [
               252,
@@ -2887,9 +2863,16 @@
             "eras": [
               "ch02",
               "ch03",
-              "ch04"
+              "ch04",
+              "ch07",
+              "ch08",
+              "ch09",
+              "ch11",
+              "ch12",
+              "ch13",
+              "ch14"
             ],
-            "open": false,
+            "open": true,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -2901,12 +2884,12 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "site",
-            "marker": "ruin"
+            "tier": "major",
+            "marker": "pass"
           },
           {
             "id": "city_kashgar",
-            "name": "喀什噶尔",
+            "name": "喀什噶尔（大小和卓据）",
             "kind": "town",
             "point": [
               90,
@@ -3676,22 +3659,15 @@
           },
           {
             "id": "city_mohe",
-            "name": "黑龙江上游部落地（待考）",
+            "name": "黑龙江上游（未建城）",
             "kind": "town",
             "point": [
               350,
               61
             ],
             "regionId": "rg_dongbei",
-            "eras": [
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
-            "open": true,
+            "eras": [],
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -3703,8 +3679,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "minor",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_nanchang",
@@ -3915,8 +3891,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch05",
-              "ch06",
               "ch07",
               "ch08",
               "ch09",
@@ -3982,29 +3956,15 @@
           },
           {
             "id": "city_ordos",
-            "name": "河套 / 鄂尔多斯部地（待考）",
+            "name": "河套鄂尔多斯地（未建城）",
             "kind": "town",
             "point": [
               294,
               173
             ],
             "regionId": "rg_monan",
-            "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
-              "ch12",
-              "ch13",
-              "ch14"
-            ],
-            "open": true,
+            "eras": [],
+            "open": false,
             "levelRange": null,
             "levelNote": "尚无区域强度配置",
             "entry": {
@@ -4016,8 +3976,8 @@
               "accessNote": "城门进入；内部场景由 ENG-09 装配"
             },
             "coordinateNote": "design/map 城市治所投影",
-            "tier": "major",
-            "marker": "pass"
+            "tier": "site",
+            "marker": "ruin"
           },
           {
             "id": "city_penghu",
@@ -4029,12 +3989,9 @@
             ],
             "regionId": "rg_donghai_islands",
             "eras": [
-              "ch01",
               "ch02",
               "ch03",
               "ch04",
-              "ch05",
-              "ch06",
               "ch07",
               "ch08",
               "ch09",
@@ -4188,6 +4145,9 @@
             ],
             "regionId": "rg_hedong_jinzhong",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -4257,7 +4217,7 @@
           },
           {
             "id": "city_qamdo",
-            "name": "昌都地区所指治所（待考）",
+            "name": "昌都（强巴林寺）",
             "kind": "town",
             "point": [
               211,
@@ -4266,9 +4226,6 @@
             "regionId": "rg_qingzang",
             "eras": [
               "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -4336,7 +4293,7 @@
           },
           {
             "id": "city_qinhuangdao",
-            "name": "临榆海口（待考）",
+            "name": "秦皇岛（临榆县海口）",
             "kind": "town",
             "point": [
               351,
@@ -4344,9 +4301,6 @@
             ],
             "regionId": "rg_liaoxi",
             "eras": [
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -4374,7 +4328,7 @@
           },
           {
             "id": "city_qiqihar",
-            "name": "黑龙江将军驻齐齐哈尔",
+            "name": "齐齐哈尔（黑龙江将军驻）",
             "kind": "town",
             "point": [
               366,
@@ -4382,7 +4336,6 @@
             ],
             "regionId": "rg_dongbei",
             "eras": [
-              "ch08",
               "ch09",
               "ch11",
               "ch12",
@@ -4911,7 +4864,7 @@
           },
           {
             "id": "city_shigatse",
-            "name": "后藏日喀则地区所指治所（待考）",
+            "name": "日喀则（扎什伦布寺）",
             "kind": "town",
             "point": [
               153,
@@ -5115,7 +5068,9 @@
             ],
             "regionId": "rg_donghai_islands",
             "eras": [
+              "ch07",
               "ch08",
+              "ch09",
               "ch11",
               "ch12",
               "ch13",
@@ -5138,7 +5093,7 @@
           },
           {
             "id": "city_taipei",
-            "name": "淡水厅北境 / 艋舺聚落（待考）",
+            "name": "艋舺（淡水厅属）",
             "kind": "town",
             "point": [
               383,
@@ -5208,7 +5163,7 @@
           },
           {
             "id": "city_tangshan",
-            "name": "滦州西境所指治所（待考）",
+            "name": "开平镇（滦州属）",
             "kind": "town",
             "point": [
               343,
@@ -5216,6 +5171,12 @@
             ],
             "regionId": "rg_yanjing_zhili",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch05",
+              "ch06",
+              "ch07",
               "ch08",
               "ch09",
               "ch11",
@@ -5278,7 +5239,7 @@
           },
           {
             "id": "city_tengchong",
-            "name": "腾越厅",
+            "name": "腾越州",
             "kind": "town",
             "point": [
               216,
@@ -5435,7 +5396,7 @@
           },
           {
             "id": "city_urumqi",
-            "name": "乌鲁木齐河谷 / 迪化城未建（待考）",
+            "name": "乌鲁木齐（准噶尔牧地，未建城）",
             "kind": "town",
             "point": [
               165,
@@ -5491,7 +5452,7 @@
           },
           {
             "id": "city_weihai",
-            "name": "威海卫",
+            "name": "威海（文登县属）",
             "kind": "town",
             "point": [
               369,
@@ -5499,7 +5460,6 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -5527,7 +5487,7 @@
           },
           {
             "id": "city_weinan",
-            "name": "同州府",
+            "name": "渭南县（西安府属）",
             "kind": "town",
             "point": [
               293,
@@ -5988,7 +5948,7 @@
           },
           {
             "id": "city_xilinhot",
-            "name": "漠南草原营地（待考）",
+            "name": "贝子庙（阿巴哈纳尔旗）",
             "kind": "town",
             "point": [
               326,
@@ -5998,14 +5958,6 @@
             "eras": [
               "ch01",
               "ch02",
-              "ch03",
-              "ch04",
-              "ch05",
-              "ch06",
-              "ch07",
-              "ch08",
-              "ch09",
-              "ch11",
               "ch12",
               "ch13",
               "ch14"
@@ -6458,6 +6410,9 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -6644,7 +6599,7 @@
           },
           {
             "id": "city_yining",
-            "name": "伊犁营城（待考）",
+            "name": "固勒扎（准噶尔覆亡）",
             "kind": "town",
             "point": [
               130,
@@ -6724,7 +6679,7 @@
           },
           {
             "id": "city_yulin",
-            "name": "榆林府境",
+            "name": "榆林府",
             "kind": "town",
             "point": [
               293,
@@ -6734,7 +6689,6 @@
             "eras": [
               "ch01",
               "ch02",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -6803,7 +6757,7 @@
           },
           {
             "id": "city_yushu",
-            "name": "结古一带所指治所（待考）",
+            "name": "结古（结古寺）",
             "kind": "town",
             "point": [
               211,
@@ -6811,10 +6765,6 @@
             ],
             "regionId": "rg_qingzang",
             "eras": [
-              "ch01",
-              "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -6842,7 +6792,7 @@
           },
           {
             "id": "city_zhangjiakou",
-            "name": "张家口厅口外商埠",
+            "name": "张家口厅",
             "kind": "town",
             "point": [
               322,
@@ -6851,8 +6801,6 @@
             "regionId": "rg_yanjing_zhili",
             "eras": [
               "ch02",
-              "ch03",
-              "ch04",
               "ch05",
               "ch06",
               "ch07",
@@ -7120,7 +7068,7 @@
           },
           {
             "id": "city_zhongwei",
-            "name": "中卫",
+            "name": "中卫县",
             "kind": "town",
             "point": [
               265,
@@ -7199,7 +7147,7 @@
           },
           {
             "id": "city_zibo",
-            "name": "淄川 / 临淄诸县所指治所（待考）",
+            "name": "淄川县（济南府属）",
             "kind": "town",
             "point": [
               345,
@@ -7207,6 +7155,9 @@
             ],
             "regionId": "rg_qilu",
             "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
               "ch04",
               "ch05",
               "ch06",
@@ -18884,7 +18835,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "8281fea3fd971121b7439a14050747f4641099076aac029911a6e5f7e18063a2"
+        "revision": "50cc1e1b3dbf89a0e4be81412939c7dc5453e621095808d9dfa8a992cf08f57a"
       }
     }
   ]
