@@ -30146,7 +30146,9 @@
     "packages/data/src/schemas/index.ts",
     "packages/data/src/region-map-town.test.ts",
     "packages/core/src/world/region-codec.ts",
-    "packages/core/src/world/region-codec.test.ts"
+    "packages/core/src/world/region-codec.test.ts",
+    "packages/data/src/schemas/facility.ts",
+    "packages/data/src/schemas/gate-expr.ts"
    ],
    "validate": {
     "exists": [

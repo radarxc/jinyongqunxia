@@ -112,11 +112,12 @@ export const TownSceneSchema = z.strictObject({
   signAtlasRef: z.string().nullable(),
   source: z.strictObject({ source: z.string(), layout: z.string(), sha256: Sha256Schema }),
   frame: z.strictObject({ axialOrigin: z.strictObject({ q: Int, r: Int }), planningM: z.tuple([Int, Int]) }),
-  facilities: z.array(TownFacilitySchema),
+  facilities: z.array(TownSceneFacilitySchema),
   buildings: z.array(TownBuildingPlanSchema),   // 顺序与 id 同 Building 对象（render-only 载荷）
   walls: z.array(TownWallSchema),
 });
-export const TownFacilitySchema = z.strictObject({
+// 场景里的设施条目；与内容文件 town-facilities.v1 的 TownFacilitySchema（packages/data/src/schemas/facility.ts）区分命名（协调者 10-11 裁定，避免 barrel 重名）
+export const TownSceneFacilitySchema = z.strictObject({
   key: LocalId /* yaopu_01 */, kind: FacilityKindSchema, sub: LocalId.nullable(), buildingId: LocalId, nameKey: TextKey,
   shop: z.strictObject({ instanceKey: z.string() /* city_dali__ch01/yaopu_01 */, templateRef: LocalKey,
     kind: z.enum(['normal','famous','blackMarket']) }).nullable(),
