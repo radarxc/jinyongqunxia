@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- Offline harness for render_hero.mjs: renders the protagonist GLB's clips on a transparent canvas. -->
+<meta charset="utf-8">
+<title>map hero render</title>
+<style>html, body { margin: 0; background: transparent; }</style>
+<canvas id="view"></canvas>
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/.pnpm/three@0.186.1/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/.pnpm/three@0.186.1/node_modules/three/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const params = new URL(location.href).searchParams;
+const size = Number(params.get('size') ?? 512);
+const yawDeg = Number(params.get('yaw') ?? 70);        // 90 = pure profile walking to screen-right
+const elevationDeg = Number(params.get('elevation') ?? 12);
+const canvas = document.getElementById('view');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(size, size, false);
+renderer.setClearColor(0x000000, 0);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 1.3;
+
+const scene = new THREE.Scene();
+// Soft paper-coloured fill plus a key light from the upper left, like the painted map's light.
+scene.add(new THREE.HemisphereLight(0xfff6e8, 0x9a8a72, 2.4));
+const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(-2.5, 4, 3); scene.add(key);
+const rim = new THREE.DirectionalLight(0xfff1dc, 0.8); rim.position.set(3, 2.5, -2); scene.add(rim);
+
+const gltf = await new GLTFLoader().loadAsync(params.get('model'));
+const root = gltf.scene; scene.add(root);
+// The cloth panels are single-sided; a fold that turns its back to the camera must not open a hole.
+root.traverse((node) => { for (const material of [node.material].flat().filter(Boolean)) material.side = THREE.DoubleSide; });
+root.rotation.y = THREE.MathUtils.degToRad(yawDeg);
+const mixer = new THREE.AnimationMixer(root);
+const clips = Object.fromEntries(gltf.animations.map(clip => [clip.name, clip]));
+
+// Walk in place: lock the hips' horizontal track to its first sample, keep the vertical bob.
+for (const clip of Object.values(clips)) {
+  for (const track of clip.tracks) {
+    if (!/Hips\.position$/.test(track.name)) continue;
+    const v = track.values; const x0 = v[0]; const z0 = v[2];
+    for (let i = 0; i < v.length; i += 3) { v[i] = x0; v[i + 2] = z0; }
+  }
+}
+
+// Frame the figure once from the idle pose: orthographic, slightly from above.
+const idle = mixer.clipAction(clips.idle ?? Object.values(clips)[0]); idle.play(); mixer.setTime(0); root.updateMatrixWorld(true);
+const box = new THREE.Box3().setFromObject(root); const height = box.max.y - box.min.y;
+const half = height * 0.62;
+const camera = new THREE.OrthographicCamera(-half, half, half, -half, 0.01, 100);
+const elevation = THREE.MathUtils.degToRad(elevationDeg); const centreY = box.min.y + height * 0.5;
+camera.position.set(0, centreY + Math.sin(elevation) * 10, Math.cos(elevation) * 10);
+camera.lookAt(0, centreY, 0);
+idle.stop();
+
+let current = null;
+window.heroRender = {
+  /** Canvas pixel of the ground point under the figure (world origin), the sprite's anchor. */
+  anchor() {
+    const p = new THREE.Vector3(0, 0, 0).project(camera);
+    return [(p.x + 1) / 2 * size, (1 - p.y) / 2 * size];
+  },
+  clips: Object.fromEntries(Object.entries(clips).map(([name, clip]) => [name, clip.duration])),
+  /** Render `clip` at time `t` (seconds) and return a PNG data URL of the transparent canvas. */
+  frame(name, t) {
+    if (current?.getClip().name !== name) { current?.stop(); current = mixer.clipAction(clips[name]); current.play(); }
+    mixer.setTime(t); renderer.render(scene, camera);
+    return canvas.toDataURL('image/png');
+  },
+  /** World-space foot heights for cycle detection. */
+  feet(name, t) {
+    if (current?.getClip().name !== name) { current?.stop(); current = mixer.clipAction(clips[name]); current.play(); }
+    mixer.setTime(t); root.updateMatrixWorld(true);
+    const at = (bone) => { const node = root.getObjectByName(bone); const p = new THREE.Vector3(); node.getWorldPosition(p); return [p.x, p.y, p.z]; };
+    return { left: at('mixamorigLeftFoot'), right: at('mixamorigRightFoot') };
+  },
+};
+window.heroReady = true;
+</script>

@@ -1,7 +1,8 @@
+import { createHash } from 'node:crypto';
 import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { imageSize, publishMapOverlays, publishVfxRuntime, readAssetManifest } from './asset-manifest';
 
 describe('game build asset publishing', () => {
@@ -163,6 +164,52 @@ describe('world-map overlays (tech/13 §5.2–§5.3)', () => {
     expect(JSON.parse(await readFile(join(published, 'landmark/index.json'), 'utf8'))).toEqual(index);
     expect(await readFile(join(published, 'markers/map_markers_atlas.webp'), 'utf8')).toBe('atlas');
     expect(await readFile(join(published, 'markers/atlas.json'), 'utf8')).toContain('tianshu.map-markers.v1');
+  });
+
+  it('publishes the hero pack only when every strip hero.json names is accepted, and never leaves stale files', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'tianshu-map-hero-'));
+    const hero = join(root, 'assets/default/map/hero');
+    await mkdir(hero, { recursive: true });
+    const manifest = (runStatus: string) => `- id: map_hero_male_walk
+  status: candidate
+  file: map_hero_male_walk.webp
+- id: map_hero_male_run
+  status: ${runStatus}
+  file: map_hero_male_run.webp
+- id: map_hero_male_idle
+  status: candidate
+  file: map_hero_male_idle.webp
+`;
+    await writeFile(join(hero, 'manifest.yaml'), manifest('candidate'));
+    for (const clip of ['walk', 'run', 'idle']) await writeFile(join(hero, `map_hero_male_${clip}.webp`), clip);
+    await writeFile(join(hero, 'hero.json'), JSON.stringify({ schema: 'tianshu.map-hero.v1', variants: { male: {
+      walk: { image: 'map_hero_male_walk.webp' }, run: { image: 'map_hero_male_run.webp' }, idle: { image: 'map_hero_male_idle.webp' } } } }));
+    const published = join(root, 'apps/game/public/assets/default/map/hero');
+    await mkdir(published, { recursive: true });
+    await writeFile(join(published, 'map_hero_old.webp'), 'old');
+    await publishMapOverlays(root, true);
+    expect(await readFile(join(published, 'map_hero_male_run.webp'), 'utf8')).toBe('run');
+    expect(await readFile(join(published, 'hero.json'), 'utf8')).toContain('tianshu.map-hero.v1');
+    await expect(readFile(join(published, 'map_hero_old.webp'))).rejects.toThrow();
+    // Second build: the run strip is rejected, so neither it nor hero.json may remain published.
+    await writeFile(join(hero, 'manifest.yaml'), manifest('rejected'));
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    await publishMapOverlays(root, true);
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('MAP_HERO_INCOMPLETE'));
+    await expect(readFile(join(published, 'hero.json'))).rejects.toThrow();
+    await expect(readFile(join(published, 'map_hero_male_run.webp'))).rejects.toThrow();
+    expect(await readFile(join(published, 'map_hero_male_walk.webp'), 'utf8')).toBe('walk');
+    // Third build: every strip accepted, but the idle file no longer matches its manifest hash.
+    const sha = (text: string) => createHash('sha256').update(text).digest('hex');
+    const withHashes = manifest('candidate').replace(/file: (map_hero_male_(walk|run|idle)\.webp)\n/g,
+      (_line, file: string, clip: string) => `file: ${file}\n  sha256: ${sha(clip === 'idle' ? 'older idle' : clip)}\n`);
+    await writeFile(join(hero, 'manifest.yaml'), withHashes);
+    warn.mockClear();
+    await publishMapOverlays(root, true);
+    expect(warn).toHaveBeenCalledWith('MAP_HERO_STALE:map_hero_male_idle.webp');
+    await expect(readFile(join(published, 'hero.json'))).rejects.toThrow();
+    await expect(readFile(join(published, 'map_hero_male_idle.webp'))).rejects.toThrow();
+    warn.mockRestore();
   });
 
   it('publishes an empty index without overlay manifests and rejects malformed landmark rows', async () => {

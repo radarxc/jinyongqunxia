@@ -1,4 +1,5 @@
-import { access, copyFile, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { access, copyFile, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { parseYamlFile } from '@tianshu/data/tooling';
 import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
@@ -140,6 +141,21 @@ export function imageSize(bytes: Uint8Array): { width: number; height: number } 
   return null;
 }
 
+/** Every image file hero.json names (walk / run / idle of each variant); null when it is missing or unreadable. */
+async function heroImageNames(path: string): Promise<string[] | null> {
+  let value: unknown;
+  try { value = JSON.parse(await readFile(path, 'utf8')); } catch { return null; }
+  const variants = (value as { variants?: unknown } | null)?.variants;
+  if (!variants || typeof variants !== 'object') return null;
+  const names: string[] = [];
+  for (const variant of Object.values(variants as Record<string, unknown>))
+    for (const clip of ['walk', 'run', 'idle']) {
+      const image = ((variant as Record<string, unknown> | null)?.[clip] as { image?: unknown } | undefined)?.image;
+      if (typeof image === 'string') names.push(image);
+    }
+  return names;
+}
+
 /** Landmark row published to the world-map page (docs/tech/13 §5.3). */
 export interface MapLandmarkIndexRow {
   readonly id: string; readonly node: string; readonly chapters: readonly string[]; readonly url: string;
@@ -148,8 +164,9 @@ export interface MapLandmarkIndexRow {
 }
 
 /**
- * Copy the marker atlas and era landmark vignettes, and write the landmark index the page loads once.
- * Optional directories: absent manifests publish an empty index so the page simply draws icons.
+ * Copy the marker atlas, the hero's walk / run strips and era landmark vignettes, and write the landmark
+ * index the page loads once. Optional directories: absent manifests publish an empty index so the page
+ * simply draws icons (and the standee hero).
  */
 export async function publishMapOverlays(root: string, copy: boolean, copied?: Set<string>,
   references?: CopiedAssetReferenceMap): Promise<readonly MapLandmarkIndexRow[]> {
@@ -175,6 +192,28 @@ export async function publishMapOverlays(root: string, copy: boolean, copied?: S
     await publish(resolve(markers, row['file']));
     await publish(join(markers, 'atlas.json'));
   }
+  // The hero pack (AR-116) is all or nothing: hero.json is published only when every strip it names was
+  // accepted and copied. The generated directory is rebuilt each time, so nothing stale reaches dist.
+  const hero = join(source, 'map/hero');
+  if (copy) await rm(join(root, 'apps/game/public/assets/default/map/hero'), { recursive: true, force: true });
+  const heroCopied = new Set<string>();
+  for (const row of await rowsOf(join(hero, 'manifest.yaml'))) {
+    if (row['status'] === 'rejected' || typeof row['file'] !== 'string') continue;
+    const absolute = resolve(hero, row['file']);
+    // A strip that no longer matches its manifest hash belongs to another pack batch: keep it out.
+    if (typeof row['sha256'] === 'string') {
+      let bytes: Uint8Array;
+      try { bytes = await readFile(absolute); } catch { continue; }
+      if (createHash('sha256').update(bytes).digest('hex') !== row['sha256']) {
+        console.warn(`MAP_HERO_STALE:${row['file']}`); continue;
+      }
+    }
+    if (await publish(absolute)) heroCopied.add(row['file']);
+  }
+  const heroNames = await heroImageNames(join(hero, 'hero.json'));
+  if (heroNames && heroNames.length > 0 && heroNames.every(name => heroCopied.has(name)))
+    await publish(join(hero, 'hero.json'));
+  else if (heroCopied.size > 0) console.warn('MAP_HERO_INCOMPLETE: hero.json not published; the page keeps the standee');
   const landmarks = join(source, 'map/landmark');
   const index: MapLandmarkIndexRow[] = [];
   for (const row of await rowsOf(join(landmarks, 'manifest.yaml'))) {
