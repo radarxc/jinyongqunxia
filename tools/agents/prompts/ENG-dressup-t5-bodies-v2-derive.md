@@ -47,3 +47,21 @@
 
 ## 报告
 `tools/agents/reports/ENG-dressup-t5-bodies-v2-derive.md`（≤ 60 行）：翻正数与位置分布、翻正前后 SHA；4 个派生的各链 k 值、实测身高 / 髋比 / 肩比与规格误差、最大顶点位移、颈环半径差；六模板并排截图；第 7 节写后续"衣物 / 头 / 道具在 tpl_f2_* 上重贴合 + 切换默认模板"的交接（命令、输入 SHA）。
+
+## 补充裁定（2026-10-11，T4b 颈肩改版之后，协调者）
+1. **源模板换成 T4b 定稿的两个中等模板**（作者 10-11「男女脖子都太粗……参考逆水寒」；女按平滑雕塑 v3 定稿、男按新素体图重生成）：
+   - 女 `tpl_f2_medium`：雕塑并转 unlit 后 body sha256 `e528b178bfb8070da36ea7f382aa9aa6ca64560cd312d04d281c832b8e8d733e`，heightMu 0.98834302、mPerMu 1.67957882（1.66 m），实测髋比 0.5362、肩比 0.1703，倒置面 89。
+   - 男 `tpl_m_medium`：新 Tripo 项目 `11c688eb-…`，转 unlit 后 body sha256 `d9db6f2d86979df28bf082e965eacfbe067ba5407e6754ddfd8d70211471b65d`，heightMu 0.97924826、mPerMu 1.84835662（1.81 m），实测髋比 0.5684、肩比 0.1953，倒置面 67（后脑偏下 1 处在单面材质下露小黑点；面序号与 T4 版不同，按裁定 2 的口径重新找）。
+2. **规格表按新中等实测重算**（体型间差值不变），替换裁定 1 的表：
+   | id | heightM | hipsRatio | shoulderRatio | source |
+   |---|---|---|---|---|
+   | tpl_f2_small | 1.58 | 0.516 | 0.164 | tpl_f2_medium |
+   | tpl_f2_medium | 1.66 | 0.536 | 0.170 | tpl_f2_medium |
+   | tpl_f2_tall | 1.72 | 0.556 | 0.174 | tpl_f2_medium |
+   | tpl_m_lean | 1.76 | 0.563 | 0.190 | tpl_m_medium |
+   | tpl_m_medium | 1.81 | 0.568 | 0.195 | tpl_m_medium |
+   | tpl_m_bulk | 1.86 | 0.553 | 0.210 | tpl_m_medium |
+3. `export_skeleton.py` 在 T4b 已改取颈环规则（多段 Neck 主导近圆切片时优先取两轴半径都在 0.025–0.045 mu 内的一段，`--check` 不放宽）；上次 tpl_m_bulk 颈环半径越界即此问题。本任务仍不改它；派生后若仍越界，写进报告第 4 节并停在该模板。
+4. 上次（运行 1–2）在旧模板上做的派生、翻正与截图全部作废：从含 T4b 的新基点重做，工作区里旧产物不得沿用。
+5. 两个中等模板在 T4b 已按 tech/11 转 `KHR_materials_unlit`、只留 baseColor；派生模板沿用（`derive_template.py` 不改材质），manifest 照抄 `unlit` 说明即可。
+6. 新男模头顶偏后有一条细浅色贴图缝（T4b 报告第 3 节）：贴图问题，不在本任务范围，只在报告第 4 节记一句。

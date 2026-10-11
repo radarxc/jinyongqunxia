@@ -52600,7 +52600,8 @@
    "kind": "draft",
    "prompt": "ENG-dressup-t5-bodies-v2-derive.md",
    "deps": [
-    "ART-dressup-t4-bodies-v2"
+    "ART-dressup-t4-bodies-v2",
+    "ART-dressup-t4b-neck-v3"
    ],
    "review": false,
    "web": true,
