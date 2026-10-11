@@ -162,14 +162,20 @@
     use: 小岛；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
   - path: .agents/coord/geodata/ne_10m_rivers_lake_centerlines/ne_10m_rivers_lake_centerlines.zip
     sha256: ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38
-    use: 河流中心线（scalerank ≤7 + 点名大河）；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+    use: 河流中心线（scalerank ≤7 + 点名大河加粗；渭河、汾河、泾河按名补入画支流档）；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+  - path: tools/map/paint/rivers_supplement.json
+    sha256: fa694d4d538395dc9d8a28cfa9bb01b2121d8611d81e86675c6fdfc770ecb1dd
+    use: NE 缺失河段（湟水、北洛河、洛河、伊河、岷江松潘—乐山）：tools/map/paint/trace_rivers.py 由 ETOPO 2022 填洼 D8 / 谷底最小代价路径导出，途经点取 GeoNames（CC BY 4.0）沿河县城与河口点，逐点偏差 ≤3 km
+  - path: .agents/coord/geodata/geonames/CN.zip
+    sha256: f33da19df85bef1650f4a456764753ae5e2502ec323aae297646c80258da005f
+    use: GeoNames 中国全量（CC BY 4.0，2026-10-11 下载）：只取补河用的县城 / 河口点坐标，已抄进 trace_rivers.py（含 geonameid）
   tool: python3 确定性合成（tools/map/paint/compose_world.py；numpy / Pillow / scipy），非 AI 出图
   model: 无（程序合成，未调用任何模型）
   effort: 无
-  created: 2026-10-11T00:15:00-0700
+  created: 2026-10-11T02:10:00-0700
   source_path: .agents/coord/ART-worldmap-painted/full/compose_full_4096.png
-  source_sha256: 19a075b5e0c7c0d2fcdab96bd71cbb97c0ecdd1e4dc588277e4609b2ab355497
+  source_sha256: 816022b4f76c73860ab6cd2a66d82a6fed84ffcd40a62d30c0d8667a8328f852
   size: 4096x3072
-  sha256: 2469d73fd041bf7f7b51e4b9809fde3ebac8ce3a726a6bee417510407aa7f531
+  sha256: 520c33c3c34e190062ff5ad06439350a565e5e42cd4e5ed6be692c0114474bea
   status: candidate
-  notes: AR-111 正式底图（替换 10-10 临时占位）。确定性合成，未调用任何出图模型：Natural Earth 10m 海陆 / 小岛 / 湖泊 / 河流 + ETOPO 2022 60″ 高程，在 CanvasProjection(4096, 3072, 144)（= 内容网格 CanvasProjection(512,384,18) ×8）上直接画；笔墨全部取自仓库现有水墨贴图（references 逐件列出）。命令 python3 tools/map/paint/compose_world.py --deliver；参数 tools/map/paint/config.json（sha256 1420b635441c4a6b0f7a423d1782d543b455a6b09c9fbd496daa574628dcb2c9），种子 20261011；tools/map/paint/compose.lock.json 记录输入、素材与输出哈希，--check 通过（输入哈希、10 个开放节点投影偏差 ≤0.53 网格单位、两次独立构建逐字节一致），--deliver 重跑与本文件逐字节一致。像素 = 网格 × 8（运行时按 naturalWidth / 512 换算）。无放大，4096 原生渲染；WebP q85 method 6。另有 map_world_jianghu__base01_preview.webp（1024×768，同源缩小，未单独登记）。对齐指标：陆地 IoU 按构造 = 1（画面海陆即 GIS 掩膜，山体层按陆地掩膜裁切，岸线淡墨压在 GIS 岸线上），岸线偏差 0；开放节点（14 章合计 2412 个）2399 个落在陆上，其余 13 个均为秦皇岛 [351,166] 整数坐标落在岸线外 1 px@1024，按 ≤1 网格单位岸线容差计 2412/2412；河流关键点离画出河道（px@1024）：兰州 0.24、武昌 0.38、南京 1.11、重庆 0.08、开封北黄河 0.22。山件 618（审样前 1234）：山脉 275、山峰 197、小石山 94、丘陵 26、雪山 26；树丛 552、平原小景 29、近岸海面小景 37；大河 143 段、支流 219 段。已知瑕疵：日本、朝鲜等窄岛上的山件受陆地宽度限制偏小；平原只有淡色地表与零星树丛（没有田畴线）；岸线笔触条宽度全线一致；小于约 2 px 的岛只有岸线没有山；河道为 Natural Earth 现代河道（黄河下游今道，与 design/19 一致），支流按 scalerank ≤7 取舍（渭河、汾河等未画）。质检：.agents/coord/ART-worldmap-painted/qa/（metrics.json、各区 100% 局部、节点与道路叠图、新旧对照）。
+  notes: AR-111 正式底图；10-11 按 AR-113 重出（补河 + 山体收进起伏带）。确定性合成，未调用任何出图模型：Natural Earth 10m 海陆 / 小岛 / 湖泊 / 河流 + ETOPO 2022 60″ 高程，在 CanvasProjection(4096, 3072, 144)（= 内容网格 CanvasProjection(512,384,18) ×8）上直接画；笔墨全部取自仓库现有水墨贴图（references 逐件列出）。命令 python3 tools/map/paint/compose_world.py --deliver；参数 tools/map/paint/config.json（sha256 27d1c6bca6b7ac1110d84c3d44460aa2f7aeb9c5143b82964703cce5d6a35275），种子 20261011；compose.lock.json 记输入、素材与输出哈希，--check 通过，独立重渲染全图与母版逐字节一致。像素 = 网格 × 8。无放大，4096 原生渲染；WebP q85 method 6。另有 map_world_jianghu__base01_preview.webp（1024×768，同源缩小，未单独登记）。AR-113 新增河流：渭河、汾河、泾河（Natural Earth 按名补入，原等级超阈值），湟水、北洛河、洛河、伊河、岷江松潘—乐山段（NE 缺，tools/map/paint/trace_rivers.py 由 ETOPO 导出，rivers_supplement.json）；均画支流档、山体避让；核对已在图上：汉水上游、嘉陵江、大渡河、赣江、湘江、闽江、钱塘江（富春江 / 新安江）。AR-113 山体：每件山限制在所立起伏带（15 km 起伏 ≥220 m 的连片带）的南北 / 东西范围内（高度 ≤ 带厚 ×1.15，超出部分南北各半），并在不压大河的前提下上下微移，避免山体越出山脉盖住北侧谷地（河西走廊、渭河谷地、天山南北麓），与 docs/design/map/road_paths.json 的道路走向一致。对齐指标：陆地 IoU 按构造 = 1（画面海陆即 GIS 掩膜），岸线偏差 0；开放节点（14 章合计 2412）2399 个在陆上，其余 13 个均为秦皇岛 [351,166] 离岸 1 px@1024，按 ≤1 网格单位岸线容差计 2412/2412；河流关键点离画出河道（px@1024）：兰州 0.24、武昌 0.38、南京 1.11、重庆 0.08、开封北黄河 0.22。山件 745（上一版 618）：山脉 345、山峰 247、小石山 88、丘陵 27、雪山 38；树丛 585、平原小景 29、近岸海面小景 37；大河 143 段、支流 227 段。已知瑕疵：窄岛与窄山带上的山件偏小；青藏高原腹地起伏小处留白较多；平原没有田畴线；岸线笔触条全线等宽；小于约 2 px 的岛只有岸线；河道为现代河道（黄河下游今道），其余支流按 scalerank ≤7 取舍。质检：.agents/coord/ART-worldmap-painted/qa/（metrics.json、rivers_added.jpg、ar113_before_after.jpg、roads_*.jpg、各区局部、节点与道路叠图、新旧对照）。

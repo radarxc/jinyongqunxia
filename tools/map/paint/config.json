@@ -407,7 +407,23 @@
         206
       ],
       "amount": 0.3
-    }
+    },
+    "extra_names": [
+      [
+        "Wei",
+        "渭河"
+      ],
+      [
+        "Fen",
+        "汾河"
+      ],
+      [
+        "Jing",
+        "泾河"
+      ]
+    ],
+    "extra_rank": 6,
+    "supplement_file": "rivers_supplement.json"
   },
   "mountains": {
     "relief_window_cells": 9,
@@ -478,7 +494,21 @@
     "size_gamma": 0.85,
     "hill_spacing_mult": 1.35,
     "hill_alpha": 0.55,
-    "rock_alpha": 0.75
+    "rock_alpha": 0.75,
+    "band_closing_iter": 4,
+    "band_h_ratio": 1.15,
+    "band_w_ratio": 1.3,
+    "band_min_h_px": 64,
+    "band_min_w_px": 96,
+    "band_relief_m": 220,
+    "band_spacing_keep": 1.0,
+    "base_shifts": [
+      0.0,
+      -0.2,
+      0.2,
+      -0.4,
+      0.4
+    ]
   },
   "mist": {
     "color": [

@@ -105,20 +105,36 @@ class World:
         rcfg = cfg["rivers"]
         skip = set(rcfg["skip_featurecla"])
         promote = {tuple(pair) for pair in rcfg["major_names"]}
+        extra = {tuple(pair) for pair in rcfg["extra_names"]}
 
         def keep_river(p):
             if p.get("scalerank") is None or (p.get("featurecla") or "") in skip:
                 return False
-            return p["scalerank"] <= rcfg["max_scalerank"] or (p.get("name"), p.get("name_zh")) in promote
+            key = (p.get("name"), p.get("name_zh"))
+            return p["scalerank"] <= rcfg["max_scalerank"] or key in promote or key in extra
 
         self.rivers: List[Tuple[int, np.ndarray, bool]] = []
+        self.named_river_lines: List[np.ndarray] = []  # extra / traced rivers: mountains keep off them too
         for props, part in geo.parts_in_box("ne_10m_rivers_lake_centerlines", box, keep_river):
             line = self._project(part)
             line = raster.decimate(line, rcfg["decimate_px"] * self.k)
             line = raster.chaikin(line, rcfg["chaikin_iterations"])
+            key = (props.get("name"), props.get("name_zh"))
             rank = int(props["scalerank"])
-            major = rank <= rcfg["major_max_scalerank"] or (props.get("name"), props.get("name_zh")) in promote
+            if key in extra and rank > rcfg["max_scalerank"]:
+                rank = int(rcfg["extra_rank"])  # named tributaries (渭河、汾河…) drawn at the tributary width
+            major = rank <= rcfg["major_max_scalerank"] or key in promote
             self.rivers.append((rank, line, major))
+            if key in extra:
+                self.named_river_lines.append(line)
+        # rivers Natural Earth lacks, traced from ETOPO (tools/map/paint/trace_rivers.py)
+        supplement = json.loads((HERE / rcfg["supplement_file"]).read_text(encoding="utf-8"))
+        for row in supplement["rivers"]:
+            line = self._project(np.asarray(row["line"], dtype=np.float64))
+            line = raster.decimate(line, rcfg["decimate_px"] * self.k)
+            line = raster.chaikin(line, rcfg["chaikin_iterations"])
+            self.rivers.append((int(rcfg["extra_rank"]), line, False))
+            self.named_river_lines.append(line)
         self.rivers.sort(key=lambda item: (item[2], -item[0]))  # minor first, majors on top
 
         # coast polylines for strips / ink
@@ -252,6 +268,10 @@ class World:
             draw.line(pts, fill=255, width=width)
             if major or rank <= rc["avoid_max_scalerank"]:
                 draw_major.line(pts, fill=255, width=width)
+        for line in self.named_river_lines:
+            hw = float(rc["halfwidth_by_rank"][str(rc["extra_rank"])]) * self.k
+            width = max(1, int(round(2 * (hw + rc["corridor_px"] * self.k) * 2 / a)))
+            draw_major.line([(((x / a) + m) * 2, ((y / a) + m) * 2) for x, y in line], fill=255, width=width)
         def _down(im):
             arr = np.asarray(im, dtype=np.float32) / 255.0
             return arr.reshape(gh, 2, gw, 2).mean(axis=(1, 3))
@@ -381,6 +401,15 @@ class World:
         order = idx[np.argsort(-pr, kind="stable")]
         rolls = rng.random((len(gx), 6))
 
+        # relief bands: sprites are kept inside the N-S / E-W extent of the relief band they stand on,
+        # so a range south of a valley (Qilian / Hexi corridor, Qinling / Wei valley) does not spill over it
+        band = (self.g_relief >= mc["band_relief_m"]) | (self.g_elev >= mc["snow_from_m"])
+        band = ndimage.binary_closing(band, iterations=int(mc["band_closing_iter"])) & (self.g_landraw > 0.5)
+        b_n = _run_length(band, axis=0)
+        b_s = _run_length(band[::-1], axis=0)[::-1]
+        b_w = _run_length(band, axis=1)
+        b_e = _run_length(band[:, ::-1], axis=1)[:, ::-1]
+
         sizes = mc["sizes_px"]
         placed: List[Dict[str, Any]] = []
         cell = 120.0 * self.k
@@ -452,10 +481,41 @@ class World:
                     fit = _fit(name)
             spr = self.kit[name]
             size = min(size, max(fit, mc["min_size_px"] * self.k))
+            a_, m_ = self.a, self.m
+            if band[ii_, jj_]:
+                y_top = (ii_ - m_ - int(b_n[ii_, jj_]) + 1) * a_
+                y_bot = (ii_ - m_ + int(b_s[ii_, jj_])) * a_
+                x_lft = (jj_ - m_ - int(b_w[ii_, jj_]) + 1) * a_
+                x_rgt = (jj_ - m_ + int(b_e[ii_, jj_])) * a_
+            else:
+                y_top, y_bot, x_lft, x_rgt = y - a_, y + a_, x - a_, x + a_
+            t_ns, t_ew = y_bot - y_top, x_rgt - x_lft
+            h_cap = max(t_ns * mc["band_h_ratio"], mc["band_min_h_px"] * self.k)
+            w_cap = max(t_ew * mc["band_w_ratio"], mc["band_min_w_px"] * self.k)
+            size_intended = size
+            size = min(size, h_cap * spr.size0 / spr.vis_h, w_cap * spr.size0 / spr.vis_w)
+            over = max(0.0, (mc["band_h_ratio"] - 1.0) * t_ns)
+
+            def _anchor(s_try: float, shift: float = 0.0) -> Tuple[float, float]:
+                """Sprite base (x, y): inside the band, overshoot split evenly north / south;
+                ``shift`` (fraction of the sprite height) moves the base within those limits."""
+                h_ = spr.vis_h * s_try / spr.size0
+                w_ = spr.vis_w * s_try / spr.size0
+                lo = y_top - 0.5 * over + h_          # highest allowed base (top stays within band + overshoot)
+                hi = y_bot + 0.5 * over               # lowest allowed base
+                foot = y + 0.5 * h_ + shift * h_
+                foot = max(lo, min(hi, foot)) if lo <= hi else 0.5 * (lo + hi)
+                if x_rgt - x_lft >= w_:
+                    xc = min(max(x, x_lft + 0.5 * w_), x_rgt - 0.5 * w_)
+                else:
+                    xc = 0.5 * (x_lft + x_rgt)
+                return xc, foot
+
             ratio = mc["spacing_ratio"] + mc["spacing_ratio_sparse"] * (1.0 - I)
             if kind in ("qiuling", "rock_small"):
                 ratio *= mc["hill_spacing_mult"]
-            excl = ratio * size
+            excl = ratio * max(size, mc["band_spacing_keep"] * size_intended)
+            x, y = _anchor(size)
             # neighbour check
             gxk, gyk = int(x // cell), int(y // cell)
             reach = int(math.ceil((excl + sizes["xueshan"][1] * self.k * mc["spacing_ratio"]) / (2 * cell))) + 1
@@ -480,17 +540,23 @@ class World:
                 if s_try < mc["min_size_px"] * self.k:
                     break
                 arr, ax, ay = spr.render(s_try, flip)
-                ox, oy = x - ax, y - ay
-                if self.footprint_overlap(arr, ox, oy, sea_field) > mc["max_sea_overlap"]:
-                    continue
-                if self.footprint_overlap(arr, ox, oy, water_field) > mc["max_water_overlap"]:
-                    continue
-                accepted = s_try
-                break
+                for shift in mc["base_shifts"]:
+                    x_try, y_try = _anchor(s_try, shift)
+                    ox, oy = x_try - ax, y_try - ay
+                    if self.footprint_overlap(arr, ox, oy, sea_field) > mc["max_sea_overlap"]:
+                        continue
+                    if self.footprint_overlap(arr, ox, oy, water_field) > mc["max_water_overlap"]:
+                        continue
+                    accepted = s_try
+                    x, y = x_try, y_try
+                    break
+                if accepted is not None:
+                    break
             if accepted is None:
                 continue
             tone = 1.0 + mc["tone_jitter"] * (2 * roll[3] - 1)
-            rec = {"x": x, "y": y, "name": name, "flip": bool(flip), "size": accepted, "excl": ratio * accepted,
+            rec = {"x": x, "y": y, "name": name, "flip": bool(flip), "size": accepted,
+                   "excl": ratio * max(accepted, mc["band_spacing_keep"] * size_intended),
                    "kind": kind, "tone": tone, "I": I, "elev": e, "puff": int(roll[4] * len(self.puffs)), "arid": arid,
                    "alpha": alpha}
             placed.append(rec)
@@ -1020,6 +1086,10 @@ def run_check(cfg: Dict[str, Any]) -> int:
         cfg_sha = hashlib.sha256(CONFIG_PATH.read_bytes()).hexdigest()
         if lock.get("config_sha256") != cfg_sha:
             print("lock: config changed since lock was written (re-run with --write-lock after review)")
+        for rel, expected in sorted(lock.get("inputs", {}).items()):
+            if rel.startswith("tools/") and geo.sha256_file(geo.ROOT / rel) != expected:
+                print("lock: input changed", rel)
+                failures += 1
         for rel, expected in sorted(lock.get("materials", {}).items()):
             got = geo.sha256_file(geo.ROOT / rel)
             if got != expected:
@@ -1046,7 +1116,8 @@ def write_lock(cfg: Dict[str, Any], outputs: Sequence[Path]) -> None:
     lock = {
         "schema": "tianshu.worldmap-paint-lock.v1",
         "config_sha256": hashlib.sha256(CONFIG_PATH.read_bytes()).hexdigest(),
-        "inputs": geo.INPUT_SHA256,
+        "inputs": {**geo.INPUT_SHA256,
+                   "tools/map/paint/" + cfg["rivers"]["supplement_file"]: geo.sha256_file(HERE / cfg["rivers"]["supplement_file"])},
         "materials": dict(sorted(sprites.USED.items())),
         "outputs": {str(p.relative_to(geo.ROOT)): geo.sha256_file(p) for p in outputs if p.is_file()},
         "check_window": [win.x0, win.y0, win.x1, win.y1],

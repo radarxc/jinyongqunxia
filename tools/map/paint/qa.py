@@ -185,6 +185,46 @@ def main() -> int:
         d2.text((x0, y0 - 28), f"{name}  {box[2]-box[0]}×{box[3]-box[1]} @{W}", fill=(60, 50, 40), font=_font(20))
     sheet.save(QA / "zooms_regions.jpg", quality=88)
 
+    # ---------------- rivers added for AR-113 (labelled, full resolution crops)
+    sup = json.loads((HERE / cfg["rivers"]["supplement_file"]).read_text(encoding="utf-8"))
+    named = [(r["name"], np.asarray(r["line"], dtype=np.float64)) for r in sup["rivers"]]
+    extra = {tuple(x) for x in cfg["rivers"]["extra_names"]}
+    for props, part in geo.parts_in_box("ne_10m_rivers_lake_centerlines", (100, 30, 115, 40)):
+        if (props.get("name"), props.get("name_zh")) in extra:
+            named.append((props.get("name_zh"), part))
+    river_windows = {"关中（渭、泾、北洛、汾、洛、伊）": (101.5, 33.3, 113.5, 38.6),
+                     "湟水": (100.5, 35.7, 104.0, 37.3), "岷江上中游": (102.8, 29.3, 104.6, 33.2)}
+    sheet_tiles = []
+    for title, (w_, s_, e_, n_) in river_windows.items():
+        xs, ys = [], []
+        for lon in np.linspace(w_, e_, 9):
+            for lat in np.linspace(s_, n_, 9):
+                x, y = proj.fwd(lon, lat)
+                xs.append(float(x))
+                ys.append(float(y))
+        box = (max(0, int(min(xs))), max(0, int(min(ys))), min(W, int(max(xs))), min(H, int(max(ys))))
+        crop = img.crop(box).convert("RGB")
+        d4 = ImageDraw.Draw(crop)
+        for name, line in named:
+            x, y = proj.fwd(line[:, 0], line[:, 1])
+            inside = [(float(a) - box[0], float(b) - box[1]) for a, b in zip(x, y)
+                      if box[0] <= a < box[2] and box[1] <= b < box[3]]
+            if len(inside) >= 2:
+                mid = inside[len(inside) // 2]
+                d4.text((mid[0] + 6, mid[1] - 10), name, fill=(170, 30, 30), font=_font(18))
+        crop.save(QA / f"rivers_added_{title.split('（')[0]}.jpg", quality=90)
+        sheet_tiles.append((title, crop))
+    tw = max(max(t.width for _, t in sheet_tiles) + 20, 760)
+    th = sum(t.height + 44 for _, t in sheet_tiles) + 10
+    rs = Image.new("RGB", (tw, th), (245, 241, 232))
+    d5 = ImageDraw.Draw(rs)
+    yo = 10
+    for title, t in sheet_tiles:
+        d5.text((10, yo), f"{title}（底图 100%，红字为新增河名）", fill=(60, 50, 40), font=_font(20))
+        rs.paste(t, (10, yo + 34))
+        yo += t.height + 44
+    rs.save(QA / "rivers_added.jpg", quality=88)
+
     # ---------------- old vs new overview
     if args.old and args.old.is_file():
         old = Image.open(args.old).convert("RGB").resize((1024, 768), Image.Resampling.LANCZOS)

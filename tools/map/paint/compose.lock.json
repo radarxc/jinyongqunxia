@@ -5,8 +5,8 @@
   3300,
   1750
  ],
- "check_window_sha256": "50e19af609583a170e3d3b99ff6b743be8aafeb19cc366deea5ab56a8b8186e7",
- "config_sha256": "1420b635441c4a6b0f7a423d1782d543b455a6b09c9fbd496daa574628dcb2c9",
+ "check_window_sha256": "4d44ddc3a28719779339e46d1aee967b74327d5512e4e8133b4bbb5909bcb56d",
+ "config_sha256": "27d1c6bca6b7ac1110d84c3d44460aa2f7aeb9c5143b82964703cce5d6a35275",
  "inputs": {
   "etopo2022_60s/etopo2022_60s_surface_mosaic.npy": "7604138131e120385727d49a3db2a5285b39caa7acd5dd5fd68ef2516c6bb93a",
   "ne_10m_geography_regions_polys/ne_10m_geography_regions_polys.zip": "cb7b9db200284ed1551f20eacc7f3333e9b5f311c19f7cb2670694529f688682",
@@ -14,7 +14,8 @@
   "ne_10m_lakes_historic/ne_10m_lakes_historic.zip": "f82fb212a4e472fcfd43afb78b37b20792987cda4aa239aab6818e4b0fb713ac",
   "ne_10m_land/ne_10m_land.zip": "e547d749445eaa0964aba76738090ec88f5e63c4585122170f98c67a7ea922dc",
   "ne_10m_minor_islands/ne_10m_minor_islands.zip": "47c0b3ce26df7b4dbabdbb251023918cb2f5c83462a426288f1f253da7284db2",
-  "ne_10m_rivers_lake_centerlines/ne_10m_rivers_lake_centerlines.zip": "ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38"
+  "ne_10m_rivers_lake_centerlines/ne_10m_rivers_lake_centerlines.zip": "ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38",
+  "tools/map/paint/rivers_supplement.json": "fa694d4d538395dc9d8a28cfa9bb01b2121d8611d81e86675c6fdfc770ecb1dd"
  },
  "materials": {
   "assets/default/baseline/map/ref_map_jianghu__ch01_base01.png": "60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c",
@@ -64,9 +65,9 @@
   "assets/default/map/tiles/map_tile_shuimian_02.png": "10f4a7842628374483ee15efe2d3886a6d2d8c0dda34395056a36709f2f71f0c"
  },
  "outputs": {
-  ".agents/coord/ART-worldmap-painted/full/compose_full_4096.png": "19a075b5e0c7c0d2fcdab96bd71cbb97c0ecdd1e4dc588277e4609b2ab355497",
-  "assets/default/map/world/map_world_jianghu__base01.webp": "2469d73fd041bf7f7b51e4b9809fde3ebac8ce3a726a6bee417510407aa7f531",
-  "assets/default/map/world/map_world_jianghu__base01_preview.webp": "5b03b932bcd8665868c5a83c65db577c86662dca0e4b0ba7a5117b184d76dcee"
+  ".agents/coord/ART-worldmap-painted/full/compose_full_4096.png": "816022b4f76c73860ab6cd2a66d82a6fed84ffcd40a62d30c0d8667a8328f852",
+  "assets/default/map/world/map_world_jianghu__base01.webp": "520c33c3c34e190062ff5ad06439350a565e5e42cd4e5ed6be692c0114474bea",
+  "assets/default/map/world/map_world_jianghu__base01_preview.webp": "66d0ec079010222f8ecb799efc2a6158cee1346aea9865f6340214bed9c226b0"
  },
  "schema": "tianshu.worldmap-paint-lock.v1"
 }
