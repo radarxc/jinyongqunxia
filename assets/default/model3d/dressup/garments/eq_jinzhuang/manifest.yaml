@@ -14,9 +14,9 @@
       report: report.json
       hideMask: hidemask.png
       status: draft
-      gateLevel: fail
-      sha256: 0c342d6def45a4501a18ad053e13bb107285f98c48d43af54b67617a4a6b41f7
-      size_bytes: 1479448
+      gateLevel: draft
+      sha256: 851f325c2b6e39714f4952bd103e49921ebef26c5d888f584a36bc6f9dd8cb70
+      size_bytes: 1474880
       triangles: 25836
     tpl_f_small:
       file: eq_jinzhuang.tpl_f_small.glb
@@ -24,9 +24,9 @@
       report: report.tpl_f_small.json
       hideMask: hidemask.tpl_f_small.png
       status: draft
-      gateLevel: fail
-      sha256: 092f700ec8bb2afe8ddbc9da391da6e283618b79c33638c3b95b32b3499c94ac
-      size_bytes: 1479604
+      gateLevel: draft
+      sha256: 04ba5428d0b83195b9a0237bf2f517c858e4587afa7db505a053ccc6f68396db
+      size_bytes: 1472836
       triangles: 25838
     tpl_f_tall:
       file: eq_jinzhuang.tpl_f_tall.glb
@@ -34,18 +34,17 @@
       report: report.tpl_f_tall.json
       hideMask: hidemask.tpl_f_tall.png
       status: draft
-      gateLevel: fail
-      sha256: 6da0e7849f598ecd7aadc6742b492eae6b50d83ead38d6724042e9cb7442ea3a
-      size_bytes: 1480440
+      gateLevel: draft
+      sha256: 9e082337ac3cb1ed27c4cbe30908737b31cb82976defad8f6241424ba3a834f8
+      size_bytes: 1476188
       triangles: 25834
-  sha256: 0c342d6def45a4501a18ad053e13bb107285f98c48d43af54b67617a4a6b41f7
-  size_bytes: 1479448
+  sha256: 851f325c2b6e39714f4952bd103e49921ebef26c5d888f584a36bc6f9dd8cb70
+  size_bytes: 1474880
   triangles: 25836
   status: draft
-  experimental: true
-  gateLevel: fail
-  tool: tools/model3d/dressup/fit_garment.py --push-mode volume + pack_glb.mjs --simplify 0.25 + untangle_glb.py + bake_hide_mask.py
-    --mode visibility + validate.py
+  gateLevel: draft
+  tool: tools/model3d/dressup/fit_garment.py --push-mode volume + pack_glb.mjs --simplify 0.25 + untangle_glb.py + fit_garment.py --pose-skin
+    --arm-abduction-deg 6 + pack_glb.mjs + bake_hide_mask.py --mode visibility + validate.py
   created: '2026-10-08T06:35:00-07:00'
   source:
     tripo_project_id: b01f6451-81a6-46ac-a769-0cdf1d374df3
@@ -58,10 +57,7 @@
       sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
     - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
       sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
-  notes: 'E2b（2026-10-09，Claude 收尾，AR-110）：fit 真实源为 extract_run/eq_jinzhuang_raw_skinned.glb（E2 抽取件），preserve-shape 关节对齐 +
-    整件模板权重 + 体表位移场推离 + 限拉伸垂坠（--push-mode volume），全分辨率贴合后 pack_glb 减面 0.25、untangle_glb 翻边修复细长翻面三角，再重烘可见性遮罩。三模板几何门全过（翻面 0、边长
-    ≥ 99%、close-fit < 5 mm），bind 穿透 0；贴图肤色纹素 1.68% → 0（ΔE76 ≤ 18，相对源模型手部肤色中位数；交付 JPEG 解码复测）。仍未过：idle / walk 可见穿透（垂手宽袖碰髋 /
-    大腿、下摆碰大腿，LBS 蒙皮问题）与 run holes，拆给 E2c；各模板未过项：{"tpl_f_medium": ["penetration.idle.visible", "penetration.walk.visible",
-    "holes.run.visible"], "tpl_f_small": ["penetration.idle.visible", "penetration.walk.visible", "holes.run.visible"], "tpl_f_tall":
-    ["penetration.idle.visible", "penetration.walk.visible", "holes.run.visible"]}。故继续 experimental/fail。与贴图层 dressup__layer__eq_jinzhuang
-    叠穿。'
+  notes: E2c（2026-10-10，Claude 实现，AR-110）：在 E2b 交付网格上按姿势重解蒙皮（fit_garment.py --pose-skin，几何 / 贴图 / 源映射不变），fit.json 声明 poseOffset.armAbductionDeg
+    = 6（运行时 actor、validate、遮罩烘焙同口径外展）；固定目标的高斯-牛顿 + LM 线搜索：边平滑（撕裂边加强）+ 贴近原权重（只在撕裂 / 可见穿入点附近放松）+ 穿入与伸长铰链，截 4 骨后再解，收尾对 72 帧仍超 28 mm 的少数边做局部拉普拉斯平滑；随后按外展重烘可见性遮罩。三模板三项门全过：可见穿透
+    idle ≤ 0.56%、walk ≤ 0.68%、run ≤ 1.26%，holes ≤ 0.016%，bind 0；72 帧最大边伸长 ≤ 27.9 mm（E2b 版 94.9–103.1 mm）。去掉 experimental，保留 status / gateLevel
+    = draft。与贴图层 dressup__layer__eq_jinzhuang 叠穿。

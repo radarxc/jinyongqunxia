@@ -151,7 +151,7 @@
   },
   "source": {
     "file": "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.glb",
-    "sha256": "be45941ee30c0abb9f99a775bc69b30fe2f3c5f017ba0ef84c63d4454c646373",
+    "sha256": "54e3753c64a8b7bbfdc81bd8a3f2473d08ee48a45c3476fb37192c327a696eca",
     "plate": "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png",
     "plateSha256": "3f1881b361bb2ca696da6f2abb338748b6896a4d2b9c9727da6653e317f1fc5c",
     "basePlate": "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png",
@@ -169,9 +169,9 @@
     "grazingHits": 13191,
     "grazingRays": 11778,
     "distanceMm": {
-      "p50": 19.8107446716373,
-      "p90": 38.386235517189796,
-      "p99": 53.22905821122882,
+      "p50": 19.810723944617642,
+      "p90": 38.38623541739753,
+      "p99": 53.22909086051198,
       "max": 59.998726450228716
     },
     "clothTexelsBeforeClean": 1168565,
@@ -196,14 +196,14 @@
       "p95TurnDeg": 95.91096755989972
     },
     "vertexDistanceMm": {
-      "p50": 21.892541606174355,
-      "p90": 42.508448020400884,
-      "p99": 56.74294661177582,
+      "p50": 21.892536193307453,
+      "p90": 42.50844821106835,
+      "p99": 56.74300478022699,
       "max": 59.99800579070083
     }
   },
   "stats": {
-    "elapsedSec": 88.7695460000541,
-    "peakMemoryMiB": 2027.140625
+    "elapsedSec": 89.94612212490756,
+    "peakMemoryMiB": 1751.125
   }
 }

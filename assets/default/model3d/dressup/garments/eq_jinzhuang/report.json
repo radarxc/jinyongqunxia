@@ -1,6 +1,6 @@
 {
   "schema": "tianshu-dressup-report.v1",
-  "level": "fail",
+  "level": "draft",
   "template": "tpl_f_medium",
   "subject": {
     "kind": "garment",
@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "0c342d6def45a4501a18ad053e13bb107285f98c48d43af54b67617a4a6b41f7",
-      "sizeBytes": 1479448
+      "sha256": "851f325c2b6e39714f4952bd103e49921ebef26c5d888f584a36bc6f9dd8cb70",
+      "sizeBytes": 1474880
     },
     "fit": {
-      "sha256": "4727b1a6330622fbcc1ae2bfa1cfaee2ec46ff3c23862674d92e0ea012c146ec",
-      "sizeBytes": 23018
+      "sha256": "2be4f3803ecb151bdf814b9d9e16b2201ae2a73a71b95787bea2bedab4cbf23f",
+      "sizeBytes": 25321
     }
   },
   "checks": [
@@ -163,7 +163,7 @@
     {
       "name": "weights.sumMaxError",
       "pass": true,
-      "value": 1.7881393432617188e-07,
+      "value": 1.1920928955078125e-07,
       "threshold": "<= 1e-3"
     },
     {
@@ -233,44 +233,50 @@
     {
       "name": "penetration.idle.all",
       "pass": true,
-      "value": 0.05984811957569913,
+      "value": 0.0037970106075216974,
       "threshold": "report only",
-      "frames": 24
+      "frames": 24,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "penetration.idle.visible",
-      "pass": false,
-      "value": 0.04230954676952748,
+      "pass": true,
+      "value": 0.0028326904532304724,
       "threshold": "<= 0.02",
-      "frames": 24
+      "frames": 24,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "penetration.walk.all",
       "pass": true,
-      "value": 0.037246865959498554,
+      "value": 0.0019286403085824494,
       "threshold": "report only",
-      "frames": 24
+      "frames": 24,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "penetration.walk.visible",
-      "pass": false,
-      "value": 0.027603664416586307,
+      "pass": true,
+      "value": 0.0019286403085824494,
       "threshold": "<= 0.02",
-      "frames": 24
+      "frames": 24,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "penetration.run.all",
       "pass": true,
-      "value": 0.019406943105110895,
+      "value": 0.011632111861137898,
       "threshold": "report only",
-      "frames": 24
+      "frames": 24,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "penetration.run.visible",
       "pass": true,
-      "value": 0.010004821600771456,
+      "value": 0.006750241080038573,
       "threshold": "<= 0.02",
-      "frames": 24
+      "frames": 24,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "holes.bind.visible",
@@ -283,26 +289,29 @@
     {
       "name": "holes.idle.visible",
       "pass": true,
-      "value": 0.00027766208524226016,
+      "value": 0.0,
       "threshold": "= 0 (tolerance <= 0.0005)",
       "frames": 24,
-      "views": 8
+      "views": 8,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "holes.walk.visible",
       "pass": true,
-      "value": 0.0001684352366515075,
+      "value": 0.0,
       "threshold": "= 0 (tolerance <= 0.0005)",
       "frames": 24,
-      "views": 8
+      "views": 8,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "holes.run.visible",
-      "pass": false,
-      "value": 0.000959877135726627,
+      "pass": true,
+      "value": 0.00013048868010700072,
       "threshold": "= 0 (tolerance <= 0.0005)",
       "frames": 24,
-      "views": 8
+      "views": 8,
+      "armAbductionDeg": 6.0
     },
     {
       "name": "mask.knownRegions",

@@ -16,6 +16,7 @@ import math
 import os
 from pathlib import Path
 import resource
+import struct
 import sys
 import time
 from typing import Any, Sequence
@@ -35,10 +36,10 @@ from scipy.spatial import cKDTree
 from PIL import Image
 
 try:
-    from .common import closest_point_on_triangle, edge_statistics, pca, umeyama
+    from .common import closest_point_on_triangle, edge_statistics, lbs, pca, umeyama
     from .glb_io import GLB, ImageData, Mesh, PrimitiveRange, load_glb, write_skinned_glb
 except ImportError:
-    from common import closest_point_on_triangle, edge_statistics, pca, umeyama
+    from common import closest_point_on_triangle, edge_statistics, lbs, pca, umeyama
     from glb_io import GLB, ImageData, Mesh, PrimitiveRange, load_glb, write_skinned_glb
 
 KINDS = ("garment", "hair")
@@ -64,6 +65,41 @@ DRAPE_STRAIN_MAX = 1.3          # 边长目标上限（validate 门禁 1.4，留
 DRAPE_ANCHOR = 1e-3             # 对松弛前位置的弱锚定（相对拉普拉斯对角均值），防整体漂移
 DRAPE_PIN = 1e3                 # 新翻面顶点的钉住权重（同上口径）
 DRAPE_PIN_ATTEMPTS = 8          # 每步最多加钉重解次数
+# --pose-skin（E2c，默认关闭）：在模板 idle / walk / run 采样（含衣物声明的手臂外展）上为已贴合的交付网格重解连续蒙皮权重
+POSE_SKIN_FRAMES = 24            # 每段动作采样帧数，与 validate 相同（[0, 时长) 等分）
+POSE_SKIN_LOOSE_MM = 8.0         # 离体表超过此距离为宽松区：问题点附近贴近输入权重的先验转弱
+POSE_SKIN_BLEND_MM = 2.0         # 宽松渐入带
+POSE_SKIN_RINGS = 3              # 候选骨 = N 环内输入权重出现过的骨 + 其父骨
+POSE_SKIN_SMOOTH = 2.0           # 边上权重差平方的基础权（弱）
+POSE_SKIN_TEAR_MM = 8.0          # 采样帧中最大伸长超过此值的边追加平滑（只增不减），端点记为问题点（裁定 10-10 14:30 第 2 条）
+POSE_SKIN_TEAR_BAND_MM = 12.0    # 追加平滑的渐入带
+POSE_SKIN_TEAR_WEIGHT = 1.0e4    # 追加的平滑权
+POSE_SKIN_PRIOR_CLOSE = 50.0     # 贴近输入权重（贴身区与远离问题点处）
+POSE_SKIN_PRIOR_LOOSE = 2.0      # 宽松区问题点附近贴近输入权重
+POSE_SKIN_LOCAL_CORE = 2         # 局部化：问题点（撕裂边端点 / 可见穿入点）这么多环内先验全弱
+POSE_SKIN_LOCAL_RINGS = 8        # 到这么多环渐回强先验（0 = 宽松区处处弱）
+POSE_SKIN_SUM = 100.0            # 和为 1 行的系数（未平方）
+POSE_SKIN_COLLIDE = 40.0         # 穿入铰链 max(0, margin − 法向距离)² 的权（mm²）；20 时 8 mm 撕裂阈值下 walk 上臂顶出袖子，三体型试 20 / 40 / 60 / 80 / 120 取 40
+POSE_SKIN_MARGIN_MM = 1.5        # 穿入铰链的阈：最近可见体表外侧这么远
+POSE_SKIN_CONTACT_MM = 10.0      # 每轮接触候选：离可见体表不到这么远的点（最近点、法向本轮固定）
+POSE_SKIN_STRETCH = 500.0        # 伸长铰链 max(0, 边长 − 静长 − 阈)² 的权（mm²）
+POSE_SKIN_STRETCH_MM = 20.0      # 伸长铰链的阈（72 帧动态拓扑门 30 mm）
+POSE_SKIN_STRETCH_HARD = 5000.0  # 第二道伸长铰链的权：贴近门的少数边要压住最大值，不只压平方和
+POSE_SKIN_STRETCH_HARD_MM = 27.0 # 第二道伸长铰链的阈
+POSE_SKIN_ROUNDS = 6             # 候选骨全开的轮数（每轮重取接触候选、问题点）
+POSE_SKIN_REFIT_ROUNDS = 8       # 截 4 骨、固定支撑集后的轮数
+POSE_SKIN_POLISH_MM = 28.0       # 收尾：72 帧最大伸长仍超过此值的边，两端 POLISH_RINGS 环内做局部拉普拉斯平滑
+POSE_SKIN_POLISH_RINGS = 2        # 起始环数；最大伸长连续 POLISH_PATIENCE 步不降则加一环（至多 POLISH_MAX_RINGS）
+POSE_SKIN_POLISH_MAX_RINGS = 10
+POSE_SKIN_POLISH_PATIENCE = 4
+POSE_SKIN_POLISH_STEP = 0.5      # 每步向邻点均值靠拢的比例
+POSE_SKIN_POLISH_ITERS = 200     # 收尾最多步数
+POSE_SKIN_ACCEPT_INSIDE = 0.015  # 各轮里取最大边伸长最小者作结果，但近似可见穿入（各段最坏帧）须不超过此比例
+POSE_SKIN_INNER = 3              # 每轮高斯-牛顿步数
+POSE_SKIN_LINE_STEPS = 6         # 线搜索折半次数（目标不降则本轮停）
+POSE_SKIN_LM_TRIES = 4           # 线搜索仍不降时加阻尼重解的次数
+POSE_SKIN_MIN_WEIGHT = 1e-4      # 输入权重"出现过"的下限
+POSE_SKIN_DEPTH_MM = 1.0         # 摘要里"穿入"的深度口径（与 validate 的 -1 mm 一致）
 # --clean-skin-texture：交付贴图按 JPEG q95 编码；编码后解码复测，统计记编码后的真实值
 SKIN_REPLACE_MARGIN = 6.0       # 填补色须比肤色阈值再远这么多（ΔE76；实测 q95 重编码漂移 ≤ 3.5）
 SKIN_ENCODE_ATTEMPTS = 6        # 解码后仍有肤色纹素时在解码图上再修再编码的最多轮数（劲装实测：35 → 12 → 8 → 1 → 0）
@@ -730,6 +766,473 @@ def filter_existing_weights(joints: np.ndarray, weights: np.ndarray, points: np.
         "highConfidence": float(np.mean(valid)), "highConfidenceVertices": int(np.count_nonzero(valid)),
         "lowConfidenceVertices": int(np.count_nonzero(low)), "filteredVertices": int(np.count_nonzero(filtered)),
         "maxBones": 4, "jointsAllowed": [skeleton["joints"][int(i)] for i in allowed]}
+
+
+@dataclass
+class PoseFrame:
+    """一帧姿势采样：衣物蒙皮矩阵（世界 × 衣物逆绑定）与已蒙皮的身体顶点、顶点法线。"""
+
+    clip: str
+    skin: np.ndarray
+    body: np.ndarray
+    normals: np.ndarray
+
+
+def _dense_weights(joints: np.ndarray, weights: np.ndarray, joint_count: int) -> np.ndarray:
+    dense = np.zeros((len(joints), joint_count), dtype=np.float64)
+    rows = np.repeat(np.arange(len(joints)), np.asarray(joints).shape[1])
+    np.add.at(dense, (rows, np.asarray(joints, dtype=np.int64).reshape(-1)),
+              np.asarray(weights, dtype=np.float64).reshape(-1))
+    return dense
+
+
+def _top_weights(dense: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """每行取最大 4 个（并列按骨序号），归一后按权重降序。"""
+    keep = min(4, dense.shape[1])
+    order = np.argsort(-dense, axis=1, kind="stable")[:, :keep]
+    values = np.take_along_axis(dense, order, axis=1)
+    values = np.where(values > 0.0, values, 0.0)
+    values /= np.maximum(values.sum(axis=1, keepdims=True), 1e-20)
+    order = np.where(values > 0.0, order, 0)
+    if keep < 4:
+        order = np.pad(order, ((0, 0), (0, 4 - keep))); values = np.pad(values, ((0, 0), (0, 4 - keep)))
+    return order.astype(np.uint16), values.astype(np.float32)
+
+
+def _pose_variables(allowed: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """候选（顶点, 骨）对按顶点连续编号；返回 var_v、var_j、index（非候选为 -1）与每点起点。"""
+    var_v, var_j = np.nonzero(allowed)
+    index = np.full(allowed.shape, -1, dtype=np.int64); index[var_v, var_j] = np.arange(len(var_v))
+    start = np.zeros(len(allowed) + 1, dtype=np.int64); np.cumsum(allowed.sum(axis=1), out=start[1:])
+    return var_v, var_j, index, start
+
+
+def _ring_distance(seed: np.ndarray, edges: np.ndarray, limit: int) -> np.ndarray:
+    """沿网格边到 seed 的环数（超过 limit 记 limit + 1）。"""
+    distance = np.where(seed, 0, limit + 1).astype(np.int64); reached = np.asarray(seed, dtype=bool).copy()
+    for ring in range(1, limit + 1):
+        grown = reached.copy()
+        np.logical_or.at(grown, edges[:, 0], reached[edges[:, 1]])
+        np.logical_or.at(grown, edges[:, 1], reached[edges[:, 0]])
+        distance[grown & ~reached] = ring; reached = grown
+    return distance
+
+
+def _pose_skin_solve(points: np.ndarray, edges: np.ndarray, base: np.ndarray, allowed: np.ndarray,
+                     loose: np.ndarray, frames: Sequence[PoseFrame], mm_per_mu: float,
+                     hidden: np.ndarray | None = None, *, rounds: int = POSE_SKIN_ROUNDS,
+                     refit_rounds: int = POSE_SKIN_REFIT_ROUNDS, verbose: bool = False
+                     ) -> tuple[np.ndarray, dict[str, Any]]:
+    """在焊接顶点上解连续权重，返回稠密权重（行和为 1，每行至多 4 个非零）与摘要。
+
+    目标（毫米量纲，凸）= 边上权重差平方（弱，撕裂边只增不减地加强）+ 贴近输入权重（贴身强；宽松区只在问题点附近弱）
+    + 和为 1 + 穿入铰链 Σ max(0, 体表外 margin − 法向距离)²（只计最近体表可见处）+ 伸长铰链
+    Σ max(0, 边长 − 静长 − 阈值)²（全部采样帧）。每轮先按当前姿势重取接触候选（最近体表点、法向固定）与问题点，
+    再做 POSE_SKIN_INNER 步高斯-牛顿：线搜索保证该轮目标严格下降（投影到非负、行归一）。之后截 4 骨、
+    固定支撑集再解 refit_rounds 轮。"""
+    from scipy.sparse import coo_matrix, identity
+    from scipy.sparse.linalg import spsolve
+    points = np.asarray(points, dtype=np.float64); base = np.asarray(base, dtype=np.float64)
+    count, joint_count = base.shape
+    if not len(frames) or allowed.shape != base.shape or not np.all(allowed.any(axis=1)):
+        raise GarmentError("pose-skin：缺采样帧或有顶点没有候选骨")
+    homogeneous = np.c_[points, np.ones(count)]
+    rest = np.linalg.norm(points[edges[:, 1]] - points[edges[:, 0]], axis=1) * mm_per_mu
+    trees = [cKDTree(frame.body) for frame in frames]
+    clips = sorted({frame.clip for frame in frames}, key=[frame.clip for frame in frames].index)
+    problem = np.zeros(count, dtype=bool)
+    edge_weight = np.full(len(edges), POSE_SKIN_SMOOTH)
+    started = time.perf_counter(); solves = 0
+
+    def prior_strength() -> np.ndarray:
+        """宽松区里只有问题点附近放松贴近输入权重（局部平滑）；其余处与贴身区同样强。"""
+        weak = loose.copy()
+        if POSE_SKIN_LOCAL_RINGS > 0:
+            rings = _ring_distance(problem, edges, POSE_SKIN_LOCAL_RINGS)
+            weak *= 1.0 - _smoothstep((rings - POSE_SKIN_LOCAL_CORE)
+                                      / max(POSE_SKIN_LOCAL_RINGS - POSE_SKIN_LOCAL_CORE, 1))
+        return np.sqrt(POSE_SKIN_PRIOR_CLOSE * (1.0 - weak) + POSE_SKIN_PRIOR_LOOSE * weak)
+
+    def phase(weights: np.ndarray, allowed_now: np.ndarray, count_rounds: int, label: str
+              ) -> tuple[np.ndarray, list[dict[str, Any]], int]:
+        nonlocal solves
+        var_v, var_j, index, start = _pose_variables(allowed_now); nvar = len(var_v)
+        moved = np.stack([np.einsum("kab,kb->ka", frame.skin[var_j, :3, :], homogeneous[var_v])
+                          for frame in frames]) * mm_per_mu                       # 毫米
+        pair_edge, pair_joint = np.nonzero(allowed_now[edges[:, 0]] | allowed_now[edges[:, 1]])
+        left = index[edges[pair_edge, 0], pair_joint]; right = index[edges[pair_edge, 1], pair_joint]
+        target = base[var_v, var_j]; variable_of = np.arange(nvar)
+
+        def expand(values: np.ndarray) -> np.ndarray:
+            dense = np.zeros_like(weights); dense[var_v, var_j] = values; return dense
+
+        def project(values: np.ndarray) -> np.ndarray:
+            values = np.clip(values, 0.0, None); totals = np.bincount(var_v, values, minlength=count)
+            return values / np.maximum(totals, 1e-12)[var_v]
+
+        def posed_of(values: np.ndarray) -> np.ndarray:
+            blend = coo_matrix((values, (var_v, variable_of)), shape=(count, nvar)).tocsr()
+            return np.stack([blend @ moved[slot] for slot in range(len(frames))])
+
+        def contacts(posed: np.ndarray) -> tuple[tuple[np.ndarray, ...], dict[str, Any]]:
+            """按当前姿势取接触候选（离可见体表不到 POSE_SKIN_CONTACT_MM 的点；最近体表点与法向本轮固定）。"""
+            frame_ids, vertex_ids, normals, limits = [], [], [], []
+            inside = {clip: 0.0 for clip in clips}; deep = np.zeros(count, dtype=bool)
+            for slot, frame in enumerate(frames):
+                distance, nearest = trees[slot].query(posed[slot] / mm_per_mu)
+                normal = frame.normals[nearest]
+                signed = np.sign(np.einsum("ij,ij->i", posed[slot] / mm_per_mu - frame.body[nearest], normal)
+                                 ) * distance * mm_per_mu
+                visible = np.ones(count, dtype=bool) if hidden is None else ~hidden[nearest]
+                penetrating = (signed < -POSE_SKIN_DEPTH_MM) & visible; deep |= penetrating
+                inside[frame.clip] = max(inside[frame.clip], float(np.mean(penetrating)))
+                pick = np.flatnonzero((signed < POSE_SKIN_CONTACT_MM) & visible)
+                frame_ids.append(np.full(len(pick), slot)); vertex_ids.append(pick); normals.append(normal[pick])
+                limits.append(np.einsum("ij,ij->i", frame.body[nearest[pick]], normal[pick]) * mm_per_mu
+                              + POSE_SKIN_MARGIN_MM)
+            return ((np.concatenate(frame_ids), np.concatenate(vertex_ids), np.concatenate(normals),
+                     np.concatenate(limits)), {"visibleInside": inside, "deep": deep})
+
+        def lengths_of(posed: np.ndarray) -> np.ndarray:
+            return np.linalg.norm(posed[:, edges[:, 1]] - posed[:, edges[:, 0]], axis=2)    # (帧, 边) 毫米
+
+        def energy(values: np.ndarray, posed: np.ndarray, contact: tuple[np.ndarray, ...],
+                   prior: np.ndarray) -> float:
+            frame_ids, vertex_ids, normals, limits = contact
+            left_value = np.where(left >= 0, values[np.maximum(left, 0)], 0.0)
+            right_value = np.where(right >= 0, values[np.maximum(right, 0)], 0.0)
+            depth = np.maximum(limits - np.einsum("ij,ij->i", posed[frame_ids, vertex_ids], normals), 0.0)
+            growth = lengths_of(posed) - rest[None, :]
+            over = np.maximum(growth - POSE_SKIN_STRETCH_MM, 0.0); hard = np.maximum(growth - POSE_SKIN_STRETCH_HARD_MM, 0.0)
+            return float(np.sum(edge_weight[pair_edge] * (left_value - right_value) ** 2)
+                         + np.sum((prior[var_v] * (values - target)) ** 2)
+                         + POSE_SKIN_SUM ** 2 * np.sum((np.bincount(var_v, values, minlength=count) - 1.0) ** 2)
+                         + POSE_SKIN_COLLIDE * np.sum(depth ** 2) + POSE_SKIN_STRETCH * np.sum(over ** 2)
+                         + POSE_SKIN_STRETCH_HARD * np.sum(hard ** 2))
+
+        def rows_for(vertices: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+            spans = start[vertices + 1] - start[vertices]
+            rows = np.repeat(np.arange(len(vertices)), spans)
+            cols = (np.repeat(start[vertices], spans) + np.arange(int(spans.sum()))
+                    - np.repeat(np.cumsum(spans) - spans, spans))
+            return rows, cols
+
+        values = weights[var_v, var_j].copy(); posed = posed_of(values); history: list[dict[str, Any]] = []
+        best: tuple[float, float, np.ndarray, int] | None = None
+        for round_index in range(count_rounds + 1):
+            contact, summary = contacts(posed)
+            lengths = lengths_of(posed); growth = (lengths - rest[None, :]).max(axis=0)
+            summary.update({"maxEdgeGrowthMm": float(growth.max(initial=0.0)), "edgeGrowth": growth})
+            history.append(summary)
+            # 保留最佳迭代：近似可见穿入不超 POSE_SKIN_ACCEPT_INSIDE 的各轮里取最大边伸长最小者
+            worst_inside = max(summary["visibleInside"].values())
+            key = (0.0 if worst_inside <= POSE_SKIN_ACCEPT_INSIDE else 1.0, summary["maxEdgeGrowthMm"])
+            if best is None or key < best[:2]:
+                best = (*key, values.copy(), len(history) - 1)
+            np.maximum(edge_weight, POSE_SKIN_SMOOTH + POSE_SKIN_TEAR_WEIGHT * _smoothstep(
+                (growth - POSE_SKIN_TEAR_MM) / POSE_SKIN_TEAR_BAND_MM), out=edge_weight)
+            problem[edges[growth > POSE_SKIN_TEAR_MM].reshape(-1)] = True
+            problem[summary["deep"]] = True
+            if verbose:
+                inside = ", ".join(f"{clip} {value:.2%}" for clip, value in summary["visibleInside"].items())
+                print(f"pose-skin {label} {round_index}/{count_rounds}: 可见穿入 {inside}; "
+                      f"最大边伸长 {summary['maxEdgeGrowthMm']:.1f} mm; 接触候选 {len(contact[0])} "
+                      f"[{time.perf_counter() - started:.0f}s]", file=sys.stderr, flush=True)
+            if round_index == count_rounds:
+                break
+            prior = prior_strength()
+            # 不随高斯-牛顿步变化的行：边平滑、贴近输入、和为 1
+            strength = np.sqrt(edge_weight[pair_edge]); take_left, take_right = left >= 0, right >= 0
+            smooth_rows = np.arange(len(pair_edge))
+            fixed_rows = np.r_[smooth_rows[take_left], smooth_rows[take_right], len(pair_edge) + variable_of,
+                               len(pair_edge) + nvar + var_v]
+            fixed_cols = np.r_[left[take_left], right[take_right], variable_of, variable_of]
+            fixed_vals = np.r_[strength[take_left], -strength[take_right], prior[var_v], np.full(nvar, POSE_SKIN_SUM)]
+            fixed_count = len(pair_edge) + nvar + count
+            current = energy(values, posed, contact, prior); damping = 1e-6
+            for _ in range(POSE_SKIN_INNER):
+                left_value = np.where(take_left, values[np.maximum(left, 0)], 0.0)
+                right_value = np.where(take_right, values[np.maximum(right, 0)], 0.0)
+                residual = [strength * (left_value - right_value), prior[var_v] * (values - target),
+                            POSE_SKIN_SUM * (np.bincount(var_v, values, minlength=count) - 1.0)]
+                frame_ids, vertex_ids, normals, limits = contact
+                depth = limits - np.einsum("ij,ij->i", posed[frame_ids, vertex_ids], normals)
+                hit = depth > 0.0
+                hit_rows, hit_cols = rows_for(vertex_ids[hit])
+                hit_vals = -math.sqrt(POSE_SKIN_COLLIDE) * np.einsum(
+                    "ij,ij->i", moved[frame_ids[hit][hit_rows], hit_cols], normals[hit][hit_rows])
+                residual.append(math.sqrt(POSE_SKIN_COLLIDE) * depth[hit])
+                lengths = lengths_of(posed)
+                stretch_rows, stretch_cols, stretch_vals = [], [], []; stretch_count = 0
+                for threshold, weight in ((POSE_SKIN_STRETCH_MM, POSE_SKIN_STRETCH),
+                                          (POSE_SKIN_STRETCH_HARD_MM, POSE_SKIN_STRETCH_HARD)):
+                    stretch_frame, stretch_edge = np.nonzero(lengths - rest[None, :] > threshold)
+                    ends = edges[stretch_edge]
+                    vector = posed[stretch_frame, ends[:, 0]] - posed[stretch_frame, ends[:, 1]]
+                    direction = vector / np.maximum(np.linalg.norm(vector, axis=1), 1e-12)[:, None]
+                    for side, sign in ((0, 1.0), (1, -1.0)):
+                        side_rows, side_cols = rows_for(ends[:, side])
+                        stretch_rows.append(stretch_count + side_rows); stretch_cols.append(side_cols)
+                        stretch_vals.append(sign * math.sqrt(weight) * np.einsum(
+                            "ij,ij->i", moved[stretch_frame[side_rows], side_cols], direction[side_rows]))
+                    residual.append(math.sqrt(weight)
+                                    * (lengths[stretch_frame, stretch_edge] - rest[stretch_edge] - threshold))
+                    stretch_count += len(stretch_edge)
+                rows = np.r_[fixed_rows, fixed_count + hit_rows,
+                             fixed_count + int(hit.sum()) + np.r_[tuple(stretch_rows)]]
+                cols = np.r_[fixed_cols, hit_cols, np.r_[tuple(stretch_cols)]]
+                vals = np.r_[fixed_vals, hit_vals, np.r_[tuple(stretch_vals)]]
+                jacobian = coo_matrix((vals, (rows, cols)), shape=(fixed_count + int(hit.sum()) + stretch_count,
+                                                                   nvar)).tocsr()
+                normal_matrix = (jacobian.T @ jacobian).tocsc(); gradient = jacobian.T @ np.concatenate(residual)
+                scale = float(normal_matrix.diagonal().mean()); accepted = False
+                for _ in range(POSE_SKIN_LM_TRIES):                       # Levenberg-Marquardt：不降则加阻尼重解
+                    step = spsolve(normal_matrix + damping * scale * identity(nvar, format="csc"), -gradient)
+                    solves += 1
+                    step[(values <= 1e-12) & (step < 0.0)] = 0.0             # 已在 0 的权重不再往下（界约束）
+                    alpha = 1.0
+                    for _ in range(POSE_SKIN_LINE_STEPS):
+                        trial = project(values + alpha * step); trial_posed = posed_of(trial)
+                        trial_energy = energy(trial, trial_posed, contact, prior)
+                        if trial_energy < current:
+                            values, posed, current, accepted = trial, trial_posed, trial_energy, True; break
+                        alpha *= 0.5
+                    if accepted:
+                        damping = max(damping * 0.1, 1e-9); break
+                    damping *= 100.0
+                if not accepted:
+                    break
+        assert best is not None
+        history.append({**history[best[3]], "bestRound": best[3]})
+        return expand(best[2]), history, nvar
+
+    # 第 0 轮即输入权重（限候选骨后归一）的采样结果，记作 before；截 4 骨阶段所取的最佳一轮记作 after（收尾局部平滑之前，
+    # 收尾后的最大伸长见 stats["polish"]）。
+    weights = np.where(allowed, base, 0.0)
+    weights /= np.maximum(weights.sum(axis=1, keepdims=True), 1e-20)
+    weights, history, variables = phase(weights, allowed, rounds, "全候选")
+    before = history[0]
+    top_joints, top_values = _top_weights(weights)
+    support = _dense_weights(top_joints, top_values, joint_count) > 0.0
+    weights = np.where(support, weights, 0.0); weights /= np.maximum(weights.sum(axis=1, keepdims=True), 1e-20)
+    weights, history, refit_variables = phase(weights, support, refit_rounds, "截 4 骨")
+    after = history[-1]
+    top_joints, top_values = _top_weights(weights)
+    final = _dense_weights(top_joints, top_values, joint_count)
+    # 收尾（局部平滑）：只对 72 帧里仍超过 POSE_SKIN_POLISH_MM 的少数边，在其两端几环内向邻点均值靠拢，截 4 骨再归一，
+    # 直到最大伸长不超过该值（伸长门 30 mm）；离这些边远的点逐位不动。
+    from scipy.sparse import coo_matrix as _coo
+    adjacency = _coo((np.ones(2 * len(edges)), (np.r_[edges[:, 0], edges[:, 1]], np.r_[edges[:, 1], edges[:, 0]])),
+                     shape=(count, count)).tocsr()
+    adjacency = adjacency.multiply(1.0 / np.maximum(np.asarray(adjacency.sum(axis=1)).ravel(), 1.0)[:, None]).tocsr()
+    polish_steps = 0; polished = np.zeros(count, dtype=bool); rings = POSE_SKIN_POLISH_RINGS
+    best_growth, stalled = math.inf, 0
+    for polish_steps in range(POSE_SKIN_POLISH_ITERS + 1):
+        growth = np.zeros(len(edges))
+        for frame in frames:
+            posed = np.einsum("vj,jab,vb->va", final, frame.skin[:, :3, :], homogeneous)
+            growth = np.maximum(growth, np.linalg.norm(posed[edges[:, 1]] - posed[edges[:, 0]], axis=1) * mm_per_mu - rest)
+        bad = growth > POSE_SKIN_POLISH_MM
+        if not bad.any() or polish_steps == POSE_SKIN_POLISH_ITERS:
+            break
+        if growth.max() < best_growth - 0.1:
+            best_growth, stalled = float(growth.max()), 0
+        else:
+            stalled += 1
+            if stalled >= POSE_SKIN_POLISH_PATIENCE and rings < POSE_SKIN_POLISH_MAX_RINGS:
+                rings += 1; stalled = 0
+        region = _ring_distance(np.isin(np.arange(count), edges[bad].reshape(-1)), edges, rings) <= rings
+        polished |= region
+        blended = final.copy()
+        blended[region] = (1.0 - POSE_SKIN_POLISH_STEP) * final[region] + POSE_SKIN_POLISH_STEP * (adjacency @ final)[region]
+        top_joints, top_values = _top_weights(blended[region])
+        final[region] = _dense_weights(top_joints, top_values, joint_count)
+    stats_polish = {"steps": int(polish_steps), "vertices": int(np.count_nonzero(polished)), "rings": int(rings),
+                    "maxEdgeGrowthMm": float(growth.max(initial=0.0))}
+    stats = {"variables": int(variables), "refitVariables": int(refit_variables),
+             "problemVertices": int(np.count_nonzero(problem)), "solves": solves,
+             "bestRefitRound": int(after.get("bestRound", -1)), "polish": stats_polish,
+             "tearEdges": int(np.count_nonzero(edge_weight > POSE_SKIN_SMOOTH * (1.0 + 1e-9))),
+             "approx": {name: {"visibleInside": value["visibleInside"],
+                               "maxEdgeGrowthMm": value["maxEdgeGrowthMm"]}
+                        for name, value in (("before", before), ("after", after))}}
+    return final, stats
+
+
+def pose_skin_weights(points: np.ndarray, faces: np.ndarray, joints: np.ndarray, weights: np.ndarray,
+                      body_glb: GLB, body_mesh: Mesh, skeleton: dict[str, Any], *,
+                      inverse_bind: np.ndarray, arm_abduction: float = 0.0,
+                      hidden: np.ndarray | None = None, joints_allowed: Sequence[str] | None = None,
+                      frames: int = POSE_SKIN_FRAMES, rounds: int = POSE_SKIN_ROUNDS,
+                      refit_rounds: int = POSE_SKIN_REFIT_ROUNDS, verbose: bool = False
+                      ) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
+    """按模板 idle / walk / run（含衣物声明的手臂外展）采样重解整件衣物的蒙皮权重。
+
+    同位置顶点（UV 缝）先焊接、共用一组权重；候选骨 = POSE_SKIN_RINGS 环内输入权重出现过的骨 +
+    其父骨（限 ``joints_allowed``）；``hidden`` 为身体顶点是否被遮罩隐藏（None 视为全部可见）。"""
+    try:
+        from .validate import _world_matrices
+    except ImportError:
+        from validate import _world_matrices
+    if frames < 2 or rounds < 0 or refit_rounds < 0 or not 0.0 <= arm_abduction <= 20.0:
+        raise GarmentError("pose-skin 参数无效")
+    if body_mesh.normals is None or body_mesh.joints is None or body_mesh.weights is None:
+        raise GarmentError("按姿势蒙皮要求模板含 NORMAL / JOINTS_0 / WEIGHTS_0")
+    names = list(skeleton["joints"]); joint_count = len(names)
+    m_per_mu = float(skeleton["mPerMu"]); mm_per_mu = 1000.0 * m_per_mu
+    points = np.asarray(points, dtype=np.float64); faces = np.asarray(faces, dtype=np.int64).reshape(-1, 3)
+    _, first, inverse = np.unique(np.round(points, 7), axis=0, return_index=True, return_inverse=True)
+    inverse = np.asarray(inverse).reshape(-1); welded = points[first]
+    base = _dense_weights(joints, weights, joint_count)[first]
+    welded_faces = inverse[faces]
+    edges = np.unique(np.sort(np.concatenate((welded_faces[:, [0, 1]], welded_faces[:, [1, 2]],
+                                              welded_faces[:, [2, 0]])), axis=1), axis=0)
+    edges = edges[edges[:, 0] != edges[:, 1]]
+    surface = SurfaceIndex(body_mesh.positions, body_mesh.indices.reshape(-1, 3), body_mesh.normals)
+    distance_mm = surface.query(welded)[3] * mm_per_mu
+    loose = _smoothstep((distance_mm - POSE_SKIN_LOOSE_MM) / POSE_SKIN_BLEND_MM)
+    reach = base > POSE_SKIN_MIN_WEIGHT
+    for _ in range(POSE_SKIN_RINGS):
+        grown = reach.copy()
+        np.logical_or.at(grown, edges[:, 0], reach[edges[:, 1]])
+        np.logical_or.at(grown, edges[:, 1], reach[edges[:, 0]])
+        reach = grown
+    allowed = reach.copy(); parents = np.asarray(skeleton["parents"], dtype=np.int64)
+    for slot in range(joint_count):
+        if parents[slot] >= 0: allowed[reach[:, slot], parents[slot]] = True
+    if joints_allowed is not None:
+        unknown = sorted(set(joints_allowed) - set(names))
+        if unknown: raise GarmentError(f"jointsAllowed 含未知骨：{unknown}")
+        allowed &= np.isin(names, list(joints_allowed))[None, :]
+    allowed |= base > 0.0
+    skin = body_glb.skin(); joint_nodes = np.asarray(skin.joints)
+    animations = {str(value.get("name", "")).lower(): value for value in body_glb.json.get("animations", [])}
+    body_faces = body_mesh.indices.reshape(-1, 3); sampled: list[PoseFrame] = []
+    for clip in ("idle", "walk", "run"):
+        animation = next((value for name, value in animations.items() if clip in name), None)
+        if animation is None: raise GarmentError(f"按姿势蒙皮缺 {clip} 动画")
+        duration = max((float(np.asarray(body_glb.accessor(item["input"])).max(initial=0.0))
+                        for item in animation.get("samplers", [])), default=0.0)
+        for time_sec in np.linspace(0.0, duration, frames, endpoint=False):
+            world = _world_matrices(body_glb, animation, float(time_sec), arm_abduction)[joint_nodes]
+            body = lbs(body_mesh.positions, body_mesh.joints, body_mesh.weights, world,
+                       skin.inverse_bind_matrices)
+            sampled.append(PoseFrame(clip, world @ np.asarray(inverse_bind, dtype=np.float64),
+                                     body, vertex_normals(body, body_faces)))
+    dense, stats = _pose_skin_solve(welded, edges, base, allowed, loose, sampled, mm_per_mu, hidden,
+                                    rounds=rounds, refit_rounds=refit_rounds, verbose=verbose)
+    top_joints, top_values = _top_weights(dense)
+    changed = np.abs(dense - base).sum(axis=1)
+    return top_joints[inverse], top_values[inverse], {
+        "method": "pose-sampled-smooth-least-squares", "armAbductionDeg": float(arm_abduction),
+        "framesPerClip": int(frames), "sampledFrames": len(sampled),
+        "weldedVertices": int(len(welded)), "edges": int(len(edges)),
+        "looseVertices": int(np.count_nonzero(loose > 0.0)),
+        "rounds": int(rounds), "refitRounds": int(refit_rounds),
+        "maxDenseWeightL1Delta": float(changed.max(initial=0.0)),
+        "meanDenseWeightL1Delta": float(changed.mean()) if len(changed) else 0.0,
+        "params": {"looseMm": POSE_SKIN_LOOSE_MM, "blendMm": POSE_SKIN_BLEND_MM, "rings": POSE_SKIN_RINGS,
+                   "smooth": POSE_SKIN_SMOOTH, "tearMm": POSE_SKIN_TEAR_MM,
+                   "tearBandMm": POSE_SKIN_TEAR_BAND_MM, "tearWeight": POSE_SKIN_TEAR_WEIGHT,
+                   "priorClose": POSE_SKIN_PRIOR_CLOSE, "priorLoose": POSE_SKIN_PRIOR_LOOSE,
+                   "sum": POSE_SKIN_SUM, "collide": POSE_SKIN_COLLIDE, "marginMm": POSE_SKIN_MARGIN_MM,
+                   "contactMm": POSE_SKIN_CONTACT_MM, "stretch": POSE_SKIN_STRETCH, "stretchMm": POSE_SKIN_STRETCH_MM,
+                   "stretchHard": POSE_SKIN_STRETCH_HARD, "stretchHardMm": POSE_SKIN_STRETCH_HARD_MM,
+                   "localCoreRings": POSE_SKIN_LOCAL_CORE, "localRings": POSE_SKIN_LOCAL_RINGS,
+                   "inner": POSE_SKIN_INNER, "lineSteps": POSE_SKIN_LINE_STEPS, "lmTries": POSE_SKIN_LM_TRIES,
+                   "acceptInside": POSE_SKIN_ACCEPT_INSIDE, "depthMm": POSE_SKIN_DEPTH_MM,
+                   "polishMm": POSE_SKIN_POLISH_MM, "polishRings": POSE_SKIN_POLISH_RINGS,
+                   "polishMaxRings": POSE_SKIN_POLISH_MAX_RINGS, "polishPatience": POSE_SKIN_POLISH_PATIENCE,
+                   "polishStep": POSE_SKIN_POLISH_STEP, "polishIters": POSE_SKIN_POLISH_ITERS},
+        **stats}
+
+
+def _write_pose_accessors(glb: GLB, values: dict[str, np.ndarray], out_path: Path) -> None:
+    """原位重写未压缩交付件的 JOINTS_0 / WEIGHTS_0 / _REGION，其余 GLB 字节不变。"""
+    primitive = glb.json["meshes"][0]["primitives"][0]
+    binary = bytearray(glb.bin)
+    dtypes = {5121: "u1", 5123: "<u2", 5126: "<f4"}
+    for semantic, source in values.items():
+        accessor = glb.json["accessors"][primitive["attributes"][semantic]]
+        component = int(accessor.get("componentType", -1))
+        if component not in dtypes or int(accessor.get("count", -1)) != len(source):
+            raise GarmentError(f"{semantic} accessor 格式不符")
+        packed = np.asarray(source).reshape(len(source), -1)
+        if component != 5126 and (packed.min(initial=0) < 0 or packed.max(initial=0) >= 256 ** np.dtype(dtypes[component]).itemsize):
+            raise GarmentError(f"{semantic} 超出 accessor 整数范围")
+        packed = packed.astype(dtypes[component])
+        view = glb.json["bufferViews"][accessor["bufferView"]]
+        if "extensions" in view or accessor.get("normalized") or "sparse" in accessor:
+            raise GarmentError("姿势蒙皮输入须为未压缩交付件（先 pack_glb.mjs --no-meshopt 解压）")
+        item = packed.shape[1] * packed.dtype.itemsize; stride = int(view.get("byteStride", item))
+        offset = int(view.get("byteOffset", 0)) + int(accessor.get("byteOffset", 0))
+        for row, value in enumerate(packed):
+            binary[offset + row * stride:offset + row * stride + item] = value.tobytes()
+        if "min" in accessor or "max" in accessor:
+            accessor["min"] = packed.min(axis=0).tolist(); accessor["max"] = packed.max(axis=0).tolist()
+    text = json.dumps(glb.json, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    text += b" " * (-len(text) % 4); binary += b"\0" * (-len(binary) % 4)
+    payload = (struct.pack("<III", 0x46546C67, 2, 12 + 8 + len(text) + 8 + len(binary))
+               + struct.pack("<II", len(text), 0x4E4F534A) + text
+               + struct.pack("<II", len(binary), 0x004E4942) + bytes(binary))
+    temporary = out_path.with_name("." + out_path.name + ".pose.tmp")
+    temporary.write_bytes(payload); temporary.replace(out_path); out_path.chmod(0o644)
+
+
+def pose_skin_file(body_path: Path, skeleton_path: Path, garment_path: Path, fit_path: Path,
+                   output_dir: Path, *, arm_abduction: float, mask_path: Path | None = None,
+                   frames: int = POSE_SKIN_FRAMES, rounds: int = POSE_SKIN_ROUNDS,
+                   refit_rounds: int = POSE_SKIN_REFIT_ROUNDS, verbose: bool = False) -> dict[str, Any]:
+    """在已贴合、未压缩的交付网格上按姿势重解蒙皮权重，几何 / 贴图 / 源映射逐字节不变。
+
+    输出同名 GLB 到 ``output_dir``；``fit_path`` 原位写 ``poseOffset.armAbductionDeg`` 与
+    ``weights.poseSkin``（遮罩随后由 bake_hide_mask 按同一外展角重烘）。"""
+    started = time.perf_counter()
+    body_glb = load_glb(body_path); body_mesh = load_world_mesh(body_glb, skinned_only=True)
+    garment_glb = load_glb(garment_path); garment = load_world_mesh(garment_glb, skinned_only=True)
+    if garment.joints is None or garment.weights is None or len(garment_glb.json.get("meshes", [])) != 1 \
+            or len(garment_glb.json["meshes"][0].get("primitives", [])) != 1:
+        raise GarmentError("姿势蒙皮要求单 mesh、单 primitive 的蒙皮衣物")
+    skeleton = json.loads(skeleton_path.read_text(encoding="utf-8"))
+    fit = json.loads(fit_path.read_text(encoding="utf-8"))
+    if fit.get("kind") != "garment" or fit.get("template") != body_path.parent.name:
+        raise GarmentError("--fit 须是同一模板的 garment fit.json")
+    names = [garment_glb.json["nodes"][int(node)].get("name") for node in garment_glb.json["skins"][0]["joints"]]
+    body_names = [body_glb.json["nodes"][int(node)].get("name") for node in body_glb.skin().joints]
+    if names != body_names or names != list(skeleton["joints"]):
+        raise GarmentError("衣物、模板与 skeleton.json 的骨骼名单须逐项相同")
+    hidden = None; mask_record = None
+    if mask_path is not None:
+        try:
+            from .validate import _sample_hide_mask
+        except ImportError:
+            from validate import _sample_hide_mask
+        if body_mesh.uvs is None: raise GarmentError("遮罩需要模板 TEXCOORD_0")
+        with Image.open(mask_path) as image:
+            if image.mode != "L": raise GarmentError("--pose-skin-mask 须为 L8 PNG")
+            mask = np.asarray(image, dtype=np.float32) / 255.0
+        hidden = _sample_hide_mask(mask, body_mesh.uvs) >= 0.5
+        # 只记哈希：解权重用的是上一版遮罩，随后会被 bake_hide_mask 按新权重原位重烘覆盖
+        mask_record = {"sha256": _sha256(mask_path), "hiddenBodyVertices": int(np.count_nonzero(hidden))}
+    joints, weights, stats = pose_skin_weights(
+        garment.positions, garment.indices.reshape(-1, 3), garment.joints, garment.weights,
+        body_glb, body_mesh, skeleton, inverse_bind=garment_glb.skin().inverse_bind_matrices,
+        arm_abduction=arm_abduction, hidden=hidden, joints_allowed=fit.get("weights", {}).get("jointsAllowed"),
+        frames=frames, rounds=rounds, refit_rounds=refit_rounds, verbose=verbose)
+    regions = derive_regions(joints, weights, skeleton)
+    output_dir.mkdir(parents=True, exist_ok=True); out_path = output_dir / garment_path.name
+    _write_pose_accessors(garment_glb, {"JOINTS_0": joints, "WEIGHTS_0": weights, "_REGION": regions}, out_path)
+    geometry = hashlib.sha256(np.asarray(garment.positions, dtype="<f4").tobytes()
+                              + np.asarray(garment.indices, dtype="<u4").tobytes()).hexdigest()
+    fit["poseOffset"] = {"armAbductionDeg": float(arm_abduction)}
+    fit["weights"] = {**fit.get("weights", {}), "poseSkin": {
+        **stats, "input": {"geometrySha256": geometry},
+        **({"mask": mask_record} if mask_record else {}),
+        "elapsedSec": time.perf_counter() - started}}
+    fit = _round(fit); temporary = fit_path.with_name("." + fit_path.name + ".tmp")
+    temporary.write_text(json.dumps(fit, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.replace(fit_path); fit_path.chmod(0o644)
+    return fit
 
 
 def edge_weight_blend(points: np.ndarray, faces: np.ndarray, source_joints: np.ndarray,
@@ -1635,11 +2138,42 @@ def build_parser() -> argparse.ArgumentParser:
                         help="显式源皮肤 Lab 均值；省略时从最初带 skin 的源模型取手部中位数")
     parser.add_argument("--allow-draft", action="store_true",
                         help="门禁未通过时仍写 status=draft；默认非零退出且不写产物")
+    pose = parser.add_argument_group("按姿势重解蒙皮（E2c，默认关闭）")
+    pose.add_argument("--pose-skin", action="store_true",
+                      help="--garment 为已贴合、未压缩的交付网格（pack_glb.mjs --no-meshopt）：只重解蒙皮权重，"
+                           "几何 / 贴图 / 源映射不变；同名 GLB 写到 --out，--fit 原位写 poseOffset 与 weights.poseSkin")
+    pose.add_argument("--fit", type=Path, help="--pose-skin 原位更新的 fit.json")
+    pose.add_argument("--arm-abduction-deg", type=float, default=0.0,
+                      help="衣物声明的手臂外展角（度，0..20）；采样与运行时同口径")
+    pose.add_argument("--pose-skin-mask", type=Path,
+                      help="身体遮罩 L8 PNG：被隐藏处的穿入不计（省略时全部视为可见）")
+    pose.add_argument("--pose-skin-frames", type=int, default=POSE_SKIN_FRAMES, help="每段动作采样帧数，默认 24")
+    pose.add_argument("--pose-skin-rounds", type=int, default=POSE_SKIN_ROUNDS, help="全候选骨轮数")
+    pose.add_argument("--pose-skin-refit-rounds", type=int, default=POSE_SKIN_REFIT_ROUNDS,
+                      help="截 4 骨后固定支撑集的轮数")
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.pose_skin:
+        try:
+            if args.fit is None or args.kind != "garment":
+                raise GarmentError("--pose-skin 需要 --fit，且只用于 --kind garment")
+            recorded_id = json.loads(args.fit.read_text(encoding="utf-8")).get("id")
+            if recorded_id != args.id:
+                raise GarmentError(f"--id {args.id} 与 fit.json id {recorded_id} 不符")
+            result = pose_skin_file(args.body, args.skeleton, args.garment, args.fit, args.out,
+                                    arm_abduction=args.arm_abduction_deg, mask_path=args.pose_skin_mask,
+                                    frames=args.pose_skin_frames, rounds=args.pose_skin_rounds,
+                                    refit_rounds=args.pose_skin_refit_rounds, verbose=not args.json)
+        except (OSError, ValueError, json.JSONDecodeError, RuntimeError) as error:
+            print(f"输入错误：{error}", file=sys.stderr); return 2
+        if args.json: print(json.dumps(result, ensure_ascii=False, sort_keys=True, separators=(",", ":")))
+        else:
+            print(f"已输出 {args.out / args.garment.name}，并更新 {args.fit}；"
+                  f"耗时 {result['weights']['poseSkin']['elapsedSec']:.1f}s")
+        return 0
     try:
         result = fit_file(args.body, args.skeleton, args.garment, args.out, args.kind, args.slot, args.id,
                           remove_stub=args.remove_body_stub, push_mm=args.push_mm, iters=args.iters,
@@ -1662,7 +2196,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 __all__ = ["ALIGN_MODES", "EDGE_WEIGHT_MODES", "PUSH_MODES", "WEIGHT_SOURCE_MODES", "GarmentError", "GarmentGateError", "SurfaceIndex", "align_landmarks", "allowed_joint_indices",
            "align_joints", "derive_regions", "filter_existing_weights", "fit_file",
-           "edge_weight_blend", "encode_skin_clean_texture", "hide_regions", "load_skull_profile", "load_world_mesh", "mm_to_mu", "push_out", "volume_push",
+           "edge_weight_blend", "encode_skin_clean_texture", "hide_regions", "load_skull_profile", "load_world_mesh", "mm_to_mu",
+           "pose_skin_file", "pose_skin_weights", "push_out", "volume_push",
            "transfer_template_weights", "transfer_weights", "vertex_normals"]
 
 

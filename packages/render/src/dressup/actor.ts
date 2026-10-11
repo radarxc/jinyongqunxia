@@ -31,8 +31,18 @@ interface Equipment {
   readonly triangles: number;
   readonly skinTint?: readonly [number, number, number];
   readonly hideMap?: DressupHideMapSpec;
+  readonly armAbductionDeg: number;
 }
 interface FingerBone { readonly bone: Bone; readonly pose: readonly number[] }
+interface ArmAbductionSide {
+  readonly bone: Bone;
+  readonly sign: number;
+  /** Mixer (or rest) pose before abduction; refreshed whenever the mixer writes a new one. */
+  readonly base: Quaternion;
+  /** What this module wrote last; a mismatch means the mixer has written a fresh pose since. */
+  readonly written: Quaternion;
+}
+interface ArmAbduction { readonly available: boolean; apply(radians: number): void }
 interface LayerCacheEntry { readonly promise: Promise<Texture>; refs: number; texture?: Texture }
 interface LayerLease { readonly key: string; readonly texture: Texture }
 type MappableMaterial = Material & { map?: Texture | null };
@@ -306,6 +316,60 @@ function collectFingerBones(
   return result;
 }
 
+const ARM_ABDUCTION_MAX_DEG = 20;
+/** Same convention as validate.ARM_ABDUCTION_JOINTS: +Z forward, left arm at +X turns by +angle about +Z. */
+const ARM_ABDUCTION_SIDES: readonly (readonly [string, number])[] = [['LeftArm', 1], ['RightArm', -1]];
+const MODEL_FORWARD = new Vector3(0, 0, 1);
+
+function garmentArmAbduction(spec: DressupEquipSpec): number {
+  const value = spec.fit.poseOffset?.armAbductionDeg;
+  if (spec.kind !== 'garment' || value === undefined) return 0;
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > ARM_ABDUCTION_MAX_DEG) {
+    throw new Error(`${DressupError.PoseOffsetRange}:${spec.id}`);
+  }
+  return value;
+}
+
+/**
+ * Turns both Arm bones (children follow) outward about the model +Z axis at the shoulder pivot,
+ * after the mixer has written the frame's pose. The offset is premultiplied onto the local rotation
+ * in the parent's frame, so no hierarchy change is needed; the mixer pose is restored before each
+ * application, so frames without a mixer write never accumulate. No allocation per frame.
+ */
+function createArmAbduction(skeleton: Skeleton, frame: DressupSkeletonFrame, modelRoot: Object3D): ArmAbduction {
+  const byName = new Map<string, Bone>();
+  for (const bone of skeleton.bones) byName.set(sanitized(bone.name), bone);
+  const sides: ArmAbductionSide[] = [];
+  for (const [joint, sign] of ARM_ABDUCTION_SIDES) {
+    const name = frame.joints.find(value => value.split(':').pop() === joint);
+    const bone = name === undefined ? undefined : byName.get(sanitized(name));
+    if (bone) sides.push({ bone, sign, base: bone.quaternion.clone(), written: new Quaternion(NaN, NaN, NaN, NaN) });
+  }
+  const chain = new Quaternion(); const axis = new Vector3(); const offset = new Quaternion();
+  let applied = 0;
+  return {
+    available: sides.length === ARM_ABDUCTION_SIDES.length,
+    apply(radians: number): void {
+      if (radians === 0 && applied === 0) return;
+      for (let index = 0; index < sides.length; index += 1) {
+        const side = sides[index]!; const quaternion = side.bone.quaternion;
+        if (!quaternion.equals(side.written)) side.base.copy(quaternion);
+        quaternion.copy(side.base);
+        if (radians !== 0) {
+          chain.identity();
+          for (let node = side.bone.parent; node && node !== modelRoot; node = node.parent) {
+            chain.premultiply(node.quaternion);
+          }
+          axis.copy(MODEL_FORWARD).applyQuaternion(chain.invert());
+          quaternion.premultiply(offset.setFromAxisAngle(axis, side.sign * radians));
+        }
+        side.written.copy(quaternion);
+      }
+      applied = radians;
+    },
+  };
+}
+
 function writeFingerPose(values: readonly FingerBone[]): void {
   for (let index = 0; index < values.length; index += 1) {
     const value = values[index]!;
@@ -370,6 +434,8 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
   const hideMapCompositor = options.hideMapCompositor ?? defaultHideMapCompositor;
   const leftFingers = collectFingerBones(body.skeleton, access, 'Left');
   const rightFingers = collectFingerBones(body.skeleton, access, 'Right');
+  const armAbduction = createArmAbduction(body.skeleton, frame, bodyRoot);
+  let armAbductionRadians = 0;
   const originalBonePositions = new Map<string, Vector3>();
   for (const bone of body.skeleton.bones) originalBonePositions.set(sanitized(bone.name), bone.position.clone());
   const gripMatrix = new Matrix4();
@@ -389,17 +455,21 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
   let hideMapEnabled = true; let hideMapLease: LayerLease | undefined; let hideMapRequest = 0;
   let headId: string | undefined; let pendingHeadId: string | undefined; let headRequest = 0;
   const hideMapStats = stat as { hideMaps: readonly string[]; hideMapSize?: number; hideMapError?: string };
+  const poseStats = stat as { armAbductionDeg?: number };
 
   const requireActive = (): void => { if (disposed) throw new Error(DressupError.Disposed); };
   const refreshState = (): void => {
     let hidden = debugMask; let never = 0; let draws = baseDrawCalls; let tris = baseTriangles;
     leftHeld = false; rightHeld = false;
-    let skinTint: readonly [number, number, number] | undefined;
+    let skinTint: readonly [number, number, number] | undefined; let abduction = 0;
     for (const value of equipment.values()) {
       hidden |= value.hideMask; never |= value.neverMask; draws += value.drawCalls;
       tris += value.triangles; leftHeld ||= value.leftHand; rightHeld ||= value.rightHand;
       if (value.skinTint) skinTint = value.skinTint;
+      abduction = Math.max(abduction, value.armAbductionDeg);
     }
+    armAbductionRadians = abduction * Math.PI / 180;
+    if (abduction > 0) poseStats.armAbductionDeg = abduction; else delete poseStats.armAbductionDeg;
     hidden = (hidden & ~never) >>> 0;
     for (const material of maskMaterials) setRegionHideMask(material, hidden);
     for (const material of bodyMaterials) {
@@ -477,6 +547,10 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
     requireActive();
     const hideMask = maskFor(access, spec.fit.hideRegions);
     const neverMask = maskFor(access, spec.fit.neverHide);
+    const armAbductionDeg = garmentArmAbduction(spec);
+    if (armAbductionDeg > 0 && !armAbduction.available) {
+      throw new Error(`${DressupError.BoneUnknown}:${ARM_ABDUCTION_SIDES.map(([joint]) => joint).join(',')}`);
+    }
     const request = spec.kind === 'head' ? ++headRequest : 0;
     if (spec.kind === 'head') pendingHeadId = spec.id;
     const base = typeof document !== 'undefined' ? document.baseURI : 'http://localhost/';
@@ -504,7 +578,7 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
         leftHand: spec.kind === 'prop' && socket === 'gripL',
         ...(hideMap ? { hideMap } : {}),
         ...(spec.kind === 'head' && spec.fit.skinTint ? { skinTint: spec.fit.skinTint } : {}),
-        ...equipmentMetrics(attached),
+        armAbductionDeg, ...equipmentMetrics(attached),
       });
       if (spec.kind === 'head') { headId = spec.id; pendingHeadId = undefined; }
       refreshState();
@@ -586,6 +660,7 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
     },
     update(dt) {
       if (disposed) return; updated = true; mixer.update(dt);
+      armAbduction.apply(armAbductionRadians);
       if (leftHeld) writeFingerPose(leftFingers);
       if (rightHeld) writeFingerPose(rightFingers);
       root.updateMatrixWorld(true);
@@ -600,6 +675,7 @@ export async function createDressupActor(options: DressupActorOptions): Promise<
       for (const material of maskMaterials) setHideMap(material, null, false);
       releaseLayerTexture(hideMapLease); hideMapLease = undefined;
       hideMapStats.hideMaps = []; delete hideMapStats.hideMapSize; delete hideMapStats.hideMapError;
+      delete poseStats.armAbductionDeg;
       disposeTree(bodyRoot, bodyTextures); body.skeleton.boneTexture?.dispose(); root.clear();
       (stat as { drawCalls: number }).drawCalls = 0;
       (stat as { triangles: number }).triangles = 0;
