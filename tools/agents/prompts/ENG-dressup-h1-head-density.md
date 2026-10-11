@@ -19,7 +19,7 @@
    - `fit.json.source` 加 `texture {path, sha256, size}`；诊断加 `atlas {mode: packed, islands, scaleDstPerSrc, headCoverage, linearGainVsLegacy}`。
    - 不给 `--texture` 时输出与现在逐字节一致（回归判据）。
 2. 测试（`tests_head.py`）：合成多岛排布无重叠、都在画布内、gutter ≥ 2 px、全岛同一缩放；UV 改写后在新图集按新 UV 取样 ≈ 在高清图按旧 UV 取样（误差有界）；布局不符时退出 2；无 `--texture` 路径不变。
-3. 8K 贴图（从上面两次导出无损取出的 PNG）放主检出本地素材库 `apps/game/public/models/props/npc_huangrong_basecolor_8k.png`、`npc_munianci_basecolor_8k.png`（未入 git，与 Tripo 原始件同一约定），`fit.json` 记仓库相对路径 + sha256。
+3. 8K 贴图（从上面两次导出原样取出的 baseColor JPEG 字节，不转码）放主检出本地素材库 `apps/game/public/models/props/npc_huangrong_basecolor_8k.jpg`、`npc_munianci_basecolor_8k.jpg`，整份 8K 导出另存同目录 `<npc>_tripo_8k_raw.glb`（未入 git，与 Tripo 原始件同一约定），`fit.json` 记仓库相对路径 + sha256。
 4. 用 `--texture` 重切黄蓉（`--source assets/default/model3d/npc_huangrong/model_rig.glb`）与穆念慈（`--source assets/default/model3d/dressup/heads/npc_munianci/source/tripo_rig_s07.glb`）× tpl_f_medium / tall / small；各自 `gateLevel: pass`、report `level: draft`，manifest 同步。
 5. `shoot_head.mjs` 新旧对照：正脸 / 3/4 / 侧面近景，放 `heads/<npc>/shots/density.tpl_f_medium.jpg`（另两体型各一张全身小图即可）。
 
@@ -28,7 +28,7 @@
 - 近景截图里眉、睫毛、虹膜、发丝明显更清晰；发际线 / 颈缝无新接缝、无渗色。
 
 ## 约束
-- 只写 `tools/model3d/dressup/cut_head.py`、`tools/model3d/dressup/tests_head.py`、`assets/default/model3d/dressup/heads/npc_huangrong/**`、`assets/default/model3d/dressup/heads/npc_munianci/**`、本任务报告；本地素材库两张 PNG 不入 git。
+- 只写 `tools/model3d/dressup/cut_head.py`、`tools/model3d/dressup/tests_head.py`、`assets/default/model3d/dressup/heads/npc_huangrong/**`、`assets/default/model3d/dressup/heads/npc_munianci/**`、本任务报告；本地素材库两张 JPEG 与两份 8K 导出不入 git。
 - 0 点：不生成、不绑骨；不加依赖；不改门禁阈值；测试不写真实素材。
 
 检查：
