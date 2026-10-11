@@ -4,6 +4,7 @@ import {
   type AnimationAction,
 } from 'three';
 import type { Intersection, Mesh, Object3D } from 'three';
+import { DEFAULT_PLAYER_HEIGHT_M } from '../actors/heights';
 import type { PilotModel } from '../gltf/load';
 import { cameraBack, IsoCameraRotation, normalizeYaw } from '../camera/iso-camera';
 import { hexDirToRig } from '../camera/facing';
@@ -42,6 +43,7 @@ function initialChunkOrder(view: RegionStaticView, focus: RegionHexPoint): reado
 export async function createRegionScene(canvas: HTMLCanvasElement, definition: RegionStaticView,
   options: RegionSceneOptions): Promise<RegionScene> {
   let disposed = false;
+  const playerHeightM = options.playerHeightM ?? DEFAULT_PLAYER_HEIGHT_M.male;
   const rig = await (options.loadRigRuntime ?? (() => import('../rig/runtime')))();
   const renderer = new WebGLRenderer({ canvas, alpha: false, antialias: false,
     preserveDrawingBuffer: true,
@@ -111,7 +113,7 @@ export async function createRegionScene(canvas: HTMLCanvasElement, definition: R
     const modelUrl = options.playerModelUrl ?? '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb';
     try {
       const { loadPilotModel } = await import('../gltf/load');
-      const pilot = await loadPilotModel(modelUrl, 3.4);
+      const pilot = await loadPilotModel(modelUrl, playerHeightM, { stature: 'headTop' });
       if (!disposed) {
         player3D = pilot;
         pilot.scene.name = 'region-player-3d';

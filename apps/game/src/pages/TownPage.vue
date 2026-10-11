@@ -241,7 +241,8 @@ async function mountScene(): Promise<void> {
       ? '/assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb'
       : '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb';
     view = await createTownScene(target, definition, {
-      projection: townSceneProjection, zoom: zoom.value, spriteFor, playerModelUrl });
+      projection: townSceneProjection, zoom: zoom.value, spriteFor, playerModelUrl,
+      playerHeightM: isFemale ? 1.66 : 1.81 });
     (window as unknown as { __townView?: unknown }).__townView = view;
     observer = new ResizeObserver(([entry]) => {
       if (entry) view?.resize(entry.contentRect.width, entry.contentRect.height, window.devicePixelRatio);

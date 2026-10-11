@@ -7,6 +7,8 @@ const fake = vi.hoisted(() => ({
   rigSet: { texture: { needsUpdate: false }, dispose: vi.fn() },
   motions: [] as number[], scene: undefined as Three.Scene | undefined,
   deferEquipment: false, equipmentUpdates: [] as Array<{ resolve: () => void }>,
+  modelLoads: [] as Array<{ url: string; heightM: number; options: unknown }>,
+  characterPositions: [] as Array<Array<readonly [number, number, number]>>,
 }));
 vi.mock('three', async (importOriginal) => {
   const actual = await importOriginal<typeof Three>();
@@ -22,30 +24,51 @@ vi.mock('three', async (importOriginal) => {
 });
 vi.mock('../rig/manifest', () => ({ loadRigSet: vi.fn(async () => fake.rigSet) }));
 vi.mock('../rig/placeholder', () => ({ createPlaceholderRigManifest: vi.fn(() => ({})) }));
-vi.mock('../rig/character', () => ({ createRigCharacter: vi.fn((_set, equipment) => ({
-  activeInstanceCount: 1, equipment, setEquipment: vi.fn(() => fake.deferEquipment
+vi.mock('../rig/character', () => ({ createRigCharacter: vi.fn((_set, equipment) => {
+  const positions: Array<readonly [number, number, number]> = []; fake.characterPositions.push(positions);
+  return { activeInstanceCount: 1, equipment, setEquipment: vi.fn(() => fake.deferEquipment
     ? new Promise<void>((resolve) => fake.equipmentUpdates.push({ resolve })) : Promise.resolve()),
-  setPosition: vi.fn(), setMotion: vi.fn((direction: number) => fake.motions.push(direction)),
-  update: vi.fn(), dispose: vi.fn(), writeInstances: vi.fn(),
-})) }));
+  setPosition: vi.fn((...position: [number, number, number]) => positions.push(position)),
+  setMotion: vi.fn((direction: number) => fake.motions.push(direction)),
+  update: vi.fn(), dispose: vi.fn(), writeInstances: vi.fn() };
+}) }));
 vi.mock('../rig/batch', () => ({ RigBatch: class {
   readonly stats = { characters: 0, activeInstances: 0 };
   addTo() {} add() { this.stats.characters += 1; this.stats.activeInstances += 1; }
   sync() {} dispose() {}
 } }));
+vi.mock('../gltf/load', async () => {
+  const { Group } = await import('three');
+  return { loadPilotModel: vi.fn(async (url: string, heightM: number, options: unknown) => {
+    fake.modelLoads.push({ url, heightM, options });
+    return { scene: new Group(), clips: [], setToon: vi.fn(), dispose: vi.fn() };
+  }) };
+});
 
 import { DirectionalLight } from 'three';
 import { createRegionScene } from './scene';
 import { regionDynamicFixture, regionStaticFixture } from './test-fixture';
 
 beforeEach(() => { fake.motions.length = 0; fake.scene = undefined; fake.deferEquipment = false;
-  fake.equipmentUpdates.length = 0; vi.clearAllMocks(); });
+  fake.equipmentUpdates.length = 0; fake.modelLoads.length = 0; fake.characterPositions.length = 0;
+  vi.clearAllMocks(); });
 describe('region camera and lifecycle', () => {
   it('loads the rig runtime when the region is first entered', async () => {
     const loadRigRuntime = vi.fn(() => import('../rig/runtime'));
     const scene = await createRegionScene(document.createElement('canvas'), regionStaticFixture(2, 1),
       { projection: regionDynamicFixture(), loadRigRuntime });
     expect(loadRigRuntime).toHaveBeenCalledOnce();
+    scene.dispose();
+  });
+
+  it('uses the requested head-top stature and hides the rig after the GLB is ready', async () => {
+    const scene = await createRegionScene(document.createElement('canvas'), regionStaticFixture(2, 1),
+      { projection: regionDynamicFixture(), playerHeightM: 1.66 });
+    expect(fake.modelLoads).toEqual([{
+      url: '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb',
+      heightM: 1.66, options: { stature: 'headTop' },
+    }]);
+    expect(fake.characterPositions[0]).toContainEqual([0, -9999, 0]);
     scene.dispose();
   });
 

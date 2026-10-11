@@ -81,6 +81,8 @@ export interface RegionSceneOptions {
   /** Optional production array texture; the scene retains ownership in the caller. */
   readonly terrainAlbedo?: DataArrayTexture;
   readonly playerModelUrl?: string;
+  /** Player stature in metres; defaults to the medium male template. */
+  readonly playerHeightM?: number;
   readonly zoom?: number; readonly reducedMotion?: boolean; readonly quality?: RenderQualitySource;
   readonly onContextStateChange?: (state: ContextState) => void;
   readonly onContextLoss?: (sessionLossCount: number) => void;
