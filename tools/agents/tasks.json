@@ -52506,6 +52506,91 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-t4-bodies-v2",
+   "title": "3D 纸娃娃换装 · T4 · 新女性素体 tpl_f2_medium + 新男性素体 tpl_m_medium（Tripo 生成 / 绑骨 / 动作 → 规范化 → 骨架帧；2 × 85 点）",
+   "phase": "PROD",
+   "wave": 45,
+   "kind": "draft",
+   "prompt": "ART-dressup-t4-bodies-v2.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-11 要求重做好看的女性素体与帅气的男性素体并选定候选；Claude 经 9223 执行 Tripo，产物走 supervise 校验与 GPT 审核",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview",
+    "assets/default/character/male/ch00",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_m_medium/**",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose.png",
+    "assets/default/character/male/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/skeleton.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
