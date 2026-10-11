@@ -31172,6 +31172,223 @@
    "profile": "code"
   },
   {
+   "id": "ENG-town2-explore-walk",
+   "title": "城镇探索 v2 · core 逐 tick 行走（travelTo / steer / stop、触发器、进出建筑、交互列表、previewTravel、读档纠偏）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-walk.md",
+   "deps": [
+    "ENG-town2-kernel-prep",
+    "ENG-town2-explore-graph"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/world/explore/walk.ts",
+    "packages/core/src/world/explore/tick.ts",
+    "packages/core/src/world/explore/interactables.ts",
+    "packages/core/src/world/explore/reconcile.ts",
+    "packages/core/src/world/explore/walk-validate.ts",
+    "packages/core/src/world/explore/types.ts",
+    "packages/core/src/world/explore/astar.ts",
+    "packages/core/src/world/explore/*.test.ts",
+    "packages/core/src/world/region-runtime.ts",
+    "packages/core/src/world/region-types.ts",
+    "packages/core/src/command/explore-handler.ts",
+    "packages/core/src/command/explore-handler.test.ts",
+    "packages/core/src/entries/explore-command.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/walk.ts",
+     "packages/core/src/world/explore/reconcile.ts",
+     "packages/core/src/world/explore/interactables.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-town2-sources-pipeline",
+   "title": "城镇探索 v2 · 城镇源文件与构建管线（三座试点城 town-source.v1、buildContent 编成区域场景叶子、缓存）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "TOOL-town2-sources-pipeline.md",
+   "deps": [
+    "TOOL-town2-compiler-core",
+    "DES-town2-pilot-content",
+    "ENG-buildgen-p1-kits"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-sources.ts",
+    "packages/data/src/build/town-sources.test.ts",
+    "content/world/towns/**",
+    "content/locales/zh-Hans/towns.yaml",
+    "packages/data/src/build/pipeline.ts",
+    "packages/data/src/build/discover.ts",
+    "packages/data/src/build/types.ts",
+    "packages/data/src/build/*.test.ts",
+    "packages/data/scripts/**"
+   ],
+   "validate": {
+    "exists": [
+     "content/world/towns/city_turpan__ch10.yaml",
+     "packages/data/src/build/town-sources.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml",
+    "docs/design/town/cities.yaml",
+    "docs/design/town/city_dali__ch01.yaml",
+    "docs/design/town/city_dali__ch10.yaml",
+    "docs/design/town/city_turpan__ch10.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-render-ports",
+   "title": "城镇探索 v2 · render 两个端口的占位实现（盒子壳 + 剖切三态、试点 GLB 真实身高）并接进区域场景",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-town2-render-ports.md",
+   "deps": [
+    "ENG-town2-render-core",
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/region/ports/**",
+    "packages/render/src/region/scene.ts",
+    "packages/render/src/region/types.ts",
+    "packages/render/src/region/*.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/region/ports/placeholder-buildings.ts",
+     "packages/render/src/region/ports/placeholder-actors.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/region",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",
