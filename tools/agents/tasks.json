@@ -52385,6 +52385,70 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-g1-slice-fit",
+   "title": "3D 纸娃娃换装 · G1 · 衣物 / 盔甲 Z 向切片贴合数值方案：评估 → ADR → 原型 → 打标 → 效果图",
+   "phase": "PROD",
+   "wave": 43,
+   "kind": "draft",
+   "prompt": "ENG-dressup-g1-slice-fit.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 2026-10-10 提出切片贴合方案，要求开子代理评估、写 ADR、实现并打标出效果图；Claude 起 Opus 子代理执行",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "docs/adr/0002-dressup-slice-fit.md",
+    "tools/model3d/dressup/slice_fit.py",
+    "tools/model3d/dressup/tests_slice_fit.py",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/slice_landmarks.json",
+    "assets/default/model3d/dressup/templates/tpl_f_tall/slice_landmarks.json",
+    "assets/default/model3d/dressup/templates/tpl_f_small/slice_landmarks.json",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/slice_landmarks.json",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/shots/slice_fit.*",
+    "assets/default/model3d/dressup/garments/_fixture_armor_banjia/**",
+    "assets/default/model3d/dressup/garments/_fixture_armor_mingguang/**",
+    "assets/default/model3d/dressup/garments/_fixture_armor_suozi/**"
+   ],
+   "validate": {
+    "exists": [
+     "docs/adr/0002-dressup-slice-fit.md",
+     "tools/model3d/dressup/slice_fit.py",
+     "tools/model3d/dressup/tests_slice_fit.py",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/slice_landmarks.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/slice_landmarks.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_slice_fit.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
