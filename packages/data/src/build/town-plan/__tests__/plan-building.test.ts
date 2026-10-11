@@ -1,11 +1,13 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { planBuilding } from '../plan-hall';
+import { testBuildKit } from '../testing';
 import { RoofStyle } from '../types';
-import type { CompiledBuildKit, LayoutBuildingInput, PlanningFrame } from '../types';
+import type { LayoutBuildingInput, PlanningFrame } from '../types';
 
-const KIT: CompiledBuildKit = {
-  schemaVersion: 'buildkit-runtime.v1', id: 'song_dali', archetypes: {}, landmarks: {},
-};
+const KIT = testBuildKit(readFileSync(
+  new URL('../../../../../../content/town/buildkits/song_dali.yaml', import.meta.url), 'utf8',
+));
 const FRAME: PlanningFrame = { heightCells: 80, originXMm: 0, originZMm: 0 };
 const BASE: LayoutBuildingInput = {
   id: 'bi_0001',

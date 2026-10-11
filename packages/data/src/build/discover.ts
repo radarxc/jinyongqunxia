@@ -59,8 +59,12 @@ export async function discoverContent(rootDir: string, sourceDir = 'content'): P
     for (const entry of entries) {
       if (ignored.has(entry.name) || entry.name.endsWith('~')) continue;
       const absolutePath = join(directory, entry.name);
-      if (entry.isDirectory()) { await walk(absolutePath); continue; }
       const path = relative(rootDir, absolutePath).replaceAll('\\', '/');
+      if (entry.isDirectory()) {
+        // Build-time town kits are read by the town compilation pipeline.
+        if (path === 'content/town/buildkits') continue;
+        await walk(absolutePath); continue;
+      }
       const key = path.normalize('NFC').toLowerCase(); const previous = collisions.get(key);
       if (previous !== undefined) throw new TypeError(`CONTENT_PATH_COLLISION:${previous}:${path}`);
       collisions.set(key, path);

@@ -67,12 +67,85 @@ export interface PlanningFrame {
   readonly originZMm: number;
 }
 
-/** Minimal p0 runtime shape; ENG-buildgen-p1-kits will replace its payload fields. */
-export interface CompiledBuildKit {
+export type BuildRecipeKey =
+  | 'hall' | 'storeyed' | 'stall' | 'adobe' | 'compound'
+  | 'pagoda_dense' | 'pagoda_oct' | 'citywall' | 'gate';
+export type BuildKitSize = 'vernacular' | 'shop' | 'middle' | 'hall';
+export interface BuildKitRecipeFields {
+  readonly size?: BuildKitSize;
+  readonly roof?: string;
+  readonly storeys?: 1 | 2 | 3;
+  readonly front?: string;
+  readonly facility?: FacilityKind;
+  readonly signage?: string;
+  readonly bays?: 'odd' | number;
+  readonly balcony?: boolean;
+  readonly brackets?: boolean;
+  readonly layout?: string;
+  readonly screenWall?: boolean;
+  readonly eaves?: number;
+  readonly heightM?: number;
+  readonly material?: string;
+}
+export type BuildKitRecipe =
+  | (BuildKitRecipeFields & { readonly recipe: BuildRecipeKey; readonly unsupported?: never })
+  | (BuildKitRecipeFields & { readonly recipe?: never; readonly unsupported: string });
+export interface BuildKitDims {
+  readonly platform: number;
+  readonly column: number;
+  readonly diaRatio?: number;
+  readonly beam?: number;
+  readonly eave: number;
+  readonly rise: number;
+  readonly lift: readonly [number, number];
+  readonly verge?: number;
+  readonly upperStorey?: number;
+}
+export interface BuildKitWallFace {
+  readonly layer: string;
+  readonly t: number;
+  readonly h?: number;
+  readonly dado?: { readonly layer: string; readonly h: number };
+  readonly coping?: string;
+}
+export type BuildKitPaletteEntry = readonly [string, (readonly number[])?];
+export interface BuildKitVariantSet {
+  readonly forbid?: readonly string[];
+  readonly finial?: string;
+}
+
+interface BuildKitPayload {
+  readonly style: 'timber' | 'adobe';
+  readonly profile: 'song_zhe' | 'qing_jujia';
+  readonly dims: Readonly<Record<BuildKitSize, BuildKitDims>>;
+  readonly door: {
+    readonly clearH: number; readonly single: number; readonly double: number;
+    readonly threshold: number; readonly frame: number;
+  };
+  readonly window: {
+    readonly sill: number; readonly head: number; readonly width: number;
+    readonly pattern: readonly string[];
+  };
+  readonly walls: Readonly<Record<'gable' | 'back' | 'front' | 'enclosure', BuildKitWallFace>>;
+  readonly ridge: { readonly h: number; readonly ends: string; readonly hallEnds: string };
+  readonly palette: Readonly<Record<string, BuildKitPaletteEntry>>;
+  readonly layers: readonly { readonly id: string; readonly repeatMm: readonly [number, number] }[];
+  readonly variants: Readonly<Record<string, readonly string[] | number | boolean>>;
+  readonly cityWall: {
+    readonly h: number; readonly top: number; readonly batter: number;
+    readonly merlon: readonly [number, number, number];
+    readonly gate: { readonly opening: string; readonly w: number; readonly h: number };
+  };
+  readonly variantSets?: Readonly<Record<string, BuildKitVariantSet>>;
+  readonly preferSouthHall?: boolean;
+}
+
+/** Build-time validated mirror of render's BuildKitView; dimensions are integer mm or bp. */
+export interface CompiledBuildKit extends BuildKitPayload {
   readonly schemaVersion: 'buildkit-runtime.v1';
   readonly id: string;
-  readonly archetypes: Readonly<Record<string, unknown>>;
-  readonly landmarks: Readonly<Record<string, unknown>>;
+  readonly archetypes: Readonly<Record<string, BuildKitRecipe>>;
+  readonly landmarks: Readonly<Record<string, BuildKitRecipe>>;
 }
 
 export interface PlanDiagnostic {
