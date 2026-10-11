@@ -129,8 +129,12 @@ WorldMapRuntimeDefinition {
   const roads = Array.isArray(compiled['roads'])
     ? compiled['roads'].map((road) => ({ ...record(road, 'CONTENT_CHAPTER_WORLDMAP_INVALID'), note: '' }))
     : compiled['roads'];
+  const sects = Array.isArray(compiled['sects']) ? compiled['sects'].map((value) => {
+    const sect = record(value, 'CONTENT_CHAPTER_WORLDMAP_INVALID');
+    return { ...sect, name: textValue(sect['name'], text, true), siteName: textValue(sect['siteName'], text, true) };
+  }) : compiled['sects'];
   const parsed = WorldMapDefinitionSchema.parse({ ...compiled,
-    name: textValue(compiled['name'], text, true), nodes, roads,
+    name: textValue(compiled['name'], text, true), nodes, roads, ...(sects === undefined ? {} : { sects }),
     travel: { ...record(compiled['travel'], 'CONTENT_CHAPTER_WORLDMAP_INVALID'), note: '' },
     sources: [] });
   if (registration['chapterId'] !== parsed.chapterId ||
@@ -318,7 +322,8 @@ export async function loadRegionContent(source: ContentSource, chapter: string,
         expression: binding.value.expression });
       if (binding.kind === 'regionDialogue' && binding.value.noDialogue !== true)
         dialogues.push({ sceneId: binding.value.sceneId, anchorId: binding.value.anchorId,
-          storyId: binding.value.storyId!, entryKey: binding.value.entryKey! });
+          storyId: binding.value.storyId!, entryKey: binding.value.entryKey!,
+          ...(binding.value.condition ? { condition: binding.value.condition } : {}) });
       if (binding.kind === 'regionLoot') loot.push({ lootRef: binding.value.lootRef,
         items: binding.value.items });
     }
