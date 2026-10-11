@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { ItemIdSchema, QuestIdSchema, SectIdSchema } from './primitives';
+import { GateExprSchema, GateGeometryValueSchema } from './gate-expr';
+import { TownSceneSchema } from './town-scene';
 
 export const REGION_CHUNK_SIZE = 32 as const;
 export const REGION_CHUNK_CELLS = REGION_CHUNK_SIZE * REGION_CHUNK_SIZE;
@@ -77,8 +78,13 @@ export const TERRAIN_IDS = [
   'tr_sheku',
   'tr_liubai',
 ] as const;
+export const SURFACE_IDS = [
+  'rammed_earth', 'dirt_road', 'stone_slab', 'grey_brick', 'grass', 'water',
+  'bridge_deck', 'plinth', 'wood_floor', 'brick_floor', 'threshold', 'wall_top',
+] as const;
 
 export const TerrainIdSchema = z.enum(TERRAIN_IDS);
+export const SurfaceIdSchema = z.enum(SURFACE_IDS);
 export const RegionIdSchema = z.string().regex(/^rg_[a-z0-9]+(?:_[a-z0-9]+)*$/);
 export const RegionGateIdSchema = z.string().regex(
   /^gate_(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$/,
@@ -210,77 +216,6 @@ export const TriggerObjectSchema = z.strictObject({
   safe: z.boolean(),
 });
 
-export const QinggongActionSchema = z.enum([
-  'sprint', 'scramble', 'leap', 'wallkick', 'drop', 'climb', 'roofwalk',
-  'waterwalk', 'rapidswalk', 'bigwaterwalk', 'treetop', 'trackless', 'glide',
-  'cloudwalk', 'carry', 'swim', 'dive', 'squeeze',
-]);
-const GateGeometryValueSchema = z.number().int().safe().nonnegative();
-const GateAtomSchema = z.union([
-  z.strictObject({
-    qg: z.number().int().min(1).max(5),
-    action: QinggongActionSchema.optional(),
-    height: GateGeometryValueSchema.optional(),
-    width: GateGeometryValueSchema.optional(),
-    run: GateGeometryValueSchema.optional(),
-    stages: GateGeometryValueSchema.optional(),
-  }),
-  z.strictObject({ item: ItemIdSchema, consume: z.boolean().optional() }),
-  z.strictObject({ fame: z.number().int().min(0).max(9999) }),
-  z.strictObject({ morality: z.tuple([
-    z.number().int().min(-100).max(100),
-    z.number().int().min(-100).max(100),
-  ]) })
-    .refine((value) => value.morality[0] <= value.morality[1], 'morality range must be ordered'),
-  z.strictObject({ sect: SectIdSchema, rank: z.number().int().min(1).max(5).optional() }),
-  z.strictObject({ status: LocalIdSchema }),
-  z.strictObject({
-    shichen: z.enum(['zi', 'chou', 'yin', 'mao', 'chen', 'si', 'wu', 'wei',
-      'shen', 'you', 'xu', 'hai']).optional(),
-    day: z.number().int().positive().optional(),
-    festival: LocalIdSchema.optional(),
-    weather: z.enum(['clear', 'cloudy', 'rain', 'storm', 'snow', 'blizzard', 'fog',
-      'sandstorm']).optional(),
-    season: z.enum(['spring', 'summer', 'autumn', 'winter']).optional(),
-  }).refine((value) => Object.keys(value).length > 0, 'time condition must not be empty'),
-  z.strictObject({
-    quest: QuestIdSchema,
-    state: z.enum(['inactive', 'active', 'completed', 'failed']),
-  }),
-  z.strictObject({ act: z.number().int().positive() }),
-  z.strictObject({ formation: z.number().int().min(0).max(100) }),
-  z.strictObject({
-    check: z.strictObject({
-      skill: z.enum(['music', 'chess', 'art', 'speech', 'med', 'poi', 'antidote', 'forge']),
-      dc: z.number().int().min(0).max(100),
-    }),
-  }),
-  z.strictObject({
-    swim: z.number().int().min(0).max(3),
-    dive: z.number().int().safe().nonnegative().optional(),
-  }),
-  z.strictObject({
-    beast: z.number().int().min(1).max(12),
-    kind: LocalIdSchema,
-  }),
-  z.strictObject({ mount: z.enum(['horse', 'camel']) }),
-  z.strictObject({ boat: z.enum(['small', 'sea']) }),
-  z.strictObject({ light: z.literal(true) }),
-  z.strictObject({ special: LocalIdSchema }),
-  z.strictObject({ device: LocalIdSchema, operator: LocalIdSchema.optional() }),
-  z.strictObject({ str: z.number().int().safe().nonnegative() }),
-  z.strictObject({ companion: z.strictObject({ qgMin: z.number().int().min(1).max(5) }) }),
-  z.strictObject({ buff: z.string().regex(/^bf_[a-z0-9]+(?:_[a-z0-9]+)*$/) }),
-]);
-export type GateExpr = z.output<typeof GateAtomSchema> | { all: GateExpr[] } |
-  { any: GateExpr[] } | { not: GateExpr };
-export const GateExprSchema: z.ZodType<GateExpr> = z.lazy(() => z.union([
-  GateAtomSchema,
-  z.strictObject({ all: z.array(GateExprSchema).min(1) }),
-  z.strictObject({ any: z.array(GateExprSchema).min(1) }),
-  z.strictObject({ not: GateExprSchema }),
-]));
-
 export const QinggongGateObjectSchema = z
   .strictObject({
     ...ObjectBase,
@@ -375,13 +310,62 @@ export const BattleArenaObjectSchema = z.strictObject({
   enemyCapacity: z.number().int().positive(),
   narrow: z.boolean(),
 });
-export const BuildingObjectSchema = z.strictObject({
+const TiledBuildingObjectSchema = z.strictObject({
   ...ObjectBase,
   class: z.literal('Building'),
   footprint: RegionRectSchema,
   interiorRect: RegionRectSchema,
   roofGroup: LocalIdSchema,
   cutawayWalls: z.array(HexDirectionSchema),
+});
+export const BuildingObjectSchema = TiledBuildingObjectSchema.extend({
+  enterable: z.boolean().optional(),
+  facilityKey: LocalIdSchema.optional(),
+  nameKey: TextKeySchema.optional(),
+}).superRefine((building, context) => {
+  if (building.enterable && building.cells.length === 0)
+    context.addIssue({ code: 'custom', path: ['cells'], message: 'enterable building requires a door cell' });
+  if (building.enterable) {
+    const first = building.cells[0]!;
+    const inFootprint = first.q >= building.footprint.q && first.r >= building.footprint.r &&
+      first.q < building.footprint.q + building.footprint.width &&
+      first.r < building.footprint.r + building.footprint.height;
+    if (inFootprint) context.addIssue({
+      code: 'custom', path: ['cells', 0],
+      message: 'first door cell must be outside the building footprint',
+    });
+  }
+});
+export const FacilityNpcObjectSchema = z.strictObject({
+  ...ObjectBase,
+  class: z.literal('FacilityNpc'),
+  facilityKey: LocalIdSchema,
+  roleKey: LocalIdSchema,
+  facing: HexDirectionSchema,
+  interactRange: z.number().int().min(1).max(3),
+  appearance: z.strictObject({
+    template: z.enum([
+      'tpl_f_small', 'tpl_f_medium', 'tpl_f_tall',
+      'tpl_m_lean', 'tpl_m_medium', 'tpl_m_bulk',
+    ]),
+    outfit: LocalIdSchema,
+    seed: z.number().int().min(0).max(0xffff_ffff),
+  }),
+});
+export const ExitObjectSchema = z.strictObject({
+  ...ObjectBase,
+  class: z.literal('Exit'),
+  gateId: LocalIdSchema,
+  spawnId: LocalIdSchema,
+  side: z.enum(['north', 'east', 'south', 'west']),
+  nameKey: TextKeySchema,
+});
+export const MeditationSpotObjectSchema = z.strictObject({
+  ...ObjectBase,
+  class: z.literal('MeditationSpot'),
+  buildingId: LocalIdSchema.nullable(),
+  riskBaseBp: z.number().int().min(0).max(10_000),
+  quality: z.number().int().min(0).max(2),
 });
 export const LightObjectSchema = z.strictObject({
   ...ObjectBase,
@@ -393,6 +377,19 @@ export const LightObjectSchema = z.strictObject({
   schedule: z.string().min(1),
   flicker: z.boolean(),
 });
+const TiledRegionObjectSchema = z.discriminatedUnion('class', [
+  NpcSpawnObjectSchema,
+  PlayerSpawnObjectSchema,
+  EnemyZoneObjectSchema,
+  DoorObjectSchema,
+  TriggerObjectSchema,
+  QinggongGateObjectSchema,
+  ChestObjectSchema,
+  CameraHintObjectSchema,
+  BattleArenaObjectSchema,
+  TiledBuildingObjectSchema,
+  LightObjectSchema,
+]);
 
 export const RegionObjectSchema = z.discriminatedUnion('class', [
   NpcSpawnObjectSchema,
@@ -405,8 +402,11 @@ export const RegionObjectSchema = z.discriminatedUnion('class', [
   CameraHintObjectSchema,
   BattleArenaObjectSchema,
   BuildingObjectSchema,
+  FacilityNpcObjectSchema,
+  ExitObjectSchema,
+  MeditationSpotObjectSchema,
   LightObjectSchema,
-]);
+]).meta({ oneOf: z.toJSONSchema(TiledRegionObjectSchema, { io: 'input' }).oneOf });
 
 export const RegionRampSchema = z.strictObject({
   index: z
@@ -436,6 +436,9 @@ export const RegionMapChunkSchema = z
     terrainEncoding: z.enum(['u8', 'u16le']),
     terrain: z.string().min(1),
     heights: z.string().min(1),
+    surface: z.string().min(1).optional(),
+    blocked: z.string().min(1).optional(),
+    building: z.string().min(1).optional(),
     ramps: z.array(RegionRampSchema),
     water: z.array(RegionWaterSchema),
     precomputedAo: z.string().min(1).nullable(),
@@ -451,6 +454,9 @@ export const RegionMapChunkSchema = z
     const valid = decodeBase64(chunk.valid);
     const terrain = decodeBase64(chunk.terrain);
     const heights = decodeBase64(chunk.heights);
+    const surface = chunk.surface === undefined ? undefined : decodeBase64(chunk.surface);
+    const blocked = chunk.blocked === undefined ? undefined : decodeBase64(chunk.blocked);
+    const building = chunk.building === undefined ? undefined : decodeBase64(chunk.building);
     if (valid?.byteLength !== REGION_CHUNK_CELLS / 8)
       context.addIssue({ code: 'custom', path: ['valid'], message: 'valid bitmap must be 128 bytes' });
     const expectedTerrain = REGION_CHUNK_CELLS * (chunk.terrainEncoding === 'u8' ? 1 : 2);
@@ -458,6 +464,12 @@ export const RegionMapChunkSchema = z
       context.addIssue({ code: 'custom', path: ['terrain'], message: 'terrain byte length mismatch' });
     if (heights?.byteLength !== REGION_CHUNK_CELLS)
       context.addIssue({ code: 'custom', path: ['heights'], message: 'heights must be 1024 bytes' });
+    if (chunk.surface !== undefined && surface?.byteLength !== REGION_CHUNK_CELLS)
+      context.addIssue({ code: 'custom', path: ['surface'], message: 'surface must be 1024 bytes' });
+    if (chunk.blocked !== undefined && blocked?.byteLength !== REGION_CHUNK_CELLS / 8)
+      context.addIssue({ code: 'custom', path: ['blocked'], message: 'blocked bitmap must be 128 bytes' });
+    if (chunk.building !== undefined && building?.byteLength !== REGION_CHUNK_CELLS)
+      context.addIssue({ code: 'custom', path: ['building'], message: 'building must be 1024 bytes' });
     if (chunk.precomputedAo !== null && decodeBase64(chunk.precomputedAo) === undefined)
       context.addIssue({ code: 'custom', path: ['precomputedAo'], message: 'AO must be base64' });
     const indexed = [...chunk.ramps, ...chunk.water, ...chunk.decos];
@@ -478,6 +490,13 @@ export const RegionMapChunkSchema = z
           context.addIssue({ code: 'custom', path: ['heights'], message: 'valid height exceeds 10' });
         if (!isValid && (terrainIndex !== 0 || heights[index] !== 0))
           context.addIssue({ code: 'custom', path: ['valid'], message: 'invalid slots must be zeroed' });
+        if (!isValid && blocked !== undefined && bitIsSet(blocked, index))
+          context.addIssue({ code: 'custom', path: ['blocked'], message: 'blocked slot must be valid' });
+        if (!isValid && (surface?.[index] !== undefined && surface[index] !== 0 ||
+            building?.[index] !== undefined && building[index] !== 0))
+          context.addIssue({
+            code: 'custom', path: ['valid'], message: 'invalid optional layer slots must be zeroed',
+          });
       }
     if (!isSorted(chunk.objects, objectOrder))
       context.addIssue({ code: 'custom', path: ['objects'], message: 'chunk objects must be sorted' });
@@ -498,6 +517,8 @@ export const RegionMapSchema = z
     }),
     chunkSize: z.literal(REGION_CHUNK_SIZE),
     terrainTable: z.array(TerrainIdSchema).min(1),
+    surfaceTable: z.array(SurfaceIdSchema).optional(),
+    town: TownSceneSchema.optional(),
     chunks: z.array(RegionMapChunkSchema).min(1),
     objects: z.array(RegionObjectSchema),
     playerSpawns: z.array(LocalIdSchema).min(1),
@@ -513,6 +534,12 @@ export const RegionMapSchema = z
     if (new Set(map.terrainTable).size !== map.terrainTable.length ||
         !isSorted(map.terrainTable, (left, right) => left < right ? -1 : left > right ? 1 : 0))
       context.addIssue({ code: 'custom', path: ['terrainTable'], message: 'terrain table must be unique and sorted' });
+    if (map.surfaceTable !== undefined &&
+        (new Set(map.surfaceTable).size !== map.surfaceTable.length ||
+        !isSorted(map.surfaceTable, (left, right) => left < right ? -1 : left > right ? 1 : 0)))
+      context.addIssue({
+        code: 'custom', path: ['surfaceTable'], message: 'surface table must be unique and sorted',
+      });
     const columns = Math.ceil((map.bounds.qMax + 1) / REGION_CHUNK_SIZE);
     const rows = Math.ceil((map.bounds.rMax + 1) / REGION_CHUNK_SIZE);
     const expectedChunkKeys = Array.from(
@@ -525,12 +552,48 @@ export const RegionMapSchema = z
         expectedChunks.size > 0 || JSON.stringify(chunkKeys) !== JSON.stringify(expectedChunkKeys))
       context.addIssue({ code: 'custom', path: ['chunks'], message: 'chunk grid must cover scene exactly once' });
     const objects = [...map.objects, ...map.chunks.flatMap((chunk) => chunk.objects)];
+    const buildings = objects.filter((object) => object.class === 'Building')
+      .sort((left, right) => left.id < right.id ? -1 : left.id > right.id ? 1 : 0);
     const ids = objects.map((object) => object.id);
     if (new Set(ids).size !== ids.length)
       context.addIssue({ code: 'custom', path: ['objects'], message: 'object IDs must be unique' });
     const spawnIds = new Set(
       objects.filter((object) => object.class === 'PlayerSpawn').map((object) => object.id),
     );
+    if (objects.some((object) => object.class === 'Exit' && !spawnIds.has(object.spawnId)))
+      context.addIssue({
+        code: 'custom', path: ['objects'], message: 'exit spawnId must reference a PlayerSpawn',
+      });
+    const doorCells = buildings.filter((building) => building.enterable).flatMap((building) =>
+      building.cells.map((cell) => `${cell.q},${cell.r}`));
+    if (new Set(doorCells).size !== doorCells.length)
+      context.addIssue({
+        code: 'custom', path: ['objects'], message: 'enterable building door cells must be unique',
+      });
+    if (map.town !== undefined) {
+      const buildingIds = new Set(buildings.map((building) => building.id));
+      const plannedIds = map.town.buildings.map((building) => building.id);
+      if (JSON.stringify(plannedIds) !== JSON.stringify(buildings.map((building) => building.id)))
+        context.addIssue({
+          code: 'custom', path: ['town', 'buildings'],
+          message: 'town building plans must match Building object ID order',
+        });
+      if (map.town.facilities.some((facility) => !buildingIds.has(facility.buildingId)))
+        context.addIssue({
+          code: 'custom', path: ['town', 'facilities'],
+          message: 'town facility buildingId must reference a Building',
+        });
+      const facilityKeys = new Set(map.town.facilities.map((facility) => facility.key));
+      if (objects.some((object) =>
+        object.class === 'FacilityNpc' && !facilityKeys.has(object.facilityKey)))
+        context.addIssue({
+          code: 'custom', path: ['objects'],
+          message: 'FacilityNpc facilityKey must reference a town facility',
+        });
+    } else if (objects.some((object) => object.class === 'FacilityNpc'))
+      context.addIssue({
+        code: 'custom', path: ['town'], message: 'FacilityNpc requires town scene data',
+      });
     if (map.playerSpawns.some((id) => !spawnIds.has(id)))
       context.addIssue({
         code: 'custom',
@@ -555,12 +618,23 @@ export const RegionMapSchema = z
         context.addIssue({ code: 'custom', path: ['chunks'], message: 'chunk object belongs to another chunk' });
       const valid = decodeBase64(chunk.valid);
       const terrain = decodeBase64(chunk.terrain);
+      const surface = chunk.surface === undefined ? undefined : decodeBase64(chunk.surface);
+      const building = chunk.building === undefined ? undefined : decodeBase64(chunk.building);
       if (valid !== undefined && terrain !== undefined)
         for (let index = 0; index < REGION_CHUNK_CELLS; index += 1) {
           if (!bitIsSet(valid, index)) continue;
           const terrainIndex = terrainAt(terrain, chunk.terrainEncoding, index);
           if (terrainIndex >= map.terrainTable.length)
             context.addIssue({ code: 'custom', path: ['chunks'], message: 'terrain index is outside terrain table' });
+          if (surface !== undefined && (map.surfaceTable === undefined ||
+              surface[index]! >= map.surfaceTable.length))
+            context.addIssue({
+              code: 'custom', path: ['chunks'], message: 'surface index is outside surface table',
+            });
+          if (building !== undefined && building[index]! > buildings.length)
+            context.addIssue({
+              code: 'custom', path: ['chunks'], message: 'building index is outside Building objects',
+            });
           const q = chunk.q * 32 + index % 32;
           const r = chunk.r * 32 + Math.floor(index / 32);
           if (q > map.bounds.qMax || r > map.bounds.rMax)
@@ -591,7 +665,16 @@ export const RegionMapSchema = z
   });
 
 export type TerrainId = z.output<typeof TerrainIdSchema>;
+export type SurfaceId = z.output<typeof SurfaceIdSchema>;
 export type RegionMapProperties = z.output<typeof RegionMapPropertiesSchema>;
 export type RegionMap = z.output<typeof RegionMapSchema>;
 export type RegionMapChunk = z.output<typeof RegionMapChunkSchema>;
 export type RegionObject = z.output<typeof RegionObjectSchema>;
+export { GateExprSchema, QinggongActionSchema } from './gate-expr';
+export type { GateExpr } from './gate-expr';
+export {
+  TownBuildingPlanSchema, TownSceneFacilitySchema, TownSceneSchema, TownWallSchema, VisualKitSchema,
+} from './town-scene';
+export type {
+  RectMm, TownBuildingPlan, TownScene, TownSceneFacility, TownWall,
+} from './town-scene';

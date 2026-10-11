@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { ChapterIdSchema, LocalKeySchema } from './primitives';
-import { GateExprSchema } from './region-map';
+import { GateExprSchema } from './gate-expr';
 
 export const FACILITY_KINDS = [
   'shop', 'inn', 'tavern', 'teahouse', 'clinic', 'escort', 'casino',
