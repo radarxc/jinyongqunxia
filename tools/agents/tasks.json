@@ -52447,6 +52447,65 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-o1b-tripo",
+   "title": "3D 纸娃娃换装 · 方案 1 试点 · O1b · 黄蓉 / 穆念慈整人素体 Tripo 生成与绑骨（2 × 85 = 170 点）",
+   "phase": "PROD",
+   "wave": 44,
+   "kind": "draft",
+   "prompt": "ART-dressup-o1b-tripo.md",
+   "deps": [
+    "ART-dressup-o1a-plates"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10 批准约 340 点、当晚定每人只做素体；Claude 经 tri_pipeline_runner 9223 执行（同 D2 第三版），产物仍走 supervise 校验与 GPT 审核",
+   "sparse_include": [
+    "assets/default/character/female/ch02/threeview/*.png",
+    "assets/default/character/female/ch02/threeview/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/pilot_o1/**",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/pilot_o1/npc_huangrong/source/tripo_body_rig.glb",
+     "assets/default/model3d/dressup/pilot_o1/npc_huangrong/source/source.json",
+     "assets/default/model3d/dressup/pilot_o1/npc_munianci/source/tripo_body_rig.glb",
+     "assets/default/model3d/dressup/pilot_o1/npc_munianci/source/source.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-c",
+      "import json,subprocess,sys; bad=[]\nfor n in ('npc_huangrong','npc_munianci'):\n    p=f'assets/default/model3d/dressup/pilot_o1/{n}/source/tripo_body_rig.glb'\n    r=subprocess.run([sys.executable,'tools/model3d/dressup/inspect.py','--json',p],capture_output=True,text=True)\n    j=(json.loads(r.stdout or '{}').get('skeleton') or {}).get('joints')\n    if r.returncode or j!=65: bad.append((n,r.returncode,j))\nprint('bad:',bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
