@@ -10,3 +10,7 @@
 {"time": "2026-10-10T08:48:34-07:00", "task": "ART-dressup-d2-head-gen", "item": "npc_munianci", "op": "generate:5c0bc087-f347-4f91-994f-53066e8757ba", "pid": "e7ffcf53-5260-488d-8a22-c34804b882bb", "before": 17090, "after": 17025, "spent": 65}
 {"time": "2026-10-10T08:51:00-07:00", "task": "ART-dressup-d2-head-gen", "item": "npc_munianci", "op": "rig_before_v3", "pid": "e7ffcf53-5260-488d-8a22-c34804b882bb", "before": 17025, "after": 17025, "spent": 0}
 {"time": "2026-10-10T08:51:13-07:00", "task": "ART-dressup-d2-head-gen", "item": "npc_munianci", "op": "rig:5f717f9d-fdd2-4933-a83f-493876af27fc", "pid": "e7ffcf53-5260-488d-8a22-c34804b882bb", "before": 17025, "after": 17005, "spent": 20}
+{"time": "2026-10-11T01:00:56-07:00", "task": "ART-dressup-o1b-tripo", "item": "npc_huangrong", "op": "generate_before", "pid": null, "before": 17005, "after": 17005, "spent": 0}
+{"time": "2026-10-11T01:01:04-07:00", "task": "ART-dressup-o1b-tripo", "item": "npc_huangrong", "op": "generate:102e6ddb-7dd1-4ec6-9b5f-f79480c652ff", "pid": "61711507-561b-405f-aee1-4f7a835e92bb", "before": 17005, "after": 16940, "spent": 65}
+{"time": "2026-10-11T01:03:02-07:00", "task": "ART-dressup-o1b-tripo", "item": "npc_huangrong", "op": "rig_before", "pid": "61711507-561b-405f-aee1-4f7a835e92bb", "before": 16940, "after": 16940, "spent": 0}
+{"time": "2026-10-11T01:03:12-07:00", "task": "ART-dressup-o1b-tripo", "item": "npc_huangrong", "op": "rig:7b14cf90-ee4c-48e3-b355-e79e8db7bcf6", "pid": "61711507-561b-405f-aee1-4f7a835e92bb", "before": 16940, "after": 16920, "spent": 20}
