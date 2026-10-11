@@ -15,6 +15,9 @@ into duration_days (琼州海峡). A route without via stops is drawn along its 
 Sect seats (tech/13 §5.4) come from docs/design/map/sects.yaml: each chapter lists the main seat and
 every in-map branch whose availability is O / H / P / M (N and D are left out), projected from the
 book-geography coordinates; branch ids are `<sect_id>__<branch>`.
+Entry fields the sources cannot derive (town v2 region scenes, AR-114) come from the optional
+docs/design/map/entry_overrides.yaml, `chNN -> node id -> {field: value}`; only ENTRY_OVERRIDE_FIELDS
+may be set, unknown chapters or nodes fail. Tools write that file, never map.yaml, so a regenerate keeps them.
 """
 from __future__ import annotations
 
@@ -49,6 +52,9 @@ GEOMETRY_NOTE = '等效里程=源路段小时×10；单段路线按 routes.yaml 
 # Mirror of MapEntrySchema.townSpec in packages/data/src/schemas/world-map.ts. A spec the schema would
 # reject (city keys with '_') is left unmounted with a warning; relax both together.
 TOWN_SPEC_PATTERN = re.compile(r'^docs/design/town/city_[a-z0-9]+__ch[0-9]{2}\.yaml$')
+ENTRY_OVERRIDES = 'docs/design/map/entry_overrides.yaml'
+# sceneId / townSpec / templateYear stay derived from the sources; the schema still validates the result.
+ENTRY_OVERRIDE_FIELDS = ('scene', 'gateId', 'spawn', 'accessNote')
 RELIC_LOCATIONS = {
     'rs_shaolin_cangjingge': 'sect_shaolin', 'rs_huashan': 'sect_huashan',
     'rs_gumu': 'sect_gumu', 'rs_wudang': 'sect_wudang', 'rs_emei': 'sect_emei',
@@ -146,6 +152,8 @@ def source_data():
             continue
         town = load_yaml(path)
         data['towns'][(town['city_id'], town['chapter_id'])] = (town, relative)
+    overrides = ROOT / ENTRY_OVERRIDES
+    data['entry_overrides'] = (load_yaml(overrides) or {}) if overrides.exists() else None
     data['levels'] = {}
     text = (ROOT / 'docs/design/11-open-world.md').read_text()
     for line in text.splitlines():
@@ -155,6 +163,25 @@ def source_data():
             if match:
                 data['levels'][fields[2]] = [int(match[1]), int(match[2])]
     return data
+
+
+def apply_entry_overrides(nodes_by_id, overrides, chapter):
+    """Merge hand-maintained entry fields for one chapter into its nodes (mutates them)."""
+    if not overrides:
+        return
+    unknown = sorted(key for key in overrides if not re.fullmatch(r'ch[0-9]{2}', str(key)))
+    if unknown:
+        raise ValueError(f'{ENTRY_OVERRIDES}: unknown chapter keys {unknown}')
+    for node_id, fields in sorted((overrides.get(chapter) or {}).items()):
+        node = nodes_by_id.get(node_id)
+        if node is None:
+            raise ValueError(f'{ENTRY_OVERRIDES}: {chapter} has no node {node_id}')
+        if not isinstance(fields, dict) or not fields:
+            raise ValueError(f'{ENTRY_OVERRIDES}: {chapter}/{node_id} must map fields to values')
+        extra = sorted(set(fields) - set(ENTRY_OVERRIDE_FIELDS))
+        if extra:
+            raise ValueError(f'{ENTRY_OVERRIDES}: {chapter}/{node_id} may only set {ENTRY_OVERRIDE_FIELDS}, not {extra}')
+        node['entry'].update(fields)
 
 
 def branch_key(sect_id, branch_id):
@@ -226,6 +253,7 @@ def compile_map(data, chapter):
             entry=dict(sceneId=relic['id'], townSpec=None, gateId=None, spawn=None, templateYear=None,
                        accessNote=relic['accessNote']), coordinateNote=f'{anchor_id} 邻接锚（原创扩展，精确点位待考）'))
     by_id = {row['id']: row for row in nodes}
+    apply_entry_overrides(by_id, data.get('entry_overrides'), chapter)
     roads = []
     travel_by = {row['id']: row for row in data['routes']['posts'] + data['routes']['ports']}
     def endpoint(value):
@@ -278,7 +306,8 @@ def compile_map(data, chapter):
         terrain=geometry(data['regions'], project),
         sources=['docs/design/02-timeline-and-world-tiers.md', 'docs/design/11-open-world.md',
             'docs/design/map/cities.yaml', 'docs/design/map/routes.yaml', 'docs/design/map/sects.yaml',
-            'docs/design/map/regions.yaml', *sorted(path for _, path in data['towns'].values())])
+            'docs/design/map/regions.yaml', *([ENTRY_OVERRIDES] if data.get('entry_overrides') is not None else []),
+            *sorted(path for _, path in data['towns'].values())])
     validate_map(value)
     value['revision'] = hashlib.sha256(compact(value).encode()).hexdigest()
     return value
