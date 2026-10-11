@@ -32009,7 +32009,7 @@
   },
   {
    "id": "TOOL-town2-worldmap-pilot",
-   "title": "城镇探索 v2 · 大地图试点接线（三座试点城节点写 entry.scene / gateId）",
+   "title": "城镇探索 v2 · 大地图试点接线（覆盖文件 entry_overrides.yaml 写三座试点城的 entry.scene / gateId，生成器重出 map.yaml）",
    "phase": "TOWN2",
    "wave": 55,
    "kind": "draft",
@@ -32029,14 +32029,15 @@
    "effort": "xhigh",
    "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
    "writes": [
-    "tools/content/worldmap_from_towns.py",
-    "tools/content/test_worldmap_from_towns.py",
-    "content/world/ch01/map.yaml",
-    "content/world/ch10/map.yaml"
+    "tools/content/town_scene_overrides.py",
+    "tools/content/test_town_scene_overrides.py",
+    "docs/design/map/entry_overrides.yaml",
+    "content/world/ch*/map.yaml"
    ],
    "validate": {
     "exists": [
-     "tools/content/test_worldmap_from_towns.py"
+     "tools/content/town_scene_overrides.py",
+     "docs/design/map/entry_overrides.yaml"
     ],
     "cmd": [
      [
@@ -32048,7 +32049,18 @@
       "{python}",
       "-m",
       "unittest",
+      "tools/content/test_town_scene_overrides.py",
       "tools/content/test_worldmap_from_towns.py"
+     ],
+     [
+      "{python}",
+      "tools/content/worldmap_from_towns.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/content/worldmap_enrich.py",
+      "--check"
      ],
      [
       "pnpm",
