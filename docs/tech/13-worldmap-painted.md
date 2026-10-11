@@ -1,11 +1,11 @@
 # tech/13 · 大地图：整张水墨底图 + 2D 叠加（AR-111）
 
-> 上游：作者 AR-111（2026-10-10）；几何与坐标归 `design/19` §2、§9；网格与节点归 `content/world/chNN/map.yaml`（`worldmap.v1`）。
+> 上游：作者 AR-111、AR-112（2026-10-10）；几何与坐标归 `design/19` §2、§9；网格与节点归 `content/world/chNN/map.yaml`（`worldmap.v1`）。
 > 本文取代 render `ENG-08` 大地图 2.5D 方案中的地形、海面、欧亚大陆贴图与「地图主角用 rig」两条；寻路、里程、城门、开放判定仍全在 core，不变。
 
 ## 0. 结论先行
 
-1. 大地图底图是**一张离线画好的 4:3 水墨山水图**，正好覆盖内容网格 `[0,512]×[0,384]` 全幅；图上无字、无城镇、无道路。
+1. 大地图底图是**一张离线画好的 4:3 水墨山水图**，正好覆盖内容网格 `[0,512]×[0,384]` 全幅；图上无字、无城镇、无道路。底图由确定性合成器 `tools/map/paint/compose_world.py` 用 GIS 数据加仓库现有水墨贴图直接画出（AR-112，不用 AI 重画）。
 2. 运行时是 **2D 平面**：底图图片 + SVG 道路 + 屏幕空间的城镇标签、主角立牌和目的地标记。没有旋转、没有 WebGL、没有贴图拼合。
 3. 拖动与缩放夹在图内（金庸世界范围），最小缩放 = 铺满视口。
 4. 素材键 `map_world_jianghu__base01`，文件 `assets/default/map/world/map_world_jianghu__base01.webp`。正式图替换临时占位时同名同键，代码不改。
@@ -24,7 +24,8 @@
 | 尺寸 | 正式图 ≥ 4096×3072（目标 4800×3600）；WebP，质量约 85，单文件 ≤ 8 MiB |
 | 内容 | 海陆、岸线、湖泊、主要河流、山脉 / 高原 / 沙漠 / 草原 / 平原的水墨表现；海面与山川同一套笔墨（淡青洗染 + 水纹）；日本、朝鲜、台湾、海南等岛屿按高程画山 |
 | 禁止 | 任何文字、伪字、印章、题跋；城镇 / 城墙图标；道路；现代国界；画框卷轴 |
-| 对齐 | 以 GIS 陆地掩膜为准：1024×768 下陆地 IoU ≥ 0.97，岸线平均偏差 ≤ 3 px；所有开放节点落在画出的陆地上（海岛节点按 design/19 §9.2 岸线容差） |
+| 对齐 | 海陆直接取 GIS（Natural Earth 10m 陆地 / 小岛 / 湖泊），岸线天然对齐；所有开放节点落在画出的陆地上（海岛节点按 design/19 §9.2 岸线容差） |
+| 出图 | `tools/map/paint/compose_world.py`：固定种子，同输入逐字节同输出；笔墨只取 `assets/default/map/kit/`、`assets/default/map/tiles/` 与两张已审基线图抠出的山体印章；山按 ETOPO 高程与起伏度落点，河流按 scalerank 阈值取舍 |
 | 构建 | `apps/game/build/asset-manifest.ts` 把 `/map/world/` 下 `map_world_` 前缀条目登记为 `map` 键并复制进 `apps/game/public/assets/default/map/world/` |
 | 选用 | `session-projection` 依次取 `map_world_jianghu__<era>`、`map_world_jianghu__base01`，都没有时用固定路径 `/assets/default/map/world/map_world_jianghu__base01.webp`；不再回退到 `ref_map_jianghu`（那张不是全幅，会错位） |
 
