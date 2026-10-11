@@ -29804,7 +29804,11 @@
     "packages/data/src/build/town-plan/types.ts",
     "packages/data/src/build/town-plan/__tests__/kits.test.ts",
     "content/town/buildkits/**",
-    "packages/data/src/build/discover.ts"
+    "packages/data/src/build/discover.ts",
+    "packages/data/src/build/town-plan/testing/index.ts",
+    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
+    "apps/game/src/town-contract.test.ts",
+    "packages/render/package.json"
    ],
    "validate": {
     "exists": [
