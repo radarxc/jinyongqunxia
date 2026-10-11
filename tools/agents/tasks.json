@@ -52864,6 +52864,8 @@
    "writes": [
     "tools/model3d/dressup/sculpt_neck.py",
     "tools/model3d/dressup/tests_sculpt.py",
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
     "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
     "assets/default/model3d/dressup/templates/tpl_m_medium/**",
     "assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose_v2.png",
