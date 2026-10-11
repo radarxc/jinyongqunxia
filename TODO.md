@@ -43,9 +43,10 @@
   - ERROR：`ART-item-hidden-weapons`。
 
 ## 3. 素材
-- **大地图**（AR-83）：地形和贴片都已合入。
-  - `TOOL-map-compose` 第一版画风不合格：块状像素、没有山形、河流带刺，已拦下。
-  - 按 `devsup_note_style.md` 的 7 条返修完了，停在 HOLD-REVIEWS，等协调者看 `assets/default/map/composed/sample/*_vs_approved*` 对照图，看过才进审核。
+- **大地图**（AR-111，10-10 起，取代 AR-83 的程序拼图路线）：整张水墨底图 + 2D 叠路径 / 城镇坐标，契约 `docs/tech/13-worldmap-painted.md`。
+  - 运行时 `ENG-worldmap-painted-2d`：traex 直接在主检出改（写集见 `tools/agents/prompts/ENG-worldmap-painted-2d.md`，改前快照 `.agents/coord/ENG-worldmap-painted-2d/pre_snapshot.json`，tracked 改动另存 `refs/backup/main-wip-20261010-ar111`）。
+  - 底图 `ART-worldmap-painted`：Opus 子代理，GIS 底稿 + Gemini 重画 + 岸线对齐；进度 `.agents/coord/ART-worldmap-painted/STATUS.md`。正式图到位前用旧贴图裁出的临时占位 `assets/default/map/world/map_world_jianghu__base01.webp`。
+  - `TOOL-map-compose`（AR-83）样区画风未过，停用，工具保留备查。
 - **城图**：202 / 1172，city_scheduler 自己在推；`CITY-layouts-ch01-b` 审核没过，正在返修。
 - **插图**：26 份提示词还没出图，清单在 `.agents/coord/_lines/title-audit/missing_plates.tsv`。
 - **衣物与护甲出图**（AR-77 / AR-91 记入 TODO）：数据 8 批已合入，565 件待 Gemini 出图。作者方便时，先开两个 Gemini 标签页（窗口要在前台），出一组样图给作者看，再批量出。同款先出底图，其他颜色上传底图只改主色（换色件带 `edit_from`），入口见 AGENTS.md §3。

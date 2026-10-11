@@ -1,0 +1,20 @@
+- id: map_world_jianghu__base01
+  file: map_world_jianghu__base01.webp
+  category: map
+  style: default
+  subject: 江湖大地图整张底图（AR-111）：金庸世界范围 = 内容大地图网格 512×384 全幅（Albers 25N/47N/105E，tools/map/render_map.py::CanvasProjection(512, 384, margin=18)），北上东右，图上无字、不画城镇与道路（运行时叠加）。
+  extent_grid: [0, 0, 512, 384]
+  prompt: ''
+  negative: ''
+  references:
+  - path: apps/game/public/img/tex_map_eurasia.png
+    use: 临时占位的来源：旧 3D 大地图贴图（Antigravity 10-07 拼合，未入库）按网格范围裁出 [1320, 870, 2520, 1770]，Lanczos 放大到 2048×1536，透明海面填淡青灰纸色。
+  tool: python3（PIL 裁切合成，非出图）
+  model: ''
+  effort: ''
+  created: '2026-10-10T22:52:00-0700'
+  source_path: apps/game/public/img/tex_map_eurasia.png
+  size: 2048x1536
+  sha256: 49a115988a55f5973a67e939124f1564be8b463acda1359ced21df80fc5b90d5
+  status: candidate
+  notes: 临时占位（协调者 10-10）：只为让 2D 大地图运行时先接上同一素材键；中部是旧江湖总图拉伸，河道与真实地理不符。正式整张水墨图（ART-worldmap-painted）到位后同名、同键替换，代码不改。运行时按图片实际像素换算：像素 = 网格坐标 × 宽 / 512（纵向 × 高 / 384）。
