@@ -378,6 +378,8 @@
 <path id="ch01-route_grand_canal_south" data-map-id="route_grand_canal_south" class="water-route" d="M2928.33 1942.26 L2955.33 1907.94 L2941.75 1874.1 L2922.62 1859.41 L2902.69 1849.38 L2872.67 1825.05 L2869.83 1813.03"><title>江南运河 · 5日 · medium</title></path>
 <path id="ch01-route_east_sea" data-map-id="route_east_sea" class="water-route" d="M3007.33 1956.34 L3041.65 1943.25 L2890.97 2296.73"><title>东海沿岸海路 · 5日 · medium</title></path>
 <path id="ch01-route_south_sea" data-map-id="route_south_sea" class="water-route" d="M2890.97 2296.73 L2865.33 2327.84 L2593.39 2444.04"><title>南海沿岸海路 · 5日 · medium</title></path>
+<path id="ch01-route_xizhou_tingzhou" data-map-id="route_xizhou_tingzhou" class="road" d="M1380.88 1126.34 L1379.09 1099.9 L1382.18 1080.81 L1393.33 1054.55"><title>交河—北庭道（金沙岭） · 3日 · medium</title></path>
+<path id="ch01-route_yizhou_tingzhou" data-map-id="route_yizhou_tingzhou" class="road" d="M1577.73 1161.4 L1553.72 1163.75 L1521.58 1123.94 L1440.28 1078.11 L1410.66 1061.21 L1393.33 1054.55"><title>伊州—北庭道（蒲类） · 7日 · high</title></path>
 </g>
 <g class="travel-nodes">
 <rect id="ch01-post_beijing" data-map-id="post_beijing" class="post" x="2649.24" y="1344.65" width="10" height="10"><title>京师驿</title></rect>
@@ -558,6 +560,7 @@
 <circle id="ch01-city_korla" data-map-id="city_korla" class="city-major" cx="1228.79" cy="1177.6" r="7"><title>焉耆一带（待考） · 库尔勒 · 商埠</title></circle>
 <circle id="ch01-city_turpan" data-map-id="city_turpan" class="city-capital" cx="1380.88" cy="1126.34" r="10"><title>高昌（高昌回鹘王都） · 吐鲁番 · 都城</title></circle>
 <circle id="ch01-city_hami" data-map-id="city_hami" class="city-major" cx="1577.73" cy="1161.4" r="7"><title>伊州（高昌回鹘辖） · 哈密 · 边关</title></circle>
+<circle id="ch01-city_tingzhou" data-map-id="city_tingzhou" class="city-capital" cx="1393.33" cy="1054.55" r="10"><title>别失八里（高昌回鹘夏都） · 吉木萨尔（北庭故城） · 都城</title></circle>
 <circle id="ch01-city_yining" data-map-id="city_yining" class="city-major" cx="1040.48" cy="993.97" r="7"><title>伊犁河谷部落（待考） · 伊宁 · 商埠</title></circle>
 <circle id="ch01-city_shenyang" data-map-id="city_shenyang" class="city-major" cx="2965.96" cy="1179.37" r="7"><title>沈州 · 沈阳 · 军镇</title></circle>
 <circle id="ch01-city_liaoyang" data-map-id="city_liaoyang" class="city-capital" cx="2963.36" cy="1214.09" r="10"><title>东京辽阳府 · 辽阳 · 都城</title></circle>
@@ -670,6 +673,7 @@
 <text class="label major" x="1247.14" y="1162.94">焉耆一带（待考）</text>
 <text class="label capital" x="1381.82" y="1119.58">高昌（高昌回鹘王都）</text>
 <text class="label major" x="1580.18" y="1152.86">伊州（高昌回鹘辖）</text>
+<text class="label capital" x="1401.71" y="1040.84">别失八里（高昌回鹘夏都）</text>
 <text class="label major" x="1060.62" y="986.56">伊犁河谷部落（待考）</text>
 <text class="label major vertical" x="2973.55" y="1176.02">沈州</text>
 <text class="label capital vertical" x="2971.23" y="1202.28">东京辽阳府</text>
@@ -766,6 +770,8 @@
 <path id="ch02-route_east_sea" data-map-id="route_east_sea" class="water-route" d="M3007.33 1956.34 L3041.65 1943.25 L2890.97 2296.73"><title>东海沿岸海路 · 5日 · medium</title></path>
 <path id="ch02-route_south_sea" data-map-id="route_south_sea" class="water-route" d="M2890.97 2296.73 L2865.33 2327.84 L2593.39 2444.04"><title>南海沿岸海路 · 5日 · medium</title></path>
 <path id="ch02-route_taohuadao" data-map-id="route_taohuadao" class="water-route" d="M3041.65 1943.25 L3046.13 1952.95"><title>舟山—桃花岛渡船 · 1日 · low</title></path>
+<path id="ch02-route_xizhou_tingzhou" data-map-id="route_xizhou_tingzhou" class="road" d="M1380.88 1126.34 L1379.09 1099.9 L1382.18 1080.81 L1393.33 1054.55"><title>交河—北庭道（金沙岭） · 3日 · medium</title></path>
+<path id="ch02-route_yizhou_tingzhou" data-map-id="route_yizhou_tingzhou" class="road" d="M1577.73 1161.4 L1553.72 1163.75 L1521.58 1123.94 L1440.28 1078.11 L1410.66 1061.21 L1393.33 1054.55"><title>伊州—北庭道（蒲类） · 7日 · high</title></path>
 </g>
 <g class="travel-nodes">
 <rect id="ch02-post_beijing" data-map-id="post_beijing" class="post" x="2649.24" y="1344.65" width="10" height="10"><title>京师驿</title></rect>
@@ -952,6 +958,7 @@
 <circle id="ch02-city_korla" data-map-id="city_korla" class="city-major" cx="1228.79" cy="1177.6" r="7"><title>焉耆一带（待考） · 库尔勒 · 商埠</title></circle>
 <circle id="ch02-city_turpan" data-map-id="city_turpan" class="city-major" cx="1380.88" cy="1126.34" r="7"><title>火州（畏兀儿亦都护） · 吐鲁番 · 商埠</title></circle>
 <circle id="ch02-city_hami" data-map-id="city_hami" class="city-major" cx="1577.73" cy="1161.4" r="7"><title>哈密力（待考） · 哈密 · 边关</title></circle>
+<circle id="ch02-city_tingzhou" data-map-id="city_tingzhou" class="city-major" cx="1393.33" cy="1054.55" r="7"><title>别失八里（畏兀儿） · 吉木萨尔（北庭故城） · 商埠</title></circle>
 <circle id="ch02-city_yining" data-map-id="city_yining" class="city-major" cx="1040.48" cy="993.97" r="7"><title>阿力麻里（哈剌鲁斡匝儿据） · 伊宁 · 商埠</title></circle>
 <circle id="ch02-city_shenyang" data-map-id="city_shenyang" class="city-major" cx="2965.96" cy="1179.37" r="7"><title>沈州 · 沈阳 · 军镇</title></circle>
 <circle id="ch02-city_liaoyang" data-map-id="city_liaoyang" class="city-major" cx="2963.36" cy="1214.09" r="7"><title>辽阳府（金东京，已失守） · 辽阳 · 路府州县</title></circle>
@@ -1069,6 +1076,7 @@
 <text class="label major" x="1247.14" y="1162.94">焉耆一带（待考）</text>
 <text class="label major" x="1381.82" y="1119.58">火州（畏兀儿亦都护）</text>
 <text class="label major vertical" x="1581.18" y="1154.86">哈密力（待考）</text>
+<text class="label major" x="1401.71" y="1040.84">别失八里（畏兀儿）</text>
 <text class="label major" x="1060.62" y="986.56">阿力麻里（哈剌鲁斡匝儿据）</text>
 <text class="label major vertical" x="2973.55" y="1176.02">沈州</text>
 <text class="label major" x="2970.23" y="1200.28">辽阳府（金东京，已失守）</text>
@@ -1158,6 +1166,8 @@
 <path id="ch03-route_east_sea" data-map-id="route_east_sea" class="water-route" d="M3007.33 1956.34 L3041.65 1943.25 L2890.97 2296.73"><title>东海沿岸海路 · 5日 · medium</title></path>
 <path id="ch03-route_south_sea" data-map-id="route_south_sea" class="water-route" d="M2890.97 2296.73 L2865.33 2327.84 L2593.39 2444.04"><title>南海沿岸海路 · 5日 · medium</title></path>
 <path id="ch03-route_taohuadao" data-map-id="route_taohuadao" class="water-route" d="M3041.65 1943.25 L3046.13 1952.95"><title>舟山—桃花岛渡船 · 1日 · low</title></path>
+<path id="ch03-route_xizhou_tingzhou" data-map-id="route_xizhou_tingzhou" class="road" d="M1380.88 1126.34 L1379.09 1099.9 L1382.18 1080.81 L1393.33 1054.55"><title>交河—北庭道（金沙岭） · 3日 · medium</title></path>
+<path id="ch03-route_yizhou_tingzhou" data-map-id="route_yizhou_tingzhou" class="road" d="M1577.73 1161.4 L1553.72 1163.75 L1521.58 1123.94 L1440.28 1078.11 L1410.66 1061.21 L1393.33 1054.55"><title>伊州—北庭道（蒲类） · 7日 · high</title></path>
 </g>
 <g class="travel-nodes">
 <rect id="ch03-post_beijing" data-map-id="post_beijing" class="post" x="2649.24" y="1344.65" width="10" height="10"><title>京师驿</title></rect>
@@ -1342,6 +1352,7 @@
 <circle id="ch03-city_korla" data-map-id="city_korla" class="city-major" cx="1228.79" cy="1177.6" r="7"><title>焉耆一带（待考） · 库尔勒 · 商埠</title></circle>
 <circle id="ch03-city_turpan" data-map-id="city_turpan" class="city-major" cx="1380.88" cy="1126.34" r="7"><title>火州（畏兀儿亦都护） · 吐鲁番 · 商埠</title></circle>
 <circle id="ch03-city_hami" data-map-id="city_hami" class="city-major" cx="1577.73" cy="1161.4" r="7"><title>哈密力（待考） · 哈密 · 边关</title></circle>
+<circle id="ch03-city_tingzhou" data-map-id="city_tingzhou" class="city-major" cx="1393.33" cy="1054.55" r="7"><title>别失八里（蒙古行尚书省） · 吉木萨尔（北庭故城） · 路府州县</title></circle>
 <circle id="ch03-city_yining" data-map-id="city_yining" class="city-capital" cx="1040.48" cy="993.97" r="10"><title>阿力麻里（察合台汗国） · 伊宁 · 都城</title></circle>
 <circle id="ch03-city_khotan_kunlun" data-map-id="city_khotan_kunlun" class="city-site" cx="790.98" cy="1439.48" r="8"><title>昆仑山道（待考） · 昆仑山口 · 边关</title></circle>
 <circle id="ch03-city_shenyang" data-map-id="city_shenyang" class="city-major" cx="2965.96" cy="1179.37" r="7"><title>沈州 · 沈阳 · 军镇</title></circle>
@@ -1456,6 +1467,7 @@
 <text class="label major" x="1247.14" y="1162.94">焉耆一带（待考）</text>
 <text class="label major" x="1381.82" y="1119.58">火州（畏兀儿亦都护）</text>
 <text class="label major vertical" x="1581.18" y="1154.86">哈密力（待考）</text>
+<text class="label major" x="1401.71" y="1040.84">别失八里（蒙古行尚书省）</text>
 <text class="label capital" x="1060.62" y="986.56">阿力麻里（察合台汗国）</text>
 <text class="label major vertical" x="2973.55" y="1176.02">沈州</text>
 <text class="label major" x="2970.23" y="1200.28">辽阳（蒙古东京路）</text>
@@ -1542,6 +1554,8 @@
 <path id="ch04-route_lingshedao" data-map-id="route_lingshedao" class="water-route" d="M3007.33 1956.34 L3115.84 2047.06"><title>明州—灵蛇岛剧情船 · 4日 · special</title></path>
 <path id="ch04-route_binghuodao" data-map-id="route_binghuodao" class="water-route" d="M2923.15 1260.84 L3398.29 1062.46"><title>辽东—冰火岛剧情船 · 9日 · special</title></path>
 <path id="ch04-route_wangpanshan" data-map-id="route_wangpanshan" class="water-route" d="M3041.65 1943.25 L3071.45 1973.34"><title>舟山—王盘山岛渡船 · 1日 · special</title></path>
+<path id="ch04-route_xizhou_tingzhou" data-map-id="route_xizhou_tingzhou" class="road" d="M1380.88 1126.34 L1379.09 1099.9 L1382.18 1080.81 L1393.33 1054.55"><title>交河—北庭道（金沙岭） · 3日 · medium</title></path>
+<path id="ch04-route_yizhou_tingzhou" data-map-id="route_yizhou_tingzhou" class="road" d="M1577.73 1161.4 L1553.72 1163.75 L1521.58 1123.94 L1440.28 1078.11 L1410.66 1061.21 L1393.33 1054.55"><title>伊州—北庭道（蒲类） · 7日 · high</title></path>
 </g>
 <g class="travel-nodes">
 <rect id="ch04-post_beijing" data-map-id="post_beijing" class="post" x="2649.24" y="1344.65" width="10" height="10"><title>京师驿</title></rect>
@@ -1733,6 +1747,7 @@
 <circle id="ch04-city_korla" data-map-id="city_korla" class="city-major" cx="1228.79" cy="1177.6" r="7"><title>焉耆一带（待考） · 库尔勒 · 商埠</title></circle>
 <circle id="ch04-city_turpan" data-map-id="city_turpan" class="city-major" cx="1380.88" cy="1126.34" r="7"><title>火州 · 吐鲁番 · 商埠</title></circle>
 <circle id="ch04-city_hami" data-map-id="city_hami" class="city-major" cx="1577.73" cy="1161.4" r="7"><title>哈密力（待考） · 哈密 · 边关</title></circle>
+<circle id="ch04-city_tingzhou" data-map-id="city_tingzhou" class="city-major" cx="1393.33" cy="1054.55" r="7"><title>别失八里（东察合台汗国） · 吉木萨尔（北庭故城） · 商埠</title></circle>
 <circle id="ch04-city_yining" data-map-id="city_yining" class="city-capital" cx="1040.48" cy="993.97" r="10"><title>阿力麻里（东察合台汗国） · 伊宁 · 都城</title></circle>
 <circle id="ch04-city_khotan_kunlun" data-map-id="city_khotan_kunlun" class="city-site" cx="790.98" cy="1439.48" r="8"><title>昆仑山道（待考） · 昆仑山口 · 边关</title></circle>
 <circle id="ch04-city_shenyang" data-map-id="city_shenyang" class="city-major" cx="2965.96" cy="1179.37" r="7"><title>沈阳路 · 沈阳 · 路府州县</title></circle>
@@ -1854,6 +1869,7 @@
 <text class="label major" x="1247.14" y="1162.94">焉耆一带（待考）</text>
 <text class="label major vertical" x="1382.82" y="1121.58">火州</text>
 <text class="label major vertical" x="1581.18" y="1154.86">哈密力（待考）</text>
+<text class="label major" x="1401.71" y="1040.84">别失八里（东察合台汗国）</text>
 <text class="label capital" x="1060.62" y="986.56">阿力麻里（东察合台汗国）</text>
 <text class="label major vertical" x="2973.55" y="1176.02">沈阳路</text>
 <text class="label major vertical" x="2971.23" y="1202.28">辽阳路</text>
@@ -4145,6 +4161,9 @@
 <path id="ch10-route_grand_canal_south" data-map-id="route_grand_canal_south" class="water-route" d="M2928.33 1942.26 L2955.33 1907.94 L2941.75 1874.1 L2922.62 1859.41 L2902.69 1849.38 L2872.67 1825.05 L2869.83 1813.03"><title>江南运河 · 5日 · medium</title></path>
 <path id="ch10-route_east_sea" data-map-id="route_east_sea" class="water-route" d="M3007.33 1956.34 L3041.65 1943.25 L2890.97 2296.73"><title>东海沿岸海路 · 5日 · medium</title></path>
 <path id="ch10-route_south_sea" data-map-id="route_south_sea" class="water-route" d="M2890.97 2296.73 L2865.33 2327.84 L2593.39 2444.04"><title>南海沿岸海路 · 5日 · medium</title></path>
+<path id="ch10-route_xizhou_tingzhou" data-map-id="route_xizhou_tingzhou" class="road" d="M1380.88 1126.34 L1379.09 1099.9 L1382.18 1080.81 L1393.33 1054.55"><title>交河—北庭道（金沙岭） · 3日 · medium</title></path>
+<path id="ch10-route_yizhou_tingzhou" data-map-id="route_yizhou_tingzhou" class="road" d="M1577.73 1161.4 L1553.72 1163.75 L1521.58 1123.94 L1440.28 1078.11 L1410.66 1061.21 L1393.33 1054.55"><title>伊州—北庭道（蒲类） · 7日 · high</title></path>
+<path id="ch10-route_tingzhou_luntai" data-map-id="route_tingzhou_luntai" class="road" d="M1393.33 1054.55 L1366.14 1052.06 L1338.2 1053.85 L1318.6 1060.23"><title>北庭—轮台道 · 2日 · medium</title></path>
 </g>
 <g class="travel-nodes">
 <rect id="ch10-post_beijing" data-map-id="post_beijing" class="post" x="2649.24" y="1344.65" width="10" height="10"><title>京师驿</title></rect>
@@ -4313,6 +4332,7 @@
 <circle id="ch10-city_turpan" data-map-id="city_turpan" class="city-major" cx="1380.88" cy="1126.34" r="7"><title>西州（高昌县） · 吐鲁番 · 路府州县</title></circle>
 <circle id="ch10-city_hami" data-map-id="city_hami" class="city-major" cx="1577.73" cy="1161.4" r="7"><title>伊州（伊吾县） · 哈密 · 路府州县</title></circle>
 <circle id="ch10-city_urumqi" data-map-id="city_urumqi" class="city-major" cx="1318.6" cy="1060.23" r="7"><title>轮台县（庭州） · 乌鲁木齐 · 路府州县</title></circle>
+<circle id="ch10-city_tingzhou" data-map-id="city_tingzhou" class="city-major" cx="1393.33" cy="1054.55" r="7"><title>庭州（北庭都护府） · 吉木萨尔（北庭故城） · 军镇</title></circle>
 <circle id="ch10-city_yining" data-map-id="city_yining" class="city-major" cx="1040.48" cy="993.97" r="7"><title>弓月城（伊丽水） · 伊宁 · 边关</title></circle>
 <circle id="ch10-city_shenyang" data-map-id="city_shenyang" class="city-major" cx="2965.96" cy="1179.37" r="7"><title>新城（安东都督府，今抚顺） · 沈阳 · 边关</title></circle>
 <circle id="ch10-city_liaoyang" data-map-id="city_liaoyang" class="city-major" cx="2963.36" cy="1214.09" r="7"><title>辽东城（辽城州） · 辽阳 · 边关</title></circle>
@@ -4415,6 +4435,7 @@
 <text class="label major vertical" x="1382.82" y="1121.58">西州（高昌县）</text>
 <text class="label major vertical" x="1581.18" y="1154.86">伊州（伊吾县）</text>
 <text class="label major vertical" x="1325.91" y="1042.87">轮台县（庭州）</text>
+<text class="label major" x="1401.71" y="1040.84">庭州（北庭都护府）</text>
 <text class="label major" x="1060.62" y="986.56">弓月城（伊丽水）</text>
 <text class="label major" x="2972.55" y="1174.02">新城（安东都督府，今抚顺）</text>
 <text class="label major" x="2970.23" y="1200.28">辽东城（辽城州）</text>
@@ -5866,6 +5887,7 @@
 <path id="ch14-route_south_sea" data-map-id="route_south_sea" class="water-route" d="M2890.97 2296.73 L2865.33 2327.84 L2593.39 2444.04"><title>南海沿岸海路 · 5日 · medium</title></path>
 <path id="ch14-route_bohai" data-map-id="route_bohai" class="water-route" d="M2697.6 1394.79 L2806.52 1327.63 L2920.21 1471.38 L2923.15 1260.84"><title>渤海—辽东海路 · 5日 · medium</title></path>
 <path id="ch14-route_taiwan" data-map-id="route_taiwan" class="water-route" d="M2865.33 2327.84 L2959.56 2373.06 L3001.65 2403.26"><title>闽台海路 · 4日 · medium</title></path>
+<path id="ch14-route_dihua_jimsa" data-map-id="route_dihua_jimsa" class="road" d="M1318.6 1060.23 L1339.5 1041.01 L1366.67 1048.89 L1393.33 1054.55"><title>迪化—济木萨驿路（阜康） · 2日 · medium</title></path>
 </g>
 <g class="travel-nodes">
 <rect id="ch14-post_beijing" data-map-id="post_beijing" class="post" x="2649.24" y="1344.65" width="10" height="10"><title>京师驿</title></rect>
@@ -6066,6 +6088,7 @@
 <circle id="ch14-city_turpan" data-map-id="city_turpan" class="city-major" cx="1380.88" cy="1126.34" r="7"><title>吐鲁番 · 吐鲁番 · 商埠</title></circle>
 <circle id="ch14-city_hami" data-map-id="city_hami" class="city-major" cx="1577.73" cy="1161.4" r="7"><title>哈密 · 哈密 · 边关</title></circle>
 <circle id="ch14-city_urumqi" data-map-id="city_urumqi" class="city-major" cx="1318.6" cy="1060.23" r="7"><title>迪化州 · 乌鲁木齐 · 路府州县</title></circle>
+<circle id="ch14-city_tingzhou" data-map-id="city_tingzhou" class="city-major" cx="1393.33" cy="1054.55" r="7"><title>济木萨（恺安城） · 吉木萨尔（北庭故城） · 军镇</title></circle>
 <circle id="ch14-city_yining" data-map-id="city_yining" class="city-major" cx="1040.48" cy="993.97" r="7"><title>惠远城（伊犁将军驻） · 伊宁 · 军镇</title></circle>
 <circle id="ch14-city_khotan_kunlun" data-map-id="city_khotan_kunlun" class="city-site" cx="790.98" cy="1439.48" r="8"><title>昆仑山道（待考） · 昆仑山口 · 边关</title></circle>
 <circle id="ch14-city_shenyang" data-map-id="city_shenyang" class="city-capital" cx="2965.96" cy="1179.37" r="10"><title>盛京奉天府 · 沈阳 · 都城</title></circle>
@@ -6200,6 +6223,7 @@
 <text class="label major vertical" x="1382.82" y="1121.58">吐鲁番</text>
 <text class="label major vertical" x="1581.18" y="1154.86">哈密</text>
 <text class="label major vertical" x="1325.91" y="1042.87">迪化州</text>
+<text class="label major" x="1401.71" y="1040.84">济木萨（恺安城）</text>
 <text class="label major" x="1060.62" y="986.56">惠远城（伊犁将军驻）</text>
 <text class="label capital vertical" x="2973.55" y="1176.02">盛京奉天府</text>
 <text class="label major vertical" x="2971.23" y="1202.28">辽阳州</text>

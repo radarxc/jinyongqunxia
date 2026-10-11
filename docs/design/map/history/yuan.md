@@ -10,7 +10,7 @@
 
 - **基准年**：ch04 倚天屠龙记 1360；同档多章时逐章覆盖 `eras.chNN`，章节年份内的变动取年末状态。
 - **本轮改动（189 城中）**：名称改 38 城、地位改 17 城（其中 4 城只是关闭条目统一记「未建或废弃」）、开放改 10 城；逐城见 §5「改动」列。
-- **ch04（1360）**：都城 3、路府州县 115、军镇 9、商埠 17、边关 11、未建或废弃 34；开放 159 城。都城 3：大都路、江州（陈汉都城）、阿力麻里（东察合台汗国）。
+- **ch04（1360）**：都城 3、路府州县 115、军镇 9、商埠 18、边关 11、未建或废弃 34；开放 160 城。都城 3：大都路、江州（陈汉都城）、阿力麻里（东察合台汗国）。
 - **置信度**：A 104、B 46、C 39（按城计，取档内各章最低）。
 - **revision**：14 章地图全部重出（城市 `eras` 跨章写入每章节点，故任一章开闭变化都会改动全部 14 章）；本档 ch04 `1e2f617d8ba2` → `c17650cd96d1`。
 
@@ -313,6 +313,7 @@
 | `city_turpan` | 吐鲁番 | 火州 · 商埠 · 开 | — | 沿用（CHGIS 切片 / 正史抽核未见冲突） | B |
 | `city_hami` | 哈密 | 哈密力（待考） · 边关 · 开 | — | 沿用（CHGIS 切片 / 正史抽核未见冲突） | C |
 | `city_urumqi` | 乌鲁木齐 | 别失八里辖境（待考） · 未建或废弃 · 关 | — | 沿用（CHGIS 切片 / 正史抽核未见冲突） | C |
+| `city_tingzhou` | 吉木萨尔（北庭故城） | 别失八里（东察合台汗国） · 商埠 · 开 | 新增 | 第四轮（2026-10-11）随庭州并入新增；元末属东察合台汗国（明称其国为别失八里），城邑尚存（待考） | C |
 | `city_yining` | 伊宁 | 阿力麻里（东察合台汗国） · 都城 · 开 | 名、位 | 秃黑鲁帖木儿汗驻阿力麻里，锚点东约 40 km | B |
 | `city_altay` | 阿勒泰 | 阿尔泰山诸部（未建城） · 未建或废弃 · 关 | 名、位、开 | 游牧之地，无城邑（与唐 702 档同标准） | A |
 
@@ -426,3 +427,4 @@
 - 写入：`cities.yaml` 的 `eras.ch04`、`history.yuan`、`chapters` 列表、`sources.src_hist_yuan`（受影响城市的 `sources` 已追加）；`routes.yaml` 见 §6。
 - 流水线：`python3 tools/content/worldmap_from_towns.py`（14 章）→ `python3 tools/map/paint/road_paths.py --no-images` → `python3 tools/content/worldmap_enrich.py`；检查：`worldmap_enrich.py --check`、`worldmap_from_towns.py --check`、`python3 -m unittest tools/content/test_worldmap_enrich.py`、`python3 tools/map/render_map.py --check`、`pnpm content:validate`。
 - `design/11` §3.2 的 189 城时代表与 `design/19` §4 的 42 城摘要是摘要视图，以 `cities.yaml` 为准；设计预览 SVG（`jianghu-chNN.svg`）需 `render_map.py --render` 重出（tools/map 输出，本轮未动）。
+- 第四轮（2026-10-11）：城镇线修正包并入庭州，新增 `city_tingzhou`（今吉木萨尔北庭故城，190 城）；本档别失八里（东察合台汗国）商埠、开放，两条连火州 / 哈密力的道路同开。§1 各章计数已含该城（§1「本轮改动」仍按 189 城的第二轮统计）。

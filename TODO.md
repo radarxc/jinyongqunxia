@@ -44,20 +44,12 @@
 
 ## 3. 素材
 - **大地图**（AR-111，10-10 起，取代 AR-83 的程序拼图路线）：整张水墨底图 + 2D 叠路径 / 城镇坐标，契约 `docs/tech/13-worldmap-painted.md`。
-  - 运行时 `ENG-worldmap-painted-2d`：**10-10 23:25 完成**，GPT-5.6-Sol 审核 PASS，协调者无头 Chrome 实测通过（夹边、缩放、点城出发、空闲 0 rAF）。改动在主检出工作区、与他人未提交改动交织，未提交；改前 `refs/backup/main-wip-20261010-ar111`，改后（含新文件）`refs/backup/main-wip-20261010-ar111-2d`。报告 `tools/agents/reports/ENG-worldmap-painted-2d.md`。`packages/render/src/worldmap/**` 已不被页面使用，待清理任务删除并改 render CLAUDE.md 的 ENG-08 段。
-  - 底图 `ART-worldmap-painted`：**10-11 00:15 交付**（ace71dd37）——GIS + 仓库水墨贴图确定性合成 4096×3072，`tools/map/paint/compose_world.py --deliver` 可逐字节复现；审样两轮（山件 1234→618、平原留白、大河加宽）。待作者过目；已知瑕疵见 manifest notes（窄岛山小、平原无田畴、渭河 / 汾河 scalerank 超阈值未画）。
-  - 海口、崖州坐标：主检出未提交改动曾把两城挪到吕宋岛并配两条跨海路；10-11 协调者改回海南（[304,332] / [299,346]），两条路改走雷州半岛与海南东线，14 章 map.yaml 都改了（仍未提交，备份 `refs/backup/main-wip-20261011-ar111-hainan`）。这两条路不在 `worldmap_from_towns.py` 的生成源里，重跑生成器会丢，需补进 routes.yaml。
-  - `TOOL-map-compose`（AR-83）样区画风未过，停用，工具保留备查。
-  - **AR-113 第二轮（10-11 01:00 起）**：
-    - 状态栏左下去立绘、图例挪右下：协调者已改（主检出工作区，未提交）。
-    - 补渭河汾河等 + 道路真实走向：**已交付并提交**（c27c2e77b）；山件收在起伏带内（618→745），青藏腹地偏空待作者看。
-    - `ENG-worldmap-tiers-paths`：traex 因内网域名解析失败（GPT 两个模型都连不上）未能运行，**按 AR-110 由协调者直接实现**：schema / enrich 已提交（c27c2e77b）；页面（曲线道路、主角沿路插值、kit 图集分档图标、名城小景地图平面绘制、字号分档）与构建（markers / landmark 发布、`landmark/index.json`）在主检出工作区，备份 `refs/backup/main-wip-20261011-ar113`。**网络恢复后补 GPT 审核**。
-    - 历史朝代地名（作者 10-11「历史朝代地名要做起来」）：**已完成并提交**——ch10 唐 702（7c6ed45f2）、北宋至清中六档逐章重做与门派白马列唐代化（e0a8c1064）；生成器已修（按书界名取年份、pretty JSON）。14 章 revision 全变，旧正式存档的大地图状态需开新档。
-    - 名城小景：25 张已提交（4f66ad895、bb32b8a35）——北京 7 档、长安 / 西安 6 档、开封 2、洛阳 2（含武周神都）、杭州 4、南京 2、大理 1、襄阳 1；调墨 v2 与 kit 城池同深浅。
-    - 运行时 UI（曲线道路、分档图标、小景、短名标签、状态栏）：主检出工作区未提交，备份 `refs/backup/main-wip-20261011-map-final`；**内网恢复后补 GPT 审核**，作者定是否连同 Antigravity 的 WIP 一起提交。
-    - 后续待办：①名城第三批（拉萨 / 逻些、兴庆府、盛京、和林、大同、辽阳、上京、商丘、鄯阐）；②design/11 §3.2、design/chapters/01、08 显示名同步，`render_map.py --render` 重出设计预览 SVG；③ch01 / ch10 城图规格与关闭城市、显示名对齐（见 history 笔记 §8）；④门派主驻地挂在关闭城市上（蒙古 ch01/05/06、白云城 ch08–14）待 design/17 定；⑤`tools/agents/check_assets.py` 的基线规则（1–2 张、短边 ≥512）不适用于 map/landmark、map/markers，要么加例外要么分规则；⑥青藏腹地山体偏空待作者看。
-    - `ART-worldmap-landmarks`（新 Opus 子代理）：分档图集（kit 缩成 128 格）+ 名城小景首批（北京、长安 / 西安各年代），程序按史料版式 + 年代建筑套件上墨，缺件才出单体建筑图。
-    - 待办：ch10 按 AR-26 是唐 702，但大地图仍是清初年份与地名（「西安府」应为「长安」都城），要补唐代一档城市名称与地位（内容任务）；`tools/content/worldmap_from_towns.py --check` 已坏（design/02 时间表改过），重跑生成器前先修，且生成后要再跑 `worldmap_enrich.py`。
+  - 运行时（AR-111 / AR-113）：**已提交** 88c3b64b2——整图 2D 页、曲线道路、主角沿路插值、分档城镇、名城小景、门派驻地（GPT-5.6-Sol 三轮，r3 PASS），已合进 claude/town-v2（1a40799de）。`packages/render/src/worldmap/**` 已不被页面使用，待清理任务删除并改 render CLAUDE.md 的 ENG-08 段。
+  - 底图 `ART-worldmap-painted`：GIS + 仓库水墨贴图确定性合成 4096×3072（ace71dd37 起，`compose_world.py --deliver` 可逐字节复现）；渭河 / 汾河已补、道路真实走向（c27c2e77b），青藏高原面按 GIS 突起量摆山（b6fb29722）。`TOOL-map-compose`（AR-83）停用，工具留档。
+  - 数据：历史朝代地名七档（7c6ed45f2、e0a8c1064）、门派按书中地望上图（f18f01c01）、地名与设计文档同步（aa4cd39fb）、庭州 / 北庭并入（a4332dd92，190 城、55 路线；ch14 开放济木萨恺安城）。14 章 revision 已变，旧正式存档的大地图状态需开新档。
+  - 名城小景：**53 张全部提交**（4f66ad895、bb32b8a35、14c85a141），覆盖 cities.yaml 全部都城（城, 章）组合；喀什、叶尔羌、阿力麻里、青唐、江州、金中京等 7 张标「待考」。
+  - **AR-115（10-11 09:10）城镇贴图与山川同分辨率、随缩放**：城镇图与小景改为画进地图——与底图同一变换、按底图像素密度重采样、四周留白；城名、点击区、主角放只平移的叠加层，拖动不重排（契约 tech/13 §5.5）。底图最大缩放时整体偏软，要更清楚需高清分块底图，另议。
+  - 待办：①ch01 / ch10 城图规格与关闭城市、显示名对齐（见 history 笔记 §8）；②门派主驻地挂在关闭城市上（蒙古 ch01/05/06、白云城 ch08–14）待 design/17 定；③`tools/map/migrate_regions_v2.py` 仍断言 189 城，复跑前改成 190；④顶栏「天书录」的晕染底在左侧是透明的，地图城名会从字间透出（App 顶栏样式，城镇 v2 线顺手处理）。
 - **城图**：202 / 1172，city_scheduler 自己在推；`CITY-layouts-ch01-b` 审核没过，正在返修。
 - **插图**：26 份提示词还没出图，清单在 `.agents/coord/_lines/title-audit/missing_plates.tsv`。
 - **衣物与护甲出图**（AR-77 / AR-91 记入 TODO）：数据 8 批已合入，565 件待 Gemini 出图。作者方便时，先开两个 Gemini 标签页（窗口要在前台），出一组样图给作者看，再批量出。同款先出底图，其他颜色上传底图只改主色（换色件带 `edit_from`），入口见 AGENTS.md §3。

@@ -83,8 +83,16 @@ def shot(row: dict, base: Image.Image, nodes: dict, zoom_key: str) -> Image.Imag
 
 
 CITY_CN = {"city_beijing": "北京", "city_xian": "长安 / 西安", "city_kaifeng": "开封", "city_hangzhou": "杭州", "city_luoyang": "洛阳",
-           "city_nanjing": "南京", "city_dali": "大理", "city_xiangyang": "襄阳"}
-NODE_ORDER = ["city_beijing", "city_xian", "city_kaifeng", "city_luoyang", "city_hangzhou", "city_nanjing", "city_dali", "city_xiangyang"]
+           "city_nanjing": "南京", "city_dali": "大理", "city_xiangyang": "襄阳",
+           "city_shangqiu": "商丘（宋南京）", "city_taiyuan": "太原（晋阳）", "city_datong": "大同（辽西京）", "city_liaoyang": "辽阳（辽东京）",
+           "city_liaoshangjing": "辽上京", "city_acheng": "阿城（金上京）", "city_shenyang": "沈阳（盛京）", "city_karakorum": "和林",
+           "city_yinchuan": "银川（西夏兴庆府）", "city_chengdu": "成都", "city_jiujiang": "九江（江州）", "city_kunming": "昆明（鄯阐）",
+           "city_lhasa": "拉萨", "city_xining": "西宁（青唐）", "city_turpan": "吐鲁番（高昌）", "city_kashgar": "喀什", "city_yarkand": "莎车（叶尔羌）",
+           "city_yining": "伊宁（阿力麻里 / 固勒扎）"}
+NODE_ORDER = ["city_beijing", "city_xian", "city_kaifeng", "city_luoyang", "city_hangzhou", "city_nanjing", "city_dali", "city_xiangyang",
+              "city_shangqiu", "city_taiyuan", "city_datong", "city_liaoyang", "city_liaoshangjing", "city_acheng", "city_shenyang", "city_karakorum",
+              "city_yinchuan", "city_chengdu", "city_jiujiang", "city_kunming", "city_lhasa", "city_xining", "city_turpan", "city_kashgar",
+              "city_yarkand", "city_yining"]
 
 
 def overview(rows: list[dict], src_dir: Path = None, title: str = "") -> Image.Image:
@@ -158,6 +166,7 @@ def ink_compare(ids: list[str], before_dir: Path, base: Image.Image) -> Image.Im
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ids", nargs="*")
+    ap.add_argument("--overview-name", help="与 --ids 合用：另出 qa/overview_<名>.png（只含所列条目）")
     args = ap.parse_args()
     rows = C.read_manifest(C.LANDMARK_DIR / "manifest.yaml")
     if args.ids:
@@ -172,6 +181,10 @@ def main() -> int:
         for zk in ZOOMS:
             shot(r, base, cache[ch], zk).save(C.QA_DIR / f"{r['id']}__{zk}.png")
         print("qa", r["id"])
+    if args.ids and args.overview_name:
+        overview(rows, title=f"名城按年代布局小景 · {args.overview_name} · 按城与年代排列 · 底色为纸色（非底图）").save(
+            C.QA_DIR / f"overview_{args.overview_name}.png")
+        print("overview ->", C.rel(C.QA_DIR / f"overview_{args.overview_name}.png"))
     if not args.ids:
         overview(rows, title="名城按年代布局小景（调墨 v2 后）· 按年代排列 · 底色为纸色（非底图）").save(C.QA_DIR / "overview.png")
         print("overview ->", C.rel(C.QA_DIR / "overview.png"))

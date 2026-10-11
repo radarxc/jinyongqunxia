@@ -5601,6 +5601,38 @@
             "marker": "city_prefecture"
           },
           {
+            "id": "city_tingzhou",
+            "name": "庭州（北庭都护府）",
+            "kind": "town",
+            "point": [
+              174,
+              132
+            ],
+            "regionId": "rg_xiyu_beijiang",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10",
+              "ch14"
+            ],
+            "open": true,
+            "levelRange": null,
+            "levelNote": "尚无区域强度配置",
+            "entry": {
+              "sceneId": "city_tingzhou",
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
+              "accessNote": "城门进入；内部场景由 ENG-09 装配"
+            },
+            "coordinateNote": "design/map 城市治所投影",
+            "tier": "minor",
+            "marker": "pass"
+          },
+          {
             "id": "city_turpan",
             "name": "西州（高昌县）",
             "kind": "town",
@@ -12809,6 +12841,103 @@
             ]
           },
           {
+            "key": "route_tingzhou_luntai:0",
+            "routeId": "route_tingzhou_luntai",
+            "start": "city_tingzhou",
+            "end": "city_urumqi",
+            "distanceLi": 480,
+            "points": [
+              [
+                174,
+                132
+              ],
+              [
+                170,
+                131
+              ],
+              [
+                167,
+                132
+              ],
+              [
+                165,
+                132
+              ]
+            ],
+            "kind": "caravan_road",
+            "eras": [
+              "ch10"
+            ],
+            "sourceHours": 48,
+            "note": "等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）",
+            "path": [
+              [
+                174,
+                132
+              ],
+              [
+                173.11,
+                131.11
+              ],
+              [
+                172.12,
+                130.88
+              ],
+              [
+                170.75,
+                131
+              ],
+              [
+                169.84,
+                130.84
+              ],
+              [
+                169.41,
+                130.41
+              ],
+              [
+                168.91,
+                130.19
+              ],
+              [
+                168.34,
+                130.19
+              ],
+              [
+                167.81,
+                130.44
+              ],
+              [
+                167.31,
+                130.94
+              ],
+              [
+                167.06,
+                131.41
+              ],
+              [
+                167.06,
+                131.84
+              ],
+              [
+                166.94,
+                131.94
+              ],
+              [
+                166.69,
+                131.69
+              ],
+              [
+                166.17,
+                131.67
+              ],
+              [
+                165,
+                132
+              ]
+            ]
+          },
+          {
             "key": "route_turpan_yining:0",
             "routeId": "route_turpan_yining",
             "start": "city_turpan",
@@ -13705,6 +13834,75 @@
             ]
           },
           {
+            "key": "route_xizhou_tingzhou:0",
+            "routeId": "route_xizhou_tingzhou",
+            "start": "city_turpan",
+            "end": "city_tingzhou",
+            "distanceLi": 720,
+            "points": [
+              [
+                172,
+                141
+              ],
+              [
+                172,
+                137
+              ],
+              [
+                173,
+                135
+              ],
+              [
+                174,
+                132
+              ]
+            ],
+            "kind": "mountain_road",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10"
+            ],
+            "sourceHours": 72,
+            "note": "等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）",
+            "path": [
+              [
+                172,
+                141
+              ],
+              [
+                172.05,
+                137.86
+              ],
+              [
+                172.31,
+                136.28
+              ],
+              [
+                172.81,
+                135.22
+              ],
+              [
+                173.31,
+                134.44
+              ],
+              [
+                173.81,
+                133.94
+              ],
+              [
+                174.05,
+                133.27
+              ],
+              [
+                174,
+                132
+              ]
+            ]
+          },
+          {
             "key": "route_yanjing_kaifeng:0",
             "routeId": "route_yanjing_kaifeng",
             "start": "city_beijing",
@@ -14011,6 +14209,123 @@
               [
                 323,
                 211
+              ]
+            ]
+          },
+          {
+            "key": "route_yizhou_tingzhou:0",
+            "routeId": "route_yizhou_tingzhou",
+            "start": "city_hami",
+            "end": "city_tingzhou",
+            "distanceLi": 1680,
+            "points": [
+              [
+                197,
+                145
+              ],
+              [
+                194,
+                145
+              ],
+              [
+                190,
+                140
+              ],
+              [
+                180,
+                135
+              ],
+              [
+                176,
+                132
+              ],
+              [
+                174,
+                132
+              ]
+            ],
+            "kind": "caravan_road",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10"
+            ],
+            "sourceHours": 168,
+            "note": "等效里程=源路段小时×10；单段路线按 routes.yaml geometry 折线（原创扩展、建议值）",
+            "path": [
+              [
+                197,
+                145
+              ],
+              [
+                194.42,
+                145.05
+              ],
+              [
+                192.69,
+                144.19
+              ],
+              [
+                190.94,
+                142.44
+              ],
+              [
+                190.06,
+                141.19
+              ],
+              [
+                190.06,
+                140.44
+              ],
+              [
+                189.44,
+                139.69
+              ],
+              [
+                188.19,
+                138.94
+              ],
+              [
+                186.91,
+                137.91
+              ],
+              [
+                185.59,
+                136.59
+              ],
+              [
+                184.5,
+                135.72
+              ],
+              [
+                183.62,
+                135.28
+              ],
+              [
+                182.38,
+                135.06
+              ],
+              [
+                180.75,
+                135.06
+              ],
+              [
+                179.19,
+                134.31
+              ],
+              [
+                177.69,
+                132.81
+              ],
+              [
+                176.2,
+                132.05
+              ],
+              [
+                174,
+                132
               ]
             ]
           }
@@ -17999,7 +18314,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "2b64aeb9d02a6ad1e2fe95d446022b5dcf8440b88ab300137acf84d63f190a1d"
+        "revision": "551e583fcb6814a283ec3af1102581bb244de5ee6edf6854e6ac9d43bdfd5368"
       }
     }
   ]

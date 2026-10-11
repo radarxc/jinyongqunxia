@@ -1,0 +1,431 @@
+{
+ "schema": "tianshu.landmark-spec.v1",
+ "id": "map_landmark_city_kashgar__karakhanid",
+ "node": "city_kashgar",
+ "era": "karakhanid",
+ "chapters": [
+  "ch01"
+ ],
+ "title": "喀什噶尔（喀喇汗王朝东部都城，1093；城郭形制待考）",
+ "years": [
+  1041,
+  1134
+ ],
+ "kit": "xiyu",
+ "tile_kit": "xiyu",
+ "seed": 1093,
+ "footprint_grid": 8,
+ "frame": {
+  "origin": "城心：城中心（推定）",
+  "origin_lonlat": [
+   75.9897,
+   39.4702
+  ],
+  "unit": "km",
+  "axes": "x 向东、y 向北",
+  "lonlat_to_km": "x=(lon−lon0)·111.32·cos(lat0)，y=(lat−lat0)·110.57；折点按现代地名 / 遗址线推定，精度约 ±150 m"
+ },
+ "view": {
+  "x": [
+   -1.425,
+   1.175
+  ],
+  "y": [
+   -1.325,
+   1.075
+  ]
+ },
+ "top_px": 46,
+ "manifest_v": 3,
+ "ref_use": {
+  "bld_lm_ch01_chongshengsi_pagoda": "作者已审基线方形密檐砖塔件（东西寺塔代用）",
+  "/baseline/building-map/bld_kit_": "作者已审基线建筑套件件（墨化后摆放）",
+  "city_gate": "城门楼件（看楼、双阙、对峙楼、钟鼓楼、凤凰楼、承运门等楼阁代用）",
+  "tree_cluster": "树丛件（林带、林卡、果园）",
+  "shrub__": "灌丛件（草原、河岸）",
+  "grass_tuft": "草丛件（草原）",
+  "grape_arbor": "葡萄架件（绿洲果园）",
+  "reed__": "芦苇件（江岸）",
+  "/map/kit/": "地图 kit 山形件（山、丘陵；未墨化）"
+ },
+ "walls": [
+  {
+   "id": "city",
+   "role": "city",
+   "name": "喀什噶尔城",
+   "polygon": [
+    [
+     -0.675,
+     -0.575
+    ],
+    [
+     0.675,
+     -0.575
+    ],
+    [
+     0.675,
+     0.575
+    ],
+    [
+     -0.675,
+     0.575
+    ]
+   ],
+   "style": "city_earth",
+   "tower": "flat",
+   "corner_towers": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "src": [
+    "src_kashgar"
+   ],
+   "basis": "城郭形制待考（夯土城、平顶墩台示意）",
+   "thickness_px": 7.0,
+   "height_px": 12.0,
+   "corner_size_px": 16.0
+  }
+ ],
+ "gates": [
+  {
+   "id": "e",
+   "name": "东门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    0.675,
+    -0.025
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  },
+  {
+   "id": "w",
+   "name": "西门",
+   "wall": "city",
+   "side": "W",
+   "at": [
+    -0.675,
+    0.025
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  },
+  {
+   "id": "s",
+   "name": "南门",
+   "wall": "city",
+   "side": "S",
+   "at": [
+    -0.025,
+    -0.575
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 19
+  },
+  {
+   "id": "n",
+   "name": "北门",
+   "wall": "city",
+   "side": "N",
+   "at": [
+    -0.025,
+    0.575
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  }
+ ],
+ "streets": [
+  {
+   "id": "ns",
+   "points": [
+    [
+     -0.025,
+     -0.575
+    ],
+    [
+     -0.025,
+     0.575
+    ]
+   ],
+   "width_px": 3.6
+  },
+  {
+   "id": "ew",
+   "points": [
+    [
+     -0.675,
+     0.025
+    ],
+    [
+     0.675,
+     -0.025
+    ]
+   ],
+   "width_px": 3.6
+  }
+ ],
+ "water": [
+  {
+   "id": "tuman",
+   "kind": "river",
+   "name": "吐曼河",
+   "points": [
+    [
+     -1.425,
+     0.925
+    ],
+    [
+     -0.375,
+     0.895
+    ],
+    [
+     0.575,
+     0.795
+    ],
+    [
+     1.005,
+     0.325
+    ],
+    [
+     1.045,
+     -0.575
+    ],
+    [
+     0.775,
+     -1.275
+    ]
+   ],
+   "width_px": 9.0,
+   "foot": true,
+   "foot_px": 6,
+   "basis": "吐曼河绕城北、城东（流路示意）"
+  },
+  {
+   "id": "kizil",
+   "kind": "river",
+   "name": "克孜勒河",
+   "points": [
+    [
+     -1.425,
+     -1.005
+    ],
+    [
+     -0.175,
+     -0.945
+    ],
+    [
+     0.775,
+     -1.275
+    ]
+   ],
+   "width_px": 8.0,
+   "foot": true,
+   "foot_px": 6,
+   "basis": "克孜勒河在城南（流路示意）"
+  }
+ ],
+ "landmarks": [
+  {
+   "id": "palace",
+   "name": "喀喇汗宫（东喀喇汗国都，1041 年后）",
+   "sprite": "palace",
+   "at": [
+    -0.275,
+    0.255
+   ],
+   "size_px": 62,
+   "clear": 0.16,
+   "src": [
+    "src_kashgar"
+   ],
+   "basis": "宫室形制待考"
+  },
+  {
+   "id": "mosque",
+   "name": "礼拜寺（960 年伊斯兰教为国教后）",
+   "sprite": "temple_hall",
+   "at": [
+    0.305,
+    -0.165
+   ],
+   "size_px": 46,
+   "clear": 0.13,
+   "src": [
+    "src_kashgar"
+   ]
+  },
+  {
+   "id": "minaret",
+   "name": "邦克楼",
+   "sprite": "pagoda",
+   "at": [
+    0.495,
+    0.035
+   ],
+   "size_px": 36,
+   "clear": 0.06
+  },
+  {
+   "id": "bazaar",
+   "name": "巴扎",
+   "sprite": "market",
+   "at": [
+    0.375,
+    -0.405
+   ],
+   "size_px": 26,
+   "clear": 0.06
+  },
+  {
+   "id": "bazaar2",
+   "name": "巴扎",
+   "sprite": "market",
+   "at": [
+    -0.325,
+    -0.325
+   ],
+   "size_px": 22,
+   "clear": 0.05
+  }
+ ],
+ "groves": [
+  {
+   "id": "orch_w",
+   "polygon": [
+    [
+     -1.275,
+     -0.775
+    ],
+    [
+     -0.855,
+     -0.775
+    ],
+    [
+     -0.855,
+     0.725
+    ],
+    [
+     -1.275,
+     0.725
+    ]
+   ],
+   "trees": [
+    "tex_town_xiyu_tree_cluster__huyang_v01",
+    "tex_town_xiyu_grape_arbor__w4_l3_r000_v01"
+   ],
+   "size_px": 22,
+   "foot": true,
+   "kit": "xiyu",
+   "spacing_px": 46.4
+  },
+  {
+   "id": "orch_s",
+   "polygon": [
+    [
+     -0.775,
+     -0.875
+    ],
+    [
+     0.625,
+     -0.875
+    ],
+    [
+     0.625,
+     -0.705
+    ],
+    [
+     -0.775,
+     -0.705
+    ]
+   ],
+   "trees": [
+    "tex_town_xiyu_tree_cluster__huyang_v01",
+    "tex_town_xiyu_grape_arbor__w4_l3_r000_v01"
+   ],
+   "size_px": 22,
+   "foot": true,
+   "kit": "xiyu",
+   "spacing_px": 46.4
+  }
+ ],
+ "fill": [
+  {
+   "id": "fill",
+   "clip": "city",
+   "exclude": [],
+   "bbox": [
+    -0.675,
+    0.675,
+    -0.575,
+    0.575
+   ],
+   "sprites": [
+    [
+     "house_small",
+     4
+    ],
+    [
+     "house_large",
+     3
+    ],
+    [
+     "courtyard",
+     3
+    ],
+    [
+     "shop_1f",
+     2
+    ],
+    [
+     "shop_2f",
+     1
+    ],
+    [
+     "tree:grape_arbor__w4_l3_r000_v01",
+     1.0
+    ],
+    [
+     "tree:tree_cluster__huyang_v01",
+     0.6
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.95,
+   "jitter": 0.24,
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  }
+ ],
+ "notes": [
+  "待考：喀喇汗王朝都城形制无可据史料，只画夯土城、王宫、礼拜寺、巴扎与吐曼河—克孜勒河之间的地望",
+  "艾提尕尔清真寺（1442）、阿帕克和卓麻扎（17 世纪）晚于本档，不画；西域套件 xiyu",
+  "交付图比例约 254.0 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）"
+ ],
+ "sources": {
+  "src_kashgar": {
+   "title": "维基百科（中文）《喀什市》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%96%80%E4%BB%80%E5%B8%82",
+   "accessed": "2026-10-11",
+   "supports": "古称疏勒，喀喇汗王朝（东喀喇汗国）时期为都"
+  }
+ },
+ "halo_px": 26.0
+}

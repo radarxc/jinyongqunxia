@@ -13,8 +13,21 @@ import { gridToScreen, screenToGrid } from '../worldmap/painted-view';
 import * as paintedView from '../worldmap/painted-view';
 import type { Point, Size, ViewState } from '../worldmap/painted-view';
 
+type SpriteJobLike = { key: string; url: string };
+type Batch = { made: Map<string, string>; failed: Set<string> };
+// Canvas resampling is browser-only; tests drive it through this switchboard (off by default).
+const sprites = vi.hoisted(() => ({
+  can: false,
+  load: (_url: string): Promise<unknown> => Promise.resolve({ naturalWidth: 1, naturalHeight: 1 }),
+  batch: (_jobs: readonly SpriteJobLike[]): Promise<Batch> => Promise.resolve({ made: new Map(), failed: new Set() }),
+}));
+vi.mock('../worldmap/map-sprites', () => ({
+  canResample: () => sprites.can,
+  loadImage: (url: string) => sprites.load(url),
+  resampleSprites: (jobs: readonly SpriteJobLike[]) => sprites.batch(jobs),
+}));
 type MapNode = WorldMapRuntimeDefinition['nodes'][number];
-type DebugState = ViewState & { z: number; viewport: Size; image: Size; following: boolean };
+type DebugState = ViewState & { z: number; viewport: Size; image: Size; following: boolean; sprites: number };
 type DebugHandle = { state(): DebugState; focus(id: string): void; setZoom(z: number): void };
 const debugWindow = window as unknown as { __worldMapView?: DebugHandle };
 const debug = () => debugWindow.__worldMapView!;
@@ -99,6 +112,9 @@ function expectCovered(state: DebugState): void {
 }
 
 beforeEach(() => {
+  sprites.can = false;
+  sprites.load = () => Promise.resolve({ naturalWidth: 1, naturalHeight: 1 });
+  sprites.batch = () => Promise.resolve({ made: new Map(), failed: new Set() });
   bounds = { width: 1200, height: 800, left: 15, top: 25 };
   frames = new Map(); nextFrameId = 0;
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'] });
@@ -256,6 +272,10 @@ describe('WorldMapPage painted layers and resource lifecycle', () => {
     for (let i = 0; i < 10; i++) wheel(stage, [600, 400], -5);
     await flushFrame(); expect(labels).toHaveBeenCalledTimes(2);
     debug().setZoom(debug().state().z); await flushFrame(); expect(labels).toHaveBeenCalledTimes(2);
+    pointer(stage, 'pointerdown', [600, 400]); pointer(stage, 'pointermove', [500, 380]);
+    pointer(stage, 'pointermove', [450, 360]); pointer(stage, 'pointerup', [450, 360]); await flushFrame();
+    // A pan only moves the planes and the overlay; names keep their layout.
+    expect(labels).toHaveBeenCalledTimes(2);
     await loadImage(wrapper); expect(paths).toHaveBeenCalledTimes(1);
     const heroBefore = (wrapper.get('.map-hero').element as HTMLElement).style.left;
     worldmap.value = { ...initial, point: [260, 192] }; await flushFrame();
@@ -438,7 +458,7 @@ describe('WorldMapPage terrain paths, tiered markers and landmarks (tech/13 §5)
     await loadImage(wrapper);
     expect(wrapper.get('.map-road-ink').attributes('d')).toContain(' C ');
     const state = debug().state();
-    const [x, y] = gridToScreen([298, 232], state, state.image);
+    const [x, y] = gridToScreen([298, 232], { ...state, tx: 0, ty: 0 }, state.image);
     const hero = wrapper.get('.map-hero').element as HTMLElement;
     expect(Number.parseFloat(hero.style.left)).toBeCloseTo(x, 6);
     expect(Number.parseFloat(hero.style.top)).toBeCloseTo(y, 6);
@@ -452,13 +472,13 @@ describe('WorldMapPage terrain paths, tiered markers and landmarks (tech/13 §5)
     await loadImage(wrapper);
     const state = debug().state();
     // Reversed path is 164 units long; a quarter (41) runs down 40 then 1 unit west along y = 232.
-    const [x, y] = gridToScreen([339, 232], state, state.image);
+    const [x, y] = gridToScreen([339, 232], { ...state, tx: 0, ty: 0 }, state.image);
     const hero = wrapper.get('.map-hero').element as HTMLElement;
     expect(Number.parseFloat(hero.style.left)).toBeCloseTo(x, 6);
     expect(Number.parseFloat(hero.style.top)).toBeCloseTo(y, 6);
   });
 
-  it('draws landmarks in the map plane, hides that icon and sizes atlas markers by tier', async () => {
+  it('paints landmarks and tiered atlas art into the town plane at the base image density', async () => {
     vi.stubGlobal('fetch', vi.fn(async (url: string) => ({ ok: true, json: async () => url.endsWith('atlas.json')
       ? { image: 'atlas.webp', width: 256, height: 128, markers: {
         city_large: { x: 0, y: 0, w: 128, h: 128, anchor: [64, 64] },
@@ -469,19 +489,30 @@ describe('WorldMapPage terrain paths, tiered markers and landmarks (tech/13 §5)
     await loadImage(wrapper);
     await vi.waitFor(() => expect(wrapper.find('.map-landmark').exists()).toBe(true));
     await flushFrame();
-    const landmark = wrapper.get('.map-landmark').element as HTMLElement;
+    const landmark = wrapper.get('.map-town-plane .map-landmark').element as HTMLElement;
     expect(landmark.getAttribute('data-landmark-node')).toBe('city_west');
-    // 8 grid units at 4800 / 512 image px per unit, anchor scaled into image pixels.
-    expect(Number.parseFloat(landmark.style.width)).toBeCloseTo(75, 6);
-    expect(Number.parseFloat(landmark.style.left)).toBeCloseTo(160 * 9.375 - 50 * 0.75, 6);
+    // 8 grid units at 4800 / 512 image px per unit; whole image pixels with the anchor on the node.
+    expect(landmark.style.width).toBe('75px'); expect(landmark.style.height).toBe('60px');
+    expect(landmark.style.left).toBe(Math.round(160 * 9.375 - 50 * 0.75) + 'px');
+    expect(landmark.style.top).toBe(Math.round(192 * 9.375 - 60 * 0.75) + 'px');
+    expect(wrapper.find('[data-town-node="city_west"]').exists()).toBe(false);
+    const art = (id: string) => wrapper.get(`[data-town-node="${id}"]`).element as HTMLElement;
+    expect(art('city_east').classList.contains('atlas')).toBe(true);
+    expect(art('city_east').style.backgroundImage).toContain('/assets/default/map/markers/atlas.webp');
+    // Edge = tier size in grid units at the image density, rounded to whole pixels.
+    expect(art('city_east').style.width).toBe(Math.round(paintedView.TOWN_SIZE.capital * 9.375) + 'px');
+    expect(art('city_home').style.width).toBe(Math.round(paintedView.TOWN_SIZE.major * 9.375) + 'px');
+    // The town plane shares the base image's transform; names ride the translate-only overlay.
+    const plane = (wrapper.get('.map-painted-plane').element as HTMLElement).style.transform;
+    expect((wrapper.get('.map-town-plane').element as HTMLElement).style.transform).toBe(plane);
+    const state = debug().state();
+    expect((wrapper.get('.map-overlay').element as HTMLElement).style.transform)
+      .toBe(`translate3d(${state.tx}px, ${state.ty}px, 0)`);
     const badge = (id: string) => wrapper.get(`[data-node-id="${id}"]`);
-    expect(badge('city_west').find('.city-icon').exists()).toBe(false);
-    const capital = badge('city_east').get('.city-icon').element as HTMLElement;
-    const major = badge('city_home').get('.city-icon').element as HTMLElement;
-    expect(capital.classList.contains('atlas')).toBe(true);
-    expect(capital.style.backgroundImage).toContain('/assets/default/map/markers/atlas.webp');
-    expect(Number.parseFloat(capital.style.width)).toBeGreaterThan(Number.parseFloat(major.style.width));
     expect(badge('city_east').get('.city-name').attributes('style')).toContain('font-size: 17px');
+    // The capital's hit area covers its painted art at the current scale.
+    const hit = badge('city_east').get('.city-hit').element as HTMLElement;
+    expect(Number.parseFloat(hit.style.width)).toBeCloseTo(Number.parseFloat(art('city_east').style.width) * state.s, 6);
   });
 });
 
@@ -536,7 +567,7 @@ describe('WorldMapPage overlay validation and selection exclusivity', () => {
     await vi.waitFor(() => expect(wrapper.findAll('.map-landmark')).toHaveLength(1));
     await flushFrame();
     expect(wrapper.get('.map-landmark').attributes('data-landmark-node')).toBe('city_east');
-    for (const icon of wrapper.findAll('.city-icon')) expect(icon.classes()).not.toContain('atlas');
+    for (const icon of wrapper.findAll('.map-town')) expect(icon.classes()).not.toContain('atlas');
   });
 
   it('clears the town selection and hover when a sect is chosen', async () => {
@@ -568,6 +599,218 @@ describe('WorldMapPage atlas anchor bounds', () => {
         city_prefecture: { x: 0, y: 0, w: 128, h: 128, anchor: [64, 129] } } } : [] })));
     const { wrapper } = setup();
     await loadImage(wrapper); await flushFrame(); await flushFrame();
-    for (const icon of wrapper.findAll('.city-icon')) expect(icon.classes()).not.toContain('atlas');
+    for (const icon of wrapper.findAll('.map-town')) expect(icon.classes()).not.toContain('atlas');
+  });
+});
+
+describe('WorldMapPage painted towns: one commit point and art fallbacks (tech/13 §5.5)', () => {
+  const overlayFetch = () => vi.fn(async (url: string) => ({ ok: true, json: async () => url.endsWith('atlas.json')
+    ? { image: 'atlas.webp', width: 256, height: 128, markers: {
+      city_county: { x: 0, y: 0, w: 128, h: 128, anchor: [64, 64] },
+      city_prefecture: { x: 128, y: 0, w: 128, h: 128, anchor: [64, 70] } } }
+    : [{ id: 'map_landmark_city_west__song', node: 'city_west', chapters: ['ch01'],
+      url: '/assets/default/map/landmark/west.webp', anchor: [50, 60], footprintGrid: 8, width: 100, height: 80 }] }));
+  function transforms(wrapper: ReturnType<typeof mount>) {
+    const style = (selector: string) => (wrapper.get(selector).element as HTMLElement).style.transform;
+    return { plane: style('.map-painted-plane'), towns: style('.map-town-plane'), overlay: style('.map-overlay'),
+      roads: wrapper.get('.map-roads > g').attributes('transform') };
+  }
+  function expectOneCommit(wrapper: ReturnType<typeof mount>): void {
+    const { s, tx, ty } = debug().state(); const now = transforms(wrapper);
+    expect(now.plane).toBe(`translate3d(${tx}px, ${ty}px, 0) scale(${s})`);
+    expect(now.towns).toBe(now.plane);
+    expect(now.overlay).toBe(`translate3d(${tx}px, ${ty}px, 0)`);
+    expect(now.roads).toBe(`translate(${tx} ${ty}) scale(${s})`);
+  }
+
+  it('moves the base image, roads, painted towns and overlay together while dragging and following', async () => {
+    const { wrapper, worldmap } = setup(); await loadImage(wrapper); expectOneCommit(wrapper);
+    const stage = wrapper.get('.worldmap-stage').element;
+    pointer(stage, 'pointerdown', [600, 400]); pointer(stage, 'pointermove', [520, 380]); await flushFrame();
+    expectOneCommit(wrapper);
+    pointer(stage, 'pointermove', [480, 330]); pointer(stage, 'pointerup', [480, 330]); await flushFrame();
+    expectOneCommit(wrapper);
+    await wrapper.get('.locate-btn').trigger('click'); await flushFrame();
+    const start = window.performance.now(); worldmap.value = journey(); await nextTick();
+    // Mid-way through the 200ms follow easing every layer still carries the same view.
+    await flushFrame(start + 80); expectOneCommit(wrapper);
+    await flushFrame(start + 260); expectOneCommit(wrapper);
+  });
+
+  it('paints resampled art, ignores a stale batch and falls back when a vignette fails to load', async () => {
+    vi.stubGlobal('fetch', overlayFetch());
+    sprites.can = true;
+    const resolvers: Array<(batch: Batch) => void> = []; const asked: SpriteJobLike[][] = [];
+    sprites.batch = (jobs) => { asked.push([...jobs]); return new Promise(resolve => { resolvers.push(resolve); }); };
+    const { wrapper } = setup();
+    await loadImage(wrapper);
+    await vi.waitFor(() => expect(asked.length).toBeGreaterThan(0));
+    // A newer batch (another base image size) starts before the first one answers.
+    await loadImage(wrapper, 4096, 3072);
+    await vi.waitFor(() => expect(asked.length).toBe(2));
+    const atlasUrl = '/assets/default/map/markers/atlas.webp';
+    const vignette = '/assets/default/map/landmark/west.webp';
+    resolvers[1]!({ made: new Map(asked[1]!.filter(job => job.url === atlasUrl).map(job => [job.key, 'data:image/png;new'])),
+      failed: new Set([vignette]) });
+    await vi.waitFor(() => expect(wrapper.find('.map-landmark').exists()).toBe(false));
+    // The stale batch's failure must not drop the atlas.
+    resolvers[0]!({ made: new Map(), failed: new Set([atlasUrl]) }); await flushFrame();
+    const art = (id: string) => wrapper.get(`[data-town-node="${id}"]`).element as HTMLElement;
+    expect(art('city_east').style.backgroundImage).toContain('data:image/png;new');
+    expect(art('city_east').classList.contains('atlas')).toBe(true);
+    // The failed vignette's node is painted with its town art instead of leaving a blank.
+    await vi.waitFor(() => expect(wrapper.find('[data-town-node="city_west"]').exists()).toBe(true));
+  });
+
+  it('drops a landmark whose image errors and an atlas whose image never loads', async () => {
+    vi.stubGlobal('fetch', overlayFetch());
+    let failAtlas: (value: unknown) => void = () => {};
+    sprites.load = () => new Promise(resolve => { failAtlas = resolve; });
+    const { wrapper } = setup(); await loadImage(wrapper);
+    await vi.waitFor(() => expect(wrapper.find('.map-landmark').exists()).toBe(true));
+    await flushFrame();
+    expect(wrapper.find('[data-town-node="city_west"]').exists()).toBe(false);
+    await wrapper.get('.map-landmark').trigger('error'); await flushFrame();
+    expect(wrapper.find('.map-landmark').exists()).toBe(false);
+    expect(wrapper.find('[data-town-node="city_west"]').exists()).toBe(true);
+    expect(wrapper.get('[data-town-node="city_east"]').classes()).toContain('atlas');
+    failAtlas(null); await flushFrame(); await flushFrame();
+    for (const icon of wrapper.findAll('.map-town')) expect(icon.classes()).not.toContain('atlas');
+  });
+
+  it('retries failed art after a new chapter or base image instead of remembering the failure', async () => {
+    vi.stubGlobal('fetch', overlayFetch());
+    let answer: unknown = null;
+    sprites.load = () => Promise.resolve(answer);
+    const { wrapper, store } = setup(); await loadImage(wrapper);
+    await vi.waitFor(() => expect(wrapper.find('.map-landmark').exists()).toBe(true));
+    await flushFrame();
+    // The atlas probe failed and the vignette errored: legacy icons and town art for the vignette's node.
+    await vi.waitFor(() => expect(wrapper.get('[data-town-node="city_east"]').classes()).not.toContain('atlas'));
+    await wrapper.get('.map-landmark').trigger('error'); await flushFrame();
+    expect(wrapper.find('.map-landmark').exists()).toBe(false);
+    // A new base image: both files are tried again and now load.
+    answer = { naturalWidth: 1, naturalHeight: 1 };
+    store.replaceProjection({ worldmapStatic: { map, mapTextureUrl: '/retry.webp' } } as UiProjection);
+    await nextTick(); await loadImage(wrapper);
+    await vi.waitFor(() => expect(wrapper.get('[data-town-node="city_east"]').classes()).toContain('atlas'));
+    expect(wrapper.find('.map-landmark').exists()).toBe(true);
+    // The same holds for a new chapter definition.
+    answer = null;
+    await wrapper.get('.map-landmark').trigger('error'); await flushFrame();
+    expect(wrapper.find('.map-landmark').exists()).toBe(false);
+    answer = { naturalWidth: 1, naturalHeight: 1 };
+    store.replaceProjection({ worldmapStatic: { map: { ...map, revision: 'b'.repeat(64) }, mapTextureUrl: '/retry.webp' } } as UiProjection);
+    await flushFrame();
+    await vi.waitFor(() => expect(wrapper.find('.map-landmark').exists()).toBe(true));
+  });
+
+  it('retires a running batch as soon as the base image changes, before the next batch starts', async () => {
+    vi.stubGlobal('fetch', overlayFetch());
+    sprites.can = true;
+    const resolvers: Array<(batch: Batch) => void> = [];
+    sprites.batch = () => new Promise(resolve => { resolvers.push(resolve); });
+    const { wrapper, store } = setup(); await loadImage(wrapper);
+    await vi.waitFor(() => expect(resolvers.length).toBe(1));
+    // The texture switches; the new image has not loaded, so no new batch is running yet.
+    store.replaceProjection({ worldmapStatic: { map, mapTextureUrl: '/next.webp' } } as UiProjection);
+    await nextTick();
+    resolvers[0]!({ made: new Map(), failed: new Set(['/assets/default/map/markers/atlas.webp']) });
+    await flushFrame(); await flushFrame();
+    expect(resolvers).toHaveLength(1);
+    expect(wrapper.get('[data-town-node="city_east"]').classes()).toContain('atlas');
+  });
+
+  it('keeps town art on vignette nodes until a good base image is loaded', async () => {
+    vi.stubGlobal('fetch', overlayFetch());
+    const { wrapper } = setup(); await flushFrame(); await flushFrame();
+    // No base image yet: the vignette's node is painted with its town art.
+    expect(wrapper.find('.map-landmark').exists()).toBe(false);
+    expect(wrapper.find('[data-town-node="city_west"]').exists()).toBe(true);
+    await loadImage(wrapper);
+    await vi.waitFor(() => expect(wrapper.find('.map-landmark').exists()).toBe(true));
+    expect(wrapper.find('[data-town-node="city_west"]').exists()).toBe(false);
+    await loadImage(wrapper, 4800, 3400); // wrong aspect ratio: the paper fallback, so town art again
+    expect(wrapper.find('.map-landmark').exists()).toBe(false);
+    expect(wrapper.find('[data-town-node="city_west"]').exists()).toBe(true);
+    await wrapper.get('.map-painted-image').trigger('error'); await flushFrame();
+    expect(wrapper.find('[data-town-node="city_west"]').exists()).toBe(true);
+  });
+
+  it('drops resampled art the new chapter no longer shows, even when it needs nothing new', async () => {
+    vi.stubGlobal('fetch', overlayFetch());
+    sprites.can = true;
+    sprites.batch = async (jobs) => ({ made: new Map(jobs.map(job => [job.key, 'data:image/png;' + job.key])), failed: new Set() });
+    const tiered: WorldMapRuntimeDefinition = { ...map, nodes: map.nodes.map((row) => row.id === 'city_east'
+      ? { ...row, tier: 'capital' as const, marker: 'city_prefecture' as const }
+      : { ...row, tier: 'minor' as const, marker: 'city_county' as const }) };
+    const { wrapper, store } = setup();
+    store.replaceProjection({ worldmapStatic: { map: tiered, mapTextureUrl: 'assets/default/map/world/test.webp' } } as UiProjection);
+    await loadImage(wrapper);
+    // city_west has a vignette; the capital and the county are two more sprites.
+    await vi.waitFor(() => expect(debug().state().sprites).toBe(3));
+    const smaller: WorldMapRuntimeDefinition = { ...tiered, revision: 'c'.repeat(64),
+      nodes: tiered.nodes.map(row => ({ ...row, open: row.id === 'city_home' })) };
+    store.replaceProjection({ worldmapStatic: { map: smaller, mapTextureUrl: 'assets/default/map/world/test.webp' } } as UiProjection);
+    await flushFrame();
+    await vi.waitFor(() => expect(debug().state().sprites).toBe(1));
+    expect(wrapper.get('[data-town-node="city_home"]').element.getAttribute('style')).toContain('data:image/png;');
+  });
+});
+
+describe('WorldMapPage click areas follow the painted stacking', () => {
+  it('stacks overlapping click areas south over north like the art, not by label priority', async () => {
+    // A minor town just north of a major one: the major town's art is painted on top, so it must win the click.
+    const dense: WorldMapRuntimeDefinition = { ...map, nodes: [
+      { ...node('city_north', '常州', [300, 230]), tier: 'minor' as const, marker: 'city_county' as const },
+      { ...node('city_south', '无锡', [302, 232]), tier: 'major' as const, marker: 'city_prefecture' as const },
+      { ...node('city_home', '大理', [256, 192]), tier: 'major' as const, marker: 'city_prefecture' as const }] };
+    const { wrapper, store } = setup();
+    store.replaceProjection({ worldmapStatic: { map: dense, mapTextureUrl: 'assets/default/map/world/test.webp' } } as UiProjection);
+    await loadImage(wrapper);
+    const order = wrapper.findAll('.map-town').map(art => art.attributes('data-town-node'));
+    expect(order.indexOf('city_south')).toBeGreaterThan(order.indexOf('city_north'));
+    const z = (id: string) => Number((wrapper.get(`[data-node-id="${id}"] .city-hit`).element as HTMLElement).style.zIndex);
+    expect(z('city_south')).toBeGreaterThan(z('city_north'));
+    // Label priority still puts the major town's name first.
+    const badges = wrapper.findAll('.map-city-badge').map(badge => badge.attributes('data-node-id'));
+    expect(badges.indexOf('city_south')).toBeLessThan(badges.indexOf('city_north'));
+  });
+
+  it('drops cached sprites when the new base image never becomes usable', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ({ image: 'atlas.webp', width: 128, height: 128,
+      markers: { city_county: { x: 0, y: 0, w: 128, h: 128, anchor: [64, 64] } } }) }));
+    sprites.can = true;
+    sprites.batch = async (jobs) => ({ made: new Map(jobs.map(job => [job.key, 'data:image/png;' + job.key])), failed: new Set() });
+    const { wrapper, store } = setup(); await loadImage(wrapper);
+    await vi.waitFor(() => expect(debug().state().sprites).toBeGreaterThan(0));
+    store.replaceProjection({ worldmapStatic: { map, mapTextureUrl: '/broken.webp' } } as UiProjection);
+    await nextTick(); await wrapper.get('.map-painted-image').trigger('error'); await flushFrame();
+    await vi.waitFor(() => expect(debug().state().sprites).toBe(0));
+  });
+});
+
+describe('WorldMapPage chapter change clears sect focus', () => {
+  it('does not carry a selected or hovered seat into the next chapter, even with the same seat id', async () => {
+    const seat = { id: 'sect_east', name: '东岳派', siteName: '东岳山门', kind: 'headquarters', point: [345, 186] as [number, number],
+      status: 'O' as const, marker: 'sect' as const, cityId: 'city_east' };
+    const pinia = createPinia(); const store = useUiStore(pinia);
+    store.replaceProjection({ worldmapStatic: { map: { ...map, sects: [seat] },
+      mapTextureUrl: 'assets/default/map/world/test.webp' } } as UiProjection);
+    const controller = { worldmap: shallowRef<WorldMapProjection | null>(initial),
+      settings: shallowRef({ reducedMotion: true }), busy: shallowRef(false),
+      worldMapCommand: vi.fn().mockResolvedValue(undefined) } as unknown as GameController;
+    const wrapper = mount(WorldMapPage, { attachTo: document.body, props: { controller }, global: { plugins: [pinia] } });
+    wrappers.push(wrapper);
+    await loadImage(wrapper);
+    await wrapper.get('[data-node-id="sect_east"]').trigger('pointerenter');
+    await wrapper.get('[data-node-id="sect_east"]').trigger('click'); await flushFrame();
+    expect(wrapper.get('[data-node-id="sect_east"]').classes()).toEqual(expect.arrayContaining(['selected', 'hovered']));
+    store.replaceProjection({ worldmapStatic: { map: { ...map, revision: 'd'.repeat(64), sects: [seat] },
+      mapTextureUrl: 'assets/default/map/world/test.webp' } } as UiProjection);
+    await flushFrame();
+    const badge = wrapper.get('[data-node-id="sect_east"]');
+    expect(badge.classes()).not.toContain('selected'); expect(badge.classes()).not.toContain('hovered');
+    expect(wrapper.get('.worldmap-panel').text()).not.toContain('门派驻地');
   });
 });

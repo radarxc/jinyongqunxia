@@ -1,0 +1,88 @@
+- id: dressup__template__tpl_m_medium
+  file: body.glb
+  category: model3d
+  kind: dressup-template
+  template: tpl_m_medium
+  gender: male
+  archetype: medium
+  heightM: 1.81
+  tool: tripo-studio-web（经 tri_pipeline_runner /eval）
+  tripo_model:
+    project_id: 1ccfd7a9-909c-45b9-b87a-346acc5932f8
+    generate_op: bf93598e-4dc6-483f-8f36-8e59368138f2
+    rig_op: b15debfd-144c-4c78-a90c-c30fe541794a
+    export_op: 0c19ad55-73d4-4646-a53f-b3e919dab854
+    animation_ops:
+      idle: 608c72e1-d4d5-47bc-bcc9-2b7354537b1c
+      walk: 1be549d0-2fa6-42bd-8172-9d15c2c4fd42
+      run: a8e604a5-4c58-4f55-ab19-d2a78805f274
+  options:
+    generate:
+      mode: image_to_model
+      ai_model: H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed
+      texture: true
+      texture_quality: extreme
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 200000
+      texture_alignment: original_image
+      generate_parts: false
+      smart_poly: false
+      enable_image_autofix: true
+      visibility: private
+    rig:
+      rig_type: biped
+      skeleton_preset: mixamo
+      model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_size: 2048
+      export_skeleton: true
+      animate_in_place: true
+      orientation: -y
+      animations: [idle, walk, run]
+  credits:
+    generate: 65
+    rig: 20
+    before: 16835
+    after: 16750
+  references:
+  - path: assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose.png
+    sha256: 619c723be5b2130af3e844ea223933b1ac2644b88efc763520e654fe0f32965e
+    use: 作者 2026-10-11 选定的男性素体图（男主角脸剃光头、一字平肩、宽肩窄腰、高叉三角内裤、赤足、25° 窄 A）
+  skeleton: skeleton.json
+  regions: regions.npy
+  regionsSha: a87dd995052a837dbd7f01927dc27d3c7f7ef3339cfeac3100f1307aad5a5d50
+  skullProfile: skull_profile.json
+  skullProfileSha: ff75a05a5386b5be8c4770ba59635c87e6a5eb71ed0dcd3534f9dd7863182960
+  heightMu: 0.97937013
+  mPerMu: 1.84812662
+  ringSha: 05b2ad15fedf73ddbf42d1b774bc69160cf30ab6b6ba29feeb505684b214bbca
+  skeletonSha: 647d851d7e15ccca50f08afc24c0abf6fa29d10cda53b923f4fefb61d63690d3
+  source:
+    tripo_project_id: 1ccfd7a9-909c-45b9-b87a-346acc5932f8
+  sha256: 4e362cbfee71c065baf98a1bb3f084aa820bf8084ee7b885e6bb30696f6bc686
+  size_bytes: 9572492
+  joints: 65
+  vertices: 103013
+  triangles: 192726
+  animations:
+  - idle (15.333s)
+  - walk (2.333s)
+  - run (1.25s)
+  armAngleDeg3d: 21.7062476
+  headsRatio: 8.16
+  hipsRatio: 0.57224802
+  preview: preview.png
+  shots:
+  - shots/views.tpl_m_medium.jpg
+  status: candidate
+  created: '2026-10-11T08:31:00-07:00'
+  notes: >-
+    T4（作者 2026-10-11「要做一套很好看的女性素体，和一套很帅气的男性素体」）首个男性中等素体模板：
+    65 关节、rest=bind、+Z、原地 idle/walk/run，骨架帧按 AR-104 的 1.81 m 换算。已知瑕疵（Tripo 生成即有，未修）：
+    后脑偏下有 1 个倒置面在单面材质下露成小黑三角（全身倒置面 22 个），左大腿外侧（髋到大腿中段）有一条浅色贴图条带；
+    处理放到后续派生 / 贴合任务。男性衣物 / 头 / 道具尚无贴合，tall / small 另起任务派生。
+    当前 candidate 仍含 PBR normal/MR 贴图，进包时由 textures.py 转 unlit。

@@ -1076,5 +1076,8 @@
    "supports": "元祐四年（1089）苏轼疏浚西湖筑长堤，堤上六桥"
   }
  },
- "halo_px": 26.0
+ "halo_px": 26.0,
+ "ref_use": {
+  "/baseline/building-map/bld_kit_song_southern": "作者已审基线南宋套件件（墨化后摆放）"
+ }
 }

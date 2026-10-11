@@ -5355,6 +5355,38 @@
             "marker": "city_prefecture"
           },
           {
+            "id": "city_tingzhou",
+            "name": "北庭故城（准噶尔牧地）",
+            "kind": "town",
+            "point": [
+              174,
+              132
+            ],
+            "regionId": "rg_xiyu_beijiang",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10",
+              "ch14"
+            ],
+            "open": false,
+            "levelRange": null,
+            "levelNote": "尚无区域强度配置",
+            "entry": {
+              "sceneId": "city_tingzhou",
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
+              "accessNote": "城门进入；内部场景由 ENG-09 装配"
+            },
+            "coordinateNote": "design/map 城市治所投影",
+            "tier": "site",
+            "marker": "ruin"
+          },
+          {
             "id": "city_turpan",
             "name": "吐鲁番",
             "kind": "town",
@@ -19304,7 +19336,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "92e5b15ac06c1bbedce0694adc2a86f23b22ac243e531de8e02ce4904b339c91"
+        "revision": "707fd65879d507dbc3760134ac80afb98c316617dd90c365c110a677491c5975"
       }
     }
   ]

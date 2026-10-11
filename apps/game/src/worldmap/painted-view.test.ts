@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { GRID_SIZE, LABEL_FONT, centerOnGrid, sectViewNodes, shortNodeName, clampView, cleanNodeName, coverScale, drawableRoads,
-  gridToImage, gridToScreen, imageToGrid, imageToScreen, landmarkForNode, layoutLabels, markerSize,
+import { GRID_SIZE, LABEL_FONT, TOWN_SIZE, centerOnGrid, centredBox, sectViewNodes, shortNodeName, clampView, cleanNodeName,
+  coverScale, drawableRoads, gridToImage, gridToScreen, imageToGrid, imageToScreen, landmarkForNode, layoutLabels,
   nearestOpenNode, panView, pointAlongPath, resizeView, roadDegrees, roadPaths, screenToGrid, screenToImage,
-  zoomAt } from './painted-view';
+  townSize, zoomAt } from './painted-view';
 import type { LabelPriority, Point, Size, ViewNode, ViewRoad, ViewState } from './painted-view';
 
 const image: Size = { width: 4800, height: 3600 };
@@ -128,35 +128,35 @@ describe('painted map roads and labels', () => {
     expect(cleanNodeName('  西州（待考）地区所指治所  ')).toBe('西州');
     expect(cleanNodeName('江陵(待考)所指治所')).toBe('江陵');
     const labels = layoutLabels([{ ...a, name: '西州（待考）地区所指治所' },
-      { ...b, point: [400, 192], name: '一二三四五六' }],
-    { s: 1, tx: 0, ty: 0 }, GRID_SIZE, GRID_SIZE);
+      { ...b, point: [400, 192], name: '一二三四五六' }], 1, GRID_SIZE);
     expect(labels.map(label => [label.name, label.width, label.height])).toEqual([['西州', 44, 22], ['一二三四五六', 84, 22]]);
   });
 
   it('deterministically prefers degree, then towns, then lexicographic id without mutating nodes', () => {
     const ruin = node('rs_a', [256, 192], 'ruin');
-    const nodes = [ruin, b, a]; const view = { s: 1, tx: 0, ty: 0 };
-    const draw = (rows: ViewNode[], degrees = new Map<string, number>()) =>
-      layoutLabels(rows, view, GRID_SIZE, GRID_SIZE, {}, degrees);
+    const nodes = [ruin, b, a];
+    const draw = (rows: ViewNode[], degrees = new Map<string, number>()) => layoutLabels(rows, 1, GRID_SIZE, {}, degrees);
+    const named = (labels: ReturnType<typeof draw>) => labels.filter(label => !label.labelHidden).map(label => label.id);
     expect(draw(nodes)).toEqual(draw([...nodes].reverse()));
-    expect(draw(nodes).filter(label => label.visible).map(label => label.id)).toEqual([a.id]);
-    expect(draw(nodes, new Map([[ruin.id, 2]])).filter(label => label.visible).map(label => label.id)).toEqual([ruin.id]);
+    expect(named(draw(nodes))).toEqual([a.id]);
+    expect(named(draw(nodes, new Map([[ruin.id, 2]])))).toEqual([ruin.id]);
     expect(nodes.map(row => row.id)).toEqual([ruin.id, b.id, a.id]);
   });
 
   it.each(['selectedId', 'currentNodeId', 'destinationId'] as const)('%s takes priority over road degree', key => {
     const priority: LabelPriority = { [key]: b.id };
-    const labels = layoutLabels([a, b, c], { s: 1, tx: 0, ty: 0 }, GRID_SIZE, GRID_SIZE,
-      priority, new Map([[a.id, 99]]));
-    expect(labels.filter(label => label.visible).map(label => label.id)).toEqual([b.id]);
+    const labels = layoutLabels([a, b, c], 1, GRID_SIZE, priority, new Map([[a.id, 99]]));
+    expect(labels.filter(label => !label.labelHidden).map(label => label.id)).toEqual([b.id]);
     expect(labels).toHaveLength(2);
   });
 
-  it('allows disjoint labels and ignores offscreen nodes during collision allocation', () => {
-    const labels = layoutLabels([node('city_a', [-1, 192]), node('city_b', [20, 192]),
-      node('city_c', [120, 192]), node('city_d', [120, 217])],
-    { s: 1, tx: 0, ty: 0 }, GRID_SIZE, GRID_SIZE);
-    expect(labels.map(label => label.visible)).toEqual([false, true, true, true]);
+  it('lays out every node from the map origin, so a pan never needs a new layout', () => {
+    const rows = [node('city_a', [-1, 192]), node('city_b', [20, 192]), node('city_c', [120, 192]), node('city_d', [120, 217])];
+    const labels = layoutLabels(rows, 2, GRID_SIZE);
+    // Positions carry the scale only; the overlay that holds them is translated by the pan.
+    expect(labels.map(label => [label.x, label.y])).toEqual([[-2, 384], [40, 384], [240, 384], [240, 434]]);
+    // An off-screen name still claims its space; disjoint names all stay.
+    expect(labels.map(label => label.labelHidden)).toEqual([false, true, false, false]);
   });
 });
 
@@ -200,31 +200,31 @@ describe('terrain road paths, tiers and landmarks (tech/13 §5)', () => {
     expect(pointAlongPath([[5, 5], [5, 5]], 0.5)).toEqual([5, 5]);
   });
 
-  it('interpolates marker size between the z = 1 and z = 4 bounds per tier', () => {
-    expect(markerSize('capital', 1)).toBe(44);
-    expect(markerSize('capital', 4)).toBe(96);
-    expect(markerSize('major', 2.5)).toBe(38);
-    expect(markerSize(undefined, 0.2)).toBe(18);
-    expect(markerSize('site', 9)).toBe(26);
+  it('sizes painted art per tier in grid units at the image density, centred by default', () => {
+    expect(townSize('capital', GRID_SIZE)).toBe(TOWN_SIZE.capital);
+    expect(townSize('major', image)).toBeCloseTo(TOWN_SIZE.major * 4800 / 512, 9);
+    expect(townSize(undefined, GRID_SIZE)).toBe(TOWN_SIZE.minor);
+    expect(TOWN_SIZE.capital).toBeGreaterThan(TOWN_SIZE.major);
+    expect(TOWN_SIZE.major).toBeGreaterThan(TOWN_SIZE.minor);
+    expect(TOWN_SIZE.minor).toBeGreaterThan(TOWN_SIZE.site);
+    expect(centredBox({ ...node('city_a'), tier: 'site' }, GRID_SIZE)).toEqual({ x0: -1.5, y0: -1.5, x1: 1.5, y1: 1.5 });
   });
 
   it('ranks labels by tier after the important set and sizes text by tier', () => {
     const tiered = [{ ...node('city_a', [100, 100]), tier: 'minor' as const },
       { ...node('city_b', [101, 100]), tier: 'capital' as const }];
-    const view: ViewState = { s: 1, tx: 0, ty: 0 };
-    const labels = layoutLabels(tiered, view, { width: 512, height: 384 }, { width: 512, height: 384 });
-    expect(labels.map(label => [label.id, label.visible, label.font])).toEqual([
-      ['city_b', true, LABEL_FONT.capital], ['city_a', false, LABEL_FONT.minor]]);
-    const selected = layoutLabels(tiered, view, { width: 512, height: 384 }, { width: 512, height: 384 },
-      { selectedId: 'city_a' });
+    const labels = layoutLabels(tiered, 1, { width: 512, height: 384 });
+    expect(labels.map(label => [label.id, label.labelHidden, label.font])).toEqual([
+      ['city_b', false, LABEL_FONT.capital], ['city_a', true, LABEL_FONT.minor]]);
+    const selected = layoutLabels(tiered, 1, { width: 512, height: 384 }, { selectedId: 'city_a' });
     expect(selected[0]!.id).toBe('city_a');
   });
 
-  it('places the label below a taller icon and picks the chapter landmark by id', () => {
-    const view: ViewState = { s: 1, tx: 0, ty: 0 };
-    const [label] = layoutLabels([node('city_a', [100, 100])], view, { width: 512, height: 384 },
-      { width: 512, height: 384 }, {}, new Map(), () => 30);
-    expect(label!.labelY).toBe(132);
+  it('hangs the label and hit area off the painted art box and picks the chapter landmark by id', () => {
+    const [label] = layoutLabels([node('city_a', [100, 100])], 2, { width: 512, height: 384 }, {}, new Map(),
+      () => ({ x0: -10, y0: -20, x1: 10, y1: 15 }));
+    expect(label!.labelY).toBe(200 + 30 + 2);
+    expect(label!.hit).toEqual([-20, -40, 40, 70]);
     const entry = (id: string, chapters: string[]) => ({ id, node: 'city_a', chapters, url: `/${id}.webp`,
       anchor: [10, 20] as Point, footprintGrid: 8, width: 100, height: 80 });
     const index = [entry('z_late', ['ch05']), entry('b_tang', ['ch10']), entry('a_tang', ['ch10'])];
@@ -255,16 +255,15 @@ describe('sect seats on the map (tech/13 §5.4)', () => {
       ['sect_h', 'sect', true], ['sect_o', 'sect', false]]);
   });
   it('ranks sects between major and minor, and quiet seats never reserve label space', () => {
-    const view: ViewState = { s: 1, tx: 0, ty: 0 }; const size: Size = { width: 512, height: 384 };
+    const size: Size = { width: 512, height: 384 };
     const nodes: ViewNode[] = [{ ...node('city_minor', [100, 100]), tier: 'minor' },
       ...sectViewNodes([sect('sect_o', 'O', [101, 100]), sect('sect_h', 'H', [100, 100])]),
       { ...node('city_major', [102, 100]), tier: 'major' }];
-    const labels = layoutLabels(nodes, view, size, size);
+    const labels = layoutLabels(nodes, 1, size);
     // Tier first (sect above minor); quiet only breaks ties within a tier and never blocks others.
-    // Sect icons always stay; a colliding sect only loses its name.
-    expect(labels.map(label => [label.id, label.visible, label.quiet, label.labelHidden])).toEqual([
-      ['city_major', true, false, false], ['sect_o', true, false, true], ['sect_h', true, true, true],
-      ['city_minor', false, false, false]]);
+    // Painted art always stays; a colliding node only loses its name until hovered.
+    expect(labels.map(label => [label.id, label.quiet, label.labelHidden])).toEqual([
+      ['city_major', false, false], ['sect_o', false, true], ['sect_h', true, true], ['city_minor', false, true]]);
   });
 });
 
@@ -274,12 +273,15 @@ describe('sect seats sharing a town spot', () => {
   it('fans co-located seats around the town in id order and leaves lone seats in place', () => {
     const town: ViewNode = { ...node('city_a', [100, 100]), tier: 'major' };
     const nodes = sectViewNodes([sect('sect_b', [100, 100]), sect('sect_a', [100.5, 100]), sect('sect_far', [120, 90])], [town]);
-    expect(nodes.map(n => [n.id, n.screenOffset ?? null])).toEqual([
-      ['sect_a', [17, -17]], ['sect_b', [17, 17]], ['sect_far', null]]);
-    const view: ViewState = { s: 1, tx: 0, ty: 0 }; const size: Size = { width: 512, height: 384 };
-    const labels = layoutLabels([town, ...nodes], view, size, size);
+    // Fan slots are grid units, so seat art keeps its place beside the town's art at every zoom.
+    const at = (id: string) => nodes.find(n => n.id === id)!.point;
+    expect(nodes.map(n => n.id)).toEqual(['sect_a', 'sect_b', 'sect_far']);
+    expect(at('sect_a')[0]).toBeCloseTo(100.5 + 2.8, 9); expect(at('sect_a')[1]).toBeCloseTo(100 - 2.4, 9);
+    expect(at('sect_b')[0]).toBeCloseTo(100 + 2.8, 9); expect(at('sect_b')[1]).toBeCloseTo(100 + 2.4, 9);
+    expect(at('sect_far')).toEqual([120, 90]);
+    const labels = layoutLabels([town, ...nodes], 2, { width: 512, height: 384 });
     const byId = new Map(labels.map(label => [label.id, label]));
-    expect([byId.get('sect_a')!.x, byId.get('sect_a')!.y]).toEqual([100.5 + 17, 100 - 17]);
-    expect([byId.get('sect_far')!.x, byId.get('sect_far')!.y]).toEqual([120, 90]);
+    expect(byId.get('sect_a')!.x).toBeCloseTo((100.5 + 2.8) * 2, 9);
+    expect([byId.get('sect_far')!.x, byId.get('sect_far')!.y]).toEqual([240, 180]);
   });
 });

@@ -5355,6 +5355,38 @@
             "marker": "city_prefecture"
           },
           {
+            "id": "city_tingzhou",
+            "name": "北庭故城（别失八里废墟）",
+            "kind": "town",
+            "point": [
+              174,
+              132
+            ],
+            "regionId": "rg_xiyu_beijiang",
+            "eras": [
+              "ch01",
+              "ch02",
+              "ch03",
+              "ch04",
+              "ch10",
+              "ch14"
+            ],
+            "open": false,
+            "levelRange": null,
+            "levelNote": "尚无区域强度配置",
+            "entry": {
+              "sceneId": "city_tingzhou",
+              "townSpec": null,
+              "templateYear": null,
+              "gateId": null,
+              "spawn": null,
+              "accessNote": "城门进入；内部场景由 ENG-09 装配"
+            },
+            "coordinateNote": "design/map 城市治所投影",
+            "tier": "site",
+            "marker": "ruin"
+          },
+          {
             "id": "city_turpan",
             "name": "吐鲁番",
             "kind": "town",
@@ -19224,7 +19256,7 @@
           "docs/design/town/city_zibo__ch10.yaml",
           "docs/design/town/city_zunyi__ch10.yaml"
         ],
-        "revision": "ce1e1fd68b48fb1b38a83bd118e2428ca800b4f6737f3695b48738e83a591fd9"
+        "revision": "50b0e93663d57a43121b28bb391f1294efadf941479609eb95819b2bdcd28807"
       }
     }
   ]
