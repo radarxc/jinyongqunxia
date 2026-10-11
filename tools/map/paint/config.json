@@ -674,5 +674,60 @@
       0.36
     ],
     "max_intensity": 0.25
+  },
+  "plateau": {
+    "zone_min_m": 2700,
+    "zone_smooth_km": 25,
+    "zone_max_relief_m": 950,
+    "zone_relief_smooth_km": 20,
+    "zone_min_cells": 60,
+    "crest_window_km": 9,
+    "base_window_km": 70,
+    "base_percentile": 20,
+    "ridge_smooth_cells": 0.7,
+    "min_ridge_cells": 8,
+    "priority_jitter_m": 150,
+    "prom_hill_m": 330,
+    "prom_mountain_m": 560,
+    "prom_snow_m": 500,
+    "snow_m": 5000,
+    "prom_lo_m": 350,
+    "prom_hi_m": 1600,
+    "prom_gamma": 0.85,
+    "anisotropy_min": 0.25,
+    "ew_tolerance_deg": 35,
+    "sizes_px": {
+      "xueshan": [
+        150,
+        320
+      ],
+      "shanmai": [
+        130,
+        290
+      ],
+      "shanfeng": [
+        110,
+        220
+      ],
+      "low": [
+        80,
+        130
+      ]
+    },
+    "low_alpha": 0.7,
+    "prom_band_m": 300,
+    "band_closing_iter": 2,
+    "band_h_ratio": 2.0,
+    "band_min_h_px": 62,
+    "crest_from_top": 0.4,
+    "min_size_px": 40,
+    "overlap_x": 0.5,
+    "overlap_y": 0.78,
+    "max_water_overlap": 0.05,
+    "note": "高原面 = 25 km 平滑高程 ≥2700 m 且 20 km 平滑起伏 <950 m 的连片区（≥60 格）：青藏高原腹地、羌塘、可可西里、帕米尔高原面等。全图通用摆法照旧跑一遍（其余地区逐件不变），然后：脚点落在高原面上的山件撤掉，向高原面伸入超过 30% 的边缘山件原地缩小；高原面上按 GIS 重摆：山脊高程（1′ DEM 9 km 窗口最大值）减 70 km 窗口 20% 分位基准面得突起量，突起 ≥330 m 的连片带取骨架线作山脊，沿脊线按突起量从高到低落山——≥560 m 山脉 / 山峰（走向取高程结构张量，偏东西 35° 内用东西向件），330–560 m 淡低岭，山脊 ≥5000 m 且突起 ≥500 m 用雪山件；山体高度收在突起 ≥300 m 的山带内（×2.0），突起不足的宽谷与湖盆留平",
+    "outside_overlap_x": 0.7,
+    "outside_overlap_y": 0.8,
+    "rim_zone_overlap_max": 0.3,
+    "rim_min_size_px": 70
   }
 }

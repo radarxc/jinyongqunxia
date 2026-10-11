@@ -231,6 +231,35 @@ class World:
             low = np.pad(low, ((0, gh - low.shape[0]), (0, gw - low.shape[1])), mode="edge")
         self.g_floor = (self.g_elev - low).astype(np.float32)
 
+        # high flat plateaus (青藏、帕米尔、羌塘、可可西里): the 15 km relief window sees little there, so the
+        # mountains on them come from GIS prominence above the plateau base instead (see _place_plateau)
+        pc = cfg["plateau"]
+        cell_km = 6371.0088 / self.proj.cp.scale * a
+        elev_s = ndimage.gaussian_filter(self.g_elev, pc["zone_smooth_km"] / cell_km)
+        relief_s = ndimage.gaussian_filter(self.g_relief, pc["zone_relief_smooth_km"] / cell_km)
+        zone = (elev_s >= pc["zone_min_m"]) & (relief_s < pc["zone_max_relief_m"]) & (self.g_landraw > 0.5)
+        lab, n_lab = ndimage.label(zone)
+        if n_lab:
+            counts = np.bincount(lab.ravel())
+            small = counts < pc["zone_min_cells"]
+            small[0] = False
+            zone &= ~small[lab]
+        # crest elevation: max of the lightly smoothed 1' DEM within ~crest_window_km, so narrow ridges survive
+        crest_cells = max(1, int(round(pc["crest_window_km"] / 1.85))) | 1
+        crest_dem = ndimage.maximum_filter(dem_s, size=crest_cells)
+        self.g_crest = ndimage.map_coordinates(crest_dem, [r, c], order=1, mode="nearest").astype(np.float32)
+        prom = np.zeros_like(self.g_elev)
+        if zone.any():
+            size = int(round(pc["base_window_km"] / cell_km)) | 1
+            rows = np.nonzero(zone.any(axis=1))[0]
+            cols = np.nonzero(zone.any(axis=0))[0]
+            r0, r1 = max(0, rows[0] - size), min(gh, rows[-1] + size + 1)
+            c0, c1 = max(0, cols[0] - size), min(gw, cols[-1] + size + 1)
+            base = ndimage.percentile_filter(self.g_elev[r0:r1, c0:c1], pc["base_percentile"], size=size)
+            prom[r0:r1, c0:c1] = self.g_crest[r0:r1, c0:c1] - base
+        self.g_zone = zone
+        self.g_prom = np.where(zone, prom, 0.0).astype(np.float32)
+
         # free land run northward / sideways (cells) so sprites can be fitted on islands
         landb = self.g_landraw > 0.5
         self.g_run_n = _run_length(landb, axis=0)
@@ -561,8 +590,196 @@ class World:
                    "alpha": alpha}
             placed.append(rec)
             grid.setdefault((gxk, gyk), []).append(len(placed) - 1)
+        # high plateaus: the placement above stays exactly as it was everywhere else; on the plateau its pieces are
+        # replaced by GIS ridge ranges (_place_plateau), and rim pieces that rise over the plateau are shrunk in place
+        placed = self._clear_plateau(placed)
+        grid = {}
+        for n_, q in enumerate(placed):
+            grid.setdefault((int(q["x"] // cell), int(q["y"] // cell)), []).append(n_)
+        self.n_offplateau = len(placed)
+        self._place_plateau(placed, grid, cell)
         placed.sort(key=lambda p: (p["y"], p["x"]))
         self.peaks = placed
+
+    def _clear_plateau(self, placed: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        pc = self.cfg["plateau"]
+        a, m = self.a, self.m
+        zone_f = self.g_zone.astype(np.float32)
+        kept = []
+        self.n_plateau_removed = 0
+        self.n_rim_shrunk = 0
+        for q in placed:
+            i = int(q["y"] // a) + m
+            j = int(q["x"] // a) + m
+            if 0 <= i < zone_f.shape[0] and 0 <= j < zone_f.shape[1] and self.g_zone[i, j]:
+                self.n_plateau_removed += 1
+                continue
+            spr = self.kit[q["name"]]
+            size = q["size"]
+            shrunk = False
+            while True:
+                arr, ax, ay = spr.render(size, q["flip"])
+                if self.footprint_overlap(arr, q["x"] - ax, q["y"] - ay, zone_f) <= pc["rim_zone_overlap_max"]:
+                    break
+                if size * 0.85 < pc["rim_min_size_px"] * self.k:
+                    break
+                size *= 0.85
+                shrunk = True
+            if shrunk:
+                self.n_rim_shrunk += 1
+                q = dict(q, size=size)
+            kept.append(q)
+        return kept
+
+    # ------------------------------------------------------------ plateau mountains
+    def _place_plateau(self, placed: List[Dict[str, Any]], grid: Dict[Tuple[int, int], List[int]], cell: float) -> None:
+        """Mountains on the high flat plateaus, from GIS: ridge lines (skeleton of the prominence mask above the
+        plateau base) carry oriented range pieces, sized by prominence, kept within the prominence band; wide
+        valleys and lake basins (low prominence) stay flat; crests >= snow_m use snow pieces."""
+        from skimage.morphology import skeletonize
+
+        cfg = self.cfg
+        mc, pc = cfg["mountains"], cfg["plateau"]
+        a, m = self.a, self.m
+        land = self.g_landraw > 0.5
+        P = self.g_prom
+        if not self.g_zone.any():
+            return
+        mask = self.g_zone & land & (ndimage.gaussian_filter(P, pc["ridge_smooth_cells"]) >= pc["prom_hill_m"])
+        lab_r, n_r = ndimage.label(mask)
+        if n_r:
+            cnt = np.bincount(lab_r.ravel())
+            tiny = cnt < int(pc["min_ridge_cells"])
+            tiny[0] = False
+            mask &= ~tiny[lab_r]
+        skel = skeletonize(mask)
+        ci, cj = np.nonzero(skel)
+        rng = rng_for(self.seed, "plateau")
+        jitter = rng.random(len(ci))
+        rolls = rng.random((len(ci), 6))
+        prom_c = P[ci, cj]
+        order = np.argsort(-(prom_c + pc["priority_jitter_m"] * jitter), kind="stable")
+
+        band = ndimage.binary_closing(self.g_zone & (P >= pc["prom_band_m"]), iterations=int(pc["band_closing_iter"])) & land
+        b_n = _run_length(band, axis=0)
+        b_s = _run_length(band[::-1], axis=0)[::-1]
+        sea_field = 1.0 - self.g_landraw
+        water_field = self.g_water
+        mine: List[Dict[str, Any]] = []
+        mgrid: Dict[Tuple[int, int], List[int]] = {}
+        mcell = 160.0 * self.k
+        kx, ky = pc["overlap_x"], pc["overlap_y"]
+
+        for k in order:
+            i, j = int(ci[k]), int(cj[k])
+            roll = rolls[k]
+            x = (j - m + roll[5]) * a
+            y = (i - m + roll[4]) * a
+            prom = float(P[i, j])
+            crest = float(self.g_crest[i, j])
+            I = float(np.clip((prom - pc["prom_lo_m"]) / (pc["prom_hi_m"] - pc["prom_lo_m"]), 0, 1)) ** pc["prom_gamma"]
+            ang = float(self.g_angle[i, j])
+            dev = min(ang % 180.0, 180.0 - ang % 180.0)  # degrees away from east-west
+            if float(self.g_aniso[i, j]) < pc["anisotropy_min"]:
+                orient = "none"
+            elif dev <= pc["ew_tolerance_deg"]:
+                orient = "ew"
+            else:
+                orient = _orient_class(ang)
+            alpha = 1.0
+            if crest >= pc["snow_m"] and prom >= pc["prom_snow_m"]:
+                kind, group = "xueshan", "xueshan"
+                orient_use = orient if orient != "none" else "ew"
+            elif prom >= pc["prom_mountain_m"]:
+                kind = "shanmai" if orient != "none" else "shanfeng"
+                group, orient_use = kind, (orient if kind == "shanmai" else "none")
+            else:
+                kind = "low"
+                group, orient_use = ("shanmai", orient) if orient != "none" else ("shanfeng", "none")
+                alpha = pc["low_alpha"]
+            variants = self._variants(group, orient_use) or self._variants(group, "none")
+            name, flip = variants[int(roll[1] * len(variants)) % len(variants)]
+            spr = self.kit[name]
+            smin, smax = pc["sizes_px"][kind]
+            size = (smin + (smax - smin) * I) * (1 + mc["size_jitter"] * (2 * roll[2] - 1)) * self.k
+            # keep the piece within the prominence band (north / south), with a limited overshoot
+            if band[i, j]:
+                y_top = (i - m - int(b_n[i, j]) + 1) * a
+                y_bot = (i - m + int(b_s[i, j])) * a
+            else:
+                y_top, y_bot = y - a, y + a
+            t_ns = y_bot - y_top
+            h_cap = max(t_ns * pc["band_h_ratio"], pc["band_min_h_px"] * self.k)
+            size = min(size, h_cap * spr.size0 / spr.vis_h)
+            accepted = None
+            for shrink in (1.0, 0.8, 0.64, 0.51):
+                s_try = size * shrink
+                if s_try < pc["min_size_px"] * self.k:
+                    break
+                w_ = spr.vis_w * s_try / spr.size0
+                h_ = spr.vis_h * s_try / spr.size0
+                foot = y + (1.0 - pc["crest_from_top"]) * h_  # ridge line sits crest_from_top below the piece's top
+                over = 0.5 * max(0.0, h_ - t_ns)
+                foot = min(foot, y_bot + over)
+                foot = max(foot, y_top - over + h_)
+                cx, cy = x, foot - 0.5 * h_
+                # clash with other plateau pieces (axis-aligned ellipses) and with the rest of the map
+                gk = (int(cx // mcell), int(cy // mcell))
+                clash = False
+                for di in (-2, -1, 0, 1, 2):
+                    for dj in (-2, -1, 0, 1, 2):
+                        for q_i in mgrid.get((gk[0] + di, gk[1] + dj), ()):
+                            q = mine[q_i]
+                            ex = (cx - q["cx"]) / (kx * 0.5 * (w_ + q["w"]))
+                            ey = (cy - q["cy"]) / (ky * 0.5 * (h_ + q["h"]))
+                            if ex * ex + ey * ey < 1.0:
+                                clash = True
+                                break
+                        if clash:
+                            break
+                    if clash:
+                        break
+                if not clash:
+                    # the rest of the map: same ellipse test on the visible boxes of those pieces
+                    gxk, gyk = int(x // cell), int(foot // cell)
+                    for di in (-3, -2, -1, 0, 1, 2, 3):
+                        for dj in (-3, -2, -1, 0, 1, 2, 3):
+                            for q_i in grid.get((gxk + di, gyk + dj), ()):
+                                q = placed[q_i]
+                                qs = self.kit[q["name"]]
+                                qw = qs.vis_w * q["size"] / qs.size0
+                                qh = qs.vis_h * q["size"] / qs.size0
+                                ex = (cx - q["x"]) / (pc["outside_overlap_x"] * 0.5 * (w_ + qw))
+                                ey = (cy - (q["y"] - 0.5 * qh)) / (pc["outside_overlap_y"] * 0.5 * (h_ + qh))
+                                if ex * ex + ey * ey < 1.0:
+                                    clash = True
+                                    break
+                            if clash:
+                                break
+                        if clash:
+                            break
+                if clash:
+                    break  # a smaller piece would sit in the same crowd; leave the spot
+                arr, ax, ay = spr.render(s_try, flip)
+                ox, oy = x - ax, foot - ay
+                if self.footprint_overlap(arr, ox, oy, sea_field) > mc["max_sea_overlap"]:
+                    continue
+                if self.footprint_overlap(arr, ox, oy, water_field) > pc["max_water_overlap"]:
+                    continue
+                accepted = (s_try, foot, cx, cy, w_, h_)
+                break
+            if accepted is None:
+                continue
+            s_try, foot, cx, cy, w_, h_ = accepted
+            tone = 1.0 + mc["tone_jitter"] * (2 * roll[3] - 1)
+            rec = {"x": x, "y": foot, "name": name, "flip": bool(flip), "size": s_try,
+                   "excl": mc["spacing_ratio"] * s_try, "kind": "qiuling" if kind == "low" else kind, "tone": tone,
+                   "I": I, "elev": crest, "puff": int(roll[0] * len(self.puffs)), "arid": 0.0, "alpha": alpha,
+                   "plateau": True, "cx": cx, "cy": cy, "w": w_, "h": h_}
+            mine.append(rec)
+            mgrid.setdefault((int(cx // mcell), int(cy // mcell)), []).append(len(mine) - 1)
+            placed.append(rec)
+            grid.setdefault((int(x // cell), int(foot // cell)), []).append(len(placed) - 1)
 
     # ------------------------------------------------------------ plains
     def _poisson(self, cand_x, cand_y, spacing, order) -> List[int]:
