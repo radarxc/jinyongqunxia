@@ -29803,7 +29803,8 @@
     "packages/data/src/build/town-plan/kit/**",
     "packages/data/src/build/town-plan/types.ts",
     "packages/data/src/build/town-plan/__tests__/kits.test.ts",
-    "content/town/buildkits/**"
+    "content/town/buildkits/**",
+    "packages/data/src/build/discover.ts"
    ],
    "validate": {
     "exists": [

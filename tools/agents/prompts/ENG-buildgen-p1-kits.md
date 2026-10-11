@@ -14,6 +14,9 @@
 4. `content/town/buildkits/city-kits.yaml`：`city_turpan__ch10: xiyu:tang_buddhist`；大理两城用 `song_dali`；其余城留空（编译器按类型名里的套件前缀回退）。
 5. 测试（`packages/data/src/build/town-plan/__tests__/kits.test.ts`）命名用例：两套件校验通过；25 个 archetype 在两套件都可解析（alias 展开后）；数值都在 §3 范围内（逐项断言）；`tang_buddhist` 变体里 `dome` / `pointed_arch` 被禁用；编译后每套件 JSON ≤ 12 KB 且两次编译逐字节相同；alias 指向 alias / 不存在项时报错。
 
+## 协调者补充（10-11）
+- `content/town/buildkits/**` 是城镇编译管线的**构建期输入**（由规划器 / 编译器读取、编译成 `buildkit-runtime.v1`），不是 `loadContent()` 的运行时内容：通用内容发现若把它们当内容文件扫描，会报 `CONTENT_SCHEMA_VERSION`。本任务写集已加 `packages/data/src/build/discover.ts`，**只许**在 `discoverContent()` 里加一条排除：跳过 `content/town/buildkits/` 子树（写一行注释说明由城镇编译管线读取），其他逻辑不动；并加一条测试断言 `discoverContent()` 结果不含 `content/town/buildkits/` 下的文件。套件 YAML 自身的校验由本任务的 `compileKit` 测试负责（对仓库里的 `song_dali.yaml`、`xiyu.yaml`、`city-kits.yaml` 逐个跑 schema + 编译）。
+
 ## 约束
 - 只写：`packages/data/src/build/town-plan/kit/**`、`packages/data/src/build/town-plan/types.ts`（仅充实 `CompiledBuildKit`）、`packages/data/src/build/town-plan/__tests__/kits.test.ts`、`content/town/buildkits/**` 与本任务报告。
 - 规划器侧纯整数（比例用万分比 bp）；不用三角函数 / `sqrt` / `pow` / `random` / `Date`；不新增依赖（YAML 解析用 data 包已有的库）；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
