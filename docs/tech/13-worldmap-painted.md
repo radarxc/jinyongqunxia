@@ -92,7 +92,7 @@
   - `tier`：`capital`（当章 `eras[chNN].status == 都城`）> `major`（`importance ∈ {capital, major}` 且非都城）> `minor`（`secondary`，或当章为军镇 / 边关）> `site`（`importance == site` 或 `kind == ruin`）。
   - `marker`：`capital`→大城，`major`→州府，`minor`→县镇（当章为边关 / 军镇时→关隘），`site`→遗迹（门派驻地→门派，寺院→寺庙，道观→道观；分不出就遗迹）。
 - 图标：取自 `assets/default/map/kit/` 的大城 / 州府 / 县镇 / 村落 / 关隘 / 遗迹 / 门派 / 寺庙 / 道观件，离线缩成一张图集 `assets/default/map/markers/map_markers_atlas.webp`（每格 128×128，同目录 `atlas.json` 给出各 `marker` 的格位与锚点），运行时只载这一张。
-- 尺寸（屏幕像素，随缩放在区间内线性变化，z=1 取下限、z=4 取上限）：capital 44–96，major 30–60，minor 22–40，site 18–30；名字字号 capital 17、major 14、minor 12、site 12（固定，不随缩放）。标签避让优先级先按 tier，再按 §3 原规则。
+- 尺寸（屏幕像素，随缩放在区间内线性变化，z=1 取下限、z=4 取上限）：capital 44–96，major 26–50，minor 18–32，site 16–26；名字字号 capital 17、major 14、minor 12、site 12（固定，不随缩放）。标签避让优先级先按 tier，再按 §3 原规则。
 
 ### 5.3 名城小景（按年代）
 

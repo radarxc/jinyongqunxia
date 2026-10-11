@@ -1,0 +1,117 @@
+{
+  "schema": "tianshu.map-markers.v1",
+  "cell": 128,
+  "image": "map_markers_atlas.webp",
+  "width": 384,
+  "height": 384,
+  "markers": {
+    "city_large": {
+      "x": 0,
+      "y": 0,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        66.0,
+        52.7
+      ],
+      "source": "map_kit_dacheng_02",
+      "label": "大城"
+    },
+    "city_prefecture": {
+      "x": 128,
+      "y": 0,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        67.7,
+        62.5
+      ],
+      "source": "map_kit_zhoufu_01",
+      "label": "州府"
+    },
+    "city_county": {
+      "x": 256,
+      "y": 0,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        61.1,
+        64.6
+      ],
+      "source": "map_kit_xianzhen_01",
+      "label": "县镇"
+    },
+    "village": {
+      "x": 0,
+      "y": 128,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        60.1,
+        68.2
+      ],
+      "source": "map_kit_cunluo_01",
+      "label": "村落"
+    },
+    "pass": {
+      "x": 128,
+      "y": 128,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        56.9,
+        73.4
+      ],
+      "source": "map_kit_guanai_01",
+      "label": "关隘"
+    },
+    "ruin": {
+      "x": 256,
+      "y": 128,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        61.2,
+        70.7
+      ],
+      "source": "ico_map_kit_yiji_01",
+      "label": "遗迹"
+    },
+    "sect": {
+      "x": 0,
+      "y": 256,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        63.8,
+        66.7
+      ],
+      "source": "ico_map_kit_menpai_01",
+      "label": "门派"
+    },
+    "temple": {
+      "x": 128,
+      "y": 256,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        65.7,
+        69.1
+      ],
+      "source": "ico_map_kit_simiao_01",
+      "label": "寺庙"
+    },
+    "daoist": {
+      "x": 256,
+      "y": 256,
+      "w": 128,
+      "h": 128,
+      "anchor": [
+        62.2,
+        73.1
+      ],
+      "source": "ico_map_kit_daoguan_02",
+      "label": "道观"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+- id: map_markers_atlas
+  file: map_markers_atlas.webp
+  category: map
+  style: default
+  subject: 江湖大地图城镇分档图标图集（AR-113 · tech/13 §5.2）：大城 / 州府 / 县镇 / 村落 / 关隘 / 遗迹 / 门派 / 寺庙 / 道观九件，取自 map/kit 水墨件，3×3 格、每格 128×128 透明；格位与锚点见同目录 atlas.json。
+  atlas: atlas.json
+  atlas_sha256: 6137ab1d1d91778962d2598edc3559104331564e047feccc4ea4db71163691d4
+  cell: 128
+  markers:
+  - city_large
+  - city_prefecture
+  - city_county
+  - village
+  - pass
+  - ruin
+  - sect
+  - temple
+  - daoist
+  prompt: （无：程序合成，未调用出图模型）
+  negative: （程序只缩放、居中与轻度锐化，不增删笔墨、不加文字）
+  references:
+  - path: assets/default/map/kit/map_kit_dacheng_02.png
+    sha256: a8ab2fad7165bd659b0edcca9656bfdd05765e9f2e821ae8db558dd25321cc14
+    use: city_large（大城）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 城垣四角（215,295）（900,400）（870,690）（135,560）平均＝城心
+  - path: assets/default/map/kit/map_kit_zhoufu_01.png
+    sha256: 86c3b908086406018734a0750e2d0fa80b5601daa3538f8d4ecf90997dfbe034
+    use: city_prefecture（州府）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 八边城垣围合中心＝城心
+  - path: assets/default/map/kit/map_kit_xianzhen_01.png
+    sha256: d554990356d712782f052842841b73a6b3488e552f966775f8fdc04d70f2705b
+    use: city_county（县镇）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 屋舍簇中央空地
+  - path: assets/default/map/kit/map_kit_cunluo_01.png
+    sha256: d83b286eda539e6d18be5c03c73eb05fc0659318ece7d1fad69f6a87756d88da
+    use: village（村落）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 三处茅舍之间地面
+  - path: assets/default/map/kit/map_kit_guanai_01.png
+    sha256: 901cdc167773cb1afc8d9057b3e3562e392b6aa30a09445315a0724f6c1df327
+    use: pass（关隘）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 门洞底边中点＝关口
+  - path: assets/default/map/kit/ico_map_kit_yiji_01.png
+    sha256: e811b1269e41856e7ad34961c2afc0a01304467dc2910db302d8882781082834
+    use: ruin（遗迹）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 残殿地面中心
+  - path: assets/default/map/kit/ico_map_kit_menpai_01.png
+    sha256: 81c891086de3048fa6a4b7eb6120a435f55bdee74039c5ca3885456b276bcf6b
+    use: sect（门派）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 院落中心
+  - path: assets/default/map/kit/ico_map_kit_simiao_01.png
+    sha256: 5cf9258254b512ec6aabff87171bd29aee93693997777d22d1bf6bb22437f834
+    use: temple（寺庙）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 寺院围墙内地面中心
+  - path: assets/default/map/kit/ico_map_kit_daoguan_02.png
+    sha256: a9696da63d82f56e54f683971c920aa76a01824212901596e17ac5a0a5d20152
+    use: daoist（道观）：整件按 alpha≥16 包围盒等比缩入 124 px、居中；锚点 主殿与石阶院落中心
+  tool: python3 合成（tools/map/paint/landmarks/build_markers.py：Pillow 预乘 Lanczos 缩放 + 预乘空间 USM σ0.7×0.55，WebP 无损）
+  model: （无：确定性合成）
+  effort: n/a
+  created: '2026-10-11T01:20:03-07:00'
+  source_path: tools/map/paint/landmarks/build_markers.py
+  size: 384x384
+  sha256: 72dd39cf00b0646b9b518e2dcb0b5a96f37883887b65d22d21c8cd7f0cbeed00
+  status: candidate
+  notes: 每格四边留 2 px 透明防串格；锚点为格内像素（城池取城心、关隘取关口、其余取院落地面中心），在源件网格叠图上人工量取后按缩放换算。样张见 .agents/coord/ART-worldmap-landmarks/qa/markers_sample.png。复核：python3 tools/map/paint/landmarks/build_markers.py --check。

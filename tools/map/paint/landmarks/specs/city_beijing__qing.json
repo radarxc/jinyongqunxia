@@ -1,0 +1,2017 @@
+{
+ "schema": "tianshu.landmark-spec.v1",
+ "id": "map_landmark_city_beijing__qing",
+ "node": "city_beijing",
+ "era": "qing",
+ "chapters": [
+  "ch08",
+  "ch09",
+  "ch11",
+  "ch12",
+  "ch13",
+  "ch14"
+ ],
+ "title": "清京师（沿明「凸」字形城池；顺治八年北海白塔，1651 起）",
+ "years": [
+  1651,
+  1780
+ ],
+ "kit": "qing_north",
+ "tile_kit": "qing_north",
+ "seed": 1651,
+ "footprint_grid": 12,
+ "frame": {
+  "origin": "城心：城墙外轮廓多边形形心（内城+外城）",
+  "origin_lonlat": [
+   116.3948,
+   39.9018
+  ],
+  "unit": "km",
+  "axes": "x 向东、y 向北",
+  "lonlat_to_km": "x=(lon−lon0)·111.32·cos(lat0)，y=(lat−lat0)·110.57；城墙折点按现代地图上的二环路 / 遗址线推定，精度约 ±100 m"
+ },
+ "view": {
+  "x": [
+   -4.529,
+   4.569
+  ],
+  "y": [
+   -4.975,
+   5.383
+  ]
+ },
+ "top_px": 40,
+ "walls": [
+  {
+   "id": "outer",
+   "role": "city",
+   "name": "外城（嘉靖三十二年 1553）",
+   "polygon": [
+    [
+     -4.079,
+     -0.29
+    ],
+    [
+     -4.079,
+     -4.625
+    ],
+    [
+     3.624,
+     -4.625
+    ],
+    [
+     3.624,
+     -4.204
+    ],
+    [
+     4.119,
+     -4.204
+    ],
+    [
+     4.119,
+     -0.29
+    ],
+    [
+     3.393,
+     -0.29
+    ],
+    [
+     -3.438,
+     -0.29
+    ]
+   ],
+   "style": "city_brick",
+   "open_edges": [
+    6
+   ],
+   "corner_towers": [
+    1,
+    2,
+    4,
+    5,
+    0
+   ],
+   "moat": {
+    "gap_px": 2.5,
+    "width_px": 6.0
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "basis": "外城南、东、西三面 28 里，东西宽南北窄的扁长形，东南角向内曲折避水洼；北面接内城东南、西南角（东便门、西便门）",
+   "thickness_px": 6.0,
+   "height_px": 10.0,
+   "corner_size_px": 13.0
+  },
+  {
+   "id": "inner",
+   "role": "city",
+   "name": "内城（京城）",
+   "polygon": [
+    [
+     -3.438,
+     -0.29
+    ],
+    [
+     3.393,
+     -0.29
+    ],
+    [
+     3.393,
+     5.083
+    ],
+    [
+     -1.944,
+     5.083
+    ],
+    [
+     -3.438,
+     4.663
+    ]
+   ],
+   "style": "city_brick",
+   "corner_towers": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "corner_eaves": 2,
+   "moat": {
+    "gap_px": 2.5,
+    "width_px": 6.0
+   },
+   "src": [
+    "src_mqbj",
+    "src_yuandadu"
+   ],
+   "basis": "东西墙沿元大都、北墙洪武元年南缩、南墙永乐十七年南移；西北缺角；九门、四角楼",
+   "thickness_px": 7.0,
+   "height_px": 12.0,
+   "corner_size_px": 16.0
+  },
+  {
+   "id": "huangcheng",
+   "role": "imperial",
+   "name": "皇城",
+   "polygon": [
+    [
+     -1.304,
+     1.623
+    ],
+    [
+     -0.962,
+     1.623
+    ],
+    [
+     -0.962,
+     0.572
+    ],
+    [
+     -0.492,
+     0.572
+    ],
+    [
+     -0.492,
+     0.152
+    ],
+    [
+     -0.108,
+     0.152
+    ],
+    [
+     -0.108,
+     0.572
+    ],
+    [
+     0.917,
+     0.572
+    ],
+    [
+     0.917,
+     3.447
+    ],
+    [
+     -1.304,
+     3.447
+    ]
+   ],
+   "style": "imperial",
+   "crenel": false,
+   "ground": false,
+   "roof": [
+    150,
+    112,
+    58
+   ],
+   "src": [
+    "src_mqbj",
+    "src_huangcheng"
+   ],
+   "basis": "皇城红墙：天安门在南、地安门在北，西南角内凹，南出千步廊至大明门",
+   "thickness_px": 3.5,
+   "height_px": 6.5,
+   "corner_size_px": 9.0
+  },
+  {
+   "id": "zijin",
+   "role": "palace",
+   "name": "紫禁城（宫城）",
+   "polygon": [
+    [
+     -0.697,
+     1.191
+    ],
+    [
+     0.054,
+     1.191
+    ],
+    [
+     0.054,
+     2.153
+    ],
+    [
+     -0.697,
+     2.153
+    ]
+   ],
+   "style": "palace",
+   "corner_towers": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "corner_eaves": 2,
+   "ground": true,
+   "roof": [
+    150,
+    112,
+    58
+   ],
+   "ground_tone": "palace",
+   "moat": {
+    "gap_px": 1.5,
+    "width_px": 3.5
+   },
+   "src": [
+    "src_gugong",
+    "src_mqbj"
+   ],
+   "basis": "宫城东西 753 m、南北 961 m，四角楼，筒子河环绕",
+   "thickness_px": 4.5,
+   "height_px": 8.5,
+   "corner_size_px": 11.0
+  },
+  {
+   "id": "tiantan",
+   "role": "altar",
+   "name": "天坛外坛墙",
+   "polygon": [
+    [
+     0.234,
+     -3.209
+    ],
+    [
+     1.899,
+     -3.209
+    ],
+    [
+     1.899,
+     -1.838
+    ],
+    [
+     1.871,
+     -1.724
+    ],
+    [
+     1.787,
+     -1.617
+    ],
+    [
+     1.655,
+     -1.525
+    ],
+    [
+     1.483,
+     -1.455
+    ],
+    [
+     1.282,
+     -1.411
+    ],
+    [
+     1.067,
+     -1.396
+    ],
+    [
+     0.851,
+     -1.411
+    ],
+    [
+     0.65,
+     -1.455
+    ],
+    [
+     0.478,
+     -1.525
+    ],
+    [
+     0.346,
+     -1.617
+    ],
+    [
+     0.262,
+     -1.724
+    ],
+    [
+     0.234,
+     -1.838
+    ]
+   ],
+   "style": "altar",
+   "crenel": false,
+   "ground": true,
+   "ground_tone": "altar",
+   "src": [
+    "src_tiantan"
+   ],
+   "basis": "北圆南方（天地墙），外坛墙周长约 6.4 km",
+   "thickness_px": 2.5,
+   "height_px": 4.0
+  },
+  {
+   "id": "tiantan_in",
+   "role": "altar",
+   "name": "天坛内坛墙",
+   "polygon": [
+    [
+     0.635,
+     -3.055
+    ],
+    [
+     1.455,
+     -3.055
+    ],
+    [
+     1.455,
+     -2.015
+    ],
+    [
+     1.441,
+     -1.929
+    ],
+    [
+     1.4,
+     -1.849
+    ],
+    [
+     1.335,
+     -1.78
+    ],
+    [
+     1.25,
+     -1.727
+    ],
+    [
+     1.151,
+     -1.694
+    ],
+    [
+     1.045,
+     -1.683
+    ],
+    [
+     0.939,
+     -1.694
+    ],
+    [
+     0.84,
+     -1.727
+    ],
+    [
+     0.755,
+     -1.78
+    ],
+    [
+     0.69,
+     -1.849
+    ],
+    [
+     0.649,
+     -1.929
+    ],
+    [
+     0.635,
+     -2.015
+    ]
+   ],
+   "style": "altar",
+   "crenel": false,
+   "ground": false,
+   "src": [
+    "src_tiantan"
+   ],
+   "thickness_px": 2.5,
+   "height_px": 4.0
+  },
+  {
+   "id": "xiannong",
+   "role": "altar",
+   "name": "山川坛 / 先农坛",
+   "polygon": [
+    [
+     -1.346,
+     -3.021
+    ],
+    [
+     -0.535,
+     -3.021
+    ],
+    [
+     -0.535,
+     -1.993
+    ],
+    [
+     -1.346,
+     -1.993
+    ]
+   ],
+   "style": "altar",
+   "crenel": false,
+   "ground": true,
+   "ground_tone": "altar",
+   "src": [
+    "src_xiannong"
+   ],
+   "thickness_px": 2.5,
+   "height_px": 4.0
+  }
+ ],
+ "gates": [
+  {
+   "id": "zhengyang",
+   "name": "正阳门",
+   "wall": "inner",
+   "side": "S",
+   "at": [
+    -0.304,
+    -0.29
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 27.3,
+    "d_px": 19.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 26
+  },
+  {
+   "id": "chongwen",
+   "name": "崇文门",
+   "wall": "inner",
+   "side": "S",
+   "at": [
+    1.856,
+    -0.29
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "xuanwu",
+   "name": "宣武门",
+   "wall": "inner",
+   "side": "S",
+   "at": [
+    -1.756,
+    -0.29
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "chaoyang",
+   "name": "朝阳门",
+   "wall": "inner",
+   "side": "E",
+   "at": [
+    3.393,
+    2.496
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "dongzhi",
+   "name": "东直门",
+   "wall": "inner",
+   "side": "E",
+   "at": [
+    3.393,
+    4.409
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "fucheng",
+   "name": "阜成门",
+   "wall": "inner",
+   "side": "W",
+   "at": [
+    -3.438,
+    2.374
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "xizhi",
+   "name": "西直门",
+   "wall": "inner",
+   "side": "W",
+   "at": [
+    -3.438,
+    4.276
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "anding",
+   "name": "安定门",
+   "wall": "inner",
+   "side": "N",
+   "at": [
+    1.113,
+    5.083
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "desheng",
+   "name": "德胜门",
+   "wall": "inner",
+   "side": "N",
+   "at": [
+    -1.321,
+    5.083
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "yongding",
+   "name": "永定门",
+   "wall": "outer",
+   "side": "S",
+   "at": [
+    -0.304,
+    -4.625
+   ],
+   "eaves": 2,
+   "barbican": {
+    "w_px": 23.1,
+    "d_px": 16.5
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 22
+  },
+  {
+   "id": "zuoan",
+   "name": "左安门",
+   "wall": "outer",
+   "side": "S",
+   "at": [
+    2.582,
+    -4.625
+   ],
+   "eaves": 1,
+   "barbican": {
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "youan",
+   "name": "右安门",
+   "wall": "outer",
+   "side": "S",
+   "at": [
+    -2.926,
+    -4.625
+   ],
+   "eaves": 1,
+   "barbican": {
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "guangqu",
+   "name": "广渠门",
+   "wall": "outer",
+   "side": "E",
+   "at": [
+    4.119,
+    -1.75
+   ],
+   "eaves": 1,
+   "barbican": {
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "guangning",
+   "name": "广宁门",
+   "wall": "outer",
+   "side": "W",
+   "at": [
+    -4.079,
+    -1.429
+   ],
+   "eaves": 1,
+   "barbican": {
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "dongbian",
+   "name": "东便门",
+   "wall": "outer",
+   "side": "N",
+   "at": [
+    3.82,
+    -0.29
+   ],
+   "eaves": 1,
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 13
+  },
+  {
+   "id": "xibian",
+   "name": "西便门",
+   "wall": "outer",
+   "side": "N",
+   "at": [
+    -3.78,
+    -0.29
+   ],
+   "eaves": 1,
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 13
+  },
+  {
+   "id": "tiananmen",
+   "name": "承天门（天安门）",
+   "wall": "huangcheng",
+   "side": "S",
+   "at": [
+    -0.304,
+    0.572
+   ],
+   "eaves": 2,
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "damingmen",
+   "name": "大明门",
+   "wall": "huangcheng",
+   "side": "S",
+   "at": [
+    -0.304,
+    0.152
+   ],
+   "eaves": 1,
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 10
+  },
+  {
+   "id": "dianmen",
+   "name": "北安门（地安门）",
+   "wall": "huangcheng",
+   "side": "N",
+   "at": [
+    -0.304,
+    3.447
+   ],
+   "eaves": 1,
+   "src": [
+    "src_mqbj"
+   ],
+   "size_px": 10
+  },
+  {
+   "id": "wumen",
+   "name": "午门",
+   "wall": "zijin",
+   "side": "S",
+   "at": [
+    -0.304,
+    1.191
+   ],
+   "eaves": 2,
+   "barbican": {
+    "arrow_tower": false,
+    "w_px": 16.8,
+    "d_px": 12.0
+   },
+   "src": [
+    "src_gugong"
+   ],
+   "size_px": 16
+  },
+  {
+   "id": "shenwu",
+   "name": "玄武门（神武门）",
+   "wall": "zijin",
+   "side": "N",
+   "at": [
+    -0.304,
+    2.153
+   ],
+   "eaves": 1,
+   "src": [
+    "src_gugong"
+   ],
+   "size_px": 10
+  }
+ ],
+ "streets": [
+  {
+   "id": "axis_n",
+   "class": "axis",
+   "points": [
+    [
+     -0.304,
+     3.447
+    ],
+    [
+     -0.304,
+     4.243
+    ]
+   ],
+   "src": [
+    "src_mqbj"
+   ],
+   "width_px": 5.0
+  },
+  {
+   "id": "axis_s",
+   "class": "axis",
+   "points": [
+    [
+     -0.304,
+     -4.625
+    ],
+    [
+     -0.304,
+     0.152
+    ]
+   ],
+   "src": [
+    "src_mqbj"
+   ],
+   "basis": "中轴：永定门—正阳门—大明门—承天门—午门—三大殿—玄武门—万岁山—北安门—鼓楼—钟楼",
+   "width_px": 5.0
+  },
+  {
+   "id": "dongdan",
+   "points": [
+    [
+     1.882,
+     -0.29
+    ],
+    [
+     1.882,
+     4.276
+    ]
+   ],
+   "src": [
+    "src_mqbj"
+   ],
+   "width_px": 3.2
+  },
+  {
+   "id": "xidan",
+   "points": [
+    [
+     -1.773,
+     -0.29
+    ],
+    [
+     -1.773,
+     4.276
+    ]
+   ],
+   "src": [
+    "src_mqbj"
+   ],
+   "width_px": 3.2
+  },
+  {
+   "id": "chaofu_e",
+   "points": [
+    [
+     0.917,
+     2.43
+    ],
+    [
+     3.393,
+     2.43
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "chaofu_w",
+   "points": [
+    [
+     -3.438,
+     2.397
+    ],
+    [
+     -1.304,
+     2.397
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "dongzhi_st",
+   "points": [
+    [
+     0.063,
+     4.387
+    ],
+    [
+     3.393,
+     4.387
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "xizhi_st",
+   "points": [
+    [
+     -3.438,
+     4.276
+    ],
+    [
+     -1.773,
+     4.276
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "anding_st",
+   "points": [
+    [
+     1.113,
+     3.447
+    ],
+    [
+     1.113,
+     5.083
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "desheng_st",
+   "points": [
+    [
+     -1.321,
+     5.083
+    ],
+    [
+     -1.321,
+     4.663
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "changan",
+   "points": [
+    [
+     -2.969,
+     0.439
+    ],
+    [
+     2.924,
+     0.439
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "chongwai",
+   "points": [
+    [
+     1.882,
+     -0.29
+    ],
+    [
+     1.882,
+     -3.519
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "xuanwai",
+   "points": [
+    [
+     -1.773,
+     -0.29
+    ],
+    [
+     -1.773,
+     -3.519
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "guang_ew",
+   "points": [
+    [
+     -4.079,
+     -1.473
+    ],
+    [
+     4.119,
+     -1.695
+    ]
+   ],
+   "width_px": 2.6
+  },
+  {
+   "id": "danbi",
+   "class": "axis",
+   "points": [
+    [
+     1.011,
+     -2.8
+    ],
+    [
+     1.011,
+     -2.17
+    ]
+   ],
+   "basis": "丹陛桥（内坛南北轴）",
+   "width_px": 5.0
+  }
+ ],
+ "grids": [
+  {
+   "id": "hutong_inner",
+   "clip": "inner",
+   "bbox": [
+    -3.438,
+    3.393,
+    -0.29,
+    5.083
+   ],
+   "dir": "ew",
+   "exclude": [
+    "huangcheng",
+    "xiyuan",
+    "jingshan_r",
+    "shicha_r"
+   ],
+   "alpha": 0.55,
+   "src": [
+    "src_yuandadu"
+   ],
+   "basis": "胡同东西向为主（元大都胡同制延续）",
+   "spacing_px": 9.0,
+   "spacing_x_px": 20.0
+  },
+  {
+   "id": "hutong_outer",
+   "clip": "outer",
+   "bbox": [
+    -4.079,
+    4.119,
+    -2.192,
+    -0.29
+   ],
+   "dir": "both",
+   "exclude": [
+    "tiantan",
+    "xiannong"
+   ],
+   "alpha": 0.4,
+   "spacing_px": 9.0,
+   "spacing_x_px": 20.0
+  }
+ ],
+ "water": [
+  {
+   "id": "beihai",
+   "kind": "lake",
+   "polygon": [
+    [
+     -1.073,
+     2.043
+    ],
+    [
+     -0.595,
+     1.987
+    ],
+    [
+     -0.381,
+     2.452
+    ],
+    [
+     -0.364,
+     3.093
+    ],
+    [
+     -0.637,
+     3.359
+    ],
+    [
+     -0.953,
+     3.314
+    ],
+    [
+     -1.158,
+     2.916
+    ],
+    [
+     -1.133,
+     2.408
+    ]
+   ],
+   "islands": [
+    {
+     "polygon": [
+      [
+       -0.868,
+       2.518
+      ],
+      [
+       -0.655,
+       2.518
+      ],
+      [
+       -0.637,
+       2.728
+      ],
+      [
+       -0.868,
+       2.739
+      ]
+     ]
+    }
+   ],
+   "src": [
+    "src_beihai"
+   ]
+  },
+  {
+   "id": "zhonghai",
+   "kind": "lake",
+   "polygon": [
+    [
+     -0.988,
+     0.926
+    ],
+    [
+     -0.697,
+     0.948
+    ],
+    [
+     -0.612,
+     1.921
+    ],
+    [
+     -0.902,
+     1.943
+    ],
+    [
+     -1.013,
+     1.457
+    ]
+   ],
+   "src": [
+    "src_beihai"
+   ]
+  },
+  {
+   "id": "nanhai",
+   "kind": "lake",
+   "polygon": [
+    [
+     -1.175,
+     0.638
+    ],
+    [
+     -0.766,
+     0.638
+    ],
+    [
+     -0.731,
+     0.893
+    ],
+    [
+     -1.141,
+     0.915
+    ]
+   ],
+   "src": [
+    "src_beihai"
+   ],
+   "basis": "永乐年间向南开拓中海、南海，三海合称西苑"
+  },
+  {
+   "id": "shicha_front",
+   "kind": "lake",
+   "polygon": [
+    [
+     -0.467,
+     3.535
+    ],
+    [
+     0.02,
+     3.624
+    ],
+    [
+     0.003,
+     3.911
+    ],
+    [
+     -0.364,
+     4.199
+    ],
+    [
+     -0.578,
+     4.0
+    ]
+   ],
+   "src": [
+    "src_shichahai"
+   ]
+  },
+  {
+   "id": "shicha_back",
+   "kind": "lake",
+   "polygon": [
+    [
+     -1.261,
+     4.166
+    ],
+    [
+     -0.578,
+     4.0
+    ],
+    [
+     -0.407,
+     4.221
+    ],
+    [
+     -1.09,
+     4.663
+    ],
+    [
+     -1.432,
+     4.719
+    ]
+   ],
+   "src": [
+    "src_shichahai"
+   ]
+  },
+  {
+   "id": "shicha_west",
+   "kind": "lake",
+   "polygon": [
+    [
+     -2.115,
+     4.497
+    ],
+    [
+     -1.56,
+     4.553
+    ],
+    [
+     -1.517,
+     4.906
+    ],
+    [
+     -2.012,
+     4.951
+    ]
+   ],
+   "src": [
+    "src_shichahai"
+   ]
+  },
+  {
+   "id": "yuhe",
+   "kind": "river",
+   "points": [
+    [
+     0.003,
+     3.779
+    ],
+    [
+     0.319,
+     3.447
+    ],
+    [
+     0.703,
+     1.788
+    ],
+    [
+     0.746,
+     0.627
+    ],
+    [
+     1.173,
+     -0.202
+    ]
+   ],
+   "width": 0.02,
+   "basis": "玉河（通惠河城内段）"
+  },
+  {
+   "id": "jinshui_w",
+   "kind": "river",
+   "points": [
+    [
+     -3.78,
+     3.447
+    ],
+    [
+     -3.438,
+     3.447
+    ]
+   ],
+   "width": 0.025
+  }
+ ],
+ "regions": [
+  {
+   "id": "xiyuan",
+   "polygon": [
+    [
+     -1.261,
+     0.572
+    ],
+    [
+     -0.578,
+     0.572
+    ],
+    [
+     -0.321,
+     3.447
+    ],
+    [
+     -1.261,
+     3.447
+    ]
+   ]
+  },
+  {
+   "id": "jingshan_r",
+   "polygon": [
+    [
+     -0.535,
+     2.231
+    ],
+    [
+     -0.023,
+     2.231
+    ],
+    [
+     -0.023,
+     2.784
+    ],
+    [
+     -0.535,
+     2.784
+    ]
+   ]
+  },
+  {
+   "id": "shicha_r",
+   "polygon": [
+    [
+     -2.2,
+     3.447
+    ],
+    [
+     0.105,
+     3.447
+    ],
+    [
+     0.105,
+     5.05
+    ],
+    [
+     -2.2,
+     5.05
+    ]
+   ]
+  },
+  {
+   "id": "taimiao",
+   "tone": "palace",
+   "polygon": [
+    [
+     0.088,
+     0.661
+    ],
+    [
+     0.43,
+     0.661
+    ],
+    [
+     0.43,
+     1.103
+    ],
+    [
+     0.088,
+     1.103
+    ]
+   ]
+  },
+  {
+   "id": "sheji",
+   "tone": "palace",
+   "polygon": [
+    [
+     -0.68,
+     0.661
+    ],
+    [
+     -0.407,
+     0.661
+    ],
+    [
+     -0.407,
+     1.081
+    ],
+    [
+     -0.68,
+     1.081
+    ]
+   ]
+  }
+ ],
+ "landmarks": [
+  {
+   "id": "sandadian",
+   "name": "奉天殿（三大殿之首）",
+   "sprite": "temple_hall",
+   "at": [
+    -0.304,
+    1.545
+   ],
+   "size_px": 44,
+   "tint": "imperial",
+   "clear": 0.15,
+   "src": [
+    "src_gugong"
+   ],
+   "basis": "三大殿居宫城中轴前部；用年代套件殿堂件代表，体量放大约 6 倍以便地图可辨"
+  },
+  {
+   "id": "housan",
+   "name": "乾清宫（后三宫）",
+   "sprite": "temple_hall",
+   "at": [
+    -0.304,
+    1.965
+   ],
+   "size_px": 30,
+   "tint": "imperial",
+   "clear": 0.08,
+   "src": [
+    "src_gugong"
+   ]
+  },
+  {
+   "id": "gulou",
+   "name": "鼓楼",
+   "sprite": "tile:tex_town_qing_north_city_gate__k6_r000_v01",
+   "kit": "qing_north",
+   "at": [
+    -0.347,
+    4.243
+   ],
+   "size_px": 30,
+   "clear": 0.1,
+   "src": [
+    "src_zhonggulou"
+   ],
+   "basis": "鼓楼在元中心阁旧址、钟楼在其北 100 m；套件无钟鼓楼件，借同年代城门楼件（砖台 + 楼阁）"
+  },
+  {
+   "id": "zhonglou",
+   "name": "钟楼",
+   "sprite": "tile:tex_town_qing_north_city_gate__k4_r000_v01",
+   "kit": "qing_north",
+   "at": [
+    -0.347,
+    4.508
+   ],
+   "size_px": 22,
+   "clear": 0.08,
+   "src": [
+    "src_zhonggulou"
+   ]
+  },
+  {
+   "id": "miaoying",
+   "name": "妙应寺白塔（元至元十六年 1279）",
+   "sprite": "bld:yuan_north/pagoda",
+   "at": [
+    -2.935,
+    2.43
+   ],
+   "size_px": 26,
+   "tint": "white",
+   "clear": 0.1,
+   "src": [
+    "src_miaoying"
+   ],
+   "basis": "元塔明清续存；明 / 清套件无覆钵塔，借元北方套件同型件"
+  },
+  {
+   "id": "taimiao_hall",
+   "name": "太庙",
+   "sprite": "temple_hall",
+   "at": [
+    0.259,
+    0.904
+   ],
+   "size_px": 18,
+   "tint": "imperial",
+   "clear": 0.05
+  },
+  {
+   "id": "sheji_hall",
+   "name": "社稷坛",
+   "sprite": "temple_hall",
+   "at": [
+    -0.544,
+    0.882
+   ],
+   "size_px": 14,
+   "tint": "imperial",
+   "clear": 0.05
+  },
+  {
+   "id": "xiannong_hall",
+   "name": "山川坛 / 先农坛殿",
+   "sprite": "temple_hall",
+   "at": [
+    -0.919,
+    -2.413
+   ],
+   "size_px": 18,
+   "clear": 0.08,
+   "src": [
+    "src_xiannong"
+   ]
+  },
+  {
+   "id": "qinian",
+   "name": "祈年殿",
+   "proc": "round_hall",
+   "at": [
+    1.011,
+    -2.17
+   ],
+   "size_px": 32,
+   "clear": 0.1,
+   "src": [
+    "src_tiantan"
+   ],
+   "basis": "嘉靖二十四年（1545）建成三重檐圆殿；套件无圆殿，程序墨线画三层圆台与三重檐"
+  },
+  {
+   "id": "yuanqiu",
+   "name": "圜丘（嘉靖九年 1530）",
+   "proc": "round_altar",
+   "at": [
+    1.019,
+    -2.833
+   ],
+   "size_px": 26,
+   "clear": 0.08,
+   "src": [
+    "src_tiantan"
+   ]
+  },
+  {
+   "id": "baita",
+   "name": "北海白塔（顺治八年 1651）",
+   "sprite": "bld:yuan_north/pagoda",
+   "at": [
+    -0.766,
+    2.651
+   ],
+   "size_px": 34,
+   "tint": "white",
+   "clear": 0.06,
+   "src": [
+    "src_beihai"
+   ],
+   "basis": "1651 年于广寒殿旧址建藏式白塔；清套件无覆钵塔，借元北方套件同型件"
+  }
+ ],
+ "hills": [
+  {
+   "id": "jingshan",
+   "name": "万岁山（景山）",
+   "sprite": "map_kit_qiuling_03",
+   "at": [
+    -0.304,
+    2.43
+   ],
+   "size_px": 34,
+   "clear": 0.18,
+   "src": [
+    "src_mqbj"
+   ]
+  }
+ ],
+ "groves": [
+  {
+   "id": "jingshan_trees",
+   "polygon": [
+    [
+     -0.509,
+     2.253
+    ],
+    [
+     -0.048,
+     2.253
+    ],
+    [
+     -0.048,
+     2.761
+    ],
+    [
+     -0.509,
+     2.761
+    ]
+   ],
+   "trees": [
+    "tex_town_qing_north_tree_cluster__chinese_pine_v01"
+   ],
+   "size_px": 8,
+   "avoid_block": false,
+   "foot": false,
+   "spacing_px": 6.6
+  },
+  {
+   "id": "tiantan_cypress",
+   "polygon": [
+    [
+     0.234,
+     -3.209
+    ],
+    [
+     1.899,
+     -3.209
+    ],
+    [
+     1.899,
+     -1.838
+    ],
+    [
+     1.871,
+     -1.724
+    ],
+    [
+     1.787,
+     -1.617
+    ],
+    [
+     1.655,
+     -1.525
+    ],
+    [
+     1.483,
+     -1.455
+    ],
+    [
+     1.282,
+     -1.411
+    ],
+    [
+     1.067,
+     -1.396
+    ],
+    [
+     0.851,
+     -1.411
+    ],
+    [
+     0.65,
+     -1.455
+    ],
+    [
+     0.478,
+     -1.525
+    ],
+    [
+     0.346,
+     -1.617
+    ],
+    [
+     0.262,
+     -1.724
+    ],
+    [
+     0.234,
+     -1.838
+    ]
+   ],
+   "trees": [
+    "tex_town_qing_north_tree_cluster__chinese_pine_v01"
+   ],
+   "size_px": 9,
+   "spacing_px": 8.7
+  },
+  {
+   "id": "xiannong_trees",
+   "polygon": [
+    [
+     -1.346,
+     -3.021
+    ],
+    [
+     -0.535,
+     -3.021
+    ],
+    [
+     -0.535,
+     -1.993
+    ],
+    [
+     -1.346,
+     -1.993
+    ]
+   ],
+   "trees": [
+    "tex_town_qing_north_tree_cluster__scholar_tree_v01"
+   ],
+   "size_px": 9,
+   "spacing_px": 10.3
+  },
+  {
+   "id": "xiyuan_trees",
+   "polygon": [
+    [
+     -1.261,
+     0.627
+    ],
+    [
+     -1.005,
+     0.627
+    ],
+    [
+     -1.005,
+     3.392
+    ],
+    [
+     -1.261,
+     3.392
+    ]
+   ],
+   "trees": [
+    "tex_town_qing_north_tree_cluster__scholar_tree_v01"
+   ],
+   "size_px": 8,
+   "foot": false,
+   "spacing_px": 7.7
+  },
+  {
+   "id": "belt",
+   "ring": {
+    "wall": "outer",
+    "exclude": [
+     "inner"
+    ],
+    "from_px": 11.0,
+    "to_px": 34.0,
+    "exclude_grow_px": 12.0
+   },
+   "trees": [
+    "tex_town_qing_north_tree_cluster__scholar_tree_v01"
+   ],
+   "size_px": 12,
+   "foot": false,
+   "spacing_px": 10.0
+  },
+  {
+   "id": "belt_n",
+   "ring": {
+    "wall": "inner",
+    "exclude": [
+     "outer"
+    ],
+    "from_px": 11.0,
+    "to_px": 34.0,
+    "exclude_grow_px": 12.0
+   },
+   "trees": [
+    "tex_town_qing_north_tree_cluster__scholar_tree_v01"
+   ],
+   "size_px": 12,
+   "foot": false,
+   "spacing_px": 10.0
+  }
+ ],
+ "fill": [
+  {
+   "id": "fill_inner",
+   "clip": "inner",
+   "exclude": [
+    "huangcheng",
+    "xiyuan",
+    "jingshan_r",
+    "shicha_r",
+    "zijin"
+   ],
+   "bbox": [
+    -3.438,
+    3.393,
+    -0.29,
+    5.083
+   ],
+   "sprites": [
+    [
+     "house_small",
+     5
+    ],
+    [
+     "house_large",
+     3
+    ],
+    [
+     "courtyard",
+     4
+    ],
+    [
+     "shop_1f",
+     1
+    ],
+    [
+     "tree:tree_cluster__scholar_tree_v01",
+     1.2
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.95,
+   "jitter": 0.22,
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  },
+  {
+   "id": "fill_outer_n",
+   "clip": "outer",
+   "exclude": [
+    "tiantan",
+    "xiannong"
+   ],
+   "bbox": [
+    -4.079,
+    4.119,
+    -2.358,
+    -0.29
+   ],
+   "sprites": [
+    [
+     "shop_1f",
+     3
+    ],
+    [
+     "shop_2f",
+     2
+    ],
+    [
+     "house_small",
+     4
+    ],
+    [
+     "inn",
+     1
+    ],
+    [
+     "courtyard",
+     2
+    ],
+    [
+     "tree:tree_cluster__scholar_tree_v01",
+     1
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.92,
+   "jitter": 0.22,
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  },
+  {
+   "id": "fill_outer_s",
+   "clip": "outer",
+   "exclude": [
+    "tiantan",
+    "xiannong"
+   ],
+   "bbox": [
+    -4.079,
+    4.119,
+    -4.625,
+    -2.358
+   ],
+   "sprites": [
+    [
+     "house_small",
+     3
+    ],
+    [
+     "tree:tree_cluster__scholar_tree_v01",
+     3
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.5,
+   "spacing_px": [
+    17.0,
+    13.0
+   ]
+  }
+ ],
+ "sources": {
+  "src_beihai": {
+   "title": "维基百科（中文）《北海公园》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%8C%97%E6%B5%B7%E5%85%AC%E5%9B%AD",
+   "accessed": "2026-10-11",
+   "supports": "辽瑶屿行宫在辽南京东北郊；金大定十九年（1179）建大宁宫、广寒殿、琼华岛；元太液池、万寿山、团城；明永乐拓中海南海成西苑；1579 广寒殿倒塌；1651 建白塔"
+  },
+  "src_gugong": {
+   "title": "维基百科（中文）《故宫》",
+   "url": "https://zh.wikipedia.org/wiki/%E6%95%85%E5%AE%AB",
+   "accessed": "2026-10-11",
+   "supports": "紫禁城位置、三大殿居中轴、宫城四门与角楼"
+  },
+  "src_huangcheng": {
+   "title": "维基百科（中文）《北京皇城》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%8C%97%E4%BA%AC%E7%9A%87%E5%9F%8E",
+   "accessed": "2026-10-11",
+   "supports": "明清皇城范围、天安门 / 地安门、西苑三海"
+  },
+  "src_miaoying": {
+   "title": "维基百科（中文）《妙应寺》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%A6%99%E5%BA%94%E5%AF%BA",
+   "accessed": "2026-10-11",
+   "supports": "妙应寺白塔元至元八年（1271）敕建、十六年（1279）建成，位于元大都城内西部（阜成门内）"
+  },
+  "src_mqbj": {
+   "title": "维基百科（中文）《明清北京城》",
+   "url": "https://zh.wikipedia.org/wiki/%E6%98%8E%E6%B8%85%E5%8C%97%E4%BA%AC%E5%9F%8E",
+   "accessed": "2026-10-11",
+   "supports": "内城九门、四角楼、西北缺角；永乐南墙南移 800 m；嘉靖三十二年（1553）只筑南面外城成「凸」字形，外城七门、东南角内曲；清沿明制、内城为满城"
+  },
+  "src_shichahai": {
+   "title": "维基百科（中文）《什刹海》",
+   "url": "https://zh.wikipedia.org/wiki/%E4%BB%80%E5%88%B9%E6%B5%B7",
+   "accessed": "2026-10-11",
+   "supports": "元积水潭为大都规划依据，明清缩为什刹海三海"
+  },
+  "src_tiantan": {
+   "title": "维基百科（中文）《天坛》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%A4%A9%E5%9D%9B",
+   "accessed": "2026-10-11",
+   "supports": "1420 天地坛（仿南京大祀坛）；1530 专祭天、建圜丘；1538 拆大祀殿、1545 建成大享殿（圆）；1751 改名祈年殿；外坛墙北圆南方"
+  },
+  "src_xiannong": {
+   "title": "维基百科（中文）《先农坛》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%85%88%E5%86%9C%E5%9D%9B",
+   "accessed": "2026-10-11",
+   "supports": "1420 建山川坛于南郊，后为先农坛"
+  },
+  "src_yuandadu": {
+   "title": "维基百科（中文）《元大都》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%85%83%E5%A4%A7%E9%83%BD",
+   "accessed": "2026-10-11",
+   "supports": "元大都东西 6.65 km、南北 7.4 km，十一门（南东西各三、北二）；皇城以太液池为中心，大内在东、隆福 / 兴圣宫在西；中心阁、钟鼓楼、积水潭；至正十九年（1359）十一门加瓮城；南墙西段因庆寿寺双塔外凸；胡同制"
+  },
+  "src_zhonggulou": {
+   "title": "维基百科（中文）《北京鼓楼和钟楼》",
+   "url": "https://zh.wikipedia.org/wiki/%E5%8C%97%E4%BA%AC%E9%BC%93%E6%A5%BC%E5%92%8C%E9%92%9F%E6%A5%BC",
+   "accessed": "2026-10-11",
+   "supports": "元至元九年（1272）建钟鼓楼；明永乐迁址，鼓楼在元中心阁旧址、钟楼在其北 100 m（元钟楼旧基）"
+  }
+ },
+ "notes": [
+  "交付图比例约 72.6 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）"
+ ],
+ "halo_px": 26.0
+}
