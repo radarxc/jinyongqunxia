@@ -30183,6 +30183,76 @@
    }
   },
   {
+   "id": "ENG-buildgen-p2-plan-hall",
+   "title": "城镇 3D 古建 · 单体规划 planBuilding（尺寸档、开间、门、屋顶标高、可走面；hall / storeyed / stall / adobe）",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p2-plan-hall.md",
+   "deps": [
+    "ENG-buildgen-p1-kits"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/16 §3–4",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ],
+   "writes": [
+    "packages/data/src/build/town-plan/dims.ts",
+    "packages/data/src/build/town-plan/doors.ts",
+    "packages/data/src/build/town-plan/plan-hall.ts",
+    "packages/data/src/build/town-plan/testing/**",
+    "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/testing/pilot-buildings.json",
+     "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",
