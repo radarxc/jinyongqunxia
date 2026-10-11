@@ -1,4 +1,17 @@
-import type { FacilityKind } from '@tianshu/data/schemas';
+import type {
+  FacilityKind, PriceTableDef, ShopTemplateDef, TownFacilitiesDef,
+} from '@tianshu/data/schemas';
+import type { ShopContext } from './types';
+import type { ShopDef } from '@tianshu/data/schemas';
+import type { ShopState } from '../state';
+
+declare module '../command' {
+  interface CoreContent {
+    readonly shopTemplates?: readonly ShopTemplateDef[];
+    readonly priceTables?: readonly PriceTableDef[];
+    readonly townFacilities?: readonly TownFacilitiesDef[];
+  }
+}
 
 export type ShopCommand =
   | { readonly t: 'shop/buy'; readonly shopKey: string; readonly itemId: string;
@@ -19,4 +32,10 @@ export interface ShopView {
     readonly reason: null | 'SHOP_STOCK_INSUFFICIENT' | 'SHOP_MONEY_INSUFFICIENT' }[];
   readonly buys: readonly { readonly itemId: string; readonly owned: number;
     readonly unitSellPrice: number }[];
+}
+
+export interface ResolvedShop {
+  readonly instanceKey: string; readonly nameKey: string; readonly facilityKind: FacilityKind;
+  readonly layoutKey: string; readonly buildingId: string; readonly definition: ShopDef;
+  readonly context: ShopContext; readonly state: ShopState; readonly persisted: boolean;
 }
