@@ -48,6 +48,17 @@ describe('WorldMapDefinitionSchema', () => {
       ({ ...node, marker: 'castle' })) })).toThrow();
   });
 
+  it('accepts sect seats tied to known nodes and rejects duplicates or unknown cities', () => {
+    const map = mapFixture();
+    const sect = { id: 'sect_test', name: '测试派', siteName: '测试山', kind: 'headquarters',
+      point: [40, 0] as [number, number], status: 'O' as const, marker: 'sect' as const, cityId: 'city_a' };
+    expect(WorldMapDefinitionSchema.parse({ ...map, sects: [sect] }).sects).toEqual([sect]);
+    expect(WorldMapDefinitionSchema.parse({ ...map, sects: [{ ...sect, cityId: null }] }).sects).toHaveLength(1);
+    expect(() => WorldMapDefinitionSchema.parse({ ...map, sects: [sect, sect] })).toThrow();
+    expect(() => WorldMapDefinitionSchema.parse({ ...map, sects: [{ ...sect, cityId: 'city_zz' }] })).toThrow();
+    expect(() => WorldMapDefinitionSchema.parse({ ...map, sects: [{ ...sect, status: 'N' }] })).toThrow();
+  });
+
   it('rejects geometry, era and envelope identities that disagree with the map', () => {
     const map = mapFixture();
     const roads = [{ ...map.roads[0]!, points: [[1, 0], [100, 0]] as const }];

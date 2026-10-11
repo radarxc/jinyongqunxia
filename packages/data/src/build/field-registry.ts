@@ -81,6 +81,8 @@ export const CONTENT_FIELD_REGISTRY: Readonly<Record<ContentKind, readonly Field
     { pattern: 'actions.*.map.nodes.*.coordinateNote', class: 'authoring' },
     { pattern: 'actions.*.map.nodes.*.accessNote', class: 'text' },
     { pattern: 'actions.*.map.roads.*.note', class: 'authoring' },
+    { pattern: 'actions.*.map.sects.*.name', class: 'text' },
+    { pattern: 'actions.*.map.sects.*.siteName', class: 'text' },
     { pattern: 'actions.*.map.sources', class: 'authoring' }, { pattern: '*', class: 'rule' },
   ], bookWorld: [{ pattern: 'mainStoryLine', class: 'contentRef' },
     { pattern: 'sideStoryLines.*', class: 'contentRef' },

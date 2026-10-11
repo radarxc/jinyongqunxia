@@ -32,6 +32,13 @@ export const WorldMapNodeSchema = z.strictObject({
   tier: MapTierSchema.optional(), marker: MapMarkerSchema.optional(),
 });
 
+/** Sect seat drawn on the map for one chapter (book geography; tech/13 §5.4). Presentation only. */
+export const MapSectSchema = z.strictObject({
+  id: z.string().regex(/^sect_[a-z0-9_]+$/), name: z.string().min(1), siteName: z.string(),
+  kind: z.string().min(1), point: MapPointSchema, status: z.enum(['O', 'H', 'P', 'M']),
+  marker: MapMarkerSchema, cityId: MapNodeIdSchema.nullable(),
+});
+
 export const WorldMapRoadSchema = z.strictObject({
   key: z.string().min(1), routeId: z.string().min(1).nullable(),
   start: MapNodeIdSchema, end: MapNodeIdSchema, distanceLi: z.number().int().positive(),
@@ -91,6 +98,7 @@ export const WorldMapDefinitionSchema = z.strictObject({
     stepLi: z.number().int().min(1).max(10_000), note: z.string() }),
   startNodeId: MapNodeIdSchema, nodes: z.array(WorldMapNodeSchema).min(1).max(4096),
   roads: z.array(WorldMapRoadSchema).max(16_384),
+  sects: z.array(MapSectSchema).max(512).optional(),
   terrain: z.strictObject({ land: z.array(TerrainLineSchema.min(3)).max(4096),
     rivers: z.array(TerrainLineSchema).max(4096), mountains: z.array(TerrainLineSchema).max(4096) }),
   sources: z.array(z.string()),
@@ -99,12 +107,20 @@ export const WorldMapDefinitionSchema = z.strictObject({
   if (map.years[0] > map.years[1]) context.addIssue({ code: 'custom', path: ['years'], message: 'year range order' });
   if (map.travel.stepLi !== map.travel.liPerHour) context.addIssue({ code: 'custom', path: ['travel'], message: 'one-hour step required' });
   validateGraph(map, context);
+  const sectIds = new Set<string>(); const nodeIds = new Set(map.nodes.map((node) => node.id));
+  for (const sect of map.sects ?? []) {
+    if (sectIds.has(sect.id)) context.addIssue({ code: 'custom', path: ['sects'], message: 'duplicate sect id' });
+    sectIds.add(sect.id);
+    if (sect.cityId !== null && !nodeIds.has(sect.cityId))
+      context.addIssue({ code: 'custom', path: ['sects'], message: 'sect city unknown' });
+  }
 });
 
 export type MapPoint = z.output<typeof MapPointSchema>;
 export type MapPath = z.output<typeof MapPathSchema>;
 export type MapTier = z.output<typeof MapTierSchema>;
 export type MapMarker = z.output<typeof MapMarkerSchema>;
+export type MapSect = z.output<typeof MapSectSchema>;
 export type MapEntry = z.output<typeof MapEntrySchema>;
 export type MapNode = z.output<typeof WorldMapNodeSchema>;
 export type MapRoad = z.output<typeof WorldMapRoadSchema>;

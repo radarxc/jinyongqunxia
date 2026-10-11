@@ -100,3 +100,9 @@
 - 构建：`asset-manifest.ts` 登记 `/map/landmark/` 与 `/map/markers/`，复制进 public，并生成 `apps/game/public/assets/default/map/landmark/index.json`（`[{ id, node, chapters, url, anchor, footprintGrid, width, height }]`）。
 - 运行时：页面载入一次 `index.json`，按当前章节选每个开放节点的小景；有小景的节点画小景（**放在地图平面里随缩放**，屏幕宽度下限 56 px），否则画 §5.2 图标；名字仍是屏幕空间固定字号、放在小景 / 图标下方。
 - 版式依据：城墙形制、城门、中轴、宫城 / 皇城、坊巷格局与标志塔寺按该年代史料（来源写进 manifest `layout_basis`）；先用程序画版式底稿（墙线、街格、宫城块与标志建筑落位），再用水墨件上墨；标志建筑缺件时才单独出图（单体建筑，参考 kit 寺庙 / 门派件画风）。
+
+### 5.4 门派驻地（作者 10-11「门派按照书中地理位置放到地图上」）
+
+- 数据：`worldmap.v1` 可选 `sects: [{ id, name, siteName, kind, point, status, marker, cityId }]`，由生成器从 `docs/design/map/sects.yaml` 按当章 `availability` 写出：`O` 开放、`H` 隐世可触发、`P` 前身、`M` 仅提及照写，`N` 尚未创立、`D` 已消亡不写。`point` 为网格整数坐标（按书中地望核定的经纬度经 `CanvasProjection(512,384,18)` 投影），`marker` 取 `sect` / `temple` / `daoist`（佛寺、道观、其余门派），`cityId` 为依附的地图节点（无则 null）。`name` / `siteName` 走本地化文本键。
+- 显示：`O` 画门派图标（尺寸同 minor 档）与名字（朱砂色 `#9e3b2f`、12 px、比城名小一号）；`H` 图标 55% 不透明、名字只在悬停 / 选中时出现；`P` / `M` 不画。标签避让优先级位于 major 与 minor 之间。
+- 交互：悬停 / 点击门派显示行路笺门派信息（名称、山门、开放 / 隐世、依附城）；依附城当章开放且可达时给「前往某城」，走依附城的寻路，不新增玩法规则。
