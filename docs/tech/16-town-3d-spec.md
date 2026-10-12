@@ -143,7 +143,7 @@ export type FacilityKind = 'none' | 'residence' | 'general_store' | 'cloth' | 'b
   | 'teahouse' | 'smithy' | 'pawnshop' | 'bank' | 'escort' | 'school' | 'temple' | 'office' | 'casino' | 'stable'
   | 'storehouse' | 'guardhouse' | 'stall_goods' | 'stall_food';
 export interface TownBuildingPlan { /* = tech/15 §2.3；字段：id archetype kit seed footprint yaw storeys roof entrances
-  enterable elev floors floorY fixtures parts? signage facility */ }
+  enterable elev floors floorY fixtures parts? signage facility finial? */ }
 export interface LayoutBuildingInput {
   readonly id: string; readonly type: string; readonly originCell: readonly [number, number];
   readonly sizeCells: readonly [number, number]; readonly entranceCell: readonly [number, number];
@@ -205,7 +205,7 @@ cityWall: { h: 6000, top: 4000, batter: 0.16, merlon: [1800, 1200, 500], gate: {
 ```
 
 - `content/town/buildkits/city-kits.yaml`：按城覆盖视觉套件，如 `city_turpan__ch10: xiyu:tang_buddhist`（吐鲁番布局里的类型名是 `bld_kit_song_dali_*`，视觉套件与类型名无关）。
-- **xiyu `tang_buddhist` 变体**（702 年唐西州，tech/14 D13）：土坯厚墙、平顶女儿墙、木椽头、高窗、雕门、葡萄架、晾房花砖墙照常；**禁用**穹顶与尖拱；寺院与官署用唐式佛塔刹顶与唐式木构檐口。
+- **xiyu `tang_buddhist` 变体**（702 年唐西州，tech/14 D13）：土坯厚墙、平顶女儿墙、木椽头、高窗、雕门、葡萄架、晾房花砖墙照常；**禁用**穹顶与尖拱；寺院用唐式佛塔刹顶（规划器写方案 `finial: 'tang_stupa'`，网格器据此出塔刹），寺院与官署用唐式木构檐口；官署被禁的穹顶改攒尖、配普通宝顶，不加佛塔刹（按史实，10-11 协调者裁定）。
 - 布局字段 → 方案：`type` → 套件类型 → 配方 / 尺寸档 / 屋顶（别名覆盖 xiyu 名）；`size` + 入口边 → yaw 与局部 w × d；`origin` + 坐标框 → 占地中心；`entrance_cells` → 门偏移（默认吸到明间，除非布局偏移离明间 > 1 m）；`enterable` / `business_ref` / 设施 YAML → 设施类；种子 → 变体。
 
 ## 5. 网格器：配方、屋顶、墙与开洞、不变式

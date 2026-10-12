@@ -30233,7 +30233,9 @@
     "packages/data/src/build/town-plan/testing/**",
     "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts",
     "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
-    "packages/data/src/build/town-plan/types.ts"
+    "packages/data/src/build/town-plan/types.ts",
+    "packages/data/src/schemas/town-scene.ts",
+    "packages/data/src/region-map-town.test.ts"
    ],
    "validate": {
     "exists": [

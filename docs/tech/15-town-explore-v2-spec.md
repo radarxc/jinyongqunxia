@@ -149,6 +149,7 @@ interface TownBuildingPlan {
   fixtures: readonly FixtureTuple[]; parts?: readonly PartTuple[];              // 院落部件（tech/16 §4）
   signage: readonly [textKey: string, signStyleIdx: number] | null;
   facility: FacilityKind;
+  finial?: 'tang_stupa';                                                        // 只在 xiyu:tang_buddhist 变体的寺院出现（tech/16 §4.3）
 }
 ```
 
