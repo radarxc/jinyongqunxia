@@ -12,6 +12,7 @@
    - 只读查询 `shop/query { shopKey } → ShopView`（与现有 `world/previewRegionPath` 同类的会话级只读查询；Worker 与主线程两条宿主路径都要支持，走 core 懒加载族 `@tianshu/core/shop-command`，不进 session 静态闭包）。
    - `shop/buy | sell` 命令照常经 `dispatch` 走 core；脏视图 `['hud', 'inventory']`。
 2. **城镇投影挪家**：新建 `apps/game/src/runtime/explore-projection.ts`，把会话投影里城镇（v1）相关的拼装挪进来（含新增的设施信息：当前所在设施 `facility { key, kind, nameKey, shopKey } | null`），`session.ts` 只调用它；**不改** `session-projection.ts`（大地图线在用），如需从那里取数，只读调用。
+   - **协调者 10-11 r1 裁定**：`session-projection.ts` 是大地图线并行在改的文件，本任务不改它；所以 v1 城镇投影暂时仍由它计算，`explore-projection.ts` **只在其结果上增补** `facility` / 店铺 / 暂停相关字段，不得再调用 `projectTown()` 重算或覆盖已有字段（杜绝双算）。报告第 4 节登记「v1 城镇投影整体迁出留给 ENG-town2-session-v2」。
 3. **`ShopLayer.vue`**（`apps/game/src/pages/ShopLayer.vue`，App 层，与 `DialogueLayer` 同级）：
    - 收到 `shop/open` 呈现步时打开：先关对话层，`shop/query` 取 `ShopView` → 映射成 `ShopPanelView`（名称、图标、品阶从物品表投影取；金额全部用 core 给的单价）→ 渲染 `TxShop`（深路径 `@tianshu/ui/components/explore/TxShop.vue`）。
    - `buy / sell` 事件 → 发 `shop/buy | sell { shopKey, itemId, count, expectedUnitPrice }`；等回复期间 `busy = true`；**每次回复后重查**（成功与拒绝都重查），拒绝码映射成一行提示（`SHOP_PRICE_STALE` 提示"价钱变了，请再看一眼"等，文案放 `ShopLayer.strings.ts`）。
@@ -31,6 +32,7 @@
 ## 约束
 - 只写：`apps/game/src/runtime/{session,contracts,explore-projection}.ts`、`apps/game/src/runtime/*.test.ts`（只增改与本任务直接相关的用例）、`apps/game/src/game-controller.ts`、`apps/game/src/pages/ShopLayer.vue`、`apps/game/src/pages/ShopLayer.strings.ts`、`apps/game/src/pages/ShopLayer.test.ts`、`apps/game/src/App.vue`、`apps/game/src/style.css`、`apps/game/src/flow/presentation.ts`（只许加 `shop/open` 的分派）与本任务报告。
 - 不改 `session-projection.ts`、`WorldMapPage.vue`、`worldmap/**`（大地图线）、`TownPage.vue`（v1 页是下一个任务）、`packages/**`；不新增依赖。
+- **协调者 10-11 r1 补充**：城内存档被判 `SAVE_WORLDMAP_INVALID` 的根因（core 用 `JSON.stringify` 比较已进场景、对键顺序敏感）已在集成分支修好（提交 aeadbb648，改为 `canonicalJson`）；`session.ts` 里的 `worldMapSceneForValidation()` 绕行必须删掉，读档语义不在本任务里改。
 - 工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
 
 检查：
