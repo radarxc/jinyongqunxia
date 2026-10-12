@@ -37,6 +37,7 @@
 
 ## 约束
 - 只写：`packages/render/src/buildgen/three/**`、`packages/render/src/materials/static-lit/**`（含测试）、`packages/render/src/buildgen/types.ts`（只许把 `cutFacadeMask` 声明改为从 `three/cutaway.ts` 再导出，或新增可选字段）与本任务报告。
+- **协调者 10-11 r1 返修裁定扩大的写集**（tasks.json 同步）：`packages/render/src/buildgen/stubs.test.ts`——只把 r0 留下的 `BuildingLayer` / 本任务所接管部分的「抛桩」断言改成对真实实现的最小断言（其余桩断言不动）。
 - 不改网格器（`mesher/**`）、不改 `region/**`（接入区域场景是 ENG-town2-render-ports / 试点整合）、不改 `packages/render/package.json`、`apps/game/**`、`tools/perf/**`；不新增依赖。
 - 工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。包级 render 测试含 rig CPU 性能门，负载高时失败要如实报告负载，不得放宽或跳过（本任务定向命令不含性能门）。
 
