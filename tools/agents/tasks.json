@@ -53333,8 +53333,9 @@
    "profile": "code",
    "note": "作者 10-12「按新素体重新生成」（约 85 点）、「衣物到位后再切」默认素体；Claude 经 9223 执行 Tripo，产物走 supervise 校验与 GPT 审核",
    "sparse_include": [
-    "assets/default/character/female/ch00/threeview",
-    "assets/default/item/clothing",
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/item/clothing/*.png",
     "assets/default/model3d/dressup"
    ],
    "writes": [
