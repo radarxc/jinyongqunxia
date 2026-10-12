@@ -1,5 +1,5 @@
 import type { MapPoint, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
-import { floorDivInt } from '@tianshu/shared';
+import { canonicalJson, floorDivInt, type JsonValue } from '@tianshu/shared';
 import type { MapJourney, MapPosition, RoadLeg, SceneEntry, WorldMapFullProjection,
   WorldMapProjection, WorldMapState, WorldMapStaticProjection } from './worldmap-types';
 
@@ -69,7 +69,9 @@ export function validateWorldMapState(
   if (state.scene) {
     const entry = node(state.scene.nodeId);
     requireState(entry && !journey && position.kind === 'node' && position.nodeId === entry.id);
-    requireState(JSON.stringify(state.scene) === JSON.stringify(createSceneEntry(map, entry.id)));
+    // Key-order independent: saves are canonicalized (sorted keys), createSceneEntry is insertion-ordered.
+    requireState(canonicalJson(state.scene as unknown as JsonValue) ===
+      canonicalJson(createSceneEntry(map, entry.id) as unknown as JsonValue));
   }
   return state;
 }
