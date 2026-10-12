@@ -20,14 +20,14 @@ const BASE: LayoutBuildingInput = {
   facility: 'general_store',
 };
 
-describe('p0 box planBuilding fallback', () => {
-  it('builds the specified deterministic south-facing box', () => {
+describe('planBuilding recipe dispatch', () => {
+  it('builds the specified deterministic south-facing shop plan', () => {
     expect(planBuilding(BASE, KIT, 0xfedcba98, FRAME)).toEqual({
       id: 'bi_0001', archetype: 'shop', kit: 'song_dali', seed: 0xfedcba98,
       footprint: [13_000, 57_500, 6_000, 5_000],
-      yaw: 0, storeys: 1, roof: [RoofStyle.Xuanshan, 3_000, 4_500],
-      entrances: [[0, 0, 1_400]], enterable: true, elev: [400, 150],
-      floors: [[10_300, 55_300, 15_700, 59_700]], floorY: [150], fixtures: [],
+      yaw: 0, storeys: 1, roof: [RoofStyle.Xuanshan, 3_070, 4_566],
+      entrances: [[0, 0, 3_200]], enterable: true, elev: [400, 150],
+      floors: [[10_800, 55_950, 15_200, 59_050]], floorY: [150], fixtures: [],
       signage: null, facility: 'general_store',
     });
   });
@@ -58,7 +58,7 @@ describe('p0 box planBuilding fallback', () => {
     }
   });
 
-  it('emits no floor for a non-enterable building and defaults facility to none', () => {
+  it('emits no floor for a non-enterable building and uses its archetype facility', () => {
     const input: LayoutBuildingInput = {
       id: BASE.id, type: BASE.type, originCell: BASE.originCell, sizeCells: BASE.sizeCells,
       entranceCell: BASE.entranceCell, enterable: false, baseYMm: BASE.baseYMm,
@@ -66,7 +66,7 @@ describe('p0 box planBuilding fallback', () => {
     const plan = planBuilding(input, KIT, 9, FRAME);
     expect(plan.floors).toEqual([]);
     expect(plan.floorY).toEqual([]);
-    expect(plan.facility).toBe('none');
+    expect(plan.facility).toBe('general_store');
   });
 
   it('rejects an empty footprint', () => {

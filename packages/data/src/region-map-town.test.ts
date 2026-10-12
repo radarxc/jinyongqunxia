@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { compileTiledMap } from './build/tiled';
 import { MapEntrySchema } from './schemas/world-map';
 import { RegionMapSchema } from './schemas/region-map';
+import { TownBuildingPlanSchema } from './schemas/town-scene';
 
 const bytes = (length: number, fill = 0): Uint8Array => new Uint8Array(length).fill(fill);
 const base64 = (value: Uint8Array): string => Buffer.from(value).toString('base64');
@@ -14,7 +15,7 @@ const buildingPlan = (id: string, centerX: number) => ({
   roof: [2, 800, 400], entrances: [[0, 0, 1400]], enterable: true,
   elev: [0, 150], floors: [[centerX - 1000, 0, centerX + 1000, 2000]],
   floorY: [150], fixtures: [[200, centerX, 1000, 0, 0, 2, 0]],
-  signage: null, facility: 'shop',
+  signage: null, facility: 'general_store',
 });
 
 function townMap() {
@@ -80,6 +81,25 @@ async function tiledPaths(directory: string): Promise<string[]> {
 }
 
 describe('RegionMap town-scene additions', () => {
+  it('accepts a town building plan without a finial for backward compatibility', () => {
+    expect(TownBuildingPlanSchema.safeParse(buildingPlan('bi_old', 1000)).success).toBe(true);
+  });
+
+  it('accepts the registered Tang stupa finial', () => {
+    const plan = { ...buildingPlan('bi_temple', 1000), finial: 'tang_stupa' };
+    expect(TownBuildingPlanSchema.safeParse(plan).success).toBe(true);
+  });
+
+  it('rejects an unknown building finial', () => {
+    const plan = { ...buildingPlan('bi_unknown', 1000), finial: 'dome' };
+    expect(TownBuildingPlanSchema.safeParse(plan).success).toBe(false);
+  });
+
+  it('keeps gameplay facility classes out of building-plan template classes', () => {
+    const plan = { ...buildingPlan('bi_wrong_facility', 1000), facility: 'shop' };
+    expect(TownBuildingPlanSchema.safeParse(plan).success).toBe(false);
+  });
+
   it('loads every town schema entry module through native ESM imports', async () => {
     await expect(Promise.all([
       import('./schemas/region-map'), import('./schemas/world-map'),

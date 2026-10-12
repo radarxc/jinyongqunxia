@@ -89,6 +89,8 @@ export interface BuildingPlanView {
   readonly parts?: readonly PartView[];
   readonly signage: readonly [textKey: string, signStyleIdx: number] | null;
   readonly facility: FacilityKind;
+  /** 镜像 data TownBuildingPlan.finial；r5 据此出唐式塔刹。 */
+  readonly finial?: 'tang_stupa';
 }
 
 export type BuildRecipeKey =
