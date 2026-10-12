@@ -5,14 +5,14 @@
 本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`apps/game/CLAUDE.md`、`packages/ui/CLAUDE.md`（若有）。
 
 ## 背景
-作者 AR-117（2026-10-11，逐字）：「这个太丑了，参考逆水寒给一个微缩小地图（标记关键建筑）而不是抽象图。缩放给一个竖直的bar，南北用司南或者指北针的形象来表达」。现在右上小地图是按格子类型涂色块的抽象栅格，左右四个圆钮（+ / − / M / 北）。改成：**小地图就是城镇本身的缩影**（作者已审的整城成图，45° 斜视、与游戏同一批手绘建筑），上面标关键建筑和主角；缩放改成小地图旁的竖直滑杆；南北用**司南**（青铜方盘上一柄勺，勺柄指南）表示。
+作者 AR-117（2026-10-11，逐字）：「这个太丑了，参考逆水寒给一个微缩小地图（标记关键建筑）而不是抽象图。缩放给一个竖直的bar，南北用司南或者指北针的形象来表达」。现在右上小地图是按格子类型涂色块的抽象栅格，左右四个圆钮（+ / − / M / 北）。改成：**小地图就是城镇本身的缩影**（基线整城成图，45° 斜视、与游戏内城镇同一批手绘素材；基线清单状态为 candidate），上面标关键建筑和主角；缩放改成小地图旁的竖直滑杆；南北用**司南**（青铜方盘上一柄勺，勺柄指南）表示。
 
 ## 要做的事
 
 1. **离线派生小地图图与元数据** `tools/town/make_minimap.py`（Pillow，确定性；Python 测试 `tools/town/tests/test_make_minimap.py`，`python3 -m unittest`）：
    - 对有作者基线成图的城镇（现有 `town_dali__ch01`、`town_hangzhou__ch02`；基线名 `town_<x>__chNN` ↔ 布局键 `city_<x>__chNN`），读 `assets/default/baseline/town/<town>.preview.png`（0.25 缩放）与同名 `.preview.render.json`（`scale`、`top_padding_master_px`、`size_px`），输出 `assets/default/town-minimap/<layoutKey>.webp`（尺寸与预览图相同，WebP 质量 80–85，两次运行逐字节相同；Pillow 的 WebP 编码若不确定，固定 `method` / `quality` 并在测试里断言 sha 稳定）。
    - 同时输出 `assets/default/town-minimap/<layoutKey>.json`（`schemaVersion: town-minimap.v1`）：`image {file,width,height}`、`transform {scale, topPaddingPx（=master 值 × scale）, gridWidth, gridHeight, tileWidthPx: 64, tileHeightPx: 32}`（与 `planningToTownPixels()` 同一套公式：图像像素 = (planningToTownPixels(x, z, gridHeight) + [0, topPaddingMaster]) × scale，取格心）、`south: [dx, dy]`（世界正南在图像里的单位方向，由布局坐标约定算出；在报告里写清依据，并用布局里的南门 / 南侧服务区做测试佐证）、`markers[]`：`{ id, kind: 'shop'|'inn'|'temple'|'pagoda'|'gate'|'office', glyph（单字：药 杂 客 铁 衣 马 食 寺 塔 门 衙）, name（中文店名 / 地名，来自 `content/locales/zh-Hans/town-facilities.yaml`；寺塔、城门用布局类型推出的通名，如「崇圣寺」「千寻塔」「南门」——能从布局 / 设施内容确定的才写专名，否则写通名，不编造）, buildingId?, px: [x, y]（建筑占地中心的图像像素）, entrance?: [x, y]（入口格的图像像素，点击时寻路用）}`。设施来自 `content/town/facilities/<layoutKey>.yaml`（`buildingId` → 布局建筑），寺塔 / 衙署 / 城门来自基线 `layout.yaml` 的建筑类型（`bld_lm_*pagoda*`、`*temple_hall*`、`*shrine*`、`*yamen*`、城门 / 出口格）。
-   - 写 / 更新 `assets/default/town-minimap/manifest.yaml`（字段按 `assets/README.md`；`status: candidate`；来源写「派生自 baseline/town/<town>.preview.png（作者已审基线，AR-117）」与生成命令）。
+   - 写 / 更新 `assets/default/town-minimap/manifest.yaml`（字段按 `assets/README.md`；`status: candidate`；来源写「派生自 baseline/town/<town>.preview.png（基线，状态 candidate；AR-117）」与生成命令）。
    - 测试：逐字节确定；对基线 `overlay.svg` 里至少 3 栋建筑（含药铺所在建筑与千寻塔），`markers[].px` 落在该建筑在 overlay 里的轮廓（按 scale 缩放后）内；`south` 与南门方位差 ≤ 30°；名字全部来自 locale 或布局，不出现「店铺」这类兜底通称（设施有 locale 名时）。
 
 2. **发布**：扩展 `apps/game/build/town-assets.ts`（+ 测试），按 `assets/default/town-minimap/manifest.yaml` 把非 rejected 条目（`.webp` 与 `.json`）复制到 `apps/game/public/assets/default/town-minimap/`，不进 PWA 预缓存（进城时按需加载）；不改 `asset-manifest.ts`。
