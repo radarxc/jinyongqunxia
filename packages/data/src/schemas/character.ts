@@ -7,6 +7,30 @@ import {
 export const AgeBandSchema = z.enum(['child', 'youth', 'young_adult', 'prime', 'mature', 'elder', 'venerable']);
 export const SpeciesSchema = z.enum(['human', 'animal', 'spirit', 'projection']);
 export const GenderSchema = z.enum(['male', 'female']);
+export const BodyTemplateIdSchema = z.enum([
+  'tpl_f_small', 'tpl_f_medium', 'tpl_f_tall',
+  'tpl_m_lean', 'tpl_m_medium', 'tpl_m_bulk',
+]);
+const HeightCmSchema = z.number().int().min(120).max(230);
+const NpcBodySchema = z.strictObject({
+  template: BodyTemplateIdSchema,
+  heightCm: HeightCmSchema,
+});
+export const CharacterTemplateBodySchema = z.strictObject({
+  templates: z.array(BodyTemplateIdSchema).min(1).refine(
+    (templates) => new Set(templates).size === templates.length,
+    { message: 'body templates must be unique' },
+  ),
+  heightCm: z.tuple([HeightCmSchema, HeightCmSchema]).refine(
+    ([min, max]) => min <= max,
+    { message: 'body height range must be ordered' },
+  ),
+});
+
+export const DEFAULT_PLAYER_BODY = {
+  male: { template: 'tpl_m_medium', heightCm: 181 },
+  female: { template: 'tpl_f_medium', heightCm: 166 },
+} as const;
 const YearValueSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('exact'), year: z.number().int(), basis: z.enum(['historical', 'textual']), ref: z.string().min(1) }),
   z.strictObject({ kind: z.literal('range'), from: z.number().int(), to: z.number().int(), basis: z.literal('inferred'), note: z.string().min(1) }),
@@ -45,6 +69,7 @@ export const NpcAppearanceSchema = z
     contentLayer: z.enum(['mainline', 'sect', 'facility', 'commoner']),
     recruitment: RecruitmentSchema.nullable(),
     build: z.union([FullBuildSchema, TemplateBuildSchema]),
+    body: NpcBodySchema.optional(),
     ai: z.strictObject({ tier: z.enum(['ai_basic', 'ai_adept', 'ai_expert', 'ai_master']), personality: z.string().regex(/^pers_[a-z0-9_]+$/) }),
   })
   .refine((value) => !(value.combatEligible && (value.presenceMode === 'reference' || value.ageBand === 'child')), { path: ['combatEligible'], message: 'reference and child appearances cannot fight' });
@@ -97,9 +122,27 @@ export const CharacterTemplateSchema = z.strictObject({
   innate: z.record(z.enum(['con', 'str', 'agi', 'wis', 'wil', 'luk', 'cha']), z.number().int().min(1).max(100)),
   cultivationBand: z.strictObject({ min: z.number().int().min(1).max(70), max: z.number().int().min(1).max(70), derived: z.literal(true) }),
   skillSeeds: z.array(z.strictObject({ skillId: SkillIdSchema, grade: GradeSchema, trueLayer: LayerSchema })),
+  body: CharacterTemplateBodySchema.optional(),
 }).refine((value) => value.cultivationBand.min <= value.cultivationBand.max, {
   path: ['cultivationBand'], message: 'cultivation band must be ordered',
 });
+
+export type BodyTemplateId = z.output<typeof BodyTemplateIdSchema>;
+export type CharacterTemplateBody = z.output<typeof CharacterTemplateBodySchema>;
+
+export function pickTemplateHeightCm(
+  body: CharacterTemplateBody,
+  seed: number,
+): { template: BodyTemplateId; heightCm: number } {
+  if (!Number.isInteger(seed) || seed < 0 || seed > 0xffff_ffff)
+    throw new RangeError('BODY_SEED_UINT32_REQUIRED');
+  const templateCount = body.templates.length;
+  const template = body.templates[seed % templateCount];
+  if (template === undefined) throw new RangeError('BODY_TEMPLATES_REQUIRED');
+  const [min, max] = body.heightCm;
+  const heightCm = min + Math.floor(seed / templateCount) % (max - min + 1);
+  return { template, heightCm };
+}
 
 export type NpcDef = z.output<typeof NpcDefSchema>;
 export type CharacterTemplate = z.output<typeof CharacterTemplateSchema>;
