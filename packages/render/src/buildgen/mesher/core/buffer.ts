@@ -94,7 +94,7 @@ export class MeshBufferBuilder implements MeshWriter {
     this.tintData[n] = byte(tint?.[0], 255);
     this.tintData[n + 1] = byte(tint?.[1], 255);
     this.tintData[n + 2] = byte(tint?.[2], 255);
-    this.tintData[n + 3] = byte(tint?.[3], 255);
+    this.tintData[n + 3] = byte(tint?.[3], 0);
     this.minX = Math.min(this.minX, x);
     this.minY = Math.min(this.minY, y);
     this.minZ = Math.min(this.minZ, z);

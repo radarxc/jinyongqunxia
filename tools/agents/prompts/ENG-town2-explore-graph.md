@@ -33,6 +33,10 @@
 - **零字符串键**：构建与搜索热路径源码里没有模板字符串键（读源码文本断言 `graph.ts` / `astar.ts` 无 `` `${`` ）。
 - 禁用运算：`world/explore/**` 源码无 `/`、`Math.random`、`Date`、浮点字面量参与代价（读源码断言）。
 
+## 协调者裁定（2026-10-12，r2 审核后；审核以此为准）
+- **动态覆盖语义与旧 `query()` 一致**：被动态格覆盖的格，可站性按新地形 `terrainStandable()`，不透视按新地形；静态 `blocked` 标记对被覆盖格不再生效，图中清掉 `EXPLORE_BLOCKED`。窄、危险两个标记沿用静态解码。未被覆盖的静态 blocked 格仍是不可站、可透视（tech/15「可通视不可站」）。
+- **格式**：本任务新建的 `explore/**` 文件须通过 `prettier --check`。`region-runtime.ts` 的基点本身没按 Prettier 排版，本任务只加两处导出，保持最小 diff，不整文件重排。
+
 ## 约束
 - 只写：`packages/core/src/world/explore/{graph,heap,astar,snap}.ts`、`packages/core/src/world/explore/__fixtures__/**`、`packages/core/src/world/explore/*.test.ts`、`packages/core/src/world/region-runtime.ts`（**只许**给 `regionEdges` 与上下文构建函数加 `export`）与本任务报告。
 - 不改 `world/explore/types.ts`（kernel-prep 定型；图相关类型放 `graph.ts`）；不接命令、不改 `world/walkTo` 与旧 A*（退役前回放不变）；不改 `packages/core/src/index.ts` 导出布局；不新增依赖。

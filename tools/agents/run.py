@@ -295,6 +295,12 @@ def render_prompt(t: Task, attempt: int = 1, failure: str | None = None) -> str:
     if addendum:
         text += fill(read_prompt(addendum), common, f"{t.id} / {addendum}")
     text += task_body(t)
+    # supervise --checks 只给审核员看会让执行器每轮都栽在清单项上；启动执行器时它把同一份清单经
+    # TIANSHU_REVIEW_CHECKS 传进来，附在任务书后面供交付前自查（审核员的提示词不受影响）。
+    checks = os.environ.get("TIANSHU_REVIEW_CHECKS")
+    if checks and Path(checks).is_file():
+        text += ("\n\n---\n\n# 审核要点（审核代理会逐条核对；交付前请逐条自查）\n\n"
+                 + Path(checks).read_text(encoding="utf-8").strip() + "\n")
     if failure:
         text += fill(read_prompt("_retry.md"), {"attempt": attempt, "failure": failure}, "_retry.md")
     return text

@@ -1,4 +1,13 @@
-import type { Object3D, Raycaster, Vector3, WebGLRenderer } from 'three';
+import type {
+  BufferGeometry,
+  DataArrayTexture,
+  DataTexture,
+  Object3D,
+  Raycaster,
+  Texture,
+  Vector3,
+  WebGLRenderer,
+} from 'three';
 import type { RenderQualitySource } from '../quality/tiers';
 
 export type Yaw4 = 0 | 1 | 2 | 3;
@@ -284,6 +293,39 @@ export interface BuildingLayerInput {
     readonly rects: Readonly<Record<string, readonly [number, number, number, number]>>;
   };
   readonly generator?: 'worker' | 'inline';
+  readonly batchStrategy?: BatchStrategy;
+  readonly pickStrategy?: PickStrategy;
+  readonly layerTextures?: LayerTextureSource;
+  readonly signText?: SignTextSource;
+  /** Optional camera adapter for exact HUD visibility counts; Three still frustum-culls by bounds. */
+  readonly cellVisible?: ((bounds: Float32Array) => boolean) | undefined;
+  /** Test/diagnostic hook; receives the exact CPU bytes owned by the layer. */
+  readonly observeStateTexture?: ((texture: DataTexture, data: Uint8Array) => void) | undefined;
+}
+export interface BatchStrategy {
+  readonly id: string;
+  createGeometry(payload: MeshPayload): BufferGeometry;
+}
+export interface PickBounds {
+  readonly unit: number;
+  readonly bounds: readonly [number, number, number, number, number, number];
+}
+export interface PickStrategy {
+  readonly id: string;
+  pick(raycaster: Raycaster, bounds: readonly PickBounds[]): number;
+}
+export interface LayerTextureResult {
+  readonly texture: DataArrayTexture;
+  readonly repeatM: Float32Array;
+  readonly owned: boolean;
+}
+export interface LayerTextureSource {
+  load(kit: BuildKitView, quality: RenderQualitySource): Promise<LayerTextureResult>;
+}
+export interface SignTextSource {
+  readonly texture?: Texture;
+  readonly owned?: boolean;
+  rect(textKey: string, style: number): readonly [number, number, number, number];
 }
 export interface BuildingLayerStats {
   drawCalls: number;
@@ -328,6 +370,4 @@ export interface BuildingLayer {
 export function buildgenNotImplemented(name: string): never {
   throw new Error(`BUILDGEN_NOT_IMPLEMENTED:${name}`);
 }
-export function cutFacadeMask(_yawDeg: number): number {
-  return buildgenNotImplemented('cutFacadeMask');
-}
+export { cutFacadeMask } from './three/cutaway';

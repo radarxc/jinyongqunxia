@@ -31,6 +31,24 @@
 - `__tests__/plan-hall.test.ts`、`__tests__/plan-building.test.ts`：凡测 p2 屋身的用例（tech/16 §3 金样里的 `floors` 净空如 6×5 店 4.4 × 3.1 m、≥ 4.2 × 2.9 m 下限、门、试点方案每栋 JSON ≤ 700 字符、确定性方案金样、`InteriorPlanner` 接缝用例的基线），给 `planBuilding` 显式传 `{ interior: emptyInteriorPlanner }`（已从 `plan-hall.ts` / `index.ts` 导出）；金样数值、阈值一律不改，不删用例。
 - 带家具的方案另在 `interiors-i1.test.ts` 断言：6×5 店仍按上文 ≤ 700 B（超出照上文在报告给实测与建议，不删字段）；其余房型 ≤ 1,600 B（100 栋 ≤ 160 KB，给场景 300 KB 留出地形余量）。报告第 3 节写 6×5 店顾客区与店员过道的实际尺寸（柜台后 800 mm 过道按设计从 `floors` 剔除，所以可走区比 p2 屋身净空小）。
 
+## 协调者裁定（2026-10-12，r3 审核后；协调者按 AR-110 接手实现；审核以此为准）
+r3 指出 4.4 × 3.1 m 杂货铺里 §8.2 的「400 后架 + 800 店员过道 + 550 柜深 + 1400 门道 + 顾客区 ≥ 2 格」不能同时满足，裁定如下：
+- **杂货铺**：店员过道 800、柜深 550 任何房型都不压缩。后架深 = clamp(D − 800 − 550 − 1450, 300, 400)，其中 1450 = 1400 门道 + 50 mm，保证四偏航 × 三种亚格偏移都有 ≥ 2 个顾客格。柜台线仍按 §8.2 第 3 条公式（后带取实际后架深）。
+- 杂货铺门内通道深 = min(1400, 柜台前缘到前墙的距离)，但不小于 1100；进深 < 2.8 m（模板最小房间）时回退为店员站后墙、无柜台，并发 `INTERIOR_ROOM_BELOW_MINIMUM`（§8.2 第 6 条）。
+  - 金样：4.4 × 3.1 后架 300、柜台中心 −175、通道 1400；5.3 × 3.3 后架 400；3.6 × 2.8 后架 300、通道 1150。
+  - 其他设施的通道深仍为 1400。
+- **酒肆**：
+  - 桌中心在 2.4 m 网格上：列原点取房间中线；左 / 右墙内 300 + 半桌能多放桌时取墙侧（6.0 m 宽房中线网格放不下桌）。
+  - 首排桌离柜台前缘 900。
+  - 桌组 / 说书台之间净距 ≥ 900。
+  - 主通路 = 门内通道向后延伸到柜台前缘，桌与说书台不得进入。
+  - 说书台只在进深 ≥ 6 m、无降级、≥ 2 个格位时放在最靠前且放得下的格位。
+  - ≤ 6 套；有降级时 ≤ 2 套。
+- **顾客区**按 §8.2 第 5 条统计：从门口可达、且在柜台前缘之前（门一侧）的 C6 格 ≥ 2；无柜台的模板取全部可达格。
+- **格式**：
+  - 本任务新建的文件，以及整体替换的桩 `solver.ts`、`hexes.ts`，须过 `prettier --check`；
+  - 基点未排版的 `plan-hall.ts`、`plan-hall.test.ts`、`plan-building.test.ts` 只要求改动行合格式，不整文件重排。
+
 ## 约束
 - 只写：`packages/data/src/build/town-plan/interiors/{solver,hexes,general-store,pharmacy,inn,tavern,residence,smithy,stall}.ts`、`packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts`、`packages/data/src/build/town-plan/plan-hall.ts`（**只许**替换 `interior` 参数的缺省值那一处）`packages/data/src/build/town-plan/__tests__/{stubs,plan-hall,plan-building}.test.ts`（只按下面「协调者裁定」改）与本任务报告。
 - 不改 p0 / p1 / p2 的其他文件（类型若必须扩充，只新增可选字段并在报告说明）；不改 `content/**`；不新增依赖。
