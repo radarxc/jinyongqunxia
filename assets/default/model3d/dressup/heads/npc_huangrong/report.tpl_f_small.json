@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "a44efa3e55ef7fc89b63153d39dba823351e99b836b0ec0e8be5b906f0366024",
-      "sizeBytes": 1962200
+      "sha256": "5532f2f0aadf260d5821aee53b54d286776bdccb720df303460111e5e1db9895",
+      "sizeBytes": 1937868
     },
     "fit": {
-      "sha256": "b16e12eed3d20bda696ca5acce0d5a7ecb37ed3b9bb39efabd60b20a2a7c9f05",
-      "sizeBytes": 15388
+      "sha256": "b3bac248050712054f177b4c5f58a8a7fc500275931e22dfc282c1fe388345d5",
+      "sizeBytes": 15957
     }
   },
   "checks": [
@@ -583,9 +583,9 @@
       "name": "head.seamColorTop",
       "pass": true,
       "value": {
-        "mean": 0.690682262,
-        "p95": 1.415567604,
-        "max": 2.456499921,
+        "mean": 0.593434907,
+        "p95": 1.356972354,
+        "max": 1.91901449,
         "angles": 250
       },
       "threshold": "ΔE2000 p95 < 2 (region A, 1° bins, ±0.25–1.25 mm of the cut)"
@@ -636,8 +636,8 @@
   "stats": {
     "vertices": 16313,
     "triangles": 27951,
-    "fileSize": 1962200,
-    "durationMs": 197950
+    "fileSize": 1937868,
+    "durationMs": 331774
   },
   "measurements": {
     "sourceEarWidthMu": 0.109303062,
@@ -849,9 +849,9 @@
         "samples": 1365
       },
       "top": {
-        "mean": 0.690682262,
-        "p95": 1.415567604,
-        "max": 2.456499921,
+        "mean": 0.593434907,
+        "p95": 1.356972354,
+        "max": 1.91901449,
         "angles": 250
       }
     },
@@ -1012,7 +1012,7 @@
       "g1P95Deg": 5.352780358,
       "stepMaxMm": 0.417351467,
       "bulgeMaxMm": 0.0,
-      "colorP95": 1.637511329,
+      "colorP95": 1.641206077,
       "worstG1Deg": 229
     },
     "neckHoles": {

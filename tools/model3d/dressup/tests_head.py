@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
 from hashlib import sha256
 import io
 import json
@@ -31,12 +32,13 @@ from cut_head import (TAU, CylinderGrid, _masked_surface, _vertex_normals, bake_
                       COLLAR_REMNANT_MIN_FACES, level_seam_tone, _srgb_to_lab, SEAM_TONE_BAND_MM, SEAM_TONE_LIGHT_MIN,
                       SEAM_TONE_LIGHT_FULL, SEAM_TONE_REF_MM, SEAM_TONE_HOLD_MM, TOP_COVER_MM, covering_skin_faces,
                       top_band_exposure, collar_adjacent, center_neck_section, bake_strip, MASK_OFFSET_MM,
-                      _srgb_to_linear)
+                      _srgb_to_linear, uv_islands, skyline_pack, pack_head_canvas, load_hd_texture, apply_texel_delta,
+                      TextureMismatch, PACK_GUTTER_PX, _library_record, main as cut_head_main)
 from common import closest_point_on_triangle, lbs, nearest_triangle
 from export_skeleton import _world_mesh
 from glb_io import GLBBuilder, Mesh, load_glb
 from ingest import ingest
-from validate import _signed_distances, _world_matrices
+from validate import _resolve_recorded, _signed_distances, _world_matrices
 
 UP = {"center": np.zeros(3), "axis": np.array([0., 1, 0]), "right": np.array([1., 0, 0]), "front": np.array([0., 0, 1])}
 
@@ -111,6 +113,16 @@ def _template(directory: Path) -> None:
     (directory / "skeleton.json").write_text(json.dumps(skeleton))
     rows = [{"yMu": y} for y in np.linspace(-.03, .09, 25)]
     (directory / "skull_profile.json").write_text(json.dumps({"rows": rows}))
+
+
+def _source_mapped(path: Path) -> None:
+    """同 _source（无高领），但 UV 按柱面展开（u 随角度、v 随高度，各圈一块连续 UV）——给 --texture 的图集排布用。"""
+    rings = [(.85, .035), (.95, .035), (1.02, .034), (1.08, .045), (1.14, .06),
+             (1.20, .065), (1.26, .05), (1.30, .015)]
+    positions, faces, uvs = _cylinder(rings)
+    angle = np.arctan2(positions[:, 2], positions[:, 0]) % TAU
+    uvs = np.column_stack((.05 + .4 * angle / TAU, .1 + .8 * (1.3 - positions[:, 1]) / .45)).astype(np.float32)
+    _write_glb(path, positions, faces, uvs, 1.0, 1.1)
 
 
 def _source(path: Path, high_collar: bool) -> None:
@@ -1108,6 +1120,220 @@ def test_end_to_end_with_skin_collar() -> None:
         assert set(dropped["fits"]) == {"template"} and names_b["glb"] not in dropped["files"]
 
 
+def test_uv_islands_and_skyline_pack() -> None:
+    """H1：岛 = 共享顶点的连通分量（按首次出现的三角编号）；天际线排布不重叠、不出界，放不下返回 None。"""
+    quads = np.array([[0, 1, 2], [0, 2, 3]])
+    faces = np.concatenate((quads + 8, quads, quads + 4))           # 三块不相连的四边形，首个三角属于顶点 8..11
+    labels = uv_islands(faces, 13)
+    assert labels[12] == -1 and list(labels[8:12]) == [0] * 4 and list(labels[:4]) == [1] * 4 and list(labels[4:8]) == [2] * 4
+    rng = np.random.default_rng(7)
+    sizes = rng.integers(4, 40, size=(60, 2))
+    assert int((sizes[:, 0] * sizes[:, 1]).sum()) < .6 * 240 * 260      # 面积占六成以内：天际线应能放下
+    placed = skyline_pack(sizes, 240, 260)
+    assert placed is not None
+    occupied = np.zeros((260, 240), dtype=np.int32)
+    for (x, y), (w, h) in zip(placed, sizes):
+        assert x >= 0 and y >= 0 and x + w <= 240 and y + h <= 260
+        occupied[y:y + h, x:x + w] += 1
+    assert occupied.max() == 1                                      # 互不重叠
+    assert skyline_pack(np.array([[100, 100], [100, 100]]), 150, 150) is None
+    assert skyline_pack(np.array([[151, 10]]), 150, 150) is None
+
+
+def test_pack_head_canvas_mapping() -> None:
+    """同一缩放比、UV 改写与重采样一致（平滑图上新 UV 取样 ≈ 高清图旧 UV 取样）、矩形不重叠、空隙填满。"""
+    yy, xx = np.mgrid[0:512, 0:512].astype(np.float64)
+    hd = np.stack((xx / 2, yy / 2, 128 + 60 * np.sin(xx / 40) * np.cos(yy / 50)), axis=2)
+    image = Image.fromarray(np.clip(np.rint(hd), 0, 255).astype(np.uint8), "RGB")
+    quads = np.array([[0, 1, 2], [0, 2, 3]])
+    boxes = [(.05, .05, .45, .35), (.6, .1, .95, .9), (.1, .55, .3, .95)]
+    uvs = np.concatenate([[[a, b], [c, b], [c, d], [a, d]] for a, b, c, d in boxes])
+    faces = np.concatenate([quads + 4 * i for i in range(3)])
+    size, rows = 256, 224
+    canvas, new_uvs, info = pack_head_canvas(image, uvs, faces, size=size, rows=rows)
+    assert info["islands"] == 3 and 0 < info["scaleDstPerSrc"] <= 1 and info["headCoverage"] > .3
+    factor = info["scaleDstPerSrc"] * 512 / size                    # 新 UV = factor × 旧 UV + 每岛平移
+    for i in range(3):
+        block = slice(4 * i, 4 * i + 4)
+        shift = new_uvs[block] - factor * uvs[block]
+        np.testing.assert_allclose(shift, shift[0][None].repeat(4, axis=0), atol=1e-9)
+        assert np.all(new_uvs[block][:, 1] * size <= rows - PACK_GUTTER_PX + 1e-6) and np.all(new_uvs[block] >= 0)
+    rng = np.random.default_rng(3)
+    weights = rng.dirichlet((1, 1, 1), size=200)
+    for i in range(3):
+        tri = faces[2 * i]
+        old = weights @ uvs[tri]; new = weights @ new_uvs[tri]
+        a = np.asarray(canvas, dtype=np.float64) / 255; b = np.asarray(image, dtype=np.float64) / 255
+        from cut_head import _bilinear
+        error = np.abs(_bilinear(a, new) - _bilinear(b, old)).max() * 255
+        assert error < 4, (i, error)
+    head = np.asarray(canvas)[:rows]
+    assert not np.any(np.all(head == 0, axis=2))                    # 岛间空隙按最近纹素填满（mip 不混黑）
+    assert np.all(np.asarray(canvas)[rows:] == 0)                   # 条带区留给 compose_atlas
+
+
+def test_hd_texture_guard_and_delta() -> None:
+    with tempfile.TemporaryDirectory() as temporary:
+        root = Path(temporary)
+        rng = np.random.default_rng(11)
+        base = Image.fromarray(rng.integers(0, 255, size=(64, 64, 3), dtype=np.uint8), "RGB")
+        good = root / "good.png"; base.resize((256, 256), Image.Resampling.NEAREST).save(good)
+        image, record = load_hd_texture(good, base)
+        assert image.size == (256, 256) and record["factor"] == 4 and record["meanAbsDiffVsEmbedded"] < 1e-9
+        assert record["sha256"] == sha256(good.read_bytes()).hexdigest()
+        odd = root / "odd.png"; base.resize((100, 100)).save(odd)
+        other = root / "other.png"
+        Image.fromarray(rng.integers(0, 255, size=(128, 128, 3), dtype=np.uint8), "RGB").save(other)
+        for bad in (odd, other):
+            try:
+                load_hd_texture(bad, base); raise AssertionError(f"{bad.name} 应被拒")
+            except TextureMismatch:
+                pass
+        after = np.asarray(base).copy(); after[10:20, 10:20] = np.clip(after[10:20, 10:20].astype(int) + 20, 0, 255)
+        toned, changed = apply_texel_delta(image, base, Image.fromarray(after, "RGB"))
+        assert changed == int(np.count_nonzero(np.any(after != np.asarray(base), axis=2)))
+        diff = np.asarray(toned, dtype=np.int64) - np.asarray(image, dtype=np.int64)
+        assert np.abs(diff[:, :20]).max() <= 20 and np.abs(diff[48:72, 48:72]).max() > 0
+        assert np.all(diff[160:, 160:] == 0)                       # 改动只在对应区域
+        same, none = apply_texel_delta(image, base, base)
+        assert none == 0 and same is image
+
+
+def test_end_to_end_with_hd_texture() -> None:
+    """--texture：门禁照常通过；头部 UV 进图集上方、同一缩放比；fit.source 记录高清图；不给时无 atlas 诊断。"""
+    with tempfile.TemporaryDirectory() as temporary:
+        root = Path(temporary); template = root / "templates" / "template"; _template(template)
+        source = root / "source.glb"; _source_mapped(source)
+        embedded = Image.new("RGB", (128, 128), (214, 176, 145))
+        embedded.paste((45, 31, 22), (43, 0, 86, 128)); embedded.paste((225, 191, 166), (86, 0, 128, 128))
+        hd = root / "hd.png"; embedded.resize((512, 512), Image.Resampling.NEAREST).save(hd)
+        legacy = process_head(source, template, "synthetic", root / "legacy", fast=True)
+        assert "atlas" not in legacy and "texture" not in json.loads((root / "legacy" / "fit.json").read_text())["source"]
+        report = process_head(source, template, "synthetic", root / "packed", fast=True, texture_path=hd)
+        assert report["gateLevel"] == legacy["gateLevel"] == "pass", (report["gateLevel"], legacy["gateLevel"])
+        atlas = report["atlas"]
+        assert atlas["mode"] == "packed" and atlas["islands"] >= 1 and atlas["seamToneTexelsApplied"] == 0
+        fit = json.loads((root / "packed" / "fit.json").read_text())
+        texture = fit["source"]["texture"]                               # 任务契约 texture {path, sha256, size}
+        assert {"path", "sha256", "size"} <= set(texture) and texture["size"] == [512, 512] and texture["factor"] == 4
+        assert Path(texture["path"]).resolve() == hd.resolve() and texture["sha256"] == sha256(hd.read_bytes()).hexdigest()
+        # 仓库内的文件记仓库相对路径（本地素材库在主检出里时同样相对主检出根）
+        assert _library_record(Path(__file__))["path"] == "tools/model3d/dressup/tests_head.py"
+        # 肤色、切口增益、颈环、遮罩都在内嵌贴图口径上算：与不给 --texture 时逐项相同
+        legacy_fit = json.loads((root / "legacy" / "fit.json").read_text())
+        for key in ("skinTint", "deltaE", "ring", "hideMask"):
+            assert fit[key] == legacy_fit[key], key
+        assert fit["diagnostics"]["color"] == legacy_fit["diagnostics"]["color"]
+        assert (root / "packed" / "hidemask.png").read_bytes() == (root / "legacy" / "hidemask.png").read_bytes()
+        mesh = load_glb(root / "packed" / "head.glb").mesh()
+        head_uv = mesh.uvs[mesh.regions == 0]
+        assert np.all(head_uv[:, 1] * ATLAS_SIZE <= ATLAS_SIZE - STRIP_ROWS) and np.all(head_uv >= 0)
+        # 几何、权重与旧口径逐点相同（只有图集与头部 UV 变）
+        old = load_glb(root / "legacy" / "head.glb").mesh()
+        np.testing.assert_array_equal(old.positions, mesh.positions); np.testing.assert_array_equal(old.indices, mesh.indices)
+        np.testing.assert_array_equal(old.weights, mesh.weights)
+        np.testing.assert_array_equal(old.uvs[old.regions == 1], mesh.uvs[mesh.regions == 1])   # 颈片条带 UV 不变
+        # 条带最下面一段（离切口远于 COLOR_BLEND_MM，只取模板身体色 × skinTint）与 legacy 解码后逐像素相同：条带从第 1792 行起、
+        # 与 JPEG 8×8 块（4:4:4）对齐；切口附近与发色区从高清头部画布取色，允许不同。
+        def strip_rows(path: Path) -> np.ndarray:
+            glb = load_glb(path); image = glb.image(0)
+            return np.asarray(Image.open(io.BytesIO(getattr(image, "data", image))).convert("RGB"))[ATLAS_SIZE - STRIP_ROWS:]
+        old_strip, new_strip = strip_rows(root / "legacy" / "head.glb"), strip_rows(root / "packed" / "head.glb")
+        np.testing.assert_array_equal(old_strip[-32:], new_strip[-32:])
+        with tempfile.TemporaryDirectory() as other:
+            bad = Path(other) / "bad.png"; Image.new("RGB", (300, 300), (0, 0, 0)).save(bad)
+            try:
+                process_head(source, template, "synthetic", root / "bad", fast=True, texture_path=bad)
+                raise AssertionError("尺寸不符的 --texture 应被拒")
+            except TextureMismatch:
+                pass
+
+
+def test_cli_texture_mismatch_exit_code() -> None:
+    """CLI：--texture 尺寸不是源件贴图的整数倍、或缩回后与内嵌贴图对不上时，退出码 2、输出说明原因、不写产物。"""
+    with tempfile.TemporaryDirectory() as temporary:
+        root = Path(temporary); template = root / "templates" / "template"; _template(template)
+        source = root / "source.glb"; _source_mapped(source)
+        odd = root / "odd.png"; Image.new("RGB", (300, 300), (0, 0, 0)).save(odd)
+        other = root / "other.png"; Image.new("RGB", (512, 512), (20, 200, 40)).save(other)
+        for bad, reason in ((odd, "整数倍"), (other, "平均差")):
+            out = root / f"out_{bad.stem}"; buffer = io.StringIO()
+            with contextlib.redirect_stdout(buffer):
+                code = cut_head_main(["--source", str(source), "--template", str(template), "--id", "synthetic",
+                                      "--out", str(out), "--fast", "--texture", str(bad)])
+            text = buffer.getvalue()
+            assert code == 2 and "--texture 不可用" in text and reason in text, (bad.name, code, text)
+            assert not (out / "head.glb").exists() and not (out / "fit.json").exists()
+
+
+def test_packed_islands_from_output_uvs() -> None:
+    """H1：从 pack_head_canvas 实际改写后的 UV 反求每岛矩形——全岛同一缩放、不旋转，都在头部画布内，
+    岛与岛、岛与画布边至少隔 2 px（gutter）。"""
+    rng = np.random.default_rng(5)
+    hd_size, size, rows = 1024, 512, 448
+    image = Image.fromarray(rng.integers(0, 255, size=(hd_size, hd_size, 3), dtype=np.uint8), "RGB")
+    uvs: list[list[float]] = []; faces: list[list[int]] = []
+    for row in range(4):
+        for column in range(4):              # 4×4 格各放一个随机大小的岛：矩形或六边形三角扇
+            w, h = rng.uniform(.04, .2, size=2); x, y = .25 * column + .02, .25 * row + .02; first = len(uvs)
+            if (row + column) % 3:
+                uvs += [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]
+                faces += [[first, first + 1, first + 2], [first, first + 2, first + 3]]
+            else:
+                uvs += [[x + w / 2, y + h / 2]] + [[x + w / 2 * (1 + math.cos(a)), y + h / 2 * (1 + math.sin(a))]
+                                                   for a in np.linspace(0, TAU, 7)[:-1]]
+                faces += [[first, first + 1 + i, first + 1 + (i + 1) % 6] for i in range(6)]
+    uv_array, face_array = np.asarray(uvs), np.asarray(faces)
+    _, new_uvs, info = pack_head_canvas(image, uv_array, face_array, size=size, rows=rows)
+    islands = uv_islands(face_array, len(uv_array)); scale = info["scaleDstPerSrc"]
+    assert info["islands"] == 16 and 0 < scale <= 1
+    boxes = []
+    for index in range(info["islands"]):
+        old = uv_array[islands == index] * hd_size; new = new_uvs[islands == index] * size
+        np.testing.assert_allclose(new - new.min(axis=0), (old - old.min(axis=0)) * scale, atol=1e-9)
+        boxes.append((*new.min(axis=0), *new.max(axis=0)))
+    box = np.asarray(boxes)
+    assert np.all(box[:, :2] >= 2) and np.all(box[:, 2] <= size - 2) and np.all(box[:, 3] <= rows - 2), box
+    for i in range(len(box)):
+        for j in range(i + 1, len(box)):
+            gap = max(box[j, 0] - box[i, 2], box[i, 0] - box[j, 2], box[j, 1] - box[i, 3], box[i, 1] - box[j, 3])
+            assert gap >= 2, (i, j, gap)
+
+
+# 不给 --texture 的回归基线：H1 之前的 cut_head.py（git 4f3a140e5）对 _template + _source_mapped 合成资产完整实跑的产物摘要；
+# fit.json 去掉 durationMs、临时目录换成 <tmp> 后按 sort_keys 序列化再取摘要。摘要依赖本机 numpy / Pillow（libjpeg）版本：
+# 依赖升级后不一致时，先用 4f3a140e5 的 cut_head.py 在新环境重算基线，确认旧代码也变了再改这里。
+LEGACY_GOLDEN_SHA256 = {
+    "head.glb": "51e920aa31bddb9e5640642cfe0f91296da30af06274990d9c51302890a00b31",
+    "hidemask.png": "084a7bfd45f52f67bc0250208742137a56e055decb87fe85f4ad993396f54f8d",
+    "preview.png": "7800c1b63c0a29d0aaef58c7d0f1e0c2741394a79fba41f69546a6a5aeca33d0",
+    "self_check_preview.png": "4e0cad08d0721cf3b7df1d0c542fcc6149d50175cd255674e6530c65dc732ef3",
+    "fit.json": "5fd4be5c4f46680bc6971e0c1ccf3f42fe22e8a1d3485c37cbd9f4890af77587",
+}
+
+
+def _without_run_specifics(value: Any, roots: Sequence[str]) -> Any:
+    if isinstance(value, dict): return {k: _without_run_specifics(v, roots) for k, v in value.items() if k != "durationMs"}
+    if isinstance(value, list): return [_without_run_specifics(v, roots) for v in value]
+    if isinstance(value, str):
+        for root in roots: value = value.replace(root, "<tmp>")
+    return value
+
+
+def test_legacy_golden_without_texture() -> None:
+    """不给 --texture：head.glb / 遮罩 / preview / self-check 与 H1 之前逐字节相同，fit.json 除 durationMs 外相同。"""
+    with tempfile.TemporaryDirectory() as temporary:
+        root = Path(temporary); template = root / "templates" / "template"; _template(template)
+        source = root / "source.glb"; _source_mapped(source); out = root / "out"
+        report = process_head(source, template, "synthetic", out)
+        assert report["gateLevel"] == "pass" and "atlas" not in report
+        roots = sorted({str(root), str(root.resolve())}, key=len, reverse=True)
+        digests = {name: sha256((out / name).read_bytes()).hexdigest() for name in LEGACY_GOLDEN_SHA256 if name != "fit.json"}
+        fit = _without_run_specifics(json.loads((out / "fit.json").read_text()), roots)
+        digests["fit.json"] = sha256(json.dumps(fit, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+        assert digests == LEGACY_GOLDEN_SHA256, {name: digests[name] for name in digests if digests[name] != LEGACY_GOLDEN_SHA256[name]}
+
+
 def test_real_asset_recomputed() -> None:
     """库内每个已切头（heads/*/manifest.yaml：D1 黄蓉、D2 穆念慈……）：manifest 里登记的每个体型（fits）各自从写盘
     GLB 独立复算逐面朝向、底带外移、两端 G1，以及 bind + idle / walk / run 各 24 帧（共 73 帧，与生产检查同一
@@ -1157,6 +1383,16 @@ def _check_real_head(root: Path, asset: Path) -> None:
             name = fit[key]["file"]
             assert not Path(name).is_absolute() and (root / name).is_file(), (template_name, key, name)
             assert sha256((root / name).read_bytes()).hexdigest() == fit[key]["sha256"], (template_name, key)
+        texture = fit["source"].get("texture")
+        if texture:   # H1：高清贴图在主检出本地素材库（不入 git），按 validate 同一规则解析并核对哈希与尺寸
+            name = texture["path"]
+            assert not Path(name).is_absolute() and name.startswith("apps/game/public/models/props/"), (template_name, name)
+            resolved = _resolve_recorded(name, asset / entry["fit"])
+            assert sha256(resolved.read_bytes()).hexdigest() == texture["sha256"], (template_name, name)
+            with Image.open(resolved) as image:
+                assert list(image.size) == texture["size"], (template_name, image.size, texture["size"])
+            atlas = fit["diagnostics"]["atlas"]
+            assert atlas["mode"] == "packed" and atlas["linearGainVsLegacy"] >= 2, (template_name, atlas)
         assert fit["body"]["file"].endswith(f"templates/{template_name}/body.glb"), (template_name, fit["body"])
         assert set(fit["ring"]) == {"sourceRadiusMu", "scale", "residualMu"} and fit["ring"]["scale"] > 0
         frames = {item["name"]: item.get("frames") for item in report["checks"]}
@@ -1188,7 +1424,9 @@ TESTS = [test_clip_faces_closed_cut, test_subdivide_preserves_surface, test_refi
          test_rasterize_cylinder_first_hit, test_head_floor_and_regions, test_strip_uv_seam, test_hide_mask_plane,
          test_skin_match_uses_true_means, test_hair_colors_rule, test_neck_fit_monotone_bridge, test_drop_collar_remnants,
          test_top_band_covering_skin, test_level_seam_tone, test_collar_adjacent, test_center_neck_section,
-         test_body_tint_seam_reference,
+         test_body_tint_seam_reference, test_uv_islands_and_skyline_pack, test_pack_head_canvas_mapping,
+         test_hd_texture_guard_and_delta, test_end_to_end_with_hd_texture, test_cli_texture_mismatch_exit_code,
+         test_packed_islands_from_output_uvs, test_legacy_golden_without_texture,
          test_end_to_end_with_skin_collar, test_real_asset_recomputed]
 
 

@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "9c19ed22b75ce4188a80bc47a8e4ac886a6cb1b5b860ed904d38748eb94bf451",
-      "sizeBytes": 1949320
+      "sha256": "cef0a9980536c211d4f559a33eb7861814fed3b3aadc7e026a61eb24e278ecfa",
+      "sizeBytes": 1925244
     },
     "fit": {
-      "sha256": "ec67aeab03025ddf0bcbd378534a6c85f032db08901ba14bbe532e32d85ae58e",
-      "sizeBytes": 15293
+      "sha256": "d53d7db77ae052845e0cb1ba91c202e27351aa7069563a54028f94e310693b12",
+      "sizeBytes": 15861
     }
   },
   "checks": [
@@ -571,7 +571,7 @@
       "name": "head.seamColorBottom",
       "pass": true,
       "value": {
-        "mean": 0.353306122,
+        "mean": 0.35248304,
         "p95": 0.920801688,
         "max": 1.509364932,
         "samples": 1308
@@ -582,9 +582,9 @@
       "name": "head.seamColorTop",
       "pass": true,
       "value": {
-        "mean": 0.619449154,
-        "p95": 1.363364669,
-        "max": 2.121416141,
+        "mean": 0.534173133,
+        "p95": 1.313243995,
+        "max": 2.071355977,
         "angles": 247
       },
       "threshold": "ΔE2000 p95 < 2 (region A, 1° bins, ±0.25–1.25 mm of the cut)"
@@ -635,8 +635,8 @@
   "stats": {
     "vertices": 16132,
     "triangles": 27623,
-    "fileSize": 1949320,
-    "durationMs": 219005
+    "fileSize": 1925244,
+    "durationMs": 351386
   },
   "measurements": {
     "sourceEarWidthMu": 0.109303062,
@@ -842,15 +842,15 @@
   "checks_detail": {
     "color": {
       "bottom": {
-        "mean": 0.353306122,
+        "mean": 0.35248304,
         "p95": 0.920801688,
         "max": 1.509364932,
         "samples": 1308
       },
       "top": {
-        "mean": 0.619449154,
-        "p95": 1.363364669,
-        "max": 2.121416141,
+        "mean": 0.534173133,
+        "p95": 1.313243995,
+        "max": 2.071355977,
         "angles": 247
       }
     },
@@ -1011,7 +1011,7 @@
       "g1P95Deg": 3.027848774,
       "stepMaxMm": 0.397897536,
       "bulgeMaxMm": 0.0,
-      "colorP95": 1.718344778,
+      "colorP95": 1.444024727,
       "worstG1Deg": 228
     },
     "neckHoles": {
