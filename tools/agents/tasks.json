@@ -30019,7 +30019,9 @@
     "tools/buildgen/tests/test_layers.py",
     "assets/default/buildkit/song_dali/**",
     "assets/default/buildkit/xiyu/**",
-    "assets/default/buildkit/props/**"
+    "assets/default/buildkit/props/**",
+    "content/town/buildkits/song_dali.yaml",
+    "content/town/buildkits/xiyu.yaml"
    ],
    "validate": {
     "exists": [
