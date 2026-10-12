@@ -31438,7 +31438,9 @@
    "writes": [
     "packages/core/src/dialogue/**",
     "apps/game/src/runtime/explore-projection.ts",
-    "apps/game/src/runtime/explore-projection.test.ts"
+    "apps/game/src/runtime/explore-projection.test.ts",
+    "packages/core/src/economy/shop-locator.ts",
+    "packages/core/src/economy/shop-locator.test.ts"
    ],
    "validate": {
     "exists": [

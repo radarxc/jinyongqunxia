@@ -29,19 +29,20 @@
 1. **唯一算法**：当前城镇的设施键 = 当前城镇**定义**的 `${cityId}__${chapterId}`。定义按 `state.chapter.town.sceneId` 在 `content.towns` 里查，与核心层 `townRuntime()` 一致。
    - 区域场景已有 `region.maps[].town.layoutKey` 的，仍优先用它，保留现有行为。
    - 核心层给一个纯函数，例如 `currentTownLayoutKey(state, content)`，放在 `packages/core/src/dialogue/facility.ts` 或 `world/` 下已有模块。不要改 `packages/core/src/index.ts` 的导出布局；界面可以按同一规则自算，或从已有的公开子路径取。
-2. `dialogue/facility.ts` 的 `layoutKey()`、`explore-projection.ts` 的 `currentFacility()` 都改用这个算法。店铺实例键随之一致：`city_dali__ch01/<key>`。
+2. `dialogue/facility.ts` 的 `layoutKey()`、`explore-projection.ts` 的 `currentFacility()`、`economy/shop-locator.ts` 的 `isShopHereV1()`（买卖时「人在这家店」的校验，现用 `${town.sceneId}__${state.chapter.eraLayerId}`）都改用这个算法。店铺实例键随之一致：`city_dali__ch01/<key>`。
 3. 不改设施内容、不改 `handlers.ts` 的 `townRuntime()`（它已经用城镇定义）、不改存档格式。
 
 ## 测试（命名用例）
 
-- 核心层：章节为 ch10、当前城镇定义为大理 ch01 时（模拟借用），设施对话能解析到 `city_dali__ch01` 的店员入口，`shop/query` 的店铺键为 `city_dali__ch01/<key>`；同样条件下，ch01 原有用例结果不变。
-- 界面投影：同样的借用场景下，进入药铺后 `town.facility` 非空，交互条出现「交谈」。
+- 核心层：章节为 ch10、当前城镇定义为大理 ch01 时（模拟借用），设施对话能解析到 `city_dali__ch01` 的店员入口，要断言 `entryKey`，不能只断言输入回显；`shop/query` 的店铺键为 `city_dali__ch01/<key>`；人在药铺内时 `locateShop()` 为真，`shop/buy` 不因 `SHOP_NOT_HERE` 被拒（钱够时成交，钱不够时只因 `SHOP_MONEY_INSUFFICIENT` 被拒）。同样条件下，ch01 原有用例结果不变。
+- 界面投影：同样的借用场景下，进入药铺后 `town.facility` 非空，交互条出现「交谈」。测试像 `v1-shop-flow.test.ts` 那样读取真实的 `content/town/facilities/city_dali__ch01.yaml` 和城镇定义取 `buildingId` 与入口点，不要手写建筑编号、坐标或复制设施数据。
 - 现有 `v1-shop-flow.test.ts` 保持通过。
 
 ## 约束
 
 - 只写：
   - `packages/core/src/dialogue/facility.ts`（含其测试）；
+  - `packages/core/src/economy/shop-locator.ts`（含其测试，测试文件可新建为 `packages/core/src/economy/shop-locator.test.ts`）；
   - `packages/core/src/dialogue/*.test.ts`；
   - `apps/game/src/runtime/explore-projection.ts`（含测试 `apps/game/src/runtime/explore-projection.test.ts`）；
   - 本任务报告。
@@ -55,7 +56,7 @@
 
 检查：
 - `pnpm install --frozen-lockfile`
-- `pnpm exec vitest run packages/core/src/dialogue packages/core/src/economy apps/game/src/runtime apps/game/src/explore --config vitest.config.ts --project node`
+- `pnpm exec vitest run packages/core/src/dialogue packages/core/src/economy apps/game/src/runtime apps/game/src/explore --config vitest.config.ts --project node`（含 shop-locator）
 - `env TIANSHU_VITEST_MAX_WORKERS=2 pnpm check`
 
 ## 报告
