@@ -58,7 +58,7 @@ export function objectGate(object: ReturnType<typeof regionObjects>[number],
   return { allowed: true, reason: null };
 }
 
-function query(state: Readonly<GameState>, content: RegionRuntimeContent):
+export function query(state: Readonly<GameState>, content: RegionRuntimeContent):
   { readonly query: HexPathQuery; readonly cells: ReadonlyMap<string, RegionCell>;
     readonly ramps: ReadonlySet<string> } | null {
   const mounted = state.world.navigation.mountedRegion;
@@ -93,7 +93,7 @@ function comparePath(left: Candidate, right: Candidate): number {
 }
 interface RegionEdge { readonly target: RegionCell; readonly cost: number;
   readonly dangerous: boolean; readonly path: readonly { readonly q: number; readonly r: number }[] }
-function regionEdges(context: NonNullable<ReturnType<typeof query>>, from: RegionCell): RegionEdge[] {
+export function regionEdges(context: NonNullable<ReturnType<typeof query>>, from: RegionCell): RegionEdge[] {
   const edges: RegionEdge[] = []; const tier = context.query.mover.qgTier;
   for (let direction = 0; direction < 6; direction += 1) {
     const step = HEX_DIRECTIONS[direction]!;
