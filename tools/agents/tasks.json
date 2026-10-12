@@ -53096,6 +53096,94 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-r2-refit-f2",
+   "title": "3D 纸娃娃换装 · R2 · 现有衣物 / 贴图层 / 道具重贴合到 tpl_f2 三体型 + 换装页默认素体切到 tpl_f2_medium（0 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r2-refit-f2.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "作者 10-11 定新素体；R1 头已切到 tpl_f2 并按套回退（a68ea9864）。衣物 / 贴图层 / 道具重贴合后切默认模板",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/character/female/ch00/threeview"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/model3d/dressup/props/eq_longquanjian/**",
+    "assets/default/model3d/dressup/props/item_bamboo_hat/**",
+    "assets/default/model3d/dressup/props/item_qingfeng_sword/**",
+    "assets/default/model3d/dressup/props/luxury_jade_pendant/**",
+    "tools/model3d/dressup/tests_garment.py",
+    "apps/game/src/pages/Character3dPage.vue"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/props/eq_longquanjian/eq_longquanjian.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/item_bamboo_hat/item_bamboo_hat.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/item_qingfeng_sword/item_qingfeng_sword.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/luxury_jade_pendant/luxury_jade_pendant.tpl_f2_medium.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_prop.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; G=Path('assets/default/model3d/dressup/garments'); P=Path('assets/default/model3d/dressup/props'); paths=[G/g/f'report.{t}.json' for g in ('eq_jinzhuang','eq_buyi') for t in ('tpl_f2_medium','tpl_f2_tall','tpl_f2_small')]+[P/p/'report.tpl_f2_medium.json' for p in ('eq_longquanjian','item_bamboo_hat','item_qingfeng_sword','luxury_jade_pendant')]; bad=[str(x) for x in paths if not x.is_file() or json.loads(x.read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
