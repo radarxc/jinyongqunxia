@@ -37,6 +37,36 @@
       size_bytes: 1937868
       vertices: 16313
       triangles: 27951
+    tpl_f2_medium:
+      file: head.tpl_f2_medium.glb
+      fit: fit.tpl_f2_medium.json
+      report: report.tpl_f2_medium.json
+      status: draft
+      gateLevel: pass
+      sha256: c7e6008ddbbab612ceb526e51973f1ee11502e8d63e1dc847ff9390f4fdcd418
+      size_bytes: 1951376
+      vertices: 16517
+      triangles: 28395
+    tpl_f2_tall:
+      file: head.tpl_f2_tall.glb
+      fit: fit.tpl_f2_tall.json
+      report: report.tpl_f2_tall.json
+      status: draft
+      gateLevel: pass
+      sha256: efc3de75c52e2326cfb758d9a7c58250494d845f11fd4fc266adc9ae14076a82
+      size_bytes: 1952620
+      vertices: 16526
+      triangles: 28410
+    tpl_f2_small:
+      file: head.tpl_f2_small.glb
+      fit: fit.tpl_f2_small.json
+      report: report.tpl_f2_small.json
+      status: draft
+      gateLevel: pass
+      sha256: fd37065a00d7517c699b2ccd5eee8426c5a49d469445ac59b54142ca87b25e70
+      size_bytes: 1953260
+      vertices: 16535
+      triangles: 28434
   source:
     directory: assets/default/model3d/dressup/heads/npc_huangrong
     references: []
@@ -100,3 +130,57 @@
     self_check_preview.tpl_f_small.png:
       sha256: 99e15d63b955c5f3c704f3e4f8fa38d79795df74fca2cc68b5462b0039d376ba
       bytes: 43147
+    head.tpl_f2_medium.glb:
+      sha256: c7e6008ddbbab612ceb526e51973f1ee11502e8d63e1dc847ff9390f4fdcd418
+      bytes: 1951376
+    fit.tpl_f2_medium.json:
+      sha256: 732a34a93482e7f98f928bc7def735481d6c1c67042c32010e7f51e45127b7c2
+      bytes: 15932
+    report.tpl_f2_medium.json:
+      sha256: 70a4b2aba255dff602764e7316a7eda08941c9cc77ccbf1fee2b7048ae789d24
+      bytes: 26719
+    hidemask.tpl_f2_medium.png:
+      sha256: 4eec26fb3d6a459b829b9ed38fec2c48323c4f90574db0a67a324cd679309729
+      bytes: 17721
+    preview.tpl_f2_medium.png:
+      sha256: e7194ad5e5adb1be808a4082c183eb2f2fc385aba36160cdb7127ebf2702b730
+      bytes: 387764
+    self_check_preview.tpl_f2_medium.png:
+      sha256: 40cbb20d959a5b0a1372efe982c71f7ea8970648e1d5ddcfdfef44e2c2caef08
+      bytes: 42526
+    head.tpl_f2_tall.glb:
+      sha256: efc3de75c52e2326cfb758d9a7c58250494d845f11fd4fc266adc9ae14076a82
+      bytes: 1952620
+    fit.tpl_f2_tall.json:
+      sha256: 4360195cefc0b9797320b50ef92381a9631a4479d7db6b718cfbba6d830c3093
+      bytes: 15990
+    report.tpl_f2_tall.json:
+      sha256: 1c735c79be04f17344054c308d4edc9e7e394d2332406f2d92fb7cdf8ddc2b6d
+      bytes: 26805
+    hidemask.tpl_f2_tall.png:
+      sha256: 7309a280922ae6054cce56f795996c1757b08c0688f55ecd226112c4b4eca672
+      bytes: 17911
+    preview.tpl_f2_tall.png:
+      sha256: e01db6b4e84a5aa9cd5759daaad7636a38d27fe16e5f49d64021d366780aa49e
+      bytes: 386939
+    self_check_preview.tpl_f2_tall.png:
+      sha256: 8fced1951ff7b8d0246ec1cc121add2c97f03d8493c2e70c5976db287029b15c
+      bytes: 41672
+    head.tpl_f2_small.glb:
+      sha256: fd37065a00d7517c699b2ccd5eee8426c5a49d469445ac59b54142ca87b25e70
+      bytes: 1953260
+    fit.tpl_f2_small.json:
+      sha256: ae7fad8f9aa0e8dcdfac39f0b9a4415bbe3cb79140d1de1cb3e8d5d8ad1affac
+      bytes: 15988
+    report.tpl_f2_small.json:
+      sha256: bcbf07699b16e39e0137df3f53b2082e857cf7d7c2c25f6c223d6c2aeeab0e15
+      bytes: 26852
+    hidemask.tpl_f2_small.png:
+      sha256: 4c8b0f9236567212aeef006fa194fa5c72b9a674fb850a89633108b42a7cb2c7
+      bytes: 17856
+    preview.tpl_f2_small.png:
+      sha256: 8302705178940cb041045ef046c82ef9ded3e1d735acc503729890744d58027d
+      bytes: 391895
+    self_check_preview.tpl_f2_small.png:
+      sha256: 58de4cabe5dd1f77338bdc0ba5345d4484668cd93a2bff5dffb947b93d451ba9
+      bytes: 43131

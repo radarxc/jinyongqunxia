@@ -9,7 +9,7 @@ import {
   type CharacterViewerController,
 } from '@tianshu/render/character-viewer';
 import type { DressupActor, DressupFit, DressupStats } from '@tianshu/render';
-import { useDressupIndex, type DressupIndexEntry } from './useDressupIndex';
+import { restoreDressupEntries, selectDressupVariants, useDressupIndex, type DressupIndexEntry } from './useDressupIndex';
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 let viewer: CharacterViewerController | null = null;
@@ -31,7 +31,8 @@ const dressupReady = ref(false);
 const allEquipmentGroups = computed(() => [
   { kind: 'head', label: '头', entries: dressupIndex.value?.groups.head ?? [] },
   ...dressupGroups.value,
-].map(group => ({ ...group, entries: selectDressupVariants(group.entries) })));
+].map(group => ({ ...group, entries: selectDressupVariants(group.entries, selectedTemplate.value) })));
+const availableBodyLayers = computed(() => selectDressupVariants(dressupLayers.value, selectedTemplate.value));
 const dressupError = ref('');
 const selectedTemplate = ref('tpl_f_medium');
 const selectedDressupClip = ref('idle');
@@ -48,13 +49,6 @@ const dressupStats = reactive<MutableDressupStats>({
 function dressupSlot(entry: DressupIndexEntry): string {
   if (entry.kind === 'head') return 'head';
   return entry.slot ?? entry.socket ?? entry.kind;
-}
-function selectDressupVariants(entries: readonly DressupIndexEntry[]): DressupIndexEntry[] {
-  const selected = new Map<string, DressupIndexEntry>();
-  for (const entry of entries) {
-    if (!selected.has(entry.id) || entry.template === selectedTemplate.value) selected.set(entry.id, entry);
-  }
-  return [...selected.values()];
 }
 function dressupLayerLabel(entry: DressupIndexEntry): string {
   const id = entry.id.replace(/^dressup__layer__/u, '');
@@ -569,16 +563,16 @@ async function loadDressupTemplate(templateId: string,
     clearDressupActor();
     dressupActor.value = next;
     selectedTemplate.value = templateId;
+    // 换到另一套素体时，按旧套 UV 画的贴图层不再适用：只保留新模板可用的那些
+    selectedBodyLayers.value = selectedBodyLayers.value.filter(id => availableBodyLayers.value.some(entry => entry.id === id));
     selectedModelId.value = '';
     viewer.attachExternal(next.root);
     viewer.clearProps();
     viewer.setUnlitMode(isUnlitMode.value);
     next.setHideMapEnabled(hideMapEnabled.value);
     next.playClip(selectedDressupClip.value, 0);
-    for (const id of restoreIds) {
-      const entry = allEquipmentGroups.value.flatMap(group => group.entries).find(value => value.id === id);
-      if (entry) await toggleDressup(entry);
-    }
+    const equipment = [dressupIndex.value.groups.head, ...dressupGroups.value.map(group => group.entries)].flat();
+    for (const entry of restoreDressupEntries(equipment, restoreIds, templateId)) await toggleDressup(entry);
     await applyBodyLayers();
     dressupReady.value = true;
     syncDressupStats();
@@ -637,7 +631,7 @@ async function toggleDressup(entry: DressupIndexEntry): Promise<void> {
 async function applyBodyLayers(): Promise<void> {
   const actor = dressupActor.value;
   if (!actor) return;
-  const entries = dressupLayers.value.filter(entry => selectedBodyLayers.value.includes(entry.id));
+  const entries = availableBodyLayers.value.filter(entry => selectedBodyLayers.value.includes(entry.id));
   bodyLayersPending.value = true; dressupError.value = '';
   try {
     await actor.setBodyLayers(entries.map((entry, order) => ({
@@ -1218,7 +1212,7 @@ onBeforeUnmount(() => {
 
         <div v-for="group in allEquipmentGroups" :key="group.kind" class="glass-card compact dressup-v2-card">
           <div class="card-header"><span class="card-icon">📦</span><h3>{{ group.label }}</h3></div>
-          <p v-if="group.entries.length === 0" class="v2-empty">索引暂无可用素材；后续合入会自动出现。</p>
+          <p v-if="group.entries.length === 0" class="v2-empty">当前素体暂无可用素材；按该素体贴合后会自动出现。</p>
           <button
             v-for="entry in group.entries"
             :key="entry.id + ':' + entry.template"
@@ -1237,9 +1231,9 @@ onBeforeUnmount(() => {
         <div class="glass-card compact dressup-v2-card">
           <div class="card-header"><span class="card-icon">🎨</span><h3>贴图层</h3></div>
           <p class="v2-empty">可多选并按列表顺序叠加；可与网格衣物同时启用作对比。</p>
-          <p v-if="dressupLayers.length === 0" class="v2-empty">索引暂无可用素材；E3 合入后会自动出现。</p>
+          <p v-if="availableBodyLayers.length === 0" class="v2-empty">当前素体暂无可用贴图层。</p>
           <button
-            v-for="entry in dressupLayers"
+            v-for="entry in availableBodyLayers"
             :key="entry.id"
             type="button"
             class="v2-equip-row"

@@ -126,6 +126,7 @@ PATCH_MERGE_MM = .05            # 颈片复制时并掉相距 < 0.05 mm 的顶�
 SLIVER_MM = .02                 # 裁切 / 细分后消去最小高 < 0.02 mm 的退化碎条（面积≈0，法向是数值噪声）
 NEEDLE_MM = .1                  # 碎条最短边短于此值按针形并点，否则按帽形翻边（见 remove_slivers）
 WEIGHT_BLEND_MM = 40.0          # 头皮下缘自颈片权重过渡到 Head 的高度
+RING_SWITCH_FADE_DEG = 15.0     # 切口逐角权重截前 3 根时，在骨骼集合切换角两侧这一角度内把进出集合的骨骼渐隐到 0
 NECK_SHELL_FACTOR = 1.35        # 参与权重过渡的颈部皮肤：半径 ≤ 切面处皮肤半径 × 该系数（排除下巴 / 脸）
 SHELL_FADE = .25                # 颈壳外再过这一半径比才完全归 Head（权重连续，不在单个三角里跳变）
 SEAM_FADE_MM = 4.0              # 切口上沿皮肤（不论半径）属于颈部的程度向上渐隐的高度
@@ -1609,6 +1610,23 @@ def fit_neck_to_template(positions: np.ndarray, frame: dict[str, np.ndarray], h_
     kernel = np.exp(-.5 * (kernel_x / NECK_FIT_SMOOTH_DEG) ** 2); kernel /= kernel.sum()
     padded = np.concatenate((amount[-len(kernel_x):], amount, amount[:len(kernel_x)]))
     amount = np.convolve(padded, kernel, mode="same")[len(kernel_x):len(kernel_x) + bins]
+    fitted, scale, rho, new_rho = apply_neck_fit(positions, frame, h_head, amount, head_ring, mm)
+    moved = scale < 1 - 1e-9; active = amount > 1e-6 * mm
+    return fitted, {"amountByBin": amount, "rampMm": NECK_FIT_RAMP_MM, "maxMm": NECK_FIT_MAX_MM, "shell": NECK_FIT_SHELL,
+                    "smoothDeg": NECK_FIT_SMOOTH_DEG, "freeZoneMm": float(length / mm),
+                    "activeAngles": int(np.count_nonzero(active)), "movedVertices": int(np.count_nonzero(moved)),
+                    "amountMaxMm": float(amount.max(initial=0.) / mm),
+                    "maxShrinkMm": float(np.max((rho - new_rho)[moved], initial=0.) / mm)}
+
+
+def apply_neck_fit(positions: np.ndarray, frame: dict[str, np.ndarray], h_head: float, amount: np.ndarray,
+                   head_ring: np.ndarray, mm: float) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """颈子收细的逐点公式（fit_neck_to_template 用的同一套）：按点所在角度的收细量、高度渐隐与颈壳径向内缩，
+    只改到颈轴的距离、不改高度。返回 (新位置, 径向缩放比, 原半径, 新半径)。
+
+    切头先在收细前的头上裁开、再对裁后全部点套本公式（R1）：原有点与先收细后裁的结果逐位相同，切口圈新点按公式
+    直接取值，不再由收细后的大三角线性插值——稀疏源件上那样插出的切口半径会在一两度内跳 0.3–0.9 mm，切口上方
+    留一列折痕（穆念慈 × tpl_f2，G1 单度尖峰 7.7° / 10.5°）。"""
     theta, height, rho = cylinder(positions, frame)
     vertex_amount = _cyclic_lookup(amount, theta)
     ring_at = _cyclic_lookup(np.nan_to_num(head_ring, nan=0.), theta)
@@ -1618,13 +1636,7 @@ def fit_neck_to_template(positions: np.ndarray, frame: dict[str, np.ndarray], h_
     scale = np.where(rho > 0, new_rho / np.where(rho > 0, rho, 1.), 1.)
     axis = np.asarray(frame["axis"], dtype=np.float64); relative = positions - frame["center"]
     along = (relative @ axis)[:, None] * axis
-    fitted = frame["center"] + along + (relative - along) * scale[:, None]
-    moved = scale < 1 - 1e-9; active = amount > 1e-6 * mm
-    return fitted, {"rampMm": NECK_FIT_RAMP_MM, "maxMm": NECK_FIT_MAX_MM, "shell": NECK_FIT_SHELL,
-                    "smoothDeg": NECK_FIT_SMOOTH_DEG, "freeZoneMm": float(length / mm),
-                    "activeAngles": int(np.count_nonzero(active)), "movedVertices": int(np.count_nonzero(moved)),
-                    "amountMaxMm": float(amount.max(initial=0.) / mm),
-                    "maxShrinkMm": float(np.max((rho - new_rho)[moved], initial=0.) / mm)}
+    return frame["center"] + along + (relative - along) * scale[:, None], scale, rho, new_rho
 
 
 def _cyclic_lookup(values: np.ndarray, theta: np.ndarray) -> np.ndarray:
@@ -1771,6 +1783,26 @@ def patch_ring_weights(positions: np.ndarray, faces: np.ndarray, dense: np.ndarr
         ring = np.where(valid[:, None], ring, np.nan_to_num(filled))
     total = ring.sum(axis=1, keepdims=True)
     return np.divide(ring, total, out=np.zeros_like(ring), where=total > 1e-9)
+
+
+def truncate_ring_weights(ring: np.ndarray, keep: int = 3, fade_deg: float = RING_SWITCH_FADE_DEG) -> np.ndarray:
+    """逐角权重截成前 keep 根骨骼再归一，且随角度连续。硬截断在骨骼集合切换角（第 keep / keep+1 根交叉）跳变：
+    R1 穆念慈 tpl_f2_small 切口圈 34.6° 处 Head 0.04 ↔ Spine2 0.04 互换，run 帧相邻两点相对错开 1.9 mm，重叠带
+    颈片顶出头皮 0.185 mm。凡在某切换角进出集合的骨骼（权重 > 0），在该角两侧 fade_deg 内按 smoothstep 渐隐到 0
+    （多处切换取最小）：切换角两侧都不含它，其余骨骼不变。无切换时与硬截断逐位相同。"""
+    bins = len(ring)
+    order = np.argsort(-ring, axis=1)[:, :keep]
+    member = np.zeros(ring.shape, bool); np.put_along_axis(member, order, True, axis=1)
+    member &= ring > 0
+    kept = np.where(member, ring, 0.)
+    changed = member != np.roll(member, 1, axis=0)        # 第 b 格与第 b−1 格之间（角度 b·Δθ）进出集合的骨骼
+    if changed.any():
+        centers = np.arange(bins) + .5; fade = fade_deg / 360 * bins; factor = np.ones(ring.shape)
+        for boundary, joint in zip(*np.nonzero(changed)):
+            distance = np.abs((centers - boundary + bins / 2) % bins - bins / 2)
+            factor[:, joint] = np.minimum(factor[:, joint], _smoothstep(distance / fade))
+        kept = kept * factor
+    return kept / np.maximum(kept.sum(axis=1, keepdims=True), 1e-12)
 
 
 def head_vertex_weights(head: dict[str, np.ndarray], frame: dict[str, np.ndarray], floor: dict[str, Any],
@@ -2786,16 +2818,23 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
     template_ring = _ring_radius(template_mesh.positions, template_faces, frame, h_band_top, ring_theta)
     template_ring_up = _ring_radius(template_mesh.positions, template_faces, frame, h_band_top + slope_step, ring_theta)
     hh_before = float(floor["hHead"])
+    pre_fit_positions = head_positions
     head_positions, neck_fit = fit_neck_to_template(
         head_positions, frame, floor["hHead"], h_band_top, ring_theta, head_ring, (head_ring_up - head_ring) / slope_step,
         template_ring, (template_ring_up - template_ring) / slope_step, weight_a_at(ring_theta, floor), mm)
+    neck_amount = neck_fit.pop("amountByBin")
     if neck_fit["movedVertices"]:
         envelopes = head_envelopes(head_positions, selected_faces, face_skin, face_trusted, frame, mm)
         floor = head_floor(envelopes, mm)
     neck_fit.update({"hHeadBeforeMm": hh_before / mm, "hHeadAfterMm": float(floor["hHead"]) / mm})
     h_head = floor["hHead"]; h_bottom = PATCH_BOTTOM_MM * mm; mask_height = h_bottom + MASK_OFFSET_MM * mm
-    head = clip_head(head_positions, head_uvs, selected_faces, head_skin_flags, head_hair_flags, frame, h_head,
+    # 收细只改径向、不改高度：在收细前的头上裁开（拓扑与裁收细后的头相同），再对裁后全部点套同一逐点公式——
+    # 原有点逐位不变，切口圈新点按公式取值而不是由收细后的大三角插值（见 apply_neck_fit）。
+    head = clip_head(pre_fit_positions if neck_fit["movedVertices"] else head_positions, head_uvs, selected_faces,
+                     head_skin_flags, head_hair_flags, frame, h_head,
                      classified["headWeight"][used_ids], classified["colors"][used_ids])
+    if neck_fit["movedVertices"]:
+        head = {**head, "positions": apply_neck_fit(head["positions"], frame, hh_before, neck_amount, head_ring, mm)[0]}
     source_image = _texture(source_glb)
     embedded_image = source_image                                     # 切口带调平前的源件内嵌贴图（高清图对它校验 / 求差）
     hd_image, texture_record = load_hd_texture(texture_path, embedded_image) if texture_path is not None else (None, None)
@@ -2841,10 +2880,9 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
     theta_p, height_p, _ = cylinder(source_patch_positions, frame)
     head_slot = template_slots["mixamorig:Head"]
     ring_weights = patch_ring_weights(source_patch_positions, patch["faces"], patch["weights"], frame, h_head)
-    # 截成前 3 根骨骼再混 Head：权重场全程 ≤ 4 根，头皮与颈片都不会被 glTF 的 4 影响上限截出差异。
-    order = np.argsort(-ring_weights, axis=1)[:, :3]
-    kept = np.zeros_like(ring_weights); np.put_along_axis(kept, order, np.take_along_axis(ring_weights, order, 1), 1)
-    ring_weights = kept / np.maximum(kept.sum(axis=1, keepdims=True), 1e-12)
+    # 截成前 3 根骨骼再混 Head：权重场全程 ≤ 4 根，头皮与颈片都不会被 glTF 的 4 影响上限截出差异；
+    # 骨骼集合切换角两侧渐隐（R1），截断后仍随角度连续。
+    ring_weights = truncate_ring_weights(ring_weights)
     ring_index = np.floor(theta_p / TAU * len(ring_weights)).astype(int) % len(ring_weights)
     field = blend_head_weights(ring_weights[ring_index], height_p, h_head, head_slot, mm, np.ones(len(height_p)))
     # 切口以上凡源头在该处有皮肤（含 A/B 过渡区的发际线皮肤）的颈片点都完全进入同一权重场；B 区无皮肤处保持模板权重。
