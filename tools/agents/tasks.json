@@ -31472,6 +31472,9 @@
       "pnpm",
       "check"
      ]
+    ],
+    "shrink_exempt": [
+     "apps/game/src/pages/TownPage.vue"
     ]
    },
    "profile": "code"
