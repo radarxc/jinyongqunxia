@@ -29,6 +29,13 @@
 - 吐鲁番 ch10：布局类型 `bld_kit_song_dali_*` 也能编；`visualKit` 取源信息而非类型名。
 - 设施：`stn_keeper` → `FacilityNpc`（`interactRange: 2`），服务格非空且 I3 成立。
 
+## 协调者裁定（2026-10-12，r2 审核后；审核以此为准）
+- **文本键契约已统一**（集成分支 995f9ebfc，本任务基点已挪到其后）：
+  - `town-scene.v1`、`region-map.v1`、`region-binding` 的 `TextKeySchema` 改成与 `town-facilities.v1` 同一文法，允许 `town.city_dali__ch01.yaopu_01.name` 这类带布局键的名键。
+  - 测试里不许再改写输入（删掉 `schemaCompatible()` 一类转换）。
+  - 三份原始设施夹具与正式设施格式的 `nameKey` 逐字节照抄，直接通过编译、schema、I1–I6 与默认规划器测试。
+- r2 返修说明的第 2–7 项（入口 I6 真比两次独立编译、I2 只沿真实区域边 BFS、`passageBetween()` 从门中心逐边穿墙、城墙按 C7 保留 `id` 的数组、mulberry32 几何用例、用原始三城输入重出统计与 golden SHA）照审核原文做，写集不变。
+
 ## 约束
 - 只写：`packages/data/src/build/town/**`（含 `__fixtures__`、测试）与本任务报告。
 - 不改 `packages/data/src/build/{pipeline,discover,types}.ts`（接入构建是 sources-pipeline 的事）、不改 `town-plan/**`（p1 / p2 并行在写）、不改 schema（regionmap-ext 已定；若必须扩充，只在报告提出，不自行改）、不改 `assets/**`、不改 `content/**`；不新增依赖。
