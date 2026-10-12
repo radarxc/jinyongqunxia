@@ -31170,7 +31170,8 @@
     "packages/ui/src/components/TxSettingsPanel.vue",
     "packages/ui/src/components/TxSettingsPanel.test.ts",
     "packages/ui/src/projections.ts",
-    "packages/ui/src/i18n-flow.ts"
+    "packages/ui/src/i18n-flow.ts",
+    "packages/render/CLAUDE.md"
    ],
    "validate": {
     "exists": [
