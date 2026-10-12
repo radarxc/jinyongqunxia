@@ -171,6 +171,30 @@ label:hover, summary:hover, a:hover {
   gap: 30px;
   align-items: center;
   pointer-events: none;
+  isolation: isolate;
+}
+
+.topbar:before, .topbar:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.topbar:before {
+  inset: -18px auto -18px -28px;
+  width: min(390px, 38vw);
+  background: radial-gradient(ellipse at 32% 50%, color-mix(in srgb, var(--paper) 96%, transparent) 0 52%,
+    color-mix(in srgb, var(--paper) 88%, transparent) 66%, transparent 84%);
+}
+
+.topbar:after {
+  left: 24%;
+  right: 3%;
+  top: -14px;
+  bottom: -14px;
+  background: radial-gradient(ellipse at 55% 50%, color-mix(in srgb, var(--paper) 94%, transparent) 0 48%,
+    color-mix(in srgb, var(--paper) 86%, transparent) 65%, transparent 88%);
 }
 
 .topbar > * {
@@ -180,6 +204,8 @@ label:hover, summary:hover, a:hover {
 .brand {
   font: 38px/1 var(--title);
   letter-spacing: 4px;
+  background-color: var(--paper);
+  box-shadow: 0 0 18px 12px color-mix(in srgb, var(--paper) 88%, transparent);
 }
 
 .brand small {
@@ -209,55 +235,28 @@ label:hover, summary:hover, a:hover {
   height: 38px;
 }
 
-.wallet {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.wallet .icon {
-  width: 46px;
-  height: 46px;
-}
-
-.wallet strong {
-  font-weight: 400;
-  letter-spacing: 2px;
-}
-
-.wallet small {
-  display: block;
-  font-size: 14px;
-  color: var(--muted);
-  text-align: right;
-}
-
-.wallet summary {
-  list-style: none;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
-
-.wallet summary::-webkit-details-marker {
-  display: none;
-}
-
-.wallet details {
-  position: relative;
-}
-
-.wallet .balance-detail {
+.journey-status {
   position: absolute;
-  right: 0;
-  top: 100%;
-  min-width: 210px;
-  padding: 18px;
-  z-index: 30;
-  font-size: 16px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.journey-status .icon {
+  width: 28px;
+  height: 28px;
+}
+
+.journey-status strong {
+  color: var(--ink);
+  font-weight: 400;
 }
 
 /* Screens */
@@ -1213,14 +1212,10 @@ label:hover, summary:hover, a:hover {
   }
   .brand { font-size: 31px; letter-spacing: 2px; }
   .brand small { font-size: 14px; letter-spacing: 0; margin-top: 8px; }
-  .wallet { max-width: 220px; gap: 0; }
-  .wallet .icon { width: 36px; height: 36px; }
-  .wallet strong { font-size: 16px; letter-spacing: 0; }
-  .wallet small { font-size: 14px; }
+  .journey-status { top: 72px; max-width: calc(100vw - 32px); font-size: 14px; }
   .scene-nav { order: 3; width: 100%; gap: 18px; margin-top: 10px; }
   .scene-nav .icon-button { min-height: 48px; min-width: 64px; font-size: 16px; }
   .scene-nav .icon { width: 32px; height: 32px; }
-  .wallet .balance-detail { min-width: 205px; right: -144px; }
 
   .scene-heading { top: 155px; left: 23px; gap: 10px; }
   .scene-heading h1 { font-size: 43px; letter-spacing: 7px; }

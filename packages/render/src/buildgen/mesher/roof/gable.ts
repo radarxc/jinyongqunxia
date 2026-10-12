@@ -157,7 +157,7 @@ export function writeGableRoof(options: GableRoofOptions): void {
         )
       : songZhe(structuralRun * 2_000, structuralRiseMm, steps);
   const tailFraction = eaveProjection / halfDepth;
-  const tStations = roofPatchTStations(steps, tailFraction);
+  const tStations = roofPatchTStations(steps, tailFraction, options.lod ?? 0);
   const heightAt = (t: number): number =>
     gableRoofHeightAt(t, halfDepth, eaveProjection, dripY, profile);
   const horizontalAt = (t: number): number => {

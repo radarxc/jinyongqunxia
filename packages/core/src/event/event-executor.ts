@@ -5,11 +5,11 @@ import { compileCondition, type ConditionFacts, type QuestConditionFact } from '
 import type { CharacterState, GameState, RuleSwitchState, StoryLineState } from '../state';
 import { evaluateGate, regionRuntimeForState } from '../world';
 import type { CoreTransaction, RejectReason } from '../command';
-import type { EventPresentedPayload, PendingDomainEvent } from './index';
+import type { EventPresentedPayload, PendingDomainEvent, PresentationStep } from './index';
 
 const PRESENTATION = new Set<EventAction['op']>([
   'battle/start', 'tutorial/mark', 'story/requestTransmission', 'ui/openAllocation',
-  'ui/showTitleCard', 'dialogue/speaker', 'dialogue/start', 'ui/showText',
+  'ui/showTitleCard', 'facility/openShop', 'dialogue/speaker', 'dialogue/start', 'ui/showText',
   'ui/revealText', 'ui/observeOnly', 'world/loadScene',
 ]);
 const EXECUTABLE = new Set<EventAction['op']>([
@@ -37,6 +37,7 @@ const SOURCE_CONTEXT = (eventId: string, anchorId: string | null): ActionExecuti
     battle: 'SOURCE_EVENT_ACTION' },
 });
 const SOURCE_EVENT_TYPES: ReadonlySet<string> = new Set(['chapter/woke']);
+const jsonPayload = (value: Record<string, unknown>): JsonValue => value as JsonValue;
 
 function switches(state: Readonly<GameState>): RuleSwitchState {
   const value = state.profile.replayRules;
@@ -201,13 +202,19 @@ function executeStateAction(tx: CoreTransaction, action: EventAction,
   tx.abort(context.reject.action);
 }
 function collectPresentationAction(tx: CoreTransaction, action: EventAction,
-  context: ActionExecutionContext, presentation: EventPresentationAction[]): void {
+  context: ActionExecutionContext, presentation: PresentationStep[]): void {
   if (!PRESENTATION.has(action.op)) tx.abort(context.reject.action);
   if (action.op === 'battle/start') {
     if (tx.state.battle !== null) tx.abort(context.reject.battle);
     tx.emit({ t: 'world/battleRequested', payload: { anchorId: context.anchorId,
       encounterId: action.encounter } });
     return;
+  }
+  if (action.op === 'facility/openShop') {
+    const dialogue = tx.state.dialogue;
+    if (dialogue?.context?.kind !== 'facility' || dialogue.context.shopKey === null)
+      tx.abort(context.reject.reference);
+    presentation.push({ op: 'shop/open', shopKey: dialogue.context.shopKey }); return;
   }
   presentation.push(action as EventPresentationAction);
 }
@@ -221,7 +228,7 @@ export function executeAction(tx: CoreTransaction, action: EventAction,
 /** Execute a source-ordered action batch and publish one ordered presentation envelope. */
 export function executeActions(tx: CoreTransaction, actions: readonly EventAction[],
   context: ActionExecutionContext): void {
-  const presentation: EventPresentationAction[] = [];
+  const presentation: PresentationStep[] = [];
   const advancing = new Set<string>();
   const execute = (action: EventAction): void => {
     if (!EXECUTABLE.has(action.op)) tx.abort(context.reject.action);
@@ -238,7 +245,9 @@ export function executeActions(tx: CoreTransaction, actions: readonly EventActio
   for (const action of actions) execute(action);
   if (presentation.length > 0) {
     const payload: EventPresentedPayload = { eventId: context.sourceId, steps: presentation };
-    tx.emit({ t: 'world/eventPresented', payload: payload as unknown as JsonValue });
+    tx.emit({ t: 'world/eventPresented', payload: jsonPayload({
+      eventId: payload.eventId, steps: payload.steps,
+    }) });
   }
 }
 function conditionMatches(tx: CoreTransaction, event: EventDef, anchorId: string): boolean {

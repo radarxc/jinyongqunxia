@@ -21,22 +21,22 @@ palette:
   tile: ['#55585b', [0, 300, 600]]
   stone: ['#8d877c']
 layers:
-  - { id: tile_roof, repeatMm: [2000, 2000] }
-  - { id: ridge_tiles, repeatMm: [1000, 1000] }
-  - { id: eave_soffit, repeatMm: [1000, 1000] }
-  - { id: timber_lacquer, repeatMm: [1000, 1000] }
-  - { id: timber_raw, repeatMm: [1000, 1000] }
-  - { id: plaster_lime, repeatMm: [2000, 2000] }
-  - { id: earth_plaster, repeatMm: [2000, 2000] }
+  - { id: tile_roof, repeatMm: [2070, 1920] }
+  - { id: ridge_tiles, repeatMm: [920, 990] }
+  - { id: eave_soffit, repeatMm: [920, 1000] }
+  - { id: timber_lacquer, repeatMm: [1100, 1000] }
+  - { id: timber_raw, repeatMm: [920, 1000] }
+  - { id: plaster_lime, repeatMm: [1800, 2100] }
+  - { id: earth_plaster, repeatMm: [2400, 1950] }
   - { id: stone_rubble, repeatMm: [2000, 2000] }
   - { id: stone_ashlar, repeatMm: [2000, 2000] }
-  - { id: brick_grey, repeatMm: [1000, 1000] }
-  - { id: lattice_window, repeatMm: [1000, 1000] }
-  - { id: door_planks, repeatMm: [1000, 2000] }
+  - { id: brick_grey, repeatMm: [1230, 1000] }
+  - { id: lattice_window, repeatMm: [980, 980] }
+  - { id: door_planks, repeatMm: [900, 2000] }
   - { id: floor_pavers, repeatMm: [2000, 2000] }
   - { id: floor_wood, repeatMm: [2000, 2000] }
   - { id: painted_band, repeatMm: [1000, 1000] }
-  - { id: cloth_awning, repeatMm: [1000, 1000] }
+  - { id: cloth_awning, repeatMm: [996, 996] }
 archetypes:
   guardhouse: { recipe: hall, size: shop, roof: xuanshan, facility: guardhouse }
   house_large: { recipe: hall, size: middle, roof: xuanshan, facility: residence }

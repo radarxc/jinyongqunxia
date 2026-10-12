@@ -1,0 +1,252 @@
+{
+  "schemaVersion": "town-minimap.v1",
+  "image": {
+    "file": "city_dali__ch01.webp",
+    "width": 1536,
+    "height": 899
+  },
+  "transform": {
+    "scale": 0.25,
+    "topPaddingPx": 130.75,
+    "gridWidth": 96,
+    "gridHeight": 96,
+    "tileWidthPx": 64,
+    "tileHeightPx": 32
+  },
+  "south": [
+    -0.89442719,
+    0.4472136
+  ],
+  "markers": [
+    {
+      "id": "yaopu_01",
+      "kind": "shop",
+      "glyph": "药",
+      "name": "苍山药肆",
+      "px": [
+        388.0,
+        592.75
+      ],
+      "buildingId": "bi_0023",
+      "entrance": [
+        411.891,
+        576.695
+      ]
+    },
+    {
+      "id": "zahuo_01",
+      "kind": "shop",
+      "glyph": "杂",
+      "name": "南门杂货",
+      "px": [
+        444.0,
+        620.75
+      ],
+      "buildingId": "bi_0024",
+      "entrance": [
+        467.316,
+        604.408
+      ]
+    },
+    {
+      "id": "kedian_01",
+      "kind": "inn",
+      "glyph": "客",
+      "name": "洱风客舍",
+      "px": [
+        528.0,
+        594.75
+      ],
+      "buildingId": "bi_0021",
+      "entrance": [
+        485.791,
+        613.646
+      ]
+    },
+    {
+      "id": "tiejiang_01",
+      "kind": "shop",
+      "glyph": "铁",
+      "name": "太和铁作",
+      "px": [
+        580.0,
+        632.75
+      ],
+      "buildingId": "bi_0025",
+      "entrance": [
+        606.786,
+        650.143
+      ]
+    },
+    {
+      "id": "chengyi_01",
+      "kind": "shop",
+      "glyph": "衣",
+      "name": "白布衣肆",
+      "px": [
+        620.0,
+        612.75
+      ],
+      "buildingId": "bi_0026",
+      "entrance": [
+        654.786,
+        626.143
+      ]
+    },
+    {
+      "id": "mashi_01",
+      "kind": "shop",
+      "glyph": "马",
+      "name": "苍洱马市",
+      "px": [
+        748.0,
+        656.75
+      ],
+      "buildingId": "bi_0010",
+      "entrance": [
+        760.687,
+        647.094
+      ]
+    },
+    {
+      "id": "shitan_01",
+      "kind": "shop",
+      "glyph": "食",
+      "name": "南市食案",
+      "px": [
+        772.0,
+        668.75
+      ],
+      "buildingId": "bi_0011",
+      "entrance": [
+        788.4,
+        660.95
+      ]
+    },
+    {
+      "id": "lm_chongsheng_pagoda_center",
+      "kind": "pagoda",
+      "glyph": "塔",
+      "name": "千寻塔",
+      "px": [
+        928.0,
+        326.75
+      ],
+      "buildingId": "bi_0001",
+      "entrance": [
+        888.509,
+        343.005
+      ]
+    },
+    {
+      "id": "lm_chongsheng_pagoda_north",
+      "kind": "pagoda",
+      "glyph": "塔",
+      "name": "北小塔",
+      "px": [
+        904.0,
+        270.75
+      ],
+      "buildingId": "bi_0002",
+      "entrance": [
+        875.227,
+        280.364
+      ]
+    },
+    {
+      "id": "lm_chongsheng_pagoda_south",
+      "kind": "pagoda",
+      "glyph": "塔",
+      "name": "南小塔",
+      "px": [
+        784.0,
+        330.75
+      ],
+      "buildingId": "bi_0003",
+      "entrance": [
+        759.846,
+        342.673
+      ]
+    },
+    {
+      "id": "lm_dali_tianlong",
+      "kind": "temple",
+      "glyph": "寺",
+      "name": "天龙寺护经殿",
+      "px": [
+        776.0,
+        246.75
+      ],
+      "buildingId": "bi_0005",
+      "entrance": [
+        728.089,
+        270.794
+      ]
+    },
+    {
+      "id": "landmark_bi_0006",
+      "kind": "temple",
+      "glyph": "寺",
+      "name": "祠庙",
+      "px": [
+        876.0,
+        380.75
+      ],
+      "buildingId": "bi_0006",
+      "entrance": [
+        852.222,
+        388.861
+      ]
+    },
+    {
+      "id": "landmark_bi_0007",
+      "kind": "office",
+      "glyph": "衙",
+      "name": "衙署",
+      "px": [
+        692.0,
+        488.75
+      ],
+      "buildingId": "bi_0007",
+      "entrance": [
+        634.079,
+        511.789
+      ]
+    },
+    {
+      "id": "landmark_bi_0034",
+      "kind": "temple",
+      "glyph": "寺",
+      "name": "祠庙",
+      "px": [
+        300.0,
+        500.75
+      ],
+      "buildingId": "bi_0034",
+      "entrance": [
+        273.326,
+        507.413
+      ]
+    },
+    {
+      "id": "gate_south_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "南门",
+      "px": [
+        520.0,
+        706.75
+      ]
+    },
+    {
+      "id": "gate_north_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "北门",
+      "px": [
+        944.0,
+        494.75
+      ]
+    }
+  ]
+}

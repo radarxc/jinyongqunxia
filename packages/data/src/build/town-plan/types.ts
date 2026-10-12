@@ -45,6 +45,7 @@ export interface TownBuildingPlan {
   readonly floorY: readonly number[];
   readonly fixtures: readonly FixtureTuple[];
   readonly parts?: readonly PartTuple[];
+  readonly finial?: 'tang_stupa';
   readonly signage: readonly [textKey: string, signStyleIdx: number] | null;
   readonly facility: FacilityKind;
 }

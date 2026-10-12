@@ -5,6 +5,7 @@ import {
   type MeshPayload,
   type PartView,
 } from '../../types';
+import { columnLayout } from '../parts/columns';
 
 export interface GeometryDiagnostic {
   readonly invariant: 'INV-1' | 'INV-2' | 'INV-3' | 'INV-4' | 'INV-5' | 'INV-6';
@@ -184,15 +185,28 @@ function localFloorBounds(plan: BuildingPlanView) {
  * One box per entrance: [offset ± width/2] × [floor + threshold, floor + 2.1 m] × the real wall
  * band from the footprint edge to the floors edge on that side (tech/16 §5.4 INV-3).
  */
-function doorBoxes(plan: BuildingPlanView, thresholdMm: number): readonly DoorBox[] {
+function doorBoxes(
+  plan: BuildingPlanView,
+  thresholdMm: number,
+  minimumWidthMm: number,
+  kit?: BuildKitView,
+  defaultEntrance = false,
+): readonly DoorBox[] {
   if (!plan.enterable || plan.floors.length === 0) return [];
   const halfW = plan.footprint[2] / 2000;
   const halfD = plan.footprint[3] / 2000;
   const floors = localFloorBounds(plan);
   const floor = (plan.elev[0] + Math.min(...plan.floorY)) / 1000;
-  const bottom = floor + thresholdMm / 1000;
+  const bottom = floor + thresholdMm / 1000 + DOOR_TOUCH_M * 2;
   const top = floor + 2.1;
-  return plan.entrances.flatMap(([side, offsetMm, widthMm]) => {
+  const entrances =
+    plan.entrances.length > 0
+      ? plan.entrances
+      : defaultEntrance
+        ? ([[0, 0, minimumWidthMm]] as const)
+        : [];
+  return entrances.flatMap(([side, offsetMm, widthMm]) => {
+    const clearWidthMm = Math.max(minimumWidthMm, widthMm);
     const wallDepth = [
       halfD - floors.maxZ,
       floors.minX + halfW,
@@ -200,7 +214,7 @@ function doorBoxes(plan: BuildingPlanView, thresholdMm: number): readonly DoorBo
       halfW - floors.maxX,
     ][side]!;
     const half: Point3 = [
-      widthMm / 2000 - DOOR_TOUCH_M,
+      clearWidthMm / 2000 - DOOR_TOUCH_M,
       (top - bottom) / 2 - DOOR_TOUCH_M,
       wallDepth / 2 - DOOR_TOUCH_M,
     ];
@@ -275,12 +289,19 @@ function triangleIntersectsDoor(
 export function inspectInv3(
   mesh: MeshPayload,
   plans: readonly BuildingPlanView[],
-  kit?: Pick<BuildKitView, 'door'>,
+  kit?: BuildKitView,
 ): GeometryDiagnostic[] {
   const result: GeometryDiagnostic[] = [];
   const owners = unitOwners(plans);
-  const thresholdMm = kit?.door.threshold ?? 0;
-  const boxesByPlan = new Map(plans.map((plan) => [plan, doorBoxes(plan, thresholdMm)] as const));
+  const boxesByPlan = new Map(
+    plans.map((plan) => {
+      const definition = kit?.archetypes[plan.archetype] ?? kit?.landmarks[plan.archetype];
+      const hall = definition?.size === 'hall' || definition?.brackets || plan.facility === 'temple';
+      const thresholdMm = hall ? Math.max(200, kit?.door.threshold ?? 0) : kit?.door.threshold ?? 0;
+      const defaultEntrance = definition?.recipe === 'hall';
+      return [plan, doorBoxes(plan, thresholdMm, hall ? 2_000 : 1_200, kit, defaultEntrance)] as const;
+    }),
+  );
   for (let offset = 0; offset < mesh.index.length; offset += 3) {
     const vertex = mesh.index[offset]!;
     const plan = ownerForVertex(mesh, vertex, owners)?.plan;
@@ -312,7 +333,8 @@ const MAX_WALL_BAND_M = 0.601;
 export function facadeBandM(kit?: Pick<BuildKitView, 'walls'>): number {
   if (!kit) return MAX_WALL_BAND_M;
   const thickest = Math.max(...Object.values(kit.walls).map((wall) => wall.t));
-  return thickest / 1000 + 0.001;
+  // Exterior column/bracket inner faces reach 500 mm from the 40 mm inset edge.
+  return Math.max(0.5, thickest / 1000) + 0.001;
 }
 function expectedFacade(owner: UnitOwner, localX: number, localZ: number, bandM: number): number {
   const width = owner.part?.[3] ?? owner.plan.footprint[2];
@@ -331,6 +353,25 @@ function expectedFacade(owner: UnitOwner, localX: number, localZ: number, bandM:
     if (atOrOutside[side]) positionMask |= 1 << ((side + yaw) % 4);
   return positionMask;
 }
+function expectedColumnCorner(
+  owner: UnitOwner, localX: number, localZ: number, kit?: BuildKitView,
+): number {
+  if (!kit || owner.part) return 0;
+  const definition = kit.archetypes[owner.plan.archetype] ?? kit.landmarks[owner.plan.archetype];
+  if (definition?.recipe !== 'hall') return 0;
+  const layout = columnLayout(owner.plan, kit);
+  const tolerance = layout.diameterM / 2 + 0.001;
+  const atLeft = Math.abs(localX - layout.xM[0]!) <= tolerance;
+  const atRight = Math.abs(localX - layout.xM.at(-1)!) <= tolerance;
+  const atBack = Math.abs(localZ - layout.zM[0]!) <= tolerance;
+  const atFront = Math.abs(localZ - layout.zM.at(-1)!) <= tolerance;
+  let mask = 0;
+  if (atFront) mask |= 1 << owner.plan.yaw;
+  if (atLeft) mask |= 1 << ((owner.plan.yaw + 1) % 4);
+  if (atBack) mask |= 1 << ((owner.plan.yaw + 2) % 4);
+  if (atRight) mask |= 1 << ((owner.plan.yaw + 3) % 4);
+  return mask;
+}
 function hasRoof(owner: UnitOwner): boolean {
   return (owner.part?.[7] ?? owner.plan.roof[0]) !== 0;
 }
@@ -339,7 +380,7 @@ export function inspectInv5(
   roof: MeshPayload,
   plans: readonly BuildingPlanView[],
   cellUnits?: readonly number[] | Uint16Array,
-  kit?: Pick<BuildKitView, 'walls'>,
+  kit?: BuildKitView,
 ): GeometryDiagnostic[] {
   const result: GeometryDiagnostic[] = [];
   const owners = unitOwners(plans);
@@ -380,7 +421,17 @@ export function inspectInv5(
   }
   for (let vertex = 0; vertex < shell.position.length / 3; vertex += 1) {
     const owner = ownerForVertex(shell, vertex, owners);
-    if (!owner) continue;
+    if (!owner) {
+      const actual = shell.mat[vertex * 4 + 3]!;
+      if (actual !== 0)
+        result.push({
+          invariant: 'INV-5',
+          code: 'FACADE_MISMATCH',
+          message: `facade mask ${actual} belongs to an invalid shell unit`,
+          vertex,
+        });
+      continue;
+    }
     const plan = owner.plan;
     const offset = vertex * 3;
     const [x, z] = ownerLocalXZ(owner, shell.position[offset]!, shell.position[offset + 2]!);
@@ -388,15 +439,26 @@ export function inspectInv5(
     const flags = shell.mat[vertex * 4 + 2]!;
     const nx = shell.normal[vertex * 4]! / 127;
     const nz = shell.normal[vertex * 4 + 2]! / 127;
-    const verticalOutside = nx * nx + nz * nz > 0.9 && (flags & 0b100110) === 0;
-    const allowed = expectedFacade(owner, x, z, bandM);
+    const verticalOutside = nx * nx + nz * nz > 0.9 && (flags & 0b110110) === 0;
+    const allowed = expectedFacade(owner, x, z, bandM) | expectedColumnCorner(owner, x, z, kit);
+    const cornerMask = actual !== 0 && (actual & (actual - 1)) !== 0;
     const diagonal = Math.abs(nx) > 0.2 && Math.abs(nz) > 0.2;
+    const adjacentPair = cornerMask && (actual === 0b0011 || actual === 0b0110 ||
+      actual === 0b1100 || actual === 0b1001);
+    const realCorner = adjacentPair && (actual & allowed) === actual;
     const wrongVertical =
       verticalOutside &&
       (allowed === 0
         ? actual !== 0
-        : actual === 0 || (actual & ~allowed) !== 0 || (diagonal && actual !== allowed));
-    const wrongOther = !verticalOutside && actual !== 0 && (actual & ~allowed) !== 0;
+        : actual === 0 ||
+          (actual & ~allowed) !== 0 ||
+          (cornerMask && !realCorner) ||
+          (diagonal && actual !== allowed));
+    const wrongOther =
+      !verticalOutside &&
+      (flags & (1 << 2)) === 0 &&
+      actual !== 0 &&
+      (cornerMask && !realCorner);
     if (wrongVertical || wrongOther)
       result.push({
         invariant: 'INV-5',
@@ -409,17 +471,194 @@ export function inspectInv5(
   return result;
 }
 
+const SAMPLE_STEP_M = 0.05;
+const FLOOR_INSET_M = 0.01;
+function distance(a: Point3, b: Point3): number {
+  const dx = a[0] - b[0];
+  const dy = a[1] - b[1];
+  const dz = a[2] - b[2];
+  return Math.sqrt(dx * dx + dy * dy + dz * dz);
+}
+/** Both orientations of every barycentric cell are sampled; spacing is at most 50 mm. */
+function sampleTriangle50(
+  points: readonly Point3[],
+  predicate: (point: Point3) => boolean,
+): boolean {
+  const [a, b, c] = points as unknown as readonly [Point3, Point3, Point3];
+  const divisions = Math.max(
+    1,
+    Math.ceil(Math.max(distance(a, b), distance(b, c), distance(c, a)) / SAMPLE_STEP_M),
+  );
+  const sample = (wb: number, wc: number): boolean => {
+    const wa = 1 - wb - wc;
+    return predicate([
+      a[0] * wa + b[0] * wb + c[0] * wc,
+      a[1] * wa + b[1] * wb + c[1] * wc,
+      a[2] * wa + b[2] * wb + c[2] * wc,
+    ]);
+  };
+  for (let row = 0; row < divisions; row += 1)
+    for (let column = 0; column < divisions - row; column += 1) {
+      if (sample((column + 1 / 3) / divisions, (row + 1 / 3) / divisions)) return true;
+      if (column + row < divisions - 1)
+        if (sample((column + 2 / 3) / divisions, (row + 2 / 3) / divisions)) return true;
+    }
+  return false;
+}
+function pointInFloor(plan: BuildingPlanView, point: Point3, insetM: number): number {
+  for (let index = 0; index < plan.floors.length; index += 1) {
+    const [x0, z0, x1, z1] = plan.floors[index]!;
+    if (
+      point[0] > x0 / 1000 + insetM &&
+      point[0] < x1 / 1000 - insetM &&
+      point[2] > z0 / 1000 + insetM &&
+      point[2] < z1 / 1000 - insetM
+    )
+      return index;
+  }
+  return -1;
+}
+function fixtureContains(
+  plan: BuildingPlanView,
+  fixture: BuildingPlanView['fixtures'][number],
+  point: Point3,
+): boolean {
+  const [localX, localZ] = localXZ(plan, point[0], point[2]);
+  const [, cxMm, czMm, wMm, dMm, yaw] = fixture;
+  const halfX = (yaw % 2 === 0 ? wMm : dMm) / 2000 + FLOOR_INSET_M;
+  const halfZ = (yaw % 2 === 0 ? dMm : wMm) / 2000 + FLOOR_INSET_M;
+  return Math.abs(localX - cxMm / 1000) <= halfX &&
+    Math.abs(localZ - czMm / 1000) <= halfZ;
+}
+function blockingFixtureContains(plan: BuildingPlanView, point: Point3): boolean {
+  return plan.fixtures.some((fixture) => fixture[6] === 1 && fixtureContains(plan, fixture, point));
+}
+interface FixtureClearance {
+  readonly fixture: BuildingPlanView['fixtures'][number];
+  readonly legal: boolean;
+}
+function nonBlockingClearances(
+  mesh: MeshPayload,
+  owner: UnitOwner,
+  owners: readonly UnitOwner[],
+): readonly FixtureClearance[] {
+  if (owner.part) return [];
+  return owner.plan.fixtures.filter((fixture) => fixture[6] === 0 && fixture[3] > 0 && fixture[4] > 0)
+    .map((fixture) => {
+      let minY = Number.POSITIVE_INFINITY;
+      let maxY = Number.NEGATIVE_INFINITY;
+      for (let vertex = 0; vertex < mesh.position.length / 3; vertex += 1) {
+        if (ownerForVertex(mesh, vertex, owners) !== owner) continue;
+        // bit 5 distinguishes sampled fixture geometry from floor/shell triangles in the same rect.
+        if ((mesh.mat[vertex * 4 + 2]! & (1 << 5)) === 0) continue;
+        const point: Point3 = [
+          mesh.position[vertex * 3]!, mesh.position[vertex * 3 + 1]!, mesh.position[vertex * 3 + 2]!,
+        ];
+        if (!fixtureContains(owner.plan, fixture, point)) continue;
+        minY = Math.min(minY, point[1]);
+        maxY = Math.max(maxY, point[1]);
+      }
+      const floor = floorHeightM(owner.plan, 0);
+      const hasGeometry = Number.isFinite(minY) && Number.isFinite(maxY);
+      return {
+        fixture,
+        legal: hasGeometry &&
+          (maxY - minY <= 0.25 + 0.000_01 || minY >= floor + 2.2 - 0.000_01),
+      };
+    });
+}
+function floorHeightM(plan: BuildingPlanView, floorIndex: number): number {
+  return (plan.elev[0] + (plan.floorY[floorIndex] ?? plan.floorY[0] ?? plan.elev[1])) / 1000;
+}
+function ownerPointInFloor(owner: UnitOwner, point: Point3): number {
+  return pointInFloor(owner.plan, point, FLOOR_INSET_M);
+}
+function ownerFloorHeightM(owner: UnitOwner, floorIndex: number): number {
+  if (!owner.part) return floorHeightM(owner.plan, floorIndex);
+  return (owner.plan.elev[0] + owner.part[10]) / 1000;
+}
+/** Fixture geometry carries flag bit 5 on every corner; only such triangles may use a legal
+ *  non-blocking fixture's exemption, so a cushion cannot hide a wall or column in its rectangle. */
+function fixtureTriangle(mesh: MeshPayload, triangleOffset: number): boolean {
+  for (let corner = 0; corner < 3; corner += 1)
+    if ((mesh.mat[mesh.index[triangleOffset + corner]! * 4 + 2]! & (1 << 5)) === 0) return false;
+  return true;
+}
+function obstructsClearance(
+  owner: UnitOwner,
+  point: Point3,
+  clearances: readonly FixtureClearance[],
+  ownFixtureGeometry: boolean,
+): boolean {
+  const floorIndex = ownerPointInFloor(owner, point);
+  if (
+    floorIndex < 0 ||
+    blockingFixtureContains(owner.plan, point) ||
+    (ownFixtureGeometry &&
+      clearances.some(({ fixture, legal }) => legal && fixtureContains(owner.plan, fixture, point)))
+  )
+    return false;
+  const floor = ownerFloorHeightM(owner, floorIndex);
+  return point[1] > floor + 0.05 && point[1] < floor + 2.2;
+}
+function belowRoofClearance(owner: UnitOwner, point: Point3): boolean {
+  const floorIndex = ownerPointInFloor(owner, point);
+  if (floorIndex < 0) return false;
+  return point[1] < ownerFloorHeightM(owner, floorIndex) + 2.2;
+}
+
 export function inspectInv2(
-  _mesh: MeshPayload,
-  _plans: readonly BuildingPlanView[],
+  mesh: MeshPayload,
+  plans: readonly BuildingPlanView[],
 ): GeometryDiagnostic[] {
-  return buildgenNotImplemented('inspectInv2');
+  if (mesh.index.length === 0) return [];
+  const result: GeometryDiagnostic[] = [];
+  const owners = unitOwners(plans);
+  const clearances = new Map<UnitOwner, readonly FixtureClearance[]>();
+  for (let offset = 0; offset < mesh.index.length; offset += 3) {
+    const firstVertex = mesh.index[offset]!;
+    const owner = ownerForVertex(mesh, firstVertex, owners);
+    if (!owner) continue;
+    let ownerClearances = clearances.get(owner);
+    if (!ownerClearances) {
+      ownerClearances = nonBlockingClearances(mesh, owner, owners);
+      clearances.set(owner, ownerClearances);
+    }
+    const points = trianglePoints(mesh, offset);
+    const ownFixtureGeometry = fixtureTriangle(mesh, offset);
+    if (sampleTriangle50(points,
+      (point) => obstructsClearance(owner, point, ownerClearances, ownFixtureGeometry)))
+      result.push({
+        invariant: 'INV-2',
+        code: 'CLEARANCE_BLOCKED',
+        message: `triangle blocks ${owner.plan.id} 2.2 m clearance`,
+        planId: owner.plan.id,
+        triangle: offset / 3,
+      });
+  }
+  return result;
 }
 export function inspectInv4(
-  _mesh: MeshPayload,
-  _plans: readonly BuildingPlanView[],
+  mesh: MeshPayload,
+  plans: readonly BuildingPlanView[],
 ): GeometryDiagnostic[] {
-  return buildgenNotImplemented('inspectInv4');
+  if (mesh.index.length === 0) return [];
+  const result: GeometryDiagnostic[] = [];
+  const owners = unitOwners(plans);
+  for (let offset = 0; offset < mesh.index.length; offset += 3) {
+    const owner = ownerForVertex(mesh, mesh.index[offset]!, owners);
+    if (!owner) continue;
+    const points = trianglePoints(mesh, offset);
+    if (sampleTriangle50(points, (point) => belowRoofClearance(owner, point)))
+      result.push({
+        invariant: 'INV-4',
+        code: 'ROOF_BELOW_CLEARANCE',
+        message: `roof triangle is below ${owner.plan.id} 2.2 m clearance`,
+        planId: owner.plan.id,
+        triangle: offset / 3,
+      });
+  }
+  return result;
 }
 export function inspectInv6(
   _mesh: MeshPayload,
@@ -434,11 +673,13 @@ export function inspectCoreGeometry(
   cellUnits?: readonly number[] | Uint16Array,
   shellHangingProps: readonly HangingPropGeometry[] = [],
   roofHangingProps: readonly HangingPropGeometry[] = [],
-  kit?: Pick<BuildKitView, 'door' | 'walls'>,
+  kit?: BuildKitView,
 ): GeometryDiagnostic[] {
   return [
     ...inspectInv1(shell, plans, shellHangingProps),
     ...inspectInv1(roof, plans, roofHangingProps),
+    ...inspectInv2(shell, plans),
+    ...inspectInv4(roof, plans),
     ...inspectInv3(shell, plans, kit),
     ...inspectInv3(roof, plans, kit),
     ...inspectInv5(shell, roof, plans, cellUnits, kit),

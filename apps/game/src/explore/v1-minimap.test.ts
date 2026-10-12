@@ -1,11 +1,18 @@
+// @vitest-environment happy-dom
 import { describe, expect, it, vi } from 'vitest';
 import type { TownRuntimeView, TownSceneProjection } from '@tianshu/render/town';
 import { townHexToWorld } from '@tianshu/render/town';
 import { minimapToWorld, worldToMinimap } from '../../../../packages/ui/src/explore/minimap-math';
 import { townDirection } from '../pages/town-input';
-import { createV1CameraBasis, createV1MinimapMarkers, generateV1MinimapBitmap,
+import { createV1AssembledMinimapMarkers, createV1CameraBasis, createV1MinimapMarkers,
+  generateV1MinimapBitmap,
   dispatchV1MinimapTravel, V1_MINIMAP_COLORS, v1PlayerHeadingRad, v1TravelCommand,
+  createPaintedMinimapMarkers, loadV1PaintedMinimap, loadV1PaintedMinimapWithFallback,
+  loadV1ActiveTaskNpcIds, v1ActiveTaskNpcIds, v1MinimapPixelToTownPoint,
+  v1PlanningPointToMinimapPixel, v1TownPointToMinimapPixel, v1WorldToImageMatrix,
   v1WorldToTownPoint, writeV1ViewQuad } from './v1-minimap';
+import daliMetadata from '../../../../assets/default/town-minimap/city_dali__ch01.json';
+import daliRuntime from '../../../../content/town/ch01/city_dali.json';
 
 function fixture(): TownRuntimeView {
   return { cityId: 'city_test', displayName: '试镇', grid: { width: 3, height: 2, chunkCells: 2 },
@@ -51,6 +58,85 @@ describe('v1 minimap bitmap', () => {
 });
 
 describe('v1 minimap adapter', () => {
+  it('independently matches real runtime building centres and entrances to offline markers', () => {
+    const metadata = daliMetadata as never;
+    for (const markerId of ['yaopu_01', 'lm_chongsheng_pagoda_center']) {
+      const row = daliMetadata.markers.find(item => item.id === markerId)!;
+      const building = daliRuntime.buildings.find(item => item.id === row.buildingId)!;
+      const originX = building.origin[0]!; const originZ = building.origin[1]!;
+      const width = building.size[0]!; const height = building.size[1]!;
+      const centre = v1PlanningPointToMinimapPixel(
+        originX + width / 2, originZ + height / 2, metadata);
+      expect(centre[0]).toBeCloseTo(row.px[0]!, 0);
+      expect(centre[1]).toBeCloseTo(row.px[1]!, 0);
+      const entrance = v1TownPointToMinimapPixel(building.entrances[0] as never, metadata);
+      expect(entrance[0]).toBeCloseTo(row.entrance![0]!, 0);
+      expect(entrance[1]).toBeCloseTo(row.entrance![1]!, 0);
+    }
+  });
+
+  it('round trips an empty painted-map click back to the same town cell', () => {
+    const metadata = daliMetadata as never; const source = [12, 64] as const;
+    const pixel = v1TownPointToMinimapPixel(source, metadata);
+    expect(v1MinimapPixelToTownPoint(pixel[0], pixel[1], metadata)).toEqual(source);
+    expect(v1WorldToImageMatrix(metadata)).toHaveLength(6);
+  });
+
+  it('loads v1 painted metadata and returns null for a missing town fallback', async () => {
+    const bitmap = {} as ImageBitmap; const decoder = vi.fn(async () => bitmap);
+    const okFetch = vi.fn()
+      .mockResolvedValueOnce({ ok: true, json: async () => daliMetadata })
+      .mockResolvedValueOnce({ ok: true, blob: async () => new Blob(['image']) });
+    await expect(loadV1PaintedMinimap('city_dali__ch01', '/assets', okFetch, decoder))
+      .resolves.toEqual({ metadata: daliMetadata, bitmap });
+    expect(createPaintedMinimapMarkers(daliMetadata as never)[0]).toMatchObject({
+      label: '苍山药肆', target: { kind: 'point' },
+    });
+    const missing = vi.fn(async () => ({ ok: false, status: 404 }));
+    await expect(loadV1PaintedMinimap('city_missing__ch01', '/assets', missing as never, decoder))
+      .resolves.toBeNull();
+  });
+
+  it('builds the abstract bitmap fallback and warns only once for one missing layout', async () => {
+    const missing = vi.fn(async () => ({ ok: false, status: 404 }));
+    const fallback = vi.fn(() => generateV1MinimapBitmap(fixture()));
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const key = 'city_missing_warn_once__ch01';
+    const decoder = vi.fn(async () => ({} as ImageBitmap));
+    await loadV1PaintedMinimapWithFallback(key, '/assets', fallback, missing as never, decoder);
+    await loadV1PaintedMinimapWithFallback(key, '/assets', fallback, missing as never, decoder);
+    expect(fallback).toHaveBeenCalledTimes(2);
+    expect(fallback.mock.results[0]!.value).toMatchObject({ width: 12, height: 8 });
+    expect(warn.mock.calls.filter(([message]) => String(message).includes(key))).toHaveLength(1);
+    await loadV1PaintedMinimapWithFallback(
+      `${key}_stale`, '/assets', fallback, missing as never, decoder, () => false);
+    expect(fallback).toHaveBeenCalledTimes(2);
+  });
+
+  it('loads active quest subjects and shows only task-related NPC markers', async () => {
+    const rows = [{ kind: 'quest', value: { id: 'q_active', subjectNpcIds: ['npc_known'] } },
+      { kind: 'quest', value: { id: 'q_done', subjectNpcIds: ['npc_unknown'] } }];
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ leaves: [
+        { kind: 'rules', load: 'chapter', logicalName: 'ch01.rules.base.json' }] }) })
+      .mockResolvedValueOnce({ ok: true, json: async () => rows });
+    const quests = [{ id: 'q_active', status: 'active' }, { id: 'q_done', status: 'completed' }];
+    const ids = await loadV1ActiveTaskNpcIds('ch01_tianlong', quests, '/content', fetcher as never);
+    expect([...ids]).toEqual(['npc_known']);
+    expect([...v1ActiveTaskNpcIds(quests, rows.map(row => row.value))]).toEqual(['npc_known']);
+    const scene: TownSceneProjection = { ...projection, anchors: [
+      { id: 'an_known', kind: 'npc', point: [0, 0], label: '交谈', npcId: 'npc_known' },
+      { id: 'an_other', kind: 'npc', point: [1, 0], label: '交谈', npcId: 'npc_unknown' },
+    ] };
+    expect(createV1MinimapMarkers(fixture(), scene, new Map(), ids)
+      .filter(marker => marker.kind === 'npc').map(marker => marker.id)).toEqual(['an_known']);
+    const painted = createPaintedMinimapMarkers(daliMetadata as never);
+    const assembled = createV1AssembledMinimapMarkers(fixture(), scene, painted, new Map(), ids);
+    expect(assembled.filter(marker => marker.kind === 'npc').map(marker => marker.id))
+      .toEqual(['an_known']);
+    expect(assembled.some(marker => marker.label === '苍山药肆')).toBe(true);
+  });
+
   it('creates a unit orthogonal 45 degree camera basis', () => {
     const basis = createV1CameraBasis(); const [rx, rz, ux, uz] = basis;
     expect(Math.hypot(rx!, rz!)).toBeCloseTo(1, 6);
@@ -60,6 +146,22 @@ describe('v1 minimap adapter', () => {
     expect(Array.from(basis)).toEqual([expect.closeTo(Math.SQRT1_2, 6),
       expect.closeTo(-Math.SQRT1_2, 6), expect.closeTo(-Math.SQRT1_2, 6),
       expect.closeTo(-Math.SQRT1_2, 6)]);
+  });
+
+  it.each([
+    ['yaopu_01', 'bi_0023'],
+    ['mashi_01', 'bi_0010'],
+    ['shitan_01', 'bi_0011'],
+    ['lm_chongsheng_pagoda_center', 'bi_0001'],
+  ])('sends painted marker %s to its real entrance without a buildingId', (markerId, buildingId) => {
+    const marker = createPaintedMinimapMarkers(daliMetadata as never)
+      .find(entry => entry.id === markerId)!;
+    const building = daliRuntime.buildings.find(entry => entry.id === buildingId)!;
+    expect(marker.target.kind).toBe('point');
+    expect(v1TravelCommand(marker.target, daliRuntime as never, projection)).toEqual({
+      t: 'town/move', destination: building.entrances[0],
+    });
+    expect(v1TravelCommand(marker.target, daliRuntime as never, projection)).not.toHaveProperty('buildingId');
   });
 
   it('matches all six movement directions to their rendered world vectors', () => {
@@ -95,8 +197,11 @@ describe('v1 minimap adapter', () => {
       { id: 'anchor_unknown', kind: 'npc', point: [1, 0], label: '交谈', npcId: 'npc_unknown' },
     ] };
     const names = new Map([['npc_known', '木婉清']]);
-    expect(createV1MinimapMarkers(namedTown, npcProjection, names).map(marker => marker.label))
+    expect(createV1MinimapMarkers(namedTown, npcProjection, names, new Set(['npc_known', 'npc_unknown']))
+      .map(marker => marker.label))
       .toEqual(['四方药铺', '木婉清', '路人']);
+    expect(createV1MinimapMarkers(namedTown, npcProjection, names).map(marker => marker.label))
+      .toEqual(['四方药铺']);
     expect(createV1MinimapMarkers(base, projection)[0]!.label).toBe('店铺');
   });
 

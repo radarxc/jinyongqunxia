@@ -237,10 +237,12 @@ describe('parameterized roof patch', () => {
     );
   });
 
-  it('reserves two t segments per fold step plus two eave-tail segments', () => {
+  it('reserves two t segments per fold step plus two eave-tail segments at LOD0 and one each at LOD1', () => {
+    // Coordinator ruling 10-11: LOD1 thins t (eave → ridge) only; u stays >= ceil(eave / 1 m).
     expect(roofPatchTSegments(4, 0)).toBe(10);
-    expect(roofPatchTSegments(4, 1)).toBe(10);
+    expect(roofPatchTSegments(4, 1)).toBe(5);
     expect(roofPatchTStations(2, 0.25)).toEqual([0, 0.125, 0.25, 0.4375, 0.625, 0.8125, 1]);
+    expect(roofPatchTStations(2, 0.25, 1)).toEqual([0, 0.25, 0.625, 1]);
   });
 
   it('places rows at the eave join and every structural purlin', () => {
@@ -545,8 +547,8 @@ describe('simple roof dispatch and payload', () => {
 
   it('keeps deterministic LOD0/LOD1 triangle counts for the four simple roofs', () => {
     const expected: Record<string, readonly [number, number]> = {
-      mini_shop_y0: [444, 444],
-      mini_house_y1: [444, 444],
+      mini_shop_y0: [444, 252],
+      mini_house_y1: [444, 264],
       mini_stall_y3: [24, 12],
       mini_xiyu_y1: [120, 120],
     };

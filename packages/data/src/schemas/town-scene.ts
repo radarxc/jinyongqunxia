@@ -13,6 +13,11 @@ const MinuteSchema = SafeIntegerSchema.min(0).max(1439);
 
 // Keep one runtime FacilityKind definition while preserving this schema's output type.
 const TownFacilityKindSchema: z.ZodType<FacilityKind> = z.lazy(() => FacilityKindSchema);
+export const PlanFacilityKindSchema = z.enum([
+  'none', 'residence', 'general_store', 'cloth', 'books', 'pharmacy', 'inn', 'tavern',
+  'teahouse', 'smithy', 'pawnshop', 'bank', 'escort', 'school', 'temple', 'office',
+  'casino', 'stable', 'storehouse', 'guardhouse', 'stall_goods', 'stall_food',
+]);
 
 export const VisualKitSchema = z.string().regex(
   /^(?:tang|song_dali|song_southern|song_north|liao_jin_north|yuan|ming|qing_early|xiyu|tubo)(?::[a-z][a-z0-9_]+)?$/u,
@@ -20,6 +25,11 @@ export const VisualKitSchema = z.string().regex(
 export const RectMmSchema = z.tuple([MmSchema, MmSchema, MmSchema, MmSchema])
   .refine(([x0, z0, x1, z1]) => x0 < x1 && z0 < z1, 'RectMm must be a non-empty half-open rectangle');
 const Yaw4Schema = z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]);
+const StoreysSchema = z.union([z.literal(1), z.literal(2), z.literal(3)]);
+const RoofStyleSchema = z.union([
+  z.literal(0), z.literal(1), z.literal(2), z.literal(3), z.literal(4),
+  z.literal(5), z.literal(6), z.literal(7), z.literal(8), z.literal(9),
+]);
 const EntranceTupleSchema = z.tuple([Yaw4Schema, MmSchema, PositiveMmSchema]);
 const FixtureTupleSchema = z.tuple([
   NonNegativeMmSchema, MmSchema, MmSchema, NonNegativeMmSchema, NonNegativeMmSchema,
@@ -32,7 +42,7 @@ const FixtureTupleSchema = z.tuple([
 });
 const PartTupleSchema = z.tuple([
   SafeIntegerSchema.min(0).max(7), MmSchema, MmSchema, PositiveMmSchema, PositiveMmSchema,
-  Yaw4Schema, SafeIntegerSchema.min(1).max(3), SafeIntegerSchema.min(0).max(9),
+  Yaw4Schema, StoreysSchema, RoofStyleSchema,
   NonNegativeMmSchema, NonNegativeMmSchema, NonNegativeMmSchema, Uint32Schema,
 ]);
 
@@ -68,17 +78,15 @@ export const TownWallSchema = z.strictObject({
   })),
 });
 
-export const TownBuildingPlanSchema = z.strictObject({
+const TownBuildingPlanValueSchema = z.strictObject({
   id: LocalIdSchema,
   archetype: z.string().min(1),
   kit: z.string().min(1),
   seed: Uint32Schema,
   footprint: z.tuple([MmSchema, MmSchema, PositiveMmSchema, PositiveMmSchema]),
   yaw: Yaw4Schema,
-  storeys: SafeIntegerSchema.min(1).max(3),
-  roof: z.tuple([
-    SafeIntegerSchema.min(0).max(9), NonNegativeMmSchema, NonNegativeMmSchema,
-  ]),
+  storeys: StoreysSchema,
+  roof: z.tuple([RoofStyleSchema, NonNegativeMmSchema, NonNegativeMmSchema]),
   entrances: z.array(EntranceTupleSchema),
   enterable: z.boolean(),
   elev: z.tuple([MmSchema, NonNegativeMmSchema]),
@@ -86,8 +94,9 @@ export const TownBuildingPlanSchema = z.strictObject({
   floorY: z.array(MmSchema),
   fixtures: z.array(FixtureTupleSchema),
   parts: z.array(PartTupleSchema).optional(),
+  finial: z.enum(['tang_stupa']).optional(),
   signage: z.tuple([TextKeySchema, SafeIntegerSchema.min(0)]).nullable(),
-  facility: TownFacilityKindSchema,
+  facility: PlanFacilityKindSchema,
 }).superRefine((building, context) => {
   if (building.floors.length !== building.floorY.length)
     context.addIssue({
@@ -106,6 +115,22 @@ export const TownBuildingPlanSchema = z.strictObject({
       context.addIssue({
         code: 'custom', path: ['floors', index], message: 'floor rectangle must be inside footprint',
       });
+});
+
+type TownBuildingPlanValue = z.output<typeof TownBuildingPlanValueSchema>;
+type ExactTownBuildingPlan = Omit<TownBuildingPlanValue, 'parts' | 'finial'> & {
+  readonly parts?: Exclude<TownBuildingPlanValue['parts'], undefined>;
+  readonly finial?: Exclude<TownBuildingPlanValue['finial'], undefined>;
+};
+
+/** Normalize Zod optional keys for exactOptionalPropertyTypes consumers such as render. */
+export const TownBuildingPlanSchema = TownBuildingPlanValueSchema.transform((value) => {
+  const { parts, finial, ...required } = value;
+  return {
+    ...required,
+    ...(parts === undefined ? {} : { parts }),
+    ...(finial === undefined ? {} : { finial }),
+  } satisfies ExactTownBuildingPlan;
 });
 
 export const TownSceneSchema = z.strictObject({

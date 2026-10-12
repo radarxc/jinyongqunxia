@@ -5,7 +5,7 @@ import type { Command, CommandHandler, CoreContent, RejectReason } from '.';
 import { inventoryHandler, rejectionFrom, townHandler, worldMapHandler, worldTickHandler } from './handlers';
 import { dialogueHandler, difficultyHandler, questChoiceHandler } from './story-handlers';
 import { bookSleepHandler } from './chapter-handler';
-import { exploreRegionHandler } from './explore-handler';
+import { exploreRegionHandler } from './region-walk-adapter';
 import { battleHandler } from './battle-handler';
 import { exploreHandler } from './explore-handler';
 import { shopHandler } from './shop-handler';

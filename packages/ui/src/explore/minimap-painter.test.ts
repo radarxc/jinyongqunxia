@@ -6,7 +6,10 @@ import type { MinimapOverlay, MinimapPaintContext, MinimapPalette } from './mini
 import type { MinimapView } from './minimap-math';
 
 class RecordingContext implements MinimapPaintContext {
-  fillStyle = ''; strokeStyle = ''; lineWidth = 1; globalAlpha = 1; font = '';
+  fillStyle = ''; lineWidth = 1; globalAlpha = 1; font = '';
+  private currentStrokeStyle = ''; readonly strokeStyles: string[] = [];
+  set strokeStyle(value: string) { this.currentStrokeStyle = value; this.strokeStyles.push(value); }
+  get strokeStyle(): string { return this.currentStrokeStyle; }
   textAlign: CanvasTextAlign = 'start'; textBaseline: CanvasTextBaseline = 'alphabetic';
   readonly moves: number[] = []; readonly lines: number[] = []; readonly texts: string[] = [];
   readonly transforms: number[] = []; fills = 0; strokes = 0; arcs = 0; images = 0;
@@ -35,7 +38,8 @@ class NoopContext implements MinimapPaintContext {
 const view: MinimapView = { centerX: 0, centerZ: 0, metresPerPx: 0.5, sizePx: 200,
   northUp: true, basis: null };
 const palette: MinimapPalette = { paper: '#eee', paperSilk: '#ddd', ink: '#111',
-  inkMedium: '#444', vermilion: '#b32', blue: '#268', green: '#386' };
+  inkMedium: '#444', vermilion: '#b32', blue: '#268', green: '#386',
+  markerShop: '#951', markerInn: '#159', markerSacred: '#c21', markerCivic: '#123' };
 const overlay: MinimapOverlay = {
   player: { x: 0, z: 0, headingRad: 0 },
   viewQuad: new Float32Array([-10, -10, 10, -10, 10, 10, -10, 10]),
@@ -57,6 +61,22 @@ describe('minimap painter', () => {
     drawMinimapBase(context, view, null); expect(context.images).toBe(1);
   });
 
+  it('draws a painted affine with the player centred and changes matrix for north-up', () => {
+    const base = { bitmap: {} as HTMLCanvasElement, minX: 0, minZ: 0, metresPerPx: 1,
+      worldToImage: [8, 4, -8, 4, 768, 130.75] as const };
+    const playerView: MinimapView = { centerX: 12, centerZ: 9, metresPerPx: 0.2,
+      sizePx: 200, northUp: true, basis: new Float32Array([0, 1, 1, 0]) };
+    const north = new RecordingContext(); drawMinimapBase(north, playerView, base);
+    expect(north.transforms.slice(-6)).toEqual([0.3125, -0.3125, 0.625, 0.625,
+      expect.closeTo(-281.71875, 6), expect.closeTo(213.28125, 6)]);
+    const markerOut = new Float32Array(2);
+    projectMinimapMarkers([{ ...overlay.markers[0]!, x: 12, z: 9 }], playerView, markerOut);
+    expect(Array.from(markerOut)).toEqual([100, 100]);
+    const camera = new RecordingContext(); drawMinimapBase(camera,
+      { ...playerView, northUp: false }, base);
+    expect(camera.transforms.slice(-6)).not.toEqual(north.transforms.slice(-6));
+  });
+
   it('projects markers into a caller-owned buffer', () => {
     const output = new Float32Array(2); projectMinimapMarkers(overlay.markers, view, output);
     expect(Array.from(output)).toEqual([104, 94]);
@@ -71,6 +91,21 @@ describe('minimap painter', () => {
     expect(context.moves.length).toBeGreaterThanOrEqual(8);
     expect(context.arcs).toBe(1);
     expect(context.texts).toEqual(['客']);
+  });
+
+  it('takes every marker category ring colour from the resolved theme palette', () => {
+    const markers = [
+      { ...overlay.markers[0]!, id: 'shop', kind: 'shop' as const },
+      { ...overlay.markers[0]!, id: 'inn', kind: 'inn' as const },
+      { ...overlay.markers[0]!, id: 'temple', kind: 'temple' as const },
+      { ...overlay.markers[0]!, id: 'gate', kind: 'gate' as const },
+    ];
+    const context = new RecordingContext();
+    drawMinimapOverlay(context, view, { ...overlay, player: null, viewQuad: null, path: null,
+      destination: null, markers }, new Float32Array(markers.length * 2), palette);
+    expect(context.strokeStyles).toEqual([
+      palette.markerShop, palette.markerInn, palette.markerSacred, palette.markerCivic,
+    ]);
   });
 
   it('samples zero steady redraw allocation after warm-up', async () => {

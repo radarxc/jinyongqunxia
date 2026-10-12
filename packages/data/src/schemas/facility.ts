@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { canonicalJson, type JsonValue } from '@tianshu/shared';
 import { ChapterIdSchema, LocalKeySchema } from './primitives';
 import { GateExprSchema } from './gate-expr';
 
@@ -68,13 +69,22 @@ export const FacilityDialogueSchema = z.strictObject({
   schemaVersion: z.literal('facility-dialogue.v1'),
   bindings: z.array(FacilityDialogueBindingSchema),
 }).superRefine((value, context) => {
-  const identities = new Set<string>();
+  const identities = new Map<string, { fallback: boolean; conditions: Set<string> }>();
   for (const [index, binding] of value.bindings.entries()) {
     const identity = [binding.chapter, binding.kind, binding.sub ?? '', binding.roleKey].join('/');
-    if (identities.has(identity)) context.addIssue({
-      code: 'custom', path: ['bindings', index], message: 'facility dialogue bindings must be unique',
-    });
-    identities.add(identity);
+    const seen = identities.get(identity) ?? { fallback: false, conditions: new Set<string>() };
+    if (binding.condition === undefined) {
+      if (seen.fallback) context.addIssue({ code: 'custom', path: ['bindings', index],
+        message: 'facility dialogue binding may have at most one fallback' });
+      seen.fallback = true;
+    } else {
+      const condition = canonicalJson(binding.condition as JsonValue);
+      if (seen.conditions.has(condition)) context.addIssue({ code: 'custom',
+        path: ['bindings', index, 'condition'],
+        message: 'facility dialogue binding conditions must be unique' });
+      seen.conditions.add(condition);
+    }
+    identities.set(identity, seen);
   }
 }).transform((value) => withRegistryId(value, 'facility_dialogue'));
 

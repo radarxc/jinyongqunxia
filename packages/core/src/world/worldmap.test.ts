@@ -4,7 +4,8 @@ import type { EquipmentRule } from '../economy';
 import { createCore } from '../api';
 import { RoadPathfinder } from './worldmap-pathfinder';
 import { createWorldMapRuntime } from './worldmap-runtime';
-import { createInitialWorldMapState, reachableWorldMapNodeIds,
+import { canonicalJson, type JsonValue } from '@tianshu/shared';
+import { createInitialWorldMapState, createSceneEntry, reachableWorldMapNodeIds,
   validateWorldMapState, worldMapPoint } from './worldmap-state';
 
 const entry = (sceneId: string) => ({ sceneId, townSpec: null, templateYear: null,
@@ -74,6 +75,17 @@ describe('world map state', () => {
         legs: [{ roadKey: 'route_dc:0', from: 'city_d', to: 'rs_c' }],
         legIndex: 0, offsetLi: 0, travelledLi: 0, totalLi: 20, status: 'walking' as const } };
     expect(() => validateWorldMapState(state, map)).toThrow('SAVE_WORLDMAP_INVALID');
+  });
+
+  it('accepts an entered scene whose keys were reordered by canonical save JSON', () => {
+    const map = mapFixture();
+    const scene = createSceneEntry(map, 'city_a');
+    const sorted = JSON.parse(canonicalJson(scene as unknown as JsonValue)) as typeof scene;
+    expect(Object.keys(sorted)).not.toEqual(Object.keys(scene));
+    const state = { ...createInitialWorldMapState(map), scene: sorted };
+    expect(validateWorldMapState(state, map).scene).toEqual(scene);
+    const tampered = { ...createInitialWorldMapState(map), scene: { ...sorted, name: 'x' } };
+    expect(() => validateWorldMapState(tampered, map)).toThrow('SAVE_WORLDMAP_INVALID');
   });
 });
 

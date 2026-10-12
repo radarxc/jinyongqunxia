@@ -1,0 +1,54 @@
+schemaVersion: price-table.v1
+# design/10 §13.1：P(cat,g) = P0(cat) × 2.2^(g−1)，显示取两位有效数字。
+# 下列值逐格照录 design/10 §13.2，并以 1 两 = 1000 文换算为整数文；0 对应“—”，不可买卖。
+categories:
+  - id: main_weapon
+    byGrade: [2000, 4500, 9500, 21000, 47000, 100000, 230000, 500000, 1100000, 2400000, 5300000, 12000000]
+  - id: clothing
+    byGrade: [1500, 3500, 7500, 17000, 37000, 82000, 180000, 400000, 880000, 1900000, 4200000, 9300000]
+  - id: offhand_accessory
+    byGrade: [1000, 2500, 6000, 13000, 28000, 62000, 140000, 300000, 660000, 1400000, 3200000, 7000000]
+  - id: small_armor
+    byGrade: [800, 2000, 4000, 8500, 19000, 41000, 91000, 200000, 440000, 970000, 2100000, 4700000]
+  - id: healing_pill
+    byGrade: [200, 450, 1000, 2000, 4500, 10000, 23000, 50000, 110000, 240000, 530000, 1200000]
+  - id: tonic
+    byGrade: [300, 650, 1500, 3000, 7000, 15000, 34000, 75000, 160000, 360000, 800000, 1800000]
+  - id: ammunition
+    byGrade: [20, 40, 100, 200, 450, 1000, 2500, 5000, 11000, 0, 0, 0]
+  - id: material
+    byGrade: [100, 200, 500, 1000, 2500, 5000, 11000, 25000, 55000, 120000, 270000, 580000]
+  - id: manual
+    byGrade: [5000, 11000, 24000, 53000, 120000, 260000, 570000, 1200000, 2700000, 6000000, 13000000, 29000000]
+  - id: dish
+    byGrade: [50, 100, 250, 500, 1000, 2500, 5500, 12000, 27000, 60000, 130000, 290000]
+  - id: mount
+    byGrade: [15000, 33000, 73000, 160000, 350000, 770000, 1700000, 3700000, 8200000, 0, 0, 0]
+  - id: non_trade
+    byGrade: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+# 当前 ItemKind 只能按 kind 映射，无法区分 armor 的衣身与头手腰鞋；v1 默认 armor→衣列。
+itemKindToCategory:
+  weapon: main_weapon
+  armor: clothing
+  offhand: offhand_accessory
+  hidden: non_trade
+  accessory: offhand_accessory
+  ammo: ammunition
+  pill: healing_pill
+  tonic: tonic
+  poison: tonic
+  antidote: healing_pill
+  food: dish
+  dish: dish
+  wine: dish
+  material: material
+  tool: material
+  manual: manual
+  page: manual
+  recipe: manual
+  quest: non_trade
+  token: non_trade
+  curio: non_trade
+  mount: mount
+  collectible: non_trade
+  system: non_trade

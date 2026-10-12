@@ -83,8 +83,12 @@ describe('GameState JSON boundary', () => {
     const dialogue = { storyId: 'story_fixture', storyHash: '0'.repeat(64), entryKey: 'start',
       storyJsonState: '{}', randomSeed: 1, pendingIntents: [], consumedTagKeys: [],
       context: { kind: 'facility' as const, sceneId: 'sc_fixture', facilityKey: 'clinic',
-        roleKey: 'doctor', shopKey: null } };
+        roleKey: 'doctor', shopKey: null, interlocutorNameKey: 'facility.clinic.doctor.name' } };
     expect(parseGameState({ ...state, dialogue }).dialogue?.context).toEqual(dialogue.context);
+    const fiveFieldContext = { kind: 'facility' as const, sceneId: 'sc_fixture',
+      facilityKey: 'clinic', roleKey: 'doctor', shopKey: null };
+    expect(() => parseGameState({ ...state, dialogue: { ...dialogue,
+      context: fiveFieldContext } })).toThrow('STATE_SHAPE');
     expect(() => parseGameState({ ...state, dialogue: { ...dialogue,
       context: { ...dialogue.context, extra: true } } })).toThrow('STATE_SHAPE');
   });

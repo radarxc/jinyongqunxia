@@ -1,0 +1,13 @@
+schemaVersion: shop-template.v1
+key: shop_tpl_shitan
+nameKey: shop.template.shitan.name
+facilitySub: shitan
+# （原创扩展）本货单只作三城试点公共供货，不宣称原著店铺曾售这些物品。
+# 【建议值】只列唐代或明确跨时代可得食物；仍服从普通店三日补货。
+supply:
+  - { itemId: it_hubing, maxGrade: 2, baseStock: 12, restockEveryDays: 3, restockAmount: 6, priceBp: 10000 }
+  - { itemId: it_xianrou, maxGrade: 3, baseStock: 5, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }
+  - { itemId: it_xiaomi, maxGrade: 2, baseStock: 10, restockEveryDays: 3, restockAmount: 5, priceBp: 10000 }
+  - { itemId: it_hongzao, maxGrade: 2, baseStock: 8, restockEveryDays: 3, restockAmount: 4, priceBp: 10000 }
+  - { itemId: it_lvdou, maxGrade: 2, baseStock: 8, restockEveryDays: 3, restockAmount: 4, priceBp: 10000 }
+  - { itemId: it_tao, maxGrade: 3, baseStock: 6, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }

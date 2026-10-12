@@ -139,22 +139,29 @@ export function sampleRoofPatch(options: RoofPatchOptions): RoofPatchMesh {
   return { rows: tStations.length, columns: uStations.length, uStations, tStations, points };
 }
 
-/** tech/16 default: two t segments per structural step plus two for the eave tail. */
+/**
+ * tech/16 default: two t segments per structural step plus two for the eave tail at LOD0; LOD1
+ * keeps one row per fold interval and one for the tail (rows still land on every purlin and on
+ * the eave join), which is how LOD1 meets the tech/16 §4.7 budgets without thinning u below
+ * ceil(eave / 1 m) (coordinator ruling 10-11).
+ */
 export function roofPatchTSegments(steps: number, lod: 0 | 1 = 0): number {
   if (!validSegments(steps)) throw new RangeError('BUILDGEN_ROOF_INVALID_STEPS');
-  void lod;
-  return steps * 2 + 2;
+  return lod === 1 ? steps + 1 : steps * 2 + 2;
 }
 
-/** Two rows in the eave tail and two rows in every structural fold interval. */
-export function roofPatchTStations(steps: number, tailFraction: number): readonly number[] {
+/** LOD0: two rows in the eave tail and in every fold interval; LOD1: one row each. */
+export function roofPatchTStations(
+  steps: number, tailFraction: number, lod: 0 | 1 = 0,
+): readonly number[] {
   if (!validSegments(steps) || !(tailFraction > 0 && tailFraction < 1))
     throw new RangeError('BUILDGEN_ROOF_INVALID_T_STATIONS');
-  const stations = [0, tailFraction / 2, tailFraction];
+  const stations = lod === 1 ? [0, tailFraction] : [0, tailFraction / 2, tailFraction];
   for (let step = 1; step <= steps; step += 1) {
     const previous = tailFraction + ((1 - tailFraction) * (step - 1)) / steps;
     const next = step === steps ? 1 : tailFraction + ((1 - tailFraction) * step) / steps;
-    stations.push((previous + next) / 2, next);
+    if (lod === 1) stations.push(next);
+    else stations.push((previous + next) / 2, next);
   }
   return stations;
 }

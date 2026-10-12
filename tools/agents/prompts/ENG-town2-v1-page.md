@@ -19,6 +19,8 @@
    - 小地图上的设施标记来自 `facility` 投影（店名与图标），点击后走到入口格。
    - 经店员对话真实购买（复用 shop-wire 的全流程夹具，从页面交互条触发）。
 
+- **协调者 10-11 补充（design/14 + 大地图线 AR-116 同口径）**：「减少动效」只关震屏、快速镜头与逐段露出，人物位移与步态照常——`TownPage.vue` 逐格驱动主角的节拍不得因 `reducedMotion` 改变（现为 80 / 140 ms 两档，统一成一档），render 侧已在集成分支修好（提交 02a4e20fe）。
+
 ## 约束
 - 只写：`apps/game/src/pages/TownPage.vue`、`apps/game/src/pages/town-input.ts`（+ 测试）、`apps/game/src/explore/**`、`apps/game/src/settings.ts`（+ 测试）与本任务报告。
 - 不改 `packages/**`、`App.vue`（全局键已由 actionmap 迁入）、`session*.ts`、`WorldMapPage.vue`、`worldmap/**`；不新增依赖。若必须改写集外文件，停在报告里说明原因与建议，不要自行扩大写集。

@@ -7,13 +7,19 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { gameContentPlugin } from './build/content-plugin';
 import { sizeGroupsPlugin } from './build/size-groups-plugin';
 import { offlineSwPlugin } from './build/offline-sw-plugin';
+import { townAssetsPlugin } from './build/town-assets';
+import { townLazyChunk } from './build/town-chunks';
 
 // Core exports pure rule functions; unused barrels must not eagerly run Ink's runtime.
-const treeshake = { moduleSideEffects: [{ test: /\/packages\/core\/src\/.*\.ts$/, sideEffects: false }] };
+const treeshake = {
+  moduleSideEffects: [{ test: /\/packages\/core\/src\/.*\.ts$/, sideEffects: false }],
+};
 
 export default defineConfig({
   plugins: [
     gameContentPlugin(),
+    townAssetsPlugin(),
+    sizeGroupsPlugin({ target: 'app' }),
     vue(),
     VitePWA({
       strategies: 'injectManifest',
@@ -22,18 +28,31 @@ export default defineConfig({
       registerType: 'prompt',
       injectRegister: false,
       includeManifestIcons: false,
-      integration: { beforeBuildServiceWorker: async options => {
-        const path = resolve(import.meta.dirname, 'dist/manifest.webmanifest');
-        const revision = createHash('sha256').update(await readFile(path)).digest('hex');
-        const entries = options.injectManifest.additionalManifestEntries ?? [];
-        options.injectManifest.additionalManifestEntries = [...entries.filter(entry =>
-          (typeof entry === 'string' ? entry : entry.url) !== 'manifest.webmanifest'),
-        { url: 'manifest.webmanifest', revision }];
-      } },
-      pwaAssets: { image: 'build/pwa-icon.svg', preset: 'minimal-2023',
-        overrideManifestIcons: true, includeHtmlHeadLinks: false,
-        integration: { publicDir: resolve(import.meta.dirname, 'build'),
-          outDir: resolve(import.meta.dirname, 'dist') } },
+      integration: {
+        beforeBuildServiceWorker: async (options) => {
+          const path = resolve(import.meta.dirname, 'dist/manifest.webmanifest');
+          const revision = createHash('sha256')
+            .update(await readFile(path))
+            .digest('hex');
+          const entries = options.injectManifest.additionalManifestEntries ?? [];
+          options.injectManifest.additionalManifestEntries = [
+            ...entries.filter(
+              (entry) => (typeof entry === 'string' ? entry : entry.url) !== 'manifest.webmanifest',
+            ),
+            { url: 'manifest.webmanifest', revision },
+          ];
+        },
+      },
+      pwaAssets: {
+        image: 'build/pwa-icon.svg',
+        preset: 'minimal-2023',
+        overrideManifestIcons: true,
+        includeHtmlHeadLinks: false,
+        integration: {
+          publicDir: resolve(import.meta.dirname, 'build'),
+          outDir: resolve(import.meta.dirname, 'dist'),
+        },
+      },
       manifest: {
         name: '金庸群侠传·天书录',
         short_name: '天书录',
@@ -44,7 +63,8 @@ export default defineConfig({
         theme_color: '#15110f',
         background_color: '#15110f',
       },
-      injectManifest: { maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+      injectManifest: {
+        maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         buildPlugins: { vite: [offlineSwPlugin(resolve(import.meta.dirname, 'dist'))] },
         // The plugin contributes manifest.webmanifest separately; avoid a second glob entry.
         globPatterns: ['**/*.{js,css,html,wasm,woff2,svg}'],
@@ -58,20 +78,34 @@ export default defineConfig({
           '**/content/vfx/**',
         ],
         dontCacheBustURLsMatching: /(?:^|\/)[^/]+-[A-Za-z0-9_-]{8,}\.(?:js|css|wasm|woff2|svg)$/u,
-        manifestTransforms: [async entries => {
-          const version = JSON.parse(await readFile(resolve(import.meta.dirname, 'dist/version.json'), 'utf8')) as
-            { releaseHash: string };
-          const unique = new Map<string, (typeof entries)[number]>();
-          for (const entry of entries) {
-            if (!unique.has(entry.url)) unique.set(entry.url, entry);
-            else if (entry.revision !== null) {
-              const bytes = await readFile(resolve(import.meta.dirname, 'dist', entry.url));
-              unique.set(entry.url, { ...entry, revision: createHash('sha256').update(bytes).digest('hex') });
+        manifestTransforms: [
+          async (entries) => {
+            const version = JSON.parse(
+              await readFile(resolve(import.meta.dirname, 'dist/version.json'), 'utf8'),
+            ) as { releaseHash: string };
+            const unique = new Map<string, (typeof entries)[number]>();
+            for (const entry of entries) {
+              if (!unique.has(entry.url)) unique.set(entry.url, entry);
+              else if (entry.revision !== null) {
+                const bytes = await readFile(resolve(import.meta.dirname, 'dist', entry.url));
+                unique.set(entry.url, {
+                  ...entry,
+                  revision: createHash('sha256').update(bytes).digest('hex'),
+                });
+              }
             }
-          }
-          return { manifest: [...unique.values()].map(entry => entry.url === 'index.html'
-            ? { ...entry, revision: [entry.revision ?? 'shell', version.releaseHash].join('-') } : entry) };
-        }],
+            return {
+              manifest: [...unique.values()].map((entry) =>
+                entry.url === 'index.html'
+                  ? {
+                      ...entry,
+                      revision: [entry.revision ?? 'shell', version.releaseHash].join('-'),
+                    }
+                  : entry,
+              ),
+            };
+          },
+        ],
       },
     }),
   ],
@@ -81,7 +115,17 @@ export default defineConfig({
       gameContentPlugin({ copyAssets: false, emitDressupEntry: false }),
       sizeGroupsPlugin(),
     ],
-    rollupOptions: { treeshake },
+    rollupOptions: {
+      treeshake,
+      output: {
+        entryFileNames(chunk) {
+          const source = chunk.facadeModuleId?.replaceAll('\\', '/');
+          return source?.endsWith('/packages/render/src/buildgen/worker/buildgen.worker.ts')
+            ? 'assets/render-buildgen-worker-[hash].js'
+            : 'assets/[name]-[hash].js';
+        },
+      },
+    },
   },
   build: {
     target: 'es2022',
@@ -95,6 +139,8 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes('/packages/render/src/vfx/')) return 'vfx';
           if (id.includes('/packages/render/src/rig/')) return 'rig';
+          const townChunk = townLazyChunk(id);
+          if (townChunk) return townChunk;
           if (id.includes('/three/')) return 'render';
           if (id.includes('/packages/render/')) return 'render';
           if (id.includes('/content/chapters/')) {

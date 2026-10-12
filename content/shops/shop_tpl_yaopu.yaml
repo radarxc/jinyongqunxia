@@ -1,0 +1,15 @@
+schemaVersion: shop-template.v1
+key: shop_tpl_yaopu
+nameKey: shop.template.yaopu.name
+facilitySub: yaopu
+# （原创扩展）本货单只作三城试点公共供货，不宣称原著店铺曾售这些物品。
+# 【建议值】普通店三日补货；maxGrade=3 兼容低武玄下上限并只投放黄阶常备货。
+supply:
+  - { itemId: it_huoxuewan, maxGrade: 2, baseStock: 8, restockEveryDays: 3, restockAmount: 4, priceBp: 10000 }
+  - { itemId: it_yangjingwan, maxGrade: 3, baseStock: 3, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }
+  - { itemId: it_bailucao, maxGrade: 3, baseStock: 3, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }
+  - { itemId: it_gancao, maxGrade: 1, baseStock: 10, restockEveryDays: 3, restockAmount: 5, priceBp: 10000 }
+  - { itemId: it_fuling, maxGrade: 2, baseStock: 8, restockEveryDays: 3, restockAmount: 4, priceBp: 10000 }
+  - { itemId: it_huangqi, maxGrade: 2, baseStock: 6, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }
+  - { itemId: it_jinyinhua, maxGrade: 2, baseStock: 6, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }
+  - { itemId: it_renshen, maxGrade: 3, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }

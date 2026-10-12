@@ -256,7 +256,8 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
 
       if (playerPosInitialized) {
         const dist = playerWorldPos.distanceTo(playerTargetPos);
-        const lerpFactor = reducedMotion ? 1 : Math.min(1, dt * 14);
+        // design/14 §无障碍：减少动效只关震屏、快速镜头与逐段露出，人物位移与步态照常（AR-116 同口径）。
+        const lerpFactor = Math.min(1, dt * 14);
         if (dist > 0.001) {
           playerWorldPos.lerp(playerTargetPos, lerpFactor);
         } else {
@@ -274,7 +275,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
         camera.updateMatrixWorld();
       }
 
-      player.update(reducedMotion ? 0 : dt); for (const entry of npcs.values()) entry.actor.update(reducedMotion ? 0 : dt);
+      player.update(dt); for (const entry of npcs.values()) entry.actor.update(dt);
       if (player3D && playerPosInitialized) {
         player3DContainer.position.set(playerWorldPos.x, playerWorldPos.y + 0.02, playerWorldPos.z);
         const moveDx = playerTargetPos.x - playerWorldPos.x;
@@ -321,7 +322,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
       for (const [actor, sprite] of sprites.entries()) {
         if (actor === player && player3D) continue;
         const isWalking = sprite.walking || (actor === player && playerWorldPos.distanceTo(playerTargetPos) > 0.04);
-        sprite.phase += (reducedMotion ? 0 : dt) * (isWalking ? 12 : 1.6);
+        sprite.phase += dt * (isWalking ? 12 : 1.6);
         const lift = isWalking ? Math.abs(Math.sin(sprite.phase)) * 0.12 : 0;
         const sway = isWalking ? Math.sin(sprite.phase) * 0.04 : 0;
         if (actor === player) {

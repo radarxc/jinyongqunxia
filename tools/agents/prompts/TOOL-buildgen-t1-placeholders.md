@@ -18,6 +18,7 @@
 
 ## 约束
 - 只写：`tools/buildgen/{common.py,make_placeholder_layers.py,build_layer_strips.py}`、`tools/buildgen/tests/test_layers.py`、`assets/default/buildkit/{song_dali,xiyu,props}/**` 与本任务报告。不改其他 `assets/default/**` 既有文件。
+- **协调者 10-11 r1 返修裁定**（tasks.json 同步，写集新增 `content/town/buildkits/song_dali.yaml`、`content/town/buildkits/xiyu.yaml`，只许改 `layers[].repeatMm` 数值）：无缝平铺要求每张母版在每个轴上恰好装下整数个设计周期，而现有 `repeatMm`（多为 1000 / 2000）不是部分设计周期（瓦垄 330、宋砖 410、压顶 400、烧砖 300、泥顶 700 …）的整数倍，「FFT 偏差 ≤ 3%」与「四边无缝」不能同时满足。处理：凡某层某轴的 `repeatMm` 不是该轴设计周期的整数倍，就把该轴 `repeatMm` 改成**最接近原值的整数倍**（例：压顶 400 → 1200、烧砖 300 → 900、瓦垄 330 → 990、宋砖横 410 → 1230、泥顶 700 → 2100；纵向同理按各自设计周期），设计周期本身（真实尺寸）不动；母版仍按 tech/16 §4.4 的 px/m 出图。然后让生成器对每个有设计周期的轴都恰好放整数个周期，FFT 测试由 `KITS/LayerSpec` 数据驱动覆盖全部适用层与轴（失败信息含套件、层、轴、目标、实测、误差），抹面类真正消费 `scale_mm`（或去掉无法兑现的尺度声明并在报告说明）。报告第 3 节列每层改前 / 改后 `repeatMm` 与理由。
 - 只用 Python 标准库 + 仓库已在用的 Pillow / numpy（先 `grep -rn "import numpy\|from PIL" tools | head` 确认）；不联网、不调用任何出图服务；单个母版 PNG ≤ 2 MB，条带 WebP 质量约 85。
 
 检查：

@@ -45,4 +45,16 @@ describe('event presentation boundary', () => {
       }),
     ).toBeNull();
   });
+
+  it('passes through a validated shop/open step', () => {
+    expect(presentedEvent({ t: 'world/eventPresented', payload: {
+      eventId: 'dialogue:story_facility',
+      steps: [{ op: 'shop/open', shopKey: 'city_dali__ch01/yaopu_01' }],
+    } })?.steps).toEqual([
+      { op: 'shop/open', shopKey: 'city_dali__ch01/yaopu_01' },
+    ]);
+    expect(presentedEvent({ t: 'world/eventPresented', payload: {
+      eventId: 'dialogue:story_facility', steps: [{ op: 'shop/open', shopKey: '' }],
+    } })).toBeNull();
+  });
 });

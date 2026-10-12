@@ -21,6 +21,15 @@ interface MiniInput {
   readonly facility: FacilityKind;
   readonly kit?: string;
 }
+function miniFloorInsets(input: MiniInput): readonly [number, number] {
+  // tech/16 section 3 goldens: shop 4.4 x 3.1, house 5.2 x 3.2, temple 10.8 x 8.8 m.
+  const golden: Readonly<Record<string, readonly [number, number]>> = {
+    shop: [800, 950],
+    house: [400, 900],
+    temple_hall: [600, 600],
+  };
+  return golden[input.archetype] ?? [350, 300];
+}
 function mini(input: MiniInput): BuildingPlanView {
   const [cx, cz] = input.centre;
   const [width, depth] = input.size;
@@ -28,6 +37,10 @@ function mini(input: MiniInput): BuildingPlanView {
   const worldDepth = input.yaw % 2 === 0 ? depth : width;
   const base = 0;
   const floorY = input.platform;
+  // Shared mini plans carry the exact tech/16 section 3 interior goldens.
+  const [widthInset, depthInset] = miniFloorInsets(input);
+  const worldXInset = input.yaw % 2 === 0 ? widthInset : depthInset;
+  const worldZInset = input.yaw % 2 === 0 ? depthInset : widthInset;
   return {
     id: input.id,
     archetype: input.archetype,
@@ -42,10 +55,10 @@ function mini(input: MiniInput): BuildingPlanView {
     elev: [base, input.platform],
     floors: [
       [
-        cx - worldWidth / 2 + 300,
-        cz - worldDepth / 2 + 300,
-        cx + worldWidth / 2 - 300,
-        cz + worldDepth / 2 - 300,
+        cx - worldWidth / 2 + worldXInset,
+        cz - worldDepth / 2 + worldZInset,
+        cx + worldWidth / 2 - worldXInset,
+        cz + worldDepth / 2 - worldZInset,
       ],
     ],
     floorY: [floorY],

@@ -33,4 +33,4 @@ export interface SceneMemoryEntry {
 
 export const HEX_STEP_MM = 1155;
 export const PACE_MM_PER_TICK = { walk: 135, run: 450 } as const;
-export const MAX_WALK_PATH = 512;
+export { MAX_WALK_PATH } from '../../state/walk-shape';

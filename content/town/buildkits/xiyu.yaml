@@ -21,22 +21,22 @@ palette:
   limewash: ['#ddd3bc', [600, 1200]]
   brick: ['#9a6545', [400, 800]]
 layers:
-  - { id: mud_roof, repeatMm: [2000, 2000] }
-  - { id: parapet_coping, repeatMm: [1000, 1000] }
-  - { id: joist_soffit, repeatMm: [600, 1000] }
+  - { id: mud_roof, repeatMm: [2400, 2100] }
+  - { id: parapet_coping, repeatMm: [1200, 1000] }
+  - { id: joist_soffit, repeatMm: [690, 1000] }
   - { id: timber_carved, repeatMm: [1000, 1000] }
-  - { id: timber_raw, repeatMm: [1000, 1000] }
-  - { id: mud_plaster_ochre, repeatMm: [2000, 2000] }
-  - { id: mud_plaster_limewash, repeatMm: [2000, 2000] }
-  - { id: brick_fired, repeatMm: [1000, 1000] }
+  - { id: timber_raw, repeatMm: [920, 1000] }
+  - { id: mud_plaster_ochre, repeatMm: [2400, 1950] }
+  - { id: mud_plaster_limewash, repeatMm: [1800, 2100] }
+  - { id: brick_fired, repeatMm: [900, 1050] }
   - { id: adobe_brick, repeatMm: [2000, 2000] }
   - { id: brick_lattice, repeatMm: [1000, 1000] }
-  - { id: lattice_wood, repeatMm: [1000, 1000] }
+  - { id: lattice_wood, repeatMm: [980, 980] }
   - { id: door_carved, repeatMm: [1000, 2000] }
-  - { id: floor_earth, repeatMm: [2000, 2000] }
+  - { id: floor_earth, repeatMm: [2000, 1800] }
   - { id: carpet_kilim, repeatMm: [2000, 2000] }
-  - { id: dome_plaster, repeatMm: [2000, 2000] }
-  - { id: canvas_awning, repeatMm: [1000, 1000] }
+  - { id: dome_plaster, repeatMm: [1800, 2100] }
+  - { id: canvas_awning, repeatMm: [996, 996] }
 archetypes:
   guardhouse: { recipe: adobe, size: shop, roof: flat, facility: guardhouse, front: tang_wood_eave }
   house_large: { recipe: adobe, size: middle, roof: flat, facility: residence }

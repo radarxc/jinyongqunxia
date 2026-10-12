@@ -8,6 +8,13 @@ import type {
 } from '@tianshu/ui';
 
 export type TextCatalog = Readonly<Record<string, string>>;
+export interface ShopOpenPresentation { readonly op: 'shop/open'; readonly shopKey: string }
+export function shopOpenPresentation(step: unknown): ShopOpenPresentation | null {
+  if (!step || typeof step !== 'object' || Array.isArray(step)) return null;
+  const value = step as { readonly op?: unknown; readonly shopKey?: unknown };
+  return value.op === 'shop/open' && typeof value.shopKey === 'string' && value.shopKey.length > 0
+    ? { op: 'shop/open', shopKey: value.shopKey } : null;
+}
 const SYSTEM_SPEAKERS: Readonly<Record<string, string>> = {
   narrator: '旁白',
   player: '你',

@@ -86,13 +86,29 @@ describe('town facility content schemas', () => {
     ] })).toThrow(/facility building IDs must be unique/u);
   });
 
-  it('rejects unknown facility kinds and duplicate dialogue identities', () => {
+  it('rejects unknown facility kinds and duplicate dialogue fallbacks', () => {
     expect(() => TownFacilitiesSchema.parse({ ...townFacilities, facilities: [
       { ...facility, kind: 'warehouse' },
     ] })).toThrow();
     expect(() => FacilityDialogueSchema.parse({ ...facilityDialogue, bindings: [
       facilityDialogue.bindings[0], { ...facilityDialogue.bindings[0], storyId: 'story_other' },
-    ] })).toThrow(/facility dialogue bindings must be unique/u);
+    ] })).toThrow(/at most one fallback/u);
+  });
+
+  it('accepts distinct conditions plus one fallback and rejects duplicate conditions', () => {
+    const fallback = facilityDialogue.bindings[0];
+    const conditional = { ...fallback, storyId: 'story_conditional',
+      condition: { item: 'it_fixture' } };
+    expect(FacilityDialogueSchema.parse({ ...facilityDialogue,
+      bindings: [conditional, fallback] }).bindings).toHaveLength(2);
+    expect(() => FacilityDialogueSchema.parse({ ...facilityDialogue, bindings: [
+      conditional, { ...conditional, storyId: 'story_distinct',
+        condition: { status: 'met_keeper' } },
+    ] })).not.toThrow();
+    expect(() => FacilityDialogueSchema.parse({ ...facilityDialogue, bindings: [
+      { ...conditional, condition: { qg: 2, action: 'leap' } },
+      { ...conditional, storyId: 'story_duplicate', condition: { action: 'leap', qg: 2 } },
+    ] })).toThrow(/conditions must be unique/u);
   });
 });
 
