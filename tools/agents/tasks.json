@@ -30370,7 +30370,8 @@
     "packages/core/src/command/new-run-dialogue.test.ts",
     "packages/core/src/command/facility-dialogue.test.ts",
     "packages/core/src/world/town-runtime.ts",
-    "packages/core/src/world/town-runtime.test.ts"
+    "packages/core/src/world/town-runtime.test.ts",
+    "apps/game/src/runtime/session.test.ts"
    ],
    "validate": {
     "exists": [
