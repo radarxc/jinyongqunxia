@@ -7,11 +7,13 @@ import { useUiStore, type MenuPage } from '@tianshu/ui/runtime';
 import TxRotateHint from '@tianshu/ui/components/TxRotateHint.vue';
 import type { GameController } from './game-controller';
 import { actionMap, useActionContext, type GlobalPageAction } from './input/action-map';
+import { useChapterTextCatalog } from './flow/content-text';
 
 const { controller } = defineProps<{ controller: GameController }>();
 const { busy, settings } = controller;
 const { battle, battleActive } = controller;
 const { projection } = storeToRefs(useUiStore());
+const textCatalog = useChapterTextCatalog(controller.chapterId, controller.flowTextSource);
 
 const CharacterCreationPage = defineAsyncComponent(() => import('./pages/CharacterCreationPage.vue'));
 const OpeningPage = defineAsyncComponent(() => import('./pages/OpeningPage.vue'));
@@ -23,6 +25,7 @@ const SleepAllocationPage = defineAsyncComponent(() => import('./pages/SleepAllo
 const WakePage = defineAsyncComponent(() => import('./pages/WakePage.vue'));
 const BaimaTitlePage = defineAsyncComponent(() => import('./pages/BaimaTitlePage.vue'));
 const DialogueLayer = defineAsyncComponent(() => import('./pages/DialogueLayer.vue'));
+const ShopLayer = defineAsyncComponent(() => import('./pages/ShopLayer.vue'));
 const DevPanel = defineAsyncComponent(() => import('./components/DevPanel.vue'));
 const TxInventory = defineAsyncComponent(() => import('@tianshu/ui/components/TxInventory.vue'));
 const TxMeridianMap = defineAsyncComponent(() => import('@tianshu/ui/components/TxMeridianMap.vue'));
@@ -290,12 +293,16 @@ const heroMpPercent = computed(() => Math.round((heroMp.value.current / Math.max
 const heroHpText = computed(() => `${heroHp.value.current} / ${heroHp.value.maximum}`);
 const heroMpText = computed(() => `${heroMp.value.current} / ${heroMp.value.maximum}`);
 
-const silverDisplay = computed(() => {
-  const money = projection.value.hud?.money;
-  if (typeof money === 'number' && money > 0) {
-    return money.toLocaleString('zh-CN');
-  }
-  return '一千二百八十';
+function formatWen(wen: number): string {
+  const liang = Math.floor(wen / 1000); const remainder = wen % 1000;
+  if (liang === 0) return `${remainder} 文`;
+  return remainder === 0 ? `${liang} 两` : `${liang} 两 ${remainder} 文`;
+}
+const silverDisplay = computed(() => formatWen(projection.value.hud?.money ?? 0));
+const topbarLocation = computed(() => {
+  const facility = controller.town.value?.facility;
+  return (facility && textCatalog.value[facility.nameKey]) ??
+    projection.value.hud?.location ?? '江湖';
 });
 
 /* Keyboard navigation */
@@ -384,19 +391,12 @@ onBeforeUnmount(() => {
             <span class="tip" aria-hidden="true">战斗</span>
           </button>
         </nav>
-        <div class="wallet">
-          <details>
-            <summary class="icon-button" aria-label="展开精确银两余额">
-              <img class="icon" :src="asset('/img/ui_res_silver.webp')" alt="">
-              <span class="tip" aria-hidden="true">精确余额</span>
-            </summary>
-            <p class="balance-detail wash">
-              现银{{ silverDisplay }}两<br>
-              <span class="small">{{ projection.hud?.date || '申时' }}</span>
-            </p>
-          </details>
-          <span><strong>{{ silverDisplay }}</strong><small>两 · {{ projection.hud?.date || '申时' }}</small></span>
-        </div>
+        <p class="journey-status">
+          <span>{{ projection.hud?.date || '申时' }}</span><i>·</i>
+          <span>{{ topbarLocation }}</span><i>·</i>
+          <img class="icon" :src="asset('/img/ui_res_silver.webp')" alt="银两">
+          <strong>{{ silverDisplay }}</strong>
+        </p>
       </header>
 
       <!-- 主场景 · 大地图 / 城镇 / 遗迹 / 战斗 -->
@@ -508,6 +508,7 @@ onBeforeUnmount(() => {
       <Suspense v-if="projection.dialogue">
         <DialogueLayer :controller="controller" :dialogue="projection.dialogue" />
       </Suspense>
+      <Suspense><ShopLayer :controller="controller" /></Suspense>
 
       <!-- 卷轴浮层 · 行囊 / 武学 / 人物 / 图鉴 / 江湖志 / 存档 / 设置 -->
       <section v-show="page !== 'journey'" class="screen folio-screen" aria-label="卷轴展阅">

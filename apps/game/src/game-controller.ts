@@ -21,8 +21,10 @@ import type {
   GameProjection,
   GameUpdate,
   NewGameRequest,
+  ShopTradeCommand,
   TownProjection,
 } from './runtime/contracts';
+import type { ShopView } from '@tianshu/core/shop-command';
 import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { ContentSource } from '@tianshu/data';
 import type { BattleController, createBattleController } from './battle/controller';
@@ -30,6 +32,7 @@ import type { createSaveService } from './storage/save-service';
 import { slotViews } from './storage/slot-views';
 import { presentedEvent, type PresentedEvent } from './flow/event-presentation';
 import { presentationText } from './flow/content-text';
+import { shopOpenPresentation } from './flow/presentation';
 import {
   defaultGameSettings,
   loadGameSettings,
@@ -128,6 +131,8 @@ export function createGameController(
   const flowStage = shallowRef<M1FlowStage>('game');
   const coldEntryStage = shallowRef<ColdEntryStage>('inactive');
   const presentationNotice = shallowRef('');
+  const shopRequest = shallowRef<{ readonly shopKey: string; readonly nonce: number } | null>(null);
+  let shopRequestNonce = 0;
   const townRuntime = shallowRef<TownRuntimeDefinition | null>(null);
   const town = shallowRef<TownProjection | null>(null);
   let storage: TianshuStorage | undefined = options.storage;
@@ -281,6 +286,11 @@ export function createGameController(
     await autosave(pending.reason, true);
   }
   async function performPresentationStep(step: PresentedEvent['steps'][number]): Promise<void> {
+    const shop = shopOpenPresentation(step);
+    if (shop) {
+      shopRequest.value = { shopKey: shop.shopKey, nonce: ++shopRequestNonce };
+      return;
+    }
     if (step.op === 'ui/showText' || step.op === 'ui/revealText') {
       await showTextStep(step);
       return;
@@ -705,6 +715,16 @@ export function createGameController(
   async function dialogueChoose(choiceIndex: number): Promise<boolean> {
     return (await flowCommand({ t: 'dialogue/choose', choiceIndex })) !== undefined;
   }
+  async function queryShop(shopKey: string): Promise<{ readonly view: ShopView;
+    readonly items: NonNullable<GameProjection['shopItems']> }> {
+    const result = await host.dispatch({ t: 'shop/query', shopKey });
+    if (!result.accepted || !result.changes.shopQuery)
+      throw new GameplayRejection(result.error ?? 'SHOP_QUERY_UNAVAILABLE');
+    return { view: result.changes.shopQuery, items: result.changes.shopItems ?? [] };
+  }
+  async function shopCommand(command: ShopTradeCommand): Promise<GameUpdate> {
+    return host.dispatch(command);
+  }
   function planId(): string {
     if (firstSleepPlanId) return firstSleepPlanId;
     firstSleepPlanId = globalThis.crypto.randomUUID();
@@ -886,6 +906,7 @@ export function createGameController(
     flowStage,
     coldEntryStage,
     presentationNotice,
+    shopRequest,
     flowTextSource: options.flowTextSource,
     ensureBattle,
     initialize,
@@ -899,6 +920,8 @@ export function createGameController(
     startDemoBattle,
     dialogueContinue,
     dialogueChoose,
+    queryShop,
+    shopCommand,
     commitFirstSleep,
     setSetting,
     setSceneRunsWorldTicks,

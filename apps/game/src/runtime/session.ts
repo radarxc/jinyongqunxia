@@ -5,14 +5,17 @@ import { createNewGameState } from '@tianshu/core/state';
 import type { BattleSessionState } from '@tianshu/core/battle';
 import type { BattleBusCommand } from '@tianshu/core';
 import type { RegionRuntimeContent } from '@tianshu/core/region';
-import type { JsonValue } from '@tianshu/shared';
+import { compareCodePoints, type JsonValue } from '@tianshu/shared';
 import type { ContentSource } from '@tianshu/data';
+import type { FacilityDialogueDef, PriceTableDef, ShopTemplateDef, TownFacilitiesDef }
+  from '@tianshu/data/schemas';
 import type { BattleLaunch, BattleUiCommand } from '../battle/contracts';
 import type { BattleRuntime as BattleRuntimeInstance } from '../battle/runtime';
 import type * as RegionSubsystem from '@tianshu/core/region-runtime';
 import type { projectDialogue as ProjectDialogue } from '@tianshu/core/dialogue-projection';
 import type { createBattleDemo as CreateBattleDemo } from '../battle/demo';
 import type { BattleRuntime as BattleRuntimeClass } from '../battle/runtime';
+import type * as ShopCommandSubsystem from '@tianshu/core/shop-command';
 import { createPreviewSession } from './bootstrap';
 import { equipmentRules, type ChapterAssetLoader, type GameContent, type StaticGameContent,
   type TownLoader } from './content';
@@ -23,8 +26,10 @@ import { validateSession } from './validate';
 import { createAsyncCore } from './core-session';
 import type { AsyncCore } from './core-session';
 import { createSessionSelectors } from './session-projection';
+import { createExploreProjection } from './explore-projection';
 import { CORE_BUILD, CORE_VERSION } from './core-version';
 import type { RegionContentSlice } from './item-content';
+import { projectItem } from '../selectors/items';
 
 const BATTLE_REJECTIONS = new Set([
   'BATTLE_ALREADY_ACTIVE', 'BATTLE_DEMO_FORBIDDEN', 'BATTLE_NOT_ACTIVE', 'BATTLE_NOT_ENDED',
@@ -86,6 +91,8 @@ function coreContent(content: GameContent, towns: GameContent['towns'], chapterI
     ...(content.worldMaps ? { worldMaps: content.worldMaps } : {}),
     ...(towns ? { towns } : {}),
     ...(content.townFacilities ? { townFacilities: content.townFacilities } : {}),
+    ...(content.shopTemplates ? { shopTemplates: content.shopTemplates } : {}),
+    ...(content.priceTables ? { priceTables: content.priceTables } : {}),
     ...(content.facilityDialogues ? { facilityDialogues: content.facilityDialogues } : {}),
     ...(content.townEventAnchors ? { townEventAnchors: content.townEventAnchors } : {}),
     ...(content.townNpcWorld ? { townNpcWorld: content.townNpcWorld } : {}),
@@ -119,7 +126,59 @@ function mergeRegionContent(content: GameContent, loaded: RegionContentSlice): G
     regionLoot: [...content.regionLoot ?? [], ...loaded.loot],
   };
 }
+interface ShopContentSlice {
+  readonly shopTemplates: readonly ShopTemplateDef[]; readonly priceTables: readonly PriceTableDef[];
+  readonly townFacilities: readonly TownFacilitiesDef[];
+  readonly facilityDialogues: readonly FacilityDialogueDef[];
+}
+function shopRuleName(name: string): boolean {
+  return name === 'common.rules.base.json' || /^ch\d{2}\.rules\.base(?:\.p\d{3})?\.json$/u.test(name);
+}
+async function loadShopContent(source: ContentSource, chapter: string): Promise<ShopContentSlice> {
+  const [{ loadChapterPackLeaves }, { FacilityDialogueSchema, PriceTableSchema,
+    ShopTemplateSchema, TownFacilitiesSchema }] = await Promise.all([
+    import('@tianshu/data'), import('@tianshu/data/schemas'),
+  ]);
+  let pack: Awaited<ReturnType<typeof loadChapterPackLeaves>>;
+  try {
+    pack = await loadChapterPackLeaves(source, chapter, (leaf) =>
+      leaf.kind === 'rules' && shopRuleName(leaf.logicalName));
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'SHOP_CONTENT_READ_FAILED';
+    if (message.startsWith('ITEM_RULES_UNAVAILABLE:')) throw error;
+    throw new Error(`ITEM_RULES_UNAVAILABLE:${message}`, { cause: error });
+  }
+  const rows = Object.values(pack.leaves).flatMap((value) => Array.isArray(value) ? value : []);
+  const values = <T>(kind: string, parse: (value: unknown) => T): T[] => rows.flatMap((row) => {
+    if (!row || typeof row !== 'object' || Array.isArray(row)) return [];
+    const entry = row as { kind?: unknown; value?: unknown };
+    return entry.kind === kind ? [parse(entry.value)] : [];
+  }).sort((left, right) => compareCodePoints(String((left as { key?: string; layoutKey?: string })
+    .key ?? (left as { layoutKey?: string }).layoutKey ?? ''),
+  String((right as { key?: string; layoutKey?: string }).key ??
+    (right as { layoutKey?: string }).layoutKey ?? '')));
+  return {
+    shopTemplates: values('shopTemplate', (value) => ShopTemplateSchema.parse(value)),
+    priceTables: values('priceTable', (value) => PriceTableSchema.parse(value)),
+    townFacilities: values('townFacility', (value) => TownFacilitiesSchema.parse(value)),
+    facilityDialogues: values('facilityDialogue', (value) => FacilityDialogueSchema.parse(value)),
+  };
+}
+function withShopContent(content: GameContent, shop: ShopContentSlice): GameContent {
+  return { ...content, ...shop };
+}
+function memoizedContentSource(source: ContentSource): ContentSource {
+  const reads = new Map<string, Promise<unknown>>();
+  return { readJson(path) {
+    const existing = reads.get(path);
+    if (existing) return existing;
+    const pending = source.readJson(path);
+    reads.set(path, pending);
+    return pending;
+  } };
+}
 function dirtyViews(command: Command): readonly DirtyView[] {
+  if (command.t === 'shop/buy' || command.t === 'shop/sell') return ['hud', 'inventory'];
   if (command.t === 'world/tick') return ['hud'];
   if (command.t.startsWith('dialogue/'))
     return ['hud', 'characters', 'inventory', 'quests', 'dialogue', 'region'];
@@ -154,6 +213,7 @@ export interface GameSessionOptions { readonly demo?: boolean; readonly seedSour
     readonly battleDemo?: () => Promise<BattleDemoFactory>;
     readonly region?: () => Promise<RegionSubsystemModule>;
     readonly dialogueProjection?: () => Promise<DialogueProjection>;
+    readonly shopQuery?: () => Promise<typeof ShopCommandSubsystem>;
   };
 }
 export function createGameSession(content: GameContent, initial?: SessionSnapshot,
@@ -170,7 +230,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
   if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
   let regionStaticSentFor: string | null = null;
   let core: AsyncCore = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
-  let selectors = createSessionSelectors(content, () => townDefinition);
+  let selectors = createExploreProjection(createSessionSelectors(content, () => townDefinition),
+    content);
   let battle: BattleRuntimeInstance | null = null;
   const subsystem = options.subsystemLoaders;
   const battleRuntime = retryableSubsystem('BATTLE_SUBSYSTEM_UNAVAILABLE',
@@ -181,6 +242,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     subsystem?.region ?? loadRegionSubsystem);
   const dialogueProjection = retryableSubsystem('DIALOGUE_SUBSYSTEM_UNAVAILABLE',
     subsystem?.dialogueProjection ?? loadDialogueProjection);
+  const shopQuery = retryableSubsystem('SHOP_SUBSYSTEM_UNAVAILABLE',
+    subsystem?.shopQuery ?? (() => import('@tianshu/core/shop-command')));
   async function prepareBattle(launch: BattleLaunch): Promise<BattleRuntimeInstance> {
     const BattleRuntime = await battleRuntime();
     const protagonistId = state.profile.protagonist?.characterId;
@@ -361,7 +424,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
     async query() { const projectDialogue = await dialogueProjection();
       battle = await projectActiveBattle();
       return { ...selectors.query(), dialogue: projectDialogue(state), ...await regionChanges(),
-        firstSleepAllocation: firstSleepQueryForState(state), battle: battle?.packet(true) ?? null }; },
+        shopQuery: null, shopItems: [], firstSleepAllocation: firstSleepQueryForState(state),
+        battle: battle?.packet(true) ?? null }; },
     snapshot: () => {
       if (state.dialogue) throw new Error('DIALOGUE_SAVE_UNAVAILABLE');
       return cloneGameState(state);
@@ -412,6 +476,18 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         const preview = runtime ? (await regionSubsystem()).queryRegionPath(state, runtime, command.hex)
           : { ok: false as const, reason: 'REGION_UNAVAILABLE' as const };
         return { accepted: true, changes: { regionPathPreview: preview }, events: [] };
+      }
+      if (command.t === 'shop/query') {
+        const { queryShop } = await shopQuery();
+        const view = queryShop(state, coreContent(content, loadedTowns, state.chapter.chapterId),
+          command.shopKey);
+        const items = new Set([...view.offers.map((row) => row.itemId),
+          ...view.buys.map((row) => row.itemId)]);
+        return { accepted: true, changes: { shopQuery: view, shopItems: content.items
+          .filter((item) => items.has(item.id)).map((item) => projectItem(item,
+            state.party.inventory.stacks.find((stack) => stack.itemId === item.id)?.count ?? 0,
+            content.assets)) },
+        events: [] };
       }
       if (isBattleCommand(command)) {
         try { return await battleCommand(command); } catch (error) {
@@ -500,7 +576,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         state = legacyWithoutRegions ? { ...mounted, world: { ...mounted.world, navigation: {
           ...mounted.world.navigation, pendingMount: null } } } : mounted;
         content = targetContent;
-        selectors = createSessionSelectors(content, () => townDefinition);
+        selectors = createExploreProjection(createSessionSelectors(content, () => townDefinition),
+          content);
         core = createAsyncCore(state, coreContent(content, loadedTowns, state.chapter.chapterId));
       } else {
         state = committed;
@@ -548,10 +625,13 @@ export async function createLoadedGameSession(base: StaticGameContent, source: C
   const contentFor = (chapter: string): Promise<GameContent> => {
     const existing = loaded.get(chapter);
     if (existing) return existing;
-    const pending = loadGameContent(base, source, chapter, loadAssets).catch((error: unknown) => {
+    const attemptSource = memoizedContentSource(source);
+    const pending = Promise.all([loadGameContent(base, attemptSource, chapter, loadAssets),
+      loadShopContent(attemptSource, chapter)]).then(([game, shop]) => withShopContent(game, shop))
+      .catch((error: unknown) => {
       loaded.delete(chapter);
       throw error;
-    });
+      });
     loaded.set(chapter, pending);
     return pending;
   };
