@@ -32118,7 +32118,8 @@
     "ENG-buildgen-r9-layer",
     "ENG-buildgen-p4-invariants",
     "TOOL-buildgen-t1-placeholders",
-    "ENG-town2-chunks"
+    "ENG-town2-chunks",
+    "ENG-buildgen-fixture-world"
    ],
    "review": false,
    "web": true,
@@ -56896,6 +56897,72 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-buildgen-fixture-world",
+   "title": "城镇 3D 古建 · 网格器按世界坐标消费方案家具（INV-2 室内净空检查与屏风）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "deps": [
+    "ENG-interior-i1-core",
+    "ENG-interior-r8-props"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "协调者 2026-10-12 r8 审核交接：i1 输出世界坐标 fixture，core/inspect.ts 与 parts/walls.ts 仍按局部坐标；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "packages/render/src/buildgen/mesher/core/inspect.ts",
+    "packages/render/src/buildgen/mesher/parts/walls.ts",
+    "packages/render/src/buildgen/mesher/**",
+    "packages/render/src/buildgen/__tests__/fixture-world.test.ts",
+    "packages/render/src/buildgen/__tests__/hall.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/__tests__/fixture-world.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [],
+   "prompt": "ENG-buildgen-fixture-world.md"
   }
  ]
 }
