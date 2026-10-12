@@ -218,7 +218,18 @@ def start_run(tid: str, a, note: str | None) -> bool:
         nf = cdir(tid) / f"note_run{n}.md"
         nf.write_text(note, encoding="utf-8")
         argv += ["--note", str(nf)]
-    rc, out = step(*argv)
+    # 执行器也看到审核清单（render_prompt 读 TIANSHU_REVIEW_CHECKS）；只在启动执行器时设置。
+    checks = str((ROOT / a.checks).resolve()) if getattr(a, "checks", None) else None
+    previous = os.environ.get("TIANSHU_REVIEW_CHECKS")
+    if checks:
+        os.environ["TIANSHU_REVIEW_CHECKS"] = checks
+    try:
+        rc, out = step(*argv)
+    finally:
+        if previous is None:
+            os.environ.pop("TIANSHU_REVIEW_CHECKS", None)
+        else:
+            os.environ["TIANSHU_REVIEW_CHECKS"] = previous
     last = [ln for ln in out.strip().splitlines() if ln.strip()]
     log(tid, f"start rc={rc}: " + (last[0][:300] if last else ""))
     if rc != 0 or "已启动" not in out:
