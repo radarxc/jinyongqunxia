@@ -1,0 +1,388 @@
+schemaVersion: buildkit-layers.v1
+kit: song_dali
+status: candidate
+tool: procedural
+model: numpy+pillow
+created: '2026-10-11T00:00:00Z'
+command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+masterSize: [1024, 1024]
+layers:
+  - index: 0
+    id: tile_roof
+    file: layers/tile_roof.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · tile_roof，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：仰合瓦列距 230 mm、块面纵距 320 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2070, 1920]
+    scaleMm: [230, 320]
+    sha256: 0710c6349fb74853748ef8272e82fab1134befd2a644ab4dd867065e339266be
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；仰合瓦列距 230 mm、块面纵距 320 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 1
+    id: ridge_tiles
+    file: layers/ridge_tiles.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · ridge_tiles，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：脊瓦 230×330 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [920, 990]
+    scaleMm: [230, 330]
+    sha256: 2910334f4c9eb650a5da9f05372eb6c6d55d63110efab9b7a1682b18e3c43803
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；脊瓦 230×330 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 2
+    id: eave_soffit
+    file: layers/eave_soffit.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · eave_soffit，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：望板椽条间距 230 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [920, 1000]
+    scaleMm: [230, null]
+    sha256: cac91155f362429bc78c346d64894b82b6bc6ebb702510ed825e9d0d6fcf27dc
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；望板椽条间距 230 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 3
+    id: timber_lacquer
+    file: layers/timber_lacquer.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · timber_lacquer，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：漆木板宽 220 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1100, 1000]
+    scaleMm: [220, null]
+    sha256: 2e1af5d5bca3f0b707f1a94307f3345980fc9cb4ba1bebefca50162299331466
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；漆木板宽 220 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 4
+    id: timber_raw
+    file: layers/timber_raw.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · timber_raw，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：原木板宽 230 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [920, 1000]
+    scaleMm: [230, null]
+    sha256: c9dfbc620e590181820e735f7a9a4ddec51cc10dbf579621eb3f5e9f937ffe94
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；原木板宽 230 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 5
+    id: plaster_lime
+    file: layers/plaster_lime.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · plaster_lime，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：低频灰泥斑驳约 900×700 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1800, 2100]
+    scaleMm: [900, 700]
+    sha256: 3ae74a0814a1716cb7002bd9d9d640c9684804c2314c21a60892a88ed0cb497d
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；低频灰泥斑驳约 900×700 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 6
+    id: earth_plaster
+    file: layers/earth_plaster.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · earth_plaster，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：低频土抹面斑驳约 800×650 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2400, 1950]
+    scaleMm: [800, 650]
+    sha256: a317e2baaf0bfd86997cdeb51d410b9d5ba93869829e591ce1f876dcafdaccf9
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；低频土抹面斑驳约 800×650 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 7
+    id: stone_rubble
+    file: layers/stone_rubble.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · stone_rubble，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：毛石块径 300–500 mm，中值 400；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2000, 2000]
+    scaleMm: [400, 400]
+    sha256: 651d5e11323a97854be891c7cf8f9418251d2d7b8589696f88ff2b30145cee29
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；毛石块径 300–500 mm，中值 400；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 8
+    id: stone_ashlar
+    file: layers/stone_ashlar.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · stone_ashlar，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：条石 400×200 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2000, 2000]
+    scaleMm: [400, 200]
+    sha256: 1a4c22daa7a33815d182092cdd50f6554dbfe48df29906d28892c668e4d07232
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；条石 400×200 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 9
+    id: brick_grey
+    file: layers/brick_grey.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · brick_grey，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：宋砖顺砌面 410×200 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1230, 1000]
+    scaleMm: [410, 200]
+    sha256: 86e4005f2ec6b6d31f0b31240851a5ffa74addd7790c16d023736cbabeb25200
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；宋砖顺砌面 410×200 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 10
+    id: lattice_window
+    file: layers/lattice_window.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · lattice_window，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：直棂/方格间距 70 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [980, 980]
+    scaleMm: [70, 70]
+    sha256: f404f58b7da948388adb4d5919c48fab84add9f5e073efcee61352233e08626e
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；直棂/方格间距 70 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 11
+    id: door_planks
+    file: layers/door_planks.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · door_planks，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：门板宽 225 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [900, 2000]
+    scaleMm: [225, null]
+    sha256: 443ff1c8932aa7f4db195551f1bdb0c0f795dfa68109ec4c117fbf00aed121ba
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；门板宽 225 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 12
+    id: floor_pavers
+    file: layers/floor_pavers.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · floor_pavers，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：方地砖 500 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2000, 2000]
+    scaleMm: [500, 500]
+    sha256: 74c513ee8189675db68d3112da41d1b3739652882cab247c8075049367783b33
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；方地砖 500 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 13
+    id: floor_wood
+    file: layers/floor_wood.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · floor_wood，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：木地板板宽 200 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2000, 2000]
+    scaleMm: [200, null]
+    sha256: 76550bc0168c260779702b2de6482a83ebe95680cf00ce52145511abf14aa554
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；木地板板宽 200 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 14
+    id: painted_band
+    file: layers/painted_band.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · painted_band，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：彩画带 250 mm 几何重复；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 1000]
+    scaleMm: [250, 250]
+    sha256: efec553ea1842e0f5b0f076161628bb8e14c9fdb06241607d47d084c0be54847
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；彩画带 250 mm 几何重复；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 15
+    id: cloth_awning
+    file: layers/cloth_awning.png
+    category: buildkit_layer
+    style: default
+    subject: 'song_dali · cloth_awning，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：布棚经纬约 12 mm（占位可读性放大）；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [996, 996]
+    scaleMm: [12, 12]
+    sha256: e112f4e71225cbb9c99e3807f083a3250afd0e5da38db6ffdb8b2f7c0d1793bf
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；布棚经纬约 12 mm（占位可读性放大）；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+strips:
+  - id: song_dali_strip_512
+    file: strip_512.webp
+    category: buildkit_strip
+    style: default
+    subject: 'song_dali 程序化占位贴图按层下标纵向条带'
+    prompt: '由 1024x1024 母版按 manifest 层序缩至 512x512 后纵向拼接。'
+    negative: '不重排、不裁切、不加边距、不改平铺原点。'
+    references: []
+    tool: procedural
+    model: pillow-webp
+    effort: deterministic
+    command: 'python3 tools/buildgen/build_layer_strips.py --all --check'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/build_layer_strips.py
+    size: 512x8192
+    layerSize: 512
+    layerCount: 16
+    order: [tile_roof, ridge_tiles, eave_soffit, timber_lacquer, timber_raw, plaster_lime, earth_plaster, stone_rubble, stone_ashlar, brick_grey, lattice_window, door_planks, floor_pavers, floor_wood, painted_band, cloth_awning]
+    sha256: 3a1301572f839f7278f57d231d556baaa9ca7aea85cfaa398ea1dbb81cb2442c
+    status: candidate
+    notes: 'WebP quality 85；层下标从上到下 0..15。'
+  - id: song_dali_strip_256
+    file: strip_256.webp
+    category: buildkit_strip
+    style: default
+    subject: 'song_dali 程序化占位贴图按层下标纵向条带'
+    prompt: '由 1024x1024 母版按 manifest 层序缩至 256x256 后纵向拼接。'
+    negative: '不重排、不裁切、不加边距、不改平铺原点。'
+    references: []
+    tool: procedural
+    model: pillow-webp
+    effort: deterministic
+    command: 'python3 tools/buildgen/build_layer_strips.py --all --check'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/build_layer_strips.py
+    size: 256x4096
+    layerSize: 256
+    layerCount: 16
+    order: [tile_roof, ridge_tiles, eave_soffit, timber_lacquer, timber_raw, plaster_lime, earth_plaster, stone_rubble, stone_ashlar, brick_grey, lattice_window, door_planks, floor_pavers, floor_wood, painted_band, cloth_awning]
+    sha256: 387a5b9a9b6b6b9c30613456437953248ddee15a9c94ef5cc3be2ed458439632
+    status: candidate
+    notes: 'WebP quality 85；层下标从上到下 0..15。'
