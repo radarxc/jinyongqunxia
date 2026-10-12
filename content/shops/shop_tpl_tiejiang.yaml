@@ -1,0 +1,13 @@
+schemaVersion: shop-template.v1
+key: shop_tpl_tiejiang
+nameKey: shop.template.tiejiang.name
+facilitySub: tiejiang
+# （原创扩展）本货单只供北宋大理试点，不宣称原著店铺曾售这些物品。
+# 【建议值】选物品库中标为宋代或跨时代可用的低阶常备兵器；普通店三日补货。
+supply:
+  - { itemId: eq_dandao, maxGrade: 3, baseStock: 3, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }
+  - { itemId: eq_songwenguijian, maxGrade: 3, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }
+  - { itemId: eq_changqiang, maxGrade: 3, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }
+  - { itemId: eq_duanbi, maxGrade: 3, baseStock: 3, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }
+  - { itemId: eq_ruanbian, maxGrade: 3, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }
+  - { itemId: eq_changsuo, maxGrade: 3, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }

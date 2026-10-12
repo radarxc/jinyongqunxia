@@ -1,0 +1,13 @@
+schemaVersion: shop-template.v1
+key: shop_tpl_tiejiang_tang
+nameKey: shop.template.tiejiang_tang.name
+facilitySub: tiejiang
+# （原创扩展）本货单只供 702 年 ch10 大理与唐西州试点，不宣称原著店铺曾售这些物品。
+# 【建议值】沿用物品库的唐军 / 西域低阶器械；常备量 2–3，普通店三日补货。
+supply:
+  - { itemId: eq_tanghengdao, maxGrade: 2, baseStock: 3, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }
+  - { itemId: eq_tangjunyingbang, maxGrade: 2, baseStock: 3, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }
+  - { itemId: eq_tangjunzhangyue, maxGrade: 2, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }
+  - { itemId: eq_tangjunzhijian, maxGrade: 2, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }
+  - { itemId: eq_tangmaqishuo, maxGrade: 2, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }
+  - { itemId: eq_xiyuqidao, maxGrade: 2, baseStock: 2, restockEveryDays: 3, restockAmount: 1, priceBp: 10000 }

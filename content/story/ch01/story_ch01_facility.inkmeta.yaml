@@ -1,0 +1,8 @@
+schemaVersion: inkmeta.v1
+storyId: story_ch01_facility
+chapter: ch01_tianlong
+region: rg_yunnan
+entryKnots: [yaopu_keeper, zahuo_keeper, kedian_keeper, tiejiang_keeper, chengyi_keeper, mashi_keeper, shitan_vendor]
+readFlags: []
+commands: [dialogue/speaker, facility/openShop]
+npcs: []

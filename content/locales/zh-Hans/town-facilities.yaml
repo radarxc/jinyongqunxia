@@ -1,0 +1,62 @@
+shop:
+  template:
+    yaopu:
+      name: 药铺 # （原创扩展）
+    zahuo:
+      name: 杂货铺 # （原创扩展）
+    tiejiang:
+      name: 铁匠铺 # （原创扩展）
+    tiejiang_tang:
+      name: 铁作 # （原创扩展）
+    chengyi:
+      name: 成衣铺 # （原创扩展）
+    mashi:
+      name: 马市 # （原创扩展）
+    shitan:
+      name: 食摊 # （原创扩展）
+town:
+  city_dali__ch01:
+    yaopu_01:
+      name: 苍山药肆 # （原创扩展）
+    zahuo_01:
+      name: 南门杂货 # （原创扩展）
+    kedian_01:
+      name: 洱风客舍 # （原创扩展）
+    tiejiang_01:
+      name: 太和铁作 # （原创扩展）
+    chengyi_01:
+      name: 白布衣肆 # （原创扩展）
+    mashi_01:
+      name: 苍洱马市 # （原创扩展）
+    shitan_01:
+      name: 南市食案 # （原创扩展）
+  city_dali__ch10:
+    yaopu_01:
+      name: 山南药行 # （原创扩展）
+    zahuo_01:
+      name: 洱岸货摊 # （原创扩展）
+    kedian_01:
+      name: 洱岸逆旅 # （原创扩展）
+    tiejiang_01:
+      name: 横街铁作 # （原创扩展）
+    chengyi_01:
+      name: 青布衣摊 # （原创扩展）
+    mashi_01:
+      name: 山口马集 # （原创扩展）
+    shitan_01:
+      name: 洱岸饼案 # （原创扩展）
+  city_turpan__ch10:
+    yaopu_01:
+      name: 西州药行 # （原创扩展）
+    zahuo_01:
+      name: 胡商货栈 # （原创扩展）
+    kedian_01:
+      name: 高昌逆旅 # （原创扩展）
+    tiejiang_01:
+      name: 东市铁作 # （原创扩展）
+    chengyi_01:
+      name: 西市衣肆 # （原创扩展）
+    mashi_01:
+      name: 驼马行 # （原创扩展）
+    shitan_01:
+      name: 胡饼案 # （原创扩展）

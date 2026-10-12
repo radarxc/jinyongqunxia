@@ -1,0 +1,53 @@
+schemaVersion: town-facilities.v1
+layoutKey: city_dali__ch10
+# （原创扩展）设施功能、铺名与建筑配对用于试点流程，不作为历史地籍事实。
+facilities:
+  - key: yaopu_01
+    kind: shop
+    sub: yaopu
+    buildingId: bi_0010
+    nameKey: town.city_dali__ch10.yaopu_01.name
+    shop: { templateRef: shop_tpl_yaopu, kind: normal }
+    roles: [keeper]
+  - key: zahuo_01
+    kind: shop
+    sub: zahuo
+    buildingId: bi_0011
+    nameKey: town.city_dali__ch10.zahuo_01.name
+    shop: { templateRef: shop_tpl_zahuo, kind: normal }
+    roles: [keeper]
+  - key: kedian_01
+    kind: inn
+    sub: kedian
+    buildingId: bi_0005
+    nameKey: town.city_dali__ch10.kedian_01.name
+    shop: null
+    roles: [keeper]
+  - key: tiejiang_01
+    kind: stall
+    sub: tiejiang
+    buildingId: bi_0006
+    nameKey: town.city_dali__ch10.tiejiang_01.name
+    shop: { templateRef: shop_tpl_tiejiang_tang, kind: normal }
+    roles: [keeper]
+  - key: chengyi_01
+    kind: stall
+    sub: chengyi
+    buildingId: bi_0007
+    nameKey: town.city_dali__ch10.chengyi_01.name
+    shop: { templateRef: shop_tpl_chengyi, kind: normal }
+    roles: [keeper]
+  - key: mashi_01
+    kind: stall
+    sub: mashi
+    buildingId: bi_0008
+    nameKey: town.city_dali__ch10.mashi_01.name
+    shop: { templateRef: shop_tpl_mashi, kind: normal }
+    roles: [keeper]
+  - key: shitan_01
+    kind: stall
+    sub: shitan
+    buildingId: bi_0009
+    nameKey: town.city_dali__ch10.shitan_01.name
+    shop: { templateRef: shop_tpl_shitan, kind: normal }
+    roles: [vendor]
