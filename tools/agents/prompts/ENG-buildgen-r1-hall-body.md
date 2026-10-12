@@ -21,6 +21,7 @@
 
 ## 约束
 - 只写：`packages/render/src/buildgen/mesher/parts/{platform,steps,columns,beams,walls,frames,brackets,dressing}.ts`、`packages/render/src/buildgen/mesher/recipes/hall.ts`、`packages/render/src/buildgen/mesher/core/inspect.ts`、`packages/render/src/buildgen/__tests__/hall.test.ts` 与本任务报告。不改屋顶文件（`mesher/roof/**`，r2 / r3）、不改其他配方。
+- **协调者 10-11 返修裁定扩大的写集**（tasks.json 同步）：`packages/render/src/buildgen/stubs.test.ts`（r1 已接管 INV-2 / INV-4：空网格返回 `[]`，只保留 INV-6 抛桩断言）、`packages/render/src/buildgen/testing/mini-plans.ts`（迷你方案 floors 改成与 tech/16 §3 金样一致的室内净尺寸，例如 6×5 店铺室内约 4.4 × 3.1 m，不再统一内缩 300 mm；fixture 不得 import mesher）、`packages/render/src/buildgen/{generate,inspect}.test.ts`（只在依赖迷你方案 floors 数值或 INV-2/4 桩语义处修改，不删用例、不放宽断言）。
 - 不 import three；不新增依赖；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。包级 render 测试含 rig CPU 性能门，负载高时失败如实报告，不得放宽或跳过。
 
 检查：
