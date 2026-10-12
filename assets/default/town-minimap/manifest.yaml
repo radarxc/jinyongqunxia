@@ -1,0 +1,46 @@
+- id: minimap_city_dali__ch01
+  file: city_dali__ch01.webp
+  files:
+    city_dali__ch01.webp:
+      sha256: 89c2759fb72983f2a09340bb3d1cbcda9c308d899c67fd3c941d098bb10bad4a
+    city_dali__ch01.json:
+      sha256: 1ec33abad9f04711f7094710348341b5ffbb64fed2b8bbf6f6a9a9397f79d595
+  category: town-minimap
+  style: default
+  subject: city_dali__ch01 微缩城镇小地图
+  prompt: python3 tools/town/make_minimap.py
+  negative: 无抽象色块；不改作者基线
+  references:
+  - baseline/town/town_dali__ch01.preview.png
+  tool: tools/town/make_minimap.py
+  model: none
+  effort: deterministic Pillow WebP derivation
+  created: '2026-10-11'
+  source_path: assets/default/baseline/town/town_dali__ch01.preview.png
+  size: 1536x899
+  sha256: 89c2759fb72983f2a09340bb3d1cbcda9c308d899c67fd3c941d098bb10bad4a
+  status: candidate
+  notes: 派生自 baseline/town/town_dali__ch01.preview.png（基线，状态 candidate；AR-117）；生成命令：python3 tools/town/make_minimap.py
+- id: minimap_city_hangzhou__ch02
+  file: city_hangzhou__ch02.webp
+  files:
+    city_hangzhou__ch02.webp:
+      sha256: 98e12f54c0ed1abca120c7cd7f211fbe46e47b706060b5d129a3ec172b445522
+    city_hangzhou__ch02.json:
+      sha256: bf0297ba80812ed57443ee85fa19502cd5acb86a71be5abbe12d4d15516655df
+  category: town-minimap
+  style: default
+  subject: city_hangzhou__ch02 微缩城镇小地图
+  prompt: python3 tools/town/make_minimap.py
+  negative: 无抽象色块；不改作者基线
+  references:
+  - baseline/town/town_hangzhou__ch02.preview.png
+  tool: tools/town/make_minimap.py
+  model: none
+  effort: deterministic Pillow WebP derivation
+  created: '2026-10-11'
+  source_path: assets/default/baseline/town/town_hangzhou__ch02.preview.png
+  size: 2560x1280
+  sha256: 98e12f54c0ed1abca120c7cd7f211fbe46e47b706060b5d129a3ec172b445522
+  status: candidate
+  notes: 派生自 baseline/town/town_hangzhou__ch02.preview.png（基线，状态 candidate；AR-117）；生成命令：python3 tools/town/make_minimap.py

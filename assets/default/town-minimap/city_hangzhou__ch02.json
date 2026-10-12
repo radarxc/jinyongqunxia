@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "town-minimap.v1",
+  "image": {
+    "file": "city_hangzhou__ch02.webp",
+    "width": 2560,
+    "height": 1280
+  },
+  "transform": {
+    "scale": 0.25,
+    "topPaddingPx": 0.0,
+    "gridWidth": 160,
+    "gridHeight": 160,
+    "tileWidthPx": 64,
+    "tileHeightPx": 32
+  },
+  "south": [
+    -0.89442719,
+    0.4472136
+  ],
+  "markers": [
+    {
+      "id": "lm_linan_palace_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "和宁门",
+      "px": [
+        864.0,
+        800.0
+      ],
+      "buildingId": "bi_0001",
+      "entrance": [
+        898.588,
+        777.294
+      ]
+    },
+    {
+      "id": "lm_jingling_palace",
+      "kind": "temple",
+      "glyph": "寺",
+      "name": "景灵宫",
+      "px": [
+        1484.0,
+        318.0
+      ],
+      "buildingId": "bi_0002",
+      "entrance": [
+        1436.311,
+        342.155
+      ]
+    },
+    {
+      "id": "landmark_bi_0009",
+      "kind": "office",
+      "glyph": "衙",
+      "name": "衙署",
+      "px": [
+        912.0,
+        664.0
+      ],
+      "buildingId": "bi_0009",
+      "entrance": [
+        851.737,
+        689.868
+      ]
+    },
+    {
+      "id": "gate_south_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "嘉会门",
+      "px": [
+        832.0,
+        988.0
+      ]
+    },
+    {
+      "id": "gate_north_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "余杭门",
+      "px": [
+        1960.0,
+        400.0
+      ]
+    },
+    {
+      "id": "gate_bian_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "便门",
+      "px": [
+        952.0,
+        968.0
+      ]
+    },
+    {
+      "id": "gate_houchao_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "候潮门",
+      "px": [
+        1224.0,
+        976.0
+      ]
+    },
+    {
+      "id": "gate_baoan_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "保安门",
+      "px": [
+        1320.0,
+        928.0
+      ]
+    },
+    {
+      "id": "gate_xin_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "新开门",
+      "px": [
+        1560.0,
+        920.0
+      ]
+    },
+    {
+      "id": "gate_chongxin_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "崇新门",
+      "px": [
+        1736.0,
+        832.0
+      ]
+    },
+    {
+      "id": "gate_east_water_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "东青门",
+      "px": [
+        1928.0,
+        736.0
+      ]
+    },
+    {
+      "id": "gate_genshan_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "艮山门",
+      "px": [
+        2120.0,
+        576.0
+      ]
+    },
+    {
+      "id": "gate_qianhu_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "钱湖门",
+      "px": [
+        712.0,
+        672.0
+      ]
+    },
+    {
+      "id": "gate_qingbo_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "清波门",
+      "px": [
+        904.0,
+        512.0
+      ]
+    },
+    {
+      "id": "gate_fengyu_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "丰豫门",
+      "px": [
+        1128.0,
+        400.0
+      ]
+    },
+    {
+      "id": "gate_west_lake_gate",
+      "kind": "gate",
+      "glyph": "门",
+      "name": "钱塘门",
+      "px": [
+        1320.0,
+        304.0
+      ]
+    }
+  ]
+}

@@ -83,6 +83,7 @@ async function copyManifestEntries(sourceRoot: string, outputRoot: string): Prom
 export async function publishTownAssets(root: string): Promise<number> {
   const buildkit = join(root, 'assets/default/buildkit');
   const model3d = join(root, 'assets/default/model3d');
+  const minimap = join(root, 'assets/default/town-minimap');
   let copied = 0;
   if (await exists(buildkit)) {
     const output = join(root, 'apps/game/public/assets/default/buildkit');
@@ -100,6 +101,11 @@ export async function publishTownAssets(root: string): Promise<number> {
       await rm(output, { recursive: true, force: true });
       copied += await copyManifestEntries(town, output);
     }
+  }
+  if (await exists(minimap)) {
+    const output = join(root, 'apps/game/public/assets/default/town-minimap');
+    await rm(output, { recursive: true, force: true });
+    copied += await copyManifestEntries(minimap, output);
   }
   return copied;
 }

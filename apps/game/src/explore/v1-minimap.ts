@@ -20,11 +20,25 @@ export interface V1MinimapBitmap {
   readonly metresPerPx: number; readonly pixels: Uint8ClampedArray;
 }
 export interface V1MinimapMarker {
-  readonly id: string; readonly kind: 'facility' | 'npc' | 'meditation';
+  readonly id: string; readonly kind: 'facility' | 'shop' | 'inn' | 'temple' | 'pagoda'
+    | 'gate' | 'office' | 'npc' | 'meditation';
   readonly x: number; readonly z: number; readonly icon: string; readonly label: string;
   readonly target: { readonly kind: 'anchor'; readonly anchorId: string }
-    | { readonly kind: 'building'; readonly buildingId: string };
+    | { readonly kind: 'building'; readonly buildingId: string }
+    | { readonly kind: 'point'; readonly x: number; readonly z: number };
 }
+export interface TownMinimapMetadata {
+  readonly schemaVersion: 'town-minimap.v1';
+  readonly image: { readonly file: string; readonly width: number; readonly height: number };
+  readonly transform: { readonly scale: number; readonly topPaddingPx: number;
+    readonly gridWidth: number; readonly gridHeight: number; readonly tileWidthPx: 64; readonly tileHeightPx: 32 };
+  readonly south: readonly [number, number];
+  readonly markers: readonly { readonly id: string; readonly kind: 'shop' | 'inn' | 'temple'
+    | 'pagoda' | 'gate' | 'office'; readonly glyph: string; readonly name: string;
+    readonly buildingId?: string; readonly px: readonly [number, number];
+    readonly entrance?: readonly [number, number] }[];
+}
+export interface V1PaintedMinimap { readonly metadata: TownMinimapMetadata; readonly bitmap: ImageBitmap }
 
 const scratchWorld = { x: 0, y: 0, z: 0, set(x: number, y: number, z: number) {
   this.x = x; this.y = y; this.z = z; return this;
@@ -43,6 +57,132 @@ export function v1TownPointToWorld(point: TownPoint, gridHeight: number): readon
 
 export function v1WorldToTownPoint(x: number, z: number): TownPoint {
   return townWorldToHex(x, z);
+}
+export function v1WorldToImageMatrix(metadata: TownMinimapMetadata):
+readonly [number, number, number, number, number, number] {
+  const scale = metadata.transform.scale; const height = metadata.transform.gridHeight;
+  return [32 * scale, 16 * scale, -32 * scale, 16 * scale,
+    32 * height * scale, metadata.transform.topPaddingPx];
+}
+
+export function v1TownPointToMinimapPixel(point: TownPoint, metadata: TownMinimapMetadata): readonly [number, number] {
+  const [x, z] = v1TownPointToWorld(point, metadata.transform.gridHeight);
+  const [a, b, c, d, e, f] = v1WorldToImageMatrix(metadata);
+  return [a * x + c * z + e, b * x + d * z + f];
+}
+
+/** Projects a building-plan point through the same runtime affine as the painted town. */
+export function v1PlanningPointToMinimapPixel(
+  x: number, z: number, metadata: TownMinimapMetadata,
+): readonly [number, number] {
+  const [a, b, c, d, e, f] = v1WorldToImageMatrix(metadata);
+  const worldZ = metadata.transform.gridHeight - z;
+  return [a * x + c * worldZ + e, b * x + d * worldZ + f];
+}
+
+export function v1MinimapPixelToTownPoint(px: number, py: number, metadata: TownMinimapMetadata): TownPoint {
+  const [a, b, c, d, e, f] = v1WorldToImageMatrix(metadata);
+  const determinant = a * d - b * c;
+  const x = (d * (px - e) - c * (py - f)) / determinant;
+  const z = (-b * (px - e) + a * (py - f)) / determinant;
+  return v1WorldToTownPoint(x, z);
+}
+
+function isTownMinimapMetadata(value: unknown): value is TownMinimapMetadata {
+  if (!value || typeof value !== 'object') return false;
+  const row = value as Partial<TownMinimapMetadata>;
+  return row.schemaVersion === 'town-minimap.v1' && typeof row.image?.file === 'string'
+    && Number.isFinite(row.image.width) && Number.isFinite(row.image.height)
+    && Number.isFinite(row.transform?.scale) && Number.isFinite(row.transform?.gridHeight)
+    && row.transform?.tileWidthPx === 64 && row.transform.tileHeightPx === 32
+    && Array.isArray(row.south) && row.south.length === 2 && Array.isArray(row.markers);
+}
+
+const warnedLayouts = new Set<string>();
+export async function loadV1PaintedMinimap(
+  layoutKey: string, baseUrl: string,
+  fetcher: typeof fetch = fetch, decoder: (blob: Blob) => Promise<ImageBitmap> = createImageBitmap,
+): Promise<V1PaintedMinimap | null> {
+  try {
+    const metadataUrl = `${baseUrl.replace(/\/+$/, '')}/${layoutKey}.json`;
+    const response = await fetcher(metadataUrl);
+    if (!response.ok) throw new Error(`HTTP_${response.status}`);
+    const value: unknown = await response.json();
+    if (!isTownMinimapMetadata(value)) throw new Error('TOWN_MINIMAP_SCHEMA');
+    const imageUrl = new URL(value.image.file, new URL(metadataUrl, globalThis.location?.href ?? 'http://local/')).href;
+    const imageResponse = await fetcher(imageUrl);
+    if (!imageResponse.ok) throw new Error(`HTTP_${imageResponse.status}`);
+    return { metadata: value, bitmap: await decoder(await imageResponse.blob()) };
+  } catch (error) {
+    if (import.meta.env.DEV && !warnedLayouts.has(layoutKey)) {
+      warnedLayouts.add(layoutKey);
+      console.warn(`TOWN_MINIMAP_FALLBACK:${layoutKey}`, error);
+    }
+    return null;
+  }
+}
+
+/** TownPage loading seam: a missing painted map always schedules the real grid fallback. */
+export async function loadV1PaintedMinimapWithFallback(
+  layoutKey: string, baseUrl: string, fallback: () => void,
+  fetcher: typeof fetch = fetch, decoder: (blob: Blob) => Promise<ImageBitmap> = createImageBitmap,
+  active: () => boolean = () => true,
+): Promise<V1PaintedMinimap | null> {
+  const painted = await loadV1PaintedMinimap(layoutKey, baseUrl, fetcher, decoder);
+  if (painted === null && active()) fallback();
+  return painted;
+}
+
+interface V1QuestStatus { readonly id: string; readonly status: string }
+interface V1QuestSubjects { readonly id: string; readonly subjectNpcIds: readonly string[] }
+export function v1ActiveTaskNpcIds(
+  quests: readonly V1QuestStatus[], definitions: readonly V1QuestSubjects[],
+): ReadonlySet<string> {
+  const active = new Set(quests.filter(row => row.status === 'active').map(row => row.id));
+  return new Set(definitions.filter(row => active.has(row.id)).flatMap(row => row.subjectNpcIds));
+}
+
+export async function loadV1ActiveTaskNpcIds(
+  chapterId: string, quests: readonly V1QuestStatus[], baseUrl = '/content',
+  fetcher: typeof fetch = fetch,
+): Promise<ReadonlySet<string>> {
+  const root = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  const manifestResponse = await fetcher(`${root}/${chapterId}/manifest.json`);
+  if (!manifestResponse.ok) return new Set();
+  const manifest = await manifestResponse.json() as { leaves?: readonly { kind?: string; load?: string;
+    logicalName?: string }[] };
+  const leaves = manifest.leaves?.filter(row => row.kind === 'rules' && row.load === 'chapter'
+    && row.logicalName?.includes('.rules.base')) ?? [];
+  const definitions: V1QuestSubjects[] = [];
+  for (const leaf of leaves) {
+    const response = await fetcher(`${root}/${chapterId}/${leaf.logicalName!}`);
+    if (!response.ok) continue;
+    const rows = await response.json() as readonly { kind?: string; value?: unknown }[];
+    for (const row of rows) {
+      const value = row.value as Partial<V1QuestSubjects> | undefined;
+      if (row.kind === 'quest' && typeof value?.id === 'string' && Array.isArray(value.subjectNpcIds))
+        definitions.push({ id: value.id, subjectNpcIds: value.subjectNpcIds.filter(
+          (id): id is string => typeof id === 'string') });
+    }
+  }
+  return v1ActiveTaskNpcIds(quests, definitions);
+}
+
+export function createPaintedMinimapMarkers(metadata: TownMinimapMetadata): readonly V1MinimapMarker[] {
+  const [a, b, c, d, e, f] = v1WorldToImageMatrix(metadata);
+  const determinant = a * d - b * c;
+  const imageToWorld = (point: readonly [number, number]): readonly [number, number] => [
+    (d * (point[0] - e) - c * (point[1] - f)) / determinant,
+    (-b * (point[0] - e) + a * (point[1] - f)) / determinant,
+  ];
+  return metadata.markers.map(row => {
+    const [x, z] = imageToWorld(row.px);
+    // Painted markers are navigation hints, never an instruction to enter a building.
+    // The authored entrance is also valid for non-enterable stalls and landmarks.
+    const [tx, tz] = imageToWorld(row.entrance ?? row.px);
+    const target = { kind: 'point' as const, x: tx, z: tz };
+    return { id: row.id, kind: row.kind, x, z, icon: row.glyph, label: row.name, target };
+  });
 }
 
 export function v1PlayerHeadingRad(direction: number | undefined): number {
@@ -106,6 +246,7 @@ function facilityLabel(building: TownRuntimeView['buildings'][number]): string {
 export function createV1MinimapMarkers(
   town: TownRuntimeView, projection: TownSceneProjection,
   characterNames: ReadonlyMap<string, string> = new Map(),
+  taskNpcIds: ReadonlySet<string> = new Set(),
 ): readonly V1MinimapMarker[] {
   const markers: V1MinimapMarker[] = [];
   for (const building of town.buildings) {
@@ -120,6 +261,7 @@ export function createV1MinimapMarkers(
   }
   for (const anchor of projection.anchors) {
     if (anchor.active === false || anchor.kind === 'building' || anchor.kind === 'location') continue;
+    if (anchor.kind === 'npc' && !taskNpcIds.has(anchor.npcId ?? '')) continue;
     const [x, z] = v1TownPointToWorld(anchor.point, town.grid.height);
     const label = anchor.kind === 'npc'
       ? characterNames.get(anchor.npcId ?? '') ?? strings.passerby
@@ -129,6 +271,18 @@ export function createV1MinimapMarkers(
       label, target: { kind: 'anchor', anchorId: anchor.id } });
   }
   return markers;
+}
+
+export function createV1AssembledMinimapMarkers(
+  town: TownRuntimeView, projection: TownSceneProjection,
+  painted: readonly V1MinimapMarker[] | null,
+  characterNames: ReadonlyMap<string, string> = new Map(),
+  taskNpcIds: ReadonlySet<string> = new Set(),
+): readonly V1MinimapMarker[] {
+  const runtime = createV1MinimapMarkers(town, projection, characterNames, taskNpcIds);
+  return painted === null ? runtime : [
+    ...painted, ...runtime.filter(marker => marker.kind === 'npc'),
+  ];
 }
 
 export function v1TravelCommand(

@@ -20,9 +20,11 @@ async function fixture(): Promise<string> {
   const root = await workspace();
   const kit = join(root, 'assets/default/buildkit/song_dali');
   const town = join(root, 'assets/default/model3d/npc_test/town');
+  const minimap = join(root, 'assets/default/town-minimap');
   await Promise.all([
     mkdir(join(kit, 'layers'), { recursive: true }),
     mkdir(town, { recursive: true }),
+    mkdir(minimap, { recursive: true }),
   ]);
   await Promise.all([
     writeFile(join(kit, 'layers/foo.png'), 'layer'),
@@ -33,6 +35,8 @@ async function fixture(): Promise<string> {
     writeFile(join(town, 'lod0.glb'), 'lod0'),
     writeFile(join(town, 'lod1.glb'), 'lod1'),
     writeFile(join(town, 'old.glb'), 'old'),
+    writeFile(join(minimap, 'city_test__ch01.webp'), 'painted-town'),
+    writeFile(join(minimap, 'city_test__ch01.json'), '{"schemaVersion":"town-minimap.v1"}'),
     writeFile(
       join(kit, 'manifest.yaml'),
       [
@@ -68,6 +72,17 @@ async function fixture(): Promise<string> {
         '  status: rejected',
       ].join('\n'),
     ),
+    writeFile(
+      join(minimap, 'manifest.yaml'),
+      [
+        '- id: minimap_city_test__ch01',
+        '  file: city_test__ch01.webp',
+        '  files:',
+        '    city_test__ch01.webp: {}',
+        '    city_test__ch01.json: {}',
+        '  status: candidate',
+      ].join('\n'),
+    ),
   ]);
   return root;
 }
@@ -75,7 +90,7 @@ async function fixture(): Promise<string> {
 describe('town asset publication', () => {
   it('copies non-rejected buildkit and town model files at their relative paths', async () => {
     const root = await fixture();
-    expect(await publishTownAssets(root)).toBe(5);
+    expect(await publishTownAssets(root)).toBe(7);
     const publicRoot = join(root, 'apps/game/public/assets/default');
     await expect(
       readFile(join(publicRoot, 'buildkit/song_dali/layers/foo.png'), 'utf8'),
@@ -102,6 +117,10 @@ describe('town asset publication', () => {
       readFile(join(publicRoot, 'model3d/npc_test/town/lod1.glb'), 'utf8'),
     ).resolves.toBe('lod1');
     await expect(access(join(publicRoot, 'model3d/npc_test/town/old.glb'))).rejects.toThrow();
+    await expect(readFile(join(publicRoot, 'town-minimap/city_test__ch01.webp'), 'utf8'))
+      .resolves.toBe('painted-town');
+    await expect(readFile(join(publicRoot, 'town-minimap/city_test__ch01.json'), 'utf8'))
+      .resolves.toContain('town-minimap.v1');
   });
 
   it('removes stale files before republishing the managed directories', async () => {
@@ -118,7 +137,7 @@ describe('town asset publication', () => {
     const manifest = join(root, 'assets/default/buildkit/song_dali/manifest.yaml');
     const text = await readFile(manifest, 'utf8');
     await writeFile(manifest, text.replace('status: candidate', 'status: rejected'));
-    expect(await publishTownAssets(root)).toBe(2);
+    expect(await publishTownAssets(root)).toBe(4);
     await expect(
       access(join(root, 'apps/game/public/assets/default/buildkit/song_dali/layers/foo.png')),
     ).rejects.toThrow();

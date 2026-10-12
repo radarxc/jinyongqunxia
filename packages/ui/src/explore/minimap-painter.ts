@@ -1,22 +1,28 @@
 import { worldToMinimap } from './minimap-math';
 import type { MinimapView } from './minimap-math';
 
-export type MarkerKind = 'facility' | 'exit' | 'npc' | 'quest' | 'meditation';
+export type MarkerKind = 'facility' | 'shop' | 'inn' | 'temple' | 'pagoda' | 'gate' | 'office'
+  | 'exit' | 'npc' | 'quest' | 'meditation';
 export type MarkerTarget = { readonly kind: 'anchor'; readonly anchorId: string }
-  | { readonly kind: 'building'; readonly buildingId: string };
+  | { readonly kind: 'building'; readonly buildingId: string }
+  | { readonly kind: 'point'; readonly x: number; readonly z: number };
 export interface MinimapMarker {
   readonly id: string; readonly kind: MarkerKind; readonly x: number; readonly z: number;
   readonly icon: string; readonly label: string; readonly target: MarkerTarget;
 }
 export interface MinimapBase {
-  readonly bitmap: ImageBitmap | HTMLCanvasElement;
+  readonly bitmap: ImageBitmap | HTMLCanvasElement | HTMLImageElement;
   readonly minX: number; readonly minZ: number; readonly metresPerPx: number;
+  /** Optional source-image affine: image pixels = matrix * world XZ + offset. */
+  readonly worldToImage?: readonly [number, number, number, number, number, number];
+  readonly south?: readonly [number, number];
 }
 export interface MinimapPlayer { readonly x: number; readonly z: number; readonly headingRad: number }
 export interface MinimapDestination { readonly x: number; readonly z: number }
 
 export interface MinimapPaintContext {
   fillStyle: string; strokeStyle: string; lineWidth: number; globalAlpha: number; font: string;
+  imageSmoothingEnabled?: boolean; imageSmoothingQuality?: ImageSmoothingQuality;
   textAlign: CanvasTextAlign; textBaseline: CanvasTextBaseline;
   beginPath(): void; moveTo(x: number, y: number): void; lineTo(x: number, y: number): void;
   arc(x: number, y: number, radius: number, startAngle: number, endAngle: number): void;
@@ -24,11 +30,14 @@ export interface MinimapPaintContext {
   drawImage(image: CanvasImageSource, dx: number, dy: number): void;
   setTransform(a: number, b: number, c: number, d: number, e: number, f: number): void;
   save(): void; restore(): void; fillText(text: string, x: number, y: number): void;
+  translate?(x: number, y: number): void; rotate?(angle: number): void; scale?(x: number, y: number): void;
 }
 
 export interface MinimapPalette {
   readonly paper: string; readonly paperSilk: string; readonly ink: string;
   readonly inkMedium: string; readonly vermilion: string; readonly blue: string; readonly green: string;
+  readonly markerShop: string; readonly markerInn: string; readonly markerSacred: string;
+  readonly markerCivic: string;
 }
 export interface MinimapOverlay {
   readonly player: MinimapPlayer | null; readonly viewQuad: Float32Array | null;
@@ -45,11 +54,28 @@ export function drawMinimapBase(
   const half = view.sizePx * 0.5;
   context.setTransform(1, 0, 0, 1, 0, 0);
   if (base === null) return;
+  context.imageSmoothingEnabled = true; context.imageSmoothingQuality = 'high';
   const basis = view.basis;
   const rx = view.northUp || basis === null ? 1 : basis[0]!;
   const rz = view.northUp || basis === null ? 0 : basis[1]!;
   const ux = view.northUp || basis === null ? 0 : basis[2]!;
   const uz = view.northUp || basis === null ? -1 : basis[3]!;
+  if (base.worldToImage !== undefined) {
+    const [a, b, c, d, e, f] = base.worldToImage;
+    const determinant = a * d - b * c;
+    const ia = d / determinant; const ib = -b / determinant;
+    const ic = -c / determinant; const id = a / determinant;
+    const ie = -(ia * e + ic * f); const iff = -(ib * e + id * f);
+    const screenA = rx / view.metresPerPx; const screenB = -ux / view.metresPerPx;
+    const screenC = rz / view.metresPerPx; const screenD = -uz / view.metresPerPx;
+    context.save();
+    context.setTransform(screenA * ia + screenC * ib, screenB * ia + screenD * ib,
+      screenA * ic + screenC * id, screenB * ic + screenD * id,
+      half + screenA * (ie - view.centerX) + screenC * (iff - view.centerZ),
+      half + screenB * (ie - view.centerX) + screenD * (iff - view.centerZ));
+    context.drawImage(base.bitmap, 0, 0); context.restore();
+    return;
+  }
   const ratio = base.metresPerPx / view.metresPerPx;
   const dx = base.minX - view.centerX;
   const dz = base.minZ - view.centerZ;
@@ -145,11 +171,21 @@ export function drawMinimapOverlay(
   }
   if (overlay.destination !== null) drawDestination(context, view, overlay.destination, palette);
   projectMinimapMarkers(overlay.markers, view, markersXY);
-  context.font = '16px sans-serif'; context.textAlign = 'center'; context.textBaseline = 'middle';
+  context.font = '15px KaiTi, serif'; context.textAlign = 'center'; context.textBaseline = 'middle';
   for (let index = 0; index < overlay.markers.length; index += 1) {
-    context.fillStyle = overlay.markers[index]!.kind === 'quest' ? palette.vermilion : palette.ink;
+    const kind = overlay.markers[index]!.kind;
+    if (kind === 'npc') {
+      context.fillStyle = palette.vermilion; context.beginPath();
+      context.arc(markersXY[index * 2]!, markersXY[index * 2 + 1]!, 3, 0, tau); context.fill();
+      continue;
+    }
+    const ring = kind === 'inn' ? palette.markerInn
+      : kind === 'temple' || kind === 'pagoda' || kind === 'quest' ? palette.markerSacred
+        : kind === 'gate' || kind === 'office' || kind === 'exit' ? palette.markerCivic
+          : palette.markerShop;
+    context.fillStyle = palette.paper; context.strokeStyle = ring; context.lineWidth = 1.5;
     context.beginPath(); context.arc(markersXY[index * 2]!, markersXY[index * 2 + 1]!, 9, 0, tau);
-    context.fill(); context.fillStyle = palette.paper;
+    context.fill(); context.stroke(); context.fillStyle = palette.ink;
     context.fillText(overlay.markers[index]!.icon, markersXY[index * 2]!, markersXY[index * 2 + 1]!);
   }
   if (overlay.player !== null) drawPlayer(context, view, overlay.player, palette);

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-/* global document, Element, HTMLCanvasElement, ImageData, KeyboardEvent, PointerEvent, ResizeObserver,
+/* global createImageBitmap, document, Element, fetch, HTMLCanvasElement, ImageBitmap, ImageData, KeyboardEvent, PointerEvent, ResizeObserver,
   WheelEvent, cancelAnimationFrame, requestAnimationFrame, window */
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
 import { storeToRefs } from 'pinia';
@@ -13,8 +13,10 @@ import type { GameController } from '../game-controller';
 import type { GameUpdate } from '../runtime/contracts';
 import { actionMap, useActionContext } from '../input/action-map';
 import { createZoomController, TOWN_ZOOM_OPTIONS } from '../input/zoom';
-import { createV1CameraBasis, createV1MinimapMarkers, dispatchV1MinimapTravel,
-  generateV1MinimapBitmap, v1TownPointToWorld, v1PlayerHeadingRad, writeV1Path,
+import { createV1AssembledMinimapMarkers, createV1CameraBasis, dispatchV1MinimapTravel,
+  createPaintedMinimapMarkers, generateV1MinimapBitmap, loadV1ActiveTaskNpcIds,
+  loadV1PaintedMinimapWithFallback,
+  v1TownPointToWorld, v1PlayerHeadingRad, v1WorldToImageMatrix, writeV1Path,
   writeV1ViewQuad } from '../explore/v1-minimap';
 import { V1_MINIMAP_STRINGS } from '../explore/v1-minimap.strings';
 import { v1ZoomRatio } from '../explore/v1-zoom';
@@ -28,8 +30,12 @@ const { projection } = storeToRefs(useUiStore());
 const emit = defineEmits<{ leave: [] }>();
 const canvas = ref<HTMLCanvasElement>();
 const zoom = createZoomController(TOWN_ZOOM_OPTIONS);
-const minimapBase = shallowRef<{ bitmap: HTMLCanvasElement; minX: number; minZ: number;
-  metresPerPx: number } | null>(null);
+const minimapBase = shallowRef<{ bitmap: HTMLCanvasElement | ImageBitmap; minX: number; minZ: number;
+  metresPerPx: number; worldToImage?: readonly [number, number, number, number, number, number];
+  south?: readonly [number, number] } | null>(null);
+const paintedMarkers = shallowRef<ReturnType<typeof createPaintedMinimapMarkers> | null>(null);
+const taskNpcIds = shallowRef<ReadonlySet<string>>(new Set());
+const zoomPxPerMetre = ref(zoom.value());
 const minimapExpanded = ref(false);
 const minimapViewQuad = shallowRef<Float32Array | null>(null);
 const minimapBasis = createV1CameraBasis();
@@ -51,6 +57,8 @@ let moveTimer = 0;
 let releaseZoom: (() => void) | undefined;
 let minimapIdle: number | undefined;
 let minimapUsesIdleCallback = false;
+let minimapLoadToken = 0;
+let taskNpcLoadToken = 0;
 
 function asset(path: string): string {
   const base = import.meta.env.BASE_URL ?? '/';
@@ -72,7 +80,8 @@ const minimapMarkers = computed(() => {
   if (!runtime.value || !town.value) return [];
   const names = new Map(projection.value?.characters?.map(character =>
     [character.key, character.name] as const) ?? []);
-  return createV1MinimapMarkers(runtime.value, town.value.scene, names);
+  return createV1AssembledMinimapMarkers(runtime.value, town.value.scene, paintedMarkers.value,
+    names, taskNpcIds.value);
 });
 const minimapPlayer = computed(() => {
   const definition = runtime.value; const actor = town.value?.scene.actor;
@@ -306,6 +315,30 @@ function createMinimapCanvas(): void {
   minimapBase.value = { bitmap, minX: generated.minX, minZ: generated.minZ,
     metresPerPx: generated.metresPerPx };
 }
+async function loadPaintedMinimap(): Promise<void> {
+  const definition = runtime.value; if (!definition) return;
+  const chapterId = 'chapterId' in definition ? String(definition.chapterId) : 'ch01';
+  const key = `${definition.cityId}__${chapterId}`; const token = ++minimapLoadToken;
+  const painted = await loadV1PaintedMinimapWithFallback(
+    key, asset('assets/default/town-minimap'), scheduleMinimapCanvas, fetch, createImageBitmap,
+    () => token === minimapLoadToken && runtime.value === definition);
+  if (token !== minimapLoadToken || runtime.value !== definition) { painted?.bitmap.close(); return; }
+  if (painted === null) return;
+  minimapBase.value = { bitmap: painted.bitmap, minX: 0, minZ: 0, metresPerPx: 1,
+    worldToImage: v1WorldToImageMatrix(painted.metadata), south: painted.metadata.south };
+  paintedMarkers.value = createPaintedMinimapMarkers(painted.metadata);
+}
+async function loadTaskNpcIds(): Promise<void> {
+  const token = ++taskNpcLoadToken;
+  const quests = projection.value?.quests ?? [];
+  try {
+    const ids = await loadV1ActiveTaskNpcIds(controller.chapterId.value, quests, asset('content'));
+    if (token === taskNpcLoadToken) taskNpcIds.value = ids;
+  } catch (error) {
+    if (import.meta.env.DEV) console.warn('TOWN_MINIMAP_TASK_NPCS_UNAVAILABLE', error);
+    if (token === taskNpcLoadToken) taskNpcIds.value = new Set();
+  }
+}
 function scheduleMinimapCanvas(): void {
   const requestIdle = window.requestIdleCallback?.bind(window);
   minimapUsesIdleCallback = requestIdle !== undefined;
@@ -391,10 +424,19 @@ watch(() => town.value?.scene, (next) => {
   if (!moving.value) void view?.update(next);
   if (!moving.value) settleFade(next);
 }, { deep: false });
-watch(runtime, (next) => { if (next && !minimapBase.value && minimapIdle === undefined) scheduleMinimapCanvas(); });
+watch(runtime, (next, previous) => {
+  if (!next || next === previous) return;
+  minimapLoadToken += 1;
+  const bitmap = minimapBase.value?.bitmap; if (bitmap && 'close' in bitmap) bitmap.close();
+  minimapBase.value = null; paintedMarkers.value = null; void loadPaintedMinimap();
+});
+watch([() => controller.chapterId.value, () => projection.value?.quests], () => {
+  void loadTaskNpcIds();
+});
 onMounted(() => {
   window.addEventListener('keydown', keyboard);
-  releaseZoom = zoom.subscribe(applyZoom); scheduleMinimapCanvas(); void mountScene();
+  releaseZoom = zoom.subscribe(value => { zoomPxPerMetre.value = value; applyZoom(value); });
+  void loadPaintedMinimap(); void loadTaskNpcIds(); void mountScene();
 });
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', keyboard); window.clearTimeout(fadeTimer);
@@ -404,6 +446,7 @@ onBeforeUnmount(() => {
     else window.clearTimeout(minimapIdle);
   }
   areaMap.dispose(); releaseZoom?.(); pointerGestures?.dispose();
+  const bitmap = minimapBase.value?.bitmap; if (bitmap && 'close' in bitmap) bitmap.close();
   if (townFallbackTimer) window.clearInterval(townFallbackTimer);
   cancelAnimationFrame(frame); observer?.disconnect(); view?.dispose(); view = undefined;
 });
@@ -419,8 +462,10 @@ onBeforeUnmount(() => {
         :basis="minimapBasis" :view-quad="minimapViewQuad" :markers="minimapMarkers"
         :path="minimapPath" :destination="minimapDestination"
         :north-up="controller.settings.value.minimapNorthUp" :expanded="minimapExpanded"
-        :size-px="200" @travel="minimapTravel" @toggle-expanded="toggleAreaMap"
+        :size-px="200" :zoom-px-per-metre="zoomPxPerMetre"
+        @travel="minimapTravel" @toggle-expanded="toggleAreaMap"
         @zoom="direction => direction > 0 ? zoom.stepIn() : zoom.stepOut()"
+        @set-zoom="value => zoom.set(value)"
         @toggle-north-up="toggleMinimapNorthUp"
       />
     </div>
