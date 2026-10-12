@@ -53049,6 +53049,8 @@
     "assets/default/model3d/npc_huangrong"
    ],
    "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
     "assets/default/model3d/dressup/heads/npc_huangrong/**",
     "assets/default/model3d/dressup/heads/npc_munianci/**",
     "apps/game/src/pages/Character3dPage.vue",
