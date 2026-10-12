@@ -25,8 +25,14 @@
 - 方案 `JSON.stringify` 加上家具后仍 ≤ 700 B（6×5 店）——若超出，在报告给出实测与建议，不得删字段凑数。
 - 禁用运算 grep（沿用 p0 的源码守卫测试）。
 
+## 协调者裁定（2026-10-12，第 1 次校验后补；审核以此为准）
+缺省值换成求解器后，写集外的旧测试按「不放家具」写的会红（第 1 次校验 7 例），这是本任务的预期影响，按下面改，不算越界：
+- `__tests__/stubs.test.ts`：从桩清单删去 `solveInterior`、`reachableInteriorHexes` 两项（本任务已替换），其余桩的断言一字不动。
+- `__tests__/plan-hall.test.ts`、`__tests__/plan-building.test.ts`：凡测 p2 屋身的用例（tech/16 §3 金样里的 `floors` 净空如 6×5 店 4.4 × 3.1 m、≥ 4.2 × 2.9 m 下限、门、试点方案每栋 JSON ≤ 700 字符、确定性方案金样、`InteriorPlanner` 接缝用例的基线），给 `planBuilding` 显式传 `{ interior: emptyInteriorPlanner }`（已从 `plan-hall.ts` / `index.ts` 导出）；金样数值、阈值一律不改，不删用例。
+- 带家具的方案另在 `interiors-i1.test.ts` 断言：6×5 店仍按上文 ≤ 700 B（超出照上文在报告给实测与建议，不删字段）；其余房型 ≤ 1,600 B（100 栋 ≤ 160 KB，给场景 300 KB 留出地形余量）。报告第 3 节写 6×5 店顾客区与店员过道的实际尺寸（柜台后 800 mm 过道按设计从 `floors` 剔除，所以可走区比 p2 屋身净空小）。
+
 ## 约束
-- 只写：`packages/data/src/build/town-plan/interiors/{solver,hexes,general-store,pharmacy,inn,tavern,residence,smithy,stall}.ts`、`packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts`、`packages/data/src/build/town-plan/plan-hall.ts`（**只许**替换 `interior` 参数的缺省值那一处）与本任务报告。
+- 只写：`packages/data/src/build/town-plan/interiors/{solver,hexes,general-store,pharmacy,inn,tavern,residence,smithy,stall}.ts`、`packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts`、`packages/data/src/build/town-plan/plan-hall.ts`（**只许**替换 `interior` 参数的缺省值那一处）`packages/data/src/build/town-plan/__tests__/{stubs,plan-hall,plan-building}.test.ts`（只按下面「协调者裁定」改）与本任务报告。
 - 不改 p0 / p1 / p2 的其他文件（类型若必须扩充，只新增可选字段并在报告说明）；不改 `content/**`；不新增依赖。
 - 纯整数：不得用浮点参与尺寸、不得用 `/`（用 `floorDivInt` / `ceilDivInt`）、不得用三角函数 / `sqrt` / `pow` / `random` / `Date`；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
 
