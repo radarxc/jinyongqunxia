@@ -1,6 +1,8 @@
 import type { TownPoint } from '@tianshu/core';
 import type { TownAnchorView } from '@tianshu/render/town';
 import type { Dir8 } from '@tianshu/render/rig';
+import type { ZoomController } from '../input/zoom';
+import { normalizeWheel } from '@tianshu/platform/input';
 
 const DIRECTION: Readonly<Record<string, TownPoint>> = {
   ArrowRight: [1, 0], d: [1, 0],
@@ -38,4 +40,19 @@ export function townAnchorIntent(anchor: TownAnchorView, actor: TownPoint): Town
     return { t: 'town/meditate', anchorId: anchor.id, plannedTicks: 600 };
   return { t: 'town/move', destination: anchor.point,
     ...(anchor.kind === 'building' && anchor.buildingId ? { buildingId: anchor.buildingId } : {}) };
+}
+
+export interface TownWheelInput {
+  readonly deltaX: number; readonly deltaY: number; readonly deltaMode: number;
+  readonly ctrlKey: boolean; readonly metaKey: boolean; readonly altKey: boolean;
+  preventDefault(): void;
+}
+
+/** Keeps browser zoom gestures intact while routing ordinary wheel deltas into ZoomController. */
+export function applyTownWheel(event: TownWheelInput, zoom: ZoomController,
+  lineHeightPx = 16, pageHeightPx = 800): boolean {
+  if (event.ctrlKey || event.metaKey || event.altKey) return false;
+  const { dy } = normalizeWheel(event, lineHeightPx, pageHeightPx);
+  if (dy === 0) return false;
+  event.preventDefault(); zoom.wheel(dy); return true;
 }

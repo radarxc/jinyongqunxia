@@ -45,6 +45,10 @@ vi.mock('../gltf/load', async () => {
 import { createTownScene } from './scene';
 import type { TownRuntimeView, TownSceneProjection } from './types';
 
+function v1ZoomRatio(pxPerMetre: number, viewportHeightPx: number): number {
+  return pxPerMetre * 18 / viewportHeightPx;
+}
+
 const town: TownRuntimeView = {
   cityId: 'city_test', displayName: '测试城', grid: { width: 1, height: 1, chunkCells: 32 },
   assets: { tile: { baseUrl: '/tile/', entries: [] }, building: { baseUrl: '/building/', entries: [] } },
@@ -77,6 +81,19 @@ beforeEach(() => { fake.modelLoads.length = 0; fake.characters.length = 0;
   fake.renderedScene = undefined; fake.rejectModel = false; vi.clearAllMocks(); });
 
 describe('town actor stature', () => {
+  it('keeps final camera zoom within 0.5 px/m at both v1 exploration endpoints', async () => {
+    const scene = await createTownScene(document.createElement('canvas'), town, { projection,
+      loadRigRuntime: async () => runtime() as never });
+    const camera = scene.camera as Three.OrthographicCamera;
+    for (const height of [360, 640, 720, 1080, 1440]) for (const target of [40, 112]) {
+      scene.setZoom(v1ZoomRatio(target, height));
+      scene.resize(800, height);
+      const actual = height / (camera.top - camera.bottom);
+      expect(Math.abs(actual - target), `${height}px at ${target}px/m`).toBeLessThanOrEqual(0.5);
+    }
+    scene.dispose();
+  });
+
   it('uses requested player/NPC heights and hides the rig once the GLB is ready', async () => {
     const scene = await createTownScene(document.createElement('canvas'), town, { projection,
       playerHeightM: 1.72, npcHeightM: 1.58, spriteFor: () => '/actor.png',
@@ -91,6 +108,8 @@ describe('town actor stature', () => {
       .filter((child) => child.name === 'town-actor-sprite');
     expect(sprites.map((sprite) => sprite.scale.y)).toEqual([1.72, 1.58]);
     expect(sprites[0]!.visible).toBe(false);
+    scene.resize(320, 180);
+    expect(scene.writeViewGroundQuad(new Float32Array(8))).toBe(true);
     scene.dispose();
   });
 

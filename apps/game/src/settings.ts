@@ -12,6 +12,8 @@ export interface GameSettings {
   readonly textScale: TextScale;
   readonly reducedMotion: boolean;
   readonly subtitles: boolean;
+  /** False follows the camera; true fixes exploration minimaps north-up. */
+  readonly minimapNorthUp: boolean;
   readonly volume: Readonly<Record<AudioCategory, number>>;
   readonly quality: QualityPreference;
   readonly difficulty: DifficultyPreference;
@@ -29,6 +31,7 @@ function systemReducedMotion(): boolean {
 
 export function defaultGameSettings(): GameSettings {
   return { textScale: 100, reducedMotion: systemReducedMotion(), subtitles: true,
+    minimapNorthUp: false,
     volume: { master: 100, music: 80, effects: 80, voice: 80 },
     quality: 'auto', difficulty: 'diff_jianghu' };
 }
@@ -49,6 +52,8 @@ export function normalizeGameSettings(value: unknown, fallback = defaultGameSett
     textScale: scales.has(row['textScale'] as TextScale) ? row['textScale'] as TextScale : fallback.textScale,
     reducedMotion: typeof row['reducedMotion'] === 'boolean' ? row['reducedMotion'] : fallback.reducedMotion,
     subtitles: typeof row['subtitles'] === 'boolean' ? row['subtitles'] : fallback.subtitles,
+    minimapNorthUp: typeof row['minimapNorthUp'] === 'boolean'
+      ? row['minimapNorthUp'] : fallback.minimapNorthUp,
     volume: { master: volume(audio['master'], fallback.volume.master),
       music: volume(audio['music'], fallback.volume.music),
       effects: volume(audio['effects'], fallback.volume.effects),

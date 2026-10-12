@@ -19,6 +19,7 @@ export interface TownBuildingView {
   readonly id: string; readonly origin: TownPoint; readonly size: TownPoint;
   readonly rotationDeg: 0 | 90 | 180 | 270; readonly assetId: string;
   readonly entrances: readonly TownPoint[]; readonly enterable: boolean;
+  readonly poi?: string | null;
   readonly interiorKind: 'shop' | 'inn' | 'temple' | 'residence' | 'other';
 }
 export interface TownAnchorView {
@@ -73,6 +74,7 @@ export interface TownScene {
   resize(width: number, height: number, pixelRatio?: number): void;
   update(projection: TownSceneProjection): Promise<void>;
   setZoom(zoom: number): void;
+  writeViewGroundQuad(out: Float32Array): boolean;
   pickPoint(clientX: number, clientY: number, bounds: DOMRect): TownPoint | null;
   pickAnchor(clientX: number, clientY: number, bounds: DOMRect): TownAnchorView | null;
   project(point: TownPoint, elevationCm: number, out: TownScreenPoint): void;

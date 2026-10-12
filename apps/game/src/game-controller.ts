@@ -135,6 +135,8 @@ export function createGameController(
   let pendingAutosave: { trigger: string; force: boolean } | undefined;
   let autosaveTask: Promise<void> | undefined;
   let bookSleepActive = false;
+  const worldTickHolds = new Map<string, number>();
+  let worldTickHoldCount = 0;
   let queuedForeground = 0;
   let commandQueue: Promise<unknown> = Promise.resolve();
   let lastGoodProjection: GameProjection | null = null;
@@ -771,6 +773,20 @@ export function createGameController(
   function setSceneRunsWorldTicks(value: boolean): void {
     sceneRunsWorldTicks.value = value;
   }
+  function holdWorldTicks(reason: string): () => void {
+    if (disposed) return () => undefined;
+    worldTickHoldCount += 1;
+    worldTickHolds.set(reason, (worldTickHolds.get(reason) ?? 0) + 1);
+    let released = false;
+    return () => {
+      if (released) return;
+      released = true;
+      const count = worldTickHolds.get(reason) ?? 0;
+      if (count <= 1) worldTickHolds.delete(reason);
+      else worldTickHolds.set(reason, count - 1);
+      worldTickHoldCount = Math.max(0, worldTickHoldCount - 1);
+    };
+  }
   async function worldMapCommand(command: WorldMapCommand): Promise<void> {
     await run(async () => {
       const result = await host.dispatch(command);
@@ -886,6 +902,7 @@ export function createGameController(
     commitFirstSleep,
     setSetting,
     setSceneRunsWorldTicks,
+    holdWorldTicks,
     autosave,
     setTrackedQuest(questId: string | null) {
       trackedQuestId.value = trackedQuestId.value === questId ? null : questId;
@@ -912,18 +929,22 @@ export function createGameController(
       !bookSleepActive,
     tick: () => host.dispatch({ t: 'world/tick' }),
     canRunWorldTicks: () =>
+      !disposed &&
       !sessionFailed.value &&
       sceneRunsWorldTicks.value &&
       !busy.value &&
       !loading.value &&
       !saving.value &&
       !battleActive.value &&
-      !worldPaused.value,
+      !worldPaused.value &&
+      worldTickHoldCount === 0,
     reportInternalError,
     worldMapCommand,
     townCommand,
     dispose() {
       disposed = true;
+      worldTickHolds.clear();
+      worldTickHoldCount = 0;
       hostGeneration += 1;
       battleLoading = undefined;
       battle.value?.dispose();

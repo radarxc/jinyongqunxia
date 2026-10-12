@@ -172,6 +172,7 @@ export interface QuestTrackerView {
 export interface FlowSettingsView {
   readonly textScale: 100 | 125 | 150;
   readonly reducedMotion: boolean;
+  readonly minimapNorthUp?: boolean;
   readonly subtitles: boolean;
   readonly volume: Readonly<Record<'master' | 'music' | 'effects' | 'voice', number>>;
   readonly quality: 'auto' | 'low' | 'mid' | 'high' | 'ultra';

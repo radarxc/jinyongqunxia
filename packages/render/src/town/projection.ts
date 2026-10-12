@@ -1,5 +1,5 @@
 import { Matrix4, Vector3 } from 'three';
-import type { Quaternion, Ray } from 'three';
+import type { Camera, Quaternion, Ray } from 'three';
 import type { TownPoint } from './types';
 
 export const TOWN_TILE_WIDTH = 64;
@@ -11,6 +11,42 @@ const CAMERA_HEIGHT_RATIO = Math.sqrt(2 / 3);
 const CAMERA_EYE = new Vector3(1, CAMERA_HEIGHT_RATIO, 1);
 const CAMERA_TARGET = new Vector3();
 const CAMERA_UP = new Vector3(0, 1, 0);
+const CAMERA_GROUND_CORNERS = [-1, 1, 1, 1, 1, -1, -1, -1] as const;
+const CAMERA_GROUND_NEAR = new Vector3();
+const CAMERA_GROUND_FAR = new Vector3();
+const CAMERA_GROUND_SCRATCH: CameraGroundQuadScratch = {
+  near: CAMERA_GROUND_NEAR, far: CAMERA_GROUND_FAR,
+};
+
+export interface CameraGroundQuadScratch {
+  readonly near: Vector3;
+  readonly far: Vector3;
+}
+
+/**
+ * Writes viewport corners intersected with a horizontal ground plane in
+ * top-left, top-right, bottom-right, bottom-left order. The default scratch
+ * vectors are module-owned so steady-state calls allocate no objects.
+ */
+export function writeCameraGroundQuad(
+  camera: Camera, groundY: number, out: Float32Array,
+  scratch: CameraGroundQuadScratch = CAMERA_GROUND_SCRATCH,
+): boolean {
+  if (out.length < 8 || !Number.isFinite(groundY)) return false;
+  for (let index = 0; index < 4; index += 1) {
+    const ndcX = CAMERA_GROUND_CORNERS[index * 2]!;
+    const ndcY = CAMERA_GROUND_CORNERS[index * 2 + 1]!;
+    scratch.near.set(ndcX, ndcY, -1).unproject(camera);
+    scratch.far.set(ndcX, ndcY, 1).unproject(camera);
+    const dy = scratch.far.y - scratch.near.y;
+    if (dy >= -1e-9) return false;
+    const distance = (groundY - scratch.near.y) / dy;
+    if (distance < 0) return false;
+    out[index * 2] = scratch.near.x + (scratch.far.x - scratch.near.x) * distance;
+    out[index * 2 + 1] = scratch.near.z + (scratch.far.z - scratch.near.z) * distance;
+  }
+  return true;
+}
 
 /** Exact CSS-pixel transform used by tools/town/render_town.py at scale=1. */
 export function planningToTownPixels(

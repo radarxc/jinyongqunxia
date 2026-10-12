@@ -7,7 +7,7 @@ import type { PilotModel } from '../gltf/load';
 import type { RigInstance } from '../rig/character';
 import { createTownGeometry, loadTownAtlas } from './geometry';
 import { createTownHeightPicker, elevationAtHex, townBillboardQuaternion, townCameraOffset,
-  townHexToWorld } from './projection';
+  townHexToWorld, writeCameraGroundQuad } from './projection';
 import type { TownAnchorView, TownNpcView, TownRuntimeView, TownScene,
   TownSceneOptions, TownSceneProjection } from './types';
 
@@ -16,7 +16,7 @@ const FADE_SECONDS = 0.24;
 const DEFAULT_PLAYER_SPRITE = '/img/hero_cutout.png';
 function validZoom(value: number): number {
   if (!Number.isFinite(value)) throw new RangeError('TOWN_ZOOM');
-  return Math.min(2.5, Math.max(0.65, value));
+  return Math.min(6, Math.max(0.4, value));
 }
 function markerColor(anchor: TownAnchorView): number {
   return anchor.kind === 'meditation' ? 0x5b8291 :
@@ -349,6 +349,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
       stats.visibleChunks = visibleChunks;
     },
     setZoom(next) { zoom = validZoom(next); resize(width, height, renderer.getPixelRatio()); },
+    writeViewGroundQuad(out) { return writeCameraGroundQuad(camera, 0, out); },
     pickPoint(clientX, clientY, bounds) {
       if (!pointerRay(clientX, clientY, bounds)) return null;
       return pickHeight(raycaster.ray, hit);
