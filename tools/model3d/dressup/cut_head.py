@@ -137,6 +137,11 @@ HAIRLINE_MM = 12.0              # B 区：h_head 以上多高开始渐变到发�
 HAIRLINE_BLEND_MM = 14.0
 ATLAS_SIZE = 2048
 ATLAS_JPEG_QUALITY = 90         # 4:4:4 色度、单次编码
+PACK_GUTTER_PX = 4              # H1 头部 UV 岛独立排图集（--texture）：每岛四周外扩的图集像素，用岛内纹素外推填充，
+                                #   2 级 mip 内不渗进邻岛
+PACK_SEARCH_STEPS = 32          #   统一缩放比的二分次数
+PACK_MAX_SCALE = 1.0            #   图集像素 / 高清源像素上限：不把高清图放大（放大不增加细节）
+TEXTURE_MATCH_MAX = 3.0         # --texture 校验：BOX 缩回源件内嵌贴图尺寸后与之平均差上限（/255）；同一次烘焙实测 1.1–1.3
 STRIP_ROWS = 256                # 图集底部条带行数（含顶部防渗 guard）
 STRIP_GUARD = 12
 STRIP_SEAM = 1.5 * math.pi      # 条带 u 接缝放在背后（θ = 270°，头发下）
@@ -1968,6 +1973,163 @@ def head_canvas(source_image: Image.Image, size: int = ATLAS_SIZE) -> Image.Imag
     return canvas
 
 
+class TextureMismatch(ValueError):
+    """--texture 与源件 UV 布局对不上（尺寸不是整数倍，或缩回后与内嵌贴图差太大）。"""
+
+
+def load_hd_texture(path: Path, embedded: Image.Image | None) -> tuple[Image.Image, dict[str, Any]]:
+    """读高清 baseColor（与 --source 同 UV 布局，Tripo 对同一 op 的高分辨率导出），校验后返回 RGB 图与记录。
+
+    边长须是内嵌贴图的同一整数倍；BOX 缩回内嵌尺寸后与内嵌贴图的平均差 ≤ TEXTURE_MATCH_MAX（同一次烘焙实测 1.1–1.3），
+    否则抛 TextureMismatch（布局不同的贴图会把头贴歪）。"""
+    image = Image.open(path).convert("RGB")
+    if embedded is None: raise TextureMismatch("源件没有内嵌 baseColor，无法核对 --texture 的 UV 布局")
+    factor_x, rest_x = divmod(image.width, embedded.width); factor_y, rest_y = divmod(image.height, embedded.height)
+    if rest_x or rest_y or factor_x != factor_y or factor_x < 1:
+        raise TextureMismatch(f"--texture 尺寸 {image.size} 不是源件贴图 {embedded.size} 的同一整数倍")
+    reduced = np.asarray(image.resize(embedded.size, Image.Resampling.BOX), dtype=np.float64)
+    difference = float(np.abs(reduced - np.asarray(embedded.convert("RGB"), dtype=np.float64)).mean())
+    if difference > TEXTURE_MATCH_MAX:
+        raise TextureMismatch(f"--texture 缩回 {embedded.size} 后与源件贴图平均差 {difference:.2f} > {TEXTURE_MATCH_MAX}")
+    record = {**_library_record(path), "size": [image.width, image.height], "factor": factor_x,
+              "meanAbsDiffVsEmbedded": difference}
+    return image, record
+
+
+def apply_texel_delta(image: Image.Image, before: Image.Image, after: Image.Image) -> tuple[Image.Image, int]:
+    """把源件分辨率上的逐纹素改动（切口带调平）双线性放大后加到高清图上；返回新图与源分辨率上改动的纹素数。"""
+    delta = np.asarray(after, dtype=np.float64) - np.asarray(before, dtype=np.float64)
+    changed = int(np.count_nonzero(np.any(delta != 0, axis=2)))
+    if not changed: return image, 0
+    bands = []
+    for channel, band in enumerate(image.convert("RGB").split()):
+        up = np.asarray(Image.fromarray(delta[..., channel].astype(np.float32), "F").resize(image.size,
+                                                                                         Image.Resampling.BILINEAR))
+        bands.append(Image.fromarray(np.clip(np.rint(np.asarray(band, dtype=np.float32) + up), 0, 255).astype(np.uint8), "L"))
+    return Image.merge("RGB", bands), changed
+
+
+def uv_islands(faces: np.ndarray, vertex_count: int) -> np.ndarray:
+    """按共享顶点的连通分量给顶点编岛号（源件在 UV 缝处已拆顶点，所以一个分量就是一块连续 UV）；
+    未被任何三角引用的顶点为 −1，岛号按首次出现的三角顺序 0..n−1。"""
+    faces = np.asarray(faces, dtype=np.int64).reshape(-1, 3)
+    rows = np.concatenate((faces[:, 0], faces[:, 1])); cols = np.concatenate((faces[:, 1], faces[:, 2]))
+    graph = sparse.coo_matrix((np.ones(len(rows)), (rows, cols)), shape=(vertex_count, vertex_count))
+    _, labels = connected_components(graph, directed=False)
+    used = np.zeros(vertex_count, dtype=bool); used[faces.reshape(-1)] = True
+    order = labels[faces[:, 0]]
+    _, first = np.unique(order, return_index=True)
+    ranked = order[np.sort(first)]                       # 按首次出现的三角顺序（确定性，与 scipy 内部编号无关）
+    remap = np.full(labels.max() + 1, -1, dtype=np.int64); remap[ranked] = np.arange(len(ranked))
+    return np.where(used, remap[labels], -1)
+
+
+def skyline_pack(sizes: np.ndarray, width: int, height: int) -> np.ndarray | None:
+    """天际线左下排布（不旋转）：sizes N×2（宽、高，正整数像素）。按高、宽降序逐个放到能放下的最低处（同高取最左）；
+    放不下返回 None，否则返回 N×2 左上角（x 向右、y 向下）。"""
+    sizes = np.asarray(sizes, dtype=np.int64).reshape(-1, 2)
+    positions = np.zeros_like(sizes)
+    sky: list[list[int]] = [[0, 0, width]]               # 段 [x, y, w]：x..x+w 已占到 y 行（不含）
+    for index in np.lexsort((-sizes[:, 0], -sizes[:, 1])):
+        w, h = int(sizes[index, 0]), int(sizes[index, 1])
+        if w > width or h > height: return None
+        best: tuple[int, int, int] | None = None
+        for i in range(len(sky)):
+            x = sky[i][0]
+            if x + w > width: break
+            y, covered, j = 0, 0, i
+            while covered < w:
+                y = max(y, sky[j][1]); covered += sky[j][2]; j += 1
+            if y + h <= height and (best is None or (y, x) < (best[1], best[0])): best = (x, y, i)
+        if best is None: return None
+        x, y, i = best; positions[index] = (x, y)
+        sky.insert(i, [x, y + h, w]); j = i + 1
+        while j < len(sky) and sky[j][0] < x + w:
+            overlap = x + w - sky[j][0]
+            if overlap >= sky[j][2]: sky.pop(j); continue
+            sky[j][0] += overlap; sky[j][2] -= overlap; break
+        merged: list[list[int]] = []
+        for segment in sky:
+            if merged and merged[-1][1] == segment[1]: merged[-1][2] += segment[2]
+            else: merged.append(segment)
+        sky = merged
+    return positions
+
+
+def _pack_sizes(extent: np.ndarray, scale: float, gutter: int) -> np.ndarray:
+    return np.ceil(np.maximum(extent, 1e-6) * scale).astype(np.int64) + 2 * gutter
+
+
+def pack_head_canvas(hd_image: Image.Image, uvs: np.ndarray, faces: np.ndarray, size: int = ATLAS_SIZE,
+                     rows: int = ATLAS_SIZE - STRIP_ROWS, gutter: int = PACK_GUTTER_PX
+                     ) -> tuple[Image.Image, np.ndarray, dict[str, Any]]:
+    """H1：头部 UV 岛独立排进图集上方 rows 行（下方留给颈片条带），返回 (画布, 新 UV, 诊断)。
+
+    每岛取源 UV 包围盒（高清像素），全部岛用同一缩放比 s（图集像素 / 高清像素，二分求天际线能放下的最大值，
+    上限 PACK_MAX_SCALE），按浮点框从高清图 Lanczos 重采样到各自矩形：新 UV = (矩形原点 + (旧像素 − 框原点)·s) / size，
+    与重采样同一映射。岛内三角栅格化成掩码（外扩 1 px 盖住半纹素），矩形内掩码外与岛间空隙一律取最近岛内纹素，
+    mip 降采样时不混入别的岛或身体纹素。纹素密度对旧图集（整张源图集压成 size × rows）的倍数记作 linearGainVsLegacy。"""
+    width_hd, height_hd = hd_image.size
+    faces = np.asarray(faces, dtype=np.int64).reshape(-1, 3)
+    island = uv_islands(faces, len(uvs))
+    count = int(island.max(initial=-1)) + 1
+    if count == 0: raise ValueError("头部没有三角，无法排图集")
+    pixels = np.asarray(uvs, dtype=np.float64) * [width_hd, height_hd]
+    used = island >= 0
+    lo = np.full((count, 2), np.inf); hi = np.full((count, 2), -np.inf)
+    np.minimum.at(lo, island[used], pixels[used]); np.maximum.at(hi, island[used], pixels[used])
+    extent = hi - lo
+    area = float(np.prod(np.maximum(extent, 1e-6), axis=1).sum())
+    upper = min(PACK_MAX_SCALE, math.sqrt(size * rows / area),
+                (size - 2 * gutter) / max(float(extent[:, 0].max()), 1e-6),
+                (rows - 2 * gutter) / max(float(extent[:, 1].max()), 1e-6))
+    placed = skyline_pack(_pack_sizes(extent, upper, gutter), size, rows)
+    best = None if placed is None else (upper, placed)
+    if best is None:                                      # 二分：low 总可行（或尚无可行解）、high 总不可行
+        low, high = 0.0, upper
+        for _ in range(PACK_SEARCH_STEPS):
+            middle = (low + high) / 2
+            placed = skyline_pack(_pack_sizes(extent, middle, gutter), size, rows)
+            if placed is not None: low, best = middle, (middle, placed)
+            else: high = middle
+            if best is not None and high - low < 1e-4 * upper: break
+    if best is None: raise ValueError("头部 UV 岛排不进图集")
+    scale, origins = best
+    rect = _pack_sizes(extent, scale, gutter)
+    box_origin = lo - gutter / scale                       # 每岛浮点框左上（高清像素）：矩形原点 + gutter 对齐岛包围盒
+    owner = np.maximum(island, 0)
+    local = (pixels - box_origin[owner]) * scale           # 顶点在所属矩形内的图集像素坐标
+    new_uvs = np.asarray(uvs, dtype=np.float64).copy()
+    new_uvs[used] = (local[used] + origins[owner[used]]) / size
+    pad = int(math.ceil(gutter / scale)) + 4               # 框可能越过高清图边：先按边缘复制外扩
+    padded = Image.fromarray(np.pad(np.asarray(hd_image.convert("RGB")), ((pad, pad), (pad, pad), (0, 0)), mode="edge"))
+    canvas = np.zeros((size, size, 3), dtype=np.uint8); filled = np.zeros((rows, size), dtype=bool)
+    from scipy.ndimage import binary_dilation, distance_transform_edt
+    face_island = island[faces[:, 0]]; face_order = np.argsort(face_island, kind="stable")
+    bounds = np.searchsorted(face_island[face_order], np.arange(count + 1))
+    for index in range(count):
+        w, h = (int(value) for value in rect[index]); ox, oy = (int(value) for value in origins[index])
+        x0, y0 = box_origin[index]
+        tile = padded.resize((w, h), Image.Resampling.LANCZOS,
+                             box=(x0 + pad, y0 + pad, x0 + pad + w / scale, y0 + pad + h / scale))
+        mask_image = Image.new("1", (w, h), 0); draw = ImageDraw.Draw(mask_image)
+        for face in faces[face_order[bounds[index]:bounds[index + 1]]]:
+            draw.polygon([(float(local[v, 0]), float(local[v, 1])) for v in face], fill=1)
+        mask = binary_dilation(np.asarray(mask_image, dtype=bool), iterations=1)
+        tile_array = np.asarray(tile, dtype=np.uint8)
+        if mask.any() and not mask.all():
+            _, (iy, ix) = distance_transform_edt(~mask, return_indices=True)
+            tile_array = tile_array[iy, ix]
+        canvas[oy:oy + h, ox:ox + w] = tile_array; filled[oy:oy + h, ox:ox + w] |= mask
+    if not filled.all():
+        _, (iy, ix) = distance_transform_edt(~filled, return_indices=True)
+        canvas[:rows] = canvas[:rows][iy, ix]
+    info = {"mode": "packed", "islands": count, "scaleDstPerSrc": scale, "gutterPx": gutter,
+            "headCoverage": float(filled.mean()), "rectCoverage": float((rect[:, 0] * rect[:, 1]).sum() / (size * rows)),
+            "linearGainVsLegacy": scale * math.sqrt(width_hd * height_hd / (size * rows))}
+    return Image.fromarray(canvas, "RGB"), new_uvs, info
+
+
 def compose_atlas(canvas: Image.Image, strip: np.ndarray, size: int = ATLAS_SIZE) -> Image.Image:
     """在 head_canvas 下方 STRIP_ROWS 行写颈片条带（顶部 STRIP_GUARD 行复制首行防渗色）。"""
     atlas = canvas.copy()
@@ -2539,6 +2701,24 @@ def _input_record(path: Path) -> dict[str, str]:
     return {"file": name, "sha256": sha256(resolved.read_bytes()).hexdigest()}
 
 
+def _checkout_roots() -> list[Path]:
+    """本工作区根，以及（任务工作区时）主检出根：本地素材库 apps/game/public/models/props 只在主检出里、不入 git。"""
+    roots = [REPO_ROOT]
+    git_file = REPO_ROOT / ".git"
+    if git_file.is_file():
+        git_dir = Path(git_file.read_text(encoding="utf-8").strip().removeprefix("gitdir: "))
+        roots += [parent.parent for parent in git_dir.parents if parent.name == ".git"]
+    return roots
+
+
+def _library_record(path: Path) -> dict[str, str]:
+    """{path, sha256}：仓库相对路径也认主检出根（本地素材库的文件写 apps/game/public/models/props/…）。"""
+    resolved = Path(path).resolve()
+    name = next((resolved.relative_to(root.resolve()).as_posix() for root in _checkout_roots()
+                 if resolved.is_relative_to(root.resolve())), Path(path).as_posix())
+    return {"path": name, "sha256": sha256(resolved.read_bytes()).hexdigest()}
+
+
 def refresh_preview_and_manifest(template_dir: Path, npc_id: str, out_dir: Path) -> None:
     """只刷新确定性的质检图，保留完整实跑诊断。"""
     names = output_names(out_dir, template_dir.name)
@@ -2554,7 +2734,7 @@ def refresh_preview_and_manifest(template_dir: Path, npc_id: str, out_dir: Path)
 # ---------------------------------------------------------------- 主流程
 
 def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Path,
-                 fast: bool = False) -> dict[str, Any]:
+                 fast: bool = False, texture_path: Path | None = None) -> dict[str, Any]:
     started = time.monotonic(); out_dir.mkdir(parents=True, exist_ok=True)
     names = output_names(out_dir, template_dir.name)
     source_glb = load_glb(source_path); source_mesh, source_positions, source_normals = _world_mesh(source_glb)
@@ -2617,6 +2797,8 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
     head = clip_head(head_positions, head_uvs, selected_faces, head_skin_flags, head_hair_flags, frame, h_head,
                      classified["headWeight"][used_ids], classified["colors"][used_ids])
     source_image = _texture(source_glb)
+    embedded_image = source_image                                     # 切口带调平前的源件内嵌贴图（高清图对它校验 / 求差）
+    hd_image, texture_record = load_hd_texture(texture_path, embedded_image) if texture_path is not None else (None, None)
     head, remnants = drop_collar_remnants(                            # 1c) 裁剩的衣领薄片 / 切口顶带的红领面
         head, frame, h_head, mm, None if source_image is None else np.asarray(source_image, dtype=np.float64) / 255)
     seam_tone: dict[str, Any] = {}
@@ -2704,18 +2886,21 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
     grid = layout.fine_grid()
     patch_for_bake = {"sourcePositions": source_patch_positions, "faces": patch["faces"],
                       "cornerUvs": patch["cornerUvs"]}
+    # 切口头色、身体增益与肤色匹配一律在内嵌贴图的旧图集口径上算（H1：给 --texture 时也一样），
+    # 高清排图只在这些分析之后替换头部画布、头部 UV 与条带取色——肤色、几何、权重、遮罩、颈片 UV 与不给 --texture 时逐项相同。
     canvas = head_canvas(source_image)
     head_uv_final = head["uvs"].copy(); head_uv_final[:, 1] *= (ATLAS_SIZE - STRIP_ROWS) / ATLAS_SIZE
-    strip, strip_info = bake_strip(patch_for_bake, frame, grid, body_image, tint, {**head, "uvs": head_uv_final},
-                                   canvas, floor, hair_linear, mm)
+    legacy_head = {**head, "uvs": head_uv_final}
+    strip, strip_info = bake_strip(patch_for_bake, frame, grid, body_image, tint, legacy_head, canvas, floor,
+                                   hair_linear, mm)
     # 身体染色对准切口颈色（作者 2026-10-10 方案 2）：A 区平均增益乘回 skinTint 再重烘，身体整体与颈子同色。
     # D2c（作者"身体颜色和脖子下面接缝附近颜色对齐"）：增益 = 切口头色 ÷ 下接缝附近（遮罩平面上下 TINT_SEAM_BAND_MM）的
     # 染色后身体色；D2 原口径是同高度、被遮罩隐藏的模板上段颈子色，模板脖子自身有上下明暗时下接缝仍差一截。
     face_tint, first_gain = tint, np.asarray(strip_info["gainSeamMean"], dtype=np.float64)
     tint = np.clip(face_tint * first_gain, *BODY_TINT_RANGE)
     if not np.allclose(tint, face_tint, atol=1e-6):
-        strip, strip_info = bake_strip(patch_for_bake, frame, grid, body_image, tint, {**head, "uvs": head_uv_final},
-                                       canvas, floor, hair_linear, mm)
+        strip, strip_info = bake_strip(patch_for_bake, frame, grid, body_image, tint, legacy_head, canvas, floor,
+                                       hair_linear, mm)
     face_matching = matching
     matching = skin_match(source_colors, classified, source_positions, cut, template_colors, template_mesh, skeleton,
                           tint=tint)
@@ -2734,6 +2919,15 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
                                    "residualGain": [float(value) for value in strip_info["gainSeamMean"]],
                                    "residualGainSameHeight": [float(value) for value in strip_info["gainMean"]],
                                    "seamAngles": int(strip_info["seamAngles"]), "seamBandMm": TINT_SEAM_BAND_MM}})
+    atlas_info: dict[str, Any] | None = None
+    if hd_image is not None:   # H1：头部 UV 岛从高清图独立排进图集（切口带调平的改动按差值同步到高清图）
+        hd_image, toned_texels = apply_texel_delta(hd_image, embedded_image, source_image)
+        canvas, head_uv_final, atlas_info = pack_head_canvas(hd_image, head["uvs"], head["faces"])
+        atlas_info["seamToneTexelsApplied"] = toned_texels
+        # 条带是最终图集内容：按上面定好的 skinTint 从高清头部画布重烘一次，切口两侧取自同一张头部图（不再迭代增益；
+        # strip_info / 肤色诊断仍是内嵌贴图口径）。离切口 COLOR_BLEND_MM 以外只取模板身体色 × skinTint，与 legacy 逐像素相同。
+        strip, _ = bake_strip(patch_for_bake, frame, grid, body_image, tint, {**head, "uvs": head_uv_final}, canvas, floor,
+                              hair_linear, mm)
     atlas = compose_atlas(canvas, resample_strip(strip, grid, layout))
     patch_uvs, patch_faces_uv, patch_origin = patch_strip_uvs(source_patch_positions, patch["faces"], frame, layout)
     # 4) 合并：头（_REGION=head）+ 颈片（_REGION=neck）。
@@ -2818,7 +3012,9 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
     source_radius, _ = skin_section_radius(source_positions, classified["colors"], classified["skin"], cut)
     fit = {"schema": "tianshu-dressup-fit.v1", "id": npc_id, "kind": "head", "npc": npc_id,
            "template": template_dir.name, "mPerMu": m_per_mu,
-           "source": _input_record(source_path), "body": _input_record(template_dir / "body.glb"),
+           "source": ({**_input_record(source_path), "texture": texture_record} if texture_record is not None
+                      else _input_record(source_path)),
+           "body": _input_record(template_dir / "body.glb"),
            # 兼容 D1 接口：源颈切面半径、头缩放；residualMu = 头部与模板身体衔接处的约束残差
            # （D1 为颈桥底环对模板颈环的最大距离；D1b 衔接件是模板颈片，取其双调和带约束残差）。
            "ring": {"sourceRadiusMu": source_radius, "scale": scale, "residualMu": solve["residualMaxMu"]},
@@ -2865,6 +3061,7 @@ def process_head(source_path: Path, template_dir: Path, npc_id: str, out_dir: Pa
         "head": {"vertices": head_count, "triangles": int(len(head["faces"])),
                  "neckSkinVertices": int(len(neck_skin))},
         "collarRemnants": dict(remnants), "seamTone": dict(seam_tone), "neckCenter": dict(neck_center),
+        **({"atlas": atlas_info} if atlas_info is not None else {}),
         "neckFit": dict(neck_fit),
         "patch": {"vertices": int(len(patch["positions"])), "triangles": int(len(patch["faces"])),
                   "uvSeamDuplicates": int(len(patch_origin) - len(patch["positions"])),
@@ -2934,10 +3131,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--fast", action="store_true",
                         help="迭代用：只出 head.glb / fit.json / hidemask.png 与静态检查，跳过动作帧、validate、预览与 manifest")
     parser.add_argument("--refresh-preview", action="store_true", help="只从已有产物刷新质检图")
+    parser.add_argument("--texture", type=Path,
+                        help="H1：与 --source 同 UV 布局的高清 baseColor（如 Tripo 8K 导出）；给出时头部 UV 岛独立排进图集")
     args = parser.parse_args(argv)
     if args.refresh_preview:
         refresh_preview_and_manifest(args.template, args.id, args.out); return 0
-    report = process_head(args.source, args.template, args.id, args.out, fast=args.fast)
+    try:
+        report = process_head(args.source, args.template, args.id, args.out, fast=args.fast, texture_path=args.texture)
+    except TextureMismatch as error:
+        print(f"--texture 不可用：{error}"); return 2
     if args.json: print(json.dumps(report, ensure_ascii=False))
     else: print(f"{args.id}: {report['gateLevel']} · {report['stats']['vertices']} vertices · "
                 f"{report['stats']['durationMs']} ms")

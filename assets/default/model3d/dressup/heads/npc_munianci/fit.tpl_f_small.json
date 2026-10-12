@@ -7,7 +7,17 @@
   "mPerMu": 1.69370022,
   "source": {
     "file": "assets/default/model3d/dressup/heads/npc_munianci/source/tripo_rig_s07.glb",
-    "sha256": "647778dbff5fbf41cc6899f2a6082d52a591692eb59268eec15ea9295dc875f3"
+    "sha256": "647778dbff5fbf41cc6899f2a6082d52a591692eb59268eec15ea9295dc875f3",
+    "texture": {
+      "path": "apps/game/public/models/props/npc_munianci_basecolor_8k.jpg",
+      "sha256": "8e59a523188895b2527c944ca0b7f26769f271c87244647010d986f9a43c984c",
+      "size": [
+        8192,
+        8192
+      ],
+      "factor": 4,
+      "meanAbsDiffVsEmbedded": 1.056392749
+    }
   },
   "body": {
     "file": "assets/default/model3d/dressup/templates/tpl_f_small/body.glb",
@@ -250,6 +260,16 @@
       ],
       "hHeadAfterMm": 18.0
     },
+    "atlas": {
+      "mode": "packed",
+      "islands": 10,
+      "scaleDstPerSrc": 0.47539591,
+      "gutterPx": 4,
+      "headCoverage": 0.475702013,
+      "rectCoverage": 0.793498448,
+      "linearGainVsLegacy": 2.032878421,
+      "seamToneTexelsApplied": 0
+    },
     "neckFit": {
       "rampMm": 20.0,
       "maxMm": 4.0,
@@ -383,15 +403,15 @@
     "checks": {
       "color": {
         "bottom": {
-          "mean": 0.769199149,
+          "mean": 0.768795567,
           "p95": 1.019629411,
           "max": 1.987830805,
           "samples": 1365
         },
         "top": {
-          "mean": 0.379158206,
-          "p95": 1.076426417,
-          "max": 1.514683038,
+          "mean": 0.404585408,
+          "p95": 1.28351552,
+          "max": 1.896163173,
           "angles": 360
         }
       },
@@ -565,8 +585,8 @@
     "stats": {
       "vertices": 15153,
       "triangles": 28370,
-      "fileSize": 1512720,
-      "durationMs": 194631
+      "fileSize": 1528868,
+      "durationMs": 333318
     },
     "gateLevel": "pass"
   }

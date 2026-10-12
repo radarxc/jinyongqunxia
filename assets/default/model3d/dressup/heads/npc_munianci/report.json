@@ -8,12 +8,12 @@
   },
   "inputs": {
     "asset": {
-      "sha256": "d2ed0244e7c904040d789aa8300c195cda2dfbecda330cf5edcb2d193f630df7",
-      "sizeBytes": 1516576
+      "sha256": "6db1d92c607fa6a2f70d00cfdefd1370ded2e6dc94086ee43a4bdbda9d39a098",
+      "sizeBytes": 1532176
     },
     "fit": {
-      "sha256": "570b7c9d892d525b39c7780638b055315e2f07319f454b72e0e80bb7aa0f62cd",
-      "sizeBytes": 14605
+      "sha256": "ae21935b50e3d3ef343dd33d5a2964a386c9194898f779ba77f77f28a56ebbd4",
+      "sizeBytes": 15172
     }
   },
   "checks": [
@@ -572,7 +572,7 @@
       "name": "head.seamColorBottom",
       "pass": true,
       "value": {
-        "mean": 0.766478757,
+        "mean": 0.767610015,
         "p95": 1.081198251,
         "max": 1.896515217,
         "samples": 1352
@@ -583,9 +583,9 @@
       "name": "head.seamColorTop",
       "pass": true,
       "value": {
-        "mean": 0.340003619,
-        "p95": 0.950483478,
-        "max": 2.050218465,
+        "mean": 0.456656594,
+        "p95": 1.339948378,
+        "max": 1.892028239,
         "angles": 360
       },
       "threshold": "ΔE2000 p95 < 2 (region A, 1° bins, ±0.25–1.25 mm of the cut)"
@@ -636,8 +636,8 @@
   "stats": {
     "vertices": 15215,
     "triangles": 28493,
-    "fileSize": 1516576,
-    "durationMs": 205552
+    "fileSize": 1532176,
+    "durationMs": 228192
   },
   "measurements": {
     "sourceEarWidthMu": 0.092433616,
@@ -843,15 +843,15 @@
   "checks_detail": {
     "color": {
       "bottom": {
-        "mean": 0.766478757,
+        "mean": 0.767610015,
         "p95": 1.081198251,
         "max": 1.896515217,
         "samples": 1352
       },
       "top": {
-        "mean": 0.340003619,
-        "p95": 0.950483478,
-        "max": 2.050218465,
+        "mean": 0.456656594,
+        "p95": 1.339948378,
+        "max": 1.892028239,
         "angles": 360
       }
     },

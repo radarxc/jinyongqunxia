@@ -52600,7 +52600,8 @@
    "kind": "draft",
    "prompt": "ENG-dressup-t5-bodies-v2-derive.md",
    "deps": [
-    "ART-dressup-t4-bodies-v2"
+    "ART-dressup-t4-bodies-v2",
+    "ART-dressup-t4b-neck-v3"
    ],
    "review": false,
    "web": true,
@@ -52913,6 +52914,100 @@
      [
       "{python}",
       "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-t5b-ring-fold",
+   "title": "3D 纸娃娃换装 · T5b · 派生前置修复：颈环改按实际颈截面 + 派生防折叠 / 法线一致（只改工具与测试；0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-t5b-ring-fold.md",
+   "deps": [
+    "ART-dressup-t4b-neck-v3"
+   ],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "T5 审核 r1：派生四体颈环差 2.4–6.3 mm（取环只用 Neck ≥ 0.5 权重点、半圈弧拟椭圆不稳）、f2_small 73 个派生折叠三角；先修工具，T5 再重派生",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/derive_template.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "tools/model3d/dressup/tests_derive.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/export_skeleton.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_derive.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
      ],
      [
       "pnpm",
