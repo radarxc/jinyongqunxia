@@ -2,6 +2,7 @@ import { floorDivInt } from '@tianshu/shared';
 import { planDimensions, resolvePlanRecipe } from './dims';
 import { isShopfront, planDoors } from './doors';
 import { entranceSide, planningPointMm, planningRectCentreMm, yawFromEntranceSide } from './frame';
+import { defaultInteriorPlanner } from './interiors/solver';
 import { RoofStyle } from './types';
 import type {
   BuildKitRecipe, CompiledBuildKit, FixtureTuple, LayoutBuildingInput, PlanDiagnostic,
@@ -202,7 +203,7 @@ function draftPlan(
     ...(finial === undefined ? {} : { finial }), signage: signage(input, recipe),
     facility,
   };
-  const interior = (options.interior ?? emptyInteriorPlanner)({ plan, input, kit, recipe });
+  const interior = (options.interior ?? defaultInteriorPlanner)({ plan, input, kit, recipe });
   return { ...plan, ...interior };
 }
 

@@ -65,6 +65,7 @@ export const FIXTURE_KINDS: readonly FixtureKindDef[] = [
   station(209, 'stn_smith'),
   station(210, 'stn_owner'),
   station(211, 'stn_teacher'),
+  station(212, 'stn_guest'),
 ] as const;
 
 export const FIXTURE_KIND_BY_NAME: ReadonlyMap<string, FixtureKindDef> = new Map(

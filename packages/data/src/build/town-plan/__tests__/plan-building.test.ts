@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { planBuilding } from '../plan-hall';
+import { emptyInteriorPlanner, planBuilding } from '../plan-hall';
 import { testBuildKit } from '../testing';
 import { RoofStyle } from '../types';
 import type { LayoutBuildingInput, PlanningFrame } from '../types';
@@ -9,6 +9,7 @@ const KIT = testBuildKit(readFileSync(
   new URL('../../../../../../content/town/buildkits/song_dali.yaml', import.meta.url), 'utf8',
 ));
 const FRAME: PlanningFrame = { heightCells: 80, originXMm: 0, originZMm: 0 };
+const EMPTY_INTERIOR = { interior: emptyInteriorPlanner } as const;
 const BASE: LayoutBuildingInput = {
   id: 'bi_0001',
   type: 'bld_kit_song_dali_shop',
@@ -22,7 +23,7 @@ const BASE: LayoutBuildingInput = {
 
 describe('planBuilding recipe dispatch', () => {
   it('builds the specified deterministic south-facing shop plan', () => {
-    expect(planBuilding(BASE, KIT, 0xfedcba98, FRAME)).toEqual({
+    expect(planBuilding(BASE, KIT, 0xfedcba98, FRAME, EMPTY_INTERIOR)).toEqual({
       id: 'bi_0001', archetype: 'shop', kit: 'song_dali', seed: 0xfedcba98,
       footprint: [13_000, 57_500, 6_000, 5_000],
       yaw: 0, storeys: 1, roof: [RoofStyle.Xuanshan, 3_070, 4_566],
@@ -38,14 +39,14 @@ describe('planBuilding recipe dispatch', () => {
     { entranceCell: [13, 25], yaw: 2, footprint: [6_000, 5_000] },
     { entranceCell: [16, 22], yaw: 3, footprint: [5_000, 6_000] },
   ] as const)('derives yaw $yaw from the entrance edge', ({ entranceCell, yaw, footprint }) => {
-    const plan = planBuilding({ ...BASE, entranceCell }, KIT, 7, FRAME);
+    const plan = planBuilding({ ...BASE, entranceCell }, KIT, 7, FRAME, EMPTY_INTERIOR);
     expect(plan.yaw).toBe(yaw);
     expect(plan.footprint.slice(2)).toEqual(footprint);
   });
 
   it('keeps every floor rectangle inside the world footprint bounds', () => {
     for (const entranceCell of [[13, 25], [9, 22], [13, 19], [16, 22]] as const) {
-      const plan = planBuilding({ ...BASE, entranceCell }, KIT, 7, FRAME);
+      const plan = planBuilding({ ...BASE, entranceCell }, KIT, 7, FRAME, EMPTY_INTERIOR);
       const [cx, cz, localW, localD] = plan.footprint;
       const worldW = plan.yaw === 0 || plan.yaw === 2 ? localW : localD;
       const worldD = plan.yaw === 0 || plan.yaw === 2 ? localD : localW;
@@ -63,14 +64,16 @@ describe('planBuilding recipe dispatch', () => {
       id: BASE.id, type: BASE.type, originCell: BASE.originCell, sizeCells: BASE.sizeCells,
       entranceCell: BASE.entranceCell, enterable: false, baseYMm: BASE.baseYMm,
     };
-    const plan = planBuilding(input, KIT, 9, FRAME);
+    const plan = planBuilding(input, KIT, 9, FRAME, EMPTY_INTERIOR);
     expect(plan.floors).toEqual([]);
     expect(plan.floorY).toEqual([]);
     expect(plan.facility).toBe('general_store');
   });
 
   it('rejects an empty footprint', () => {
-    expect(() => planBuilding({ ...BASE, sizeCells: [0, 5] }, KIT, 9, FRAME))
+    expect(() => planBuilding(
+      { ...BASE, sizeCells: [0, 5] }, KIT, 9, FRAME, EMPTY_INTERIOR,
+    ))
       .toThrow('TOWN_PLAN_INVALID_SIZE');
   });
 });

@@ -3,8 +3,6 @@ import { layoutCompound } from '../compound';
 import { planDimensions } from '../dims';
 import { planDoors } from '../doors';
 import { exportFixtures } from '../export-fixtures';
-import { reachableInteriorHexes } from '../interiors/hexes';
-import { solveInterior } from '../interiors/solver';
 import { checkPlan } from '../invariants';
 import { compileKit } from '../kit/compile';
 import { parseBuildKitSource } from '../kit/schema';
@@ -20,8 +18,6 @@ const stubs: readonly [string, () => unknown][] = [
   ['parseBuildKitSource', () => parseBuildKitSource({})],
   ['compileKit', () => compileKit({})],
   ['layoutCompound', () => layoutCompound([0, 0, 1, 1])],
-  ['solveInterior', () => solveInterior({} as never)],
-  ['reachableInteriorHexes', () => reachableInteriorHexes([], [], { q: 0, r: 0 })],
   ['testBuildKit', () => testBuildKit()],
   ['testLayoutBuilding', () => testLayoutBuilding()],
 ];

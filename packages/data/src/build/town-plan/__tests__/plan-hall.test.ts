@@ -13,6 +13,7 @@ import { RoofStyle } from '../types';
 import type { CompiledBuildKit, LayoutBuildingInput, PlanningFrame, TownBuildingPlan } from '../types';
 
 const FRAME: PlanningFrame = { heightCells: 160, originXMm: 0, originZMm: 0 };
+const EMPTY_INTERIOR = { interior: emptyInteriorPlanner } as const;
 const SONG = testBuildKit(readFileSync(
   new URL('../../../../../../content/town/buildkits/song_dali.yaml', import.meta.url), 'utf8',
 ));
@@ -103,7 +104,7 @@ describe('tech/16 section 3 golden buildings', () => {
   it('plans the 6 by 5 Dali shop', () => {
     const source = input('bld_kit_song_dali_shop', [6, 5]);
     const dims = planDimensions(source, SONG);
-    const plan = planBuilding(source, SONG, 1, FRAME);
+    const plan = planBuilding(source, SONG, 1, FRAME, EMPTY_INTERIOR);
     expect(dims.bayWidthsMm).toEqual([4_750]);
     expectMm(plan.roof[1], 3_070);
     expectMm(plan.roof[2], 4_566);
@@ -116,7 +117,7 @@ describe('tech/16 section 3 golden buildings', () => {
   it('plans the 6 by 5 Dali residence', () => {
     const source = input('bld_kit_song_dali_house', [6, 5]);
     const dims = planDimensions(source, SONG);
-    const plan = planBuilding(source, SONG, 2, FRAME);
+    const plan = planBuilding(source, SONG, 2, FRAME, EMPTY_INTERIOR);
     expect(dims.bayWidthsMm).toEqual([1_724, 2_102, 1_724]);
     expect(plan.entrances).toEqual([[0, 0, 1_400]]);
     expectDoor(source, SONG, 1_400, 2_150, 120);
@@ -128,7 +129,7 @@ describe('tech/16 section 3 golden buildings', () => {
 
   it('plans the 10 by 8 two-storey inn', () => {
     const source = input('bld_kit_song_dali_inn', [10, 8]);
-    const plan = planBuilding(source, SONG, 3, FRAME);
+    const plan = planBuilding(source, SONG, 3, FRAME, EMPTY_INTERIOR);
     expect(plan.storeys).toBe(2);
     expect(plan.entrances).toEqual([[0, 0, 1_500]]);
     expectDoor(source, SONG, 1_500, 2_350, 150);
@@ -138,7 +139,7 @@ describe('tech/16 section 3 golden buildings', () => {
 
   it('plans the 12 by 10 bracketed temple hall', () => {
     const source = input('bld_kit_song_dali_temple_hall', [12, 10]);
-    const plan = planBuilding(source, SONG, 4, FRAME);
+    const plan = planBuilding(source, SONG, 4, FRAME, EMPTY_INTERIOR);
     expect(plan.entrances).toEqual([[0, 0, 2_000]]);
     expectDoor(source, SONG, 2_000, 3_000, 200);
     expectMm(plan.roof[1], 4_575);
@@ -210,7 +211,8 @@ describe('pilot and synthetic coverage', () => {
     for (const scene of PILOTS.scenes) {
       const kit = scene.kitId === 'xiyu' ? XIYU : SONG;
       for (const building of scene.buildings) {
-        const options = scene.variant === undefined ? {} : { variant: scene.variant };
+        const options: PlanBuildingOptions = scene.variant === undefined ? EMPTY_INTERIOR
+          : { variant: scene.variant, interior: emptyInteriorPlanner };
         const first = planBuilding(building, kit, 0x51a7c0de, scene.frame, options);
         const second = planBuilding(building, kit, 0x51a7c0de, scene.frame, options);
         expect(JSON.stringify(first)).toBe(JSON.stringify(second));
@@ -227,7 +229,7 @@ describe('pilot and synthetic coverage', () => {
   ] as const)('keeps synthetic %d by %d plans valid on four entrance sides', (w, h) => {
     for (let side = 0; side < 4; side += 1) {
       const source = input('bld_kit_song_dali_house', [w, h], side);
-      const plan = planBuilding(source, SONG, 9, FRAME);
+      const plan = planBuilding(source, SONG, 9, FRAME, EMPTY_INTERIOR);
       expectPlanInvariants(plan, SONG);
       expectDoorHeight(source, SONG);
       expect(plan.entrances[0]![2]).toBeGreaterThanOrEqual(1_200);
@@ -235,7 +237,9 @@ describe('pilot and synthetic coverage', () => {
   });
 
   it('keeps a 6 by 5 shop interior at least 4.2 by 2.9 metres', () => {
-    const plan = planBuilding(input('bld_kit_song_dali_shop', [6, 5]), SONG, 10, FRAME);
+    const plan = planBuilding(
+      input('bld_kit_song_dali_shop', [6, 5]), SONG, 10, FRAME, EMPTY_INTERIOR,
+    );
     const room = plan.floors[0]!;
     expect(room[2] - room[0]).toBeGreaterThanOrEqual(4_200);
     expect(room[3] - room[1]).toBeGreaterThanOrEqual(2_900);
@@ -243,13 +247,13 @@ describe('pilot and synthetic coverage', () => {
 
   it('derives clear floor bounds from each kit wall thickness', () => {
     const source = input('bld_kit_song_dali_house', [6, 5]);
-    const base = planBuilding(source, SONG, 10, FRAME).floors[0]!;
+    const base = planBuilding(source, SONG, 10, FRAME, EMPTY_INTERIOR).floors[0]!;
     const thickKit: CompiledBuildKit = { ...SONG, walls: { ...SONG.walls,
       gable: { ...SONG.walls.gable, t: 550 },
       back: { ...SONG.walls.back, t: 550 },
       front: { ...SONG.walls.front, t: 250 },
     } };
-    const thick = planBuilding(source, thickKit, 10, FRAME).floors[0]!;
+    const thick = planBuilding(source, thickKit, 10, FRAME, EMPTY_INTERIOR).floors[0]!;
     expect([base[2] - base[0], base[3] - base[1]]).toEqual([5_200, 3_200]);
     expect([thick[2] - thick[0], thick[3] - thick[1]]).toEqual([4_900, 3_000]);
   });
@@ -261,13 +265,14 @@ describe('doors and interior seam', () => {
     ['xiyu carved_shopfront', XIYU, 3_200, 2_700, 100],
   ] as const)('uses exact %s shop clearance', (_name, kit, width, height, threshold) => {
     const source = input('bld_kit_song_dali_shop', [6, 5]);
-    expect(planBuilding(source, kit, 10, FRAME).entrances).toEqual([[0, 0, width]]);
+    expect(planBuilding(source, kit, 10, FRAME, EMPTY_INTERIOR).entrances)
+      .toEqual([[0, 0, width]]);
     expectDoor(source, kit, width, height, threshold);
   });
 
   it('keeps a non-enterable residence single door decorative', () => {
     const plan = planBuilding(
-      input('bld_kit_song_dali_house', [6, 5], 0, false), SONG, 11, FRAME,
+      input('bld_kit_song_dali_house', [6, 5], 0, false), SONG, 11, FRAME, EMPTY_INTERIOR,
     );
     expect(plan).toMatchObject({ enterable: false, entrances: [[0, 0, 900]], floors: [] });
   });
@@ -289,8 +294,8 @@ describe('doors and interior seam', () => {
   it('uses a layout offset only when it is over one metre from the middle bay', () => {
     const near = { ...input('bld_kit_song_dali_house', [6, 5]), entranceCell: [3, -1] } as const;
     const far = { ...near, entranceCell: [5, -1] } as const;
-    expect(planBuilding(near, SONG, 12, FRAME).entrances[0]![1]).toBe(0);
-    expect(planBuilding(far, SONG, 12, FRAME).entrances[0]![1]).toBe(2_300);
+    expect(planBuilding(near, SONG, 12, FRAME, EMPTY_INTERIOR).entrances[0]![1]).toBe(0);
+    expect(planBuilding(far, SONG, 12, FRAME, EMPTY_INTERIOR).entrances[0]![1]).toBe(2_300);
   });
 
   it('lets InteriorPlanner replace fixtures, floors, and floorY together', () => {
@@ -298,7 +303,7 @@ describe('doors and interior seam', () => {
     const defaultPlanner: InteriorPlanner = emptyInteriorPlanner;
     const defaultOptions: PlanBuildingOptions = { interior: defaultPlanner };
     expect(planBuilding(source, SONG, 13, FRAME, defaultOptions).fixtures).toEqual([]);
-    expect(planBuilding(source, SONG, 13, FRAME).fixtures).toEqual([]);
+    expect(planBuilding(source, SONG, 13, FRAME, EMPTY_INTERIOR).fixtures).toEqual([]);
     const fixture = [0, 0, 0, 1_000, 500, 0, 1] as const;
     const plan = planBuilding(source, SONG, 13, FRAME, { interior: ({ plan: draft }) => {
       const [x0, z0, x1, z1] = draft.floors[0]!;
