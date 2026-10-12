@@ -31337,6 +31337,82 @@
    ]
   },
   {
+   "id": "ENG-town2-minimap-fit",
+   "title": "城镇探索 v2 · 小地图返修（AR-117）：缩影按缩影图自身投影等比绘制（不拉伸不剪切）、缩影模式司南只指南、全城图按图适配 + 标签避让 + 不被顶栏遮、高清屏",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-town2-minimap-fit.md",
+   "deps": [
+    "ENG-town2-minimap-art"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "协调者 2026-10-12 在 5173 实测 AR-117 改版：缩影纵向拉长 2 倍、上北下南剪切、全城图空白大且标签压盖、顶栏遮挡、DPR 2 发虚；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "packages/ui/src/components/explore/TxMinimap.vue",
+    "packages/ui/src/components/explore/TxMinimap.strings.ts",
+    "packages/ui/src/components/explore/TxMinimap.test.ts",
+    "packages/ui/src/components/explore/TxSinan.vue",
+    "packages/ui/src/components/explore/TxSinan.strings.ts",
+    "packages/ui/src/components/explore/TxSinan.test.ts",
+    "packages/ui/src/explore/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/ui/src/components/explore/TxMinimap.vue",
+     "packages/ui/src/explore/minimap-math.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui/src/components/explore",
+      "packages/ui/src/explore",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/explore",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/town-minimap"
+   ]
+  },
+  {
    "id": "ENG-town2-v1-page",
    "title": "城镇探索 v2 · P1 · 现有城镇页收尾（删模拟店铺与对话、交互条、经店员对话真实购买）",
    "phase": "TOWN2",
