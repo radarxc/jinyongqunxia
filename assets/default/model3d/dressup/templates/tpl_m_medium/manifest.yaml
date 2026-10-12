@@ -59,8 +59,8 @@
   skullProfileSha: 262402cadaa9c2c3d6f61a8e2a6f0917b8ff76e9d92e9a9af85a63d66c9b4336
   heightMu: 0.97924826
   mPerMu: 1.84835662
-  ringSha: d9342353c83776ff30dc220d357eb2404a669b901f1221efc0c39f388f184e45
-  skeletonSha: 25c45b057e3f352cb2024d27f92c731a3a7ae402dbd58794d68a3bf346ec94e4
+  ringSha: 50224403e765697f01c296a8eb2d0439b878975130c5a641d9f18514a2551958
+  skeletonSha: 4cb8b6379fa13b01d2767168752f67561400cfa405a88e67dcea6852f351d32e
   source:
     tripo_project_id: 11c688eb-413a-4276-a656-ba0265e48c5b
   supersedes:
@@ -75,7 +75,12 @@
     tool: tools/model3d/dressup/textures.py --max 2048 --quality 85
     sourceSha256: a703e7c825777a98d12d898e7a6667b6d39104b5e6ceb921de55c48a685e076d   # Tripo 导出 + 规范化后、转 unlit 前
     result: KHR_materials_unlit，只留 baseColor（2048² JPEG q85）；normal / metallicRoughness 贴图连同 image / bufferView 删除；几何、权重、_REGION、关节、IBM、动画逐字节不变
-  sha256: d9db6f2d86979df28bf082e965eacfbe067ba5407e6754ddfd8d70211471b65d
+  invertedFacesFixed:
+    count: 67
+    tool: tools/model3d/dressup/fix_inverted_faces.py
+    sourceSha256: d9db6f2d86979df28bf082e965eacfbe067ba5407e6754ddfd8d70211471b65d
+    report: inverted_faces.json
+  sha256: aa2a1e95258a36555890d8095c75b1711978f30d8134fa45791d6e9889e91549
   size_bytes: 8670272
   joints: 65
   vertices: 105156
@@ -87,11 +92,13 @@
   armAngleDeg3d: 22.1094673
   headsRatio: 8.23
   hipsRatio: 0.56835958
+  shoulderRatio: 0.19531243
   neckToHead: 0.6028        # 正面剪影：颈最细宽 / 头宽（含耳）
   chinToNeckRootMm: 33.0    # sculpt_neck --check-only 测量口径
   trapSlopeDeg: 20.74       # 颈根点到肩峰点连线与水平夹角
-  preview: preview.png       # Tripo 绑骨后封面
+  preview: preview.png       # T5 最终 GLB，5173 正面全身 bind，640×960 RGB
   shots:
+  - shots/derive.inverted_faces.bind_walk_run.jpg
   - shots/regen_v2.before_after.jpg
   superseded_shots:
   - shots/views.tpl_m_medium.jpg       # T4 旧男模（1ccfd7a9，已被本版取代）
@@ -101,8 +108,11 @@
     T4b（作者 2026-10-11「男女脖子都太粗……参考逆水寒」「如果不行就换素体重新生成」，选新素体图 B）重生成的男性中等素体模板，
     取代 T4 的 1ccfd7a9 版：65 关节、rest=bind、+Z、原地 idle/walk/run，骨架帧按 AR-104 的 1.81 m 换算。
     颈宽 / 头宽 0.686 → 0.603（逆水寒男约 0.68，验收 ≤ 0.62）、颈加长、颈后与斜方肌变薄，未做雕塑。
-    颈环：Tripo 把斜方肌起点也刷成 Neck 主导，export_skeleton 改为多段近圆时取半径在区间内的一段（T4b 补充裁定），环半径 0.041 / 0.039 mu。
-    已知瑕疵（Tripo 生成即有，未修）：全身倒置面 67 个，后脑偏下 1 处在单面材质下露成小黑点（截图背面列可见），交 T5 统一翻正；
+    颈环按 T5b section 从 Neck→Head 骨段 15% 处实际闭合截面导出，半径 x / z 为 0.04161666 / 0.03258561 mu，长宽比 1.2771485。
+    T5 按 E2c 点积口径翻正 67 个倒置面（含后脑偏下），复查为 0；只交换索引，顶点 / 法线 / UV / 权重 / 贴图 / 骨架字节不变。
+    后脑面 103350 在 bind / walk 0.6 s / run 0.3 s 单面 unlit 实拍中已完整显示，翻正前后的同机位对照见 shots。
     头顶偏后有一条细的浅色贴图缝（近看可见，正面看不到），随后续贴图修整处理。T4 版左大腿外侧的浅色条带新版没有。
-    男性衣物 / 头 / 道具尚无贴合，lean / bulk 由 T5 从本模板派生。
+    男性衣物 / 头 / 道具尚无贴合；已解决：旧派生颈环差超限与反向面，经 T5b 重派生 lean / bulk，
+    section 两轴最大差 0.879 / 0.745 mm，比例、位移、翻向与负点积门均通过。
     已按 tech/11 模板契约转 KHR_materials_unlit、只留 baseColor（见 unlit 块）。
+    四派生均带 --ring-from，实际截面半径不手改；已解决：tests_derive.py 的 bulk 脚底误报已按获准补丁修复，10/10 回归及 pnpm check 通过；候选状态保留，后续重贴合与默认切换见 T5 报告第 7 节。

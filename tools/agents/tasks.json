@@ -56146,6 +56146,7 @@
     "tools/model3d/dressup/fix_inverted_faces.py",
     "tools/model3d/dressup/tests_fix_faces.py",
     "tools/model3d/dressup/template_specs_v2.json",
+    "tools/model3d/dressup/tests_derive.py",
     "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
     "assets/default/model3d/dressup/templates/tpl_f2_small/**",
     "assets/default/model3d/dressup/templates/tpl_f2_tall/**",

@@ -18,11 +18,11 @@ import numpy as np
 from scipy.spatial import ConvexHull
 
 try:
-    from .common import compose_matrix, matrix_to_quaternion, pca, quaternion_to_matrix
+    from .common import compose_matrix, matrix_to_quaternion, nearest_triangle, pca, quaternion_to_matrix
     from .glb_io import GLB, Mesh, load_glb
     from .normalize_rig import _serialize, rest_bind_max_diff
 except ImportError:
-    from common import compose_matrix, matrix_to_quaternion, pca, quaternion_to_matrix
+    from common import compose_matrix, matrix_to_quaternion, nearest_triangle, pca, quaternion_to_matrix
     from glb_io import GLB, Mesh, load_glb
     from normalize_rig import _serialize, rest_bind_max_diff
 
@@ -169,6 +169,99 @@ def _plane_basis(axis: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
 
 
 RING_RADIUS_RANGE_MU = (0.025, 0.045)   # 颈环半径合理区间（--check 同一口径）
+# T5b：两源 1 mm 截面扫描；在原半径区间内取较平缓的颈柱段。
+# 0.15 对应女 0.009519 / 男 0.007547 mu；女短轴距下限尚有 0.000115 mu。
+SECTION_HEIGHT_FRACTION = 0.15
+
+
+def _section_loop(points: np.ndarray, faces: np.ndarray, axis: np.ndarray, height: float) -> dict[str, Any]:
+    """精确切三角、焊接 UV 缝端点，选包含轴原点且周长最小的闭环。"""
+    axis, u, v = _plane_basis(np.array(axis, dtype=float, copy=True))
+    distance = points @ axis - height
+    distance[np.abs(distance) < 1e-12] = 0.0
+    candidates = np.flatnonzero((distance[faces].min(axis=1) <= 0) & (distance[faces].max(axis=1) >= 0))
+    edges, adjacency = {}, {}
+    for face_id in candidates:
+        face = faces[face_id]; d = distance[face]
+        if np.all(d == 0): continue  # 共面三角不定义唯一交线；其邻面仍给出边界。
+        hits = {}
+        for corner in range(3):
+            other = (corner + 1) % 3; bary = None
+            if d[corner] == 0: bary = np.eye(3)[corner]
+            elif d[corner] * d[other] < 0:
+                t = d[corner] / (d[corner] - d[other])
+                bary = np.eye(3)[corner] * (1 - t) + np.eye(3)[other] * t
+            if bary is not None:
+                point = bary @ points[face]
+                hits[tuple(np.rint(point * 1e8).astype(np.int64))] = (point, bary)
+        if len(hits) != 2: continue
+        a, b = sorted(hits); key = (a, b)
+        if key in edges: continue
+        edges[key] = (int(face_id), hits[a], hits[b])
+        adjacency.setdefault(a, set()).add(b); adjacency.setdefault(b, set()).add(a)
+    loops, seen = [], set()
+    for start in sorted(adjacency):
+        if start in seen: continue
+        component, pending = set(), [start]
+        while pending:
+            current = pending.pop()
+            if current in component: continue
+            component.add(current); pending.extend(adjacency[current] - component)
+        seen.update(component)
+        if len(component) < 3 or any(len(adjacency[key]) != 2 for key in component): continue
+        chain, previous, current = [], None, start
+        while True:
+            chain.append(current)
+            following = min(adjacency[current] - ({previous} if previous is not None else set()))
+            previous, current = current, following
+            if current == start: break
+        segments, barycentrics, face_ids = [], [], []
+        for a, b in zip(chain, chain[1:] + chain[:1]):
+            face_id, first, second = edges[tuple(sorted((a, b)))]
+            if a > b: first, second = second, first
+            face_ids.append(face_id); segments.append([first[0], second[0]])
+            barycentrics.append([first[1], second[1]])
+        segments = np.asarray(segments); barycentrics = np.asarray(barycentrics)
+        if np.max(np.linalg.norm(segments[:, 1] - np.roll(segments[:, 0], -1, axis=0), axis=1)) > 2e-8:
+            continue
+        planar = np.column_stack((segments[:, 0] @ u, segments[:, 0] @ v))
+        next_point = np.roll(planar, -1, axis=0)
+        winding = np.arctan2(planar[:, 0] * next_point[:, 1] - planar[:, 1] * next_point[:, 0],
+                             np.sum(planar * next_point, axis=1)).sum()
+        if abs(winding) < math.pi: continue
+        face_ids = np.asarray(face_ids, dtype=np.int64)
+        if winding < 0:
+            segments = segments[::-1, ::-1]; barycentrics = barycentrics[::-1, ::-1]; face_ids = face_ids[::-1]
+        lengths = np.linalg.norm(segments[:, 1] - segments[:, 0], axis=1)
+        if np.any(lengths <= 1e-12): continue
+        loops.append({"segments": segments, "barycentric": barycentrics, "faces": face_ids,
+                      "lengths": lengths, "perimeter": float(lengths.sum()),
+                      "axis": axis, "planeU": u, "planeV": v})
+    if not loops: raise SkeletonError("切面没有环绕颈轴的闭合截面")
+    return min(loops, key=lambda loop: loop["perimeter"])
+
+
+def _sample_section(loop: dict[str, Any], count: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    cumulative = np.r_[0.0, np.cumsum(loop["lengths"])]
+    distance = np.arange(count) * cumulative[-1] / count
+    index = np.minimum(np.searchsorted(cumulative, distance, side="right") - 1, len(loop["lengths"]) - 1)
+    t = ((distance - cumulative[index]) / loop["lengths"][index])[:, None]
+    segments, bary = loop["segments"][index], loop["barycentric"][index]
+    return (segments[:, 0] * (1 - t) + segments[:, 1] * t, loop["faces"][index],
+            bary[:, 0] * (1 - t) + bary[:, 1] * t)
+
+
+def _fit_section_ellipse(points: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """对均匀弧长点拟合一般二次曲线；半径按长/短轴固定排序。"""
+    origin = points.mean(axis=0); scale = float(np.std(points - origin))
+    if not np.isfinite(scale) or scale <= 1e-12: raise SkeletonError("截面退化")
+    x, y = ((points - origin) / scale).T
+    a, b, c, d, e = np.linalg.lstsq(np.c_[x*x, x*y, y*y, x, y], np.ones(len(points)), rcond=None)[0]
+    quadratic = np.array([[a, b / 2], [b / 2, c]])
+    center = -0.5 * np.linalg.solve(quadratic, [d, e]); eigenvalues = np.linalg.eigvalsh(quadratic)
+    if np.any(eigenvalues <= 0): raise SkeletonError("闭环不能拟合为椭圆")
+    radii = np.sqrt((1 + center @ quadratic @ center) / eigenvalues) * scale
+    return origin + center * scale, radii
 
 
 def find_neck_ring(local_points: np.ndarray, neck_weights: np.ndarray, primary: np.ndarray, axis: np.ndarray,
@@ -198,12 +291,62 @@ def find_neck_ring(local_points: np.ndarray, neck_weights: np.ndarray, primary: 
             "vertices": count}
 
 
-def derive_neck_ring(glb: GLB, mesh: Mesh, positions: np.ndarray, slots: dict[str, int]) -> dict[str, Any]:
+def _derive_section_ring(mesh: Mesh, local: np.ndarray, head_local: np.ndarray, neck_world: np.ndarray,
+                         slots: dict[str, int], fraction: float, m_per_mu: float) -> dict[str, Any]:
+    if not np.isfinite(fraction) or not 0 < fraction < 1: raise SkeletonError("heightFraction 必须在 (0,1)")
+    if not np.isfinite(m_per_mu) or m_per_mu <= 0: raise SkeletonError("section 米制标尺必须为正有限值")
+    if mesh.joints is None or mesh.weights is None or not np.all(np.isfinite(mesh.weights)) or np.any(mesh.weights < 0):
+        raise SkeletonError("section 需要有限非负蒙皮权重")
+    length = float(np.linalg.norm(head_local))
+    if length <= 1e-12: raise SkeletonError("Neck 与 Head 重合")
+    height = length * fraction; faces = np.asarray(mesh.indices, dtype=np.int64).reshape(-1, 3)
+    loop = _section_loop(local, faces, head_local, height)
+    dense_points, _, _ = _sample_section(loop, 1024)
+    center, radii = _fit_section_ellipse(np.column_stack((dense_points @ loop["planeU"], dense_points @ loop["planeV"])))
+    points, face_ids, barycentric = _sample_section(loop, 64)
+    center_local = loop["axis"] * height + loop["planeU"] * center[0] + loop["planeV"] * center[1]
+    names = {slot: name for name, slot in slots.items()}; profile = []
+    for point, face_id, bary in zip(points, face_ids, barycentric):
+        dense = np.zeros(len(slots)); corners = faces[face_id]
+        np.add.at(dense, mesh.joints[corners].reshape(-1), (mesh.weights[corners] * bary[:, None]).reshape(-1))
+        order = np.argsort(-dense, kind="stable")[:4]; order = order[dense[order] > 0]
+        if not len(order): raise SkeletonError("截面点没有有效蒙皮权重")
+        weights = dense[order] / dense[order].sum()
+        radial = point - center_local; radial -= loop["axis"] * np.dot(radial, loop["axis"])
+        radial /= np.linalg.norm(radial)
+        normal = math.cos(math.radians(15)) * radial + math.sin(math.radians(15)) * loop["axis"]
+        normal = np.linalg.inv(neck_world[:3, :3]).T @ normal; normal /= np.linalg.norm(normal)
+        profile.append({"pos": _round((neck_world @ np.r_[point, 1])[:3]), "normal": _round(normal),
+                        "weights": {names[int(slot)]: _round(weight) for slot, weight in zip(order, weights)}})
+    segments_world = loop["segments"] @ neck_world[:3, :3].T
+    perimeter = np.linalg.norm(segments_world[:, 1] - segments_world[:, 0], axis=1).sum()
+    payload = json.dumps(profile, sort_keys=True, separators=(",", ":")).encode()
+    dominance = np.mean([max(point["weights"], key=point["weights"].get) == "mixamorig:Neck" for point in profile])
+    return {"mode": "section", "heightFraction": fraction, "perimeterMm": _round(perimeter * m_per_mu * 1000),
+            "localYMu": _round(height), "centerMu": _round((neck_world @ np.r_[center_local, 1])[:3]),
+            "centerLocalMu": _round(center_local), "radiusMu": {"x": _round(radii[0]), "z": _round(radii[1])},
+            "samples": 64, "profile": profile, "lipOffsetMu": 0.004, "neckDominance": _round(dominance),
+            "sliceAspectRatio": _round(radii[0] / radii[1]), "sliceVertices": len(loop["segments"]),
+            "axisLocal": _round(loop["axis"]), "sha256": sha256(payload).hexdigest()}
+
+
+def derive_neck_ring(glb: GLB, mesh: Mesh, positions: np.ndarray, slots: dict[str, int], *,
+                     ring_mode: str = "legacy", ring_from: dict[str, Any] | None = None,
+                     m_per_mu: float = 1.0) -> dict[str, Any]:
     neck_slot = slots["mixamorig:Neck"]; neck_node = glb.skin().joints[neck_slot]
     inverse = np.linalg.inv(glb.world_matrix(neck_node))
     local = (np.c_[positions, np.ones(len(positions))] @ inverse.T)[:, :3]
     head_node = glb.skin().joints[slots["mixamorig:Head"]]
     head_local = (inverse @ np.r_[glb.world_matrix(head_node)[:3, 3], 1.0])[:3]
+    if ring_mode not in ("legacy", "section"): raise SkeletonError("未知颈环模式")
+    if ring_from is not None and ring_mode != "section": raise SkeletonError("--ring-from 只用于 section 模式")
+    if ring_mode == "section":
+        fraction = SECTION_HEIGHT_FRACTION
+        if ring_from is not None:
+            source_ring = ring_from.get("neckRing", {})
+            if source_ring.get("mode") != "section": raise SkeletonError("--ring-from 要求源 skeleton 使用 section 环")
+            fraction = float(source_ring.get("heightFraction", 0))
+        return _derive_section_ring(mesh, local, head_local, glb.world_matrix(neck_node), slots, fraction, m_per_mu)
     neck_weights = _bone_weights(mesh, neck_slot)
     primary = np.argmax(mesh.weights, axis=1)
     primary_slots = mesh.joints[np.arange(len(mesh.joints)), primary]
@@ -521,14 +664,18 @@ def embed_regions(body_path: Path, regions: np.ndarray) -> bool:
     return True
 
 
-def export(body_path: Path, out_dir: Path, default_height_m: float = 1.65) -> dict[str, Any]:
+def export(body_path: Path, out_dir: Path, default_height_m: float = 1.65, *,
+           ring_mode: str = "legacy", ring_from: Path | None = None) -> dict[str, Any]:
     glb = load_glb(body_path); difference = rest_bind_max_diff(glb)
     if difference >= 1e-5: raise SkeletonError(f"rest != bind：{difference:.9g}")
     names = _names(glb)
     if len(names) != 65: raise SkeletonError(f"规范骨架应为 65 关节，实际 {len(names)}")
     slots = {name: index for index, name in enumerate(names)}; mesh, positions, normals = _world_mesh(glb)
     measures, head_top = derive_measures(glb, mesh, positions, slots)
-    height_mu = float(np.ptp(positions[:, 1])); neck_ring = derive_neck_ring(glb, mesh, positions, slots)
+    height_mu = float(np.ptp(positions[:, 1]))
+    source_ring = json.loads(ring_from.read_text()) if ring_from is not None else None
+    neck_ring = derive_neck_ring(glb, mesh, positions, slots, ring_mode=ring_mode, ring_from=source_ring,
+                                 m_per_mu=default_height_m / height_mu)
     skull = derive_skull_profile(glb, mesh, positions, slots)
     regions, joint_mapping, cross_ratio, triangle_regions = derive_regions(mesh, names)
     sockets = derive_sockets(glb, mesh, positions, normals, slots, head_top, neck_ring)
@@ -605,14 +752,21 @@ def _check_neck_ring(ring: Any) -> None:
     required = {"localYMu", "centerMu", "centerLocalMu", "radiusMu", "samples", "profile",
                 "lipOffsetMu", "neckDominance", "sliceAspectRatio", "sliceVertices", "axisLocal", "sha256"}
     if not isinstance(ring, dict) or required - set(ring): raise SkeletonError("neckRing 字段不齐")
+    section = ring.get("mode") == "section"
+    if ring.get("mode", "legacy") not in ("legacy", "section"): raise SkeletonError("未知颈环模式")
+    if section:
+        if {"heightFraction", "perimeterMm"} - set(ring): raise SkeletonError("section 颈环字段不齐")
+        if not 0 < float(ring["heightFraction"]) < 1 or not np.isfinite(float(ring["perimeterMm"])) or float(ring["perimeterMm"]) <= 0:
+            raise SkeletonError("section 比例高度或周长无效")
     if ring["samples"] != 64 or len(ring["profile"]) != 64: raise SkeletonError("颈环必须有 64 点")
     _finite_vector(ring["centerMu"], 3, "neckRing.centerMu"); _finite_vector(ring["centerLocalMu"], 3, "neckRing.centerLocalMu")
     axis = _finite_vector(ring["axisLocal"], 3, "neckRing.axisLocal")
     if abs(float(np.linalg.norm(axis)) - 1) > 1e-4: raise SkeletonError("neckRing.axisLocal 必须归一化")
     if not np.isfinite(float(ring["localYMu"])) or not 0.004 <= float(ring["localYMu"]) <= 0.035:
         raise SkeletonError("neckRing.localYMu 不在搜索区间")
-    if float(ring["neckDominance"]) != 1.0 or not 1 <= float(ring["sliceAspectRatio"]) < 1.3:
-        raise SkeletonError("neckRing 必须 100% Neck 主导且长宽比 < 1.3")
+    if not 1 <= float(ring["sliceAspectRatio"]) < 1.3: raise SkeletonError("neckRing 长宽比必须 < 1.3")
+    if not 0 <= float(ring["neckDominance"]) <= 1 or (not section and float(ring["neckDominance"]) != 1.0):
+        raise SkeletonError("neckRing 主导比例无效（旧模式须为 100%）")
     if int(ring["sliceVertices"]) < 24 or abs(float(ring["lipOffsetMu"]) - 0.004) > 1e-9:
         raise SkeletonError("neckRing 切片顶点或唇环偏移无效")
     keys = {"mixamorig:Neck", "mixamorig:Spine2", "mixamorig:LeftShoulder", "mixamorig:RightShoulder"}
@@ -621,11 +775,36 @@ def _check_neck_ring(ring: Any) -> None:
         _finite_vector(point["pos"], 3, f"neckRing.profile[{index}].pos")
         normal = _finite_vector(point["normal"], 3, f"neckRing.profile[{index}].normal")
         if abs(float(np.linalg.norm(normal)) - 1) > 1e-4: raise SkeletonError("颈环法线必须归一化")
-        if set(point["weights"]) != keys or any(not np.isfinite(float(v)) or float(v) < 0 for v in point["weights"].values()):
+        valid_keys = 1 <= len(point["weights"]) <= 4 if section else set(point["weights"]) == keys
+        if not valid_keys or any(not np.isfinite(float(v)) or float(v) < 0 for v in point["weights"].values()):
             raise SkeletonError("颈环每点必须有四个非负有限权重")
         if abs(sum(map(float, point["weights"].values())) - 1) > 1e-6: raise SkeletonError("颈环四权重和必须为 1")
     payload = json.dumps(ring["profile"], sort_keys=True, separators=(",", ":")).encode()
     if sha256(payload).hexdigest() != ring["sha256"]: raise SkeletonError("neckRing sha256 不一致")
+
+
+def _check_section_surface(data: dict[str, Any], body: GLB) -> float:
+    """从网格重建闭环，核对弧长点序/半径/权重并精测到三角表面的距离。"""
+    ring = data["neckRing"]; mesh, positions, _ = _world_mesh(body)
+    slots = {name: index for index, name in enumerate(_names(body))}
+    expected = derive_neck_ring(body, mesh, positions, slots, ring_mode="section", ring_from=data,
+                                m_per_mu=float(data["mPerMu"]))
+    for key in ("localYMu", "heightFraction", "perimeterMm", "centerMu", "centerLocalMu", "axisLocal"):
+        if not np.allclose(ring[key], expected[key], rtol=0, atol=1e-5): raise SkeletonError(f"section {key} 与真实闭环不符")
+    for key in ("neckDominance", "sliceVertices", "sliceAspectRatio"):
+        if ring[key] != expected[key]: raise SkeletonError(f"section {key} 与网格不符")
+    if ring["radiusMu"] != expected["radiusMu"]: raise SkeletonError("section 半径与真实截面拟合不符")
+    for point, actual in zip(ring["profile"], expected["profile"]):
+        if not np.allclose(point["pos"], actual["pos"], rtol=0, atol=1e-7):
+            raise SkeletonError("section profile 未按闭环弧长连续重采样")
+        if point["weights"] != actual["weights"]: raise SkeletonError("section 权重不是表面重心插值的前四根")
+        if not np.allclose(point["normal"], actual["normal"], rtol=0, atol=1e-7):
+            raise SkeletonError("section 法线不符径向上翘 15°")
+    samples = np.asarray([point["pos"] for point in ring["profile"]])
+    distances = nearest_triangle(samples, positions, np.asarray(mesh.indices).reshape(-1, 3)).distances_mu
+    maximum_mm = float(distances.max()) * float(data["mPerMu"]) * 1000
+    if maximum_mm >= 0.5: raise SkeletonError("section profile 离网格表面达到 0.5 mm")
+    return maximum_mm
 
 
 def check_outputs(out_dir: Path) -> dict[str, Any]:
@@ -735,6 +914,9 @@ def check_outputs(out_dir: Path) -> dict[str, Any]:
         previous_y = float(row["yMu"])
     declared_source = Path(data["source"].get("file", ""))
     source_path = declared_source if declared_source.exists() else out_dir / "body.glb"
+    if data["neckRing"].get("mode") == "section" and not source_path.is_file():
+        raise SkeletonError("section 校验必须有 source body.glb 以复核闭环")
+    section_check = {}
     if source_path.exists():
         if sha256(source_path.read_bytes()).hexdigest() != data["source"].get("sha256"): raise SkeletonError("source body sha256 不一致")
         body = load_glb(source_path); body_regions = body.mesh().regions
@@ -749,8 +931,10 @@ def check_outputs(out_dir: Path) -> dict[str, Any]:
         if body_regions is None or not np.array_equal(body_regions, regions): raise SkeletonError("body.glb _REGION 与 regions.npy 不一致")
         specs = [body.json["accessors"][p["attributes"]["_REGION"]] for m in body.json["meshes"] for p in m["primitives"]]
         if any(spec.get("componentType") != 5121 or spec.get("type") != "SCALAR" for spec in specs): raise SkeletonError("body.glb _REGION 不是 u8 SCALAR")
+        if data["neckRing"].get("mode") == "section":
+            section_check = {"profileSurfaceMaxMm": _check_section_surface(data, body)}
     return {"ok": True, "joints": 65, "vertices": len(regions), "headWidthMu": measures["headWidthMu"],
-            "neckRadiusMu": radii, "restBindMaxDiff": data["validation"]["restBindMaxDiff"]}
+            "neckRadiusMu": radii, "restBindMaxDiff": data["validation"]["restBindMaxDiff"], **section_check}
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -758,6 +942,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--body", type=Path, help="正本蒙皮 GLB")
     parser.add_argument("--out", required=True, type=Path, help="输出目录；--check 时为已有产物目录")
     parser.add_argument("--default-height-m", type=float, default=1.65, help="运行时默认身高（米，默认 1.65）")
+    parser.add_argument("--ring-mode", choices=("legacy", "section"), default="legacy", help="颈环：旧切片或真实三角截面")
+    parser.add_argument("--ring-from", type=Path, help="section 模式继承源 skeleton.json 的 heightFraction")
     parser.add_argument("--json", action="store_true", help="stdout 输出单个 JSON 对象")
     parser.add_argument("--check", action="store_true", help="只校验已有输出")
     args = parser.parse_args(argv)
@@ -766,7 +952,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         else:
             if args.body is None: raise SkeletonError("导出模式必须提供 --body")
             if args.default_height_m <= 0: raise SkeletonError("--default-height-m 必须 > 0")
-            result = export(args.body, args.out, args.default_height_m)
+            result = export(args.body, args.out, args.default_height_m, ring_mode=args.ring_mode, ring_from=args.ring_from)
     except (OSError, ValueError, NotImplementedError, RuntimeError, np.linalg.LinAlgError) as exc:
         if args.json: print(json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False))
         else: print(f"错误：{exc}", file=sys.stderr)

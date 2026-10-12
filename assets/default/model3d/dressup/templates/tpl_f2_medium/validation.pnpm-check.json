@@ -1,0 +1,67 @@
+{
+  "run": 7,
+  "command": [
+    "pnpm",
+    "check"
+  ],
+  "install": {
+    "command": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "exitCode": 0,
+    "output": [
+      "Scope: all 8 workspace projects",
+      "Lockfile is up to date, resolution step is skipped",
+      "Already up to date",
+      "",
+      "Done in 747ms using pnpm v9.15.9"
+    ],
+    "elapsedSec": 0.789
+  },
+  "exitCode": 0,
+  "sharedSemaphore": true,
+  "semaphoreMode": "read-only exclusive flock on existing dressup shared slots; check_semaphore.check_environment",
+  "elapsedSec": 204.502,
+  "outputSummary": [
+    " Test Files  189 passed (189)",
+    "      Tests  1339 passed (1339)",
+    "   Duration  144.05s (tests 76%, import 14%, environment 5%, transform 5%)",
+    "content:validate: 1777 file(s), 1708 object(s), 2 ink story(s), 65 map(s) valid under content/",
+    "content:test-compile-story: 4 tests passed",
+    "render-dressup        7.20           24  PASS",
+    "[dev-chunks] PASS assets=735 manifest=94"
+  ],
+  "stagesPassed": [
+    "lint",
+    "typecheck",
+    "test",
+    "content:validate",
+    "content:test-compile-story",
+    "content:compile-story",
+    "build",
+    "size",
+    "dev-chunks"
+  ],
+  "afterManifestUpdate": {
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/build/dressup-assets.test.ts",
+      "apps/game/build/asset-manifest.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+    ],
+    "exitCode": 0,
+    "sharedSemaphore": true,
+    "elapsedSec": 115.11,
+    "outputSummary": [
+      " Test Files  2 passed (2)",
+      "      Tests  20 passed (20)",
+      "   Duration  114.15s (tests 99%, transform 1%)"
+    ]
+  }
+}
