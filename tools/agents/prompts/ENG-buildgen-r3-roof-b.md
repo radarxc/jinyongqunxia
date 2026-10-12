@@ -29,6 +29,7 @@
 ## 约束
 - 只写：`packages/render/src/buildgen/mesher/roof/{hip,xieshan,pyramid,rolled,dome,corner,ornaments}.ts`、`packages/render/src/buildgen/mesher/roof/index.ts`（只改分派注册）、`packages/render/src/buildgen/__tests__/roof-b.test.ts` 与本任务报告。不改 r2 的 `profile / patch / gable / flat / canopy / ridge / shell` 实现（若接口确需扩充，只加可选参数并在报告说明）；不改屋身部件、配方、`core/**`。
 - **协调者 10-11 r2 返修裁定扩大的写集**（tasks.json 同步）：`packages/render/src/buildgen/mesher/recipes/hall.ts`——只把屋顶调用改回 `roofMesherFor(plan.roof[0])(plan, unit, sink, { kit, lod })`（集成热修 6208f945d 为避开一条测试临时去掉了 `kit`，导致真实链路起翘 / 脊饰退化为 0）；`packages/render/src/buildgen/__tests__/hall.test.ts`——只修「mulberry32 seed covers dimension, side and offset boundary combinations」那条用例的随机方案，使 `roof[1] / roof[2]` 与随机占地自洽（用 r2 导出的剖面函数按套件 `dims` 求，或固定进深只变面宽并注释原因），不删用例、不放宽断言；整栋预算（tech/16 §6.5，寺殿 9,000 / 4,000）用 `generateCells()` 实测，报告写整栋数字，不把整栋预算说成「屋顶份额」。`index.ts` 仍只改分派表与必要导入，不得写附着盒之类的补偿几何。
+- **协调者 10-11 r3 补充写集**（tasks.json 同步）：`packages/render/src/buildgen/generate.test.ts`——只改「measures aUnit local height from the unit floor (base + floorY), not from the base」这条：原用例靠 hall 临时檐口标记（只在回落屋顶时生成）在 shell 里找檐高顶点，正式屋顶接上后必然找不到；改为对寺殿与抬高 1.2 m 的变体，逐个检查 **shell 与 roof 全部顶点** `|局部高度cm − (y − 楼层地面m) × 100| ≤ 0.5`，并断言 roof 里确有高于楼层地面 2.2 m 的顶点（证明屋顶参与了检查）。不得为让旧用例通过而在 hall / index 里加附着盒或标记几何。
 - 不 import three；不新增依赖；不用浮点随机；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
 
 检查：
