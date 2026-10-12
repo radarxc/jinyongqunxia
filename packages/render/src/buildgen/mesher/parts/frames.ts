@@ -97,6 +97,7 @@ function emitDarkBacking(
   frameM: number,
   darkLayer: number,
   frameLayer: number,
+  lod: 0 | 1,
 ): void {
   const x = (opening.x0 + opening.x1) / 2;
   const width = opening.x1 - opening.x0 - frameM * 2;
@@ -110,7 +111,9 @@ function emitDarkBacking(
     [width, height, 0.025],
     { layer: darkLayer, flags: INTERIOR_FLAGS, ao: 105 },
   );
-  if (opening.kind === 'window') {
+  // LOD1 drops the window cross-bars (lattice reads from the texture at that distance) so the
+  // hall plus its real roof stays inside the tech/16 §6.5 LOD1 budgets.
+  if (opening.kind === 'window' && lod === 0) {
     const bar = Math.min(0.06, frameM * 0.6);
     localFrameBox(
       context.writer,
@@ -137,6 +140,7 @@ export function emitFrames(
   kit: BuildKitView,
   openings: readonly FacadeOpening[],
   sink: RecipeSink,
+  lod: 0 | 1 = 0,
 ): void {
   const frameM = Math.max(0.1, kit.door.frame / 1000);
   const frameLayer = kitLayer(kit, 'timber_raw', 'timber_painted', kit.walls.front.layer);
@@ -145,7 +149,7 @@ export function emitFrames(
   for (const opening of openings) {
     emitFrame(context, opening, frameM, frameLayer);
     emitThreshold(context, opening, thresholdLayer);
-    if (opening.kind === 'window') emitDarkBacking(context, opening, frameM, darkLayer, frameLayer);
+    if (opening.kind === 'window') emitDarkBacking(context, opening, frameM, darkLayer, frameLayer, lod);
     if (opening.kind === 'door') {
       const centre = (opening.x0 + opening.x1) / 2;
       const world = transformPoint(

@@ -29,7 +29,7 @@ export function emitHallBody(
   const layout = emitColumns(context, kit, lod);
   const heights = emitBeams(context, kit, layout);
   const walls = emitWalls(context, kit, layout, heights);
-  emitFrames(context, kit, walls.openings, sink);
+  emitFrames(context, kit, walls.openings, sink, lod);
   emitBrackets(context, kit, layout, heights, lod);
   emitDressing(context, kit, heights, sink, lod, walls.openings);
   return { heights };
@@ -76,9 +76,15 @@ export const hallRecipe: Recipe = (plan, unit, kit, lod, sink) => {
   if (plan.storeys !== 1) throw new RangeError('BUILDGEN_HALL_REQUIRES_ONE_STOREY');
   const { heights } = emitHallBody(plan, unit, kit, lod, sink);
   try {
-    roofMesherFor(plan.roof[0])(plan, unit, sink);
+    roofMesherFor(plan.roof[0])(plan, unit, sink, { lod });
   } catch (error) {
-    if (!(error instanceof Error) || error.message !== 'BUILDGEN_NOT_IMPLEMENTED:roofMesher')
+    // Transitional: r2 owns yingshan / xuanshan / flat / canopy; r3's styles (xieshan, wudian,
+    // cuanjian, juanpeng, dome) still throw BUILDGEN_ROOF_PENDING:<style> until r3 lands.
+    if (
+      !(error instanceof Error) ||
+      (error.message !== 'BUILDGEN_NOT_IMPLEMENTED:roofMesher' &&
+        !error.message.startsWith('BUILDGEN_ROOF_PENDING:'))
+    )
       throw error;
     fallbackRoof(plan, unit, kit, sink, heights);
   }
