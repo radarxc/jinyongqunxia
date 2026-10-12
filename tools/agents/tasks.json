@@ -53076,12 +53076,12 @@
      [
       "{python}",
       "-c",
-      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small', '.tpl_f2_medium', '.tpl_f2_tall', '.tpl_f2_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
      ],
      [
       "{python}",
       "-c",
-      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small', '.tpl_f2_medium', '.tpl_f2_tall', '.tpl_f2_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
      ],
      [
       "pnpm",
