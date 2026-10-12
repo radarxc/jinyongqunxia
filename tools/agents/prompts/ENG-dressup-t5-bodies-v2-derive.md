@@ -71,3 +71,7 @@
 2. 六模板一律用 section 颈环：两个中等 `export_skeleton.py --ring-mode section`（不带 `--ring-from`），四个派生 `--ring-mode section --ring-from` 对应中等的 skeleton.json；命令序列见 `tools/agents/reports/ENG-dressup-t5b-ring-fold.md` 第 7 节。旧 `tpl_f_*` 不动（仍是默认旧模式）。
 3. 验收按 section 颈环口径：四派生与源两轴半径差 < 2 mm；六模板 `fix_inverted_faces.py --check` 全部退出 0（中等先按原第 2 条翻正，派生从翻正后的中等派生、不得新增）；derive `--check` 通过；其余原验收照旧。T5b 演示里女颈短半径约 0.02512 mu（下限 0.025）、男截面长宽比约 1.28（上限 1.3），余量都很小：若 `--check` 因此不过，如实报告、不放宽、不改工具。
 4. 上一轮（运行 1–2）的派生目录、截图、预览、报告全部按新工具重做；两个中等翻正后的 body 可沿用（只需按 section 重导出 skeleton 并刷新 manifest 里的 ringSha / skeletonSha）。
+
+## 补充裁定（2026-10-11 18:50，协调者）
+5. `tests_derive.py:234` 的"脚底差必须 > 1e-3 mu"会把腿长缩放≈1 的合法派生（tpl_m_bulk，k_leg 0.99983，脚底只动 8.2e-5 mu）误判为整体平移；其余三条已直接堵住整体平移（Hips bind 不变、Hips 平移轨 = 源 × k_leg、无 rootOffset）。准许本任务改 `tools/model3d/dressup/tests_derive.py`（已加进写集）：采用执行器上一轮的候选补丁（按声明分骨缩放重算 LBS + 防折叠，派生顶点须逐位相等；补近单位腿长与平移反例的合成用例），只换掉这一条启发式，其余断言不动。
+6. 补丁与说明不得留在素材目录：`templates/tpl_m_bulk/tests_derive.floor-regression.patch`、`validation.floor-regression.json` 应用后删除，结论写进报告。
