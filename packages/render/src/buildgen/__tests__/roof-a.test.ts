@@ -664,17 +664,19 @@ describe('simple roof dispatch and payload', () => {
     expect(hashMesh((sink.roof as MeshBufferBuilder).finish())).not.toBe(hashMesh(meshRoof(house)));
   });
 
-  it('rejects r3 styles with BUILDGEN_ROOF_PENDING and unknown styles explicitly', () => {
+  it('dispatches every r3 style to a non-empty roof mesh and rejects unknown styles explicitly', () => {
     for (const style of [
       ROOF_STYLE.Xieshan,
       ROOF_STYLE.Wudian,
       ROOF_STYLE.Cuanjian,
       ROOF_STYLE.Juanpeng,
       ROOF_STYLE.Dome,
-    ])
-      expect(() => roofMesherFor(style)(MINI_BUILDING_PLANS[0]!, 0, emptySink())).toThrow(
-        `BUILDGEN_ROOF_PENDING:${style}`,
-      );
+    ]) {
+      const source = { ...MINI_BUILDING_PLANS[0]!, roof: [style, 3_070, 4_566] as const };
+      const sink = emptySink();
+      roofMesherFor(style)(source, 0, sink);
+      expect((sink.roof as MeshBufferBuilder).finish().index.length).toBeGreaterThan(0);
+    }
     expect(() => roofMesherFor(99)).toThrow('BUILDGEN_UNKNOWN_ROOF_STYLE:99');
   });
 });
