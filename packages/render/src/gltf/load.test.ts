@@ -4,6 +4,14 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { loadPilotModel, normalizePilotScene, preparePilotModel } from './load';
 
 function gltf(scene: Group) { return { scene, scenes: [scene], animations: [], cameras: [], asset: { version: '2.0' }, parser: {} } as never; }
+function statureFixture(headTopName?: string): { scene: Group; headTop?: Bone } {
+  const scene = new Group();
+  const mesh = new Mesh(new BoxGeometry(1, 2, 1), new MeshBasicMaterial());
+  mesh.position.y = 1; scene.add(mesh);
+  if (!headTopName) return { scene };
+  const headTop = new Bone(); headTop.name = headTopName; headTop.position.y = 1.8;
+  scene.add(headTop); return { scene, headTop };
+}
 
 describe('pilot GLTF preparation', () => {
   afterEach(() => vi.restoreAllMocks());
@@ -27,6 +35,36 @@ describe('pilot GLTF preparation', () => {
     const mesh = new SkinnedMesh(geometry, new MeshBasicMaterial()); const bone = new Bone(); mesh.add(bone); mesh.bind(new Skeleton([bone])); scene.add(mesh);
     vi.spyOn(GLTFLoader.prototype, 'loadAsync').mockResolvedValue(gltf(scene));
     const value = await loadPilotModel('/fixture-skin.glb'); expect(value.skinned).toBe(true); expect(value.stats.skinnedMeshes).toBe(1); expect(value.clips).toEqual([]); value.dispose();
+  });
+
+  it.each(['HeadTop_End', 'mixamorig:HeadTop_End', 'mixamorigHeadTop_End'])(
+    'normalizes %s bind-pose stature to the requested height within 1 mm', async (name) => {
+    const { scene, headTop } = statureFixture(name);
+    vi.spyOn(GLTFLoader.prototype, 'loadAsync').mockResolvedValue(gltf(scene));
+    const value = await loadPilotModel('/fixture-head-top.glb', 1.66, { stature: 'headTop' });
+    expect(headTop!.getWorldPosition(new Vector3()).y).toBeCloseTo(1.66, 3);
+    expect(value.stats.sourceHeightM).toBeCloseTo(1.8, 6);
+    expect(value.stats.scale).toBeCloseTo(1.66 / 1.8, 6);
+    value.dispose();
+    });
+
+  it('keeps explicit bbox normalization identical to the legacy default', () => {
+    const legacy = statureFixture('HeadTop_End'); const explicit = statureFixture('HeadTop_End');
+    const legacyStats = normalizePilotScene(legacy.scene, 1.7);
+    const explicitStats = normalizePilotScene(explicit.scene, 1.7, { stature: 'bbox' });
+    expect(explicitStats).toEqual(legacyStats);
+    expect(new Box3().setFromObject(explicit.scene).getSize(new Vector3()).y).toBeCloseTo(1.7, 6);
+  });
+
+  it('warns once and falls back to bbox normalization when the head-top bone is absent', () => {
+    const warning = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const first = statureFixture(); const second = statureFixture();
+    const stats = normalizePilotScene(first.scene, 1.7, { stature: 'headTop' });
+    normalizePilotScene(second.scene, 1.7, { stature: 'headTop' });
+    expect(stats).toEqual({ sourceHeightM: 2, scale: 0.85 });
+    expect(new Box3().setFromObject(first.scene).getSize(new Vector3()).y).toBeCloseTo(1.7, 6);
+    expect(warning).toHaveBeenCalledOnce();
+    expect(warning).toHaveBeenCalledWith(expect.stringContaining('PILOT_GLTF_HEAD_TOP_MISSING'));
   });
 
   it('turns a mapped humanoid front to +z before centering', () => {

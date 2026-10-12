@@ -19,6 +19,7 @@ export interface TownBuildingView {
   readonly id: string; readonly origin: TownPoint; readonly size: TownPoint;
   readonly rotationDeg: 0 | 90 | 180 | 270; readonly assetId: string;
   readonly entrances: readonly TownPoint[]; readonly enterable: boolean;
+  readonly poi?: string | null;
   readonly interiorKind: 'shop' | 'inn' | 'temple' | 'residence' | 'other';
 }
 export interface TownAnchorView {
@@ -61,6 +62,10 @@ export interface TownSceneOptions { readonly projection: TownSceneProjection; re
   readonly spriteFor?: (actorId: string) => string | null | undefined;
   /** 3D model URL for the player (or fallback) */
   readonly playerModelUrl?: string | null;
+  /** Player stature in metres; defaults to the medium male template. */
+  readonly playerHeightM?: number;
+  /** Full-height NPC cutout stature in metres; defaults to the standard male NPC. */
+  readonly npcHeightM?: number;
   /** Test seam; production loads the rig runtime when the town is first entered. */
   readonly loadRigRuntime?: () => Promise<typeof RigRuntime> }
 export interface TownScene {
@@ -69,6 +74,7 @@ export interface TownScene {
   resize(width: number, height: number, pixelRatio?: number): void;
   update(projection: TownSceneProjection): Promise<void>;
   setZoom(zoom: number): void;
+  writeViewGroundQuad(out: Float32Array): boolean;
   pickPoint(clientX: number, clientY: number, bounds: DOMRect): TownPoint | null;
   pickAnchor(clientX: number, clientY: number, bounds: DOMRect): TownAnchorView | null;
   project(point: TownPoint, elevationCm: number, out: TownScreenPoint): void;

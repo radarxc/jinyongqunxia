@@ -75,7 +75,7 @@ describe('runtime asset publishing integration', () => {
     };
     await workerPlugin.buildStart?.call(workerContext as never, {} as never);
     expect(workerEmitted).toEqual([]);
-  }, 60_000);
+  }, 180_000); // 整次构建在高负载下可超过 60 s；功能用例的显式超时（10-03 协调者裁定），不是性能门
 
   it('publishes non-rejected dressup triplets beside VFX and skips rejected rows', async () => {
     const root = await mkdtemp(join(tmpdir(), 'tianshu-runtime-assets-'));
@@ -163,7 +163,7 @@ describe('game content plugin town integration', () => {
       undefined, {} as never);
     const town = await plugin.load?.call({} as never, townId as string);
     expect(town).toEqual(expect.stringContaining('town-runtime.v1'));
-  }, 60_000);
+  }, 180_000); // 整次构建在高负载下可超过 60 s；功能用例的显式超时（10-03 协调者裁定），不是性能门
 });
 
 describe('content compiler bridge', () => {

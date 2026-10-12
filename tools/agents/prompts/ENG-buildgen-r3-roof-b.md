@@ -1,0 +1,40 @@
+# 本任务：城镇 3D 古建 · 屋顶（二）——歇山、庑殿、攒尖、卷棚、穹顶、翼角起翘 / 冲出、脊饰
+
+**第一个动作**：读 `tools/agents/reports/ENG-buildgen-r2-roof-a.md` 第 3、7 节（翼角权重接口、坡面加密参数、屋脊折线输入格式）与 `tools/agents/reports/ENG-buildgen-r0-core.md` 第 7 节，再打开 `packages/render/src/buildgen/mesher/roof/{index,profile,patch,ridge,shell}.ts` 与 `docs/tech/16-town-3d-spec.md` §3（翼角起翘 / 冲出表）、§5.2；读完直接动手，不要先写计划。
+
+本任务写代码。"只改负责的文件""不执行改变仓库状态的 git 命令""不要停下来提问""报告如实"照常适用。先读根 `CLAUDE.md`、`packages/render/CLAUDE.md`。
+
+## 背景
+作者 AR-114（2026-10-10）：城镇 3D 古建要"写实古风"。客栈、寺殿、衙门、门楼用歇山 / 庑殿，亭与塔刹用攒尖，园林小筑用卷棚；翼角起翘是中国古建最显眼的轮廓特征，做不好就是"玩具房"。r2 已做剖面、坡面、硬山 / 悬山 / 平顶 / 布棚、屋脊与屋面壳，本任务补齐其余式样与翼角，并把 r2 在 `index.ts` 里留的 `BUILDGEN_ROOF_PENDING` 全部接上（穹顶只给非唐代 xiyu 变体）。
+
+## 要做的事（`packages/render/src/buildgen/mesher/roof/`，不 import three）
+1. **`corner.ts` 翼角**：Δy = L·w_u·w_t（起翘 L），平面沿角平分线外推 C·w_u·w_t（冲出 C）；`w_u` 在每条檐边末三分之一做 smoothstep，`w_t = (1 − t/0.35)²`（t < 0.35，以上为 0）。**共享戗脊两侧必须算出同一权重**（按世界坐标的角点与戗脊参数求权重，不按各自坡面的局部 u），保证无缝。起翘 / 冲出取套件 `dims` 的 `lift: [起翘, 冲出]`（大理 180 / 120、客栈 300 / 220、殿堂 480 / 360、土坯 0）。
+2. **`hip.ts` 庑殿**：前后梯形 + 两侧三角；正脊长 = 柱跨 W − D；宋式不推山，`qing_jujia` 剖面时推山 0.1。
+3. **`xieshan.ts` 歇山**：前后梯形 + 侧面戗到 t = 0.45 + 收山 0.6–1.2 m 的山花板（竖直三角 + 博风）+ 博脊；上半为悬山、下半为庑殿式四坡的组合要无缝。
+4. **`pyramid.ts` 攒尖**：n（4 / 6 / 8）个三角坡汇于单一顶点 + 宝顶（600–1200）；顶点数恰为 1 个共享顶点（测试断言）。
+5. **`rolled.ts` 卷棚**：无正脊，脊部用半径 350 的圆弧过渡，与两坡切线连续。
+6. **`dome.ts` 穹顶**：旋转体 12 × 6（LOD1 8 × 4）；只在套件变体允许时使用——`variantSets.tang_buddhist.forbid` 含 `dome` 时分派到此处须抛 `BUILDGEN_ROOF_FORBIDDEN`。
+7. **`ornaments.ts` 脊饰**：殿堂鸱尾（正脊两端，LOD0 约 80 三角、LOD1 约 24）、大理方翘头（550）、攒尖宝顶；作为屋顶批顶点、带单元号。
+8. **`index.ts` 注册**：把以上式样接入 r2 的分派表（只改分派表与必要的导入，r2 已有的式样实现不动）。
+
+## 测试（`packages/render/src/buildgen/__tests__/roof-b.test.ts`，node 项目）
+命名用例：
+- 起翘 / 冲出 = 套件值 ±5 mm（在角点实测）；`w_t` 在 t ≥ 0.35 处为 0（坡面中部不受翼角影响）。
+- **戗脊无缝**：歇山、庑殿、攒尖的每条戗脊两侧坡面在共享边上的顶点按位置合并后，最大缝 ≤ 1 mm；用 4 种占地 × 3 套 `lift` 值的组合。
+- **镜像对称**：对称占地的庑殿 / 歇山，把几何按前后中线镜像后哈希（排序后的量化顶点集）与原几何相同。
+- 攒尖单顶点；卷棚脊部切线连续（相邻段法线夹角 ≤ 12°）；`tang_buddhist` 下分派穹顶抛错。
+- 滴水高 = `roof[1]` ±10 mm、正脊 / 宝顶顶 = `roof[2]` ±10 mm；滴水外缘离占地边 ≥ 40 mm（翼角冲出后仍满足 INV-1）。
+- 三角数在 tech/16 §6.5 预算内（寺殿 LOD0 屋顶部分 ≤ 预算的屋顶份额，报告列实测）；屋顶顶点全在屋顶缓冲且单元号正确；同输入哈希稳定。
+
+## 约束
+- 只写：`packages/render/src/buildgen/mesher/roof/{hip,xieshan,pyramid,rolled,dome,corner,ornaments}.ts`、`packages/render/src/buildgen/mesher/roof/index.ts`（只改分派注册）、`packages/render/src/buildgen/__tests__/roof-b.test.ts` 与本任务报告。不改 r2 的 `profile / patch / gable / flat / canopy / ridge / shell` 实现（若接口确需扩充，只加可选参数并在报告说明）；不改屋身部件、配方、`core/**`。
+- 不 import three；不新增依赖；不用浮点随机；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
+
+检查：
+- `pnpm install --frozen-lockfile`
+- `pnpm exec vitest run packages/render/src/buildgen --config vitest.config.ts --project node`
+- `pnpm --filter @tianshu/render typecheck`
+- `env TIANSHU_VITEST_MAX_WORKERS=2 pnpm check`
+
+## 报告
+`tools/agents/reports/ENG-buildgen-r3-roof-b.md`（≤ 60 行）：第 3 节列各式样的三角数（LOD0 / LOD1）、戗脊最大缝实测、起翘 / 冲出实测；第 7 节写给 r4（腰檐复用哪个坡面函数）、r5（xiyu 平顶与唐式塔刹的攒尖复用）、r7（塔檐与门楼歇山复用）、r9（屋顶批的单元号约定）的交接。

@@ -12,6 +12,7 @@ export interface PilotModel {
   readonly stats: PilotModelStats; readonly materials: PilotMaterialState;
   setToon(enabled: boolean): void; setOutline(enabled: boolean): void; dispose(): void;
 }
+export interface PilotLoadOptions { readonly stature?: 'bbox' | 'headTop' }
 
 function trianglesFor(mesh: Mesh): number {
   const geometry = mesh.geometry; const count = geometry.index?.count ?? geometry.attributes['position']?.count ?? 0;
@@ -45,19 +46,35 @@ function orientPilotPositiveZ(scene: Group): void {
   scene.quaternion.premultiply(new Quaternion().setFromAxisAngle(UP, yaw)); scene.updateMatrixWorld(true);
 }
 
-export function normalizePilotScene(scene: Group, heightM = 1.7): { sourceHeightM: number; scale: number } {
+let warnedMissingHeadTop = false;
+function sourceStature(scene: Group, bounds: Box3, stature: 'bbox' | 'headTop'): number {
+  const bboxHeight = bounds.max.y - bounds.min.y;
+  if (stature === 'bbox') return bboxHeight;
+  const headTop = named(scene, ['HeadTop_End', 'mixamorig:HeadTop_End', 'mixamorigHeadTop_End']);
+  const height = headTop ? headTop.getWorldPosition(new Vector3()).y - bounds.min.y : Number.NaN;
+  if (Number.isFinite(height) && height > 1e-6) return height;
+  if (!warnedMissingHeadTop) {
+    warnedMissingHeadTop = true;
+    console.warn('PILOT_GLTF_HEAD_TOP_MISSING: falling back to bounding-box stature');
+  }
+  return bboxHeight;
+}
+
+export function normalizePilotScene(scene: Group, heightM = 1.7,
+  options: PilotLoadOptions = {}): { sourceHeightM: number; scale: number } {
   orientPilotPositiveZ(scene);
-  scene.updateMatrixWorld(true); const bounds = new Box3().setFromObject(scene); const size = bounds.getSize(new Vector3());
-  if (!Number.isFinite(size.y) || size.y <= 1e-6) throw new Error('PILOT_GLTF_ZERO_HEIGHT');
-  const scale = heightM / size.y; scene.scale.multiplyScalar(scale); scene.updateMatrixWorld(true);
+  scene.updateMatrixWorld(true); const bounds = new Box3().setFromObject(scene);
+  const sourceHeightM = sourceStature(scene, bounds, options.stature ?? 'bbox');
+  if (!Number.isFinite(sourceHeightM) || sourceHeightM <= 1e-6) throw new Error('PILOT_GLTF_ZERO_HEIGHT');
+  const scale = heightM / sourceHeightM; scene.scale.multiplyScalar(scale); scene.updateMatrixWorld(true);
   const normalized = new Box3().setFromObject(scene); const center = normalized.getCenter(new Vector3());
   scene.position.x -= center.x; scene.position.y -= normalized.min.y; scene.position.z -= center.z;
   // Unmapped/unskinned pilot input follows the import convention that its source already faces +z.
   scene.updateMatrixWorld(true);
-  return { sourceHeightM: size.y, scale };
+  return { sourceHeightM, scale };
 }
 
-export function preparePilotModel(gltf: GLTF, heightM = 1.7): PilotModel {
+export function preparePilotModel(gltf: GLTF, heightM = 1.7, options: PilotLoadOptions = {}): PilotModel {
   const scene = gltf.scene; const meshes: Mesh[] = [];
   let skinnedMeshes = 0;
   scene.traverse((node: Object3D) => {
@@ -65,7 +82,7 @@ export function preparePilotModel(gltf: GLTF, heightM = 1.7): PilotModel {
     node.castShadow = true; node.receiveShadow = true;
   });
   if (meshes.length === 0) throw new Error('PILOT_GLTF_NO_MESH');
-  const normalized = normalizePilotScene(scene, heightM);
+  const normalized = normalizePilotScene(scene, heightM, options);
   const joints = new Set<Object3D>(); for (const mesh of meshes) if (mesh instanceof SkinnedMesh) for (const bone of mesh.skeleton.bones) joints.add(bone);
   const textures = collectTextures(meshes); const materials = createPilotMaterials(meshes);
   const materialSlots = meshes.reduce((sum, mesh) => sum + slotsFor(mesh), 0);
@@ -90,8 +107,9 @@ export function preparePilotModel(gltf: GLTF, heightM = 1.7): PilotModel {
   };
 }
 
-export async function loadPilotModel(url: string, heightM = 1.7): Promise<PilotModel> {
+export async function loadPilotModel(url: string, heightM = 1.7,
+  options: PilotLoadOptions = {}): Promise<PilotModel> {
   if (!url) throw new TypeError('PILOT_GLTF_URL');
   const loader = new GLTFLoader();
-  return preparePilotModel(await loader.loadAsync(url), heightM);
+  return preparePilotModel(await loader.loadAsync(url), heightM, options);
 }

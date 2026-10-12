@@ -35,7 +35,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 从 `@tianshu/render/town` 动态导入 `createTownScene(canvas,town,{ projection, zoom })`；输入是 data 已校验的 `town-runtime.v1` 与应用只读投影。render 只把指针射线换成整数格或锚点，不判断可走性、路径、建筑状态、剧情或打坐概率。
 - 离线与运行时共用 64×32 px、yaw 45°、pitch 30°；`planningToTownPixels()` 的高度位移为 `16×sqrt(6)×elevationM` px。投影测试覆盖非零高差、格心往返、六边格边界与镜头角；拾取按运行时登记高度平面求最近合法格。
 - 地面按 32×32 格 chunk 各一个 `InstancedMesh`，贴片、overlay 与 8 向边件共用运行时 atlas；内角沿用离线 4 px tip 裁切。建筑、简化室内、锚点各自合批。每帧仅做 chunk 视锥裁剪、rig typed-array 同步和焦点建筑 alpha 更新，不重建静态几何。
-- `TownScene` 提供 render / resize / update / setZoom / pickPoint / pickAnchor / project / dispose；缩放限制 0.65–2.5。建筑进入时只有目标外墙渐变至 0.28，室内地面与柜台显现，退出反向恢复。
+- `TownScene` 提供 render / resize / update / setZoom / pickPoint / pickAnchor / project / dispose；缩放限制 0.4–6.0（v1 城镇页按 px/m 换算，覆盖 40–112 px/m）。建筑进入时只有目标外墙渐变至 0.28，室内地面与柜台显现，退出反向恢复。
 - 主角与 NPC 必须用 ENG-12 `RigSet` / `RigBatch` / `RigInstance`；场景容量 100 名角色，NPC 出现与消失仅按应用投影增删。不得为城镇另建精灵角色或从 render 推断时代。
 - `stats` 暴露 drawCalls / triangles / frameMs / cpuMs / groundInstances / buildingInstances / rigInstances / visibleChunks / atlasTextures。目标为桌面 ≥60 fps、中端手机 ≥30 fps，当前仍待浏览器与真机实测。
 - 所有权：场景释放 rig、锚点、地面 chunk、建筑/室内 batch、两张 atlas 及 WebGLRenderer；`dispose()` 可重复调用。纹理缺失时 atlas 写入分类色块，结构与拾取仍可工作。

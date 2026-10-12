@@ -1,21 +1,39 @@
 <script setup lang="ts">
-/* global Element, HTMLCanvasElement, KeyboardEvent, PointerEvent, ResizeObserver,
-  cancelAnimationFrame, requestAnimationFrame, window */
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+/* global document, Element, HTMLCanvasElement, ImageData, KeyboardEvent, PointerEvent, ResizeObserver,
+  WheelEvent, cancelAnimationFrame, requestAnimationFrame, window */
+import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import type { DomainEvent, TownCommand, TownPoint } from '@tianshu/core';
+import { createPointerGestures, type PointerGestures } from '@tianshu/platform/input';
 import { useUiStore } from '@tianshu/ui/runtime';
+import TxMinimap, { type MinimapTravelTarget } from '@tianshu/ui/components/explore/TxMinimap.vue';
 import type { TownAnchorView, TownScene, TownSceneProjection } from '@tianshu/render/town';
+import { DEFAULT_PLAYER_HEIGHT_M } from '../../../../packages/render/src/actors/heights';
 import type { GameController } from '../game-controller';
 import type { GameUpdate } from '../runtime/contracts';
-import { townAnchorIntent, townDirection, townStep } from './town-input';
+import { actionMap, useActionContext } from '../input/action-map';
+import { createZoomController, TOWN_ZOOM_OPTIONS } from '../input/zoom';
+import { createV1CameraBasis, createV1MinimapMarkers, dispatchV1MinimapTravel,
+  generateV1MinimapBitmap, v1TownPointToWorld, v1PlayerHeadingRad, writeV1Path,
+  writeV1ViewQuad } from '../explore/v1-minimap';
+import { V1_MINIMAP_STRINGS } from '../explore/v1-minimap.strings';
+import { v1ZoomRatio } from '../explore/v1-zoom';
+import { createAreaMapController } from '../explore/area-map-control';
+import { applyTownWheel, townAnchorIntent, townDirection,
+  townStep } from './town-input';
 import { loadPortraitResolver, usePortrait } from '../runtime/portraits';
 
 const { controller } = defineProps<{ controller: GameController }>();
 const { projection } = storeToRefs(useUiStore());
 const emit = defineEmits<{ leave: [] }>();
 const canvas = ref<HTMLCanvasElement>();
-const zoom = ref(2.2);
+const zoom = createZoomController(TOWN_ZOOM_OPTIONS);
+const minimapBase = shallowRef<{ bitmap: HTMLCanvasElement; minX: number; minZ: number;
+  metresPerPx: number } | null>(null);
+const minimapExpanded = ref(false);
+const minimapViewQuad = shallowRef<Float32Array | null>(null);
+const minimapBasis = createV1CameraBasis();
+const viewQuadBuffer = new Float32Array(8);
 const renderError = ref('');
 const actionNotice = ref('');
 const fps = ref(0);
@@ -25,10 +43,14 @@ const cpuMs = ref(0);
 const moving = ref(false);
 let view: TownScene | undefined;
 let observer: ResizeObserver | undefined;
+let pointerGestures: PointerGestures | undefined;
 let frame = 0;
 let statsAt = 0;
 let fadeTimer = 0;
 let moveTimer = 0;
+let releaseZoom: (() => void) | undefined;
+let minimapIdle: number | undefined;
+let minimapUsesIdleCallback = false;
 
 function asset(path: string): string {
   const base = import.meta.env.BASE_URL ?? '/';
@@ -45,6 +67,26 @@ const canTrade = computed(() => {
   if (!definition || !state?.activeBuildingId || state.buildingPhase !== 'inside') return false;
   return definition.buildings.some((building) => building.id === state.activeBuildingId &&
     building.interiorKind === 'shop' && building.businessRef !== null);
+});
+const minimapMarkers = computed(() => {
+  if (!runtime.value || !town.value) return [];
+  const names = new Map(projection.value?.characters?.map(character =>
+    [character.key, character.name] as const) ?? []);
+  return createV1MinimapMarkers(runtime.value, town.value.scene, names);
+});
+const minimapPlayer = computed(() => {
+  const definition = runtime.value; const actor = town.value?.scene.actor;
+  if (!definition || !actor) return null;
+  const [x, z] = v1TownPointToWorld(actor.point, definition.grid.height);
+  return { x, z, headingRad: v1PlayerHeadingRad(actor.direction) };
+});
+const minimapPath = computed(() => {
+  const definition = runtime.value;
+  return definition ? writeV1Path(town.value?.movementPath, definition.grid.height) : null;
+});
+const minimapDestination = computed(() => {
+  const path = minimapPath.value;
+  return path && path.length >= 2 ? { x: path[path.length - 2]!, z: path[path.length - 1]! } : null;
 });
 
 /* Market Shop Modal State */
@@ -229,6 +271,61 @@ function settleFade(next: TownSceneProjection): void {
 }
 let townFallbackTimer: number | undefined;
 
+function applyZoom(next = zoom.value()): void {
+  const target = canvas.value;
+  if (view && target && target.clientHeight > 0) view.setZoom(v1ZoomRatio(next, target.clientHeight));
+}
+const areaMap = createAreaMapController({
+  isOpen: () => minimapExpanded.value,
+  setOpen: open => { minimapExpanded.value = open; },
+  holdWorldTicks: () => controller.holdWorldTicks('areaMap'),
+  acquireContext: close => actionMap.pushContext('areaMap', {
+    zoomIn: () => { zoom.stepIn(); }, zoomOut: () => { zoom.stepOut(); },
+    zoomReset: () => { zoom.reset(); },
+    toggleAreaMap: close, back: close,
+  }),
+});
+function toggleAreaMap(): void { areaMap.toggle(); }
+function toggleMinimapNorthUp(): void {
+  controller.setSetting('minimapNorthUp', !controller.settings.value.minimapNorthUp);
+}
+function minimapTravel(target: MinimapTravelTarget): void {
+  const definition = runtime.value; const scene = town.value?.scene;
+  if (!definition || !scene) return;
+  dispatchV1MinimapTravel(target, definition, scene, command);
+}
+function createMinimapCanvas(): void {
+  minimapIdle = undefined;
+  const definition = runtime.value; if (!definition || minimapBase.value) return;
+  const generated = generateV1MinimapBitmap(definition);
+  const bitmap = document.createElement('canvas'); bitmap.width = generated.width; bitmap.height = generated.height;
+  const context = bitmap.getContext('2d');
+  if (!context) { renderError.value = V1_MINIMAP_STRINGS.bitmapFailure; return; }
+  context.putImageData(new ImageData(new Uint8ClampedArray(generated.pixels),
+    generated.width, generated.height), 0, 0);
+  minimapBase.value = { bitmap, minX: generated.minX, minZ: generated.minZ,
+    metresPerPx: generated.metresPerPx };
+}
+function scheduleMinimapCanvas(): void {
+  const requestIdle = window.requestIdleCallback?.bind(window);
+  minimapUsesIdleCallback = requestIdle !== undefined;
+  minimapIdle = requestIdle ? requestIdle(createMinimapCanvas) : window.setTimeout(createMinimapCanvas, 0);
+}
+function updateViewQuad(): void {
+  if (!view) { minimapViewQuad.value = null; return; }
+  const valid = writeV1ViewQuad(view, viewQuadBuffer);
+  minimapViewQuad.value = valid ? viewQuadBuffer : null;
+}
+function wheel(event: WheelEvent): void {
+  applyTownWheel(event, zoom, 16, canvas.value?.clientHeight ?? 800);
+}
+
+useActionContext('explore', {
+  zoomIn: () => { zoom.stepIn(); }, zoomOut: () => { zoom.stepOut(); },
+  zoomReset: () => { zoom.reset(); },
+  toggleAreaMap,
+});
+
 async function mountScene(): Promise<void> {
   const target = canvas.value; const definition = runtime.value; const townSceneProjection = town.value?.scene;
   if (!target || !definition || !townSceneProjection) return;
@@ -241,16 +338,23 @@ async function mountScene(): Promise<void> {
       ? '/assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb'
       : '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb';
     view = await createTownScene(target, definition, {
-      projection: townSceneProjection, zoom: zoom.value, spriteFor, playerModelUrl });
+      projection: townSceneProjection, zoom: v1ZoomRatio(zoom.value(), Math.max(1, target.clientHeight)),
+      spriteFor, playerModelUrl, playerHeightM: DEFAULT_PLAYER_HEIGHT_M[isFemale ? 'female' : 'male'] });
     (window as unknown as { __townView?: unknown }).__townView = view;
     observer = new ResizeObserver(([entry]) => {
-      if (entry) view?.resize(entry.contentRect.width, entry.contentRect.height, window.devicePixelRatio);
+      if (entry) { view?.resize(entry.contentRect.width, entry.contentRect.height, window.devicePixelRatio);
+        applyZoom(); }
     });
     observer.observe(target);
     view.resize(target.clientWidth, target.clientHeight, window.devicePixelRatio);
+    pointerGestures = createPointerGestures(target, {
+      onPinchStart: () => zoom.pinchStart(), onPinch: gesture => zoom.pinch(gesture.scale),
+      onPinchEnd: () => zoom.pinchEnd(),
+    });
     const animate = (time: number): void => {
       if (!view) return;
       view.render(time, controller.settings.value.reducedMotion);
+      updateViewQuad();
       if (time - statsAt >= 500) {
         fps.value = view.stats.frameMs > 0 ? 1000 / view.stats.frameMs : 0;
         drawCalls.value = view.stats.drawCalls; triangles.value = view.stats.triangles;
@@ -287,11 +391,19 @@ watch(() => town.value?.scene, (next) => {
   if (!moving.value) void view?.update(next);
   if (!moving.value) settleFade(next);
 }, { deep: false });
-watch(zoom, (next) => view?.setZoom(next));
-onMounted(() => { window.addEventListener('keydown', keyboard); void mountScene(); });
+watch(runtime, (next) => { if (next && !minimapBase.value && minimapIdle === undefined) scheduleMinimapCanvas(); });
+onMounted(() => {
+  window.addEventListener('keydown', keyboard);
+  releaseZoom = zoom.subscribe(applyZoom); scheduleMinimapCanvas(); void mountScene();
+});
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', keyboard); window.clearTimeout(fadeTimer);
   window.clearTimeout(moveTimer);
+  if (minimapIdle !== undefined) {
+    if (minimapUsesIdleCallback) window.cancelIdleCallback?.(minimapIdle);
+    else window.clearTimeout(minimapIdle);
+  }
+  areaMap.dispose(); releaseZoom?.(); pointerGestures?.dispose();
   if (townFallbackTimer) window.clearInterval(townFallbackTimer);
   cancelAnimationFrame(frame); observer?.disconnect(); view?.dispose(); view = undefined;
 });
@@ -300,12 +412,17 @@ onBeforeUnmount(() => {
 <template>
   <section v-if="town && runtime" class="town-page">
     <div class="town-stage">
-      <canvas ref="canvas" :aria-label="`${town.location}城镇地图`" @click="pointer" />
+      <canvas ref="canvas" :aria-label="`${town.location}城镇地图`" @click="pointer" @wheel="wheel" />
       <output v-if="renderError" class="map-error">{{ renderError }}</output>
-      <label class="map-zoom">缩放
-        <input v-model.number="zoom" type="range" min="0.65" max="2.5" step="0.05">
-      </label>
-      <p class="town-help">点击地面寻路 · 点击光标交互 · WASD / QE 移动 · 街道视角</p>
+      <TxMinimap
+        class="town-minimap" :base="minimapBase" :player="minimapPlayer"
+        :basis="minimapBasis" :view-quad="minimapViewQuad" :markers="minimapMarkers"
+        :path="minimapPath" :destination="minimapDestination"
+        :north-up="controller.settings.value.minimapNorthUp" :expanded="minimapExpanded"
+        :size-px="200" @travel="minimapTravel" @toggle-expanded="toggleAreaMap"
+        @zoom="direction => direction > 0 ? zoom.stepIn() : zoom.stepOut()"
+        @toggle-north-up="toggleMinimapNorthUp"
+      />
     </div>
 
     <!-- HUD Control Panel -->
@@ -458,11 +575,22 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   display: block;
+  touch-action: none;
+}
+.town-minimap {
+  position: absolute;
+  top: 92px;
+  right: 38px;
+  z-index: 20;
+}
+.town-minimap.expanded {
+  top: 0;
+  right: 0;
 }
 .town-panel {
   position: absolute;
   right: 20px;
-  top: 96px;
+  top: 330px;
   width: 230px;
   max-height: calc(100vh - 240px);
   display: flex;
@@ -489,32 +617,6 @@ onBeforeUnmount(() => {
   font-weight: bold;
   border-color: var(--seal, #8a2a18) !important;
 }
-.town-help, .map-zoom {
-  position: absolute;
-  margin: 0;
-  padding: 6px 12px;
-  background: rgba(239, 230, 210, 0.90);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(148, 115, 69, 0.3);
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(48, 46, 41, 0.12);
-  z-index: 10;
-}
-.town-help {
-  left: 20px;
-  bottom: calc(20px + var(--safe, 0px));
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-.map-zoom {
-  right: 20px;
-  bottom: calc(20px + var(--safe, 0px));
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 /* 大侠立志传式底端固定半透明对白框（匹配图4：立绘在左，文字在右，古风姓名牌） */
 .town-street-dialogue {
   position: absolute;

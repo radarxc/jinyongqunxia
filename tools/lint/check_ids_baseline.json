@@ -1,6 +1,10 @@
 {
   "schema_version": 1,
   "undefined_ids": [
+    "ch02_scene_yideng_heals_iron_palm_wound",
+    "ch03_prime_base",
+    "eq_xianxia_liuxianqun",
+    "npc_dir",
     "sk_babuganchan"
   ],
   "deprecated_ids": []

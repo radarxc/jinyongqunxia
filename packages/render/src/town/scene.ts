@@ -2,22 +2,21 @@ import { AmbientLight, AnimationMixer, CircleGeometry, Color, DirectionalLight, 
   MeshBasicMaterial, type MeshStandardMaterial, OrthographicCamera, PlaneGeometry, Quaternion, Raycaster, Scene, SRGBColorSpace,
   TextureLoader, Vector2, Vector3, WebGLRenderer, type AnimationAction } from 'three';
 import type { Texture } from 'three';
+import { DEFAULT_NPC_HEIGHT_M, DEFAULT_PLAYER_HEIGHT_M } from '../actors/heights';
 import type { PilotModel } from '../gltf/load';
 import type { RigInstance } from '../rig/character';
 import { createTownGeometry, loadTownAtlas } from './geometry';
 import { createTownHeightPicker, elevationAtHex, townBillboardQuaternion, townCameraOffset,
-  townHexToWorld } from './projection';
+  townHexToWorld, writeCameraGroundQuad } from './projection';
 import type { TownAnchorView, TownNpcView, TownRuntimeView, TownScene,
   TownSceneOptions, TownSceneProjection } from './types';
 
 const CAMERA_DISTANCE = 42;
 const FADE_SECONDS = 0.24;
-/** Walking figures are cutout 立绘 billboards; world height in metres (buildings are ~5 m). */
-const SPRITE_HEIGHT = 2.1;
 const DEFAULT_PLAYER_SPRITE = '/img/hero_cutout.png';
 function validZoom(value: number): number {
   if (!Number.isFinite(value)) throw new RangeError('TOWN_ZOOM');
-  return Math.min(2.5, Math.max(0.65, value));
+  return Math.min(6, Math.max(0.4, value));
 }
 function markerColor(anchor: TownAnchorView): number {
   return anchor.kind === 'meditation' ? 0x5b8291 :
@@ -27,6 +26,8 @@ function markerColor(anchor: TownAnchorView): number {
 export async function createTownScene(canvas: HTMLCanvasElement, town: TownRuntimeView,
   options: TownSceneOptions): Promise<TownScene> {
   let disposed = false;
+  const playerHeightM = options.playerHeightM ?? DEFAULT_PLAYER_HEIGHT_M.male;
+  const npcHeightM = options.npcHeightM ?? DEFAULT_NPC_HEIGHT_M.male;
   const rig = await (options.loadRigRuntime ?? (() => import('../rig/runtime')))();
   const renderer = new WebGLRenderer({ canvas, antialias: false, alpha: false,
     preserveDrawingBuffer: true,
@@ -59,25 +60,27 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
     }
     return entry;
   }
-  function attachSprite(actor: RigInstance, url: string | null | undefined, seed: number): void {
+  function attachSprite(actor: RigInstance, url: string | null | undefined, seed: number,
+    heightM: number): void {
     if (!url || sprites.has(actor)) return;
     const material = new MeshBasicMaterial({ transparent: true, alphaTest: 0.4, depthWrite: true });
     const mesh = new Mesh(spriteGeometry, material); mesh.name = 'town-actor-sprite';
     mesh.quaternion.copy(spriteRotation); mesh.renderOrder = 30; mesh.visible = false;
-    mesh.scale.set(SPRITE_HEIGHT * 2 / 3, SPRITE_HEIGHT, 1); scene.add(mesh);
+    mesh.scale.set(heightM * 2 / 3, heightM, 1); scene.add(mesh);
     sprites.set(actor, { mesh, material, walking: false, phase: seed * 1.7, baseY: 0 });
     void spriteTexture(url).then((texture) => {
       if (!texture || disposed) return;
       const image = texture.image as { width?: number; height?: number } | undefined;
-      if (image?.width && image.height) mesh.scale.x = SPRITE_HEIGHT * image.width / image.height;
-      material.map = texture; material.needsUpdate = true; mesh.visible = true;
+      if (image?.width && image.height) mesh.scale.x = heightM * image.width / image.height;
+      material.map = texture; material.needsUpdate = true;
+      mesh.visible = actor !== player || player3D === undefined;
     });
   }
   function detachSprite(actor: RigInstance): void {
     const sprite = sprites.get(actor); if (!sprite) return;
     scene.remove(sprite.mesh); sprite.material.dispose(); sprites.delete(actor);
   }
-  attachSprite(player, options.spriteFor?.('player') ?? DEFAULT_PLAYER_SPRITE, 0);
+  attachSprite(player, options.spriteFor?.('player') ?? DEFAULT_PLAYER_SPRITE, 0, playerHeightM);
 
   // 3D Animated Character Model for protagonist (AR-92 / 图5: 小地图3D建模+贴图+行走动作)
   const player3DContainer = new Group();
@@ -95,7 +98,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
     const modelUrl = options.playerModelUrl ?? '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb';
     try {
       const { loadPilotModel } = await import('../gltf/load');
-      const pilot = await loadPilotModel(modelUrl, 3.4);
+      const pilot = await loadPilotModel(modelUrl, playerHeightM, { stature: 'headTop' });
       if (!disposed) {
         player3D = pilot;
         pilot.scene.name = 'town-player-3d';
@@ -128,6 +131,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
           walkAction = playerMixer.clipAction(walkClip || runClip!);
         }
         player3DContainer.add(pilot.scene);
+        player.setPosition(0, -9999, 0);
         const playerSprite = sprites.get(player);
         if (playerSprite) playerSprite.mesh.visible = false;
       }
@@ -160,7 +164,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
       if (!playerPosInitialized) {
         playerWorldPos.copy(playerTargetPos);
         playerPosInitialized = true;
-        actor.setPosition(scratch.x, scratch.y + 0.03, scratch.z);
+        if (!player3D) actor.setPosition(scratch.x, scratch.y + 0.03, scratch.z);
       }
     } else {
       actor.setPosition(scratch.x, scratch.y + 0.03, scratch.z);
@@ -216,7 +220,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
       if (!entry) {
         const actor = rig.createRigCharacter(rigSet, view.equipment, index + 2);
         batch.add(actor); entry = { actor, view }; npcs.set(view.npcId, entry);
-        attachSprite(actor, options.spriteFor?.(view.npcId), index + 1);
+        attachSprite(actor, options.spriteFor?.(view.npcId), index + 1, npcHeightM);
       } else await entry.actor.setEquipment(view.equipment);
       entry.view = view; placeActor(entry.actor, view);
     }
@@ -258,7 +262,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
         } else {
           playerWorldPos.copy(playerTargetPos);
         }
-        player.setPosition(playerWorldPos.x, playerWorldPos.y + 0.03, playerWorldPos.z);
+        if (!player3D) player.setPosition(playerWorldPos.x, playerWorldPos.y + 0.03, playerWorldPos.z);
         const playerSprite = sprites.get(player);
         if (playerSprite) {
           playerSprite.baseY = playerWorldPos.y + 0.02;
@@ -329,7 +333,8 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
         if (sway !== 0) {
           sprite.mesh.rotateZ(sway);
         }
-        sprite.mesh.scale.y = SPRITE_HEIGHT * (1 + (isWalking ? 0 : Math.sin(sprite.phase) * 0.006));
+        const heightM = actor === player ? playerHeightM : npcHeightM;
+        sprite.mesh.scale.y = heightM * (1 + (isWalking ? 0 : Math.sin(sprite.phase) * 0.006));
       }
       viewProjection.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
       frustum.setFromProjectionMatrix(viewProjection);
@@ -344,6 +349,7 @@ export async function createTownScene(canvas: HTMLCanvasElement, town: TownRunti
       stats.visibleChunks = visibleChunks;
     },
     setZoom(next) { zoom = validZoom(next); resize(width, height, renderer.getPixelRatio()); },
+    writeViewGroundQuad(out) { return writeCameraGroundQuad(camera, 0, out); },
     pickPoint(clientX, clientY, bounds) {
       if (!pointerRay(clientX, clientY, bounds)) return null;
       return pickHeight(raycaster.ray, hit);

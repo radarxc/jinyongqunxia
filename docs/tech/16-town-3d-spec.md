@@ -143,7 +143,7 @@ export type FacilityKind = 'none' | 'residence' | 'general_store' | 'cloth' | 'b
   | 'teahouse' | 'smithy' | 'pawnshop' | 'bank' | 'escort' | 'school' | 'temple' | 'office' | 'casino' | 'stable'
   | 'storehouse' | 'guardhouse' | 'stall_goods' | 'stall_food';
 export interface TownBuildingPlan { /* = tech/15 §2.3；字段：id archetype kit seed footprint yaw storeys roof entrances
-  enterable elev floors floorY fixtures parts? signage facility */ }
+  enterable elev floors floorY fixtures parts? signage facility finial? */ }
 export interface LayoutBuildingInput {
   readonly id: string; readonly type: string; readonly originCell: readonly [number, number];
   readonly sizeCells: readonly [number, number]; readonly entranceCell: readonly [number, number];
@@ -205,7 +205,7 @@ cityWall: { h: 6000, top: 4000, batter: 0.16, merlon: [1800, 1200, 500], gate: {
 ```
 
 - `content/town/buildkits/city-kits.yaml`：按城覆盖视觉套件，如 `city_turpan__ch10: xiyu:tang_buddhist`（吐鲁番布局里的类型名是 `bld_kit_song_dali_*`，视觉套件与类型名无关）。
-- **xiyu `tang_buddhist` 变体**（702 年唐西州，tech/14 D13）：土坯厚墙、平顶女儿墙、木椽头、高窗、雕门、葡萄架、晾房花砖墙照常；**禁用**穹顶与尖拱；寺院与官署用唐式佛塔刹顶与唐式木构檐口。
+- **xiyu `tang_buddhist` 变体**（702 年唐西州，tech/14 D13）：土坯厚墙、平顶女儿墙、木椽头、高窗、雕门、葡萄架、晾房花砖墙照常；**禁用**穹顶与尖拱；寺院用唐式佛塔刹顶（规划器写方案 `finial: 'tang_stupa'`，网格器据此出塔刹），寺院与官署用唐式木构檐口；官署被禁的穹顶改攒尖、配普通宝顶，不加佛塔刹（按史实，10-11 协调者裁定）。
 - 布局字段 → 方案：`type` → 套件类型 → 配方 / 尺寸档 / 屋顶（别名覆盖 xiyu 名）；`size` + 入口边 → yaw 与局部 w × d；`origin` + 坐标框 → 占地中心；`entrance_cells` → 门偏移（默认吸到明间，除非布局偏移离明间 > 1 m）；`enterable` / `business_ref` / 设施 YAML → 设施类；种子 → 变体。
 
 ## 5. 网格器：配方、屋顶、墙与开洞、不变式
@@ -433,6 +433,7 @@ export function cutFacadeMask(yawDeg: number): number;
 
 ### 9.1 运行时（`packages/render/src/actor3d`，懒加载块 `render-actor3d`）
 - **主角**：`createDressupActor`（`render-dressup` 块），用城镇减面件 `*.town.glb`、`unlit: false`；播放率通过 `actor.update(dt × 倍率)` 实现，不改换装代码；装备由应用侧目录把物品映射成换装规格，render 不解析物品。男性：`tpl_m_*` 未出前用 `npc_zhujue__ch00_m` 城镇减面版。
+- **与换装线对齐（2026-10-11 换装线确认）**：走换装 actor 时模板身高一律读换装索引的 `heightM`，不写死；新模板 `tpl_f2_medium`、`tpl_m_medium` 合入换装索引前不当默认（现有衣物 / 头 / 道具只贴合 `tpl_f_*`）；`*.town.glb` 动工前先与换装线对文件名与 manifest 字段（是否登记为 fits 变体）。
 - **NPC**：每个 URL 只解析一次 GLTF；克隆共享几何、材质、贴图；骨骼用 `SkeletonUtils.clone`；片段按 Mixamo 骨架族共享；没有片段的具名 NPC（`model_rig.glb`）用 `battle/model-stage.ts` 的 `retargetBattleClips` 每模型重定向一次并缓存。
 
 ```ts
@@ -458,7 +459,7 @@ export function gaitTimeScale(speedMps: number, heightM: number, hps: number): n
 `tools/model3d/town_lod.py` 串起：① 去掉法线与金属粗糙度贴图，只留 baseColor；② `tools/model3d/dressup/textures.py --max 1024`（LOD0）或 `--max 512`（LOD1）；③ `tools/model3d/dressup/pack_glb.mjs --simplify <比例>`（已保 UV、蒙皮权重、区域边界并 meshopt 压缩）；④ 新 `tools/model3d/measure_gait.mjs`（像 `meshopt_decode.mjs` 那样在 Node 里跑 three）量 `HeadTop_End` 得 `statureMu`，按脚掌支撑滑移量出走 / 跑原生速度 `nativeHps`；⑤ 写 `town.json`；⑥ `tools/model3d/capture_validation_shots.mjs` 出转台图。
 - 产物 `assets/default/model3d/<id>/town/{lod0,lod1}.glb`；首批 `npc_generic_m/f`、`npc_zhujue__ch00_m/f`、`npc_duanyu`、`npc_liwenxiu__ch10_youth`。
 - LOD0 ≤ 25,000 三角、只 baseColor ≤ 1024²；LOD1 ≤ 9,000、512²；骨骼名与数量不变；权重和 = 1 ± 1e-3；身高 ±1%；脚底支撑滑移 ≤ 2 cm；LOD0 ≤ 1.6 MB。
-- 换装件 `tools/model3d/dressup_town_lod.py` 在源件旁写 `*.town.glb`：身体 1.2 万、头 4 千、每件衣 3.5 千、头发 2 千、道具 1.5 千，整身 ≤ 2.5 万；区域属性、UV、关节保留；遮罩过 `validate.py`。
+- 换装件 `tools/model3d/dressup_town_lod.py` 在源件旁写（skin joints 顺序与 inverseBindMatrices 与模板逐字节一致，`_REGION` 与遮罩 UV 不丢） `*.town.glb`：身体 1.2 万、头 4 千、每件衣 3.5 千、头发 2 千、道具 1.5 千，整身 ≤ 2.5 万；区域属性、UV、关节保留；遮罩过 `validate.py`。
 
 ### 9.3 身高数据（AR-79、AR-104）
 - `NpcAppearanceSchema` 加 `body?: { template: BodyTemplateId; heightCm: int 120–230 }`（随年龄，按外观存）。
@@ -578,12 +579,12 @@ window.__townLab = {
 
 | ID | 范围 | 依赖 | 写集 | 验收 |
 |---|---|---|---|---|
-| ENG-buildgen-p0-scaffold | 类型、坐标框、类型解析、rng、家具目录、index、全部桩；`./town-plan` 子路径；桩 `planBuilding` 返回只有占地的合法方案（供编译器先用） | DES-town2-docsync | `packages/data/src/build/town-plan/**`（初建）、`packages/data/package.json`（加 `./town-plan`） | 四分之一转在 k = 0..3、1 万点上精确往返；前脸法向映射到 S / W / N / E；68 个布局类型串 + 3 个地标全部可解析、未知类型抛错；禁用运算 grep 通过；`hexCentreMm` 误差 ≤ 1 mm |
+| ENG-buildgen-p0-scaffold | 类型、坐标框、类型解析、rng、家具目录、index、全部桩；`./town-plan` 子路径；桩 `planBuilding` 返回只有占地的合法方案（供编译器先用） | —（契约已在 tech/15 / 16） | `packages/data/src/build/town-plan/**`（初建）、`packages/data/package.json`（加 `./town-plan`） | 四分之一转在 k = 0..3、1 万点上精确往返；前脸法向映射到 S / W / N / E；68 个布局类型串 + 3 个地标全部可解析、未知类型抛错；禁用运算 grep 通过；`hexCentreMm` 误差 ≤ 1 mm |
 | ENG-buildgen-p1-kits | 套件 schema 与 `compileKit`；`song_dali`、`xiyu`（含 `tang_buddhist`）YAML；`city-kits.yaml` | p0 | `packages/data/src/build/town-plan/kit/**`、`content/town/buildkits/**` | 两套件校验通过；每个试点类型在两套件都能解析；数值在 §3 范围内；编译后每套件 ≤ 12 KB 且逐字节稳定 |
 | ENG-buildgen-p2-plan-hall | dims、doors、plan-hall（hall、storeyed、stall、adobe）；试点布局夹具 | p1 | `town-plan/{dims,doors,plan-hall}.ts`、`town-plan/__tests__/plan-hall.test.ts`、`town-plan/testing/**` | 全部试点建筑 + 合成尺寸 {6×5, 7×5, 7×6, 8×6, 9×7, 10×8, 12×9, 12×10, 13×10, 14×11, 3×2, 4×3, 5×4} × 4 偏航：门 ≥ 1200 × 2100；floors 在占地内；6×5 店室内 ≥ 4.2 × 2.9 m；四个算例 ±1 mm；快照确定；方案 JSON ≤ 700 B |
 | ENG-buildgen-p3-compound | 院落、衙门、王府、庄园、镖局、寺院、西域客栈与院落；`preferSouthHall` | p2、ENG-interior-i1-core | `town-plan/plan-compound.ts`、`town-plan/compound/**`、`__tests__/plan-compound.test.ts` | 部件在占地内且不重叠；院门在入口；各房门朝院；院子与每房站位可达；`floorY` 一致；≤ 12 部件 |
 | ENG-buildgen-p4-invariants | `checkPlan`、导出夹具、新鲜度测试 | p2、p3、i1 | `town-plan/{invariants,export-fixtures}.ts`、`__tests__/{invariants,fixtures-fresh}.test.ts`、`packages/render/src/buildgen/testing/pilot-{plans,kits}.json` | 全部试点方案无诊断；8 种损坏样例都能查出；提交的 JSON 过期时新鲜度测试失败 |
-| ENG-buildgen-r0-core | 视图 / 端口类型、网格构建器、图元、开洞、检查、哈希、rng、配方注册与桩、屋顶与图层桩、`generate.ts`、迷你方案 | DES-town2-docsync | `packages/render/src/buildgen/{index,types}.ts`、`buildgen/mesher/core/**`、`buildgen/mesher/recipes/**`、`buildgen/mesher/roof/index.ts`、`buildgen/mesher/generate.ts`、`buildgen/three/layer.ts`（桩）、`buildgen/testing/mini-plans.ts` | `mesher/**` 下无 `three` import；带洞墙面积 = 墙 − 洞 ±0.1%；洞内 0 三角；外法向 > 0.99；36 B / 顶点；载荷只有类型化数组；哈希稳定 |
+| ENG-buildgen-r0-core | 视图 / 端口类型、网格构建器、图元、开洞、检查、哈希、rng、配方注册与桩、屋顶与图层桩、`generate.ts`、迷你方案 | —（契约已在 tech/15 / 16） | `packages/render/src/buildgen/{index,types}.ts`、`buildgen/mesher/core/**`、`buildgen/mesher/recipes/**`、`buildgen/mesher/roof/index.ts`、`buildgen/mesher/generate.ts`、`buildgen/three/layer.ts`（桩）、`buildgen/testing/mini-plans.ts` | `mesher/**` 下无 `three` import；带洞墙面积 = 墙 − 洞 ±0.1%；洞内 0 三角；外法向 > 0.99；36 B / 顶点；载荷只有类型化数组；哈希稳定 |
 | ENG-buildgen-r1-hall-body | 台基、台阶、柱、梁、墙、门窗框、斗拱、陈设；`recipes/hall.ts` | r0 | `buildgen/mesher/parts/{platform,steps,columns,beams,walls,frames,brackets,dressing}.ts`、`buildgen/mesher/recipes/hall.ts`、`__tests__/hall.test.ts` | 每个 hall 类试点方案 × 4 偏航 × LOD0/1：INV-1、2、3、5；柱数 = (间数 + 1) × 列数；台基顶 ±1 mm；在预算内 |
 | ENG-buildgen-r2-roof-a | 剖面、坡面、硬山 / 悬山、平顶、布棚、屋脊、屋面壳 | r0 | `buildgen/mesher/roof/{index,profile,patch,gable,flat,canopy,ridge,shell}.ts`、`__tests__/roof-a.test.ts` | `songZhe` 与 §3 金样 ±1 mm；坡度向脊严格递增；滴水 = `eaveMm` ±10；正脊 = `ridgeMm` ±10；离占地 ≥ 40 mm；共享边无 > 1 mm 缝；在预算内 |
 | ENG-buildgen-r3-roof-b | 歇山、庑殿、攒尖、卷棚、穹顶、翼角起翘 / 冲出、脊饰 | r2 | `roof/{hip,xieshan,pyramid,rolled,dome,corner,ornaments}.ts`、`roof/index.ts`（注册）、`__tests__/roof-b.test.ts` | 起翘 / 冲出 = 套件值 ±5；戗脊缝 ≤ 1 mm；镜像对称哈希成立；攒尖单顶点；在预算内 |
@@ -594,7 +595,7 @@ window.__townLab = {
 | ENG-buildgen-r9-layer | `BuildingLayer`：分格、`static-lit` 材质、状态纹理、淡出与剖切、透视、门扇、招牌、室内 LRU、暗角、拾取、统计、恢复 / 释放；贴图层加载器带占位回退 | r0、r1、r2（+ r8） | `packages/render/src/buildgen/three/**`、`packages/render/src/materials/static-lit/**` | 模拟渲染器的 Node 测试：每个可见格 2 draw；每单元屋顶属性；态 2 在模拟 250 ms 内屋顶淡出到 0、剖墙进度到 1；LRU ≤ 4；`cutFacadeMask` 45 → S\|E、135 → S\|W、225 → N\|W、315 → N\|E 且跨 90° 平滑；预热后 `update()` 零分配；`dispose` 幂等；程序缓存键固定 |
 | ENG-buildgen-r10-worker | Worker、client、形体缓存、时间切片 | r9 | `buildgen/worker/**`、`buildgen/mesher/shape-cache.ts`、`__tests__/worker-parity.test.ts` | 主线程与模拟通道哈希在每个试点格都相等；吐鲁番 ≤ 25 种形体；有无缓存相同；释放时终止 Worker |
 | ENG-buildgen-r11-perf | `buildgen/performance.test.ts` | r10、ENG-town2-chunks | `packages/render/src/buildgen/performance.test.ts` | §10 门在 `check:perf` 下通过 |
-| TOOL-buildgen-t1-placeholders | 程序化层（每套件 16 + 道具 8）、档位条带、manifest | DES-town2-docsync | `tools/buildgen/{common.py,make_placeholder_layers.py,build_layer_strips.py}`、`tools/buildgen/tests/test_layers.py`、`assets/default/buildkit/{song_dali,xiyu,props}/**` | 两次运行 sha256 相同；接缝 ΔE < 2；FFT 平铺周期 ±3%；条带 512×8192 与 256×4096 |
+| TOOL-buildgen-t1-placeholders | 程序化层（每套件 16 + 道具 8）、档位条带、manifest | —（契约已在 tech/15 / 16） | `tools/buildgen/{common.py,make_placeholder_layers.py,build_layer_strips.py}`、`tools/buildgen/tests/test_layers.py`、`assets/default/buildkit/{song_dali,xiyu,props}/**` | 两次运行 sha256 相同；接缝 ΔE < 2；FFT 平铺周期 ±3%；条带 512×8192 与 256×4096 |
 | ENG-townlab-l1 | `/town-lab` 目录与城市模式、手绘对照、HUD、`__townLab`、serve 插件。**INT**：`main.ts` 路由、`vite.config.ts` 插件一行、`check-dev-chunks.mjs` 的 `town-lab` 规则 | r9、p4、t1、ENG-town2-chunks | `apps/game/src/dev/town-lab/**`、`apps/game/build/town-lab-plugin.ts` + 三处 INT 行 | 生产构建无实验页产物；`measure()` = 方案 ±10 mm；人台 zoom 80 为 86 ± 2 px；占地与手绘差 ±4 px |
 | TOOL-buildgen-t3-capture | 截图、联系表、数字、对比 | l1 | `tools/buildgen/{capture_town_lab.mjs,contact_sheet.py,review_numbers.py}`、`assets/default/buildkit/review/r01/**` | 一条命令产出闸门 A 全套；任何错误或数值不过都非零退出 |
 | GATE-buildgen-A | 作者看体量与比例 | t3、r1–r7、p3 | AR 条目 | 逐类型逐套件原话 |
@@ -603,7 +604,7 @@ window.__townLab = {
 
 | ID | 范围 | 依赖 | 写集 | 验收 |
 |---|---|---|---|---|
-| DES-interior-01-facilities | 三个试点场景的设施绑定与招牌文字键 | DES-town2-docsync | `content/town/facilities/{city_dali__ch01,city_dali__ch10,city_turpan__ch10}.yaml` | 每栋可进试点建筑有设施类；`dali_yaopu` 已绑；i1 每种模板至少用到一次 |
+| DES-interior-01-facilities | 三个试点场景的设施绑定与招牌文字键 | —（契约已在 tech/15 / 16） | `content/town/facilities/{city_dali__ch01,city_dali__ch10,city_turpan__ch10}.yaml` | 每栋可进试点建筑有设施类；`dali_yaopu` 已绑；i1 每种模板至少用到一次 |
 | ENG-interior-i1-core | 求解器、六角格；模板：杂货、药铺、客栈、酒肆、住宅、铁匠、货摊 | p2 | `town-plan/interiors/{solver,hexes,general-store,pharmacy,inn,tavern,residence,smithy,stall}.ts`、`__tests__/interiors-i1.test.ts` | 房间 {4.4×3.1, 5.3×3.3, 6.8×4.6, 8.8×6.4} × 4 偏航 × 3 亚格偏移：店员在柜台后面朝门、过道不在 floors；通道净空；顾客位 BFS 可达；≥ 2 个顾客格；家具在房内且不重叠；矮杂物规则成立 |
 | ENG-interior-i2-more | 布庄、书肆、当铺、钱庄、镖局、武馆、寺庙、公堂、赌坊、厩、仓、哨所 | i1 | `interiors/{…}.ts`、`__tests__/interiors-i2.test.ts` | 同 i1，另：当铺柜 ≥ 1300 且掌柜台 +300；佛台居中 ±100；镖局过道 ≥ 1600 |
 | ENG-interior-r8-props | 道具 DSL、≥ 36 件、室内拼装与灯光烘焙 | r0、p0 | `buildgen/mesher/fixtures/**`、`__tests__/props.test.ts` | 包围盒 = 家具尺寸 ±2%、高 ±2%；三角在 §8.4 表内；阻挡道具在其矩形内 |
@@ -612,11 +613,11 @@ window.__townLab = {
 
 | ID | 范围 | 依赖 | 写集 | 验收 |
 |---|---|---|---|---|
-| DES-actor3d-01-body | 试点 NPC 的模板、身高、出处说明 | DES-town2-docsync | `docs/tech/16-town-3d-spec.md` §9 附表 | 每个试点 NPC 一行（模板、身高、依据） |
+| DES-actor3d-01-body | 试点 NPC 的模板、身高、出处说明 | —（契约已在 tech/15 / 16） | `docs/tech/16-town-3d-spec.md` §9 附表 | 每个试点 NPC 一行（模板、身高、依据） |
 | ENG-actor3d-d1-schema | `body` 字段与 `pickTemplateHeightCm` | DES-actor3d-01-body | `packages/data/src/schemas/character.ts`、`character.test.ts` | 现有内容仍通过；新字段有界；取身高确定 |
 | TOOL-actor3d-t1-lod | `town_lod.py`、`measure_gait.mjs`；六个模型 | — | `tools/model3d/{town_lod.py,measure_gait.mjs,tests_town_lod.py}`、`assets/default/model3d/*/town/**` | 见 §9.2 全部数值；附转台图 |
 | TOOL-actor3d-t2-dressup-lod | 模板、头、衣、发、道具的 `*.town.glb` | — | `tools/model3d/{dressup_town_lod.py,tests_dressup_town_lod.py}`、新增 `assets/default/model3d/dressup/**/*.town.glb` | 区域属性、UV、关节保留；遮罩 `validate.py` 通过；身体 + 头 + 2 件衣 + 发 + 道具 ≤ 2.5 万 |
-| ENG-actor3d-a1-core | 类型、目录、步态、身高缩放；index 与桩 | DES-town2-docsync | `packages/render/src/actor3d/{index,types,catalog,gait,stature}.ts`（+ 桩、测试） | §9.4 播放率表 ±0.01；滞回 2.2 / 2.6；夹到 [0.80, 1.45]；身高缩放精确 |
+| ENG-actor3d-a1-core | 类型、目录、步态、身高缩放；index 与桩 | —（契约已在 tech/15 / 16） | `packages/render/src/actor3d/{index,types,catalog,gait,stature}.ts`（+ 桩、测试） | §9.4 播放率表 ±0.01；滞回 2.2 / 2.6；夹到 [0.80, 1.45]；身高缩放精确 |
 | ENG-actor3d-a2-port | 端口、缓存、人物、影子、拾取 | a1、t1 | `actor3d/{port,cache,actor,shadow,pick}.ts`、`__tests__/port.test.ts` | 模拟加载器：每 URL 解析一次；克隆共享资源；片段只重定向一次；移动中速度 ±2%；转身 ≤ 540°/s；引用计数释放；`update` 零分配 |
 | ENG-actor3d-a3-dressup-xray | 换装适配、X 光孪生 | a2、t2 | `actor3d/{dressup-adapter,xray}.ts`、`__tests__/dressup-xray.test.ts` | 假换装 actor：装备映射；dt 缩放实现播放率；孪生共享骨骼纹理并随人物释放；根缩放 = heightM |
 | ENG-actor3d-a4-perf | `actor3d/performance.test.ts` | a2、ENG-town2-chunks | `packages/render/src/actor3d/performance.test.ts` | 24 个人物 P95 < 1.0 ms，三轮最优 |
@@ -632,7 +633,7 @@ window.__townLab = {
 | TOOL-signs-t5 | 字体资产（下载需作者许可）、图集工具、试点图集 | DES-interior-01-facilities | `assets/default/font/ma_shan_zheng/**`、`tools/buildgen/make_sign_atlas.py`、`tools/buildgen/tests/test_sign_atlas.py`、`assets/default/buildkit/signs/**` | 字体覆盖所用全部汉字；sha256 可复现；UV JSON 一致 |
 | GATE-buildgen-B | 作者看材质 + 走进店里 | a1、a2、t5、l2 | AR 条目 | 原话 |
 
-**到闸门 A 的关键路径**：DES-town2-docsync → p0 → p1 → p2（r0 并行）→ r1 + r2 → r9 → t1 → ENG-town2-chunks → l1 → t3。并行：i1 / i2、p3、r3–r8 与全部人物任务。
+**到闸门 A 的关键路径**：p0 → p1 → p2（r0 并行）→ r1 + r2 → r9 → t1 → ENG-town2-chunks → l1 → t3。并行：i1 / i2、p3、r3–r8 与全部人物任务。
 
 ## 14. 禁区
 

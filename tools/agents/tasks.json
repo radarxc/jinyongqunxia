@@ -29093,6 +29093,3531 @@
    "full_checkout": true
   },
   {
+   "id": "ENG-town2-input-port",
+   "title": "城镇探索 v2 · P1 · 平台输入层 @tianshu/platform/input（按住键、按键沿、滚轮归一、捏合、点按 vs 拖动）",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-town2-input-port.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/platform/src/input/**",
+    "packages/platform/package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/platform/src/input/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/platform/src/input",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-txminimap",
+   "title": "城镇探索 v2 · P1 · 右上小地图 TxMinimap + 交互条 TxContextActions + 小地图数学",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-town2-txminimap.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/ui/src/components/explore/TxMinimap*",
+    "packages/ui/src/components/explore/TxContextActions*",
+    "packages/ui/src/explore/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/ui/src/components/explore/TxMinimap.vue",
+     "packages/ui/src/components/explore/TxContextActions.vue",
+     "packages/ui/src/explore/minimap-math.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-shop-schema",
+   "title": "城镇探索 v2 · P1 · 设施 / 店铺模板 / 价目 / 设施对话 schema + Ink 动作 facility/openShop",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-town2-shop-schema.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/schemas/shop.ts",
+    "packages/data/src/schemas/facility.ts",
+    "packages/data/src/schemas/event-actions.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/content-registry.ts",
+    "packages/data/src/build/discover.ts",
+    "packages/data/src/shop-facility.test.ts",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/build/field-registry.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/shop.ts",
+     "packages/data/src/schemas/facility.ts",
+     "packages/data/src/shop-facility.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-txshop",
+   "title": "城镇探索 v2 · P1 · 店铺界面 TxShop（买 / 卖、步进、价格与禁用原因，只发意图）",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-town2-txshop.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/ui/src/components/explore/TxShop*",
+    "packages/ui/src/explore/money*"
+   ],
+   "validate": {
+    "exists": [
+     "packages/ui/src/components/explore/TxShop.vue",
+     "packages/ui/src/explore/money.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-buildgen-p0-scaffold",
+   "title": "城镇 3D 古建 · 规划器骨架 town-plan（类型、坐标框、类型解析、rng、家具目录、全部桩）",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p0-scaffold.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/**",
+    "packages/data/package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/index.ts",
+     "packages/data/src/build/town-plan/types.ts",
+     "packages/data/src/build/town-plan/frame.ts",
+     "packages/data/src/build/town-plan/archetype.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-buildgen-r0-core",
+   "title": "城镇 3D 古建 · 网格器骨架 buildgen（类型、构建器、图元、开洞、检查、哈希、配方注册与桩）",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r0-core.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/index.ts",
+    "packages/render/src/buildgen/types.ts",
+    "packages/render/src/buildgen/mesher/core/**",
+    "packages/render/src/buildgen/mesher/recipes/**",
+    "packages/render/src/buildgen/mesher/roof/index.ts",
+    "packages/render/src/buildgen/mesher/generate.ts",
+    "packages/render/src/buildgen/three/layer.ts",
+    "packages/render/src/buildgen/testing/mini-plans.ts",
+    "packages/render/src/buildgen/**/*.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/types.ts",
+     "packages/render/src/buildgen/mesher/core/buffer.ts",
+     "packages/render/src/buildgen/mesher/core/openings.ts",
+     "packages/render/src/buildgen/mesher/generate.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-town2-docsync",
+   "title": "城镇探索 v2 · 文档同步：AR-114 与 tech/14–16 的口径落进 design/26、22、11 与 tech/01、02、03、05、章节文档",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "DES-town2-docsync.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114；执行 traex GPT-5.6-Sol xhigh（作者 10-11）",
+   "writes": [
+    "docs/design/26-immersive-ui.md",
+    "docs/design/22-town-layout-and-generation.md",
+    "docs/design/11-open-world.md",
+    "docs/tech/01-architecture.md",
+    "docs/tech/02-rendering.md",
+    "docs/tech/03-mobile-performance.md",
+    "docs/tech/05-gameplay-engine.md",
+    "docs/design/chapters/01-tianlong.md",
+    "docs/design/chapters/10-baima.md"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/26-immersive-ui.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-heights",
+   "title": "城镇探索 v2 · P1 · 人物按身高数据缩放（去 3.4 m、按头顶骨骼量身高、GLB 就绪后隐去重叠 2D rig）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-town2-heights.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/actors/**",
+    "packages/render/src/gltf/load.ts",
+    "packages/render/src/gltf/load.test.ts",
+    "packages/render/src/town/scene.ts",
+    "packages/render/src/town/types.ts",
+    "packages/render/src/region/scene.ts",
+    "packages/render/src/region/types.ts",
+    "packages/render/src/town/*.test.ts",
+    "packages/render/src/region/*.test.ts",
+    "apps/game/src/pages/TownPage.vue",
+    "apps/game/src/pages/RegionPage.vue"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/actors/heights.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/actors",
+      "packages/render/src/gltf",
+      "packages/render/src/town",
+      "packages/render/src/region",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-actionmap",
+   "title": "城镇探索 v2 · P1 · 应用输入映射 ActionMap + 缩放控制器 ZoomController（缩放快捷键）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-town2-actionmap.md",
+   "deps": [
+    "ENG-town2-input-port"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/input/**",
+    "apps/game/src/App.vue",
+    "apps/game/src/app-flow.test.ts",
+    "packages/platform/src/input/pointer.ts",
+    "packages/platform/src/input/pointer.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/input/action-map.ts",
+     "apps/game/src/input/zoom.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/input",
+      "apps/game/src/app-flow.test.ts",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-kernel-prep",
+   "title": "城镇探索 v2 · core 内核准备（探索 / 店铺命令与拒绝码、处理器桩、行走 tick 钩子、存档 schema 4、懒加载族）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-town2-kernel-prep.md",
+   "deps": [
+    "ENG-town2-shop-schema"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/command/index.ts",
+    "packages/core/src/command/bus.ts",
+    "packages/core/src/command/handlers.ts",
+    "packages/core/src/command/shop-handler.ts",
+    "packages/core/src/command/explore-handler.ts",
+    "packages/core/src/economy/shop-types.ts",
+    "packages/core/src/world/explore/types.ts",
+    "packages/core/src/world/explore/tick.ts",
+    "packages/core/src/world/explore/tick-hook.ts",
+    "packages/core/src/world/explore/walk-validate.ts",
+    "packages/core/src/dialogue/context-validate.ts",
+    "packages/core/src/state/**",
+    "packages/core/src/entries/shop-command.ts",
+    "packages/core/src/entries/explore-command.ts",
+    "packages/core/package.json",
+    "packages/core/src/**/*.golden.json",
+    "packages/core/src/**/*.test.ts",
+    "apps/game/src/runtime/core-dispatch.ts",
+    "apps/game/src/runtime/*.test.ts",
+    "apps/game/src/storage/*.test.ts",
+    "apps/game/src/storage/save-service.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/types.ts",
+     "packages/core/src/economy/shop-types.ts",
+     "packages/core/src/entries/explore-command.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/runtime",
+      "apps/game/src/storage",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "DES-town2-pilot-content",
+   "title": "城镇探索 v2 · 试点内容（价目表、6 类店铺货单、三城设施绑定与店名、设施对话 Ink）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "DES-town2-pilot-content.md",
+   "deps": [
+    "ENG-town2-shop-schema"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "content/common/economy/**",
+    "content/shops/**",
+    "content/town/facilities/**",
+    "content/town/facility-dialogues.yaml",
+    "content/story/ch01/story_ch01_facility.*",
+    "content/story/ch10/story_ch10_facility.*",
+    "content/locales/zh-Hans/town-facilities.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "content/common/economy/price-table.yaml",
+     "content/town/facilities/city_dali__ch01.yaml",
+     "content/town/facility-dialogues.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "content:compile-story"
+     ],
+     [
+      "pnpm",
+      "content:test-compile-story"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-buildgen-p1-kits",
+   "title": "城镇 3D 古建 · 年代套件 schema 与编译 + song_dali / xiyu（唐代佛教变体）+ 按城套件表",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p1-kits.md",
+   "deps": [
+    "ENG-buildgen-p0-scaffold",
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/kit/**",
+    "packages/data/src/build/town-plan/types.ts",
+    "packages/data/src/build/town-plan/__tests__/kits.test.ts",
+    "content/town/buildkits/**",
+    "packages/data/src/build/discover.ts",
+    "packages/data/src/build/town-plan/testing/index.ts",
+    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
+    "apps/game/src/town-contract.test.ts",
+    "packages/render/package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/kit/compile.ts",
+     "content/town/buildkits/song_dali.yaml",
+     "content/town/buildkits/xiyu.yaml",
+     "content/town/buildkits/city-kits.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r1-hall-body",
+   "title": "城镇 3D 古建 · hall 配方屋身（台基、台阶、柱网、梁、墙与门窗、斗拱、陈设）+ INV-2 / INV-4",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r1-hall-body.md",
+   "deps": [
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/parts/platform.ts",
+    "packages/render/src/buildgen/mesher/parts/steps.ts",
+    "packages/render/src/buildgen/mesher/parts/columns.ts",
+    "packages/render/src/buildgen/mesher/parts/beams.ts",
+    "packages/render/src/buildgen/mesher/parts/walls.ts",
+    "packages/render/src/buildgen/mesher/parts/frames.ts",
+    "packages/render/src/buildgen/mesher/parts/brackets.ts",
+    "packages/render/src/buildgen/mesher/parts/dressing.ts",
+    "packages/render/src/buildgen/mesher/recipes/hall.ts",
+    "packages/render/src/buildgen/mesher/core/inspect.ts",
+    "packages/render/src/buildgen/__tests__/hall.test.ts",
+    "packages/render/src/buildgen/stubs.test.ts",
+    "packages/render/src/buildgen/testing/mini-plans.ts",
+    "packages/render/src/buildgen/generate.test.ts",
+    "packages/render/src/buildgen/inspect.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/recipes/hall.ts",
+     "packages/render/src/buildgen/__tests__/hall.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r2-roof-a",
+   "title": "城镇 3D 古建 · 屋顶（一）举折 / 举架、坡面、硬山 / 悬山 / 平顶 / 布棚、屋脊、屋面壳",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r2-roof-a.md",
+   "deps": [
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/roof/index.ts",
+    "packages/render/src/buildgen/mesher/roof/profile.ts",
+    "packages/render/src/buildgen/mesher/roof/patch.ts",
+    "packages/render/src/buildgen/mesher/roof/gable.ts",
+    "packages/render/src/buildgen/mesher/roof/flat.ts",
+    "packages/render/src/buildgen/mesher/roof/canopy.ts",
+    "packages/render/src/buildgen/mesher/roof/ridge.ts",
+    "packages/render/src/buildgen/mesher/roof/shell.ts",
+    "packages/render/src/buildgen/__tests__/roof-a.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/roof/profile.ts",
+     "packages/render/src/buildgen/__tests__/roof-a.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-buildgen-t1-placeholders",
+   "title": "城镇 3D 古建 · 程序化占位贴图（每套件 16 层 + 道具 8 层，真实尺度、可复现）与按档条带",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "TOOL-buildgen-t1-placeholders.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/buildgen/common.py",
+    "tools/buildgen/make_placeholder_layers.py",
+    "tools/buildgen/build_layer_strips.py",
+    "tools/buildgen/tests/test_layers.py",
+    "assets/default/buildkit/song_dali/**",
+    "assets/default/buildkit/xiyu/**",
+    "assets/default/buildkit/props/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/buildgen/make_placeholder_layers.py",
+     "assets/default/buildkit/song_dali/manifest.yaml",
+     "assets/default/buildkit/xiyu/manifest.yaml",
+     "assets/default/buildkit/props/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/buildgen/make_placeholder_layers.py",
+      "--all"
+     ],
+     [
+      "{python}",
+      "tools/buildgen/build_layer_strips.py",
+      "--all",
+      "--check"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/buildgen/tests",
+      "-p",
+      "test_*.py"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-chunks",
+   "title": "城镇探索 v2 · 分块与预算（区域 / 城镇 / 古建 / 人物 / meshopt 懒块与预算、perf 按文件名注册、新素材目录进包、类型契约测试）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-town2-chunks.md",
+   "deps": [
+    "ENG-buildgen-p0-scaffold",
+    "ENG-buildgen-r0-core",
+    "ENG-buildgen-p1-kits"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/vite.config.ts",
+    "apps/game/build/town-chunks.ts",
+    "apps/game/build/town-chunks.test.ts",
+    "apps/game/build/town-assets.ts",
+    "apps/game/build/town-assets.test.ts",
+    "apps/game/build/size-groups-plugin.ts",
+    "apps/game/build/size-groups-plugin.test.ts",
+    "tools/perf/budgets.json",
+    "tools/perf/check_size.mjs",
+    "tools/perf/check_size.test.mjs",
+    "tools/perf/README.md",
+    "packages/render/package.json",
+    "vitest.config.ts",
+    "package.json",
+    "apps/game/src/town-contract.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "tools/perf/budgets.json",
+     "apps/game/build/town-chunks.ts",
+     "apps/game/build/town-assets.ts",
+     "apps/game/src/town-contract.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/build",
+      "tools/perf",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-regionmap-ext",
+   "title": "城镇探索 v2 · 区域地图增量 schema（chunk 三层、town-scene.v1、FacilityNpc / Exit / MeditationSpot、MapEntry.scene）+ core 解码",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-town2-regionmap-ext.md",
+   "deps": [
+    "ENG-town2-shop-schema"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15 §2",
+   "writes": [
+    "packages/data/src/schemas/region-map.ts",
+    "packages/data/src/schemas/town-scene.ts",
+    "packages/data/src/schemas/world-map.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/region-map-town.test.ts",
+    "packages/core/src/world/region-codec.ts",
+    "packages/core/src/world/region-codec.test.ts",
+    "packages/data/src/schemas/facility.ts",
+    "packages/data/src/schemas/gate-expr.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/town-scene.ts",
+     "packages/data/src/region-map-town.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/region-map-town.test.ts",
+      "packages/data/src/schemas",
+      "packages/core/src/world",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-buildgen-p2-plan-hall",
+   "title": "城镇 3D 古建 · 单体规划 planBuilding（尺寸档、开间、门、屋顶标高、可走面；hall / storeyed / stall / adobe）",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p2-plan-hall.md",
+   "deps": [
+    "ENG-buildgen-p1-kits"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/16 §3–4",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ],
+   "writes": [
+    "packages/data/src/build/town-plan/dims.ts",
+    "packages/data/src/build/town-plan/doors.ts",
+    "packages/data/src/build/town-plan/plan-hall.ts",
+    "packages/data/src/build/town-plan/testing/**",
+    "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts",
+    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
+    "packages/data/src/build/town-plan/types.ts",
+    "packages/data/src/schemas/town-scene.ts",
+    "packages/data/src/region-map-town.test.ts",
+    "packages/render/src/buildgen/types.ts",
+    "apps/game/src/town-contract.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/testing/pilot-buildings.json",
+     "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-shop-core",
+   "title": "城镇探索 v2 · core 店铺结算（shop/buy|sell、定价上下文、店铺查询、补货、ShopLocator v1）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-town2-shop-core.md",
+   "deps": [
+    "ENG-town2-kernel-prep"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/economy/shop-pricing.ts",
+    "packages/core/src/economy/shop-query.ts",
+    "packages/core/src/economy/shop-locator.ts",
+    "packages/core/src/economy/shop-types.ts",
+    "packages/core/src/economy/shop-*.test.ts",
+    "packages/core/src/economy/__fixtures__/**",
+    "packages/core/src/command/shop-handler.ts",
+    "packages/core/src/command/shop-handler.test.ts",
+    "packages/core/src/entries/shop-command.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/economy/shop-pricing.ts",
+     "packages/core/src/economy/shop-query.ts",
+     "packages/core/src/command/shop-handler.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-dialogue-facility",
+   "title": "城镇探索 v2 · core 设施对话（对话上下文、facility/openShop 呈现步、interlocutor、v1 town/interact 改走设施对话）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-town2-dialogue-facility.md",
+   "deps": [
+    "ENG-town2-kernel-prep"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/dialogue/**",
+    "packages/core/src/event/event-executor.ts",
+    "packages/core/src/event/*.test.ts",
+    "packages/core/src/command/story-handlers.ts",
+    "packages/core/src/command/handlers.ts",
+    "packages/core/src/command/handlers.test.ts",
+    "packages/core/src/command/dialogue-intents.test.ts",
+    "packages/core/src/command/new-run-dialogue.test.ts",
+    "packages/core/src/command/facility-dialogue.test.ts",
+    "packages/core/src/world/town-runtime.ts",
+    "packages/core/src/world/town-runtime.test.ts",
+    "apps/game/src/runtime/session.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/command/facility-dialogue.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r9-layer",
+   "title": "城镇 3D 古建 · 建筑层 BuildingLayer（分格合批、static-lit 材质、状态纹理、剖切三态、透视圈、门扇、招牌、室内 LRU、暗角、拾取、恢复 / 释放）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r9-layer.md",
+   "deps": [
+    "ENG-buildgen-r0-core",
+    "ENG-buildgen-r1-hall-body",
+    "ENG-buildgen-r2-roof-a"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/three/**",
+    "packages/render/src/materials/static-lit/**",
+    "packages/render/src/buildgen/types.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/three/cutaway.ts",
+     "packages/render/src/buildgen/three/layer.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "packages/render/src/materials",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r3-roof-b",
+   "title": "城镇 3D 古建 · 屋顶（二）歇山、庑殿、攒尖、卷棚、穹顶、翼角、脊饰",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r3-roof-b.md",
+   "deps": [
+    "ENG-buildgen-r2-roof-a"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/roof/hip.ts",
+    "packages/render/src/buildgen/mesher/roof/xieshan.ts",
+    "packages/render/src/buildgen/mesher/roof/pyramid.ts",
+    "packages/render/src/buildgen/mesher/roof/rolled.ts",
+    "packages/render/src/buildgen/mesher/roof/dome.ts",
+    "packages/render/src/buildgen/mesher/roof/corner.ts",
+    "packages/render/src/buildgen/mesher/roof/ornaments.ts",
+    "packages/render/src/buildgen/mesher/roof/index.ts",
+    "packages/render/src/buildgen/__tests__/roof-b.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/roof/corner.ts",
+     "packages/render/src/buildgen/mesher/roof/xieshan.ts",
+     "packages/render/src/buildgen/__tests__/roof-b.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r4-storeyed-stall",
+   "title": "城镇 3D 古建 · 两层楼（腰檐、平座、上层）与摊位配方",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r4-storeyed-stall.md",
+   "deps": [
+    "ENG-buildgen-r1-hall-body",
+    "ENG-buildgen-r2-roof-a"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/recipes/storeyed.ts",
+    "packages/render/src/buildgen/mesher/recipes/stall.ts",
+    "packages/render/src/buildgen/mesher/recipes/index.ts",
+    "packages/render/src/buildgen/mesher/parts/balcony.ts",
+    "packages/render/src/buildgen/mesher/parts/pent-eave.ts",
+    "packages/render/src/buildgen/mesher/parts/awning.ts",
+    "packages/render/src/buildgen/__tests__/storeyed.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/parts/pent-eave.ts",
+     "packages/render/src/buildgen/__tests__/storeyed.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-interior-i1-core",
+   "title": "城镇 3D 古建 · 室内摆放求解器 + 七类模板（杂货、药铺、客栈、酒肆、住宅、铁匠、货摊）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-interior-i1-core.md",
+   "deps": [
+    "ENG-buildgen-p2-plan-hall"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/interiors/solver.ts",
+    "packages/data/src/build/town-plan/interiors/hexes.ts",
+    "packages/data/src/build/town-plan/interiors/general-store.ts",
+    "packages/data/src/build/town-plan/interiors/pharmacy.ts",
+    "packages/data/src/build/town-plan/interiors/inn.ts",
+    "packages/data/src/build/town-plan/interiors/tavern.ts",
+    "packages/data/src/build/town-plan/interiors/residence.ts",
+    "packages/data/src/build/town-plan/interiors/smithy.ts",
+    "packages/data/src/build/town-plan/interiors/stall.ts",
+    "packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts",
+    "packages/data/src/build/town-plan/plan-hall.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/interiors/pharmacy.ts",
+     "packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-explore-graph",
+   "title": "城镇探索 v2 · core 探索图与 A*（类型化数组图缓存、二叉堆、多目标、吸附）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-graph.md",
+   "deps": [
+    "ENG-town2-regionmap-ext",
+    "ENG-town2-kernel-prep"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/world/explore/graph.ts",
+    "packages/core/src/world/explore/heap.ts",
+    "packages/core/src/world/explore/astar.ts",
+    "packages/core/src/world/explore/snap.ts",
+    "packages/core/src/world/explore/__fixtures__/**",
+    "packages/core/src/world/explore/*.test.ts",
+    "packages/core/src/world/region-runtime.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/astar.ts",
+     "packages/core/src/world/explore/graph.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-town2-compiler-core",
+   "title": "城镇探索 v2 · 城镇编译器 v2 核心（布局 → 区域场景、门、城墙城门、设施店员、I1–I6）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "TOOL-town2-compiler-core.md",
+   "deps": [
+    "ENG-town2-regionmap-ext",
+    "ENG-buildgen-p0-scaffold"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town/invariants.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-render-core",
+   "title": "城镇探索 v2 · render 区域场景扩展（px 缩放、弹簧跟随、航位推算、路线带、基向量与视野四边形）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-render-core.md",
+   "deps": [
+    "ENG-town2-chunks",
+    "ENG-town2-heights",
+    "ENG-town2-regionmap-ext"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/region/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/region/scene.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/region",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-interior-r8-props",
+   "title": "城镇 3D 古建 · 室内家具道具库（≥ 36 件）+ 室内拼装与灯光烘焙",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-interior-r8-props.md",
+   "deps": [
+    "ENG-buildgen-r0-core",
+    "ENG-buildgen-p0-scaffold"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/fixtures/**",
+    "packages/render/src/buildgen/__tests__/props.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/fixtures/dsl.ts",
+     "packages/render/src/buildgen/mesher/fixtures/interior.ts",
+     "packages/render/src/buildgen/__tests__/props.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-actor3d-a1-core",
+   "title": "城镇 3D 人物 · 运行时骨架 actor3d（类型、资产目录、步态与播放率、身高缩放）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-actor3d-a1-core.md",
+   "deps": [
+    "ENG-town2-heights"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/actor3d/index.ts",
+    "packages/render/src/actor3d/types.ts",
+    "packages/render/src/actor3d/catalog.ts",
+    "packages/render/src/actor3d/gait.ts",
+    "packages/render/src/actor3d/stature.ts",
+    "packages/render/src/actor3d/*.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/actor3d/gait.ts",
+     "packages/render/src/actor3d/types.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/actor3d",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "DES-interior-01-facilities",
+   "title": "城镇 3D 古建 · 试点城设施绑定补全（每栋可进建筑的设施类与招牌文字键）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "DES-interior-01-facilities.md",
+   "deps": [
+    "DES-town2-pilot-content"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "content/town/facilities/city_dali__ch01.yaml",
+    "content/town/facilities/city_dali__ch10.yaml",
+    "content/town/facilities/city_turpan__ch10.yaml",
+    "content/locales/zh-Hans/town-facilities.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "content/town/facilities/city_turpan__ch10.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-shop-wire",
+   "title": "城镇探索 v2 · P1 · 店铺接线（会话 shop/query 与买卖命令、shop/open → ShopLayer、银两挪顶栏、城镇投影挪进 explore-projection）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-shop-wire.md",
+   "deps": [
+    "ENG-town2-shop-core",
+    "ENG-town2-dialogue-facility",
+    "ENG-town2-txshop",
+    "DES-town2-pilot-content",
+    "ENG-town2-actionmap"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/runtime/session.ts",
+    "apps/game/src/runtime/contracts.ts",
+    "apps/game/src/runtime/explore-projection.ts",
+    "apps/game/src/runtime/*.test.ts",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/pages/ShopLayer.vue",
+    "apps/game/src/pages/ShopLayer.strings.ts",
+    "apps/game/src/pages/ShopLayer.test.ts",
+    "apps/game/src/App.vue",
+    "apps/game/src/style.css",
+    "apps/game/src/flow/presentation.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/ShopLayer.vue",
+     "apps/game/src/runtime/explore-projection.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-v1-minimap",
+   "title": "城镇探索 v2 · P1 · 现有城镇页先接新小地图与缩放快捷键（右上 TxMinimap 点击寻路、跟镜头转 / 上北下南、M 全城图、=/-/0 与滚轮）",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-town2-v1-minimap.md",
+   "deps": [
+    "ENG-town2-txminimap",
+    "ENG-town2-actionmap",
+    "ENG-town2-heights"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；作者 10-11「现在小地图还是老的」→ 从 v1-page 拆出先做、尽快并主干；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "apps/game/src/pages/TownPage.vue",
+    "apps/game/src/pages/town-input.ts",
+    "apps/game/src/pages/town-input.test.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/settings.ts",
+    "apps/game/src/settings.test.ts",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/game-controller.test.ts",
+    "packages/render/src/town/scene.ts",
+    "packages/render/src/town/types.ts",
+    "packages/render/src/town/projection.ts",
+    "packages/render/src/town/scene.test.ts",
+    "packages/render/src/town/projection.test.ts",
+    "packages/ui/src/components/TxSettingsPanel.vue",
+    "packages/ui/src/components/TxSettingsPanel.test.ts",
+    "packages/ui/src/projections.ts",
+    "packages/ui/src/i18n-flow.ts",
+    "packages/render/CLAUDE.md"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/explore/v1-minimap.ts",
+     "apps/game/src/explore/v1-zoom.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-v1-page",
+   "title": "城镇探索 v2 · P1 · 现有城镇页收尾（删模拟店铺与对话、交互条、经店员对话真实购买）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-town2-v1-page.md",
+   "deps": [
+    "ENG-town2-txminimap",
+    "ENG-town2-actionmap",
+    "ENG-town2-heights",
+    "ENG-town2-shop-wire",
+    "ENG-town2-v1-minimap"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/pages/TownPage.vue",
+    "apps/game/src/pages/town-input.ts",
+    "apps/game/src/pages/town-input.test.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/settings.ts",
+    "apps/game/src/settings.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/TownPage.vue"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-explore-walk",
+   "title": "城镇探索 v2 · core 逐 tick 行走（travelTo / steer / stop、触发器、进出建筑、交互列表、previewTravel、读档纠偏）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-walk.md",
+   "deps": [
+    "ENG-town2-kernel-prep",
+    "ENG-town2-explore-graph"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/world/explore/walk.ts",
+    "packages/core/src/world/explore/tick.ts",
+    "packages/core/src/world/explore/interactables.ts",
+    "packages/core/src/world/explore/reconcile.ts",
+    "packages/core/src/world/explore/walk-validate.ts",
+    "packages/core/src/world/explore/types.ts",
+    "packages/core/src/world/explore/astar.ts",
+    "packages/core/src/world/explore/*.test.ts",
+    "packages/core/src/world/region-runtime.ts",
+    "packages/core/src/world/region-types.ts",
+    "packages/core/src/command/explore-handler.ts",
+    "packages/core/src/command/explore-handler.test.ts",
+    "packages/core/src/entries/explore-command.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/walk.ts",
+     "packages/core/src/world/explore/reconcile.ts",
+     "packages/core/src/world/explore/interactables.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-town2-sources-pipeline",
+   "title": "城镇探索 v2 · 城镇源文件与构建管线（三座试点城 town-source.v1、buildContent 编成区域场景叶子、缓存）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "TOOL-town2-sources-pipeline.md",
+   "deps": [
+    "TOOL-town2-compiler-core",
+    "DES-town2-pilot-content",
+    "ENG-buildgen-p1-kits"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-sources.ts",
+    "packages/data/src/build/town-sources.test.ts",
+    "content/world/towns/**",
+    "content/locales/zh-Hans/towns.yaml",
+    "packages/data/src/build/pipeline.ts",
+    "packages/data/src/build/discover.ts",
+    "packages/data/src/build/types.ts",
+    "packages/data/src/build/*.test.ts",
+    "packages/data/scripts/**"
+   ],
+   "validate": {
+    "exists": [
+     "content/world/towns/city_turpan__ch10.yaml",
+     "packages/data/src/build/town-sources.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml",
+    "docs/design/town/cities.yaml",
+    "docs/design/town/city_dali__ch01.yaml",
+    "docs/design/town/city_dali__ch10.yaml",
+    "docs/design/town/city_turpan__ch10.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-render-ports",
+   "title": "城镇探索 v2 · render 两个端口的占位实现（盒子壳 + 剖切三态、试点 GLB 真实身高）并接进区域场景",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-town2-render-ports.md",
+   "deps": [
+    "ENG-town2-render-core",
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/region/ports/**",
+    "packages/render/src/region/scene.ts",
+    "packages/render/src/region/types.ts",
+    "packages/render/src/region/*.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/region/ports/placeholder-buildings.ts",
+     "packages/render/src/region/ports/placeholder-actors.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/region",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-p3-compound",
+   "title": "城镇 3D 古建 · 院落规划 planCompound（院落、衙门、王府、庄园、镖局、寺院、西域院落）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p3-compound.md",
+   "deps": [
+    "ENG-buildgen-p2-plan-hall",
+    "ENG-interior-i1-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/plan-compound.ts",
+    "packages/data/src/build/town-plan/compound/**",
+    "packages/data/src/build/town-plan/__tests__/plan-compound.test.ts",
+    "packages/data/src/build/town-plan/plan-hall.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/compound/residence.ts",
+     "packages/data/src/build/town-plan/__tests__/plan-compound.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-buildgen-p4-invariants",
+   "title": "城镇 3D 古建 · 方案不变式 checkPlan + 试点方案导出夹具 + 新鲜度测试",
+   "phase": "TOWN2",
+   "wave": 56,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p4-invariants.md",
+   "deps": [
+    "ENG-buildgen-p2-plan-hall",
+    "ENG-buildgen-p3-compound",
+    "ENG-interior-i1-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/invariants.ts",
+    "packages/data/src/build/town-plan/export-fixtures.ts",
+    "packages/data/src/build/town-plan/__tests__/invariants.test.ts",
+    "packages/data/src/build/town-plan/__tests__/fixtures-fresh.test.ts",
+    "packages/render/src/buildgen/testing/pilot-plans.json",
+    "packages/render/src/buildgen/testing/pilot-kits.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/testing/pilot-plans.json",
+     "packages/render/src/buildgen/testing/pilot-kits.json",
+     "packages/data/src/build/town-plan/__tests__/fixtures-fresh.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r5-adobe",
+   "title": "城镇 3D 古建 · 西域土坯配方 adobe（含唐西州 tang_buddhist 变体）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r5-adobe.md",
+   "deps": [
+    "ENG-buildgen-r1-hall-body",
+    "ENG-buildgen-r2-roof-a",
+    "ENG-buildgen-r3-roof-b",
+    "ENG-buildgen-p1-kits",
+    "ENG-buildgen-p2-plan-hall"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/recipes/adobe.ts",
+    "packages/render/src/buildgen/mesher/parts/parapet.ts",
+    "packages/render/src/buildgen/mesher/parts/joists.ts",
+    "packages/render/src/buildgen/mesher/parts/iwan.ts",
+    "packages/render/src/buildgen/mesher/parts/trellis.ts",
+    "packages/render/src/buildgen/mesher/parts/brick-lattice.ts",
+    "packages/render/src/buildgen/__tests__/adobe.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/parts/parapet.ts",
+     "packages/render/src/buildgen/__tests__/adobe.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r6-compound",
+   "title": "城镇 3D 古建 · 院落配方 compound（院墙、门楼、正房 / 厢房、廊、照壁）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r6-compound.md",
+   "deps": [
+    "ENG-buildgen-r1-hall-body",
+    "ENG-buildgen-r2-roof-a",
+    "ENG-buildgen-r4-storeyed-stall",
+    "ENG-buildgen-p4-invariants"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/recipes/compound.ts",
+    "packages/render/src/buildgen/mesher/parts/enclosure.ts",
+    "packages/render/src/buildgen/mesher/parts/gatehouse.ts",
+    "packages/render/src/buildgen/mesher/parts/gallery.ts",
+    "packages/render/src/buildgen/mesher/parts/screen-wall.ts",
+    "packages/render/src/buildgen/__tests__/compound.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/parts/enclosure.ts",
+     "packages/render/src/buildgen/__tests__/compound.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r7-special",
+   "title": "城镇 3D 古建 · 特殊建筑配方（密檐塔、八角塔、城墙、城门）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r7-special.md",
+   "deps": [
+    "ENG-buildgen-r2-roof-a",
+    "ENG-buildgen-r3-roof-b"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/recipes/pagoda-dense.ts",
+    "packages/render/src/buildgen/mesher/recipes/pagoda-oct.ts",
+    "packages/render/src/buildgen/mesher/recipes/citywall.ts",
+    "packages/render/src/buildgen/mesher/recipes/gate.ts",
+    "packages/render/src/buildgen/__tests__/special.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/__tests__/special.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-townlab-l1",
+   "title": "城镇 3D 古建 · 实验页 /town-lab（目录 / 城市模式、人台标尺、手绘对照、HUD、__townLab、serve 插件）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-townlab-l1.md",
+   "deps": [
+    "ENG-buildgen-r9-layer",
+    "ENG-buildgen-p4-invariants",
+    "TOOL-buildgen-t1-placeholders",
+    "ENG-town2-chunks"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/dev/town-lab/**",
+    "apps/game/build/town-lab-plugin.ts",
+    "apps/game/build/town-lab-plugin.test.ts",
+    "apps/game/src/main.ts",
+    "apps/game/vite.config.ts",
+    "apps/game/scripts/check-dev-chunks.mjs"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/build/town-lab-plugin.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/dev",
+      "apps/game/build",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml",
+    "assets/default/building-map/xiyu/manifest.yaml"
+   ]
+  },
+  {
+   "id": "TOOL-buildgen-t3-capture",
+   "title": "城镇 3D 古建 · 闸门 A 一条命令出全套（实验页截图、联系表、数字核对）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "prompt": "TOOL-buildgen-t3-capture.md",
+   "deps": [
+    "ENG-townlab-l1"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/buildgen/capture_town_lab.mjs",
+    "tools/buildgen/capture_town_lab.test.mjs",
+    "tools/buildgen/review_numbers.py",
+    "tools/buildgen/contact_sheet.py",
+    "tools/buildgen/gate_a.sh",
+    "tools/buildgen/tests/test_review_numbers.py",
+    "tools/buildgen/tests/test_contact_sheet.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/buildgen/capture_town_lab.mjs",
+     "tools/buildgen/review_numbers.py",
+     "tools/buildgen/contact_sheet.py"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "node",
+      "--test",
+      "tools/buildgen/capture_town_lab.test.mjs"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/buildgen/tests",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-explore-facility",
+   "title": "城镇探索 v2 · core 设施 / 出口 / 打坐 / 进出城（店员对话、场景记忆、打坐移植、v2 入城挂载、ShopLocator v2）",
+   "phase": "TOWN2",
+   "wave": 56,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-facility.md",
+   "deps": [
+    "ENG-town2-shop-core",
+    "ENG-town2-dialogue-facility",
+    "ENG-town2-explore-walk"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/world/explore/facility.ts",
+    "packages/core/src/world/explore/exit.ts",
+    "packages/core/src/world/explore/meditation.ts",
+    "packages/core/src/world/explore/facility.test.ts",
+    "packages/core/src/world/explore/exit.test.ts",
+    "packages/core/src/world/explore/meditation.test.ts",
+    "packages/core/src/command/explore-handler.ts",
+    "packages/core/src/command/handlers.ts",
+    "packages/core/src/command/*.test.ts",
+    "packages/core/src/world/worldmap-runtime.ts",
+    "packages/core/src/world/worldmap.test.ts",
+    "packages/core/src/economy/shop-locator.ts",
+    "packages/core/src/economy/shop-locator.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/facility.ts",
+     "packages/core/src/world/explore/exit.ts",
+     "packages/core/src/world/explore/meditation.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-perf-gates",
+   "title": "城镇探索 v2 · 引擎侧性能门（寻路、行走 tick、区域场景帧更新；world-tick 计时测试挪进 perf）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-town2-perf-gates.md",
+   "deps": [
+    "ENG-town2-explore-graph",
+    "ENG-town2-explore-walk",
+    "ENG-town2-render-core",
+    "ENG-town2-render-ports"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/bench/explore-*.ts",
+    "packages/core/bench/world-tick*.ts",
+    "packages/core/bench/perf-registration.test.ts",
+    "packages/render/src/region/explore.performance.test.ts",
+    "vitest.config.ts",
+    "package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/bench/explore-path.performance.test.ts",
+     "packages/core/bench/explore-tick.performance.test.ts",
+     "packages/render/src/region/explore.performance.test.ts",
+     "packages/core/bench/world-tick.performance.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/core/bench/perf-registration.test.ts",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-town2-worldmap-pilot",
+   "title": "城镇探索 v2 · 大地图试点接线（覆盖文件 entry_overrides.yaml 写三座试点城的 entry.scene / gateId，生成器重出 map.yaml）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "TOOL-town2-worldmap-pilot.md",
+   "deps": [
+    "TOOL-town2-sources-pipeline",
+    "ENG-town2-regionmap-ext"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/content/town_scene_overrides.py",
+    "tools/content/test_town_scene_overrides.py",
+    "docs/design/map/entry_overrides.yaml",
+    "content/world/ch*/map.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "tools/content/town_scene_overrides.py",
+     "docs/design/map/entry_overrides.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools/content/test_town_scene_overrides.py",
+      "tools/content/test_worldmap_from_towns.py"
+     ],
+     [
+      "{python}",
+      "tools/content/worldmap_from_towns.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/content/worldmap_enrich.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-session-v2",
+   "title": "城镇探索 v2 · 会话层接线（townEngine 开关、预载 v2 场景、行走脏视图、previewTravel、读档纠偏、exploreCommand）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-town2-session-v2.md",
+   "deps": [
+    "ENG-town2-explore-facility",
+    "TOOL-town2-sources-pipeline",
+    "TOOL-town2-worldmap-pilot",
+    "ENG-town2-shop-wire"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/runtime/**",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/region/commands.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/runtime/session.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/runtime",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-explore-page",
+   "title": "城镇探索 v2 · 探索页 ExplorePage（v2 城镇 + 遗迹：按住走、点地 / 人 / 楼、Q/E、缩放、F、M、跟镜头转小地图）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-page.md",
+   "deps": [
+    "ENG-town2-session-v2",
+    "ENG-town2-render-ports",
+    "ENG-town2-v1-page"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/pages/ExplorePage.vue",
+    "apps/game/src/pages/ExplorePage.test.ts",
+    "apps/game/src/pages/ExplorePage.strings.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/App.vue"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/ExplorePage.vue",
+     "apps/game/src/explore/v2-minimap.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-actor3d-d1-schema",
+   "title": "城镇 3D 人物 · 身高数据 schema（NpcAppearance.body、CharacterTemplate.body、pickTemplateHeightCm）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-actor3d-d1-schema.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/schemas/character.ts",
+    "packages/data/src/schemas/character.test.ts",
+    "packages/data/src/character-body.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/character.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/schemas",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-actor3d-t1-lod",
+   "title": "城镇 3D 人物 · 城镇减面工具链 town_lod.py + measure_gait.mjs；首批六个模型 LOD0 / LOD1",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "TOOL-actor3d-t1-lod.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/model3d/town_lod.py",
+    "tools/model3d/measure_gait.mjs",
+    "tools/model3d/measure_gait.test.mjs",
+    "tools/model3d/tests_town_lod.py",
+    "assets/default/model3d/npc_generic_m/town/**",
+    "assets/default/model3d/npc_generic_f/town/**",
+    "assets/default/model3d/npc_zhujue__ch00_m/town/**",
+    "assets/default/model3d/npc_zhujue__ch00_f/town/**",
+    "assets/default/model3d/npc_duanyu/town/**",
+    "assets/default/model3d/npc_liwenxiu__ch10_youth/town/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/town_lod.py",
+     "tools/model3d/measure_gait.mjs",
+     "assets/default/model3d/npc_generic_m/town/town.json",
+     "assets/default/model3d/npc_generic_f/town/town.json",
+     "assets/default/model3d/npc_zhujue__ch00_m/town/town.json",
+     "assets/default/model3d/npc_zhujue__ch00_f/town/town.json",
+     "assets/default/model3d/npc_duanyu/town/town.json",
+     "assets/default/model3d/npc_liwenxiu__ch10_youth/town/town.json"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools/model3d/tests_town_lod.py"
+     ],
+     [
+      "node",
+      "--test",
+      "tools/model3d/measure_gait.test.mjs"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r10-worker",
+   "title": "城镇 3D 古建 · 网格生成进 Worker（消息协议、客户端与回退、形体模板缓存、时间切片；主线程 / Worker 哈希一致）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r10-worker.md",
+   "deps": [
+    "ENG-buildgen-r9-layer",
+    "ENG-buildgen-p4-invariants",
+    "ENG-town2-chunks",
+    "ENG-interior-r8-props"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/worker/**",
+    "packages/render/src/buildgen/mesher/shape-cache.ts",
+    "packages/render/src/buildgen/mesher/generate.ts",
+    "packages/render/src/buildgen/three/layer.ts",
+    "packages/render/src/buildgen/__tests__/worker-parity.test.ts",
+    "packages/render/src/buildgen/__tests__/shape-cache.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/worker/buildgen.worker.ts",
+     "packages/render/src/buildgen/worker/client.ts",
+     "packages/render/src/buildgen/mesher/shape-cache.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-interior-i2-more",
+   "title": "城镇 3D 古建 · 室内模板（二）12 类（布庄、书肆、当铺、钱庄、镖局、武馆、寺庙、公堂、赌坊、厩、仓、哨所）",
+   "phase": "TOWN2",
+   "wave": 56,
+   "kind": "draft",
+   "prompt": "ENG-interior-i2-more.md",
+   "deps": [
+    "ENG-interior-i1-core",
+    "DES-interior-01-facilities"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/interiors/cloth.ts",
+    "packages/data/src/build/town-plan/interiors/books.ts",
+    "packages/data/src/build/town-plan/interiors/pawnshop.ts",
+    "packages/data/src/build/town-plan/interiors/bank.ts",
+    "packages/data/src/build/town-plan/interiors/escort.ts",
+    "packages/data/src/build/town-plan/interiors/school.ts",
+    "packages/data/src/build/town-plan/interiors/temple.ts",
+    "packages/data/src/build/town-plan/interiors/office.ts",
+    "packages/data/src/build/town-plan/interiors/casino.ts",
+    "packages/data/src/build/town-plan/interiors/stable.ts",
+    "packages/data/src/build/town-plan/interiors/storehouse.ts",
+    "packages/data/src/build/town-plan/interiors/guardhouse.ts",
+    "packages/data/src/build/town-plan/interiors/solver.ts",
+    "packages/data/src/build/town-plan/__tests__/interiors-i2.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/interiors/temple.ts",
+     "packages/data/src/build/town-plan/interiors/pawnshop.ts",
+     "packages/data/src/build/town-plan/__tests__/interiors-i2.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-buildgen-t4-seamless",
+   "title": "城镇 3D 古建 · 贴图层后处理 make_seamless.py（去接缝、尺度归一、对色、3×3 预览、FFT 查重复）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "TOOL-buildgen-t4-seamless.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/buildgen/make_seamless.py",
+    "tools/buildgen/tests/test_seamless.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/buildgen/make_seamless.py",
+     "tools/buildgen/tests/test_seamless.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools/buildgen/tests/test_seamless.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",

@@ -62,8 +62,10 @@ async function mountScene(restoredYaw = 45): Promise<boolean> {
   const sceneKey = `${staticView.regionId}/${staticView.sceneId}`; pendingSceneKey = sceneKey;
   quality ??= await createRenderQuality(); if (disposed || token !== generation) return false;
   const module = await import('@tianshu/render/region'); if (disposed || token !== generation) return false;
+  const hero = projection.value?.characters?.find((character) => character.relation === 'self');
+  const playerHeightM = hero?.detail?.identity?.gender === 'female' ? 1.66 : 1.81;
   const created = await module.createRegionScene(target, staticView, { projection: dynamicView,
-    playerEquipment: equipment(), quality, reducedMotion: controller.settings.value.reducedMotion,
+    playerEquipment: equipment(), playerHeightM, quality, reducedMotion: controller.settings.value.reducedMotion,
     onContextStateChange: state => { if (token === generation) contextState.value = state; },
     onContextLoss: () => undefined, onContextRecreate: () => token === generation
       ? recreateScene() : Promise.resolve(false), requestFrame: requestDraw });

@@ -5,3 +5,7 @@ export interface InputPoint {
 export interface InputPort {
   subscribe(listener: (point: InputPoint) => void): () => void;
 }
+
+export * from './keyboard';
+export * from './pointer';
+export * from './wheel';

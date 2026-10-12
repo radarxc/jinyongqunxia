@@ -150,7 +150,22 @@ export const migrateBookSleepV2: StateMigration = (old) => {
       pendingMount: navigation['pendingMount'] ?? null, mountedRegion: null } } };
 };
 
+/** Pure schema-3 to schema-4 migration for exploration runtime seams. */
+export const migrateExploreV3: StateMigration = (old) => {
+  const game = row(cloneJsonValue(old), 'MIGRATION_STATE_INVALID');
+  const meta = row(game['meta']!, 'MIGRATION_META_INVALID');
+  if (number(meta['saveSchema'], 3) >= 4) return game;
+  const world = row(game['world']!, 'MIGRATION_WORLD_INVALID');
+  const navigation = row(world['navigation']!, 'MIGRATION_WORLD_INVALID');
+  const mountedValue = navigation['mountedRegion'];
+  const mounted = mountedValue === null ? null
+    : { ...row(mountedValue!, 'MIGRATION_WORLD_INVALID'), walk: null };
+  return { ...game, meta: { ...meta, saveSchema: 4 },
+    world: { ...world, navigation: { ...navigation, mountedRegion: mounted }, sceneMemory: [] } };
+};
+
 export const CORE_STATE_MIGRATIONS: ReadonlyMap<number, StateMigration> = new Map([
   [1, migrateUiSessionV1],
   [2, migrateBookSleepV2],
+  [3, migrateExploreV3],
 ]);

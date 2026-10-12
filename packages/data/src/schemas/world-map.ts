@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { RegionIdSchema, RegionSceneIdSchema } from './region-map';
 
 const EraSchema = z.string().regex(/^ch(?:0[1-9]|1[0-4])$/);
 const MapNodeIdSchema = z.string().regex(/^(?:city|rs|poi)_[a-z0-9_]+$/);
@@ -12,12 +13,15 @@ export const MapTierSchema = z.enum(['capital', 'major', 'minor', 'site']);
 export const MapMarkerSchema = z.enum(['city_large', 'city_prefecture', 'city_county', 'village', 'pass',
   'ruin', 'sect', 'temple', 'daoist']);
 
-const MapEntrySchema = z.strictObject({
+export const MapEntrySchema = z.strictObject({
   sceneId: z.string().min(1),
   townSpec: z.string().regex(/^docs\/design\/town\/city_[a-z0-9]+__ch[0-9]{2}\.yaml$/).nullable(),
   templateYear: z.number().int().min(1).max(9999).nullable(),
   gateId: z.string().min(1).nullable(),
   spawn: MapPointSchema.nullable(),
+  scene: z.strictObject({
+    regionId: RegionIdSchema, sceneId: RegionSceneIdSchema,
+  }).nullable().optional(),
   accessNote: z.string(),
 });
 

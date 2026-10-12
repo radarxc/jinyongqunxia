@@ -12,6 +12,8 @@ import type { DifficultyId } from '../state';
 import type { BookSleepPlan } from '../progression';
 import type { RegionCommand, RegionRuntimeContent } from '../world/region-types';
 import type { BattleActCommand, BattleSetup, BattleUnitSeed } from '../battle';
+import type { ShopCommand } from '../economy/shop-types';
+import type { ExploreCommand } from '../world/explore/types';
 
 export interface WorldTickCommand { readonly t: 'world/tick' }
 export type InventoryCommand =
@@ -43,7 +45,7 @@ export type BattleBusCommand = BattleEnterCommand | BattleBusActCommand | Battle
   | BattleRetryBusCommand | BattleFinalizeCommand | BattleLeaveCommand;
 export type Command = WorldTickCommand | WorldMapCommand | TownCommand | InventoryCommand
   | DialogueCommand | QuestChoiceCommand | RulesCommand | ChapterCommand | RegionCommand
-  | BattleBusCommand;
+  | BattleBusCommand | ExploreCommand | ShopCommand;
 
 export type RejectReason =
   | 'COMMAND_UNKNOWN' | 'WORLD_PAUSED' | 'MAP_UNAVAILABLE' | 'MAP_STILL_TRAVELLING'
@@ -71,6 +73,7 @@ export type RejectReason =
   | 'BOOK_SLEEP_CONTENT_UNAVAILABLE' | 'REGION_UNAVAILABLE' | 'REGION_CONTENT_MISMATCH'
   | 'REGION_SPAWN_UNKNOWN' | 'REGION_NOT_MOUNTED' | 'REGION_PATH_NOT_STANDABLE'
   | 'REGION_PATH_BLOCKED' | 'REGION_PATH_HEIGHT' | 'REGION_PATH_QINGGONG'
+  | 'REGION_PATH_UNREACHABLE'
   | 'REGION_ANCHOR_UNKNOWN' | 'REGION_ANCHOR_OUT_OF_RANGE' | 'REGION_ANCHOR_NOT_VISIBLE'
   | 'REGION_ANCHOR_CONSUMED' | 'REGION_INTERACTION_UNSUPPORTED'
   | 'REGION_LOOT_UNKNOWN' | 'REGION_LOOT_CAPACITY' | 'REGION_EXIT_PENDING'
@@ -85,7 +88,10 @@ export type RejectReason =
   | 'BATTLE_ENDED'
   | 'BATTLE_STALE_REVISION' | 'BATTLE_AUTO_FORBIDDEN' | 'BATTLE_AUTO_ACTIVE'
   | 'BATTLE_MANUAL_TURN' | 'BATTLE_NOT_MANUAL_TURN' | 'BATTLE_ACTION_REJECTED'
-  | 'BATTLE_RECEIPT_MISMATCH' | 'BATTLE_REWARD_ITEM_UNKNOWN' | 'BATTLE_REWARD_CAPACITY';
+  | 'BATTLE_RECEIPT_MISMATCH' | 'BATTLE_REWARD_ITEM_UNKNOWN' | 'BATTLE_REWARD_CAPACITY'
+  | 'SHOP_UNKNOWN' | 'SHOP_NOT_HERE' | 'SHOP_CLOSED' | 'SHOP_ITEM_UNAVAILABLE'
+  | 'SHOP_STOCK_INSUFFICIENT' | 'SHOP_MONEY_INSUFFICIENT' | 'SHOP_PRICE_STALE'
+  | 'SHOP_INVENTORY_FULL' | 'SHOP_BUSY';
 
 export interface InkStoryContent { readonly storyId: string; readonly storyHash: string;
   readonly storyJson: string | Readonly<Record<string, unknown>> }

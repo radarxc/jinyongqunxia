@@ -27,7 +27,7 @@
 ## 0. 术语、单位、坐标
 
 - **v1**：现有城镇栈（`town-runtime.v1`、`packages/render/src/town/**`、`TownPage.vue`、core `town/*` 命令）。**v2**：城镇并入区域引擎后的实现。
-- **场景**：一个区域场景（RegionMap），城镇的场景 ID `sc_<NN>_town_<citySlug>`，`NN` 取布局章节号（`city_dali__ch01` → `sc_01_town_dali`；`city_turpan__ch10` → `sc_10_town_turpan`），满足现有 `RegionSceneIdSchema`（`^sc_(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$`）。
+- **场景**：一个区域场景（RegionMap），城镇的场景 ID `sc_<NN>_town_<citySlug>`，`NN` 取布局章节号（例：`city_dali__ch01` → `sc_01_town_dali`；`city_turpan__ch10` → `sc_10_town_turpan`），满足现有 `RegionSceneIdSchema`（`^sc_(?:0[0-9]|1[0-5])_[a-z0-9]+(?:_[a-z0-9]+)*$`）。
 - **世界坐标**：米，`x` 东、`z` 南、`y` 上；原点 = 六角 `(0,0)` 中心；六角中心换算与 `regionHexWorld()` 一致（pointy-top，外接圆 2/3 m：`x = 577.35·(2q + r)` mm，`z = 1000·r` mm；整数版 `round(57735·(2q+r)/100)`）。
 - **方案坐标**：建筑方案里的长度一律整数毫米（mm），在同一世界坐标系下。
 - **core 一律整数**：禁止 `/`、浮点规则状态、墙钟、隐式随机；整数除法用 `@tianshu/shared` 的 `floorDivInt()` / `ceilDivInt()`。
@@ -112,11 +112,12 @@ export const TownSceneSchema = z.strictObject({
   signAtlasRef: z.string().nullable(),
   source: z.strictObject({ source: z.string(), layout: z.string(), sha256: Sha256Schema }),
   frame: z.strictObject({ axialOrigin: z.strictObject({ q: Int, r: Int }), planningM: z.tuple([Int, Int]) }),
-  facilities: z.array(TownFacilitySchema),
+  facilities: z.array(TownSceneFacilitySchema),
   buildings: z.array(TownBuildingPlanSchema),   // 顺序与 id 同 Building 对象（render-only 载荷）
   walls: z.array(TownWallSchema),
 });
-export const TownFacilitySchema = z.strictObject({
+// 场景里的设施条目；与内容文件 town-facilities.v1 的 TownFacilitySchema（packages/data/src/schemas/facility.ts）区分命名（协调者 10-11 裁定，避免 barrel 重名）
+export const TownSceneFacilitySchema = z.strictObject({
   key: LocalId /* yaopu_01 */, kind: FacilityKindSchema, sub: LocalId.nullable(), buildingId: LocalId, nameKey: TextKey,
   shop: z.strictObject({ instanceKey: z.string() /* city_dali__ch01/yaopu_01 */, templateRef: LocalKey,
     kind: z.enum(['normal','famous','blackMarket']) }).nullable(),
@@ -148,6 +149,7 @@ interface TownBuildingPlan {
   fixtures: readonly FixtureTuple[]; parts?: readonly PartTuple[];              // 院落部件（tech/16 §4）
   signage: readonly [textKey: string, signStyleIdx: number] | null;
   facility: FacilityKind;
+  finial?: 'tang_stupa';                                                        // 只在 xiyu:tang_buddhist 变体的寺院出现（tech/16 §4.3）
 }
 ```
 
@@ -180,7 +182,7 @@ facilities:
 生产构建不读 design 文档。一次性工具 `tools/content/town_sources.ts` 把每份规格里运行时要用的部分抄进 `content/world/towns/<city>__chNN.yaml`：城墙折线与城门、视觉套件、显示名、历史年份、出现章节、设施文件路径、布局路径 + sha256。布局本体只读 `assets/default/town/<city>__chNN/layout.yaml`（基线大理 / 临安读 `assets/default/baseline/town/*.layout.yaml`）。
 
 ### 3.2 步骤
-1. **坐标框**：轴坐标原点取布局 `runtime_partition` 的 `(q_min, r_min)`；边界为槽数（≤ 256²）；建 32×32 chunk 网格。
+1. **坐标框**：轴坐标原点取布局 `runtime_partition` 的 q、r 下界；边界为槽数（≤ 256²）；建 32×32 chunk 网格。
 2. **室外格**：从 `walk_layer.runtime_hex_walkable` 起；地形与 `surface` 取格心下的地面；水 / 桥按 §2.2；不可走的室外格置 `blocked`。
 3. **建筑**：每栋调 `planBuilding(layoutBuilding, kit, seed, frame)`（tech/16 §4；规划器未合入前注入"盒子方案"兜底：占地四墙、正中一扇 1.4 m 门、整块 floors）。格心在占地内的格写 `building` 层；室内格按 §2.4 规则 2 判定；阻挡家具置 `blocked`；占地内其余格为 `tr_shibi`。
 4. **门**：门的外侧格 = 离"门中心向外 600 mm"最近的格，并检查 6 步内接街；不成则回退布局的入口格。内侧格为相邻室内格；墙厚超过一格时开 `threshold`。门格全场景唯一；冲突时沿该边挪最多 ±3 m，仍冲突则失败并报两栋 ID。不可进入的建筑门格保持实体。
@@ -266,7 +268,8 @@ interface ShopView { instanceKey: string; nameKey: string; facilityKind: Facilit
   buys: { itemId: string; owned: number; unitSellPrice: number }[] }
 ```
 
-- **参考价**：`item.price` 有 1,522 件是 `'auto'`、83 件为 `null`、没有数字；`'auto'` 按价目表（design/10 §13.2，按物品种类映射列）解析；`null` 不可买卖。
+- **参考价**：`item.price` 有 1,522 件是 `'auto'`、83 件为 `null`、没有数字；`'auto'` 按价目表（design/10 §13.2，按物品种类映射列）解析，价目表单元为 0 表示无参考价（§13.2 的「—」），与 `null` 一样不可买卖。
+- **店铺实例键**：`<layoutKey>/<facilityKey>`（如 `city_dali__ch01/yaopu_01`）；设施条目若带显式 `shop.instanceKey` 则优先，由一个集中函数派生。
 - **定价上下文**：`worldTier` 取 `ChapterDef.worldTier`；`townLevel` 取大地图节点 `levelRange[0]`；魅力、口才取主角（口才缺省 0）；取整沿用 `round10(x) = 10·floor((x+5)/10)`。
 - **库存**：店铺状态按 `instanceKey` 懒建在 `chapter.shops`；补货沿用 `ShopRuntime` 节奏，**不耗 RNG**；运行时用"模板 + 章节上下文"拼出 ShopDef，取代 `ShopDef.chapterId` 检查。
 - **防过期**：`expectedUnitPrice` 与当前单价不符 → `SHOP_PRICE_STALE`。
@@ -468,13 +471,13 @@ interface MinimapProps {
 
 | ID | 范围 | 依赖 | 写集 | 校验 | 关键验收 |
 |---|---|---|---|---|---|
-| ENG-town2-regionmap-ext | §2.1–2.3 schema + codec 认 `blocked` / `building` | DES-town2-docsync | `packages/data/src/schemas/{region-map,town-scene,world-map}.ts`、`packages/data/src/region-map-town.test.ts`、`packages/core/src/world/region-codec.ts`（+ 测试） | Vd + Vc | 现有 Tiled 地图全部仍有效；反例：重复门格、未知 `spawnId`、层长度错误、建筑序号越界 |
+| ENG-town2-regionmap-ext | §2.1–2.3 schema + codec 认 `blocked` / `building` | — | `packages/data/src/schemas/{region-map,town-scene,world-map}.ts`、`packages/data/src/region-map-town.test.ts`、`packages/core/src/world/region-codec.ts`（+ 测试） | Vd + Vc | 现有 Tiled 地图全部仍有效；反例：重复门格、未知 `spawnId`、层长度错误、建筑序号越界 |
 | ENG-town2-chunks | §10 全部新块与预算、尺寸组；`packages/render` 导出 `./buildgen`、`./actor3d`；perf 测试注册；发布 `assets/default/buildkit/**` 与 `assets/default/model3d/*/town/**`；换装索引加 `townFile`；类型契约测试（含 tech/16 INT-01） | — | `apps/game/vite.config.ts`、`apps/game/build/{content-plugin,size-groups-plugin,dressup-assets,asset-manifest}.ts`、`tools/perf/{budgets.json,check_size.mjs,check_size.test.mjs,README.md}`、`packages/render/package.json`、`vitest.config.ts`、根 `package.json`、`apps/game/src/town-contract.test.ts` | Va | 新块产出；`render` ≤ 170；新行 `pnpm size` PASS；无孤块 |
 | ENG-town2-explore-graph | §4.1 纯函数 | regionmap-ext | `packages/core/src/world/explore/{graph,heap,astar,snap}.ts`（+ 测试） | Vc | 300 张种子随机图上与暴力 Dijkstra 同最优；3 个夹具定序金样；与 `regionEdges` 边集等价；缓存同一性；仅整数 |
 | TOOL-town2-compiler-core | §3.2 步骤 1–8；`planBuilding` 可注入 + 盒子兜底 | regionmap-ext | `packages/data/src/build/town/**` | Vd | 大理 ch01、大理 ch10、吐鲁番 ch10 布局过 I1–I6 |
 | ENG-town2-render-core | §5 场景 API：px 缩放、弹簧跟随、航位推算、路线带与终点、基向量与视野四边形、地面层占位色 | chunks、heights、regionmap-ext | `packages/render/src/region/**` | Vr | 固定 dt 弹簧可复现；死区与边界；沿路线插值；4 偏航视野四边形；稳态 `render()` 零分配 |
 | ENG-town2-explore-walk | §4.2 + 交互列表 + `previewTravel` + `reconcileMountedScene` | kernel-prep、explore-graph | `packages/core/src/world/explore/{walk,tick,interactables,reconcile,walk-validate,types}.ts`（+ 测试）、`packages/core/src/world/region-{runtime,types}.ts`、`packages/core/src/command/explore-handler.ts`（+ 测试）、`packages/core/src/entries/explore-command.ts` | Vc | 每次 `travelTo` 恰 1 次 A*（计数器）；每 tick ≤ 1 格边界；steer 滑行顺序；触发器只触发一次；对话打断行走；`BUSY` 拒绝；回放确定；纠偏重定位 |
-| TOOL-town2-sources-pipeline | §3.1 三个试点源；`buildContent` 发现并编成区域叶子；缓存 | compiler-core、pilot-content | `tools/content/town_sources.ts`（+ 测试）、`content/world/towns/**`、`packages/data/src/build/{pipeline,discover,types}.ts`、`packages/data/scripts/**` | Vd + Va | 应用构建含 `sc_01_town_dali` 叶子；第二次构建命中缓存 |
+| TOOL-town2-sources-pipeline | §3.1 三个试点源；`buildContent` 发现并编成区域叶子；缓存 | compiler-core、pilot-content | `tools/content/town_sources.ts`（+ 测试）、`content/world/towns/**`、`packages/data/src/build/{pipeline,discover,types}.ts`、`packages/data/scripts/**` | Vd + Va | 应用构建含大理 ch01 场景叶子（例 `sc_01_town_dali`）；第二次构建命中缓存 |
 | ENG-town2-render-ports | 两个端口的占位实现 | render-core | `packages/render/src/region/ports/**`、`packages/render/src/region/scene.ts` | Vr | 剖切三态随 `insideBuilding` 与偏航变化；端口可替换；`dispose()` 幂等 |
 | ENG-town2-explore-facility | §4.3：店员对话、出口 / `leaveSceneTx` + 场景记忆、打坐移植、v2 入城到 `spawn_<gateId>`、ShopLocator v2、`thenInteract` | shop-core、dialogue-facility、explore-walk | `packages/core/src/world/explore/{facility,exit,meditation}.ts`（+ 测试）、`packages/core/src/command/{explore-handler,handlers}.ts`、`packages/core/src/world/worldmap-runtime.ts`、`packages/core/src/economy/shop-locator.ts` | Vc | 入城挂载在 `spawn_south_gate`；出城回节点；再入城保留已消耗触发器；打坐与 v1 夹具对拍 |
 | ENG-town2-perf-gates | §10 三个性能门注册进 perf 项目与根脚本；挪走 `world-tick.test.ts` | explore-graph、explore-walk、render-core | `packages/core/bench/explore-*.ts`、`packages/core/bench/world-tick*.ts`、`packages/render/src/region/explore.performance.test.ts`、`vitest.config.ts`、根 `package.json` | Vb + Vperf | 不进 `pnpm check`；`check:perf` 通过 |

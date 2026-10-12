@@ -25,7 +25,12 @@ const COST_THREE = new Set<TerrainId>(['tr_jingji', 'tr_liusha', 'tr_nizhao',
 const TIER_TWO = new Set<TerrainId>(['tr_wuding', 'tr_gaoqiang', 'tr_gongdianwuji']);
 const TIER_THREE = new Set<TerrainId>(['tr_shenshui', 'tr_shushao']);
 
-export interface RegionCell extends HexPathCell { readonly terrainId: TerrainId }
+export interface RegionCell extends HexPathCell {
+  readonly terrainId: TerrainId;
+  readonly blocked?: boolean;
+  readonly building?: number;
+  readonly surface?: number;
+}
 export interface RegionDecodedMap {
   readonly cells: readonly RegionCell[]; readonly objects: readonly RegionObject[];
   readonly ramps: ReadonlySet<string>;
@@ -78,8 +83,14 @@ export function decodeRegionMap(map: RegionMap, tier: number, swim: number): Reg
   for (const chunk of map.chunks) {
     const valid = decodeBase64(chunk.valid); const terrain = decodeBase64(chunk.terrain);
     const heights = decodeBase64(chunk.heights);
+    const blocked = chunk.blocked === undefined ? undefined : decodeBase64(chunk.blocked);
+    const building = chunk.building === undefined ? undefined : decodeBase64(chunk.building);
+    const surface = chunk.surface === undefined ? undefined : decodeBase64(chunk.surface);
     if (valid.length !== 128 || heights.length !== 1024 ||
-        terrain.length !== (chunk.terrainEncoding === 'u8' ? 1024 : 2048))
+        terrain.length !== (chunk.terrainEncoding === 'u8' ? 1024 : 2048) ||
+        blocked !== undefined && blocked.length !== 128 ||
+        building !== undefined && building.length !== 1024 ||
+        surface !== undefined && surface.length !== 1024)
       throw new TypeError('REGION_MAP_BYTES');
     for (const ramp of chunk.ramps) {
       const q = chunk.q * 32 + ramp.index % 32;
@@ -91,9 +102,14 @@ export function decodeRegionMap(map: RegionMap, tier: number, swim: number): Reg
       const q = chunk.q * 32 + index % 32; const r = chunk.r * 32 + (index >> 5);
       const terrainId = map.terrainTable[terrainAt(terrain, chunk.terrainEncoding === 'u16le', index)];
       if (!terrainId) throw new TypeError('REGION_TERRAIN_INDEX');
+      const isBlocked = blocked === undefined ? undefined : validAt(blocked, index);
       cells.push({ q, r, height: heights[index]!, moveCost: terrainMoveCost(terrainId, tier),
-        standable: terrainStandable(terrainId, tier, swim), narrow: NARROW.has(terrainId),
-        dangerous: DANGEROUS.has(terrainId), terrainId });
+        standable: !isBlocked && terrainStandable(terrainId, tier, swim),
+        narrow: NARROW.has(terrainId), dangerous: DANGEROUS.has(terrainId), terrainId,
+        ...(isBlocked === undefined ? {} : { blocked: isBlocked }),
+        ...(building === undefined ? {} : { building: building[index]! }),
+        ...(surface === undefined ? {} : { surface: surface[index]! }),
+      });
     }
   }
   cells.sort((left, right) => left.r - right.r || left.q - right.q);
