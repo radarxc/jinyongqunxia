@@ -338,13 +338,21 @@ def rebase_before_rework(tid: str) -> bool:
         return False
 
 
+def drop_build_output(tid: str) -> None:
+    """校验里的 `pnpm check` 会在任务工作区构建 apps/game/dist（约 335 MB）；校验完即删，
+    下次校验会重建。并行多个任务时各囤一份曾把磁盘写满（2026-10-12）。"""
+    shutil.rmtree(ROOT / ".agents" / "wt" / tid / "apps" / "game" / "dist", ignore_errors=True)
+
+
 def validate_with_rebase(tid: str) -> tuple:
     """保持原校验命令 / 超时；第二次失败直接回到原返修逻辑，不递归。"""
     rc, out = step("finish", tid, "--no-commit", timeout=3600)
+    drop_build_output(tid)
     log(tid, f"finish --no-commit rc={rc}: " + (out.strip().splitlines() or [""])[0][:300])
     if rc == 1 and rebase_before_rework(tid):
         log(tid, "rebase-before-rework: 挪基点完成，重校验一次")
         rc, out = step("finish", tid, "--no-commit", timeout=3600)
+        drop_build_output(tid)
         log(tid, f"finish --no-commit (after rebase) rc={rc}: " +
             (out.strip().splitlines() or [""])[0][:300])
     return rc, out
