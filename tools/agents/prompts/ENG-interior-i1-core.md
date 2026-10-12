@@ -49,8 +49,32 @@ r3 指出 4.4 × 3.1 m 杂货铺里 §8.2 的「400 后架 + 800 店员过道 + 
   - 本任务新建的文件，以及整体替换的桩 `solver.ts`、`hexes.ts`，须过 `prettier --check`；
   - 基点未排版的 `plan-hall.ts`、`plan-hall.test.ts`、`plan-building.test.ts` 只要求改动行合格式，不整文件重排。
 
+## 协调者裁定（2026-10-12，r4 审核后；审核以此为准）
+r4 指出客栈桌椅组超 1600 × 1600、酒肆缺坐客位、测试里有 `/`，裁定如下：
+- **坐客位**：
+  - 新站位 `stn_guest`（idx 212，`w = d = 0`、`blocks = 0`、yaw 朝桌），在 `fixtures.ts` 站位表末尾追加 `station(212, 'stn_guest')` 一行，别的不动。
+  - 它是 NPC 坐处，不是玩家的服务位，所以不复用 `stn_customer`（201 会被编译器转成 `serviceCells`）。
+  - 酒肆每张桌给 2 个 `stn_guest`：按桌的左、右、前、后（门朝向的房间局部坐标）依次取桌边外 300 mm 的点（即离桌中心 800 mm）。
+  - 合法点的条件：在 floors 内、离墙 ≥ 300 mm、不在主通路（门内通道延伸到柜台前缘）、离任何阻挡家具 ≥ 250 mm。取前两个合法点；合法点不足 2 个时取全部，并在报告列出是哪个房型。
+  - 测试断言：
+    - 每张桌对应的坐客位个数；
+    - 坐客位不在桌体内、不在主通路；
+    - 坐客位最近的六角格从入口可达（BFS）。
+    - 覆盖 6.0 × 4.6、6.8 × 4.6、8.8 × 6.4 × 4 偏航 × 3 亚格偏移。
+- **客栈桌椅组**：
+  - 家具一律用目录尺寸（方桌 1000 × 1000、凳 400 × 400），不缩放。
+  - 两个凳放在桌的**相邻两边**（例如左与前，各离桌中心 700 mm），整套阻挡家具的包围盒 1400 × 1400，落在 1600 × 1600 内。
+  - 阻挡家具两两不重叠。
+  - 加命名测试直接算整套包围盒 ≤ 1600 × 1600。
+  - 客栈不加坐客位（tech/16 §8.3 客栈站位只有掌柜、小二）。
+- **测试里的除法**：
+  - `interiors-i1.test.ts` 里的 `/` 一律改成 `floorDivInt`；
+  - 纯整数源码守卫把 `__tests__/interiors-i1.test.ts` 也纳入扫描（只查算术 ` / `，正则字面量与注释照现有守卫规则处理）。
+- **确定性**：加一条用例，默认带家具的 `planBuilding` 同输入调用两次，完整 `JSON.stringify(plan)` 逐字节相同。
+- **报告**：第 3 节补坐客位个数与客栈桌椅组包围盒；第 7 节逐条如实写，没覆盖的不标 ✅。
+
 ## 约束
-- 只写：`packages/data/src/build/town-plan/interiors/{solver,hexes,general-store,pharmacy,inn,tavern,residence,smithy,stall}.ts`、`packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts`、`packages/data/src/build/town-plan/plan-hall.ts`（**只许**替换 `interior` 参数的缺省值那一处）`packages/data/src/build/town-plan/__tests__/{stubs,plan-hall,plan-building}.test.ts`（只按下面「协调者裁定」改）与本任务报告。
+- 只写：`packages/data/src/build/town-plan/interiors/{solver,hexes,general-store,pharmacy,inn,tavern,residence,smithy,stall}.ts`、`packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts`、`packages/data/src/build/town-plan/plan-hall.ts`（**只许**替换 `interior` 参数的缺省值那一处）`packages/data/src/build/town-plan/__tests__/{stubs,plan-hall,plan-building}.test.ts`（只按下面「协调者裁定」改）、`packages/data/src/build/town-plan/fixtures.ts`（**只许**在站位表末尾追加 `station(212, 'stn_guest')` 一行，见 r4 裁定）与本任务报告。
 - 不改 p0 / p1 / p2 的其他文件（类型若必须扩充，只新增可选字段并在报告说明）；不改 `content/**`；不新增依赖。
 - 纯整数：不得用浮点参与尺寸、不得用 `/`（用 `floorDivInt` / `ceilDivInt`）、不得用三角函数 / `sqrt` / `pow` / `random` / `Date`；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
 
