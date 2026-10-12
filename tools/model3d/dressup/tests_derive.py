@@ -58,6 +58,19 @@ def check(condition: bool, message: str) -> None:
     if not condition: raise AssertionError(message)
 
 
+def _check_deformation(source: GLB, target: GLB, scale: dict[str, float], *, repair: bool) -> None:
+    """按声明骨长重算 bind/LBS；脚底位移可为零，但不得追加整体平移。"""
+    document = scaled_document(source, **{f"k_{key}": value for key, value in scale.items()})
+    check(target.json["nodes"] == document["nodes"], "派生骨架不等于声明的分骨缩放")
+    working = GLB(source.path, document, source.bin); mesh, skin = source.mesh(), source.skin()
+    worlds = np.asarray([working.world_matrix(node) for node in skin.joints])
+    expected = lbs(mesh.positions, mesh.joints, mesh.weights, worlds, skin.inverse_bind_matrices)
+    if repair:
+        expected, _ = repair_folds(mesh.positions, expected, mesh.indices.reshape(-1, 3))
+    check(np.array_equal(target.mesh().positions, expected.astype(np.float32)),
+          "派生顶点不等于 LBS / 局部防折叠结果，可能追加了整体平移")
+
+
 def test_specs() -> None:
     specs = load_specs(Path(__file__).with_name("template_specs.json"))
     check(len(specs) == 6 and specs["tpl_f_tall"].hips_ratio == 0.585, "六模板规格读取失败")
@@ -188,6 +201,38 @@ def test_normal_rotation_and_consistency() -> None:
     check(quality["sourceNegativeFaces"] == quality["newNegativeFaces"] == 0, "新反向面未清零")
 
 
+def test_near_unit_leg_scale_and_extra_translation() -> None:
+    source = synthetic()
+    points = np.array([[-.1, 0, 0], [.1, 0, 0], [0, 7, 0]], dtype=np.float32)
+    joints = np.array([[3, 0, 0, 0], [6, 0, 0, 0], [11, 0, 0, 0]])
+    weights = np.tile([1., 0, 0, 0], (3, 1)); faces = np.array([0, 1, 2])
+    source.mesh = lambda: Mesh(points, faces, joints=joints, weights=weights)
+    for leg in (0.9999, 1.0, 1.0001):
+        scale = dict(leg=leg, spine=1.1, shoulder=1.0, arm=1.0)
+        document = scaled_document(source, **{f"k_{key}": value for key, value in scale.items()})
+        target = GLB(source.path, document, source.bin)
+        expected = points.astype(np.float64)
+        expected[:2, 1] += 3 * (1 - leg); expected[2, 1] += .4
+        expected = expected.astype(np.float32)
+        target.mesh = lambda: Mesh(expected, faces)
+        for repair in (False, True):
+            _check_deformation(source, target, scale, repair=repair)
+        check(abs(float(expected[:, 1].min())) < .001, "合成脚底未覆盖旧误报区间")
+        offsets = [[.002, 0, 0], [0, .0001, 0], [0, 0, .002]]
+        if leg != 1.0: offsets.append([0, -float(expected[:, 1].min()), 0])
+        for offset in offsets:
+            target.mesh = lambda: Mesh(expected + offset, faces)
+            for repair in (False, True):
+                try: _check_deformation(source, target, scale, repair=repair)
+                except AssertionError: pass
+                else: raise AssertionError("未拦截额外平移 / 强制脚底归零")
+        target.mesh = lambda: Mesh(expected, faces)
+        target.json["nodes"][0]["translation"][1] += .0001
+        try: _check_deformation(source, target, scale, repair=False)
+        except AssertionError: pass
+        else: raise AssertionError("未拦截 Hips bind 整体平移")
+
+
 def test_real_products() -> None:
     root = Path(__file__).resolve().parents[3]
     templates = root / "assets/default/model3d/dressup/templates"
@@ -231,7 +276,7 @@ def test_real_products() -> None:
               and abs(measured["targetFloorYMu"] - target_floor) < 1e-12
               and abs(measured["maxVertexDisplacementMu"] - maximum) < 1e-12,
               f"{name} 脚底规范坐标位移记录不一致")
-        check(abs(target_floor - source_floor) > 1e-3, f"{name} 疑似用整体平移强行对齐脚底")
+        _check_deformation(source, target, report["scale"], repair="foldRepair" in report)
         check(maximum <= report["measured"]["maxVertexDisplacementLimitMu"], f"{name} 规范坐标位移超限")
         enforce_gates({"heightRatio": actual_ratio - expected_ratio,
                        "hipsRatio": actual_metrics["hipsRatio"] - report["target"]["hipsRatio"],
@@ -285,7 +330,8 @@ def test_derive_and_check_in_temporary_directory() -> None:
 def main() -> int:
     tests = [test_specs, test_bone_lengths, test_lbs_and_ibm, test_tracks,
              test_independent_height_and_gates, test_fold_repair_preserves_two_ring_boundary,
-             test_normal_rotation_and_consistency, test_real_products, test_derive_and_check_in_temporary_directory]
+             test_normal_rotation_and_consistency, test_near_unit_leg_scale_and_extra_translation,
+             test_real_products, test_derive_and_check_in_temporary_directory]
     for test in tests: test()
     print(f"通过：{len(tests)}/{len(tests)} derive tests")
     return 0

@@ -1,0 +1,335 @@
+{
+  "url": "http://localhost:5173/character-3d?t5=section-r5",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "templates": [
+    {
+      "id": "tpl_f2_small",
+      "heightM": 1.58,
+      "bodySha256": "b8981e6482fbc4e98c22bb5bcf08e2695e31fb21166a461ffa6eae4f294f3af8",
+      "skeletonSha256": "d3d9d764d40b19e44386d4e8b5d178f9dcfa2ba31b5dcae83a3934dc94195677",
+      "ringSha256": "e659dafa1f73ff7da14bc73d01d78a3ab8033d603f645ba2cdb8dd1f158dfd0f",
+      "floorYMu": 0.044513240456581116,
+      "scale": 1.6795788364647453,
+      "displayPosition": [
+        -2.9499999999999997,
+        -0.07476349661333993,
+        0
+      ],
+      "joints": 65,
+      "materialType": "MeshBasicMaterial",
+      "side": 0,
+      "stats": {
+        "drawCalls": 1,
+        "triangles": 195433,
+        "boneTextureUploads": 1,
+        "bodyLayers": [],
+        "layerTextureBytes": 0,
+        "hideMaps": []
+      },
+      "browserBodySha256": "b8981e6482fbc4e98c22bb5bcf08e2695e31fb21166a461ffa6eae4f294f3af8"
+    },
+    {
+      "id": "tpl_f2_medium",
+      "heightM": 1.66,
+      "bodySha256": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94",
+      "skeletonSha256": "bdc6a4ae59eb2667397b78e2d99ba1abf9bed49ed41c99839eb582377f8c04c1",
+      "ringSha256": "e18dc8be1289abb8190fb90ea3f1a142781c42de3fef2786e05d952e792bb3b2",
+      "floorYMu": -1.9854633137583733e-07,
+      "scale": 1.679578816674397,
+      "displayPosition": [
+        -1.77,
+        3.3347421230727154e-07,
+        0
+      ],
+      "joints": 65,
+      "materialType": "MeshBasicMaterial",
+      "side": 0,
+      "stats": {
+        "drawCalls": 1,
+        "triangles": 195433,
+        "boneTextureUploads": 1,
+        "bodyLayers": [],
+        "layerTextureBytes": 0,
+        "hideMaps": []
+      },
+      "browserBodySha256": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94"
+    },
+    {
+      "id": "tpl_f2_tall",
+      "heightM": 1.72,
+      "bodySha256": "6a7b9f7a7298f657407dfffe25abdb4b119cd62dd299fadce86f4fecc531fef5",
+      "skeletonSha256": "66b981e07439961cb79cc105df905b0b8b84880042f97f08bc5c830eb397f57d",
+      "ringSha256": "1afed20f706184cb2e1c08c40ac00e613fe79efcfa3a53fb26c1ece27042dda2",
+      "floorYMu": -0.0394601933658123,
+      "scale": 1.679578885045149,
+      "displayPosition": [
+        -0.59,
+        0.06627650757701702,
+        0
+      ],
+      "joints": 65,
+      "materialType": "MeshBasicMaterial",
+      "side": 0,
+      "stats": {
+        "drawCalls": 1,
+        "triangles": 195433,
+        "boneTextureUploads": 1,
+        "bodyLayers": [],
+        "layerTextureBytes": 0,
+        "hideMaps": []
+      },
+      "browserBodySha256": "6a7b9f7a7298f657407dfffe25abdb4b119cd62dd299fadce86f4fecc531fef5"
+    },
+    {
+      "id": "tpl_m_lean",
+      "heightM": 1.76,
+      "bodySha256": "7c42f3a4c4e3fb6e5188ceb13a454bfd2fc143766cdbc07e044681e2a41c008b",
+      "skeletonSha256": "6b153012783072877847b2572d6ba6eee1994c1bbefc51de9b53ec739de79910",
+      "ringSha256": "2816a01109a2a106c00ce8a637227624b0754ab9dfe29601bf5e319591ba933f",
+      "floorYMu": 0.02047794684767723,
+      "scale": 1.8483565054577031,
+      "displayPosition": [
+        0.59,
+        -0.03785054627432127,
+        0
+      ],
+      "joints": 65,
+      "materialType": "MeshBasicMaterial",
+      "side": 0,
+      "stats": {
+        "drawCalls": 1,
+        "triangles": 197736,
+        "boneTextureUploads": 1,
+        "bodyLayers": [],
+        "layerTextureBytes": 0,
+        "hideMaps": []
+      },
+      "browserBodySha256": "7c42f3a4c4e3fb6e5188ceb13a454bfd2fc143766cdbc07e044681e2a41c008b"
+    },
+    {
+      "id": "tpl_m_medium",
+      "heightM": 1.81,
+      "bodySha256": "aa2a1e95258a36555890d8095c75b1711978f30d8134fa45791d6e9889e91549",
+      "skeletonSha256": "4cb8b6379fa13b01d2767168752f67561400cfa405a88e67dcea6852f351d32e",
+      "ringSha256": "50224403e765697f01c296a8eb2d0439b878975130c5a641d9f18514a2551958",
+      "floorYMu": -1.4939178072381765e-07,
+      "scale": 1.8483566159208697,
+      "displayPosition": [
+        1.77,
+        2.761292862650682e-07,
+        0
+      ],
+      "joints": 65,
+      "materialType": "MeshBasicMaterial",
+      "side": 0,
+      "stats": {
+        "drawCalls": 1,
+        "triangles": 197736,
+        "boneTextureUploads": 1,
+        "bodyLayers": [],
+        "layerTextureBytes": 0,
+        "hideMaps": []
+      },
+      "browserBodySha256": "aa2a1e95258a36555890d8095c75b1711978f30d8134fa45791d6e9889e91549"
+    },
+    {
+      "id": "tpl_m_bulk",
+      "heightM": 1.86,
+      "bodySha256": "29e3ea35decfda96d281056757b86035ce5183c01d21d8a8ef2c9b4681ff0d72",
+      "skeletonSha256": "cecc432c555f173c060d153617844f0f5cd1e0d924ac034e60490aad208a9e55",
+      "ringSha256": "7cc619287cfa40b8e63e8940bc2fe572da4fc516bf561183a52bfb9ddf69d8a8",
+      "floorYMu": 8.145008177962154e-05,
+      "scale": 1.8483565551344143,
+      "displayPosition": [
+        2.9499999999999997,
+        -0.0001505487925735976,
+        0
+      ],
+      "joints": 65,
+      "materialType": "MeshBasicMaterial",
+      "side": 0,
+      "stats": {
+        "drawCalls": 1,
+        "triangles": 197736,
+        "boneTextureUploads": 1,
+        "bodyLayers": [],
+        "layerTextureBytes": 0,
+        "hideMaps": []
+      },
+      "browserBodySha256": "29e3ea35decfda96d281056757b86035ce5183c01d21d8a8ef2c9b4681ff0d72"
+    }
+  ],
+  "source": "Live localhost:5173 /character-3d via existing 9223 /eval, current workspace files via Vite /@fs",
+  "date": "2026-10-11",
+  "base": "0bd50e2be",
+  "ringMode": "section",
+  "captureRun": 5,
+  "sixTemplates": {
+    "image": "derive.six_templates.jpg",
+    "capturePixels": [
+      2160,
+      680
+    ],
+    "sheetPixels": [
+      2160,
+      1546
+    ],
+    "poses": [
+      "bind",
+      "walk@0.6"
+    ],
+    "projection": "orthographic",
+    "horizontalBounds": [
+      -3.92,
+      3.92
+    ],
+    "verticalBounds": [
+      -1.234074074,
+      1.234074074
+    ],
+    "cameraPosition": [
+      0,
+      1.03,
+      10
+    ],
+    "cameraLookAt": [
+      0,
+      1.03,
+      0
+    ],
+    "floorAlignment": "Only display translation removes bind bbox minY; same offset for walk; no GLB transform changes",
+    "rendererStats": {
+      "frame": 11,
+      "calls": 6,
+      "triangles": 1179507,
+      "points": 0,
+      "lines": 0
+    },
+    "backgroundSrgb": [
+      18,
+      19,
+      22
+    ]
+  },
+  "previews": {
+    "file": "each template preview.png",
+    "pixels": [
+      640,
+      960
+    ],
+    "mode": "RGB",
+    "projection": "orthographic",
+    "pose": "bind",
+    "sameMetreScale": true
+  },
+  "maleOcciput": {
+    "image": "../../tpl_m_medium/shots/derive.inverted_faces.bind_walk_run.jpg",
+    "face": 103350,
+    "centerBindMu": [
+      -0.02432568495472272,
+      0.9092000921567281,
+      -0.038931517551342644
+    ],
+    "before": "Original T4b source indices restored only in browser GPU index buffer, all 67 inverted faces; asset file stays fixed",
+    "after": "Final fixed body indices, restored after each pair",
+    "poses": [
+      {
+        "pose": "bind",
+        "time": 0,
+        "centerWorld": [
+          -0.04496252846833413,
+          1.680526291808847,
+          -0.07195929444443139
+        ],
+        "cameraPosition": [
+          -0.12496252846833414,
+          1.6655262918088471,
+          -0.49195929444443137
+        ],
+        "cameraUp": [
+          0,
+          1,
+          0
+        ],
+        "beforeDarkPixels": 111,
+        "afterDarkPixels": 0
+      },
+      {
+        "pose": "walk",
+        "time": 0.6,
+        "centerWorld": [
+          -0.04245296876912267,
+          1.666630941938466,
+          -0.0594088557114716
+        ],
+        "cameraPosition": [
+          -0.123489185533661,
+          1.618935823950392,
+          -0.476761592960394
+        ],
+        "cameraUp": [
+          0.018297594813111082,
+          0.9965059577915218,
+          -0.08149278549556536
+        ],
+        "beforeDarkPixels": 109,
+        "afterDarkPixels": 0
+      },
+      {
+        "pose": "run",
+        "time": 0.3,
+        "centerWorld": [
+          -0.022954993528451567,
+          1.456454653056594,
+          0.30503749851016143
+        ],
+        "cameraPosition": [
+          -0.13112870464545448,
+          1.5511609702828155,
+          -0.09789445792866575
+        ],
+        "cameraUp": [
+          0.04712631292822803,
+          0.9666372965490665,
+          0.25177658078068516
+        ],
+        "beforeDarkPixels": 107,
+        "afterDarkPixels": 0
+      }
+    ],
+    "backgroundSrgb": [
+      18,
+      19,
+      22
+    ],
+    "capturePixels": [
+      800,
+      800
+    ],
+    "roiPixels": [
+      330,
+      330,
+      470,
+      470
+    ],
+    "darkDefinition": "max(R,G,B)<70",
+    "sameCameraWithinPair": true,
+    "cameraOffsetHeadBind": [
+      -0.08,
+      -0.015,
+      -0.42
+    ],
+    "fovDeg": 30,
+    "nearM": 0.005,
+    "material": "MeshBasicMaterial",
+    "side": 0,
+    "sheetPixels": [
+      1840,
+      1450
+    ]
+  },
+  "artifactSha256": {
+    "derive.six_templates.jpg": "9de50173a64ef5c7c5b60c9203a81b0ecf421d10215d7ba20e1e2e62e405e557",
+    "../../tpl_m_medium/shots/derive.inverted_faces.bind_walk_run.jpg": "98a361b06ca636200a4a80ce3d79aee449f000d8926a01abe3478b7d30ecb692"
+  }
+}

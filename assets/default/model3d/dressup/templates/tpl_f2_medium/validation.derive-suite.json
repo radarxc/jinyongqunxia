@@ -1,0 +1,29 @@
+{
+  "run": 7,
+  "testSha256": "739aa84ccfb9ad34cb07300c191a9840f2fbc0ca5ac9222222b490707086d09b",
+  "actual": {
+    "command": [
+      "python3",
+      "tools/model3d/dressup/tests_derive.py"
+    ],
+    "exitCode": 0,
+    "stdout": "通过：10/10 derive tests\n",
+    "stderr": "",
+    "elapsedSec": 5.643,
+    "passed": 10,
+    "total": 10
+  },
+  "syntheticCases": {
+    "validNearUnit": 6,
+    "injectedTranslationsRejected": 25,
+    "legScales": [
+      0.9999,
+      1.0,
+      1.0001
+    ],
+    "foldRepairModes": [
+      false,
+      true
+    ]
+  }
+}
