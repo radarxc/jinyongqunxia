@@ -59,7 +59,7 @@ r4 指出客栈桌椅组超 1600 × 1600、酒肆缺坐客位、测试里有 `/`
   - 测试断言：
     - 每张桌对应的坐客位个数；
     - 坐客位不在桌体内、不在主通路；
-    - 坐客位最近的六角格从入口可达（BFS）。
+    - 坐客位可接近：坐客位所在点 1,200 mm 内至少有一个从入口 BFS 可达的 C6 格（玩家能走到旁边交谈；r5 后改，见下条）。
     - 覆盖 6.0 × 4.6、6.8 × 4.6、8.8 × 6.4 × 4 偏航 × 3 亚格偏移。
 - **客栈桌椅组**：
   - 家具一律用目录尺寸（方桌 1000 × 1000、凳 400 × 400），不缩放。
@@ -72,6 +72,18 @@ r4 指出客栈桌椅组超 1600 × 1600、酒肆缺坐客位、测试里有 `/`
   - 纯整数源码守卫把 `__tests__/interiors-i1.test.ts` 也纳入扫描（只查算术 ` / `，正则字面量与注释照现有守卫规则处理）。
 - **确定性**：加一条用例，默认带家具的 `planBuilding` 同输入调用两次，完整 `JSON.stringify(plan)` 逐字节相同。
 - **报告**：第 3 节补坐客位个数与客栈桌椅组包围盒；第 7 节逐条如实写，没覆盖的不标 ✅。
+
+## 协调者裁定（2026-10-12，r5 审核后；审核以此为准）
+- r4 写的「坐客位**最近的**六角格可达」过严：六角格间距 1,155 mm，离座位最近的格常落在桌体里。现改为上一节的「1,200 mm 内至少有一个入口可达的 C6 格」。
+- **不得**按可达性删掉几何合法的坐客位：每桌坐客位数 = min(2, 几何合法候选数)，几何合法只看 r4 的四条（floors 内、离墙 ≥ 300、不在主通路、离阻挡家具 ≥ 250），按左、右、前、后取前两个。
+- 测试对 6.0 × 4.6、6.8 × 4.6、8.8 × 6.4 × 4 偏航 × 3 亚格偏移：
+  - 逐桌算几何合法候选，断言站位数 = min(2, 候选数)；
+  - 逐个断言朝向、不在主通路、1,200 mm 内有可达格；
+  - 不许放宽成「1–2 个」，也不许锁定短缺相位。
+- 体积：
+  - 6 × 5 店的完整 `TownBuildingPlan` 仍 ≤ 700 B；
+  - 其余带家具的房型也要用完整 `TownBuildingPlan`（`planBuilding` 产物，含 ID、屋身、屋顶、入口）断言 `JSON.stringify(plan).length ≤ 1,600`，不能只测 `solveInterior` 片段。
+- 报告文件本身也要过 `prettier --check`。
 
 ## 约束
 - 只写：`packages/data/src/build/town-plan/interiors/{solver,hexes,general-store,pharmacy,inn,tavern,residence,smithy,stall}.ts`、`packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts`、`packages/data/src/build/town-plan/plan-hall.ts`（**只许**替换 `interior` 参数的缺省值那一处）`packages/data/src/build/town-plan/__tests__/{stubs,plan-hall,plan-building}.test.ts`（只按下面「协调者裁定」改）、`packages/data/src/build/town-plan/fixtures.ts`（**只许**在站位表末尾追加 `station(212, 'stn_guest')` 一行，见 r4 裁定）与本任务报告。
