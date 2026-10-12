@@ -199,15 +199,17 @@ const heroStyle = computed<Record<string, string>>(() => {
   const [ax, ay] = [sprite.anchor[0] * k, sprite.anchor[1] * k];
   const box = { width: width + 'px', height: HERO_HEIGHT + 'px', left: -ax + 'px', top: -ay + 'px',
     transformOrigin: `${ax}px ${ay}px` };
-  const gait = walking.value && !reducedMotion.value ? (fastTravel.value && sprite.run ? sprite.run : sprite.walk) : null;
+  // Walking is movement, not decoration: it plays under reduce-motion too (design/14 keeps 位移).
+  const gait = walking.value ? (fastTravel.value && sprite.run ? sprite.run : sprite.walk) : null;
   if (!gait) return { ...box, backgroundImage: `url('${sprite.idle}')`, backgroundSize: '100% 100%' };
+  // Timing goes through custom properties so the reduce-motion override below can reuse it with !important.
   return { ...box, backgroundImage: `url('${gait.url}')`, backgroundSize: `${gait.frames * width}px ${HERO_HEIGHT}px`,
-    '--strip-w': `${gait.frames * width}px`, animationTimingFunction: `steps(${gait.frames})`,
-    animationDuration: `${(gait === sprite.walk ? gait.cycle * WALK_PLAYBACK : gait.cycle).toFixed(3)}s` };
+    '--strip-w': `${gait.frames * width}px`, '--gait-steps': `steps(${gait.frames})`,
+    '--gait-duration': `${(gait === sprite.walk ? gait.cycle * WALK_PLAYBACK : gait.cycle).toFixed(3)}s` };
 });
 /** The strips face one way; the other direction mirrors them. */
 const heroMirrored = computed(() => Boolean(heroSprite.value) && (heroSprite.value!.facing === 'left') !== facingLeft.value);
-const heroMoving = computed(() => walking.value && !reducedMotion.value);
+const heroMoving = computed(() => walking.value);
 const progress = computed(() => {
   const journey = mapView.value?.journey;
   return journey ? Math.floor(journey.travelledLi * 100 / Math.max(1, journey.totalLi)) : 0;
@@ -450,17 +452,17 @@ async function travel(): Promise<void> {
 /**
  * Travel beat (AR-116): one 10-li step every WALK_STEP_MS, timed from the previous step rather than from
  * its reply, so the pace does not depend on the worker round trip. It used to wait 45 ms after each reply
- * (about 51 ms a step); 25 ms is twice as fast. 疾行 keeps about twice the walking pace.
+ * (about 51 ms a step); 25 ms is twice as fast. 疾行 keeps about twice the walking pace. Reduce-motion keeps
+ * the pace: it only drops camera easing and decorative pulses (design/14 §1185, design/26 §577).
  */
 const WALK_STEP_MS = 25;
 const FAST_STEP_MS = 12;
-const CALM_STEP_MS = 200;
 let lastStepAt = Number.NEGATIVE_INFINITY;
 function scheduleStep(state: WorldMapProjection | null): void {
   window.clearTimeout(stepTimer); stepTimer = 0;
   const journey = state?.journey;
   if (disposed || !journey || journey.status !== 'walking') return;
-  const period = reducedMotion.value ? CALM_STEP_MS : (fastTravel.value ? FAST_STEP_MS : WALK_STEP_MS);
+  const period = fastTravel.value ? FAST_STEP_MS : WALK_STEP_MS;
   const wait = Math.max(0, Math.min(period, lastStepAt + period - window.performance.now()));
   stepTimer = window.setTimeout(() => {
     stepTimer = 0;
@@ -997,13 +999,23 @@ onBeforeUnmount(() => {
 .map-hero.walking .map-hero-bob { animation: hero-walk 0.6s ease-in-out infinite; }
 /* Walk / run strip: one frame per step of steps(n), from the first frame to just before the strip's end. */
 .map-hero-sprite { position: absolute; display: block; background-repeat: no-repeat; }
-.map-hero-sprite.moving { animation-name: hero-gait; animation-iteration-count: infinite; }
+.map-hero-sprite.moving {
+  animation: hero-gait var(--gait-duration) var(--gait-steps) infinite;
+}
+/* The walk is movement, not decoration (design/14 keeps 位移): it outranks the UI kit's blanket
+   reduce-motion rule (packages/ui theme.css), which only the destination pulse and standee bob obey. */
+.reduced-motion .map-hero-sprite.moving {
+  animation: hero-gait var(--gait-duration) var(--gait-steps) infinite !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-hero-sprite.moving { animation: hero-gait var(--gait-duration) var(--gait-steps) infinite !important; }
+}
 .map-hero-sprite.mirrored { scale: -1 1; }
 @keyframes hero-gait { from { background-position-x: 0; } to { background-position-x: calc(-1 * var(--strip-w)); } }
 @keyframes hero-walk { 50% { translate: 0 -2px; } }
-.reduced-motion .map-destination, .reduced-motion .map-hero-bob, .reduced-motion .map-hero-sprite { animation: none; }
+.reduced-motion .map-destination, .reduced-motion .map-hero-bob { animation: none; }
 @media (prefers-reduced-motion: reduce) {
-  .map-destination, .map-hero.walking .map-hero-bob, .map-hero-sprite { animation: none; }
+  .map-destination, .map-hero.walking .map-hero-bob { animation: none; }
 }
 .worldmap-panel {
   position: absolute;

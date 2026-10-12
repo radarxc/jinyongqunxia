@@ -840,16 +840,18 @@ describe('WorldMapPage hero walk cycle and travel pace (AR-116)', () => {
     expect(sprite().classList.contains('moving')).toBe(true);
     expect(sprite().style.backgroundImage).toContain('map_hero_male_walk.webp');
     expect(sprite().style.backgroundSize).toBe('648px 72px');
-    expect(sprite().style.animationTimingFunction).toBe('steps(12)');
-    expect(sprite().style.animationDuration).toBe('0.933s');
+    expect(sprite().style.getPropertyValue('--gait-steps')).toBe('steps(12)');
+    expect(sprite().style.getPropertyValue('--gait-duration')).toBe('0.933s');
     // Walking east: the strip faces west, so it is mirrored.
     expect(sprite().classList.contains('mirrored')).toBe(true);
     await wrapper.findAll('.map-actions button').find(button => button.text() === '疾行')!.trigger('click');
     expect(sprite().style.backgroundImage).toContain('map_hero_male_run.webp');
-    expect(sprite().style.animationDuration).toBe('0.625s');
+    expect(sprite().style.getPropertyValue('--gait-duration')).toBe('0.625s');
+    // Reduce-motion keeps the walk itself (design/14 keeps movement); only camera easing and pulses stop.
     settings.value = { reducedMotion: true }; await nextTick();
-    expect(sprite().classList.contains('moving')).toBe(false);
-    expect(sprite().style.backgroundImage).toContain('map_hero_male_idle.webp');
+    expect(wrapper.classes()).toContain('reduced-motion');
+    expect(sprite().classList.contains('moving')).toBe(true);
+    expect(sprite().style.backgroundImage).toContain('map_hero_male_run.webp');
   });
 
   it('shows the female strips for a female protagonist, mirrored by their own facing', async () => {
@@ -924,10 +926,21 @@ describe('WorldMapPage hero walk cycle and travel pace (AR-116)', () => {
     expect(wrapper.get('.map-hero-sprite').classes()).toContain('moving');
     listener!({ matches: true }); await nextTick();
     expect(wrapper.classes()).toContain('reduced-motion');
-    expect(wrapper.get('.map-hero-sprite').classes()).not.toContain('moving');
-    expect((wrapper.get('.map-hero-sprite').element as HTMLElement).style.backgroundImage).toContain('map_hero_male_idle.webp');
+    expect(wrapper.get('.map-hero-sprite').classes()).toContain('moving');
     wrapper.unmount(); expect(listener).toBeUndefined();
     wrappers.splice(wrappers.indexOf(wrapper), 1);
+  });
+
+  it('keeps the 25 ms pace under reduce-motion', async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'performance'] });
+    const { worldmap, settings, command } = setup(journey([270, 192]));
+    settings.value = { reducedMotion: true }; await nextTick();
+    const steps = () => command.mock.calls.filter(([value]) => value.t === 'worldmap/step').length;
+    await vi.advanceTimersByTimeAsync(0); expect(steps()).toBe(1);
+    worldmap.value = { ...journey([280, 192]), journey: { ...journey().journey!, travelledLi: 10, offsetLi: 10 } };
+    await nextTick();
+    await vi.advanceTimersByTimeAsync(24); expect(steps()).toBe(1);
+    await vi.advanceTimersByTimeAsync(1); expect(steps()).toBe(2);
   });
 
   it('steps every 25 ms (twice the old pace) and every 12 ms under 疾行, timed from the previous step', async () => {
