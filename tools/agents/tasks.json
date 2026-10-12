@@ -53397,6 +53397,87 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-r4-jinzhuang-f2-fit",
+   "title": "3D 纸娃娃换装 · R4 · 新劲装贴到新女素体：抽衣壳 + tpl_f2 三体型贴合（P2 + E2c）+ 布衣（P3）+ 贴图层重烘（0 点）",
+   "phase": "PROD",
+   "wave": 48,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r4-jinzhuang-f2-fit.md",
+   "deps": [
+    "ART-dressup-r3-jinzhuang-f2-gen"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "作者 10-12「按新素体重新生成」劲装、「衣物到位后再切」默认素体；R3 源件 source_f2",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "tools/model3d/dressup/tests_garment.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/extract_run_f2/extract.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_texlayer.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; G=Path('assets/default/model3d/dressup/garments'); paths=[G/g/f'report.{t}.json' for g in ('eq_jinzhuang','eq_buyi') for t in ('tpl_f2_medium','tpl_f2_tall','tpl_f2_small')]; bad=[str(x) for x in paths if not x.is_file() or json.loads(x.read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
