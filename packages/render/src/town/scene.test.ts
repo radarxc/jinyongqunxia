@@ -4,7 +4,8 @@ import type * as Three from 'three';
 
 const fake = vi.hoisted(() => ({
   modelLoads: [] as Array<{ url: string; heightM: number; options: unknown }>,
-  characters: [] as Array<{ positions: Array<readonly [number, number, number]> }>,
+  characters: [] as Array<{ positions: Array<readonly [number, number, number]>;
+    update: (dt: number) => void }>,
   renderedScene: undefined as Three.Scene | undefined,
   rejectModel: false,
 }));
@@ -110,6 +111,16 @@ describe('town actor stature', () => {
     expect(sprites[0]!.visible).toBe(false);
     scene.resize(320, 180);
     expect(scene.writeViewGroundQuad(new Float32Array(8))).toBe(true);
+    scene.dispose();
+  });
+
+  it('keeps actor gait and smooth movement when reduced motion is on (design/14)', async () => {
+    const scene = await createTownScene(document.createElement('canvas'), town, { projection,
+      spriteFor: () => null, loadRigRuntime: async () => runtime() as never });
+    scene.render(1_000, true);
+    scene.render(1_100, true);
+    for (const character of fake.characters)
+      expect(character.update).toHaveBeenLastCalledWith(expect.closeTo(0.1, 6));
     scene.dispose();
   });
 
