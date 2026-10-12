@@ -3,6 +3,7 @@ export type {
   BuildingLayerInput,
   BuildingLayerStats,
   BuildingMeasure,
+  BatchStrategy,
   BuildingPlanView,
   BuildKitCityWallView,
   BuildKitDimsView,
@@ -20,7 +21,20 @@ export type {
   HangingPropKind,
   HangingPropView,
   MeshPayload,
+  LayerTextureResult,
+  LayerTextureSource,
+  PickBounds,
+  PickStrategy,
   Recipe,
   RecipeSink,
+  SignTextSource,
 } from './types';
 export { generateCells } from './mesher/generate';
+export { createBuildingLayer } from './three/layer';
+export { PlaceholderLayerTextureSource } from '../materials/static-lit/textures';
+export {
+  BOUNDS_PICK_STRATEGY,
+  MERGED_BATCH_STRATEGY,
+  createAtlasSignTextSource,
+  createPlainSignTextSource,
+} from './three/strategies';
