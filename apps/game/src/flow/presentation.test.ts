@@ -33,4 +33,27 @@ describe('dialogue speaker presentation', () => {
       '缺少文本：npc.npc_missing.identity.name',
     );
   });
+
+  it('names the facility interlocutor from its authored name key and role', () => {
+    const view: DialogueView = {
+      ...line('interlocutor'),
+      history: [{ speakerId: 'interlocutor', textKey: 'earlier' }],
+      interlocutor: {
+        facilityKey: 'yaopu_01',
+        roleKey: 'keeper',
+        nameKey: 'town.city_dali__ch01.yaopu_01.name',
+      },
+    };
+    const catalog = { 'town.city_dali__ch01.yaopu_01.name': '苍山药肆' };
+    const shown = presentDialogue(view, catalog);
+    expect(shown.speaker).toBe('苍山药肆掌柜');
+    expect(shown.history[0]?.speaker).toBe('苍山药肆掌柜');
+    expect(presentDialogue(view).speaker).toBe('掌柜');
+    expect(
+      presentDialogue(
+        { ...view, interlocutor: { ...view.interlocutor!, roleKey: 'guard' } },
+        catalog,
+      ).speaker,
+    ).toBe('苍山药肆店家');
+  });
 });
