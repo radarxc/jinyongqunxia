@@ -30519,7 +30519,8 @@
     "packages/render/src/buildgen/__tests__/roof-b.test.ts",
     "packages/render/src/buildgen/mesher/recipes/hall.ts",
     "packages/render/src/buildgen/__tests__/hall.test.ts",
-    "packages/render/src/buildgen/generate.test.ts"
+    "packages/render/src/buildgen/generate.test.ts",
+    "packages/render/src/buildgen/__tests__/roof-a.test.ts"
    ],
    "validate": {
     "exists": [
