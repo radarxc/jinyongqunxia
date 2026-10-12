@@ -53180,6 +53180,136 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-t6-sockets-f2",
+   "title": "3D 纸娃娃换装 · T6 · tpl_f2 女素体插槽修正（腰 / 胸）：export_skeleton 加 --socket-mode waist-band，重导 tpl_f2 三体型 skeleton（0 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ENG-dressup-t6-sockets-f2.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "R2 实拍：tpl_f2 腰插槽落在后腰（佩剑飘臀后）、胸插槽在右胸；tpl_f / tpl_m 正常",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_tall/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_small/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_small/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_tall/skeleton.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_lean"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_bulk"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; d=[json.load(open(f'assets/default/model3d/dressup/templates/{t}/skeleton.json')).get('socketMode') for t in ('tpl_f2_small','tpl_f2_medium','tpl_f2_tall')]; print(d); sys.exit(0 if d==['waist-band']*3 else 1)"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
