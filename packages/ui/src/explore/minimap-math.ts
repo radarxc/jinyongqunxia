@@ -2,9 +2,55 @@ export interface MinimapView {
   centerX: number;
   centerZ: number;
   metresPerPx: number;
+  /** Legacy square size; width/height override it for the expanded painted map. */
   sizePx: number;
+  widthPx?: number;
+  heightPx?: number;
+  /** Canvas backing-store pixels per CSS pixel. Coordinate helpers remain in CSS pixels. */
+  pixelRatio?: number;
   northUp: boolean;
   basis: Float32Array | null;
+}
+
+export type WorldToImageMatrix = readonly [number, number, number, number, number, number];
+
+export function minimapWidth(view: MinimapView): number {
+  return view.widthPx ?? view.sizePx;
+}
+
+export function minimapHeight(view: MinimapView): number {
+  return view.heightPx ?? view.sizePx;
+}
+
+/**
+ * Writes the painted image's own projection into the minimap basis. With this basis, world to
+ * minimap is the source affine multiplied by one scalar, so the image cannot stretch or shear.
+ */
+export function writePaintedMinimapBasis(
+  matrix: WorldToImageMatrix, out: Float32Array,
+): number {
+  const [a, b, c, d] = matrix;
+  const norm = Math.hypot(a, c) || 1;
+  out[0] = a / norm; out[1] = c / norm;
+  out[2] = -b / norm; out[3] = -d / norm;
+  return norm;
+}
+
+/** Centres an affine source image and returns metres/CSS-pixel for a contain fit. */
+export function fitPaintedMinimap(
+  matrix: WorldToImageMatrix, imageWidth: number, imageHeight: number,
+  viewportWidth: number, viewportHeight: number, paddingPx: number, centerOut: Float32Array,
+): number {
+  const [a, b, c, d, e, f] = matrix;
+  const determinant = a * d - b * c;
+  const imageX = imageWidth * 0.5 - e;
+  const imageY = imageHeight * 0.5 - f;
+  centerOut[0] = (d * imageX - c * imageY) / determinant;
+  centerOut[1] = (-b * imageX + a * imageY) / determinant;
+  const availableWidth = Math.max(1, viewportWidth - paddingPx * 2);
+  const availableHeight = Math.max(1, viewportHeight - paddingPx * 2);
+  const imageScale = Math.min(availableWidth / imageWidth, availableHeight / imageHeight);
+  return 1 / (Math.hypot(a, c) * imageScale);
 }
 
 function rightX(view: MinimapView): number {
@@ -29,10 +75,11 @@ export function worldToMinimap(
 ): Float32Array {
   const dx = x - view.centerX;
   const dz = z - view.centerZ;
-  const half = view.sizePx * 0.5;
+  const halfWidth = minimapWidth(view) * 0.5;
+  const halfHeight = minimapHeight(view) * 0.5;
   const scale = 1 / view.metresPerPx;
-  out[0] = half + (dx * rightX(view) + dz * rightZ(view)) * scale;
-  out[1] = half - (dx * upX(view) + dz * upZ(view)) * scale;
+  out[0] = halfWidth + (dx * rightX(view) + dz * rightZ(view)) * scale;
+  out[1] = halfHeight - (dx * upX(view) + dz * upZ(view)) * scale;
   return out;
 }
 
@@ -44,9 +91,10 @@ export function minimapToWorld(
   const rz = rightZ(view);
   const ux = upX(view);
   const uz = upZ(view);
-  const half = view.sizePx * 0.5;
-  const horizontal = (px - half) * view.metresPerPx;
-  const upward = (half - py) * view.metresPerPx;
+  const halfWidth = minimapWidth(view) * 0.5;
+  const halfHeight = minimapHeight(view) * 0.5;
+  const horizontal = (px - halfWidth) * view.metresPerPx;
+  const upward = (halfHeight - py) * view.metresPerPx;
   const determinant = rx * uz - rz * ux;
   out[0] = view.centerX + (horizontal * uz - rz * upward) / determinant;
   out[1] = view.centerZ + (rx * upward - horizontal * ux) / determinant;

@@ -1,8 +1,8 @@
 export const TX_MINIMAP_STRINGS = {
   label: '城镇小地图',
   compass: '司南：勺柄指南',
-  zoomIn: '放大小地图',
-  zoomOut: '缩小小地图',
+  zoomIn: '放大主画面',
+  zoomOut: '缩小主画面',
   zoomSlider: '主画面缩放',
   expand: '展开全城图（M）',
   collapse: '收起全城图（M）',
