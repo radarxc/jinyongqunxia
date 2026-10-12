@@ -7,7 +7,8 @@ const NonNegativeMmSchema = MmSchema.min(0);
 const PositiveMmSchema = MmSchema.min(1);
 const Uint32Schema = SafeIntegerSchema.min(0).max(0xffff_ffff);
 const LocalIdSchema = LocalKeySchema;
-const TextKeySchema = z.string().regex(/^[a-z][A-Za-z0-9]*(?:[._-][A-Za-z0-9]+)+$/u);
+// Same text-key grammar as town-facilities.v1: layout keys such as city_dali__ch01 carry `__`.
+const TextKeySchema = z.string().regex(/^[a-z][A-Za-z0-9]*(?:[.-][A-Za-z0-9_]+|_[A-Za-z0-9_]+)+$/u);
 const Sha256Schema = z.string().regex(/^[a-f0-9]{64}$/u);
 const MinuteSchema = SafeIntegerSchema.min(0).max(1439);
 

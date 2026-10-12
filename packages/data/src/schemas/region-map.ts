@@ -126,7 +126,8 @@ const QinggongKindSchema = z
 const GateRevealSchema = z.enum(['always', 'near10', 'never']).meta({ title: 'GateReveal' });
 const LocalIdSchema = z.string().regex(/^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$/);
 const ContentRefSchema = z.string().regex(/^[a-z][a-z0-9]*(?:_[a-z0-9]+)+$/);
-const TextKeySchema = z.string().regex(/^[a-z][A-Za-z0-9]*(?:[._-][A-Za-z0-9]+)+$/);
+// Same text-key grammar as town-facilities.v1: layout keys such as city_dali__ch01 carry `__`.
+const TextKeySchema = z.string().regex(/^[a-z][A-Za-z0-9]*(?:[.-][A-Za-z0-9_]+|_[A-Za-z0-9_]+)+$/u);
 
 export const RegionHexSchema = z.strictObject({
   q: z.number().int().safe(),

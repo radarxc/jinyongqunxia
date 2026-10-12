@@ -128,6 +128,18 @@ describe('RegionMap town-scene additions', () => {
       accessNote: '' }).success).toBe(true);
   });
 
+  it('accepts town-facilities.v1 text keys that carry a layout key such as city_dali__ch01', () => {
+    // The town compiler copies authored facility nameKeys verbatim into the scene and Buildings.
+    const key = 'town.city_dali__ch01.yaopu_01.name';
+    const map = townMap();
+    map.town.facilities[0]!.nameKey = key;
+    const building = map.chunks[0]!.objects.find((object) => object.id === 'bi_a')!;
+    (building as { nameKey?: string }).nameKey = key;
+    expect(RegionMapSchema.safeParse(map).success).toBe(true);
+    expect(RegionMapSchema.safeParse({ ...map,
+      town: { ...map.town, displayNameKey: 'town.city_dali__ch01.name' } }).success).toBe(true);
+  });
+
   it.each([
     ['duplicate door cell', 'enterable building door cells must be unique',
       (map: ReturnType<typeof townMap>) => {

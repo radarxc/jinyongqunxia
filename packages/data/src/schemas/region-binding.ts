@@ -6,7 +6,8 @@ import { GateExprSchema, RegionGateIdSchema, RegionIdSchema, RegionSceneIdSchema
 const LocalAnchorIdSchema = z.string().regex(/^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$/);
 const StoryIdSchema = z.string().regex(/^(?:story|ink)_[a-z0-9_]+$/);
 const EntryKeySchema = z.string().regex(/^[A-Za-z_][A-Za-z0-9_.]*$/);
-const TextKeySchema = z.string().regex(/^[a-z][A-Za-z0-9]*(?:[._-][A-Za-z0-9]+)+$/);
+// Same text-key grammar as town-facilities.v1: layout keys such as city_dali__ch01 carry `__`.
+const TextKeySchema = z.string().regex(/^[a-z][A-Za-z0-9]*(?:[.-][A-Za-z0-9_]+|_[A-Za-z0-9_]+)+$/u);
 const LootRefSchema = z.string().regex(/^loot_[a-z0-9]+(?:_[a-z0-9]+)*$/);
 
 export type RegionGateExpr = GateExpr | { readonly flag: string } |
