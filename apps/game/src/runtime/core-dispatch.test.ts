@@ -3,13 +3,17 @@ import { RNG_PROTOCOL, RNG_STREAMS, seedStream } from '@tianshu/core/state';
 import { createInitialGameState, type GameState } from '@tianshu/core/state';
 import { dispatchCoreCommand } from './core-dispatch';
 
-const loads = vi.hoisted(() => ({ shop: 0, explore: 0 }));
+const loads = vi.hoisted(() => ({ shop: 0, explore: 0, region: 0 }));
 vi.mock('@tianshu/core/shop-command', async (importOriginal) => {
   loads.shop += 1;
   return importOriginal();
 });
 vi.mock('@tianshu/core/explore-command', async (importOriginal) => {
   loads.explore += 1;
+  return importOriginal();
+});
+vi.mock('@tianshu/core/region-command', async (importOriginal) => {
+  loads.region += 1;
   return importOriginal();
 });
 
@@ -46,5 +50,12 @@ describe('core command family lazy loading', () => {
     await expect(dispatchCoreCommand(target, { t: 'world/tick' })).resolves
       .toMatchObject({ ok: true });
     expect(loads.explore).toBe(1);
+  });
+
+  it('loads v1 region commands from region-command without the explore family', async () => {
+    const before = loads.explore;
+    await dispatchCoreCommand(state(), { t: 'world/walkTo', hex: { q: 1, r: 0 } });
+    expect(loads.region).toBe(1);
+    expect(loads.explore).toBe(before);
   });
 });

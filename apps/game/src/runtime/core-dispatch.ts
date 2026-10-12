@@ -83,7 +83,7 @@ async function commandHandlers(command: Command, state: Readonly<GameState>): Pr
     });
     if (command.t === 'world/mountRegion' || command.t === 'world/walkTo' ||
         command.t === 'world/interact') return await load('region', async () => {
-      const { regionHandler } = await import('@tianshu/core/explore-command');
+      const { regionHandler } = await import('@tianshu/core/region-command');
       return { 'world/mountRegion': regionHandler as CommandHandler,
         'world/walkTo': regionHandler as CommandHandler,
         'world/interact': regionHandler as CommandHandler };
