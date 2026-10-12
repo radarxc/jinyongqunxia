@@ -21,10 +21,10 @@ describe('buildgen extension stubs', () => {
   it('keeps FNV hashes in fixed-width hexadecimal', () => expect(hashHex(1)).toBe('00000001'));
   it('rejects unknown recipes', () =>
     expect(() => recipeFor('unknown' as never)).toThrow('BUILDGEN_UNKNOWN_RECIPE'));
-  it('exports deliberate r1 invariant stubs', () => {
+  it('keeps only the INV-6 stub after r1', () => {
     const plan = MINI_BUILDING_PLANS[0]!;
-    expect(() => inspectInv2(EMPTY_MESH, [plan])).toThrow('BUILDGEN_NOT_IMPLEMENTED:inspectInv2');
-    expect(() => inspectInv4(EMPTY_MESH, [plan])).toThrow('BUILDGEN_NOT_IMPLEMENTED:inspectInv4');
+    expect(inspectInv2(EMPTY_MESH, [plan])).toEqual([]);
+    expect(inspectInv4(EMPTY_MESH, [plan])).toEqual([]);
     expect(() => inspectInv6(EMPTY_MESH, [plan])).toThrow('BUILDGEN_NOT_IMPLEMENTED:inspectInv6');
   });
   it('exports deliberate roof, facade and layer stubs', () => {

@@ -125,15 +125,15 @@ describe('geometry invariant diagnostics', () => {
     expect(inspectInv3(sillMesh, [plan], MINI_BUILD_KIT)).toEqual([]);
     // … but without a threshold the same quad sits inside the clear opening.
     expect(inspectInv3(sillMesh, [plan]).map((item) => item.code)).toContain('TRIANGLE_IN_DOOR');
-    // Interior geometry behind the floors edge (d > 0.3 m, z < 2.2) is not part of the wall band.
+    // Interior geometry behind the corrected shop floor edge (z < 1.55 m) is not in the wall band.
     const inside = new MeshBufferBuilder();
     quad(
       inside,
       [
-        [-0.3, 0.5, 2.1],
-        [0.3, 0.5, 2.1],
-        [0.3, 1.5, 2.1],
-        [-0.3, 1.5, 2.1],
+        [-0.3, 0.5, 1.4],
+        [0.3, 0.5, 1.4],
+        [0.3, 1.5, 1.4],
+        [-0.3, 1.5, 1.4],
       ],
       { unit: 0, facade: 1 },
     );

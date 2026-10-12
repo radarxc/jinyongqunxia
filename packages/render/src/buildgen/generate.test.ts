@@ -25,7 +25,7 @@ describe('generateCells', () => {
     expect(Object.values(RECIPES).every((recipe) => typeof recipe === 'function')).toBe(true);
   });
 
-  it('groups six mini plans by aligned centre cells and passes INV-1/3/5', () => {
+  it('groups six mini plans by aligned centre cells and passes INV-1/2/3/4/5', () => {
     const cells = generateCells(MINI_BUILDING_PLANS, MINI_BUILD_KIT, 0, 16);
     expect(cells.length).toBe(4);
     const diagnostics = cells.flatMap((cell) =>
