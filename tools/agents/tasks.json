@@ -30664,7 +30664,8 @@
     "packages/data/src/build/town-plan/plan-hall.ts",
     "packages/data/src/build/town-plan/__tests__/stubs.test.ts",
     "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts",
-    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts"
+    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
+    "packages/data/src/build/town-plan/fixtures.ts"
    ],
    "validate": {
     "exists": [

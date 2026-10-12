@@ -211,8 +211,26 @@ describe('v1 minimap adapter', () => {
       new Map(), new Set(), { key: 'yaopu_01', kind: 'clinic', name: '苍山医馆',
         buildingId: 'bi_0023' });
     expect(assembled.find(marker => marker.id === 'yaopu_01')).toMatchObject({
-      kind: 'facility', icon: '医', label: '苍山医馆', target: { kind: 'point' },
+      kind: 'facility', icon: '医', label: '苍山医馆',
+      target: { kind: 'building', buildingId: 'bi_0023' },
     });
+  });
+
+  it('routes an enterable painted facility into its own building through a shared door cell', () => {
+    // Dali ch01 bi_0020 (casino) and bi_0023 (苍山药肆) share one door cell; a bare point move
+    // would enter whichever building core lists first.
+    const pharmacy = daliRuntime.buildings.find(entry => entry.id === 'bi_0023')!;
+    const sharing = daliRuntime.buildings.filter(entry => entry.entrances.some(point =>
+      point[0] === pharmacy.entrances[0]![0] && point[1] === pharmacy.entrances[0]![1]));
+    expect(sharing.map(entry => entry.id).sort()).toEqual(['bi_0020', 'bi_0023']);
+    const assembled = createV1AssembledMinimapMarkers(daliRuntime as never, projection,
+      createPaintedMinimapMarkers(daliMetadata as never));
+    const marker = assembled.find(entry => entry.id === 'yaopu_01')!;
+    expect(v1TravelCommand(marker.target, daliRuntime as never, projection)).toEqual({
+      t: 'town/move', destination: pharmacy.entrances[0], buildingId: 'bi_0023',
+    });
+    for (const id of ['mashi_01', 'shitan_01', 'lm_chongsheng_pagoda_center', 'gate_south_gate'])
+      expect(assembled.find(entry => entry.id === id)?.target.kind, id).toBe('point');
   });
 
   it.each([false, true])('dispatches the same canvas point through townCommand when northUp=%s', (northUp) => {

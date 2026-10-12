@@ -25,6 +25,8 @@ export interface V1MinimapMarker {
   readonly id: string; readonly kind: 'facility' | 'shop' | 'inn' | 'temple' | 'pagoda'
     | 'gate' | 'office' | 'npc' | 'meditation';
   readonly x: number; readonly z: number; readonly icon: string; readonly label: string;
+  /** Painted markers keep the authored building so assembly can route into enterable ones. */
+  readonly buildingId?: string;
   readonly target: { readonly kind: 'anchor'; readonly anchorId: string }
     | { readonly kind: 'building'; readonly buildingId: string }
     | { readonly kind: 'point'; readonly x: number; readonly z: number };
@@ -200,11 +202,12 @@ export function createPaintedMinimapMarkers(metadata: TownMinimapMetadata): read
   ];
   return metadata.markers.map(row => {
     const [x, z] = imageToWorld(row.px);
-    // Painted markers are navigation hints, never an instruction to enter a building.
-    // The authored entrance is also valid for non-enterable stalls and landmarks.
+    // Painted markers start as navigation points at the authored entrance (also valid for
+    // non-enterable stalls and landmarks); assembly routes enterable buildings explicitly.
     const [tx, tz] = imageToWorld(row.entrance ?? row.px);
     const target = { kind: 'point' as const, x: tx, z: tz };
-    return { id: row.id, kind: row.kind, x, z, icon: row.glyph, label: row.name, target };
+    return { id: row.id, kind: row.kind, x, z, icon: row.glyph, label: row.name, target,
+      ...(row.buildingId ? { buildingId: row.buildingId } : {}) };
   });
 }
 
@@ -296,6 +299,19 @@ export function createV1MinimapMarkers(
   return markers;
 }
 
+/**
+ * A painted marker whose authored building is enterable in this runtime travels into that building
+ * explicitly: v1 layouts can share one door cell between two buildings (Dali bi_0020 casino and
+ * bi_0023 pharmacy), and a bare point move enters whichever building core lists first. Stalls,
+ * landmarks and gates stay plain navigation points.
+ */
+function enterablePaintedTarget(marker: V1MinimapMarker, town: TownRuntimeView): V1MinimapMarker {
+  if (marker.buildingId === undefined || marker.target.kind !== 'point') return marker;
+  const building = town.buildings.find(entry => entry.id === marker.buildingId);
+  return building?.enterable === true && building.entrances.length > 0
+    ? { ...marker, target: { kind: 'building', buildingId: building.id } } : marker;
+}
+
 export function createV1AssembledMinimapMarkers(
   town: TownRuntimeView, projection: TownSceneProjection,
   painted: readonly V1MinimapMarker[] | null,
@@ -305,7 +321,8 @@ export function createV1AssembledMinimapMarkers(
 ): readonly V1MinimapMarker[] {
   const runtime = createV1MinimapMarkers(town, projection, characterNames, taskNpcIds);
   const assembled = painted === null ? runtime : [
-    ...painted, ...runtime.filter(marker => marker.kind === 'npc'),
+    ...painted.map(marker => enterablePaintedTarget(marker, town)),
+    ...runtime.filter(marker => marker.kind === 'npc'),
   ];
   if (!facility) return assembled;
   const presentation = facilityPresentation(facility.kind, facility.name);
