@@ -3,8 +3,7 @@ import { RNG_PROTOCOL } from '../rng';
 import { isRegionTerrainId } from '../world/region-codec';
 import { RULES_PROTOCOL, SAVE_SCHEMA } from './initial';
 import { assertFacilityDialogueContext } from '../dialogue/context-validate';
-import { isPace } from '../world/explore/walk-validate';
-import { MAX_WALK_PATH } from '../world/explore/types';
+import { isPace, MAX_WALK_PATH } from './walk-shape';
 import type { GameState } from './models';
 import { completeAppendValidation, invalidateAppendValidation, isVerifiedFrozenJson, markVerifiedFrozenJson,
   verifiedAppendLength } from './immutable-json';
