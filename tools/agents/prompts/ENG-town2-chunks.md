@@ -25,6 +25,7 @@
 
 ## 约束
 - 只写：`apps/game/vite.config.ts`、`apps/game/build/{town-chunks,town-assets,size-groups-plugin}.ts`（及其同名 `.test.ts`）、`tools/perf/{budgets.json,check_size.mjs,check_size.test.mjs,README.md}`、`packages/render/package.json`、`vitest.config.ts`、根 `package.json`（只改 `test` / `test:perf` 两条脚本）、`apps/game/src/town-contract.test.ts` 与本任务报告。
+- **协调者 10-11 r1 返修裁定**：① 集成分支已把首次会话校验用的行走存档形状挪到 `packages/core/src/state/walk-shape.ts`（提交 132266cc5），`session` 静态闭包不再引用 `world/explore/**`——`check_size.mjs` 的 `world/explore/` 白名单整个删掉，`world/explore/` 与 `economy/shop-` 零例外；② `core-explore` / `core-shop` / `render-buildgen-worker` 都按**入口的完整静态闭包**计（从构建输出图沿静态 import 走，扣除 session 已计文件），不得只按入口文件或文件名前缀；补「入口很小、依赖块超限仍 FAIL」的测试；③ `town-contract.test.ts` 加 `keyof` 精确相等断言（`TownBuildingPlan` ↔ `BuildingPlanView`、`TownWall` ↔ `CityWallView`），保留双向可赋值；`CompiledBuildKit → BuildKitView` 维持单向；④ 上一轮报告里的 19 个失败来自集成分支 r1 × r2 整合问题，协调者已热修（提交 6208f945d），现在必须实跑 `pnpm check` 退出 0。
 - 不改 `apps/game/build/content-plugin.ts`、`apps/game/build/asset-manifest.ts`（及其测试）；不改任何既有预算的数值（除 `render` 按第 2 条收紧）；不加"高负载跳过"；不新增依赖；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
 
 检查：
