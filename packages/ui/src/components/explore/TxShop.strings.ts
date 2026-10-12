@@ -1,0 +1,17 @@
+export const TX_SHOP_STRINGS = {
+  close: '关闭',
+  money: '现有银两',
+  tabsLabel: '买卖',
+  buyTab: '买',
+  sellTab: '卖',
+  goods: '货品',
+  unitPrice: '单价',
+  stock: '库存',
+  owned: '持有',
+  quantity: '数量',
+  buy: '买入',
+  sell: '卖出',
+  emptyBuy: '掌柜眼下没有可卖的货品。',
+  emptySell: '行囊中没有此店收购的物品。',
+  unavailableQuantity: '可交易数量不足',
+} as const;
