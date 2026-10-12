@@ -31416,6 +31416,67 @@
    ]
   },
   {
+   "id": "ENG-town2-facility-key",
+   "title": "城镇探索 v2 · 城镇设施键统一为城镇定义的 cityId__chapterId（借用布局的城镇也能找到店员与店铺）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-facility-key.md",
+   "deps": [
+    "ENG-town2-v1-page"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "协调者 2026-10-12 G0 实测：卷十借用大理布局的城镇进药铺没有「交谈」（界面投影与设施对话的设施键按存档章节拼）；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "packages/core/src/dialogue/**",
+    "apps/game/src/runtime/explore-projection.ts",
+    "apps/game/src/runtime/explore-projection.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/dialogue/facility.ts",
+     "apps/game/src/runtime/explore-projection.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/core/src/dialogue",
+      "packages/core/src/economy",
+      "apps/game/src/runtime",
+      "apps/game/src/explore",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": []
+  },
+  {
    "id": "ENG-town2-v1-page",
    "title": "城镇探索 v2 · P1 · 现有城镇页收尾（删模拟店铺与对话、交互条、经店员对话真实购买）",
    "phase": "TOWN2",
