@@ -53310,6 +53310,92 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ART-dressup-r3-jinzhuang-f2-gen",
+   "title": "3D 纸娃娃换装 · R3 · 劲装按新素体重新生成：tpl_f2 衣图底板（劲装 / 布衣）+ Tripo 整身生成与绑骨 → 源件入库（85 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ART-dressup-r3-jinzhuang-f2-gen.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-12「按新素体重新生成」（约 85 点）、「衣物到位后再切」默认素体；Claude 经 9223 执行 Tripo，产物走 supervise 校验与 GPT 审核",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview",
+    "assets/default/item/clothing",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/**",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/tripo_dressed_rig.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/source.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/cover.png",
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/tripo_dressed_rig.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+      "--arm-angle-deg",
+      "25",
+      "--json"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png",
+      "--arm-angle-deg",
+      "25",
+      "--json"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
