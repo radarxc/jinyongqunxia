@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
+import type { TownFacilitiesDef, TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { createCore } from '../api';
 import type { ConsumableTargetState } from '../economy';
 import { createMeditationState } from '../progression';
@@ -32,6 +32,10 @@ function town(): TownRuntimeDefinition {
 const outside = (point: readonly [number, number]): TownSessionState =>
   ({ version: 1, townRevision: '0'.repeat(64), sceneId: 'city_test',
     point, buildingId: null, buildingPhase: 'outside' });
+const facilities: TownFacilitiesDef = { schemaVersion: 'town-facilities.v1',
+  layoutKey: 'city_test__ch01', facilities: [{ key: 'yaopu_01', kind: 'shop', sub: 'yaopu',
+    buildingId: 'bi_0001', nameKey: 'town.city_test.yaopu.name',
+    shop: { templateRef: 'shop_tpl_yaopu', kind: 'normal' }, roles: ['keeper'] }] };
 
 describe('town integer runtime', () => {
   it('finds a stable axial path, allows marked ramps, and rejects cliffs or blocked cells', () => {
@@ -47,8 +51,9 @@ describe('town integer runtime', () => {
     const entering = enterTownBuilding(outside([2, 0]), building);
     expect(entering).toEqual({ ...outside([2, 0]), buildingId: 'bi_0001', buildingPhase: 'fading-in' });
     const inside = settleTownBuildingFade(entering);
-    expect(dispatchTownCommand({ town: town() }, inside, { t: 'town/interact' }))
-      .toMatchObject({ action: 'shop', ref: 'shop_test' });
+    expect(dispatchTownCommand({ town: town(), facilities }, inside, { t: 'town/interact' }))
+      .toMatchObject({ action: 'facility-dialogue',
+        facility: { facilityKey: 'yaopu_01', roleKey: 'keeper' } });
     expect(settleTownBuildingFade(exitTownBuilding(inside))).toEqual(outside([2, 0]));
   });
 
@@ -57,6 +62,27 @@ describe('town integer runtime', () => {
     const inside = settleTownBuildingFade(enterTownBuilding(outside([2, 0]), building));
     expect(() => dispatchTownCommand({ town: { ...definition, buildings: [building] } },
       inside, { t: 'town/interact' })).toThrow('TOWN_NOT_AT_SHOP');
+  });
+
+  it('rejects facility interaction outside and during both building fades', () => {
+    const building = town().buildings[0]!;
+    const street = outside([2, 0]);
+    const fadingIn = enterTownBuilding(street, building);
+    const inside = settleTownBuildingFade(fadingIn);
+    const fadingOut = exitTownBuilding(inside);
+    for (const state of [street, fadingIn, fadingOut])
+      expect(() => dispatchTownCommand({ town: town(), facilities }, state,
+        { t: 'town/interact' })).toThrow('TOWN_NOT_AT_SHOP');
+  });
+
+  it('cleanly rejects an indoor building without loaded or matching facility content', () => {
+    const building = town().buildings[0]!;
+    const inside = settleTownBuildingFade(enterTownBuilding(outside([2, 0]), building));
+    expect(() => dispatchTownCommand({ town: town() }, inside,
+      { t: 'town/interact' })).toThrow('TOWN_NOT_AT_SHOP');
+    expect(() => dispatchTownCommand({ town: town(), facilities: { ...facilities,
+      facilities: [{ ...facilities.facilities[0]!, buildingId: 'bi_other' }] } }, inside,
+    { t: 'town/interact' })).toThrow('TOWN_NOT_AT_SHOP');
   });
 
   it('automatically enters at a building door and persists its lookup indexes', () => {

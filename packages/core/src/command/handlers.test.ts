@@ -1,8 +1,10 @@
 import type { ItemDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import { Compiler } from 'inkjs/full';
 import { describe, expect, it } from 'vitest';
 import { createCoreFromState, type Core } from '../api';
+import { projectDialogue } from '../dialogue';
 import { createCharacterState, createInitialGameState, type GameState } from '../state';
-import { RNG_PROTOCOL, RNG_STREAMS, seedStream } from '../rng';
+import { createRng, RNG_PROTOCOL, RNG_STREAMS, seedStream } from '../rng';
 import { createInitialWorldMapState, createTownState } from '../world';
 import type { Command, CoreContent, DispatchResult } from '.';
 import { townHandler } from './handlers';
@@ -45,8 +47,22 @@ const sword = { id: 'eq_bus_sword', kind: 'weapon', grade: 1, stack: 1 } as Item
 const medicine = { id: 'it_bus_medicine', kind: 'pill', grade: 1, stack: 9, flags: [],
   use: { context: 'field', action: 'consume', target: 'self', fieldTime: 2,
     effects: [{ op: 'healPct', params: { valueBp: 1_000 } }] } } as unknown as ItemDef;
+const facilityStory = new Compiler(`=== opening ===
+#ts:dialogue/speaker speaker=interlocutor
+fixture.facility.hello
+-> END`).Compile().ToJson();
+if (typeof facilityStory !== 'string') throw new TypeError('INK_FIXTURE');
 const content: CoreContent = { items: [sword, medicine], worldMaps: [map], towns: [town],
-  equipmentRules: [{ itemId: sword.id, slot: 'mainHand', hands: 1 }], identityTags: [] };
+  equipmentRules: [{ itemId: sword.id, slot: 'mainHand', hands: 1 }], identityTags: [],
+  townFacilities: [{ schemaVersion: 'town-facilities.v1', layoutKey: 'city_bus_a__ch01',
+    facilities: [{ key: 'yaopu_01', kind: 'shop', sub: 'yaopu', buildingId: 'bi_bus',
+      nameKey: 'town.city_bus_a.yaopu.name',
+      shop: { templateRef: 'shop_tpl_yaopu', kind: 'normal' }, roles: ['keeper'] }] }],
+  facilityDialogues: [{ schemaVersion: 'facility-dialogue.v1', bindings: [{
+    chapter: 'ch01_tianlong', kind: 'shop', sub: 'yaopu', roleKey: 'keeper',
+    storyId: 'story_bus_facility', entryKey: 'opening',
+  }] }], inkStories: [{ storyId: 'story_bus_facility', storyHash: '3'.repeat(64),
+    storyJson: facilityStory }] };
 function initial(): GameState {
   const seed = 23;
   const rng = Object.fromEntries(RNG_STREAMS.map((stream) => [stream, seedStream(seed, stream)]));
@@ -118,7 +134,8 @@ const CASES: readonly CommandCase[] = [
       command: { t: 'town/exit-building' }, reason: 'TOWN_NOT_INSIDE' } },
   { name: 'town/interact', kind: 'town', setup: [move, settle],
     command: { t: 'town/interact' }, rejection: { kind: 'town',
-      command: { t: 'town/interact' }, reason: 'TOWN_NOT_AT_SHOP' } },
+      command: { t: 'town/interact' }, reason: 'REGION_INTERACTION_BUSY',
+      setup: [move, settle, { t: 'town/interact' }] } },
   { name: 'town/meditate', kind: 'town', command: { t: 'town/meditate',
     anchorId: 'anchor_bus_meditation', plannedTicks: 600 }, rejection: { kind: 'town',
       command: { t: 'town/meditate', anchorId: 'anchor_bus_meditation', plannedTicks: 599 },
@@ -207,4 +224,61 @@ describe('registered non-battle command handlers', () => {
     expect(townHandler.validate(state, { t: 'town/meditate',
       anchorId: 'anchor_bus_meditation', plannedTicks: 600 }, content)).toBeNull();
   });
+
+  it('starts a facility dialogue with context and exactly one world RNG draw', async () => {
+    const runtime = await ready('town', [move, settle]);
+    const before = runtime.snapshot();
+    const result = accepted(runtime.dispatch({ t: 'town/interact' }));
+    const context = { kind: 'facility', sceneId: 'city_bus_a', facilityKey: 'yaopu_01',
+      roleKey: 'keeper', shopKey: 'city_bus_a__ch01/yaopu_01',
+      interlocutorNameKey: 'town.city_bus_a.yaopu.name' };
+    expect(runtime.snapshot().dialogue).toMatchObject({ context, speakerId: 'interlocutor' });
+    expect(projectDialogue(runtime.snapshot())?.interlocutor).toEqual({
+      facilityKey: 'yaopu_01', roleKey: 'keeper', nameKey: 'town.city_bus_a.yaopu.name',
+    });
+    expect(result.events.map((event) => event.t)).toContain('dialogue/started');
+    expect(result.events.find((event) => event.t === 'dialogue/started')?.payload)
+      .toEqual({ storyId: 'story_bus_facility', entryKey: 'opening', context });
+    const expectedWorld = createRng(before.meta.rng.world); expectedWorld.nextU32();
+    expect(runtime.snapshot().meta.rng.world).toEqual(expectedWorld.snapshot());
+    expect(result.events.some((event) => event.t === 'town/shopRequested')).toBe(false);
+  });
+
+  it('raises FACILITY_DIALOGUE_MISSING as a content error without committing', () => {
+    const missing: CoreContent = { ...content, facilityDialogues: [] };
+    const state = initial();
+    const runtime = core({ ...state, chapter: { ...state.chapter, town: createTownState(town) } },
+      missing);
+    accepted(runtime.dispatch(move)); accepted(runtime.dispatch(settle));
+    const before = runtime.canonicalStateJson();
+    expect(() => runtime.dispatch({ t: 'town/interact' })).toThrow('FACILITY_DIALOGUE_MISSING');
+    expect(runtime.canonicalStateJson()).toBe(before);
+  });
+
+  it('rejects indoor interaction cleanly when facility content is unavailable', () => {
+    const { townFacilities, ...unavailable } = content;
+    expect(townFacilities).toBeDefined();
+    const state = initial();
+    const runtime = core({ ...state, chapter: { ...state.chapter, town: createTownState(town) } },
+      unavailable);
+    accepted(runtime.dispatch(move)); accepted(runtime.dispatch(settle));
+    expect(runtime.dispatch({ t: 'town/interact' }))
+      .toEqual({ ok: false, reason: 'TOWN_NOT_AT_SHOP' });
+  });
+
+  it('keeps street interaction rejection and blocks every town command while dialogue is active',
+    async () => {
+      const street = townCore();
+      expect(street.dispatch({ t: 'town/interact' }))
+        .toEqual({ ok: false, reason: 'TOWN_NOT_AT_SHOP' });
+      const runtime = await ready('town', [move, settle]);
+      accepted(runtime.dispatch({ t: 'town/interact' }));
+      for (const command of [move, { t: 'town/interact' },
+        { t: 'town/meditate', anchorId: 'anchor_bus_meditation', plannedTicks: 600 },
+        { t: 'town/exit-building' }, { t: 'town/settle-building' }] as const)
+        expect(runtime.dispatch(command)).toEqual({ ok: false, reason: 'REGION_INTERACTION_BUSY' });
+      accepted(runtime.dispatch({ t: 'dialogue/continue' }));
+      expect(runtime.snapshot().dialogue).toBeNull();
+      expect(runtime.dispatch({ t: 'town/exit-building' }).ok).toBe(true);
+    });
 });

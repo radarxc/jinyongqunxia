@@ -2,6 +2,7 @@ import { EventActionSchema, type EventAction } from '@tianshu/data/schemas';
 import type { JsonValue } from '@tianshu/shared';
 import type { GameState } from '../state';
 import type { DialogueSession } from '.';
+import { assertFacilityDialogueContext, type FacilityDialogueContext } from './context-validate';
 
 export interface AuthorizedDialogueIntent {
   readonly key: string; readonly action: EventAction;
@@ -14,6 +15,9 @@ export interface DialogueView {
   readonly speakerId: string; readonly textKey: string | null;
   readonly choices: readonly DialogueChoiceView[];
   readonly history: readonly { readonly speakerId: string; readonly textKey: string }[];
+  readonly context?: FacilityDialogueContext;
+  readonly interlocutor?: { readonly facilityKey: string; readonly roleKey: string;
+    readonly nameKey: string };
 }
 function textKey(value: string): string {
   return value.replace(/(?:\r\n|\n|\r)$/u, '');
@@ -22,7 +26,8 @@ function textKey(value: string): string {
 export function dialogueStateFromSession(input: { readonly storyId: string; readonly storyHash: string;
   readonly entryKey: string; readonly randomSeed: number; readonly session: DialogueSession;
   readonly history?: DialogueView['history']; readonly pendingIntents?: readonly JsonValue[];
-  readonly consumedTagKeys?: readonly string[] }): NonNullable<GameState['dialogue']> {
+  readonly consumedTagKeys?: readonly string[]; readonly context?: FacilityDialogueContext
+  }): NonNullable<GameState['dialogue']> {
   if (input.session.mode !== 'ink' || input.session.serializedState === undefined)
     throw new TypeError('DIALOGUE_SESSION_INVALID');
   const line = input.session.lines[0];
@@ -36,7 +41,7 @@ export function dialogueStateFromSession(input: { readonly storyId: string; read
     speakerId: line?.speakerId ?? 'narrator',
     textKey: line ? textKey(line.textKey) : null, choices: input.session.choices.map((choice) => ({
       choiceIndex: Number(choice.key), textKey: textKey(choice.textKey), unavailableReason: null,
-    })), history: input.history ?? [] };
+    })), history: input.history ?? [], ...(input.context ? { context: input.context } : {}) };
 }
 
 export function dialogueStateWithLegacyDefaults(state: NonNullable<GameState['dialogue']>):
@@ -70,8 +75,18 @@ export function sessionFromDialogue(state: NonNullable<GameState['dialogue']>): 
 export function projectDialogue(state: Readonly<GameState>): DialogueView | null {
   const dialogue = state.dialogue;
   if (!dialogue) return null;
+  const context: unknown = dialogue.context;
+  if (dialogue.speakerId === 'interlocutor' &&
+      (typeof context !== 'object' || context === null ||
+        !('interlocutorNameKey' in context)))
+    throw new TypeError('DIALOGUE_INTERLOCUTOR_CONTEXT');
+  if (context !== undefined) assertFacilityDialogueContext(context);
+  const interlocutor = dialogue.speakerId !== 'interlocutor' || context === undefined
+    ? undefined : { facilityKey: context.facilityKey, roleKey: context.roleKey,
+      nameKey: context.interlocutorNameKey };
   return { storyId: dialogue.storyId, storyHash: dialogue.storyHash,
     entryKey: dialogue.entryKey, speakerId: dialogue.speakerId ?? 'narrator',
     textKey: dialogue.textKey ?? null, choices: dialogue.choices ?? [],
-    history: dialogue.history ?? [] };
+    history: dialogue.history ?? [], ...(context ? { context } : {}),
+    ...(interlocutor ? { interlocutor } : {}) };
 }

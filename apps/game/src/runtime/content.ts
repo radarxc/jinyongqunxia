@@ -1,5 +1,6 @@
-import type { ChapterDef, EventDef, ItemDef, MartialArtDef, NpcDef, QuestDef,
-  RegionMap, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { ChapterDef, EventDef, FacilityDialogueDef, ItemDef, MartialArtDef, NpcDef,
+  QuestDef, RegionMap, TownFacilitiesDef, TownRuntimeDefinition,
+  WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { ContentIdRemap } from '@tianshu/data';
 import type { EquipmentRule, EventAnchor, NpcWorldState, TownMeditationEncounter,
   TownMeditationPractice, InkStoryContent, RegionGateFacts, RegionGateBinding,
@@ -38,6 +39,8 @@ export interface GameContent {
   readonly equipmentRules?: readonly EquipmentRule[];
   readonly worldMaps?: readonly WorldMapRuntimeDefinition[];
   readonly towns?: readonly TownRuntimeDefinition[];
+  readonly townFacilities?: readonly TownFacilitiesDef[];
+  readonly facilityDialogues?: readonly FacilityDialogueDef[];
   readonly townEventAnchors?: readonly EventAnchor[];
   readonly townNpcWorld?: NpcWorldState;
   readonly townNpcPlacements?: readonly TownNpcPlacement[];

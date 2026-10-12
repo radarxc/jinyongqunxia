@@ -8,6 +8,7 @@ import type { GameState } from '../state';
 import type { TownCommand, WorldMapCommand } from '../world';
 import { eventPayload } from './transaction';
 import { exploreTickHook } from '../world/explore/tick-hook';
+import { startFacilityDialogue } from './story-handlers';
 
 const DOMAIN_REJECTIONS = new Set<RejectReason>([
   'MAP_UNAVAILABLE', 'MAP_STILL_TRAVELLING', 'MAP_NODE_CLOSED', 'MAP_SCENE_BUSY',
@@ -115,7 +116,9 @@ function townRuntime(state: GameState, content: CoreContent) {
   const active = state.chapter.town;
   const town = active && content.towns?.find((entry) => entry.sceneId === active.sceneId);
   if (!town) throw new Error('TOWN_UNAVAILABLE');
-  return createTownRuntime({ town,
+  const facilities = content.townFacilities?.find((entry) =>
+    entry.layoutKey === `${town.cityId}__${town.chapterId}`);
+  return createTownRuntime({ town, ...(facilities ? { facilities } : {}),
     ...(content.townEventAnchors ? { eventAnchors: content.townEventAnchors } : {}),
     ...(content.townNpcWorld ? { npcWorld: content.townNpcWorld } : {}),
     ...(content.eraLayer ? { eraLayer: content.eraLayer } : {}),
@@ -124,6 +127,7 @@ function townRuntime(state: GameState, content: CoreContent) {
     ...(content.meditationEncounters ? { meditationEncounters: content.meditationEncounters } : {}) });
 }
 function preflightTown(state: GameState, command: TownCommand, content: CoreContent) {
+  if (state.dialogue !== null) throw new Error('REGION_INTERACTION_BUSY');
   const current = state.chapter.town;
   if (!current) throw new Error('TOWN_UNAVAILABLE');
   return townRuntime(state, content).dispatch(current, command);
@@ -170,8 +174,11 @@ function applyTown(tx: CoreTransaction, command: TownCommand): void {
       path: output.result.path.points.map((point) => [...point]) } });
   for (const anchor of output.result.anchors ?? [])
     tx.emit({ t: 'town/anchorRequested', payload: { ...anchor } });
-  if (output.result.action === 'shop')
-    tx.emit({ t: 'town/shopRequested', payload: { businessRef: output.result.ref ?? null } });
+  if (output.result.action === 'facility-dialogue') {
+    const facility = output.result.facility;
+    if (facility === undefined) throw new TypeError('FACILITY_DIALOGUE_MISSING');
+    startFacilityDialogue(tx, { sceneId: output.result.state.sceneId, ...facility });
+  }
   if (output.result.action === 'dialogue') tx.emit({ t: 'town/dialogueRequested',
     payload: { npcId: command.t === 'town/interact' ? command.npcId ?? null : null } });
   if (output.meditation) for (const fact of output.meditation.events) {

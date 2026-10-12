@@ -85,6 +85,8 @@ function coreContent(content: GameContent, towns: GameContent['towns'], chapterI
     ...(content.identityTags ? { identityTags: content.identityTags } : {}),
     ...(content.worldMaps ? { worldMaps: content.worldMaps } : {}),
     ...(towns ? { towns } : {}),
+    ...(content.townFacilities ? { townFacilities: content.townFacilities } : {}),
+    ...(content.facilityDialogues ? { facilityDialogues: content.facilityDialogues } : {}),
     ...(content.townEventAnchors ? { townEventAnchors: content.townEventAnchors } : {}),
     ...(content.townNpcWorld ? { townNpcWorld: content.townNpcWorld } : {}),
     ...(eraLayer ? { eraLayer } : {}),
@@ -421,7 +423,8 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         return { accepted: false, changes: {}, events: [], error: 'BATTLE_BUSY' };
       if (import.meta.env.MODE === 'test' && typeof document !== 'undefined')
         await (await import('./flow-preload')).preloadFlowForCommand(command);
-      if (command.t.startsWith('dialogue/') || command.t === 'world/interact')
+      if (command.t.startsWith('dialogue/') || command.t === 'world/interact' ||
+          command.t === 'town/interact')
         await dialogueProjection();
       if (command.t === 'world/mountRegion' || command.t === 'world/walkTo' ||
           command.t === 'world/interact' || command.t === 'chapter/bookSleep')
@@ -456,6 +459,7 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         : mountContent ? createAsyncCore(state,
           coreContent(mountContent, loadedTowns, state.chapter.chapterId))
           : candidate ?? core;
+      const dialogueWasActive = state.dialogue !== null;
       const result = candidateResult ?? await commandCore.dispatch(command);
       if (!result.ok) return { accepted: false, changes: {}, events: [], error: result.reason };
       let committed = commandCore.snapshot();
@@ -515,7 +519,10 @@ export function createGameSession(content: GameContent, initial?: SessionSnapsho
         changes = { ...changes, firstSleepAllocation: firstSleepQueryForState(state) };
       if (command.t === 'chapter/bookSleep') changes = { ...changes,
         ...await regionChanges(true, true) };
-      if (command.t.startsWith('dialogue/')) changes = { ...changes,
+      const dialogueChanged = dialogueWasActive !== (state.dialogue !== null) ||
+        result.events.some((event) =>
+          event.t === 'dialogue/started' || event.t === 'dialogue/completed');
+      if (command.t.startsWith('dialogue/') || dialogueChanged) changes = { ...changes,
         dialogue: (await dialogueProjection())(state) };
       if (command.t === 'world/mountRegion' || command.t === 'world/walkTo' ||
           command.t === 'world/interact') changes = { ...changes,
