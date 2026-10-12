@@ -21,6 +21,8 @@
 
 ## 约束
 - 只写：`packages/data/src/build/town-plan/{dims,doors,plan-hall}.ts`、`packages/data/src/build/town-plan/testing/**`、`packages/data/src/build/town-plan/__tests__/plan-hall.test.ts` 与本任务报告。不改 p0 / p1 的其他文件（类型若必须扩充，只能新增可选字段并在报告说明）。
+- **协调者 10-11 返修裁定扩大的写集**（tasks.json 同步）：`packages/data/src/build/town-plan/__tests__/plan-building.test.ts`（只改断言 p0 盒子方案的旧用例）、`packages/data/src/build/town-plan/types.ts`（只把 `TownBuildingPlan.finial` 定为可选 `'tang_stupa'`）、`packages/data/src/schemas/town-scene.ts`（`TownBuildingPlanSchema` 加 `finial: z.enum(['tang_stupa']).optional()`）与 `packages/data/src/region-map-town.test.ts`（对应用例）。
+- **变体与塔刹（协调者裁定，tech/15 §2.3、tech/16 §4.3 已同步）**：`planBuilding(..., options?)` 的 `options.variant` 由编译器按 `city-kits.yaml` 传入；启用 `tang_buddhist` 时，被禁的穹顶寺院 / 官署改攒尖、其他改平顶；只有寺院（`facility === 'temple'` 或寺院类 archetype）写 `finial: 'tang_stupa'`，官署与民居、店铺、客栈、摊位、院落一律不写；生成的每栋方案必须能被严格的 `TownBuildingPlanSchema` 解析。门净高 / 门槛不序列化、按尺寸档规则推出（导出纯函数），报告登记为已知契约缺口。
 - 纯整数：不得用浮点参与尺寸、不得用 `/`（用 `floorDivInt` / `ceilDivInt`）、不得用三角函数 / `sqrt` / `pow` / `random` / `Date`；不新增依赖；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
 
 检查：
