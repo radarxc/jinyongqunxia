@@ -20,6 +20,7 @@
 
 ## 约束
 - 只写：`content/common/economy/**`、`content/shops/**`、`content/town/facilities/**`、`content/town/facility-dialogues.yaml`、`content/story/ch01/story_ch01_facility.*`、`content/story/ch10/story_ch10_facility.*`、`content/locales/zh-Hans/town-facilities.yaml` 与本任务报告。不改代码、不改布局与 `assets/**`、不改已有剧情。
+- **协调者 10-11 r2 返修裁定**：① **货单可按年代分版本**：设施条目本就逐个用 `shop.templateRef` 指定模板，凡跨年代凑不出合理货单的店类（至少铁匠；其他店类审核指出问题时同理），新建 `content/shops/shop_tpl_<sub>_tang.yaml` 供 ch10 两城（702 年唐西州、同时代的南诏大理）用，原 `shop_tpl_<sub>.yaml` 供 ch01 北宋大理用；设施文件按城市年代引用对应模板；不得新造物品 ID，现有物品库凑不足 6 行的唐代变体可少于 6 行并在报告第 4 节登记。② 马市对白只宣称货单里真实有的东西。③ 杂货供货行 `priceBp` 恢复 10000，`shopMul=1.05 / outlet=0.80` 的按店类买卖倍率登记为 core 接口缺口（报告第 6 节），不要借供货行倍率表达。④ 报告第 7 节测试向量分别覆盖买价与卖价。
 - 沙箱里 `pnpm content:*` 若因 tsx socket 被拒跑不了，照实写进报告，交校验阶段跑；不要改 `node_modules`。
 
 检查：
