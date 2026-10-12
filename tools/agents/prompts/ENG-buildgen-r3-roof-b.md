@@ -37,6 +37,10 @@
   - 方翘头底 = 正脊顶，高 550；
   - 殿堂鸱尾自正脊端脊脚起，顶 = 正脊顶 + 1100（tech/16 900–1300 取中值）；
   - 攒尖宝顶仍以 `roof[2]` 为顶。
+- **格式**（r8 审核后补）：
+  - r3 新建或整体由 r3 写的文件（`roof/{corner,hip,xieshan,pyramid,rolled,dome,ornaments}.ts`、`roof/index.ts`、`roof-b.test.ts`）必须通过 `prettier --check`。
+  - `hall.ts`、`hall.test.ts` 的基点本身就没按 Prettier 排版：整文件格式化分别要改 8 行和 253 行，而 r3 只改其中 1–2 行。按 r6 审核「只做定点修改」的要求保持最小 diff，不整文件重排，只要求 r3 改动的行合乎格式。
+  - `roof/patch.ts` 属 r2，不在本任务处理。
 
 ## 约束
 - 只写：`packages/render/src/buildgen/mesher/roof/{hip,xieshan,pyramid,rolled,dome,corner,ornaments}.ts`、`packages/render/src/buildgen/mesher/roof/index.ts`（只改分派注册）、`packages/render/src/buildgen/__tests__/roof-b.test.ts` 与本任务报告。不改 r2 的 `profile / patch / gable / flat / canopy / ridge / shell` 实现（若接口确需扩充，只加可选参数并在报告说明）；不改屋身部件、配方、`core/**`。
