@@ -161,4 +161,8 @@ describe('town asset publication', () => {
       ),
     ).resolves.toBe('strip-512');
   });
+
+  it('publishes in the dev server as well as in builds (no build-only apply)', () => {
+    expect(townAssetsPlugin().apply).toBeUndefined();
+  });
 });

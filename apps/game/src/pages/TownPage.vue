@@ -16,6 +16,7 @@ import { createZoomController, TOWN_ZOOM_OPTIONS } from '../input/zoom';
 import { createV1AssembledMinimapMarkers, createV1CameraBasis, dispatchV1MinimapTravel,
   createPaintedMinimapMarkers, generateV1MinimapBitmap, loadV1ActiveTaskNpcIds,
   loadV1PaintedMinimapWithFallback,
+  v1MinimapLayoutKey,
   v1TownPointToWorld, v1PlayerHeadingRad, v1WorldToImageMatrix, writeV1Path,
   writeV1ViewQuad } from '../explore/v1-minimap';
 import { V1_MINIMAP_STRINGS } from '../explore/v1-minimap.strings';
@@ -317,8 +318,7 @@ function createMinimapCanvas(): void {
 }
 async function loadPaintedMinimap(): Promise<void> {
   const definition = runtime.value; if (!definition) return;
-  const chapterId = 'chapterId' in definition ? String(definition.chapterId) : 'ch01';
-  const key = `${definition.cityId}__${chapterId}`; const token = ++minimapLoadToken;
+  const key = v1MinimapLayoutKey(definition); const token = ++minimapLoadToken;
   const painted = await loadV1PaintedMinimapWithFallback(
     key, asset('assets/default/town-minimap'), scheduleMinimapCanvas, fetch, createImageBitmap,
     () => token === minimapLoadToken && runtime.value === definition);
@@ -624,7 +624,8 @@ onBeforeUnmount(() => {
 }
 .town-minimap {
   position: absolute;
-  top: 92px;
+  /* below the topbar's time · place · money line so the 司南 on the disc's upper-left stays visible */
+  top: 132px;
   right: 38px;
   z-index: 20;
 }
