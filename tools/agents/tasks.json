@@ -30235,7 +30235,9 @@
     "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
     "packages/data/src/build/town-plan/types.ts",
     "packages/data/src/schemas/town-scene.ts",
-    "packages/data/src/region-map-town.test.ts"
+    "packages/data/src/region-map-town.test.ts",
+    "packages/render/src/buildgen/types.ts",
+    "apps/game/src/town-contract.test.ts"
    ],
    "validate": {
     "exists": [
@@ -31656,8 +31658,7 @@
     "packages/render/src/buildgen/mesher/parts/iwan.ts",
     "packages/render/src/buildgen/mesher/parts/trellis.ts",
     "packages/render/src/buildgen/mesher/parts/brick-lattice.ts",
-    "packages/render/src/buildgen/__tests__/adobe.test.ts",
-    "packages/render/src/buildgen/types.ts"
+    "packages/render/src/buildgen/__tests__/adobe.test.ts"
    ],
    "validate": {
     "exists": [
