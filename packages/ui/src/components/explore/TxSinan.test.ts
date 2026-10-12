@@ -23,6 +23,21 @@ describe('TxSinan', () => {
     expect(wrapper.emitted('toggle')).toHaveLength(1);
   });
 
+  it('points painted south within one degree and does not toggle in read-only mode', async () => {
+    const basis = new Float32Array([Math.SQRT1_2, -Math.SQRT1_2,
+      -Math.SQRT1_2 / 2, -Math.SQRT1_2 / 2]);
+    const imageSouth = [-0.89442719, 0.4472136] as const;
+    const worldSouth = [0, 1] as const;
+    const angle = sinanSouthAngleRad(worldSouth, basis, false);
+    const expected = Math.atan2(imageSouth[1], imageSouth[0]);
+    expect(Math.abs(angle - expected) * 180 / Math.PI).toBeLessThanOrEqual(1);
+    const wrapper = mount(TxSinan, { props: { south: worldSouth, basis, northUp: true, interactive: false } });
+    const button = wrapper.get('button');
+    expect(button.attributes('aria-label')).toBe(TX_SINAN_STRINGS.paintedLabel);
+    expect(button.attributes('aria-pressed')).toBeUndefined();
+    await button.trigger('click'); expect(wrapper.emitted('toggle')).toBeUndefined();
+  });
+
   it('routes the plate, spoon, ticks and patina through theme variables with defaults', () => {
     const wrapper = mount(TxSinan, { props: { south: [0, 1], basis: null, northUp: false } });
     expect(wrapper.get('#tx-bronze stop').attributes('stop-color'))

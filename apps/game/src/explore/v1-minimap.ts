@@ -1,8 +1,10 @@
 import type { TownCommand, TownPoint } from '@tianshu/core';
+import type { FacilityKind } from '@tianshu/data/schemas';
 import type { TownRuntimeView, TownScene, TownSceneProjection } from '@tianshu/render/town';
 import { townHexToWorld, townWorldToHex } from '@tianshu/render/town';
 import type { MinimapTravelTarget } from '@tianshu/ui/components/explore/TxMinimap.vue';
 import { V1_MINIMAP_STRINGS as strings } from './v1-minimap.strings';
+import { facilityPresentation } from './v1-context-actions';
 
 export const V1_MINIMAP_METRES_PER_PX = 0.25;
 export const V1_MINIMAP_MAX_SIDE_PX = 640;
@@ -39,6 +41,10 @@ export interface TownMinimapMetadata {
     readonly entrance?: readonly [number, number] }[];
 }
 export interface V1PaintedMinimap { readonly metadata: TownMinimapMetadata; readonly bitmap: ImageBitmap }
+export interface V1FacilityMarkerProjection {
+  readonly key: string; readonly kind: FacilityKind; readonly name?: string;
+  readonly buildingId?: string;
+}
 
 const scratchWorld = { x: 0, y: 0, z: 0, set(x: number, y: number, z: number) {
   this.x = x; this.y = y; this.z = z; return this;
@@ -295,11 +301,17 @@ export function createV1AssembledMinimapMarkers(
   painted: readonly V1MinimapMarker[] | null,
   characterNames: ReadonlyMap<string, string> = new Map(),
   taskNpcIds: ReadonlySet<string> = new Set(),
+  facility: V1FacilityMarkerProjection | null = null,
 ): readonly V1MinimapMarker[] {
   const runtime = createV1MinimapMarkers(town, projection, characterNames, taskNpcIds);
-  return painted === null ? runtime : [
+  const assembled = painted === null ? runtime : [
     ...painted, ...runtime.filter(marker => marker.kind === 'npc'),
   ];
+  if (!facility) return assembled;
+  const presentation = facilityPresentation(facility.kind, facility.name);
+  return assembled.map(marker => marker.id === facility.key ||
+    (marker.target.kind === 'building' && marker.target.buildingId === facility.buildingId)
+    ? { ...marker, kind: 'facility' as const, ...presentation } : marker);
 }
 
 export function v1TravelCommand(

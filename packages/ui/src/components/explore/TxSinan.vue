@@ -3,8 +3,9 @@ import { computed } from 'vue';
 import { sinanSouthAngleRad } from '../../explore/sinan-math';
 import { TX_SINAN_STRINGS as strings } from './TxSinan.strings';
 
-const props = defineProps<{ readonly south: readonly [number, number];
-  readonly basis: Float32Array | null; readonly northUp: boolean; readonly revision?: number }>();
+const props = withDefaults(defineProps<{ readonly south: readonly [number, number];
+  readonly basis: Float32Array | null; readonly northUp: boolean; readonly revision?: number;
+  readonly interactive?: boolean }>(), { interactive: true, revision: 0 });
 const emit = defineEmits<{ toggle: [] }>();
 const spoonTransform = computed(() =>
   `rotate(${(props.revision ?? 0) * 0 + sinanSouthAngleRad(props.south, props.basis, props.northUp)}rad)`);
@@ -12,8 +13,11 @@ const spoonTransform = computed(() =>
 
 <template>
   <button
-    type="button" class="sinan" :title="strings.label" :aria-label="strings.label"
-    :aria-pressed="northUp" @click="emit('toggle')"
+    type="button" class="sinan" :class="{ static: interactive === false }"
+    :title="interactive === false ? strings.paintedLabel : strings.label"
+    :aria-label="interactive === false ? strings.paintedLabel : strings.label"
+    :aria-pressed="interactive === false ? undefined : northUp"
+    @click="interactive !== false && emit('toggle')"
   >
     <svg viewBox="0 0 48 48" aria-hidden="true">
       <defs>
@@ -44,6 +48,7 @@ const spoonTransform = computed(() =>
 
 <style scoped>
 .sinan { width: 44px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.sinan.static { cursor: default; }
 svg { width: 40px; height: 40px; display: block; filter: drop-shadow(0 2px 2px color-mix(in srgb, var(--ink, #241b12) 40%, transparent)); }
 .earth-plate { stroke: var(--sinan-outline, #59431f); }
 .heaven-well { fill: var(--sinan-well, #977743); stroke: var(--sinan-outline, #59431f); }

@@ -205,6 +205,16 @@ describe('v1 minimap adapter', () => {
     expect(createV1MinimapMarkers(base, projection)[0]!.label).toBe('店铺');
   });
 
+  it('projects the current facility name and kind icon onto its minimap marker', () => {
+    const painted = createPaintedMinimapMarkers(daliMetadata as never);
+    const assembled = createV1AssembledMinimapMarkers(daliRuntime as never, projection, painted,
+      new Map(), new Set(), { key: 'yaopu_01', kind: 'clinic', name: '苍山医馆',
+        buildingId: 'bi_0023' });
+    expect(assembled.find(marker => marker.id === 'yaopu_01')).toMatchObject({
+      kind: 'facility', icon: '医', label: '苍山医馆', target: { kind: 'point' },
+    });
+  });
+
   it.each([false, true])('dispatches the same canvas point through townCommand when northUp=%s', (northUp) => {
     const basis = createV1CameraBasis(); const view = { centerX: 8, centerZ: 4, metresPerPx: 0.25,
       sizePx: 200, northUp, basis };

@@ -20,6 +20,17 @@
 - 摊位：无墙三角（外壳缓冲中没有立面掩码为墙的大面）；柜台高 850 ±5；`floors = []` 时不报 INV-3。
 - 三角数在 tech/16 §6.5 预算内（两层店 5,000 / 2,400、客栈 6,500 / 3,000、摊 600 / 300，报告列实测）；同输入哈希稳定。
 
+## 协调者裁定（2026-10-12，r3 合入后；审核以此为准）
+- **上层屋顶**：只走正式 `roofMesherFor(plan.roof[0])`，删除实心盒兜底。
+- **屋顶高度语义沿用 r3 的裁定**：
+  - `roof[2]` 是不含脊饰的正脊顶；
+  - 瓦面脊脚 = `roof[2]` − 主脊体。主脊体按规划器 `ridgeBodyMm`：两层及以上 450，殿堂 650，其余 350；
+  - 大理方翘头立在正脊之上，高 550 mm；
+  - 所以 r4 的高度断言分层检查正脊层、瓦面层、脊饰层，不能用「整批最高点 = `roof[2]`」。
+- **摊位**：
+  - 站位（ID ≥ 200，零尺寸、不阻挡）只是人物元数据，网格器不要求必须有；规划器给出的正式摊位 `fixtures: []`，必须能直接构网；
+  - 测试里的站位只用 schema 合法的零尺寸元组。
+
 ## 约束
 - 只写：`packages/render/src/buildgen/mesher/recipes/{storeyed,stall}.ts`、`packages/render/src/buildgen/mesher/parts/{balcony,pent-eave,awning}.ts`、`packages/render/src/buildgen/mesher/recipes/index.ts`（只改这两个配方的注册行）、`packages/render/src/buildgen/__tests__/storeyed.test.ts` 与本任务报告。
 - 不改 r1 的部件（`parts/{platform,steps,columns,beams,walls,frames,brackets,dressing}.ts`）与 `recipes/hall.ts`、不改屋顶实现（`roof/**`）、不改 `core/**`；需要的扩展只加可选参数并在报告说明，且不得改变 hall 现有测试结果。

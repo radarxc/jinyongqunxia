@@ -26,6 +26,22 @@
 - 滴水高 = `roof[1]` ±10 mm、正脊 / 宝顶顶 = `roof[2]` ±10 mm；滴水外缘离占地边 ≥ 40 mm（翼角冲出后仍满足 INV-1）。
 - 三角数在 tech/16 §6.5 预算内（寺殿 LOD0 屋顶部分 ≤ 预算的屋顶份额，报告列实测）；屋顶顶点全在屋顶缓冲且单元号正确；同输入哈希稳定。
 
+## 协调者裁定（2026-10-12，r7 审核后；审核以此为准）
+- **主脊体高度与规划器一致**：
+  - 歇山、庑殿的瓦面脊脚 = `roof[2]` − 主脊体，主脊体用规划器 `ridgeBodyMm(size, storeys)` 同一规则：殿堂 650、两层及以上 450、其余 350。
+  - 单层 middle（赌坊、庄、仓、厩、大宅、镖局）因此取 350，低于 tech/16 §3 表的 middle 400–500。这是规划器的既有偏差，网格器必须与规划器一致，否则结构举高与 `roof[2]` 的来源对不上。
+  - 改 450 要规划器与网格器同步改，由协调者另行处理，不在本任务内，也不算本任务偏离。
+  - 「middle 450」用两层客栈（inn，middle，两层）验证。
+- **斗拱**：按规划器公式。`brackets: true` 时出跳 450 mm、沉降 45 mm：檐檩 = 滴水 + 出檐 × 0.4 − 40 + 45，结构半跨 = 滴水半进深 − 出檐 + 450。寺殿 12×10 金样从输出顶点量：檐檩 5100，四檩 +2733 / 1549 / 638 / 0。
+- **脊饰在正脊之上**：
+  - 方翘头底 = 正脊顶，高 550；
+  - 殿堂鸱尾自正脊端脊脚起，顶 = 正脊顶 + 1100（tech/16 900–1300 取中值）；
+  - 攒尖宝顶仍以 `roof[2]` 为顶。
+- **格式**（r8 审核后补）：
+  - r3 新建或整体由 r3 写的文件（`roof/{corner,hip,xieshan,pyramid,rolled,dome,ornaments}.ts`、`roof/index.ts`、`roof-b.test.ts`）必须通过 `prettier --check`。
+  - `hall.ts`、`hall.test.ts` 的基点本身就没按 Prettier 排版：整文件格式化分别要改 8 行和 253 行，而 r3 只改其中 1–2 行。按 r6 审核「只做定点修改」的要求保持最小 diff，不整文件重排，只要求 r3 改动的行合乎格式。
+  - `roof/patch.ts` 属 r2，不在本任务处理。
+
 ## 约束
 - 只写：`packages/render/src/buildgen/mesher/roof/{hip,xieshan,pyramid,rolled,dome,corner,ornaments}.ts`、`packages/render/src/buildgen/mesher/roof/index.ts`（只改分派注册）、`packages/render/src/buildgen/__tests__/roof-b.test.ts` 与本任务报告。不改 r2 的 `profile / patch / gable / flat / canopy / ridge / shell` 实现（若接口确需扩充，只加可选参数并在报告说明）；不改屋身部件、配方、`core/**`。
 - **协调者 10-11 r2 返修裁定扩大的写集**（tasks.json 同步）：`packages/render/src/buildgen/mesher/recipes/hall.ts`——只把屋顶调用改回 `roofMesherFor(plan.roof[0])(plan, unit, sink, { kit, lod })`（集成热修 6208f945d 为避开一条测试临时去掉了 `kit`，导致真实链路起翘 / 脊饰退化为 0）；`packages/render/src/buildgen/__tests__/hall.test.ts`——只修「mulberry32 seed covers dimension, side and offset boundary combinations」那条用例的随机方案，使 `roof[1] / roof[2]` 与随机占地自洽（用 r2 导出的剖面函数按套件 `dims` 求，或固定进深只变面宽并注释原因），不删用例、不放宽断言；整栋预算（tech/16 §6.5，寺殿 9,000 / 4,000）用 `generateCells()` 实测，报告写整栋数字，不把整栋预算说成「屋顶份额」。`index.ts` 仍只改分派表与必要导入，不得写附着盒之类的补偿几何。

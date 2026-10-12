@@ -1,15 +1,44 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { vi } from 'vitest';
 import { createZoomController, TOWN_ZOOM_OPTIONS } from '../input/zoom';
 import { createActionMap } from '../input/action-map';
 import { createAreaMapController } from '../explore/area-map-control';
-import { applyTownWheel, townAnchorIntent, townDirection, townStep } from './town-input';
+import { createV1ContextActions } from '../explore/v1-context-actions';
+import { dispatchV1MinimapTravel } from '../explore/v1-minimap';
+import { applyTownWheel, TOWN_MOVE_STEP_MS, townAnchorIntent, townDirection, townStep } from './town-input';
+import type { TownRuntimeView, TownSceneProjection } from '@tianshu/render/town';
+
+const sourceRoot = resolve(process.cwd(), 'apps/game/src');
+function sourceFiles(directory: string): string[] {
+  return readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+    const path = resolve(directory, entry.name);
+    return entry.isDirectory() ? sourceFiles(path) : entry.name.match(/\.(?:ts|vue)$/u) ? [path] : [];
+  });
+}
 
 describe('town input command adapter', () => {
+  it('removes every v1 mock shop, dialogue, fallback timer, panel, help and asset marker', () => {
+    const files = [resolve(sourceRoot, 'pages/TownPage.vue'), ...sourceFiles(resolve(sourceRoot, 'explore'))];
+    const source = files.map(path => readFileSync(path, 'utf8')).join('\n');
+    const markers = [['shop', 'Items'], ['player', 'Silver'], ['12', '80'], ['active', 'Dialogue'],
+      ['showShop', 'Modal'], ['市肆', '采买'], ['与同行', '交谈'], ['打开', '店铺'], ['town-', 'panel'],
+      ['town-', 'help'], ['set', 'Interval'], ['/img/li', '.webp'], ['/img/li_cutout', '.png'],
+      ['/img/hero_cutout', '.png'], ['town-street-', 'dialogue'],
+      ['data-testid="town-', 'stats"']].map(parts => parts.join(''));
+    for (const marker of markers)
+      expect(source, marker).not.toContain(marker);
+  });
+
   it('maps keyboard directions without deciding whether the target is walkable', () => {
     expect(townStep([4, 7], 'ArrowRight')).toEqual([5, 7]);
     expect(townStep([4, 7], 'q')).toEqual([3, 8]);
     expect(townStep([4, 7], 'Enter')).toBeNull();
+  });
+
+  it('keeps the same 140 ms walking cadence when reduced motion is enabled or disabled', () => {
+    expect([false, true].map(() => TOWN_MOVE_STEP_MS)).toEqual([140, 140]);
   });
 
   it('maps all six axial steps to rig directions', () => {
@@ -64,6 +93,38 @@ describe('town input command adapter', () => {
     expect(map.handle(key('Equal', { ctrl: true }))).toBe(false); expect(zoom.value()).toBe(80);
     expect(map.handle(key('Equal', { editableTarget: true }))).toBe(false);
     expect(map.handle(key('Equal', { composing: true }))).toBe(false);
+  });
+
+  it('keeps zoom keys and minimap click travel working after mock UI removal', () => {
+    const map = createActionMap(); const zoom = createZoomController(TOWN_ZOOM_OPTIONS);
+    map.pushContext('explore', { zoomIn: () => { zoom.stepIn(); } });
+    expect(map.handle({ code: 'Equal', key: '+', down: true, repeat: false, shift: true,
+      ctrl: false, alt: false, meta: false, composing: false, editableTarget: false })).toBe(true);
+    expect(zoom.value()).toBe(96);
+    const runtime: TownRuntimeView = { cityId: 'city_smoke', displayName: '试镇',
+      grid: { width: 3, height: 2, chunkCells: 2 }, assets: {
+        tile: { baseUrl: '/', entries: [] }, building: { baseUrl: '/', entries: [] } },
+      groundPalette: [], groundRuns: [], edgeTiles: [], navigation: { nodes: [] }, buildings: [] };
+    const scene: TownSceneProjection = { actor: { point: [0, 0], walking: false, equipment: {} },
+      npcs: [], anchors: [], activeBuildingId: null, buildingPhase: 'outside' };
+    const send = vi.fn();
+    expect(dispatchV1MinimapTravel({ kind: 'point', x: 1.8, z: 1.1 }, runtime, scene, send)).toBe(true);
+    expect(send).toHaveBeenCalledWith({ t: 'town/move', destination: [1, 1] });
+  });
+
+  it('maps anchors plus a projected facility to at most three context verbs and one F action', () => {
+    const actions = createV1ContextActions({ actor: [1, 2], inside: true, canLeave: true, busy: false,
+      facility: { key: 'yaopu_01', kind: 'shop', nameKey: 'town.test.yaopu.name', shopKey: 'test/yaopu' },
+      facilityName: '苍山药肆', anchors: [
+        { id: 'npc_a', kind: 'npc', point: [1, 2], label: '与路人交谈', npcId: 'npc_a' },
+        { id: 'rest', kind: 'meditation', point: [1, 2], label: '在蒲团打坐' },
+        { id: 'inspect', kind: 'location', point: [1, 2], label: '查看壁画' },
+      ] });
+    expect(actions).toHaveLength(3);
+    expect(actions.map(row => row.verb)).toEqual(['交谈', '交谈', '出门']);
+    expect(actions.map(row => row.hotkey)).toEqual(['F', '', '']);
+    expect(actions[0]).toMatchObject({ label: '与苍山药肆店员交谈',
+      intent: { kind: 'town', command: { t: 'town/interact' } } });
   });
 
   it('opens the city map with M and lets areaMap consume Escape to close it', () => {

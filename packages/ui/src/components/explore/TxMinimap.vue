@@ -2,8 +2,11 @@
 /* global Event, HTMLElement, HTMLCanvasElement, CanvasRenderingContext2D, HTMLInputElement, KeyboardEvent, PointerEvent,
   ResizeObserver, clearTimeout, getComputedStyle, setTimeout, window */
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
-import { hitMarker, minimapToWorld, worldToMinimap } from '../../explore/minimap-math';
+import { fitPaintedMinimap, hitMarker, minimapToWorld, writePaintedMinimapBasis }
+  from '../../explore/minimap-math';
 import type { MinimapView } from '../../explore/minimap-math';
+import { placeMinimapLabels } from '../../explore/minimap-labels';
+import type { MinimapLabelPlacement } from '../../explore/minimap-labels';
 import { drawMinimapBase, drawMinimapOverlay, projectMinimapMarkers } from '../../explore/minimap-painter';
 import type { MarkerTarget, MinimapBase, MinimapDestination, MinimapMarker, MinimapOverlay,
   MinimapPaintContext, MinimapPalette, MinimapPlayer } from '../../explore/minimap-painter';
@@ -33,22 +36,26 @@ const baseCanvas = ref<HTMLCanvasElement | null>(null);
 const overlayCanvas = ref<HTMLCanvasElement | null>(null);
 const hoveredMarker = shallowRef<MinimapMarker | null>(null);
 const focusedMarker = shallowRef<MinimapMarker | null>(null);
-const expandedSize = ref(640);
+const expandedWidth = ref(640);
+const expandedHeight = ref(640);
 const narrowViewport = ref(false);
 const coarsePointer = ref(false);
+const pixelRatio = ref(1);
 const mapStampHitPx = computed(() => coarsePointer.value ? 60 : 44);
 const controlGutterPx = computed(() => props.expanded ? 0 : coarsePointer.value ? 62 : 54);
 const redrawRevision = ref(0);
-const canvasSize = computed(() => props.expanded ? expandedSize.value
-  : narrowViewport.value ? 132 : props.sizePx);
+const paintedMode = computed(() => props.base?.worldToImage !== undefined);
+const collapsedSize = computed(() => narrowViewport.value ? 132 : props.sizePx);
+const canvasWidth = computed(() => props.expanded ? expandedWidth.value : collapsedSize.value);
+const canvasHeight = computed(() => props.expanded ? expandedHeight.value : collapsedSize.value);
+const backingWidth = computed(() => Math.max(1, Math.round(canvasWidth.value * pixelRatio.value)));
+const backingHeight = computed(() => Math.max(1, Math.round(canvasHeight.value * pixelRatio.value)));
 const facilityMarkers = computed(() => props.markers.filter(
   marker => marker.kind !== 'npc' && marker.kind !== 'quest' && marker.kind !== 'meditation'));
 const nearestMarkers = computed(() => {
-  const revision = redrawRevision.value;
-  void revision;
   if (props.expanded) return props.markers;
   if (props.player === null) return props.markers.slice(0, 3);
-  return [...props.markers].filter(marker => marker.kind !== 'npc')
+  return [...props.markers]
     .sort((left, right) => (left.x - props.player!.x) ** 2 + (left.z - props.player!.z) ** 2
       - (right.x - props.player!.x) ** 2 - (right.z - props.player!.z) ** 2).slice(0, 3);
 });
@@ -61,21 +68,24 @@ const southWorld = computed<readonly [number, number]>(() => {
   return [x / length, z / length];
 });
 const view: MinimapView = { centerX: 0, centerZ: 0, metresPerPx: 0.25, sizePx: 1,
-  northUp: false, basis: null };
+  widthPx: 1, heightPx: 1, pixelRatio: 1, northUp: false, basis: null };
 const overlay: { player: MinimapPlayer | null; viewQuad: Float32Array | null;
   markers: readonly MinimapMarker[]; path: Float32Array | null;
   destination: MinimapDestination | null } = {
     player: null, viewQuad: null, markers: [], path: null, destination: null,
   };
 let markerXY = new Float32Array(16);
+const paintedBasis = new Float32Array(4);
+const paintedCenter = new Float32Array(2);
 const worldPoint = new Float32Array(2);
 const pointerPoint = new Float32Array(2);
-let pointerScale = 1;
+let pointerScaleX = 1; let pointerScaleY = 1;
 let dwellTimer: ReturnType<typeof setTimeout> | undefined;
 let dwellTarget: MarkerTarget | null = null;
 let lastBase: MinimapBase | null = null;
 let lastCenterX = Number.NaN; let lastCenterZ = Number.NaN; let lastMpp = Number.NaN;
-let lastSize = Number.NaN; let lastNorthUp = false;
+let lastWidth = Number.NaN; let lastHeight = Number.NaN; let lastPixelRatio = Number.NaN;
+let lastNorthUp = false;
 let lastBasis0 = Number.NaN; let lastBasis1 = Number.NaN;
 let lastBasis2 = Number.NaN; let lastBasis3 = Number.NaN;
 let lastQuad0 = Number.NaN; let lastQuad1 = Number.NaN;
@@ -87,6 +97,14 @@ let palette: MinimapPalette = { paper: '#efe6d2', paperSilk: '#e3d3b1', ink: '#1
   markerShop: '#9a5735', markerInn: '#2f6e8e', markerSacred: '#b5382b', markerCivic: '#1e1b18' };
 let resizeObserver: ResizeObserver | undefined;
 let basisFrame: number | undefined;
+const labelPlacements = shallowRef<readonly MinimapLabelPlacement[]>([]);
+let lastLabelMarkers: readonly MinimapMarker[] | null = null;
+let lastLabelCandidates: readonly MinimapMarker[] | null = null;
+let lastLabelCenterX = Number.NaN; let lastLabelCenterZ = Number.NaN;
+let lastLabelMpp = Number.NaN; let lastLabelWidth = Number.NaN; let lastLabelHeight = Number.NaN;
+let lastLabelNorthUp = false;
+let lastLabelBasis0 = Number.NaN; let lastLabelBasis1 = Number.NaN;
+let lastLabelBasis2 = Number.NaN; let lastLabelBasis3 = Number.NaN;
 
 function growMarkerBuffer(): void {
   const required = props.markers.length * 2;
@@ -99,30 +117,19 @@ function syncView(): void {
   view.centerX = props.player?.x ?? props.destination?.x ?? 0;
   view.centerZ = props.player?.z ?? props.destination?.z ?? 0;
   view.metresPerPx = 1 / Math.min(7, Math.max(2.5, props.zoomPxPerMetre / 16));
-  view.sizePx = canvasSize.value; view.northUp = props.northUp;
-  view.basis = props.basis;
-  if (props.expanded && props.base?.worldToImage !== undefined) {
-    const [a, b, c, d, e, f] = props.base.worldToImage; const determinant = a * d - b * c;
-    const image = props.base.bitmap; const width = image.width; const height = image.height;
-    const unproject = (px: number, py: number): readonly [number, number] => [
-      (d * (px - e) - c * (py - f)) / determinant,
-      (-b * (px - e) + a * (py - f)) / determinant,
-    ];
-    const corners = [unproject(0, 0), unproject(width, 0), unproject(width, height),
-      unproject(0, height)];
-    const xs = corners.map(point => point[0]); const zs = corners.map(point => point[1]);
-    const minX = Math.min(...xs); const maxX = Math.max(...xs);
-    const minZ = Math.min(...zs); const maxZ = Math.max(...zs);
-    view.centerX = (minX + maxX) / 2; view.centerZ = (minZ + maxZ) / 2;
-    const basis = view.basis;
-    const rx = view.northUp || basis === null ? 1 : basis[0]!;
-    const rz = view.northUp || basis === null ? 0 : basis[1]!;
-    const ux = view.northUp || basis === null ? 0 : basis[2]!;
-    const uz = view.northUp || basis === null ? -1 : basis[3]!;
-    const right = corners.map(point => point[0] * rx + point[1] * rz);
-    const up = corners.map(point => point[0] * ux + point[1] * uz);
-    view.metresPerPx = Math.max(Math.max(...right) - Math.min(...right),
-      Math.max(...up) - Math.min(...up)) / Math.max(1, view.sizePx - 24);
+  view.sizePx = Math.min(canvasWidth.value, canvasHeight.value);
+  view.widthPx = canvasWidth.value; view.heightPx = canvasHeight.value;
+  view.pixelRatio = pixelRatio.value;
+  view.northUp = props.northUp; view.basis = props.basis;
+  if (props.base?.worldToImage !== undefined) {
+    const matrix = props.base.worldToImage;
+    writePaintedMinimapBasis(matrix, paintedBasis);
+    view.basis = paintedBasis; view.northUp = false;
+    if (props.expanded) {
+      view.metresPerPx = fitPaintedMinimap(matrix, props.base.bitmap.width, props.base.bitmap.height,
+        canvasWidth.value, canvasHeight.value, 12, paintedCenter);
+      view.centerX = paintedCenter[0]!; view.centerZ = paintedCenter[1]!;
+    }
   }
   overlay.player = props.player; overlay.viewQuad = props.viewQuad; overlay.markers = props.markers;
   overlay.path = props.path; overlay.destination = props.destination;
@@ -134,13 +141,15 @@ function canvasContext(canvas: HTMLCanvasElement | null): CanvasRenderingContext
 function baseViewChanged(): boolean {
   const basis = view.basis;
   return lastBase !== props.base || lastCenterX !== view.centerX || lastCenterZ !== view.centerZ
-    || lastMpp !== view.metresPerPx || lastSize !== view.sizePx || lastNorthUp !== view.northUp
+    || lastMpp !== view.metresPerPx || lastWidth !== view.widthPx || lastHeight !== view.heightPx
+    || lastPixelRatio !== view.pixelRatio || lastNorthUp !== view.northUp
     || lastBasis0 !== (basis?.[0] ?? 0) || lastBasis1 !== (basis?.[1] ?? 0)
     || lastBasis2 !== (basis?.[2] ?? 0) || lastBasis3 !== (basis?.[3] ?? 0);
 }
 function rememberBaseView(): void {
   const basis = view.basis; lastBase = props.base; lastCenterX = view.centerX; lastCenterZ = view.centerZ;
-  lastMpp = view.metresPerPx; lastSize = view.sizePx; lastNorthUp = view.northUp;
+  lastMpp = view.metresPerPx; lastWidth = view.widthPx!; lastHeight = view.heightPx!;
+  lastPixelRatio = view.pixelRatio!; lastNorthUp = view.northUp;
   lastBasis0 = basis?.[0] ?? 0; lastBasis1 = basis?.[1] ?? 0;
   lastBasis2 = basis?.[2] ?? 0; lastBasis3 = basis?.[3] ?? 0;
 }
@@ -149,21 +158,22 @@ function redraw(): void {
   if (baseViewChanged()) {
     const context = canvasContext(baseCanvas.value);
     if (context !== null) {
-      context.setTransform(1, 0, 0, 1, 0, 0); context.clearRect(0, 0, view.sizePx, view.sizePx);
+      context.setTransform(1, 0, 0, 1, 0, 0); context.clearRect(0, 0, backingWidth.value, backingHeight.value);
       drawMinimapBase(context as MinimapPaintContext, view, props.base);
     }
     rememberBaseView();
   }
   const context = canvasContext(overlayCanvas.value);
   if (context !== null) {
-    context.setTransform(1, 0, 0, 1, 0, 0); context.clearRect(0, 0, view.sizePx, view.sizePx);
+    context.setTransform(1, 0, 0, 1, 0, 0); context.clearRect(0, 0, backingWidth.value, backingHeight.value);
     drawMinimapOverlay(context as MinimapPaintContext, view, overlay as MinimapOverlay, markerXY, palette);
   }
+  updateLabelPlacements();
   rememberViewQuad();
   redrawRevision.value += 1;
 }
 function basisContentsChanged(): boolean {
-  if (props.northUp) return false;
+  if (paintedMode.value || props.northUp) return false;
   const basis = props.basis;
   return lastBasis0 !== (basis?.[0] ?? 0) || lastBasis1 !== (basis?.[1] ?? 0)
     || lastBasis2 !== (basis?.[2] ?? 0) || lastBasis3 !== (basis?.[3] ?? 0);
@@ -183,6 +193,7 @@ function rememberViewQuad(): void {
   lastQuad6 = quad?.[6] ?? 0; lastQuad7 = quad?.[7] ?? 0;
 }
 function pollBasisContents(): void {
+  updatePixelRatio();
   if (basisContentsChanged() || viewQuadContentsChanged()) redraw();
   basisFrame = window.requestAnimationFrame(pollBasisContents);
 }
@@ -205,24 +216,39 @@ function updateExpandedSize(): void {
   if (!props.expanded) return;
   const rect = root.value?.getBoundingClientRect();
   const width = rect && rect.width > 0 ? rect.width : window.innerWidth;
-  const height = rect && rect.height > 0 ? rect.height : window.innerHeight;
-  const reservedWidth = width <= 844 ? 196 : 312;
+  const topInset = width <= 844 ? 84 : 112;
+  const height = rect && rect.height > 0 ? rect.height : window.innerHeight - topInset;
+  const reservedWidth = width <= 844 ? 212 : 344;
   const reservedHeight = width <= 844 ? 24 : 48;
-  expandedSize.value = Math.max(1, Math.floor(Math.min(width - reservedWidth, height - reservedHeight)));
+  const availableWidth = Math.max(1, Math.floor(width - reservedWidth));
+  const availableHeight = Math.max(1, Math.floor(height - reservedHeight));
+  if (paintedMode.value) {
+    expandedWidth.value = availableWidth; expandedHeight.value = availableHeight;
+  } else {
+    expandedWidth.value = Math.min(availableWidth, availableHeight);
+    expandedHeight.value = expandedWidth.value;
+  }
 }
-function updateViewportMode(): void { narrowViewport.value = window.innerWidth <= 844; }
+function updatePixelRatio(): void {
+  const next = Math.min(window.devicePixelRatio || 1, 2);
+  if (pixelRatio.value !== next) pixelRatio.value = next;
+}
+function updateViewportMode(): void {
+  narrowViewport.value = window.innerWidth <= 844; updatePixelRatio(); updateExpandedSize();
+}
 function eventCanvasPoint(event: PointerEvent): void {
   const rect = overlayCanvas.value?.getBoundingClientRect();
   if (rect === undefined || rect.width <= 0 || rect.height <= 0) {
-    pointerScale = 1; pointerPoint[0] = event.offsetX; pointerPoint[1] = event.offsetY; return;
+    pointerScaleX = 1; pointerScaleY = 1;
+    pointerPoint[0] = event.offsetX; pointerPoint[1] = event.offsetY; return;
   }
-  pointerScale = view.sizePx / rect.width;
-  pointerPoint[0] = (event.clientX - rect.left) * pointerScale;
-  pointerPoint[1] = (event.clientY - rect.top) * view.sizePx / rect.height;
+  pointerScaleX = canvasWidth.value / rect.width; pointerScaleY = canvasHeight.value / rect.height;
+  pointerPoint[0] = (event.clientX - rect.left) * pointerScaleX;
+  pointerPoint[1] = (event.clientY - rect.top) * pointerScaleY;
 }
 function markerAtEvent(event: PointerEvent): MinimapMarker | null {
   syncView(); eventCanvasPoint(event);
-  const radius = (event.pointerType === 'touch' ? 60 : 44) * pointerScale;
+  const radius = (event.pointerType === 'touch' ? 60 : 44) * Math.max(pointerScaleX, pointerScaleY);
   const index = hitMarker(pointerPoint[0]!, pointerPoint[1]!, markerXY, props.markers.length, radius);
   return index < 0 ? null : props.markers[index]!;
 }
@@ -240,6 +266,7 @@ function beginHover(marker: MinimapMarker | null): void {
   if (marker !== null) {
     dwellTarget = marker.target; dwellTimer = setTimeout(emitDwell, 300);
   }
+  void nextTick(updateLabelPlacements);
 }
 function handlePointerMove(event: PointerEvent): void { beginHover(markerAtEvent(event)); }
 function handlePointerLeave(): void { beginHover(null); }
@@ -259,23 +286,43 @@ function markerDescription(marker: MinimapMarker): string {
   const dx = marker.x - props.player.x; const dz = marker.z - props.player.z;
   return minimapDistanceText(marker.label, Math.sqrt(dx * dx + dz * dz));
 }
-const labelledMarkers = computed(() => {
+const destinationMarker = computed(() => {
+  if (props.destination === null || props.markers.length === 0) return null;
+  let nearest: MinimapMarker | null = null; let nearestDistance = Number.POSITIVE_INFINITY;
+  for (const marker of props.markers) {
+    const distance = Math.hypot(marker.x - props.destination.x, marker.z - props.destination.z);
+    if (distance < nearestDistance) { nearest = marker; nearestDistance = distance; }
+  }
+  return nearestDistance <= 16 ? nearest : null;
+});
+const labelCandidates = computed(() => {
   const result = [...nearestMarkers.value];
   if (hoveredMarker.value !== null && !result.includes(hoveredMarker.value)) result.push(hoveredMarker.value);
   if (focusedMarker.value !== null && !result.includes(focusedMarker.value)) result.push(focusedMarker.value);
-  if (props.destination !== null && props.markers.length > 0) {
-    const destination = [...props.markers].sort((left, right) =>
-      Math.hypot(left.x - props.destination!.x, left.z - props.destination!.z)
-      - Math.hypot(right.x - props.destination!.x, right.z - props.destination!.z))[0];
-    if (destination && Math.hypot(destination.x - props.destination.x,
-      destination.z - props.destination.z) <= 16 && !result.includes(destination)) result.push(destination);
-  }
+  if (destinationMarker.value !== null && !result.includes(destinationMarker.value))
+    result.push(destinationMarker.value);
   return result;
 });
-function markerLabelStyle(marker: MinimapMarker): Record<string, string> {
-  const revision = redrawRevision.value; void revision;
-  syncView(); worldToMinimap(marker.x, marker.z, view, pointerPoint);
-  return { left: `${pointerPoint[0]! + 12}px`, top: `${pointerPoint[1]! - 10}px` };
+function updateLabelPlacements(): void {
+  const candidates = labelCandidates.value; const basis = view.basis;
+  if (lastLabelMarkers === props.markers && lastLabelCandidates === candidates
+      && lastLabelCenterX === view.centerX && lastLabelCenterZ === view.centerZ
+      && lastLabelMpp === view.metresPerPx && lastLabelWidth === canvasWidth.value
+      && lastLabelHeight === canvasHeight.value && lastLabelNorthUp === view.northUp
+      && lastLabelBasis0 === (basis?.[0] ?? 0)
+      && lastLabelBasis1 === (basis?.[1] ?? 0) && lastLabelBasis2 === (basis?.[2] ?? 0)
+      && lastLabelBasis3 === (basis?.[3] ?? 0)) return;
+  const selected = new Set(candidates.map(marker => marker.id));
+  const highlighted = new Set([hoveredMarker.value?.id, focusedMarker.value?.id]
+    .filter((id): id is string => id !== undefined));
+  labelPlacements.value = placeMinimapLabels(props.markers, markerXY, selected,
+    canvasWidth.value, canvasHeight.value, destinationMarker.value?.id, highlighted);
+  lastLabelMarkers = props.markers; lastLabelCandidates = candidates;
+  lastLabelCenterX = view.centerX; lastLabelCenterZ = view.centerZ; lastLabelMpp = view.metresPerPx;
+  lastLabelWidth = canvasWidth.value; lastLabelHeight = canvasHeight.value;
+  lastLabelNorthUp = view.northUp;
+  lastLabelBasis0 = basis?.[0] ?? 0; lastLabelBasis1 = basis?.[1] ?? 0;
+  lastLabelBasis2 = basis?.[2] ?? 0; lastLabelBasis3 = basis?.[3] ?? 0;
 }
 function handleSliderInput(event: Event): void {
   emit('setZoom', Number((event.target as HTMLInputElement).value));
@@ -287,18 +334,20 @@ function handleSliderKey(event: KeyboardEvent): void {
   event.preventDefault();
   emit('setZoom', Math.min(112, Math.max(40, Math.round(props.zoomPxPerMetre) + direction)));
 }
-function focusMarker(marker: MinimapMarker): void { focusedMarker.value = marker; }
+function focusMarker(marker: MinimapMarker): void {
+  focusedMarker.value = marker; void nextTick(updateLabelPlacements);
+}
 function blurMarker(marker: MinimapMarker): void {
-  if (focusedMarker.value === marker) focusedMarker.value = null;
+  if (focusedMarker.value === marker) { focusedMarker.value = null; void nextTick(updateLabelPlacements); }
 }
 watch([
   () => props.base, () => props.player, () => props.basis, () => props.viewQuad,
   () => props.markers, () => props.path, () => props.destination, () => props.northUp,
-  () => props.expanded, canvasSize, () => props.zoomPxPerMetre,
+  () => props.expanded, canvasWidth, canvasHeight, pixelRatio, () => props.zoomPxPerMetre,
 ], () => { updateExpandedSize(); void nextTick(redraw); }, { flush: 'post' });
 
 onMounted(() => {
-  readPalette(); updateViewportMode();
+  readPalette(); updateViewportMode(); updatePixelRatio();
   coarsePointer.value = window.matchMedia?.('(pointer: coarse)').matches === true;
   updateExpandedSize(); redraw();
   window.addEventListener('resize', updateViewportMode);
@@ -316,26 +365,39 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section ref="root" class="minimap-shell" :class="{ expanded }" :aria-label="strings.label">
+  <section
+    ref="root" class="minimap-shell"
+    :class="{ expanded, painted: paintedMode, 'expanded-painted': expanded && paintedMode }"
+    :aria-label="strings.label"
+  >
     <div class="map-column" :style="{ paddingRight: `${controlGutterPx}px` }">
-      <div ref="mapDisk" class="map-disk" :style="{ width: `${canvasSize}px`, height: `${canvasSize}px` }">
-        <canvas ref="baseCanvas" class="map-layer" :width="canvasSize" :height="canvasSize" aria-hidden="true" />
+      <div
+        ref="mapDisk" class="map-disk"
+        :style="{ boxSizing: 'content-box', width: `${canvasWidth}px`, height: `${canvasHeight}px` }"
+      >
         <canvas
-          ref="overlayCanvas" class="map-layer map-interactive" :width="canvasSize"
-          :height="canvasSize" :aria-label="strings.label" @pointermove="handlePointerMove"
+          ref="baseCanvas" class="map-layer" :width="backingWidth" :height="backingHeight"
+          aria-hidden="true"
+        />
+        <canvas
+          ref="overlayCanvas" class="map-layer map-interactive" :width="backingWidth"
+          :height="backingHeight" :aria-label="strings.label" @pointermove="handlePointerMove"
           @pointerleave="handlePointerLeave" @pointerup="handlePointerUp"
         />
         <TxSinan
-          class="map-sinan" :south="southWorld" :basis="basis"
-          :north-up="northUp" :revision="redrawRevision" @toggle="emit('toggleNorthUp')"
+          class="map-sinan" :south="southWorld" :basis="paintedMode ? paintedBasis : basis"
+          :north-up="paintedMode ? false : northUp" :interactive="!paintedMode"
+          :revision="redrawRevision" @toggle="emit('toggleNorthUp')"
         />
         <span
-          v-for="marker in labelledMarkers" :key="`label-${marker.id}`"
-          class="marker-name" :style="markerLabelStyle(marker)"
-        >{{ marker.label }}</span>
+          v-for="placement in labelPlacements" :key="`label-${placement.marker.id}`"
+          class="marker-name" :data-marker-id="placement.marker.id"
+          :style="{ left: `${placement.left}px`, top: `${placement.top}px`,
+                    width: `${placement.width}px`, height: `${placement.height}px` }"
+        >{{ placement.marker.label }}</span>
         <div class="zoom-bar">
           <button
-            type="button" :aria-label="strings.zoomIn"
+            type="button" :aria-label="strings.zoomIn" :title="strings.zoomIn"
             :style="{ width: `${mapStampHitPx}px`, minWidth: `${mapStampHitPx}px`,
                       height: `${mapStampHitPx}px`, minHeight: `${mapStampHitPx}px` }"
             @click="emit('zoom', 1)"
@@ -355,7 +417,7 @@ onBeforeUnmount(() => {
             >
           </div>
           <button
-            type="button" :aria-label="strings.zoomOut"
+            type="button" :aria-label="strings.zoomOut" :title="strings.zoomOut"
             :style="{ width: `${mapStampHitPx}px`, minWidth: `${mapStampHitPx}px`,
                       height: `${mapStampHitPx}px`, minHeight: `${mapStampHitPx}px` }"
             @click="emit('zoom', -1)"
@@ -416,7 +478,7 @@ onBeforeUnmount(() => {
   --tx-minimap-marker-civic: var(--minimap-marker-civic, var(--ink, #1e1b18));
   position: relative; display: flex; gap: 24px; color: var(--ink-text); }
 .map-column { position: relative; }
-.map-disk { position: relative; max-width: min(100%, 100vmin); max-height: min(100%, 100vmin);
+.map-disk { position: relative; box-sizing: content-box; max-width: min(100%, 100vmin); max-height: min(100%, 100vmin);
   border: 2px solid var(--minimap-bronze); outline: 1px solid color-mix(in srgb, var(--paper) 80%, white);
   outline-offset: -4px; border-radius: 50%; overflow: visible; isolation: isolate; background: var(--paper);
   box-shadow: inset 0 0 24px 9px color-mix(in srgb, var(--ink) 18%, transparent),
@@ -439,19 +501,28 @@ onBeforeUnmount(() => {
   width: 48px; display: grid; justify-items: center; }
 .zoom-bar button { width: 44px; height: 44px; border: 0; background: transparent; color: var(--ink); font-size: 24px; }
 .slider-wrap { position: relative; width: 44px; height: 120px; }
-.zoom-slider { appearance: slider-vertical; writing-mode: vertical-lr; direction: rtl; position: absolute; inset: 0;
+.zoom-slider { writing-mode: vertical-lr; direction: rtl; position: absolute; inset: 0;
   width: 44px; height: 120px; margin: 0; accent-color: var(--minimap-jade); cursor: ns-resize; }
 .zoom-slider::-webkit-slider-runnable-track { width: 4px; background: var(--minimap-bronze); }
 .zoom-slider::-webkit-slider-thumb { appearance: none; width: 14px; height: 14px; margin-left: -5px;
   border: 1px solid #526b55; border-radius: 50%; background: var(--minimap-jade); box-shadow: inset 0 0 2px white; }
 .zoom-tick { position: absolute; z-index: -1; left: 13px; width: 18px; height: 1px; background: var(--minimap-bronze); }
-.marker-name { position: absolute; z-index: 6; padding: 2px 5px; pointer-events: none; white-space: nowrap;
-  color: var(--ink-text); background: color-mix(in srgb, var(--paper) 82%, transparent); font-size: 12px; }
+.marker-name { position: absolute; z-index: 6; box-sizing: border-box; padding: 2px 5px;
+  pointer-events: none; white-space: nowrap; overflow: hidden;
+  color: var(--ink-text); background: color-mix(in srgb, var(--paper) 82%, transparent);
+  font-size: 12px; line-height: 16px; }
 .marker-tooltip { position: absolute; z-index: 6; left: 50%; bottom: 10%; transform: translateX(-50%);
   padding: 6px 10px; white-space: nowrap; color: var(--ink-text); background: color-mix(in srgb, var(--paper) 90%, transparent); }
-.expanded { position: fixed; z-index: 40; inset: 0; justify-content: center; align-items: center; padding: 24px;
+.minimap-shell.expanded { position: fixed; z-index: 40; top: var(--tx-hud-top-inset, 112px) !important;
+  right: 0; bottom: 0; left: 0;
+  justify-content: center; align-items: center; padding: 24px;
   background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(6px); }
 .expanded .map-disk { max-width: calc(100vw - 328px); max-height: calc(100vh - 48px); }
+.expanded-painted .map-disk { max-width: none; max-height: none; border-radius: 14px; }
+.expanded-painted .map-disk::after { border-radius: 14px; background: linear-gradient(90deg,
+  color-mix(in srgb, var(--ink) 12%, transparent), transparent 4%, transparent 96%,
+  color-mix(in srgb, var(--ink) 12%, transparent)); }
+.expanded-painted .map-layer { border-radius: 12px; clip-path: inset(0 round 12px); }
 .map-sidebar { align-self: stretch; width: 240px; max-height: calc(100vh - 48px); overflow: auto; padding: 16px;
   background: color-mix(in srgb, var(--paper) 82%, transparent); }
 .map-sidebar h2 { margin: 8px 0; font-size: 20px; }
@@ -460,7 +531,8 @@ onBeforeUnmount(() => {
   border: 0; background: transparent; }
 .empty { color: var(--ink-medium); }
 @media (max-width: 844px) {
-  .expanded { padding: 12px; gap: 12px; } .expanded .map-disk { max-width: calc(100vw - 208px); }
+  .expanded { --tx-hud-top-inset: 84px; padding: 12px; gap: 12px; }
+  .expanded .map-disk { max-width: calc(100vw - 208px); }
   .map-sidebar { width: 160px; max-height: calc(100vh - 24px); padding: 8px; }
 }
 @media (pointer: coarse) { .zoom-bar button, .map-controls .map-stamp { width: 60px; height: 60px; }

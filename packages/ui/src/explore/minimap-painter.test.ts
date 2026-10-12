@@ -4,6 +4,8 @@ import { describe, expect, it } from 'vitest';
 import { drawMinimapBase, drawMinimapOverlay, projectMinimapMarkers } from './minimap-painter';
 import type { MinimapOverlay, MinimapPaintContext, MinimapPalette } from './minimap-painter';
 import type { MinimapView } from './minimap-math';
+import daliMetadata from '../../../../assets/default/town-minimap/city_dali__ch01.json';
+import linanMetadata from '../../../../assets/default/town-minimap/city_hangzhou__ch02.json';
 
 class RecordingContext implements MinimapPaintContext {
   fillStyle = ''; lineWidth = 1; globalAlpha = 1; font = '';
@@ -47,6 +49,11 @@ const overlay: MinimapOverlay = {
     target: { kind: 'building', buildingId: 'bi_inn' } }],
   path: new Float32Array([0, 0, 3, -2, 6, -4]), destination: { x: 6, z: -4 },
 };
+function metadataMatrix(metadata: typeof daliMetadata): readonly [number, number, number, number, number, number] {
+  const scale = metadata.transform.scale;
+  return [32 * scale, 16 * scale, -32 * scale, 16 * scale,
+    32 * metadata.transform.gridHeight * scale, metadata.transform.topPaddingPx];
+}
 
 describe('minimap painter', () => {
   it('positions and rotates the generated base bitmap with the current view', () => {
@@ -61,20 +68,46 @@ describe('minimap painter', () => {
     drawMinimapBase(context, view, null); expect(context.images).toBe(1);
   });
 
-  it('draws a painted affine with the player centred and changes matrix for north-up', () => {
+  it('still rotates the abstract grid between camera and north-up modes', () => {
+    const base = { bitmap: {} as HTMLCanvasElement, minX: -10, minZ: -20, metresPerPx: 0.25 };
+    const north = new RecordingContext(); drawMinimapBase(north, view, base);
+    const camera = new RecordingContext(); drawMinimapBase(camera, { ...view, northUp: false,
+      basis: new Float32Array([0, 1, 1, 0]) }, base);
+    expect(camera.transforms.slice(-6)).not.toEqual(north.transforms.slice(-6));
+  });
+
+  it.each([
+    ['Dali', metadataMatrix(daliMetadata)],
+    ['Linan', metadataMatrix(linanMetadata)],
+  ])('draws the %s painted affine with a similarity transform', (_name, matrix) => {
     const base = { bitmap: {} as HTMLCanvasElement, minX: 0, minZ: 0, metresPerPx: 1,
-      worldToImage: [8, 4, -8, 4, 768, 130.75] as const };
+      worldToImage: matrix };
+    const norm = Math.hypot(matrix[0], matrix[2]);
     const playerView: MinimapView = { centerX: 12, centerZ: 9, metresPerPx: 0.2,
-      sizePx: 200, northUp: true, basis: new Float32Array([0, 1, 1, 0]) };
-    const north = new RecordingContext(); drawMinimapBase(north, playerView, base);
-    expect(north.transforms.slice(-6)).toEqual([0.3125, -0.3125, 0.625, 0.625,
-      expect.closeTo(-281.71875, 6), expect.closeTo(213.28125, 6)]);
+      sizePx: 200, northUp: false, basis: new Float32Array([matrix[0] / norm, matrix[2] / norm,
+        -matrix[1] / norm, -matrix[3] / norm]) };
+    const context = new RecordingContext(); drawMinimapBase(context, playerView, base);
+    const [a, b, c, d] = context.transforms.slice(-6);
+    expect(a).toBeCloseTo(d!, 6); expect(b).toBeCloseTo(-c!, 6);
     const markerOut = new Float32Array(2);
     projectMinimapMarkers([{ ...overlay.markers[0]!, x: 12, z: 9 }], playerView, markerOut);
     expect(Array.from(markerOut)).toEqual([100, 100]);
-    const camera = new RecordingContext(); drawMinimapBase(camera,
-      { ...playerView, northUp: false }, base);
-    expect(camera.transforms.slice(-6)).not.toEqual(north.transforms.slice(-6));
+  });
+
+  it('projects a view quadrilateral to an axis-aligned rectangle in painted basis', () => {
+    const paintedView: MinimapView = { centerX: 0, centerZ: 0, metresPerPx: 1, sizePx: 200,
+      northUp: false, basis: new Float32Array([Math.SQRT1_2, -Math.SQRT1_2,
+        -Math.SQRT1_2 / 2, -Math.SQRT1_2 / 2]) };
+    const worldQuad = new Float32Array([-28.284271, 0, 0, -28.284271,
+      28.284271, 0, 0, 28.284271]);
+    const context = new RecordingContext();
+    drawMinimapOverlay(context, paintedView, { ...overlay, player: null, path: null,
+      destination: null, markers: [], viewQuad: worldQuad }, new Float32Array(0), palette);
+    const coordinates = [...context.moves, ...context.lines];
+    const xs = coordinates.filter((_, index) => index % 2 === 0);
+    const ys = coordinates.filter((_, index) => index % 2 === 1);
+    expect(new Set(xs.map(value => Math.round(value)))).toEqual(new Set([80, 120]));
+    expect(new Set(ys.map(value => Math.round(value)))).toEqual(new Set([90, 110]));
   });
 
   it('projects markers into a caller-owned buffer', () => {

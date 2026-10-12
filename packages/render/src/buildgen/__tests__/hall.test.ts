@@ -318,7 +318,8 @@ describe('hall recipe body', () => {
     for (let index = 0; index < 16; index += 1) {
       const side = Math.floor(random() * 4) as 0 | 1 | 2 | 3;
       const width = 6_000 + Math.floor(random() * 4_000);
-      const depth = 5_400 + Math.floor(random() * 2_600);
+      // Keep depth fixed because roof[1]/roof[2] are the source plan's depth-derived goldens.
+      const depth = source.footprint[3];
       const across = side % 2 === 0 ? width : depth;
       const offset = Math.round((random() * 2 - 1) * Math.min(300, across / 2 - 900));
       const plan = yawPlan({ ...source, footprint: [0, 0, width, depth], entrances: [[side, offset, 1_200]] }, index % 4 as Yaw4);

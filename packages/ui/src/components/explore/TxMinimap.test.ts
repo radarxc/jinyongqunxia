@@ -1,12 +1,14 @@
 import { mount } from '@vue/test-utils';
 import { nextTick } from 'vue';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { minimapToWorld } from '../../explore/minimap-math';
+import { minimapToWorld, worldToMinimap } from '../../explore/minimap-math';
 import type { MinimapMarker } from '../../explore/minimap-painter';
 import TxMinimap from './TxMinimap.vue';
 import { TX_MINIMAP_STRINGS } from './TxMinimap.strings';
+import daliMetadata from '../../../../../assets/default/town-minimap/city_dali__ch01.json';
 
 const initialInnerWidth = window.innerWidth;
+const initialDevicePixelRatio = window.devicePixelRatio;
 const marker: MinimapMarker = { id: 'inn', kind: 'facility', x: 8.8, z: 0, icon: '客', label: '客栈',
   target: { kind: 'building', buildingId: 'bi_inn' } };
 const base = { bitmap: document.createElement('canvas'), minX: -100, minZ: -100, metresPerPx: 1 };
@@ -15,12 +17,22 @@ function props(overrides: Record<string, unknown> = {}) {
     markers: [marker] as readonly MinimapMarker[], path: null, destination: null, northUp: true,
     expanded: false, sizePx: 200, zoomPxPerMetre: 80, ...overrides };
 }
+function rect(width: number, height: number): DOMRect {
+  return { x: 0, y: 0, left: 0, top: 0, width, height, right: width, bottom: height,
+    toJSON: () => undefined };
+}
 function setCanvasRect(canvas: HTMLCanvasElement): void {
   canvas.getBoundingClientRect = () => {
-    const size = Number(canvas.getAttribute('width'));
-    return { x: 0, y: 0, left: 0, top: 0, width: size, height: size, right: size, bottom: size,
-      toJSON: () => undefined };
+    const parent = canvas.parentElement as HTMLElement;
+    const width = Number.parseFloat(parent.style.width);
+    const height = Number.parseFloat(parent.style.height);
+    return rect(width, height);
   };
+}
+function setProductionBoxRects(disk: HTMLElement, canvas: HTMLCanvasElement,
+  width: number, height: number): void {
+  disk.getBoundingClientRect = () => rect(width + 4, height + 4);
+  canvas.getBoundingClientRect = () => rect(width, height);
 }
 function pointer(canvas: HTMLCanvasElement, type: string, x: number, y: number, pointerType = 'mouse'): void {
   canvas.dispatchEvent(new PointerEvent(type, { bubbles: true, clientX: x, clientY: y, pointerType }));
@@ -34,6 +46,7 @@ function recordingContext() {
 afterEach(() => {
   vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.useRealTimers(); document.body.innerHTML = '';
   Object.defineProperty(window, 'innerWidth', { configurable: true, value: initialInnerWidth });
+  Object.defineProperty(window, 'devicePixelRatio', { configurable: true, value: initialDevicePixelRatio });
 });
 
 describe('TxMinimap travel interaction', () => {
@@ -97,24 +110,25 @@ describe('TxMinimap presentation and accessibility', () => {
     await wrapper.setProps({ zoomPxPerMetre: 91 });
     await slider.trigger('keydown', { key: 'ArrowUp' });
     expect(wrapper.emitted('setZoom')).toEqual([[91], [92]]);
-    await wrapper.get('[aria-label="放大小地图"]').trigger('click');
-    await wrapper.get('[aria-label="缩小小地图"]').trigger('click');
+    await wrapper.get('[aria-label="放大主画面"]').trigger('click');
+    await wrapper.get('[aria-label="缩小主画面"]').trigger('click');
     expect(wrapper.emitted('zoom')).toEqual([[1], [-1]]);
     await wrapper.setProps({ zoomPxPerMetre: 96 });
     expect(slider.attributes('aria-valuenow')).toBe('96');
   });
 
-  it('shows nearest three marker names and every name in the expanded city map', async () => {
+  it('considers nearest three names and every expanded marker while dropping collisions', async () => {
     const markers = Array.from({ length: 5 }, (_, index): MinimapMarker => ({ ...marker,
       id: `place-${index}`, label: `地点${index}`, x: index * 10,
       target: { kind: 'building', buildingId: `bi_${index}` } }));
     const wrapper = mount(TxMinimap, { props: props({ markers }) });
-    expect(wrapper.findAll('.marker-name').map(item => item.text())).toEqual(['地点0', '地点1', '地点2']);
-    await wrapper.findAll('[role=list] button')[4]!.trigger('focus');
+    await nextTick();
     expect(wrapper.findAll('.marker-name').map(item => item.text()))
-      .toEqual(['地点0', '地点1', '地点2', '地点4']);
+      .toEqual(expect.arrayContaining(['地点0', '地点1']));
+    await wrapper.findAll('[role=list] button')[4]!.trigger('focus');
+    expect(wrapper.findAll('[role=list] button')[4]!.text()).toContain('地点4');
     await wrapper.setProps({ expanded: true });
-    expect(wrapper.findAll('.marker-name')).toHaveLength(5);
+    expect(wrapper.findAll('[role=list] button')).toHaveLength(5);
   });
 
   it('uses one 132px coordinate space for canvases, marker labels and pointer hits', async () => {
@@ -124,13 +138,46 @@ describe('TxMinimap presentation and accessibility', () => {
     const canvases = wrapper.findAll('canvas');
     expect(canvases.map(item => item.attributes('width'))).toEqual(['132', '132']);
     expect(wrapper.get('.map-disk').attributes('style')).toContain('width: 132px');
-    expect(wrapper.get('.marker-name').attributes('style')).toContain('left: 122px');
+    expect(wrapper.get('.marker-name').attributes('style')).toContain('left: 63px');
     const canvas = wrapper.get('canvas.map-interactive').element as HTMLCanvasElement;
     setCanvasRect(canvas); pointer(canvas, 'pointerup', 110, 66);
     expect(wrapper.emitted('travel')).toEqual([[marker.target]]);
   });
 
-  it('keeps non-facility names on the expanded map but excludes them from the facility list', () => {
+  it('uses the bordered desktop content box for DPR 2 and keeps clicks in CSS pixels', async () => {
+    Object.defineProperty(window, 'devicePixelRatio', { configurable: true, value: 2 });
+    const wrapper = mount(TxMinimap, { props: props() }); await nextTick();
+    const disk = wrapper.get<HTMLElement>('.map-disk').element;
+    const canvases = wrapper.findAll<HTMLCanvasElement>('canvas');
+    for (const layer of canvases) setProductionBoxRects(disk, layer.element, 200, 200);
+    const canvas = wrapper.get('canvas.map-interactive').element as HTMLCanvasElement;
+    expect(disk.style.boxSizing).toBe('content-box');
+    expect(disk.getBoundingClientRect().width).toBe(204);
+    for (const layer of canvases) {
+      expect(layer.element.width).toBe(layer.element.getBoundingClientRect().width * 2);
+      expect(layer.element.height).toBe(layer.element.getBoundingClientRect().height * 2);
+    }
+    pointer(canvas, 'pointerup', 170, 150);
+    const expected = new Float32Array(2);
+    minimapToWorld(170, 150, { centerX: 0, centerZ: 0, metresPerPx: 0.2, sizePx: 200,
+      northUp: true, basis: null }, expected);
+    expect(wrapper.emitted('travel')).toEqual([[{ kind: 'point', x: expected[0], z: expected[1] }]]);
+  });
+
+  it('rebuilds backing pixels when the screen DPR changes', async () => {
+    const callbacks: FrameRequestCallback[] = [];
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => {
+      callbacks.push(callback); return callbacks.length;
+    });
+    Object.defineProperty(window, 'devicePixelRatio', { configurable: true, value: 1 });
+    const wrapper = mount(TxMinimap, { props: props() });
+    expect(wrapper.get('canvas').attributes('width')).toBe('200');
+    Object.defineProperty(window, 'devicePixelRatio', { configurable: true, value: 2 });
+    callbacks.shift()!(0); await nextTick();
+    expect(wrapper.get('canvas').attributes('width')).toBe('400');
+  });
+
+  it('keeps squeezed names in the accessible list and excludes non-facilities from facilities', () => {
     const npc: MinimapMarker = { id: 'npc-task', kind: 'npc', x: 2, z: 3, icon: '任',
       label: '任务人物', target: { kind: 'anchor', anchorId: 'anchor_npc_task' } };
     const quest = { ...npc, id: 'quest', kind: 'quest' as const, label: '任务地' };
@@ -138,8 +185,9 @@ describe('TxMinimap presentation and accessibility', () => {
     const wrapper = mount(TxMinimap, {
       props: props({ markers: [marker, npc, quest, meditation], expanded: true }),
     });
-    expect(wrapper.findAll('.marker-name').map(item => item.text()))
-      .toEqual(['客栈', '任务人物', '任务地', '静坐处']);
+    expect(wrapper.findAll('[role=list] button').map(item => item.text()))
+      .toEqual(expect.arrayContaining([expect.stringContaining('任务人物'), expect.stringContaining('任务地'),
+        expect.stringContaining('静坐处')]));
     expect(wrapper.findAll('.facility-list button').map(item => item.text()))
       .toEqual(['客客栈']);
   });
@@ -192,6 +240,28 @@ describe('TxMinimap presentation and accessibility', () => {
     expect(wrapper.get('.spoon').attributes('style')).not.toBe(beforeCompass);
   });
 
+  it('repositions abstract-map labels with badges when north-up changes', async () => {
+    const basis = new Float32Array([0, 1, 1, 0]);
+    const wrapper = mount(TxMinimap, { props: props({ northUp: false, basis }) });
+    await nextTick();
+    const assertPosition = (northUp: boolean): void => {
+      const projected = new Float32Array(2);
+      worldToMinimap(marker.x, marker.z, { centerX: 0, centerZ: 0, metresPerPx: 0.2, sizePx: 200,
+        northUp, basis }, projected);
+      const label = wrapper.get('[data-marker-id="inn"]').element as HTMLElement;
+      const left = Number.parseFloat(label.style.left); const top = Number.parseFloat(label.style.top);
+      const width = Number.parseFloat(label.style.width); const height = Number.parseFloat(label.style.height);
+      expect(left).toBeCloseTo(projected[0]! + 13);
+      expect(top).toBeCloseTo(projected[1]! - 10);
+      const overlapsBadge = left < projected[0]! + 10 && left + width > projected[0]! - 10
+        && top < projected[1]! + 10 && top + height > projected[1]! - 10;
+      expect(overlapsBadge).toBe(false);
+    };
+    assertPosition(false);
+    await wrapper.setProps({ northUp: true }); await nextTick(); await nextTick();
+    assertPosition(true);
+  });
+
   it('redraws only the overlay after in-place viewQuad mutation', async () => {
     const callbacks: FrameRequestCallback[] = [];
     vi.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => {
@@ -214,7 +284,7 @@ describe('TxMinimap presentation and accessibility', () => {
     expect(overlayContext.moveTo.mock.calls[overlayMoves]).toEqual([0, -50]);
   });
 
-  it('switches painted-map rotation with north-up and keeps the sinan linked', async () => {
+  it('keeps painted-map transform and read-only sinan identical across north-up values', async () => {
     const basis = new Float32Array([0, 1, 1, 0]);
     const baseContext = recordingContext(); const overlayContext = recordingContext();
     vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockImplementation(function (this: HTMLCanvasElement) {
@@ -224,17 +294,65 @@ describe('TxMinimap presentation and accessibility', () => {
       south: [-0.89442719, 0.4472136] as const };
     const wrapper = mount(TxMinimap, { props: props({ base: painted, northUp: false,
       expanded: true, basis }) });
+    await nextTick();
     expect(wrapper.classes()).toContain('expanded');
     const cameraMatrix = baseContext.setTransform.mock.calls.at(-1);
     const cameraSinan = wrapper.get('.spoon').attributes('style');
     await wrapper.setProps({ northUp: true }); await nextTick();
-    expect(baseContext.setTransform.mock.calls.at(-1)).not.toEqual(cameraMatrix);
-    expect(wrapper.get('.spoon').attributes('style')).not.toBe(cameraSinan);
+    expect(baseContext.setTransform.mock.calls.at(-1)).toEqual(cameraMatrix);
+    expect(wrapper.get('.spoon').attributes('style')).toBe(cameraSinan);
+    const sinan = wrapper.get('[aria-label="司南：勺柄指南（缩影按镜头视角绘制）"]');
+    expect(sinan.attributes('aria-pressed')).toBeUndefined();
+    await sinan.trigger('click'); expect(wrapper.emitted('toggleNorthUp')).toBeUndefined();
     const facility = wrapper.get('.facility-list button');
     expect(facility.text()).toContain(marker.label);
     await facility.trigger('keydown', { key: 'Enter' });
     expect(wrapper.emitted('travel')).toEqual([[marker.target]]);
     await facility.trigger('click'); expect(wrapper.emitted('travel')).toHaveLength(2);
+  });
+
+  it('uses a DPR 2 rectangular contain viewport for the expanded painted map below the HUD', async () => {
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: 1280 });
+    Object.defineProperty(window, 'innerHeight', { configurable: true, value: 800 });
+    Object.defineProperty(window, 'devicePixelRatio', { configurable: true, value: 2 });
+    const painted = { ...base, bitmap: Object.assign(document.createElement('canvas'),
+      { width: 1536, height: 899 }), worldToImage: [8, 4, -8, 4, 768, 130.75] as const,
+      south: [-0.89442719, 0.4472136] as const };
+    const wrapper = mount(TxMinimap, { props: props({ base: painted, expanded: true }) });
+    await nextTick();
+    expect(wrapper.classes()).toContain('expanded-painted');
+    const disk = wrapper.get<HTMLElement>('.map-disk');
+    expect(disk.attributes('style')).toContain('width: 936px');
+    expect(disk.attributes('style')).toContain('height: 640px');
+    const canvases = wrapper.findAll<HTMLCanvasElement>('canvas');
+    for (const layer of canvases) {
+      setProductionBoxRects(disk.element, layer.element, 936, 640);
+      expect(layer.element.width).toBe(layer.element.getBoundingClientRect().width * 2);
+      expect(layer.element.height).toBe(layer.element.getBoundingClientRect().height * 2);
+    }
+  });
+
+  it('hides squeezed Dali label text but retains it in the facility list', async () => {
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: 1280 });
+    Object.defineProperty(window, 'innerHeight', { configurable: true, value: 800 });
+    const matrix = [8, 4, -8, 4, 768, 130.75] as const;
+    const markers = daliMetadata.markers.map((row): MinimapMarker => {
+      const [pixelX, pixelY] = row.px;
+      const imageX = pixelX! - matrix[4]; const imageY = pixelY! - matrix[5];
+      const x = (matrix[3] * imageX - matrix[2] * imageY) / 64;
+      const z = (-matrix[1] * imageX + matrix[0] * imageY) / 64;
+      return { id: row.id, kind: row.kind as MinimapMarker['kind'], x, z, icon: row.glyph,
+        label: row.name, target: { kind: 'point', x, z } };
+    });
+    const painted = { ...base, bitmap: Object.assign(document.createElement('canvas'),
+      { width: daliMetadata.image.width, height: daliMetadata.image.height }),
+    worldToImage: matrix, south: [daliMetadata.south[0]!, daliMetadata.south[1]!] as const };
+    const wrapper = mount(TxMinimap, { props: props({ base: painted, markers, expanded: true }) });
+    await nextTick();
+    expect(wrapper.findAll('.marker-name')).toHaveLength(15);
+    expect(wrapper.find('[data-marker-id="mashi_01"]').exists()).toBe(false);
+    expect(wrapper.findAll('.facility-list button').map(item => item.text()))
+      .toEqual(expect.arrayContaining([expect.stringContaining('苍洱马市')]));
   });
 
   it('renders control and legend copy from the minimap strings module', () => {
@@ -289,8 +407,8 @@ describe('TxMinimap presentation and accessibility', () => {
       viewQuad: new Float32Array([0, 0, 1, 0, 1, 1, 0, 1]) });
     const beforeMarker = JSON.stringify(marker); const beforePath = Array.from(path);
     const wrapper = mount(TxMinimap, { props: inputProps });
-    await wrapper.get('[aria-label="放大小地图"]').trigger('click');
-    await wrapper.get('[aria-label="缩小小地图"]').trigger('click');
+    await wrapper.get('[aria-label="放大主画面"]').trigger('click');
+    await wrapper.get('[aria-label="缩小主画面"]').trigger('click');
     await wrapper.get('[aria-label="展开全城图（M）"]').trigger('click');
     await wrapper.get('[aria-label="司南：勺柄指南"]').trigger('click');
     expect(wrapper.emitted('zoom')).toEqual([[1], [-1]]);

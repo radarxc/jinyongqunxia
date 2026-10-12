@@ -76,10 +76,10 @@ export const hallRecipe: Recipe = (plan, unit, kit, lod, sink) => {
   if (plan.storeys !== 1) throw new RangeError('BUILDGEN_HALL_REQUIRES_ONE_STOREY');
   const { heights } = emitHallBody(plan, unit, kit, lod, sink);
   try {
-    roofMesherFor(plan.roof[0])(plan, unit, sink, { lod });
+    roofMesherFor(plan.roof[0])(plan, unit, sink, { kit, lod });
   } catch (error) {
-    // Transitional: r2 owns yingshan / xuanshan / flat / canopy; r3's styles (xieshan, wudian,
-    // cuanjian, juanpeng, dome) still throw BUILDGEN_ROOF_PENDING:<style> until r3 lands.
+    // Compatibility only: every legal style now has a formal mesher (r2 + r3); the catch keeps
+    // the box fallback for deliberately incomplete callers (no roof sink / future pending codes).
     if (
       !(error instanceof Error) ||
       (error.message !== 'BUILDGEN_NOT_IMPLEMENTED:roofMesher' &&

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { compassAngleRad, hitMarker, minimapToWorld, worldToMinimap } from './minimap-math';
+import { compassAngleRad, fitPaintedMinimap, hitMarker, minimapToWorld,
+  worldToMinimap, writePaintedMinimapBasis } from './minimap-math';
 import type { MinimapView } from './minimap-math';
 
 function mulberry32(seed: number): () => number {
@@ -51,6 +52,42 @@ describe('minimap coordinate math', () => {
     });
     expect(compassAngleRad({ centerX: 0, centerZ: 0, metresPerPx: 1, sizePx: 1,
       northUp: true, basis: yawBasis(135) })).toBeCloseTo(-Math.PI / 2, 12);
+  });
+
+  it('round-trips 100 random painted-projection points below 1e-4 metres', () => {
+    const basis = new Float32Array(4);
+    writePaintedMinimapBasis([8, 4, -8, 4, 768, 130.75], basis);
+    const paintedView: MinimapView = { centerX: 48, centerZ: 48, metresPerPx: 0.2,
+      sizePx: 200, northUp: false, basis };
+    const random = mulberry32(0x117); const canvas = new Float32Array(2);
+    const world = new Float32Array(2);
+    for (let index = 0; index < 100; index += 1) {
+      const x = random() * 96; const z = random() * 96;
+      worldToMinimap(x, z, paintedView, canvas);
+      minimapToWorld(canvas[0]!, canvas[1]!, paintedView, world);
+      expect(Math.hypot(world[0]! - x, world[1]! - z)).toBeLessThan(1e-4);
+    }
+  });
+
+  it('keeps a 2:1 painted wall direction at 26.57 degrees', () => {
+    const basis = new Float32Array(4);
+    writePaintedMinimapBasis([8, 4, -8, 4, 768, 130.75], basis);
+    const paintedView: MinimapView = { centerX: 0, centerZ: 0, metresPerPx: 0.2,
+      sizePx: 200, northUp: false, basis };
+    const start = new Float32Array(2); const end = new Float32Array(2);
+    worldToMinimap(0, 0, paintedView, start); worldToMinimap(10, 0, paintedView, end);
+    const angle = Math.atan2(end[1]! - start[1]!, end[0]! - start[0]!) * 180 / Math.PI;
+    expect(angle).toBeCloseTo(26.565, 3);
+  });
+
+  it('contains the whole painted map and fills the constrained side above 92%', () => {
+    const center = new Float32Array(2);
+    const metresPerPx = fitPaintedMinimap([8, 4, -8, 4, 768, 130.75],
+      1536, 899, 936, 640, 12, center);
+    const scale = 1 / (Math.hypot(8, -8) * metresPerPx);
+    expect(1536 * scale).toBeLessThanOrEqual(912 + 1e-6);
+    expect(899 * scale).toBeLessThanOrEqual(616 + 1e-6);
+    expect(Math.max(1536 * scale / 912, 899 * scale / 616)).toBeGreaterThanOrEqual(0.92);
   });
 });
 

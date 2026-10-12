@@ -1,4 +1,4 @@
-import { worldToMinimap } from './minimap-math';
+import { minimapHeight, minimapWidth, worldToMinimap } from './minimap-math';
 import type { MinimapView } from './minimap-math';
 
 export type MarkerKind = 'facility' | 'shop' | 'inn' | 'temple' | 'pagoda' | 'gate' | 'office'
@@ -51,8 +51,10 @@ const tau = Math.PI * 2;
 export function drawMinimapBase(
   context: MinimapPaintContext, view: MinimapView, base: MinimapBase | null,
 ): void {
-  const half = view.sizePx * 0.5;
-  context.setTransform(1, 0, 0, 1, 0, 0);
+  const pixelRatio = view.pixelRatio ?? 1;
+  const halfWidth = minimapWidth(view) * 0.5;
+  const halfHeight = minimapHeight(view) * 0.5;
+  context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
   if (base === null) return;
   context.imageSmoothingEnabled = true; context.imageSmoothingQuality = 'high';
   const basis = view.basis;
@@ -69,10 +71,12 @@ export function drawMinimapBase(
     const screenA = rx / view.metresPerPx; const screenB = -ux / view.metresPerPx;
     const screenC = rz / view.metresPerPx; const screenD = -uz / view.metresPerPx;
     context.save();
-    context.setTransform(screenA * ia + screenC * ib, screenB * ia + screenD * ib,
-      screenA * ic + screenC * id, screenB * ic + screenD * id,
-      half + screenA * (ie - view.centerX) + screenC * (iff - view.centerZ),
-      half + screenB * (ie - view.centerX) + screenD * (iff - view.centerZ));
+    context.setTransform(pixelRatio * (screenA * ia + screenC * ib),
+      pixelRatio * (screenB * ia + screenD * ib),
+      pixelRatio * (screenA * ic + screenC * id),
+      pixelRatio * (screenB * ic + screenD * id),
+      pixelRatio * (halfWidth + screenA * (ie - view.centerX) + screenC * (iff - view.centerZ)),
+      pixelRatio * (halfHeight + screenB * (ie - view.centerX) + screenD * (iff - view.centerZ)));
     context.drawImage(base.bitmap, 0, 0); context.restore();
     return;
   }
@@ -80,9 +84,10 @@ export function drawMinimapBase(
   const dx = base.minX - view.centerX;
   const dz = base.minZ - view.centerZ;
   context.save();
-  context.setTransform(rx * ratio, -ux * ratio, rz * ratio, -uz * ratio,
-    half + (dx * rx + dz * rz) / view.metresPerPx,
-    half - (dx * ux + dz * uz) / view.metresPerPx);
+  context.setTransform(pixelRatio * rx * ratio, -pixelRatio * ux * ratio,
+    pixelRatio * rz * ratio, -pixelRatio * uz * ratio,
+    pixelRatio * (halfWidth + (dx * rx + dz * rz) / view.metresPerPx),
+    pixelRatio * (halfHeight - (dx * ux + dz * uz) / view.metresPerPx));
   context.drawImage(base.bitmap, 0, 0);
   context.restore();
 }
@@ -159,7 +164,8 @@ export function drawMinimapOverlay(
   context: MinimapPaintContext, view: MinimapView, overlay: MinimapOverlay,
   markersXY: Float32Array, palette: MinimapPalette,
 ): void {
-  context.setTransform(1, 0, 0, 1, 0, 0);
+  const pixelRatio = view.pixelRatio ?? 1;
+  context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
   context.globalAlpha = 1;
   if (overlay.viewQuad !== null) {
     context.strokeStyle = palette.blue; context.lineWidth = 1;

@@ -63,26 +63,22 @@ describe('generateCells', () => {
     const temple = MINI_BUILDING_PLANS.find((plan) => plan.id === 'mini_temple_y0')!;
     const elevated = { ...temple, elev: [1_200, temple.elev[1]] as const };
     for (const plan of [temple, elevated]) {
-      const shell = generateCells([plan], MINI_BUILD_KIT, 0, 16)[0]!.shell;
-      const baseM = plan.elev[0] / 1000;
-      const eaveM = (plan.elev[0] + plan.elev[1] + plan.roof[1]) / 1000;
-      let baseVertices = 0;
-      let eaveVertices = 0;
-      for (let vertex = 0; vertex < shell.position.length / 3; vertex += 1) {
-        const y = shell.position[vertex * 3 + 1]!;
-        const localCm = shell.unit[vertex * 2 + 1]!;
-        if (Math.abs(y - baseM) < 1e-4) {
-          baseVertices += 1;
-          expect(localCm).toBe(0);
-        }
-        if (Math.abs(y - eaveM) < 1e-4) {
-          eaveVertices += 1;
-          // 900 mm platform must not be counted: eave sits roof.eaveMm / 10 cm above the floor.
-          expect(Math.abs(localCm - plan.roof[1] / 10)).toBeLessThanOrEqual(0.5);
+      const cell = generateCells([plan], MINI_BUILD_KIT, 0, 16)[0]!;
+      const floorM = (plan.elev[0] + (plan.floorY[0] ?? plan.elev[1])) / 1000;
+      let highRoofVertices = 0;
+      for (const mesh of [cell.shell, cell.roof]) {
+        expect(mesh.position.length).toBeGreaterThan(0);
+        for (let vertex = 0; vertex < mesh.position.length / 3; vertex += 1) {
+          const y = mesh.position[vertex * 3 + 1]!;
+          const localCm = mesh.unit[vertex * 2 + 1]!;
+          const expectedCm = Math.max(0, (y - floorM) * 100);
+          // Positions are Float32; compare the centimetre error at 0.001 cm resolution.
+          const errorCm = Math.round(Math.abs(localCm - expectedCm) * 1000) / 1000;
+          expect(errorCm).toBeLessThanOrEqual(0.5);
+          if (mesh === cell.roof && y - floorM > 2.2) highRoofVertices += 1;
         }
       }
-      expect(baseVertices).toBeGreaterThan(0);
-      expect(eaveVertices).toBeGreaterThan(0);
+      expect(highRoofVertices).toBeGreaterThan(0);
     }
   });
 
