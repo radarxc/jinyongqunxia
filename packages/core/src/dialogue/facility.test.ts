@@ -87,6 +87,29 @@ describe('current town facility layout key', () => {
     });
   });
 
+  it('keeps the authored layout when the borrowed definition is re-identified as ch10', () => {
+    // The dev build borrows the ch01 runtime under the ch10 identity (cityId / chapterId rewritten,
+    // source kept); the facility layout must still come from the compiled design spec.
+    const borrowed = {
+      ...town,
+      chapterId: 'ch10',
+      source: { spec: 'docs/design/town/city_dali__ch01.yaml' },
+    } as unknown as TownRuntimeDefinition;
+    const content = { ...borrowedContent(), towns: [borrowed] };
+    const state = chapter(shopState(), 'ch10_baima');
+    expect(currentTownLayoutKey(state, content)).toBe('city_dali__ch01');
+    const dialogue = resolveFacilityDialogue(state, content, {
+      sceneId: 'city_dali',
+      facilityKey: 'yaopu_01',
+      roleKey: 'keeper',
+    });
+    expect(dialogue).toMatchObject({
+      storyId: 'story_ch10_facility',
+      entryKey: 'yaopu_keeper',
+      context: { shopKey: 'city_dali__ch01/yaopu_01' },
+    });
+  });
+
   it('prefers an explicit region town layout key', () => {
     const state = chapter(shopState(), 'ch10_baima');
     const region = {

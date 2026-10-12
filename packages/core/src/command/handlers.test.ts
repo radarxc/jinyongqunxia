@@ -244,6 +244,20 @@ describe('registered non-battle command handlers', () => {
     expect(result.events.some((event) => event.t === 'town/shopRequested')).toBe(false);
   });
 
+  it('binds facilities by the compiled design spec when a borrowed town is re-identified', () => {
+    // Dev borrowing serves another chapter's runtime under the current identity: cityId and
+    // chapterId change, source.spec still names the authored layout.
+    const borrowed: TownRuntimeDefinition = { ...town, cityId: 'city_bus_b', chapterId: 'ch10',
+      source: { ...town.source, spec: 'docs/design/town/city_bus_a__ch01.yaml' } };
+    const state = initial();
+    const runtime = core({ ...state, chapter: { ...state.chapter,
+      town: createTownState(borrowed) } }, { ...content, towns: [borrowed] });
+    accepted(runtime.dispatch(move)); accepted(runtime.dispatch(settle));
+    accepted(runtime.dispatch({ t: 'town/interact' }));
+    expect(runtime.snapshot().dialogue).toMatchObject({
+      context: { facilityKey: 'yaopu_01', shopKey: 'city_bus_a__ch01/yaopu_01' } });
+  });
+
   it('raises FACILITY_DIALOGUE_MISSING as a content error without committing', () => {
     const missing: CoreContent = { ...content, facilityDialogues: [] };
     const state = initial();

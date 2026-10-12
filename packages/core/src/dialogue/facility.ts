@@ -3,6 +3,7 @@ import type { CoreContent } from '../command';
 import type { GameState } from '../state';
 import { evaluateGate } from '../world/region-gates';
 import { regionRuntimeForState } from '../world/region-runtime';
+import { townLayoutKey } from '../world/town-layout-key';
 import type { FacilityDialogueContext } from './context-validate';
 
 declare module '../command' {
@@ -39,7 +40,7 @@ export function currentTownLayoutKey(
   const active = state.chapter.town;
   if (active?.sceneId !== sceneId) return undefined;
   const definition = content.towns?.find((town) => town.sceneId === active.sceneId);
-  return definition === undefined ? undefined : `${definition.cityId}__${definition.chapterId}`;
+  return definition === undefined ? undefined : townLayoutKey(definition);
 }
 function layout(content: CoreContent, key: string): TownFacilitiesDef | undefined {
   return content.townFacilities?.find((entry) => entry.layoutKey === key);
