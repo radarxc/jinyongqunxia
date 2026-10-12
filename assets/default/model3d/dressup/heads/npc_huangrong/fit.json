@@ -7,7 +7,17 @@
   "mPerMu": 1.69370027,
   "source": {
     "file": "assets/default/model3d/npc_huangrong/model_rig.glb",
-    "sha256": "cc745165bf7798c35763a813b6cb0d54bb0d6e39cc35c58951e75c54c0ad1797"
+    "sha256": "cc745165bf7798c35763a813b6cb0d54bb0d6e39cc35c58951e75c54c0ad1797",
+    "texture": {
+      "path": "apps/game/public/models/props/npc_huangrong_basecolor_8k.jpg",
+      "sha256": "34ded9aa24b3229bd674b0b0820fb9349c698871224a05f5f108cb77f4680883",
+      "size": [
+        8192,
+        8192
+      ],
+      "factor": 4,
+      "meanAbsDiffVsEmbedded": 1.340739489
+    }
   },
   "body": {
     "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
@@ -305,6 +315,16 @@
       ],
       "hHeadAfterMm": 24.0
     },
+    "atlas": {
+      "mode": "packed",
+      "islands": 112,
+      "scaleDstPerSrc": 0.55477066,
+      "gutterPx": 4,
+      "headCoverage": 0.454174314,
+      "rectCoverage": 0.892324175,
+      "linearGainVsLegacy": 2.372299128,
+      "seamToneTexelsApplied": 0
+    },
     "neckFit": {
       "rampMm": 20.0,
       "maxMm": 4.0,
@@ -444,9 +464,9 @@
           "samples": 1348
         },
         "top": {
-          "mean": 0.641624689,
-          "p95": 1.431210703,
-          "max": 2.094816287,
+          "mean": 0.541234136,
+          "p95": 1.432192158,
+          "max": 2.22437129,
           "angles": 253
         }
       },
@@ -607,7 +627,7 @@
         "g1P95Deg": 5.695367901,
         "stepMaxMm": 0.368888634,
         "bulgeMaxMm": 0.0,
-        "colorP95": 1.99553812,
+        "colorP95": 1.586241296,
         "worstG1Deg": 314
       },
       "neckHoles": {
@@ -620,8 +640,8 @@
     "stats": {
       "vertices": 16387,
       "triangles": 28130,
-      "fileSize": 1966712,
-      "durationMs": 209807
+      "fileSize": 1942976,
+      "durationMs": 233920
     },
     "gateLevel": "pass"
   }

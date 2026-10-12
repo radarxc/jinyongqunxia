@@ -2,7 +2,7 @@
   "schema": "tianshu-dressup-skeleton.v1",
   "source": {
     "file": "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb",
-    "sha256": "d9db6f2d86979df28bf082e965eacfbe067ba5407e6754ddfd8d70211471b65d",
+    "sha256": "aa2a1e95258a36555890d8095c75b1711978f30d8134fa45791d6e9889e91549",
     "generator": "Tripo"
   },
   "unit": "mu",
@@ -1343,1186 +1343,1187 @@
     "footLengthMu": 0.13507354
   },
   "neckRing": {
-    "localYMu": 0.016,
+    "mode": "section",
+    "heightFraction": 0.15,
+    "perimeterMm": 442.51102312,
+    "localYMu": 0.00754687,
     "centerMu": [
-      0.0065697,
-      0.84561383,
-      -0.01783222
+      0.00012076,
+      0.83595755,
+      -0.01065821
     ],
     "centerLocalMu": [
-      -0.01141032,
-      0.016,
-      -0.00295645
+      -0.00197034,
+      0.00754687,
+      0.00211606
     ],
     "radiusMu": {
-      "x": 0.04114317,
-      "z": 0.03853449
+      "x": 0.04161666,
+      "z": 0.03258561
     },
     "samples": 64,
     "profile": [
       {
         "pos": [
-          -0.03176661,
-          0.84334269,
-          -0.00306978
+          0.02155584,
+          0.84032204,
+          -0.0390274
         ],
         "normal": [
-          -0.90002867,
-          0.20248933,
-          0.38593584
+          0.5779643,
+          0.37349125,
+          -0.7255767
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.03,
-          "mixamorig:RightShoulder": 0.02
+          "mixamorig:Neck": 0.72222531,
+          "mixamorig:LeftShoulder": 0.21895116,
+          "mixamorig:Spine2": 0.03501268,
+          "mixamorig:Head": 0.02381085
         }
       },
       {
         "pos": [
-          -0.03295318,
-          0.84388877,
-          -0.0066193
+          0.01783609,
+          0.84037202,
+          -0.03935223
         ],
         "normal": [
-          -0.93176576,
-          0.21709442,
-          0.29100272
+          0.50313997,
+          0.38118633,
+          -0.77559471
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02997592,
-          "mixamorig:RightShoulder": 0.02002408
+          "mixamorig:Neck": 0.76239887,
+          "mixamorig:LeftShoulder": 0.1855588,
+          "mixamorig:Spine2": 0.03709165,
+          "mixamorig:Head": 0.01495067
         }
       },
       {
         "pos": [
-          -0.03375912,
-          0.84445146,
-          -0.01027682
+          0.01411189,
+          0.84032648,
+          -0.03905627
         ],
         "normal": [
-          -0.95324018,
-          0.23208368,
-          0.19357252
+          0.42288482,
+          0.38786134,
+          -0.8189823
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02990393,
-          "mixamorig:RightShoulder": 0.02009607
+          "mixamorig:Neck": 0.78109454,
+          "mixamorig:LeftShoulder": 0.14910954,
+          "mixamorig:Spine2": 0.03510533,
+          "mixamorig:RightShoulder": 0.03469059
         }
       },
       {
         "pos": [
-          -0.03417668,
-          0.84502535,
-          -0.01400709
+          0.01046583,
+          0.84020039,
+          -0.03823667
         ],
         "normal": [
-          -0.96428505,
-          0.24725215,
-          0.09497746
+          0.33578385,
+          0.39352503,
+          -0.85579627
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.0297847,
-          "mixamorig:RightShoulder": 0.0202153
+          "mixamorig:Neck": 0.79911442,
+          "mixamorig:LeftShoulder": 0.11992376,
+          "mixamorig:RightShoulder": 0.04677448,
+          "mixamorig:Spine2": 0.03418734
         }
       },
       {
         "pos": [
-          -0.03420182,
-          0.8456049,
-          -0.0177742
+          0.00680636,
+          0.84008545,
+          -0.03748956
         ],
         "normal": [
-          -0.96495326,
-          0.2623988,
-          -0.00347576
+          0.23098056,
+          0.39842419,
+          -0.88764078
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.0296194,
-          "mixamorig:RightShoulder": 0.0203806
+          "mixamorig:Neck": 0.81313987,
+          "mixamorig:LeftShoulder": 0.09565049,
+          "mixamorig:RightShoulder": 0.05829419,
+          "mixamorig:Spine2": 0.03291545
         }
       },
       {
         "pos": [
-          -0.03383432,
-          0.84618455,
-          -0.02154187
+          0.00306954,
+          0.84007591,
+          -0.03742755
         ],
         "normal": [
-          -0.9554972,
-          0.27733385,
-          -0.10055363
+          0.10454642,
+          0.40182254,
+          -0.90973001
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02940961,
-          "mixamorig:RightShoulder": 0.02059039
+          "mixamorig:Neck": 0.8168886,
+          "mixamorig:LeftShoulder": 0.07828785,
+          "mixamorig:RightShoulder": 0.07064067,
+          "mixamorig:Spine2": 0.03418288
         }
       },
       {
         "pos": [
-          -0.0330777,
-          0.84675869,
-          -0.02527382
+          -0.00067088,
+          0.84008245,
+          -0.03747005
         ],
         "normal": [
-          -0.93633674,
-          0.29188454,
-          -0.19513309
+          -0.02817601,
+          0.40262288,
+          -0.9149322
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02915735,
-          "mixamorig:RightShoulder": 0.02084265
+          "mixamorig:Neck": 0.82446374,
+          "mixamorig:RightShoulder": 0.08697403,
+          "mixamorig:LeftShoulder": 0.06812434,
+          "mixamorig:Head": 0.02043789
         }
       },
       {
         "pos": [
-          -0.03193926,
-          0.84732181,
-          -0.0289341
+          -0.00441116,
+          0.8400751,
+          -0.03742227
         ],
         "normal": [
-          -0.90802027,
-          0.30589878,
-          -0.28622565
+          -0.15943968,
+          0.40067066,
+          -0.90224277
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02886505,
-          "mixamorig:RightShoulder": 0.02113495
+          "mixamorig:Neck": 0.81518328,
+          "mixamorig:RightShoulder": 0.10639312,
+          "mixamorig:LeftShoulder": 0.05549777,
+          "mixamorig:Head": 0.02292582
         }
       },
       {
         "pos": [
-          -0.03042995,
-          0.84786848,
-          -0.03248746
+          -0.00812632,
+          0.84013,
+          -0.03777909
         ],
         "normal": [
-          -0.87118387,
-          0.31924685,
-          -0.3729881
+          -0.27802334,
+          0.39646978,
+          -0.87493699
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02853553,
-          "mixamorig:RightShoulder": 0.02146447
+          "mixamorig:Neck": 0.80063497,
+          "mixamorig:RightShoulder": 0.13193645,
+          "mixamorig:LeftShoulder": 0.04195282,
+          "mixamorig:Head": 0.02547577
         }
       },
       {
         "pos": [
-          -0.02856431,
-          0.84839344,
-          -0.03589968
+          -0.01175387,
+          0.84026818,
+          -0.0386773
         ],
         "normal": [
-          -0.82651286,
-          0.33182114,
-          -0.45472103
+          -0.37318707,
+          0.3912807,
+          -0.84120796
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02817197,
-          "mixamorig:RightShoulder": 0.02182803
+          "mixamorig:Neck": 0.77607235,
+          "mixamorig:RightShoulder": 0.16579245,
+          "mixamorig:LeftShoulder": 0.02959485,
+          "mixamorig:Head": 0.02854036
         }
       },
       {
         "pos": [
-          -0.02636032,
-          0.84889163,
-          -0.0391379
+          -0.01545077,
+          0.840352,
+          -0.03922214
         ],
         "normal": [
-          -0.77470898,
-          0.3435345,
-          -0.53085784
+          -0.45817328,
+          0.3851108,
+          -0.80110356
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02777785,
-          "mixamorig:RightShoulder": 0.02222215
+          "mixamorig:Neck": 0.73563972,
+          "mixamorig:RightShoulder": 0.19709057,
+          "mixamorig:Spine2": 0.03396189,
+          "mixamorig:Head": 0.03330783
         }
       },
       {
         "pos": [
-          -0.02383919,
-          0.84935825,
-          -0.04217094
+          -0.01918339,
+          0.84035867,
+          -0.03926548
         ],
         "normal": [
-          -0.71646484,
-          0.35431744,
-          -0.60094699
+          -0.53595789,
+          0.37800154,
+          -0.75489335
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02735698,
-          "mixamorig:RightShoulder": 0.02264302
+          "mixamorig:Neck": 0.69941928,
+          "mixamorig:RightShoulder": 0.23473143,
+          "mixamorig:Head": 0.03325106,
+          "mixamorig:Spine2": 0.03259822
         }
       },
       {
         "pos": [
-          -0.02102521,
-          0.84978881,
-          -0.04496958
+          -0.02287342,
+          0.84027365,
+          -0.03871282
         ],
         "normal": [
-          -0.65244644,
-          0.36411493,
-          -0.66463069
+          -0.60801604,
+          0.36993636,
+          -0.70246963
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02691342,
-          "mixamorig:RightShoulder": 0.02308658
+          "mixamorig:Neck": 0.65738003,
+          "mixamorig:RightShoulder": 0.28096333,
+          "mixamorig:Head": 0.03258244,
+          "mixamorig:Spine2": 0.02907419
         }
       },
       {
         "pos": [
-          -0.01794548,
-          0.85017916,
-          -0.04750688
+          -0.02640125,
+          0.84008913,
+          -0.03751344
         ],
         "normal": [
-          -0.58328343,
-          0.37288288,
-          -0.72162234
+          -0.67470547,
+          0.36091443,
+          -0.64382707
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02645142,
-          "mixamorig:RightShoulder": 0.02354858
+          "mixamorig:Neck": 0.61680999,
+          "mixamorig:RightShoulder": 0.32650882,
+          "mixamorig:Head": 0.03185893,
+          "mixamorig:Spine2": 0.02482225
         }
       },
       {
         "pos": [
-          -0.01462964,
-          0.85052555,
-          -0.04975839
+          -0.02979028,
+          0.83984895,
+          -0.03595232
         ],
         "normal": [
-          -0.50956626,
-          0.38058479,
-          -0.77168481
+          -0.73394706,
+          0.35129536,
+          -0.58130309
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02597545,
-          "mixamorig:RightShoulder": 0.02402455
+          "mixamorig:Neck": 0.57283955,
+          "mixamorig:RightShoulder": 0.37699949,
+          "mixamorig:Head": 0.03119588,
+          "mixamorig:Spine2": 0.01896509
         }
       },
       {
         "pos": [
-          -0.01110965,
-          0.85082463,
-          -0.05170244
+          -0.03299921,
+          0.83955796,
+          -0.03406088
         ],
         "normal": [
-          -0.43184919,
-          0.38718882,
-          -0.81461101
+          -0.78577177,
+          0.34122926,
+          -0.51587336
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02549009,
-          "mixamorig:RightShoulder": 0.02450991
+          "mixamorig:Neck": 0.52761263,
+          "mixamorig:RightShoulder": 0.43131851,
+          "mixamorig:Head": 0.02780083,
+          "mixamorig:Spine2": 0.01326803
         }
       },
       {
         "pos": [
-          -0.0074194,
-          0.85107353,
-          -0.05332029
+          -0.03602455,
+          0.83922439,
+          -0.03189263
         ],
         "normal": [
-          -0.35065813,
-          0.39266521,
-          -0.85020757
+          -0.83032423,
+          0.33085463,
+          -0.44843827
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.025,
-          "mixamorig:RightShoulder": 0.025
+          "mixamorig:RightShoulder": 0.4866978,
+          "mixamorig:Neck": 0.47606818,
+          "mixamorig:Head": 0.02603053,
+          "mixamorig:Spine2": 0.0112035
         }
       },
       {
         "pos": [
-          -0.00359442,
-          0.85126985,
-          -0.05459638
+          -0.03863902,
+          0.83881984,
+          -0.02926307
         ],
         "normal": [
-          -0.26650208,
-          0.39698442,
-          -0.87828242
+          -0.86887962,
+          0.31997344,
+          -0.37771048
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02450991,
-          "mixamorig:RightShoulder": 0.02549009
+          "mixamorig:RightShoulder": 0.53492264,
+          "mixamorig:Neck": 0.43607168,
+          "mixamorig:Head": 0.02301125,
+          "mixamorig:Spine2": 0.00599443
         }
       },
       {
         "pos": [
-          0.00032844,
-          0.8514117,
-          -0.05551841
+          -0.04062088,
+          0.83834028,
+          -0.02614594
         ],
         "normal": [
-          -0.17988734,
-          0.40011584,
-          -0.89863667
+          -0.90154204,
+          0.3085351,
+          -0.30336125
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02402455,
-          "mixamorig:RightShoulder": 0.02597545
+          "mixamorig:RightShoulder": 0.5703247,
+          "mixamorig:Neck": 0.40915254,
+          "mixamorig:Head": 0.0199352,
+          "mixamorig:Spine2": 0.00058756
         }
       },
       {
         "pos": [
-          0.00431141,
-          0.85149772,
-          -0.0560775
+          -0.0418673,
+          0.83780676,
+          -0.02267807
         ],
         "normal": [
-          -0.09133354,
-          0.40202728,
-          -0.91106106
+          -0.92779346,
+          0.29667072,
+          -0.22624273
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02354858,
-          "mixamorig:RightShoulder": 0.02645142
+          "mixamorig:RightShoulder": 0.59201813,
+          "mixamorig:Neck": 0.3869206,
+          "mixamorig:Head": 0.02106127
         }
       },
       {
         "pos": [
-          0.00831613,
-          0.85152707,
-          -0.05626827
+          -0.04221017,
+          0.83724168,
+          -0.01900502
         ],
         "normal": [
-          -0.00139064,
-          0.40268519,
-          -0.91533748
+          -0.94725919,
+          0.28454495,
+          -0.14742525
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02308658,
-          "mixamorig:RightShoulder": 0.02691342
+          "mixamorig:RightShoulder": 0.59761582,
+          "mixamorig:Neck": 0.38058739,
+          "mixamorig:Head": 0.02179679
         }
       },
       {
         "pos": [
-          0.01230403,
-          0.85149947,
-          -0.05608887
+          -0.04143961,
+          0.83668751,
+          -0.01540292
         ],
         "normal": [
-          0.08934426,
-          0.40205569,
-          -0.91124575
+          -0.9595459,
+          0.2726627,
+          -0.07019055
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02264302,
-          "mixamorig:RightShoulder": 0.02735698
+          "mixamorig:RightShoulder": 0.57693089,
+          "mixamorig:Neck": 0.39036483,
+          "mixamorig:Head": 0.02626486,
+          "mixamorig:Spine2": 0.00643943
         }
       },
       {
         "pos": [
-          0.0162367,
-          0.85141519,
-          -0.05554105
+          -0.03974646,
+          0.83618506,
+          -0.01213702
         ],
         "normal": [
-          0.1802113,
-          0.40010648,
-          -0.89857592
+          -0.96524628,
+          0.26131781,
+          0.0035512
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02222215,
-          "mixamorig:RightShoulder": 0.02777785
+          "mixamorig:RightShoulder": 0.54064503,
+          "mixamorig:Neck": 0.41220433,
+          "mixamorig:Head": 0.03325171,
+          "mixamorig:Spine2": 0.01389894
         }
       },
       {
         "pos": [
-          0.02007628,
-          0.85127504,
-          -0.05463006
+          -0.03716979,
+          0.83577547,
+          -0.00947466
         ],
         "normal": [
-          0.2704751,
-          0.39680959,
-          -0.87714615
+          -0.96542817,
+          0.25109543,
+          0.06999674
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02182803,
-          "mixamorig:RightShoulder": 0.02817197
+          "mixamorig:RightShoulder": 0.48547956,
+          "mixamorig:Neck": 0.44954828,
+          "mixamorig:Head": 0.04020594,
+          "mixamorig:Spine2": 0.02476622
         }
       },
       {
         "pos": [
-          0.02378578,
-          0.85108036,
-          -0.0533647
+          -0.03492967,
+          0.83532341,
+          -0.00653625
         ],
         "normal": [
-          0.35931656,
-          0.39214492,
-          -0.84682582
+          -0.9591601,
+          0.23845594,
+          0.15215346
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02146447,
-          "mixamorig:RightShoulder": 0.02853553
+          "mixamorig:Neck": 0.47288916,
+          "mixamorig:RightShoulder": 0.43930552,
+          "mixamorig:Head": 0.04708929,
+          "mixamorig:Spine2": 0.04071603
         }
       },
       {
         "pos": [
-          0.02732948,
-          0.85083305,
-          -0.05175713
+          -0.03362905,
+          0.8347914,
+          -0.00307818
         ],
         "normal": [
-          0.44583105,
-          0.38610448,
-          -0.807563
+          -0.94191325,
+          0.22326355,
+          0.250904
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02113495,
-          "mixamorig:RightShoulder": 0.02886505
+          "mixamorig:Neck": 0.48676859,
+          "mixamorig:RightShoulder": 0.40969509,
+          "mixamorig:Spine2": 0.05468286,
+          "mixamorig:Head": 0.04885346
         }
       },
       {
         "pos": [
-          0.03067325,
-          0.85053546,
-          -0.04982286
+          -0.0325426,
+          0.83424719,
+          0.00045914
         ],
         "normal": [
-          0.52903518,
-          0.37869701,
-          -0.75941448
+          -0.91329006,
+          0.20798663,
+          0.350204
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02084265,
-          "mixamorig:RightShoulder": 0.02915735
+          "mixamorig:Neck": 0.49092776,
+          "mixamorig:RightShoulder": 0.38662048,
+          "mixamorig:Spine2": 0.07114126,
+          "mixamorig:Head": 0.0513105
         }
       },
       {
         "pos": [
-          0.03378489,
-          0.85019049,
-          -0.04758049
+          -0.03181961,
+          0.83368929,
+          0.0040855
         ],
         "normal": [
-          0.60788335,
-          0.36995262,
-          -0.7025759
+          -0.87518311,
+          0.19365787,
+          0.44334091
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02059039,
-          "mixamorig:RightShoulder": 0.02940961
+          "mixamorig:Neck": 0.48648349,
+          "mixamorig:RightShoulder": 0.36516932,
+          "mixamorig:Spine2": 0.09475545,
+          "mixamorig:Head": 0.05359174
         }
       },
       {
         "pos": [
-          0.03663443,
-          0.84980143,
-          -0.04505163
+          -0.03063782,
+          0.83315288,
+          0.00757218
         ],
         "normal": [
-          0.6812951,
-          0.35992686,
-          -0.63740853
+          -0.82839652,
+          0.18027337,
+          0.53034018
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.0203806,
-          "mixamorig:RightShoulder": 0.0296194
+          "mixamorig:Neck": 0.48196732,
+          "mixamorig:RightShoulder": 0.34069298,
+          "mixamorig:Spine2": 0.11969846,
+          "mixamorig:Head": 0.05764124
         }
       },
       {
         "pos": [
-          0.03919444,
-          0.84937205,
-          -0.04226064
+          -0.02863139,
+          0.83267455,
+          0.01068134
         ],
         "normal": [
-          0.74819253,
-          0.34870381,
-          -0.56445868
+          -0.77239884,
+          0.16761467,
+          0.61262171
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.0202153,
-          "mixamorig:RightShoulder": 0.0297847
+          "mixamorig:Neck": 0.484444,
+          "mixamorig:RightShoulder": 0.31044217,
+          "mixamorig:Spine2": 0.14454192,
+          "mixamorig:Head": 0.06057192
         }
       },
       {
         "pos": [
-          0.04144025,
-          0.84890647,
-          -0.03923438
+          -0.02599769,
+          0.83227272,
+          0.0132932
         ],
         "normal": [
-          0.80754545,
-          0.33639723,
-          -0.48446595
+          -0.70808958,
+          0.15591108,
+          0.68869506
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02009607,
-          "mixamorig:RightShoulder": 0.02990393
+          "mixamorig:Neck": 0.48319722,
+          "mixamorig:RightShoulder": 0.27695741,
+          "mixamorig:Spine2": 0.17879084,
+          "mixamorig:Head": 0.06105453
         }
       },
       {
         "pos": [
-          0.04335024,
-          0.84840918,
-          -0.03600201
+          -0.02323156,
+          0.8318913,
+          0.01577242
         ],
         "normal": [
-          0.85842049,
-          0.32314974,
-          -0.39835726
+          -0.63534853,
+          0.14517864,
+          0.75845594
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02002408,
-          "mixamorig:RightShoulder": 0.02997592
+          "mixamorig:Neck": 0.47394605,
+          "mixamorig:RightShoulder": 0.23949706,
+          "mixamorig:Spine2": 0.22210291,
+          "mixamorig:Head": 0.06445398
         }
       },
       {
         "pos": [
-          0.04490601,
-          0.84788497,
-          -0.03259466
+          -0.02062778,
+          0.83148305,
+          0.01842605
         ],
         "normal": [
-          0.90002868,
-          0.30912943,
-          -0.30722528
+          -0.55662024,
+          0.13577226,
+          0.81959734
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02,
-          "mixamorig:RightShoulder": 0.03
+          "mixamorig:Neck": 0.45373949,
+          "mixamorig:Spine2": 0.27008194,
+          "mixamorig:RightShoulder": 0.20896008,
+          "mixamorig:Head": 0.06721849
         }
       },
       {
         "pos": [
-          0.04609258,
-          0.84733889,
-          -0.02904513
+          -0.01744563,
+          0.83118772,
+          0.02034568
         ],
         "normal": [
-          0.93176577,
-          0.29452434,
-          -0.21229216
+          -0.47195335,
+          0.12765923,
+          0.87233202
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02002408,
-          "mixamorig:RightShoulder": 0.02997592
+          "mixamorig:Neck": 0.44233903,
+          "mixamorig:Spine2": 0.30991029,
+          "mixamorig:RightShoulder": 0.17824976,
+          "mixamorig:Head": 0.06950092
         }
       },
       {
         "pos": [
-          0.04689852,
-          0.8467762,
-          -0.02538762
+          -0.01381927,
+          0.83108635,
+          0.02100459
         ],
         "normal": [
-          0.9532402,
-          0.27953507,
-          -0.11486196
+          -0.38541032,
+          0.12113184,
+          0.91476006
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02009607,
-          "mixamorig:RightShoulder": 0.02990393
+          "mixamorig:Neck": 0.43688976,
+          "mixamorig:Spine2": 0.34269399,
+          "mixamorig:RightShoulder": 0.14760129,
+          "mixamorig:Head": 0.07281496
         }
       },
       {
         "pos": [
-          0.04731608,
-          0.84620231,
-          -0.02165735
+          -0.01017341,
+          0.83101894,
+          0.02144278
         ],
         "normal": [
-          0.96428507,
-          0.2643666,
-          -0.0162669
+          -0.29184367,
+          0.11579794,
+          0.94943041
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.0202153,
-          "mixamorig:RightShoulder": 0.0297847
+          "mixamorig:Neck": 0.43830043,
+          "mixamorig:Spine2": 0.36187433,
+          "mixamorig:RightShoulder": 0.12253469,
+          "mixamorig:Head": 0.07729055
         }
       },
       {
         "pos": [
-          0.04734123,
-          0.84562275,
-          -0.01789023
+          -0.0065011,
+          0.83091873,
+          0.02209414
         ],
         "normal": [
-          0.96495328,
-          0.24921996,
-          0.08218631
+          -0.18927756,
+          0.11178102,
+          0.97554037
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.0203806,
-          "mixamorig:RightShoulder": 0.0296194
+          "mixamorig:Neck": 0.43609202,
+          "mixamorig:Spine2": 0.38594199,
+          "mixamorig:RightShoulder": 0.09947146,
+          "mixamorig:Head": 0.07849453
         }
       },
       {
         "pos": [
-          0.04697372,
-          0.84504311,
-          -0.01412256
+          -0.00277486,
+          0.83087081,
+          0.02240565
         ],
         "normal": [
-          0.95549722,
-          0.2342849,
-          0.17926418
+          -0.08329731,
+          0.10948068,
+          0.99049257
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02059039,
-          "mixamorig:RightShoulder": 0.02940961
+          "mixamorig:Neck": 0.44854149,
+          "mixamorig:Spine2": 0.39239041,
+          "mixamorig:RightShoulder": 0.07985059,
+          "mixamorig:Head": 0.07921751
         }
       },
       {
         "pos": [
-          0.0462171,
-          0.84446897,
-          -0.01039062
+          0.0009553,
+          0.83084127,
+          0.02259765
         ],
         "normal": [
-          0.93633676,
-          0.21973422,
-          0.27384365
+          0.02395019,
+          0.10897868,
+          0.99375552
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02084265,
-          "mixamorig:RightShoulder": 0.02915735
+          "mixamorig:Neck": 0.46574381,
+          "mixamorig:Spine2": 0.39173595,
+          "mixamorig:Head": 0.07799999,
+          "mixamorig:RightShoulder": 0.06452024
         }
       },
       {
         "pos": [
-          0.04507866,
-          0.84390585,
-          -0.00673034
+          0.00467963,
+          0.83089131,
+          0.02227234
         ],
         "normal": [
-          0.90802029,
-          0.20571998,
-          0.36493621
+          0.13094661,
+          0.11028943,
+          0.98523562
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02113495,
-          "mixamorig:RightShoulder": 0.02886505
+          "mixamorig:Neck": 0.4626692,
+          "mixamorig:Spine2": 0.39170192,
+          "mixamorig:Head": 0.07781416,
+          "mixamorig:LeftShoulder": 0.06781472
         }
       },
       {
         "pos": [
-          0.04356935,
-          0.84335918,
-          -0.00317698
+          0.0083932,
+          0.8309562,
+          0.02185061
         ],
         "normal": [
-          0.87118389,
-          0.19237191,
-          0.45169866
+          0.235601,
+          0.11336956,
+          0.96521475
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02146447,
-          "mixamorig:RightShoulder": 0.02853553
+          "mixamorig:Neck": 0.46116251,
+          "mixamorig:Spine2": 0.38086435,
+          "mixamorig:LeftShoulder": 0.08153846,
+          "mixamorig:Head": 0.07643468
         }
       },
       {
         "pos": [
-          0.04170371,
-          0.84283422,
-          0.00023524
+          0.0119708,
+          0.8311216,
+          0.0207755
         ],
         "normal": [
-          0.82651288,
-          0.17979762,
-          0.5334316
+          0.33725482,
+          0.11817698,
+          0.93396648
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02182803,
-          "mixamorig:RightShoulder": 0.02817197
+          "mixamorig:Neck": 0.4525235,
+          "mixamorig:Spine2": 0.37488003,
+          "mixamorig:LeftShoulder": 0.10191333,
+          "mixamorig:Head": 0.07068314
         }
       },
       {
         "pos": [
-          0.03949972,
-          0.84233603,
-          0.00347347
+          0.0156604,
+          0.83108484,
+          0.02101439
         ],
         "normal": [
-          0.774709,
-          0.16808427,
-          0.6095684
+          0.42146381,
+          0.12365254,
+          0.89837537
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02222215,
-          "mixamorig:RightShoulder": 0.02777785
+          "mixamorig:Neck": 0.43581822,
+          "mixamorig:Spine2": 0.37056838,
+          "mixamorig:LeftShoulder": 0.12632324,
+          "mixamorig:Head": 0.06729016
         }
       },
       {
         "pos": [
-          0.03697859,
-          0.84186941,
-          0.0065065
+          0.01908198,
+          0.83130698,
+          0.01957054
         ],
         "normal": [
-          0.71646486,
-          0.15730132,
-          0.67965756
+          0.50896307,
+          0.13097716,
+          0.85076529
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02264302,
-          "mixamorig:RightShoulder": 0.02735698
+          "mixamorig:Neck": 0.44847905,
+          "mixamorig:Spine2": 0.33705127,
+          "mixamorig:LeftShoulder": 0.15144568,
+          "mixamorig:Head": 0.063024
         }
       },
       {
         "pos": [
-          0.03416461,
-          0.84143885,
-          0.00930515
+          0.02199778,
+          0.83165603,
+          0.0173017
         ],
         "normal": [
-          0.65244647,
-          0.14750384,
-          0.74334126
+          0.59090782,
+          0.13962338,
+          0.79456483
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02308658,
-          "mixamorig:RightShoulder": 0.02691342
+          "mixamorig:Neck": 0.47224649,
+          "mixamorig:Spine2": 0.28890355,
+          "mixamorig:LeftShoulder": 0.17851899,
+          "mixamorig:Head": 0.06033097
         }
       },
       {
         "pos": [
-          0.03108488,
-          0.8410485,
-          0.01184244
+          0.02459412,
+          0.83206444,
+          0.01464703
         ],
         "normal": [
-          0.58328346,
-          0.13873589,
-          0.80033291
+          0.66743573,
+          0.14963671,
+          0.72947817
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02354858,
-          "mixamorig:RightShoulder": 0.02645142
+          "mixamorig:Neck": 0.49242088,
+          "mixamorig:Spine2": 0.24439026,
+          "mixamorig:LeftShoulder": 0.20837561,
+          "mixamorig:Head": 0.05481325
         }
       },
       {
         "pos": [
-          0.02776904,
-          0.84070211,
-          0.01409395
+          0.02746687,
+          0.83242778,
+          0.01228532
         ],
         "normal": [
-          0.50956628,
-          0.13103398,
-          0.85039538
+          0.73638498,
+          0.16075853,
+          0.65718631
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02402455,
-          "mixamorig:RightShoulder": 0.02597545
+          "mixamorig:Neck": 0.50806754,
+          "mixamorig:LeftShoulder": 0.23782699,
+          "mixamorig:Spine2": 0.2040563,
+          "mixamorig:Head": 0.05004917
         }
       },
       {
         "pos": [
-          0.02424905,
-          0.84040303,
-          0.016038
+          0.02976594,
+          0.83287503,
+          0.00937818
         ],
         "normal": [
-          0.43184921,
-          0.12442995,
-          0.89332158
+          0.79732873,
+          0.17290278,
+          0.57824868
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02450991,
-          "mixamorig:RightShoulder": 0.02549009
+          "mixamorig:Neck": 0.51227327,
+          "mixamorig:LeftShoulder": 0.2681811,
+          "mixamorig:Spine2": 0.17151961,
+          "mixamorig:Head": 0.04802602
         }
       },
       {
         "pos": [
-          0.0205588,
-          0.84015412,
-          0.01765586
+          0.03151474,
+          0.83337587,
+          0.00612275
         ],
         "normal": [
-          0.35065815,
-          0.11895356,
-          0.92891814
+          0.84963296,
+          0.18593979,
+          0.49350809
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.025,
-          "mixamorig:RightShoulder": 0.025
+          "mixamorig:Neck": 0.52094438,
+          "mixamorig:LeftShoulder": 0.29443534,
+          "mixamorig:Spine2": 0.1393329,
+          "mixamorig:Head": 0.04528738
         }
       },
       {
         "pos": [
-          0.01673382,
-          0.8399578,
-          0.01893194
+          0.03234415,
+          0.83392828,
+          0.00253208
         ],
         "normal": [
-          0.2665021,
-          0.11463436,
-          0.956993
+          0.89241752,
+          0.19960921,
+          0.40465681
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02549009,
-          "mixamorig:RightShoulder": 0.02450991
+          "mixamorig:Neck": 0.53281695,
+          "mixamorig:LeftShoulder": 0.31575552,
+          "mixamorig:Spine2": 0.10988041,
+          "mixamorig:Head": 0.04154713
         }
       },
       {
         "pos": [
-          0.01281096,
-          0.83981595,
-          0.01985397
+          0.03321924,
+          0.83448009,
+          -0.00105469
         ],
         "normal": [
-          0.17988736,
-          0.11150294,
-          0.97734724
+          0.92681481,
+          0.21443787,
+          0.30827052
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02597545,
-          "mixamorig:RightShoulder": 0.02402455
+          "mixamorig:Neck": 0.53486362,
+          "mixamorig:LeftShoulder": 0.34020103,
+          "mixamorig:Spine2": 0.08815188,
+          "mixamorig:Head": 0.03678346
         }
       },
       {
         "pos": [
-          0.00882799,
-          0.83972994,
-          0.02041306
+          0.034434,
+          0.83501796,
+          -0.00455084
         ],
         "normal": [
-          0.09133356,
-          0.1095915,
-          0.98977163
+          0.95063437,
+          0.22977833,
+          0.20855747
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02645142,
-          "mixamorig:RightShoulder": 0.02354858
+          "mixamorig:Neck": 0.53277773,
+          "mixamorig:LeftShoulder": 0.36634181,
+          "mixamorig:Spine2": 0.06777776,
+          "mixamorig:Head": 0.0331027
         }
       },
       {
         "pos": [
-          0.00482327,
-          0.83970059,
-          0.02060383
+          0.0360591,
+          0.83552709,
+          -0.00786023
         ],
         "normal": [
-          0.00139065,
-          0.10893359,
-          0.99404806
+          0.96294297,
+          0.2442756,
+          0.11432526
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02691342,
-          "mixamorig:RightShoulder": 0.02308658
+          "mixamorig:Neck": 0.51625758,
+          "mixamorig:LeftShoulder": 0.40230486,
+          "mixamorig:Spine2": 0.0525121,
+          "mixamorig:Head": 0.02892547
         }
       },
       {
         "pos": [
-          0.00083537,
-          0.83972819,
-          0.02042444
+          0.03861814,
+          0.83594068,
+          -0.01054858
         ],
         "normal": [
-          -0.08934425,
-          0.10956309,
-          0.98995633
+          0.96592181,
+          0.25538623,
+          0.04210609
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02735698,
-          "mixamorig:RightShoulder": 0.02264302
+          "mixamorig:Neck": 0.48777931,
+          "mixamorig:LeftShoulder": 0.45022869,
+          "mixamorig:Spine2": 0.03906679,
+          "mixamorig:Head": 0.02292522
         }
       },
       {
         "pos": [
-          -0.0030973,
-          0.83981247,
-          0.01987661
+          0.04091404,
+          0.83638572,
+          -0.01344133
         ],
         "normal": [
-          -0.18021128,
-          0.1115123,
-          0.9772865
+          0.96363279,
+          0.26592385,
+          -0.02638843
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02777785,
-          "mixamorig:RightShoulder": 0.02222215
+          "mixamorig:LeftShoulder": 0.50298034,
+          "mixamorig:Neck": 0.45738152,
+          "mixamorig:Spine2": 0.02441797,
+          "mixamorig:Head": 0.01522016
         }
       },
       {
         "pos": [
-          -0.00693688,
-          0.83995262,
-          0.01896563
+          0.04220577,
+          0.83691635,
+          -0.0168904
         ],
         "normal": [
-          -0.27047509,
-          0.11480919,
-          0.95585672
+          0.95526326,
+          0.27757263,
+          -0.10210551
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02817197,
-          "mixamorig:RightShoulder": 0.02182803
+          "mixamorig:LeftShoulder": 0.53485481,
+          "mixamorig:Neck": 0.437782,
+          "mixamorig:Spine2": 0.01640089,
+          "mixamorig:Head": 0.0109623
         }
       },
       {
         "pos": [
-          -0.01064638,
-          0.84014729,
-          0.01770026
+          0.04239868,
+          0.83748108,
+          -0.02056117
         ],
         "normal": [
-          -0.35931654,
-          0.11947385,
-          0.9255364
+          0.93989206,
+          0.28967949,
+          -0.18080016
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02853553,
-          "mixamorig:RightShoulder": 0.02146447
+          "mixamorig:LeftShoulder": 0.5420259,
+          "mixamorig:Neck": 0.43722105,
+          "mixamorig:Spine2": 0.01176471,
+          "mixamorig:Head": 0.00898834
         }
       },
       {
         "pos": [
-          -0.01419008,
-          0.84039461,
-          0.0160927
+          0.04170003,
+          0.83803787,
+          -0.02418027
         ],
         "normal": [
-          -0.44583104,
-          0.12551429,
-          0.88627357
+          0.91753327,
+          0.30171594,
+          -0.25903706
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02886505,
-          "mixamorig:RightShoulder": 0.02113495
+          "mixamorig:LeftShoulder": 0.53213861,
+          "mixamorig:Neck": 0.45049072,
+          "mixamorig:Head": 0.00883931,
+          "mixamorig:Spine2": 0.00853136
         }
       },
       {
         "pos": [
-          -0.01753385,
-          0.84069219,
-          0.01415842
+          0.04016791,
+          0.83855525,
+          -0.02754324
         ],
         "normal": [
-          -0.52903517,
-          0.13292176,
-          0.83812505
+          0.88846234,
+          0.31344037,
+          -0.33524588
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02915735,
-          "mixamorig:RightShoulder": 0.02084265
+          "mixamorig:LeftShoulder": 0.50010993,
+          "mixamorig:Neck": 0.47882448,
+          "mixamorig:Spine2": 0.01176471,
+          "mixamorig:Head": 0.00930088
         }
       },
       {
         "pos": [
-          -0.02064549,
-          0.84103717,
-          0.01191605
+          0.0378336,
+          0.83899866,
+          -0.03042543
         ],
         "normal": [
-          -0.60788334,
-          0.14166615,
-          0.78128647
+          0.85335371,
+          0.32462267,
+          -0.40793084
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02940961,
-          "mixamorig:RightShoulder": 0.02059039
+          "mixamorig:Neck": 0.51780528,
+          "mixamorig:LeftShoulder": 0.45606888,
+          "mixamorig:Spine2": 0.01345134,
+          "mixamorig:Head": 0.0126745
         }
       },
       {
         "pos": [
-          -0.02349503,
-          0.84142623,
-          0.0093872
+          0.03500378,
+          0.83936923,
+          -0.0328341
         ],
         "normal": [
-          -0.68129509,
-          0.1516919,
-          0.7161191
+          0.81238888,
+          0.33526377,
+          -0.47709801
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.0296194,
-          "mixamorig:RightShoulder": 0.0203806
+          "mixamorig:Neck": 0.56022749,
+          "mixamorig:LeftShoulder": 0.40653198,
+          "mixamorig:Spine2": 0.01826971,
+          "mixamorig:Head": 0.01497081
         }
       },
       {
         "pos": [
-          -0.02605504,
-          0.84185561,
-          0.0065962
+          0.03189396,
+          0.83968463,
+          -0.03488422
         ],
         "normal": [
-          -0.74819252,
-          0.16291496,
-          0.64316924
+          0.7647997,
+          0.34552239,
+          -0.54377908
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.0297847,
-          "mixamorig:RightShoulder": 0.0202153
+          "mixamorig:Neck": 0.60379253,
+          "mixamorig:LeftShoulder": 0.3552083,
+          "mixamorig:Spine2": 0.02236049,
+          "mixamorig:Head": 0.01863869
         }
       },
       {
         "pos": [
-          -0.02830085,
-          0.84232119,
-          0.00356994
+          0.02860041,
+          0.83995368,
+          -0.03663306
         ],
         "normal": [
-          -0.80754544,
-          0.17522153,
-          0.56317651
+          0.70987071,
+          0.35541514,
+          -0.60808194
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02990393,
-          "mixamorig:RightShoulder": 0.02009607
+          "mixamorig:Neck": 0.64576856,
+          "mixamorig:LeftShoulder": 0.30708895,
+          "mixamorig:Spine2": 0.02770198,
+          "mixamorig:Head": 0.01944051
         }
       },
       {
         "pos": [
-          -0.03021083,
-          0.84281848,
-          0.00033758
+          0.02517149,
+          0.8401796,
+          -0.03810154
         ],
         "normal": [
-          -0.85842048,
-          0.18846902,
-          0.47706782
+          0.64704234,
+          0.36486197,
+          -0.66948633
         ],
         "weights": {
-          "mixamorig:Neck": 0.85,
-          "mixamorig:Spine2": 0.1,
-          "mixamorig:LeftShoulder": 0.02997592,
-          "mixamorig:RightShoulder": 0.02002408
+          "mixamorig:Neck": 0.68352378,
+          "mixamorig:LeftShoulder": 0.26239639,
+          "mixamorig:Spine2": 0.03228998,
+          "mixamorig:Head": 0.02178986
         }
       }
     ],
     "lipOffsetMu": 0.004,
-    "neckDominance": 1.0,
-    "sliceAspectRatio": 1.06769718,
-    "sliceVertices": 265,
+    "neckDominance": 0.796875,
+    "sliceAspectRatio": 1.2771485,
+    "sliceVertices": 280,
     "axisLocal": [
       -1.6e-07,
       1.0,
       0.0
     ],
-    "sha256": "d9342353c83776ff30dc220d357eb2404a669b901f1221efc0c39f388f184e45"
+    "sha256": "50224403e765697f01c296a8eb2d0439b878975130c5a641d9f18514a2551958"
   },
   "skullProfile": {
     "file": "skull_profile.json",
@@ -2623,9 +2624,9 @@
     "neck": {
       "bone": "mixamorig:Neck",
       "pos": [
-        -0.01141032,
-        0.016,
-        -0.00295645
+        -0.00197034,
+        0.00754686,
+        0.00211606
       ],
       "quat": [
         -0.04964914,

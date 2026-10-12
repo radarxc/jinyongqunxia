@@ -1,0 +1,98 @@
+{
+  "tpl_f2_medium": {
+    "sourceSha256": "e528b178bfb8070da36ea7f382aa9aa6ca64560cd312d04d281c832b8e8d733e",
+    "outputSha256": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94",
+    "fixedFaces": 89,
+    "changedBytes": 324,
+    "nonIndexAccessorsUnchanged": 572,
+    "onlyIndexBytesChanged": true,
+    "centerY": {
+      "unit": "mu",
+      "space": "mesh-local",
+      "count": 89,
+      "min": 0.0047302280242244405,
+      "max": 0.967346727848053,
+      "mean": 0.544915681710111,
+      "bins": [
+        {
+          "minInclusive": 0.0,
+          "maxExclusive": 0.1,
+          "count": 20
+        },
+        {
+          "minInclusive": 0.4,
+          "maxExclusive": 0.5,
+          "count": 8
+        },
+        {
+          "minInclusive": 0.5,
+          "maxExclusive": 0.6,
+          "count": 6
+        },
+        {
+          "minInclusive": 0.6,
+          "maxExclusive": 0.7,
+          "count": 2
+        },
+        {
+          "minInclusive": 0.7,
+          "maxExclusive": 0.8,
+          "count": 49
+        },
+        {
+          "minInclusive": 0.9,
+          "maxExclusive": 1.0,
+          "count": 4
+        }
+      ]
+    }
+  },
+  "tpl_m_medium": {
+    "sourceSha256": "d9db6f2d86979df28bf082e965eacfbe067ba5407e6754ddfd8d70211471b65d",
+    "outputSha256": "aa2a1e95258a36555890d8095c75b1711978f30d8134fa45791d6e9889e91549",
+    "fixedFaces": 67,
+    "changedBytes": 244,
+    "nonIndexAccessorsUnchanged": 583,
+    "onlyIndexBytesChanged": true,
+    "centerY": {
+      "unit": "mu",
+      "space": "mesh-local",
+      "count": 67,
+      "min": 0.008036146406084299,
+      "max": 0.9221395452817281,
+      "mean": 0.536060978285505,
+      "bins": [
+        {
+          "minInclusive": 0.0,
+          "maxExclusive": 0.1,
+          "count": 11
+        },
+        {
+          "minInclusive": 0.4,
+          "maxExclusive": 0.5,
+          "count": 7
+        },
+        {
+          "minInclusive": 0.5,
+          "maxExclusive": 0.6,
+          "count": 27
+        },
+        {
+          "minInclusive": 0.6,
+          "maxExclusive": 0.7,
+          "count": 2
+        },
+        {
+          "minInclusive": 0.7,
+          "maxExclusive": 0.8,
+          "count": 13
+        },
+        {
+          "minInclusive": 0.9,
+          "maxExclusive": 1.0,
+          "count": 7
+        }
+      ]
+    }
+  }
+}

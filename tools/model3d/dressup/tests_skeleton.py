@@ -14,12 +14,15 @@ import sys
 import tempfile
 
 import numpy as np
+from scipy.special import ellipe
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import compose_matrix, matrix_to_quaternion, quaternion_to_matrix  # noqa: E402
-from export_skeleton import (REGION_IDS, _flex_axis, _grip_frame, _grip_point, _plane_basis, _rotation_part,
+from common import compose_matrix, matrix_to_quaternion, nearest_triangle, quaternion_to_matrix  # noqa: E402
+from export_skeleton import (REGION_IDS, SECTION_HEIGHT_FRACTION, SkeletonError, _check_neck_ring,
+                             _check_section_surface, _flex_axis, _grip_frame, _grip_point, _plane_basis, _rotation_part,
                              _socket, _surface_vertex,
-                             derive_regions, embed_regions, find_neck_ring, fit_ellipse, main as export_main)  # noqa: E402
+                             derive_neck_ring, derive_regions, embed_regions, find_neck_ring, fit_ellipse,
+                             main as export_main)  # noqa: E402
 from glb_io import GLBBuilder, Mesh, PrimitiveRange, load_glb  # noqa: E402
 from normalize_rig import facing_yaw, normalize, strip_constant_tracks  # noqa: E402
 
@@ -75,6 +78,113 @@ def test_neck_ring_skips_wide_trapezius_slice() -> None:
     points, weights, primary = build([(0.014, (0.050, 0.042)), (0.020, (0.049, 0.041))])
     result = find_neck_ring(points, weights, primary, axis, slice_half=.0004)
     _assert_close(result["height"], .014)
+
+
+def _tube(radii=(.036, .030), center=(0., 0.), length=.08, *, closed=True, count=256) -> Mesh:
+    angles = np.linspace(0, 2 * math.pi if closed else 1.6 * math.pi, count, endpoint=False)
+    points = np.array([[center[0] + radii[0] * math.cos(a), y, center[1] + radii[1] * math.sin(a)]
+                       for y in (0, length * SECTION_HEIGHT_FRACTION, length) for a in angles])
+    faces = []
+    for row in range(2):
+        for index in range(count if closed else count - 1):
+            a, b = row * count + index, row * count + (index + 1) % count
+            faces.extend([[a, b, a + count], [b, b + count, a + count]])
+    weights = np.tile([.60, .20, .15, .05], (len(points), 1))
+    joints = np.tile([0, 2, 3, 4], (len(points), 1)); joints[count:, 1:] = [1, 2, 5]
+    return Mesh(points, np.asarray(faces).reshape(-1), joints=joints, weights=weights)
+
+
+class _SectionRig:
+    def __init__(self, mesh: Mesh, length=.08):
+        self.length = length; self.value = mesh
+        self.json = {"nodes": [{"name": f"mixamorig:{name}"} for name in
+                                ("Neck", "Head", "Spine2", "LeftShoulder", "RightShoulder", "Hips")]}
+    def skin(self): return type("Skin", (), {"joints": tuple(range(6))})()
+    def mesh(self): return self.value
+    def world_matrix(self, node): return compose_matrix([0, self.length if node == 1 else 0, 0])
+
+
+def _tube_ring(mesh: Mesh, length=.08, fraction=None):
+    glb = _SectionRig(mesh, length)
+    slots = {node["name"]: index for index, node in enumerate(glb.json["nodes"])}
+    source = None if fraction is None else {"neckRing": {"mode": "section", "heightFraction": fraction}}
+    return derive_neck_ring(glb, mesh, mesh.positions, slots, ring_mode="section", ring_from=source, m_per_mu=1.7)
+
+
+def test_section_ellipse_and_weights() -> None:
+    # 解析椭圆周长 = 4a E(1-b²/a²)；测试圆、偏心椭圆及非顶点高度的重心权重。
+    for radii in ((.030, .030), (.036, .030), (.042, .034)):
+        mesh = _tube(radii); ring = _tube_ring(mesh, fraction=.13)
+        _assert_close(list(ring["radiusMu"].values()), radii, min(radii) * .005)
+        exact = 4 * radii[0] * ellipe(1 - (radii[1] / radii[0]) ** 2) * 1700
+        assert abs(ring["perimeterMm"] / exact - 1) < .005
+        samples = np.asarray([point["pos"] for point in ring["profile"]])
+        nearest = nearest_triangle(samples, mesh.positions, mesh.indices.reshape(-1, 3))
+        assert nearest.distances_mu.max() * 1700 < .0001
+        for point, index, bary in zip(ring["profile"], nearest.face_indices, nearest.barycentric):
+            corners = mesh.indices.reshape(-1, 3)[index]; dense = np.zeros(6)
+            np.add.at(dense, mesh.joints[corners].reshape(-1), (bary[:, None] * mesh.weights[corners]).reshape(-1))
+            order = np.argsort(-dense, kind="stable")[:4]; dense /= dense[order].sum()
+            names = [node["name"] for node in _SectionRig(mesh).json["nodes"]]
+            assert set(point["weights"]) == {names[i] for i in order}
+            _assert_close(list(point["weights"].values()), dense[order], 2e-6)
+            _assert_close(point["normal"][1], math.sin(math.radians(15)), 1e-7)
+        _check_neck_ring(ring)
+
+
+def test_section_selects_axis_loop() -> None:
+    # 含轴的偏心颈环、较大的含轴外环、较小的不含轴环、未闭合弧，均穿过同一切面。
+    parts = [_tube(center=(.005, -.004)), _tube((.065, .060)),
+             _tube((.01, .009), center=(.10, 0)), _tube((.04, .031), center=(-.10, 0), closed=False)]
+    offsets = np.cumsum([0] + [len(part.positions) for part in parts])
+    mesh = Mesh(np.concatenate([p.positions for p in parts]),
+                np.concatenate([p.indices + offset for p, offset in zip(parts, offsets)]),
+                joints=np.concatenate([p.joints for p in parts]), weights=np.concatenate([p.weights for p in parts]))
+    ring = _tube_ring(mesh); _assert_close(ring["centerLocalMu"], [.005, .012, -.004], 2e-6)
+    _assert_close(list(ring["radiusMu"].values()), [.036, .030], 2e-6)
+    for invalid in (_tube(closed=False), _tube(center=(.10, 0))):
+        try: _tube_ring(invalid)
+        except SkeletonError: pass
+        else: raise AssertionError("没有含轴闭环的截面必须失败")
+
+
+def test_section_oblique_axis_and_uv_seams() -> None:
+    mesh = _tube(); faces = mesh.indices.reshape(-1, 3)
+    angles = (.23, .67, 1.19)
+    for angle in angles:
+        c, s = math.cos(angle), math.sin(angle); rotation = np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]])
+        # 每面独立三点，模拟所有边都被 UV 缝拆点；切面穿过管中段顶点与共面边。
+        split = Mesh((mesh.positions @ rotation.T)[faces].reshape(-1, 3), np.arange(faces.size),
+                     joints=mesh.joints[faces].reshape(-1, 4), weights=mesh.weights[faces].reshape(-1, 4))
+        rig = _SectionRig(split)
+        rig.world_matrix = lambda node: compose_matrix((rotation @ np.array([0., .08, 0])) if node == 1 else [0, 0, 0])
+        slots = {node["name"]: i for i, node in enumerate(rig.json["nodes"])}
+        ring = derive_neck_ring(rig, split, split.positions, slots, ring_mode="section")
+        _assert_close(ring["localYMu"], .012); _assert_close(ring["axisLocal"], rotation[:, 1], 1e-7)
+        _assert_close(list(ring["radiusMu"].values()), [.036, .030], 2e-6)
+        points = np.asarray([point["pos"] for point in ring["profile"]])
+        _assert_close(points @ rotation[:, 1], np.full(64, .012), 1e-7)
+        assert nearest_triangle(points, split.positions, split.indices.reshape(-1, 3)).distances_mu.max() < 1e-7
+
+
+def test_section_height_scales_and_check_rejects_damage() -> None:
+    for length in (.04, .08, .16):
+        mesh = _tube(length=length); ring = _tube_ring(mesh, length)
+        _assert_close(ring["localYMu"], SECTION_HEIGHT_FRACTION * length)
+        _assert_close(list(ring["radiusMu"].values()), [.036, .030], 2e-6)
+        inherited = _tube_ring(mesh, length, fraction=.20)
+        _assert_close(inherited["localYMu"], .20 * length)
+        data = {"neckRing": ring, "mPerMu": 1.7}
+        assert _check_section_surface(data, _SectionRig(mesh, length)) < .0001
+        mutations = [lambda r: r["profile"][0]["pos"].__setitem__(0, .10),
+                     lambda r: r["profile"].reverse(), lambda r: r.__setitem__("heightFraction", .1),
+                     lambda r: r.__setitem__("perimeterMm", 1),
+                     lambda r: r["profile"][0]["weights"].__setitem__("mixamorig:Neck", .1)]
+        for mutate in mutations:
+            damaged = copy.deepcopy(data); mutate(damaged["neckRing"])
+            try: _check_section_surface(damaged, _SectionRig(mesh, length))
+            except SkeletonError: pass
+            else: raise AssertionError("section 校验接受损坏截面")
 
 
 class _SocketGLB:
@@ -219,10 +329,34 @@ def test_real_normalize_round_trip() -> None:
         assert sum(len(a["channels"]) for a in load_glb(target).json["animations"]) == 198
 
 
+def test_legacy_exports_byte_identical() -> None:
+    templates = Path(__file__).resolve().parents[3] / "assets/default/model3d/dressup/templates"
+    for name in ("tpl_f_medium", "tpl_f_small", "tpl_f_tall"):
+        source = templates / name; expected_bytes = (source / "skeleton.json").read_bytes()
+        expected = json.loads(expected_bytes); body_bytes = (source / "body.glb").read_bytes()
+        with tempfile.TemporaryDirectory(prefix="tianshu-t5b-legacy-") as directory:
+            out = Path(directory); (out / "body.glb").write_bytes(body_bytes)
+            # 默认模式通过 CLI 走实际导出；先复制 body，避免 embed_regions 写正本。
+            with redirect_stdout(io.StringIO()):
+                code = export_main(["--body", str(out / "body.glb"), "--out", str(out),
+                                    "--default-height-m", str(expected["defaultHeightM"]), "--json"])
+            assert code == 0
+            actual = json.loads((out / "skeleton.json").read_bytes())
+            actual["source"]["file"] = expected["source"]["file"]
+            assert (json.dumps(actual, ensure_ascii=False, indent=2) + "\n").encode() == expected_bytes, name
+            assert json.dumps(actual["neckRing"]) == json.dumps(expected["neckRing"]), name
+            for filename in ("regions.npy", "skull_profile.json", "body.glb"):
+                assert (out / filename).read_bytes() == (source / filename).read_bytes(), (name, filename)
+        assert (source / "body.glb").read_bytes() == body_bytes
+
+
 def main() -> int:
     tests = [test_region_mapping, test_neck_ring_and_ellipse, test_neck_ring_skips_wide_trapezius_slice, test_socket_round_trip,
              test_grip_frames_follow_projected_pinky_to_index, test_grip_surface_and_flex_axes,
-             test_track_strip_and_yaw, test_region_glb_attribute, test_check_rejects_nested_damage, test_real_normalize_round_trip]
+             test_track_strip_and_yaw, test_region_glb_attribute, test_check_rejects_nested_damage, test_real_normalize_round_trip,
+             test_section_ellipse_and_weights, test_section_selects_axis_loop,
+             test_section_oblique_axis_and_uv_seams, test_section_height_scales_and_check_rejects_damage,
+             test_legacy_exports_byte_identical]
     for test in tests:
         test(); print(f"PASS {test.__name__}")
     print(f"{len(tests)}/{len(tests)} tests passed")

@@ -1,0 +1,54 @@
+- id: dressup__template__tpl_m_lean
+  file: body.glb
+  category: model3d
+  kind: dressup-template
+  template: tpl_m_lean
+  gender: male
+  archetype: lean
+  derivedFrom:
+    template: tpl_m_medium
+    file: ../tpl_m_medium/body.glb
+    sha256: aa2a1e95258a36555890d8095c75b1711978f30d8134fa45791d6e9889e91549
+  heightM: 1.76
+  heightMu: 0.95219726
+  heightRatio: 0.972375717174324
+  mPerMu: 1.84835651
+  hipsRatio: 0.562999985321015
+  shoulderRatio: 0.18999999480894897
+  skeleton: skeleton.json
+  skeletonSha: 6b153012783072877847b2572d6ba6eee1994c1bbefc51de9b53ec739de79910
+  ringSha: 2816a01109a2a106c00ce8a637227624b0754ab9dfe29601bf5e319591ba933f
+  regions: regions.npy
+  regionsSha: 61591f3f73f9d212284911ffe480ceaf24c1842494ff4e92e33d0b806bb6d926
+  skullProfile: skull_profile.json
+  skullProfileSha: 0e49d35f6c5843390a489010798f32db7bfdaa5e244f4591709f790a217108ad
+  derive: derive.json
+  deriveSha: 93556c0535a12f07effc939b6121d495c870d343a41d8693af73a64570e216c9
+  sha256: 7c42f3a4c4e3fb6e5188ceb13a454bfd2fc143766cdbc07e044681e2a41c008b
+  size_bytes: 8670688
+  vertices: 105156
+  triangles: 197736
+  joints: 65
+  preview: preview.png
+  status: candidate
+  unlit:
+    inheritedFrom: tpl_m_medium
+    result: KHR_materials_unlit，只留 baseColor（2048² JPEG q85）；沿用 T4b 中等源材质，派生不改材质或贴图。
+  validation:
+    report: validation.t5.json
+    deriveGatesPassed: true
+    invertedFacesAfterDerive: 0
+    flippedFaces: 0
+    newNegativeFaces: 0
+    neckRingMode: section
+    neckHeightFraction: 0.15
+    neckRingFrom: ../tpl_m_medium/skeleton.json
+    neckRadiusPassed: true
+    neckRadiusDeltaMm:
+      x: 0.8791568682489925
+      z: 0.21440577074289396
+    neckRadiusLimitMm: 2
+    downstreamRefit: ready
+  notes: AR-104 路 A，从 T4b 定稿并翻正后的 tpl_m_medium 分骨 translation + LBS 派生，0 点、共拓扑。使用 template_specs_v2.json 最新六行；T5b 两环双调和防折叠与法线最小旋转，翻向
+    / 新增负点积面 / 倒置面均为 0。按 1.76 m 以 section 和 --ring-from 重导骨架，65 关节、rest=bind；UV / 权重 / 索引 / rotation 轨 / unlit 材质与源一致。已解决：旧工具颈环相对差超限，现两轴差均小于
+    2 mm，实际半径和长宽比原门通过。已解决：tests_derive.py 的 bulk 脚底误报已修复，10/10 回归及 pnpm check 通过；候选状态保留，后续衣物 / 头 / 道具贴合与默认切换见 T5 报告第 7 节。

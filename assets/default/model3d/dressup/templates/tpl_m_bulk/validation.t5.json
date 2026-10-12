@@ -1,0 +1,509 @@
+{
+  "template": "tpl_m_bulk",
+  "source": "tpl_m_medium",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/model3d/dressup/derive_template.py",
+        "--from",
+        "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb",
+        "--spec",
+        "tools/model3d/dressup/template_specs_v2.json",
+        "--id",
+        "tpl_m_bulk",
+        "--out",
+        "assets/default/model3d/dressup/templates/tpl_m_bulk",
+        "--json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "ok": true,
+        "schema": "tianshu.dressup-template-derive.v1",
+        "source": {
+          "file": "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb",
+          "sha256": "aa2a1e95258a36555890d8095c75b1711978f30d8134fa45791d6e9889e91549",
+          "templateId": "tpl_m_medium"
+        },
+        "targetId": "tpl_m_bulk",
+        "gender": "male",
+        "heightM": 1.86,
+        "scale": {
+          "leg": 0.9998333653707082,
+          "spine": 1.0999036746899178,
+          "shoulder": 1.0868873310707772,
+          "arm": 1.0276243093922652
+        },
+        "foldRepair": {
+          "before": 0,
+          "after": 0,
+          "iterations": 0,
+          "maxCorrectionMm": 0.0,
+          "method": "two-ring-constrained-biharmonic"
+        },
+        "measured": {
+          "heightMu": 1.006299376487732,
+          "floorYMu": 8.145008177962154e-05,
+          "hipsRatio": 0.552999981542555,
+          "shoulderRatio": 0.20999999299039104,
+          "heightM": 1.8600001142329716,
+          "heightRatio": 1.027624343693431,
+          "mPerMu": 1.84835662,
+          "maxVertexDisplacementMu": 0.02709424465509492,
+          "maxVertexDisplacementLimitMu": 0.054102115209590185,
+          "sourceFloorYMu": -1.4939178072381765e-07,
+          "targetFloorYMu": 8.145008177962154e-05,
+          "containsNaN": false
+        },
+        "target": {
+          "heightM": 1.86,
+          "heightMu": 1.0062993428983742,
+          "heightRatio": 1.0276243093922652,
+          "hipsRatio": 0.553,
+          "shoulderRatio": 0.21
+        },
+        "error": {
+          "heightM": 1.1423297152646228e-07,
+          "heightRatio": 3.430116568559072e-08,
+          "hipsRatio": -1.8457445016828444e-08,
+          "shoulderRatio": -7.009608948838064e-09
+        },
+        "validation": {
+          "topologyUnchanged": true,
+          "uvUnchanged": true,
+          "skinWeightsUnchanged": true,
+          "materialTexturesUnchanged": true,
+          "jointOrderUnchanged": true,
+          "restBindMaxDiff": 5.999705421366741e-08,
+          "rotationTracksUnchanged": true,
+          "hipsTranslationTracksScaled": 3,
+          "hipsTranslationScale": 0.9998333653707082,
+          "canonicalFloorYMu": 0.0,
+          "nan": false,
+          "flippedFaces": 0,
+          "sourceNegativeFaces": 0,
+          "negativeFaces": 0,
+          "newNegativeFaces": 0
+        },
+        "elapsedSec": 1.8250680830096826,
+        "outputSha256": "29e3ea35decfda96d281056757b86035ce5183c01d21d8a8ef2c9b4681ff0d72"
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "tools/model3d/dressup/export_skeleton.py",
+        "--body",
+        "assets/default/model3d/dressup/templates/tpl_m_bulk/body.glb",
+        "--out",
+        "assets/default/model3d/dressup/templates/tpl_m_bulk",
+        "--default-height-m",
+        "1.86",
+        "--ring-mode",
+        "section",
+        "--ring-from",
+        "assets/default/model3d/dressup/templates/tpl_m_medium/skeleton.json",
+        "--json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "ok": true,
+        "skeleton": "assets/default/model3d/dressup/templates/tpl_m_bulk/skeleton.json",
+        "regions": "assets/default/model3d/dressup/templates/tpl_m_bulk/regions.npy",
+        "skullProfile": "assets/default/model3d/dressup/templates/tpl_m_bulk/skull_profile.json",
+        "heightMu": 1.0062993463507155,
+        "mPerMu": 1.8483565618373687,
+        "ringSha": "7cc619287cfa40b8e63e8940bc2fe572da4fc516bf561183a52bfb9ddf69d8a8",
+        "skeletonSha": "cecc432c555f173c060d153617844f0f5cd1e0d924ac034e60490aad208a9e55",
+        "crossTriangleRatio": 0.021058380871464985,
+        "skullRows": 25,
+        "measures": {
+          "headWidthMu": 0.1067581,
+          "headDepthMu": 0.12492368,
+          "headCircumferenceMu": 0.34274826,
+          "headTopMu": [
+            0.00110458,
+            1.00492663,
+            -0.00562456
+          ],
+          "shoulderSkinWidthMu": 0.17117436,
+          "chestWidthMu": 0.04463634,
+          "waistWidthMu": 0.14583179,
+          "hipWidthMu": 0.15890539,
+          "handLengthMu": {
+            "L": 0.10513127,
+            "R": 0.11306157
+          },
+          "handThicknessMu": {
+            "L": 0.04019591,
+            "R": 0.04026739
+          },
+          "footLengthMu": 0.13507034
+        },
+        "sockets": {
+          "gripR": {
+            "bone": "mixamorig:RightHand",
+            "pos": [
+              -0.00103819,
+              0.01205021,
+              0.01599459
+            ],
+            "quat": [
+              0.24397364,
+              0.16909433,
+              -0.66283663,
+              0.68740932
+            ],
+            "normalLocal": [
+              0.0,
+              0.08506566,
+              0.99637535
+            ],
+            "palmNormalLocal": [
+              -0.00608827,
+              -0.55736374,
+              0.83024611
+            ],
+            "palmOffsetMu": 0.0153,
+            "radiusMu": 0.014
+          },
+          "gripL": {
+            "bone": "mixamorig:LeftHand",
+            "pos": [
+              0.00939567,
+              0.00908763,
+              -0.0159316
+            ],
+            "quat": [
+              0.71004662,
+              0.60932389,
+              -0.10022012,
+              0.33839935
+            ],
+            "normalLocal": [
+              0.0,
+              0.12185393,
+              0.99254804
+            ],
+            "palmNormalLocal": [
+              0.38176019,
+              -0.60166354,
+              -0.70161253
+            ],
+            "palmOffsetMu": 0.0153,
+            "radiusMu": 0.014
+          },
+          "headTop": {
+            "bone": "mixamorig:Head",
+            "pos": [
+              -0.01702587,
+              0.09841938,
+              0.00343691
+            ],
+            "quat": [
+              -0.04964913,
+              0.75675593,
+              0.0578716,
+              0.64923517
+            ],
+            "normalLocal": [
+              0.01963966,
+              0.99965215,
+              0.01760315
+            ]
+          },
+          "headCenter": {
+            "bone": "mixamorig:Head",
+            "pos": [
+              0.00945393,
+              0.04070537,
+              -0.00100477
+            ],
+            "quat": [
+              -0.04964913,
+              0.75675593,
+              0.0578716,
+              0.64923517
+            ],
+            "normalLocal": [
+              -0.01221127,
+              0.04074762,
+              0.99909485
+            ]
+          },
+          "neck": {
+            "bone": "mixamorig:Neck",
+            "pos": [
+              -0.00084354,
+              0.00754687,
+              0.00201226
+            ],
+            "quat": [
+              -0.04964914,
+              0.756756,
+              0.05787162,
+              0.64923508
+            ],
+            "normalLocal": [
+              1e-08,
+              0.98837168,
+              0.15205731
+            ]
+          },
+          "chest": {
+            "bone": "mixamorig:Spine2",
+            "pos": [
+              0.05815734,
+              0.04450418,
+              -0.02180178
+            ],
+            "quat": [
+              0.00741763,
+              0.69968933,
+              -0.00726516,
+              0.71437178
+            ],
+            "normalLocal": [
+              -0.1680632,
+              0.55173637,
+              0.81690987
+            ]
+          },
+          "back": {
+            "bone": "mixamorig:Spine2",
+            "pos": [
+              -0.06382895,
+              0.05111289,
+              -0.01924552
+            ],
+            "quat": [
+              0.00741763,
+              0.69968933,
+              -0.00726516,
+              0.71437178
+            ],
+            "normalLocal": [
+              -0.37384637,
+              0.20770016,
+              -0.90393558
+            ]
+          },
+          "waistL": {
+            "bone": "mixamorig:Hips",
+            "pos": [
+              -0.00693154,
+              0.07115669,
+              -0.07202232
+            ],
+            "quat": [
+              1e-08,
+              0.70710684,
+              1e-08,
+              0.70710672
+            ],
+            "normalLocal": [
+              0.98030615,
+              0.18939742,
+              -0.0559327
+            ]
+          },
+          "waistR": {
+            "bone": "mixamorig:Hips",
+            "pos": [
+              0.00084925,
+              0.07092309,
+              0.07533615
+            ],
+            "quat": [
+              1e-08,
+              0.70710684,
+              1e-08,
+              0.70710672
+            ],
+            "normalLocal": [
+              -0.98604366,
+              0.16195497,
+              0.03858104
+            ]
+          },
+          "waistBack": {
+            "bone": "mixamorig:Hips",
+            "pos": [
+              -0.04848432,
+              0.0865739,
+              0.02271788
+            ],
+            "quat": [
+              1e-08,
+              0.70710684,
+              1e-08,
+              0.70710672
+            ],
+            "normalLocal": [
+              -0.07160148,
+              -0.12968505,
+              -0.98896664
+            ]
+          },
+          "footL": {
+            "bone": "mixamorig:LeftFoot",
+            "pos": [
+              -0.00213968,
+              0.07468689,
+              -0.01913629
+            ],
+            "quat": [
+              -0.36372857,
+              -0.40020267,
+              -0.83789536,
+              0.07396428
+            ],
+            "normalLocal": [
+              -0.14069167,
+              -0.83949645,
+              -0.5248348
+            ]
+          },
+          "footR": {
+            "bone": "mixamorig:RightFoot",
+            "pos": [
+              -0.00486115,
+              0.07572792,
+              -0.01821931
+            ],
+            "quat": [
+              -0.3010604,
+              -0.34423837,
+              -0.86239763,
+              0.21710115
+            ],
+            "normalLocal": [
+              0.15236487,
+              -0.87999436,
+              -0.44988318
+            ]
+          }
+        },
+        "regionEmbedded": false,
+        "bodySha": "29e3ea35decfda96d281056757b86035ce5183c01d21d8a8ef2c9b4681ff0d72"
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "tools/model3d/dressup/derive_template.py",
+        "--from",
+        "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb",
+        "--spec",
+        "tools/model3d/dressup/template_specs_v2.json",
+        "--id",
+        "tpl_m_bulk",
+        "--out",
+        "assets/default/model3d/dressup/templates/tpl_m_bulk",
+        "--check",
+        "--json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "ok": true,
+        "targetId": "tpl_m_bulk",
+        "flippedFaces": 0,
+        "sourceNegativeFaces": 0,
+        "negativeFaces": 0,
+        "newNegativeFaces": 0,
+        "error": {
+          "heightRatio": 3.430116568559072e-08,
+          "hipsRatio": -1.8457445016828444e-08,
+          "shoulderRatio": -7.009608948838064e-09
+        },
+        "maxVertexDisplacementMu": 0.02709424465509492
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "tools/model3d/dressup/export_skeleton.py",
+        "--check",
+        "--out",
+        "assets/default/model3d/dressup/templates/tpl_m_bulk",
+        "--json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "ok": true,
+        "joints": 65,
+        "vertices": 105156,
+        "headWidthMu": 0.1067581,
+        "neckRadiusMu": {
+          "x": 0.04121377,
+          "z": 0.03231838
+        },
+        "restBindMaxDiff": 5.999705421366741e-08,
+        "profileSurfaceMaxMm": 1.2356662498605473e-05
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "tools/model3d/dressup/normalize_rig.py",
+        "--check",
+        "--body",
+        "assets/default/model3d/dressup/templates/tpl_m_bulk/body.glb",
+        "--json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "joints": 65,
+        "restBindMaxDiff": 5.999705421366741e-08,
+        "file": "assets/default/model3d/dressup/templates/tpl_m_bulk/body.glb",
+        "yawDeg": 3.467347830271696e-05,
+        "facing": [
+          6.051663595011891e-07,
+          0.0,
+          0.9999999999998169
+        ],
+        "ok": true
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "tools/model3d/dressup/fix_inverted_faces.py",
+        "--check",
+        "--body",
+        "assets/default/model3d/dressup/templates/tpl_m_bulk/body.glb",
+        "--json"
+      ],
+      "exitCode": 0,
+      "result": {
+        "ok": true,
+        "check": true,
+        "triangles": 197736,
+        "primitives": 1,
+        "invertedFaces": 0,
+        "uniqueInvertedFaces": 0,
+        "faceIndices": [],
+        "faces": [],
+        "centerY": {
+          "unit": "mu",
+          "space": "mesh-local",
+          "count": 0,
+          "min": null,
+          "max": null,
+          "mean": null,
+          "bins": []
+        },
+        "fixedFaces": 0,
+        "inputSha256": "29e3ea35decfda96d281056757b86035ce5183c01d21d8a8ef2c9b4681ff0d72",
+        "outputSha256": "29e3ea35decfda96d281056757b86035ce5183c01d21d8a8ef2c9b4681ff0d72"
+      }
+    }
+  ],
+  "allPassed": true,
+  "neckRadiusDeltaMm": {
+    "x": 0.7446868714579974,
+    "z": 0.49393827866539564
+  },
+  "neckRadiusLimitMm": 2,
+  "neckRadiusPassed": true
+}

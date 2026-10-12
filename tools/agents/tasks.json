@@ -56254,7 +56254,8 @@
    "kind": "draft",
    "prompt": "ENG-dressup-t5-bodies-v2-derive.md",
    "deps": [
-    "ART-dressup-t4-bodies-v2"
+    "ART-dressup-t4-bodies-v2",
+    "ART-dressup-t4b-neck-v3"
    ],
    "review": false,
    "web": true,
@@ -56274,6 +56275,7 @@
     "tools/model3d/dressup/fix_inverted_faces.py",
     "tools/model3d/dressup/tests_fix_faces.py",
     "tools/model3d/dressup/template_specs_v2.json",
+    "tools/model3d/dressup/tests_derive.py",
     "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
     "assets/default/model3d/dressup/templates/tpl_f2_small/**",
     "assets/default/model3d/dressup/templates/tpl_f2_tall/**",
@@ -56567,6 +56569,175 @@
      [
       "{python}",
       "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-t5b-ring-fold",
+   "title": "3D 纸娃娃换装 · T5b · 派生前置修复：颈环改按实际颈截面 + 派生防折叠 / 法线一致（只改工具与测试；0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-t5b-ring-fold.md",
+   "deps": [
+    "ART-dressup-t4b-neck-v3"
+   ],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "T5 审核 r1：派生四体颈环差 2.4–6.3 mm（取环只用 Neck ≥ 0.5 权重点、半圈弧拟椭圆不稳）、f2_small 73 个派生折叠三角；先修工具，T5 再重派生",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/derive_template.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "tools/model3d/dressup/tests_derive.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/export_skeleton.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_derive.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-r1-heads-f2",
+   "title": "3D 纸娃娃换装 · R1 · 新素体切头：黄蓉 / 穆念慈 × tpl_f2 三体型（--texture 8K）+ 换装页变体只在同一套素体内回退（0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r1-heads-f2.md",
+   "deps": [
+    "ENG-dressup-t5-bodies-v2-derive",
+    "ENG-dressup-h1-head-density"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-11：六个素体可以，但换黄蓉头后有问题（跨素体回退旧头 → 黑洞 + 光头互穿）；AR-110 Claude 直接实现",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/model3d/npc_huangrong"
+   ],
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**",
+    "assets/default/model3d/dressup/heads/npc_munianci/**",
+    "apps/game/src/pages/Character3dPage.vue",
+    "apps/game/src/pages/useDressupIndex.ts",
+    "apps/game/src/pages/useDressupIndex.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_small.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small', '.tpl_f2_medium', '.tpl_f2_tall', '.tpl_f2_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small', '.tpl_f2_medium', '.tpl_f2_tall', '.tpl_f2_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
      ],
      [
       "pnpm",

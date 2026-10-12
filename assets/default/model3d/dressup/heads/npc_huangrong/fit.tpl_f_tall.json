@@ -7,7 +7,17 @@
   "mPerMu": 1.69370023,
   "source": {
     "file": "assets/default/model3d/npc_huangrong/model_rig.glb",
-    "sha256": "cc745165bf7798c35763a813b6cb0d54bb0d6e39cc35c58951e75c54c0ad1797"
+    "sha256": "cc745165bf7798c35763a813b6cb0d54bb0d6e39cc35c58951e75c54c0ad1797",
+    "texture": {
+      "path": "apps/game/public/models/props/npc_huangrong_basecolor_8k.jpg",
+      "sha256": "34ded9aa24b3229bd674b0b0820fb9349c698871224a05f5f108cb77f4680883",
+      "size": [
+        8192,
+        8192
+      ],
+      "factor": 4,
+      "meanAbsDiffVsEmbedded": 1.340739489
+    }
   },
   "body": {
     "file": "assets/default/model3d/dressup/templates/tpl_f_tall/body.glb",
@@ -304,6 +314,16 @@
       ],
       "hHeadAfterMm": 18.0
     },
+    "atlas": {
+      "mode": "packed",
+      "islands": 112,
+      "scaleDstPerSrc": 0.555728143,
+      "gutterPx": 4,
+      "headCoverage": 0.45489393,
+      "rectCoverage": 0.894981657,
+      "linearGainVsLegacy": 2.376393498,
+      "seamToneTexelsApplied": 0
+    },
     "neckFit": {
       "rampMm": 20.0,
       "maxMm": 4.0,
@@ -437,15 +457,15 @@
     "checks": {
       "color": {
         "bottom": {
-          "mean": 0.353306122,
+          "mean": 0.35248304,
           "p95": 0.920801688,
           "max": 1.509364932,
           "samples": 1308
         },
         "top": {
-          "mean": 0.619449154,
-          "p95": 1.363364669,
-          "max": 2.121416141,
+          "mean": 0.534173133,
+          "p95": 1.313243995,
+          "max": 2.071355977,
           "angles": 247
         }
       },
@@ -606,7 +626,7 @@
         "g1P95Deg": 3.027848774,
         "stepMaxMm": 0.397897536,
         "bulgeMaxMm": 0.0,
-        "colorP95": 1.718344778,
+        "colorP95": 1.444024727,
         "worstG1Deg": 228
       },
       "neckHoles": {
@@ -619,8 +639,8 @@
     "stats": {
       "vertices": 16132,
       "triangles": 27623,
-      "fileSize": 1949320,
-      "durationMs": 219005
+      "fileSize": 1925244,
+      "durationMs": 351386
     },
     "gateLevel": "pass"
   }
