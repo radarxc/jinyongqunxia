@@ -108,6 +108,10 @@ export interface DialogueView {
   readonly speakerId: string; readonly textKey: string | null;
   readonly choices: readonly DialogueChoiceView[];
   readonly history: readonly { readonly speakerId: string; readonly textKey: string }[];
+  /** Facility staff the `interlocutor` speaker refers to (core dialogue projection). */
+  readonly interlocutor?: {
+    readonly facilityKey: string; readonly roleKey: string; readonly nameKey: string;
+  };
 }
 export interface DialoguePanelChoiceView {
   readonly id: string;
