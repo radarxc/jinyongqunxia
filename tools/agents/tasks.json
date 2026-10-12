@@ -30237,7 +30237,8 @@
     "packages/data/src/schemas/town-scene.ts",
     "packages/data/src/region-map-town.test.ts",
     "packages/render/src/buildgen/types.ts",
-    "apps/game/src/town-contract.test.ts"
+    "apps/game/src/town-plan-contract.test.ts",
+    "packages/data/src/build/town-plan/index.ts"
    ],
    "validate": {
     "exists": [
@@ -30373,7 +30374,10 @@
     "packages/core/src/command/facility-dialogue.test.ts",
     "packages/core/src/world/town-runtime.ts",
     "packages/core/src/world/town-runtime.test.ts",
-    "apps/game/src/runtime/session.test.ts"
+    "apps/game/src/runtime/session.test.ts",
+    "packages/core/src/event/index.ts",
+    "apps/game/src/flow/event-presentation.ts",
+    "apps/game/src/flow/event-presentation.test.ts"
    ],
    "validate": {
     "exists": [

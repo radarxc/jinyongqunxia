@@ -148,7 +148,7 @@ interface TownBuildingPlan {
   floors: readonly RectMm[]; floorY: readonly number[];                         // 一一对应
   fixtures: readonly FixtureTuple[]; parts?: readonly PartTuple[];              // 院落部件（tech/16 §4）
   signage: readonly [textKey: string, signStyleIdx: number] | null;
-  facility: FacilityKind;
+  facility: PlanFacilityKind;                                                  // tech/16 §4.2 的 22 种室内模板类；不同于 §2.5 的玩法设施类 FacilityKind（大类 + sub），映射归编译器
   finial?: 'tang_stupa';                                                        // 只在 xiyu:tang_buddhist 变体的寺院出现（tech/16 §4.3）
 }
 ```
@@ -277,7 +277,7 @@ interface ShopView { instanceKey: string; nameKey: string; facilityKind: Facilit
 - 测试向量：design/12 QST-T21（买价 44,977 文）、QST-T22（卖价 19,912 文）。
 
 ### 4.5 对话
-- `GameState.dialogue.context?: { kind: 'facility'; sceneId; facilityKey; roleKey; shopKey | null }`。对话中本就拒绝存档（`DIALOGUE_SAVE_UNAVAILABLE`），无需迁移，只改形状校验。
+- `GameState.dialogue.context?: { kind: 'facility'; sceneId; facilityKey; roleKey; shopKey | null; interlocutorNameKey }`（`interlocutorNameKey` 启动时从设施内容取 authored 名字键，投影只读它，不拼猜；10-11 协调者裁定）。对话中本就拒绝存档（`DIALOGUE_SAVE_UNAVAILABLE`），无需迁移，只改形状校验。
 - `facility/openShop`：从对话上下文解析店铺，产生呈现步 `{ op: 'shop/open', shopKey }`；非设施语境报 `DIALOGUE_INTENT_REFERENCE`。
 - v1 过渡：`town/interact` 在设施建筑内改为启动该设施的对话（取代 `town/shopRequested` 事件；`businessRef` 指营生不指店铺）。
 

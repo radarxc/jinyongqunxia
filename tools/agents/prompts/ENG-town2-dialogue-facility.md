@@ -25,6 +25,12 @@
 ## 约束
 - 只写：`packages/core/src/dialogue/**`、`packages/core/src/event/event-executor.ts`、`packages/core/src/command/{story-handlers,handlers}.ts`、`packages/core/src/world/town-runtime.ts`、上述文件对应的 `*.test.ts` 与本任务报告。
 - **协调者 10-11 裁定扩大的写集**（tasks.json 同步）：`apps/game/src/runtime/session.test.ts`——只改 `Worker session command adapter > moves through core, resolves location anchors, and enters a selected shared door` 里「店内 `town/interact` 产生 `town/shopRequested`」这段旧断言，改为断言本任务定的新行为（店内交互进入设施对话：对话上下文带设施 / 店铺键，且不再直接发 `town/shopRequested`）；同文件其他用例不动、不删、不放宽。
+- **协调者 10-11 r1 返修裁定**（tasks.json 同步）：
+  1. **条件绑定的事实来源**：设施对话绑定的 `condition` 与既有事件路径用同一个事实来源——`regionRuntimeForState()` 合入当前背包、任务与规则旗标后的 GateFacts；v1 没有区域内容时也按当前状态构造同样的事实，**不得**静默跳过带条件的绑定。补用例：条件命中、条件不命中回落到无条件绑定、多条命中按优先级（精确子类 > 大类、带条件 > 不带条件）取一条。
+  2. **说话人名字不靠猜**：`GameState.dialogue.context` 增加第 6 个字段 `interlocutorNameKey`（启动对话时从设施内容 / 角色绑定里取 authored `nameKey` 写入；对话状态本就不进存档，不需迁移）。`projectDialogue(state)` 只读这个字段；删除按 scene / facility 拼 `nameKey` 的猜测分支；上下文缺字段时抛内部错误。tech/15 §4.5 已同步此字段。
+  3. **呈现步类型**：core 在 `packages/core/src/event/index.ts` 定义 `PresentationStep = EventPresentationAction | { readonly op: 'shop/open'; readonly shopKey: string }`，`world/eventPresented` 载荷的 `steps` 用它；`facility/openShop` 在 core 内解析成 `shop/open` 后才进入呈现，不得用 `as unknown as` 之类的双重断言。应用边界 `apps/game/src/flow/event-presentation.ts`（+ `event-presentation.test.ts`）识别 `shop/open`（`shopKey` 为非空字符串）并原样放行（打开 `ShopLayer` 留给 shop-wire），未知 op 仍丢弃。
+  4. **对话中的 v1 城镇命令**：对话进行中 `town/move | settle-building | exit-building | interact | meditate` 全部拒绝（用 kernel-prep 定的忙碌拒绝码），街上非设施 `town/interact` 保持旧拒绝；补对应用例。
+  - 写集新增：`packages/core/src/event/index.ts`、`apps/game/src/flow/event-presentation.ts`、`apps/game/src/flow/event-presentation.test.ts`。
 - 不改 `command/{index,bus}.ts`、`shop-handler.ts`、`economy/**`（shop-core 并行在写）；不改 `packages/core/src/index.ts` 导出布局；不改 `content/**`（测试夹具写在测试里）；不新增依赖。
 - core 只用整数（无 `/`）、无墙钟与隐式随机；工具链以根 `package.json` 为准（pnpm 9.15.9、Node ≥ 22.12），`_code.md` 的 Node 24 / pnpm 12 / fast-check 不适用。
 - 现有 `handlers.test.ts` 里断言 `town/shopRequested` 的用例按新行为改写，并在报告逐条列出（只改与本任务直接相关的断言）。
