@@ -33,7 +33,8 @@ from cut_head import (TAU, CylinderGrid, _masked_surface, _vertex_normals, bake_
                       SEAM_TONE_LIGHT_FULL, SEAM_TONE_REF_MM, SEAM_TONE_HOLD_MM, TOP_COVER_MM, covering_skin_faces,
                       top_band_exposure, collar_adjacent, center_neck_section, bake_strip, MASK_OFFSET_MM,
                       _srgb_to_linear, uv_islands, skyline_pack, pack_head_canvas, load_hd_texture, apply_texel_delta,
-                      TextureMismatch, PACK_GUTTER_PX, _library_record, main as cut_head_main)
+                      TextureMismatch, PACK_GUTTER_PX, _library_record, main as cut_head_main, apply_neck_fit,
+                      clip_head, from_cylinder, truncate_ring_weights, RING_SWITCH_FADE_DEG)
 from common import closest_point_on_triangle, lbs, nearest_triangle
 from export_skeleton import _world_mesh
 from glb_io import GLBBuilder, Mesh, load_glb
@@ -1249,6 +1250,60 @@ def test_end_to_end_with_hd_texture() -> None:
                 pass
 
 
+def test_clip_then_neck_fit_exact_cut_ring() -> None:
+    """R1：稀疏网格（12 段、切口上下 4 / 5 mm 才有顶点）上收细量随角度变化时，先收细再裁会在切口处线性插出偏差；
+    改为先在收细前的头上裁开、再对裁后全部点套逐点公式，切口圈半径与公式逐点一致，原有点与先收细的结果逐位相同。"""
+    mm = .001; frame = {**UP, "center": np.zeros(3)}; h_fit = 0.
+    segments = 12; theta = np.repeat(TAU * np.arange(segments) / segments, 1)
+    rows = [(-.004, .031), (.005, .029)]
+    positions = np.concatenate([from_cylinder(theta, np.full(segments, h), np.full(segments, r), frame) for h, r in rows])
+    faces = []
+    for i in range(segments):
+        a, b = i, (i + 1) % segments; c, d = a + segments, b + segments; faces += [(a, b, c), (b, d, c)]
+    faces = np.asarray(faces, np.int64)
+    bins = np.arange(360); amount = (.75 + .75 * np.sin(np.radians(bins + .5))) * mm   # 0–1.5 mm，随角度平滑变化
+    head_ring = np.full(360, .030)
+    count = len(positions); flags = np.ones(count, bool)
+    def clipped(points: np.ndarray) -> dict[str, np.ndarray]:
+        return clip_head(points, np.zeros((count, 2)), faces, flags, ~flags, frame, h_fit)
+    narrowed, *_ = apply_neck_fit(positions, frame, h_fit, amount, head_ring, mm)
+    old = clipped(narrowed)                                                  # 旧：先收细再裁（插值）
+    new = clipped(positions); new_positions, *_ = apply_neck_fit(new["positions"], frame, h_fit, amount, head_ring, mm)
+    _, old_h, old_r = cylinder(old["positions"], frame); new_t, new_h, new_r = cylinder(new_positions, frame)
+    cut_old, cut_new = np.abs(old_h - h_fit) < 1e-9, np.abs(new_h - h_fit) < 1e-9
+    assert cut_old.sum() == cut_new.sum() >= segments
+    _, _, pre_r = cylinder(new["positions"], frame)                           # 收细前的切口半径
+    expected = pre_r[cut_new] - np.interp(np.degrees(new_t[cut_new]) - .5, bins, amount, period=360)
+    np.testing.assert_allclose(new_r[cut_new], expected, atol=1e-9)          # 新：切口圈逐点等于公式
+    order_old = np.argsort(cylinder(old["positions"], frame)[0][cut_old]); order_new = np.argsort(new_t[cut_new])
+    deviation = np.abs(old_r[cut_old][order_old] - new_r[cut_new][order_new]).max() / mm
+    assert deviation > .05, deviation                                         # 旧做法确有插值偏差（本例 > 0.05 mm）
+    above = new_h > h_fit + 1e-6                                              # 原有点（切口以上的旧顶点）逐位相同
+    old_above = np.sort(old["positions"][old_h > h_fit + 1e-6], axis=0); new_above = np.sort(new_positions[above], axis=0)
+    np.testing.assert_array_equal(old_above, new_above)
+
+
+def test_ring_weights_switch_is_continuous() -> None:
+    """R1：逐角权重截前 3 根，第 3 / 4 根（Head、Spine2 都约 0.04）在 90° / 270° 交叉。硬截断在交叉角互换整份权重
+    （相邻角 L1 跳 0.08）；改为切换角两侧渐隐后相邻角 L1 < 0.01、每角仍 ≤ 3 根，离切换角超过渐隐宽度处与硬截断
+    逐位相同；无切换时整圈逐位相同。"""
+    bins = 360; theta = np.arange(bins) + .5
+    ring = np.zeros((bins, 4)); ring[:, 0] = .85; ring[:, 1] = .10                 # Neck、LeftShoulder
+    ring[:, 2] = .04 + .01 * np.cos(np.radians(theta)); ring[:, 3] = .04 - .01 * np.cos(np.radians(theta))
+    ring /= ring.sum(axis=1, keepdims=True)
+    def hard(values: np.ndarray) -> np.ndarray:                                     # R1 之前的截断
+        order = np.argsort(-values, axis=1)[:, :3]
+        kept = np.zeros_like(values); np.put_along_axis(kept, order, np.take_along_axis(values, order, 1), 1)
+        return kept / np.maximum(kept.sum(axis=1, keepdims=True), 1e-12)
+    def step(values: np.ndarray) -> float: return float(np.abs(values - np.roll(values, 1, axis=0)).sum(axis=1).max())
+    old, new = hard(ring), truncate_ring_weights(ring)
+    assert step(old) > .07 and step(new) < .01, (step(old), step(new))
+    assert (np.count_nonzero(new, axis=1) <= 3).all(); np.testing.assert_allclose(new.sum(axis=1), 1, atol=1e-12)
+    far = np.minimum(np.abs(theta - 90), np.abs(theta - 270)) > RING_SWITCH_FADE_DEG
+    np.testing.assert_array_equal(new[far], old[far])
+    steady = ring.copy(); steady[:, 3] = .02; steady /= steady.sum(axis=1, keepdims=True)   # Spine2 始终排第 4
+    np.testing.assert_array_equal(truncate_ring_weights(steady), hard(steady))
+
 def test_cli_texture_mismatch_exit_code() -> None:
     """CLI：--texture 尺寸不是源件贴图的整数倍、或缩回后与内嵌贴图对不上时，退出码 2、输出说明原因、不写产物。"""
     with tempfile.TemporaryDirectory() as temporary:
@@ -1425,7 +1480,9 @@ TESTS = [test_clip_faces_closed_cut, test_subdivide_preserves_surface, test_refi
          test_skin_match_uses_true_means, test_hair_colors_rule, test_neck_fit_monotone_bridge, test_drop_collar_remnants,
          test_top_band_covering_skin, test_level_seam_tone, test_collar_adjacent, test_center_neck_section,
          test_body_tint_seam_reference, test_uv_islands_and_skyline_pack, test_pack_head_canvas_mapping,
-         test_hd_texture_guard_and_delta, test_end_to_end_with_hd_texture, test_cli_texture_mismatch_exit_code,
+         test_hd_texture_guard_and_delta, test_end_to_end_with_hd_texture, test_clip_then_neck_fit_exact_cut_ring,
+         test_ring_weights_switch_is_continuous,
+         test_cli_texture_mismatch_exit_code,
          test_packed_islands_from_output_uvs, test_legacy_golden_without_texture,
          test_end_to_end_with_skin_collar, test_real_asset_recomputed]
 

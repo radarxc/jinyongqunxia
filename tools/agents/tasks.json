@@ -56546,6 +56546,81 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-r1-heads-f2",
+   "title": "3D 纸娃娃换装 · R1 · 新素体切头：黄蓉 / 穆念慈 × tpl_f2 三体型（--texture 8K）+ 换装页变体只在同一套素体内回退（0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r1-heads-f2.md",
+   "deps": [
+    "ENG-dressup-t5-bodies-v2-derive",
+    "ENG-dressup-h1-head-density"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-11：六个素体可以，但换黄蓉头后有问题（跨素体回退旧头 → 黑洞 + 光头互穿）；AR-110 Claude 直接实现",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/model3d/npc_huangrong"
+   ],
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**",
+    "assets/default/model3d/dressup/heads/npc_munianci/**",
+    "apps/game/src/pages/Character3dPage.vue",
+    "apps/game/src/pages/useDressupIndex.ts",
+    "apps/game/src/pages/useDressupIndex.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_small.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small', '.tpl_f2_medium', '.tpl_f2_tall', '.tpl_f2_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small', '.tpl_f2_medium', '.tpl_f2_tall', '.tpl_f2_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
