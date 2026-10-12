@@ -55,6 +55,17 @@ describe('locateShop', () => {
     });
   });
 
+  it('locates the shop when the borrowed definition is re-identified as ch10', () => {
+    // Dev borrowing rewrites cityId / chapterId but keeps the compiled design spec.
+    const { state, content } = borrowed();
+    const reidentified = {
+      ...town,
+      chapterId: 'ch10',
+      source: { spec: 'docs/design/town/city_dali__ch01.yaml' },
+    } as unknown as TownRuntimeDefinition;
+    expect(locateShop(state, { ...content, towns: [reidentified] }, SHOP_KEY)).toBe(true);
+  });
+
   it('reports only insufficient money for the borrowed shop when funds are short', () => {
     const { state, content } = borrowed();
     const poor = { ...state, party: { ...state.party, money: 1 } };

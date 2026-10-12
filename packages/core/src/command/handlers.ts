@@ -8,6 +8,7 @@ import type { GameState } from '../state';
 import type { TownCommand, WorldMapCommand } from '../world';
 import { eventPayload } from './transaction';
 import { exploreTickHook } from '../world/explore/tick-hook';
+import { townLayoutKey } from '../world/town-layout-key';
 import { startFacilityDialogue } from './story-handlers';
 
 const DOMAIN_REJECTIONS = new Set<RejectReason>([
@@ -117,7 +118,7 @@ function townRuntime(state: GameState, content: CoreContent) {
   const town = active && content.towns?.find((entry) => entry.sceneId === active.sceneId);
   if (!town) throw new Error('TOWN_UNAVAILABLE');
   const facilities = content.townFacilities?.find((entry) =>
-    entry.layoutKey === `${town.cityId}__${town.chapterId}`);
+    entry.layoutKey === townLayoutKey(town));
   return createTownRuntime({ town, ...(facilities ? { facilities } : {}),
     ...(content.townEventAnchors ? { eventAnchors: content.townEventAnchors } : {}),
     ...(content.townNpcWorld ? { npcWorld: content.townNpcWorld } : {}),
