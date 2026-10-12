@@ -31221,6 +31221,115 @@
    "profile": "code"
   },
   {
+   "id": "ENG-town2-minimap-art",
+   "title": "城镇探索 v2 · 小地图改版（AR-117）：微缩城镇图底图 + 关键建筑标记 + 竖直缩放条 + 司南示南北",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-town2-minimap-art.md",
+   "deps": [
+    "ENG-town2-chunks",
+    "ENG-town2-v1-minimap"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-117（2026-10-11）「这个太丑了，参考逆水寒给一个微缩小地图（标记关键建筑）而不是抽象图。缩放给一个竖直的bar，南北用司南或者指北针的形象来表达」；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "tools/town/make_minimap.py",
+    "tools/town/tests/test_make_minimap.py",
+    "assets/default/town-minimap/**",
+    "apps/game/build/town-assets.ts",
+    "apps/game/build/town-assets.test.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/pages/TownPage.vue",
+    "packages/ui/src/components/explore/TxMinimap.vue",
+    "packages/ui/src/components/explore/TxMinimap.strings.ts",
+    "packages/ui/src/components/explore/TxMinimap.test.ts",
+    "packages/ui/src/components/explore/TxSinan.vue",
+    "packages/ui/src/components/explore/TxSinan.strings.ts",
+    "packages/ui/src/components/explore/TxSinan.test.ts",
+    "packages/ui/src/explore/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/town/make_minimap.py",
+     "apps/game/src/explore/v1-minimap.ts",
+     "packages/ui/src/components/explore/TxSinan.vue"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "python3",
+      "tools/town/make_minimap.py",
+      "--check"
+     ],
+     [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/town/tests",
+      "-p",
+      "test_make_minimap.py"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/explore",
+      "apps/game/build",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui/src/components/explore",
+      "packages/ui/src/explore",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.preview.png",
+    "assets/default/baseline/town/town_dali__ch01.preview.render.json",
+    "assets/default/baseline/town/town_dali__ch01.overlay.svg",
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/baseline/town/town_hangzhou__ch02.preview.png",
+    "assets/default/baseline/town/town_hangzhou__ch02.preview.render.json",
+    "assets/default/baseline/town/town_hangzhou__ch02.overlay.svg",
+    "assets/default/baseline/town/town_hangzhou__ch02.layout.yaml",
+    "assets/default/town-minimap"
+   ]
+  },
+  {
    "id": "ENG-town2-v1-page",
    "title": "城镇探索 v2 · P1 · 现有城镇页收尾（删模拟店铺与对话、交互条、经店员对话真实购买）",
    "phase": "TOWN2",
@@ -31232,7 +31341,8 @@
     "ENG-town2-actionmap",
     "ENG-town2-heights",
     "ENG-town2-shop-wire",
-    "ENG-town2-v1-minimap"
+    "ENG-town2-v1-minimap",
+    "ENG-town2-minimap-art"
    ],
    "review": false,
    "web": true,
