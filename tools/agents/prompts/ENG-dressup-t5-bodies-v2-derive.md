@@ -75,3 +75,6 @@
 ## 补充裁定（2026-10-11 18:50，协调者）
 5. `tests_derive.py:234` 的"脚底差必须 > 1e-3 mu"会把腿长缩放≈1 的合法派生（tpl_m_bulk，k_leg 0.99983，脚底只动 8.2e-5 mu）误判为整体平移；其余三条已直接堵住整体平移（Hips bind 不变、Hips 平移轨 = 源 × k_leg、无 rootOffset）。准许本任务改 `tools/model3d/dressup/tests_derive.py`（已加进写集）：采用执行器上一轮的候选补丁（按声明分骨缩放重算 LBS + 防折叠，派生顶点须逐位相等；补近单位腿长与平移反例的合成用例），只换掉这一条启发式，其余断言不动。
 6. 补丁与说明不得留在素材目录：`templates/tpl_m_bulk/tests_derive.floor-regression.patch`、`validation.floor-regression.json` 应用后删除，结论写进报告。
+
+## 补充裁定（2026-10-11 20:05，协调者）
+7. 工具链以仓库声明为准：`package.json` 的 `packageManager: pnpm@9.15.9`、`engines: { node: ">=22.12.0", pnpm: ">=9 <10" }`。`_code.md` / `tech/01` / RUNBOOK 里的 Node 24、pnpm 12 是尚未落地的迁移目标，与 engines 冲突（pnpm 12 反而违反 `<10`），不作本任务门禁——与 B6 任务书第 2 条同一裁定。本任务在 Node 22.22.1 / pnpm 9.15.9 下 `pnpm install --frozen-lockfile`、`pnpm check` 全过即满足完成定义，无需改 package.json 或 lockfile。
