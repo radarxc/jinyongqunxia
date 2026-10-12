@@ -99,6 +99,23 @@ function isTownMinimapMetadata(value: unknown): value is TownMinimapMetadata {
 }
 
 const warnedLayouts = new Set<string>();
+/**
+ * Minimap layout key for a v1 town runtime: the compiled town records its design spec
+ * (`source.spec` = docs/design/town/<layoutKey>.yaml), which stays correct when a chapter reuses
+ * another chapter's town (e.g. ch10 Dali served from the ch01 Dali runtime); otherwise fall back
+ * to `<cityId>__<chapterId>`.
+ */
+export function v1MinimapLayoutKey(definition: {
+  readonly cityId: string; readonly chapterId?: unknown; readonly source?: unknown;
+}): string {
+  const source = definition.source as { readonly spec?: unknown } | undefined;
+  const spec = typeof source?.spec === 'string' ? source.spec : '';
+  const match = /([a-z][a-z0-9_]*__ch\d{2})\.ya?ml$/u.exec(spec);
+  if (match) return match[1]!;
+  const chapterId = typeof definition.chapterId === 'string' ? definition.chapterId : 'ch01';
+  return `${definition.cityId}__${chapterId}`;
+}
+
 export async function loadV1PaintedMinimap(
   layoutKey: string, baseUrl: string,
   fetcher: typeof fetch = fetch, decoder: (blob: Blob) => Promise<ImageBitmap> = createImageBitmap,

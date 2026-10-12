@@ -113,7 +113,8 @@ export async function publishTownAssets(root: string): Promise<number> {
 export function townAssetsPlugin(root = resolve(import.meta.dirname, '../../..')): Plugin {
   return {
     name: 'tianshu-town-assets',
-    apply: 'build',
+    // Dev and build both publish (like the content plugin's asset copy): the dev server serves
+    // public/, so a build-only plugin left town minimaps / buildkit strips missing on 5173.
     async buildStart() {
       await publishTownAssets(root);
     },

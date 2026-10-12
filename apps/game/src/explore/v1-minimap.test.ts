@@ -10,7 +10,7 @@ import { createV1AssembledMinimapMarkers, createV1CameraBasis, createV1MinimapMa
   createPaintedMinimapMarkers, loadV1PaintedMinimap, loadV1PaintedMinimapWithFallback,
   loadV1ActiveTaskNpcIds, v1ActiveTaskNpcIds, v1MinimapPixelToTownPoint,
   v1PlanningPointToMinimapPixel, v1TownPointToMinimapPixel, v1WorldToImageMatrix,
-  v1WorldToTownPoint, writeV1ViewQuad } from './v1-minimap';
+  v1MinimapLayoutKey, v1WorldToTownPoint, writeV1ViewQuad } from './v1-minimap';
 import daliMetadata from '../../../../assets/default/town-minimap/city_dali__ch01.json';
 import daliRuntime from '../../../../content/town/ch01/city_dali.json';
 
@@ -234,3 +234,12 @@ describe('v1 minimap adapter', () => {
     expect(Array.from(out)).toEqual([0, 0, 2, 0, 2, 2, 0, 2]);
   });
 });
+
+describe('v1MinimapLayoutKey', () => {
+  it('prefers the compiled design spec so reused towns keep their own minimap', () => {
+    expect(v1MinimapLayoutKey({ cityId: 'city_dali', chapterId: 'ch10',
+      source: { spec: 'docs/design/town/city_dali__ch01.yaml' } })).toBe('city_dali__ch01');
+    expect(v1MinimapLayoutKey({ cityId: 'city_hangzhou', chapterId: 'ch02' })).toBe('city_hangzhou__ch02');
+  });
+});
+
