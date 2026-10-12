@@ -51,3 +51,86 @@ facilities:
     nameKey: town.city_turpan__ch10.shitan_01.name
     shop: { templateRef: shop_tpl_shitan, kind: normal }
     roles: [vendor]
+  # （原创扩展）普通 house / courtyard 继续使用 tech/16 §8.1 的 residence 缺省。
+  # 下列设施按布局类型、分区与剩余商铺容量绑定，不作为 702 年商号地籍事实。
+  - key: shaosuo_01
+    kind: office
+    sub: guardhouse
+    buildingId: bi_0001
+    nameKey: town.city_turpan__ch10.shaosuo_01.name
+    shop: null
+    roles: [guard]
+  - key: maju_01
+    kind: relay
+    sub: stable
+    buildingId: bi_0002
+    nameKey: town.city_turpan__ch10.maju_01.name
+    shop: null
+    roles: [stablehand]
+  # yamen 位于北部州署分区，使用公堂模板。
+  - key: yamen_01
+    kind: office
+    sub: gongtang
+    buildingId: bi_0006
+    nameKey: town.city_turpan__ch10.yamen_01.name
+    shop: null
+    roles: [official, bailiff_01, bailiff_02, bailiff_03, bailiff_04]
+  # 余下 market_stall 逐栋取货摊缺省；bi_0008 / bi_0009 已由既有马市、食摊占用。
+  - { key: huotan_01, kind: stall, sub: huotan, buildingId: bi_0010, nameKey: town.city_turpan__ch10.huotan_01.name, shop: null, roles: [vendor] }
+  - { key: huotan_02, kind: stall, sub: huotan, buildingId: bi_0011, nameKey: town.city_turpan__ch10.huotan_02.name, shop: null, roles: [vendor] }
+  - { key: huotan_03, kind: stall, sub: huotan, buildingId: bi_0012, nameKey: town.city_turpan__ch10.huotan_03.name, shop: null, roles: [vendor] }
+  - { key: huotan_04, kind: stall, sub: huotan, buildingId: bi_0013, nameKey: town.city_turpan__ch10.huotan_04.name, shop: null, roles: [vendor] }
+  - { key: huotan_05, kind: stall, sub: huotan, buildingId: bi_0014, nameKey: town.city_turpan__ch10.huotan_05.name, shop: null, roles: [vendor] }
+  - { key: huotan_06, kind: stall, sub: huotan, buildingId: bi_0015, nameKey: town.city_turpan__ch10.huotan_06.name, shop: null, roles: [vendor] }
+  - { key: huotan_07, kind: stall, sub: huotan, buildingId: bi_0016, nameKey: town.city_turpan__ch10.huotan_07.name, shop: null, roles: [vendor] }
+  - { key: huotan_08, kind: stall, sub: huotan, buildingId: bi_0017, nameKey: town.city_turpan__ch10.huotan_08.name, shop: null, roles: [vendor] }
+  # 四间未绑定 shop 分配给书肆、布庄、质库、柜坊，补齐有合适商铺的 i2 模板。
+  - key: shushi_01
+    kind: shop
+    sub: shushi
+    buildingId: bi_0022
+    nameKey: town.city_turpan__ch10.shushi_01.name
+    shop: null
+    roles: [keeper]
+  - key: buzhuang_01
+    kind: shop
+    sub: buzhuang
+    buildingId: bi_0023
+    nameKey: town.city_turpan__ch10.buzhuang_01.name
+    shop: null
+    roles: [keeper]
+  - key: dangpu_01
+    kind: shop
+    sub: dangpu
+    buildingId: bi_0024
+    nameKey: town.city_turpan__ch10.dangpu_01.name
+    shop: null
+    roles: [keeper]
+  - key: qianzhuang_01
+    kind: shop
+    sub: qianzhuang
+    buildingId: bi_0025
+    nameKey: town.city_turpan__ch10.qianzhuang_01.name
+    shop: null
+    roles: [clerk, guard]
+  - key: cangfang_01
+    kind: manor
+    sub: storehouse
+    buildingId: bi_0026
+    nameKey: town.city_turpan__ch10.cangfang_01.name
+    shop: null
+    roles: [guard]
+  - key: fokan_01
+    kind: temple
+    sub: fokan
+    buildingId: bi_0027
+    nameKey: town.city_turpan__ch10.fokan_01.name
+    shop: null
+    roles: [monk]
+  - key: simiao_01
+    kind: temple
+    sub: simiao
+    buildingId: bi_0028
+    nameKey: town.city_turpan__ch10.simiao_01.name
+    shop: null
+    roles: [monk]

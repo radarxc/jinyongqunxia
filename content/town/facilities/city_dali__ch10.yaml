@@ -51,3 +51,27 @@ facilities:
     nameKey: town.city_dali__ch10.shitan_01.name
     shop: { templateRef: shop_tpl_shitan, kind: normal }
     roles: [vendor]
+  # （原创扩展）普通 house / courtyard 继续使用 tech/16 §8.1 的 residence 缺省。
+  # 以下只显式覆盖非住宅的可进建筑；设施职能不作为 702 年地籍事实。
+  - key: maju_01
+    kind: relay
+    sub: stable
+    buildingId: bi_0014
+    nameKey: town.city_dali__ch10.maju_01.name
+    shop: null
+    roles: [stablehand]
+  - key: cangfang_01
+    kind: manor
+    sub: storehouse
+    buildingId: bi_0015
+    nameKey: town.city_dali__ch10.cangfang_01.name
+    shop: null
+    roles: [guard]
+  # shrine 位于聚落民居区，仍依布局类型绑定小型寺庙模板。
+  - key: fokan_01
+    kind: temple
+    sub: fokan
+    buildingId: bi_0019
+    nameKey: town.city_dali__ch10.fokan_01.name
+    shop: null
+    roles: [monk]

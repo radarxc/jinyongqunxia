@@ -18,45 +18,141 @@ town:
   city_dali__ch01:
     yaopu_01:
       name: 苍山药肆 # （原创扩展）
+      sign: 回春堂 # （原创扩展）
     zahuo_01:
       name: 南门杂货 # （原创扩展）
+      sign: 南门杂货 # （原创扩展）
     kedian_01:
       name: 洱风客舍 # （原创扩展）
+      sign: 洱风客舍 # （原创扩展）
     tiejiang_01:
       name: 太和铁作 # （原创扩展）
+      sign: 太和铁作 # （原创扩展）
     chengyi_01:
       name: 白布衣肆 # （原创扩展）
+      sign: 白布衣肆 # （原创扩展）
     mashi_01:
       name: 苍洱马市 # （原创扩展）
+      sign: 马 # （原创扩展）
     shitan_01:
       name: 南市食案 # （原创扩展）
+      sign: 食 # （原创扩展）
+    wangfu_01:
+      name: 镇南王府 # （原创扩展）
+    simiao_01:
+      name: 天龙寺护经殿 # （原创扩展）
+      sign: 天龙寺 # （原创扩展）
+    fokan_01:
+      name: 寺前佛堂 # （原创扩展）
+      sign: 佛堂 # （原创扩展）
+    yamen_01:
+      name: 大理官署 # （原创扩展）
+      sign: 大理官署 # （原创扩展）
+    shaosuo_01:
+      name: 南门守舍 # （原创扩展）
+    maju_01:
+      name: 南门马厩 # （原创扩展）
+    huotan_01: { name: 东市货摊一 } # （原创扩展）
+    huotan_02: { name: 东市货摊二 } # （原创扩展）
+    huotan_03: { name: 东市货摊三 } # （原创扩展）
+    huotan_04: { name: 东市货摊四 } # （原创扩展）
+    huotan_05: { name: 东市货摊五 } # （原创扩展）
+    huotan_06: { name: 东市货摊六 } # （原创扩展）
+    huotan_07: { name: 东市货摊七 } # （原创扩展）
+    huotan_08: { name: 东市货摊八 } # （原创扩展）
+    dufang_01:
+      name: 南街赌坊 # （原创扩展）
+    jiusi_01:
+      name: 南街酒肆 # （原创扩展）
+      sign: 酒 # （原创扩展）
+    zhuangyuan_01:
+      name: 西坊庄院 # （原创扩展）
+    fokan_02:
+      name: 西坊佛堂 # （原创扩展）
+      sign: 净业 # （原创扩展）
   city_dali__ch10:
     yaopu_01:
       name: 山南药行 # （原创扩展）
+      sign: 药 # （原创扩展）
     zahuo_01:
       name: 洱岸货摊 # （原创扩展）
+      sign: 百货 # （原创扩展）
     kedian_01:
       name: 洱岸逆旅 # （原创扩展）
+      sign: 洱岸逆旅 # （原创扩展）
     tiejiang_01:
       name: 横街铁作 # （原创扩展）
+      sign: 铁 # （原创扩展）
     chengyi_01:
       name: 青布衣摊 # （原创扩展）
+      sign: 衣 # （原创扩展）
     mashi_01:
       name: 山口马集 # （原创扩展）
+      sign: 马 # （原创扩展）
     shitan_01:
       name: 洱岸饼案 # （原创扩展）
+      sign: 饼 # （原创扩展）
+    maju_01:
+      name: 洱岸马厩 # （原创扩展）
+    cangfang_01:
+      name: 洱岸仓房 # （原创扩展）
+    fokan_01:
+      name: 聚落佛堂 # （原创扩展）
+      sign: 佛堂 # （原创扩展）
   city_turpan__ch10:
     yaopu_01:
       name: 西州药行 # （原创扩展）
+      sign: 药 # （原创扩展）
     zahuo_01:
       name: 胡商货栈 # （原创扩展）
+      sign: 百货 # （原创扩展）
     kedian_01:
       name: 高昌逆旅 # （原创扩展）
+      sign: 高昌逆旅 # （原创扩展）
     tiejiang_01:
       name: 东市铁作 # （原创扩展）
+      sign: 铁作 # （原创扩展）
     chengyi_01:
       name: 西市衣肆 # （原创扩展）
+      sign: 衣肆 # （原创扩展）
     mashi_01:
       name: 驼马行 # （原创扩展）
+      sign: 马 # （原创扩展）
     shitan_01:
       name: 胡饼案 # （原创扩展）
+      sign: 胡饼 # （原创扩展）
+    shaosuo_01:
+      name: 北门守舍 # （原创扩展）
+    maju_01:
+      name: 北门马厩 # （原创扩展）
+    yamen_01:
+      name: 西州署 # （原创扩展）
+      sign: 西州署 # （原创扩展）
+    huotan_01: { name: 东市货摊一 } # （原创扩展）
+    huotan_02: { name: 东市货摊二 } # （原创扩展）
+    huotan_03: { name: 东市货摊三 } # （原创扩展）
+    huotan_04: { name: 东市货摊四 } # （原创扩展）
+    huotan_05: { name: 东市货摊五 } # （原创扩展）
+    huotan_06: { name: 东市货摊六 } # （原创扩展）
+    huotan_07: { name: 东市货摊七 } # （原创扩展）
+    huotan_08: { name: 东市货摊八 } # （原创扩展）
+    shushi_01:
+      name: 东市书肆 # （原创扩展）
+      sign: 书肆 # （原创扩展）
+    buzhuang_01:
+      name: 东市帛肆 # （原创扩展）
+      sign: 彩帛 # （原创扩展）
+    dangpu_01:
+      name: 东市质库 # （原创扩展）
+      sign: 质库 # （原创扩展）
+    qianzhuang_01:
+      name: 东市柜坊 # （原创扩展）
+      sign: 柜坊 # （原创扩展）
+    cangfang_01:
+      name: 东市仓房 # （原创扩展）
+    fokan_01:
+      name: 西南佛堂 # （原创扩展）
+      sign: 佛堂 # （原创扩展）
+    simiao_01:
+      name: 西州佛寺 # （原创扩展）
+      sign: 西州佛寺 # （原创扩展）

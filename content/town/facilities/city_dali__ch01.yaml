@@ -52,3 +52,87 @@ facilities:
     nameKey: town.city_dali__ch01.shitan_01.name
     shop: { templateRef: shop_tpl_shitan, kind: normal }
     roles: [vendor]
+  # （原创扩展）以下按 tech/16 §8.1 的布局类型缺省绑定；普通 house / courtyard
+  # 继续使用 residence 缺省，不逐栋重复。王府与庄园只取住宅堂屋模板。
+  - key: wangfu_01
+    kind: residence
+    sub: wangfu
+    buildingId: bi_0004
+    nameKey: town.city_dali__ch01.wangfu_01.name
+    shop: null
+    roles: [owner]
+  # temple_hall 位于宗教区，对应寺庙；名称沿布局规格的拟名，不主张历史确址。
+  - key: simiao_01
+    kind: temple
+    sub: simiao
+    buildingId: bi_0005
+    nameKey: town.city_dali__ch01.simiao_01.name
+    shop: null
+    roles: [monk]
+  - key: fokan_01
+    kind: temple
+    sub: fokan
+    buildingId: bi_0006
+    nameKey: town.city_dali__ch01.fokan_01.name
+    shop: null
+    roles: [monk]
+  # yamen 使用公堂模板；一名官员与四名衙役照 tech/16 §8.3 站位。
+  - key: yamen_01
+    kind: office
+    sub: gongtang
+    buildingId: bi_0007
+    nameKey: town.city_dali__ch01.yamen_01.name
+    shop: null
+    roles: [official, bailiff_01, bailiff_02, bailiff_03, bailiff_04]
+  - key: shaosuo_01
+    kind: office
+    sub: guardhouse
+    buildingId: bi_0008
+    nameKey: town.city_dali__ch01.shaosuo_01.name
+    shop: null
+    roles: [guard]
+  - key: maju_01
+    kind: relay
+    sub: stable
+    buildingId: bi_0009
+    nameKey: town.city_dali__ch01.maju_01.name
+    shop: null
+    roles: [stablehand]
+  # 余下 market_stall 逐栋取货摊缺省；bi_0010 / bi_0011 已由既有马市、食摊占用。
+  - { key: huotan_01, kind: stall, sub: huotan, buildingId: bi_0012, nameKey: town.city_dali__ch01.huotan_01.name, shop: null, roles: [vendor] }
+  - { key: huotan_02, kind: stall, sub: huotan, buildingId: bi_0013, nameKey: town.city_dali__ch01.huotan_02.name, shop: null, roles: [vendor] }
+  - { key: huotan_03, kind: stall, sub: huotan, buildingId: bi_0014, nameKey: town.city_dali__ch01.huotan_03.name, shop: null, roles: [vendor] }
+  - { key: huotan_04, kind: stall, sub: huotan, buildingId: bi_0015, nameKey: town.city_dali__ch01.huotan_04.name, shop: null, roles: [vendor] }
+  - { key: huotan_05, kind: stall, sub: huotan, buildingId: bi_0016, nameKey: town.city_dali__ch01.huotan_05.name, shop: null, roles: [vendor] }
+  - { key: huotan_06, kind: stall, sub: huotan, buildingId: bi_0017, nameKey: town.city_dali__ch01.huotan_06.name, shop: null, roles: [vendor] }
+  - { key: huotan_07, kind: stall, sub: huotan, buildingId: bi_0018, nameKey: town.city_dali__ch01.huotan_07.name, shop: null, roles: [vendor] }
+  - { key: huotan_08, kind: stall, sub: huotan, buildingId: bi_0019, nameKey: town.city_dali__ch01.huotan_08.name, shop: null, roles: [vendor] }
+  # business_ref 已标为赌场，故覆盖通用商铺外观为赌坊模板。
+  - key: dufang_01
+    kind: casino
+    sub: dufang
+    buildingId: bi_0020
+    nameKey: town.city_dali__ch01.dufang_01.name
+    shop: null
+    roles: [dealer_01, dealer_02, dealer_03, clerk, guard]
+  - key: jiusi_01
+    kind: tavern
+    sub: jiusi
+    buildingId: bi_0022
+    nameKey: town.city_dali__ch01.jiusi_01.name
+    shop: null
+    roles: [keeper, waiter]
+  - key: zhuangyuan_01
+    kind: residence
+    sub: zhuangyuan
+    buildingId: bi_0033
+    nameKey: town.city_dali__ch01.zhuangyuan_01.name
+    shop: null
+    roles: [owner]
+  - key: fokan_02
+    kind: temple
+    sub: fokan
+    buildingId: bi_0034
+    nameKey: town.city_dali__ch01.fokan_02.name
+    shop: null
+    roles: [monk]
