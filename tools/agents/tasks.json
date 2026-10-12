@@ -30377,7 +30377,13 @@
     "apps/game/src/runtime/session.test.ts",
     "packages/core/src/event/index.ts",
     "apps/game/src/flow/event-presentation.ts",
-    "apps/game/src/flow/event-presentation.test.ts"
+    "apps/game/src/flow/event-presentation.test.ts",
+    "packages/core/src/state/models.ts",
+    "packages/core/src/state/state.test.ts",
+    "packages/data/src/schemas/facility.ts",
+    "packages/data/src/shop-facility.test.ts",
+    "apps/game/src/runtime/session.ts",
+    "apps/game/src/runtime/content.ts"
    ],
    "validate": {
     "exists": [
