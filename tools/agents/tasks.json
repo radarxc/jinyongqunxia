@@ -30445,7 +30445,8 @@
     "packages/render/src/buildgen/three/**",
     "packages/render/src/materials/static-lit/**",
     "packages/render/src/buildgen/types.ts",
-    "packages/render/src/buildgen/stubs.test.ts"
+    "packages/render/src/buildgen/stubs.test.ts",
+    "packages/render/src/buildgen/mesher/core/buffer.ts"
    ],
    "validate": {
     "exists": [
