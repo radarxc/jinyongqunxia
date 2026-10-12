@@ -15,15 +15,19 @@ async function fixture(options = {}) {
   await mkdir(join(root, 'apps/game/dist/.vite'), { recursive: true });
   await mkdir(join(root, 'apps/game/dist/assets'), { recursive: true });
   await mkdir(join(root, 'tools/perf'), { recursive: true });
-  const manifest = JSON.parse(JSON.stringify(options.manifest ?? {
-    'src/main.ts': {
-      file: 'assets/entry.js',
-      isEntry: true,
-      imports: ['_shell.js'],
-      assets: options.entryAssets ?? [],
-    },
-    '_shell.js': { file: 'assets/shell.js' },
-  }));
+  const manifest = JSON.parse(
+    JSON.stringify(
+      options.manifest ?? {
+        'src/main.ts': {
+          file: 'assets/entry.js',
+          isEntry: true,
+          imports: ['_shell.js'],
+          assets: options.entryAssets ?? [],
+        },
+        '_shell.js': { file: 'assets/shell.js' },
+      },
+    ),
+  );
   if (!options.missingDressup && !manifest['packages/render/src/dressup/runtime.ts']) {
     manifest['packages/render/src/dressup/runtime.ts'] = {
       file: 'assets/render-dressup.js',
@@ -38,6 +42,8 @@ async function fixture(options = {}) {
       workerShell: ['assets/worker.js'],
       sessionStatic: ['assets/session.js', 'assets/shared.js'],
       baseContent: ['assets/content.js'],
+      coreExplore: options.coreExplore ?? [],
+      coreShop: options.coreShop ?? [],
       subsystems: {
         dialogue: ['assets/dialogue.js', 'assets/shared.js'],
         region: ['assets/region.js'],
@@ -45,10 +51,32 @@ async function fixture(options = {}) {
         town: ['assets/town.js'],
       },
     },
+    moduleIds: { sessionStatic: options.sessionModuleIds ?? ['/repo/packages/core/src/state.ts'] },
   };
+  const appGroups = options.appGroups ?? {
+    schemaVersion: 'size-groups.v1',
+    groups: { exploreUi: options.exploreUi ?? [] },
+    moduleIds: { renderStatic: options.renderModuleIds ?? ['/repo/packages/render/src/index.ts'] },
+  };
+  const buildgenWorkerGroups = Object.hasOwn(options, 'buildgenWorkerGroups')
+    ? options.buildgenWorkerGroups
+    : {
+        schemaVersion: 'size-groups.v1',
+        groups: { buildgenWorker: options.buildgenWorker ?? [] },
+      };
   await writeFile(join(root, 'apps/game/dist/.vite/manifest.json'), JSON.stringify(manifest));
   if (groups)
     await writeFile(join(root, 'apps/game/dist/.vite/size-groups.json'), JSON.stringify(groups));
+  if (appGroups)
+    await writeFile(
+      join(root, 'apps/game/dist/.vite/app-size-groups.json'),
+      JSON.stringify(appGroups),
+    );
+  if (buildgenWorkerGroups)
+    await writeFile(
+      join(root, 'apps/game/dist/.vite/buildgen-worker-size-groups.json'),
+      JSON.stringify(buildgenWorkerGroups),
+    );
   const noisy = Array.from(
     { length: options.noisyLines ?? 20 },
     (_, index) => `${index.toString(36)}-${Math.imul(index, 2_654_435_761).toString(36)}`,
@@ -75,15 +103,28 @@ async function fixture(options = {}) {
       chunks: {
         entry: options.entryBudget ?? 170,
         session: options.sessionBudget ?? 110,
-        render: options.renderBudget ?? 180,
+        render: options.renderBudget ?? 170,
         'render-rig': options.rigBudget ?? 20,
         'render-model3d': options.model3dBudget ?? 24,
         'render-dressup': options.dressupBudget ?? 24,
+        'render-explore': options.exploreBudget ?? 32,
+        'render-town-legacy': 14,
+        'render-buildgen': 40,
+        'render-buildgen-worker': options.buildgenWorkerBudget ?? 24,
+        'render-actor3d': 16,
+        'render-meshopt': 8,
+        'explore-ui': options.exploreUiBudget ?? 45,
+        'core-explore': options.coreExploreBudget ?? 24,
+        'core-shop': options.coreShopBudget ?? 8,
         'render-webgpu': 300,
         basis: 255,
         devtools: 130,
       },
-      routes: { webglEntryAndRender: 350, webgpuEntryAndRender: 470 },
+      routes: {
+        webglEntryAndRender: 350,
+        webgpuEntryAndRender: 470,
+        webglExploreRoute: options.exploreRouteBudget ?? 420,
+      },
       content: { chapterRulesAndLocale: 1_536 },
     }),
   );
@@ -106,6 +147,10 @@ describe('three-level size gate', () => {
     expect(result.stdout).toMatch(/render-rig\s+—\s+20\s+not emitted/);
     expect(result.stdout).toMatch(/render-model3d\s+—\s+24\s+not emitted/);
     expect(result.stdout).toMatch(/render-dressup\s+\d+\.\d+\s+24\s+PASS/);
+    expect(result.stdout).toMatch(/render-explore\s+0\.00\s+32\s+PASS/);
+    expect(result.stdout).toMatch(/render-buildgen-worker\s+0\.00\s+24\s+PASS/);
+    expect(result.stdout).toMatch(/explore-ui\s+0\.00\s+45\s+PASS/);
+    expect(result.stdout).toMatch(/webglExploreRoute\s+\d+\.\d+\s+420\s+PASS/);
     expect(result.stdout).toContain('首次会话闭包（预算 110 KiB gzip）');
     expect(result.stdout).toMatch(
       /worker shell[\s\S]*session static[\s\S]*base content[\s\S]*session total/,
@@ -113,6 +158,102 @@ describe('three-level size gate', () => {
     expect(result.stdout).toMatch(/worker shell\s+\d+\.\d+\s+—\s+计入合计/);
     expect(result.stdout).toContain('子系统块（只报告，未设门');
     expect(result.stdout).toMatch(/对话 \/ Ink\s+\d+\.\d+\s+—\s+未设门/);
+  });
+
+  it('fails when a town render chunk exceeds its own budget', async () => {
+    const manifest = renderFixtureManifest('render.js', 'render-host.js');
+    manifest['packages/render/src/region/index.ts'] = {
+      file: 'assets/render-explore.js',
+      name: 'render-explore',
+      imports: ['_render.js'],
+    };
+    const root = await fixture({
+      manifest,
+      exploreBudget: 0.1,
+      files: {
+        render: 'export{};',
+        'render-host': 'export{};',
+        rig: 'export{};',
+        'render-explore': noisy(2_000),
+      },
+    });
+    const result = run(root);
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stdout).toMatch(/render-explore\s+\d+\.\d+\s+0\.1\s+FAIL/);
+  });
+
+  it('fails budgets for explore UI, lazy families, worker closure, and route', async () => {
+    const root = await fixture({
+      exploreUi: ['assets/explore-ui.js'],
+      coreExplore: ['assets/core-explore.js', 'assets/explore-dependency.js'],
+      coreShop: ['assets/core-shop.js', 'assets/shop-dependency.js'],
+      buildgenWorker: [
+        'assets/render-buildgen-worker-x.js',
+        'assets/buildgen-dependency.js',
+      ],
+      exploreUiBudget: 0.1,
+      coreExploreBudget: 0.1,
+      coreShopBudget: 0.1,
+      buildgenWorkerBudget: 0.1,
+      exploreRouteBudget: 0.01,
+      files: {
+        'explore-ui': noisy(2_000),
+        'core-explore': 'export{};',
+        'explore-dependency': noisy(2_000),
+        'core-shop': 'export{};',
+        'shop-dependency': noisy(2_000),
+        'render-buildgen-worker-x': 'export{};',
+        'buildgen-dependency': noisy(2_000),
+      },
+    });
+    const result = run(root);
+    expect(result.status).toBe(1);
+    for (const name of ['explore-ui', 'core-explore', 'core-shop', 'render-buildgen-worker'])
+      expect(result.stdout).toMatch(new RegExp(`${name}\\s+\\d+\\.\\d+\\s+0\\.1\\s+FAIL`));
+    expect(result.stdout).toMatch(/webglExploreRoute\s+\d+\.\d+\s+0\.01\s+FAIL/);
+  });
+
+  it('fails closed when a buildgen Worker is emitted without its closure document', async () => {
+    const root = await fixture({
+      buildgenWorkerGroups: null,
+      files: { 'render-buildgen-worker-x': 'export{};' },
+    });
+    const result = run(root);
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain('SIZE_SESSION_GROUP_MISSING:buildgenWorker');
+  });
+
+  it.each([
+    [
+      'session',
+      { sessionModuleIds: ['/repo/packages/core/src/world/explore/tick.ts'] },
+      'SIZE_STATIC_CLOSURE_FORBIDDEN:session',
+    ],
+    [
+      'session former types exception',
+      { sessionModuleIds: ['/repo/packages/core/src/world/explore/types.ts'] },
+      'SIZE_STATIC_CLOSURE_FORBIDDEN:session',
+    ],
+    [
+      'session former walk validation exception',
+      { sessionModuleIds: ['/repo/packages/core/src/world/explore/walk-validate.ts'] },
+      'SIZE_STATIC_CLOSURE_FORBIDDEN:session',
+    ],
+    [
+      'session shop',
+      { sessionModuleIds: ['/repo/packages/core/src/economy/shop-pricing.ts'] },
+      'SIZE_STATIC_CLOSURE_FORBIDDEN:session',
+    ],
+    [
+      'render',
+      { renderModuleIds: ['/repo/packages/render/src/buildgen/index.ts'] },
+      'SIZE_STATIC_CLOSURE_FORBIDDEN:render',
+    ],
+  ])('rejects forbidden modules in the %s static closure', async (_name, options, code) => {
+    const root = await fixture(options);
+    const result = run(root);
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain(code);
   });
 
   it('fails when the first-session closure exceeds 110 KiB', async () => {
@@ -271,16 +412,26 @@ describe('three-level size gate', () => {
   it('does not charge render or battle-model3d closure bytes to dressup', async () => {
     const manifest = renderFixtureManifest('render.js', 'render-host.js');
     manifest['_battle-model3d.js'] = {
-      file: 'assets/battle-model3d.js', name: 'battle-model3d', imports: ['_render.js'],
+      file: 'assets/battle-model3d.js',
+      name: 'battle-model3d',
+      imports: ['_render.js'],
     };
     manifest['packages/render/src/dressup/runtime.ts'] = {
-      file: 'assets/render-dressup.js', name: 'render-dressup',
+      file: 'assets/render-dressup.js',
+      name: 'render-dressup',
       imports: ['_render.js', '_battle-model3d.js'],
     };
-    const root = await fixture({ manifest, dressupBudget: 0.1, files: {
-      render: noisy(2_000), 'render-host': 'export{};', rig: 'export{};',
-      'battle-model3d': noisy(2_000), 'render-dressup': 'export{};',
-    } });
+    const root = await fixture({
+      manifest,
+      dressupBudget: 0.1,
+      files: {
+        render: noisy(2_000),
+        'render-host': 'export{};',
+        rig: 'export{};',
+        'battle-model3d': noisy(2_000),
+        'render-dressup': 'export{};',
+      },
+    });
     const result = run(root);
     expect(result.status, result.stdout + result.stderr).toBe(0);
     expect(result.stdout).toMatch(/render-dressup\s+\d+\.\d+\s+0\.1\s+PASS/);
