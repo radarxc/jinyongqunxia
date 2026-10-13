@@ -4,8 +4,8 @@
 |---|---|
 | 文档 | `docs/tech/03-mobile-performance.md` |
 | 版本 | v1.3（经脉落地终审（2026-09-30）：经脉抽屉 / 多绝招三机验收）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
-| 上游基准 | `docs/00-canon.md` §0（手机浏览器横屏优先 + PC、PWA 可离线、云存档）、§8（斜 45° 等距战棋、就地开战 ≤ 20×20、上场 ≤ 6）、§18（文档归属：性能归 `tech/03`）、§19（技术基线：Three.js WebGL2、Vue 3 DOM 覆盖层、确定性 core 可入 Worker、IndexedDB、PWA、KTX2、按书界分包）；`docs/decisions/author-requirements.md` AR-14 |
-| 平行文档 | `tech/01`（主循环、`RenderScheduler`、画质档与非功能目标**初值**）、`tech/02`（渲染管线、四档开关、帧/显存/draw call **初值**、活画基准）、`tech/04`（经脉 schema 与 `STD_meridian`）、`tech/05`（Core、逐单位经脉实例与 golden）、`tech/06`（分包、格式、Service Worker、离线下载）、`tech/07`（精灵显存估算）、`design/09`（六角战斗、行动表、AI 规则）、`design/11`（30 区、场景尺寸）、`design/14`（移动 UI）、`design/21`（战斗经脉唯一玩法契约） |
+| 上游基准 | `docs/00-canon.md` §0（手机浏览器横屏优先 + PC、PWA 可离线、云存档）、§8（斜 45° 等距战棋、就地开战 ≤ 20×20、上场 ≤ 6）、§18（文档归属：性能归 `tech/03`）、§19（技术基线：Three.js WebGL2、Vue 3 DOM 覆盖层、确定性 core 可入 Worker、IndexedDB、PWA、KTX2、按书界分包）；`docs/decisions/author-requirements.md` AR-14/AR-114 |
+| 平行文档 | `tech/01`（主循环、`RenderScheduler`、画质档与非功能目标**初值**）、`tech/02`（渲染管线、四档开关、帧/显存/draw call **初值**、活画基准）、`tech/04`（经脉 schema 与 `STD_meridian`）、`tech/05`（Core、逐单位经脉实例与 golden）、`tech/06`（分包、格式、Service Worker、离线下载）、`tech/07`（精灵显存估算）、`tech/15`（城镇探索 v2 分块与性能门）、`design/09`（六角战斗、行动表、AI 规则）、`design/11`（30 区、场景尺寸）、`design/14`（移动 UI）、`design/21`（战斗经脉唯一玩法契约） |
 | 下游文档 | `tech/04`（书界包切分与解析）、`tech/05`（core 性能、Worker 模式）、`tech/08`（云存档、离线同步）、`tech/09`（路线图与性能门禁） |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | 目标设备 / 浏览器矩阵；**全部性能预算的终值**（帧率、帧时间、draw call、三角形、显存、JS 堆、DOM、首包、首屏、书界包、存储）；iOS / Android 平台专项；加载、运行时、自适应质量策略；性能测试与 CI 门禁；弱网与离线；性能风险 |
@@ -413,7 +413,14 @@ AI Worker 只接收裁剪后的 `BattleAiSnapshot`（≤ 64 KiB【建议值】�
 |---|---|---|
 | `index.html`（内联关键 CSS + 水墨闪屏 SVG） | ≤ 14 KB（br） | 约等于首个拥塞窗口（10 × 1,460 B），一次往返即可画出闪屏 |
 | entry JS（Vue、Pinia、core、platform、UI 骨架、标题画面） | ≤ 170 KB gzip（约 150 KB br） | tech/01 §5.4 |
-| render chunk（three + render，WebGL 路线） | ≤ 180 KB gzip | tech/02 实测同等功能 156 KB |
+| `render`（three + 共用 render + 战斗） | ~~≤ 180~~ → **≤ 170 KiB gzip**（AR-114 拆分后） | `tech/15` §10 |
+| `render-explore` / `render-town-legacy` | ≤ 32 / 14 KiB gzip；legacy 退役即删 | `tech/15` §10 |
+| `render-buildgen` / `render-buildgen-worker` | ≤ 40 / 24 KiB gzip | `tech/15` §10；Worker 单独成块 |
+| `render-actor3d` / `render-meshopt` | ≤ 16 / 8 KiB gzip | `tech/15` §10 |
+| `explore-ui` | ≤ 45 KiB gzip | `tech/15` §10；含 ExplorePage、小地图、交互条与店铺界面 |
+| `core-explore` / `core-shop` | ≤ 24 / 8 KiB gzip | `tech/15` §10；Worker 懒加载入口 |
+| 路由 `webglEntryAndRender` | ≤ 350 KiB gzip | 既有基础 WebGL 静态闭包门；分块拆小不放宽此门 |
+| 路由 `webglExploreRoute` | ≤ 420 KiB gzip | `tech/15` §10；路由闭包，不得与单块预算混称 |
 | 场景 chunk（`world-ui`、`battle-ui`、`codex`、`book-sleep`、`settings` 等） | 各 ≤ 60 KB gzip | §5.2 |
 | 书界专属代码 chunk（`ch/NN`） | ≤ 30 KB gzip | 只放"本书界特色系统"（Canon §17.10），其余皆数据 |
 | 启动 CSS | ≤ 25 KB gzip | 其余样式随场景 chunk |
@@ -524,7 +531,7 @@ AI Worker 只接收裁剪后的 `BattleAiSnapshot`（≤ 64 KiB【建议值】�
     "processTotal":  { "S": 450, "M": 800, "L": 1536 }
   },
   "dom": { "hudNodes": 300, "totalWarn": 800, "totalError": 1200, "childrenPerParent": 60, "depth": 24, "layers": 24 },
-  "bundleKB": { "html": 14, "entryGz": 170, "renderGz": 180, "sceneChunkGz": 60, "chapterChunkGz": 30, "bootCssGz": 25, "bootFont": 40 },
+  "bundleKB": { "html": 14, "entryGz": 170, "renderGz": 170, "sceneChunkGz": 60, "chapterChunkGz": 30, "bootCssGz": 25, "bootFont": 40 },
   "loadMs": { "titleColdSlow4g": 4000, "titleWarm": 1500, "continueCachedMid": 5000, "continueCachedLow": 8000,
               "regionPrefetched": 2000, "regionWifi": 5000, "battleEnter": 800, "bookSleepWifi": 10000 },
   "adaptive": {
@@ -943,7 +950,14 @@ gantt
 | Chunk | 内容 | 加载时机 | 预算（gzip） |
 |---|---|---|---|
 | `entry` | Vue、Pinia、Dexie、fflate、core、platform、UI 骨架、标题画面 | 启动 | ≤ 170 KB |
-| `render` | three + `packages/render` | 标题出现后空闲预取；"继续/新游戏"时必需 | ≤ 180 KB |
+| `render` | three + 共用 render + 战斗 | 标题出现后空闲预取；"继续/新游戏"时必需 | ~~≤ 180~~ → ≤ 170 KiB |
+| `render-explore` / `render-town-legacy` | 区域探索；旧城镇渲染（退役即删） | 进入探索路线时 | ≤ 32 / 14 KiB |
+| `render-buildgen` / `render-buildgen-worker` | 城镇 3D 生成器主线程 / Worker | 进入 v2 城镇前 | ≤ 40 / 24 KiB |
+| `render-actor3d` / `render-meshopt` | 3D 人物端口 / MeshoptDecoder | 进入 v2 城镇前 | ≤ 16 / 8 KiB |
+| `explore-ui` | ExplorePage、小地图、交互条、店铺界面 | 同 `render-explore` | ≤ 45 KiB |
+| `core-explore` / `core-shop` | 探索 / 店铺命令 Worker 入口 | 首次使用对应命令前 | ≤ 24 / 8 KiB |
+| `webglEntryAndRender` | entry + 基础 render 静态闭包 | CI 基础路由体积门 | ≤ 350 KiB |
+| `webglExploreRoute` | WebGL 探索路线完整静态闭包 | CI 路由体积门 | ≤ 420 KiB |
 | `world-ui` | 探索 HUD、对话框、小地图、交互提示；**inkjs 运行时**（建议从 entry 移出，见下） | 同上 | ≤ 60 KB |
 | `battle-ui` | 战斗面板、CT 条、伤害预测浮窗、战斗日志 | 进入世界后空闲预取；首次遭遇前必需 | ≤ 60 KB |
 | `menus` | 背包、武学装配、队伍、存读档 | 首次打开菜单（空闲预取） | ≤ 60 KB |

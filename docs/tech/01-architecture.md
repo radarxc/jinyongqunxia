@@ -19,7 +19,7 @@
 > 6. **地图编辑**：战斗采用 pointy-top 六角轴坐标。Tiled 1.12 仅作内容编辑前端，源数据在构建期规范化为 `(q,r,h)`；运行时不接受正交方格 `i/j` 契约。浏览器内编辑器（`apps/editor`）推迟到 Phase 2。
 > 7. **Zod / YAML 只在构建期与开发期使用**，运行时不打包完整 Zod（实测 `import { z }` 约 89 KB gzip），存档校验用 `zod/mini`（约 4 KB gzip）或手写校验。
 > 8. **确定性**：core 禁用 `Math.random`/`Date.now`/`performance.now`，并禁用 ECMAScript 规范中"实现近似（implementation-approximated）"的运算（`Math.pow` 与 `**`、`Math.exp/log/sin/cos…`）参与结算，统一用种子 RNG 与整数/万分点结算。
-> 9. **包体预算**：WebGL 路线 entry ≤ 170 KB、render ≤ 180 KB，合计 `170 + 180 = 350 KB gzip`。WebGPU 仅以完整 render ≤ 300 KB 独立评估；若未来通过，路线总预算为 `170 + 300 = 470 KB`。Basis 转码器约 240 KB gzip，延迟加载。
+> 9. **包体预算**：AR-114 拆分后，WebGL entry ≤170 KiB、基础 render ≤170 KiB，既有 `webglEntryAndRender ≤350 KiB` 路由门不变；完整探索路线 `webglExploreRoute ≤420 KiB`，细分块终值见 `tech/03` §2.7（依据 `tech/15` §10）。WebGPU 仍以完整 render ≤300 KB 独立评估。Basis 转码器约 240 KB gzip，延迟加载。
 > 10. **私有访问边界**：因项目“不公开分发”，应用外壳、API 与受保护素材统一走 Cloudflare Worker Static Assets + 会话闸门；`workers_dev=false`、`preview_urls=false`。不采用公开 Cloudflare Pages / GitHub Pages，不规划国内或香港镜像（作者决定 P03；见 §7.6）。
 > 11. **AI 协作**：根目录与每个包各有 `CLAUDE.md`；"数据驱动优先、schema 即文档、一条命令自检（`pnpm check`）、小步提交"。
 > 12. **战斗经脉与绝招轮换服从协议 3 边界**：`BattleState.meridianByUnit` 为每个独立武学行动单位保存一个实例，单位行动态以 `ultimateBySkill` 保存同门共享冷却 / 上次绝招；玩家、AI、一键重复与 F0 共用 `filterMoveCandidate`，UI 只读 `query.moveAvailability`。模块只消费 Core 注入的单一 `battle` 随机流，所有 preview / 估算零写入、零抽数；`skill` 与 `dual.a/b` 的 `projectionStep` 随命令进入录像和规范 hash。
@@ -66,7 +66,7 @@
 
 | 指标 | 目标 | 说明 |
 |---|---|---|
-| 首包 JS（gzip） | entry ≤ 170 KB；entry + render ≤ 350 KB | 不含 Basis 转码 wasm、字体、书界数据包 |
+| 首包 JS（gzip） | entry ≤170 KiB；基础 render ≤170 KiB；`webglEntryAndRender` ≤350 KiB；`webglExploreRoute` ≤420 KiB | 城镇 v2 分块终值归 `tech/03` §2.7；路由门按静态闭包去重实测，不以分块上限相加代替；不含 Basis 转码 wasm、字体、书界数据包 |
 | 冷启动到标题画面（4G、中端机） | ≤ 4 s | 标题画面只需 UI 字体子集 + 一张背景 |
 | 书界切换（书眠）加载 | ≤ 10 s（Wi-Fi） | 书眠过场动画本身用于遮盖加载 |
 | 探索帧率 | 60 fps 目标 / 低端档 30 fps | 自适应分辨率 + 按需渲染 |
@@ -493,7 +493,8 @@ export type DispatchResult =
 
 // 命令：可 JSON 序列化的判别联合（t = type，命名空间/动词）
 export type Command =
-  | { t: 'world/walkTo'; to: TilePos }
+  | ExploreCommand                                      // world/travelTo | world/steer | world/stop（tech/15 §4.2）
+  | { t: 'world/walkTo'; to: TilePos }                  // v1 / 旧回放退役前保留
   | { t: 'world/interact'; target: EntityId }
   | { t: 'dialogue/choose'; choice: number }
   | ({ t: 'battle/act'; actor: UnitId; ai?: AiDecisionProof } & BattleActionPlan)
@@ -871,13 +872,13 @@ export interface UiBridge {
 | Chunk | 内容 | 预算（gzip） | 实测依据 |
 |---|---|---|---|
 | `entry` | Vue、Pinia、core、platform、ui 骨架、标题画面（到标题画面只需此 chunk） | ≤ 170 KB | Vue 24 + Pinia 3 + Dexie 31 + inkjs 34 + fflate 4 + howler 9 ≈ 105 KB 库 + 自有代码 |
-| `render`（当前 WebGL） | three + render 包（标题画面期间预取） | ≤ 180 KB | 最小场景 132 KB；`tech/02` 同功能构建记录 156 KB，给自有代码预留 `180 − 156 = 24 KB` |
+| `render`（当前 WebGL 基础块） | three + 共用 render + 战斗（标题画面期间预取） | ~~≤ 180~~ → ≤ 170 KiB | AR-114 拆分后终值见 `tech/03` §2.7、`tech/15` §10；探索 / buildgen / actor3d 等不再塞回本块 |
 | `render-webgpu`（未来独立评估，不与上行并存） | 完整 WebGPU render | ≤ 300 KB；通过后路线总预算 ≤470 KB | 同功能构建 297 KB，仅余 `300 − 297 = 3 KB`；加自有代码估约 330 KB，当前超 `330 − 300 = 30 KB`，未通过；须复现（待实测） |
 | `basis` | 转码 wasm + js | ≈ 255 KB（不计入首包） | 实测 240 + 15 KB |
 | `devtools` | 控制台（仅开启时加载，含完整 zod 用于指令参数解析） | ≤ 130 KB | zod 经典 API 89 KB |
 | 书界包 `chNN.rules.json` + `chNN.text.<locale>.json`（§6.8） | 某书界的全部规则数据与文本 | 合计 ≤ 1.5 MB（HTTP 压缩后） | 待 `tech/04` 估算 |
 
-CI 对 `entry`、当前 `render`、`basis` 与 `devtools` 分别设 `size-limit` 门禁，禁止以总包拆 chunk 绕过。WebGL 路线总额为 `170 + 180 = 350 KB`；未来 WebGPU 路线若通过则为 `170 + 300 = 470 KB`，两者不得混称同一预算。
+CI 对 `entry`、当前 `render`、城镇 v2 各新增块、`webglEntryAndRender`、`webglExploreRoute`、`basis` 与 `devtools` 分别设 `size-limit` 门禁，禁止以拆 chunk 绕过。前两者分块线均为 170 KiB，去重后的基础 WebGL 路由仍以 350 KiB 守门，探索路线闭包另以 420 KiB 守门；未来 WebGPU render 若通过仍按独立 300 KB 评估。
 
 ---
 
@@ -1033,11 +1034,11 @@ scope.release();                               // 引用计数归零 → 进入 
 
 ### 6.5 输入系统
 
-**分层**：DOM 原生事件 → `platform/input`（统一 Pointer Events、手势识别、键盘状态）→ `apps/game` 的 **ActionMap**（按上下文栈映射为语义动作）→ 处理器（UI 或"拾取 → 命令"）。
+**分层**：DOM 原生事件 → `@tianshu/platform/input`（统一 Pointer Events、手势识别、键盘状态）→ `apps/game/src/input/action-map.ts` 的 **ActionMap**（按上下文栈映射为语义动作）→ 处理器（UI 或"拾取 → 命令"）。路径与优先级以 `tech/15` §6.2 为契约（AR-114）。
 
 - **一套指针模型**：只监听 Pointer Events（统一触控/鼠标/触控笔），不再分别处理 touch/mouse。
 - **DOM 优先**：Vue 覆盖层上的元素先消费事件；画布只接收未被 UI 消费的事件（画布 CSS `touch-action: none`）。
-- **上下文栈**：`menu` > `dialogue` > `battle` > `explore`，栈顶上下文先处理；表现队列播放期间压入 `locked` 上下文，只放行"跳过/倍速/菜单"。
+- **上下文栈（AR-114 起）**：`modal > dialogue > areaMap > explore > worldmap > global`，左侧优先、栈顶先处理；表现锁由 `modal` 承接，只放行该模态明确注册的动作。~~旧 `menu > dialogue > battle > explore` 并另压 `locked`~~ 已由 `tech/15` §6.2 的统一上下文栈取代。
 - **触控无悬停** → 采用"两段式确认"：第一次点按=预览（路径、范围、伤害预估来自 `core.query`），再次点按同一目标=确认下达命令；鼠标模式下悬停即预览、单击即确认（可在设置中统一为两段式）。
 
 | 语义动作 | 触控 | 鼠标 | 键盘 |
@@ -1045,8 +1046,9 @@ scope.release();                               // 引用计数归零 → 进入 
 | `select` 选择 / 确认 | 点按（≤ 250 ms 且位移 ≤ 10 px） | 左键 | Space / Enter |
 | `cancel` 取消 / 返回 | UI 返回键（双指轻点默认不绑定） | 右键 | Esc |
 | `inspect` 查看详情 | 长按 ≥ 450 ms | 悬停 + Alt，或右键菜单 | I |
-| `pan` 平移相机 | 单指拖动空白处 | 中键/右键拖动；屏幕边缘滚动（可关） | WASD / 方向键 |
-| `zoom` 缩放 | 双指捏合 | 滚轮 | `+` / `-` |
+| `move` 探索行走（按住连续意图） | 虚拟摇杆 / 按住方向区 | — | WASD / 方向键（屏幕相对） |
+| `pan` 平移相机 | 单指拖动空白处 | 中键/右键拖动；屏幕边缘滚动（可关） | —（探索中不得占用 WASD / 方向键） |
+| `zoom` 缩放 / 复位 | 双指捏合 | 滚轮 | `=` / `+` 放大、`-` 缩小、`0` 复位 |
 | `rotateCam` 旋转 90°（是否开放由 `tech/02` 定） | UI 按钮 | Q / E | Q / E |
 | `skill1..9` | 战斗面板 | 战斗面板 | 1–9 |
 | `speed` 倍速 / `skip` 跳过 | UI 按钮 | UI 按钮 | F / Tab |
@@ -1751,7 +1753,7 @@ export type SkillDef = z.infer<typeof SkillDef>;
 | 查询 `CoreQueries` | 同步、只读、不消耗 RNG 的纯函数（可达格、伤害预估等） |
 | 表现队列 `PresentationQueue` / `Cue` | 把事件批按节奏播放为动画、音效与 UI 变化的调度器；每类事件对应一个 Cue 脚本 |
 | UI 投影 | 由选择器从 core 状态派生、写入 Pinia 的只读数据；Vue 只对投影做响应式 |
-| `ActionMap` / 上下文栈 | 把原始输入映射为语义动作（`select/cancel/pan/...`）的机制；上下文 `menu > dialogue > battle > explore`，播放期间压入 `locked` |
+| `ActionMap` / 上下文栈 | `@tianshu/platform/input` 与 `apps/game/src/input/action-map.ts` 把原始输入映射为语义动作（`select/cancel/move/pan/...`）；AR-114 起优先级为 `modal > dialogue > areaMap > explore > worldmap > global`（见 `tech/15` §6.2） |
 | 两段式确认 | 触控下"首次点按=预览、再次点按=确认"的交互约定 |
 | `SceneMachine` | 场景状态机：Boot/Title/BookSleep/World{Explore,Dialogue,Battle,Cutscene} |
 | `AssetScope` | 引用计数的资源作用域，释放后进入 LRU，超显存预算时销毁 |

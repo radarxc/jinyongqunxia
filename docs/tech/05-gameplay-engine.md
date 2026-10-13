@@ -4,9 +4,9 @@
 |---|---|
 | 文档 | `docs/tech/05-gameplay-engine.md` |
 | 版本 | v1.8（AR-26 / AR-28 长生诀、休眠、采集与高阶合同运行时，2026-10-02）；v1.7（经脉落地终审（2026-09-30）：AR-18 派生与正式回放缺口）；v1.6（经脉落地终审：NXT 音功判定点与大手印单伤害段同步，2026-09-29）；v1.5（经脉落地终审：音功 0 档特判与外放执行契约，2026-09-29）；v1.4（AR-16 外放预估、原子支付与回放同步；绝招候选时序对齐，2026-09-28）；v1.3（经脉 v2.1 与绝招轮换同步，2026-09-27）；v1.2（跨文档同步，2026-09-26）；全局审计（2026-09-26）；经脉系统落地（2026-09-27） |
-| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03–AR-07、AR-09、AR-12–AR-14、AR-16–AR-18、AR-26、AR-28 |
+| 作者需求覆盖 | `docs/decisions/author-requirements.md` AR-03–AR-07、AR-09、AR-12–AR-14、AR-16–AR-18、AR-26、AR-28、AR-114 |
 | 上游基准 | `docs/00-canon.md` v1.10 §3–§5（成长、数值、节奏）、§8–§10（战斗、外放、伤害乘区、Buff）、§12（ID）、§18（唯一归属）、§19（技术基线） |
-| 强依赖 | `tech/01` §3、§6、§8.3；`tech/03` §2、§6、§8；`tech/04` §3、§5–§8；`tech/08` §3、§10；`design/02` §4.2–§4.6；`design/04`–`06`、`08`–`09`、`11`–`13`、`15`–`21`；`design/25` §2–§3、§7–§9、§12；`design/story/sleep-events` §2、§8；`design/story/changsheng-sidelines` §1.3、§9.1 |
+| 强依赖 | `tech/01` §3、§6、§8.3；`tech/03` §2、§6、§8；`tech/04` §3、§5–§8；`tech/08` §3、§10；`tech/15` §4.1–§4.2（城镇探索 v2 命令、A* 与逐 tick 行走）；`design/02` §4.2–§4.6；`design/04`–`06`、`08`–`09`、`11`–`13`、`15`–`21`；`design/25` §2–§3、§7–§9、§12；`design/story/sleep-events` §2、§8；`design/story/changsheng-sidelines` §1.3、§9.1 |
 | 下游 | `apps/game` 的 `CoreHost`；`packages/ui`、`packages/render` 的只读投影与事件消费；`tools/balance`；`tech/09` 路线图 |
 | 读者 | 作者本人（单人开发）＋ AI 编码助手 |
 | 本文职责 | `packages/core` 的纯 TypeScript、无 DOM、确定性内部设计：状态、命令事务、探索 tick、六角格、战斗、伤害执行器、Buff/任务 DSL 运行时、AI、存档状态、录像与测试 |
@@ -505,7 +505,8 @@ interface MeridianBattleUnitState {
 type Command =
   | BattleCommand                              // design/09 §13.2，§7 映射
   | { readonly t: 'world/tick' }
-  | { readonly t: 'world/walkTo'; readonly to: HexCoord }
+  | ExploreCommand                             // world/travelTo | world/steer | world/stop，见 tech/15 §4.2
+  | { readonly t: 'world/walkTo'; readonly to: HexCoord } // v1/旧回放退役前保留
   | { readonly t: 'world/travel'; readonly destinationId: string; readonly routeId: RouteId }
   | { readonly t: 'world/mountRegion'; readonly regionId: RegionId; readonly spawnId: string }
   | { readonly t: 'world/interact'; readonly targetId: string }
@@ -945,7 +946,9 @@ design/19 基础地理
 
 ### 5.7 探索命令与碰撞
 
-探索移动可以在 UI 表现为连续行走，但规则提交的是离散目的格。host 可缓存输入，在下一逻辑 tick 提交至多一条 `world/walkTo`；core 求出并逐步重验六邻路径、通行、高差、体力、交互锁和实体占用。路径在中途失效时停在最后合法格，发 `world/pathInterrupted`，不瞬移到终点。
+探索移动可以在 UI 表现为连续行走，但规则提交的是离散目的格。**AR-114 起**，输入意图映射为 `world/travelTo | world/steer | world/stop`，core 以固定 **10 Hz tick** 推进路径进度并在跨格时逐步重验六邻路径、通行、高差、体力、交互锁和实体占用（完整状态与拒绝码见 `tech/15` §4.2）。路径在中途失效时停在最后合法格，发 `world/pathInterrupted`，不瞬移到终点。~~host 在下一 tick 提交 `world/walkTo`~~仅供 v1 与旧回放退役前兼容；退役时它成为 `travelTo{hex}` 的别名（见 `tech/15` §4.1）。
+
+`world/travelTo` 每条命令只运行一次二叉堆 A* 并保存路径；后续 tick 只消费路径、复检下一步，**不得每 tick 重搜 A***。`world/steer` 覆盖既有路线，`world/stop` 在当前跨格步骤结束后停下。
 
 每进入一格的固定顺序：
 
@@ -1041,6 +1044,8 @@ interface BattleGridState {
 评分精度 **【建议值】**：`standBp=floor(10000*standable/N)`，`reachBp=floor(10000*reachable/unitCount)`；`V=N*sum(h*h)-sum(h)*sum(h)`，`sigmaBp=isqrt(V*10000²)/N` 向下取整。`scoreBp=2*standBp+reachBp+floor(3000*min(20000,sigmaBp)/20000)-500*distance`。`isqrt` 为 BigInt 整数平方根；精度与同分规则锁 `rulesProtocol`，不会由 `Math.sqrt` 末位误差改变战场。空样本拒绝。
 
 ### 6.3 通行图与 A*
+
+城镇探索 v2 的图缓存、二叉堆与搜索入口归 `packages/core/src/world/explore/{graph,heap,astar,snap}.ts`：每个 `world/travelTo` 命令至多搜索一次，10 Hz 行走 tick 不重复寻路；`world/steer` 仅按方向推进并在阻挡时尝试相邻方向。旧 `world/walkTo` 在退役前继续调用旧 A* 以保持回放，退役时按 `tech/15` §4.1 升协议并改作 `travelTo{hex}` 别名。下述多状态 A* 仍是通行与确定性总则。
 
 寻路状态不仅是格：
 
