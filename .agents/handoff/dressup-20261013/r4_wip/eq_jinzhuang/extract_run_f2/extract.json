@@ -1,0 +1,430 @@
+{
+  "align": {
+    "boneLengthScale": {
+      "mixamorig:LeftArm": 0.952071766,
+      "mixamorig:LeftFoot": 0.942566931,
+      "mixamorig:LeftForeArm": 0.928404741,
+      "mixamorig:LeftHandIndex1": 0.830546066,
+      "mixamorig:LeftHandIndex2": 1.006424019,
+      "mixamorig:LeftHandIndex3": 1.006419055,
+      "mixamorig:LeftHandMiddle1": 0.761148864,
+      "mixamorig:LeftHandMiddle2": 1.182476153,
+      "mixamorig:LeftHandMiddle3": 1.182475448,
+      "mixamorig:LeftHandPinky1": 1.006475856,
+      "mixamorig:LeftHandPinky2": 1.260243092,
+      "mixamorig:LeftHandPinky3": 1.260263833,
+      "mixamorig:LeftHandRing1": 0.772060995,
+      "mixamorig:LeftHandRing2": 1.046367462,
+      "mixamorig:LeftHandRing3": 1.046378608,
+      "mixamorig:LeftHandThumb1": 1.654068588,
+      "mixamorig:LeftHandThumb2": 1.343922786,
+      "mixamorig:LeftHandThumb3": 1.343917613,
+      "mixamorig:LeftLeg": 1.00398361,
+      "mixamorig:LeftShoulder": 1.131992919,
+      "mixamorig:LeftUpLeg": 0.996301705,
+      "mixamorig:Neck": 1.241945558,
+      "mixamorig:RightArm": 0.952071284,
+      "mixamorig:RightFoot": 0.942568817,
+      "mixamorig:RightForeArm": 0.958037433,
+      "mixamorig:RightHandIndex1": 0.826379879,
+      "mixamorig:RightHandIndex2": 1.016267433,
+      "mixamorig:RightHandIndex3": 1.01626283,
+      "mixamorig:RightHandMiddle1": 0.645026355,
+      "mixamorig:RightHandMiddle2": 1.034378355,
+      "mixamorig:RightHandMiddle3": 1.034396617,
+      "mixamorig:RightHandPinky1": 0.865216609,
+      "mixamorig:RightHandPinky2": 1.059751168,
+      "mixamorig:RightHandPinky3": 1.059761786,
+      "mixamorig:RightHandRing1": 0.614940001,
+      "mixamorig:RightHandRing2": 0.916033148,
+      "mixamorig:RightHandRing3": 0.916039125,
+      "mixamorig:RightHandThumb1": 1.631128109,
+      "mixamorig:RightHandThumb2": 1.268616749,
+      "mixamorig:RightHandThumb3": 1.268623083,
+      "mixamorig:RightLeg": 1.00398404,
+      "mixamorig:RightShoulder": 1.131994452,
+      "mixamorig:RightUpLeg": 0.996302141,
+      "mixamorig:Spine": 0.46496467,
+      "mixamorig:Spine1": 1.055931022,
+      "mixamorig:Spine2": 1.352806275
+    },
+    "determinant": 1.0,
+    "landmarks": 9,
+    "method": "joints",
+    "mirrored": false,
+    "poseCorrectionDeg": {
+      "mixamorig:Head": 1.957508339,
+      "mixamorig:HeadTop_End": 1.957504141,
+      "mixamorig:Hips": 0.838567613,
+      "mixamorig:LeftArm": 4.822240717,
+      "mixamorig:LeftFoot": 3.942035847,
+      "mixamorig:LeftForeArm": 6.448881141,
+      "mixamorig:LeftHand": 8.615349067,
+      "mixamorig:LeftHandIndex1": 10.216348581,
+      "mixamorig:LeftHandIndex2": 11.926802972,
+      "mixamorig:LeftHandIndex3": 11.926860071,
+      "mixamorig:LeftHandIndex4": 11.926857103,
+      "mixamorig:LeftHandMiddle1": 19.517314372,
+      "mixamorig:LeftHandMiddle2": 15.226328032,
+      "mixamorig:LeftHandMiddle3": 15.226390444,
+      "mixamorig:LeftHandMiddle4": 15.226465652,
+      "mixamorig:LeftHandPinky1": 12.432580072,
+      "mixamorig:LeftHandPinky2": 12.46273108,
+      "mixamorig:LeftHandPinky3": 12.462724148,
+      "mixamorig:LeftHandPinky4": 12.462717554,
+      "mixamorig:LeftHandRing1": 16.557468029,
+      "mixamorig:LeftHandRing2": 19.133759504,
+      "mixamorig:LeftHandRing3": 19.133756153,
+      "mixamorig:LeftHandRing4": 19.133796004,
+      "mixamorig:LeftHandThumb1": 9.024865215,
+      "mixamorig:LeftHandThumb2": 12.954391953,
+      "mixamorig:LeftHandThumb3": 12.954489812,
+      "mixamorig:LeftHandThumb4": 12.954528318,
+      "mixamorig:LeftLeg": 7.43767644,
+      "mixamorig:LeftShoulder": 9.769586857,
+      "mixamorig:LeftToeBase": 4.797275479,
+      "mixamorig:LeftToe_End": 4.797238875,
+      "mixamorig:LeftUpLeg": 6.080771063,
+      "mixamorig:Neck": 1.957453816,
+      "mixamorig:RightArm": 6.711832717,
+      "mixamorig:RightFoot": 3.984103067,
+      "mixamorig:RightForeArm": 11.440191378,
+      "mixamorig:RightHand": 13.323313897,
+      "mixamorig:RightHandIndex1": 12.456081409,
+      "mixamorig:RightHandIndex2": 14.53479634,
+      "mixamorig:RightHandIndex3": 14.534799043,
+      "mixamorig:RightHandIndex4": 14.534834108,
+      "mixamorig:RightHandMiddle1": 31.009621893,
+      "mixamorig:RightHandMiddle2": 22.740851107,
+      "mixamorig:RightHandMiddle3": 22.740939303,
+      "mixamorig:RightHandMiddle4": 22.740931878,
+      "mixamorig:RightHandPinky1": 23.535070048,
+      "mixamorig:RightHandPinky2": 20.082181663,
+      "mixamorig:RightHandPinky3": 20.082168337,
+      "mixamorig:RightHandPinky4": 20.082190884,
+      "mixamorig:RightHandRing1": 35.696658284,
+      "mixamorig:RightHandRing2": 26.347664585,
+      "mixamorig:RightHandRing3": 26.347688713,
+      "mixamorig:RightHandRing4": 26.347653507,
+      "mixamorig:RightHandThumb1": 18.473255731,
+      "mixamorig:RightHandThumb2": 18.371493597,
+      "mixamorig:RightHandThumb3": 18.371608119,
+      "mixamorig:RightHandThumb4": 18.371524715,
+      "mixamorig:RightLeg": 7.881107164,
+      "mixamorig:RightShoulder": 23.312824508,
+      "mixamorig:RightToeBase": 4.797175106,
+      "mixamorig:RightToe_End": 4.797201292,
+      "mixamorig:RightUpLeg": 6.355237422,
+      "mixamorig:Spine": 10.618869377,
+      "mixamorig:Spine1": 4.889409141,
+      "mixamorig:Spine2": 3.085011835
+    },
+    "preserveShape": false,
+    "residualMu": {
+      "mixamorig:Hips": 0.007339044,
+      "mixamorig:LeftArm": 0.015743362,
+      "mixamorig:LeftUpLeg": 0.011298346,
+      "mixamorig:Neck": 0.008093082,
+      "mixamorig:RightArm": 0.015743151,
+      "mixamorig:RightUpLeg": 0.011298645,
+      "mixamorig:Spine": 0.012568386,
+      "mixamorig:Spine1": 0.035769933,
+      "mixamorig:Spine2": 0.030052703
+    },
+    "residualPercentH": {
+      "feet": {
+        "maxPercentH": 4.062340102,
+        "perJointMu": {
+          "mixamorig:LeftFoot": 0.040149855,
+          "mixamorig:RightFoot": 0.040149767
+        },
+        "rmsMu": 0.040149811,
+        "rmsPercentH": 4.062335663
+      },
+      "torso": {
+        "maxPercentH": 3.619182047,
+        "perJointMu": {
+          "mixamorig:Hips": 0.007339044,
+          "mixamorig:LeftArm": 0.015743362,
+          "mixamorig:LeftUpLeg": 0.011298346,
+          "mixamorig:Neck": 0.008093082,
+          "mixamorig:RightArm": 0.015743151,
+          "mixamorig:RightUpLeg": 0.011298645,
+          "mixamorig:Spine": 0.012568386,
+          "mixamorig:Spine1": 0.035769933,
+          "mixamorig:Spine2": 0.030052703
+        },
+        "rmsMu": 0.01888853,
+        "rmsPercentH": 1.911131042
+      },
+      "wrists": {
+        "maxPercentH": 2.912190434,
+        "perJointMu": {
+          "mixamorig:LeftHand": 0.028749634,
+          "mixamorig:RightHand": 0.028782431
+        },
+        "rmsMu": 0.028766037,
+        "rmsPercentH": 2.910531706
+      }
+    },
+    "scale": 0.977188895,
+    "yawDeg": -4.6e-06
+  },
+  "coverageAreaByRegion": {
+    "footL": 0.0,
+    "footR": 0.0,
+    "forearmL": 0.995675147,
+    "forearmR": 0.995199621,
+    "handL": 0.0,
+    "handR": 0.0,
+    "head": 0.0,
+    "hips": 0.787590981,
+    "neck": 0.0,
+    "shinL": 0.0,
+    "shinR": 0.0,
+    "thighL": 0.216406703,
+    "thighR": 0.225106284,
+    "torsoLower": 1.0,
+    "torsoUpper": 0.941413105,
+    "upperArmL": 1.0,
+    "upperArmR": 1.0
+  },
+  "distanceToBodyMm": {
+    "max": 50.072496207,
+    "p50": 11.776783856,
+    "p90": 26.297431091
+  },
+  "id": "eq_jinzhuang",
+  "inputs": {
+    "basePlate": {
+      "file": "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+      "sha256": "6cafc10b4f1be788c294b328f7047f532237b84e8ae01d7c96f5ed3d28268557"
+    },
+    "body": {
+      "file": "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+      "sha256": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94"
+    },
+    "dressed": {
+      "file": "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/tripo_dressed_rig.glb",
+      "sha256": "8b150b8e229d0ce6878ce035881219672cb888284a6ea7e4fda884d948919777"
+    },
+    "plate": {
+      "file": "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+      "sha256": "d5504ba037bcb8654c7fa8c21e3d598a85b25526344d55eef1b7d22c5a43559d"
+    },
+    "skeleton": {
+      "file": "assets/default/model3d/dressup/templates/tpl_f2_medium/skeleton.json",
+      "sha256": "c23179d2a1e30eab65e0572361efb41469a7f4fd363bbf0b406b114daf8305aa"
+    }
+  },
+  "outputs": {
+    "backQc": "extract_back.png",
+    "colorCheckFrontQc": "extract_color_check_front.png",
+    "edgesDetailQc": "extract_edges_detail.png",
+    "frontQc": "extract_front.png",
+    "rawAligned": "eq_jinzhuang_raw_aligned.glb",
+    "rawSkinned": "eq_jinzhuang_raw_skinned.glb"
+  },
+  "schema": "tianshu-dressup-extract.v1",
+  "segmentation": {
+    "bodyYFloorMu": 0.493269469,
+    "distanceThresholdMu": 0.003865015,
+    "edgeCleanup": {
+      "afterTriangles": 98485,
+      "beforeTriangles": 98654,
+      "boundaryAdjacentTriangles": 1721,
+      "overlapTriangles": 46,
+      "removedTinyIslandTriangles": 0,
+      "removedTriangles": 169,
+      "skinColorBoundaryTriangles": 131,
+      "twoBoundaryEdgeTriangles": 84,
+      "weldedVertices": 96281
+    },
+    "edgeSmoothing": {
+      "blend": 0.5,
+      "clampMm": 2.0,
+      "maxDisplacementMm": 2.00004551,
+      "method": "semantic-loop-laplacian-clamped",
+      "openingVertexCounts": {
+        "collar": 249,
+        "hem": 369,
+        "sleeveL": 79,
+        "sleeveR": 86
+      },
+      "sourceVerticesMoved": 833,
+      "weldedVerticesMoved": 783
+    },
+    "evidenceTriangles": {
+      "allThree": 60808,
+      "color": 103426,
+      "geometry": 77208,
+      "region": 136506,
+      "regionAndColor": 98823,
+      "regionAndGeometry": 70825
+    },
+    "forbiddenRegions": [
+      "footL",
+      "footR",
+      "handL",
+      "handR",
+      "head",
+      "neck",
+      "shinL",
+      "shinR"
+    ],
+    "holeRepair": {
+      "componentTriangles": [],
+      "filledComponents": 0,
+      "filledTriangles": 0,
+      "maximumComponentTriangles": 962
+    },
+    "keepRegions": [
+      "torsoUpper",
+      "torsoLower",
+      "hips",
+      "upperArmL",
+      "upperArmR",
+      "forearmL",
+      "forearmR",
+      "thighL",
+      "thighR"
+    ],
+    "plateColorModel": {
+      "bodyYFloorFraction": 0.501001201,
+      "canvasPx": [
+        1686,
+        2528
+      ],
+      "deltaEThresholds": {
+        "garmentMin": 42.456423745,
+        "skinMax": 1.772885047
+      },
+      "garmentSamples": 4096,
+      "garmentVerticalRange": [
+        0.178401899,
+        0.504746835
+      ],
+      "skinSamples": 4096,
+      "uvOrigin": "top-left",
+      "vDirection": "down"
+    },
+    "stages": {
+      "afterDeepBodyShell": 98657,
+      "afterEdgeCleanup": 98485,
+      "afterHoleRepair": 98485,
+      "afterMajority": 98825,
+      "afterRegionConstraint": 98657,
+      "afterSmallIslands": 98703,
+      "deepInsideCandidateTriangles": 2347,
+      "filledHoleTriangles": 18,
+      "final": 98654,
+      "initial": 98823,
+      "removedDeepBodyShellTriangles": 0,
+      "removedPostDepthIslandTriangles": 3,
+      "removedSmallIslandTriangles": 122
+    },
+    "topologyRepair": {
+      "addedTriangles": 0,
+      "cappedLoops": 0,
+      "loopTriangles": []
+    }
+  },
+  "slot": "body",
+  "stats": {
+    "elapsedSec": 16.26527025,
+    "peakMemoryMiB": 1002.34375
+  },
+  "topology": {
+    "componentTriangles": [
+      98485
+    ],
+    "components": 1,
+    "openings": {
+      "boundaryEdges": 783,
+      "count": 4,
+      "loops": [
+        {
+          "centerMu": [
+            0.002489813,
+            0.792891339,
+            0.001571832
+          ],
+          "lengthMu": 0.522534358,
+          "vertices": 249
+        },
+        {
+          "centerMu": [
+            -0.189421314,
+            0.563580117,
+            0.004881118
+          ],
+          "lengthMu": 0.181028238,
+          "vertices": 86
+        },
+        {
+          "centerMu": [
+            0.18805003,
+            0.560179365,
+            0.004851749
+          ],
+          "lengthMu": 0.163888994,
+          "vertices": 79
+        },
+        {
+          "centerMu": [
+            -0.00308658,
+            0.543197205,
+            -0.00333415
+          ],
+          "lengthMu": 0.767586773,
+          "vertices": 369
+        }
+      ],
+      "openChains": 0,
+      "semanticOpenings": [
+        {
+          "centerMu": [
+            0.002489813,
+            0.792891339,
+            0.001571832
+          ],
+          "lengthMu": 0.522534358,
+          "name": "collar",
+          "vertices": 249
+        },
+        {
+          "centerMu": [
+            0.18805003,
+            0.560179365,
+            0.004851749
+          ],
+          "lengthMu": 0.163888994,
+          "name": "sleeveL",
+          "vertices": 79
+        },
+        {
+          "centerMu": [
+            -0.189421314,
+            0.563580117,
+            0.004881118
+          ],
+          "lengthMu": 0.181028238,
+          "name": "sleeveR",
+          "vertices": 86
+        },
+        {
+          "centerMu": [
+            -0.00308658,
+            0.543197205,
+            -0.00333415
+          ],
+          "lengthMu": 0.767586773,
+          "name": "hem",
+          "vertices": 369
+        }
+      ]
+    },
+    "triangles": 98485,
+    "vertices": 53025
+  }
+}

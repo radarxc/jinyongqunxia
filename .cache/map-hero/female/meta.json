@@ -1,0 +1,20 @@
+{
+  "key": "female",
+  "model": "assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb",
+  "modelSha256": "4943db3e044684b7e20ff987f264fe11731b3bd9f73dc21572bfa7c8d37d6768",
+  "harness": "tools/map/hero/render_hero.html",
+  "harnessSha256": "a6d856b5715d92f9a68063bd166daeaa76091bedf44383d3057e9f7c12848ad6",
+  "size": 512,
+  "yaw": 70,
+  "elevation": 12,
+  "frames": 12,
+  "cycleSeconds": {
+    "walk": 1.1667,
+    "run": 0.625
+  },
+  "anchor": [
+    256,
+    455.8457878022779
+  ],
+  "created": "2026-10-11T22:53:35Z"
+}

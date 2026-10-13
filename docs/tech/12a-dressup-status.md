@@ -51,6 +51,7 @@
 
 ## 5. 接手要点
 
+- **换机器接手**（10-13 起交给别的机器）：`.agents/` 整个被 `.gitignore` 忽略，需要的部分已打成交接包 `.agents/handoff/dressup-20261013/`（强制加进 git）。包里有协调脚本、审核要点、各轮审核结论、底板原图和 R4 中间产物。照包里 `README.md` 还原：先 `git worktree add .agents/wt/_dressup claude/dressup-3d-stage-a`，再把各目录复制回原位。本地模型库 `apps/game/public/models/`（validate 按主检出根解析道具原始 GLB）也已入库。
 - **工作区**：
   - 集成工作区 `.agents/wt/_dressup`，分支 `claude/dressup-3d-stage-a`；
   - 任务工作区 `.agents/wt/_dressup/.agents/wt/<任务 ID>`；

@@ -1,0 +1,11 @@
+test_bad_dimensions_and_missing_files_fail (__main__.VariantTextureTests.test_bad_dimensions_and_missing_files_fail) ... ok
+test_front_projection_and_occluded_back_lut_are_distinct (__main__.VariantTextureTests.test_front_projection_and_occluded_back_lut_are_distinct) ... ok
+test_full_cli_rejects_fill_below_995_percent (__main__.VariantTextureTests.test_full_cli_rejects_fill_below_995_percent) ... ok
+test_gate_iou_known_masks (__main__.VariantTextureTests.test_gate_iou_known_masks) ... ok
+test_iou_gate_rejects_zero_in_iou_only_and_full_cli (__main__.VariantTextureTests.test_iou_gate_rejects_zero_in_iou_only_and_full_cli) ... ok
+test_replace_changes_only_image_and_layout_metadata (__main__.VariantTextureTests.test_replace_changes_only_image_and_layout_metadata) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 4.248s
+
+OK
