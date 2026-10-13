@@ -126,60 +126,54 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 describe('region camera and lifecycle', () => {
-  it('loads the rig runtime when the region is first entered', async () => {
+  it('does not load the legacy rig runtime after actor-port assembly', async () => {
     const loadRigRuntime = vi.fn(() => import('../rig/runtime'));
     const scene = await createRegionScene(
       document.createElement('canvas'),
       regionStaticFixture(2, 1),
       { projection: regionDynamicFixture(), loadRigRuntime },
     );
-    expect(loadRigRuntime).toHaveBeenCalledOnce();
+    expect(loadRigRuntime).not.toHaveBeenCalled();
     scene.dispose();
   });
 
-  it('uses the requested head-top stature and hides the rig after the GLB is ready', async () => {
-    const url = '/models/requested.glb';
+  it('uses the requested player look stature with the head-top actor port', async () => {
     const scene = await createRegionScene(
       document.createElement('canvas'),
       regionStaticFixture(2, 1),
-      { projection: regionDynamicFixture(), playerHeightM: 1.66, playerModelUrl: url },
+      { projection: regionDynamicFixture(), playerLook: { template: 'tpl_f_medium', heightM: 1.66,
+        outfit: 'default', seed: 1, role: 'player' } },
     );
-    await vi.waitFor(() => expect(fake.modelLoads.some((load) => load.url === url)).toBe(true));
-    expect(fake.modelLoads.find((load) => load.url === url)).toEqual({
+    const url = '/assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb';
+    await vi.waitFor(() => expect(fake.modelLoads.some(load => load.url === url)).toBe(true));
+    expect(fake.modelLoads.find(load => load.url === url)).toMatchObject({
       url,
-      heightM: 1.66,
-      options: { stature: 'headTop' },
+      heightM: 1, options: { stature: 'headTop' },
     });
-    expect(fake.characterPositions[0]).toContainEqual([0, -9999, 0]);
     scene.dispose();
   });
 
-  it('disposes pilot materials and textures once across repeated scene disposal', async () => {
-    const url = '/models/dispose.glb';
+  it('disposes the shared actor template once across repeated scene disposal', async () => {
     const scene = await createRegionScene(
       document.createElement('canvas'),
       regionStaticFixture(2, 1),
-      { projection: regionDynamicFixture(), playerModelUrl: url },
+      { projection: regionDynamicFixture() },
     );
-    await vi.waitFor(() =>
-      expect(fake.modelDisposes.some((entry) => entry.url === url)).toBe(true),
-    );
+    await vi.waitFor(() => expect(fake.modelDisposes).toHaveLength(1));
     scene.dispose();
     scene.dispose();
-    expect(fake.modelDisposes.find((entry) => entry.url === url)!.dispose).toHaveBeenCalledOnce();
-    expect(
-      fake.materialDisposes.find((entry) => entry.url === url)!.dispose,
-    ).toHaveBeenCalledOnce();
-    expect(fake.textureDisposes.find((entry) => entry.url === url)!.dispose).toHaveBeenCalledOnce();
+    expect(fake.modelDisposes[0]!.dispose).toHaveBeenCalledOnce();
+    expect(fake.materialDisposes[0]!.dispose).toHaveBeenCalledOnce();
+    expect(fake.textureDisposes[0]!.dispose).toHaveBeenCalledOnce();
   });
 
-  it('disposes a pilot that finishes loading after its scene was destroyed', async () => {
-    const url = '/models/late.glb';
+  it('disposes an actor template that finishes loading after its scene was destroyed', async () => {
+    const url = '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb';
     fake.deferModelUrl = url;
     const scene = await createRegionScene(
       document.createElement('canvas'),
       regionStaticFixture(2, 1),
-      { projection: regionDynamicFixture(), playerModelUrl: url },
+      { projection: regionDynamicFixture() },
     );
     await vi.waitFor(() =>
       expect(fake.modelResolves.some((entry) => entry.url === url)).toBe(true),
@@ -387,7 +381,7 @@ describe('region camera and lifecycle', () => {
       },
       1_000,
     );
-    const player = () => fake.scene!.getObjectByName('region-player-3d-container')!;
+    const player = () => fake.scene!.getObjectByName('placeholder-actor:player')!;
     scene.render(1_000);
     const x0 = player().position.x;
     scene.render(1_050);
@@ -396,6 +390,7 @@ describe('region camera and lifecycle', () => {
     const x2 = player().position.x;
     expect(x1 - x0).toBeCloseTo(x2 - x1, 8);
     scene.setWalk(null, 1_100);
+    scene.render(1_116);
     expect(player().position.x).toBeCloseTo(0);
     scene.dispose();
   });
@@ -424,19 +419,10 @@ describe('region camera and lifecycle', () => {
     scene.dispose();
   });
 
-  it('picks placeholder actor capsules and building boxes by stable ids', async () => {
-    const building = {
-      id: 'bi_shop',
-      class: 'Building',
-      q: 1,
-      r: 0,
-      h: 0,
-      cells: [{ q: 1, r: 0, h: 0 }],
-      footprint: { q: 1, r: 0, width: 1, height: 1 },
-    };
+  it('picks placeholder actor capsules by stable ids', async () => {
     const scene = await createRegionScene(
       document.createElement('canvas'),
-      { ...regionStaticFixture(32, 32), objects: [building] },
+      regionStaticFixture(32, 32),
       { projection: regionDynamicFixture() },
     );
     scene.resize(1280, 720);
@@ -445,24 +431,21 @@ describe('region camera and lifecycle', () => {
     const actorProjected = { x: 0, y: 0, visible: false };
     scene.project({ q: 0, r: 0 }, 0.8, actorProjected);
     expect(scene.pickActor(actorProjected.x, actorProjected.y, bounds)).toBe('player');
-    const projected = { x: 0, y: 0, visible: false };
-    scene.project(building, 0, projected);
-    expect(scene.pickBuilding(projected.x, projected.y - 20, bounds)).toBe('bi_shop');
+    expect(scene.pickBuilding(actorProjected.x, actorProjected.y, bounds)).toBeNull();
     scene.dispose();
   });
 
-  it('disposes owned resources when rig loading rejects', async () => {
-    const { loadRigSet } = await import('../rig/manifest');
-    vi.mocked(loadRigSet).mockRejectedValueOnce(new Error('RIG_LOAD_FAILED'));
+  it('disposes owned resources when a building port rejects', async () => {
     await expect(
       createRegionScene(document.createElement('canvas'), regionStaticFixture(2, 1), {
         projection: regionDynamicFixture(),
+        buildingPort: { create: async () => { throw new Error('BUILDING_LOAD_FAILED'); } },
       }),
-    ).rejects.toThrow('RIG_LOAD_FAILED');
+    ).rejects.toThrow('BUILDING_LOAD_FAILED');
     expect(fake.forceContextLoss).toHaveBeenCalledOnce();
   });
 
-  it('ignores stale and post-dispose asynchronous projection updates', async () => {
+  it('ignores projection updates after disposal', async () => {
     const base = regionStaticFixture(2, 1);
     const locked = {
       id: 'hint_locked',
@@ -491,21 +474,10 @@ describe('region camera and lifecycle', () => {
       { ...base, objects: [locked, open] },
       { projection: regionDynamicFixture() },
     );
-    fake.deferEquipment = true;
-    const stale = scene.update({ ...regionDynamicFixture(), playerHex: { q: 0, r: 0 } });
-    const latest = scene.update({ ...regionDynamicFixture(), playerHex: { q: 1, r: 0 } });
-    expect(fake.equipmentUpdates).toHaveLength(2);
-    fake.equipmentUpdates[1]!.resolve();
-    await latest;
+    await scene.update({ ...regionDynamicFixture(), playerHex: { q: 1, r: 0 } });
     expect(scene.camera).toMatchObject({ yawDeg: 135, allowRotation: true });
-    fake.equipmentUpdates[0]!.resolve();
-    await stale;
-    expect(scene.camera).toMatchObject({ yawDeg: 135, allowRotation: true });
-
-    const afterDispose = scene.update({ ...regionDynamicFixture(), playerHex: { q: 0, r: 0 } });
     scene.dispose();
-    fake.equipmentUpdates[2]!.resolve();
-    await afterDispose;
+    await scene.update({ ...regionDynamicFixture(), playerHex: { q: 0, r: 0 } });
     expect(scene.camera).toMatchObject({ yawDeg: 135, allowRotation: true });
   });
 });

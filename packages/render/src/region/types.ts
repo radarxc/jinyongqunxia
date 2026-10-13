@@ -3,6 +3,8 @@ import type { EquipmentVisuals, RigManifestInput } from '../rig';
 import type { RenderQualitySource } from '../quality/tiers';
 import type { DataArrayTexture } from 'three';
 import type * as RigRuntime from '../rig/runtime';
+import type { ActorEquipment, ActorLook, ActorPort, BuildingLayerInput, BuildingLayerPort } from './ports/types';
+export type { ActorEquipment, ActorLook, ActorPort, ActorStats, BuildingLayerPort } from './ports/types';
 
 export type RegionHexDir = 0 | 1 | 2 | 3 | 4 | 5;
 export interface RegionHexPoint {
@@ -152,14 +154,20 @@ export interface RegionCameraControl {
 }
 export interface RegionSceneOptions {
   readonly projection: RegionDynamicView;
-  readonly playerEquipment?: EquipmentVisuals;
-  readonly npcEquipment?: Readonly<Record<string, EquipmentVisuals>>;
+  readonly playerEquipment?: EquipmentVisuals | ActorEquipment;
+  readonly npcEquipment?: Readonly<Record<string, EquipmentVisuals | ActorEquipment>>;
   readonly rig?: RigManifestInput;
   /** Optional production array texture; the scene retains ownership in the caller. */
   readonly terrainAlbedo?: DataArrayTexture;
   readonly playerModelUrl?: string;
   /** Player stature in metres; defaults to the medium male template. */
   readonly playerHeightM?: number;
+  /** Optional port assembly seams; production replaces only these instances. */
+  readonly buildingPort?: BuildingLayerPort;
+  readonly actorPort?: ActorPort;
+  readonly buildingInput?: Omit<BuildingLayerInput, 'quality' | 'renderer'>;
+  readonly playerLook?: ActorLook;
+  readonly npcLooks?: Readonly<Record<string, ActorLook>>;
   readonly zoom?: number;
   readonly reducedMotion?: boolean;
   readonly quality?: RenderQualitySource;
@@ -177,7 +185,7 @@ export interface RegionScene {
   readonly contextState: ContextState;
   render(timeMs: number, reducedMotion?: boolean): void;
   resize(width: number, height: number, devicePixelRatio?: number): void;
-  update(projection: RegionDynamicView, playerEquipment?: EquipmentVisuals): Promise<void>;
+  update(projection: RegionDynamicView, playerEquipment?: EquipmentVisuals | ActorEquipment): Promise<void>;
   setPlayerPose(point: RegionHexPoint, facing: RegionHexDir, speedMps?: number): void;
   setTimeOfDay(hours: number): void;
   setWalk(walk: ExploreWalkView | null, worldTickAtMs: number): void;

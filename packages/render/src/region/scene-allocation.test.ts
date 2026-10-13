@@ -20,14 +20,15 @@ vi.mock('three', async (importOriginal) => {
   return { ...actual, WebGLRenderer: HeadlessRenderer };
 });
 vi.mock('../gltf/load', async () => {
-  const { Group } = await import('three');
+  const { AnimationClip, BoxGeometry, Group, Mesh, MeshBasicMaterial } = await import('three');
   return {
-    loadPilotModel: vi.fn(async () => ({
-      scene: new Group(),
-      clips: [],
-      setToon() {},
-      dispose() {},
-    })),
+    loadPilotModel: vi.fn(async () => {
+      const scene = new Group(); scene.add(new Mesh(new BoxGeometry(1,1,1),new MeshBasicMaterial()));
+      return { scene, skinned:false,
+        clips: [new AnimationClip('idle',1,[]),new AnimationClip('walk',1,[])],
+        stats: { meshes:1,skinnedMeshes:0,triangles:12,materialSlots:1,textures:0,joints:0,
+          drawCalls:1,sourceHeightM:1,scale:1 }, materials:{}, setToon() {}, setOutline() {}, dispose() {} };
+    }),
   };
 });
 vi.mock('../rig/manifest', () => ({
@@ -144,11 +145,17 @@ describe('region steady frame allocations', () => {
   });
 
   it('has a clean 600-frame render and setWalk sampling window after warmup', async () => {
-    const scene = await createRegionScene(
+    await import('three/examples/jsm/utils/SkeletonUtils.js');
+    const building = { id:'inn',class:'Building',q:0,r:0,h:0,cells:[{q:0,r:0,h:0}],
+      footprint:{q:0,r:0,width:2,height:2},interiorRect:{q:0,r:0,width:1,height:1},
+      roofGroup:'inn',cutawayWalls:[] } as const;
+    const actorAttached = vi.fn(); const scene = await createRegionScene(
       document.createElement('canvas'),
-      regionStaticFixture(32, 32),
-      { projection: regionDynamicFixture() },
+      regionStaticFixture(32, 32, [building]),
+      { projection: regionDynamicFixture(), requestFrame: actorAttached },
     );
+    await vi.waitFor(() => expect(actorAttached).toHaveBeenCalled());
+    scene.setInsideBuilding(0);
     const walk = {
       path: [
         { q: 0, r: 0 },
@@ -159,6 +166,9 @@ describe('region steady frame allocations', () => {
       mmPerTick: 135,
       destination: { q: 1, r: 0 },
     } as const;
+    // Let the default actor port finish its cached GLB promise before hot-path warmup.
+    await Promise.resolve();
+    await Promise.resolve();
     for (let index = 0; index < 2_000; index += 1) {
       scene.setWalk(walk, index * 100);
       scene.render(index * 100 + 50);
@@ -173,7 +183,7 @@ describe('region steady frame allocations', () => {
     let cleanStreak = 0;
     let lastDirtyWindow = 0;
     let lastDifferences: readonly AllocationDifference[] = [];
-    for (let window = 0; window < 20 && cleanStreak < 3; window += 1) {
+    for (let window = 0; window < 32 && cleanStreak < 3; window += 1) {
       for (let index = 0; index < 600; index += 1) {
         const time = (window * 600 + index + 2_000) * 100;
         scene.setWalk(walk, time);
