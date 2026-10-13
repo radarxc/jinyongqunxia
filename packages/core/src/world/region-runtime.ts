@@ -8,8 +8,17 @@ import type { GateEvaluation, RegionAnchorView, RegionDoorView, RegionDynamicPro
 import type { MountedRegionState, RegionObject } from './region-types';
 
 const INTERACTIVE = new Set(['NpcSpawn', 'Door', 'Trigger', 'QinggongGate', 'Chest', 'BattleArena']);
+const EXPLORE_INTERACTIVE = new Set<RegionObject['class']>(
+  ['FacilityNpc', 'NpcSpawn', 'Door', 'Chest', 'Exit', 'MeditationSpot']);
 const OPAQUE = new Set(['tr_shibi', 'tr_chengqiang', 'tr_gaoqiang', 'tr_gongdianwuji']);
 const GAP = new Set(['tr_shengu', 'tr_shenshui']);
+const HEX_STEP_MM = 1155;
+const PACE_MM_PER_TICK = { walk: 135, run: 450 } as const;
+const OBJECT_BUCKETS = new WeakMap<RegionRuntimeContent['maps'][number],
+  ReadonlyMap<string, readonly RegionObject[]>>();
+const BUILDING_IDS = new WeakMap<RegionRuntimeContent['maps'][number], readonly string[]>();
+const PROJECTION_CELLS = new WeakMap<RegionRuntimeContent['maps'][number],
+  WeakMap<object, Map<string, ReadonlyMap<string, RegionCell>>>>();
 export const regionMap = (content: RegionRuntimeContent, sceneId: string) =>
   content.maps.find((map) => map.id === sceneId);
 export const regionObjects = (content: RegionRuntimeContent, sceneId: string) => {
@@ -215,6 +224,88 @@ function visibleAnchor(state: Readonly<GameState>, content: RegionRuntimeContent
     const tile = byKey.get(hexKey(cell)); return tile !== undefined && !OPAQUE.has(tile.terrainId);
   });
 }
+function objectBuckets(map: RegionRuntimeContent['maps'][number]):
+  ReadonlyMap<string, readonly RegionObject[]> {
+  const known = OBJECT_BUCKETS.get(map);
+  if (known) return known;
+  const result = new Map<string, RegionObject[]>();
+  for (const object of [...map.objects, ...map.chunks.flatMap((chunk) => chunk.objects)]) {
+    const key = hexKey(object); const bucket = result.get(key);
+    if (bucket) bucket.push(object);
+    else result.set(key, [object]);
+  }
+  OBJECT_BUCKETS.set(map, result);
+  return result;
+}
+function buildingAt(map: RegionRuntimeContent['maps'][number],
+  cells: ReadonlyMap<string, RegionCell>, at: { readonly q: number; readonly r: number }): string | null {
+  const ordinal = cells.get(hexKey(at))?.building ?? 0;
+  if (ordinal === 0) return null;
+  let ids = BUILDING_IDS.get(map);
+  if (!ids) {
+    ids = [...map.objects, ...map.chunks.flatMap((chunk) => chunk.objects)]
+      .filter((object) => object.class === 'Building').map((object) => object.id)
+      .sort((left, right) => left < right ? -1 : left > right ? 1 : 0);
+    BUILDING_IDS.set(map, ids);
+  }
+  return ids[ordinal - 1] ?? null;
+}
+function projectionVisible(cells: ReadonlyMap<string, RegionCell>,
+  from: { readonly q: number; readonly r: number },
+  to: { readonly q: number; readonly r: number }): boolean {
+  return hexLineBetween(from, to).every((hex) => {
+    const cell = cells.get(hexKey(hex));
+    return cell !== undefined && !OPAQUE.has(cell.terrainId);
+  });
+}
+function projectionInteractRange(object: RegionObject): number {
+  if (object.class === 'FacilityNpc') return object.interactRange;
+  if (object.class === 'MeditationSpot') return 0;
+  return 1;
+}
+function projectionCells(map: RegionRuntimeContent['maps'][number], qinggong: number, swim: number,
+  dynamicTiles: MountedRegionState['dynamicTiles']): ReadonlyMap<string, RegionCell> {
+  let revisions = PROJECTION_CELLS.get(map);
+  if (!revisions) { revisions = new WeakMap(); PROJECTION_CELLS.set(map, revisions); }
+  let variants = revisions.get(dynamicTiles);
+  if (!variants) { variants = new Map(); revisions.set(dynamicTiles, variants); }
+  const tier = qinggongTier(qinggong); const key = `${tier},${swim}`;
+  const known = variants.get(key);
+  if (known) return known;
+  const dynamic = new Map(dynamicTiles.map((tile) => [hexKey(tile), tile]));
+  const cells = new Map(decodeRegionMap(map, tier, swim).cells.map((cell) => {
+    const tile = dynamic.get(hexKey(cell));
+    return [hexKey(cell), tile ? { ...cell, terrainId: tile.terrainId, height: tile.height,
+      moveCost: terrainMoveCost(tile.terrainId, tier),
+      standable: terrainStandable(tile.terrainId, tier, swim), blocked: false } : cell] as const;
+  }));
+  variants.set(key, cells);
+  return cells;
+}
+function projectExploreInteractables(state: Readonly<GameState>,
+  map: RegionRuntimeContent['maps'][number], cells: ReadonlyMap<string, RegionCell>) {
+  const mounted = state.world.navigation.mountedRegion;
+  if (!mounted) return [];
+  const active = new Map(mounted.entities.map((entry) => [entry.anchorId, entry]));
+  const result: { id: string; class: string; hex: { q: number; r: number }; distance: number }[] = [];
+  const radius = 3; const buckets = objectBuckets(map);
+  for (let r = mounted.playerHex.r - radius; r <= mounted.playerHex.r + radius; r += 1)
+    for (let q = mounted.playerHex.q - radius; q <= mounted.playerHex.q + radius; q += 1) {
+      const point = { q, r }; const distance = hexDistance(mounted.playerHex, point);
+      if (distance > radius) continue;
+      for (const object of buckets.get(hexKey(point)) ?? []) {
+        const entity = active.get(object.id);
+        if (!EXPLORE_INTERACTIVE.has(object.class) || entity?.active === false ||
+            entity?.consumed === true || distance > projectionInteractRange(object) ||
+            !projectionVisible(cells, mounted.playerHex, object)) continue;
+        result.push({ id: object.id, class: object.class, hex: { q: object.q, r: object.r }, distance });
+      }
+    }
+  result.sort((left, right) => left.distance - right.distance || left.hex.r - right.hex.r ||
+    left.hex.q - right.hex.q || (left.id < right.id ? -1 : left.id > right.id ? 1 : 0));
+  if (result.length > 8) result.length = 8;
+  return result;
+}
 export function reachedRegionTriggers(state: Readonly<GameState>, content: RegionRuntimeContent,
   path: readonly { readonly q: number; readonly r: number }[]): readonly Extract<RegionObject,
     { class: 'Trigger' }>[] {
@@ -240,7 +331,8 @@ export function projectRegionDynamic(state: Readonly<GameState>,
   content: RegionRuntimeContent): RegionDynamicProjection | null {
   content = regionRuntimeForState(state, content);
   const mounted = state.world.navigation.mountedRegion; const sceneId = state.world.navigation.locationId;
-  if (!mounted || !regionMap(content, sceneId)) return null;
+  const map = regionMap(content, sceneId);
+  if (!mounted || !map) return null;
   const objects = regionObjects(content, sceneId);
   const active = new Map(mounted.entities.map((entry) => [entry.anchorId, entry.active]));
   const interactableAnchors: RegionAnchorView[] = objects.filter((object) =>
@@ -254,9 +346,20 @@ export function projectRegionDynamic(state: Readonly<GameState>,
       const gate = objectGate(object, content); return { anchorId: object.id, open: gate.allowed,
         locked: !gate.allowed, reason: gate.reason };
     });
+  const cells = projectionCells(map, content.gateFacts.qinggong, content.gateFacts.swim ?? 0,
+    mounted.dynamicTiles);
+  const next = mounted.walk?.path[1];
+  const step = next ? cells.get(hexKey(next)) : null;
+  const walk = mounted.walk ? { path: mounted.walk.path.slice(0, 64),
+    progressMm: mounted.walk.progressMm, stepMm: HEX_STEP_MM * (step?.moveCost ?? 1),
+    mmPerTick: PACE_MM_PER_TICK[mounted.walk.pace],
+    destination: mounted.walk.path[mounted.walk.path.length - 1]! } : null;
   return { regionId: mounted.regionId, sceneId, spawnId: mounted.spawnId,
     playerHex: mounted.playerHex, facing: mounted.facing, interactableAnchors, doors,
-    pendingMount: state.world.navigation.pendingMount };
+    pendingMount: state.world.navigation.pendingMount, walk,
+    insideBuildingId: buildingAt(map, cells, mounted.playerHex),
+    interactables: projectExploreInteractables(state, map, cells),
+    worldTick: state.meta.worldTick };
 }
 export function projectRegionStatic(content: RegionRuntimeContent,
   sceneId: string): RegionStaticProjection | null {

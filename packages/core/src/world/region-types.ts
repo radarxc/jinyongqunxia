@@ -1,5 +1,6 @@
 import type { GateExpr, RegionMap, RegionObject, TerrainId } from '@tianshu/data/schemas';
 import type { HexCoord, HexDir } from '../hex';
+import type { ExploreInteractableView, ExploreWalkProjection } from './explore/types';
 
 export type RegionAnchorClass = RegionObject['class'];
 export type RegionGateReason =
@@ -85,6 +86,8 @@ export interface RegionDynamicProjection {
   readonly interactableAnchors: readonly RegionAnchorView[];
   readonly doors: readonly RegionDoorView[];
   readonly pendingMount: PendingRegionMount | null;
+  readonly walk?: ExploreWalkProjection | null; readonly insideBuildingId?: string | null;
+  readonly interactables?: readonly ExploreInteractableView[]; readonly worldTick?: number;
 }
 export interface RegionStaticProjection {
   readonly schemaVersion: 'region-static.v1'; readonly regionId: string; readonly sceneId: string;

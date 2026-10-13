@@ -31,6 +31,16 @@ interface SearchWorkspace {
 }
 
 const WORKSPACES = new WeakMap<ExploreGraph, SearchWorkspace>();
+let astarCalls = 0;
+
+/** Test-visible proof that command setup, rather than walking ticks, owns path searches. */
+export function exploreAstarCallCount(): number {
+  return astarCalls;
+}
+
+export function resetExploreAstarCallCount(): void {
+  astarCalls = 0;
+}
 
 function workspace(graph: ExploreGraph): SearchWorkspace {
   const known = WORKSPACES.get(graph);
@@ -219,6 +229,7 @@ export function findPath(
   goal: number,
   occupied: ExploreOccupied,
 ): ExplorePath | null {
+  astarCalls += 1;
   if (!isStandable(graph, goal) || occupiedAt(occupied, goal)) return null;
   const target = { q: exploreNodeQ(graph, goal), r: exploreNodeR(graph, goal) };
   return search(
@@ -237,6 +248,7 @@ export function findPathToAny(
   range: number,
   occupied: ExploreOccupied,
 ): ExplorePath | null {
+  astarCalls += 1;
   if (
     !Number.isSafeInteger(anchorHex.q) ||
     !Number.isSafeInteger(anchorHex.r) ||
