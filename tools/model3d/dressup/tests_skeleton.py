@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import copy
 from contextlib import redirect_stderr, redirect_stdout
+from hashlib import sha256
 import io
 import json
 import math
@@ -21,7 +22,8 @@ from common import compose_matrix, matrix_to_quaternion, nearest_triangle, quate
 from export_skeleton import (REGION_IDS, SECTION_HEIGHT_FRACTION, SkeletonError, _check_neck_ring,
                              _check_section_surface, _flex_axis, _grip_frame, _grip_point, _plane_basis, _rotation_part,
                              _socket, _surface_vertex,
-                             derive_neck_ring, derive_regions, embed_regions, find_neck_ring, fit_ellipse,
+                             derive_neck_ring, derive_regions, derive_torso_socket_surfaces, embed_regions,
+                             find_neck_ring, fit_ellipse,
                              main as export_main)  # noqa: E402
 from glb_io import GLBBuilder, Mesh, PrimitiveRange, load_glb  # noqa: E402
 from normalize_rig import facing_yaw, normalize, strip_constant_tracks  # noqa: E402
@@ -234,6 +236,78 @@ def test_grip_surface_and_flex_axes() -> None:
     assert not np.allclose(first, second)
 
 
+class _TorsoSocketRig:
+    def __init__(self) -> None:
+        self.json = {"nodes": [{"name": f"mixamorig:{name}"} for name in ("Hips", "Spine", "Spine2")]}
+        self.skin_value = type("Skin", (), {"joints": (0, 1, 2)})()
+    def skin(self): return self.skin_value
+    def world_matrix(self, node): return compose_matrix([0, (0, .10, .20)[node], 0])
+
+
+def _torso_socket_fixture() -> tuple[_TorsoSocketRig, Mesh, np.ndarray, np.ndarray, dict[str, int], np.ndarray]:
+    """腰侧有下垂 A 字臂，Spine 权重只刷后背，右胸比左胸更凸。"""
+    count = 16; angles = np.linspace(0, 2 * math.pi, count, endpoint=False)
+    rings, normals = [], []
+    for y, radius_x, radius_z in ((0, .12, .08), (.05, .10, .07), (.10, .08, .06),
+                                          (.15, .10, .07), (.20, .12, .08)):
+        rings.extend([[radius_x * math.cos(a), y, radius_z * math.sin(a)] for a in angles])
+        normals.extend([[math.cos(a), 0, math.sin(a)] for a in angles])
+    faces = []
+    for row in range(4):
+        for index in range(count):
+            following = (index + 1) % count; a = row * count + index; b = row * count + following
+            faces.extend([[a, b, a + count], [b, b + count, a + count]])
+    # A 字臂垂到腰两侧；给真实三角，但区域不是躯干，不能参与腰截面或腰带候选。
+    for side in (-1, 1):
+        start = len(rings); rings.extend([[side * .17, .095, -.015], [side * .17, .095, .015],
+                                          [side * .17, .105, -.015], [side * .17, .105, .015]])
+        normals.extend([[side, 0, 0]] * 4); faces.extend([[start, start + 1, start + 2],
+                                                          [start + 1, start + 3, start + 2]])
+    chest = [[.08, .16, .14], [-.09, .16, .17], [.06, .16, -.08], [-.06, .16, -.08]]
+    chest_normals = [[.45, 0, .89], [-.45, 0, .89], [.2, 0, -.98], [-.2, 0, -.98]]
+    chest_start = len(rings); rings.extend(chest); normals.extend(chest_normals)
+    positions = np.asarray(rings, dtype=np.float32); surface_normals = np.asarray(normals, dtype=np.float32)
+    joints = np.zeros((len(positions), 4), dtype=np.uint16); weights = np.zeros((len(positions), 4), dtype=np.float32)
+    weights[:, 0] = 1
+    # 每圈后半部才有 Spine 权重，模拟 Tripo 把 Spine 壳只刷到后背。
+    for row in range(5):
+        rear = row * count + np.flatnonzero(np.sin(angles) < -.35)
+        joints[rear, 0] = 1
+    joints[chest_start:, 0] = 2
+    mesh = Mesh(positions, np.asarray(faces).reshape(-1), normals=surface_normals, joints=joints, weights=weights)
+    regions = np.full(len(positions), REGION_IDS["torsoLower"], dtype=np.uint8)
+    regions[5 * count:chest_start] = REGION_IDS["upperArmL"]
+    regions[chest_start:] = REGION_IDS["torsoUpper"]
+    slots = {f"mixamorig:{name}": index for index, name in enumerate(("Hips", "Spine", "Spine2"))}
+    return _TorsoSocketRig(), mesh, positions, surface_normals, slots, regions
+
+
+def test_waist_band_ignores_arms_and_back_only_spine_weights() -> None:
+    rig, mesh, positions, normals, slots, regions = _torso_socket_fixture()
+    legacy, _, _ = derive_torso_socket_surfaces(rig, mesh, positions, normals, slots)
+    band, waist_y, perimeter = derive_torso_socket_surfaces(
+        rig, mesh, positions, normals, slots, socket_mode="waist-band", regions=regions, m_per_mu=1)
+    assert legacy["waistL"][0][2] < -.02
+    _assert_close(band["waistL"][0], [.08, .10, 0], 1e-6)
+    _assert_close(band["waistR"][0], [-.08, .10, 0], 1e-6)
+    assert band["waistL"][1][0] > .95 and band["waistR"][1][0] < -.95
+    _assert_close(waist_y, .10); assert .43 < float(perimeter) < .45
+    rig.world_matrix = lambda node: compose_matrix([0, (.10, .10, .20)[node], 0])
+    try: derive_torso_socket_surfaces(
+        rig, mesh, positions, normals, slots, socket_mode="waist-band", regions=regions, m_per_mu=1)
+    except SkeletonError as exc: assert "不足 10 mm" in str(exc)
+    else: raise AssertionError("端点处的最小腰截面必须失败")
+
+
+def test_waist_band_chest_stays_on_character_left() -> None:
+    rig, mesh, positions, normals, slots, regions = _torso_socket_fixture()
+    legacy, _, _ = derive_torso_socket_surfaces(rig, mesh, positions, normals, slots)
+    band, _, _ = derive_torso_socket_surfaces(
+        rig, mesh, positions, normals, slots, socket_mode="waist-band", regions=regions, m_per_mu=1)
+    assert legacy["chest"][0][0] < 0 and band["chest"][0][0] > 0
+    _assert_close(legacy["back"][0], band["back"][0])
+
+
 def _make_rig(path: Path) -> None:
     builder = GLBBuilder()
     hips = builder.add_node(name="mixamorig:Hips", translation=[0, 0, 0])
@@ -301,6 +375,7 @@ def test_check_rejects_nested_damage() -> None:
         lambda data: data["sockets"]["chest"].pop("normalLocal"),
         lambda data: data["sockets"]["waistBack"].__setitem__("bone", "mixamorig:Head"),
         lambda data: data["sockets"]["waistBack"].__setitem__("pos", data["sockets"]["waistL"]["pos"]),
+        lambda data: data.__setitem__("socketMode", "waist-band"),
         lambda data: data["fingerPose"]["fist"].pop(next(iter(data["fingerPose"]["fist"]))),
         lambda data: data["regions"]["ids"].pop("head"),
         lambda data: data["skullProfile"].__setitem__("sha256", "0" * 64),
@@ -331,15 +406,17 @@ def test_real_normalize_round_trip() -> None:
 
 def test_legacy_exports_byte_identical() -> None:
     templates = Path(__file__).resolve().parents[3] / "assets/default/model3d/dressup/templates"
-    for name in ("tpl_f_medium", "tpl_f_small", "tpl_f_tall"):
+    for name in ("tpl_f_medium", "tpl_f_small", "tpl_f_tall", "tpl_m_medium", "tpl_m_lean", "tpl_m_bulk"):
         source = templates / name; expected_bytes = (source / "skeleton.json").read_bytes()
         expected = json.loads(expected_bytes); body_bytes = (source / "body.glb").read_bytes()
         with tempfile.TemporaryDirectory(prefix="tianshu-t5b-legacy-") as directory:
             out = Path(directory); (out / "body.glb").write_bytes(body_bytes)
             # 默认模式通过 CLI 走实际导出；先复制 body，避免 embed_regions 写正本。
+            arguments = ["--body", str(out / "body.glb"), "--out", str(out),
+                         "--default-height-m", str(expected["defaultHeightM"]), "--json"]
+            if expected["neckRing"].get("mode") == "section": arguments.extend(["--ring-mode", "section"])
             with redirect_stdout(io.StringIO()):
-                code = export_main(["--body", str(out / "body.glb"), "--out", str(out),
-                                    "--default-height-m", str(expected["defaultHeightM"]), "--json"])
+                code = export_main(arguments)
             assert code == 0
             actual = json.loads((out / "skeleton.json").read_bytes())
             actual["source"]["file"] = expected["source"]["file"]
@@ -348,11 +425,31 @@ def test_legacy_exports_byte_identical() -> None:
             for filename in ("regions.npy", "skull_profile.json", "body.glb"):
                 assert (out / filename).read_bytes() == (source / filename).read_bytes(), (name, filename)
         assert (source / "body.glb").read_bytes() == body_bytes
+    f2_legacy_sha = {"tpl_f2_medium": "bdc6a4ae59eb2667397b78e2d99ba1abf9bed49ed41c99839eb582377f8c04c1",
+                     "tpl_f2_small": "d3d9d764d40b19e44386d4e8b5d178f9dcfa2ba31b5dcae83a3934dc94195677",
+                     "tpl_f2_tall": "66b981e07439961cb79cc105df905b0b8b84880042f97f08bc5c830eb397f57d"}
+    for name, expected_sha in f2_legacy_sha.items():
+        source = templates / name; body_bytes = (source / "body.glb").read_bytes()
+        expected = json.loads((source / "skeleton.json").read_text())
+        with tempfile.TemporaryDirectory(prefix="tianshu-t6-f2-legacy-") as directory:
+            out = Path(directory)
+            arguments = ["--body", str(source / "body.glb"), "--out", str(out),
+                         "--default-height-m", str(expected["defaultHeightM"]), "--ring-mode", "section", "--json"]
+            if name != "tpl_f2_medium":
+                arguments.extend(["--ring-from", str(templates / "tpl_f2_medium/skeleton.json")])
+            with redirect_stdout(io.StringIO()): code = export_main(arguments)
+            actual = json.loads((out / "skeleton.json").read_text()); actual["source"]["file"] = expected["source"]["file"]
+            rendered = (json.dumps(actual, ensure_ascii=False, indent=2) + "\n").encode()
+            assert code == 0 and sha256(rendered).hexdigest() == expected_sha, name
+            for filename in ("regions.npy", "skull_profile.json"):
+                assert (out / filename).read_bytes() == (source / filename).read_bytes(), (name, filename)
+        assert (source / "body.glb").read_bytes() == body_bytes
 
 
 def main() -> int:
     tests = [test_region_mapping, test_neck_ring_and_ellipse, test_neck_ring_skips_wide_trapezius_slice, test_socket_round_trip,
              test_grip_frames_follow_projected_pinky_to_index, test_grip_surface_and_flex_axes,
+             test_waist_band_ignores_arms_and_back_only_spine_weights, test_waist_band_chest_stays_on_character_left,
              test_track_strip_and_yaw, test_region_glb_attribute, test_check_rejects_nested_damage, test_real_normalize_round_trip,
              test_section_ellipse_and_weights, test_section_selects_axis_loop,
              test_section_oblique_axis_and_uv_seams, test_section_height_scales_and_check_rejects_damage,

@@ -15,7 +15,7 @@ import sys
 from typing import Any, Sequence
 
 import numpy as np
-from scipy.spatial import ConvexHull
+from scipy.spatial import ConvexHull, QhullError
 
 try:
     from .common import compose_matrix, matrix_to_quaternion, nearest_triangle, pca, quaternion_to_matrix
@@ -460,8 +460,87 @@ def _grip_point(center: np.ndarray, palm_normal: np.ndarray, palm_offset: float 
     return np.asarray(center, dtype=float) + (palm_offset + radius) * normal
 
 
+def _section_convex_perimeter(positions: np.ndarray, faces: np.ndarray, height: float) -> float:
+    """求水平面切过三角形所得点集在 XZ 平面的凸包周长。"""
+    triangles = positions[faces]
+    distance = triangles[:, :, 1] - height
+    crossing = triangles[(distance.min(axis=1) <= 0) & (distance.max(axis=1) >= 0)]
+    if not len(crossing): raise SkeletonError("腰部切面没有三角形")
+    distance = crossing[:, :, 1] - height
+    points = []
+    for first, second in ((0, 1), (1, 2), (2, 0)):
+        first_distance, second_distance = distance[:, first], distance[:, second]
+        on_plane = np.abs(first_distance) <= 1e-12
+        if np.any(on_plane): points.append(crossing[on_plane, first][:, [0, 2]])
+        crosses = first_distance * second_distance < 0
+        if np.any(crosses):
+            t = first_distance[crosses] / (first_distance[crosses] - second_distance[crosses])
+            edge = crossing[crosses, second] - crossing[crosses, first]
+            points.append((crossing[crosses, first] + t[:, None] * edge)[:, [0, 2]])
+    if not points: raise SkeletonError("腰部切面没有交点")
+    welded = np.unique(np.rint(np.concatenate(points) * 1e8).astype(np.int64), axis=0).astype(float) / 1e8
+    if len(welded) < 3: raise SkeletonError("腰部切面交点不足")
+    try: return _convex_perimeter(welded)
+    except QhullError as exc: raise SkeletonError("腰部切面凸包退化") from exc
+
+
+def find_natural_waist(glb: GLB, mesh: Mesh, positions: np.ndarray, slots: dict[str, int],
+                       regions: np.ndarray, m_per_mu: float) -> tuple[float, float]:
+    """以 2 mm 步长寻找 Hips 与 Spine2 之间躯干截面凸包周长最小处。"""
+    if not np.isfinite(m_per_mu) or m_per_mu <= 0: raise SkeletonError("腰线搜索要求正有限 mPerMu")
+    if regions.shape != (len(positions),): raise SkeletonError("腰线搜索的 regions 与顶点数不符")
+    torso = np.asarray([REGION_IDS[name] for name in ("torsoUpper", "torsoLower", "hips")])
+    faces = np.asarray(mesh.indices, dtype=np.int64).reshape(-1, 3)
+    faces = faces[np.all(np.isin(regions[faces], torso), axis=1)]
+    if not len(faces): raise SkeletonError("腰线搜索没有三顶点均属躯干区的三角形")
+    nodes = glb.skin().joints
+    endpoints = [glb.world_matrix(nodes[slots[name]])[1, 3]
+                 for name in ("mixamorig:Hips", "mixamorig:Spine2")]
+    lower, upper = sorted(map(float, endpoints)); step = 0.002 / m_per_mu
+    heights = lower + np.arange(int(math.floor((upper - lower) / step)) + 1) * step
+    candidates = []
+    for height in heights:
+        try: candidates.append((_section_convex_perimeter(positions, faces, float(height)), float(height)))
+        except SkeletonError: continue
+    if not candidates: raise SkeletonError("Hips 到 Spine2 之间没有有效腰部截面")
+    perimeter, height = min(candidates, key=lambda item: (item[0], item[1]))
+    if min(height - lower, upper - height) * m_per_mu < 0.010 - 1e-9:
+        raise SkeletonError("自然腰线最小值离 Hips / Spine2 端点不足 10 mm")
+    return height, perimeter
+
+
+def derive_torso_socket_surfaces(glb: GLB, mesh: Mesh, positions: np.ndarray, normals: np.ndarray | None,
+                                 slots: dict[str, int], *, socket_mode: str = "legacy",
+                                 regions: np.ndarray | None = None,
+                                 m_per_mu: float = 1.0) -> tuple[dict[str, tuple[np.ndarray, np.ndarray]], float, float | None]:
+    """派生胸背与腰部表面点；额外返回腰高及 waist-band 截面周长。"""
+    if socket_mode not in ("legacy", "waist-band"): raise SkeletonError("未知插槽模式")
+    result: dict[str, tuple[np.ndarray, np.ndarray]] = {}
+    spine = _shell(mesh, positions, slots, "mixamorig:Spine2")
+    chest_y = float(np.percentile(spine[:, 1], 58)); spine_ids = np.flatnonzero(
+        (_bone_weights(mesh, slots["mixamorig:Spine2"]) >= 0.5) & (np.abs(positions[:, 1] - chest_y) <= 0.008))
+    for name, direction in (("chest", [0, 0, 1]), ("back", [0, 0, -1])):
+        candidates = spine_ids
+        if socket_mode == "waist-band" and name == "chest": candidates = candidates[positions[candidates, 0] >= 0]
+        result[name] = _surface_vertex(positions, normals, candidates, np.asarray(direction))
+    perimeter = None
+    if socket_mode == "waist-band":
+        if regions is None: raise SkeletonError("waist-band 插槽模式要求 regions")
+        waist_y, perimeter = find_natural_waist(glb, mesh, positions, slots, regions, m_per_mu)
+        torso = np.asarray([REGION_IDS[name] for name in ("torsoUpper", "torsoLower", "hips")])
+        waist_ids = np.flatnonzero(np.isin(regions, torso) & (np.abs(positions[:, 1] - waist_y) <= 0.008))
+    else:
+        waist_shell = _shell(mesh, positions, slots, "mixamorig:Spine")
+        waist_y = float(np.percentile(waist_shell[:, 1], 70)); waist_ids = np.flatnonzero(
+            (_bone_weights(mesh, slots["mixamorig:Spine"]) >= 0.5) & (np.abs(positions[:, 1] - waist_y) <= 0.008))
+    for name, direction in (("waistL", [1, 0, 0]), ("waistR", [-1, 0, 0]), ("waistBack", [0, 0, -1])):
+        result[name] = _surface_vertex(positions, normals, waist_ids, np.asarray(direction))
+    return result, waist_y, perimeter
+
+
 def derive_sockets(glb: GLB, mesh: Mesh, positions: np.ndarray, normals: np.ndarray | None, slots: dict[str, int],
-                   head_top: np.ndarray, neck_ring: dict[str, Any]) -> dict[str, Any]:
+                   head_top: np.ndarray, neck_ring: dict[str, Any], *, socket_mode: str = "legacy",
+                   regions: np.ndarray | None = None, m_per_mu: float = 1.0) -> dict[str, Any]:
     sockets: dict[str, Any] = {}
     names = _names(glb); nodes = glb.skin().joints
     for side, short in (("Right", "R"), ("Left", "L")):
@@ -493,18 +572,12 @@ def derive_sockets(glb: GLB, mesh: Mesh, positions: np.ndarray, normals: np.ndar
     sockets["headCenter"] = _socket(glb, "mixamorig:Head", head.mean(axis=0), front_normal)
     neck_node = nodes[slots["mixamorig:Neck"]]; neck_world = glb.world_matrix(neck_node)
     sockets["neck"] = _socket(glb, "mixamorig:Neck", np.asarray(neck_ring["centerMu"]), neck_world[:3, 1])
-    spine = _shell(mesh, positions, slots, "mixamorig:Spine2")
-    chest_y = float(np.percentile(spine[:, 1], 58)); spine_ids = np.flatnonzero(
-        (_bone_weights(mesh, slots["mixamorig:Spine2"]) >= 0.5) & (np.abs(positions[:, 1] - chest_y) <= 0.008))
-    for name, direction in (("chest", [0, 0, 1]), ("back", [0, 0, -1])):
-        point, normal = _surface_vertex(positions, normals, spine_ids, np.asarray(direction))
-        sockets[name] = _socket(glb, "mixamorig:Spine2", point, normal)
-    waist_shell = _shell(mesh, positions, slots, "mixamorig:Spine")
-    waist_y = float(np.percentile(waist_shell[:, 1], 70)); waist_ids = np.flatnonzero(
-        (_bone_weights(mesh, slots["mixamorig:Spine"]) >= 0.5) & (np.abs(positions[:, 1] - waist_y) <= 0.008))
-    for name, direction in (("waistL", [1, 0, 0]), ("waistR", [-1, 0, 0]), ("waistBack", [0, 0, -1])):
-        point, normal = _surface_vertex(positions, normals, waist_ids, np.asarray(direction))
-        sockets[name] = _socket(glb, "mixamorig:Hips", point, normal)
+    torso, _, _ = derive_torso_socket_surfaces(glb, mesh, positions, normals, slots, socket_mode=socket_mode,
+                                                regions=regions, m_per_mu=m_per_mu)
+    for name in ("chest", "back"):
+        sockets[name] = _socket(glb, "mixamorig:Spine2", *torso[name])
+    for name in ("waistL", "waistR", "waistBack"):
+        sockets[name] = _socket(glb, "mixamorig:Hips", *torso[name])
     if any(np.allclose(sockets["waistBack"]["pos"], sockets[name]["pos"], atol=1e-6) for name in ("waistL", "waistR")):
         raise SkeletonError("waistBack 不得与左右腰插槽重合")
     for side, short in (("Left", "L"), ("Right", "R")):
@@ -665,7 +738,8 @@ def embed_regions(body_path: Path, regions: np.ndarray) -> bool:
 
 
 def export(body_path: Path, out_dir: Path, default_height_m: float = 1.65, *,
-           ring_mode: str = "legacy", ring_from: Path | None = None) -> dict[str, Any]:
+           ring_mode: str = "legacy", ring_from: Path | None = None,
+           socket_mode: str = "legacy") -> dict[str, Any]:
     glb = load_glb(body_path); difference = rest_bind_max_diff(glb)
     if difference >= 1e-5: raise SkeletonError(f"rest != bind：{difference:.9g}")
     names = _names(glb)
@@ -678,7 +752,8 @@ def export(body_path: Path, out_dir: Path, default_height_m: float = 1.65, *,
                                  m_per_mu=default_height_m / height_mu)
     skull = derive_skull_profile(glb, mesh, positions, slots)
     regions, joint_mapping, cross_ratio, triangle_regions = derive_regions(mesh, names)
-    sockets = derive_sockets(glb, mesh, positions, normals, slots, head_top, neck_ring)
+    sockets = derive_sockets(glb, mesh, positions, normals, slots, head_top, neck_ring, socket_mode=socket_mode,
+                             regions=regions, m_per_mu=default_height_m / height_mu)
     fist, fist_angles = derive_fist(glb, names, sockets)
     out_dir.mkdir(parents=True, exist_ok=True)
     skull_path = out_dir / "skull_profile.json"
@@ -697,6 +772,7 @@ def export(body_path: Path, out_dir: Path, default_height_m: float = 1.65, *,
                                                         "crossTriangleRatio": _round(cross_ratio)},
                 "fingerPose": {"fist": fist, "tightenDeg": {_round_name: angle for _round_name, angle in fist_angles.items()}},
                 "validation": {"restBindMaxDiff": difference}}
+    if socket_mode != "legacy": skeleton["socketMode"] = socket_mode
     skeleton_path = out_dir / "skeleton.json"; skeleton_path.write_text(json.dumps(skeleton, ensure_ascii=False, indent=2) + "\n")
     return {"ok": True, "skeleton": str(skeleton_path), "regions": str(out_dir / 'regions.npy'),
             "skullProfile": str(skull_path), "heightMu": height_mu, "mPerMu": default_height_m / height_mu,
@@ -815,6 +891,9 @@ def check_outputs(out_dir: Path) -> dict[str, Any]:
     except (OSError, json.JSONDecodeError) as exc: raise SkeletonError(f"不能读取 skeleton.json：{exc}") from exc
     missing = required_top - set(data)
     if missing: raise SkeletonError(f"skeleton.json 缺字段：{', '.join(sorted(missing))}")
+    socket_mode = data.get("socketMode", "legacy")
+    if socket_mode not in ("legacy", "waist-band") or ("socketMode" in data and socket_mode == "legacy"):
+        raise SkeletonError("socketMode 只能省略（legacy）或为 waist-band")
     if data["schema"] != SCHEMA or len(data["joints"]) != 65 or len(data["parents"]) != 65:
         raise SkeletonError("schema 或 65 关节/parents 契约不符")
     if not isinstance(data["source"], dict) or {"file", "sha256", "generator"} - set(data["source"]):
@@ -931,6 +1010,13 @@ def check_outputs(out_dir: Path) -> dict[str, Any]:
         if body_regions is None or not np.array_equal(body_regions, regions): raise SkeletonError("body.glb _REGION 与 regions.npy 不一致")
         specs = [body.json["accessors"][p["attributes"]["_REGION"]] for m in body.json["meshes"] for p in m["primitives"]]
         if any(spec.get("componentType") != 5121 or spec.get("type") != "SCALAR" for spec in specs): raise SkeletonError("body.glb _REGION 不是 u8 SCALAR")
+        mesh, positions, normals = _world_mesh(body); slots = {name: index for index, name in enumerate(_names(body))}
+        _, head_top = derive_measures(body, mesh, positions, slots)
+        expected_sockets = derive_sockets(body, mesh, positions, normals, slots, head_top, data["neckRing"],
+                                          socket_mode=socket_mode, regions=regions, m_per_mu=float(data["mPerMu"]))
+        if data["sockets"] != expected_sockets:
+            changed = [name for name in expected_sockets if data["sockets"].get(name) != expected_sockets[name]]
+            raise SkeletonError(f"sockets 未按 {socket_mode} 模式从 body.glb 重导：{', '.join(changed)}")
         if data["neckRing"].get("mode") == "section":
             section_check = {"profileSurfaceMaxMm": _check_section_surface(data, body)}
     return {"ok": True, "joints": 65, "vertices": len(regions), "headWidthMu": measures["headWidthMu"],
@@ -944,6 +1030,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--default-height-m", type=float, default=1.65, help="运行时默认身高（米，默认 1.65）")
     parser.add_argument("--ring-mode", choices=("legacy", "section"), default="legacy", help="颈环：旧切片或真实三角截面")
     parser.add_argument("--ring-from", type=Path, help="section 模式继承源 skeleton.json 的 heightFraction")
+    parser.add_argument("--socket-mode", choices=("legacy", "waist-band"), default="legacy",
+                        help="躯干插槽：旧 Spine 权重带或自然腰带（默认 legacy）")
     parser.add_argument("--json", action="store_true", help="stdout 输出单个 JSON 对象")
     parser.add_argument("--check", action="store_true", help="只校验已有输出")
     args = parser.parse_args(argv)
@@ -952,7 +1040,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         else:
             if args.body is None: raise SkeletonError("导出模式必须提供 --body")
             if args.default_height_m <= 0: raise SkeletonError("--default-height-m 必须 > 0")
-            result = export(args.body, args.out, args.default_height_m, ring_mode=args.ring_mode, ring_from=args.ring_from)
+            result = export(args.body, args.out, args.default_height_m, ring_mode=args.ring_mode, ring_from=args.ring_from,
+                            socket_mode=args.socket_mode)
     except (OSError, ValueError, NotImplementedError, RuntimeError, np.linalg.LinAlgError) as exc:
         if args.json: print(json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False))
         else: print(f"错误：{exc}", file=sys.stderr)

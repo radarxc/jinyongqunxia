@@ -16,7 +16,8 @@
   hipsRatio: 0.5560000178976985
   shoulderRatio: 0.1740000053687836
   skeleton: skeleton.json
-  skeletonSha: 66b981e07439961cb79cc105df905b0b8b84880042f97f08bc5c830eb397f57d
+  skeletonSha: c123b8f72e28a96596fc6f568d81a6c04882f771bc45b16c091b939da25c31a5
+  socketMode: waist-band
   ringSha: 1afed20f706184cb2e1c08c40ac00e613fe79efcfa3a53fb26c1ece27042dda2
   regions: regions.npy
   regionsSha: 34bd8a09bf2b52125fac5a000a50715a90b2b8135132a1b69d0d41d850f57e4a
@@ -52,3 +53,4 @@
   notes: AR-104 路 A，从 T4b 定稿并翻正后的 tpl_f2_medium 分骨 translation + LBS 派生，0 点、共拓扑。使用 template_specs_v2.json 最新六行；T5b 两环双调和防折叠与法线最小旋转，翻向
     / 新增负点积面 / 倒置面均为 0。按 1.72 m 以 section 和 --ring-from 重导骨架，65 关节、rest=bind；UV / 权重 / 索引 / rotation 轨 / unlit 材质与源一致。已解决：旧工具颈环相对差超限，现两轴差均小于
     2 mm，实际半径和长宽比原门通过。已解决：tests_derive.py 的 bulk 脚底误报已修复，10/10 回归及 pnpm check 通过；候选状态保留，后续衣物 / 头 / 道具贴合与默认切换见 T5 报告第 7 节。
+    T6 以 waist-band 模式重导胸 / 腰插槽，其余骨架字段不变。

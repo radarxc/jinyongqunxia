@@ -56896,6 +56896,388 @@
      ]
     ]
    }
+  },
+  {
+   "id": "ENG-dressup-r2-refit-f2",
+   "title": "3D 纸娃娃换装 · R2 · 现有衣物 / 贴图层 / 道具重贴合到 tpl_f2 三体型 + 换装页默认素体切到 tpl_f2_medium（0 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r2-refit-f2.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "作者 10-11 定新素体；R1 头已切到 tpl_f2 并按套回退（a68ea9864）。衣物 / 贴图层 / 道具重贴合后切默认模板",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/character/female/ch00/threeview"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/model3d/dressup/props/eq_longquanjian/**",
+    "assets/default/model3d/dressup/props/item_bamboo_hat/**",
+    "assets/default/model3d/dressup/props/item_qingfeng_sword/**",
+    "assets/default/model3d/dressup/props/luxury_jade_pendant/**",
+    "tools/model3d/dressup/tests_garment.py",
+    "apps/game/src/pages/Character3dPage.vue",
+    "tools/model3d/dressup/tests_prop.py",
+    "apps/game/build/dressup-assets.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/props/eq_longquanjian/eq_longquanjian.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/item_bamboo_hat/item_bamboo_hat.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/item_qingfeng_sword/item_qingfeng_sword.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/luxury_jade_pendant/luxury_jade_pendant.tpl_f2_medium.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_prop.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; P=Path('assets/default/model3d/dressup/props'); paths=[P/p/'report.tpl_f2_medium.json' for p in ('eq_longquanjian','item_bamboo_hat','item_qingfeng_sword','luxury_jade_pendant')]; bad=[str(x) for x in paths if not x.is_file() or json.loads(x.read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-t6-sockets-f2",
+   "title": "3D 纸娃娃换装 · T6 · tpl_f2 女素体插槽修正（腰 / 胸）：export_skeleton 加 --socket-mode waist-band，重导 tpl_f2 三体型 skeleton（0 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ENG-dressup-t6-sockets-f2.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "R2 实拍：tpl_f2 腰插槽落在后腰（佩剑飘臀后）、胸插槽在右胸；tpl_f / tpl_m 正常",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_tall/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_small/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_small/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_tall/skeleton.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_lean"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_bulk"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; d=[json.load(open(f'assets/default/model3d/dressup/templates/{t}/skeleton.json')).get('socketMode') for t in ('tpl_f2_small','tpl_f2_medium','tpl_f2_tall')]; print(d); sys.exit(0 if d==['waist-band']*3 else 1)"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-r3-jinzhuang-f2-gen",
+   "title": "3D 纸娃娃换装 · R3 · 劲装按新素体重新生成：tpl_f2 衣图底板（劲装 / 布衣）+ Tripo 整身生成与绑骨 → 源件入库（85 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ART-dressup-r3-jinzhuang-f2-gen.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-12「按新素体重新生成」（约 85 点）、「衣物到位后再切」默认素体；Claude 经 9223 执行 Tripo，产物走 supervise 校验与 GPT 审核",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/item/clothing/*.png",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/**",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/tripo_dressed_rig.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/source.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/cover.png",
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/tripo_dressed_rig.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+      "--arm-angle-deg",
+      "25",
+      "--json"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png",
+      "--arm-angle-deg",
+      "25",
+      "--json"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-r4-jinzhuang-f2-fit",
+   "title": "3D 纸娃娃换装 · R4 · 新劲装贴到新女素体：抽衣壳 + tpl_f2 三体型贴合（P2 + E2c）+ 布衣（P3）+ 贴图层重烘（0 点）",
+   "phase": "PROD",
+   "wave": 48,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r4-jinzhuang-f2-fit.md",
+   "deps": [
+    "ART-dressup-r3-jinzhuang-f2-gen"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "作者 10-12「按新素体重新生成」劲装、「衣物到位后再切」默认素体；R3 源件 source_f2",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "tools/model3d/dressup/tests_garment.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/extract_run_f2/extract.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_texlayer.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; G=Path('assets/default/model3d/dressup/garments'); paths=[G/g/f'report.{t}.json' for g in ('eq_jinzhuang','eq_buyi') for t in ('tpl_f2_medium','tpl_f2_tall','tpl_f2_small')]; bad=[str(x) for x in paths if not x.is_file() or json.loads(x.read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }
