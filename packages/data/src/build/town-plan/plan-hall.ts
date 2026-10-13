@@ -1,8 +1,9 @@
 import { floorDivInt } from '@tianshu/shared';
 import { planDimensions, resolvePlanRecipe } from './dims';
 import { isShopfront, planDoors } from './doors';
-import { entranceSide, planningPointMm, planningRectCentreMm, yawFromEntranceSide } from './frame';
+import { entranceSide, planningRectCentreMm, yawFromEntranceSide } from './frame';
 import { defaultInteriorPlanner } from './interiors/solver';
+import { planCompound } from './plan-compound';
 import { RoofStyle } from './types';
 import type {
   BuildKitRecipe, CompiledBuildKit, FixtureTuple, LayoutBuildingInput, PlanDiagnostic,
@@ -10,7 +11,6 @@ import type {
 } from './types';
 
 const CELL_MM = 1_000;
-const COMPOUND_INSET_MM = 300;
 const PARAPET_DEFAULT_MM = 450;
 const SIGN_STYLE: Readonly<Record<string, number>> = { plaque: 0, flag: 1 };
 const ROOF_STYLE: Readonly<Record<string, RoofStyle>> = {
@@ -40,18 +40,6 @@ export const emptyInteriorPlanner: InteriorPlanner = ({ plan }) => ({
   fixtures: plan.fixtures, floors: plan.floors, floorY: plan.floorY,
 });
 
-interface WorldBounds {
-  readonly x0: number; readonly z0: number; readonly x1: number; readonly z1: number;
-}
-
-function worldBounds(input: LayoutBuildingInput, frame: PlanningFrame): WorldBounds {
-  const [x0, z1] = planningPointMm(frame, input.originCell[0], input.originCell[1]);
-  return {
-    x0, z1, x1: x0 + input.sizeCells[0] * CELL_MM,
-    z0: z1 - input.sizeCells[1] * CELL_MM,
-  };
-}
-
 function floorRect(
   cxMm: number, czMm: number, yaw: Yaw4, kit: CompiledBuildKit,
   footprintWidthMm: number, footprintDepthMm: number, baySpanMm: number,
@@ -75,11 +63,6 @@ function floorRect(
   const halfDepthLow = floorDivInt(worldDepth, 2);
   return [cxMm - halfWidthLow, czMm - halfDepthLow,
     cxMm + worldWidth - halfWidthLow, czMm + worldDepth - halfDepthLow];
-}
-
-function compoundFloor(bounds: WorldBounds): RectMm {
-  return [bounds.x0 + COMPOUND_INSET_MM, bounds.z0 + COMPOUND_INSET_MM,
-    bounds.x1 - COMPOUND_INSET_MM, bounds.z1 - COMPOUND_INSET_MM];
 }
 
 function roofStyle(recipe: BuildKitRecipe): RoofStyle {
@@ -124,22 +107,6 @@ function parapetMm(kit: CompiledBuildKit): number {
   return typeof value === 'number' ? value : PARAPET_DEFAULT_MM;
 }
 
-function compoundPlan(
-  input: LayoutBuildingInput, kit: CompiledBuildKit, seed: number, archetype: string,
-  recipe: BuildKitRecipe, yaw: Yaw4, cxMm: number, czMm: number, wMm: number, dMm: number,
-  bounds: WorldBounds,
-): TownBuildingPlan {
-  const enterable = input.enterable;
-  return {
-    id: input.id, archetype, kit: kit.id, seed, footprint: [cxMm, czMm, wMm, dMm], yaw,
-    storeys: 1, roof: [RoofStyle.Xuanshan, 3_000, 4_500],
-    entrances: [[0, 0, 1_400]], enterable, elev: [input.baseYMm, 150],
-    floors: enterable ? [compoundFloor(bounds)] : [], floorY: enterable ? [150] : [],
-    fixtures: [], signage: signage(input, recipe),
-    facility: input.facility ?? ('unsupported' in recipe ? undefined : recipe.facility) ?? 'none',
-  };
-}
-
 function specialPlan(
   input: LayoutBuildingInput, kit: CompiledBuildKit, seed: number, archetype: string,
   recipe: BuildKitRecipe, yaw: Yaw4, cxMm: number, czMm: number, wMm: number, dMm: number,
@@ -168,7 +135,6 @@ function draftPlan(
   const [gridWMm, gridDMm] = [input.sizeCells[0] * CELL_MM, input.sizeCells[1] * CELL_MM];
   const wMm = yaw === 0 || yaw === 2 ? gridWMm : gridDMm;
   const dMm = yaw === 0 || yaw === 2 ? gridDMm : gridWMm;
-  const bounds = worldBounds(input, frame);
   if (recipe.recipe === 'pagoda_dense' || recipe.recipe === 'pagoda_oct') {
     return specialPlan(
       input, kit, seed, archetype, recipe, yaw, cxMm, czMm, wMm, dMm,
@@ -178,8 +144,8 @@ function draftPlan(
   const stall = recipe.recipe === 'stall';
   const adobe = recipe.recipe === 'adobe';
   if (compound) {
-    return compoundPlan(
-      input, kit, seed, archetype, recipe, yaw, cxMm, czMm, wMm, dMm, bounds,
+    return planCompound(
+      input, kit, seed, frame, options.interior ?? defaultInteriorPlanner, options.variant,
     );
   }
   const canEnter = input.enterable && !stall;
@@ -217,14 +183,9 @@ export function planBuilding(
   return draftPlan(input, kit, seed, frame, options);
 }
 
-/** Temporary p3 hand-off diagnostic; compound geometry still uses the p0 inset-box floor. */
 export function planBuildingDiagnostics(
   input: LayoutBuildingInput, kit: CompiledBuildKit,
 ): readonly PlanDiagnostic[] {
-  const [, recipe] = resolvePlanRecipe(input, kit);
-  return 'unsupported' in recipe || recipe.recipe !== 'compound' ? [] : [{
-    code: 'PLAN_COMPOUND_PENDING',
-    message: 'compound keeps the p0 box plan until ENG-buildgen-p3-compound',
-    path: input.id,
-  }];
+  resolvePlanRecipe(input, kit);
+  return [];
 }
