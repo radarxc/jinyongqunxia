@@ -397,6 +397,30 @@ describe('region exploration command pipeline', () => {
       .toEqual({ ok: false, reason: 'REGION_INTERACTION_BUSY' });
   });
 
+  it('starts dialogue when interacting with a Trigger anchor configured for dialogue/start', () => {
+    const triggerMap = scene('sc_00_zhulin', [
+      { q: 0, r: 0 }, { q: 1, r: 0 },
+    ], [
+      spawn('bookfall', 0, 0, true),
+      { ...base('staff_trigger', 1, 0), class: 'Trigger', action: 'dialogue/start',
+        once: false, autosave: true, safe: false },
+    ]);
+    const supplied = {
+      ...content([triggerMap]),
+      region: {
+        ...content([triggerMap]).region!,
+        dialogues: [{ sceneId: 'sc_00_zhulin', anchorId: 'staff_trigger',
+          storyId: 'story_region', entryKey: 'opening' }],
+      },
+    };
+    const core = runtime(supplied);
+    core.dispatch({ t: 'world/mountRegion', regionId: 'rg_fixture',
+      sceneId: 'sc_00_zhulin', spawnId: 'bookfall' });
+    const started = core.dispatch({ t: 'world/interact', anchorId: 'staff_trigger' });
+    expect(started.ok).toBe(true);
+    expect(core.snapshot().dialogue?.storyId).toBe('story_region');
+  });
+
   it('evaluates flag, quest and qinggong GateExpr branches deterministically', () => {
     expect(evaluateGate({ flag: 'opened' }, { qinggong: 0, flags: [] }))
       .toEqual({ allowed: false, reason: 'REGION_GATE_FLAG' });

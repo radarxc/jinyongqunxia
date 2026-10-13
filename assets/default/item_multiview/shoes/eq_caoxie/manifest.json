@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_caoxie",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/shoes/eq_caoxie.png",
+  "generatedAt": "2026-10-07T20:44:40.598Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 186150,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/88705224-17fe-4aac-8b3b-1cdd256941fc/multiview_0_88705224-17fe-4aac-8b3b-1cdd256941fc.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 182811,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/88705224-17fe-4aac-8b3b-1cdd256941fc/multiview_1_88705224-17fe-4aac-8b3b-1cdd256941fc.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 194808,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/88705224-17fe-4aac-8b3b-1cdd256941fc/multiview_3_88705224-17fe-4aac-8b3b-1cdd256941fc.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 168363,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/88705224-17fe-4aac-8b3b-1cdd256941fc/multiview_2_88705224-17fe-4aac-8b3b-1cdd256941fc.jpeg"
+    }
+  }
+}

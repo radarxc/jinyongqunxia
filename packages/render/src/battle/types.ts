@@ -48,6 +48,7 @@ export interface BattleHighlights {
   readonly selected: string | null;
   readonly ready: string | null;
   readonly reachable: readonly string[];
+  readonly attackReachable?: readonly string[];
   readonly area: readonly string[];
   readonly path: readonly string[];
   readonly ghost: string | null;

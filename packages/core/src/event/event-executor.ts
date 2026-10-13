@@ -133,11 +133,17 @@ function questAdvance(tx: CoreTransaction, action: Extract<EventAction, { op: 'q
   } catch { tx.abort(context.reject.quest); }
   let transitionId: string | undefined;
   if (currentStageId !== action.stage) {
-    const transition = currentStage.transitions.find((entry) => entry.to === action.stage);
-    try {
-      if (!transition || !compileCondition(transition.when as unknown as JsonValue)(questFacts(tx)))
-        tx.abort(context.reject.quest);
-    } catch { tx.abort(context.reject.quest); }
+    const candidates = currentStage.transitions
+      .filter((entry) => entry.to === action.stage)
+      .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
+    const transition = candidates.find((candidate) => {
+      try {
+        return compileCondition(candidate.when as unknown as JsonValue)(questFacts(tx));
+      } catch {
+        return false;
+      }
+    });
+    if (!transition) tx.abort(context.reject.quest);
     transitionId = transition.id;
   } else if (current !== undefined) tx.abort(context.reject.quest);
   const next = questLine(quest, action.stage, current, transitionId);

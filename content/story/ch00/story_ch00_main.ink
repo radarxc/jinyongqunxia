@@ -137,7 +137,7 @@ EXTERNAL has_item(item_id)
 止住这一阵便够了。今日不以俘虏与财物论功。
 #ts:flag/set flagId=fl_00_biandao_done value=true
 #ts:quest/advance quest=q_00_main_c_03 stage=st_sword_demo
--> END
+-> sword_source
 
 === sword_source ===
 #ts:dialogue/speaker speaker=npc_aqing
@@ -154,7 +154,7 @@ EXTERNAL has_item(item_id)
 #ts:quest/advance quest=q_00_main_c_03 stage=st_nine_preview
 #ts:dialogue/speaker speaker=book_spirit
 越女剑教学投影已经销毁。你见过剑理，却没有正式习得武学、残篇或资质。
--> END
+-> nine_layer_preview
 
 === nine_layer_preview ===
 #ts:dialogue/speaker speaker=npc_aqing
@@ -196,7 +196,7 @@ EXTERNAL has_item(item_id)
 #ts:save/autosave reason=first_layer_commit
 #ts:dialogue/speaker speaker=book_spirit
 记录：授法者是阿青，《长生诀》第一层已成。我只保存收据，不曾代她传功。
--> END
+-> northbound_departure
 
 === northbound_departure ===
 #ts:dialogue/speaker speaker=book_spirit

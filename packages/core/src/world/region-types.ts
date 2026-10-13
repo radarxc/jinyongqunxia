@@ -24,6 +24,7 @@ export interface RegionGateFacts {
 export interface RegionDialogueBinding {
   readonly sceneId: string; readonly anchorId: string;
   readonly storyId: string; readonly entryKey: string;
+  readonly condition?: RegionGateExpr;
 }
 export interface RegionLootBinding {
   readonly lootRef: string; readonly items: readonly { readonly itemId: string; readonly count: number }[];

@@ -110,7 +110,7 @@ function itemTargetAllowed(state: BattleState, actor: BattleUnit, target: Battle
   const item = state.setup.itemDefs.find((candidate) => candidate.id === action.item);
   const use = item?.use;
   if (item === undefined || use === undefined) throw new RangeError('ILLEGAL_TARGET');
-  if (state.setup.rules.noItems || state.setup.rules.mode === 'spar') {
+  if (state.setup.rules.noItems) {
     throw new RangeError('DISABLED_BY_STATUS');
   }
   const relation = actor.id === target.id ? 'self'

@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_suozijia",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/armor/eq_suozijia.png",
+  "generatedAt": "2026-10-07T14:38:13.666Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 276658,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/18e92b51-5ce4-43ae-b502-882068805e64/multiview_0_18e92b51-5ce4-43ae-b502-882068805e64.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 199112,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/18e92b51-5ce4-43ae-b502-882068805e64/multiview_1_18e92b51-5ce4-43ae-b502-882068805e64.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 222972,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/18e92b51-5ce4-43ae-b502-882068805e64/multiview_3_18e92b51-5ce4-43ae-b502-882068805e64.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 293324,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/18e92b51-5ce4-43ae-b502-882068805e64/multiview_2_18e92b51-5ce4-43ae-b502-882068805e64.jpeg"
+    }
+  }
+}

@@ -64,6 +64,7 @@ export interface BattleMoveView extends MovePresentation {
   readonly completionBp: number | null; readonly attackBp: number | null;
 }
 export interface BattleUnitView extends BattleMarker {
+  readonly pos?: HexCoord;
   readonly name: string; readonly side: SideId; readonly control: 'player' | 'ai';
   readonly portraitUrl?: string;
   readonly hp: number; readonly hpMax: number; readonly mp: number; readonly mpMax: number;

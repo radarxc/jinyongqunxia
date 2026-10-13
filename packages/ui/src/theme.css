@@ -1,8 +1,8 @@
 :root {
   --paper: #efe6d2; --paper-silk: #e3d3b1; --ink: #1e1b18; --ink-text: #2b2622;
   --ink-medium: #4a433c; --line: #9c917c; --vermilion: #b5382b; --blue: #2f6e8e; --green: #3f8a6e;
-  --font-body: 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif;
-  --font-title: 'Songti SC', 'Noto Serif CJK SC', STSong, serif;
+  --font-body: '方正侠客体', '方正字迹-侠客体简', 'FZXiaKeTi-S-GB', 'FZXiaKe', 'FZXiangKe', 'Xingkai SC', 'STXingkai', 'Ma Shan Zheng', 'Kaiti SC', 'STKaiti', 'KaiTi', cursive, serif;
+  --font-title: '方正侠客体', '方正字迹-侠客体简', 'FZXiaKeTi-S-GB', 'FZXiaKe', 'FZXiangKe', 'Xingkai SC', 'STXingkai', 'Ma Shan Zheng', 'Kaiti SC', 'STKaiti', 'KaiTi', cursive, serif;
   --hit: 60px;
 }
 [data-grade='1'] { --grade-color: #b8955a; }
@@ -16,6 +16,7 @@
 [data-grade='9'] { --grade-color: #b04d3b; }
 [data-grade='10'] { --grade-color: #d4af37; }
 [data-grade='11'] { --grade-color: #ddbc4b; }
+[data-grade='12'] { --grade-color: #e5c95f; }
 *, *::before, *::after {
   -webkit-user-select: none;
   user-select: none;
@@ -26,15 +27,26 @@ input, textarea, [contenteditable="true"] {
 }
 body {
   cursor: default;
+  font-family: var(--font-body);
 }
-button, input, select { font: inherit; color: inherit; }
-button { min-width: var(--hit); min-height: var(--hit); padding: 10px 18px; background: var(--paper); border: 1px solid var(--line); cursor: pointer; }
-button:hover:not(:disabled), button[aria-pressed='true'] { background: var(--paper-silk); border-color: var(--blue); }
-button[aria-current='page'] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+button, input, select { font: inherit; color: inherit; font-family: var(--font-body); }
+button { min-width: var(--hit); min-height: var(--hit); padding: 8px 16px; background: transparent; border: none; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; }
+button:hover:not(:disabled), button[aria-pressed='true'] { background: rgba(181, 56, 43, 0.08); color: var(--vermilion); }
+button[aria-current='page'] { background: var(--ink); color: var(--paper); }
 button:disabled { opacity: .6; cursor: not-allowed; }
-:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
-button.primary { background: var(--blue); color: #fff; }
-button.primary:hover:not(:disabled) { background: #2e4a62; }
+:focus-visible { outline: 2px solid var(--vermilion); outline-offset: 2px; }
+button.primary {
+  background: rgba(181, 56, 43, 0.12);
+  color: var(--vermilion);
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(181, 56, 43, 0.15);
+}
+button.primary:hover:not(:disabled) {
+  background: var(--vermilion);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(181, 56, 43, 0.25);
+}
 button.danger { color: var(--vermilion); }
 input[type='search'], select { min-height: var(--hit); padding: 12px; border: 1px solid var(--line); background: #f7f0df; width: 100%; }
 small, .muted { color: var(--ink-medium); font-size: 16px; line-height: 1.5; }

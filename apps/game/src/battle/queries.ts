@@ -106,10 +106,12 @@ export function queryArea(state: BattleState, launch: BattleLaunch, input: {
   const origin = input.walkTo ?? actor.pos;
   const path = input.walkTo === undefined ? undefined : queryPath(state, actor.id, input.walkTo);
   if (input.walkTo !== undefined && path === null) reason = battleReason('PATH_BLOCKED');
-  const unitAtAnchor = state.units.find(unit => unit.pos.q === input.anchor.q && unit.pos.r === input.anchor.r);
+  const unitAtAnchor = input.anchor
+    ? state.units.find(unit => unit.pos && unit.pos.q === input.anchor?.q && unit.pos.r === input.anchor?.r)
+    : undefined;
   const target = move.target === 'tile' ? input.anchor : move.target === 'self'
-    ? actor.id : unitAtAnchor?.id;
-  const queried = queryMoveAt(state, actor.id, move.id, target ?? input.anchor,
+    ? actor.id : (unitAtAnchor?.id ?? input.anchor);
+  const queried = queryMoveAt(state, actor.id, move.id, target ?? input.anchor ?? origin,
     { from: origin, aim: input.aim });
   const cells = queried.cells; const targets = queried.targets;
   const projectedActor = input.walkTo === undefined ? actor : { ...actor, pos: { ...origin } };

@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_wucanyi",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/clothing/eq_wucanyi.png",
+  "generatedAt": "2026-10-07T19:39:50.552Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 181601,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/0c702d47-7703-4579-9556-b932ae15fec1/multiview_0_0c702d47-7703-4579-9556-b932ae15fec1.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 111332,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/0c702d47-7703-4579-9556-b932ae15fec1/multiview_1_0c702d47-7703-4579-9556-b932ae15fec1.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 127070,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/0c702d47-7703-4579-9556-b932ae15fec1/multiview_3_0c702d47-7703-4579-9556-b932ae15fec1.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 162004,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/0c702d47-7703-4579-9556-b932ae15fec1/multiview_2_0c702d47-7703-4579-9556-b932ae15fec1.jpeg"
+    }
+  }
+}

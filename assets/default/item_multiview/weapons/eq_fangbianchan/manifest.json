@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_fangbianchan",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_fangbianchan.png",
+  "generatedAt": "2026-10-07T15:19:32.547Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 100893,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/2318dbc1-411e-4ec8-aad5-61d11592afbe/multiview_0_2318dbc1-411e-4ec8-aad5-61d11592afbe.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 71260,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/2318dbc1-411e-4ec8-aad5-61d11592afbe/multiview_1_2318dbc1-411e-4ec8-aad5-61d11592afbe.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 65186,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/2318dbc1-411e-4ec8-aad5-61d11592afbe/multiview_3_2318dbc1-411e-4ec8-aad5-61d11592afbe.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 106288,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/2318dbc1-411e-4ec8-aad5-61d11592afbe/multiview_2_2318dbc1-411e-4ec8-aad5-61d11592afbe.jpeg"
+    }
+  }
+}

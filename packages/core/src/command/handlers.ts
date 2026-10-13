@@ -1,7 +1,7 @@
 import { TICKS_PER_SHICHEN, advanceGameClock } from '../state';
 import type { JsonValue } from '@tianshu/shared';
 import { equipItem, unequipItem, useConsumable } from '../economy';
-import { createTownRuntime, createTownState, createWorldMapRuntime } from '../world';
+import { createInitialWorldMapState, createTownRuntime, createTownState, createWorldMapRuntime } from '../world';
 import type { Command, CommandHandler, CoreContent, CoreTransaction,
   InventoryCommand, RejectReason, WorldTickCommand } from '.';
 import type { GameState } from '../state';
@@ -80,16 +80,22 @@ export const worldTickHandler: CommandHandler<WorldTickCommand> = {
   apply: worldTickApply,
 };
 function mapRuntime(state: GameState, content: CoreContent) {
-  const map = content.worldMaps?.find((entry) => entry.chapterId === state.chapter.chapterId);
+  const map = content.worldMaps?.find((entry) => entry.chapterId === state.chapter.chapterId)
+    ?? content.worldMaps?.find((entry) => entry.chapterId === 'ch01')
+    ?? content.worldMaps?.[0];
   if (!map) throw new Error('MAP_UNAVAILABLE');
   return createWorldMapRuntime({ map, equipmentRules: content.equipmentRules ?? [],
     identityTags: content.identityTags ?? [] });
 }
 function runWorldMap(state: GameState, command: WorldMapCommand, content: CoreContent) {
-  const result = mapRuntime(state, content).dispatch(state, command);
+  const runtime = mapRuntime(state, content);
+  const worldMapState = state.chapter.worldMap ?? createInitialWorldMapState(runtime.map);
+  const stateWithMap = state.chapter.worldMap ? state : { ...state, chapter: { ...state.chapter, worldMap: worldMapState } };
+  const result = runtime.dispatch(stateWithMap, command);
   const scene = result.state.chapter.worldMap?.scene;
-  const town = scene?.kind === 'town'
+  const matchedTown = scene?.kind === 'town'
     ? content.towns?.find((entry) => entry.sceneId === scene.sceneId) : undefined;
+  const town = matchedTown ?? (scene?.kind === 'town' ? content.towns?.[0] : undefined);
   if (command.t === 'worldmap/enter' && scene?.kind === 'town' && !town)
     throw new Error('TOWN_UNAVAILABLE');
   const townState = command.t === 'worldmap/leave' ? null

@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_sengyi",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/clothing/eq_sengyi.png",
+  "generatedAt": "2026-10-07T19:15:59.495Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 144547,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d5b9af01-ed58-4c58-a8f2-4e23fdcda016/multiview_0_d5b9af01-ed58-4c58-a8f2-4e23fdcda016.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 99182,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d5b9af01-ed58-4c58-a8f2-4e23fdcda016/multiview_1_d5b9af01-ed58-4c58-a8f2-4e23fdcda016.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 91758,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d5b9af01-ed58-4c58-a8f2-4e23fdcda016/multiview_3_d5b9af01-ed58-4c58-a8f2-4e23fdcda016.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 139087,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d5b9af01-ed58-4c58-a8f2-4e23fdcda016/multiview_2_d5b9af01-ed58-4c58-a8f2-4e23fdcda016.jpeg"
+    }
+  }
+}

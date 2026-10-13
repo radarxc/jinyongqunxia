@@ -64,13 +64,13 @@ describe('application shell with real session and fake IndexedDB', () => {
       await click('存档');
       await vi.waitFor(() => expect(wrapper.find('.save-page').exists()).toBe(true),
         { timeout: 10_000 });
-      await click('保存');
+      await click('记载事迹');
       await vi.waitFor(() => expect(controller.slots.value[0]?.occupied).toBe(true),
         { timeout: 10_000 });
       await vi.waitFor(() => expect(controller.busy.value).toBe(false), { timeout: 10_000 });
       await host.dispatch({ t: 'world/tick' });
       await vi.waitFor(() => expect(controller.busy.value).toBe(false), { timeout: 10_000 });
-      await click('读取');
+      await click('进入回忆');
       await wrapper.get('[data-confirm]').trigger('click');
       await vi.waitFor(() => expect(controller.busy.value).toBe(false), { timeout: 10_000 });
       expect((await host.snapshot()).meta.worldTick).toBe(0);

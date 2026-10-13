@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_mengguyangmaozhanxue_nan",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/shoes/eq_mengguyangmaozhanxue_nan.png",
+  "generatedAt": "2026-10-07T20:56:09.568Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 134079,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/60e7d00e-b0d3-4fa6-9dd7-9207e508fe75/multiview_0_60e7d00e-b0d3-4fa6-9dd7-9207e508fe75.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 118263,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/60e7d00e-b0d3-4fa6-9dd7-9207e508fe75/multiview_1_60e7d00e-b0d3-4fa6-9dd7-9207e508fe75.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 114037,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/60e7d00e-b0d3-4fa6-9dd7-9207e508fe75/multiview_3_60e7d00e-b0d3-4fa6-9dd7-9207e508fe75.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 138788,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/60e7d00e-b0d3-4fa6-9dd7-9207e508fe75/multiview_2_60e7d00e-b0d3-4fa6-9dd7-9207e508fe75.jpeg"
+    }
+  }
+}

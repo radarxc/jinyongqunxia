@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_hanbaojinlongbian",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_hanbaojinlongbian.png",
+  "generatedAt": "2026-10-07T15:23:19.583Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 128610,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/3b6a2668-4f71-4441-b77a-dabce7aadd9e/multiview_0_3b6a2668-4f71-4441-b77a-dabce7aadd9e.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 100598,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/3b6a2668-4f71-4441-b77a-dabce7aadd9e/multiview_1_3b6a2668-4f71-4441-b77a-dabce7aadd9e.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 104289,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/3b6a2668-4f71-4441-b77a-dabce7aadd9e/multiview_3_3b6a2668-4f71-4441-b77a-dabce7aadd9e.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 140049,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/3b6a2668-4f71-4441-b77a-dabce7aadd9e/multiview_2_3b6a2668-4f71-4441-b77a-dabce7aadd9e.jpeg"
+    }
+  }
+}

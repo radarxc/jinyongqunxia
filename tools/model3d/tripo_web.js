@@ -160,6 +160,32 @@ window.__t = {
     if (mode === 'multiView') { const a = (st.multiViewImages || []).map((x) => this.img(x)); if (!a[0] || a.filter(Boolean).length < 2) return null; return { ...b, enable_image_autofix: st.enableImageAutofix ?? true, geometry_quality: this.GEOMETRY, image: a }; }
     return null;
   },
+  // 生成三视图（0 点，由 2D 参考图扩展为正面、侧面、背面视图）
+  async generateMultiViews({ timeoutMs = 60000 } = {}) {
+    const st = this.gst();
+    if (!st || !/^\/workspace\/generate/.test(location.pathname)) return { ok: false, why: 'not on generate page' };
+    const btn = document.querySelector('button[title="Generate Multi Views"]');
+    if (btn) {
+      btn.click();
+    } else if (st && st.beginMultiViewGeneration) {
+      await st.beginMultiViewGeneration();
+    } else {
+      return { ok: false, why: 'no multi views button' };
+    }
+    const t0 = Date.now();
+    await this.sleep(1200);
+    while (st.genMultiViewLoading) {
+      if (Date.now() - t0 >= timeoutMs) return { ok: false, why: 'timeout waiting for multi-views' };
+      await this.sleep(2000);
+    }
+    await this.sleep(1000);
+    const domImgs = Array.from(document.querySelectorAll('.p-3 img, .aspect-square img, [class*=multi] img'))
+      .map((img) => img.src)
+      .filter((src) => src.startsWith('http'));
+    const unique = Array.from(new Set(domImgs));
+    const views = (st.multiViewImages || []).map((x) => (x && x.key) || null);
+    return { ok: unique.length >= 3, count: unique.length, urls: unique, keys: views };
+  },
   // 生成（65 点）。默认 dry；{ go: true } 才真发。成功后可 { open: true } 让页面跳到这个项目看进度。
   async generate({ go = false, open = false } = {}) {
     const st = this.gst(); if (!st) return { ok: false, why: 'not on generate page' };

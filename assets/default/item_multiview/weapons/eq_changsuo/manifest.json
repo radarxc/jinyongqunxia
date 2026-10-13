@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_changsuo",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_changsuo.png",
+  "generatedAt": "2026-10-07T15:00:23.520Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 167646,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/3363f767-01a7-4ff7-98ea-7f0d49d5dd56/multiview_0_3363f767-01a7-4ff7-98ea-7f0d49d5dd56.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 149840,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/3363f767-01a7-4ff7-98ea-7f0d49d5dd56/multiview_1_3363f767-01a7-4ff7-98ea-7f0d49d5dd56.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 133107,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/3363f767-01a7-4ff7-98ea-7f0d49d5dd56/multiview_3_3363f767-01a7-4ff7-98ea-7f0d49d5dd56.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 171236,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/3363f767-01a7-4ff7-98ea-7f0d49d5dd56/multiview_2_3363f767-01a7-4ff7-98ea-7f0d49d5dd56.jpeg"
+    }
+  }
+}

@@ -51,6 +51,39 @@ describe('inventory commands', () => {
     expect(wrapper.get('[data-item-id]').attributes('data-item-id')).toBe(medicine.id);
     wrapper.unmount();
   });
+  it('renders correct tier badges and popup titles for canonical 12 grades', async () => {
+    const tianItem: ItemView = { ...sword, id: 'it_tian', name: '降龙十八掌残本', grade: 12 };
+    const diItem: ItemView = { ...sword, id: 'it_di', name: '纯阳无极功抄本', grade: 8 };
+    const xuanItem: ItemView = { ...sword, id: 'it_xuan', name: '松风剑法全本', grade: 6 };
+    const huangItem: ItemView = { ...sword, id: 'it_huang', name: '扎马步抄本', grade: 1 };
+    const wrapper = mount(TxInventory, {
+      props: { items: [tianItem, diItem, xuanItem, huangItem], equipment, targetId: 'npc_zhujue' },
+    });
+
+    const tianCard = wrapper.get('[data-item-id="it_tian"]');
+    expect(tianCard.classes()).toContain('tier-tian');
+    expect(tianCard.find('.tier-sub-badge').text()).toBe('上');
+
+    const diCard = wrapper.get('[data-item-id="it_di"]');
+    expect(diCard.classes()).toContain('tier-di');
+    expect(diCard.find('.tier-sub-badge').text()).toBe('中');
+
+    const xuanCard = wrapper.get('[data-item-id="it_xuan"]');
+    expect(xuanCard.classes()).toContain('tier-xuan');
+    expect(xuanCard.find('.tier-sub-badge').text()).toBe('上');
+
+    const huangCard = wrapper.get('[data-item-id="it_huang"]');
+    expect(huangCard.classes()).toContain('tier-huang');
+    expect(huangCard.find('.tier-sub-badge').text()).toBe('下');
+
+    await diCard.trigger('click');
+    expect(wrapper.find('.popup-tier-tag').text()).toBe('【地阶 · 中品】');
+
+    await tianCard.trigger('click');
+    expect(wrapper.find('.popup-tier-tag').text()).toBe('【天阶 · 上品】');
+
+    wrapper.unmount();
+  });
 });
 
 describe('projection-only rendering and bounded lists', () => {

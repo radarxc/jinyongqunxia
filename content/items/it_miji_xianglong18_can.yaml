@@ -3,7 +3,7 @@ id: it_miji_xianglong18_can
 name: 降龙十八掌残本
 kind: manual
 sub: partial
-grade: 12
+grade: 10
 stack: 1
 chapters: any
 origin: canonExpanded
@@ -25,6 +25,6 @@ extension:
     attributes:
       version: 2
       skillRef: sk_xianglong18
-      readWis: 70
+      readWis: 60
       maxLayer: 6
-      cultivation: 3000
+      cultivation: 2400

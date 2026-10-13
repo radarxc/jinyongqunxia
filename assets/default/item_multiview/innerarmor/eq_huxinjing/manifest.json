@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_huxinjing",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/innerarmor/eq_huxinjing.png",
+  "generatedAt": "2026-10-07T08:22:39.183Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 168198,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/9ff22990-cf6d-440d-819b-153b9d6a1d29/multiview_0_9ff22990-cf6d-440d-819b-153b9d6a1d29.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 138910,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/9ff22990-cf6d-440d-819b-153b9d6a1d29/multiview_1_9ff22990-cf6d-440d-819b-153b9d6a1d29.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 148528,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/9ff22990-cf6d-440d-819b-153b9d6a1d29/multiview_3_9ff22990-cf6d-440d-819b-153b9d6a1d29.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 161848,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/9ff22990-cf6d-440d-819b-153b9d6a1d29/multiview_2_9ff22990-cf6d-440d-819b-153b9d6a1d29.jpeg"
+    }
+  }
+}

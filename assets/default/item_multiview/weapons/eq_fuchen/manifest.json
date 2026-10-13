@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_fuchen",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_fuchen.png",
+  "generatedAt": "2026-10-07T15:22:11.579Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 110841,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/9c8bf4b3-f558-4a4f-871f-b41a954a5ba8/multiview_0_9c8bf4b3-f558-4a4f-871f-b41a954a5ba8.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 82672,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/9c8bf4b3-f558-4a4f-871f-b41a954a5ba8/multiview_1_9c8bf4b3-f558-4a4f-871f-b41a954a5ba8.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 86292,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/9c8bf4b3-f558-4a4f-871f-b41a954a5ba8/multiview_3_9c8bf4b3-f558-4a4f-871f-b41a954a5ba8.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 113991,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/9c8bf4b3-f558-4a4f-871f-b41a954a5ba8/multiview_2_9c8bf4b3-f558-4a4f-871f-b41a954a5ba8.jpeg"
+    }
+  }
+}

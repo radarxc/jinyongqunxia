@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_hetieshougou",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_hetieshougou.png",
+  "generatedAt": "2026-10-07T15:29:08.556Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 123214,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/d1777084-41b6-4809-9fd3-415eb5560e31/multiview_0_d1777084-41b6-4809-9fd3-415eb5560e31.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 85424,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/d1777084-41b6-4809-9fd3-415eb5560e31/multiview_1_d1777084-41b6-4809-9fd3-415eb5560e31.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 95235,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/d1777084-41b6-4809-9fd3-415eb5560e31/multiview_3_d1777084-41b6-4809-9fd3-415eb5560e31.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 120996,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/d1777084-41b6-4809-9fd3-415eb5560e31/multiview_2_d1777084-41b6-4809-9fd3-415eb5560e31.jpeg"
+    }
+  }
+}

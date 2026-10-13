@@ -5,12 +5,14 @@ import type { DialogueView } from '@tianshu/ui';
 import type { GameController } from '../game-controller';
 import { useChapterTextCatalog } from '../flow/content-text';
 import { presentDialogue } from '../flow/presentation';
+import { usePortrait } from '../runtime/portraits';
 const { controller, dialogue } = defineProps<{
   controller: GameController;
   dialogue: DialogueView;
 }>();
 const catalog = useChapterTextCatalog(controller.chapterId, controller.flowTextSource);
 const view = computed(() => presentDialogue(dialogue, catalog.value));
+const portrait = usePortrait(() => dialogue.speakerId);
 function choose(choiceId: string): void {
   void controller.dialogueChoose(Number(choiceId));
 }
@@ -19,6 +21,7 @@ function choose(choiceId: string): void {
   <div class="dialogue-layer">
     <TxDialoguePanel
       :dialogue="view"
+      :portrait="portrait"
       :busy="controller.busy.value"
       :reduced-motion="controller.settings.value.reducedMotion"
       @choose="choose"
@@ -29,11 +32,12 @@ function choose(choiceId: string): void {
 <style scoped>
 .dialogue-layer {
   position: fixed;
-  z-index: 30;
-  inset: auto max(1rem, env(safe-area-inset-right)) max(5rem, env(safe-area-inset-bottom))
-    max(1rem, env(safe-area-inset-left));
-  max-width: 64rem;
-  margin: auto;
-  box-shadow: 0 1rem 3rem #0008;
+  z-index: 35;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: max(1.8rem, env(safe-area-inset-bottom));
+  width: calc(100% - 3rem);
+  max-width: 58rem;
+  pointer-events: auto;
 }
 </style>

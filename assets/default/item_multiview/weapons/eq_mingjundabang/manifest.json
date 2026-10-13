@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_mingjundabang",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_mingjundabang.png",
+  "generatedAt": "2026-10-07T16:08:30.539Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 95152,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/a6a89b07-bfa3-4c69-9380-899bc2b4924c/multiview_0_a6a89b07-bfa3-4c69-9380-899bc2b4924c.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 64460,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/a6a89b07-bfa3-4c69-9380-899bc2b4924c/multiview_1_a6a89b07-bfa3-4c69-9380-899bc2b4924c.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 70641,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/a6a89b07-bfa3-4c69-9380-899bc2b4924c/multiview_3_a6a89b07-bfa3-4c69-9380-899bc2b4924c.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 91896,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/a6a89b07-bfa3-4c69-9380-899bc2b4924c/multiview_2_a6a89b07-bfa3-4c69-9380-899bc2b4924c.jpeg"
+    }
+  }
+}

@@ -6,6 +6,7 @@ import {
   Raycaster,
   Scene,
   Vector2,
+  Vector3,
   LinearFilter,
   SRGBColorSpace,
   TextureLoader,
@@ -46,7 +47,7 @@ export async function createWorldMapScene(
   renderer.setClearColor(new Color(0xddd0ad), 1);
   const quality = options.quality ?? getDefaultRenderQuality();
   const scene = new Scene();
-  const camera = new OrthographicCamera(-10, 10, 6, -6, 0.1, 80);
+  const camera = new OrthographicCamera(-10, 10, 6, -6, -200, 1200);
   let mapTexture: Texture | undefined;
   if (options.mapTextureUrl)
     try {
@@ -64,7 +65,8 @@ export async function createWorldMapScene(
   scene.add(light, light.target);
   const timeFrame = createTimeOfDayFrame();
   const clearColor = new Color();
-  const CAMERA_YAW_DEG = 45;
+  let cameraYawDeg = 0;
+  const CAM_DISTANCE = 11;
   let sunOffsetX = 0;
   let sunOffsetY = 0;
   let sunOffsetZ = 0;
@@ -80,7 +82,7 @@ export async function createWorldMapScene(
   }
   const batch = new rig.RigBatch(rigSet, 1);
   batch.addTo(scene);
-  const actor = rig.createRigCharacter(rigSet, options.actor.equipment, 1);
+  const actor = rig.createRigCharacter(rigSet, options.actor.equipment, 0.22);
   batch.add(actor);
   const stats: WorldMapStats = {
     drawCalls: 0,
@@ -93,7 +95,7 @@ export async function createWorldMapScene(
   };
   const raycaster = new Raycaster();
   const pointer = new Vector2();
-  let zoom = options.zoom ?? 1;
+  let zoom = options.zoom ?? 1.9;
   let current = options.actor;
   let previous = 0;
   let samplingPrevious: number | undefined;
@@ -138,7 +140,7 @@ export async function createWorldMapScene(
       SRGBColorSpace,
     );
     light.intensity = timeFrame.lightIntensity * 2.2;
-    const azimuth = (sunAzimuthDeg(CAMERA_YAW_DEG, timeFrame.dayPhase) * Math.PI) / 180;
+    const azimuth = (sunAzimuthDeg(cameraYawDeg, timeFrame.dayPhase) * Math.PI) / 180;
     const elevation = (timeFrame.elevationDeg * Math.PI) / 180;
     const horizontal = Math.cos(elevation) * 20;
     sunOffsetX = Math.cos(azimuth) * horizontal;
@@ -153,19 +155,40 @@ export async function createWorldMapScene(
     );
     renderer.setClearColor(clearColor, 1);
   }
+
+  let camTargetX = 0;
+  let camTargetY = 0;
+  let camTargetZ = 0;
+  let followActor = true;
+  const PITCH_ANGLE = Math.atan2(CAMERA_HEIGHT, CAM_DISTANCE);
+  const SIN_PITCH = Math.sin(PITCH_ANGLE);
+  const BOUND_MIN_X = -120;
+  const BOUND_MAX_X = 90;
+  const BOUND_MIN_Z = -65;
+  const BOUND_MAX_Z = 55;
+
   function placeSun(): void {
     const [x, y, z] = mapPointToWorld(map, current.point);
     light.target.position.set(x, y, z);
     light.position.set(x + sunOffsetX, y + sunOffsetY, z + sunOffsetZ);
   }
 
+  function updateCameraTransform(): void {
+    camera.position.set(camTargetX, camTargetY + CAMERA_HEIGHT, camTargetZ + CAM_DISTANCE);
+    camera.lookAt(camTargetX, camTargetY, camTargetZ);
+  }
+
   function place(view: MapActorView): void {
     const [x, y, z] = mapPointToWorld(map, view.point);
-    actor.setPosition(x, y + 0.08, z);
+    actor.setPosition(x, y + 0.02, z);
     actor.setMotion(view.direction ?? 1, view.walking ? 1.4 : 0, 'medium');
     protagonist.position.set(x, y, z);
-    camera.position.set(x + 8, y + CAMERA_HEIGHT, z + 8);
-    camera.lookAt(x, y, z);
+    if (followActor) {
+      camTargetX = x;
+      camTargetY = y;
+      camTargetZ = z;
+    }
+    updateCameraTransform();
     placeSun();
   }
   function resize(width: number, height: number, pixelRatio = 1): void {
@@ -193,11 +216,21 @@ export async function createWorldMapScene(
       const dt = previous === 0 ? 0 : Math.min(0.1, Math.max(0, (timeMs - previous) / 1_000));
       previous = timeMs;
       actor.update(dt);
+      const heroFigure = protagonist.getObjectByName('protagonist-hero-figure');
+      if (heroFigure) {
+        heroFigure.quaternion.copy(camera.quaternion);
+      }
       const beacon = protagonist.getObjectByName('protagonist-beacon');
       if (beacon) {
-        beacon.position.y = 0.95 + Math.sin(timeMs * 0.005) * 0.08;
-        beacon.rotation.y = timeMs * 0.002;
+        beacon.position.y = 1.65 + Math.sin(timeMs * 0.005) * 0.10;
+        beacon.rotation.y = timeMs * 0.003;
       }
+      const groundRing = protagonist.getObjectByName('protagonist-ground-ring');
+      if (groundRing) {
+        const pulse = 1 + Math.sin(timeMs * 0.004) * 0.12;
+        groundRing.scale.set(pulse, pulse, 1);
+      }
+      // Clouds removed: outer geography rendered with real GIS terrain and classical water ripples
       batch.sync();
       renderer.render(scene, camera);
       stats.cpuMs = performance.now() - started;
@@ -218,6 +251,9 @@ export async function createWorldMapScene(
       if (disposed) return;
       current = view;
       await actor.setEquipment(view.equipment);
+      if (view.walking) {
+        followActor = true;
+      }
       place(view);
     },
     setDestination(nodeId) {
@@ -225,15 +261,57 @@ export async function createWorldMapScene(
       marker.visible = node !== undefined;
       if (node) {
         const [x, y, z] = mapPointToWorld(map, node.point);
-        marker.position.set(x, y + 0.52, z);
+        marker.position.set(x, y + 0.05, z);
       }
     },
     setZoom(next) {
       if (!Number.isFinite(next)) throw new RangeError('WORLDMAP_ZOOM');
-      zoom = Math.min(2.5, Math.max(0.65, next));
+      zoom = Math.min(3.5, Math.max(0.35, next));
       const width = canvas.clientWidth || canvas.width;
       const height = canvas.clientHeight || canvas.height;
       resize(width, height, deviceDpr);
+    },
+    setYaw(_deg) {
+      cameraYawDeg = 0;
+      updateCameraTransform();
+      placeSun();
+    },
+    rotate(_deltaDeg) {
+      cameraYawDeg = 0;
+      updateCameraTransform();
+      placeSun();
+    },
+    getYaw() {
+      return 0;
+    },
+    focusActor() {
+      followActor = true;
+      const [x, y, z] = mapPointToWorld(map, current.point);
+      camTargetX = x;
+      camTargetY = y;
+      camTargetZ = z;
+      updateCameraTransform();
+    },
+    panBy(deltaScreenX, deltaScreenY, screenWidth, screenHeight) {
+      const sw = screenWidth || canvas.clientWidth || canvas.width || 800;
+      const sh = screenHeight || canvas.clientHeight || canvas.height || 600;
+      if (sw <= 0 || sh <= 0) return;
+      followActor = false;
+      const aspect = viewportWidth / viewportHeight;
+      const halfH = 6 / zoom;
+      const halfW = (6 * aspect) / zoom;
+      const worldPerPixelX = (halfW * 2) / sw;
+      const worldPerPixelY = (halfH * 2) / sh;
+
+      const deltaWorldX = -deltaScreenX * worldPerPixelX;
+      const deltaWorldZ = -(deltaScreenY * worldPerPixelY) / SIN_PITCH;
+
+      camTargetX = Math.max(BOUND_MIN_X, Math.min(BOUND_MAX_X, camTargetX + deltaWorldX));
+      camTargetZ = Math.max(BOUND_MIN_Z, Math.min(BOUND_MAX_Z, camTargetZ + deltaWorldZ));
+      updateCameraTransform();
+    },
+    getPanTarget() {
+      return [camTargetX, camTargetZ] as const;
     },
     pickNode(clientX, clientY, bounds) {
       if (!contextGuard.canRender || bounds.width <= 0 || bounds.height <= 0) return null;
@@ -243,8 +321,83 @@ export async function createWorldMapScene(
       );
       raycaster.setFromCamera(pointer, camera);
       const hit = raycaster.intersectObject(geometry.nodes, false)[0];
-      return hit?.instanceId === undefined ? null : (geometry.visibleNodes[hit.instanceId] ?? null);
+      let foundNode = hit?.instanceId === undefined ? null : (geometry.visibleNodes[hit.instanceId] ?? null);
+      if (!foundNode) {
+        const tempVec = new Vector3();
+        let closestDist = 36;
+        for (const node of geometry.visibleNodes) {
+          const [nx, ny, nz] = mapPointToWorld(map, node.point);
+          tempVec.set(nx, ny + 0.15, nz).project(camera);
+          const screenX = ((tempVec.x + 1) * bounds.width) / 2 + bounds.left;
+          const screenY = ((-tempVec.y + 1) * bounds.height) / 2 + bounds.top;
+          const dist = Math.hypot(clientX - screenX, clientY - screenY);
+          if (dist < closestDist) {
+            closestDist = dist;
+            foundNode = node;
+          }
+        }
+      }
+      return foundNode;
     },
+    projectNodes(bounds) {
+      if (contextGuard.state !== 'ok' || bounds.width <= 0 || bounds.height <= 0) return [];
+      const tempVec = new Vector3();
+      const majorCities = new Set([
+        'city_dali', 'city_zhangye', 'city_luoyang', 'city_hangzhou',
+        'city_beijing', 'city_chengdu', 'city_chongqing', 'city_changsha',
+        'city_kaifeng', 'city_suzhou', 'city_jinan', 'city_xian',
+        'city_nanjing', 'city_wuhan', 'city_guangzhou', 'city_kunming',
+        'city_lijiang', 'city_lhasa', 'city_guilin', 'city_lanzhou',
+      ]);
+      const raw = geometry.visibleNodes.map((node) => {
+        const [nx, ny, nz] = mapPointToWorld(map, node.point);
+        tempVec.set(nx, ny + 0.22, nz).project(camera);
+        const x = ((tempVec.x + 1) * bounds.width) / 2;
+        const y = ((-tempVec.y + 1) * bounds.height) / 2;
+        const inFrustum = tempVec.z < 1 && x >= -40 && x <= bounds.width + 40 && y >= -40 && y <= bounds.height + 40;
+        let cleanName = node.name.replace(/（待考）|\(待考\)/g, '').trim();
+        cleanName = cleanName.replace(/地区所指治所$/, '').replace(/所指治所$/, '');
+        const isMajor = majorCities.has(node.id);
+        const priority = isMajor ? 10 : (node.kind === 'town' ? 5 : 1);
+        return { id: node.id, name: cleanName, kind: node.kind, x, y, visible: inFrustum, priority };
+      });
+
+      // Sort by priority descending so major historical cities reserve space first
+      const sorted = [...raw].sort((a, b) => b.priority - a.priority);
+      const occupied: Array<{ x: number; y: number; width: number; height: number }> = [];
+      const visibilityMap = new Map<string, boolean>();
+
+      for (const node of sorted) {
+        if (!node.visible) {
+          visibilityMap.set(node.id, false);
+          continue;
+        }
+        const textWidth = Math.max(44, node.name.length * 13 + 6);
+        const textHeight = 22;
+        const collides = occupied.some((other) => {
+          const minSpacingX = (textWidth + other.width) / 2 + 5;
+          const minSpacingY = (textHeight + other.height) / 2 + 4;
+          return Math.abs(node.x - other.x) < minSpacingX && Math.abs(node.y - other.y) < minSpacingY;
+        });
+        if (collides) {
+          visibilityMap.set(node.id, false);
+        } else {
+          visibilityMap.set(node.id, true);
+          occupied.push({ x: node.x, y: node.y, width: textWidth, height: textHeight });
+        }
+      }
+
+      return raw.map((node) => ({
+        id: node.id,
+        name: node.name,
+        kind: node.kind,
+        x: node.x,
+        y: node.y,
+        visible: visibilityMap.get(node.id) ?? false,
+      }));
+    },
+    get scene() { return scene; },
+    get camera() { return camera; },
     dispose() {
       if (disposed) return;
       disposed = true;

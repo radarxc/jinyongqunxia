@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_honghuahuichangjian",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_honghuahuichangjian.png",
+  "generatedAt": "2026-10-07T15:29:46.400Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 99380,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/e8704ec6-2f85-4563-927f-ee448960c48a/multiview_0_e8704ec6-2f85-4563-927f-ee448960c48a.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 75391,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/e8704ec6-2f85-4563-927f-ee448960c48a/multiview_1_e8704ec6-2f85-4563-927f-ee448960c48a.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 76944,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/e8704ec6-2f85-4563-927f-ee448960c48a/multiview_3_e8704ec6-2f85-4563-927f-ee448960c48a.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 99904,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/e8704ec6-2f85-4563-927f-ee448960c48a/multiview_2_e8704ec6-2f85-4563-927f-ee448960c48a.jpeg"
+    }
+  }
+}

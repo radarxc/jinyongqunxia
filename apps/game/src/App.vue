@@ -96,6 +96,10 @@ watch([page, scene], ([nextPage, nextScene]) => {
 }, { immediate: true });
 
 function returned(source: string): void {
+  if ((projection.value as { region?: unknown }).region) {
+    scene.value = 'ruin';
+    return;
+  }
   scene.value = source === 'town' ? 'town' : 'world';
 }
 function leaveScene(): void {
@@ -114,24 +118,231 @@ const selectedCodexMartial = ref('sk_yuenvjian');
 const selectedCodexPlace = ref('place_dali');
 const selectedCodexRealm = ref('ch00_yuenv');
 
+const chineseNumbers: Record<number, string> = {
+  1: '一', 2: '二', 3: '三', 4: '四', 5: '五',
+  6: '六', 7: '七', 8: '八', 9: '九', 10: '十',
+};
+
 const martialNotice = ref('');
-
-function practiceMartial(name: string): void {
-  martialNotice.value = `运转《${name}》，周天真气流转不息，精进有得！`;
-  window.setTimeout(() => { martialNotice.value = ''; }, 3000);
+let noticeTimer: number | undefined;
+function showMartialNotice(msg: string): void {
+  martialNotice.value = msg;
+  if (noticeTimer) window.clearTimeout(noticeTimer);
+  noticeTimer = window.setTimeout(() => { martialNotice.value = ''; }, 3500);
 }
 
-function cultivateMeridian(): void {
-  martialNotice.value = '气沉丹田，引导纯阳真气冲击任督要穴，气血内力充盈！';
-  window.setTimeout(() => { martialNotice.value = ''; }, 3000);
+// 1. External Martial Arts (外功招式)
+const selectedExternalKey = ref<'taizu' | 'yuenv'>('taizu');
+const externalMartials = ref<Record<'taizu' | 'yuenv', {
+  name: string;
+  category: string;
+  grade: number;
+  layer: number;
+  maxLayer: number;
+  exp: number;
+  expToNext: number;
+  desc: string;
+  moves: string;
+  bonus: string;
+}>>({
+  taizu: {
+    name: '太祖长拳',
+    category: '拳掌 · 外功',
+    grade: 2,
+    layer: 1,
+    maxLayer: 10,
+    exp: 180,
+    expToNext: 300,
+    desc: '宋太祖赵匡胤所传六十四势长拳，拳路开阖方正，沉雄稳健，天下拳法之祖。',
+    moves: '普通一击（破甲）、冲步双拳（突进）',
+    bonus: '拳法威力 +12% · 破甲概率 +10%',
+  },
+  yuenv: {
+    name: '越女剑法',
+    category: '剑法 · 外功',
+    grade: 5,
+    layer: 1,
+    maxLayer: 10,
+    exp: 60,
+    expToNext: 400,
+    desc: '春秋越女阿青与白猿嬉戏所创，剑意灵动神妙，如羚羊挂角，三千越甲不可敌。',
+    moves: '白云出岫、竹影扫雪、枝击白猿',
+    bonus: '剑法伤害 +25% · 暴击率 +15%',
+  },
+});
+
+const currentExternal = computed(() => externalMartials.value[selectedExternalKey.value]);
+
+function practiceExternal(): void {
+  const m = currentExternal.value;
+  if (m.layer >= m.maxLayer) {
+    showMartialNotice(`【${m.name}】已登峰造极，参悟至大圆满第十层！返璞归真！`);
+    return;
+  }
+  const gain = 45;
+  m.exp += gain;
+  if (m.exp >= m.expToNext) {
+    m.layer += 1;
+    m.exp -= m.expToNext;
+    m.expToNext = Math.round(m.expToNext * 1.45);
+    showMartialNotice(`【突破】心领神会，【${m.name}】突破至第 ${chineseNumbers[m.layer] || m.layer} 层！招式威能大增！`);
+  } else {
+    showMartialNotice(`演练【${m.name}】，套路精进！熟练度 +${gain}（${m.exp} / ${m.expToNext}）！`);
+  }
 }
 
-async function enterTownStreet(): Promise<void> {
-  const currentTown = controller.worldmap.value?.positionNodeId ?? 'city_dali';
-  await controller.enterTown(currentTown);
+function tianDiXuanHuangGrade(grade: number): string {
+  if (grade >= 10) return '天阶绝学';
+  if (grade >= 7) return '地阶名篇';
+  if (grade >= 4) return '玄阶精要';
+  return '黄阶入门';
 }
 
-const defaultMeridians = [
+function itemQualityGrade(grade: number): string {
+  if (grade >= 12) return '极品 · 天阶上';
+  if (grade === 11) return '极品 · 天阶中';
+  if (grade === 10) return '极品 · 天阶下';
+  if (grade === 9) return '佳品 · 地阶上';
+  if (grade === 8) return '佳品 · 地阶中';
+  if (grade === 7) return '佳品 · 地阶下';
+  if (grade === 6) return '良品 · 玄阶上';
+  if (grade === 5) return '良品 · 玄阶中';
+  if (grade === 4) return '良品 · 玄阶下';
+  if (grade === 3) return '日常 · 黄阶上';
+  if (grade === 2) return '日常 · 黄阶中';
+  return '日常 · 黄阶下';
+}
+
+
+// 2. Internal Martial Arts (内功心法)
+type InternalKey = 'tuna' | 'beiming';
+interface InternalDef {
+  name: string;
+  category: string;
+  grade: number;
+  layer: number;
+  maxLayer: number;
+  exp: number;
+  expToNext: number;
+  desc: string;
+  hpBonus: number;
+  mpBonus: number;
+  qiRegen: number;
+  cover: string;
+}
+const selectedInternalKey = ref<InternalKey>('tuna');
+const internalMartials = ref<Record<InternalKey, InternalDef>>({
+  tuna: {
+    name: '江湖吐纳法',
+    category: '吐纳 · 内功',
+    grade: 2,
+    layer: 2,
+    maxLayer: 10,
+    exp: 120,
+    expToNext: 250,
+    desc: '静坐调息，内观其身。气沉丹田，循环周天八脉，神定气足，内息绵绵若存。',
+    hpBonus: 160,
+    mpBonus: 120,
+    qiRegen: 8,
+    cover: '/img/miji_tuna.png',
+  },
+  beiming: {
+    name: '北冥神功',
+    category: '神功 · 内功',
+    grade: 6,
+    layer: 1,
+    maxLayer: 10,
+    exp: 50,
+    expToNext: 400,
+    desc: '逍遥派绝世内功心法，海纳百川，引诸经脉阴阳之气归于丹田，尽化为纯阳真气。',
+    hpBonus: 320,
+    mpBonus: 280,
+    qiRegen: 18,
+    cover: '/img/miji_beiming.png',
+  },
+});
+const currentInternal = computed(() => internalMartials.value[selectedInternalKey.value]);
+
+function practiceInternal(): void {
+  const m = currentInternal.value;
+  const gain = 50;
+  m.exp += gain;
+  if (m.layer < m.maxLayer && m.exp >= m.expToNext) {
+    m.layer += 1;
+    m.exp -= m.expToNext;
+    m.expToNext = Math.round(m.expToNext * 1.4);
+    m.hpBonus += 40;
+    m.mpBonus += 30;
+    m.qiRegen += 2;
+    showMartialNotice(`【周天圆满】内息奔涌，【${m.name}】突破至第 ${chineseNumbers[m.layer] || m.layer} 层！气血上限+40，内力上限+30！`);
+  } else {
+    showMartialNotice(`静坐调息，导引清气贯通丹田。气血与内力充盈无缺，内功修为 +${gain}！`);
+  }
+}
+
+// 3. Lightness Martial Arts (轻功身法)
+type LightnessKey = 'yanzi' | 'lingbo';
+interface LightnessDef {
+  name: string;
+  category: string;
+  grade: number;
+  layer: number;
+  maxLayer: number;
+  exp: number;
+  expToNext: number;
+  desc: string;
+  moveBonus: number;
+  dodgeRate: number;
+  cover: string;
+}
+const selectedLightnessKey = ref<LightnessKey>('yanzi');
+const lightnessMartials = ref<Record<LightnessKey, LightnessDef>>({
+  yanzi: {
+    name: '基础身法 · 燕子飞',
+    category: '身法 · 轻功',
+    grade: 2,
+    layer: 1,
+    maxLayer: 5,
+    exp: 80,
+    expToNext: 200,
+    desc: '足踏微尘，身形如飞燕穿林，巧借风势借力腾挪。',
+    moveBonus: 1,
+    dodgeRate: 8,
+    cover: '/img/miji_lingbo.png',
+  },
+  lingbo: {
+    name: '凌波微步',
+    category: '绝学 · 轻功',
+    grade: 6,
+    layer: 1,
+    maxLayer: 9,
+    exp: 60,
+    expToNext: 350,
+    desc: '依易经六十四卦方位而生，步法圆通变幻，行步如浮云掠影，兼可涵养内力。',
+    moveBonus: 2,
+    dodgeRate: 20,
+    cover: '/img/miji_lingbo.png',
+  },
+});
+const currentLightness = computed(() => lightnessMartials.value[selectedLightnessKey.value]);
+
+function practiceLightness(): void {
+  const m = currentLightness.value;
+  const gain = 40;
+  m.exp += gain;
+  if (m.layer < m.maxLayer && m.exp >= m.expToNext) {
+    m.layer += 1;
+    m.exp -= m.expToNext;
+    m.expToNext = Math.round(m.expToNext * 1.5);
+    m.dodgeRate += 4;
+    showMartialNotice(`【身法精进】身如轻燕穿林，【${m.name}】突破至第 ${chineseNumbers[m.layer] || m.layer} 层！闪避几率提升至 ${m.dodgeRate}%！`);
+  } else {
+    showMartialNotice(`踏雪寻梅，步履轻灵如风！身法熟练度 +${gain}（${m.exp} / ${m.expToNext}）！`);
+  }
+}
+
+// 4. Meridian System (经脉周天)
+const initialMeridians = [
   {
     id: 'meridian_ren',
     name: '任脉',
@@ -185,14 +396,101 @@ const defaultMeridians = [
       { id: 'pt_wushu', name: '五枢穴', opened: false, grade: 2, strength: 1, flux: 6 },
     ],
   },
+  {
+    id: 'meridian_yinwei',
+    name: '阴维脉',
+    completed: false,
+    grade: 3,
+    strength: 0,
+    flux: 1,
+    points: [
+      { id: 'pt_zhubin', name: '筑宾穴', opened: false, grade: 3, strength: 0, flux: 1 },
+      { id: 'pt_fushe', name: '府舍穴', opened: false, grade: 3, strength: 0, flux: 1 },
+      { id: 'pt_qimen', name: '期门穴', opened: false, grade: 3, strength: 0, flux: 1 },
+    ],
+  },
+  {
+    id: 'meridian_yangwei',
+    name: '阳维脉',
+    completed: false,
+    grade: 3,
+    strength: 0,
+    flux: 1,
+    points: [
+      { id: 'pt_jinmen', name: '金门穴', opened: false, grade: 3, strength: 0, flux: 1 },
+      { id: 'pt_naoshu', name: '臑俞穴', opened: false, grade: 3, strength: 0, flux: 1 },
+      { id: 'pt_fengchi', name: '风池穴', opened: false, grade: 3, strength: 0, flux: 1 },
+    ],
+  },
+  {
+    id: 'meridian_yinqiao',
+    name: '阴跷脉',
+    completed: false,
+    grade: 2,
+    strength: 0,
+    flux: 1,
+    points: [
+      { id: 'pt_zhaohai', name: '照海穴', opened: false, grade: 2, strength: 0, flux: 1 },
+      { id: 'pt_jiaoxin', name: '交信穴', opened: false, grade: 2, strength: 0, flux: 1 },
+    ],
+  },
+  {
+    id: 'meridian_yangqiao',
+    name: '阳跷脉',
+    completed: false,
+    grade: 2,
+    strength: 0,
+    flux: 1,
+    points: [
+      { id: 'pt_shenmai', name: '申脉穴', opened: false, grade: 2, strength: 0, flux: 1 },
+      { id: 'pt_pucan', name: '仆参穴', opened: false, grade: 2, strength: 0, flux: 1 },
+    ],
+  },
 ];
+
+const customMeridians = ref(initialMeridians);
 
 const heroMeridians = computed(() => {
   const hero = projection.value.characters.find(c => c.relation === 'self');
   return (hero?.detail?.meridians && hero.detail.meridians.length > 0)
     ? hero.detail.meridians
-    : defaultMeridians;
+    : customMeridians.value;
 });
+
+const heroModelUrl = computed(() => {
+  const hero = projection.value.characters.find(c => c.relation === 'self');
+  const gender = hero?.detail?.identity?.gender;
+  return gender === 'female'
+    ? '/assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb'
+    : '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb';
+});
+
+function onMeridianCultivated(pointId: string): void {
+  for (const m of customMeridians.value) {
+    const pt = m.points.find(p => p.id === pointId);
+    if (pt) {
+      pt.opened = true;
+      pt.strength = Math.min(5, (pt.strength || 1) + 1);
+      m.flux += 12;
+      m.completed = m.points.every(p => p.opened);
+      showMartialNotice(`【冲穴成功】真气贯通【${pt.name}】！周天流光涌动，气血上限 +30，内力上限 +25！`);
+      return;
+    }
+  }
+}
+
+function cultivateMeridian(): void {
+  // Find first unopened point
+  for (const m of customMeridians.value) {
+    for (const pt of m.points) {
+      if (!pt.opened) {
+        onMeridianCultivated(pt.id);
+        return;
+      }
+    }
+  }
+  showMartialNotice('奇经八脉诸要穴皆已贯通！全身真气如大江奔涌，周天圆满！');
+}
 
 const codexItems = [
   { id: 'it_jinchuangyao', name: '金创药', category: '伤药与丹方', grade: 2, icon: '/assets/default/item/medicine/icons/it_jinchuangyao_64.png', desc: '江湖中寻常备用的伤药，敷于创口可止血定痛，迅速生肌。', source: '《白马啸西风》《射雕英雄传》等多部典籍' },
@@ -211,12 +509,15 @@ const allCodexItems = computed(() => {
     name: item.name,
     category: item.category,
     grade: item.grade ?? 1,
-    icon: item.icon ?? '/assets/default/item/collectibles/it_beisongsuqin.png',
+    icon: `/assets/default/item-by-id/${item.id}.png`,
     desc: item.description || '江湖寻常所见之物。',
     source: item.source || '随身行囊',
   }));
   const set = new Set(invItems.map(i => i.id));
-  const additional = codexItems.filter(i => !set.has(i.id));
+  const additional = codexItems.map(item => ({
+    ...item,
+    icon: `/assets/default/item-by-id/${item.id}.png`,
+  })).filter(i => !set.has(i.id));
   return [...invItems, ...additional];
 });
 const defaultCodexItem = codexItems[0]!;
@@ -225,12 +526,12 @@ const currentCodexItem = computed(() =>
 );
 
 const codexMartials = [
-  { id: 'sk_yuenvjian', name: '越女剑法', category: '剑法 · 外功', grade: 5, desc: '春秋越女阿青与白猿嬉戏所创，剑意灵动神妙，三千越甲不可敌。', lore: '“落花流水，随风而舞；长剑破空，如羚羊挂角无迹可寻。”' },
-  { id: 'sk_taizuchangquan', name: '太祖长拳', category: '拳掌 · 外功', grade: 2, desc: '宋太祖赵匡胤所传六十四势长拳，拳路开阖方正，沉雄稳健，天下拳法之祖。', lore: '“起势沉如渊，出拳破长风。虚实莫测，步步推进。”' },
-  { id: 'sk_jianghutuna', name: '江湖吐纳法', category: '吐纳 · 内功', grade: 2, desc: '道家初基筑基法门，引天地清气归于丹田，绵绵若存，温润周天经络。', lore: '“闭目冥心坐，握固思远神。叩齿三十六，两手抱昆仑。”' },
-  { id: 'sk_beiming', name: '北冥神功', category: '神功 · 内功', grade: 6, desc: '逍遥派绝世奇功，以积蓄内力为第一要义，海纳百川，引他人真气为己用。', lore: '“庄子‘逍遥游’云：‘穷发之北有冥海者，天池也。’水之积也不厚，则其负大舟也无力。”' },
-  { id: 'sk_lingbo', name: '凌波微步', category: '身法 · 轻功', grade: 6, desc: '依易经六十四卦方位而生，步法圆通变幻，行步如浮云掠影，兼可涵养内力。', lore: '“体迅飞凫，飘忽若神，凌波微步，罗袜生尘。”' },
-  { id: 'sk_liumai', name: '六脉神剑', category: '气剑 · 外功', grade: 6, desc: '大理段氏无上至宝，以一阳指纯阳内力激荡六经脉络，指尖化气为凌厉剑芒。', lore: '“少商雄劲，商阳巧妙，中冲大度，关冲拙朴，少冲飘忽，少泽变幻。”' },
+  { id: 'sk_yuenvjian', name: '越女剑法', category: '剑法 · 外功', grade: 5, cover: '/img/miji_yuenvjian.png', desc: '春秋越女阿青与白猿嬉戏所创，剑意灵动神妙，三千越甲不可敌。', lore: '“落花流水，随风而舞；长剑破空，如羚羊挂角无迹可寻。”' },
+  { id: 'sk_taizuchangquan', name: '太祖长拳', category: '拳掌 · 外功', grade: 2, cover: '/img/miji_taizuchangquan.png', desc: '宋太祖赵匡胤所传六十四势长拳，拳路开阖方正，沉雄稳健，天下拳法之祖。', lore: '“起势沉如渊，出拳破长风。虚实莫测，步步推进。”' },
+  { id: 'sk_jianghutuna', name: '江湖吐纳法', category: '吐纳 · 内功', grade: 2, cover: '/img/miji_tuna.png', desc: '道家入门导引法门，引天地清气归于丹田，绵绵若存，温润周天经络。', lore: '“闭目冥心坐，握固思远神。叩齿三十六，两手抱昆仑。”' },
+  { id: 'sk_beiming', name: '北冥神功', category: '神功 · 内功', grade: 6, cover: '/img/miji_beiming.png', desc: '逍遥派绝世奇功，以积蓄内力为第一要义，海纳百川，引他人真气为己用。', lore: '“庄子‘逍遥游’云：‘穷发之北有冥海者，天池也。’水之积也不厚，则其负大舟也无力。”' },
+  { id: 'sk_lingbo', name: '凌波微步', category: '身法 · 轻功', grade: 6, cover: '/img/miji_lingbo.png', desc: '依易经六十四卦方位而生，步法圆通变幻，行步如浮云掠影，兼可涵养内力。', lore: '“体迅飞凫，飘忽若神，凌波微步，罗袜生尘。”' },
+  { id: 'sk_liumai', name: '六脉神剑', category: '气剑 · 外功', grade: 6, cover: '/img/miji_liumai.png', desc: '大理段氏无上至宝，以一阳指纯阳内力激荡六经脉络，指尖化气为凌厉剑芒。', lore: '“少商雄劲，商阳巧妙，中冲大度，关冲拙朴，少冲飘忽，少泽变幻。”' },
 ];
 const defaultCodexMartial = codexMartials[0]!;
 const currentCodexMartial = computed(() =>
@@ -238,10 +539,10 @@ const currentCodexMartial = computed(() =>
 );
 
 const codexCharacters = [
-  { id: 'liwenxiu', name: '李文秀', title: '塞外孤鸿', source: '《白马啸西风》', portrait: '/img/li.webp', desc: '回族老汉计老人抚养长大。江南烟雨、塞外长风，那都是很好很好的，可她偏偏不喜欢。' },
-  { id: 'hero', name: '主角', title: '天书行者', source: '《天书录》', portrait: '/img/hero.webp', desc: '怀抱天书残卷坠入春秋与大宋乱世的旅人，周游十四书界，探寻武学与时代的印记。' },
-  { id: 'duanyu', name: '段誉', title: '大理世子', source: '《天龙八部》', portrait: null, desc: '镇南王段正淳之子，痴情纯善，好佛理易经，厌刀兵杀伐，机缘巧合习得北冥凌波二绝。' },
-  { id: 'aqing', name: '阿青', title: '越女神剑', source: '《越女剑》', portrait: null, desc: '江南山野牧羊少女，折竹为剑，与白公嬉闹间悟得绝代剑法，教习越国剑士终成霸业。' },
+  { id: 'liwenxiu', name: '李文秀', title: '塞外孤鸿', source: '《白马啸西风》', portrait: '/assets/default/character/female/ch10/por_npc_liwenxiu__ch10_youth_astuo_base.png', desc: '回族老汉计老人抚养长大。江南烟雨、塞外长风，那都是很好很好的，可她偏偏不喜欢。' },
+  { id: 'hero', name: '主角', title: '天书行者', source: '《天书录》', portrait: '/assets/default/character/female/ch00/por_npc_zhujue__ch00_f_charmhigh_base.png', desc: '怀抱天书残卷坠入春秋与大宋乱世的旅人，周游十四书界，探寻武学与时代的印记。' },
+  { id: 'duanyu', name: '段誉', title: '大理世子', source: '《天龙八部》', portrait: '/assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_shizi_base.png', desc: '镇南王段正淳之子，痴情纯善，好佛理易经，厌刀兵杀伐，机缘巧合习得北冥凌波二绝。' },
+  { id: 'aqing', name: '阿青', title: '越女神剑', source: '《越女剑》', portrait: '/assets/default/character/female/ch00/por_npc_aqing__ch00_youth_base.png', desc: '江南山野牧羊少女，折竹为剑，与白公嬉闹间悟得绝代剑法，教习越国剑士终成霸业。' },
 ];
 const defaultCodexCharacter = codexCharacters[0]!;
 const currentCodexCharacter = computed(() =>
@@ -268,14 +569,42 @@ const defaultCodexRealm = codexRealms[0]!;
 const currentCodexRealm = computed(() =>
   codexRealms.find(r => r.id === selectedCodexRealm.value) ?? defaultCodexRealm
 );
+const currentChapterLabel = computed(() => {
+  const cid = controller.chapterId.value ?? '';
+  if (cid.startsWith('ch00')) return '越女剑 · 卷零';
+  if (cid.startsWith('ch10')) return '白马啸西风 · 卷十';
+  if (cid.startsWith('ch01')) return '天龙八部 · 卷一';
+  const loc = projection.value.hud?.location ?? '';
+  if (loc.includes('太湖') || loc.includes('竹林') || loc.includes('越女')) {
+    return '越女剑 · 卷零';
+  }
+  if (loc.includes('回疆') || loc.includes('塞外') || loc.includes('大漠')) {
+    return '白马啸西风 · 卷十';
+  }
+  if (loc.includes('大理') || loc.includes('无量')) {
+    return '天龙八部 · 卷一';
+  }
+  return loc ? `${loc} · 卷中` : '越女剑 · 卷零';
+});
+
 function showWorld(): void {
   if (controller.worldmap.value?.scene) leaveScene();
   else scene.value = 'world';
   page.value = 'journey';
 }
 function openTown(): void {
+  if (scene.value === 'ruin' && !controller.town.value) {
+    showMartialNotice('当前身处太湖秘境，需先返程至大地图方可步入市肆。');
+    return;
+  }
   scene.value = 'town';
   page.value = 'journey';
+  if (!controller.town.value) {
+    const townId = controller.worldmap.value?.positionNodeId ?? 'city_dali';
+    void controller.enterTown(townId).catch(() => {
+      showMartialNotice('此处暂无互通市肆，需沿驿道前往城镇。');
+    });
+  }
 }
 function openBattle(): void {
   scene.value = 'battle';
@@ -331,6 +660,19 @@ onMounted(() => {
     portrait.value = orientationQuery.matches;
     orientationQuery.addEventListener('change', orientationChanged);
   }
+  (window as unknown as Record<string, unknown>)['__tianshuApp'] = {
+    scene,
+    page,
+    controller,
+    battle,
+    battleActive,
+    projection,
+    martialTab,
+    codexTab,
+    openBattle,
+    showWorld,
+    openTown,
+  };
 });
 
 onBeforeUnmount(() => {
@@ -360,8 +702,8 @@ onBeforeUnmount(() => {
       />
 
       <!-- 顶栏 · 晕染无框 -->
-      <header class="topbar halo">
-        <div class="brand">天书录<small>白马啸西风 · 卷中</small></div>
+      <header v-show="scene !== 'battle'" class="topbar halo">
+        <div class="brand">天书录<small>{{ currentChapterLabel }}</small></div>
         <nav class="scene-nav" aria-label="场景切换">
           <button
             class="icon-button"
@@ -407,9 +749,8 @@ onBeforeUnmount(() => {
             <WorldMapPage :controller="controller" @scene="scene = $event" />
             <template #fallback><p class="paper-panel">正在展开山河卷……</p></template>
           </Suspense>
-          <div class="party wash">
+          <div class="party halo">
             <div class="companion">
-              <img class="portrait-small" :src="asset('/img/hero.webp')" alt="主角立绘">
               <div class="stats">
                 <div class="companion-head">
                   <h3>主角</h3>
@@ -435,7 +776,6 @@ onBeforeUnmount(() => {
               </div>
             </div>
             <div v-if="showParty" class="companion secondary">
-              <img class="portrait-small" :src="asset('/img/li.webp')" alt="李文秀立绘">
               <div>
                 <h3>李文秀</h3>
                 <p class="small">同行 · 状态平稳</p>
@@ -448,34 +788,15 @@ onBeforeUnmount(() => {
           </div>
         </section>
 
-        <!-- 城镇对白 -->
-        <section v-show="scene === 'town'" class="screen town-screen" aria-label="城镇对白">
+        <!-- 城镇对白与街市 -->
+        <section v-show="scene === 'town'" class="screen town-screen" aria-label="城镇街市">
           <Suspense v-if="controller.town.value">
             <TownPage :controller="controller" @leave="leaveScene" />
-            <template #fallback><p class="paper-panel">正在展开街市……</p></template>
+            <template #fallback><p class="paper-panel town-fallback">正在展开街市……</p></template>
           </Suspense>
-          <template v-else>
-            <!-- 5174 城镇相逢浮层 -->
-            <div class="scene-heading halo">
-              <h1>城中相逢</h1>
-              <div class="poem">张掖<span class="seal">申时</span></div>
-            </div>
-            <img class="dialogue-portrait" :src="asset('/img/li.webp')" alt="李文秀">
-            <article class="dialogue wash">
-              <h2>李文秀</h2>
-              <p>风沙渐歇，前面便是城门。<br>走了这许久，不如先找一处歇脚。</p>
-              <footer>
-                <span class="small">原创演示对白 · 非原著引文</span>
-                <div class="town-dialogue-actions">
-                  <button class="primary" type="button" @click="enterTownStreet">步入街市行走</button>
-                  <button class="link-action icon-button" aria-label="回到山河" @click="showWorld">
-                    <img class="icon" :src="asset('/img/ui_tool_map.webp')" alt="">
-                    <span class="tip" aria-hidden="true">回到山河</span>
-                  </button>
-                </div>
-              </footer>
-            </article>
-          </template>
+          <div v-else class="town-street-loading">
+            <p class="paper-panel">正在步入街市……</p>
+          </div>
         </section>
 
         <!-- 遗迹探索 -->
@@ -496,10 +817,8 @@ onBeforeUnmount(() => {
             />
             <template #fallback><p class="paper-panel">正在铺设战棋……</p></template>
           </Suspense>
-          <div v-else class="battle-entry paper-panel">
-            <p class="eyebrow">演武 · 六角战场</p><h2>一招一式，静候时机</h2>
-            <p>选择招式查看范围，落点确认后出手。也可开启自动战斗，随时接管。</p>
-            <button class="primary" type="button" :disabled="busy" data-enter-battle @click="controller.startDemoBattle(sourceScene)">进入演武场</button>
+          <div v-else class="battle-loading paper-panel" style="text-align: center; padding: 40px;">
+            <p>正在展开六角战旗……</p>
           </div>
         </section>
       </main>
@@ -520,9 +839,8 @@ onBeforeUnmount(() => {
               <h1>行囊</h1>
               <p class="small">藏锋于匣 · 随身之物</p>
             </div>
-            <button class="return icon-button" aria-label="合卷" @click="page = 'journey'">
-              <img class="icon" :src="asset('/img/ui_tool_map.webp')" alt="">
-              <span class="tip" aria-hidden="true">合卷</span>
+            <button class="return-text-btn" type="button" @click="page = 'journey'">
+              归山河
             </button>
           </header>
           <div class="folio-body">
@@ -545,69 +863,170 @@ onBeforeUnmount(() => {
               <h1>武学修行</h1>
               <p class="small">内圣外王 · 参悟周天</p>
             </div>
-            <button class="return icon-button" aria-label="合卷" @click="page = 'journey'">
-              <img class="icon" :src="asset('/img/ui_tool_map.webp')" alt="">
-              <span class="tip" aria-hidden="true">合卷</span>
+            <button class="return-text-btn" type="button" @click="page = 'journey'">
+              归山河
             </button>
           </header>
           <div class="folio-body">
-            <p class="category-line">
-              <span :class="{ chosen: martialTab === 'external' }" @click="martialTab = 'external'">外功招式</span>
-              <span :class="{ chosen: martialTab === 'internal' }" @click="martialTab = 'internal'">内功吐纳</span>
-              <span :class="{ chosen: martialTab === 'lightness' }" @click="martialTab = 'lightness'">轻功身法</span>
-              <span :class="{ chosen: martialTab === 'meridian' }" @click="martialTab = 'meridian'">经脉修炼图</span>
+            <p class="category-line" role="tablist" aria-label="武学修习分类">
+              <button type="button" class="category-tab-btn" :class="{ chosen: martialTab === 'external' }" role="tab" :aria-selected="martialTab === 'external'" @click="martialTab = 'external'">外功招式</button>
+              <button type="button" class="category-tab-btn" :class="{ chosen: martialTab === 'internal' }" role="tab" :aria-selected="martialTab === 'internal'" @click="martialTab = 'internal'">内功吐纳</button>
+              <button type="button" class="category-tab-btn" :class="{ chosen: martialTab === 'lightness' }" role="tab" :aria-selected="martialTab === 'lightness'" @click="martialTab = 'lightness'">轻功身法</button>
+              <button type="button" class="category-tab-btn" :class="{ chosen: martialTab === 'meridian' }" role="tab" :aria-selected="martialTab === 'meridian'" @click="martialTab = 'meridian'">经脉修炼图</button>
             </p>
 
             <!-- 外功 -->
-            <div v-if="martialTab === 'external'" class="two-column">
-              <div>
-                <h2 class="section-name">太祖长拳 · 第一层</h2>
-                <p>宋太祖赵匡胤所传六十四势长拳，拳路开阖方正，沉雄稳健，天下拳法之祖。</p>
-                <div class="rule" />
-                <p class="text-pair"><span>当前参悟</span><span class="note-mark">外功拳掌 · 刚猛绝伦</span></p>
-                <p class="text-pair"><span>装备招式</span><span>普通一击（破甲）、冲步双拳（突进）</span></p>
-                <p class="text-pair"><span>修习进度</span><span>第 1 层 / 共 10 层（熟练度 180 / 300）</span></p>
-                <div class="martial-actions">
-                  <button class="primary" type="button" @click="practiceMartial('太祖长拳')">演练套路</button>
-                  <button type="button" @click="page = 'codex'; codexTab = 'martial'">查看武学典籍</button>
-                </div>
-                <p v-if="martialNotice" class="martial-notice">{{ martialNotice }}</p>
+            <div v-if="martialTab === 'external'" class="external-martial-layout">
+              <div class="manual-scroll-list" role="tablist" aria-label="外功秘籍目录">
+                <button
+                  v-for="(martial, key) in externalMartials"
+                  :key="key"
+                  type="button"
+                  class="manual-text-item"
+                  :class="{ active: selectedExternalKey === key }"
+                  role="tab"
+                  :aria-selected="selectedExternalKey === key"
+                  @click="selectedExternalKey = key"
+                >
+                  {{ martial.name }} {{ martial.grade }}品
+                </button>
               </div>
-              <img class="book-image" :src="asset('/img/manual.webp')" alt="太祖长拳秘籍">
+
+              <div class="manual-detail-area">
+                <div class="manual-top-hero">
+                  <img
+                    class="book-image"
+                    :src="asset(selectedExternalKey === 'taizu' ? '/img/miji_taizuchangquan.png' : '/img/miji_yuenvjian.png')"
+                    :alt="currentExternal.name + '秘籍'"
+                    style="max-width: 105px; max-height: 145px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));"
+                  >
+                  <div class="manual-hero-meta">
+                    <div class="manual-title-row">
+                      <div>
+                        <h2 class="section-name">{{ currentExternal.name }} · 第{{ chineseNumbers[currentExternal.layer] || currentExternal.layer }}层</h2>
+                        <span class="title-badge">{{ currentExternal.category }} · {{ tianDiXuanHuangGrade(currentExternal.grade) }}</span>
+                      </div>
+                      <button class="primary practice-btn-right" type="button" @click="practiceExternal">演练套路</button>
+                    </div>
+                    <p class="manual-hero-desc">{{ currentExternal.desc }}</p>
+                    <p class="small text-muted" style="margin-top: 4px;">每突破一层，拳意剑芒愈盛，领悟更深奥之变式与被动加成。</p>
+                  </div>
+                </div>
+
+                <p class="text-pair"><span>当前参悟</span><span class="note-mark">{{ currentExternal.bonus }}</span></p>
+                <p class="text-pair"><span>装备招式</span><span>{{ currentExternal.moves }}</span></p>
+                <p class="text-pair martial-progress-stat"><span>修习进度</span><span>第 {{ currentExternal.layer }} 层 / 共 {{ currentExternal.maxLayer }} 层（熟练度 {{ currentExternal.exp }} / {{ currentExternal.expToNext }}）</span></p>
+                <div class="martial-progress-bar">
+                  <div class="progress-fill" :style="{ width: Math.min(100, Math.round((currentExternal.exp / currentExternal.expToNext) * 100)) + '%' }" />
+                </div>
+                <div class="martial-notice-box" style="min-height: 28px;">
+                  <p v-if="martialNotice" class="martial-notice">{{ martialNotice }}</p>
+                </div>
+              </div>
             </div>
 
             <!-- 内功 -->
-            <div v-else-if="martialTab === 'internal'" class="two-column">
-              <div>
-                <h2 class="section-name">江湖吐纳法 · 第二层</h2>
-                <p>静坐调息，内观其身。<br>气沉丹田，循环周天八脉，神定气足，内息绵绵若存。</p>
-                <div class="rule" />
-                <p class="text-pair"><span>心法效用</span><span class="note-mark">真气汇聚 · 气血充盈</span></p>
-                <p class="text-pair"><span>真气加成</span><span>气血上限 +160 · 内力上限 +120</span></p>
-                <p class="text-pair"><span>周天流注</span><span>每回合回气 +8 点</span></p>
-                <div class="martial-actions">
-                  <button class="primary" type="button" @click="practiceMartial('江湖吐纳法')">静坐调息</button>
-                  <button type="button" @click="martialTab = 'meridian'">调阅经脉图</button>
-                </div>
-                <p v-if="martialNotice" class="martial-notice">{{ martialNotice }}</p>
+            <div v-else-if="martialTab === 'internal'" class="external-martial-layout">
+              <div class="manual-scroll-list" role="tablist" aria-label="内功秘籍目录">
+                <button
+                  v-for="(martial, key) in internalMartials"
+                  :key="key"
+                  type="button"
+                  class="manual-text-item"
+                  :class="{ active: selectedInternalKey === key }"
+                  role="tab"
+                  :aria-selected="selectedInternalKey === key"
+                  @click="selectedInternalKey = key"
+                >
+                  {{ martial.name }} {{ martial.grade }}品
+                </button>
               </div>
-              <img class="book-image" :src="asset('/img/manual.webp')" alt="江湖吐纳法秘籍">
+
+              <div class="manual-detail-area">
+                <div class="manual-top-hero">
+                  <img
+                    class="book-image"
+                    :src="asset(currentInternal.cover)"
+                    :alt="currentInternal.name + '秘籍'"
+                    style="max-width: 105px; max-height: 145px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));"
+                  >
+                  <div class="manual-hero-meta">
+                    <div class="manual-title-row">
+                      <div>
+                        <h2 class="section-name">{{ currentInternal.name }} · 第{{ chineseNumbers[currentInternal.layer] || currentInternal.layer }}层</h2>
+                        <span class="title-badge">{{ currentInternal.category }} · {{ tianDiXuanHuangGrade(currentInternal.grade) }}</span>
+                      </div>
+                      <button class="primary practice-btn-right" type="button" @click="practiceInternal">静坐调息</button>
+                    </div>
+                    <p class="manual-hero-desc">{{ currentInternal.desc }}</p>
+                    <div style="display: flex; gap: 12px; align-items: center; margin-top: 4px;">
+                      <span class="small text-muted">运化阴阳，周天无滞。静坐调息可充盈经脉真气。</span>
+                      <button type="button" class="return-text-btn" style="font-size: 13px;" @click="martialTab = 'meridian'">调阅经脉图</button>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="text-pair"><span>心法效用</span><span class="note-mark">真气汇聚 · 气血充盈</span></p>
+                <p class="text-pair"><span>真气加成</span><span>气血上限 +{{ currentInternal.hpBonus }} · 内力上限 +{{ currentInternal.mpBonus }}</span></p>
+                <p class="text-pair"><span>周天流注</span><span>每回合回气 +{{ currentInternal.qiRegen }} 点</span></p>
+                <p class="text-pair martial-progress-stat"><span>修习进度</span><span>第 {{ currentInternal.layer }} 层 / 共 {{ currentInternal.maxLayer }} 层（熟练度 {{ currentInternal.exp }} / {{ currentInternal.expToNext }}）</span></p>
+                <div class="martial-progress-bar">
+                  <div class="progress-fill mp-progress-fill" :style="{ width: Math.min(100, Math.round((currentInternal.exp / currentInternal.expToNext) * 100)) + '%' }" />
+                </div>
+                <div class="martial-notice-box" style="min-height: 28px;">
+                  <p v-if="martialNotice" class="martial-notice">{{ martialNotice }}</p>
+                </div>
+              </div>
             </div>
 
             <!-- 轻功 -->
-            <div v-else-if="martialTab === 'lightness'" class="two-column">
-              <div>
-                <h2 class="section-name">基础身法 · 燕子飞</h2>
-                <p>足踏微尘，身形如飞燕穿林，巧借风势借力腾挪。</p>
-                <div class="rule" />
-                <p class="text-pair"><span>轻功类型</span><span class="note-mark">步法腾挪 · 游斗轻灵</span></p>
-                <p class="text-pair"><span>战场机动</span><span>移动力 +1 格 · 闪避几率 +8%</span></p>
-                <div class="martial-actions">
-                  <button class="primary" type="button" @click="practiceMartial('燕子飞')">踏雪寻梅</button>
-                </div>
-                <p v-if="martialNotice" class="martial-notice">{{ martialNotice }}</p>
+            <div v-else-if="martialTab === 'lightness'" class="external-martial-layout">
+              <div class="manual-scroll-list" role="tablist" aria-label="轻功秘籍目录">
+                <button
+                  v-for="(martial, key) in lightnessMartials"
+                  :key="key"
+                  type="button"
+                  class="manual-text-item"
+                  :class="{ active: selectedLightnessKey === key }"
+                  role="tab"
+                  :aria-selected="selectedLightnessKey === key"
+                  @click="selectedLightnessKey = key"
+                >
+                  {{ martial.name }} {{ martial.grade }}品
+                </button>
               </div>
-              <img class="book-image" :src="asset('/img/manual.webp')" alt="轻功秘籍">
+
+              <div class="manual-detail-area">
+                <div class="manual-top-hero">
+                  <img
+                    class="book-image"
+                    :src="asset(currentLightness.cover)"
+                    :alt="currentLightness.name + '秘籍'"
+                    style="max-width: 105px; max-height: 145px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));"
+                  >
+                  <div class="manual-hero-meta">
+                    <div class="manual-title-row">
+                      <div>
+                        <h2 class="section-name">{{ currentLightness.name }} · 第{{ chineseNumbers[currentLightness.layer] || currentLightness.layer }}层</h2>
+                        <span class="title-badge">{{ currentLightness.category }} · {{ tianDiXuanHuangGrade(currentLightness.grade) }}</span>
+                      </div>
+                      <button class="primary practice-btn-right" type="button" @click="practiceLightness">踏雪寻梅</button>
+                    </div>
+                    <p class="manual-hero-desc">{{ currentLightness.desc }}</p>
+                    <p class="small text-muted" style="margin-top: 4px;">身形若飞燕穿林，巧借风势借力腾挪。勤加演练可提升身法熟练度。</p>
+                  </div>
+                </div>
+
+                <p class="text-pair"><span>轻功类型</span><span class="note-mark">步法腾挪 · 游斗轻灵</span></p>
+                <p class="text-pair"><span>战场机动</span><span>移动力 +{{ currentLightness.moveBonus }} 格 · 闪避几率 +{{ currentLightness.dodgeRate }}%</span></p>
+                <p class="text-pair martial-progress-stat"><span>修习进度</span><span>第 {{ currentLightness.layer }} 层 / 共 {{ currentLightness.maxLayer }} 层（熟练度 {{ currentLightness.exp }} / {{ currentLightness.expToNext }}）</span></p>
+                <div class="martial-progress-bar">
+                  <div class="progress-fill sta-progress-fill" :style="{ width: Math.min(100, Math.round((currentLightness.exp / currentLightness.expToNext) * 100)) + '%' }" />
+                </div>
+                <div class="martial-notice-box" style="min-height: 28px;">
+                  <p v-if="martialNotice" class="martial-notice">{{ martialNotice }}</p>
+                </div>
+              </div>
             </div>
 
             <!-- 经脉修炼图 -->
@@ -618,7 +1037,7 @@ onBeforeUnmount(() => {
               </div>
               <p v-if="martialNotice" class="martial-notice">{{ martialNotice }}</p>
               <Suspense>
-                <TxMeridianMap :meridians="heroMeridians" />
+                <TxMeridianMap :meridians="heroMeridians" :model-url="heroModelUrl" @cultivate="onMeridianCultivated" />
               </Suspense>
             </div>
           </div>
@@ -632,9 +1051,8 @@ onBeforeUnmount(() => {
               <h1>立身与经脉</h1>
               <p class="small">人物 · 队伍与名册</p>
             </div>
-            <button class="return icon-button" aria-label="合卷" @click="page = 'journey'">
-              <img class="icon" :src="asset('/img/ui_tool_map.webp')" alt="">
-              <span class="tip" aria-hidden="true">合卷</span>
+            <button class="return-text-btn" type="button" @click="page = 'journey'">
+              归山河
             </button>
           </header>
           <div class="folio-body">
@@ -650,31 +1068,32 @@ onBeforeUnmount(() => {
               <h1>图鉴名册</h1>
               <p class="small">天书录 · 万物志</p>
             </div>
-            <button class="return icon-button" aria-label="合卷" @click="page = 'journey'">
-              <img class="icon" :src="asset('/img/ui_tool_map.webp')" alt="">
-              <span class="tip" aria-hidden="true">合卷</span>
+            <button class="return-text-btn" type="button" @click="page = 'journey'">
+              归山河
             </button>
           </header>
           <div class="folio-body">
-            <p class="category-line">
-              <span :class="{ chosen: codexTab === 'characters' }" @click="codexTab = 'characters'">人物</span>
-              <span :class="{ chosen: codexTab === 'martial' }" @click="codexTab = 'martial'">武学</span>
-              <span :class="{ chosen: codexTab === 'items' }" @click="codexTab = 'items'">物品</span>
-              <span :class="{ chosen: codexTab === 'places' }" @click="codexTab = 'places'">地点</span>
-              <span :class="{ chosen: codexTab === 'realms' }" @click="codexTab = 'realms'">书界</span>
+            <p class="category-line" role="tablist" aria-label="图鉴大类">
+              <button type="button" class="category-tab-btn" :class="{ chosen: codexTab === 'characters' }" role="tab" :aria-selected="codexTab === 'characters'" @click="codexTab = 'characters'">人物</button>
+              <button type="button" class="category-tab-btn" :class="{ chosen: codexTab === 'martial' }" role="tab" :aria-selected="codexTab === 'martial'" @click="codexTab = 'martial'">武学</button>
+              <button type="button" class="category-tab-btn" :class="{ chosen: codexTab === 'items' }" role="tab" :aria-selected="codexTab === 'items'" @click="codexTab = 'items'">物品</button>
+              <button type="button" class="category-tab-btn" :class="{ chosen: codexTab === 'places' }" role="tab" :aria-selected="codexTab === 'places'" @click="codexTab = 'places'">地点</button>
+              <button type="button" class="category-tab-btn" :class="{ chosen: codexTab === 'realms' }" role="tab" :aria-selected="codexTab === 'realms'" @click="codexTab = 'realms'">书界</button>
             </p>
 
             <!-- 人物 -->
             <div v-if="codexTab === 'characters'" class="codex-layout">
               <div class="codex-list">
-                <p
-                  v-for="char in codexCharacters" :key="char.id"
-                  :class="{ 'note-mark': selectedCodexCharacter === char.id, muted: selectedCodexCharacter !== char.id }"
-                  style="cursor: pointer;"
+                <button
+                  v-for="char in codexCharacters"
+                  :key="char.id"
+                  type="button"
+                  class="codex-list-item"
+                  :class="{ active: selectedCodexCharacter === char.id }"
                   @click="selectedCodexCharacter = char.id"
                 >
                   {{ char.name }} · 已录
-                </p>
+                </button>
               </div>
               <img class="portrait-large" :src="asset(currentCodexCharacter.portrait || '/img/li.webp')" :alt="currentCodexCharacter.name">
               <div class="codex-copy">
@@ -689,61 +1108,67 @@ onBeforeUnmount(() => {
             <!-- 武学 -->
             <div v-else-if="codexTab === 'martial'" class="codex-layout">
               <div class="codex-list">
-                <p
-                  v-for="m in codexMartials" :key="m.id"
-                  :class="{ 'note-mark': selectedCodexMartial === m.id, muted: selectedCodexMartial !== m.id }"
-                  style="cursor: pointer;"
+                <button
+                  v-for="m in codexMartials"
+                  :key="m.id"
+                  type="button"
+                  class="codex-list-item"
+                  :class="{ active: selectedCodexMartial === m.id }"
                   @click="selectedCodexMartial = m.id"
                 >
-                  {{ m.name }} · {{ m.category.split(' ')[0] }}
-                </p>
+                  {{ m.name }} · {{ tianDiXuanHuangGrade(m.grade) }}
+                </button>
               </div>
-              <img class="portrait-large" :src="asset('/img/manual.webp')" alt="武学秘籍">
+              <img class="portrait-large" :src="asset(currentCodexMartial.cover || '/img/manual.webp')" :alt="currentCodexMartial.name">
               <div class="codex-copy">
                 <span class="note-mark">{{ currentCodexMartial.category }}</span>
                 <h2>{{ currentCodexMartial.name }}</h2>
                 <p>{{ currentCodexMartial.desc }}</p>
                 <blockquote style="margin: 12px 0; font-style: italic; color: var(--gold);">{{ currentCodexMartial.lore }}</blockquote>
-                <p class="small">品阶：{{ currentCodexMartial.grade }} 品 · 传世武学名篇</p>
+                <p class="small">品阶：{{ tianDiXuanHuangGrade(currentCodexMartial.grade) }} · {{ currentCodexMartial.grade }} 品</p>
               </div>
             </div>
 
             <!-- 物品 (Item Compendium) -->
             <div v-else-if="codexTab === 'items'" class="codex-layout">
               <div class="codex-list">
-                <p
-                  v-for="item in allCodexItems" :key="item.id"
-                  :class="{ 'note-mark': selectedCodexItem === item.id, muted: selectedCodexItem !== item.id }"
-                  style="cursor: pointer;"
+                <button
+                  v-for="item in allCodexItems"
+                  :key="item.id"
+                  type="button"
+                  class="codex-list-item"
+                  :class="{ active: selectedCodexItem === item.id }"
                   @click="selectedCodexItem = item.id"
                 >
-                  {{ item.name }}
-                </p>
+                  {{ item.name }} · {{ itemQualityGrade(item.grade) }}
+                </button>
               </div>
-              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;">
-                <img :src="asset(currentCodexItem.icon)" :alt="currentCodexItem.name" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));">
-                <span class="note-mark" style="font-size: 15px;">{{ currentCodexItem.grade }} 阶珍品</span>
-              </div>
+              <img
+                class="portrait-large codex-item-illustration"
+                :src="asset(currentCodexItem.icon)"
+                :alt="currentCodexItem.name"
+              >
               <div class="codex-copy">
                 <span class="note-mark">{{ currentCodexItem.source }}</span>
                 <h2>{{ currentCodexItem.name }}</h2>
                 <p>{{ currentCodexItem.desc }}</p>
-                <div class="rule" />
-                <p class="small">类别：{{ currentCodexItem.category }} · 随身行囊与天下宝物已收录</p>
+                <p class="small" style="margin-top: 12px;">类别：{{ currentCodexItem.category }} · 随身行囊与天下宝物已收录</p>
               </div>
             </div>
 
             <!-- 地点 -->
             <div v-else-if="codexTab === 'places'" class="codex-layout">
               <div class="codex-list">
-                <p
-                  v-for="p in codexPlaces" :key="p.id"
-                  :class="{ 'note-mark': selectedCodexPlace === p.id, muted: selectedCodexPlace !== p.id }"
-                  style="cursor: pointer;"
+                <button
+                  v-for="p in codexPlaces"
+                  :key="p.id"
+                  type="button"
+                  class="codex-list-item"
+                  :class="{ active: selectedCodexPlace === p.id }"
                   @click="selectedCodexPlace = p.id"
                 >
                   {{ p.name }} · {{ p.region }}
-                </p>
+                </button>
               </div>
               <img class="portrait-large" :src="asset('/img/card_town.webp')" alt="地点风貌">
               <div class="codex-copy">
@@ -757,14 +1182,16 @@ onBeforeUnmount(() => {
             <!-- 书界 -->
             <div v-else-if="codexTab === 'realms'" class="codex-layout">
               <div class="codex-list">
-                <p
-                  v-for="r in codexRealms" :key="r.id"
-                  :class="{ 'note-mark': selectedCodexRealm === r.id, muted: selectedCodexRealm !== r.id }"
-                  style="cursor: pointer;"
+                <button
+                  v-for="r in codexRealms"
+                  :key="r.id"
+                  type="button"
+                  class="codex-list-item"
+                  :class="{ active: selectedCodexRealm === r.id }"
                   @click="selectedCodexRealm = r.id"
                 >
                   {{ r.name }}
-                </p>
+                </button>
               </div>
               <img class="portrait-large" :src="asset('/img/card_story.webp')" alt="书界卷轴">
               <div class="codex-copy">
@@ -785,9 +1212,8 @@ onBeforeUnmount(() => {
               <h1>行旅手记</h1>
               <p class="small">江湖志 · 历练见闻</p>
             </div>
-            <button class="return icon-button" aria-label="合卷" @click="page = 'journey'">
-              <img class="icon" :src="asset('/img/ui_tool_map.webp')" alt="">
-              <span class="tip" aria-hidden="true">合卷</span>
+            <button class="return-text-btn" type="button" @click="page = 'journey'">
+              归山河
             </button>
           </header>
           <div class="folio-body">
@@ -803,9 +1229,8 @@ onBeforeUnmount(() => {
               <h1>藏卷</h1>
               <p class="small">存档 · 江湖行纪</p>
             </div>
-            <button class="return icon-button" aria-label="合卷" @click="page = 'journey'">
-              <img class="icon" :src="asset('/img/ui_tool_map.webp')" alt="">
-              <span class="tip" aria-hidden="true">合卷</span>
+            <button class="return-text-btn" type="button" @click="page = 'journey'">
+              归山河
             </button>
           </header>
           <div class="folio-body">
@@ -821,9 +1246,8 @@ onBeforeUnmount(() => {
               <h1>调弦与观卷</h1>
               <p class="small">系统 · 偏好设置</p>
             </div>
-            <button class="return icon-button" aria-label="合卷" @click="page = 'journey'">
-              <img class="icon" :src="asset('/img/ui_tool_map.webp')" alt="">
-              <span class="tip" aria-hidden="true">合卷</span>
+            <button class="return-text-btn" type="button" @click="page = 'journey'">
+              归山河
             </button>
           </header>
           <div class="folio-body">
@@ -833,7 +1257,7 @@ onBeforeUnmount(() => {
       </section>
 
       <!-- 悬浮底栏 · 经典器物 -->
-      <nav class="toolbar halo" aria-label="工具栏">
+      <nav v-show="scene !== 'battle'" class="toolbar halo" aria-label="工具栏">
         <button
           class="tool icon-button"
           :class="{ active: page === 'inventory' }"

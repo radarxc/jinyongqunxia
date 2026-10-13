@@ -108,7 +108,9 @@ export function createContextGuard(
   return {
     get state() { return state; },
     get sessionLossCount() { return sessionLossCount; },
-    get canRender() { return !disposed && state === 'ok' && owner.visibilityState !== 'hidden'; },
+    get canRender() {
+      return !disposed && state === 'ok' && (owner.visibilityState !== 'hidden' || Boolean((owner.defaultView as unknown as { __FORCE_RENDER__?: boolean })?.__FORCE_RENDER__));
+    },
     resize(nextWidth, nextHeight, nextPixelRatio) {
       if (disposed) return;
       width = Math.max(1, nextWidth);

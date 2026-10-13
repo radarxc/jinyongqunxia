@@ -1,10 +1,21 @@
 // @vitest-environment happy-dom
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { flushPromises, mount, type VueWrapper } from '@vue/test-utils';
 import { createPinia } from 'pinia';
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
 import { watch } from 'vue';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { createNewGameState, type DomainEvent } from '@tianshu/core';
+import {
+  createNewGameState,
+  FIRST_SLEEP_RULE,
+  type BookSleepPlan,
+  type DomainEvent,
+} from '@tianshu/core';
+import type { ContentSource } from '@tianshu/data';
+import { splitContentEntry } from '@tianshu/data/build';
+import { parseContentFile } from '@tianshu/data/tooling';
 import {
   createIndexedDbStorage,
   createProjectionMainThreadHost,
@@ -12,12 +23,14 @@ import {
 } from '@tianshu/platform';
 import { useUiStore } from '@tianshu/ui/runtime';
 import App from '../App.vue';
+import type { BattlePacket } from '../battle/contracts';
 import { createGameController, type GameController } from '../game-controller';
 import { fixtureContent, fixtureItemPack } from '../runtime/test-fixture';
-import { loadGameContent } from '../runtime/item-content';
+import { loadGameContent, loadRegionContent } from '../runtime/item-content';
 import type { GameCommand, GameHost, GameProjection, GameUpdate, SessionSnapshot }
   from '../runtime/contracts';
 import { createGameSession } from '../runtime/session';
+type GameSession = ReturnType<typeof createGameSession>;
 import {
   allocationComplete,
   changeAllocation,
@@ -427,5 +440,654 @@ describe('M1 allocation draft rules', () => {
     expect(tooHigh.values['str']).toBe(80);
     const tooLow = changeAllocation(rules, tooHigh, 'str', -999);
     expect(tooLow.values['str']).toBe(20);
+  });
+});
+
+const contentDir = resolve(dirname(fileURLToPath(import.meta.url)), '../../public/content');
+const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
+
+const fsSource: ContentSource = {
+  readJson: async (relativePath: string) => {
+    const full = resolve(contentDir, relativePath);
+    if (!existsSync(full)) return undefined;
+    return JSON.parse(readFileSync(full, 'utf8'));
+  },
+};
+
+async function buildTestSessions() {
+  const base = fixtureContent();
+  const mapPath = 'content/world/ch10/map.yaml';
+  const mapEntry = parseContentFile({
+    path: mapPath,
+    text: readFileSync(resolve(repoRoot, mapPath), 'utf8'),
+  });
+  const ch10MapText = splitContentEntry(mapEntry).text;
+
+  const [opening, wake] = await Promise.all([
+    loadGameContent(base, fsSource, 'ch00_yuenv'),
+    loadGameContent(base, fsSource, 'ch10_baima', async () => ({ assets: {}, mapText: ch10MapText })),
+  ]);
+
+  const createSession = () => {
+    const chapter = opening.chapters?.[0];
+    if (!chapter) throw new TypeError('TEST_CHAPTER_MISSING');
+    const initial = createNewGameState({
+      masterSeed: 42,
+      contentHash: opening.contentHash ?? 'a'.repeat(64),
+      identity: {
+        name: '沈砚',
+        gender: 'female',
+        appearance: 'hero_f01',
+        pronoun: '她',
+        originId: 'origin_wenshiguan',
+      },
+      difficulty: 'diff_jianghu',
+      chapter,
+    });
+
+    return createGameSession(opening, initial, undefined, {
+      demo: false,
+      seedSource: () => 42,
+      preloadChapter: async (chapterId) => {
+        if (chapterId === 'ch10_baima') return wake;
+        throw new Error(`UNKNOWN_CHAPTER:${chapterId}`);
+      },
+      preloadRegion: async (chapterId, regionId) => {
+        return loadRegionContent(fsSource, chapterId, regionId);
+      },
+    });
+  };
+
+  return { createSession, opening, wake };
+}
+
+async function advanceDialogue(
+  session: GameSession,
+  chooseOption?: (entryKey: string, choices: readonly { textKey: string; choiceIndex: number }[]) => number,
+): Promise<void> {
+  let projection = await session.query();
+  let guard = 0;
+  while (projection.dialogue && guard++ < 100) {
+    const d = projection.dialogue;
+    if (d.choices && d.choices.length > 0) {
+      const choiceIndex = chooseOption ? chooseOption(d.entryKey, d.choices) : 0;
+      await session.dispatch({ t: 'dialogue/choose', choiceIndex });
+    } else {
+      await session.dispatch({ t: 'dialogue/continue' });
+    }
+    projection = await session.query();
+  }
+}
+
+async function playBattleToVictory(session: GameSession): Promise<BattlePacket> {
+  let reqId = 100;
+  let guard = 0;
+  while (guard++ < 200) {
+    const projection = await session.query();
+    const battle = projection.battle;
+    if (!battle || battle.result) return battle!;
+
+    const readyUnit = battle.units.find((u: { id: string }) => u.id === battle.actorId);
+    if (!readyUnit || readyUnit.control === 'ai') {
+      await session.dispatch({ t: 'battle/step', revision: battle.revision });
+      continue;
+    }
+
+    const enemies = battle.units.filter((u: { side: string; hp: number; active: boolean }) => u.side !== readyUnit.side && u.hp > 0 && u.active);
+    if (enemies.length === 0) {
+      await session.dispatch({ t: 'battle/wait', actor: readyUnit.id, revision: battle.revision });
+      continue;
+    }
+
+    let acted = false;
+    for (const enemy of enemies) {
+      if (!enemy.pos) continue;
+      let previewRes = await session.dispatch({
+        t: 'battle/preview',
+        revision: battle.revision,
+        requestId: ++reqId,
+        actor: readyUnit.id,
+        moveId: 'mv_basic_strike',
+        anchor: enemy.pos,
+        aim: { dirCount: 6, dir: 0 },
+      });
+      let preview = previewRes.changes.battle?.preview;
+      if (preview && preview.valid) {
+        await session.dispatch({ t: 'battle/act-at', preview });
+        acted = true;
+        break;
+      }
+      const reachable = battle.capabilities.move?.reachable ?? [];
+      for (const cell of reachable) {
+        previewRes = await session.dispatch({
+          t: 'battle/preview',
+          revision: battle.revision,
+          requestId: ++reqId,
+          actor: readyUnit.id,
+          moveId: 'mv_basic_strike',
+          anchor: enemy.pos,
+          aim: { dirCount: 6, dir: 0 },
+          walkTo: { q: cell.q, r: cell.r },
+        });
+        preview = previewRes.changes.battle?.preview;
+        if (preview && preview.valid) {
+          await session.dispatch({ t: 'battle/act-at', preview });
+          acted = true;
+          break;
+        }
+      }
+      if (acted) break;
+    }
+
+    if (!acted) {
+      const reachable = battle.capabilities.move?.reachable ?? [];
+      if (reachable.length > 0 && enemies[0]?.pos) {
+        const enemyPos = enemies[0].pos;
+        let bestCell = reachable[0]!;
+        let bestDist = Math.hypot(bestCell.q - enemyPos.q, bestCell.r - enemyPos.r);
+        for (const cell of reachable) {
+          const dist = Math.hypot(cell.q - enemyPos.q, cell.r - enemyPos.r);
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestCell = cell;
+          }
+        }
+        await session.dispatch({
+          t: 'battle/move',
+          actor: readyUnit.id,
+          destination: { q: bestCell.q, r: bestCell.r },
+          revision: battle.revision,
+        });
+        acted = true;
+      } else {
+        const gather = battle.capabilities.gather;
+        if (gather && gather.enabled) {
+          await session.dispatch({
+            t: 'battle/gather',
+            actor: readyUnit.id,
+            routeId: 'mfr_fixture_basic',
+            revision: battle.revision,
+          });
+        } else {
+          await session.dispatch({
+            t: 'battle/wait',
+            actor: readyUnit.id,
+            revision: battle.revision,
+          });
+        }
+      }
+    }
+  }
+  throw new Error('BATTLE_TIMEOUT');
+}
+
+describe('Prologue full flow end-to-end verification', () => {
+  it('completes the full prologue flow from New Game to waking in Chapter 10', async () => {
+    const { createSession } = await buildTestSessions();
+    const session = createSession();
+
+    // 1. Initial mounting & prologue decision
+    const mounted = await session.dispatch({
+      t: 'world/mountRegion',
+      regionId: 'rg_jiangnan_taihu',
+      sceneId: 'sc_00_zhulin',
+      spawnId: 'bookfall',
+    });
+    expect(mounted.accepted).toBe(true);
+
+    const fullChoice = await session.dispatch({
+      t: 'quest/choose',
+      questId: 'dc_00_01',
+      optionId: 'full',
+    });
+    expect(fullChoice.accepted).toBe(true);
+
+    let state = await session.snapshot();
+    expect(state.chapter.chapterId).toBe('ch00_yuenv');
+    expect(state.chapter.prologue?.mode).toBe('full');
+
+    // 2. C01 Progression: Interact with bamboo staff and gain items
+    const walkToStaff = await session.dispatch({
+      t: 'world/walkTo',
+      hex: { q: 9, r: 10 },
+    });
+    expect(walkToStaff.accepted).toBe(true);
+
+    const staffInteract = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'pickup_bamboo_staff',
+    });
+    expect(staffInteract.accepted).toBe(true);
+    expect((await session.query()).dialogue?.entryKey).toBe('aqing_first_meeting');
+
+    await advanceDialogue(session, (_knot, _choices) => 2); // 拾起竹枝
+    expect((await session.query()).dialogue).toBeNull();
+
+    state = await session.snapshot();
+    expect(state.profile.replayRules?.switches['fl_00_staff_accepted']).toBe(true);
+    // Inventory contains bamboo staff and items awarded by C01
+    const staffStack = state.party.inventory.stacks.find((s: { itemId: string }) => s.itemId === 'prop_bamboo_staff');
+    expect(staffStack?.count).toBeGreaterThanOrEqual(1);
+
+    // Door to_shanjing is now unlocked
+    const regionProjection = (await session.query()).region;
+    const doorToShanjing = regionProjection?.doors.find((d) => d.anchorId === 'to_shanjing');
+    expect(doorToShanjing?.locked).toBe(false);
+
+    // 3. C02 Progression: Initial battle enc_00_zhulin
+    const arenaInteract = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'arena_00_zhulin',
+    });
+    expect(arenaInteract.accepted).toBe(true);
+    expect((await session.query()).battle).not.toBeNull();
+
+    const battleZhulinResult = await playBattleToVictory(session);
+    expect(battleZhulinResult.result).toBe('win');
+
+    const leaveBattleZhulin = await session.dispatch({ t: 'battle/leave' });
+    expect(leaveBattleZhulin.accepted).toBe(true);
+    expect((await session.query()).battle).toBeNull();
+
+    // after_initial_battle dialogue automatically starts
+    expect((await session.query()).dialogue?.entryKey).toBe('after_initial_battle');
+    await advanceDialogue(session, () => 0); // 还想自己再试
+    expect((await session.query()).dialogue).toBeNull();
+
+    state = await session.snapshot();
+    expect(state.profile.replayRules?.switches['fl_00_initial_battle_manual']).toBe(true);
+
+    // Walk to door to_shanjing (q: 13, r: 2) and travel to sc_00_shanjing
+    const walkToShanjingDoor = await session.dispatch({
+      t: 'world/walkTo',
+      hex: { q: 12, r: 2 },
+    });
+    expect(walkToShanjingDoor.accepted).toBe(true);
+
+    const enterShanjing = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'to_shanjing',
+    });
+    expect(enterShanjing.accepted).toBe(true);
+
+    const mountShanjing = await session.dispatch({
+      t: 'world/mountRegion',
+      regionId: 'rg_jiangnan_taihu',
+      sceneId: 'sc_00_shanjing',
+      spawnId: 'from_zhulin',
+    });
+    expect(mountShanjing.accepted).toBe(true);
+    expect((await session.query()).region?.sceneId).toBe('sc_00_shanjing');
+
+    // Walk near offer_tao (q: 13, r: 8) and offer peach to Baiyuan
+    const walkToOfferTao = await session.dispatch({
+      t: 'world/walkTo',
+      hex: { q: 12, r: 8 },
+    });
+    expect(walkToOfferTao.accepted).toBe(true);
+
+    const offerTaoInteract = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'offer_tao',
+    });
+    expect(offerTaoInteract.accepted).toBe(true);
+    expect((await session.query()).dialogue?.entryKey).toBe('baiyuan_choice');
+
+    await advanceDialogue(session, () => 0); // 放下一枚桃子
+    expect((await session.query()).dialogue).toBeNull();
+
+    state = await session.snapshot();
+    expect(state.profile.replayRules?.switches['fl_00_baiyuan_merged']).toBe(true);
+
+    // 4. C03 Progression: Yue camp & Biandao Battle
+    const walkToYueyingDoor = await session.dispatch({
+      t: 'world/walkTo',
+      hex: { q: 15, r: 10 },
+    });
+    expect(walkToYueyingDoor.accepted).toBe(true);
+
+    const enterYueying = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'to_yueying',
+    });
+    expect(enterYueying.accepted).toBe(true);
+    await session.dispatch({
+      t: 'world/mountRegion',
+      regionId: 'rg_jiangnan_taihu',
+      sceneId: 'sc_00_yueying',
+      spawnId: 'from_shanjing',
+    });
+    expect((await session.query()).region?.sceneId).toBe('sc_00_yueying');
+
+    // Door camp_gate is unlocked because fl_00_baiyuan_merged is true
+    const campGateDoor = (await session.query()).region?.doors.find((d) => d.anchorId === 'camp_gate');
+    expect(campGateDoor?.locked).toBe(false);
+
+    // Walk to camp_gate (q: 9, r: 15) and enter camp
+    const walkToCampGate = await session.dispatch({
+      t: 'world/walkTo',
+      hex: { q: 9, r: 14 },
+    });
+    expect(walkToCampGate.accepted).toBe(true);
+
+    const enterCampGate = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'camp_gate',
+    });
+    expect(enterCampGate.accepted).toBe(true);
+    await session.dispatch({
+      t: 'world/mountRegion',
+      regionId: 'rg_jiangnan_taihu',
+      sceneId: 'sc_00_yueying',
+      spawnId: 'camp_gate_inside',
+    });
+
+    // Walk near Fan Li (q: 14, r: 6) inside camp
+    const walkToFanLi = await session.dispatch({
+      t: 'world/walkTo',
+      hex: { q: 13, r: 6 },
+    });
+    expect(walkToFanLi.accepted).toBe(true);
+
+    const fanLiInteract = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'npc_fanli_yueying',
+    });
+    expect(fanLiInteract.accepted).toBe(true);
+    expect((await session.query()).dialogue?.entryKey).toBe('fanli_request');
+
+    await advanceDialogue(session, () => 0); // 劝阿青相助
+    expect((await session.query()).dialogue).toBeNull();
+
+    // Biandao battle starts
+    expect((await session.query()).battle).not.toBeNull();
+    const battleBiandaoResult = await playBattleToVictory(session);
+    expect(battleBiandaoResult.result).toBe('win');
+
+    const leaveBattleBiandao = await session.dispatch({ t: 'battle/leave' });
+    expect(leaveBattleBiandao.accepted).toBe(true);
+
+    // biandao_after -> sword_source -> nine_layer_preview chained dialogues
+    expect((await session.query()).dialogue?.entryKey).toBe('biandao_after');
+    await advanceDialogue(session, (_knot, _choices) => 1); // 一键观看演示 / 一键观看远景
+    expect((await session.query()).dialogue).toBeNull();
+
+    state = await session.snapshot();
+    expect(state.profile.replayRules?.switches['fl_00_biandao_done']).toBe(true);
+    expect(state.profile.replayRules?.switches['fl_00_sword_demo_seen']).toBe(true);
+    expect(state.profile.replayRules?.switches['fl_00_nine_preview_seen']).toBe(true);
+
+    // 5. C04 Progression: Transmission Inkpoint & Northbound departure
+    const walkToTransmission = await session.dispatch({
+      t: 'world/walkTo',
+      hex: { q: 13, r: 12 },
+    });
+    expect(walkToTransmission.accepted).toBe(true);
+
+    const transmissionInteract = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'transmission_inkpoint',
+    });
+    expect(transmissionInteract.accepted).toBe(true);
+    expect((await session.query()).dialogue?.entryKey).toBe('aqing_first_layer');
+
+    await advanceDialogue(session, (_knot, choices) => choices.length - 1); // 默记呼吸 -> 稍后再导出 -> 直接北行
+    expect((await session.query()).dialogue).toBeNull();
+
+    state = await session.snapshot();
+    expect(state.profile.replayRules?.switches['fl_00_first_layer_committed']).toBe(true);
+    expect(state.profile.replayRules?.switches['fl_00_avalanche_survived']).toBe(true);
+
+    // Auto-mounted to Changbai snow cave sc_00_changbai_cave
+    expect((await session.query()).region?.sceneId).toBe('sc_00_changbai_cave');
+
+    // 6. First sleep allocation & Waking to Chapter 10
+    const walkToSleepAnchor = await session.dispatch({
+      t: 'world/walkTo',
+      hex: { q: 4, r: 4 },
+    });
+    expect(walkToSleepAnchor.accepted).toBe(true);
+
+    const sleepInteract = await session.dispatch({
+      t: 'world/interact',
+      anchorId: 'first_sleep_allocation',
+    });
+    expect(sleepInteract.accepted).toBe(true);
+    expect((await session.query()).dialogue?.entryKey).toBe('first_sleep_allocation');
+
+    await advanceDialogue(session, () => 1); // 使用六项各五十的均衡方案 -> wake_to_baima
+    expect((await session.query()).dialogue).toBeNull();
+
+    state = await session.snapshot();
+    expect(state.profile.replayRules?.switches['fl_00_allocation_ready']).toBe(true);
+    expect(state.profile.replayRules?.switches['fl_00_first_sleep_committed']).toBe(true);
+    expect(state.profile.replayRules?.switches['fl_00_wake_baima']).toBe(true);
+
+    // Settle prologue choice
+    const settled = await session.dispatch({
+      t: 'quest/choose',
+      questId: 'dc_00_01',
+      optionId: 'full',
+      phase: 'settle',
+      completionNodeId: prologueCompletion('full'),
+    });
+    expect(settled.accepted).toBe(true);
+
+    // Dispatch chapter/bookSleep
+    const sleepPlan: BookSleepPlan = {
+      id: '00000000-0000-4000-8000-000000000042',
+      from: 'ch00_yuenv',
+      to: 'ch10_baima',
+      targetTier: 'LOW',
+      sleepEventId: 'slp_first_changbai',
+      skills: { martial: [], inner: [] },
+      convert: { forget: [], dissipate: [] },
+      equips: [],
+      sleepAlloc: Object.fromEntries(FIRST_SLEEP_RULE.keys.map((k) => [k, 50])),
+      acknowledged: [],
+      allocationSource: 'balanced',
+      allocationRuleVersion: FIRST_SLEEP_RULE.version,
+    };
+
+    const wakeResult = await session.dispatch({
+      t: 'chapter/bookSleep',
+      plan: sleepPlan,
+    });
+    expect(wakeResult.accepted).toBe(true);
+
+    const finalState = await session.snapshot();
+    expect(finalState.chapter.chapterId).toBe('ch10_baima');
+    expect(finalState.world.navigation.pendingMount?.sceneId).toBe('sc_10_fengshi_feiyi');
+    expect(finalState.profile.progression?.changshengLayer).toBe(1);
+  }, 45_000);
+
+  it('completes summary prologue mode and wakes in Chapter 10', async () => {
+    const { createSession } = await buildTestSessions();
+    const session = createSession();
+
+    await session.dispatch({
+      t: 'quest/choose',
+      questId: 'dc_00_01',
+      optionId: 'summary',
+    });
+    await session.dispatch({
+      t: 'quest/choose',
+      questId: 'dc_00_01',
+      optionId: 'summary',
+      phase: 'settle',
+      completionNodeId: prologueCompletion('summary'),
+    });
+
+    const sleepPlan: BookSleepPlan = {
+      id: '00000000-0000-4000-8000-000000000043',
+      from: 'ch00_yuenv',
+      to: 'ch10_baima',
+      targetTier: 'LOW',
+      sleepEventId: 'slp_first_changbai',
+      skills: { martial: [], inner: [] },
+      convert: { forget: [], dissipate: [] },
+      equips: [],
+      sleepAlloc: Object.fromEntries(FIRST_SLEEP_RULE.keys.map((k) => [k, 50])),
+      acknowledged: [],
+      allocationSource: 'balanced',
+      allocationRuleVersion: FIRST_SLEEP_RULE.version,
+    };
+
+    const wakeResult = await session.dispatch({
+      t: 'chapter/bookSleep',
+      plan: sleepPlan,
+    });
+    expect(wakeResult.accepted).toBe(true);
+
+    const finalState = await session.snapshot();
+    expect(finalState.chapter.chapterId).toBe('ch10_baima');
+  });
+
+  it('completes skip prologue mode and wakes in Chapter 10', async () => {
+    const { createSession } = await buildTestSessions();
+    const session = createSession();
+
+    await session.dispatch({
+      t: 'quest/choose',
+      questId: 'dc_00_01',
+      optionId: 'skip',
+    });
+    await session.dispatch({
+      t: 'quest/choose',
+      questId: 'dc_00_01',
+      optionId: 'skip',
+      phase: 'settle',
+      completionNodeId: prologueCompletion('skip'),
+    });
+
+    const sleepPlan: BookSleepPlan = {
+      id: '00000000-0000-4000-8000-000000000044',
+      from: 'ch00_yuenv',
+      to: 'ch10_baima',
+      targetTier: 'LOW',
+      sleepEventId: 'slp_first_changbai',
+      skills: { martial: [], inner: [] },
+      convert: { forget: [], dissipate: [] },
+      equips: [],
+      sleepAlloc: Object.fromEntries(FIRST_SLEEP_RULE.keys.map((k) => [k, 50])),
+      acknowledged: [],
+      allocationSource: 'balanced',
+      allocationRuleVersion: FIRST_SLEEP_RULE.version,
+    };
+
+    const wakeResult = await session.dispatch({
+      t: 'chapter/bookSleep',
+      plan: sleepPlan,
+    });
+    expect(wakeResult.accepted).toBe(true);
+
+    const finalState = await session.snapshot();
+    expect(finalState.chapter.chapterId).toBe('ch10_baima');
+  });
+
+  it('completes prologue flow with Baiyuan combat spar branch', async () => {
+    const { createSession } = await buildTestSessions();
+    const session = createSession();
+
+    await session.dispatch({
+      t: 'world/mountRegion',
+      regionId: 'rg_jiangnan_taihu',
+      sceneId: 'sc_00_zhulin',
+      spawnId: 'bookfall',
+    });
+    await session.dispatch({
+      t: 'quest/choose',
+      questId: 'dc_00_01',
+      optionId: 'full',
+    });
+
+    // C01
+    await session.dispatch({ t: 'world/walkTo', hex: { q: 9, r: 10 } });
+    await session.dispatch({ t: 'world/interact', anchorId: 'pickup_bamboo_staff' });
+    await advanceDialogue(session, () => 2);
+
+    // C02 Zhulin battle
+    await session.dispatch({ t: 'world/interact', anchorId: 'arena_00_zhulin' });
+    await playBattleToVictory(session);
+    await session.dispatch({ t: 'battle/leave' });
+    await advanceDialogue(session, () => 0);
+
+    // Move to Shanjing
+    await session.dispatch({ t: 'world/walkTo', hex: { q: 12, r: 2 } });
+    await session.dispatch({ t: 'world/interact', anchorId: 'to_shanjing' });
+    await session.dispatch({
+      t: 'world/mountRegion',
+      regionId: 'rg_jiangnan_taihu',
+      sceneId: 'sc_00_shanjing',
+      spawnId: 'from_zhulin',
+    });
+
+    // Baiyuan spar choice (choice index 1: 以竹棒试手)
+    await session.dispatch({ t: 'world/walkTo', hex: { q: 12, r: 8 } });
+    await session.dispatch({ t: 'world/interact', anchorId: 'offer_tao' });
+    expect((await session.query()).dialogue?.entryKey).toBe('baiyuan_choice');
+
+    await advanceDialogue(session, () => 1); // 以竹棒试手
+    expect((await session.query()).battle).not.toBeNull();
+
+    const battleRes = await playBattleToVictory(session);
+    expect(battleRes.result).toBe('win');
+
+    await session.dispatch({ t: 'battle/leave' });
+    await advanceDialogue(session, () => 0);
+
+    const state = await session.snapshot();
+    expect(state.profile.replayRules?.switches['fl_00_baiyuan_spar_done']).toBe(true);
+    expect(state.profile.replayRules?.switches['fl_00_baiyuan_merged']).toBe(true);
+  });
+
+  it('completes prologue flow with Baiyuan bypass branch', async () => {
+    const { createSession } = await buildTestSessions();
+    const session = createSession();
+
+    await session.dispatch({
+      t: 'world/mountRegion',
+      regionId: 'rg_jiangnan_taihu',
+      sceneId: 'sc_00_zhulin',
+      spawnId: 'bookfall',
+    });
+    await session.dispatch({
+      t: 'quest/choose',
+      questId: 'dc_00_01',
+      optionId: 'full',
+    });
+
+    // C01
+    await session.dispatch({ t: 'world/walkTo', hex: { q: 9, r: 10 } });
+    await session.dispatch({ t: 'world/interact', anchorId: 'pickup_bamboo_staff' });
+    await advanceDialogue(session, () => 2);
+
+    // C02 Zhulin battle
+    await session.dispatch({ t: 'world/interact', anchorId: 'arena_00_zhulin' });
+    await playBattleToVictory(session);
+    await session.dispatch({ t: 'battle/leave' });
+    await advanceDialogue(session, () => 0);
+
+    // Move to Shanjing
+    await session.dispatch({ t: 'world/walkTo', hex: { q: 12, r: 2 } });
+    await session.dispatch({ t: 'world/interact', anchorId: 'to_shanjing' });
+    await session.dispatch({
+      t: 'world/mountRegion',
+      regionId: 'rg_jiangnan_taihu',
+      sceneId: 'sc_00_shanjing',
+      spawnId: 'from_zhulin',
+    });
+
+    // Baiyuan bypass choice (choice index 2: 走明示的绕路)
+    await session.dispatch({ t: 'world/walkTo', hex: { q: 12, r: 8 } });
+    await session.dispatch({ t: 'world/interact', anchorId: 'offer_tao' });
+    expect((await session.query()).dialogue?.entryKey).toBe('baiyuan_choice');
+
+    await advanceDialogue(session, () => 2); // 走明示的绕路
+    expect((await session.query()).dialogue).toBeNull();
+
+    const state = await session.snapshot();
+    expect(state.profile.replayRules?.switches['fl_00_baiyuan_bypass']).toBe(true);
+    expect(state.profile.replayRules?.switches['fl_00_baiyuan_merged']).toBe(true);
   });
 });

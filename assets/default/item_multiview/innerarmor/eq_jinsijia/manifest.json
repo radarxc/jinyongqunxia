@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_jinsijia",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/innerarmor/eq_jinsijia.png",
+  "generatedAt": "2026-10-07T14:42:59.497Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 209749,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/6caee601-0e32-42cb-b462-cf25efe92f84/multiview_0_6caee601-0e32-42cb-b462-cf25efe92f84.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 165462,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/6caee601-0e32-42cb-b462-cf25efe92f84/multiview_1_6caee601-0e32-42cb-b462-cf25efe92f84.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 154592,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/6caee601-0e32-42cb-b462-cf25efe92f84/multiview_3_6caee601-0e32-42cb-b462-cf25efe92f84.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 178515,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/6caee601-0e32-42cb-b462-cf25efe92f84/multiview_2_6caee601-0e32-42cb-b462-cf25efe92f84.jpeg"
+    }
+  }
+}

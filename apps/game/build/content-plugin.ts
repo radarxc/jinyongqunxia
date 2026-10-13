@@ -1,5 +1,6 @@
+import { existsSync, statSync, createReadStream, readdirSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import { extname, join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { buildContent, splitContentEntry } from '@tianshu/data/build';
 import { loadContent, parseContentFile } from '@tianshu/data/tooling';
@@ -226,6 +227,96 @@ async function readCatalogs(): Promise<{
   };
 }
 
+function createAssetMiddleware(projectRoot: string) {
+  let itemIndex: Map<string, string> | undefined;
+  function getItemPath(itemId: string): string | undefined {
+    if (!itemIndex) {
+      itemIndex = new Map();
+      const itemRoot = join(projectRoot, 'assets/default/item');
+      if (existsSync(itemRoot)) {
+        function walk(dir: string) {
+          for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const full = join(dir, entry.name);
+            if (entry.isDirectory()) walk(full);
+            else if (entry.isFile() && entry.name.endsWith('.png')) {
+              const base = entry.name.replace(/\.png$/, '');
+              if (base.endsWith('_64')) {
+                const clean = base.slice(0, -3);
+                itemIndex!.set(base, full);
+                itemIndex!.set(clean, full);
+              } else if (base.endsWith('_128')) {
+                const clean = base.slice(0, -4);
+                itemIndex!.set(base, full);
+                if (!itemIndex!.has(clean) || !itemIndex!.get(clean)!.endsWith('_64.png')) {
+                  itemIndex!.set(clean, full);
+                }
+              } else if (!itemIndex!.has(base)) {
+                itemIndex!.set(base, full);
+              }
+            }
+          }
+        }
+        walk(itemRoot);
+      }
+    }
+    return itemIndex.get(itemId);
+  }
+
+  return (
+    req: { url?: string },
+    res: { setHeader: (k: string, v: string) => void },
+    next: () => void,
+  ) => {
+    const rawUrl = req.url?.split('?')[0] ?? '';
+    if (rawUrl.startsWith('/assets/default/item-by-id/')) {
+      const itemId = decodeURIComponent(rawUrl.slice('/assets/default/item-by-id/'.length)).replace(
+        /\.[a-z]+$/,
+        '',
+      );
+      const found = getItemPath(itemId);
+      if (found && existsSync(found)) {
+        res.setHeader('Content-Type', 'image/png');
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        return createReadStream(found).pipe(res as unknown as NodeJS.WritableStream);
+      }
+    }
+    if (rawUrl.startsWith('/assets/default/')) {
+      const relPath = decodeURIComponent(rawUrl.slice(1));
+      let filePath = join(projectRoot, relPath);
+      if (!existsSync(filePath) || !statSync(filePath).isFile()) {
+        const normPath = relPath.replace('/icons/', '/').replace(/_64(\.[a-z]+)$/, '$1');
+        const altPath = join(projectRoot, normPath);
+        if (existsSync(altPath) && statSync(altPath).isFile()) {
+          filePath = altPath;
+        } else if (rawUrl.includes('/item/')) {
+          const baseName = normPath.split('/').pop()?.replace(/\.[a-z]+$/, '') ?? '';
+          const found = getItemPath(baseName);
+          if (found && existsSync(found)) {
+            filePath = found;
+          }
+        }
+      }
+      if (existsSync(filePath) && statSync(filePath).isFile()) {
+        const ext = extname(filePath).toLowerCase();
+        const mimeTypes: Record<string, string> = {
+          '.png': 'image/png',
+          '.jpg': 'image/jpeg',
+          '.jpeg': 'image/jpeg',
+          '.webp': 'image/webp',
+          '.svg': 'image/svg+xml',
+          '.json': 'application/json',
+          '.glb': 'model/gltf-binary',
+          '.gltf': 'model/gltf+json',
+        };
+        res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        return createReadStream(filePath).pipe(res as unknown as NodeJS.WritableStream);
+      }
+    }
+    next();
+  };
+}
+
 /** Build-time content projection: YAML parsers never enter the browser. */
 export function gameContentPlugin(
   options: { copyAssets?: boolean; emitDressupEntry?: boolean } = {},
@@ -370,6 +461,12 @@ export async function loadTown(id){switch(id){${definitions
         `case "__shared__":return (await import(${JSON.stringify(chapterPrefix + 'shared')})).default;` +
         `default:throw new Error("CHAPTER_ASSET_VIRTUAL_UNKNOWN:"+id);}}`
       );
+    },
+    configureServer(server) {
+      server.middlewares.use(createAssetMiddleware(root));
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(createAssetMiddleware(root));
     },
     async buildStart() {
       // B2 will request this public subpath with import(); emit it now so the size gate can

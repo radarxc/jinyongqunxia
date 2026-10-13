@@ -1,6 +1,6 @@
 import { OrthographicCamera, Raycaster, Scene, Vector2, Vector3, WebGLRenderer } from 'three';
 import { cameraBack, IsoCameraRotation } from '../camera/iso-camera';
-import { hexDirToRig } from '../camera/facing';
+import { hexDirToRig, spriteDir } from '../camera/facing';
 import { createTimeTintPass } from '../lighting/tint-pass';
 import { createTimeOfDayFrame, evaluateTimeOfDay } from '../lighting/time-of-day';
 import { createContextGuard } from '../core/context-guard';
@@ -42,6 +42,7 @@ export async function createBattleRenderer(
     antialias: false,
     alpha: false,
     powerPreference: 'high-performance',
+    preserveDrawingBuffer: true,
   });
   renderer.setClearColor(0xe7dec8);
   renderer.autoClear = false;
@@ -50,6 +51,9 @@ export async function createBattleRenderer(
   const scene = new Scene();
   const camera = new OrthographicCamera(-6, 6, 4, -4, 0.1, 100);
   const terrain = new HexLayer(cells);
+  if (typeof window !== 'undefined') {
+    (window as unknown as Record<string, unknown>)['__battleTerrain'] = terrain;
+  }
   scene.add(terrain.mesh);
   const tintPass = createTimeTintPass();
   const timeFrame = createTimeOfDayFrame();
@@ -80,6 +84,7 @@ export async function createBattleRenderer(
     moving: boolean;
     moveElapsed: number;
     moveDuration: number;
+    pendingStrike?: { targetId?: string | undefined } | undefined;
     striking: boolean;
     strikeElapsed: number;
     strikeDuration: number;
@@ -90,6 +95,7 @@ export async function createBattleRenderer(
     recoilDuration: number;
     recoilDirX: number;
     recoilDirZ: number;
+    pendingRecoil?: { dirX: number; dirZ: number; delay: number } | undefined;
   }
   const characters = new Map<string, BattleCharacterEntry>();
   let modelStage: BattleModelStage | undefined;
@@ -222,6 +228,35 @@ export async function createBattleRenderer(
       }
     }
   }
+  function executeStrike(actorEntry: BattleCharacterEntry, targetId?: string): void {
+    const targetEntry = targetId ? characters.get(targetId) : undefined;
+    let tx = actorEntry.currentX + 1;
+    let tz = actorEntry.currentZ;
+    if (targetEntry) {
+      tx = targetEntry.currentX;
+      tz = targetEntry.currentZ;
+      const rdx = tx - actorEntry.currentX;
+      const rdz = tz - actorEntry.currentZ;
+      const rlen = Math.hypot(rdx, rdz) || 1;
+      targetEntry.pendingRecoil = {
+        dirX: rdx / rlen,
+        dirZ: rdz / rlen,
+        delay: 0.16,
+      };
+      const strikeYawDeg = (Math.atan2(rdx, rdz) * 180 / Math.PI + 360) % 360;
+      const strikeDir = spriteDir(strikeYawDeg, rotation.yawDeg);
+      actorEntry.dir = strikeDir;
+      actorEntry.character.setMotion(strikeDir, 0, rig.weightClassForEquipment(actorEntry.marker.equipment));
+    }
+    const dx = tx - actorEntry.currentX;
+    const dz = tz - actorEntry.currentZ;
+    const len = Math.hypot(dx, dz) || 1;
+    actorEntry.striking = true;
+    actorEntry.strikeElapsed = 0;
+    actorEntry.strikeDuration = 0.38;
+    actorEntry.strikeDirX = dx / len;
+    actorEntry.strikeDirZ = dz / len;
+  }
   return {
     stats,
     camera: cameraControl,
@@ -263,7 +298,10 @@ export async function createBattleRenderer(
             const targetX = point.x;
             const targetY = point.y + 0.02;
             const targetZ = point.z;
-            if (!contextGuard.canRender || options.reducedMotion === true) {
+            const mdx = targetX - entry.currentX;
+            const mdz = targetZ - entry.currentZ;
+            const dist = Math.hypot(mdx, mdz);
+            if (!contextGuard.canRender || options.reducedMotion === true || dist < 1e-3) {
               entry.currentX = targetX;
               entry.currentY = targetY;
               entry.currentZ = targetZ;
@@ -284,8 +322,10 @@ export async function createBattleRenderer(
               entry.targetZ = targetZ;
               entry.moving = true;
               entry.moveElapsed = 0;
-              entry.moveDuration = 0.28;
-              entry.character.setMotion(entry.dir, 1.4, rig.weightClassForEquipment(unit.equipment));
+              entry.moveDuration = Math.max(0.42, Math.min(0.95, dist * 0.35));
+              const travelYawDeg = (Math.atan2(mdx, mdz) * 180 / Math.PI + 360) % 360;
+              const travelDir = spriteDir(travelYawDeg, rotation.yawDeg);
+              entry.character.setMotion(travelDir, 2.4, rig.weightClassForEquipment(unit.equipment));
             }
           }
           if (unit.facing !== previous.facing || equipmentChanged) {
@@ -324,6 +364,11 @@ export async function createBattleRenderer(
               entry.currentZ = entry.targetZ;
               entry.moving = false;
               entry.character.setMotion(entry.dir, 0, rig.weightClassForEquipment(entry.marker.equipment));
+              if (entry.pendingStrike) {
+                const pending = entry.pendingStrike;
+                entry.pendingStrike = undefined;
+                executeStrike(entry, pending.targetId);
+              }
             } else {
               entry.moveElapsed += dt;
               const p = Math.min(1, entry.moveElapsed / entry.moveDuration);
@@ -337,7 +382,23 @@ export async function createBattleRenderer(
                 entry.currentZ = entry.targetZ;
                 entry.moving = false;
                 entry.character.setMotion(entry.dir, 0, rig.weightClassForEquipment(entry.marker.equipment));
+                if (entry.pendingStrike) {
+                  const pending = entry.pendingStrike;
+                  entry.pendingStrike = undefined;
+                  executeStrike(entry, pending.targetId);
+                }
               }
+            }
+          }
+          if (entry.pendingRecoil) {
+            entry.pendingRecoil.delay -= dt;
+            if (entry.pendingRecoil.delay <= 0) {
+              entry.recoil = true;
+              entry.recoilElapsed = 0;
+              entry.recoilDuration = 0.24;
+              entry.recoilDirX = entry.pendingRecoil.dirX;
+              entry.recoilDirZ = entry.pendingRecoil.dirZ;
+              entry.pendingRecoil = undefined;
             }
           }
           let rx = entry.currentX;
@@ -475,30 +536,11 @@ export async function createBattleRenderer(
       if (disposed) return;
       modelStage?.playStrike?.(actorId, targetId);
       const actorEntry = characters.get(actorId);
-      const targetEntry = targetId ? characters.get(targetId) : undefined;
-      if (actorEntry) {
-        let tx = actorEntry.currentX + 1;
-        let tz = actorEntry.currentZ;
-        if (targetEntry) {
-          tx = targetEntry.currentX;
-          tz = targetEntry.currentZ;
-          const rdx = tx - actorEntry.currentX;
-          const rdz = tz - actorEntry.currentZ;
-          const rlen = Math.hypot(rdx, rdz) || 1;
-          targetEntry.recoil = true;
-          targetEntry.recoilElapsed = 0;
-          targetEntry.recoilDuration = 0.22;
-          targetEntry.recoilDirX = rdx / rlen;
-          targetEntry.recoilDirZ = rdz / rlen;
-        }
-        const dx = tx - actorEntry.currentX;
-        const dz = tz - actorEntry.currentZ;
-        const len = Math.hypot(dx, dz) || 1;
-        actorEntry.striking = true;
-        actorEntry.strikeElapsed = 0;
-        actorEntry.strikeDuration = 0.32;
-        actorEntry.strikeDirX = dx / len;
-        actorEntry.strikeDirZ = dz / len;
+      if (!actorEntry) return;
+      if (actorEntry.moving) {
+        actorEntry.pendingStrike = { targetId };
+      } else {
+        executeStrike(actorEntry, targetId);
       }
     },
     dispose() {

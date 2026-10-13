@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_mazhadao",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_mazhadao.png",
+  "generatedAt": "2026-10-07T16:03:47.528Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 90105,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/63bd3154-6364-4739-9c34-9ecedcddd590/multiview_0_63bd3154-6364-4739-9c34-9ecedcddd590.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 67254,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/63bd3154-6364-4739-9c34-9ecedcddd590/multiview_1_63bd3154-6364-4739-9c34-9ecedcddd590.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 68469,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/63bd3154-6364-4739-9c34-9ecedcddd590/multiview_3_63bd3154-6364-4739-9c34-9ecedcddd590.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 96926,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/63bd3154-6364-4739-9c34-9ecedcddd590/multiview_2_63bd3154-6364-4739-9c34-9ecedcddd590.jpeg"
+    }
+  }
+}

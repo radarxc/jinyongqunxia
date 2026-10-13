@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_xiaolifeidao",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/hidden-weapons/eq_xiaolifeidao.png",
+  "generatedAt": "2026-10-07T20:30:08.638Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 89289,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/0d685dad-8173-48a3-9951-62446d88dac2/multiview_0_0d685dad-8173-48a3-9951-62446d88dac2.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 66982,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/0d685dad-8173-48a3-9951-62446d88dac2/multiview_1_0d685dad-8173-48a3-9951-62446d88dac2.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 69759,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/0d685dad-8173-48a3-9951-62446d88dac2/multiview_3_0d685dad-8173-48a3-9951-62446d88dac2.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 86572,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/0d685dad-8173-48a3-9951-62446d88dac2/multiview_2_0d685dad-8173-48a3-9951-62446d88dac2.jpeg"
+    }
+  }
+}

@@ -77,3 +77,7 @@
   python3 .agents/coord/_handoff/detach_launch.py .agents/coord/ENG-ch00-encounter-wiring/supervise.out "$PWD" -- python3 -u tools/agents/supervise.py ENG-ch00-encounter-wiring --max-reviews 1 --max-runs 1 --auto-merge --worker --model GPT-5.6-Sol --effort max --checks .agents/coord/PROD/review_checks_eng.md --from start
   ```
 - 其余见 `AGENTS.md` §2。
+
+## 6. 换装线（3D 纸娃娃，2026-10-13）
+- 现状、作者决定、进行中任务与待办见 `docs/tech/12a-dressup-status.md`（接手入口）。
+- 下一步依次：R3 返修三处记录问题后合入 → R2 道具实拍送审 → R4 新劲装贴合 → 换装页默认素体切到 tpl_f2_medium（作者 10-12「衣物到位后再切」）→ W1 前问作者男素体衣物 / 头与点数。

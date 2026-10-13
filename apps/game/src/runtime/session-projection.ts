@@ -105,7 +105,7 @@ export function createSessionSelectors(content: GameContent,
       ...(marked.has('town') ? { town: projectTown(session, content, selectedTown()) } : {}),
       ...(marked.has('townRuntime') ? { townRuntime: session.chapter.town
         ? selectedTown() ?? content.towns?.find((entry) =>
-          entry.sceneId === session.chapter.town?.sceneId) ?? null : null } : {}) };
+          entry.sceneId === session.chapter.town?.sceneId) ?? content.towns?.[0] ?? null : null } : {}) };
     view = { ...view, ...changes } as GameProjection;
     if (!dynamicOnly || changes.worldmap === undefined) return changes;
     const full = changes.worldmap; return { ...changes, worldmap: full ? { point: full.point,

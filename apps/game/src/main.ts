@@ -1,10 +1,10 @@
 import { createPinia } from 'pinia';
 import { createApp, defineComponent, h, reactive, shallowRef,
   type App as VueApp, type Component } from 'vue';
-import type { SaveSlotSummary, TianshuStorage } from '@tianshu/platform';
+import { defaultAudioManager, type SaveSlotSummary, type TianshuStorage } from '@tianshu/platform';
 import { useUiStore } from '@tianshu/ui/runtime';
 import { flowT } from '@tianshu/ui/runtime';
-import { defaultGameSettings, silentAudioSettingsPort,
+import { defaultGameSettings,
   type GameSettingKey, type GameSettings } from './settings';
 import type { GameController } from './game-controller';
 import './style.css';
@@ -62,9 +62,12 @@ async function createSession(demo = false): Promise<GameController> {
   const host = await createGameCoreHost({ demo });
   const current = createGameController(host, useUiStore(pinia), {
     ...(demo || !startup.storage ? {} : { storage: startup.storage }), settings,
-    audio: silentAudioSettingsPort, setQuality: quality, onFatal: error => { void renderRecovery(error); },
+    audio: defaultAudioManager, setQuality: quality, onFatal: error => { void renderRecovery(error); },
   });
-  controller = current; await current.initialize(); await attachLifecycle(current); return current;
+  controller = current;
+  (window as unknown as { __gameController?: GameController }).__gameController = current;
+  (window as unknown as { __audioManager?: typeof defaultAudioManager }).__audioManager = defaultAudioManager;
+  await current.initialize(); await attachLifecycle(current); return current;
 }
 async function beginSession(input: { slot?: string; recoveredAt?: number; demo?: boolean; fresh?: boolean }): Promise<boolean> {
   try {
@@ -160,6 +163,8 @@ async function start(): Promise<void> {
     schedulePwaRegistration();
     return;
   }
+  (window as unknown as Record<string, unknown>)['__beginSession'] = beginSession;
+  (window as unknown as Record<string, unknown>)['__showTitle'] = showTitle;
   await showTitle(); schedulePwaRegistration();
 }
 export const gameReady = start().catch(error => { console.error('Game initialization failed', error);

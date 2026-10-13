@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_kongqueling",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/hidden-weapons/eq_kongqueling.png",
+  "generatedAt": "2026-10-07T20:14:22.838Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 183955,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d3be3de0-ba03-453f-bbe3-ad43726afc5c/multiview_0_d3be3de0-ba03-453f-bbe3-ad43726afc5c.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 173083,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d3be3de0-ba03-453f-bbe3-ad43726afc5c/multiview_1_d3be3de0-ba03-453f-bbe3-ad43726afc5c.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 169515,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d3be3de0-ba03-453f-bbe3-ad43726afc5c/multiview_3_d3be3de0-ba03-453f-bbe3-ad43726afc5c.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 175444,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d3be3de0-ba03-453f-bbe3-ad43726afc5c/multiview_2_d3be3de0-ba03-453f-bbe3-ad43726afc5c.jpeg"
+    }
+  }
+}
