@@ -1,0 +1,21 @@
+schemaVersion: town-facilities.v1
+layoutKey: city_dali__ch01
+facilities:
+  - {
+      key: yaopu_01,
+      kind: shop,
+      sub: yaopu,
+      buildingId: bi_0023,
+      nameKey: town.city_dali__ch01.yaopu_01.name,
+      shop: { templateRef: shop_tpl_yaopu, kind: normal },
+      roles: [keeper],
+    }
+  - {
+      key: kedian_01,
+      kind: inn,
+      sub: kedian,
+      buildingId: bi_0021,
+      nameKey: town.city_dali__ch01.kedian_01.name,
+      shop: null,
+      roles: [keeper],
+    }

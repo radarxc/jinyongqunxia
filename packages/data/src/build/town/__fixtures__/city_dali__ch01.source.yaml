@@ -1,0 +1,26 @@
+schemaVersion: town-source.v1
+cityId: city_dali
+layoutKey: city_dali__ch01
+chapter: ch01
+sceneId: sc_01_town_dali
+displayNameKey: town.city.dali.ch01.name
+historicalYear: 1093
+visualKit: song_dali
+walls:
+  - id: outer
+    points:
+      [[6000, 88000], [90000, 88000], [90000, 35000], [44000, 35000], [44000, 4000], [6000, 4000]]
+    closed: true
+    heightMm: 6000
+    thicknessMm: 4000
+    gates:
+      - { id: south_gate, seg: 0, offsetMm: 50000, widthMm: 6000, kind: gate }
+      - { id: north_gate, seg: 2, offsetMm: 34000, widthMm: 5000, kind: gate }
+      - { id: taoxi_west_water_gate, seg: 5, offsetMm: 28000, widthMm: 3000, kind: water }
+      - { id: taoxi_east_water_gate, seg: 3, offsetMm: 3000, widthMm: 3000, kind: water }
+facilitiesRef: content/town/facilities/city_dali__ch01.yaml
+layout:
+  {
+    path: assets/default/baseline/town/town_dali__ch01.layout.yaml,
+    sha256: 5a53217439f8063e41682263649b2c75e0ed0da656b7127008f92f98500de7ea,
+  }

@@ -1,0 +1,33 @@
+schemaVersion: town-source.v1
+cityId: city_turpan
+layoutKey: city_turpan__ch10
+chapter: ch10
+sceneId: sc_10_town_turpan
+displayNameKey: town.city.turpan.ch10.name
+historicalYear: 702
+visualKit: xiyu:tang_buddhist
+walls:
+  - id: outer
+    points:
+      [
+        [12000, 118000],
+        [110000, 118000],
+        [118000, 96000],
+        [118000, 34000],
+        [108000, 12000],
+        [28000, 12000],
+        [12000, 32000],
+      ]
+    closed: true
+    heightMm: 6000
+    thicknessMm: 4000
+    gates:
+      - { id: south_gate, seg: 0, offsetMm: 52000, widthMm: 8000, kind: gate }
+      - { id: north_gate, seg: 4, offsetMm: 44000, widthMm: 7000, kind: gate }
+      - { id: west_gate, seg: 6, offsetMm: 32000, widthMm: 5000, kind: gate }
+facilitiesRef: content/town/facilities/city_turpan__ch10.yaml
+layout:
+  {
+    path: assets/default/town/city_turpan__ch10/layout.yaml,
+    sha256: 36498654bfbbc4ad72742b218fe8a98b4fccb9378c7f5dcde7ba73b3baffcc04,
+  }

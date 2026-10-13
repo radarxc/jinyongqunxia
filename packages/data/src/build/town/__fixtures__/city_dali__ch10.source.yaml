@@ -1,0 +1,15 @@
+schemaVersion: town-source.v1
+cityId: city_dali
+layoutKey: city_dali__ch10
+chapter: ch10
+sceneId: sc_10_town_dali
+displayNameKey: town.city.dali.ch10.name
+historicalYear: 702
+visualKit: song_dali
+walls: []
+facilitiesRef: content/town/facilities/city_dali__ch10.yaml
+layout:
+  {
+    path: assets/default/town/city_dali__ch10/layout.yaml,
+    sha256: df9b9da160fcf70df1d1789d3838bc21702cbaf0ecade457012ffb2c8c36e763,
+  }
