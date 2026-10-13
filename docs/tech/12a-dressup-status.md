@@ -28,13 +28,13 @@
 
 | 任务 | 状态 | 下一步 |
 |---|---|---|
-| R4 `ENG-dressup-r4-jinzhuang-f2-fit`：新劲装抽衣壳 + tpl_f2 三体型贴合 + 布衣 + 贴图层 | 10-13 09:42 启动（traex，GPT-6-Astra max，`--no-review --max-runs 3 --stall-min 60 --run-timeout-min 360`） | 执行与校验过后协调者起任务 dev 实拍（劲装 / 布衣 × 三体型 × idle / walk / run，正 / 侧 / 背，素体换灰色），存 `garments/eq_jinzhuang/shots/r4.tpl_f2_*`，然后 `--from review --auto-merge` |
+| R4 `ENG-dressup-r4-jinzhuang-f2-fit`：新劲装抽衣壳 + tpl_f2 三体型贴合 + 布衣 + 贴图层 | **作者 10-13 叫停，暂不做**。第 1 轮跑了 30 分钟（traex，GPT-6-Astra max），中途因模型接口网络中断退出。已完成两步：① 抽衣壳过门禁：1 个连通块，4 个开口（领口、两袖口、下摆），98,485 三角；② tpl_f2_medium 全分辨率贴合：翻面 0，拉伸合格率 99.05%，耗时 173 s。中间产物在任务工作区 `.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/assets/default/model3d/dressup/garments/eq_jinzhuang/` 下的 `extract_run_f2/`、`fit_run_f2_medium/`、`r4_f2_checks/`，未提交。supervise 已停，状态记为 STOPPED | 作者说重启时：`supervise.py ENG-dressup-r4-jinzhuang-f2-fit --from start --model GPT-6-Astra --effort max --no-review --max-runs 3 --stall-min 60 --run-timeout-min 360 --checks .agents/coord/PROD/review_checks_eng.md --note <续作说明> --worker`。续作说明写：抽衣与 medium 贴合已完成，第一个动作是对 `fit_run_f2_medium/eq_jinzhuang.glb` 跑 `pack_glb.mjs --simplify 0.25 --no-meshopt`。执行与校验过后，协调者起任务 dev 实拍（劲装 / 布衣 × 三体型 × idle / walk / run，正 / 侧 / 背，素体换灰色），再 `--from review --auto-merge` |
 
 ## 4. 待办（按顺序）
 
 1. ~~R3 返修 → 合入~~（10-13 完成）。
 2. ~~R2 实拍 → 审核 → 合入~~（10-13 完成）。
-3. R4 执行中 → 实拍劲装 / 布衣 × 三体型 × idle / walk / run → 审核 → 合入。
+3. R4（作者 10-13 叫停，等作者说再重启）→ 实拍劲装 / 布衣 × 三体型 × idle / walk / run → 审核 → 合入。
 4. 默认素体切换：`apps/game/src/pages/Character3dPage.vue` 的 `selectedTemplate` 由 `tpl_f_medium` 改为 `tpl_f2_medium`（R2、R4 合入并实拍确认后）→ 并主干 → 5173 复核 → 截图给作者。
 5. W1 前问作者：
    - 男素体首批头与衣物版型清单，是否另出男性衣图 / 3D 源件；
