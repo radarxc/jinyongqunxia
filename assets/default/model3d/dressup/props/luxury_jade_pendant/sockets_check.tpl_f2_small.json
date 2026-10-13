@@ -1,0 +1,30 @@
+{
+  "animated": {
+    "distanceMethod": "strict nearest-triangle signed distance for every selected vertex",
+    "insideRatio": 0.0,
+    "insideVertexCount": {
+      "max": 0,
+      "median": 0.0,
+      "min": 0,
+      "samples": 72,
+      "verticesPerFrame": 7796
+    },
+    "insideVertexTotal": 0,
+    "level": "approved",
+    "minSignedDistanceMm": {
+      "median": 18.532683420959522,
+      "min": 14.197631031964944
+    },
+    "surface": "full body triangles"
+  },
+  "bind": {
+    "upAngleDeg": 0.0
+  },
+  "class": "pendant",
+  "failures": [],
+  "id": "luxury_jade_pendant",
+  "level": "approved",
+  "pass": true,
+  "schema": "tianshu-dressup-sockets-check.v1",
+  "template": "tpl_f2_small"
+}

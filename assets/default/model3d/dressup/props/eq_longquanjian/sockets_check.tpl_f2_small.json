@@ -1,0 +1,88 @@
+{
+  "animated": {
+    "distanceMethod": "strict nearest-triangle signed distance for every selected vertex",
+    "insideRatio": 0.011311965221131542,
+    "insideVertexCount": {
+      "max": 1912,
+      "median": 0.0,
+      "min": 0,
+      "samples": 72,
+      "verticesPerFrame": 7233
+    },
+    "insideVertexTotal": 5891,
+    "level": "draft",
+    "minSignedDistanceMm": {
+      "median": 51.801912122307904,
+      "min": -331.8201110628972
+    },
+    "surface": "full body triangles"
+  },
+  "bind": {
+    "bladeAngleDeg": 0.0,
+    "fingerDirectionDot": -2.8941118168646085e-08,
+    "gripDistanceMm": 0.0
+  },
+  "class": "weapon",
+  "failures": [],
+  "id": "eq_longquanjian",
+  "level": "draft",
+  "pass": true,
+  "schema": "tianshu-dressup-sockets-check.v1",
+  "template": "tpl_f2_small",
+  "testedGeometry": {
+    "bladeSegmentVertices": 7233,
+    "handleEnd": "min",
+    "handleSegmentVertices": 956,
+    "peakAxialMu": 0.112399786,
+    "peakFraction": 0.268852587,
+    "source": "fit.handleDetection",
+    "totalVertices": 8189,
+    "verticesPerFrame": 7233
+  },
+  "tiltSweep": [
+    {
+      "candidate": "0",
+      "insideRatio": 0.011311965221131542,
+      "insideVertexTotal": 5891,
+      "level": "draft",
+      "minSignedDistanceMm": {
+        "median": 51.801912122307904,
+        "min": -331.8201110628972
+      },
+      "restTiltDeg": -0.0
+    },
+    {
+      "candidate": "20",
+      "insideRatio": 0.03900717390970398,
+      "insideVertexTotal": 20314,
+      "level": "fail",
+      "minSignedDistanceMm": {
+        "median": 118.91829403094354,
+        "min": -350.0223136572986
+      },
+      "restTiltDeg": 20.0
+    },
+    {
+      "candidate": "40",
+      "insideRatio": 0.04233874064857059,
+      "insideVertexTotal": 22049,
+      "level": "fail",
+      "minSignedDistanceMm": {
+        "median": 87.62544861134545,
+        "min": -67.97434458898341
+      },
+      "restTiltDeg": 40.0
+    },
+    {
+      "candidate": "60",
+      "insideRatio": 0.020062368465520685,
+      "insideVertexTotal": 10448,
+      "level": "fail",
+      "minSignedDistanceMm": {
+        "median": 72.34809212256992,
+        "min": -58.71941771563396
+      },
+      "restTiltDeg": 60.0
+    }
+  ]
+}

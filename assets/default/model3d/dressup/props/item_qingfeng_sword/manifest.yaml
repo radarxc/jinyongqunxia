@@ -19,6 +19,16 @@
       fit: fit.json
       report: report.json
       status: candidate
+    tpl_f2_medium:
+      file: item_qingfeng_sword.tpl_f2_medium.glb
+      fit: fit.tpl_f2_medium.json
+      report: report.tpl_f2_medium.json
+      socketsCheck: sockets_check.tpl_f2_medium.json
+      status: draft
+      gateLevel: draft
+      sha256: a1d2b4f7005939c6b9d8088a29017b79d9f2f999380b4a0028068f0d6a01a7a5
+      size_bytes: 1021576
+      triangles: 8678
   source:
     directory: external-workdir
     references: []

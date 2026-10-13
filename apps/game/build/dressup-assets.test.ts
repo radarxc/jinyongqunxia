@@ -772,12 +772,14 @@ print(json.dumps({'reports':reports,'negative':{'bind':bind,'dynamic':dynamic,
       skeleton: medium.file.replace(/[^/]+$/u, skeletonMatch![1]),
       heightM: Number(heightMatch![1]),
     });
-    const realProps = await Promise.all(index.groups.prop.map(async prop => ({ prop,
+    // 被测素体是 tpl_f_medium：每件道具只取该模板的变体（索引里同 id 还有 tpl_f2 等变体，actor 按 id 替换）。
+    const propsForBody = index.groups.prop.filter(prop => prop.template === medium.template);
+    const realProps = await Promise.all(propsForBody.map(async prop => ({ prop,
       fit: JSON.parse(await readFile(prop.fit!.replace(/^\//u, ''), 'utf8')) as {
         schema: 'tianshu-dressup-fit.v1'; kind: 'prop'; id: string; socket: string;
       },
     })));
-    expect(index.groups.prop.map(entry => entry.socket).sort())
+    expect(propsForBody.map(entry => entry.socket).sort())
       .toEqual(realProps.map(({ fit }) => fit.socket).sort());
     const packedDocuments = await Promise.all([medium.file, ...realProps.map(({ prop }) => prop.file)]
       .map(async path => glb(await readFile(path.replace(/^\//u, ''))).document));
