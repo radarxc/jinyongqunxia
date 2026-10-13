@@ -3,13 +3,25 @@ import { localToWorldQuarter, worldToLocalQuarter } from '../frame';
 import { SALT, splitmix32 } from '../rng';
 import type { InteriorPlanner } from '../plan-hall';
 import type { FacilityKind, FixtureTuple, PlanDiagnostic, RectMm, Yaw4 } from '../types';
+import { planBank } from './bank';
+import { planBooks } from './books';
+import { planCasino } from './casino';
+import { planCloth } from './cloth';
+import { planEscort } from './escort';
 import { generalStoreBackShelfMm, planGeneralStore } from './general-store';
+import { planGuardhouse } from './guardhouse';
 import { planInn } from './inn';
+import { planOffice } from './office';
+import { planPawnshop } from './pawnshop';
 import { planPharmacy } from './pharmacy';
 import { planResidence } from './residence';
+import { planSchool } from './school';
 import { planSmithy } from './smithy';
+import { planStable } from './stable';
 import { planStall } from './stall';
+import { planStorehouse } from './storehouse';
 import { planTavern } from './tavern';
+import { planTemple } from './temple';
 
 export interface InteriorSolveInput {
   readonly room: RectMm;
@@ -18,6 +30,8 @@ export interface InteriorSolveInput {
   readonly doorWidthMm: number;
   readonly seed: number;
   readonly yaw?: Yaw4;
+  /** Enables templates delivered after the original i1 solver contract. */
+  readonly extendedTemplates?: boolean;
 }
 export interface InteriorSolveResult {
   readonly floors: readonly RectMm[];
@@ -53,6 +67,20 @@ const TEMPLATES: Readonly<Partial<Record<FacilityKind, Template>>> = {
   stall_goods: planStall,
   stall_food: planStall,
 };
+const EXTENDED_TEMPLATES: Readonly<Partial<Record<FacilityKind, Template>>> = {
+  cloth: planCloth,
+  books: planBooks,
+  pawnshop: planPawnshop,
+  bank: planBank,
+  escort: planEscort,
+  school: planSchool,
+  temple: planTemple,
+  office: planOffice,
+  casino: planCasino,
+  stable: planStable,
+  storehouse: planStorehouse,
+  guardhouse: planGuardhouse,
+};
 const MIN_SIZE: Readonly<Partial<Record<FacilityKind, readonly [number, number]>>> = {
   general_store: [3_600, 2_800],
   pharmacy: [3_600, 3_000],
@@ -63,6 +91,18 @@ const MIN_SIZE: Readonly<Partial<Record<FacilityKind, readonly [number, number]>
   smithy: [4_400, 3_100],
   stall_goods: [2_600, 1_600],
   stall_food: [2_600, 1_600],
+  cloth: [3_600, 2_800],
+  books: [3_600, 2_800],
+  pawnshop: [4_400, 3_100],
+  bank: [4_400, 3_100],
+  escort: [6_000, 4_600],
+  school: [6_000, 4_600],
+  temple: [3_000, 2_400],
+  office: [8_000, 6_000],
+  casino: [6_000, 4_600],
+  stable: [3_600, 2_800],
+  storehouse: [3_600, 2_800],
+  guardhouse: [3_600, 2_800],
 };
 
 /** tech/16 §8.2 door passage depth (1400). Coordinator ruling 2026-10-12: in a general store the
@@ -163,7 +203,9 @@ function fallbackSmall(
 /** Pure-integer interior solve; input room is world AABB, template work is door-facing local. */
 export function solveInterior(input: InteriorSolveInput): InteriorSolveResult {
   const yaw = input.yaw ?? 0;
-  const template = TEMPLATES[input.facility];
+  const template =
+    (input.extendedTemplates === true ? EXTENDED_TEMPLATES[input.facility] : undefined) ??
+    TEMPLATES[input.facility];
   const diagnostics: PlanDiagnostic[] = [];
   if (template === undefined)
     return {
@@ -266,6 +308,7 @@ export function solvePlanInterior(
       doorWidthMm: 0,
       seed: plan.seed,
       yaw: plan.yaw,
+      extendedTemplates: true,
     });
   }
   if (!plan.enterable || plan.floors.length === 0 || plan.entrances.length === 0) {
@@ -288,5 +331,6 @@ export function solvePlanInterior(
     doorWidthMm: entrance[2],
     seed: plan.seed,
     yaw: plan.yaw,
+    extendedTemplates: true,
   });
 }
