@@ -1,0 +1,733 @@
+{
+  "schema": "tianshu.worldmap-paint-config.v1",
+  "seed": 20261011,
+  "canvas": {
+    "width": 4096,
+    "height": 3072
+  },
+  "samples": {
+    "east": {
+      "window": [
+        2560,
+        1180,
+        3840,
+        2140
+      ],
+      "note": "华东 + 渤海 + 朝鲜半岛 + 日本西部（1280×960，全图 4096 尺度原样裁出）"
+    }
+  },
+  "analysis": {
+    "cell_px": 4,
+    "margin_cells": 40
+  },
+  "region_box_lonlat": [
+    44.0,
+    2.0,
+    166.0,
+    68.0
+  ],
+  "paper": {
+    "color": [
+      236,
+      226,
+      203
+    ],
+    "grain_strength": 0.035,
+    "wash_strength": 0.045,
+    "wash_cell_px": 340
+  },
+  "land": {
+    "tile_scale": 1.0,
+    "tint": [
+      0.985,
+      0.975,
+      0.975
+    ],
+    "class_blur_cells": 7,
+    "class_noise": 0.35,
+    "grass_tint": [
+      0.985,
+      0.985,
+      0.955
+    ],
+    "desert_tint": [
+      1.0,
+      0.985,
+      0.94
+    ],
+    "plateau_tint": [
+      0.955,
+      0.95,
+      0.94
+    ],
+    "lowland_warm": [
+      0.99,
+      0.98,
+      0.965
+    ],
+    "hillshade_strength": 0.1,
+    "hillshade_z": 2.6,
+    "hillshade_mountain_boost": 0.1,
+    "snow_wash_from_m": 4300,
+    "snow_wash_full_m": 5200,
+    "snow_wash_alpha": 0.42,
+    "snow_color": [
+      246,
+      246,
+      243
+    ]
+  },
+  "classes": {
+    "plateau_from_m": 2700,
+    "plateau_full_m": 3500,
+    "grass_lat_from": 40.5,
+    "grass_lat_full": 43.0,
+    "grass_lon_east_from": 121.0,
+    "grass_lon_east_to": 125.5,
+    "gobi_desert_weight": 0.45,
+    "basin_floor_desert": {
+      "TARIM BASIN": 1450,
+      "Junggar Basin": 650,
+      "Qaidam Basin": 3050
+    },
+    "exclude_desert_names": [
+      "PUNJAB"
+    ],
+    "extra_deserts": {
+      "badain_jaran": [
+        [
+          100.2,
+          39.4
+        ],
+        [
+          102.6,
+          39.3
+        ],
+        [
+          104.0,
+          40.3
+        ],
+        [
+          103.2,
+          41.9
+        ],
+        [
+          101.0,
+          41.7
+        ],
+        [
+          100.0,
+          40.6
+        ]
+      ],
+      "tengger": [
+        [
+          102.4,
+          37.6
+        ],
+        [
+          104.3,
+          37.4
+        ],
+        [
+          105.6,
+          38.1
+        ],
+        [
+          105.5,
+          39.6
+        ],
+        [
+          103.6,
+          39.9
+        ],
+        [
+          102.6,
+          39.0
+        ]
+      ],
+      "ulan_buh": [
+        [
+          105.9,
+          39.4
+        ],
+        [
+          106.9,
+          39.2
+        ],
+        [
+          107.1,
+          40.4
+        ],
+        [
+          106.2,
+          40.6
+        ]
+      ],
+      "hobq": [
+        [
+          107.0,
+          40.0
+        ],
+        [
+          111.0,
+          39.9
+        ],
+        [
+          111.2,
+          40.5
+        ],
+        [
+          107.3,
+          40.6
+        ]
+      ],
+      "kumtag": [
+        [
+          90.2,
+          39.6
+        ],
+        [
+          93.8,
+          39.5
+        ],
+        [
+          94.6,
+          40.4
+        ],
+        [
+          91.6,
+          41.0
+        ],
+        [
+          90.0,
+          40.6
+        ]
+      ],
+      "gurbantunggut": [
+        [
+          84.6,
+          44.3
+        ],
+        [
+          89.8,
+          44.2
+        ],
+        [
+          90.4,
+          45.6
+        ],
+        [
+          86.5,
+          46.4
+        ],
+        [
+          84.6,
+          45.6
+        ]
+      ]
+    }
+  },
+  "sea": {
+    "near_color": [
+      189,
+      205,
+      205
+    ],
+    "far_color": [
+      226,
+      222,
+      207
+    ],
+    "near_alpha": 0.62,
+    "far_alpha": 0.22,
+    "falloff_px": 34,
+    "tile_alpha": 1.0,
+    "noise_strength": 0.25,
+    "decor": {
+      "kinds": [
+        "haimian_01",
+        "haimian_02",
+        "haimian_03"
+      ],
+      "near_px": 90,
+      "spacing_near": 120,
+      "spacing_far": 330,
+      "size_px": [
+        150,
+        300
+      ],
+      "alpha_near": 0.3,
+      "alpha_far": 0.12,
+      "wave_kind_near_only": "haimian_03",
+      "max_dist_px": 110
+    }
+  },
+  "water": {
+    "lake_color": [
+      196,
+      210,
+      210
+    ],
+    "lake_alpha": 0.55,
+    "exclude_reservoir_class": true,
+    "keep_reservoir_names": [
+      "Lake Zaysan"
+    ],
+    "exclude_lake_names": [
+      "South Aral Sea",
+      "North Aral Sea"
+    ],
+    "exclude_lake_points": [
+      [
+        126.83,
+        43.64
+      ],
+      [
+        114.24,
+        33.01
+      ],
+      [
+        112.56,
+        33.33
+      ],
+      [
+        117.48,
+        45.49
+      ]
+    ],
+    "historic_lakes": [
+      "Aral Sea",
+      "Lop Nur"
+    ],
+    "lake_min_area_px": 6
+  },
+  "coast": {
+    "decimate_px": 1.25,
+    "strip_major": "haian_cu_01",
+    "strip_minor": "haian_xi_01",
+    "minor_ring_len_px": 160,
+    "strip_alpha": 0.6,
+    "ink_color": [
+      85,
+      76,
+      62
+    ],
+    "ink_alpha": 0.82,
+    "ink_halfwidth": 0.85,
+    "ink_halfwidth_var": 0.35,
+    "ink_var_period_px": 90,
+    "water_halfwidth_major": 15.0,
+    "land_halfwidth_major": 3.0,
+    "water_halfwidth_minor": 8.0,
+    "land_halfwidth_minor": 2.0
+  },
+  "lakeshore": {
+    "strip": "huan_xi_01",
+    "halfwidth": 4.0,
+    "strip_alpha": 0.8,
+    "ink_alpha": 0.6
+  },
+  "rivers": {
+    "max_scalerank": 7,
+    "thick_max_scalerank": 4,
+    "strip_thick": "heliu_cu_01",
+    "strip_thin": "heliu_xi_01",
+    "halfwidth_by_rank": {
+      "1": 5.2,
+      "2": 4.8,
+      "3": 4.4,
+      "4": 3.8,
+      "5": 2.9,
+      "6": 2.6,
+      "7": 2.2,
+      "8": 1.9,
+      "9": 1.7
+    },
+    "chaikin_iterations": 2,
+    "decimate_px": 2.0,
+    "alpha": 0.92,
+    "corridor_px": 2.0,
+    "avoid_max_scalerank": 5,
+    "skip_featurecla": [],
+    "lighten": {
+      "color": [
+        196,
+        210,
+        212
+      ],
+      "amount": 0.35
+    },
+    "major_max_scalerank": 4,
+    "major_names": [
+      [
+        "Huai",
+        "淮河"
+      ],
+      [
+        "Han",
+        "汉水"
+      ],
+      [
+        "Songhua",
+        "松花江"
+      ],
+      [
+        "Liao",
+        "辽河"
+      ],
+      [
+        "Yalu",
+        "鸭绿江"
+      ],
+      [
+        "Tarim",
+        "塔里木河"
+      ],
+      [
+        "Ile",
+        "伊犁河"
+      ],
+      [
+        "Hong",
+        "红河"
+      ]
+    ],
+    "major_halfwidth_by_rank": {
+      "1": 10.0,
+      "2": 9.2,
+      "3": 8.6,
+      "4": 7.6,
+      "promoted": 6.6
+    },
+    "major_lighten": {
+      "color": [
+        168,
+        198,
+        206
+      ],
+      "amount": 0.3
+    },
+    "extra_names": [
+      [
+        "Wei",
+        "渭河"
+      ],
+      [
+        "Fen",
+        "汾河"
+      ],
+      [
+        "Jing",
+        "泾河"
+      ]
+    ],
+    "extra_rank": 6,
+    "supplement_file": "rivers_supplement.json"
+  },
+  "mountains": {
+    "relief_window_cells": 9,
+    "relief_lo_m": 150,
+    "relief_hi_m": 1500,
+    "relief_gamma": 0.85,
+    "elev_boost_from_m": 1500,
+    "elev_boost_full_m": 4500,
+    "elev_boost": 0.18,
+    "candidate_step_px": 6,
+    "priority_jitter": 0.35,
+    "spacing_ratio": 0.52,
+    "snow_from_m": 4000,
+    "plateau_rock_from_m": 2600,
+    "anisotropy_min": 0.28,
+    "orient_blur_cells": 4,
+    "sizes_px": {
+      "xueshan": [
+        170,
+        440
+      ],
+      "shanmai": [
+        150,
+        400
+      ],
+      "shanfeng": [
+        120,
+        270
+      ],
+      "rock_small": [
+        70,
+        120
+      ],
+      "qiuling": [
+        80,
+        140
+      ]
+    },
+    "size_jitter": 0.16,
+    "max_sea_overlap": 0.22,
+    "min_size_px": 24,
+    "max_water_overlap": 0.07,
+    "tone_jitter": 0.1,
+    "aerial_top_fade": 0.26,
+    "land_clip_feather_px": 1.5,
+    "fit_north": 1.05,
+    "fit_side": 1.1,
+    "warm_whites": {
+      "color": [
+        234,
+        225,
+        206
+      ],
+      "strength": 0.9,
+      "alpha_cut": 0.45,
+      "lum_from": 0.8
+    },
+    "mountain_relief_m": 480,
+    "hill_relief_m": 320,
+    "hill_peak_share": 0.3,
+    "spacing_ratio_sparse": 0.3,
+    "refit_below": 0.75,
+    "floor_m": 220,
+    "floor_window_cells": 29,
+    "range_intensity": 0.55,
+    "range_share_high": 0.85,
+    "range_share": 0.6,
+    "size_gamma": 0.85,
+    "hill_spacing_mult": 1.35,
+    "hill_alpha": 0.55,
+    "rock_alpha": 0.75,
+    "band_closing_iter": 4,
+    "band_h_ratio": 1.15,
+    "band_w_ratio": 1.3,
+    "band_min_h_px": 64,
+    "band_min_w_px": 96,
+    "band_relief_m": 220,
+    "band_spacing_keep": 1.0,
+    "base_shifts": [
+      0.0,
+      -0.2,
+      0.2,
+      -0.4,
+      0.4
+    ]
+  },
+  "mist": {
+    "color": [
+      240,
+      233,
+      217
+    ],
+    "valley_alpha": 0.45,
+    "valley_blur_cells": 5,
+    "valley_depth_m": [
+      40,
+      420
+    ],
+    "intensity_from": 0.08,
+    "intensity_full": 0.45,
+    "noise_cell_px": 150,
+    "river_clear_px": 10,
+    "foot_alpha": 0.12,
+    "foot_height_ratio": 0.16
+  },
+  "kit": {
+    "xueshan": [
+      "xueshan_02",
+      "xueshan_03",
+      "xueshan_04",
+      "xueshan_xibei_01"
+    ],
+    "shanmai": [
+      "shanmai_02",
+      "shanmai_03",
+      "shanmai_04",
+      "shanmai_05",
+      "shanmai_06",
+      "shanmai_dongxi_01"
+    ],
+    "shanfeng": [
+      "shanfeng_01",
+      "shanfeng_02",
+      "shanfeng_03",
+      "shanfeng_04",
+      "shanfeng_05",
+      "shanfeng_06"
+    ],
+    "qiuling": [
+      "qiuling_01",
+      "qiuling_02",
+      "qiuling_03",
+      "qiuling_04"
+    ]
+  },
+  "tiles": {
+    "sea": [
+      "shuimian_01",
+      "shuimian_02"
+    ],
+    "lake": [
+      "humian_01",
+      "humian_02"
+    ],
+    "plain": [
+      "pingyuan_01",
+      "pingyuan_02"
+    ],
+    "grass": [
+      "caoyuan_01",
+      "caoyuan_02"
+    ],
+    "desert": [
+      "shamo_01",
+      "shamo_02"
+    ],
+    "plateau": [
+      "gaoyuan_01",
+      "gaoyuan_02"
+    ]
+  },
+  "trees": {
+    "search_box": [
+      680,
+      360,
+      1330,
+      900
+    ],
+    "exclude_boxes": [
+      [
+        940,
+        440,
+        1030,
+        485
+      ],
+      [
+        1195,
+        670,
+        1290,
+        720
+      ],
+      [
+        1150,
+        130,
+        1240,
+        170
+      ],
+      [
+        1020,
+        260,
+        1090,
+        295
+      ],
+      [
+        645,
+        200,
+        700,
+        230
+      ],
+      [
+        850,
+        305,
+        885,
+        335
+      ],
+      [
+        160,
+        740,
+        230,
+        775
+      ]
+    ],
+    "dark_min": 34,
+    "green_min": -8,
+    "area": [
+      120,
+      3500
+    ],
+    "max_elongation": 7.0,
+    "max_blue": 0.006,
+    "scale": [
+      1.05,
+      1.55
+    ],
+    "spacing_humid": 40,
+    "spacing_dry": 160,
+    "max_intensity": 0.2,
+    "alpha": 0.75,
+    "min_fill": 0.12,
+    "max_blue_tint": -9.0,
+    "min_humidity": 0.3,
+    "hill_sparse": 1.8
+  },
+  "plain_patches": {
+    "kinds": [
+      "pingyuan_01",
+      "pingyuan_02",
+      "pendi_01",
+      "pendi_02"
+    ],
+    "spacing": 420,
+    "size_px": [
+      170,
+      330
+    ],
+    "alpha": [
+      0.22,
+      0.36
+    ],
+    "max_intensity": 0.25
+  },
+  "plateau": {
+    "zone_min_m": 2700,
+    "zone_smooth_km": 25,
+    "zone_max_relief_m": 950,
+    "zone_relief_smooth_km": 20,
+    "zone_min_cells": 60,
+    "crest_window_km": 9,
+    "base_window_km": 70,
+    "base_percentile": 20,
+    "ridge_smooth_cells": 0.7,
+    "min_ridge_cells": 8,
+    "priority_jitter_m": 150,
+    "prom_hill_m": 330,
+    "prom_mountain_m": 560,
+    "prom_snow_m": 500,
+    "snow_m": 5000,
+    "prom_lo_m": 350,
+    "prom_hi_m": 1600,
+    "prom_gamma": 0.85,
+    "anisotropy_min": 0.25,
+    "ew_tolerance_deg": 35,
+    "sizes_px": {
+      "xueshan": [
+        150,
+        320
+      ],
+      "shanmai": [
+        130,
+        290
+      ],
+      "shanfeng": [
+        110,
+        220
+      ],
+      "low": [
+        80,
+        130
+      ]
+    },
+    "low_alpha": 0.7,
+    "prom_band_m": 300,
+    "band_closing_iter": 2,
+    "band_h_ratio": 2.0,
+    "band_min_h_px": 62,
+    "crest_from_top": 0.4,
+    "min_size_px": 40,
+    "overlap_x": 0.5,
+    "overlap_y": 0.78,
+    "max_water_overlap": 0.05,
+    "note": "高原面 = 25 km 平滑高程 ≥2700 m 且 20 km 平滑起伏 <950 m 的连片区（≥60 格）：青藏高原腹地、羌塘、可可西里、帕米尔高原面等。全图通用摆法照旧跑一遍（其余地区逐件不变），然后：脚点落在高原面上的山件撤掉，向高原面伸入超过 30% 的边缘山件原地缩小；高原面上按 GIS 重摆：山脊高程（1′ DEM 9 km 窗口最大值）减 70 km 窗口 20% 分位基准面得突起量，突起 ≥330 m 的连片带取骨架线作山脊，沿脊线按突起量从高到低落山——≥560 m 山脉 / 山峰（走向取高程结构张量，偏东西 35° 内用东西向件），330–560 m 淡低岭，山脊 ≥5000 m 且突起 ≥500 m 用雪山件；山体高度收在突起 ≥300 m 的山带内（×2.0），突起不足的宽谷与湖盆留平",
+    "outside_overlap_x": 0.7,
+    "outside_overlap_y": 0.8,
+    "rim_zone_overlap_max": 0.3,
+    "rim_min_size_px": 70
+  }
+}

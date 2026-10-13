@@ -333,12 +333,12 @@ describe('save slots through ENG-01 IndexedDB API', () => {
       },
     });
     const button = (label: string) =>
-      wrapper.findAll('button').find((entry) => entry.text() === label)!;
-    await button('保存').trigger('click');
+      wrapper.findAll('button').find((entry) => entry.text().trim() === label)!;
+    await button('记载事迹').trigger('click');
     expect(wrapper.emitted('save')?.[0]).toEqual(['save_manual_01']);
     await saves.save('save_manual_01');
     await wrapper.setProps({ slots: slotViews(await saves.list()) });
-    await button('保存').trigger('click');
+    await button('记载事迹').trigger('click');
     expect(wrapper.find('[role=dialog]').exists()).toBe(true);
     expect(wrapper.emitted('save')).toHaveLength(1);
     await wrapper.get('[data-confirm]').trigger('click');
@@ -349,27 +349,23 @@ describe('save slots through ENG-01 IndexedDB API', () => {
         save_manual_01: await saves.history('save_manual_01'),
       }),
     });
-    await button('导出 JSON').trigger('click');
-    await button('导出 TSAV').trigger('click');
-    await button('全部导出 ZIP').trigger('click');
+    await button('导出').trigger('click');
     expect(wrapper.emitted('export')).toEqual([
-      ['save_manual_01|json'],
       ['save_manual_01|tsav'],
-      ['*|zip'],
     ]);
-    await button('回到此代').trigger('click');
+    await button('溯回此代').trigger('click');
     expect(wrapper.emitted('load')?.[0]).toEqual(['save_manual_01|1']);
     expect(wrapper.get('input[type=file]').attributes('accept')).toContain('.zip');
-    await button('读取').trigger('click');
+    await button('进入回忆').trigger('click');
     await wrapper.get('[data-confirm]').trigger('click');
     expect(wrapper.emitted('load')?.[1]).toEqual(['save_manual_01']);
     await saves.load('save_manual_01');
-    await button('删除').trigger('click');
+    await button('焚卷抹迹').trigger('click');
     await wrapper.get('[data-confirm]').trigger('click');
     expect(wrapper.emitted('remove')?.[0]).toEqual(['save_manual_01']);
     await saves.remove('save_manual_01');
     await wrapper.setProps({ slots: slotViews(await saves.list()) });
-    expect(button('读取').attributes('disabled')).toBeDefined();
+    expect(button('进入回忆').attributes('disabled')).toBeDefined();
     wrapper.unmount();
     host.dispose();
   });

@@ -26,11 +26,11 @@ export default defineConfig({
             'apps/**/*.test.ts',
             'tools/perf/**/*.test.mjs',
           ],
+          // New gates use <name>.performance.test.ts; keep historical bare names out too.
           exclude: [
             ...configDefaults.exclude,
-            'packages/render/src/rig/performance.test.ts',
-            'packages/core/bench/battle-session.performance.test.ts',
-            'packages/core/bench/combat.performance.test.ts',
+            '**/*.performance.test.ts',
+            '**/performance.test.ts',
           ],
         },
       },
@@ -47,10 +47,10 @@ export default defineConfig({
         test: {
           name: 'perf',
           environment: 'node',
+          // Filename registration covers new gates and the historical bare filename.
           include: [
-            'packages/render/src/rig/performance.test.ts',
-            'packages/core/bench/battle-session.performance.test.ts',
-            'packages/core/bench/combat.performance.test.ts',
+            'packages/**/*.performance.test.ts',
+            'packages/**/performance.test.ts',
           ],
           fileParallelism: false,
           maxWorkers: 1,

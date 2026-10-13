@@ -1,6 +1,6 @@
 import { OrthographicCamera, Raycaster, Scene, Vector2, Vector3, WebGLRenderer } from 'three';
 import { cameraBack, IsoCameraRotation } from '../camera/iso-camera';
-import { hexDirToRig } from '../camera/facing';
+import { hexDirToRig, spriteDir } from '../camera/facing';
 import { createTimeTintPass } from '../lighting/tint-pass';
 import { createTimeOfDayFrame, evaluateTimeOfDay } from '../lighting/time-of-day';
 import { createContextGuard } from '../core/context-guard';
@@ -42,6 +42,7 @@ export async function createBattleRenderer(
     antialias: false,
     alpha: false,
     powerPreference: 'high-performance',
+    preserveDrawingBuffer: true,
   });
   renderer.setClearColor(0xe7dec8);
   renderer.autoClear = false;
@@ -50,6 +51,9 @@ export async function createBattleRenderer(
   const scene = new Scene();
   const camera = new OrthographicCamera(-6, 6, 4, -4, 0.1, 100);
   const terrain = new HexLayer(cells);
+  if (typeof window !== 'undefined') {
+    (window as unknown as Record<string, unknown>)['__battleTerrain'] = terrain;
+  }
   scene.add(terrain.mesh);
   const tintPass = createTimeTintPass();
   const timeFrame = createTimeOfDayFrame();
@@ -64,7 +68,36 @@ export async function createBattleRenderer(
   }
   const batch = new rig.RigBatch(rigSet, 100);
   batch.addTo(scene);
-  const characters = new Map<string, { character: RigInstance; marker: BattleMarker; dir: Dir8 }>();
+  interface BattleCharacterEntry {
+    character: RigInstance;
+    marker: BattleMarker;
+    dir: Dir8;
+    currentX: number;
+    currentY: number;
+    currentZ: number;
+    startX: number;
+    startY: number;
+    startZ: number;
+    targetX: number;
+    targetY: number;
+    targetZ: number;
+    moving: boolean;
+    moveElapsed: number;
+    moveDuration: number;
+    pendingStrike?: { targetId?: string | undefined } | undefined;
+    striking: boolean;
+    strikeElapsed: number;
+    strikeDuration: number;
+    strikeDirX: number;
+    strikeDirZ: number;
+    recoil: boolean;
+    recoilElapsed: number;
+    recoilDuration: number;
+    recoilDirX: number;
+    recoilDirZ: number;
+    pendingRecoil?: { dirX: number; dirZ: number; delay: number } | undefined;
+  }
+  const characters = new Map<string, BattleCharacterEntry>();
   let modelStage: BattleModelStage | undefined;
   let latestUnits: readonly BattleMarker[] = [];
   let modelStageLoading = false;
@@ -195,6 +228,35 @@ export async function createBattleRenderer(
       }
     }
   }
+  function executeStrike(actorEntry: BattleCharacterEntry, targetId?: string): void {
+    const targetEntry = targetId ? characters.get(targetId) : undefined;
+    let tx = actorEntry.currentX + 1;
+    let tz = actorEntry.currentZ;
+    if (targetEntry) {
+      tx = targetEntry.currentX;
+      tz = targetEntry.currentZ;
+      const rdx = tx - actorEntry.currentX;
+      const rdz = tz - actorEntry.currentZ;
+      const rlen = Math.hypot(rdx, rdz) || 1;
+      targetEntry.pendingRecoil = {
+        dirX: rdx / rlen,
+        dirZ: rdz / rlen,
+        delay: 0.16,
+      };
+      const strikeYawDeg = (Math.atan2(rdx, rdz) * 180 / Math.PI + 360) % 360;
+      const strikeDir = spriteDir(strikeYawDeg, rotation.yawDeg);
+      actorEntry.dir = strikeDir;
+      actorEntry.character.setMotion(strikeDir, 0, rig.weightClassForEquipment(actorEntry.marker.equipment));
+    }
+    const dx = tx - actorEntry.currentX;
+    const dz = tz - actorEntry.currentZ;
+    const len = Math.hypot(dx, dz) || 1;
+    actorEntry.striking = true;
+    actorEntry.strikeElapsed = 0;
+    actorEntry.strikeDuration = 0.38;
+    actorEntry.strikeDirX = dx / len;
+    actorEntry.strikeDirZ = dz / len;
+  }
   return {
     stats,
     camera: cameraControl,
@@ -208,11 +270,20 @@ export async function createBattleRenderer(
         if (!entry) {
           const character = rig.createRigCharacter(rigSet, unit.equipment, unit.index + 1);
           const dir = hexDirToRig(unit.facing, rotation.yawDeg);
-          entry = { character, marker: unit, dir };
+          hexWorld(unit.q, unit.r, unit.height, point);
+          const px = point.x; const py = point.y + 0.02; const pz = point.z;
+          entry = {
+            character, marker: unit, dir,
+            currentX: px, currentY: py, currentZ: pz,
+            startX: px, startY: py, startZ: pz,
+            targetX: px, targetY: py, targetZ: pz,
+            moving: false, moveElapsed: 0, moveDuration: 0.28,
+            striking: false, strikeElapsed: 0, strikeDuration: 0.32, strikeDirX: 0, strikeDirZ: 0,
+            recoil: false, recoilElapsed: 0, recoilDuration: 0.22, recoilDirX: 0, recoilDirZ: 0,
+          };
           characters.set(unit.id, entry);
           if (unit.active && !modelStage?.hasModel(unit.id)) batch.add(character);
-          hexWorld(unit.q, unit.r, unit.height, point);
-          character.setPosition(point.x, point.y + 0.02, point.z);
+          character.setPosition(px, py, pz);
           character.setMotion(dir, 0, rig.weightClassForEquipment(unit.equipment));
         } else {
           const previous = entry.marker;
@@ -224,11 +295,42 @@ export async function createBattleRenderer(
           }
           if (unit.q !== previous.q || unit.r !== previous.r || unit.height !== previous.height) {
             hexWorld(unit.q, unit.r, unit.height, point);
-            entry.character.setPosition(point.x, point.y + 0.02, point.z);
+            const targetX = point.x;
+            const targetY = point.y + 0.02;
+            const targetZ = point.z;
+            const mdx = targetX - entry.currentX;
+            const mdz = targetZ - entry.currentZ;
+            const dist = Math.hypot(mdx, mdz);
+            if (!contextGuard.canRender || options.reducedMotion === true || dist < 1e-3) {
+              entry.currentX = targetX;
+              entry.currentY = targetY;
+              entry.currentZ = targetZ;
+              entry.startX = targetX;
+              entry.startY = targetY;
+              entry.startZ = targetZ;
+              entry.targetX = targetX;
+              entry.targetY = targetY;
+              entry.targetZ = targetZ;
+              entry.moving = false;
+              entry.character.setPosition(targetX, targetY, targetZ);
+            } else {
+              entry.startX = entry.currentX;
+              entry.startY = entry.currentY;
+              entry.startZ = entry.currentZ;
+              entry.targetX = targetX;
+              entry.targetY = targetY;
+              entry.targetZ = targetZ;
+              entry.moving = true;
+              entry.moveElapsed = 0;
+              entry.moveDuration = Math.max(0.42, Math.min(0.95, dist * 0.35));
+              const travelYawDeg = (Math.atan2(mdx, mdz) * 180 / Math.PI + 360) % 360;
+              const travelDir = spriteDir(travelYawDeg, rotation.yawDeg);
+              entry.character.setMotion(travelDir, 2.4, rig.weightClassForEquipment(unit.equipment));
+            }
           }
           if (unit.facing !== previous.facing || equipmentChanged) {
             entry.dir = hexDirToRig(unit.facing, rotation.yawDeg);
-            entry.character.setMotion(entry.dir, 0, rig.weightClassForEquipment(unit.equipment));
+            if (!entry.moving) entry.character.setMotion(entry.dir, 0, rig.weightClassForEquipment(unit.equipment));
           }
           entry.marker = unit;
         }
@@ -253,8 +355,75 @@ export async function createBattleRenderer(
       const dt = previousTime ? Math.min(0.1, Math.max(0, (timeMs - previousTime) / 1000)) : 0;
       previousTime = timeMs;
       const start = performance.now();
-      for (const entry of characters.values())
-        if (entry.marker.active) entry.character.update(reducedMotion ? 0 : dt);
+      for (const entry of characters.values()) {
+        if (entry.marker.active) {
+          if (entry.moving) {
+            if (reducedMotion) {
+              entry.currentX = entry.targetX;
+              entry.currentY = entry.targetY;
+              entry.currentZ = entry.targetZ;
+              entry.moving = false;
+              entry.character.setMotion(entry.dir, 0, rig.weightClassForEquipment(entry.marker.equipment));
+              if (entry.pendingStrike) {
+                const pending = entry.pendingStrike;
+                entry.pendingStrike = undefined;
+                executeStrike(entry, pending.targetId);
+              }
+            } else {
+              entry.moveElapsed += dt;
+              const p = Math.min(1, entry.moveElapsed / entry.moveDuration);
+              const eased = 0.5 - 0.5 * Math.cos(p * Math.PI);
+              entry.currentX = entry.startX + (entry.targetX - entry.startX) * eased;
+              entry.currentY = entry.startY + (entry.targetY - entry.startY) * eased;
+              entry.currentZ = entry.startZ + (entry.targetZ - entry.startZ) * eased;
+              if (p >= 1) {
+                entry.currentX = entry.targetX;
+                entry.currentY = entry.targetY;
+                entry.currentZ = entry.targetZ;
+                entry.moving = false;
+                entry.character.setMotion(entry.dir, 0, rig.weightClassForEquipment(entry.marker.equipment));
+                if (entry.pendingStrike) {
+                  const pending = entry.pendingStrike;
+                  entry.pendingStrike = undefined;
+                  executeStrike(entry, pending.targetId);
+                }
+              }
+            }
+          }
+          if (entry.pendingRecoil) {
+            entry.pendingRecoil.delay -= dt;
+            if (entry.pendingRecoil.delay <= 0) {
+              entry.recoil = true;
+              entry.recoilElapsed = 0;
+              entry.recoilDuration = 0.24;
+              entry.recoilDirX = entry.pendingRecoil.dirX;
+              entry.recoilDirZ = entry.pendingRecoil.dirZ;
+              entry.pendingRecoil = undefined;
+            }
+          }
+          let rx = entry.currentX;
+          const ry = entry.currentY;
+          let rz = entry.currentZ;
+          if (entry.striking) {
+            entry.strikeElapsed += dt;
+            const sp = Math.min(1, entry.strikeElapsed / entry.strikeDuration);
+            const lunge = Math.sin(sp * Math.PI) * 0.42;
+            rx += entry.strikeDirX * lunge;
+            rz += entry.strikeDirZ * lunge;
+            if (sp >= 1) entry.striking = false;
+          }
+          if (entry.recoil) {
+            entry.recoilElapsed += dt;
+            const rp = Math.min(1, entry.recoilElapsed / entry.recoilDuration);
+            const recoilDist = Math.sin(rp * Math.PI) * 0.18;
+            rx += entry.recoilDirX * recoilDist;
+            rz += entry.recoilDirZ * recoilDist;
+            if (rp >= 1) entry.recoil = false;
+          }
+          entry.character.setPosition(rx, ry, rz);
+          entry.character.update(reducedMotion ? 0 : dt);
+        }
+      }
       modelStage?.update(dt, reducedMotion);
       batch.sync();
       renderer.info.reset();
@@ -301,7 +470,14 @@ export async function createBattleRenderer(
         point.z >= -1 && point.z <= 1 && Math.abs(point.x) <= 1 && Math.abs(point.y) <= 1;
     },
     projectUnit(id, q, r, elevation, out) {
-      if (!modelStage?.position(id, point)) hexWorld(q, r, elevation, point);
+      if (!modelStage?.position(id, point)) {
+        const entry = characters.get(id);
+        if (entry && (entry.moving || entry.striking || entry.recoil)) {
+          point.set(entry.currentX, entry.currentY, entry.currentZ);
+        } else {
+          hexWorld(q, r, elevation, point);
+        }
+      }
       point.project(camera);
       out.x = ((point.x + 1) * width) / 2; out.y = ((1 - point.y) * height) / 2;
       out.visible = point.z >= -1 && point.z <= 1 && Math.abs(point.x) <= 1 && Math.abs(point.y) <= 1;
@@ -311,8 +487,7 @@ export async function createBattleRenderer(
       const snapshot = entry?.character.snapshot();
       if (!entry || !snapshot) return undefined;
       if (!modelStage?.position(id, snapshotAnchor)) {
-        hexWorld(entry.marker.q, entry.marker.r, entry.marker.height, snapshotAnchor);
-        snapshotAnchor.y += 0.02;
+        snapshotAnchor.set(entry.currentX, entry.currentY, entry.currentZ);
       }
       point.copy(snapshotAnchor).project(camera);
       const anchorX = ((point.x + 1) * width) / 2;
@@ -356,6 +531,17 @@ export async function createBattleRenderer(
         };
       });
       return chooseBattleCell(cells, candidates, { x, y });
+    },
+    playStrike(actorId, targetId) {
+      if (disposed) return;
+      modelStage?.playStrike?.(actorId, targetId);
+      const actorEntry = characters.get(actorId);
+      if (!actorEntry) return;
+      if (actorEntry.moving) {
+        actorEntry.pendingStrike = { targetId };
+      } else {
+        executeStrike(actorEntry, targetId);
+      }
     },
     dispose() {
       if (disposed) return;

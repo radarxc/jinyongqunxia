@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_hudiejian",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_hudiejian.png",
+  "generatedAt": "2026-10-07T15:32:07.648Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 106287,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/f607f28a-83ba-4920-8299-73143e17c207/multiview_0_f607f28a-83ba-4920-8299-73143e17c207.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 73300,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/f607f28a-83ba-4920-8299-73143e17c207/multiview_1_f607f28a-83ba-4920-8299-73143e17c207.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 71821,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/f607f28a-83ba-4920-8299-73143e17c207/multiview_3_f607f28a-83ba-4920-8299-73143e17c207.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 103757,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/f607f28a-83ba-4920-8299-73143e17c207/multiview_2_f607f28a-83ba-4920-8299-73143e17c207.jpeg"
+    }
+  }
+}

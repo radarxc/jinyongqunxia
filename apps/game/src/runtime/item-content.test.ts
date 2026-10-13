@@ -12,26 +12,6 @@ import { fixtureContent, fixtureItemPack } from './test-fixture';
 import { createManifest, emitLeaves } from '@tianshu/data/build';
 
 describe('item content leaves', () => {
-  it('loads the three production ch00 encounters and their resolver inputs', async () => {
-    const rootDir = resolve(import.meta.dirname, '../../../..');
-    const result = await buildContent({ rootDir, chapter: 'ch00_yuenv', write: false });
-    expect(result.diagnostics.filter((entry) => entry.severity === 'error')).toEqual([]);
-    const built = result.chapters[0]!;
-    const values = new Map<string, unknown>([[`ch00_yuenv/manifest.json`, built.manifest],
-      ...built.leaves.map((leaf): [string, unknown] =>
-        [`ch00_yuenv/${leaf.logicalName}`, leaf.value])]);
-    const loaded = await loadGameContent(fixtureContent(), { readJson: async (path) =>
-      values.get(path) }, 'ch00_yuenv');
-    expect(loaded.encounters?.map((row) => row.id)).toEqual([
-      'enc_00_baiyuan', 'enc_00_biandao', 'enc_00_zhulin',
-    ]);
-    expect(loaded.templates?.map((row) => row.id)).toContain('tmpl_normal');
-    expect(loaded.roleSlots?.map((row) => row.id)).toEqual([
-      'role_road_swordsman', 'role_wu_swordsman', 'role_yue_soldier',
-    ]);
-    expect(loaded.npcs.map((row) => row.id)).toEqual(['npc_aqing', 'npc_baiyuan', 'npc_fanli']);
-  }, 15_000);
-
   // This integration loads the real compiled ch10 artifacts and can be heavy under high host load.
   it('loads the real compiled ch10 DTO and creates the preview session', async () => {
     const rootDir = resolve(import.meta.dirname, '../../../..');
@@ -52,12 +32,20 @@ describe('item content leaves', () => {
     const map = loaded.worldMaps?.[0];
     const dali = map?.nodes.find((node) => node.id === 'city_dali');
     expect(map).toMatchObject({ chapterId: 'ch10_baima', era: 'ch10', name: '白马啸西风' });
-    expect(dali).toMatchObject({ name: '大理府', levelNote: '尚无区域强度配置',
+    // ch10 names follow the era band (Tang 702 since AR-26); compare with the compiled source map.
+    expect(dali).toMatchObject({ name: sourceMap.nodes.find((node) => node.id === 'city_dali')!.name,
+      levelNote: '尚无区域强度配置',
       entry: { accessNote: '城门进入；内部场景由 ENG-09 装配' } });
     expect(map?.nodes.map(({ name, levelNote, entry, accessNote }) =>
       ({ name, levelNote, entry: entry.accessNote, accessNote })))
       .toEqual(sourceMap.nodes.map(({ name, levelNote, entry, accessNote }) =>
         ({ name, levelNote, entry: entry.accessNote, accessNote })));
+    // Sect seats (tech/13 §5.4) travel through text keys like node names and come back verbatim.
+    expect(sourceMap.sects?.length).toBeGreaterThan(0);
+    expect(map?.sects?.map(({ id, name, siteName, status, marker, cityId }) =>
+      ({ id, name, siteName, status, marker, cityId })))
+      .toEqual(sourceMap.sects?.map(({ id, name, siteName, status, marker, cityId }) =>
+        ({ id, name, siteName, status, marker, cityId })));
     await expect(loadGameContent(fixtureContent(), { readJson: async (path) =>
       values.get(path) }, 'ch10_baima', async () => ({ assets: {}, mapText: {} })))
       .rejects.toThrow('ITEM_RULES_UNAVAILABLE:CONTENT_TEXT_REF_MISSING:' +

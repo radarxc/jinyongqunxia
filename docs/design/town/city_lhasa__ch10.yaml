@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_lhasa"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "逻些·大昭寺环街聚落（702年推定）"
+display_name: 逻些（吐蕃）
 historical_year: 702
 era_kit: "tubo"
 seed: 3917876216

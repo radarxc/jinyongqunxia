@@ -180,9 +180,9 @@
   source_path: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_renyingying__ch05_youth_scene_zhuxiang.1791015245544650000/archive/por_npc_renyingying__ch05_youth_scene_zhuxiang.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 8a2743f094ab443a69f9e829424dbc126f33034e71919232bd5452dd247d0131
+  sha256: e0f0b0cc134f3558ded157d7d2b3f1b05ee2d9dbbd1210f1b3f0980ca4a660e3
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_renyingying__ch05_youth_shenggu_base（消除 1996 剧照脱节脸，恢复定稿现代清秀骨相），保留原场景绿竹院落、竹帘、抚琴姿态与浅灰绿衣衫，蒙版外零漂移
   previous_revision:
     prompt: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_renyingying__ch05_youth_scene_zhuxiang.1791015245544650000/archive/previous-prompt.md
     png: /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_prod/.agents/coord/_handoff/gem/codex_w11/audit_support/staging/por_npc_renyingying__ch05_youth_scene_zhuxiang.1791015245544650000/archive/previous.png

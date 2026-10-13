@@ -1,0 +1,49 @@
+{
+  "schema": "tianshu.map-hero.v1",
+  "variants": {
+    "male": {
+      "frameWidth": 191,
+      "frameHeight": 256,
+      "anchor": [
+        93.58,
+        245.8
+      ],
+      "facing": "left",
+      "walk": {
+        "image": "map_hero_male_walk.webp",
+        "frames": 12,
+        "cycleSeconds": 1.1667
+      },
+      "run": {
+        "image": "map_hero_male_run.webp",
+        "frames": 12,
+        "cycleSeconds": 0.625
+      },
+      "idle": {
+        "image": "map_hero_male_idle.webp"
+      }
+    },
+    "female": {
+      "frameWidth": 202,
+      "frameHeight": 256,
+      "anchor": [
+        105.41,
+        245.67
+      ],
+      "facing": "right",
+      "walk": {
+        "image": "map_hero_female_walk.webp",
+        "frames": 12,
+        "cycleSeconds": 1.1667
+      },
+      "run": {
+        "image": "map_hero_female_run.webp",
+        "frames": 12,
+        "cycleSeconds": 0.625
+      },
+      "idle": {
+        "image": "map_hero_female_idle.webp"
+      }
+    }
+  }
+}

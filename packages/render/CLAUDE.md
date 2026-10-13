@@ -35,7 +35,7 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 从 `@tianshu/render/town` 动态导入 `createTownScene(canvas,town,{ projection, zoom })`；输入是 data 已校验的 `town-runtime.v1` 与应用只读投影。render 只把指针射线换成整数格或锚点，不判断可走性、路径、建筑状态、剧情或打坐概率。
 - 离线与运行时共用 64×32 px、yaw 45°、pitch 30°；`planningToTownPixels()` 的高度位移为 `16×sqrt(6)×elevationM` px。投影测试覆盖非零高差、格心往返、六边格边界与镜头角；拾取按运行时登记高度平面求最近合法格。
 - 地面按 32×32 格 chunk 各一个 `InstancedMesh`，贴片、overlay 与 8 向边件共用运行时 atlas；内角沿用离线 4 px tip 裁切。建筑、简化室内、锚点各自合批。每帧仅做 chunk 视锥裁剪、rig typed-array 同步和焦点建筑 alpha 更新，不重建静态几何。
-- `TownScene` 提供 render / resize / update / setZoom / pickPoint / pickAnchor / project / dispose；缩放限制 0.65–2.5。建筑进入时只有目标外墙渐变至 0.28，室内地面与柜台显现，退出反向恢复。
+- `TownScene` 提供 render / resize / update / setZoom / pickPoint / pickAnchor / project / dispose；缩放限制 0.4–6.0（v1 城镇页按 px/m 换算，覆盖 40–112 px/m）。建筑进入时只有目标外墙渐变至 0.28，室内地面与柜台显现，退出反向恢复。
 - 主角与 NPC 必须用 ENG-12 `RigSet` / `RigBatch` / `RigInstance`；场景容量 100 名角色，NPC 出现与消失仅按应用投影增删。不得为城镇另建精灵角色或从 render 推断时代。
 - `stats` 暴露 drawCalls / triangles / frameMs / cpuMs / groundInstances / buildingInstances / rigInstances / visibleChunks / atlasTextures。目标为桌面 ≥60 fps、中端手机 ≥30 fps，当前仍待浏览器与真机实测。
 - 所有权：场景释放 rig、锚点、地面 chunk、建筑/室内 batch、两张 atlas 及 WebGLRenderer；`dispose()` 可重复调用。纹理缺失时 atlas 写入分类色块，结构与拾取仍可工作。
@@ -82,6 +82,26 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - SkinnedMesh 克隆必须使用 `SkeletonUtils.clone()`。3D SkinnedMesh 不属于 2D `RigBatch` 的双材质合批，不能承诺 2 draw call：当前作者 GLB 静态解析为 10,022 triangles，关闭描边时每实例约 1 draw；20 个克隆约 200,440 triangles / 20 draws，另加并排 2D rig 的 2 draws。
 - 当前生产构建 render 为 161.24 / 180 KiB gzip，余量 18.76 KiB；仅保留两个开发模块路径字符串，GLTFLoader/试点实现未进入生产产物。CPU 帧时间必须以页面 HUD 的 120 帧平均值在目标浏览器分别记录 1 / 20 实例，Node 测试与三角面推算不能替代浏览器实测。
 
+## 3D 纸娃娃换装 API（ENG-dressup-b1）
+
+- 运行时只从 `@tianshu/render/dressup` 动态导入 `createDressupActor()`；根入口仅导出 `DressupActor`、`DressupActorOptions`、`DressupEquipSpec`、`DressupFit`、`DressupSkeletonFrame`、`DressupStats` 类型，禁止静态转出运行时值。
+- `packages/render/src/dressup/**` 固定进入 `render-dressup` 独立懒加载块，gzip 预算 24 KiB；允许它静态依赖已归入 `battle-model3d` 的 `GLTFLoader` / `SkeletonUtils`，不得把换装实现拉回 render 主闭包。
+- `createDressupActor({ bodyUrl, frameUrl, heightM })` 返回共享 Skeleton 的 actor；调用方按需 `equip()` / `unequip()`、`playClip()`、逐帧 `update(dt)`，最终幂等 `dispose()`。网格/道具素材必须使用构建期发布的 non-rejected manifest `file / fit / report`；贴图层使用 `file / fit`，允许没有几何 `report`。
+- 身体贴图层调用 `setBodyLayers(DressupLayerSpec[])`；按 `order`（缺省传入顺序）把 RGBA 层叠到原始 baseColor，空数组恢复原图。输出固定 sRGB、`flipY=false` 并继承原图采样参数；层 ID 序列相同的合成纹理跨 actor 引用计数共享，最后释放者销毁。
+- `createDressupActor({ ..., compositor? })` 可注入纯内存合成器；默认实现依次使用 OffscreenCanvas / DOM canvas 与 ImageBitmap / ImageLoader。异步调用以最后一次为准，`dispose()` 同时释放当前或尚未采用的合成纹理引用。
+- `stats()` 除原有结构统计外给出 `bodyLayers` 与 RGBA8 `layerTextureBytes` 估计；贴图层不新增 mesh 或 draw call，`update(dt)` 不参与合成且仍不得逐帧分配。
+- actor 创建/换装时以 24 Hz 采样全部模板 clip；每个蒙皮件按“网格局部骨骼运动球 + 受其影响顶点的最大绑定距离”生成自己的动作包络。身体、头、衣物及蒙皮持物保留离屏剔除，禁止在 `update(dt)` 逐帧重算；刚性插槽道具仍按自身几何剔除。
+- 100 actor × 平均 4 件合成装备的 `update(dt)` + `skeleton.update()` P95 必须 `< 2.0 ms`；只由 perf project / `pnpm check:perf` 收集，不进 `pnpm check`，不得按系统负载跳过或放宽。
+
+### 身体遮罩与挂头（B4，AR-108 V2 / V4）
+
+- `equip({ kind: 'head', ... })` 复用衣物的骨名重映射与显式 bindMatrix，共享身体 Skeleton；新头替换旧头，`fit.skinTint` 乘原身体颜色，卸下恢复。`setHead(url | null, { skinTint })` 是同一路径的便捷入口，可解构调用。
+- `fit.hideMask.file` 相对装备 URL 解析；索引可用 `hideMapUrl` 显式传发布 URL。页面按当前模板优先选择 fits 变体，无对应变体时用主件；换模板恢复已选装备并重算遮罩。
+- 遮罩独立于 baseColor 合成：取各遮罩最大边长，Canvas 平滑缩放后逐像素 max；输出 `NoColorSpace`、`flipY=false`、线性过滤、无 mipmap。可注入 `hideMapCompositor`，不使用贴图层的 sRGB 合成器。
+- 复用模块级纹理引用计数缓存；键含模板 ID/body URL、有序遮罩 ID、URL 和声明尺寸。最后释放者 dispose，并发过期或 actor 已销毁的结果同样释放；`update(dt)` 不参与合成。
+- `setHideMapEnabled(on)` 默认开启；无遮罩时 `uHideMapOn=false`。身体和可选深度材质固定 program key，声明原 UV，按红通道 `>0.5` discard，与区域 `uHideMask` 独立。
+- `stats()` 给出 `hideMaps`、可选 `hideMapSize`（无图时缺省）和 `hideMapError`（失败时字符串）；同步 `unequip` 捕获后台失败并 warn，关闭旧遮罩，重试成功清错误。预览 `window.__dressup` 提供 `hideMap`、实时 `hideMapSize`（无图为 0）与 `hideMapError`（无错为空串）。
+
 ## 招式 VFX API（ENG-11）
 
 - 从 `@tianshu/render/vfx` 动态导入 `createBattleVfxStage(canvas)`；VFX 单独产出 `vfx` chunk，战斗首次结算才加载。应用把 `onMoveResolved` 的只读施招者、目标与事件传给 `play()`，不得在表现层重算命中、伤害、范围或朝向。
@@ -110,6 +130,8 @@ Three.js r186 表现层，只消费只读投影和领域事件。禁止自行计
 - 当前 `rig/character.ts` 的 `setMotion()` 会对镜头引发的 `Dir8` 变化启动约 160 ms 转身混合，与 tech/09 §4.3“转镜头不另开视图动画”不符；留给 rig 后续任务增加镜头重定向的无转身入口。
 
 ## 参考资料与验证
+
+- [Three Texture](https://threejs.org/docs/pages/Texture.html)、[Material](https://threejs.org/docs/pages/Material.html)、[MDN imageSmoothingEnabled](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled)：2026-10-08 联网核实 NoColorSpace、flipY、线性过滤、shader hook / program key 和 Canvas 缩放；本地 Three 0.186.1 UV chunk 同时核对 USE_UV。无付费服务或配额。
 
 - [Three InstancedMesh](https://threejs.org/docs/pages/InstancedMesh.html)：同 geometry / material 的实例渲染用于减少 draw call。
 - [Three DataArrayTexture](https://threejs.org/docs/pages/DataArrayTexture.html)、[DataTexture](https://threejs.org/docs/pages/DataTexture.html)：地形分层纹理与 RGBA8 索引图；[Raycaster](https://threejs.org/docs/pages/Raycaster.html)：mesh / instance 拾取；2026-10-03 联网返回 HTTP 200。

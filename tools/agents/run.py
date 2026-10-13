@@ -157,7 +157,9 @@ class Task:
         self.priority = int(d.get("priority", 0))
         self.agent_args = list(d.get("agent_args", []))   # 追加给 CLI 的参数（如放开网络）
         self.full_checkout = bool(d.get("full_checkout", False))  # 强制全量检出（默认文档 / 代码任务稀疏检出，不含图片目录）
-        self.sparse_include = list(d.get("sparse_include", []))  # 2026-10-02 协调者：素材任务也用稀疏检出，只额外包含这些目录 / 文件模式（全量检出约 6 GB，磁盘不够）
+        self.sparse_include = list(d.get("sparse_include", []))
+        self.profile = d.get("profile", "")            # 审核模板档位：code / assets / 空（远端并入时 Graph 已引用但 Task 漏定义，2026-10-07 补）
+        self.model = d.get("model", "")                # 逐任务模型名（空 = 用 defaults / 命令行）  # 2026-10-02 协调者：素材任务也用稀疏检出，只额外包含这些目录 / 文件模式（全量检出约 6 GB，磁盘不够）
         self.target: Task | None = None             # 审校任务的被审对象
         self.score = 0                              # 调度优先级：后继任务数 + priority
 
@@ -293,6 +295,12 @@ def render_prompt(t: Task, attempt: int = 1, failure: str | None = None) -> str:
     if addendum:
         text += fill(read_prompt(addendum), common, f"{t.id} / {addendum}")
     text += task_body(t)
+    # supervise --checks 只给审核员看会让执行器每轮都栽在清单项上；启动执行器时它把同一份清单经
+    # TIANSHU_REVIEW_CHECKS 传进来，附在任务书后面供交付前自查（审核员的提示词不受影响）。
+    checks = os.environ.get("TIANSHU_REVIEW_CHECKS")
+    if checks and Path(checks).is_file():
+        text += ("\n\n---\n\n# 审核要点（审核代理会逐条核对；交付前请逐条自查）\n\n"
+                 + Path(checks).read_text(encoding="utf-8").strip() + "\n")
     if failure:
         text += fill(read_prompt("_retry.md"), {"attempt": attempt, "failure": failure}, "_retry.md")
     return text

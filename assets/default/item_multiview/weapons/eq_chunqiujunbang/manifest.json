@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_chunqiujunbang",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_chunqiujunbang.png",
+  "generatedAt": "2026-10-07T15:03:02.508Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 95150,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/93698aa3-c666-416d-9feb-dd6227259284/multiview_0_93698aa3-c666-416d-9feb-dd6227259284.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 68243,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/93698aa3-c666-416d-9feb-dd6227259284/multiview_1_93698aa3-c666-416d-9feb-dd6227259284.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 70262,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/93698aa3-c666-416d-9feb-dd6227259284/multiview_3_93698aa3-c666-416d-9feb-dd6227259284.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 90422,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/93698aa3-c666-416d-9feb-dd6227259284/multiview_2_93698aa3-c666-416d-9feb-dd6227259284.jpeg"
+    }
+  }
+}

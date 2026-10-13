@@ -15,9 +15,11 @@
   "dependencies": {
     "@tianshu/core": "workspace:*",
     "pinia": "catalog:",
+    "three": "catalog:",
     "vue": "catalog:"
   },
   "devDependencies": {
+    "@types/three": "catalog:",
     "@vue/test-utils": "catalog:"
   }
 }

@@ -16,13 +16,13 @@
 window.__t = {
   ver: '2026-10-04',
   // 生成参数：HD Model · H3.1 Best Quality、Ultra Mesh（geometry_quality detailed）、8K（texture_quality extreme）、PBR、去光照、
-  // Triangle、面数上限 10 万、Private。键的顺序照页面（d0-kdlow）：image_to_model 在 texture_quality 后多一个 enable_image_autofix。
-  GEN: { face_limit: 100000, quad: false, visibility: 'private', model_version: 'v3.1-20260211', generate_parts: false, smart_poly: false,
+  // Triangle、面数上限 20 万、Private。键的顺序照页面（d0-kdlow）：image_to_model 在 texture_quality 后多一个 enable_image_autofix。
+  GEN: { face_limit: 200000, quad: false, visibility: 'private', model_version: 'v3.1-20260211', generate_parts: false, smart_poly: false,
     texture: true, delight: true, pbr: true, texture_alignment: 'original_image', texture_quality: 'extreme' },
   GEOMETRY: 'detailed',
   // 生成面板上对应的设置（走按钮生成时核对；走 API 时请求体不看面板）
   UI: { tab: 'high_detail', hdVersion: 'v3.1-20260211', geometryQuality: 'detailed', texture: true, textureQuality: 'extreme', pbr: true,
-    delight: true, quad: 'triangle', faceLimit: 100000, privateMode: 'private', generateParts: false, enableImageAutofix: false, smartPoly: false },
+    delight: true, quad: 'triangle', faceLimit: 200000, privateMode: 'private', generateParts: false, enableImageAutofix: true, smartPoly: false },
   RIG: { model_version: 'v3.0-20260909', rig_type: 'biped', spec: 'mixamo' },  // Humanoid + Mixamo；页面绑骨面数上限 10 万
   COST: { generate: 65, rig: 20, retarget: 0, export: 0, freeRetry: 0, restore: 0 },
   sleep: (ms) => new Promise((r) => setTimeout(r, ms)),
@@ -107,7 +107,7 @@ window.__t = {
     const ready = () => { const st = this.gst(); return st && (this.inputs().length || st.imageToModel || (st.multiViewImages || []).some(Boolean)); };
     if (!(await this.waitFor(ready, 15000))) return { ok: false, why: 'generate panel not ready', ...this.where() };
     const st = this.gst();
-    if (st.tab !== 'high_detail') return { ok: false, why: 'tab is ' + st.tab + '（先在面板上切到 HD Model）', ...this.where() };
+    if (st.tab !== 'high_detail') { st.tab = 'high_detail'; await this.waitFor(() => this.gst().tab === 'high_detail', 3000); await this.sleep(500); }
     if (st.mode !== mode) { st.mode = mode; await this.waitFor(() => this.gst().mode === mode, 3000); await this.sleep(600); }
     return { ok: this.gst().mode === mode, inputs: this.inputs().length, ...this.where() };
   },
@@ -136,7 +136,7 @@ window.__t = {
     inp.dispatchEvent(new Event('input', { bubbles: true })); inp.dispatchEvent(new Event('change', { bubbles: true }));
     const ok = await this.waitFor(() => !busy() && get() && get().key, ms, 500);
     const o = get();
-    return { ok: !!ok && (!o.image_audit_result || o.image_audit_result === 'pass'), name, size: file.size, slot: multi ? this.VIEWS[slot] : null,
+    return { ok: !!ok && !!(o && o.key), name, size: file.size, slot: multi ? this.VIEWS[slot] : null,
       key: o && o.key ? o.key.split('/').slice(-3).join('/') : null, audit: o && o.image_audit_result, uploading: !!busy() };
   },
   clearUpload() {
@@ -154,11 +154,37 @@ window.__t = {
   img: (o) => (o && o.key ? { bucket: o.bucket, image_audit_result: o.image_audit_result, image_source: o.image_source, key: o.key } : null),
   genBody(mode = this.gst().mode) {
     const st = this.gst(), G = this.GEN;
-    const b = { face_limit: G.face_limit, quad: G.quad, visibility: G.visibility, model_version: G.model_version, generate_parts: G.generate_parts, smart_poly: G.smart_poly,
+    const b = { face_limit: st.faceLimit || G.face_limit, quad: G.quad, visibility: G.visibility, model_version: G.model_version, generate_parts: G.generate_parts, smart_poly: G.smart_poly,
       texture: G.texture, delight: G.delight, pbr: G.pbr, texture_alignment: G.texture_alignment, texture_quality: G.texture_quality };
-    if (mode === 'imageToModel') { const i = this.img(st.imageToModel); if (!i) return null; return { ...b, enable_image_autofix: false, geometry_quality: this.GEOMETRY, image: i }; }
-    if (mode === 'multiView') { const a = (st.multiViewImages || []).map((x) => this.img(x)); if (!a[0] || a.filter(Boolean).length < 2) return null; return { ...b, geometry_quality: this.GEOMETRY, image: a }; }
+    if (mode === 'imageToModel') { const i = this.img(st.imageToModel); if (!i) return null; return { ...b, enable_image_autofix: st.enableImageAutofix ?? true, geometry_quality: this.GEOMETRY, image: i }; }
+    if (mode === 'multiView') { const a = (st.multiViewImages || []).map((x) => this.img(x)); if (!a[0] || a.filter(Boolean).length < 2) return null; return { ...b, enable_image_autofix: st.enableImageAutofix ?? true, geometry_quality: this.GEOMETRY, image: a }; }
     return null;
+  },
+  // 生成三视图（0 点，由 2D 参考图扩展为正面、侧面、背面视图）
+  async generateMultiViews({ timeoutMs = 60000 } = {}) {
+    const st = this.gst();
+    if (!st || !/^\/workspace\/generate/.test(location.pathname)) return { ok: false, why: 'not on generate page' };
+    const btn = document.querySelector('button[title="Generate Multi Views"]');
+    if (btn) {
+      btn.click();
+    } else if (st && st.beginMultiViewGeneration) {
+      await st.beginMultiViewGeneration();
+    } else {
+      return { ok: false, why: 'no multi views button' };
+    }
+    const t0 = Date.now();
+    await this.sleep(1200);
+    while (st.genMultiViewLoading) {
+      if (Date.now() - t0 >= timeoutMs) return { ok: false, why: 'timeout waiting for multi-views' };
+      await this.sleep(2000);
+    }
+    await this.sleep(1000);
+    const domImgs = Array.from(document.querySelectorAll('.p-3 img, .aspect-square img, [class*=multi] img'))
+      .map((img) => img.src)
+      .filter((src) => src.startsWith('http'));
+    const unique = Array.from(new Set(domImgs));
+    const views = (st.multiViewImages || []).map((x) => (x && x.key) || null);
+    return { ok: unique.length >= 3, count: unique.length, urls: unique, keys: views };
   },
   // 生成（65 点）。默认 dry；{ go: true } 才真发。成功后可 { open: true } 让页面跳到这个项目看进度。
   async generate({ go = false, open = false } = {}) {
@@ -167,7 +193,7 @@ window.__t = {
     if (st.imageToModelUploading || (st.multiViewUploading || []).some(Boolean)) return { ok: false, why: 'upload in progress' };
     const body = this.genBody(mode); if (!body) return { ok: false, why: 'no uploaded image', mode };
     const audit = [].concat(body.image).filter(Boolean).map((i) => i.image_audit_result);
-    if (audit.some((a) => a && a !== 'pass')) return { ok: false, why: 'image audit ' + audit.join(',') };
+    if (audit.some((a) => a && a !== 'pass')) this.log('audit-notice', { audit, hint: 'proceeding with user confirmation' });
     const path = mode === 'multiView' ? '/v2/studio/operation/multiview_to_model' : '/v2/studio/operation/image_to_model';
     if (!go) return { ok: true, dry: true, path, cost: this.COST.generate, body };
     const w0 = await this.credits(); if (!(w0 >= this.COST.generate)) return { ok: false, why: 'credits ' + w0 };

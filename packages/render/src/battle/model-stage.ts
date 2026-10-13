@@ -14,6 +14,7 @@ export interface BattleModelStage {
   update(dt: number, reducedMotion: boolean): void;
   hasModel(id: string): boolean;
   position(id: string, out: Vector3): boolean;
+  playStrike?(actorId: string, targetId?: string): void;
   restore(): void;
   dispose(): void;
 }
@@ -22,11 +23,22 @@ export interface BattleModelStageOptions {
   readonly changed?: () => void;
   readonly loadModel?: typeof loadPilotModel;
 }
+interface StrikeMotion {
+  readonly mode: 'attack' | 'recoil';
+  elapsed: number;
+  readonly duration: number;
+  readonly direction: Vector3;
+  readonly distance: number;
+  readonly originPos: Vector3;
+}
 interface Instance {
   readonly key: string; readonly anchor: Group; readonly mixer: AnimationMixer;
   readonly actions: Readonly<Record<'idle' | 'walk' | 'run', AnimationAction | undefined>>;
   readonly target: Vector3; readonly heightScale: number; readonly drawCalls: number;
   marker: BattleMarker; motion: 'idle' | 'walk' | 'run';
+  strike?: StrikeMotion | undefined;
+  pendingStrike?: { targetId?: string | undefined } | undefined;
+  pendingRecoil?: { direction: Vector3; distance: number; delay: number; originPos: Vector3 } | undefined;
 }
 
 const clipFor = (clips: readonly AnimationClip[], motion: 'idle' | 'walk' | 'run') =>
@@ -129,6 +141,7 @@ export function createBattleModelStage(scene: Scene, options: BattleModelStageOp
       anchor.rotation.y = MathUtils.degToRad(hexDirWorldYaw(latest.facing)); scene.add(anchor);
       const instance: Instance = { key, anchor, mixer, actions, target, marker: latest,
         heightScale: descriptor.heightM / 0.98, drawCalls: model.stats.drawCalls, motion: 'idle' };
+      if (actions.idle) actions.idle.timeScale = 1.8;
       actions.idle?.play(); instances.set(marker.id, instance); pending.delete(marker.id);
       refreshStats(); options.changed?.(); options.requestFrame?.();
     } catch {
@@ -136,6 +149,47 @@ export function createBattleModelStage(scene: Scene, options: BattleModelStageOp
         refreshStats(); options.changed?.(); options.requestFrame?.(); }
     }
   };
+  function playStrikeImpl(actorId: string, targetId?: string): void {
+    if (disposed) return;
+    const attacker = instances.get(actorId);
+    if (!attacker) return;
+    if (attacker.anchor.position.distanceTo(attacker.target) > 0.08) {
+      attacker.pendingStrike = { targetId };
+      return;
+    }
+    attacker.pendingStrike = undefined;
+    const target = targetId ? instances.get(targetId) : undefined;
+    let dir: Vector3;
+    let dist = 1.0;
+    if (target) {
+      dir = target.target.clone().sub(attacker.target);
+      dir.y = 0;
+      dist = dir.length();
+      if (dist > 1e-4) dir.normalize();
+      else dir.set(0, 0, 1);
+      target.pendingRecoil = {
+        direction: dir,
+        distance: Math.min(dist * 0.25, 0.35),
+        delay: 0.16,
+        originPos: target.target.clone(),
+      };
+    } else {
+      const yaw = MathUtils.degToRad(hexDirWorldYaw(attacker.marker.facing));
+      dir = new Vector3(Math.sin(yaw), 0, Math.cos(yaw));
+    }
+    attacker.anchor.rotation.y = Math.atan2(dir.x, dir.z);
+    setMotion(attacker, 'run');
+    attacker.strike = {
+      mode: 'attack',
+      elapsed: 0,
+      duration: 0.38,
+      direction: dir,
+      distance: Math.min(dist * 0.45, 0.75),
+      originPos: attacker.target.clone(),
+    };
+    options.changed?.();
+    options.requestFrame?.();
+  }
   return {
     stats,
     updateUnits(units) {
@@ -163,15 +217,76 @@ export function createBattleModelStage(scene: Scene, options: BattleModelStageOp
       if (disposed) return;
       let moving = 0;
       for (const instance of instances.values()) {
-        const distance = instance.anchor.position.distanceTo(instance.target);
-        if (reducedMotion) { instance.anchor.position.copy(instance.target); setMotion(instance, 'idle'); }
-        else if (distance > 1e-3) {
-          const motion = distance > 1.25 ? 'run' : 'walk';
-          const speed = battleModelSpeed(motion, instance.heightScale * 0.98);
-          const step = Math.min(distance, speed * dt);
-          instance.anchor.position.lerp(instance.target, distance <= step ? 1 : step / distance);
-          setMotion(instance, motion); moving += distance > step ? 1 : 0;
-        } else setMotion(instance, 'idle');
+        if (instance.pendingRecoil) {
+          instance.pendingRecoil.delay -= dt;
+          if (instance.pendingRecoil.delay <= 0) {
+            instance.strike = {
+              mode: 'recoil',
+              elapsed: 0,
+              duration: 0.32,
+              direction: instance.pendingRecoil.direction,
+              distance: instance.pendingRecoil.distance,
+              originPos: instance.pendingRecoil.originPos,
+            };
+            delete instance.pendingRecoil;
+          }
+        }
+        if (instance.strike) {
+          const s = instance.strike;
+          s.elapsed += dt;
+          const p = Math.min(1, s.elapsed / s.duration);
+          if (s.mode === 'attack') {
+            const factor = p < 0.45
+              ? Math.sin(p / 0.45 * (Math.PI / 2))
+              : Math.cos((p - 0.45) / 0.55 * (Math.PI / 2));
+            instance.anchor.position.copy(s.originPos)
+              .addScaledVector(s.direction, s.distance * factor);
+            instance.anchor.rotation.x = -0.15 * factor;
+          } else {
+            const factor = Math.sin(p * Math.PI);
+            instance.anchor.position.copy(s.originPos)
+              .addScaledVector(s.direction, s.distance * factor);
+            instance.anchor.rotation.x = 0.12 * factor;
+          }
+          if (p >= 1) {
+            instance.anchor.position.copy(s.originPos);
+            instance.anchor.rotation.x = 0;
+            instance.anchor.rotation.y = MathUtils.degToRad(hexDirWorldYaw(instance.marker.facing));
+            setMotion(instance, 'idle');
+            delete instance.strike;
+          }
+          moving += 1;
+        } else {
+          const distance = instance.anchor.position.distanceTo(instance.target);
+          if (reducedMotion) {
+            instance.anchor.position.copy(instance.target);
+            setMotion(instance, 'idle');
+            if (instance.pendingStrike) {
+              const pending = instance.pendingStrike;
+              delete instance.pendingStrike;
+              playStrikeImpl(instance.marker.id, pending.targetId);
+            }
+          } else if (distance > 1e-3) {
+            const motion = distance > 1.25 ? 'run' : 'walk';
+            const speed = battleModelSpeed(motion, instance.heightScale * 0.98);
+            const step = Math.min(distance, speed * dt);
+            instance.anchor.position.lerp(instance.target, distance <= step ? 1 : step / distance);
+            setMotion(instance, motion);
+            moving += distance > step ? 1 : 0;
+            if (distance <= step && instance.pendingStrike) {
+              const pending = instance.pendingStrike;
+              delete instance.pendingStrike;
+              playStrikeImpl(instance.marker.id, pending.targetId);
+            }
+          } else {
+            setMotion(instance, 'idle');
+            if (instance.pendingStrike) {
+              const pending = instance.pendingStrike;
+              delete instance.pendingStrike;
+              playStrikeImpl(instance.marker.id, pending.targetId);
+            }
+          }
+        }
         instance.mixer.update(reducedMotion ? 0 : dt);
       }
       stats.moving = moving;
@@ -181,6 +296,7 @@ export function createBattleModelStage(scene: Scene, options: BattleModelStageOp
       const instance = instances.get(id);
       if (!instance) return false; out.copy(instance.anchor.position); return true;
     },
+    playStrike: (actorId: string, targetId?: string) => playStrikeImpl(actorId, targetId),
     restore() {
       for (const model of loaded) for (const mesh of model.materials.meshes) {
         const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];

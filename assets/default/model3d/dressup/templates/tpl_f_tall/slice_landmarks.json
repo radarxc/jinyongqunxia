@@ -1,0 +1,298 @@
+{
+  "schema": "tianshu-dressup-slice-landmarks.v1",
+  "kind": "body",
+  "template": "tpl_f_tall",
+  "unit": "mu",
+  "up": "+Y",
+  "front": "+Z",
+  "heightMu": 1.015528,
+  "mPerMu": 1.6937,
+  "levels": {
+    "neckBase": {
+      "label": "颈根",
+      "yMu": 0.819514,
+      "method": "自颈环（y=0.8264）向下截面宽首次 ≥ 1.5 × 颈宽（0.0643 mu）",
+      "centerMu": [
+        -0.001378,
+        -0.020832
+      ],
+      "widthMu": 0.094546,
+      "depthMu": 0.051462
+    },
+    "shoulder": {
+      "label": "肩",
+      "yMu": 0.799587,
+      "method": "腋下与颈根之间躯干截面最宽处（肩峰高）",
+      "centerMu": [
+        0.000477,
+        -0.017875
+      ],
+      "widthMu": 0.198796,
+      "depthMu": 0.077183
+    },
+    "armpit": {
+      "label": "腋下",
+      "yMu": 0.732426,
+      "method": "自下而上两臂独立环并入躯干环处",
+      "centerMu": [
+        0.000467,
+        0.009755
+      ],
+      "widthMu": 0.15401,
+      "depthMu": 0.139794
+    },
+    "bust": {
+      "label": "胸",
+      "yMu": 0.721356,
+      "method": "腰与腋下之间躯干前缘最突出处",
+      "centerMu": [
+        -0.00075,
+        0.012896
+      ],
+      "widthMu": 0.152727,
+      "depthMu": 0.138566
+    },
+    "underBust": {
+      "label": "胸下",
+      "yMu": 0.684454,
+      "method": "自胸向下躯干前缘首个局部最低处",
+      "centerMu": [
+        -0.000706,
+        0.01018
+      ],
+      "widthMu": 0.131018,
+      "depthMu": 0.103613
+    },
+    "waist": {
+      "label": "腰",
+      "yMu": 0.638697,
+      "method": "胯与腋下之间躯干凸包周长最小处",
+      "centerMu": [
+        -0.000717,
+        0.01509
+      ],
+      "widthMu": 0.114144,
+      "depthMu": 0.086236
+    },
+    "navel": {
+      "label": "肚脐",
+      "yMu": 0.608004,
+      "method": "腰下前中线前缘最深凹点（脐窝）",
+      "centerMu": [
+        -0.000708,
+        0.012109
+      ],
+      "widthMu": 0.139408,
+      "depthMu": 0.090026
+    },
+    "pelvis": {
+      "label": "胯",
+      "yMu": 0.537891,
+      "method": "Hips 关节高度",
+      "centerMu": [
+        -0.000763,
+        -0.012727
+      ],
+      "widthMu": 0.189087,
+      "depthMu": 0.13435
+    },
+    "hip": {
+      "label": "臀围",
+      "yMu": 0.494043,
+      "method": "裆与腰之间躯干凸包周长最大处",
+      "centerMu": [
+        -0.000704,
+        -0.014139
+      ],
+      "widthMu": 0.208041,
+      "depthMu": 0.122453
+    },
+    "crotch": {
+      "label": "裆",
+      "yMu": 0.477068,
+      "method": "自下而上躯干截面两腿两环合成一环处",
+      "centerMu": [
+        -0.000704,
+        -0.009142
+      ],
+      "widthMu": 0.211644,
+      "depthMu": 0.116158
+    },
+    "belowHip": {
+      "label": "臀下",
+      "yMu": 0.455665,
+      "method": "裆下大腿后缘外凸 > 3 mm 的最低处（臀沟）",
+      "centerMu": [
+        -0.000681,
+        0.000928
+      ],
+      "widthMu": 0.212524,
+      "depthMu": 0.096739
+    },
+    "midThigh": {
+      "label": "大腿中",
+      "yMu": 0.368209,
+      "method": "裆与膝中点",
+      "centerMu": [
+        -0.000695,
+        0.000852
+      ],
+      "widthMu": 0.199974,
+      "depthMu": 0.088637
+    },
+    "aboveKnee": {
+      "label": "膝上",
+      "yMu": 0.313779,
+      "method": "膝上：膝 + 0.25 ×（裆 − 膝）",
+      "centerMu": [
+        -0.000702,
+        -0.003061
+      ],
+      "widthMu": 0.190586,
+      "depthMu": 0.067115
+    },
+    "knee": {
+      "label": "膝",
+      "yMu": 0.25935,
+      "method": "LeftLeg / RightLeg 关节平均",
+      "centerMu": [
+        -0.000677,
+        -0.010464
+      ],
+      "widthMu": 0.19479,
+      "depthMu": 0.060628
+    },
+    "calf": {
+      "label": "小腿肚",
+      "yMu": 0.184786,
+      "method": "膝下 0.3 ×（膝 − 踝）",
+      "centerMu": [
+        -0.00074,
+        -0.027881
+      ],
+      "widthMu": 0.219892,
+      "depthMu": 0.062623
+    },
+    "aboveAnkle": {
+      "label": "踝上",
+      "yMu": 0.048087,
+      "method": "踝上：踝 + 0.15 ×（膝 − 踝）",
+      "centerMu": [
+        -0.000903,
+        -0.02348
+      ],
+      "widthMu": 0.209465,
+      "depthMu": 0.045182
+    },
+    "ankle": {
+      "label": "踝",
+      "yMu": 0.010805,
+      "method": "LeftFoot / RightFoot 关节平均",
+      "centerMu": [
+        -0.001056,
+        -0.022359
+      ],
+      "widthMu": 0.218418,
+      "depthMu": 0.056417
+    }
+  },
+  "limbs": {
+    "armL": {
+      "shoulderMu": [
+        0.083156,
+        0.777716,
+        -0.018601
+      ],
+      "elbowMu": [
+        0.138691,
+        0.650779,
+        -0.018601
+      ],
+      "wristMu": [
+        0.197379,
+        0.543275,
+        0.008474
+      ],
+      "handMu": [
+        0.228207,
+        0.486963,
+        0.02772
+      ],
+      "wristJointMu": [
+        0.196397,
+        0.547932,
+        0.007574
+      ]
+    },
+    "armR": {
+      "shoulderMu": [
+        -0.079328,
+        0.777716,
+        -0.018601
+      ],
+      "elbowMu": [
+        -0.134863,
+        0.650779,
+        -0.018601
+      ],
+      "wristMu": [
+        -0.198573,
+        0.543696,
+        0.008307
+      ],
+      "handMu": [
+        -0.231888,
+        0.488636,
+        0.028003
+      ],
+      "wristJointMu": [
+        -0.208892,
+        0.525926,
+        0.011844
+      ]
+    },
+    "legL": {
+      "hipMu": [
+        0.061908,
+        0.52075,
+        -0.006199
+      ],
+      "kneeMu": [
+        0.074764,
+        0.25935,
+        -0.006199
+      ],
+      "ankleMu": [
+        0.087619,
+        0.010805,
+        -0.023341
+      ]
+    },
+    "legR": {
+      "hipMu": [
+        -0.058079,
+        0.52075,
+        -0.006199
+      ],
+      "kneeMu": [
+        -0.070935,
+        0.25935,
+        -0.0062
+      ],
+      "ankleMu": [
+        -0.083791,
+        0.010805,
+        -0.023341
+      ]
+    }
+  },
+  "limbsMethod": "肩 / 肘 = Arm / ForeArm 关节；腕 = 肘 → 中指指根 50–90% 段前臂垂直截面凸包周长最小处的质心；hand = HandMiddle1 关节；wristJointMu = 骨架 Hand 关节（只记录）",
+  "generator": "tools/model3d/dressup/slice_fit.py body-landmarks",
+  "source": {
+    "body": "assets/default/model3d/dressup/templates/tpl_f_tall/body.glb",
+    "bodySha256": "fc6772d64fb84a26f87346d9043e8e7cf508395dcb4658e92a0aa60e75da907d",
+    "skeleton": "assets/default/model3d/dressup/templates/tpl_f_tall/skeleton.json",
+    "skeletonSha256": "9db4ecb73b04c8b9dd189f520480cc2b2ab222e5abbac0fb58094adacac7e9f5"
+  },
+  "confirmed": "Claude（ENG-dressup-g1-slice-fit）2026-10-10 建、r2 2026-10-11 复核：脚本自动求出后看正 / 侧叠图逐项核对（颈根、肩、腋下、胸、胸下、腰、肚脐、胯、臀围、裆、臀下、膝、踝）与解剖位置一致，未手改数值；r2 起腕点取网格前臂最细处（骨架 Hand 关节左右不对称，原值记 wristJointMu）"
+}

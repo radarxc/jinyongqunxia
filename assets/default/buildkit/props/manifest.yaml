@@ -1,0 +1,199 @@
+schemaVersion: buildkit-layers.v1
+kit: props
+status: candidate
+tool: procedural
+model: numpy+pillow
+created: '2026-10-11T00:00:00Z'
+command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+masterSize: [1024, 1024]
+layers:
+  - index: 0
+    id: wood_furniture
+    file: layers/wood_furniture.png
+    category: buildkit_layer
+    style: default
+    subject: 'props · wood_furniture，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：家具板宽 200 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 1000]
+    scaleMm: [200, null]
+    sha256: 2c9b9ce3478adefbfbf270b4f0c0f2c7f30900f19e48831769b34c2f3728c0e7
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；家具板宽 200 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 1
+    id: wood_rough
+    file: layers/wood_rough.png
+    category: buildkit_layer
+    style: default
+    subject: 'props · wood_rough，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：粗木板宽 250 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 1000]
+    scaleMm: [250, null]
+    sha256: 0c25c5619b6aea43c2e495187c985990fdd7e7287446adafd7746b2be416b373
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；粗木板宽 250 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 2
+    id: ceramic_glaze
+    file: layers/ceramic_glaze.png
+    category: buildkit_layer
+    style: default
+    subject: 'props · ceramic_glaze，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：釉陶细斑约 250 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 1000]
+    scaleMm: [250, 250]
+    sha256: dba092595b17701dffb1c9eb00d2a52f8c07f2c6c5d22a8ff7d33c03605f875a
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；釉陶细斑约 250 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 3
+    id: iron
+    file: layers/iron.png
+    category: buildkit_layer
+    style: default
+    subject: 'props · iron，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：锻铁锤痕约 300 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [900, 900]
+    scaleMm: [300, 300]
+    sha256: 622937ce52d7f165a6a7b4446ba82db450ad05453ca5efa6de1a3f7445808f0e
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；锻铁锤痕约 300 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 4
+    id: cloth_bolt
+    file: layers/cloth_bolt.png
+    category: buildkit_layer
+    style: default
+    subject: 'props · cloth_bolt，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：布匹经纬约 12 mm（占位可读性放大）；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [996, 996]
+    scaleMm: [12, 12]
+    sha256: 6de0b099ecba0b384264e75096023162406430aba83dd28d7753089bc3149b8d
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；布匹经纬约 12 mm（占位可读性放大）；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 5
+    id: paper_books
+    file: layers/paper_books.png
+    category: buildkit_layer
+    style: default
+    subject: 'props · paper_books，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：书页叠边约 200 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 1000]
+    scaleMm: [null, 200]
+    sha256: f00148b93cfdec22d2a0a39784ca58d4765824217521157bf108a6801ea66543
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；书页叠边约 200 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 6
+    id: straw_basket
+    file: layers/straw_basket.png
+    category: buildkit_layer
+    style: default
+    subject: 'props · straw_basket，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：草编间距 80 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1040, 1040]
+    scaleMm: [80, 80]
+    sha256: f6155c840beee4e131b0f2be29155e212c1326d98b3095ab78644c617e9145cc
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；草编间距 80 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 7
+    id: medicine_drawers
+    file: layers/medicine_drawers.png
+    category: buildkit_layer
+    style: default
+    subject: 'props · medicine_drawers，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：药屉面 250×200 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 1000]
+    scaleMm: [250, 200]
+    sha256: 79fb417a266affc0b1eaa4b4479e8d188d76d70cc28240ec9c307661cee96e4f
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；药屉面 250×200 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+strips:
+  - id: props_strip_256
+    file: strip_256.webp
+    category: buildkit_strip
+    style: default
+    subject: 'props 程序化占位贴图按层下标纵向条带'
+    prompt: '由 1024x1024 母版按 manifest 层序缩至 256x256 后纵向拼接。'
+    negative: '不重排、不裁切、不加边距、不改平铺原点。'
+    references: []
+    tool: procedural
+    model: pillow-webp
+    effort: deterministic
+    command: 'python3 tools/buildgen/build_layer_strips.py --all --check'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/build_layer_strips.py
+    size: 256x2048
+    layerSize: 256
+    layerCount: 8
+    order: [wood_furniture, wood_rough, ceramic_glaze, iron, cloth_bolt, paper_books, straw_basket, medicine_drawers]
+    sha256: 69d4703afac92423c6de08ddfe3b28005b5727d31852252b016642e3cc1e1e81
+    status: candidate
+    notes: 'WebP quality 85；层下标从上到下 0..7。'

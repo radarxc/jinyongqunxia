@@ -7,10 +7,23 @@ const distDir = resolve(root, 'apps/game/dist');
 const budgets = JSON.parse(await readFile(resolve(root, 'tools/perf/budgets.json'), 'utf8'));
 const manifest = JSON.parse(await readFile(resolve(distDir, '.vite/manifest.json'), 'utf8'));
 let sizeGroups;
+let appSizeGroups;
+let buildgenWorkerSizeGroups = null;
 try {
   sizeGroups = JSON.parse(await readFile(resolve(distDir, '.vite/size-groups.json'), 'utf8'));
+  appSizeGroups = JSON.parse(
+    await readFile(resolve(distDir, '.vite/app-size-groups.json'), 'utf8'),
+  );
 } catch (error) {
-  throw new Error('SIZE_SESSION_GROUP_MISSING:size-groups.json', { cause: error });
+  throw new Error('SIZE_SESSION_GROUP_MISSING:size-group documents', { cause: error });
+}
+try {
+  buildgenWorkerSizeGroups = JSON.parse(
+    await readFile(resolve(distDir, '.vite/buildgen-worker-size-groups.json'), 'utf8'),
+  );
+} catch (error) {
+  if (error?.code !== 'ENOENT')
+    throw new Error('SIZE_SESSION_GROUP_MISSING:buildgenWorker', { cause: error });
 }
 
 const gzipCache = new Map();
@@ -23,7 +36,10 @@ async function gzipKiB(file) {
 }
 
 function findEntry() {
-  const entries = Object.entries(manifest).filter(([, item]) => item.isEntry);
+  const entries = Object.entries(manifest).filter(
+    ([key, item]) =>
+      item.isEntry && (sourceMatches(item.src ?? key, 'src/main.ts') || key === 'index.html'),
+  );
   if (entries.length !== 1) throw new Error(`SIZE_ENTRY_COUNT:${entries.length}`);
   return entries[0];
 }
@@ -103,6 +119,26 @@ function readGroup(name) {
   return files;
 }
 
+function readOptionalGroup(document, name) {
+  if (document.schemaVersion !== 'size-groups.v1')
+    throw new Error('SIZE_SESSION_GROUP_INVALID:schemaVersion');
+  const files = document.groups?.[name];
+  if (
+    !Array.isArray(files) ||
+    files.some((file) => typeof file !== 'string' || !file.endsWith('.js'))
+  )
+    throw new Error(`SIZE_SESSION_GROUP_MISSING:${name}`);
+  return files;
+}
+
+function assertModuleClosure(name, ids, forbidden) {
+  if (!Array.isArray(ids) || ids.some((id) => typeof id !== 'string'))
+    throw new Error(`SIZE_MODULE_GROUP_MISSING:${name}`);
+  const normalized = ids.map((id) => id.replaceAll('\\', '/'));
+  const found = normalized.find((id) => forbidden.some((part) => id.includes(part)));
+  if (found) throw new Error(`SIZE_STATIC_CLOSURE_FORBIDDEN:${name}:${found}`);
+}
+
 function readSubsystems() {
   const groups = sizeGroups.groups?.subsystems;
   if (!groups || typeof groups !== 'object' || Array.isArray(groups))
@@ -121,6 +157,19 @@ function readSubsystems() {
   return required.map((name) => ({ name: labels[name], files: groups[name] }));
 }
 
+assertModuleClosure(
+  'session',
+  sizeGroups.moduleIds?.sessionStatic,
+  ['/packages/core/src/world/explore/', '/packages/core/src/economy/shop-'],
+);
+assertModuleClosure('render', appSizeGroups.moduleIds?.renderStatic, [
+  '/packages/render/src/region/',
+  '/packages/render/src/town/',
+  '/packages/render/src/buildgen/',
+  '/packages/render/src/actor3d/',
+  '/three/examples/jsm/libs/meshopt_decoder.module.js',
+]);
+
 async function gzipFiles(files) {
   let total = 0;
   for (const file of new Set(files)) total += await gzipKiB(file);
@@ -130,6 +179,11 @@ async function gzipFiles(files) {
 const emittedJs = (await readdir(resolve(distDir, 'assets'))).filter((file) =>
   file.endsWith('.js'),
 );
+if (
+  buildgenWorkerSizeGroups === null &&
+  emittedJs.some((file) => file.startsWith('render-buildgen-worker-'))
+)
+  throw new Error('SIZE_SESSION_GROUP_MISSING:buildgenWorker');
 const [entryKey, entry] = findEntry();
 const entryFiles = staticClosure(entryKey);
 const shellRecord = {
@@ -154,6 +208,24 @@ const sessionRecord = {
   size: await gzipFiles(sessionFiles),
   budget: budgets.chunks.session,
 };
+async function groupBudgetRecord(name, files, excluded) {
+  const incremental = files.filter((file) => !excluded.has(file));
+  return {
+    name,
+    file: incremental.join(', ') || 'not emitted',
+    size: await gzipFiles(incremental),
+    budget: budgets.chunks[name],
+  };
+}
+const coreRecords = await Promise.all([
+  groupBudgetRecord('core-explore', readOptionalGroup(sizeGroups, 'coreExplore'), sessionFiles),
+  groupBudgetRecord('core-shop', readOptionalGroup(sizeGroups, 'coreShop'), sessionFiles),
+]);
+const exploreUiRecord = await groupBudgetRecord(
+  'explore-ui',
+  readOptionalGroup(appSizeGroups, 'exploreUi'),
+  new Set(),
+);
 const subsystemRecords = await Promise.all(
   readSubsystems().map(async ({ name, files }) => {
     const incremental = files.filter((file) => !sessionFiles.has(file));
@@ -213,36 +285,86 @@ const existingRecords = await Promise.all(
   }),
 );
 const renderRecord = existingRecords.find((record) => record.name === 'render');
-async function appendRenderLazyRecord(name, target) {
+async function appendRenderLazyRecord(name, target, excludedTargets = [], missingIsZero = false) {
   if (!target) {
-    existingRecords.push({ name, file: 'not emitted', size: null, budget: budgets.chunks[name] });
-    return;
+    const record = {
+      name,
+      file: 'not emitted',
+      size: missingIsZero ? 0 : null,
+      budget: budgets.chunks[name],
+      ...(name === 'render-dressup' ? { status: 'FAIL' } : {}),
+    };
+    existingRecords.push(record);
+    return record;
   }
   const [key] = target;
   const alreadyBudgeted = new Set(entryFiles);
   if (renderRecord?.key)
     for (const file of staticClosure(renderRecord.key)) alreadyBudgeted.add(file);
+  for (const excluded of excludedTargets) {
+    if (excluded) for (const file of staticClosure(excluded[0])) alreadyBudgeted.add(file);
+  }
   const files = withoutFiles(staticClosure(key), alreadyBudgeted);
-  existingRecords.push({
+  const record = {
     name,
     file: [...files].join(', '),
     size: await gzipFiles(files),
     budget: budgets.chunks[name],
-  });
+    key,
+  };
+  existingRecords.push(record);
+  return record;
 }
-await appendRenderLazyRecord(
-  'render-rig',
-  findManifestChunk('render-rig', {
-    sources: ['packages/render/src/rig/runtime.ts'],
-    manifestNames: ['rig', 'render-rig'],
-    dynamicImporterKeys: renderRecord?.key ? [renderRecord.key] : [],
-  }),
-);
+const rigTarget = findManifestChunk('render-rig', {
+  sources: ['packages/render/src/rig/runtime.ts'],
+  manifestNames: ['rig', 'render-rig'],
+  dynamicImporterKeys: renderRecord?.key ? [renderRecord.key] : [],
+});
+await appendRenderLazyRecord('render-rig', rigTarget);
 const model3dTarget = findManifestChunk('render-model3d', {
   sources: ['packages/render/src/battle/model-stage.ts'],
   manifestNames: ['battle-model3d', 'render-model3d'],
 });
 await appendRenderLazyRecord('render-model3d', model3dTarget);
+const dressupTarget = findManifestChunk('render-dressup', {
+  sources: ['packages/render/src/dressup/runtime.ts'],
+  manifestNames: ['render-dressup'],
+});
+await appendRenderLazyRecord('render-dressup', dressupTarget, [model3dTarget]);
+const townTargets = [
+  ['render-explore', ['packages/render/src/region/index.ts']],
+  ['render-town-legacy', ['packages/render/src/town/index.ts']],
+  ['render-buildgen', ['packages/render/src/buildgen/index.ts']],
+  ['render-actor3d', ['packages/render/src/actor3d/index.ts']],
+  ['render-meshopt', ['three/examples/jsm/libs/meshopt_decoder.module.js']],
+].map(([name, sources]) => [name, findManifestChunk(name, { sources, manifestNames: [name] })]);
+for (const [name, target] of townTargets) await appendRenderLazyRecord(name, target, [], true);
+const buildgenWorkerFiles = readOptionalGroup(
+  buildgenWorkerSizeGroups ?? { schemaVersion: 'size-groups.v1', groups: { buildgenWorker: [] } },
+  'buildgenWorker',
+);
+existingRecords.push(
+  await groupBudgetRecord(
+    'render-buildgen-worker',
+    buildgenWorkerFiles,
+    sessionFiles,
+  ),
+);
+existingRecords.push(exploreUiRecord);
+const dressupClosure = dressupTarget ? staticClosure(dressupTarget[0]) : new Set();
+const orphanDressupFiles = emittedJs
+  .filter((file) => file.startsWith('render-dressup-'))
+  .map((file) => `assets/${file}`)
+  .filter((file) => !dressupClosure.has(file));
+if (orphanDressupFiles.length > 0) {
+  existingRecords.push({
+    name: 'dressup orphan',
+    file: orphanDressupFiles.join(', '),
+    size: await gzipFiles(orphanDressupFiles),
+    budget: 0,
+    status: 'FAIL',
+  });
+}
 const bookFiles = emittedJs.filter((file) => file.startsWith('book-'));
 if (bookFiles.length === 0)
   existingRecords.push({
@@ -293,6 +415,20 @@ const routeRecord = {
   budget: budgets.routes.webglEntryAndRender,
 };
 printRecord(routeRecord);
+const routeTargets = [
+  renderRecord?.key ? [renderRecord.key] : null,
+  rigTarget,
+  dressupTarget,
+  ...townTargets.filter(([name]) => name !== 'render-town-legacy').map(([, target]) => target),
+];
+const exploreRouteFiles = new Set(entryFiles);
+for (const target of routeTargets)
+  if (target) for (const file of staticClosure(target[0])) exploreRouteFiles.add(file);
+printRecord({
+  name: 'webglExploreRoute',
+  size: await gzipFiles(exploreRouteFiles),
+  budget: budgets.routes.webglExploreRoute,
+});
 const webgpuSize = existingRecords.find((record) => record.name === 'render-webgpu')?.size;
 if (webgpuSize !== null && webgpuSize !== undefined)
   printRecord({
@@ -304,6 +440,7 @@ if (webgpuSize !== null && webgpuSize !== undefined)
 printHeader(`首次会话闭包（预算 ${budgets.chunks.session} KiB gzip）`);
 for (const part of measuredSessionParts) printRecord({ ...part, budget: null, status: '计入合计' });
 printRecord(sessionRecord);
+for (const record of coreRecords) printRecord(record);
 
 printHeader('子系统块（只报告，未设门；为首次会话后的增量静态闭包）');
 for (const record of subsystemRecords) printRecord(record);

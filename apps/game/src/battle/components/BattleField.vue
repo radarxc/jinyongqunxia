@@ -1,5 +1,5 @@
 <script setup lang="ts">
-/* global window, document, ResizeObserver, requestAnimationFrame, cancelAnimationFrame, PointerEvent, KeyboardEvent, Element, HTMLElement, HTMLCanvasElement, setTimeout, clearTimeout */
+/* global window, document, ResizeObserver, requestAnimationFrame, cancelAnimationFrame, PointerEvent, MouseEvent, KeyboardEvent, Element, HTMLElement, HTMLCanvasElement, setTimeout, clearTimeout */
 import { TICKS_PER_HOUR } from '@tianshu/core';
 import { t } from '@tianshu/ui/runtime';
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, triggerRef, watch } from 'vue';
@@ -14,6 +14,7 @@ const props = defineProps<{
   controller: BattleController;
   battle: BattleView;
   selected: string | null;
+  selectedMove?: string | null;
   reducedMotion: boolean;
   floating: readonly BattleLogEntry[];
   skip: boolean;
@@ -22,6 +23,10 @@ const emit = defineEmits<{
   cell: [cell: BattleCell];
   hover: [cell: BattleCell];
   select: [id: string];
+  hoverUnit: [id: string | null];
+  space: [];
+  cancel: [];
+  chooseMove: [moveId: string];
 }>();
 const root = ref<HTMLElement>();
 const canvas = ref<HTMLCanvasElement>();
@@ -49,11 +54,130 @@ let effectsState: 'ok' | 'lost' | 'failed' = 'ok';
 let resumeBattle = false;
 let recovery: Promise<boolean> | undefined;
 let offVfx: (() => void) | undefined;
+let offMove: (() => void) | undefined;
 let disposed = false;
 let frame = 0;
 let framePending = false;
 let lastStats = 0;
-let hovered = '';
+const hovered = ref('');
+const hoveredCell = ref<BattleCell | null>(null);
+const activeItemMode = ref(false);
+const activeRestMode = ref(false);
+const showMovesPicker = ref(false);
+const showItemsPicker = ref(false);
+const actorUnit = computed(() => props.battle.units.find(u => u.id === props.battle.actorId));
+
+function getUnitAtbPercent(unit: BattleView['units'][number]): number {
+  if (props.battle.actorId === unit.id) return 100;
+  if (typeof unit.ct === 'number' && unit.ct > 0) {
+    return Math.min(99, Math.max(5, Math.round((unit.ct / 1000) * 100)));
+  }
+  const timelineIdx = props.battle.timeline?.findIndex(t => t.unitId === unit.id) ?? -1;
+  if (timelineIdx === 0) return 96;
+  if (timelineIdx > 0) {
+    const total = props.battle.timeline.length || 1;
+    return Math.min(95, Math.max(10, Math.round((1 - timelineIdx / (total + 1)) * 95)));
+  }
+  const spd = Math.max(20, Math.min(300, unit.spd || 100));
+  return Math.min(90, Math.max(15, Math.round((spd / 120) * 70)));
+}
+
+function triggerAttackAction(): void {
+  showMovesPicker.value = false;
+  showItemsPicker.value = false;
+  activeItemMode.value = false;
+  activeRestMode.value = false;
+  props.controller.setMovement(false);
+  const primaryMove = actorUnit.value?.moves[0];
+  if (primaryMove) {
+    emit('chooseMove', primaryMove.id);
+  }
+}
+
+function triggerMoveAction(): void {
+  showItemsPicker.value = false;
+  activeItemMode.value = false;
+  activeRestMode.value = false;
+  props.controller.setMovement(false);
+  showMovesPicker.value = !showMovesPicker.value;
+}
+
+function onPickMove(moveId: string): void {
+  showMovesPicker.value = false;
+  showItemsPicker.value = false;
+  activeItemMode.value = false;
+  activeRestMode.value = false;
+  props.controller.setMovement(false);
+  emit('chooseMove', moveId);
+}
+
+function triggerQiAction(): void {
+  showMovesPicker.value = false;
+  showItemsPicker.value = false;
+  activeItemMode.value = false;
+  activeRestMode.value = false;
+  props.controller.setMovement(false);
+  const qiMove = actorUnit.value?.moves.find(m => m.id.includes('qi') || m.id.includes('heal') || m.id.includes('buff')) ?? actorUnit.value?.moves[2] ?? actorUnit.value?.moves[0];
+  if (qiMove) {
+    emit('chooseMove', qiMove.id);
+  }
+}
+
+function triggerWalkAction(): void {
+  showMovesPicker.value = false;
+  showItemsPicker.value = false;
+  activeItemMode.value = false;
+  activeRestMode.value = false;
+  props.controller.setMovement(true);
+}
+
+function triggerRestAction(): void {
+  showMovesPicker.value = false;
+  showItemsPicker.value = false;
+  activeItemMode.value = false;
+  activeRestMode.value = true;
+  props.controller.setMovement(false);
+  if (actorUnit.value) {
+    const revision = props.battle.revision;
+    const dest = destination.value;
+    const walkTo = dest && dest.cost > 0 ? { q: dest.q, r: dest.r } : undefined;
+    void props.controller.command({
+      t: 'battle/defend',
+      actor: actorUnit.value.id,
+      revision,
+      ...(walkTo ? { walkTo } : {}),
+    });
+  }
+}
+
+function triggerItemAction(): void {
+  showMovesPicker.value = false;
+  props.controller.setMovement(false);
+  activeRestMode.value = false;
+  showItemsPicker.value = !showItemsPicker.value;
+  activeItemMode.value = showItemsPicker.value;
+}
+
+function useItemOnActor(itemId: string): void {
+  const items = props.battle.capabilities.items;
+  const item = items?.find(i => i.id === itemId);
+  if (item && actorUnit.value) {
+    const target = item.targets.find(t => t.capability.enabled) ?? { id: actorUnit.value.id };
+    const revision = props.battle.revision;
+    const dest = destination.value;
+    const walkTo = dest && dest.cost > 0 ? { q: dest.q, r: dest.r } : undefined;
+    void props.controller.command({
+      t: 'battle/item',
+      actor: actorUnit.value.id,
+      itemId: item.id,
+      targetId: target.id,
+      revision,
+      ...(walkTo ? { walkTo } : {}),
+    });
+    showItemsPicker.value = false;
+    activeItemMode.value = false;
+  }
+}
 const floatingVisible = ref(true);
 const floatingPending = ref(false);
 const floatDuration = ref(600);
@@ -66,7 +190,27 @@ const area = computed(
 );
 const destination = computed(() => props.battle.capabilities.move.selected);
 const movement = props.controller.movement;
-const directionLabels = ['东', '东北', '西北', '西', '西南', '东南'];
+
+function hexDist(a: { q: number; r: number }, b: { q: number; r: number }): number {
+  return (Math.abs(a.q - b.q) + Math.abs(a.q + a.r - b.q - b.r) + Math.abs(a.r - b.r)) / 2;
+}
+
+const attackReachableKeys = computed(() => {
+  if (!props.selectedMove || !actorUnit.value) return [];
+  const move = actorUnit.value.moves.find(m => m.id === props.selectedMove);
+  if (!move) return [];
+  const range = move.range ?? 1;
+  const origin = destination.value ?? actorUnit.value;
+  const result: string[] = [];
+  for (const cell of props.battle.info.cells) {
+    const dist = hexDist(origin, cell);
+    if (dist <= range && (dist > 0 || move.shape.tpl === 'aoe_self')) {
+      result.push(`${cell.q},${cell.r}`);
+    }
+  }
+  return result;
+});
+
 function project(force = false): void {
   if (!renderer) return;
   const next = positions.value as Map<string, ProjectedUnit>;
@@ -120,6 +264,7 @@ function highlights(): void {
     ready: actor ? `${actor.q},${actor.r}` : null,
     reachable: movement.value
       ? props.battle.capabilities.move.reachable.map(cell => `${cell.q},${cell.r}`) : [],
+    attackReachable: attackReachableKeys.value,
     path: destination.value?.path.map(cell => `${cell.q},${cell.r}`) ?? [],
     ghost: destination.value ? `${destination.value.q},${destination.value.r}` : null,
     area: [...area.value],
@@ -141,7 +286,7 @@ function draw(time: number): void {
   framePending = false;
   if (disposed) return;
   requestDraw();
-  if (document.visibilityState === 'hidden') return;
+  if (document.visibilityState === 'hidden' && !import.meta.env?.DEV) return;
   renderer?.render(time, props.reducedMotion || props.skip);
   if (renderer?.stats.modelMoving) project(true);
   if (renderer) {
@@ -209,20 +354,94 @@ function keyboard(event: KeyboardEvent): void {
   if (key === 'q' || key === 'e') {
     event.preventDefault();
     rotateCamera(key === 'q' ? -1 : 1);
+  } else if (event.code === 'Space' || event.key === ' ') {
+    event.preventDefault();
+    emit('space');
+  } else if (event.key === 'Escape') {
+    event.preventDefault();
+    emit('cancel');
   }
 }
 function pointer(event: PointerEvent, commit: boolean): void {
   if (!renderer || !canvas.value) return;
   const bounds = canvas.value.getBoundingClientRect();
   const cell = renderer.pick(event.clientX - bounds.left, event.clientY - bounds.top);
-  if (!cell) return;
-  const key = `${cell.q},${cell.r}`;
-  if (commit && movement.value) chooseDestination(cell);
-  else if (commit) emit('cell', cell);
-  else if (key !== hovered) {
-    hovered = key;
-    emit('hover', cell);
+  if (!cell) {
+    if (hovered.value !== '') {
+      hovered.value = '';
+      hoveredCell.value = null;
+      emit('hoverUnit', null);
+    }
+    return;
   }
+  const key = `${cell.q},${cell.r}`;
+  if (commit) {
+    const isReachable = props.battle.capabilities.move.reachable.some(row => row.q === cell.q && row.r === cell.r);
+    const unitOnCell = props.battle.units.find(u => u.active && u.q === cell.q && u.r === cell.r);
+    if (movement.value && isReachable) {
+      chooseDestination(cell);
+    } else if (!props.battle.preview && isReachable && (!unitOnCell || unitOnCell.id === props.battle.actorId)) {
+      chooseDestination(cell);
+    } else {
+      if (unitOnCell && !props.battle.preview) {
+        emit('select', unitOnCell.id);
+      }
+      emit('cell', cell);
+    }
+  } else if (key !== hovered.value) {
+    hovered.value = key;
+    hoveredCell.value = cell;
+    emit('hover', cell);
+    const unitOnCell = props.battle.units.find(u => u.active && u.q === cell.q && u.r === cell.r);
+    emit('hoverUnit', unitOnCell ? unitOnCell.id : null);
+  }
+}
+function onCanvasPointerLeave(): void {
+  hovered.value = '';
+  hoveredCell.value = null;
+  emit('hoverUnit', null);
+}
+function onDblClick(event: MouseEvent): void {
+  if (!renderer || !canvas.value || !props.battle.actorId) return;
+  const bounds = canvas.value.getBoundingClientRect();
+  const cell = renderer.pick(event.clientX - bounds.left, event.clientY - bounds.top);
+  if (!cell) return;
+  const reachableCell = props.battle.capabilities.move.reachable.find(row => row.q === cell.q && row.r === cell.r);
+  if (!reachableCell) return;
+  const occupant = props.battle.units.find(u => u.active && u.id !== props.battle.actorId && u.q === cell.q && u.r === cell.r);
+  if (!occupant) {
+    void props.controller.command({
+      t: 'battle/wait',
+      actor: props.battle.actorId,
+      revision: props.battle.revision,
+      walkTo: { q: cell.q, r: cell.r },
+    });
+    props.controller.setMovement(false);
+  }
+}
+function onContextMenu(event: MouseEvent): void {
+  event.preventDefault();
+  if (!renderer || !canvas.value) return;
+  const bounds = canvas.value.getBoundingClientRect();
+  const cell = renderer.pick(event.clientX - bounds.left, event.clientY - bounds.top);
+  if (cell) {
+    const unitOnCell = props.battle.units.find(u => u.active && u.q === cell.q && u.r === cell.r);
+    if (unitOnCell) {
+      emit('select', unitOnCell.id);
+      return;
+    }
+  }
+  emit('cancel');
+}
+function onUnitClick(unit: BattleView['units'][number]): void {
+  emit('select', unit.id);
+  const cell = props.battle.info.cells.find(row => row.q === unit.q && row.r === unit.r);
+  if (cell) {
+    emit('cell', cell);
+  }
+}
+function onUnitContextMenu(unit: BattleView['units'][number]): void {
+  emit('select', unit.id);
 }
 function chooseDestination(cell: BattleCell): void {
   const reachable = props.battle.capabilities.move.reachable.some(row =>
@@ -233,7 +452,7 @@ function chooseDestination(cell: BattleCell): void {
   props.controller.setMovement(false);
 }
 watch(() => props.battle.units, sync);
-watch(() => [props.battle.preview, props.selected, movement.value, destination.value], highlights);
+watch(() => [props.battle.preview, props.selected, props.selectedMove, movement.value, destination.value, attackReachableKeys.value], highlights);
 watch(
   () => props.floating,
   () => {
@@ -265,6 +484,9 @@ async function mountRenderers(rebuildEffects = false, yaw = 45): Promise<boolean
       return false;
     }
     renderer = world;
+    if (typeof window !== 'undefined') {
+      (window as unknown as Record<string, unknown>)['__battleRenderer'] = world;
+    }
     renderer.setTimeOfDay((props.battle.info.setup.entry.worldTick / TICKS_PER_HOUR) % 24);
     const steps = Math.round((yaw - 45 + 360) % 360 / 90);
     for (let step = 0; step < steps; step += 1) void renderer.camera.rotate(1, true);
@@ -327,6 +549,10 @@ async function mountRenderers(rebuildEffects = false, yaw = 45): Promise<boolean
           ready(stage as VfxStage);
         },
       });
+      offMove?.();
+      offMove = props.controller.onMoveResolved((_moveId, from, targets) => {
+        renderer?.playStrike?.(from.id, targets[0]?.id);
+      });
     }
     requestDraw();
     return renderer.contextState === 'ok' && (!vfxStage || vfxStage.contextState === 'ok');
@@ -338,9 +564,13 @@ async function mountRenderers(rebuildEffects = false, yaw = 45): Promise<boolean
   }
 }
 function releaseRenderers(): void {
+  offMove?.(); offMove = undefined;
   offVfx?.(); offVfx = undefined;
   vfxStage?.dispose(); vfxStage = undefined;
   renderer?.dispose(); renderer = undefined;
+  if (typeof window !== 'undefined') {
+    delete (window as unknown as Record<string, unknown>)['__battleRenderer'];
+  }
 }
 function recreateRenderers(): Promise<boolean> {
   if (disposed) return Promise.resolve(false);
@@ -408,7 +638,10 @@ onBeforeUnmount(() => {
         ref="canvas"
         aria-label="六角地形与分层角色"
         @pointermove="pointer($event, false)"
+        @pointerleave="onCanvasPointerLeave"
         @click="pointer($event as PointerEvent, true)"
+        @dblclick="onDblClick($event)"
+        @contextmenu.prevent="onContextMenu($event)"
       />
       <canvas v-show="!failed" :key="'effects-' + canvasGeneration" ref="vfxCanvas" class="battle-vfx" aria-hidden="true" />
       <p v-if="movement" class="field-mode" role="status">{{ t('battleChooseDestination') }}</p>
@@ -440,63 +673,134 @@ onBeforeUnmount(() => {
       </nav>
       <p v-if="failed" class="field-notice">画面暂不可用，可在下方选择人物与落点继续战斗。</p>
       <p v-else-if="!loaded" class="field-notice">正在展开战场…</p>
-      <button
+      <div
         v-for="unit in battle.units"
         v-show="positions.get(unit.id)?.visible && loaded && unit.active"
         :key="unit.id"
-        type="button"
-        class="unit-label"
-        :class="[
-          unit.side,
-          {
-            selected: selected === unit.id,
-            current: battle.actorId === unit.id,
-            hit: area.has(`${unit.q},${unit.r}`),
-          },
-        ]"
+        class="unit-label-wrap"
         :style="{
           left: `${battleUnitLabelPosition(positions.get(unit.id)?.x ?? 0,
-                                           positions.get(unit.id)?.y ?? 0, viewportWidth, unit.index).left}px`,
+                                           (positions.get(unit.id)?.y ?? 0) - 62, viewportWidth, unit.index).left}px`,
           top: `${battleUnitLabelPosition(positions.get(unit.id)?.x ?? 0,
-                                          positions.get(unit.id)?.y ?? 0, viewportWidth, unit.index).top}px`,
-          '--unit-label-width': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.width}px`,
-          '--unit-avatar-size': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.avatar}px`,
-          '--unit-name-font': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.nameFont}px`,
-          '--unit-aux-font': `${battleUnitLabelPosition(0, 0, viewportWidth, unit.index).metrics.auxiliaryFont}px`,
+                                          (positions.get(unit.id)?.y ?? 0) - 62, viewportWidth, unit.index).top}px`,
         }"
-        @click="emit('select', unit.id)"
       >
-        <span class="unit-avatar" aria-hidden="true">
-          <img v-if="unit.portraitUrl" :src="'/' + unit.portraitUrl" alt="">
-          <span v-else>{{ unit.name.slice(0, 1) }}</span>
-        </span>
-        <span class="unit-label-copy">
-          <strong>{{ unit.name }}<span aria-label="朝向">{{ directionLabels[unit.facing] }}</span></strong>
-          <span class="unit-meters">
-            <meter
-              :value="unit.hp" :max="unit.hpMax" min="0"
-              :aria-label="`${unit.name} 气血 ${unit.hp}/${unit.hpMax}`"
-            />
-            <meter
-              class="mp" :value="unit.mp" :max="unit.mpMax" min="0"
-              :aria-label="`${unit.name} 内力 ${unit.mp}/${unit.mpMax}`"
-            />
-            <meter
-              class="ct" :value="Math.max(0, Math.min(1000, unit.ct))" max="1000" min="0"
-              :aria-label="`行动槽 ${unit.ct}`"
-            />
-          </span>
-          <small>{{ unit.ct < 0 ? `收招 ${-unit.ct}` : `CT ${unit.ct}` }}</small>
-        </span>
-        <span
-          v-for="status in unit.statuses"
-          :key="status.id"
-          class="status-icon"
-          :title="`${status.label} ${status.detail}`"
+        <button
+          type="button"
+          class="unit-label"
+          :class="[
+            unit.side,
+            {
+              selected: selected === unit.id,
+              current: battle.actorId === unit.id,
+              hit: area.has(`${unit.q},${unit.r}`),
+            },
+          ]"
+          @click="onUnitClick(unit)"
+          @contextmenu.prevent="onUnitContextMenu(unit)"
         >
-          {{ status.label }}
-        </span>
-      </button>
+          <!-- Minimal HP bar on field -->
+          <div class="unit-hp-bar-mini" :aria-label="`${unit.name} 气血 ${unit.hp}/${unit.hpMax}`">
+            <div
+              class="unit-hp-fill"
+              :style="{ width: Math.max(0, Math.min(100, Math.round(unit.hp * 100 / Math.max(1, unit.hpMax)))) + '%' }"
+            />
+          </div>
+
+          <!-- ATB progress bar under HP bar -->
+          <div class="unit-atb-bar-mini" :aria-label="`${unit.name} 出手蓄势`">
+            <div
+              class="unit-atb-fill"
+              :style="{ width: `${getUnitAtbPercent(unit)}%` }"
+            />
+          </div>
+        </button>
+      </div>
+
+      <!-- Radial floating action wheel centered around the character (no boxes or borders) -->
+      <div
+        v-if="actorUnit?.control === 'player' && positions.get(battle.actorId ?? '')?.visible && !battle.preview && !movement"
+        class="field-character-action-wheel"
+        :style="{
+          left: `${positions.get(battle.actorId ?? '')?.x}px`,
+          top: `${(positions.get(battle.actorId ?? '')?.y ?? 0) - 30}px`,
+        }"
+      >
+        <button type="button" class="field-hex-btn btn-attack" title="攻击" @click.stop="triggerAttackAction">攻击</button>
+        <button type="button" class="field-hex-btn btn-move" title="招式" :class="{ active: showMovesPicker }" @click.stop="triggerMoveAction">招式</button>
+        <button type="button" class="field-hex-btn btn-walk" title="移动" @click.stop="triggerWalkAction">移动</button>
+        <button type="button" class="field-hex-btn btn-item" title="丹药" :class="{ active: showItemsPicker }" @click.stop="triggerItemAction">丹药</button>
+        <button type="button" class="field-hex-btn btn-qi" title="运功" @click.stop="triggerQiAction">运功</button>
+        <button type="button" class="field-hex-btn btn-defend" title="坚守" @click.stop="triggerRestAction">坚守</button>
+        <button type="button" class="field-hex-btn btn-wait" title="待机" @click.stop="emit('space')">待机</button>
+
+        <!-- Moves popover attached to character wheel -->
+        <div
+          v-if="showMovesPicker && actorUnit"
+          class="field-moves-popover"
+          @click.stop
+        >
+          <div class="field-moves-header">
+            <span class="field-moves-title">所习招式</span>
+            <button type="button" class="field-moves-close-btn" @click.stop="showMovesPicker = false">×</button>
+          </div>
+          <div class="field-moves-list">
+            <button
+              v-for="m in actorUnit.moves"
+              :key="m.id"
+              type="button"
+              class="field-move-item"
+              :class="{ selected: selectedMove === m.id, disabled: !m.available }"
+              :disabled="!m.available"
+              @click.stop="onPickMove(m.id)"
+            >
+              <div class="field-move-title-row">
+                <span class="field-move-name">{{ m.name }}</span>
+                <span class="field-move-mp">耗内 {{ m.mpCost }}</span>
+              </div>
+              <div class="field-move-meta-row">
+                <span>射程 {{ m.range }}</span>
+                <span>{{ m.shape.tpl === 'aoe_cone' ? '扇形' : m.shape.tpl === 'aoe_line' ? '穿透' : m.shape.tpl === 'aoe_around' ? '周围' : '单体' }}</span>
+                <span v-if="m.attackBp">×{{ (m.attackBp / 10000).toFixed(1) }}</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Items (丹药) popover attached to character wheel -->
+        <div
+          v-if="showItemsPicker && actorUnit"
+          class="field-moves-popover field-items-popover"
+          @click.stop
+        >
+          <div class="field-moves-header">
+            <span class="field-moves-title">随身丹药</span>
+            <button type="button" class="field-moves-close-btn" @click.stop="showItemsPicker = false">×</button>
+          </div>
+          <div class="field-moves-list">
+            <button
+              v-for="item in (battle.capabilities.items ?? [])"
+              :key="item.id"
+              type="button"
+              class="field-move-item field-item-card"
+              :class="{ disabled: !item.capability.enabled || item.count <= 0 }"
+              :disabled="!item.capability.enabled || item.count <= 0"
+              @click.stop="useItemOnActor(item.id)"
+            >
+              <div class="field-move-title-row">
+                <span class="field-move-name">{{ item.name }}</span>
+                <span class="field-move-mp">×{{ item.count }}</span>
+              </div>
+              <div class="field-move-meta-row">
+                <span>{{ item.capability.reason || '调和气血内息' }}</span>
+              </div>
+            </button>
+            <div v-if="!(battle.capabilities.items?.length)" class="field-items-empty">
+              囊中暂无适用丹药
+            </div>
+          </div>
+        </div>
+      </div>
       <div v-if="floatingVisible && !skip" class="battle-floats" aria-hidden="true">
         <span
           v-for="entry in floating"
@@ -504,8 +808,8 @@ onBeforeUnmount(() => {
           class="float-text"
           :class="{ still: reducedMotion }"
           :style="{
-            left: `${positions.get(entry.event.target ?? entry.event.actor ?? '')?.x ?? 20}px`,
-            top: `${(positions.get(entry.event.target ?? entry.event.actor ?? '')?.y ?? 120) - 110}px`,
+            left: `${Math.max(60, Math.min(viewportWidth - 60, positions.get(entry.event.target ?? entry.event.actor ?? '')?.x ?? (viewportWidth / 2)))}px`,
+            top: `${Math.max(20, (positions.get(entry.event.target ?? entry.event.actor ?? '')?.y ?? 180) - 70)}px`,
             '--float-duration': `${floatDuration}ms`,
           }"
         >

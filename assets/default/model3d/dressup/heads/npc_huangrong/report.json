@@ -1,0 +1,1041 @@
+{
+  "schema": "tianshu-dressup-report.v1",
+  "level": "draft",
+  "template": "tpl_f_medium",
+  "subject": {
+    "kind": "head",
+    "id": "npc_huangrong"
+  },
+  "inputs": {
+    "asset": {
+      "sha256": "7ac360fcc0703cadfa3eb57382ab27b8f94023232dd9cd89cdff05643c9bb2e9",
+      "sizeBytes": 1942976
+    },
+    "fit": {
+      "sha256": "d13042e44b512aee78f7cfaad2539627065ac66937357934c10219b771de5323",
+      "sizeBytes": 15875
+    }
+  },
+  "checks": [
+    {
+      "name": "binding.skeletonSchema",
+      "pass": true,
+      "value": "tianshu-dressup-skeleton.v1",
+      "threshold": "tianshu-dressup-skeleton.v1"
+    },
+    {
+      "name": "binding.skeletonRequired",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "binding.skeletonBodySha",
+      "pass": true,
+      "value": {
+        "recorded": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+        "actual": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
+      },
+      "threshold": "equal"
+    },
+    {
+      "name": "binding.skeletonUnits",
+      "pass": true,
+      "value": {
+        "unit": "mu",
+        "recorded": 1.69370027,
+        "calculated": 1.693700266,
+        "tolerance": 1e-06
+      },
+      "threshold": "abs error <= 1e-6"
+    },
+    {
+      "name": "binding.fitSchema",
+      "pass": true,
+      "value": "tianshu-dressup-fit.v1",
+      "threshold": "tianshu-dressup-fit.v1"
+    },
+    {
+      "name": "binding.fitRequired",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "binding.fitBodySha",
+      "pass": true,
+      "value": {
+        "recorded": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+        "actual": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
+      },
+      "threshold": "equal"
+    },
+    {
+      "name": "binding.fitTemplate",
+      "pass": true,
+      "value": {
+        "body": "tpl_f_medium",
+        "skeleton": "tpl_f_medium",
+        "fit": "tpl_f_medium",
+        "explicit": "tpl_f_medium"
+      },
+      "threshold": "same templates/<id>/body.glb"
+    },
+    {
+      "name": "binding.fitMPerMu",
+      "pass": true,
+      "value": {
+        "fit": 1.69370027,
+        "skeleton": 1.69370027,
+        "tolerance": 1e-06
+      },
+      "threshold": "abs error <= 1e-6"
+    },
+    {
+      "name": "fit.kind",
+      "pass": true,
+      "value": "head",
+      "threshold": [
+        "garment",
+        "hair",
+        "head",
+        "prop",
+        "template"
+      ]
+    },
+    {
+      "name": "weights.onlySet0",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "skeleton.skinCount",
+      "pass": true,
+      "value": 1,
+      "threshold": 1
+    },
+    {
+      "name": "skeleton.joints",
+      "pass": true,
+      "value": {
+        "asset": 65,
+        "body": 65
+      },
+      "threshold": "名单逐项相同"
+    },
+    {
+      "name": "skeleton.ibmMaxAbs",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "< 1e-5"
+    },
+    {
+      "name": "weights.jointsAllowedPresent",
+      "pass": true,
+      "value": [
+        "mixamorig:Hips",
+        "mixamorig:LeftUpLeg",
+        "mixamorig:LeftLeg",
+        "mixamorig:LeftFoot",
+        "mixamorig:LeftToeBase",
+        "mixamorig:LeftToe_End",
+        "mixamorig:RightUpLeg",
+        "mixamorig:RightLeg",
+        "mixamorig:RightFoot",
+        "mixamorig:RightToeBase",
+        "mixamorig:RightToe_End",
+        "mixamorig:Spine",
+        "mixamorig:Spine1",
+        "mixamorig:Spine2",
+        "mixamorig:LeftShoulder",
+        "mixamorig:LeftArm",
+        "mixamorig:LeftForeArm",
+        "mixamorig:LeftHand",
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftHandIndex4",
+        "mixamorig:LeftHandMiddle1",
+        "mixamorig:LeftHandMiddle2",
+        "mixamorig:LeftHandMiddle3",
+        "mixamorig:LeftHandMiddle4",
+        "mixamorig:LeftHandPinky1",
+        "mixamorig:LeftHandPinky2",
+        "mixamorig:LeftHandPinky3",
+        "mixamorig:LeftHandPinky4",
+        "mixamorig:LeftHandRing1",
+        "mixamorig:LeftHandRing2",
+        "mixamorig:LeftHandRing3",
+        "mixamorig:LeftHandRing4",
+        "mixamorig:LeftHandThumb1",
+        "mixamorig:LeftHandThumb2",
+        "mixamorig:LeftHandThumb3",
+        "mixamorig:LeftHandThumb4",
+        "mixamorig:Neck",
+        "mixamorig:Head",
+        "mixamorig:HeadTop_End",
+        "mixamorig:RightShoulder",
+        "mixamorig:RightArm",
+        "mixamorig:RightForeArm",
+        "mixamorig:RightHand",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightHandIndex4",
+        "mixamorig:RightHandMiddle1",
+        "mixamorig:RightHandMiddle2",
+        "mixamorig:RightHandMiddle3",
+        "mixamorig:RightHandMiddle4",
+        "mixamorig:RightHandPinky1",
+        "mixamorig:RightHandPinky2",
+        "mixamorig:RightHandPinky3",
+        "mixamorig:RightHandPinky4",
+        "mixamorig:RightHandRing1",
+        "mixamorig:RightHandRing2",
+        "mixamorig:RightHandRing3",
+        "mixamorig:RightHandRing4",
+        "mixamorig:RightHandThumb1",
+        "mixamorig:RightHandThumb2",
+        "mixamorig:RightHandThumb3",
+        "mixamorig:RightHandThumb4"
+      ],
+      "threshold": "非空数组"
+    },
+    {
+      "name": "weights.finite",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "weights.sumMaxError",
+      "pass": true,
+      "value": 1.19e-07,
+      "threshold": "<= 1e-3"
+    },
+    {
+      "name": "weights.maxBones",
+      "pass": true,
+      "value": 4,
+      "threshold": "<= 4"
+    },
+    {
+      "name": "weights.jointIndices",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "weights.jointsAllowed",
+      "pass": true,
+      "value": [
+        "mixamorig:Head",
+        "mixamorig:LeftShoulder",
+        "mixamorig:Neck",
+        "mixamorig:RightArm",
+        "mixamorig:RightShoulder",
+        "mixamorig:Spine2"
+      ],
+      "threshold": [
+        "mixamorig:Head",
+        "mixamorig:HeadTop_End",
+        "mixamorig:Hips",
+        "mixamorig:LeftArm",
+        "mixamorig:LeftFoot",
+        "mixamorig:LeftForeArm",
+        "mixamorig:LeftHand",
+        "mixamorig:LeftHandIndex1",
+        "mixamorig:LeftHandIndex2",
+        "mixamorig:LeftHandIndex3",
+        "mixamorig:LeftHandIndex4",
+        "mixamorig:LeftHandMiddle1",
+        "mixamorig:LeftHandMiddle2",
+        "mixamorig:LeftHandMiddle3",
+        "mixamorig:LeftHandMiddle4",
+        "mixamorig:LeftHandPinky1",
+        "mixamorig:LeftHandPinky2",
+        "mixamorig:LeftHandPinky3",
+        "mixamorig:LeftHandPinky4",
+        "mixamorig:LeftHandRing1",
+        "mixamorig:LeftHandRing2",
+        "mixamorig:LeftHandRing3",
+        "mixamorig:LeftHandRing4",
+        "mixamorig:LeftHandThumb1",
+        "mixamorig:LeftHandThumb2",
+        "mixamorig:LeftHandThumb3",
+        "mixamorig:LeftHandThumb4",
+        "mixamorig:LeftLeg",
+        "mixamorig:LeftShoulder",
+        "mixamorig:LeftToeBase",
+        "mixamorig:LeftToe_End",
+        "mixamorig:LeftUpLeg",
+        "mixamorig:Neck",
+        "mixamorig:RightArm",
+        "mixamorig:RightFoot",
+        "mixamorig:RightForeArm",
+        "mixamorig:RightHand",
+        "mixamorig:RightHandIndex1",
+        "mixamorig:RightHandIndex2",
+        "mixamorig:RightHandIndex3",
+        "mixamorig:RightHandIndex4",
+        "mixamorig:RightHandMiddle1",
+        "mixamorig:RightHandMiddle2",
+        "mixamorig:RightHandMiddle3",
+        "mixamorig:RightHandMiddle4",
+        "mixamorig:RightHandPinky1",
+        "mixamorig:RightHandPinky2",
+        "mixamorig:RightHandPinky3",
+        "mixamorig:RightHandPinky4",
+        "mixamorig:RightHandRing1",
+        "mixamorig:RightHandRing2",
+        "mixamorig:RightHandRing3",
+        "mixamorig:RightHandRing4",
+        "mixamorig:RightHandThumb1",
+        "mixamorig:RightHandThumb2",
+        "mixamorig:RightHandThumb3",
+        "mixamorig:RightHandThumb4",
+        "mixamorig:RightLeg",
+        "mixamorig:RightShoulder",
+        "mixamorig:RightToeBase",
+        "mixamorig:RightToe_End",
+        "mixamorig:RightUpLeg",
+        "mixamorig:Spine",
+        "mixamorig:Spine1",
+        "mixamorig:Spine2"
+      ]
+    },
+    {
+      "name": "mask.knownRegions",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "mask.neverHide",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "mask.forbidden",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "regions.u8Scalar",
+      "pass": true,
+      "value": [
+        {
+          "componentType": 5121,
+          "type": "SCALAR"
+        }
+      ],
+      "threshold": "u8 SCALAR"
+    },
+    {
+      "name": "budget.triangles",
+      "pass": true,
+      "value": 28130,
+      "threshold": "<= 30000"
+    },
+    {
+      "name": "budget.textureMaxDimension",
+      "pass": true,
+      "value": 2048,
+      "threshold": "<= 2048",
+      "images": [
+        [
+          2048,
+          2048
+        ]
+      ]
+    },
+    {
+      "name": "material.unlit",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "material.onlyBaseColorTexture",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "asset.meshNodeCount",
+      "pass": true,
+      "value": 1,
+      "threshold": 1
+    },
+    {
+      "name": "asset.materialReferences",
+      "pass": true,
+      "value": [
+        0
+      ],
+      "threshold": "0..0"
+    },
+    {
+      "name": "penetration.bindVertices",
+      "pass": true,
+      "value": 0,
+      "threshold": 0,
+      "frames": 1,
+      "evaluated": 182,
+      "aboveCutExcluded": 6373,
+      "scope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
+    },
+    {
+      "name": "penetration.idle",
+      "pass": true,
+      "value": 0.001371742,
+      "threshold": "<= 0.02 (worst frame)",
+      "frames": 24,
+      "worst": {
+        "ratio": 0.001371742,
+        "count": 1,
+        "evaluated": 729,
+        "time": 1.916666627,
+        "minimumMm": -5.952204831
+      },
+      "aboveCutExcluded": 5856,
+      "scope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
+    },
+    {
+      "name": "penetration.walk",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "<= 0.02 (worst frame)",
+      "frames": 24,
+      "worst": {
+        "ratio": 0.0,
+        "count": 0,
+        "evaluated": 718,
+        "time": 0.0,
+        "minimumMm": 0.165446829
+      },
+      "aboveCutExcluded": 5847,
+      "scope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
+    },
+    {
+      "name": "penetration.run",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "<= 0.02 (worst frame)",
+      "frames": 24,
+      "worst": {
+        "ratio": 0.0,
+        "count": 0,
+        "evaluated": 454,
+        "time": 0.0,
+        "minimumMm": -0.282356318
+      },
+      "aboveCutExcluded": 6186,
+      "scope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
+    },
+    {
+      "name": "head.patchBottomOverlap",
+      "pass": true,
+      "value": {
+        "bind": 0.288589677,
+        "idle": 0.287190439,
+        "walk": 0.281291208,
+        "run": 0.270720049
+      },
+      "threshold": ">= -0.05 mm (lift 0.3 mm)",
+      "frames": 73,
+      "framesPerClip": {
+        "bind": 1,
+        "idle": 24,
+        "walk": 24,
+        "run": 24
+      }
+    },
+    {
+      "name": "head.patchTopUnderSkin",
+      "pass": true,
+      "value": {
+        "bindUnderSkinMinMm": 0.299957124,
+        "ratio": {
+          "bind": 0.0,
+          "idle": 0.0,
+          "walk": 0.0,
+          "run": 0.0
+        },
+        "p99Mm": {
+          "bind": -0.299968154,
+          "idle": -0.220204043,
+          "walk": -0.262644115,
+          "run": -0.226078846
+        },
+        "maxMm": {
+          "bind": -0.299957124,
+          "idle": -0.212558433,
+          "walk": -0.244907413,
+          "run": -0.209859072
+        },
+        "worst": {
+          "bind": {
+            "time": 0.0,
+            "thetaDeg": 78.471074662,
+            "heightMm": 27.999962039
+          },
+          "idle": {
+            "time": 5.749999881,
+            "thetaDeg": 357.605775063,
+            "heightMm": 27.999959448
+          },
+          "walk": {
+            "time": 1.361111065,
+            "thetaDeg": 4.722419207,
+            "heightMm": 28.000016712
+          },
+          "run": {
+            "time": 0.46875,
+            "thetaDeg": 4.722419207,
+            "heightMm": 28.000016712
+          }
+        },
+        "evaluated": {
+          "bind": 783,
+          "idle": 784,
+          "walk": 782,
+          "run": 782
+        },
+        "coverFaces": 173,
+        "anySkinMaxMmReportOnly": {
+          "bind": -0.299957124,
+          "idle": -0.212558433,
+          "walk": -0.244907413,
+          "run": -0.209859072
+        }
+      },
+      "threshold": "overlap band (cut+0.5 .. +4 mm, nearest skin face < 1 mm at bind) vs its covering skin (skin faces within 3 mm of the band at bind), signed: bind max <= -0.25 mm (whole band under skin); every one of 73 frames max <= +0.1 mm",
+      "frames": 73,
+      "framesPerClip": {
+        "bind": 1,
+        "idle": 24,
+        "walk": 24,
+        "run": 24
+      }
+    },
+    {
+      "name": "head.hideMaskLeak",
+      "pass": true,
+      "value": 0,
+      "threshold": 0,
+      "scope": "template triangles outside the copied patch must never be hidden (any vertex > 0.5)"
+    },
+    {
+      "name": "head.hideMaskAbove",
+      "pass": true,
+      "value": {
+        "aboveVisibleVertices": 0,
+        "aboveVisibleTriangles": 0,
+        "belowRetainedTriangles": 23171,
+        "boundaryWithinBand": true,
+        "boundaryHeightRangeMm": [
+          -0.018458844,
+          0.206287371
+        ]
+      },
+      "threshold": 0
+    },
+    {
+      "name": "head.patchOrientation",
+      "pass": true,
+      "value": {
+        "interiorEdges": 17340,
+        "consistentEdgeRatio": 1.0,
+        "boundaryEdges": 582,
+        "nonManifoldEdges": 0,
+        "outwardAreaRatio": 1.0,
+        "outwardFaceRatio": 1.0
+      },
+      "threshold": "edges 100% consistent, every face outward (100%), non-manifold 0"
+    },
+    {
+      "name": "head.patchBiharmonic",
+      "pass": true,
+      "value": {
+        "freeVertices": 1667,
+        "constrainedVertices": 4501,
+        "residualMaxMu": 1.7e-08,
+        "displacementMaxMu": 0.004943191
+      },
+      "threshold": "residual < 1e-6 mu"
+    },
+    {
+      "name": "head.seamColorBottom",
+      "pass": true,
+      "value": {
+        "mean": 0.251534959,
+        "p95": 0.449463061,
+        "max": 1.474504271,
+        "samples": 1348
+      },
+      "threshold": "ΔE2000 p95 < 2"
+    },
+    {
+      "name": "head.seamColorTop",
+      "pass": true,
+      "value": {
+        "mean": 0.541234136,
+        "p95": 1.432192158,
+        "max": 2.22437129,
+        "angles": 253
+      },
+      "threshold": "ΔE2000 p95 < 2 (region A, 1° bins, ±0.25–1.25 mm of the cut)"
+    },
+    {
+      "name": "head.seamG1Top",
+      "pass": true,
+      "value": {
+        "meanDeg": 0.410913677,
+        "p95Deg": 1.496795654,
+        "maxDeg": 2.866634421,
+        "angles": 253,
+        "radialStepMeanMm": 0.303255251,
+        "radialStepMaxMm": 0.393306444,
+        "worstDeg": 88,
+        "worstStepDeg": 88
+      },
+      "threshold": "V4: tangent angle < 5° at every region-A degree (slopes fitted 0.5–2.5 mm each side of the cut), radial step < 1 mm"
+    },
+    {
+      "name": "head.seamG1Bottom",
+      "pass": true,
+      "value": {
+        "meanDeg": 0.149986126,
+        "p95Deg": 0.474111041,
+        "maxDeg": 0.702741334,
+        "angles": 360,
+        "stepMeanMm": 0.33846535,
+        "stepMinMm": 0.299100548,
+        "stepMaxMm": 0.417331157
+      },
+      "threshold": "V4: tangent angle < 5° at every degree (patch vs body over the same ±2 mm window at the visible body edge); patch outside body (step 0..1 mm)"
+    },
+    {
+      "name": "head.patchShape",
+      "pass": true,
+      "value": {
+        "angles": 253,
+        "maxTurningPoints": 1,
+        "anglesOverOneTurn": 0,
+        "maxBulgeMm": 0.0,
+        "maxWaistMm": 3.462644716
+      },
+      "threshold": "per-angle radius profile: convex bulge above both ends < 1 mm (no extra ring); > 1 turning point (0.1 mm noise) on <= 2% of angles; throat waist report-only"
+    }
+  ],
+  "gateLevel": "pass",
+  "stats": {
+    "vertices": 16387,
+    "triangles": 28130,
+    "fileSize": 1942976,
+    "durationMs": 233920
+  },
+  "measurements": {
+    "sourceEarWidthMu": 0.109303062,
+    "sourceFaceHeightMu": 0.060588151,
+    "targetEarWidthMu": 0.0965805,
+    "targetFaceHeightMu": 0.0575,
+    "widthScale": 0.883602877,
+    "faceScale": 0.949030448,
+    "rawScale": 0.915732512,
+    "scaleApplied": 0.92,
+    "scaleClamped": true,
+    "overallSizeDeviationRatio": 0.00466019,
+    "overallSizeGatePass": true
+  },
+  "cut": {
+    "templateBoneFraction": 0.224392623,
+    "sourceCenterMu": [
+      0.001912509,
+      0.814201536,
+      -0.007845779
+    ],
+    "headFloorMm": 24.0,
+    "maskPlaneMm": 0.0,
+    "regionADeg": 275.0,
+    "probeAngles": 277
+  },
+  "hideMask": {
+    "file": "hidemask.png",
+    "size": 1024,
+    "mode": "L",
+    "encoding": "signed-height-zero-at-0.5",
+    "transitionRangeMu": 0.006942969,
+    "coveredTriangles": 17858,
+    "whitePixels": 111008,
+    "transitionPixels": 8095,
+    "aboveVisibleVertices": 0,
+    "aboveVisibleTriangles": 0,
+    "boundaryMaxAboveMm": 0.206287371,
+    "boundaryToleranceMm": 0.5,
+    "boundaryHeightRangeMm": [
+      -0.018458844,
+      0.206287371
+    ],
+    "boundaryWithinBand": true,
+    "belowRetainedTriangles": 23171,
+    "leakTriangles": 0
+  },
+  "patch": {
+    "vertices": 6168,
+    "triangles": 11754,
+    "uvSeamDuplicates": 49,
+    "boundaryLoops": 2,
+    "sideBoundaryPinned": 0,
+    "constrained": {
+      "bottom": 1342,
+      "top": 1976,
+      "g1Skirt": 1183
+    },
+    "skinMissingInRegionA": 100,
+    "displacementMaxMm": 8.372283523,
+    "skinInset": {
+      "moved": 936,
+      "maxMoveMm": 0.981721996
+    },
+    "solve": {
+      "freeVertices": 1667,
+      "constrainedVertices": 4501,
+      "residualMaxMu": 1.7e-08,
+      "displacementMaxMu": 0.004943191
+    },
+    "orientation": {
+      "interiorEdges": 17340,
+      "consistentEdgeRatio": 1.0,
+      "boundaryEdges": 582,
+      "nonManifoldEdges": 0,
+      "outwardAreaRatio": 1.0,
+      "outwardFaceRatio": 1.0
+    }
+  },
+  "head": {
+    "vertices": 10170,
+    "triangles": 16376,
+    "neckSkinVertices": 338
+  },
+  "params": {
+    "patchBottomMm": -3.0,
+    "bottomBandMm": 8.0,
+    "maskOffsetMm": 3.0,
+    "bottomLiftMm": 0.3,
+    "topBandMm": 4.0,
+    "topInsetMm": 0.3,
+    "topCoverMm": 3.0,
+    "g1SkirtMm": 5.0,
+    "headFloorMarginMm": 2.0,
+    "floorCoverage": 0.97,
+    "floorRunMm": 6.0,
+    "backTopMm": 130.0,
+    "envelopeInsetMm": 3.0,
+    "hairlineMm": 12.0,
+    "hairlineBlendMm": 14.0,
+    "colorBlendMm": 14.0,
+    "weightBlendMm": 40.0,
+    "patchSubdivisions": 1,
+    "patchMergeMm": 0.05,
+    "sliverMm": 0.02,
+    "stripRows": 256,
+    "stripLowerRows": 176,
+    "stripSplitMm": 8.0,
+    "atlasSize": 2048,
+    "atlasJpeg": "q90 4:4:4",
+    "regionSmoothDeg": 5.0,
+    "neckFitRampMm": 20.0,
+    "neckFitMaxMm": 4.0,
+    "neckFitShell": 1.12,
+    "neckFitBelowMm": 6.0,
+    "neckFitSmoothDeg": 3,
+    "hairNeutralSaturation": 0.45,
+    "hairNearBlack": 0.15,
+    "hairBrownGreenRed": 0.6,
+    "hairDarkMean": 0.48,
+    "collarRedGreenRed": 0.65,
+    "collarRemnantBandMm": 12.0,
+    "collarRemnantOuterMm": 1.5,
+    "collarRemnantHeadMax": 0.5,
+    "collarRemnantMinFaces": 8,
+    "seamToneBandMm": 10.0,
+    "seamToneHoldMm": 4.0,
+    "seamToneProbeMm": 6.0,
+    "seamToneLightMin": 3.0,
+    "seamToneLightFull": 5.0,
+    "seamToneRefMm": [
+      12.0,
+      24.0
+    ],
+    "seamToneRefSkinDeltaE": 15.0,
+    "seamToneSmoothDeg": 3.0,
+    "seamToneCollarMm": 12.0
+  },
+  "color": {
+    "sourceSrgb": [
+      0.750510909,
+      0.642637644,
+      0.576335015
+    ],
+    "templateSrgb": [
+      0.78652734,
+      0.693381377,
+      0.609540682
+    ],
+    "tintedTemplateSrgb": [
+      0.763631881,
+      0.650018604,
+      0.56863979
+    ],
+    "averageSpace": "sRGB arithmetic mean",
+    "skinTint": [
+      0.935942175,
+      0.866535287,
+      0.858594717
+    ],
+    "deltaEBefore": 4.503101923,
+    "deltaE": 0.031758691,
+    "sourceSamples": 1562,
+    "templateSamples": 9795,
+    "deltaEFaceMean": 1.615680723,
+    "deltaESameHeight": 1.990369505,
+    "neckMatch": {
+      "reference": "headCut/bodySeam",
+      "faceTint": [
+        0.900342333,
+        0.84492205,
+        0.88424361
+      ],
+      "faceDeltaE": 6.3795e-05,
+      "gainBefore": [
+        1.03954034,
+        1.025580155,
+        0.970993409
+      ],
+      "clipped": false,
+      "residualGain": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "residualGainSameHeight": [
+        1.058173309,
+        1.094791175,
+        1.108622807
+      ],
+      "seamAngles": 1564,
+      "seamBandMm": 2.0
+    },
+    "strip": {
+      "coveredRatio": 0.385164117,
+      "gainMean": [
+        1.058173309,
+        1.094791175,
+        1.108622807
+      ]
+    }
+  },
+  "checks_detail": {
+    "color": {
+      "bottom": {
+        "mean": 0.251534959,
+        "p95": 0.449463061,
+        "max": 1.474504271,
+        "samples": 1348
+      },
+      "top": {
+        "mean": 0.541234136,
+        "p95": 1.432192158,
+        "max": 2.22437129,
+        "angles": 253
+      }
+    },
+    "g1": {
+      "meanDeg": 0.410913677,
+      "p95Deg": 1.496795654,
+      "maxDeg": 2.866634421,
+      "angles": 253,
+      "radialStepMeanMm": 0.303255251,
+      "radialStepMaxMm": 0.393306444,
+      "worstDeg": 88,
+      "worstStepDeg": 88
+    },
+    "g1Bottom": {
+      "meanDeg": 0.149986126,
+      "p95Deg": 0.474111041,
+      "maxDeg": 0.702741334,
+      "angles": 360,
+      "stepMeanMm": 0.33846535,
+      "stepMinMm": 0.299100548,
+      "stepMaxMm": 0.417331157
+    },
+    "shape": {
+      "angles": 253,
+      "maxTurningPoints": 1,
+      "anglesOverOneTurn": 0,
+      "maxBulgeMm": 0.0,
+      "maxWaistMm": 3.462644716
+    },
+    "motion": {
+      "penetration": {
+        "bindVertices": 0,
+        "idle": 0.001371742,
+        "walk": 0.0,
+        "run": 0.0
+      },
+      "penetrationWorst": {
+        "bind": {
+          "ratio": 0.0,
+          "count": 0,
+          "evaluated": 182,
+          "time": 0.0,
+          "minimumMm": 0.288589677
+        },
+        "idle": {
+          "ratio": 0.001371742,
+          "count": 1,
+          "evaluated": 729,
+          "time": 1.916666627,
+          "minimumMm": -5.952204831
+        },
+        "walk": {
+          "ratio": 0.0,
+          "count": 0,
+          "evaluated": 718,
+          "time": 0.0,
+          "minimumMm": 0.165446829
+        },
+        "run": {
+          "ratio": 0.0,
+          "count": 0,
+          "evaluated": 454,
+          "time": 0.0,
+          "minimumMm": -0.282356318
+        }
+      },
+      "evaluatedVertices": {
+        "bind": 182,
+        "idle": 784,
+        "walk": 727,
+        "run": 499
+      },
+      "aboveCutExcluded": {
+        "bind": 6373,
+        "idle": 5856,
+        "walk": 5847,
+        "run": 6186
+      },
+      "bottomOverlapMinMm": {
+        "bind": 0.288589677,
+        "idle": 0.287190439,
+        "walk": 0.281291208,
+        "run": 0.270720049
+      },
+      "topExposedRatio": {
+        "bind": 0.0,
+        "idle": 0.0,
+        "walk": 0.0,
+        "run": 0.0
+      },
+      "topExposedMaxMm": {
+        "bind": -0.299957124,
+        "idle": -0.212558433,
+        "walk": -0.244907413,
+        "run": -0.209859072
+      },
+      "topExposedP99Mm": {
+        "bind": -0.299968154,
+        "idle": -0.220204043,
+        "walk": -0.262644115,
+        "run": -0.226078846
+      },
+      "topExposedWorst": {
+        "bind": {
+          "time": 0.0,
+          "thetaDeg": 78.471074662,
+          "heightMm": 27.999962039
+        },
+        "idle": {
+          "time": 5.749999881,
+          "thetaDeg": 357.605775063,
+          "heightMm": 27.999959448
+        },
+        "walk": {
+          "time": 1.361111065,
+          "thetaDeg": 4.722419207,
+          "heightMm": 28.000016712
+        },
+        "run": {
+          "time": 0.46875,
+          "thetaDeg": 4.722419207,
+          "heightMm": 28.000016712
+        }
+      },
+      "topEvaluated": {
+        "bind": 783,
+        "idle": 784,
+        "walk": 782,
+        "run": 782
+      },
+      "topExposedAnyMaxMm": {
+        "bind": -0.299957124,
+        "idle": -0.212558433,
+        "walk": -0.244907413,
+        "run": -0.209859072
+      },
+      "hairPenetration": {
+        "bind": 0.009321293,
+        "idle": 0.045441305,
+        "walk": 0.033352753,
+        "run": 0.162831343
+      },
+      "topCoverFaces": 173,
+      "frames": 73,
+      "framesPerClip": {
+        "bind": 1,
+        "idle": 24,
+        "walk": 24,
+        "run": 24
+      },
+      "topUnderSkinMinMm": 0.299957124,
+      "penetrationThresholdMm": 1.0,
+      "penetrationScope": "neck patch + neck skin below the animated cut plane (mask plane = canonical ring plane, posed by the Neck bone); every point below participates"
+    },
+    "transitionReportOnly": {
+      "angles": 22,
+      "g1MaxDeg": 11.0417652,
+      "g1P95Deg": 5.695367901,
+      "stepMaxMm": 0.368888634,
+      "bulgeMaxMm": 0.0,
+      "colorP95": 1.586241296,
+      "worstG1Deg": 314
+    },
+    "neckHoles": {
+      "bind": 0.000614817,
+      "idle": 0.000578704,
+      "walk": 0.00051573,
+      "run": 0.000637213
+    }
+  },
+  "penetrationHairReportOnly": {
+    "bind": 0.009321293,
+    "idle": 0.045441305,
+    "walk": 0.033352753,
+    "run": 0.162831343
+  },
+  "holesNeckReportOnly": {
+    "value": {
+      "bind": 0.000614817,
+      "idle": 0.000578704,
+      "walk": 0.00051573,
+      "run": 0.000637213
+    },
+    "tolerance": 0.0005,
+    "reason": "validate 的 holes 判据（被遮罩隐藏、视线上无其他几何的身体片元）为衣物设计；头资产按设计用更细的源颈 / 源头替换模板颈头，侧视轮廓收窄处（喉部）也被计入，不代表表面破洞。真破洞由 orientation、patchBottomOverlap、patchTopUnderSkin、hideMaskLeak 与运行时截图把关。"
+  }
+}

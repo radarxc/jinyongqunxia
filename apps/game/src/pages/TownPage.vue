@@ -1,76 +1,108 @@
 <script setup lang="ts">
-/* global Element, HTMLCanvasElement, KeyboardEvent, PointerEvent, ResizeObserver,
-  cancelAnimationFrame, requestAnimationFrame, window */
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+/* global createImageBitmap, document, Element, fetch, HTMLCanvasElement, ImageBitmap, ImageData, KeyboardEvent, PointerEvent, ResizeObserver,
+  WheelEvent, cancelAnimationFrame, requestAnimationFrame, window */
+import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import type { DomainEvent, TownCommand, TownPoint } from '@tianshu/core';
+import type { TownCommand, TownPoint } from '@tianshu/core';
+import { createPointerGestures, type PointerGestures } from '@tianshu/platform/input';
 import { useUiStore } from '@tianshu/ui/runtime';
+import TxMinimap, { type MinimapTravelTarget } from '@tianshu/ui/components/explore/TxMinimap.vue';
+import TxContextActions from '@tianshu/ui/components/explore/TxContextActions.vue';
 import type { TownAnchorView, TownScene, TownSceneProjection } from '@tianshu/render/town';
+import { DEFAULT_PLAYER_HEIGHT_M } from '../../../../packages/render/src/actors/heights';
 import type { GameController } from '../game-controller';
-import type { GameUpdate } from '../runtime/contracts';
-import { townAnchorIntent, townDirection, townStep } from './town-input';
+import { actionMap, useActionContext } from '../input/action-map';
+import { createZoomController, TOWN_ZOOM_OPTIONS } from '../input/zoom';
+import { createV1AssembledMinimapMarkers, createV1CameraBasis, dispatchV1MinimapTravel,
+  createPaintedMinimapMarkers, generateV1MinimapBitmap, loadV1ActiveTaskNpcIds,
+  loadV1PaintedMinimapWithFallback,
+  v1MinimapLayoutKey,
+  v1TownPointToWorld, v1PlayerHeadingRad, v1WorldToImageMatrix, writeV1Path,
+  writeV1ViewQuad } from '../explore/v1-minimap';
+import { V1_MINIMAP_STRINGS } from '../explore/v1-minimap.strings';
+import { v1ZoomRatio } from '../explore/v1-zoom';
+import { createAreaMapController } from '../explore/area-map-control';
+import { createV1ContextActions, v1AnchorCommand }
+  from '../explore/v1-context-actions';
+import { useChapterTextCatalog } from '../flow/content-text';
+import { applyTownWheel, TOWN_MOVE_STEP_MS, townDirection, townStep } from './town-input';
+import { loadPortraitResolver } from '../runtime/portraits';
 
 const { controller } = defineProps<{ controller: GameController }>();
 const { projection } = storeToRefs(useUiStore());
 const emit = defineEmits<{ leave: [] }>();
+const catalog = useChapterTextCatalog(controller.chapterId, controller.flowTextSource);
 const canvas = ref<HTMLCanvasElement>();
-const zoom = ref(1);
+const zoom = createZoomController(TOWN_ZOOM_OPTIONS);
+const minimapBase = shallowRef<{ bitmap: HTMLCanvasElement | ImageBitmap; minX: number; minZ: number;
+  metresPerPx: number; worldToImage?: readonly [number, number, number, number, number, number];
+  south?: readonly [number, number] } | null>(null);
+const paintedMarkers = shallowRef<ReturnType<typeof createPaintedMinimapMarkers> | null>(null);
+const taskNpcIds = shallowRef<ReadonlySet<string>>(new Set());
+const zoomPxPerMetre = ref(zoom.value());
+const minimapExpanded = ref(false);
+const minimapViewQuad = shallowRef<Float32Array | null>(null);
+const minimapBasis = createV1CameraBasis();
+const viewQuadBuffer = new Float32Array(8);
 const renderError = ref('');
-const actionNotice = ref('');
-const fps = ref(0);
-const drawCalls = ref(0);
-const triangles = ref(0);
-const cpuMs = ref(0);
 const moving = ref(false);
 let view: TownScene | undefined;
 let observer: ResizeObserver | undefined;
+let pointerGestures: PointerGestures | undefined;
 let frame = 0;
-let statsAt = 0;
 let fadeTimer = 0;
 let moveTimer = 0;
+let releaseZoom: (() => void) | undefined;
+let minimapIdle: number | undefined;
+let minimapUsesIdleCallback = false;
+let minimapLoadToken = 0;
+let taskNpcLoadToken = 0;
+
+function asset(path: string): string {
+  const base = import.meta.env.BASE_URL ?? '/';
+  return `${base.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
+}
 
 const runtime = computed(() => controller.townRuntime.value);
 const town = computed(() => controller.town.value);
-const localAnchors = computed(() => town.value?.scene.anchors.filter((anchor) =>
-  anchor.active !== false && samePoint(anchor.point, town.value!.scene.actor.point)) ?? []);
 const inside = computed(() => town.value?.scene.buildingPhase === 'inside');
-const canTrade = computed(() => {
-  const definition = runtime.value; const state = town.value?.scene;
-  if (!definition || !state?.activeBuildingId || state.buildingPhase !== 'inside') return false;
-  return definition.buildings.some((building) => building.id === state.activeBuildingId &&
-    building.interiorKind === 'shop' && building.businessRef !== null);
+const facilityName = computed(() => {
+  const facility = town.value?.facility;
+  return facility ? catalog.value[facility.nameKey] : undefined;
 });
-function samePoint(left: TownPoint, right: TownPoint): boolean {
-  return left[0] === right[0] && left[1] === right[1];
-}
-function eventPayload(event: DomainEvent): Record<string, unknown> | undefined {
-  if (!('payload' in event) || !event.payload || Array.isArray(event.payload) ||
-      typeof event.payload !== 'object') return undefined;
-  return event.payload as Record<string, unknown>;
-}
-function npcName(id: unknown): string {
-  if (typeof id !== 'string') return '店内人物';
-  return projection.value.characters.find((entry) => entry.key === id)?.name ?? '店内人物';
-}
-function shopName(): string {
-  const id = controller.town.value?.scene.activeBuildingId;
-  const building = controller.townRuntime.value?.buildings.find((entry) => entry.id === id);
-  return building?.poi ?? ({ shop: '店铺', inn: '客栈', temple: '寺观',
-    residence: '宅院', other: '建筑' }[building?.interiorKind ?? 'shop']);
-}
-function describeUpdate(update: GameUpdate | undefined): void {
-  if (!update) return;
-  for (const event of update.events) {
-    const payload = eventPayload(event);
-    if (event.t === 'town/shopRequested')
-      actionNotice.value = `已请求打开${shopName()}`;
-    else if (event.t === 'town/dialogueRequested')
-      actionNotice.value = `已请求交谈：${npcName(payload?.['npcId'])}`;
-    else if (event.t === 'progression/meditationInterrupted')
-      actionNotice.value = '打坐遇袭，真气岔行，正在切入战斗。';
-    else if (event.t === 'town/meditationCompleted') actionNotice.value = '一周天运转完毕。';
-  }
-}
+const contextActions = computed(() => {
+  const current = town.value; if (!current) return [];
+  return createV1ContextActions({ actor: current.scene.actor.point, anchors: current.scene.anchors,
+    facility: current.facility ?? null,
+    ...(facilityName.value ? { facilityName: facilityName.value } : {}), inside: inside.value,
+    canLeave: current.canLeave, busy: controller.busy.value });
+});
+const minimapMarkers = computed(() => {
+  if (!runtime.value || !town.value) return [];
+  const names = new Map(projection.value?.characters?.map(character =>
+    [character.key, character.name] as const) ?? []);
+  const facility = town.value.facility; const buildingId = town.value.scene.activeBuildingId;
+  const markerFacility = facility ? { key: facility.key, kind: facility.kind,
+    ...(facilityName.value ? { name: facilityName.value } : {}),
+    ...(buildingId ? { buildingId } : {}) } : null;
+  return createV1AssembledMinimapMarkers(runtime.value, town.value.scene, paintedMarkers.value,
+    names, taskNpcIds.value, markerFacility);
+});
+const minimapPlayer = computed(() => {
+  const definition = runtime.value; const actor = town.value?.scene.actor;
+  if (!definition || !actor) return null;
+  const [x, z] = v1TownPointToWorld(actor.point, definition.grid.height);
+  return { x, z, headingRad: v1PlayerHeadingRad(actor.direction) };
+});
+const minimapPath = computed(() => {
+  const definition = runtime.value;
+  return definition ? writeV1Path(town.value?.movementPath, definition.grid.height) : null;
+});
+const minimapDestination = computed(() => {
+  const path = minimapPath.value;
+  return path && path.length >= 2 ? { x: path[path.length - 2]!, z: path[path.length - 1]! } : null;
+});
+
 function actorAt(scene: TownSceneProjection, point: TownPoint, walking: boolean,
   direction = scene.actor.direction): TownSceneProjection {
   return { ...scene, actor: { ...scene.actor, point, walking,
@@ -82,8 +114,7 @@ async function animatePath(path: readonly TownPoint[] | undefined,
   for (let index = 1; index < path.length; index += 1) {
     const from = path[index - 1]!; const to = path[index]!;
     await view.update(actorAt(scene, to, true, townDirection(from, to)));
-    await new Promise<void>((resolve) => { moveTimer = window.setTimeout(resolve,
-      controller.settings.value.reducedMotion ? 0 : 90); });
+    await new Promise<void>((resolve) => { moveTimer = window.setTimeout(resolve, TOWN_MOVE_STEP_MS); });
   }
 }
 async function command(value: TownCommand): Promise<void> {
@@ -94,13 +125,25 @@ async function command(value: TownCommand): Promise<void> {
     if (value.t === 'town/move') {
       await animatePath(update?.changes.town?.movementPath, before);
       const settled = town.value?.scene; if (settled) { await view?.update(settled); settleFade(settled); }
-    }
-    describeUpdate(update); }
+    } }
   finally { moving.value = false; }
 }
 function useAnchor(anchor: TownAnchorView): void {
   const state = town.value;
-  if (state) void command(townAnchorIntent(anchor, state.scene.actor.point));
+  if (state) {
+    void command(v1AnchorCommand(anchor, state.scene.actor.point));
+  }
+}
+function useContextAction(id: string): void {
+  const selected = contextActions.value.find((entry) => entry.id === id && entry.enabled);
+  if (!selected) return;
+  if (selected.intent.kind === 'leave') emit('leave');
+  else void command(selected.intent.command);
+}
+function usePrimaryContextAction(): boolean {
+  const selected = contextActions.value.find((entry) => entry.enabled);
+  if (!selected || projection.value.dialogue) return false;
+  useContextAction(selected.id); return true;
 }
 function settleFade(next: TownSceneProjection): void {
   window.clearTimeout(fadeTimer);
@@ -108,25 +151,114 @@ function settleFade(next: TownSceneProjection): void {
   fadeTimer = window.setTimeout(() => void command({ t: 'town/settle-building' }),
     controller.settings.value.reducedMotion ? 0 : 260);
 }
+function applyZoom(next = zoom.value()): void {
+  const target = canvas.value;
+  if (view && target && target.clientHeight > 0) view.setZoom(v1ZoomRatio(next, target.clientHeight));
+}
+const areaMap = createAreaMapController({
+  isOpen: () => minimapExpanded.value,
+  setOpen: open => { minimapExpanded.value = open; },
+  holdWorldTicks: () => controller.holdWorldTicks('areaMap'),
+  acquireContext: close => actionMap.pushContext('areaMap', {
+    zoomIn: () => { zoom.stepIn(); }, zoomOut: () => { zoom.stepOut(); },
+    zoomReset: () => { zoom.reset(); },
+    toggleAreaMap: close, back: close,
+  }),
+});
+function toggleAreaMap(): void { areaMap.toggle(); }
+function toggleMinimapNorthUp(): void {
+  controller.setSetting('minimapNorthUp', !controller.settings.value.minimapNorthUp);
+}
+function minimapTravel(target: MinimapTravelTarget): void {
+  const definition = runtime.value; const scene = town.value?.scene;
+  if (!definition || !scene) return;
+  dispatchV1MinimapTravel(target, definition, scene, command);
+}
+function createMinimapCanvas(): void {
+  minimapIdle = undefined;
+  const definition = runtime.value; if (!definition || minimapBase.value) return;
+  const generated = generateV1MinimapBitmap(definition);
+  const bitmap = document.createElement('canvas'); bitmap.width = generated.width; bitmap.height = generated.height;
+  const context = bitmap.getContext('2d');
+  if (!context) { renderError.value = V1_MINIMAP_STRINGS.bitmapFailure; return; }
+  context.putImageData(new ImageData(new Uint8ClampedArray(generated.pixels),
+    generated.width, generated.height), 0, 0);
+  minimapBase.value = { bitmap, minX: generated.minX, minZ: generated.minZ,
+    metresPerPx: generated.metresPerPx };
+}
+async function loadPaintedMinimap(): Promise<void> {
+  const definition = runtime.value; if (!definition) return;
+  const key = v1MinimapLayoutKey(definition); const token = ++minimapLoadToken;
+  const painted = await loadV1PaintedMinimapWithFallback(
+    key, asset('assets/default/town-minimap'), scheduleMinimapCanvas, fetch, createImageBitmap,
+    () => token === minimapLoadToken && runtime.value === definition);
+  if (token !== minimapLoadToken || runtime.value !== definition) { painted?.bitmap.close(); return; }
+  if (painted === null) return;
+  minimapBase.value = { bitmap: painted.bitmap, minX: 0, minZ: 0, metresPerPx: 1,
+    worldToImage: v1WorldToImageMatrix(painted.metadata), south: painted.metadata.south };
+  paintedMarkers.value = createPaintedMinimapMarkers(painted.metadata);
+}
+async function loadTaskNpcIds(): Promise<void> {
+  const token = ++taskNpcLoadToken;
+  const quests = projection.value?.quests ?? [];
+  try {
+    const ids = await loadV1ActiveTaskNpcIds(controller.chapterId.value, quests, asset('content'));
+    if (token === taskNpcLoadToken) taskNpcIds.value = ids;
+  } catch (error) {
+    if (import.meta.env.DEV) console.warn('TOWN_MINIMAP_TASK_NPCS_UNAVAILABLE', error);
+    if (token === taskNpcLoadToken) taskNpcIds.value = new Set();
+  }
+}
+function scheduleMinimapCanvas(): void {
+  const requestIdle = window.requestIdleCallback?.bind(window);
+  minimapUsesIdleCallback = requestIdle !== undefined;
+  minimapIdle = requestIdle ? requestIdle(createMinimapCanvas) : window.setTimeout(createMinimapCanvas, 0);
+}
+function updateViewQuad(): void {
+  if (!view) { minimapViewQuad.value = null; return; }
+  const valid = writeV1ViewQuad(view, viewQuadBuffer);
+  minimapViewQuad.value = valid ? viewQuadBuffer : null;
+}
+function wheel(event: WheelEvent): void {
+  applyTownWheel(event, zoom, 16, canvas.value?.clientHeight ?? 800);
+}
+
+useActionContext('explore', {
+  zoomIn: () => { zoom.stepIn(); }, zoomOut: () => { zoom.stepOut(); },
+  zoomReset: () => { zoom.reset(); },
+  interact: usePrimaryContextAction,
+  toggleAreaMap,
+});
+
 async function mountScene(): Promise<void> {
-  const target = canvas.value; const definition = runtime.value; const projection = town.value?.scene;
-  if (!target || !definition || !projection) return;
+  const target = canvas.value; const definition = runtime.value; const townSceneProjection = town.value?.scene;
+  if (!target || !definition || !townSceneProjection) return;
   try {
     const { createTownScene } = await import('@tianshu/render/town');
-    view = await createTownScene(target, definition, { projection, zoom: zoom.value });
+    const spriteFor = await loadPortraitResolver();
+    const hero = projection.value?.characters?.find((c) => c.relation === 'self');
+    const isFemale = hero?.detail?.identity?.gender === 'female';
+    const playerModelUrl = isFemale
+      ? '/assets/default/model3d/npc_zhujue__ch00_f/anim_idle_walk_run.glb'
+      : '/assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb';
+    view = await createTownScene(target, definition, {
+      projection: townSceneProjection, zoom: v1ZoomRatio(zoom.value(), Math.max(1, target.clientHeight)),
+      spriteFor, playerModelUrl, playerHeightM: DEFAULT_PLAYER_HEIGHT_M[isFemale ? 'female' : 'male'] });
+    (window as unknown as { __townView?: unknown }).__townView = view;
     observer = new ResizeObserver(([entry]) => {
-      if (entry) view?.resize(entry.contentRect.width, entry.contentRect.height, window.devicePixelRatio);
+      if (entry) { view?.resize(entry.contentRect.width, entry.contentRect.height, window.devicePixelRatio);
+        applyZoom(); }
     });
     observer.observe(target);
     view.resize(target.clientWidth, target.clientHeight, window.devicePixelRatio);
+    pointerGestures = createPointerGestures(target, {
+      onPinchStart: () => zoom.pinchStart(), onPinch: gesture => zoom.pinch(gesture.scale),
+      onPinchEnd: () => zoom.pinchEnd(),
+    });
     const animate = (time: number): void => {
       if (!view) return;
       view.render(time, controller.settings.value.reducedMotion);
-      if (time - statsAt >= 500) {
-        fps.value = view.stats.frameMs > 0 ? 1000 / view.stats.frameMs : 0;
-        drawCalls.value = view.stats.drawCalls; triangles.value = view.stats.triangles;
-        cpuMs.value = view.stats.cpuMs; statsAt = time;
-      }
+      updateViewQuad();
       frame = requestAnimationFrame(animate);
     };
     frame = requestAnimationFrame(animate);
@@ -153,11 +285,29 @@ watch(() => town.value?.scene, (next) => {
   if (!moving.value) void view?.update(next);
   if (!moving.value) settleFade(next);
 }, { deep: false });
-watch(zoom, (next) => view?.setZoom(next));
-onMounted(() => { window.addEventListener('keydown', keyboard); void mountScene(); });
+watch(runtime, (next, previous) => {
+  if (!next || next === previous) return;
+  minimapLoadToken += 1;
+  const bitmap = minimapBase.value?.bitmap; if (bitmap && 'close' in bitmap) bitmap.close();
+  minimapBase.value = null; paintedMarkers.value = null; void loadPaintedMinimap();
+});
+watch([() => controller.chapterId.value, () => projection.value?.quests], () => {
+  void loadTaskNpcIds();
+});
+onMounted(() => {
+  window.addEventListener('keydown', keyboard);
+  releaseZoom = zoom.subscribe(value => { zoomPxPerMetre.value = value; applyZoom(value); });
+  void loadPaintedMinimap(); void loadTaskNpcIds(); void mountScene();
+});
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', keyboard); window.clearTimeout(fadeTimer);
   window.clearTimeout(moveTimer);
+  if (minimapIdle !== undefined) {
+    if (minimapUsesIdleCallback) window.cancelIdleCallback?.(minimapIdle);
+    else window.clearTimeout(minimapIdle);
+  }
+  areaMap.dispose(); releaseZoom?.(); pointerGestures?.dispose();
+  const bitmap = minimapBase.value?.bitmap; if (bitmap && 'close' in bitmap) bitmap.close();
   cancelAnimationFrame(frame); observer?.disconnect(); view?.dispose(); view = undefined;
 });
 </script>
@@ -165,48 +315,67 @@ onBeforeUnmount(() => {
 <template>
   <section v-if="town && runtime" class="town-page">
     <div class="town-stage">
-      <canvas ref="canvas" :aria-label="`${town.location}城镇地图`" @click="pointer" />
+      <canvas ref="canvas" :aria-label="`${town.location}城镇地图`" @click="pointer" @wheel="wheel" />
       <output v-if="renderError" class="map-error">{{ renderError }}</output>
-      <label class="map-zoom">缩放
-        <input v-model.number="zoom" type="range" min="0.65" max="2.5" step="0.05">
-      </label>
-      <p class="town-help">点击地面寻路 · 点击光标互动 · WASD / QE 移动</p>
+      <TxMinimap
+        class="town-minimap" :base="minimapBase" :player="minimapPlayer"
+        :basis="minimapBasis" :view-quad="minimapViewQuad" :markers="minimapMarkers"
+        :path="minimapPath" :destination="minimapDestination"
+        :north-up="controller.settings.value.minimapNorthUp" :expanded="minimapExpanded"
+        :size-px="200" :zoom-px-per-metre="zoomPxPerMetre"
+        @travel="minimapTravel" @toggle-expanded="toggleAreaMap"
+        @zoom="direction => direction > 0 ? zoom.stepIn() : zoom.stepOut()"
+        @set-zoom="value => zoom.set(value)"
+        @toggle-north-up="toggleMinimapNorthUp"
+      />
     </div>
-    <aside class="town-panel paper-panel">
-      <header><small>{{ runtime.historicalYear }} 年 · {{ runtime.eraKit }}</small><h3>{{ town.location }}</h3></header>
-      <p>格位 {{ town.scene.actor.point[0] }}, {{ town.scene.actor.point[1] }}</p>
-      <p v-if="inside">建筑内部 · 外墙已半透明</p>
-      <div class="town-actions">
-        <button
-          v-for="anchor in localAnchors" :key="anchor.id" type="button"
-          :disabled="controller.busy.value" @click="useAnchor(anchor)"
-        >
-          {{ anchor.label }}
-        </button>
-        <button
-          v-if="canTrade" type="button" :disabled="controller.busy.value"
-          @click="command({ t: 'town/interact' })"
-        >
-          打开店铺
-        </button>
-        <button
-          v-if="inside" type="button" :disabled="controller.busy.value"
-          @click="command({ t: 'town/exit-building' })"
-        >
-          走出建筑
-        </button>
-        <button
-          v-if="town.canLeave" type="button" :disabled="controller.busy.value"
-          @click="emit('leave')"
-        >
-          返回大地图
-        </button>
-      </div>
-      <output class="muted" role="status">{{ actionNotice }}</output>
-      <small data-testid="town-stats">
-        {{ drawCalls }} draw · {{ triangles }} tri · {{ fps.toFixed(0) }} fps · CPU {{ cpuMs.toFixed(2) }} ms
-      </small>
-    </aside>
+
+    <TxContextActions
+      v-if="!projection.dialogue && contextActions.length"
+      class="town-context-actions" :actions="contextActions" @act="useContextAction"
+    />
   </section>
   <section v-else class="paper-panel reading-panel"><p>城镇运行时尚未装载。</p></section>
 </template>
+
+<style scoped>
+.town-page {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-calligraphy, 'Kaiti SC', KaiTi, serif);
+}
+.town-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #d9ccb0;
+}
+.town-stage canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+.town-minimap {
+  position: absolute;
+  /* below the topbar's time · place · money line so the 司南 on the disc's upper-left stays visible */
+  top: 132px;
+  right: 38px;
+  z-index: 20;
+}
+.town-minimap.expanded {
+  top: 0;
+  right: 0;
+}
+.town-context-actions {
+  position: absolute;
+  right: max(24px, env(safe-area-inset-right));
+  bottom: max(86px, calc(62px + env(safe-area-inset-bottom)));
+  z-index: 21;
+}
+</style>

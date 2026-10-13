@@ -49,6 +49,7 @@ export interface CharacterDetailView {
   readonly meridians: readonly MeridianView[];
   readonly opened: number;
   readonly completed: number;
+  readonly identity?: { readonly name?: string; readonly gender?: string; readonly appearance?: string; readonly pronoun?: string };
 }
 export interface CharacterView {
   readonly key: string;
@@ -107,6 +108,10 @@ export interface DialogueView {
   readonly speakerId: string; readonly textKey: string | null;
   readonly choices: readonly DialogueChoiceView[];
   readonly history: readonly { readonly speakerId: string; readonly textKey: string }[];
+  /** Facility staff the `interlocutor` speaker refers to (core dialogue projection). */
+  readonly interlocutor?: {
+    readonly facilityKey: string; readonly roleKey: string; readonly nameKey: string;
+  };
 }
 export interface DialoguePanelChoiceView {
   readonly id: string;
@@ -171,6 +176,7 @@ export interface QuestTrackerView {
 export interface FlowSettingsView {
   readonly textScale: 100 | 125 | 150;
   readonly reducedMotion: boolean;
+  readonly minimapNorthUp?: boolean;
   readonly subtitles: boolean;
   readonly volume: Readonly<Record<'master' | 'music' | 'effects' | 'voice', number>>;
   readonly quality: 'auto' | 'low' | 'mid' | 'high' | 'ultra';

@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_zhangzhou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "漳州·西林初治（今云霄）（702年推定）"
+display_name: 龙溪县（武荣州）
 historical_year: 702
 era_kit: "tang"
 seed: 2404442390

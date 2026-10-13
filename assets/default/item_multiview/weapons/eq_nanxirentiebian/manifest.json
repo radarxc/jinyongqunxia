@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_nanxirentiebian",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_nanxirentiebian.png",
+  "generatedAt": "2026-10-07T16:15:58.538Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 92832,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/fdac6745-fd02-4c33-9619-e942a1b174ac/multiview_0_fdac6745-fd02-4c33-9619-e942a1b174ac.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 69316,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/fdac6745-fd02-4c33-9619-e942a1b174ac/multiview_1_fdac6745-fd02-4c33-9619-e942a1b174ac.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 73945,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/fdac6745-fd02-4c33-9619-e942a1b174ac/multiview_3_fdac6745-fd02-4c33-9619-e942a1b174ac.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 96432,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/fdac6745-fd02-4c33-9619-e942a1b174ac/multiview_2_fdac6745-fd02-4c33-9619-e942a1b174ac.jpeg"
+    }
+  }
+}

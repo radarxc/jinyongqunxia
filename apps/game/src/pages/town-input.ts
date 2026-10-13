@@ -1,6 +1,7 @@
 import type { TownPoint } from '@tianshu/core';
-import type { TownAnchorView } from '@tianshu/render/town';
 import type { Dir8 } from '@tianshu/render/rig';
+import type { ZoomController } from '../input/zoom';
+import { normalizeWheel } from '@tianshu/platform/input';
 
 const DIRECTION: Readonly<Record<string, TownPoint>> = {
   ArrowRight: [1, 0], d: [1, 0],
@@ -31,11 +32,22 @@ export type TownAnchorIntent =
   | { readonly t: 'town/meditate'; readonly anchorId: string; readonly plannedTicks: 600 };
 
 /** Convert a picked presentation marker into a command only; core still validates reachability and state. */
-export function townAnchorIntent(anchor: TownAnchorView, actor: TownPoint): TownAnchorIntent {
-  const here = anchor.point[0] === actor[0] && anchor.point[1] === actor[1];
-  if (anchor.kind === 'npc' && here && anchor.npcId) return { t: 'town/interact', npcId: anchor.npcId };
-  if (anchor.kind === 'meditation' && here)
-    return { t: 'town/meditate', anchorId: anchor.id, plannedTicks: 600 };
-  return { t: 'town/move', destination: anchor.point,
-    ...(anchor.kind === 'building' && anchor.buildingId ? { buildingId: anchor.buildingId } : {}) };
+export { v1AnchorCommand as townAnchorIntent } from '../explore/v1-context-actions';
+
+/** Presentation cadence is accessibility-invariant: reduced motion must not slow character movement. */
+export const TOWN_MOVE_STEP_MS = 140;
+
+export interface TownWheelInput {
+  readonly deltaX: number; readonly deltaY: number; readonly deltaMode: number;
+  readonly ctrlKey: boolean; readonly metaKey: boolean; readonly altKey: boolean;
+  preventDefault(): void;
+}
+
+/** Keeps browser zoom gestures intact while routing ordinary wheel deltas into ZoomController. */
+export function applyTownWheel(event: TownWheelInput, zoom: ZoomController,
+  lineHeightPx = 16, pageHeightPx = 800): boolean {
+  if (event.ctrlKey || event.metaKey || event.altKey) return false;
+  const { dy } = normalizeWheel(event, lineHeightPx, pageHeightPx);
+  if (dy === 0) return false;
+  event.preventDefault(); zoom.wheel(dy); return true;
 }

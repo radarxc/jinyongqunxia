@@ -42,7 +42,8 @@ import run as R  # noqa: E402  复用 run.py
 from check_semaphore import check_slot  # noqa: E402
 
 DEFAULT_MODEL = "GPT-6-Astra"  # 作者 2026-10-01：「调用 traex-cli（GPT 6 astra max，如果没有就 5.6-sol max）」——默认 Astra，启动探测不应答自动回退 FALLBACK_MODELS
-DEFAULT_EFFORT = "max"  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
+DEFAULT_EFFORT = "max"
+PROBE_EFFORT = "low"  # 探测模型用的推理强度（远端并入后被引用但漏定义，start 一探测就 NameError；2026-10-07 补）  # 执行默认 ultra；审核默认 xhigh（作者 2026-09-30："gpt 6 astra ultra 和 extra high"）
 CODEX_BIN = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex"
 
 
@@ -194,7 +195,12 @@ SPARSE_EXCLUDE_SUBDIRS = ("assets/default/baseline/building-map", "assets/defaul
 SPARSE_EXCLUDE_IF_NO_BUILD = ("assets/default/vfx",)
 # 2026-10-03（素材线第三波）：被排除目录里 tools 单测要直接读的少数文件，稀疏检出时总是带上
 # （tools/content/test_town_runtime.py 的 test_compiles_current_town_deterministically 读南京 ch10 的现成布局）。
-SPARSE_ALWAYS_INCLUDE = ("assets/default/town/city_nanjing__ch10/layout.yaml",)
+SPARSE_ALWAYS_INCLUDE = ("assets/default/town/city_nanjing__ch10/layout.yaml",
+                         # 2026-10-11（城镇 v2 协调者）：试点城设施文件的建筑引用在构建期按布局原文件校验，
+                         # 内容校验（pnpm check）因此要读这三份布局；每份 0.45–0.75 MB。
+                         "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+                         "assets/default/town/city_dali__ch10/layout.yaml",
+                         "assets/default/town/city_turpan__ch10/layout.yaml")
 SPARSE_EXCLUDE_FILES = ("assets/default/item/**/*.png", "assets/default/item/**/*.jpg", "assets/default/item/**/*.pdf",
                         "assets/default/character/**/*.png", "assets/default/portrait/**/*.webp")
 SPARSE_FULL_IF_WRITES = SPARSE_EXCLUDE_DIRS + SPARSE_EXCLUDE_SUBDIRS + ("assets/default/item", "assets/default/character",
@@ -429,7 +435,11 @@ def probe_model(binary: str, model: str, effort: str, timeout_s: int = 90) -> bo
             return False
         except OSError:
             return False
-        return p.returncode == 0 and R.PREFLIGHT_ANSWER in (p.stdout or "") + (p.stderr or "")
+        out = (p.stdout or "") + (p.stderr or "")
+        # 2026-10-07 协调者：探测只问"模型有没有应答"。GPT-5.6-Sol 实测会把 UHSNAIT 拼成 UHSSNAIT（rc=0、12 秒应答），
+        # 严格比对会把能用的模型判成无响应；放宽为 rc=0 且输出里有一个 ≥6 个大写字母、含 NAIT 的词。
+        import re
+        return p.returncode == 0 and (R.PREFLIGHT_ANSWER in out or re.search(r"\b[A-Z]{6,9}NAIT\b|\bUHS+NAIT\b", out) is not None)
 
 
 def launch(argv: list, prompt_file: Path, log: Path, exit_file: Path, cwd: Path, extra_env: dict) -> int:

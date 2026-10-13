@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_zhangye"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "甘州·张掖县（702年推定）"
+display_name: 甘州（张掖县）
 historical_year: 702
 era_kit: "song_southern"
 seed: 4161681239

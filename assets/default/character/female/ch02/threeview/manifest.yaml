@@ -34,3 +34,374 @@
   sha256: c148e6ca4a7a85a392cd2d2778ffeb0359a9518ed7cb786e212e8fdfe5c7c286
   status: candidate
   notes: 绑骨用的窄轮廓版 A 字姿势参考（女角 _apose_slim 口径：束袖、裙摆不超过肩宽、露鞋尖与月白裤腿）；依据作者 16:00 选定的 por_npc_huangrong__ch02_youth_bangzhu_base（同脸，碧绿竹棒作单独道具不画）；AR-44
+- id: por_npc_munianci__ch02_youth_apose_slim
+  file: por_npc_munianci__ch02_youth_apose_slim.png
+  category: character/female/tripo_ref
+  style: default
+  subject: 穆念慈（ch02_shediao）窄轮廓 A 字姿势全身参考：与作者选定 C 版同脸，按 Tripo 3D 规矩去刘海与发饰、头发全盘入发髻、双耳露出，交领低开露出整圈颈部、束袖、直筒窄裙
+  prompt: '请用你的图像生成 / 编辑工具（generate_image）完成下面的出图任务，只调用一次图像工具：参考图是当前目录的 ./ref.jpg（第 1 张：本项目已定稿的穆念慈立绘）和 ./face.jpg（第 2 张：同一张图的脸部特写），按下面的要求画一张新图，生成后把结果复制到
+    ./out/munianci_apose.png。不要写代码处理像素，不要用 PIL、脚本或拼贴来做图；不要修改 ./ref.jpg 和 ./face.jpg。完成后只回复输出文件的路径。
+
+
+    【任务】这是一张供 3D 建模自动绑骨使用的「窄轮廓」A 字姿势全身参考图。第 1 张参考图是本项目已定稿的穆念慈立绘，第 2 张是同一张图的脸部特写。请画同一个人：同一张脸（脸型、五官、神情、年龄感），同样修长的身材比例；衣服的颜色、面料和纹样沿用第
+    1 张，但剪裁改成便于绑骨的窄轮廓；发式按下面【头发】的要求改成全部梳拢、露出额头和双耳，去掉第 1 张里的刘海、花饰、发带和耳饰。
+
+
+    【服饰（窄轮廓）】红色交领右衽上衣（面料和暗纹沿用第 1 张），内衬白色中衣，衣身合体；**领口开得低而宽**：上衣和中衣的领子都落在锁骨以下，交领的交叉点在胸口中部（胸骨中段），白色中衣只在胸前 V 字里露出一道窄窄的白边；**脖子四周完全露出**——前颈、左右两侧和后颈都能看到至少两指宽的连续皮肤，领子和衣服都不贴着、不包住、不遮挡脖子，后领也低于颈根，锁骨可以微微露出；袖子改成束袖：袖口在手腕处收紧，整条手臂的轮廓清楚，袖子不下垂成大片、不外扩；豆沙色布腰带系在腰间，打结后垂下的带头很短，不超过胯部，不能长垂到膝盖；下身红色长裙改成收窄的直筒长裙，裙摆宽度不超过肩宽，长到脚踝上方，露出白色裤脚和两只灰色布鞋的鞋尖；没有飘带、披帛、长拖尾或任何外飘的布条。整个人的外轮廓肩宽、脚窄，或上下差不多宽，绝不能是下摆外扩的三角形。
+
+
+    【姿势】正面站立，身体和脸都正对镜头，头部端正、平视前方；双臂伸直、自然下垂并向身体两侧张开约 30°，腋下和腰侧与手臂之间露出背景；手掌朝向大腿方向，五指自然张开、彼此分开、清楚可数，手里不拿任何东西；双脚分开约与肩同宽，平站在同一条地面线上，脚尖朝前。
+
+
+    【头发】乌黑的头发全部梳拢：额前不留任何刘海和碎发，露出完整干净的额头、眉弓和眼睑，发际线清楚；两鬓的头发梳到耳后、收紧贴着头颅，双耳完整露出，耳前、耳下都不留发丝；头顶挽一个紧凑的发髻（不蓬松、不高耸），其余长发在脑后收拢成一束，从背后正中垂下，从正面看脖子两侧和肩膀上都不露出发丝，不搭在肩前，不盖住手臂和手；头发是收拢的整块轮廓，没有飘散的细丝；不戴任何发饰、花、发带、簪钗，不戴耳坠、耳环。
+
+
+    【面部】脸与第 1、2 张一致，五官比例严格照第 2 张：眼睛大小与眼形、平直清秀的眉形、鼻梁与鼻尖、唇形与人中长度都和原图一样；不要把眼睛画大，不要加眼妆、美颜或网红脸，保持原图清秀、略带风尘与坚毅的神情；眼睑与眼眶线条清楚、不糊，眼周没有深色眼影；唇色是自然饱满的朱砂红，双唇闭合，唇缝平整；神情坚定从容，不笑、不露齿（与第
+    1 张一致）。
+
+
+    【画风】与第 1 张相同的写实手绘古风人物插画；手绘插画质感，不是 CG 渲染：不要过度光滑的皮肤、完美对称的五官、塑料高光、过度锐利的发丝；保留自然的笔触和细微不完美。柔和均匀的正面偏左上方光，明暗清楚但没有强烈投影。
+
+
+    【背景与画面】纯净的浅暖灰色平涂背景（#E6E1D8），没有水墨、山水、地面纹理、投影、暗角或边框；2:3 竖幅，人物完整全身居中，头顶和脚下都留出约 10% 的空白；平视正交视角，没有透视畸变。
+
+
+    【不要】不要高领、立领或贴住脖子的领子，不要让衣领遮住任何一段颈部皮肤；不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态（童颜、娃娃脸、少年身材）；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服；不要刘海、发饰、耳饰。
+
+    '
+  negative: 不要高领、立领或贴住脖子的领子，不要让衣领遮住任何一段颈部皮肤；不要文字、标签、箭头、网格、色卡；不要第二个人、分身或多视图；不要武器、道具；不要幼态（童颜、娃娃脸、少年身材）；不要水平镜像，衣襟保持右衽（穿着者的左襟压在右襟上）；不要透明或暴露的衣服；不要刘海、发饰、耳饰。
+  references:
+  - path: assets/default/character/female/ch02/por_npc_munianci__ch02_youth_base.png
+    sha256: 6fcd16c646ee9c653dcc0cf89412b38b9d5f511befa88bea431dbeb5408db6db
+    use: 底图：作者选定的穆念慈 C 版立绘（AR-70 / AR-74 / AR-80；转 1024×1536 JPEG 上传）
+  - path: /private/tmp/D2-munianci-ref/ref_munianci_face_768.jpg（临时裁图，不入库）
+    use: 同一立绘的脸部特写（裁 365,8,645,288 放大到 768 方图）
+  tool: agy · generate_image（Antigravity CLI；以作者定稿立绘为底图改姿势，按 tripo-web §1 去刘海 / 发饰 / 耳饰）
+  model: gemini-3.1-pro-high
+  created: '2026-10-10T02:25:38-07:00'
+  source_path: /private/tmp/D2-munianci-agy/run5/out/munianci_apose.png
+  source_size: 848x1264
+  size: 1024x1536
+  sha256: ded507cd840e6281c1798223bfaf456f72fa8d80c829be755a05c76c3db5e1d6
+  status: candidate
+  notes: D2 生成头样例（作者 2026-10-10 批准）。本机 Codex 对 gpt-6-astra / gpt-6.1-sol 仍报 400，按 10-07 先例改用 agy。共出 4 张：run1 两鬓长发沿颈垂到肩后、眼妆偏重；run2
+    臂张约 40°、脸更像通用美人；第二轮提示词加「五官比例照第 2 张、不放大眼睛不加眼妆」「长发在脑后收成一束、颈侧不露发丝」后 run3 臂约 40°、run4 臂约 30° 且最像 C 版，选 run4。agy 原图 848×1264，用底色
+    RGB(219, 215, 204) 补边到 2:3 后缩到 1024×1536，人物不裁。已知偏差：腰带垂头到大腿中部（要求不过胯，贴身不外飘）；手指自然并拢未分开（本件只取头）。 第二版（2026-10-10 02:25）：D2 第
+    1 次运行用 run4 生成 + 绑骨（85 点，Tripo 项目 98c3372a），脸部质检通过，但白色交领包到颈前（78°–106° 无裸露皮肤），cut_head 找不到连续 6 mm 颈带而失败；提示词改为「领口落在锁骨以下、交叉点在胸骨中段、颈部四周露出至少两指宽皮肤」再出
+    run5 / run6，run6 领口过宽且两鬓垂发、脚下多画地面线，选 run5（848×1264，底色 RGB(220, 214, 202) 补边到 2:3）。
+- id: por_npc_munianci__ch02_youth_base_body_apose
+  file: por_npc_munianci__ch02_youth_base_body_apose.png
+  category: character/female/tripo_ref
+  style: default
+  subject: 穆念慈（ch02_shediao）素模参考：穆念慈的脸与头顶发髻 + 换装模板同款素体（肤色半透明裹胸、高叉三角裤、赤足、25° 窄 A 字），双耳完整露出、耳前耳下颈侧无发丝、无任何饰物，整圈脖子到肩部裸露
+  prompt: '请用你的图像生成 / 编辑工具（generate_image）完成下面的出图任务，只调用一次图像工具：参考图是当前目录的 ./body.png（第 1 张：换装系统的素体底板，决定身体、姿势、穿着、背景和构图）和 ./head.png（第 2 张：穆念慈的头部，决定脸、五官、发髻和耳朵）。生成后把结果复制到 ./out/munianci_base_body.png。不要写代码处理像素，不要用
+    PIL、脚本或拼贴来做图；不要修改两张参考图。完成后只回复输出文件的路径。
+
+
+    【任务】画一张供 3D 建模自动绑骨用的全身素体参考图：第 2 张里的同一个人（穆念慈：同一张脸、五官、神情、年龄感，同样的黑色发髻全部梳拢在头顶），身体、姿势、穿着和画面完全照第 1 张素体底板：同样的身材比例和身高，同样的窄 A 字站姿（双臂向外张开约 25 度，指尖与裆部齐平，手掌朝内、手里空无一物），同样的肤色半透明裹胸和高叉三角裤，赤足，同样的浅米色纯背景，同样的全身构图（头顶和脚底都完整在画面内）。
+
+
+    【头部】脸照第 2 张，不放大眼睛、不加眼妆、不美颜；头发全部梳进头顶的发髻，额头露出，鬓角收紧贴着头皮；两只耳朵完整露出，耳垂圆润干净；耳前、耳后、耳下和颈侧没有任何发丝；脖子整圈完全露出，一直到锁骨和肩膀都是皮肤。
+
+
+    【不要】任何耳饰（耳环、耳坠、耳钉、珍珠）、发饰、刘海、垂下来的头发；项链或任何饰物；衣服、鞋子；文字、水印；第二个人或多视图；改变第 1 张的姿势、身材和构图。'
+  negative: 任何耳饰（耳环、耳坠、耳钉、珍珠）、发饰、刘海、垂下来的头发；项链或任何饰物；衣服、鞋子；文字、水印；第二个人或多视图；改变第 1 张的姿势、身材和构图。
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+    use: 第 1 张：AR-105 作者定稿的 25° 窄 A 光头女中等素体底板（身体、姿势、穿着、构图）
+  - path: /private/tmp/D2-munianci-agy/munianci_head_v3.png
+    sha256: 1c6ee1d7edac87dd9cc530fffdf143eb1c2c1eb5c7379f4e2809de57a2f98c7b
+    use: 第 2 张：穆念慈头部（由第二版参考图 agy 去耳前细发后的第三版穿衣参考裁出：脸、发髻、双耳）
+  tool: agy · generate_image（Antigravity CLI；两张参考图合成，按 tripo-web §1 去耳饰与耳下发丝）
+  model: gemini-3.1-pro-high
+  created: '2026-10-10T08:46:00-07:00'
+  source_path: /private/tmp/D2-munianci-agy/body_run2/out/munianci_base_body.png
+  source_size: 848x1264
+  size: 1024x1536
+  sha256: 19be74504936639d7ae06437f7717b826a2eee8cbf08f6b3bdbc8264b7f55ef0
+  status: candidate
+  notes: D2 第三版（作者 2026-10-10 选「出素模，一箭双雕」，再花 85 点）：第二版参考图耳前各留一缕垂到耳垂下的细发，Tripo 把耳垂重建成浅色方块 + 珍珠状突起（违反 tripo-web §1.4 第 6 条，熔在耳垂表面里删不掉）。本版改成素模：同一份 85 点既用于切头（颈部无衣领干扰），也作方案 1（每人一个素模）的试点。先以第二版为底用 agy 去掉耳前细发出三张穿衣参考（v3_run1–3，均去净），取
+    run1 头部；再与素体底板合成出三张素模：run1 线稿插画风、手臂贴身；run3 写实 CG 风带地面阴影；选 run2（画风、裹胸短裤、约 25° 臂角与底板一致）。agy 原图 848×1264，底色 RGB(220, 213, 195) 补边到 2:3 后缩到 1024×1536，人物不裁。已知局限：agy 只出 848×1264，作者提的“超高清给 Tripo”这一步做不到，脸约占画高
+    1/8。
+- id: por_npc_huangrong__ch02_youth_base_body_apose_hd
+  file: por_npc_huangrong__ch02_youth_base_body_apose_hd.png
+  category: character/female/tripo_ref
+  style: default
+  subject: 黄蓉（ch02_shediao）方案 1 整人素体：脸、画风与妆容照作者定稿立绘 bangzhu_base；头顶两个小髻、其余长发盘在脑后，耳前耳下无碎发；25° 窄 A 字、肤色抹胸与三角裤、赤足、浅暖灰平涂背景；目标身高 1.58 m（3D 按身高缩放）
+  prompt: '编辑任务：以第 1 张图（3D 建模用的人体底板）为底，把画中人换成第 2、3 张图里的这位年轻女子（黄蓉），画一张全身人体参考图。
+
+
+    【脸：就是第 2、3 张这个人】脸要和第 2 张一模一样，一眼认出是同一个人：圆润柔和的鹅蛋脸、饱满的两颊、小而圆的下巴；弯弯的笑眼、双眼皮、眼尾微扬、眼神灵动；细长柔和的眉毛；小巧挺直的鼻子；嘴角上扬的甜美浅笑，双唇闭合不露齿。妆容和第 2 张相同：清透白皙的皮肤、淡粉色的唇、自然的眼妆和淡淡的腮红。脸正对镜头、头部端正、平视前方。
+
+
+    【画风：照第 3 张立绘】和第 3 张同样的古风唯美写实插画画风：柔和细腻的光影、通透的肤色、精致的五官、柔和的发丝质感，整体清新秀美。不要第 1 张那种塑料感的光滑皮肤。
+
+
+    【头发】乌黑的头发中分，头顶两个小巧的发髻，位置和大小照第 3 张（在头顶偏后，小而贴头，不是长在头两侧的大圆髻）；其余的长发全部向后梳起，在后脑盘成一个发髻（正面看不见）。耳朵以下没有任何头发：脖子两侧、肩膀、胸前、背后都没有头发，双耳完整露出，额前没有刘海和碎发。不戴任何发饰、珠花、簪子、耳坠（第
+    3 张里的发饰和耳坠一律不画）。
+
+
+    【姿势、构图、衣着：照第 1 张】正面站立，双臂伸直、向身体两侧张开约 25 度（窄 A 字），手掌朝内，五指并拢，手里空无一物；双腿伸直，两脚分开的距离与第 1 张相同，赤足；只穿与第 1 张相同的肤色贴身抹胸和高叉三角裤；人物在画面中的位置和大小与第 1 张相同，头顶和脚底都在画面内并留白；浅暖灰米色纯色背景，没有地面线、投影和纹理。
+
+
+    【身体】约十九岁的成年女子，身材纤细秀美：肩膀略窄、腰细、手臂和双腿纤细修长；成年女性的身体比例，不是大头小身，不是儿童身材。
+
+
+    【不要】衣服、鞋子、饰物；刘海、垂下来的头发、长在头两侧的大发髻；文字、水印；第二个人；地面、投影；幼态、娃娃脸；三维渲染感、塑料皮肤；改变第 1 张的姿势和构图。'
+  negative: 衣服、鞋子、饰物；刘海、垂下来的头发、长在头两侧的大发髻；文字、水印；第二个人；地面、投影；幼态、娃娃脸；三维渲染感、塑料皮肤；改变第 1 张的姿势和构图。
+  references:
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/gem/hr_ref_body.png
+    sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+    use: 上传第 1 张（临时件）：assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png 的 PNG 原样副本（源 sha256
+      883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45）；姿势、取景、打底衣与背景
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/gem/hr_ref_face.png
+    sha256: 3de917b4fbe8579e15f1d693affa72f5360f6f999324a7aea2e485923589a4da
+    use: 上传第 2 张（临时件）：assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png 裁 (352,10)-(672,330) 后 Lanczos 放大到 768²
+      的脸部特写（源 sha256 44c6982bbd01ddc1032ab20b26b2eac0f6fc844414105e3b1b3e6c9724d8e240）；身份
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/gem/hr_ref_portrait.jpg
+    sha256: fc16954a388f3afc2ac6aaaa5d109bdeb39b3c3fe16ee3539c70e65bec1a9b79
+    use: 上传第 3 张（临时件）：assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_bangzhu_base.png 全图转 JPEG q93；画风、妆容、发髻
+  tool: Gemini 网页 · Create image（作者 Chrome，Pro 模式）一次出图；碎发 / 痣位按配准局部替换为同模型编辑图像素（整数精确合成，蒙版外逐像素保留首次出图）
+  model: Gemini 网页 Pro（gemini.google.com）
+  effort: n/a
+  created: '2026-10-10T23:13:03-07:00'
+  source_path: /Users/bytedance/Downloads/gemini__hr_body_g1.jpeg
+  source_sha256: aefaadf93e00ca9a11e577241ee4b2b489a45b9a707e83156023a80b10bcb011
+  source_size: 1686x2528
+  edit_source:
+    path: /Users/bytedance/Downloads/gemini__hr_body_g3.jpeg
+    sha256: 58b4bb9f3751e42118578dd14cf46153352bfc3429d00480db6a6d0a28d328b1
+    prompt: '图像编辑：这是一张已经定稿的人物图，只允许改一个地方：把她两边耳朵前面、耳朵下面垂着的几缕细发丝擦掉（擦掉的地方露出原本的背景、耳朵和脖子），两鬓头发贴着头梳到耳后，双耳完整露出。
+
+
+      脸部严禁任何改动：脸型、圆润的下巴和两颊、下颌线、眼睛、眉毛、鼻子、嘴、笑容、妆容、肤色，都必须和原图逐像素一致，不要把脸改瘦、不要把下巴改尖、不要加脸部轮廓线。头顶两个发髻、发际线、身体、姿势、构图、背景颜色、画风、画面尺寸也全部保持不变。'
+  composite:
+    changedPixels: 5794
+    bboxXYXY:
+    - 722
+    - 269
+    - 966
+    - 401
+    maskPixels: 5088
+    featherBandPixels: 849
+    faceStructureBoxesUnchanged: true
+    deltaLThresholds:
+    - 3.0
+    - 3.0
+    headCropBoxXYXY:
+    - 505
+    - 0
+    - 1180
+    - 682
+    zonesHeadCrop:
+      rects:
+      - - 195
+        - 259
+        - 270
+        - 450
+      - - 424
+        - 490
+        - 270
+        - 450
+      exclude:
+      - - 270
+        - 322
+        - 276
+        - 296
+      - - 356
+        - 410
+        - 276
+        - 296
+      - - 272
+        - 326
+        - 296
+        - 322
+      - - 354
+        - 408
+        - 296
+        - 322
+      - - 318
+        - 362
+        - 322
+        - 368
+      - - 305
+        - 375
+        - 368
+        - 396
+      - - 290
+        - 392
+        - 396
+        - 440
+      circles: []
+    alignment:
+      method: sift
+      inliers: 45
+      scale: 0.999977
+      rotDeg: -0.0131
+      flowP95Px: 0.66
+  size: 1686x2528
+  sha256: 91a62c312d90cfe03398afdd1a108a572b73bb3de3c8696d22cd0b4c57990bc5
+  status: candidate
+  target_height_m: 1.58
+  check_plate:
+    command: python3 tools/model3d/dressup/check_plate.py --plate <主角窄 A 底板 Lanczos 等比放大到 1686×2528 的临时副本> --image assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_base_body_apose_hd.png
+      --arm-angle-deg 25 --json
+    plateTemp:
+      path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/plate/zhujue_narrow_1686x2528.png
+      sha256: 651aeffcccb2b508fefb1cf1e1a61836b4a14840714a558aa15f3069fce34410
+      from: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    armAngleDeltaDeg:
+      left: 0.594
+      right: 0.546
+    armSpanRatioDelta: 0.0176
+    feetBottomDeltaRatio: 0.0049
+    hipsRatioDelta: 0.0065
+    faceIou: 0.6856
+    headTopDeltaRatio: 0.0247
+    posePass: true
+    notApplicable: face_iou / head_top 对照的是光头主角底板，人物有发髻、脸不同，按设计不一致，只报
+  notes: 作者 2026-10-10 晚：O1a 第一版「黄蓉太丑了，要和现在立绘一致」，并定「每个主要人物给素体就行」（不再出同画布穿衣图）。第一版丑的原因：agy 出图时脸已走样，之后四轮修脸 / 去妆越修越像 AI 脸；立绘头顶小髻被画成两侧大髻；改 7.6 头身时整图按画布放大使头大肩窄。本版照立绘画风与妆容一次出图，不修脸。耳边碎发（AR-97）：同模型编辑两轮（第一轮下巴变尖弃用，第二轮脸仍偏窄），只取第二轮在两耳附近的碎发像素合成，变更
+    5,794 像素（蒙版 5,088 + 羽化带），均在两耳附近；眉、眼、鼻、口、下颌七个框与首次出图逐像素一致。Gemini 原生 1686×2528，未插值放大。
+- id: por_npc_munianci__ch02_youth_base_body_apose_hd
+  file: por_npc_munianci__ch02_youth_base_body_apose_hd.png
+  category: character/female/tripo_ref
+  style: default
+  subject: 穆念慈（ch02_shediao）方案 1 整人素体：脸照作者选定立绘（狭长杏眼、平直深色眉、利落下颌、较深朱红唇、神情沉静坚毅不笑）；头顶高髻、无刘海和垂发、无白花与发带；身材高挑、习武的结实修长；25° 窄 A 字、肤色抹胸与三角裤、赤足、浅暖灰平涂背景；目标身高
+    1.70 m（3D 按身高缩放）
+  prompt: '画一张 3D 建模用的全身人体参考图，人物是第 1 张图里的这位年轻女子（穆念慈）。
+
+
+    【脸：严格照第 1 张】脸要和第 1 张是同一个人，五官逐项照抄：眼睛细长，上眼睑略微压低，眼睛露出的高度只有眼宽的三分之一左右，眼尾平、微微上挑，双眼皮窄（绝对不要画成圆而大的眼睛）；眉毛平直、略粗、颜色较深，眉头离眼睛近；颧骨和两颊略饱满，下颌线利落；鼻梁挺直；唇形端正偏薄，唇色是较深的朱红色。神情冷静、坚毅、克制，嘴角平、不笑。第
+    1 张的刘海全部梳上去，露出完整的额头和发际线，五官本身不变。脸正对镜头、头部端正、平视前方。
+
+
+    【画风：照第 3 张立绘】古风写实插画画风，柔和细腻的光影、通透的肤色，和第 3 张一致。
+
+
+    【头发】乌黑的头发全部向上梳起，在头顶盘成一个高髻，位置和大小照第 3 张；额前不留刘海和碎发；两鬓和脸侧不留任何垂下来的发丝，两鬓头发紧贴着梳进高髻，双耳完整露出，耳朵前后和下方没有一根头发，脖子两侧、肩膀、胸前、背后都没有头发。不戴任何发饰：白花、蓝色发带一律不画，也不戴耳坠。脸上没有痣。
+
+
+    【姿势、构图、衣着：照第 2 张】正面站立，双臂伸直、向身体两侧张开约 25 度（窄 A 字），手掌朝内，五指并拢，手里空无一物；双腿伸直，两脚分开的距离与第 2 张相同，赤足；只穿与第 2 张相同的肤色贴身抹胸和高叉三角裤；人物在画面中的位置和大小与第 2 张相同，头顶和脚底都在画面内并留白；浅暖灰米色纯色背景，没有地面线、投影和纹理。
+
+
+    【身体】约二十岁的成年女子，身材高挑匀称、有习武之人的结实修长：肩膀平直、比一般女子略宽，腰细，手臂和双腿修长有力，大腿有紧致的肌肉线条；成年女性的身体比例，不是大头小身。
+
+
+    【不要】圆眼、大眼、甜美笑容、娃娃脸、千篇一律的 AI 脸；衣服、鞋子、饰物；刘海、垂下来的头发、白花、发带；脸上的痣；文字、水印；第二个人；地面、投影；幼态；三维渲染感、塑料皮肤。'
+  negative: 圆眼、大眼、甜美笑容、娃娃脸、千篇一律的 AI 脸；衣服、鞋子、饰物；刘海、垂下来的头发、白花、发带；脸上的痣；文字、水印；第二个人；地面、投影；幼态；三维渲染感、塑料皮肤。
+  references:
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/gem/mn_ref_face_big.jpg
+    sha256: 43420e5fc10cc660c97696e25138a61e9c686360bd0cf850974bc474fdae1c1e
+    use: 上传第 1 张（临时件）：assets/default/character/female/ch02/por_npc_munianci__ch02_youth_base.png 裁 (400,60)-(620,280) 后 Lanczos 放大到 1024² 的脸部特写（源
+      sha256 6fcd16c646ee9c653dcc0cf89412b38b9d5f511befa88bea431dbeb5408db6db）；身份（五官、神情）
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/gem/hr_ref_body.png
+    sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+    use: 上传第 2 张（临时件）：assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png 的 PNG 原样副本（源 sha256
+      883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45）；姿势、取景、打底衣与背景
+  - path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/gem/mn_ref_portrait.jpg
+    sha256: c4c6e9a494e1c46cc7296a0b052ed04c950103d2fece23352fb76c6d235754db
+    use: 上传第 3 张（临时件）：assets/default/character/female/ch02/por_npc_munianci__ch02_youth_base.png 全图转 JPEG q93；画风、发髻
+  tool: Gemini 网页 · Create image（作者 Chrome，Pro 模式）一次出图；碎发 / 痣位按配准局部替换为同模型编辑图像素（整数精确合成，蒙版外逐像素保留首次出图）
+  model: Gemini 网页 Pro（gemini.google.com）
+  effort: n/a
+  created: '2026-10-10T23:40:36-07:00'
+  source_path: /Users/bytedance/Downloads/gemini__mn_body_g7.jpeg
+  source_sha256: a6f5e227f6eaaafa8fa54c6e1b83dace61d120269fc553353287d1abc9a7e7c3
+  source_size: 1696x2528
+  edit_source:
+    path: /Users/bytedance/Downloads/gemini__mn_body_g8.jpeg
+    sha256: a079ba5a162af5a8825945461f7b74e3d4d9b745375e1a26c9c0abde3c27d77c
+    prompt: '图像编辑：这是一张已经定稿的人物图，只修改头发的一处细节，其余逐像素保持不变：耳朵前面、鬓角和脸颊两侧不能有任何头发——把从鬓角垂下来、经过耳朵前面垂到下颌的细发丝全部擦掉，擦掉的地方露出原本的皮肤、耳朵、背景和脖子；鬓角的头发紧贴着向后、向上梳进头顶的高髻，发际线干净，从正面看两只耳朵完整露出，耳朵前后和下方都没有一根头发。
+
+
+      严禁改动脸：脸型、下巴、下颌线、眼睛、眉毛、鼻子、嘴、表情、妆容、肤色都和原图一模一样，不要给脸加轮廓线，不要加痣。头顶高髻的形状、身体、姿势、构图、背景颜色、画风、画面尺寸也全部保持不变。'
+  composite:
+    changedPixels: 4175
+    bboxXYXY:
+    - 732
+    - 267
+    - 958
+    - 380
+    maskPixels: 3610
+    featherBandPixels: 634
+    faceStructureBoxesUnchanged: true
+    deltaLThresholds:
+    - 3.0
+    - 10.0
+    headCropBoxXYXY:
+    - 508
+    - 0
+    - 1187
+    - 682
+    zonesHeadCrop:
+      rects:
+      - - 222
+        - 262
+        - 268
+        - 392
+      - - 422
+        - 465
+        - 268
+        - 392
+      exclude:
+      - - 265
+        - 324
+        - 262
+        - 282
+      - - 360
+        - 419
+        - 262
+        - 282
+      - - 272
+        - 318
+        - 284
+        - 310
+      - - 364
+        - 415
+        - 284
+        - 310
+      - - 320
+        - 364
+        - 298
+        - 356
+      - - 312
+        - 372
+        - 362
+        - 394
+      - - 280
+        - 418
+        - 394
+        - 432
+      circles: []
+    alignment:
+      method: sift
+      inliers: 38
+      scale: 0.999788
+      rotDeg: -0.0049
+      flowP95Px: 0.503
+    finalCrop: 首次出图原生 1696×2528（非 2:3），合成后裁掉左右各 5 px 背景成 1686×2528；统计按裁后坐标对首次出图同区域
+  size: 1686x2528
+  sha256: 0e3ede8ba8fd9d1a2ae6ed7108811d321b8f26e20e08196419fde5a881d12540
+  status: candidate
+  target_height_m: 1.7
+  check_plate:
+    command: python3 tools/model3d/dressup/check_plate.py --plate <主角窄 A 底板 Lanczos 等比放大到 1686×2528 的临时副本> --image assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_base_body_apose_hd.png
+      --arm-angle-deg 25 --json
+    plateTemp:
+      path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/plate/zhujue_narrow_1686x2528.png
+      sha256: 651aeffcccb2b508fefb1cf1e1a61836b4a14840714a558aa15f3069fce34410
+      from: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    armAngleDeltaDeg:
+      left: 0.247
+      right: 0.293
+    armSpanRatioDelta: 0.0235
+    feetBottomDeltaRatio: 0.0084
+    hipsRatioDelta: 0.0138
+    faceIou: 0.6815
+    headTopDeltaRatio: 0.0406
+    posePass: true
+    notApplicable: face_iou / head_top 对照的是光头主角底板，人物有发髻、脸不同，按设计不一致，只报
+  notes: 作者 2026-10-10 晚定「每个主要人物给素体就行」；与黄蓉新版同画风重出。审核 r2 指出上一版脸丢了立绘的身份（圆大眼、柔化脸型、淡粉唇、通用浅笑），本版把立绘脸部特写放第 1 张、逐项写明眼形 / 眉 / 下颌 / 唇色与"不笑"，同一提示词出两张（g6
+    带痣与耳前发丝，弃），取 g7。g7 耳前仍有两缕细发丝（AR-97）：同模型编辑两张（g8 / g9），取两耳最净的 g8，只在两耳前发丝位置整数精确替换像素（4,175 px，硬排除眉 / 眼 / 鼻 / 口 / 下颌七个框，均与首次出图逐像素一致），无痣。Gemini
+    原生 1696×2528，未插值放大，只裁背景。

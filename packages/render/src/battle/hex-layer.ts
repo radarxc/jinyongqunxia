@@ -56,11 +56,19 @@ export class HexLayer {
         void main() {
           vec4 flags=texture2D(highlights,vec2((tile+.5)/400.0,.5));
           float edge=max(abs(local.x), max(abs(dot(local,vec2(.5,.8660254))),abs(dot(local,vec2(.5,-.8660254)))));
-          float border=smoothstep(.550,.574,edge);
+          float border=smoothstep(.520,.574,edge);
           vec3 ink=mix(baseColor,vec3(.22,.24,.22),border*.55);
-          ink=mix(ink,vec3(.24,.61,.65),step(.2,flags.r)*.42);
-          ink=mix(ink,vec3(.95,.67,.20),step(.65,flags.r)*.38);
-          ink=mix(ink,vec3(.83,.39,.26),flags.g*.55);
+          if(flags.r > .2 && flags.r < .7) {
+            ink = mix(ink, vec3(.24,.72,.78), border * .85 + .16);
+          } else if(flags.r >= .7) {
+            ink = mix(ink, vec3(.96,.68,.20), border * .92 + .35);
+          }
+          if(flags.g > .3 && flags.g < .75) {
+            float attackBorder = smoothstep(.44, .568, edge);
+            ink = mix(ink, vec3(1.0, .38, .12), attackBorder * .96 + .16);
+          } else if(flags.g >= .75) {
+            ink = mix(ink, vec3(.88,.24,.20), max(border * .95, .55));
+          }
           if(flags.b>.5) ink=mix(ink,vec3(.95,.78,.34),.4);
           if(flags.a>.75) ink=mix(ink,vec3(1.,.87,.5),max(border,.3));
           else if(flags.a>.25) ink=mix(ink,vec3(.88,.78,.51),.48);
@@ -71,11 +79,14 @@ export class HexLayer {
       const cell = cells[index]!; hexWorld(cell.q, cell.r, cell.height, point);
       matrix.makeTranslation(point.x, point.y, point.z); this.mesh.setMatrixAt(index, matrix);
     }
-    this.mesh.instanceMatrix.needsUpdate = true; this.mesh.computeBoundingSphere();
+    this.mesh.instanceMatrix.needsUpdate = true;
+    this.mesh.frustumCulled = false;
+    this.mesh.computeBoundingSphere();
   }
   setHighlights(value: BattleHighlights): void {
     this.highlightBytes.fill(0);
     for (const key of value.reachable) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4] = 160; }
+    for (const key of value.attackReachable ?? []) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4 + 1] = 128; }
     for (const key of value.path) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4] = 255; }
     for (const key of value.area) { const index = this.indices.get(key); if (index !== undefined) this.highlightBytes[index * 4 + 1] = 255; }
     const ready = value.ready === null ? undefined : this.indices.get(value.ready);

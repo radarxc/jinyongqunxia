@@ -1,5 +1,5 @@
 import { HEX_DIRECTIONS, evaluateStep, hexDistance, hexKey, jumpDistance,
-  hexLineBetween, qinggongTier, type HexDir, type HexPathQuery } from '../hex';
+  hexLineBetween, qinggongTier, type HexCoord, type HexDir, type HexPathQuery } from '../hex';
 import type { GameState } from '../state';
 import { decodeRegionMap, rampAllows, terrainMoveCost, terrainStandable, type RegionCell } from './region-codec';
 import { evaluateGate } from './region-gates';
@@ -58,7 +58,7 @@ export function objectGate(object: ReturnType<typeof regionObjects>[number],
   return { allowed: true, reason: null };
 }
 
-function query(state: Readonly<GameState>, content: RegionRuntimeContent):
+export function query(state: Readonly<GameState>, content: RegionRuntimeContent):
   { readonly query: HexPathQuery; readonly cells: ReadonlyMap<string, RegionCell>;
     readonly ramps: ReadonlySet<string> } | null {
   const mounted = state.world.navigation.mountedRegion;
@@ -93,7 +93,7 @@ function comparePath(left: Candidate, right: Candidate): number {
 }
 interface RegionEdge { readonly target: RegionCell; readonly cost: number;
   readonly dangerous: boolean; readonly path: readonly { readonly q: number; readonly r: number }[] }
-function regionEdges(context: NonNullable<ReturnType<typeof query>>, from: RegionCell): RegionEdge[] {
+export function regionEdges(context: NonNullable<ReturnType<typeof query>>, from: RegionCell): RegionEdge[] {
   const edges: RegionEdge[] = []; const tier = context.query.mover.qgTier;
   for (let direction = 0; direction < 6; direction += 1) {
     const step = HEX_DIRECTIONS[direction]!;
@@ -236,6 +236,19 @@ export function consumeRegionEntity(mounted: MountedRegionState, anchorId: strin
       { anchorId, active: true, consumed: true }];
   return { ...mounted, entities };
 }
+export function distanceToAnchor(playerHex: HexCoord, object: RegionObject): number {
+  if ('cells' in object && Array.isArray(object.cells) && object.cells.length > 0) {
+    let min = Infinity;
+    for (const c of object.cells) {
+      const d = hexDistance(playerHex, c);
+      if (d < min) min = d;
+      if (min === 0) break;
+    }
+    return min;
+  }
+  return hexDistance(playerHex, object);
+}
+
 export function projectRegionDynamic(state: Readonly<GameState>,
   content: RegionRuntimeContent): RegionDynamicProjection | null {
   content = regionRuntimeForState(state, content);
@@ -245,8 +258,13 @@ export function projectRegionDynamic(state: Readonly<GameState>,
   const active = new Map(mounted.entities.map((entry) => [entry.anchorId, entry.active]));
   const interactableAnchors: RegionAnchorView[] = objects.filter((object) =>
     INTERACTIVE.has(object.class) && active.get(object.id) !== false && !consumed(state, object.id) &&
-    hexDistance(mounted.playerHex, object) <= 1 && visibleAnchor(state, content, object)).map((object) => {
-      const gate = objectGate(object, content); return { anchorId: object.id, class: object.class,
+    distanceToAnchor(mounted.playerHex, object) <= 1 && visibleAnchor(state, content, object)).map((object) => {
+      let gate = objectGate(object, content);
+      if (gate.allowed && (object.class === 'NpcSpawn' || (object.class === 'Trigger' && object.action === 'dialogue/start'))) {
+        const binding = content.dialogues?.find((entry) => entry.sceneId === sceneId && entry.anchorId === object.id);
+        if (binding?.condition) gate = evaluateGate(binding.condition, content.gateFacts);
+      }
+      return { anchorId: object.id, class: object.class,
         hex: { q: object.q, r: object.r }, enabled: gate.allowed, reason: gate.reason };
     });
   const doors: RegionDoorView[] = objects.filter((object) => object.class === 'Door' ||

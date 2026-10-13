@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_bailianruanbian",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_bailianruanbian.png",
+  "generatedAt": "2026-10-07T14:50:52.532Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 142608,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/28af544d-4e0f-4e05-85f4-789c155c466f/multiview_0_28af544d-4e0f-4e05-85f4-789c155c466f.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 119445,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/28af544d-4e0f-4e05-85f4-789c155c466f/multiview_1_28af544d-4e0f-4e05-85f4-789c155c466f.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 90992,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/28af544d-4e0f-4e05-85f4-789c155c466f/multiview_3_28af544d-4e0f-4e05-85f4-789c155c466f.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 138195,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/28af544d-4e0f-4e05-85f4-789c155c466f/multiview_2_28af544d-4e0f-4e05-85f4-789c155c466f.jpeg"
+    }
+  }
+}

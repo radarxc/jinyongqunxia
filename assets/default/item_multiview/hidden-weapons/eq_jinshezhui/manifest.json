@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_jinshezhui",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/hidden-weapons/eq_jinshezhui.png",
+  "generatedAt": "2026-10-07T20:13:08.566Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 220070,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/84b8c438-a26e-4a0b-8bc1-5dc59d225249/multiview_0_84b8c438-a26e-4a0b-8bc1-5dc59d225249.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 153076,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/84b8c438-a26e-4a0b-8bc1-5dc59d225249/multiview_1_84b8c438-a26e-4a0b-8bc1-5dc59d225249.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 169715,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/84b8c438-a26e-4a0b-8bc1-5dc59d225249/multiview_3_84b8c438-a26e-4a0b-8bc1-5dc59d225249.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 152486,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/84b8c438-a26e-4a0b-8bc1-5dc59d225249/multiview_2_84b8c438-a26e-4a0b-8bc1-5dc59d225249.jpeg"
+    }
+  }
+}

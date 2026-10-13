@@ -1,0 +1,127 @@
+- id: dressup__template__tpl_f2_medium
+  file: body.glb
+  category: model3d
+  kind: dressup-template
+  template: tpl_f2_medium
+  gender: female
+  archetype: medium
+  heightM: 1.66
+  tool: tripo-studio-web（经 tri_pipeline_runner /eval）
+  tripo_model:
+    project_id: 56b020f5-f0fb-430e-84de-d82e4f0a572a
+    generate_op: 46f22422-8e7d-48c1-ba80-7c8d4bf6b3cb
+    rig_op: 57162146-7d8e-42e8-8b05-d90c26e1fa82
+    export_op: 55f046c7-89dd-46eb-beaf-0b4f41360022
+    animation_ops:
+      idle: 5f819ed9-6742-4ff8-9931-97d28bcd3213
+      walk: e1ffa03b-c7c5-4375-822e-38271273e2b4
+      run: 63cfa1e2-fcef-4368-9eee-b9762a135528
+  options:
+    generate:
+      mode: image_to_model
+      ai_model: H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed
+      texture: true
+      texture_quality: extreme
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 200000
+      texture_alignment: original_image
+      generate_parts: false
+      smart_poly: false
+      enable_image_autofix: true
+      visibility: private
+    rig:
+      rig_type: biped
+      skeleton_preset: mixamo
+      model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_size: 2048
+      export_skeleton: true
+      animate_in_place: true
+      orientation: -y
+      animations: [idle, walk, run]
+  credits:
+    generate: 65
+    rig: 20
+    before: 16920
+    after: 16835
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png
+    sha256: 6cafc10b4f1be788c294b328f7047f532237b84e8ae01d7c96f5ed3d28268557
+    use: 作者 2026-10-11 选定的女性 v2 素体图（颈更长、斜方肌低平、一字肩、手臂更细；脸 / 光头 / 25° 窄 A 不变）
+  skeleton: skeleton.json
+  regions: regions.npy
+  regionsSha: 34bd8a09bf2b52125fac5a000a50715a90b2b8135132a1b69d0d41d850f57e4a
+  skullProfile: skull_profile.json
+  skullProfileSha: 95191b78ab308a0e83c9ca3153785e2c48dd86bc11f8906991753476ea1db95e
+  heightMu: 0.98834302
+  mPerMu: 1.67957882
+  ringSha: e18dc8be1289abb8190fb90ea3f1a142781c42de3fef2786e05d952e792bb3b2
+  skeletonSha: c23179d2a1e30eab65e0572361efb41469a7f4fd363bbf0b406b114daf8305aa
+  socketMode: waist-band
+  source:
+    tripo_project_id: 56b020f5-f0fb-430e-84de-d82e4f0a572a
+  sculpt:
+    task: ART-dressup-t4b-neck-v3
+    tool: tools/model3d/dressup/sculpt_neck.py
+    params: {lengthenMm: 15, kFront: 0.97, kSide: 0.87, kBack: 0.88}
+    report: sculpt.json
+    sourceSha256: 643b91970788b354f8723866829d1c05f1ee2096391b32e513c0c14017815269
+    sourceSizeBytes: 9524192
+    outputSha256: 9f843a456c3de99085adb87e646cb04356f39f15a3787dee174b2382cda78a14   # 雕塑后、转 unlit 前
+    gate: {scope: weldedMesh, flippedFaces: 0, dihedralChangeP99Deg: 0.47, dihedralChangeMaxDeg: 8.26, edgeRatio: [0.873, 1.327]}
+    anchors: {headJointMovedMm: [0, 15.0, 0], neckJointMovedMm: [0, 0, 0], restBindMaxDiffMu: 9.3e-08}
+    movedVertices: 13475
+    neckToHead: {before: 0.5714, after: 0.4745}
+    chinToNeckRootMm: {before: 39.0, after: 45.0}
+    trapSlopeDeg: {before: 19.14, after: 20.27}
+  unlit:
+    tool: tools/model3d/dressup/textures.py --max 2048 --quality 85
+    sourceSha256: 9f843a456c3de99085adb87e646cb04356f39f15a3787dee174b2382cda78a14
+    result: KHR_materials_unlit，只留 baseColor（2048² JPEG q85）；normal / metallicRoughness 贴图连同 image / bufferView 删除；几何、权重、_REGION、关节、IBM、动画逐字节不变
+  invertedFacesFixed:
+    count: 89
+    tool: tools/model3d/dressup/fix_inverted_faces.py
+    sourceSha256: e528b178bfb8070da36ea7f382aa9aa6ca64560cd312d04d281c832b8e8d733e
+    report: inverted_faces.json
+  sha256: f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94
+  size_bytes: 8575592
+  joints: 65
+  vertices: 104269
+  triangles: 195433
+  animations:
+  - idle (15.333s)
+  - walk (2.333s)
+  - run (1.25s)
+  armAngleDeg3d: 21.5014779
+  headsRatio: 8.27
+  hipsRatio: 0.536171
+  shoulderRatio: 0.17033585
+  neckToHead: 0.4745        # 正面剪影：颈最细宽 / 头宽（含耳）
+  trapSlopeDeg: 20.27       # 颈根点到肩峰点连线与水平夹角
+  preview: preview.png       # T5 最终 GLB，5173 正面全身 bind，640×960 RGB
+  shots:
+  - shots/derive.six_templates.jpg
+  - shots/neck_v3.before_after.jpg
+  superseded_shots:
+  - shots/compare.tpl_f_vs_tpl_f2.jpg   # T4：tpl_f_medium 对 雕塑前 tpl_f2_medium
+  status: candidate
+  created: '2026-10-11T08:15:00-07:00'
+  notes: >-
+    T4（作者 2026-10-11「基础素体要更美观，现在的素体斜方肌太明显」）新女性中等素体，
+    是替换 tpl_f_* 的候选：与 tpl_f_medium 同为 65 关节、rest=bind、+Z、原地 idle/walk/run，
+    颈更细更长、斜方肌低平、肩线更宽平。衣物 / 头 / 道具须按本骨架、环与区域 SHA 重新贴合并验收后
+    才切换；在此之前运行时与已贴合素材仍以 tpl_f_medium / tall / small 为准。
+    T5 按 E2c 点积口径翻正 89 个倒置面，复查为 0；只交换索引，顶点 / 法线 / UV / 权重 / 贴图 / 骨架字节不变。
+    T4b（作者 2026-10-11「男女脖子都太粗……参考逆水寒」「算法要平滑，否则有突变」，女按平滑雕塑 v3 定稿）：
+    sculpt_neck.py 约束式双调和位移场把颈加长 15 mm、颈中段收细（前 0.97 / 侧 0.87 / 后 0.88），头部整体上移、Head 关节同步上移，
+    拓扑 / UV / 权重 / 动画轨不变；颈宽 / 头宽 0.571 → 0.475（逆水寒女约 0.5），0 翻面、二面角变化最大 8.3°。
+    身高按 1.66 m 重导出（heightMu 随颈加长变大、mPerMu 相应变小）；T5 按 T5b section 重导骨架，ringSha / skeletonSha 已刷新，区域与颅形 SHA 不变。
+    T4b 审核后按 tech/11 模板契约转 KHR_materials_unlit、只留 baseColor（见 unlit 块）。
+    已解决：旧派生颈环差超限与反向面，经 T5b 新工具重派生 small / tall，section 两轴最大差 1.664 / 1.835 mm，翻向与负点积面均为 0。
+    section 环取 Neck→Head 骨段 15% 处实际闭合截面；四派生均带 --ring-from，实际截面半径不手改。
+    已解决：tests_derive.py 的 bulk 脚底误报已按获准补丁修复，10/10 回归及 pnpm check 通过；候选状态保留，后续重贴合与默认切换见 T5 报告第 7 节。
+    T6 以 waist-band 模式重导胸 / 腰插槽；自然腰线按躯干截面最小周长派生，其余骨架字段不变。

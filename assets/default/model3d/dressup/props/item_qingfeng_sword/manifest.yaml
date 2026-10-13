@@ -1,0 +1,35 @@
+- id: dressup__prop__item_qingfeng_sword
+  file: item_qingfeng_sword.glb
+  category: model3d
+  kind: dressup-prop
+  template: tpl_f_medium
+  sha256: 9d7cc29520cb099c14a24a7d0acf74048066a94c70b90c908489202e18dd007c
+  size_bytes: 1021552
+  triangles: 8676
+  report: report.json
+  status: candidate
+  tool: tools/model3d/dressup/ingest.py v1
+  created: '2026-10-08T16:53:58-07:00'
+  slot: waist
+  socket: waistL
+  fit: fit.json
+  fits:
+    tpl_f_medium:
+      file: item_qingfeng_sword.glb
+      fit: fit.json
+      report: report.json
+      status: candidate
+    tpl_f2_medium:
+      file: item_qingfeng_sword.tpl_f2_medium.glb
+      fit: fit.tpl_f2_medium.json
+      report: report.tpl_f2_medium.json
+      socketsCheck: sockets_check.tpl_f2_medium.json
+      status: draft
+      gateLevel: draft
+      sha256: a1d2b4f7005939c6b9d8088a29017b79d9f2f999380b4a0028068f0d6a01a7a5
+      size_bytes: 1021576
+      triangles: 8678
+  source:
+    directory: external-workdir
+    references: []
+  notes: 入鞘·佩剑态；sheatheAngle=35.000°；validate level=approved；sockets_check level=approved；联合 level=approved，status=candidate。

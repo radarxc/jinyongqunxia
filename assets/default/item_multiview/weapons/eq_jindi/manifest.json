@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_jindi",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_jindi.png",
+  "generatedAt": "2026-10-07T15:41:14.681Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 87334,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/20671b96-e21c-4a49-8f6f-20a1b92c50d3/multiview_0_20671b96-e21c-4a49-8f6f-20a1b92c50d3.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 73137,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/20671b96-e21c-4a49-8f6f-20a1b92c50d3/multiview_1_20671b96-e21c-4a49-8f6f-20a1b92c50d3.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 70526,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/20671b96-e21c-4a49-8f6f-20a1b92c50d3/multiview_3_20671b96-e21c-4a49-8f6f-20a1b92c50d3.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 85411,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/20671b96-e21c-4a49-8f6f-20a1b92c50d3/multiview_2_20671b96-e21c-4a49-8f6f-20a1b92c50d3.jpeg"
+    }
+  }
+}

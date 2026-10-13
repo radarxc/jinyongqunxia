@@ -8,11 +8,24 @@ import type {
 } from '@tianshu/ui';
 
 export type TextCatalog = Readonly<Record<string, string>>;
+export interface ShopOpenPresentation { readonly op: 'shop/open'; readonly shopKey: string }
+export function shopOpenPresentation(step: unknown): ShopOpenPresentation | null {
+  if (!step || typeof step !== 'object' || Array.isArray(step)) return null;
+  const value = step as { readonly op?: unknown; readonly shopKey?: unknown };
+  return value.op === 'shop/open' && typeof value.shopKey === 'string' && value.shopKey.length > 0
+    ? { op: 'shop/open', shopKey: value.shopKey } : null;
+}
 const SYSTEM_SPEAKERS: Readonly<Record<string, string>> = {
   narrator: '旁白',
   player: '你',
   npc_shuling: '书灵',
   book_spirit: '书灵',
+};
+/** Facility staff roles (`interlocutor` speaker) shown after the facility's authored name. */
+const FACILITY_ROLES: Readonly<Record<string, string>> = {
+  keeper: '掌柜',
+  clerk: '伙计',
+  apprentice: '学徒',
 };
 const QUESTS: Readonly<Record<string, { title: string; summary: string }>> = {
   q_00_main_c_01: { title: '入书寻青', summary: '在越地竹林寻找牧羊少女。' },
@@ -30,15 +43,24 @@ function text(key: string | null, catalog: TextCatalog): string {
   if (key === null) return '';
   return catalog[key] ?? (/^(?:ink|story|quest)./u.test(key) ? '正文尚未装载。' : key);
 }
-function speaker(id: string, catalog: TextCatalog): string {
+function speaker(
+  id: string,
+  catalog: TextCatalog,
+  interlocutor?: DialogueView['interlocutor'],
+): string {
   const system = SYSTEM_SPEAKERS[id];
   if (system) return system;
+  if (id === 'interlocutor' && interlocutor) {
+    const role = FACILITY_ROLES[interlocutor.roleKey] ?? '店家';
+    const place = catalog[interlocutor.nameKey];
+    return place ? `${place}${role}` : role;
+  }
   const key = `npc.${id}.identity.name`;
   return catalog[key] ?? `缺少文本：${key}`;
 }
 export function presentDialogue(view: DialogueView, catalog: TextCatalog = {}): DialoguePanelView {
   return {
-    speaker: speaker(view.speakerId, catalog),
+    speaker: speaker(view.speakerId, catalog, view.interlocutor),
     text: text(view.textKey, catalog),
     choices: view.choices.map((choice) => ({
       id: String(choice.choiceIndex),
@@ -48,7 +70,7 @@ export function presentDialogue(view: DialogueView, catalog: TextCatalog = {}): 
         : {}),
     })),
     history: view.history.map((line) => ({
-      speaker: speaker(line.speakerId, catalog),
+      speaker: speaker(line.speakerId, catalog, view.interlocutor),
       text: text(line.textKey, catalog),
     })),
     canContinue: view.choices.length === 0,

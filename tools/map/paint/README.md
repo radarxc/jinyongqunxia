@@ -1,0 +1,50 @@
+# 大地图整张水墨底图 · 确定性合成器（AR-111）
+
+把内容网格全幅（`CanvasProjection(512, 384, 18)` 的整体放大 `CanvasProjection(W, H, 18·W/512)`）直接画成一张 4:3 水墨山水底图。海陆、湖泊、河流和山势全部来自 GIS，笔墨全部取自仓库里已有的水墨贴图，不调用任何 AI 出图；同一输入、同一种子逐字节同一输出。
+
+## 命令
+
+```bash
+python3 tools/map/paint/compose_world.py --sample east          # 样区（全图 4096 尺度原样裁出），写 .agents/coord/ART-worldmap-painted/sample/
+python3 tools/map/paint/compose_world.py --full --width 2048 --out <png>   # 低清全图草稿
+python3 tools/map/paint/compose_world.py --deliver              # 4096 全图：PNG 母版写 .agents/coord/ART-worldmap-painted/full/，WebP q85 底图与 1024×768 预览写 assets/default/map/world/
+python3 tools/map/paint/compose_world.py --check                # 输入 sha256、10 个开放节点投影自检（≤1 网格单位）、两次独立构建同窗逐字节一致、锁文件
+python3 tools/map/paint/qa.py <底图> --old <旧图>                 # metrics.json、节点与道路叠图、各区 100% 局部、新旧对照（写 .agents/coord/ART-worldmap-painted/qa/）
+python3 tools/map/paint/compose_world.py --write-lock <输出…>    # 审过之后记录配置 / 素材 / 输出哈希到 compose.lock.json
+python3 tools/map/paint/review_sheet.py sample east             # 样区 vs 现网底图 vs 已审总图对照、100% 局部
+python3 tools/map/paint/trace_rivers.py [--check]               # NE 缺的河（湟水、北洛河、洛河、伊河、岷江上中游）→ rivers_supplement.json
+python3 tools/map/paint/road_paths.py [--check]                 # 道路最省力走向 → docs/design/map/road_paths.json + qa/roads_*.jpg
+python3 tools/map/paint/tibet_qa.py <旧母版> <新母版>             # 青藏「DEM 晕渲 / 旧版 / 新版」三联 + 全图新旧对照
+```
+
+依赖：numpy、Pillow、scipy、PyYAML（仓库工具已在用）。原始 GIS 数据在 `.agents/coord/geodata/`（不入库，来源与 sha256 见那里的 README），缺失或哈希不符时直接报错退出。
+
+## 输入
+
+- GIS：Natural Earth 10m `land`、`minor_islands`、`lakes`（剔除 `Reservoir` 类与名单内现代水库，保留斋桑泊；咸海、罗布泊用 `lakes_historic` 的历史湖面）、`rivers_lake_centerlines`（scalerank ≤ `rivers.max_scalerank`，湖中心线不画）、`geography_regions_polys`（沙漠 / 盆地 / 草原分区）；ETOPO 2022 60″ 地表高程拼接。
+- 素材（只读）：`assets/default/map/kit/` 的山峰 / 山脉 / 雪山 / 丘陵 / 海面 / 平原小景，`assets/default/map/tiles/` 的水面 / 湖面 / 平原 / 草原 / 沙漠 / 高原平铺与海岸 / 湖岸 / 河流笔触条，作者已审 `ref_map_jianghu__ch01_base01.png` 平原里按纸色抠出的树丛印章。实际读到的每个文件与 sha256 记在 `sprites.USED`，写锁时落盘。
+
+## 画法（全部参数在 `config.json`）
+
+1. 纸底 + 平铺填充：陆地按分区权重（平原 / 草原 / 沙漠 / 高原，分区边界加噪声软过渡）混合两张同类平铺，再叠很淡的 DEM 晕渲，≥4300 m 渐次淡雪白；海面 = 水面平铺 + 近岸加深的淡青洗染 + 稀疏海面小景（近岸密、远海疏，低透明）。
+2. 岸线 / 湖岸 / 河流（scalerank ≤4 与点名大河——淮河、汉水、松花江、辽河、鸭绿江、塔里木河、伊犁河、红河——用粗条加宽加深，其余到 scalerank 7 用细条；穿过已剔除水库的湖中心线照画）：沿 GIS 折线按最近线段求（沿线距离, 横向距离）贴笔触条（海岸条水侧宽、陆侧窄），水陆侧由 GIS 掩膜判定；最后沿 GIS 岸线压一道 #554c3e 淡墨（粗细随噪声微变）。
+3. 山：在 15 km 窗口起伏度（ETOPO）≥ 阈值处做变尺寸泊松盘落点（间距按山件本来的大小算）；每件山收在它所立的起伏带（起伏 ≥220 m 的连片带）的南北 / 东西范围内——高度不超过带厚 ×1.15、超出部分南北各半，压到大河时在带内上下微移——所以山体不会越出山脉盖住旁边的谷地和道路（AR-113）；起伏 / 海拔决定件类（≥4000 m 雪山，起伏 ≥480 m 用山脉 / 山峰，320–480 m 且不在盆地 / 平原底部（高出约 200 km 窗口 10% 分位 ≥220 m）才放很淡的丘陵或小石山）、大小与疏密（高起伏带用大号山脉件，起伏越小越稀），山脊走向（高程结构张量）选山脉件朝向变体；件的尺寸按落点北侧 / 两侧陆地长度收缩并在必要时换成瘦高件，保证落在陆上（日本、朝鲜、台湾、海南、库页岛照高程出山）；避开主河道与湖面；按落脚点 y 从北往南叠画，每件脚下补一团偏纸色的淡雾，谷地再铺一层噪声调制的云雾；山件自带的白雾边改成偏纸色、降不透明度，只有雪山件保留白顶。
+4. 平原：已审总图的树丛印章按湿润度零星散布（草原 / 沙漠更稀），另以极低密度摆平原 / 盆地小景作田畴点缀。
+5. 山体层整体按 GIS 陆地掩膜裁切，所以画面海陆与 GIS 完全一致（陆地 IoU 按构造为 1）。
+
+## 高原面的山（作者 10-11「青藏高原中部山按照GIS数据来」）
+
+15 km 起伏窗口在高原面上看不出山（海拔高、局部起伏小），所以高原面另按 GIS 摆山（参数在 `config.json` 的 `plateau`）：
+
+1. 高原面 = 25 km 平滑高程 ≥2700 m 且 20 km 平滑起伏 <950 m 的连片区（≥60 格）。大起伏的边缘山系（喜马拉雅主脊、昆仑北坡、祁连、横断、喀喇昆仑）不在其内，仍按全图通用摆法。
+2. 全图通用摆法照旧跑一遍（高原外的山件逐件不变）；之后撤掉脚点落在高原面上的件，向高原面伸入超过 30% 的边缘件原地缩小（不挪位置）。
+3. 突起量 = 山脊高程（1′ DEM 9 km 窗口最大值）− 70 km 窗口 20% 分位基准面。突起 ≥330 m 的连片带取骨架线作山脊，沿脊线按突起量从高到低落山：≥560 m 山脉 / 山峰（走向取高程结构张量，偏东西 35° 内用东西向件），330–560 m 淡低岭，山脊 ≥5000 m 且突起 ≥500 m 用雪山件；山体高度收在突起 ≥300 m 的山带内（×2.0），互相之间按可见框椭圆避让；宽谷、湖盆（突起不足）留平。
+
+## 道路显示几何（AR-113）
+
+`road_paths.py` 对 14 章 map.yaml 出现过的每个路段（按 road.key 去重，端点不同的写进 `variants`）在 4096×3072 代价栅格上求最省力路线：代价 = (1 + 150·坡度²)·(1 + 1.6·高出谷底 km)·(1 + 0.25·高原系数)，大河一次性渡河代价，海面湖面不可走（离岸 20 km 内按高代价可渡，只在没有陆路时用到，如琼州海峡）；内容里路段的中间点当作必经点；Douglas-Peucker 0.3 网格简化 + 一次 Chaikin，再验不入水（离岸 0.25 网格内算岸上）。首末点严格等于节点 point。只改画法，里程与 core 规则不变。
+
+## 已知限制
+
+- 小于约 2 px 的岛只有岸线与淡墨，没有山。
+- 河流按 Natural Earth 现代河道（黄河下游为今河道，与 design/19 一致）。

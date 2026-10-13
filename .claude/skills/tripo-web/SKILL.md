@@ -1,228 +1,286 @@
 ---
 name: tripo-web
-description: 用作者 Chrome 里已登录的 Tripo Studio 网页版给人物建 3D 模型：上传参考图 → H3.1 生成（65 点）→ Humanoid·Mixamo 绑骨（20 点）→ 导出 GLB 和封面预览 → 入库 assets/default/model3d/ 并提交。浏览器走 Claude in Chrome 扩展，驱动是 tools/model3d/tripo_web.js 的 window.__t（页面内 JS 调页面自己的接口，少截图、少点按钮）。建 3D 模型、绑骨、给主角加预设动作、重导 GLB、查 Tripo 余额和项目时使用。
+description: 用作者 Chrome 里已登录的 Tripo Studio 网页版给人物建 3D 模型：2D 参考图几何/比例预处理 → H3.1 生成（65 点）→ 几何/脸部质量质检 → Humanoid·Mixamo 绑骨（20 点）→ 预设动作生成（idle/walk/run）→ 动作根位移校正 → 导出 GLB 和封面预览 → 入库 assets/default/model3d/ 并提交。浏览器走 Chrome 扩展，驱动是 tools/model3d/tripo_web.js 的 window.__t（页面内 JS 调接口，少截图点选）。用于人物 3D 生产全流程、骨架绑定、动作导出、比例/脸部质量迭代与故障排查。
 ---
 
-# Tripo 网页版建模（人物 3D）
+# Tripo 网页版建模（人物 3D 全流程与质量控制）
 
-**范围**：人物 3D 模型（`assets/default/model3d/<npc_id>/`）。生成输入是作者定过脸的立绘或 A 字参考图；立绘本身走 codex（AR-31 / AR-32），物品图走 gemini-imagegen。
+**范围**：金庸群侠传主要人物与通用 3D 模型（`assets/default/model3d/<npc_id>/`）。
+生成输入是作者定过脸的立绘或 A 字参考图；立绘本身走 codex（AR-31 / AR-32），物品图走 gemini-imagegen。
 
 **依据**：
-- 驱动源码 `tools/model3d/tripo_web.js` 是唯一版本，页面里是 `window.__t`；请求体都照 Tripo 前端源码拼，出处写在文件头；
-- 入库脚本 `tools/model3d/ingest.py`（`--help` 有完整参数）；
-- 上一轮 38 套的选项、点数、逐位结果见 `tools/agents/reports/ART-3d-tripo-web.md`；
-- 本文是操作手册，与源码冲突时以源码为准。
+- 作者最新指示（AR-79, AR-85, AR-93, AR-94）：
+  - **男主角身形比例**：头身比必须 $\ge 8.0$ 头身，身高级别 180~185cm，体格肩膀宽阔（再加宽 10%），**杜绝溜肩（必须一字平肩）**，四肢修长健美；
+  - **女主角身形比例**：头身比 8.0~9.0 头身，身高级别 165~170cm，双腿修长高挑，胸部丰满/普通依据人物描述；
+  - **高矮视觉对比**：男主在直观对比和场景呈现中必须显著高于女主；
+  - **面部质量门禁**：杜绝眼皮撕裂、额头碎发融化、脸部网格硬块；
+- 驱动源码：`tools/model3d/tripo_web.js`（`window.__t`，Nuxt globalProperties `$request` 原生通信）；
+- 核心辅助工具：
+  - `tools/model3d/prepare_male_hero.py`（男主平肩、加宽、防破面预处理）；
+  - `tools/model3d/stretch_apose.py`（A 字图脖子以下纵向拉伸补偿）；
+  - `tools/model3d/measure_heads.py`（GLB 3D 头身比测量）；
+  - `tools/model3d/fix_anim_offset.py`（修复 Tripo 导出 run 动作根位移跳位）；
+  - `tools/model3d/ingest.py`（入库校验、骨架体检、时区规范写入 manifest 与自动 commit）。
 
-**哪些已用 JS 跑通**：见 §8 的状态列。2026-10-04 做 AR-85 通用男女模型时第一次真提交，生成、绑骨、动作、导出全程走 JS，没点一次按钮。结果见 §2.10。
+---
 
-## 0. 规矩
+## 0. 规矩与边界
 
-- **标签页**：只操作 Chrome「Claude」标签组里的 Tripo 标签页，组外的一律不碰。tabId 每次用 `tabs_context_mcp` 查（10-03 / 10-04 是 1957635120）。
-- **账号与设置**：作者已登录，不输密码；不点 Upgrade、购买、订阅、条款；cookie 弹窗选最少；**不改浏览器和扩展设置**（下载权限、站点权限都请作者自己点）。
-- **点数**：生成 65、绑骨 20。只做协调者 / 作者批准过的名单；每做完 2–3 个向协调者报一次余额。
-- **个人信息**：项目详情里有 `owner_name`、`owner_avatar`、`owner_user_id`，驱动的返回值已经滤掉；自己写 fetch 时也别打印。给页面外发的任何请求都不带作者的邮箱、用户名。
-- **剪贴板**：不读也不写。参考图走 IndexedDB 暂存（§1）。
-- **调用时长**：单次 JS 调用 ≤ 40 秒（驱动里的等待默认 28 秒，返回 `pending:true` 就再调一次）；subagent 单次工具调用 ≤ 5 分钟。
-- **JS 输出**：含 `=`、`&`、`?` 的输出会被工具拦成「Cookie/query string data」。驱动返回值不带签名 URL；自己拼的输出末尾加 `.replace(/[=&?]/g, '~')`。
-- **下载**：只存 `~/Downloads/tripo__<npc_id>.*`，入库脚本搬走后删除；作者自己的文件不碰。开工前 `df -g ~` ≥ 4 GiB。
-- **git**：在集成分支工作区 `.agents/wt/_prod` 里做；只按路径 `git add -- <路径>`、`git commit … -- <路径>`；不 push、不 checkout / reset / stash。
-- **工具加载**：Chrome 工具先用一次 ToolSearch 全部载入：
-  `select:mcp__claude-in-chrome__tabs_context_mcp,mcp__claude-in-chrome__navigate,mcp__claude-in-chrome__javascript_tool,mcp__claude-in-chrome__find,mcp__claude-in-chrome__file_upload,mcp__claude-in-chrome__computer,mcp__claude-in-chrome__browser_batch`
+- **保持连接操作browser，不要反复启动反复让我批准（AR-100 铁律）**：
+  - 严禁反复启停独立 Browser 子代理，严禁频繁断开并重新初始化 WebSocket 连接，彻底杜绝触发 IDE 弹窗或 Chrome 浏览器顶部远程调试授权确认栏打扰作者；
+  - 必须由常驻多管线进程维持一条长生命周期的 CDP（Chrome DevTools Protocol）持久连接；
+  - 新增 3D 建模、绑骨、动作导出任务一律通过向本地任务队列文件（`.agents/coord/tripo_q/queue.json`）追加任务对象进行投递，常驻进程在后台自动轮询消费，杜绝任何二次重启与打扰作者。
+- **标签页**：只操作 Chrome「Claude」标签组里的 Tripo 标签页，组外一律不碰。
+- **账号与点数**：作者已登录，不输密码；不点 Upgrade / 购买；生成 65 点，绑骨 20 点，动作/导出/重试 0 点。每做完 2–3 个向协调者汇报余额。
+- **隐私保护**：项目详情中包含 `owner_name`, `owner_user_id` 等，驱动已自动过滤；对外严禁输出作者个人信息。
+- **调用规范**：单次 JS 调用 $\le 40$ 秒（驱动等待默认 28 秒，返回 `pending:true` 即可继续轮询）；严禁直接序列化大 Vue/Pinia 实例。
+- **git**：在主分支/工作区内按路径提交，严禁 push，不读 `.env`。
 
-## 1. 一次性装载（每个标签页做一次；改了驱动、换了一批参考图再做一次）
+---
 
-localStorage 和 IndexedDB 在 studio.tripo3d.ai 同源共享，刷新后还在；sessionStorage 每个标签页各自一份。
+## 1. 核心质量控制：AI 3D 人脸破损根因与 2D 源头治理（AR-94 / AR-99 / AR-100 铁律）
 
-**1.1 插一个临时文件框**：
+### 1.1 脸部融化与眼皮撕裂根因
+AI 3D 生成（NeRF / Multi-view SDF / Gaussian Splatting 转 Mesh）在处理 2D 扩散模型输出时具有以下物理特性：
+1. **半透明碎发误判为 3D 实体**：原画中前额垂落的细碎刘海、眼眶上方的虚化发丝，在 2D 空间缺乏立体视差。重建算法会将这些半透明发丝判读为额头皮肤向前突出的几何厚度；
+2. **多边形网格熔接硬块**：在 10 万面三角化烘焙时，发丝厚度不足以形成独立几何体，直接与额骨、眼眶平滑熔接成一块块肉瘤状硬块；
+3. **眼皮撕裂与色斑**：当 8K 贴图贴上突起的畸形网格时，发丝黑色与皮肤肉色被强行拉扯在同一凸起面上，导致双眼皮折痕断裂、额头出现半透明灰/肉色融化碎片。
+
+### 1.2 Tripo 平台后处理能力边界（已实测确认）
+- **Free Retry（免费重试）**：若输入图不变，算法在相同像素处依然会产生相同的几何熔融，**无法解决破损**；
+- **Edit / Magic Brush（局部重绘）**：仅修改 2D 贴图 UV 颜色，**完全无法增删或平滑 3D 几何网格顶点**，无法消除肉块；且不支持 8K 模型；
+- **Retopo（网格拓扑重构）**：属于全局重采样，对人脸细微拓扑粘连束手无策；
+- **结论**：**Tripo 平台没有任何 3D 雕刻或几何修模能力，脸部质量必须 100% 在 2D 输入阶段根治**！
+
+### 1.3 2D 参考图“去破损”前处理黄金准则（方案 A 规范）
+在把立绘或 A 字图送入 Tripo 之前，必须执行以下清理：
+1. **清空额头眉眼覆盖物（Clear Forehead & Brow）**：
+   - 眉眼上方、额头中间绝不能有垂落的细碎刘海遮挡；
+   - 保持清晰干净的额头、眉弓与完整眼睑轮廓；
+2. **发丝体块化与收拢（Solid Hair Volume）**：
+   - 头发轮廓必须是清晰收拢的整块发髻（如高束发、背头或两鬓梳理至耳后）；
+   - 彻底擦除空气中飘散的半透明毛刺发丝；
+3. **眼睑折痕锐化（Crisp Eyelid Lines）**：
+   - 眼眶与眼睑线条对比度必须鲜明、闭合，杜绝软模糊渐变阴影。
+
+### 1.4 脸部精修、对比度调优与正交三视图几何约束（AR-100 规范）
+1. **脸部对比度与眼周色阶纯净度**：
+   - **杜绝眼部“贴片补丁”与剧烈色阶跳跃**：单图深度推算高度依赖明暗梯度。若双眼皮上方有深色眼影渐变、或修图时眼周有独立蒙版羽化边界，算法会判定为前景遮挡面片，从而在眼球上方强制挤压出横向挑出的厚肉片（“挑棚/遮阳棚”）。必须保证眼眶周围至额头、面颊的瓷白肤色 100% 匀质过渡，去除硬折痕与浓重深色眼影；
+2. **唇色饱满红润（唇红缘立体识别）**：
+   - 唇色过淡（浅肉粉/泛白）会导致重建算法将唇部与人中、下巴皮肤混淆，造成唇缝消失或闭合处台阶锯齿；
+   - 唇色必须提升至自然饱满的古典朱砂/胭脂红（如 `#B84A39`~`#C05040`），形成清晰鲜明的五官对比度，引导算法精确烘焙立体唇形；
+3. **三视图（Multi-View）立体约束根治单目深度畸变**：
+   - **单图生成的天然缺陷**：单视角缺少侧向视差，算法只能根据正面明暗“猜”深度，眼眶凹陷深度极易失真并拉扯出挑棚；
+   - **正交三视图（Front 正视 + Left 侧视 + Back 后视）的几何锁定**：
+     - 正面视图提供五官面貌、双眼间距与唇宽；
+     - **侧面正交视图（Profile View）提供绝对真实的物理纵深硬约束**：鼻梁起伏、鼻尖与鼻小柱微翘、唇珠与下颌前凸角，以及最重要的——**眼眶回缩与眼球圆弧曲面**在侧面轮廓上线条分明，算法无需猜测，直接沿侧面剪影闭合曲面，**从根本上彻底杜绝单图正面猜测产生的眼皮外翻挑棚缺陷**；
+   - 凡对头部五官立体度有严苛要求的主角模型，优先采用正面与侧面严格对齐的正交三视图输入模式。
+
+### 1.4 AR-95 头部 5 大致命缺陷深度机理与方案 A 根治规范
+在 3D 人脸实测验收中，常见的 5 大缺陷机理及根治方案：
+1. **额头碎发黏连化肉坨**：
+   - **机理**：2D 扩散模型绘制的半透明、羽化、发丝状刘海缺乏深度视差，Tripo 重建算法将其误判为额头突出的几何厚度，烘焙出肉瘤状硬块。
+   - **根治**：彻底擦除额前散发，露额整块化；发际线明确清晰。
+2. **耳廓悬浮灰白薄片**：
+   - **机理**：耳前垂下的细长发丝在去背或侧视深度推断时形成非流形（non-manifold）三角面片，网格破裂并悬浮在半空中。
+   - **根治**：发型梳理至耳后，鬓角收紧贴近头颅，不留悬空细丝。
+3. **太阳穴与面颊刀劈削角（断层切口）**：
+   - **机理**：多视图输入时，2D Front 与 Left/Right 视角存在 5°~10° 细微透视偏差。重建算法做 Visual Hull（多视角视锥布尔交集）时，将面颊多余部分当成背景直接“削掉”，产生刀劈凹陷。
+   - **根治**：**改用高质量单图 A-pose 生成**（见 §1.5 选型矩阵），消除视角交集切削。
+4. **嘴唇边缘撕裂与下唇裂口**：
+   - **机理**：原画微张唇缝或半透高光在深度粗化时造成上下唇网格撕裂。
+   - **根治**：唇缝闭合平整，高光不过曝。
+5. **颅顶与发包头盔感（过分膨胀）**：
+   - **机理**：古装盘发在 2D 视角下横向纵向蓬松，3D 旋转时显得像笨重的安全帽。
+   - **根治**：2D 图预处理时，将发包高度与宽度紧实压缩 15%（颅顶降高），达到紧致秀雅的武侠/仙侠头型。
+6. **耳坠与耳下碎发误判肉块（AR-97 铁律）**：
+   - **机理**：耳坠、耳环、悬垂流苏或耳垂后侧向下延伸的细微发丝，在 3D 重建中极易被视作悬空挂件，烘焙成贴在侧颈与耳下的粗糙灰白多边形长块。
+   - **根治**：**严禁任何耳坠与耳饰**！耳垂下边缘与下颌侧面彻底露空擦净，不留任何发丝垂于耳下。
+7. **发饰与帽子烘焙冲突（AR-97 铁律）**：
+   - **机理**：发簪、发钗、步摇、花钿、帽子若烘焙在头部几何上，不仅极易破面，更导致后续无法自由更换发饰与头盔。
+   - **根治**：**抹除一切发饰与帽子**！保留纯净、无任何外挂饰物的素发髻或束发。
+
+### 1.5 生成模式选型决策矩阵：单图 A-pose vs 多视图
+
+| 角色类型 / 特征 | 推荐模式 | 核心理由 |
+|---|---|---|
+| **女性角色 / 长发 / 古装仙侠** | **单图 A-pose** (`image_to_model`) | 女性发型发饰复杂，扩散模型三视图极难做到 100% 正交对齐；单图 A-pose 依靠 Tripo H3.1 预训练深度先验，生成的面部对称平滑无凹陷，下唇完好，成功率极高。 |
+| **男性角色 / 短发 / 铠甲硬结构** | **严格对齐多视图** (`multiview_to_model`) 或 **单图 A-pose** | 短发或束发男角若有经过 `prepare_male_hero.py` 严格平肩加宽的多视图切片，多视图可准确捕捉背部结构；若多视图侧脸有透视冲突，退回单图 A-pose。 |
+
+
+---
+
+## 2. 身材比例、体型原型与解耦素体准则（AR-93 / AR-94 / AR-97 / AR-99）
+
+### 2.1 女性体型原型分型与体态（AR-99 规范）
+- **通用身形与胸部标准**：
+  - **高挑比例**：头身比必须高挑拔俗（2D 设计 8.8~9.0 头身，经 Tripo 3D 头部放大补偿后落入 8.2~8.5 头身）；身高级别 165~172cm；骨盆与髋关节高度上提（腿长占比 $\ge 56\%$）；
+  - **胸围平均值**：女性角色胸部平均值普遍调大（比常规原画更丰满挺拔，展现女性曲线美感）；
+- **柔弱型女性（Frail / Gentle Archetype）**：
+  - *代表人物*：王语嫣、程灵素、苗若兰、白阿绣、戚芳等柔弱医女、书香闺秀或不以拳脚刚猛见长者；
+  - *下肢特征*：腿部整体偏瘦纤细，呈现**“网红筷子腿”**风格，双腿笔直细长，肌肉线条极度平滑收敛，体态弱柳扶风、亭亭玉立；
+- **高武力女性（High-Martial Archetype）**：
+  - *代表人物*：女主角（通用主角）、赵敏、霍青桐、黄衫女子、李莫愁、周芷若等轻功卓绝、拳脚精湛之侠女；
+  - *下肢特征*：**大腿具备清晰的紧致肌肉线条**（展现下盘力量与蹬跃爆发力），**小腿细长精健骨感（猎豹般流线与爆发力）**，呈现敏捷、轻盈而充满猎杀与奔袭动能的武侠美感。
+
+### 2.2 男性体型原型分型与体态（AR-99 规范）
+- **通用身形与肩膀标准**：
+  - **一字平肩**：必须维持宽阔水平的“一字平肩”（消除溜肩，外侧三角肌向上提升约 35~40 像素，肩宽扩宽 +10%~18%）；
+  - **上肢与躯干**：胸肌厚实饱满，腹部雕刻感清晰（六块/八块腹肌），体态雄浑挺拔；
+- **主角 / 敏捷型男性（Protagonist / Agile Archetype）**：
+  - *代表人物*：男主角、令狐冲、段誉、杨过、张无忌、陈家洛等身法飘逸潇洒之剑侠；
+  - *下肢特征*：大腿视具体武功风格可粗壮结实，**小腿必须细长挺拔**，足踝利落，呈现身轻如燕的敏捷矫健身姿；
+- **横练 / 重装力士型男性（Iron-Cloth / Powerhouse Archetype）**：
+  - *代表人物*：萧峰（降龙掌大开大合）、狄云（神照经/血刀厚重沉雄）、谢逊、达摩堂玄慈/罗汉僧、铁布衫金刚不坏外门宗师；
+  - *下肢与躯干特征*：**四肢整体粗壮浑圆**（臂腿极粗厚），躯干极其结实厚重，腹部呈现充满霸道内劲与核心力量的“**将军肚**”（武术力量型桶状躯干，而非松垮赘肉），威压感与下盘稳定性极强。
+
+### 2.3 基底素体化（Base Body Mesh）与纸娃娃换装系统解耦（AR-97 / AR-99 铁律）
+- **架构动因**：
+  游戏未来各类衣物、护甲、披风、发饰、帽子均为独立外挂装备资产，需支持自由穿脱、更换与染色。若 3D 基底模型自带宽袍大袖或长裙发饰，外层装备穿戴时必定产生大面积穿模（Clipping & Z-fighting）。
+- **3D 基底素体四大黄金铁律**：
+  1. **极薄透感裹胸（Sheer Micro-Bandeau）**：
+     - 裹胸进一步收短变窄，厚度极薄且具有半透/轻微透感，完全贴合胸廓皮肤；
+     - 严禁任何布料褶皱或向外突出的多边形厚边，确保外挂任何门派劲装、交领长袍、轻甲时绝不穿模；
+  2. **薄透高叉三角内裤（Sheer High-Cut Triangle Briefs）**：
+     - **严禁平角短裤/四角裤**：平角短裤在腹股沟与大腿根产生生硬的水平长方形台阶几何，导致外穿紧身武侠裤装（窄腿劲装、练功裤）时发生严重拉扯与台阶破损；
+     - **高叉三角剪裁**：必须采用极薄、微透的高叉三角裤，将髋骨折线、大腿根与臀下线 100% 完整露出，提供最平滑贴合的骨骼蒙皮接触面；
+  3. **光头素体基底（Bald Base Body Mesh）**：
+     - 人物基底网格彻底不生成头发，保留 360 度圆润光滑颅顶与完整双耳，彻底根治额头发丝熔接与耳侧浮面；
+     - 发型全量解耦为独立 3D 假发资产（Wig Mesh），挂载于 `mixamorig:Head` 骨骼插槽；
+  4. **100% 裸足赤足（Barefoot）**：
+     - 素体基底不含任何鞋履，裸足脚踝与足部解剖清晰，便于后续独立穿戴布鞋、短靴、皮靴与战靴。
+
+
+
+---
+
+## 3. 标准操作流程（Standard SOP）
+
+### 3.1 准备 2D 三视图切片
+1. **多视图准备**：准备 Front、Left、Back 3 张切片（或窄轮廓 A-pose 单图）；
+2. **执行几何与身形预处理**：
+   - 男主运行 `python3 tools/model3d/prepare_male_hero.py`；
+   - 女主运行 `python3 tools/model3d/stretch_apose.py`；
+3. **输入质检**：
+   - 检查额头眼睑是否光滑无遮挡；
+   - 检查肩膀是否水平平直；
+   - 测量 2D 头身比（头顶骨至下巴为 1 头）。
+
+### 3.2 装载驱动与暂存素材
+在 Tripo 标签页中执行：
 ```js
-(() => { const i = document.createElement('input'); i.type = 'file'; i.multiple = true; i.setAttribute('aria-label', 'claude loader'); i.style.cssText = 'position:fixed;left:0;top:0;z-index:2147483647'; document.body.appendChild(i); return 'ok'; })()
-```
-
-**1.2 上传文件**：`find` 查「claude loader」拿 ref，`file_upload` 传 `tools/model3d/tripo_web.js` 和本批参考图（绝对路径，单次合计 < 10 MB，多了分几次传）。
-
-**1.3 读进 localStorage、暂存参考图**：
-```js
-const inp = document.querySelector('input[aria-label="claude loader"]');
-const js = [...inp.files].find((f) => f.name === 'tripo_web.js');
-if (js) localStorage.setItem('claudeT', await js.text());
-window.__claudeTT ??= trustedTypes.createPolicy('cl' + Date.now(), { createScript: (s) => s });  // 和 Gemini 一样用 trustedTypes eval
-eval(window.__claudeTT.createScript(localStorage.getItem('claudeT')));
-const staged = await __t.stage(inp); inp.remove();
-({ staged, keys: await __t.idbKeys(), ...__t.selfTest() })
-```
-参考图在 IndexedDB 里的键是文件名（仓库路径的 basename）。
-
-**1.4 存盘方式**：默认 `direct`（作者 10-04 已在 Chrome 里允许 studio.tripo3d.ai「自动下载多个文件」，实测连续存盘都落盘）。存了却不落盘，说明权限被收回了，改用 `__t.setSaveMode('reload')`，见 §4。
-
-**每次 navigate（整页刷新）后重新载入**：
-```js
+// 1. 载入驱动
 window.__claudeTT ??= trustedTypes.createPolicy('cl' + Date.now(), { createScript: (s) => s });
 eval(window.__claudeTT.createScript(localStorage.getItem('claudeT')));
-__t.selfTest()
+
+// 2. 插入文件上传框并上传切片
+const inp = document.createElement('input'); inp.type = 'file'; inp.multiple = true;
+inp.setAttribute('aria-label', 'claude loader'); document.body.appendChild(inp);
+// (通过 DevTools upload_file 传入切片绝对路径)
+
+// 3. 暂存进 IndexedDB
+await window.__t.stage(inp);
+inp.remove();
 ```
-`vis` 不是 `visible` 就停下：窗口被最小化或挡住了，请协调者转告作者把窗口放到前台；不要自己挪窗口。
 
-## 2. 每个模型的标准流程
+### 3.3 提交生成（65 点）
 
-开工前：`await __t.wallet()` 记余额；`ls ~/Downloads/tripo__*` 应为空。下面每步 1–2 次 JS 调用；`ok:false` 必须 throw，让 batch 停下。
-
-**2.1 上传参考图**（0 点）：
+#### 方式 A：单图 A-pose 模式（女角色、仙侠、古装长发推荐）
 ```js
-const g = await __t.toGenerate('imageToModel'); if (!g.ok) throw new Error(JSON.stringify(g));
-const u = await __t.uploadRef('por_npc_xxx__chNN_youth_apose_slim.png'); if (!u.ok) throw new Error(JSON.stringify(u));
-({ u, settings: __t.checkSettings('imageToModel'), dry: await __t.generate() })
-```
-- `toGenerate` 用前端路由切到生成页、切单图 / 多视图模式，不刷新页面；`uploadRef` 把暂存的图挂到页面自己的上传框，等上传和审核（`audit: pass`）完成。
-- 多视图：`toGenerate('multiView')`，再 `uploadRef(name, { slot })`，`slot` 0 Front、1 Left、2 Back、3 Right，至少 Front 加 1 张。
-- 传错了：`__t.clearUpload()`。
+// 1. 进入生成页并切到单图
+await window.__t.toGenerate('single');
+window.__t.clearUpload();
 
-**2.2 生成**（65 点）：
+// 2. 上传经方案 A 净化的 A-pose 图
+await window.__t.uploadRef('zhujue_f_v3_clean_apose.png');
+
+// 3. 确认生成参数（H3.1 Best Quality, Ultra Mesh, 8K Extreme, PBR, Detailed, 100k faces）
+// 4. 真提交生成
+const gen = await window.__t.generate({ go: true, open: true });
+// 返回 { pid, op, credits: { spent: 65 } }
+
+// 5. 等待完成
+await window.__t.waitOp(gen.op);
+```
+
+#### 方式 B：多视图模式（短发/硬结构男角色推荐）
 ```js
-const r = await __t.generate({ go: true, open: true }); if (!r.ok) throw new Error(JSON.stringify(r)); r   // {pid, op, credits:{before, after, spent}}
+// 1. 进入生成页并切到多视图
+await window.__t.toGenerate('multiView');
+window.__t.clearUpload();
+
+// 2. 挂载三个槽位
+await window.__t.uploadRef('zhujue_m_v3_front.png', { slot: 0 });
+await window.__t.uploadRef('zhujue_m_v3_left.png', { slot: 1 });
+await window.__t.uploadRef('zhujue_m_v3_back.png', { slot: 2 });
+
+// 3. 确认生成参数（H3.1 Best Quality, Ultra Mesh, 8K Extreme, PBR, Detailed, 100k faces）
+// 4. 真提交生成
+const gen = await window.__t.generate({ go: true, open: true });
+// 返回 { pid, op, credits: { spent: 65 } }
+
+// 5. 等待完成
+await window.__t.waitOp(gen.op);
 ```
-- 立刻把 pid、op 记进本任务的 `done.txt`。驱动也在 `localStorage.claudeTLog` 记一笔，`__t.logs()` 可查。
-- 调用超时或报错：**先查 `__t.logs()`、`await __t.projects()` 和余额，确认没生成上再重发**，别重复花点。
-- **首次真用核对**（AR-65 只验证到 dry）：`spent` 应为 65；`await __t.proj(pid)` 里 `model_version` 是 `v3.1-20260211`、`type` 是 `image_to_model`（多视图是 `multiview_to_model`）。等生成完再核对 `ultra:true`、`pbr:true`。有一项不对就停下报协调者，后面改走 §5 的按钮兜底。
 
-**2.3 等生成**（每次 ≤ 28 秒，反复调）：`await __t.waitOp(op)`，`done:true` 且 `status:'success'` 才往下走。8K 生成一般要几分钟。
-
-**2.4 看图验收**：
-- `await __t.showCovers(pid)` 后截图看封面（正面，白底），看完 `__t.hideCovers()`。
-- 背面、侧面：`navigate` 到 `https://studio.tripo3d.ai/workspace/generate/<pid>`，重新载入驱动，截图；用视图右上角的坐标轴小球或拖动画布转到背面。
-- 看：人完整、没破洞；头发不是肉色或灰褐色块；袖子、裙摆没粘连；脸和参考图一致。
-- 不合格：先免费重出一次 `await __t.freeRetry(pid, { go: true })`（0 点）；还不行就换更窄的 A 字参考图重做，并报协调者。
-
-**2.5 绑骨**（20 点）：
+### 3.4 验收与骨架绑定（20 点）
 ```js
-const d = await __t.rig(pid); if (!d.ok) throw new Error(JSON.stringify(d)); d          // dry：看请求体
-const r = await __t.rig(pid, { go: true }); if (!r.ok) throw new Error(JSON.stringify(r)); r   // {op, credits.spent 20}
+// 1. 检查封面与白模质量（杜绝面部粘连）
+await window.__t.showCovers(pid);
+
+// 2. 提交自动绑骨（Humanoid Mixamo 65 joints）
+const r = await window.__t.rig(pid, { go: true });
+await window.__t.waitOp(r.op);
+
+// 3. 关节体检
+const joints = await window.__t.joints(pid);
+if (!joints.ok) throw new Error('Joint check failed: ' + JSON.stringify(joints));
 ```
-- 驱动先调 `pre_rig_check`（页面也是先查），`riggable:false` 就不发绑骨，直接返回原因。
-- 等：`await __t.waitOp(r.op)`，一般一两分钟。
-- 体检：`await __t.joints(pid)` 要 `ok:true`，再 `showCovers(pid)` 看第二张骨架叠加图。经验值：髋 y 0.45–0.65，头 > 0.72，头顶骨端在头之上，双脚 < 0.15，双手离髋 > 0.12（模型高约 0.98）。绑坏的典型样子是骨架倒立或压扁（10-03 小龙女宽袖、宽裙两版都是这样，`joints` 能测出来）。
-- **首次真用核对**：`spent` 应为 20；`await __t.proj(pid)` 里 `rigged:true`、`rig_op` 等于返回的 op。
-- 绑坏了：别导出。`await __t.history(pid)` 找生成版的 op，`await __t.restore(pid, op, { go: true })` 回退（0 点）后重绑（20 点）；更好的办法是换窄轮廓 A 字图重新生成（§7）。
 
-**2.6 主角动作**（0 点，只有主角要）：
-`await __t.retarget(pid, ['idle', 'walk', 'run'], { go: true })`，逐个 `waitOp`，最后 `(await __t.proj(pid)).retarget` 三条都是 `success`。
-
-**2.7 导出和预览**（0 点）：
+### 3.5 预设动作生成（0 点，主角标配）
 ```js
-const e = await __t.exportGlb(pid, 'npc_xxx__chNN_youth'); if (!e.ok && !e.pending) throw new Error(JSON.stringify(e)); e
-const p = await __t.preview(pid, 'npc_xxx__chNN_youth'); p
+// 依次生成待机、行走、奔跑动作（避免锁冲突，每次等待完成）
+await window.__t.retarget(pid, ['idle', 'walk', 'run'], { go: true });
 ```
-- `exportGlb` 的参数照导出面板：GLB、贴图 2K、Export Skeleton 开、动作原地，和 10-03 在网页上点导出时完全一样（服务器直接返回了当时导出的文件）。`pending:true` 就再调一次，会接着等同一个导出任务；新导出一般十几秒。
-- 主角另导一个动作单文件：`await __t.exportGlb(pid, npc, { anims: ['idle', 'walk', 'run'] })`。
-- 存盘名：`tripo__<npc>.glb`、`tripo__<npc>__anim_idle_walk_run.glb`；预览是 Tripo 的封面渲染（`studio_mesh`，正面白底 600×778，文件头其实是 PNG），存成 `tripo__<npc>.png`。要骨架叠加图就 `preview(pid, npc, { kind: 'rig' })`，存成 `tripo__<npc>__rig.webp`。
-- 默认 `direct`，这两步直接落盘；改成 `reload` 后只是排队，要按 §4 逐个刷新存盘。
-- 核对：`ls -la ~/Downloads/tripo__<npc>*`。
 
-**2.8 入库**（Bash，在 `_prod` 根目录）：
+### 3.6 导出与位移修复
+```js
+// 1. 导出带动作与不带动作的 GLB 模型
+await window.__t.exportGlb(pid, 'npc_zhujue_m__ch00_charmhigh');
+await window.__t.exportGlb(pid, 'npc_zhujue_m__ch00_charmhigh', { anims: ['idle', 'walk', 'run'] });
+await window.__t.preview(pid, 'npc_zhujue_m__ch00_charmhigh');
+
+// 2. 修复奔跑动作的原点水平偏移（Hips Jump Offset）
+// python3 tools/model3d/fix_anim_offset.py <anim.glb> <anim_fixed.glb>
+```
+
+### 3.7 入库与提交
 ```bash
-python3 tools/model3d/ingest.py npc_xxx__chNN_youth --project <pid> --gen-op <生成 op> --rig-op <绑骨 op> \
-  --ref assets/default/character/<性别>/chNN/threeview/por_npc_xxx__chNN_youth_apose_slim.png \
-  --ref2 "assets/default/character/<性别>/chNN/por_npc_xxx__chNN_youth_base.png=作者选定的 base 立绘（本模型未直接输入）" \
-  --subject "某某（某书 chNN · 青年）· 窄轮廓 A 字版" --notes "看图验收：…；自动绑骨一次成功" --commit
+python3 tools/model3d/ingest.py npc_zhujue_m__ch00_charmhigh \
+  --project <pid> --gen-op <gen_op> --rig-op <rig_op> \
+  --anim idle,walk,run --anim-ops idle=<op>,walk=<op>,run=<op> \
+  --gen-kind multiview_to_model --input "multiview: Front + Left + Back" \
+  --ref scratch/threeview_slices_v3/zhujue_m_v3_front.png \
+  --ref scratch/threeview_slices_v3/zhujue_m_v3_left.png \
+  --ref scratch/threeview_slices_v3/zhujue_m_v3_back.png \
+  --subject "高魅力男主角（平肩八头身武侠形象）" \
+  --notes "平肩修正无溜肩；头身比>=8.0；露额面无撕裂；Mixamo 65关节全通" --commit
 ```
-- 脚本会：等文件落盘 → 核对 GLB 文件头、65 个 mixamorig 关节（另允许赵敏那种 `neutral_bone`）、基础模型不带动画 → 关节体检 → 搬成 `model_rig.glb`、转 `preview.png` → 写 `manifest.yaml`（status candidate，关节体检结果自动接在 notes 后面）→ 只按目录路径提交，撞上 index.lock 会自己重试 → 删掉用过的下载文件。
-- 主角加 `--anim idle,walk,run --anim-ops idle=<op>,walk=<op>,run=<op>`；多视图加 `--gen-kind multiview_to_model --input "multiview：Front + Left"`，`--ref` 按槽位顺序给多次。
-- 重做已入库的角色加 `--replace`：旧文件先备份到 `.agents/coord/ART-3d-tripo-web/replaced/<npc>__<时间>/`，manifest 里记 `replaces`。
-- 先想看看会做什么：加 `--dry-run`。
-- 只换预览、模型不动：`python3 tools/model3d/ingest.py <npc_id> --preview-only [--commit]`，读 `tripo__<npc>.png`，只改 manifest 末尾的 preview 条目。
-- 点数不是 65 / 20（比如重绑过）：`--credits generate=65,rig=40`。
 
-**2.9 记录**：在本任务 `done.txt` 记 npc_id、project、op、提交号、点数；做完一批写报告。
+---
 
-**2.10 第一次真跑的结果（2026-10-04，AR-85 通用男女，共 170 点）**
-- **生成**：`generate({go:true})` 两次都对上了：扣 65 点，项目 `model_version` 为 v3.1-20260211，`ultra`、`pbr` 都是 true。8K 生成约 2.5 分钟。
-- **绑骨**：`rig({go:true})` 两次都扣 20 点，绑骨约 1 分钟；`joints()` 全过。
-- **动作**：一次提交多个预设，第二个起会报 406 12003「Failed to acquire lock」。驱动已改成每次调用只提交一个并等它跑完（04a13124），反复调到 `left:0` 为止；每个预设约 10 秒。
-- **导出**：没绑骨的模型也能导出（不带骨架），用来先量比例。`exportGlb` 一般 10–20 秒，`pending` 时再调一次就行。
-- **比例**（AR-79 / AR-85 新增，0 点）：生成完、绑骨前，先导出 2K GLB，跑 `python3 tools/model3d/measure_heads.py <glb>`，看 `heads_crown`。偏离目标超过 5% 就调输入图重出，别急着绑骨。
-  - 本次 Tripo 把头放大约 4–6%：男模 2D 7.99 → 3D 7.66，女模拉长图 9.14 → 8.69。
-  - 拉长输入图：`python3 tools/model3d/stretch_apose.py <A字图> <输出> --neck <脖子行> --target <2D目标> --skull <头顶骨行> --chin <下巴行>`。2D 目标 = 3D 目标 × 1.05。
-  - 派生图放模型目录的 `source/` 下，manifest 写明来源和倍数；仓库里的 A 字图本身不改。
-- **跑步片段整段偏离原点**：Tripo 导出的原地「run」虽然没有逐帧位移，但整段离原点约 0.53–0.57（约半个身高），切换动作会跳位。
-  - 导出后、入库前跑 `python3 tools/model3d/fix_anim_offset.py <in.glb> <out.glb>`，只平移 Hips 的水平分量。
-  - 10-03 那 4 套主角的动作文件也有同样问题，未修。
-- **原地动作的移动速度**：支撑脚后移约 walk 0.6、run 2.1 模型单位/秒（模型高约 0.98）。引擎要按这个速度乘身高缩放来移动角色，才不会脚滑。
+## 4. 常见问题排查与速查清单
 
-## 3. 点数（2026-10 实测）
-
-| 步骤 | 点数 | 说明 |
-|---|---:|---|
-| 生成 | 65 | H3.1 基础 25 + Ultra Mesh 15 + 8K 贴图 20 + PBR 5 |
-| 绑骨 | 20 | 重绑也是 20 |
-| 预设动作、导出、Free Retry、版本回退 | 0 | |
-| 重贴图 | 4K 20 / 8K 30 | 10-03 小龙女 4K 重贴图卡在 99%，没成 |
-| Magic Brush 局部重绘 | 5 | 不支持 8K 贴图的模型 |
-
-- 普通角色一个 85 点；主角加动作也是 85 点。
-- 预算估算：N 个角色 × 85，再留 20% 余量给重做（10-03 那轮 41 次生成、42 次绑骨实扣 3505 点，其中 380 点没进库）。
-
-## 4. 存盘的两种情况（Chrome「自动下载多个文件」权限）
-
-Chrome 对页面脚本发起的下载有限制：没有「自动下载多个文件」权限时，整页载入之后只放行第一个，之后的静默丢弃，连注入按钮再真实点击也一样（10-04 实测）。驱动里有两种存盘方式：
-
-- **`direct`（默认）**：作者 10-04 在 Tripo 标签页地址栏点了「允许」，之后连续两个脚本下载都落了盘。`exportGlb`、`preview` 直接存。
-- **`reload`（备用，权限被收回时用）**：`__t.setSaveMode('reload')`。之后 `exportGlb`、`preview` 只把下载地址和文件名排进本标签页的 `sessionStorage.claudeTSave`。每个文件这样存：
-  1. `navigate` 到当前 Tripo 地址（整页刷新）；
-  2. 重新载入驱动（§1 末尾那段）；
-  3. `await __t.flushSave()` 存队首一个，返回 `left` 还剩几个；
-  4. Bash `ls ~/Downloads/tripo__*` 核对落盘。没落盘就 `__t.requeueLast()` 放回去，再从第 1 步来。
-
-  一个普通角色要存 2 个文件（GLB、预览），主角 3 个；签名地址大约两天内有效。这条路只验证到排队，没实际落过盘。
-- 站点被设成「阻止」时，同站刷新也不放行。这种情况不要绕，请协调者转告作者改设置。
-
-## 5. 按钮兜底（API 路径出问题时）
-
-- **生成**：2.1 传好图后 `__t.genButton()`，要 `ok:true`（面板设置和 §3 一致）且按钮文字是 `Generate 65`。把返回的 CSS 坐标乘以「截图坐标系宽 ÷ innerWidth」（截图结果里会写坐标系，10-04 是 1456 ÷ 1493）换成 `computer` 坐标；点之前 `__t.guard(x, y, /^Generate\s*65$/)` 用 CSS 坐标再核一次；点完 `__t.lastOp()` 取 pid、op。
-- **绑骨**：前端路由到 `/workspace/rigging/<pid>`（`__t.router().push(...)`），`__t.rigButton()` 要求 Humanoid、Mixamo、`v3.0-20260909`，按钮是 `Auto Rig 20`；同样换坐标、guard、点、`lastOp()`。
-- **导出**：老办法是右下角 Export → GLB、2K、Export Skeleton 开 → Download。只在 `exportGlb` 报错时用。
-
-## 6. 常见故障
-
-- **扩展截图、find、read_page 超时**：扩展对这个站点的访问权限不够。报协调者请作者处理；处理后整页刷新一次就好。
-- **标签页不可见**（`vis: hidden`）：窗口被最小化或挡住。每 2 分钟查一次，请作者把窗口放到前台，不要自己挪窗口。
-- **3D 视图里是白模**：连着看了好几个 8K 模型后会出现。`navigate` 整页刷新再看。
-- **重贴图卡在 99%**：47 分钟不动就判失败，用 `history` + `restore` 回退到绑骨版。
-- **生成 / 绑骨调用超时**：先 `__t.logs()`、`await __t.projects()`、余额三样对一遍，确认没提交上再重发。
-- **`$request` 报错**：返回的 `why` 里是状态码和 Tripo 的 code，例如 `9008 Check project exists error` 是 pid 不对。
-- **下载目录出现 `tripo__xxx (1).glb`**：Chrome 重名改名了。ingest 会报错；删掉多余的文件再存一次。
-- **`uploadRef` 返回 `slot occupied`**：先 `__t.clearUpload()`；`not staged` 就回 §1 重新暂存。
-- **JS 输出被拦成「Cookie/query string data」**：见 §0。
-
-## 7. 本轮经验（AR-41 / AR-56，38 套）
-
-- **建模输入用「空手窄轮廓 A 字图」**：束袖、直筒裙、露鞋尖、双臂离身约 30°。宽袖、喇叭裙、手持兵器会让自动绑骨失败（骨架倒立或压扁）；改用窄轮廓 A 字图后，26 个模型全部一次绑成。窄袖、空手的男角可以直接用 base 立绘。
-- Tripo 不能手动绑骨。绑坏了只能回退重绑（20 点）、Free Retry，或换参考图重新生成。
-- 头发：后脑偏灰褐、发色发肉色要看背面才看得出（小龙女、水笙偏灰褐，赵敏后脑有一缕灰白）。Magic Brush 不支持 8K 模型，4K 重贴图又卡住了，所以修发基本靠换参考图。
-- 引擎接入：模型高度归一化到约 0.98，加载时按人物身高缩放；赵敏多一个 `neutral_bone`，并入 Head；杨过空袖那侧的臂骨不驱动；兵器另挂（石破天的佩刀和网格是一体的）；导出贴图 2K，要 8K 可以从云端重导（`exportGlb(..., { textureSize: 8192 })`，未实测）。
-- 预览：一律用 Tripo 自带的封面渲染（白底正面、600×778）。之前 37 套的深灰底截图已在 86c11ba7 统一换掉（一次取齐 37 张封面、只下载一个打包文件，逐套 `ingest.py --preview-only`）。
-- manifest 的 `created`：之前有 6 套（阿青、小龙女、4 套主角，共 22 条）把本机 PDT 时间写成了 `+08:00`，b71ab68e 已更正为 `-07:00`；ingest 按本机时区写，不会再错。
-
-## 8. `__t` 接口速查
-
-状态：✅ = 已在页面上用 JS 真跑通；🔸 = 请求体已核对、还没真跑；🖱 = 按钮兜底。
-
-| 方法 | 作用 | 状态 |
+| 异常现象 | 核心原因 | 彻底对策 |
 |---|---|---|
-| `selfTest()` / `where()` | 驱动版本、页面路径、可见性、生成面板状态、存盘方式和队列 | ✅ |
-| `wallet()` / `credits()` | 余额（总数、即将过期的点数和日期） | ✅ |
-| `projects({offset})` / `find(pid前缀)` | 资产列表，每页 20 条（不带作者信息） | ✅ |
-| `proj(pid)` / `history(pid)` | 项目当前版本（类型、状态、是否绑骨、动作、封面文件）/ 版本历史 | ✅ |
-| `progress(ops)` / `waitOp(op, ms)` | 查进度 / 等到结束（默认最多 28 秒） | ✅ |
-| `stage()` / `idbKeys()` / `idbDel(k)` | 参考图暂存进 IndexedDB | ✅ |
-| `toGenerate(mode)` / `uploadRef(name, {slot})` / `clearUpload()` | 切生成页和模式、纯 JS 上传参考图（单图和多视图）、清掉 | ✅ |
-| `checkSettings()` / `genBody()` / `generate()` | 核对面板设置、拼请求体、dry 看请求体 | ✅ |
-| `generate({go:true})` | 生成，65 点 | ✅（10-04 首次真跑，见 §2.10） |
-| `rig(pid)` | dry 看绑骨请求体 | ✅ |
-| `rig(pid, {go:true})` | pre_rig_check + 绑骨，20 点 | ✅（10-04） |
-| `joints(pid)` | 绑骨体检（对 10-03 的好模型和两版绑坏的小龙女都判对了） | ✅ |
-| `retarget(pid, names, {go:true})` | 预设动作，0 点；每次调用提交一个，调到 `left:0` 为止 | ✅（10-04） |
-| `exportGlb(pid, npc, {anims})` | 导出 GLB。阿青单模型、男主三动作单文件都命中服务器缓存，sha256 和 10-03 入库的文件相同；重新导出的只差 GLB 里带导出任务 ID 的网格 / 材质名，二进制数据相同 | ✅ |
-| `cover()` / `preview()` / `showCovers()` / `hideCovers()` | 封面渲染：取地址、存盘、页面上并排看 | ✅ |
-| `saveMode()` / `setSaveMode()` / `flushSave()` / `requeueLast()` / `clearSaveQueue()` | 存盘方式和队列（§4） | ✅ `direct` 连续落盘；`reload` 只验证到排队 |
-| `freeRetry(pid, {go:true})` / `restore(pid, op, {go:true})` | 免费重出 / 版本回退，0 点 | 🔸（dry ✅） |
-| `genButton()` / `rigButton()` / `btn()` / `guard()` / `lastOp()` | 按钮兜底（§5） | 🖱 |
-| `logs(n)` | 驱动自己记的提交流水（生成、绑骨、动作、回退） | ✅ |
+| 眼皮撕裂、额头灰肉块 | 2D 原画额前有虚化细碎刘海 | 2D 预处理抹除额前碎发，露出完整干净额骨与眉弓（方案 A 露额准则） |
+| 耳前悬浮灰白非流形薄片 | 耳前留有半透明细碎发丝 | 将发丝规整别至耳后，发际线闭合清晰 |
+| 太阳穴/面颊刀劈削角 | 多视图正侧面有 5°~10° 透视微差，视锥相交被切掉 | 改用高质量单图 A-pose 生成（`image_to_model`），避免视差冲突 |
+| 嘴唇撕裂/下唇裂口 | 原画微张口缝或半透高光被粗糙深度撕扯 | 保证唇缝闭合平整，下唇无过曝反光 |
+| 颅顶过大（发包头盔感） | 2D 盘发蓬松，3D 深度膨胀 | 2D 预处理时将发髻与颅顶高度压低 15% |
+| 溜肩、显得不够英挺 | 原画斜方肌角度过大（$\approx 40^\circ$） | 用 `prepare_male_hero.py` 执行平肩形变，外肩抬升 35~40px 并加宽 10% |
+| 男主视觉比女主矮 | 各模型被 Tripo 独立归一化至 0.98 | 男主减少画布边缘留白至极限（99%），女主保留 10% 留白，并在 runtime 按 1.82m vs 1.68m 进行尺度映射 |
+| 骨架倒立或压扁 | 衣服袖子过宽、裙摆过大或手持武器 | 必须采用窄轮廓 A 字图（束袖、直筒裙、双臂展开 30°、空手） |
+| 奔跑动作切换时人物瞬间跳位 | Tripo 导出原地 run 动作自带 $\sim 0.55$ 偏移 | 必须用 `fix_anim_offset.py` 平移修正 Hips 水平分量 |
+| Retarget 报 406 12003 锁冲突 | 前一个动作未完全结束即提交新动作 | 驱动已内置队列保护，单次仅提交 1 个动作并等待完成 |
+

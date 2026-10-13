@@ -67,49 +67,6 @@ export function directionBetween(from: HexCoord, to: HexCoord, preferred: HexDir
   })[0] ?? preferred;
 }
 
-export interface KnockbackResult {
-  readonly from: HexCoord; readonly to: HexCoord; readonly cellsMoved: number;
-  readonly stoppedBy: 'distance' | 'edge' | 'terrain' | 'uphill' | 'unit'
-    | 'fall' | 'water' | 'void' | 'ringOut';
-  readonly collisionUnitId?: string; readonly fallHeight?: number; readonly landMulBp?: number;
-}
-
-/** Pure, cell-by-cell displacement; edge metadata distinguishes walls, hazards and ring-outs. */
-export function queryKnockback(state: BattleState, source: BattleUnit,
-  target: BattleUnit, cells: number): KnockbackResult {
-  const direction = directionBetween(source.pos, target.pos, target.facing);
-  const delta = HEX_DIRECTIONS[direction]!; const from = { ...target.pos };
-  let to = from; let stoppedBy: KnockbackResult['stoppedBy'] = 'distance';
-  for (let step = 0; step < cells; step += 1) {
-    const next = { q: to.q + delta.q, r: to.r + delta.r };
-    const cell = cellAt(state, next);
-    if (cell === undefined) {
-      const current = cellAt(state, to);
-      const exit = current?.displacementExits?.find((entry) => entry.direction === direction);
-      if (state.setup.rules.ringOut) stoppedBy = 'ringOut';
-      else if (exit?.kind === 'void') stoppedBy = 'void';
-      else if (exit?.kind === 'water') stoppedBy = 'water';
-      else if (exit?.kind === 'fall') stoppedBy = 'fall';
-      else stoppedBy = 'edge';
-      return { from, to, cellsMoved: hexDistance(from, to), stoppedBy,
-        ...(exit?.landingHeight === undefined ? {} : { fallHeight: current!.height - exit.landingHeight }),
-        ...(exit?.landMulBp === undefined ? {} : { landMulBp: exit.landMulBp }) };
-    }
-    const current = cellAt(state, to)!;
-    if (cell.height - current.height >= 2) { stoppedBy = 'uphill'; break; }
-    if (!cell.standable) { stoppedBy = 'terrain'; break; }
-    const occupied = state.units.find((unit) => unit.active && unit.id !== target.id
-      && unit.pos.q === next.q && unit.pos.r === next.r);
-    if (occupied !== undefined) return { from, to, cellsMoved: hexDistance(from, to),
-      stoppedBy: 'unit', collisionUnitId: occupied.id };
-    to = next;
-    if (current.height - cell.height > 1 + target.jump) return { from, to,
-      cellsMoved: hexDistance(from, to), stoppedBy: 'fall', fallHeight: current.height - cell.height,
-      landMulBp: cell.landMulBp ?? 10_000 };
-  }
-  return { from, to, cellsMoved: hexDistance(from, to), stoppedBy };
-}
-
 function losCells(state: BattleState, moved?: { readonly id: string; readonly pos: HexCoord }) {
   const occupied = new Set(state.units.filter((unit) => unit.active && unit.id !== moved?.id)
     .map((unit) => hexKey(unit.pos)));
@@ -175,13 +132,9 @@ export function queryDamageGeometry(state: BattleState, actor: BattleUnit, targe
   const cover = coverFor(targetCell, move.delivery, sourceDirection);
   const line = battleLineOfSight(state, actor, target.pos, move.delivery);
   if (line === null) throw new RangeError('INVALID_TARGET');
-  const coverHit = cover?.hitByDelivery?.[move.delivery as 'projectile' | 'ranged']
-    ?? cover?.hit ?? 0;
-  const coverDamageBp = cover?.damageBp ?? 0;
-  const subTypeDamageBp = move.subType === undefined ? 0
-    : attackerCell.terrainDealtBySubTypeBp?.[move.subType] ?? 0;
-  const terrainAddBp = clampInt(attackerCell.terrainDealtBp + subTypeDamageBp
-    + targetCell.terrainTakenBp + coverDamageBp, -3_000, 3_000);
+  const coverHit = cover?.hit ?? 0; const coverDamageBp = cover?.damageBp ?? 0;
+  const terrainAddBp = clampInt(attackerCell.terrainDealtBp + targetCell.terrainTakenBp
+    + coverDamageBp, -3_000, 3_000);
   const positionBp = clampInt(mulDivFloor(DIRECTION_BP[direction],
     (10_000 + heightAddBp) * (10_000 + terrainAddBp), 100_000_000), 5_000, 20_000);
   return { sourceDirection, direction, heightDelta, heightHit, heightAddBp, coverHit, coverDamageBp,

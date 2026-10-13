@@ -218,7 +218,18 @@ def start_run(tid: str, a, note: str | None) -> bool:
         nf = cdir(tid) / f"note_run{n}.md"
         nf.write_text(note, encoding="utf-8")
         argv += ["--note", str(nf)]
-    rc, out = step(*argv)
+    # 执行器也看到审核清单（render_prompt 读 TIANSHU_REVIEW_CHECKS）；只在启动执行器时设置。
+    checks = str((ROOT / a.checks).resolve()) if getattr(a, "checks", None) else None
+    previous = os.environ.get("TIANSHU_REVIEW_CHECKS")
+    if checks:
+        os.environ["TIANSHU_REVIEW_CHECKS"] = checks
+    try:
+        rc, out = step(*argv)
+    finally:
+        if previous is None:
+            os.environ.pop("TIANSHU_REVIEW_CHECKS", None)
+        else:
+            os.environ["TIANSHU_REVIEW_CHECKS"] = previous
     last = [ln for ln in out.strip().splitlines() if ln.strip()]
     log(tid, f"start rc={rc}: " + (last[0][:300] if last else ""))
     if rc != 0 or "已启动" not in out:
@@ -327,13 +338,21 @@ def rebase_before_rework(tid: str) -> bool:
         return False
 
 
+def drop_build_output(tid: str) -> None:
+    """校验里的 `pnpm check` 会在任务工作区构建 apps/game/dist（约 335 MB）；校验完即删，
+    下次校验会重建。并行多个任务时各囤一份曾把磁盘写满（2026-10-12）。"""
+    shutil.rmtree(ROOT / ".agents" / "wt" / tid / "apps" / "game" / "dist", ignore_errors=True)
+
+
 def validate_with_rebase(tid: str) -> tuple:
     """保持原校验命令 / 超时；第二次失败直接回到原返修逻辑，不递归。"""
     rc, out = step("finish", tid, "--no-commit", timeout=3600)
+    drop_build_output(tid)
     log(tid, f"finish --no-commit rc={rc}: " + (out.strip().splitlines() or [""])[0][:300])
     if rc == 1 and rebase_before_rework(tid):
         log(tid, "rebase-before-rework: 挪基点完成，重校验一次")
         rc, out = step("finish", tid, "--no-commit", timeout=3600)
+        drop_build_output(tid)
         log(tid, f"finish --no-commit (after rebase) rc={rc}: " +
             (out.strip().splitlines() or [""])[0][:300])
     return rc, out
@@ -410,7 +429,7 @@ def _worker(a) -> int:
                 return 1
             set_status(tid, "RUNNING", runs=runs, reviews=reviews, detail="reviewing")
             argv = [PY, "tools/agents/gpt_review.py", tid, "--model", a.review_model, "--effort", a.review_effort,
-                    "--bin", a.bin, "--timeout-min", str(a.review_timeout_min), "--max-images", str(a.max_images)]
+                    "--bin", a.review_bin, "--timeout-min", str(a.review_timeout_min), "--max-images", str(a.max_images)]
             if a.checks:
                 argv += ["--checks", a.checks]
             rc, out = sh(argv, timeout=(a.review_timeout_min + 5) * 60)
@@ -506,6 +525,8 @@ def main() -> int:
     ap.add_argument("--bin", default=os.environ.get("TRAEX_BIN") or os.environ.get("CODEX_BIN") or TRAEX)
     ap.add_argument("--model", default="GPT-6-Astra", help="执行模型；启动时探测，不应答回退 step.py 的 FALLBACK_MODELS（GPT-5.6-Sol）")
     ap.add_argument("--effort", default="max", help="执行推理强度（traex：max / ultra / xhigh …）")
+    ap.add_argument("--review-bin", default=os.environ.get("TRAEX_BIN") or TRAEX,
+                    help="审核用的命令行（默认 traex）；与 --bin 分开，agy 等执行器的任务审核仍走 GPT（AR-108）")
     ap.add_argument("--review-model", default="GPT-5.6-Sol")
     ap.add_argument("--review-effort", default="xhigh", help="审核推理强度（xhigh / max）")
     ap.add_argument("--review-timeout-min", type=float, default=60)

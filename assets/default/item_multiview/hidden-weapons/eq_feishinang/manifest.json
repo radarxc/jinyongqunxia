@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_feishinang",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/hidden-weapons/eq_feishinang.png",
+  "generatedAt": "2026-10-07T20:08:11.556Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 175537,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d43de929-b333-4fe5-a2a4-f17924f49634/multiview_0_d43de929-b333-4fe5-a2a4-f17924f49634.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 100592,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d43de929-b333-4fe5-a2a4-f17924f49634/multiview_1_d43de929-b333-4fe5-a2a4-f17924f49634.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 109634,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d43de929-b333-4fe5-a2a4-f17924f49634/multiview_3_d43de929-b333-4fe5-a2a4-f17924f49634.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 145355,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/d43de929-b333-4fe5-a2a4-f17924f49634/multiview_2_d43de929-b333-4fe5-a2a4-f17924f49634.jpeg"
+    }
+  }
+}

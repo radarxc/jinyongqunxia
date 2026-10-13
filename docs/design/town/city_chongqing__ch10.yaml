@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_chongqing"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "渝州·巴县山城（702年推定）"
+display_name: 渝州（巴县）
 historical_year: 702
 era_kit: "tang"
 seed: 1383193151

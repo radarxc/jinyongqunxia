@@ -1,0 +1,76 @@
+{
+  "animated": {
+    "distanceMethod": "strict nearest-triangle signed distance for every selected vertex",
+    "insideRatio": 1.0427093760427094e-05,
+    "insideVertexCount": {
+      "max": 2,
+      "median": 0.0,
+      "min": 0,
+      "samples": 72,
+      "verticesPerFrame": 3996
+    },
+    "insideVertexTotal": 3,
+    "level": "approved",
+    "minSignedDistanceMm": {
+      "median": 42.677017098024365,
+      "min": -8.728194476430478
+    },
+    "surface": "full body triangles"
+  },
+  "bind": {
+    "handleForwardDeltaMu": 0.4463713153190789,
+    "handlePointWorldMu": [
+      0.10633583476791628,
+      0.6253026588006542,
+      0.06435578632823777
+    ],
+    "scabbardTailWorldMu": [
+      0.10477544434916015,
+      0.3529584045846492,
+      -0.3820155289908411
+    ],
+    "sheatheAngleDeg": 34.999997607323344,
+    "sidePlaneDot": 7.429661269505671e-10
+  },
+  "class": "weapon",
+  "failures": [],
+  "fallbackScanTriggered": false,
+  "id": "item_qingfeng_sword",
+  "level": "approved",
+  "pass": true,
+  "schema": "tianshu-dressup-sockets-check.v1",
+  "selectionReason": "35° dynamic penetration <= 2%; fallback scan not triggered",
+  "sheatheBindPolicy": {
+    "allowedAngleDeg": [
+      30.0,
+      40.0
+    ],
+    "fallbackScanTriggered": false,
+    "selectedAngleDeg": 35.0
+  },
+  "sheatheSweep": [
+    {
+      "candidate": "35",
+      "insideRatio": 1.0427093760427094e-05,
+      "insideVertexTotal": 3,
+      "level": "approved",
+      "minSignedDistanceMm": {
+        "median": 42.677017098024365,
+        "min": -8.728194476430478
+      },
+      "sheatheAngleDeg": 35.0
+    }
+  ],
+  "template": "tpl_f2_small",
+  "testedGeometry": {
+    "bladeSegmentVertices": 3996,
+    "handleEnd": "min",
+    "handleSegmentVertices": 3269,
+    "peakAxialMu": 0.135724498,
+    "peakFraction": 0.323316028,
+    "scabbardSegmentVertices": 3996,
+    "source": "fit.handleDetection",
+    "totalVertices": 7265,
+    "verticesPerFrame": 3996
+  }
+}

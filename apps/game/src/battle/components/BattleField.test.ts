@@ -163,4 +163,123 @@ describe('battle field movement draft', () => {
     }));
     wrapper.unmount();
   });
+
+  it('highlights attack reachable cells when selectedMove is active', async () => {
+    const packet = new BattleRuntime(createBattleDemo('world')).packet(true);
+    const setHighlights = vi.fn();
+    const renderer = rendererFixture({ setHighlights });
+    renderMocks.createBattleRenderer.mockResolvedValue(renderer);
+    const controller = { movement: shallowRef(false), active: shallowRef(false), preview: vi.fn(),
+      setMovement: vi.fn(), setActive: vi.fn(),
+      onMoveResolved: vi.fn(() => () => undefined) } as unknown as BattleController;
+    const battle = { ...packet, info: packet.info! };
+    const wrapper = mount(BattleField, { attachTo: document.body, props: { controller, battle,
+      selected: packet.actorId, selectedMove: 'mv_yuenv_fuliu', reducedMotion: false, floating: [], skip: false } });
+    await flushPromises();
+    expect(setHighlights).toHaveBeenCalledWith(expect.objectContaining({
+      attackReachable: expect.arrayContaining([expect.any(String)]),
+    }));
+    wrapper.unmount();
+  });
+
+  it('emits hoverUnit when hovering over a hex cell with a living unit', async () => {
+    const packet = new BattleRuntime(createBattleDemo('world')).packet(true);
+    const hero = packet.units[0]!;
+    const heroCell = pickedCell(packet, hero.q, hero.r);
+    const setHighlights = vi.fn();
+    const renderer = rendererFixture({ setHighlights, pick: vi.fn(() => heroCell) });
+    renderMocks.createBattleRenderer.mockResolvedValue(renderer);
+    const controller = { movement: shallowRef(false), active: shallowRef(false), preview: vi.fn(),
+      setMovement: vi.fn(), setActive: vi.fn(),
+      onMoveResolved: vi.fn(() => () => undefined) } as unknown as BattleController;
+    const battle = { ...packet, info: packet.info! };
+    const wrapper = mount(BattleField, { attachTo: document.body, props: { controller, battle,
+      selected: packet.actorId, reducedMotion: false, floating: [], skip: false } });
+    await flushPromises();
+    await wrapper.get('canvas[aria-label="六角地形与分层角色"]').trigger('pointermove');
+    expect(wrapper.emitted('hoverUnit')?.[0]).toEqual([hero.id]);
+    wrapper.unmount();
+  });
+
+  it('directly walks to destination on dblclick', async () => {
+    const packet = new BattleRuntime(createBattleDemo('world')).packet(true);
+    const destination = packet.capabilities.move.reachable.find(cell => cell.cost > 0)!;
+    const setHighlights = vi.fn();
+    const renderer = rendererFixture({ setHighlights,
+      pick: vi.fn(() => pickedCell(packet, destination.q, destination.r)) });
+    renderMocks.createBattleRenderer.mockResolvedValue(renderer);
+    const command = vi.fn(async () => true);
+    const setMovement = vi.fn();
+    const controller = { movement: shallowRef(false), active: shallowRef(false), preview: vi.fn(),
+      command, setMovement, setActive: vi.fn(),
+      onMoveResolved: vi.fn(() => () => undefined) } as unknown as BattleController;
+    const battle = { ...packet, info: packet.info! };
+    const wrapper = mount(BattleField, { attachTo: document.body, props: { controller, battle,
+      selected: packet.actorId, reducedMotion: false, floating: [], skip: false } });
+    await flushPromises();
+    await wrapper.get('canvas[aria-label="六角地形与分层角色"]').trigger('dblclick');
+    expect(command).toHaveBeenCalledWith({
+      t: 'battle/wait',
+      actor: packet.actorId,
+      revision: packet.revision,
+      walkTo: { q: destination.q, r: destination.r },
+    });
+    expect(setMovement).toHaveBeenCalledWith(false);
+    wrapper.unmount();
+  });
+
+  it('opens moves popover on clicking 招式 and includes hidden weapons moves', async () => {
+    const packet = new BattleRuntime(createBattleDemo('world')).packet(true);
+    const setHighlights = vi.fn();
+    const renderer = rendererFixture({ setHighlights });
+    renderMocks.createBattleRenderer.mockResolvedValue(renderer);
+    const controller = { movement: shallowRef(false), active: shallowRef(false), preview: vi.fn(),
+      setMovement: vi.fn(), setActive: vi.fn(),
+      onMoveResolved: vi.fn(() => () => undefined) } as unknown as BattleController;
+    const battle = { ...packet, info: packet.info! };
+    const wrapper = mount(BattleField, { attachTo: document.body, props: { controller, battle,
+      selected: packet.actorId, reducedMotion: false, floating: [], skip: false } });
+    await flushPromises();
+    const moveBtn = wrapper.find('.field-hex-btn.btn-move');
+    expect(moveBtn.exists()).toBe(true);
+    await moveBtn.trigger('click');
+    expect(wrapper.find('.field-moves-popover').exists()).toBe(true);
+    const moveItems = wrapper.findAll('.field-move-item');
+    expect(moveItems.length).toBeGreaterThan(0);
+    // Check that 暗器 moves are included
+    const moveTexts = moveItems.map(item => item.text());
+    expect(moveTexts.some(t => t.includes('暗器'))).toBe(true);
+    await moveItems[0]!.trigger('click');
+    expect(wrapper.emitted('chooseMove')).toBeTruthy();
+    wrapper.unmount();
+  });
+
+  it('opens items popover on clicking 丹药 and commands battle/item on item selection', async () => {
+    const packet = new BattleRuntime(createBattleDemo('world')).packet(true);
+    const setHighlights = vi.fn();
+    const renderer = rendererFixture({ setHighlights });
+    renderMocks.createBattleRenderer.mockResolvedValue(renderer);
+    const command = vi.fn().mockResolvedValue(undefined);
+    const controller = { movement: shallowRef(false), active: shallowRef(false), preview: vi.fn(),
+      setMovement: vi.fn(), setActive: vi.fn(), command,
+      onMoveResolved: vi.fn(() => () => undefined) } as unknown as BattleController;
+    const battle = { ...packet, info: packet.info! };
+    const wrapper = mount(BattleField, { attachTo: document.body, props: { controller, battle,
+      selected: packet.actorId, reducedMotion: false, floating: [], skip: false } });
+    await flushPromises();
+    const itemBtn = wrapper.find('.field-hex-btn.btn-item');
+    expect(itemBtn.exists()).toBe(true);
+    await itemBtn.trigger('click');
+    expect(wrapper.find('.field-items-popover').exists()).toBe(true);
+    const itemCards = wrapper.findAll('.field-items-popover .field-item-card');
+    expect(itemCards.length).toBeGreaterThan(0);
+    expect(itemCards[0]!.text()).toContain('金创药');
+    await itemCards[0]!.trigger('click');
+    expect(command).toHaveBeenCalledWith(expect.objectContaining({
+      t: 'battle/item',
+      actor: packet.actorId,
+      itemId: 'it_jinchuangyao',
+    }));
+    wrapper.unmount();
+  });
 });

@@ -4,11 +4,15 @@ export interface BattleUnitLabelMetrics {
 }
 
 /** CSS-pixel contract for the always-visible battle identity marker (design/26 §4.8). */
-export function battleUnitLabelMetrics(viewportWidth: number, index = 0): BattleUnitLabelMetrics {
-  const compact = viewportWidth <= 390;
-  return { width: compact ? 92 : 104, avatar: compact ? 24 : 28,
-    nameFont: compact ? 14 : 16, auxiliaryFont: 14,
-    offsetX: (index % 2 === 0 ? -1 : 1) * (compact ? 48 : 58), bottomGap: 16 };
+export function battleUnitLabelMetrics(viewportWidth: number, _index = 0): BattleUnitLabelMetrics {
+  return {
+    width: 64,
+    avatar: 24,
+    nameFont: 14,
+    auxiliaryFont: 14,
+    offsetX: 0,
+    bottomGap: 6,
+  };
 }
 
 export function battleUnitLabelPosition(x: number, y: number, viewportWidth: number,

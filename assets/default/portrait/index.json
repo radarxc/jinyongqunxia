@@ -4079,19 +4079,19 @@
   },
   "avatar/npc_huangrong/ch03_prime": {
    "128": {
-    "b": 4990,
+    "b": 5058,
     "f": "npc_huangrong/ch03_prime_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 13332,
+    "b": 13518,
     "f": "npc_huangrong/ch03_prime_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 33046,
+    "b": 32858,
     "f": "npc_huangrong/ch03_prime_base.ava512.webp",
     "h": 512,
     "w": 512
@@ -10721,28 +10721,28 @@
   },
   "avatar/npc_wangyuyan/ch01_youth_mantuo": {
    "128": {
-    "b": 4492,
+    "b": 4490,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.ava128.webp",
     "h": 128,
     "w": 128
    },
    "256": {
-    "b": 11270,
+    "b": 11260,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.ava256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 27910,
+    "b": 28572,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.ava512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    345,
-    52,
-    683,
-    390
+    350,
+    53,
+    688,
+    391
    ],
    "source": "por_npc_wangyuyan__ch01_youth_mantuo_base"
   },
@@ -25072,13 +25072,13 @@
   },
   "bust/npc_huangrong/ch03_prime": {
    "256": {
-    "b": 12514,
+    "b": 12436,
     "f": "npc_huangrong/ch03_prime_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 32510,
+    "b": 32694,
     "f": "npc_huangrong/ch03_prime_base.bust512.webp",
     "h": 512,
     "w": 512
@@ -30238,22 +30238,22 @@
   },
   "bust/npc_wangyuyan/ch01_youth_mantuo": {
    "256": {
-    "b": 9670,
+    "b": 9688,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.bust256.webp",
     "h": 256,
     "w": 256
    },
    "512": {
-    "b": 25668,
+    "b": 25320,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.bust512.webp",
     "h": 512,
     "w": 512
    },
    "box": [
-    261,
-    42,
-    768,
-    549
+    266,
+    43,
+    773,
+    550
    ],
    "source": "por_npc_wangyuyan__ch01_youth_mantuo_base"
   },
@@ -41613,7 +41613,7 @@
    "portrait": "portrait/role_woodcutter/song_north_m"
   }
  },
- "generated": "2026-10-03",
+ "generated": "2026-10-05",
  "portrait": {
   "portrait/npc_abi/ch01_youth_qinyun_base": {
    "alpha": true,
@@ -41846,96 +41846,96 @@
   "portrait/npc_axiu/ch06_youth_scene_guihang": {
    "alpha": false,
    "low": {
-    "b": 149554,
+    "b": 149668,
     "f": "npc_axiu/ch06_youth_scene_guihang.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 238666,
+    "b": 237908,
     "f": "npc_axiu/ch06_youth_scene_guihang.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_axiu__ch06_youth_scene_guihang",
    "source_file": "assets/default/character/female/ch06/por_npc_axiu__ch06_youth_scene_guihang.png",
-   "source_sha256": "ea03216d888a65a7e568298c86410e8abf2eaf06a9be391c324828ee8dfa95ad",
+   "source_sha256": "6598eb6daba5c0ac3229c1114c5527ff7bda15eabcf30bae715912da27c017f1",
    "status": "candidate"
   },
   "portrait/npc_axiu/ch06_youth_scene_lingxiao": {
    "alpha": false,
    "low": {
-    "b": 90402,
+    "b": 90474,
     "f": "npc_axiu/ch06_youth_scene_lingxiao.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 145292,
+    "b": 144962,
     "f": "npc_axiu/ch06_youth_scene_lingxiao.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_axiu__ch06_youth_scene_lingxiao",
    "source_file": "assets/default/character/female/ch06/por_npc_axiu__ch06_youth_scene_lingxiao.png",
-   "source_sha256": "fa1c4f451cc8e77ef7c6e6cfffffd7b4f74deda33d528d301d6007b42653a574",
+   "source_sha256": "5357f18b188c79eec4f7b023fdd9283f7064e3080aef1ab944002eb75da730d6",
    "status": "candidate"
   },
   "portrait/npc_axiu/ch06_youth_scene_pangqiao": {
    "alpha": false,
    "low": {
-    "b": 138908,
+    "b": 138636,
     "f": "npc_axiu/ch06_youth_scene_pangqiao.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 218876,
+    "b": 218684,
     "f": "npc_axiu/ch06_youth_scene_pangqiao.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_axiu__ch06_youth_scene_pangqiao",
    "source_file": "assets/default/character/female/ch06/por_npc_axiu__ch06_youth_scene_pangqiao.png",
-   "source_sha256": "821edb7af2a72ff107da2c9b873c2a3baa43d3a8ed0a19aa721fc7375147e35c",
+   "source_sha256": "211e97cb83363184fba87b2cd6b4079b0e391bed2761efb830c15d9157ae72d3",
    "status": "candidate"
   },
   "portrait/npc_axiu/ch06_youth_scene_songhai": {
    "alpha": false,
    "low": {
-    "b": 119608,
+    "b": 119496,
     "f": "npc_axiu/ch06_youth_scene_songhai.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 191040,
+    "b": 190542,
     "f": "npc_axiu/ch06_youth_scene_songhai.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_axiu__ch06_youth_scene_songhai",
    "source_file": "assets/default/character/female/ch06/por_npc_axiu__ch06_youth_scene_songhai.png",
-   "source_sha256": "de35dffc960bd7e9d54eeeac0f316d165bb794b7d82b959271e75fe4c1fe7d2a",
+   "source_sha256": "baaef21c8ba9c20a625162d998fa544858dc214f3483c0c8fd0813a946dad349",
    "status": "candidate"
   },
   "portrait/npc_axiu/ch06_youth_scene_ziyan": {
    "alpha": false,
    "low": {
-    "b": 141992,
+    "b": 141228,
     "f": "npc_axiu/ch06_youth_scene_ziyan.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 227500,
+    "b": 227226,
     "f": "npc_axiu/ch06_youth_scene_ziyan.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_axiu__ch06_youth_scene_ziyan",
    "source_file": "assets/default/character/female/ch06/por_npc_axiu__ch06_youth_scene_ziyan.png",
-   "source_sha256": "1ba9d1c7fa7c58d921b85f93adf34414ac11c3b791be44bef4b64eeeb4f4eddc",
+   "source_sha256": "4006260ec773baa3996823669980fdac7647c1019298af20217508711af32e1d",
    "status": "candidate"
   },
   "portrait/npc_axiu/ch06_youth_ziyan_base": {
@@ -43404,20 +43404,20 @@
   "portrait/npc_duanyu/ch01_youth_scene_langhuan_scroll": {
    "alpha": false,
    "low": {
-    "b": 138442,
+    "b": 138432,
     "f": "npc_duanyu/ch01_youth_scene_langhuan_scroll.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 212190,
+    "b": 215038,
     "f": "npc_duanyu/ch01_youth_scene_langhuan_scroll.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_duanyu__ch01_youth_scene_langhuan_scroll",
    "source_file": "assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_scene_langhuan_scroll.png",
-   "source_sha256": "06076c8fa615cd165478e14038f566c69a329c5c9337af019df66a984fec3c53",
+   "source_sha256": "b9ad3ae49aa6d52abcf812e83707cbe1819cd02e904b9bbc115b27c10cd42422",
    "status": "candidate"
   },
   "portrait/npc_duanyu/ch01_youth_scene_lingbo_escape": {
@@ -43461,20 +43461,20 @@
   "portrait/npc_duanyu/ch01_youth_scene_tianlongtemple_first_sword": {
    "alpha": false,
    "low": {
-    "b": 97724,
+    "b": 87232,
     "f": "npc_duanyu/ch01_youth_scene_tianlongtemple_first_sword.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 138980,
+    "b": 125588,
     "f": "npc_duanyu/ch01_youth_scene_tianlongtemple_first_sword.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword",
    "source_file": "assets/default/character/male/ch01/por_npc_duanyu__ch01_youth_scene_tianlongtemple_first_sword.png",
-   "source_sha256": "26a7f21b369186254e06fb016da673fca855d36331629c7d2ee7edacd096f0a1",
+   "source_sha256": "c9b7c986d492785fb6e76fccb4ef09f829f23723e615ede6a128e7e72a49eda1",
    "status": "candidate"
   },
   "portrait/npc_duanyu/ch01_youth_scene_wuliang_fan": {
@@ -44905,20 +44905,20 @@
   "portrait/npc_huangrong/ch02_youth_scene_cooking_meets_hongqigong": {
    "alpha": false,
    "low": {
-    "b": 133202,
+    "b": 133208,
     "f": "npc_huangrong/ch02_youth_scene_cooking_meets_hongqigong.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 202070,
+    "b": 201624,
     "f": "npc_huangrong/ch02_youth_scene_cooking_meets_hongqigong.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong",
    "source_file": "assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.png",
-   "source_sha256": "d34a42e9489ad877df9fe42145f03bdfa678218187119396f9b98a3d4e430078",
+   "source_sha256": "86a69a15fbd6629a07d3f390957860a34743965ac1aec6cb19616ff2d3114bdb",
    "status": "candidate"
   },
   "portrait/npc_huangrong/ch02_youth_scene_iron_spear_temple_truth": {
@@ -44962,58 +44962,58 @@
   "portrait/npc_huangrong/ch02_youth_scene_yideng_heals_iron_palm_wound": {
    "alpha": false,
    "low": {
-    "b": 97014,
+    "b": 106094,
     "f": "npc_huangrong/ch02_youth_scene_yideng_heals_iron_palm_wound.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 149154,
+    "b": 160420,
     "f": "npc_huangrong/ch02_youth_scene_yideng_heals_iron_palm_wound.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangrong__ch02_youth_scene_yideng_heals_iron_palm_wound",
    "source_file": "assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_yideng_heals_iron_palm_wound.png",
-   "source_sha256": "ec389a1fc4229f904e217d5dd9b7df6502ce7964406c6160cad0683c0a4edaf6",
+   "source_sha256": "669109b0d0a118b48393a94161e03cfd1f2661e34b47598dcdabf55624e289d4",
    "status": "candidate"
   },
   "portrait/npc_huangrong/ch02_youth_scene_young_beggar_disguise": {
    "alpha": false,
    "low": {
-    "b": 101080,
+    "b": 101122,
     "f": "npc_huangrong/ch02_youth_scene_young_beggar_disguise.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 143350,
+    "b": 145160,
     "f": "npc_huangrong/ch02_youth_scene_young_beggar_disguise.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangrong__ch02_youth_scene_young_beggar_disguise",
    "source_file": "assets/default/character/female/ch02/por_npc_huangrong__ch02_youth_scene_young_beggar_disguise.png",
-   "source_sha256": "fb4af38249f094f9d2238e2261219b00f91c23118641686911cd15391896c67f",
+   "source_sha256": "3855815174bf16bad439497b9e6ab51f278f4fcea5d76ce9d0ec079afcf81012",
    "status": "candidate"
   },
   "portrait/npc_huangrong/ch03_prime_base": {
    "alpha": true,
    "low": {
-    "b": 80226,
+    "b": 79332,
     "f": "npc_huangrong/ch03_prime_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 102964,
+    "b": 102638,
     "f": "npc_huangrong/ch03_prime_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_huangrong__ch03_prime_base",
    "source_file": "assets/default/character/female/ch03/por_npc_huangrong__ch03_prime_base.png",
-   "source_sha256": "072a75f7267230b7533e6ee783c3783f1ebddc8f7df11a65a073c9e1aa47bd24",
+   "source_sha256": "57ca4979ccfa9b1c1f5ddf974d1f78fd954dc2a7be657c2c97523a8fa02a84f9",
    "status": "candidate"
   },
   "portrait/npc_huangshannvzi/ch04_youth_gumu_base": {
@@ -48762,20 +48762,20 @@
   "portrait/npc_renyingying/ch05_youth_scene_zhuxiang": {
    "alpha": false,
    "low": {
-    "b": 153926,
+    "b": 153636,
     "f": "npc_renyingying/ch05_youth_scene_zhuxiang.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 238064,
+    "b": 237004,
     "f": "npc_renyingying/ch05_youth_scene_zhuxiang.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_renyingying__ch05_youth_scene_zhuxiang",
    "source_file": "assets/default/character/female/ch05/por_npc_renyingying__ch05_youth_scene_zhuxiang.png",
-   "source_sha256": "8a2743f094ab443a69f9e829424dbc126f33034e71919232bd5452dd247d0131",
+   "source_sha256": "e0f0b0cc134f3558ded157d7d2b3f1b05ee2d9dbbd1210f1b3f0980ca4a660e3",
    "status": "candidate"
   },
   "portrait/npc_renyingying/ch05_youth_shenggu_base": {
@@ -49484,39 +49484,39 @@
   "portrait/npc_shuisheng/ch09_youth_scene_xianghou": {
    "alpha": false,
    "low": {
-    "b": 145378,
+    "b": 146126,
     "f": "npc_shuisheng/ch09_youth_scene_xianghou.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 221208,
+    "b": 220026,
     "f": "npc_shuisheng/ch09_youth_scene_xianghou.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_shuisheng__ch09_youth_scene_xianghou",
    "source_file": "assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_scene_xianghou.png",
-   "source_sha256": "079f5305dde409e0fc5500340d7dfbb613d5871e3172f60f471e8243031226e8",
+   "source_sha256": "c131ca54c5451bab8d12202fac0a96c890aa74a9a43bb855be35e252aac61981",
    "status": "candidate"
   },
   "portrait/npc_shuisheng/ch09_youth_scene_yuyi": {
    "alpha": false,
    "low": {
-    "b": 169868,
+    "b": 171832,
     "f": "npc_shuisheng/ch09_youth_scene_yuyi.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 254244,
+    "b": 254054,
     "f": "npc_shuisheng/ch09_youth_scene_yuyi.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_shuisheng__ch09_youth_scene_yuyi",
    "source_file": "assets/default/character/female/ch09/por_npc_shuisheng__ch09_youth_scene_yuyi.png",
-   "source_sha256": "9158cc38c40213dbe7e78108867879adc7d7b5f69f96c1e301e8480d339a87bf",
+   "source_sha256": "350da3bd605c8066c824a4fe13a6cdbe58f80b74cd9aa44a1a5ee6cac919b7f8",
    "status": "candidate"
   },
   "portrait/npc_shuisheng/ch09_youth_travel_base": {
@@ -50263,115 +50263,115 @@
   "portrait/npc_wangyuyan/ch01_youth_mantuo_base": {
    "alpha": true,
    "low": {
-    "b": 52038,
+    "b": 52072,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 70122,
+    "b": 69920,
     "f": "npc_wangyuyan/ch01_youth_mantuo_base.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_mantuo_base",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_mantuo_base.png",
-   "source_sha256": "2c8ca9f70a35d3067b52ade4f615107b055f738249078fd9503fb49d9a13645c",
+   "source_sha256": "d683f7d4c8755923fbaef2bdc0f1b829ecc28df38d632bd7052809ebbbac435c",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_mantuo_camellia": {
    "alpha": false,
    "low": {
-    "b": 146984,
+    "b": 146722,
     "f": "npc_wangyuyan/ch01_youth_scene_mantuo_camellia.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 214970,
+    "b": 214754,
     "f": "npc_wangyuyan/ch01_youth_scene_mantuo_camellia.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_mantuo_camellia.png",
-   "source_sha256": "85c7725cd5dbb210e501424c03bbfc5cdf2eced37b792587a59d4edca8fe71f2",
+   "source_sha256": "60278f44be4dec2622445f16cee7c440fcd9faae60538aec9eb7d5170727f5f1",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_mill_hairpin_exchange": {
    "alpha": false,
    "low": {
-    "b": 111898,
+    "b": 112008,
     "f": "npc_wangyuyan/ch01_youth_scene_mill_hairpin_exchange.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 165052,
+    "b": 165842,
     "f": "npc_wangyuyan/ch01_youth_scene_mill_hairpin_exchange.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_mill_hairpin_exchange.png",
-   "source_sha256": "24da3f09a44e73f0c6b5adb5d7939333cefef2725affc0155b6ff5dd4a238f87",
+   "source_sha256": "e9600bc15b6f0b65295b69d9f47332827cc3ddec0010e594e2d28eb3f706ee80",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_shaoshi_plea": {
    "alpha": false,
    "low": {
-    "b": 118086,
+    "b": 118180,
     "f": "npc_wangyuyan/ch01_youth_scene_shaoshi_plea.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 179026,
+    "b": 178910,
     "f": "npc_wangyuyan/ch01_youth_scene_shaoshi_plea.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_shaoshi_plea.png",
-   "source_sha256": "b7815c7f3089de7ba93383aaa4900d2fee4597bc6bee8d0a339744bde5e57138",
+   "source_sha256": "80b179a950407f4efd947bd92ace91e2d7443b0589db5e74d19206052bf4518c",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_tingxiang_discernment": {
    "alpha": false,
    "low": {
-    "b": 97284,
+    "b": 97446,
     "f": "npc_wangyuyan/ch01_youth_scene_tingxiang_discernment.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 146794,
+    "b": 148276,
     "f": "npc_wangyuyan/ch01_youth_scene_tingxiang_discernment.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_tingxiang_discernment",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_tingxiang_discernment.png",
-   "source_sha256": "98ddf30e2575fdf1b479b2a32ab82961c9812f6a6dba2d812cc1a5b5f6052d7b",
+   "source_sha256": "358eff45d83b0c4ec044ddd0908b166403bd7cbd4e3a7c110cb8fa718c6b1d5e",
    "status": "candidate"
   },
   "portrait/npc_wangyuyan/ch01_youth_scene_well_self_choice": {
    "alpha": false,
    "low": {
-    "b": 105538,
+    "b": 106074,
     "f": "npc_wangyuyan/ch01_youth_scene_well_self_choice.low.webp",
     "h": 1152,
     "w": 768
    },
    "mid": {
-    "b": 159754,
+    "b": 156514,
     "f": "npc_wangyuyan/ch01_youth_scene_well_self_choice.mid.webp",
     "h": 1536,
     "w": 1024
    },
    "source": "por_npc_wangyuyan__ch01_youth_scene_well_self_choice",
    "source_file": "assets/default/character/female/ch01/por_npc_wangyuyan__ch01_youth_scene_well_self_choice.png",
-   "source_sha256": "d9ec9e013c65c8ed61cec5271fa0637e867c980e730b8f801e6584b5352173e0",
+   "source_sha256": "4955f730c45328b8478e91101d036008dab2813e504d515c512efc83bfeec35d",
    "status": "candidate"
   },
   "portrait/npc_wanhesheng/ch13_elder_weituo_base": {

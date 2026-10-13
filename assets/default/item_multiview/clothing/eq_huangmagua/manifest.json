@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_huangmagua",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/clothing/eq_huangmagua.png",
+  "generatedAt": "2026-10-07T17:48:16.547Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 151403,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/bebaefc1-52d6-4806-ad7b-081f049241fe/multiview_0_bebaefc1-52d6-4806-ad7b-081f049241fe.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 89353,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/bebaefc1-52d6-4806-ad7b-081f049241fe/multiview_1_bebaefc1-52d6-4806-ad7b-081f049241fe.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 90055,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/bebaefc1-52d6-4806-ad7b-081f049241fe/multiview_3_bebaefc1-52d6-4806-ad7b-081f049241fe.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 143950,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/bebaefc1-52d6-4806-ad7b-081f049241fe/multiview_2_bebaefc1-52d6-4806-ad7b-081f049241fe.jpeg"
+    }
+  }
+}

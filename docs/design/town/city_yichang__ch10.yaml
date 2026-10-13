@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_yichang"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "峡州·夷陵县州治（702年推定）"
+display_name: 峡州（夷陵县）
 historical_year: 702
 era_kit: "tang"
 seed: 4107127832

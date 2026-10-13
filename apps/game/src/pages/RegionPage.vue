@@ -40,7 +40,7 @@ function requestDraw(): void {
 }
 function draw(time: number): void {
   framePending = false; if (disposed) return; requestDraw();
-  if (document.visibilityState === 'hidden' || !view) return;
+  if ((document.visibilityState === 'hidden' && !import.meta.env?.DEV) || !view) return;
   view.render(time, controller.settings.value.reducedMotion);
   cameraYaw.value = view.camera.yawDeg; cameraRotating.value = view.camera.rotating;
   cameraAllow.value = view.camera.allowRotation;
@@ -62,14 +62,20 @@ async function mountScene(restoredYaw = 45): Promise<boolean> {
   const sceneKey = `${staticView.regionId}/${staticView.sceneId}`; pendingSceneKey = sceneKey;
   quality ??= await createRenderQuality(); if (disposed || token !== generation) return false;
   const module = await import('@tianshu/render/region'); if (disposed || token !== generation) return false;
+  const hero = projection.value?.characters?.find((character) => character.relation === 'self');
+  const playerHeightM = hero?.detail?.identity?.gender === 'female' ? 1.66 : 1.81;
   const created = await module.createRegionScene(target, staticView, { projection: dynamicView,
-    playerEquipment: equipment(), quality, reducedMotion: controller.settings.value.reducedMotion,
+    playerEquipment: equipment(), playerHeightM, quality, reducedMotion: controller.settings.value.reducedMotion,
     onContextStateChange: state => { if (token === generation) contextState.value = state; },
     onContextLoss: () => undefined, onContextRecreate: () => token === generation
       ? recreateScene() : Promise.resolve(false), requestFrame: requestDraw });
   if (disposed || token !== generation) { created.dispose(); return false; }
-  view = created; mountedSceneKey = sceneKey; pendingSceneKey = '';
-  view.setTimeOfDay((game.value.worldTick / TICKS_PER_HOUR) % 24);
+  view = created; (window as unknown as { __regionScene?: unknown }).__regionScene = created;
+  mountedSceneKey = sceneKey; pendingSceneKey = '';
+  const currentHour = Number.isFinite(game.value?.worldTick)
+    ? (game.value.worldTick / TICKS_PER_HOUR) % 24
+    : 12;
+  view.setTimeOfDay(currentHour);
   const steps = Math.round((restoredYaw - view.camera.yawDeg + 360) % 360 / 90);
   for (let index = 0; index < steps && view.camera.allowRotation; index += 1)
     void view.camera.rotate(1, true);
@@ -90,7 +96,10 @@ async function updateProjection(next: RegionDynamicView): Promise<void> {
   const target = view; const token = generation; if (!target) return;
   await target.update(next, equipment());
   if (disposed || token !== generation || view !== target) return;
-  target.setTimeOfDay((game.value.worldTick / TICKS_PER_HOUR) % 24);
+  const currentHour = Number.isFinite(game.value?.worldTick)
+    ? (game.value.worldTick / TICKS_PER_HOUR) % 24
+    : 12;
+  target.setTimeOfDay(currentHour);
 }
 async function retry(low: boolean): Promise<void> {
   const current = quality ?? await createRenderQuality(); if (disposed) return;
@@ -231,5 +240,85 @@ onBeforeUnmount(() => { disposed = true; generation += 1; previewGeneration += 1
 </template>
 
 <style scoped>
-.region-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,300px);gap:14px;min-height:360px}.region-stage{position:relative;min-width:0;overflow:hidden;border:1px solid var(--line);background:#d9ccb0}.region-stage canvas{width:100%;height:100%;display:block;cursor:crosshair}.region-panel{display:flex;flex-direction:column;gap:8px;padding:16px;overflow:auto}.region-panel h3,.region-panel h4,.region-panel p{margin:4px 0}.region-panel button{min-height:44px}.region-panel output{min-height:24px}.region-help,.region-camera,.region-overlay{position:absolute;margin:0;padding:6px 9px;background:#efe6d2e8}.region-help{left:10px;bottom:10px}.region-camera{display:flex;gap:6px;left:10px;top:10px}.region-overlay{inset:40% auto auto 50%;transform:translate(-50%,-50%);z-index:2}.region-overlay button{margin:4px}.region-stage .map-zoom{right:10px;bottom:10px}@media(max-width:780px),(orientation:portrait){.region-page{grid-template-columns:1fr}.region-stage{min-height:58vw}.region-panel{max-height:280px}}
+.region-page {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 300px);
+  gap: 14px;
+  height: 100%;
+  overflow: hidden;
+}
+.region-stage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #d9ccb0;
+}
+.region-stage canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+.region-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  margin-top: 80px;
+  margin-bottom: 90px;
+  margin-right: 16px;
+  overflow: auto;
+  z-index: 5;
+}
+.region-panel h3, .region-panel h4, .region-panel p {
+  margin: 4px 0;
+}
+.region-panel button {
+  min-height: 44px;
+}
+.region-panel output {
+  min-height: 24px;
+}
+.region-help, .region-camera, .region-overlay {
+  position: absolute;
+  margin: 0;
+  padding: 6px 9px;
+  background: #efe6d2e8;
+}
+.region-help {
+  left: 10px;
+  bottom: 10px;
+}
+.region-camera {
+  display: flex;
+  gap: 6px;
+  left: 10px;
+  top: 10px;
+}
+.region-overlay {
+  inset: 40% auto auto 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.region-overlay button {
+  margin: 4px;
+}
+.region-stage .map-zoom {
+  right: 10px;
+  bottom: 10px;
+}
+@media (max-width: 780px), (orientation: portrait) {
+  .region-page {
+    grid-template-columns: 1fr;
+  }
+  .region-stage {
+    min-height: 58vw;
+  }
+  .region-panel {
+    max-height: 280px;
+  }
+}
 </style>

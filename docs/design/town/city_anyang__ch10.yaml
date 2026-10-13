@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_anyang"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "相州·安阳县（702年推定）"
+display_name: 相州（安阳县）
 historical_year: 702
 era_kit: "tang"
 seed: 3205279198

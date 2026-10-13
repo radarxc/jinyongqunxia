@@ -1,0 +1,8 @@
+schemaVersion: shop-template.v1
+key: shop_tpl_chengyi
+nameKey: shop.template.chengyi.name
+facilitySub: chengyi
+# （原创扩展）本货单只作三城试点公共供货，不宣称原著店铺曾售这些物品。
+# 【建议值】库内仅草鞋已由 design/08 明确落入白马书界，故依任务例外缩为一行；三日补货。
+supply:
+  - { itemId: eq_caoxie, maxGrade: 3, baseStock: 5, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }

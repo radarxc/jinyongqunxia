@@ -2,18 +2,22 @@
   file: model_rig.glb
   category: model3d
   style: default
-  subject: 主角（女）· 高魅力形象（白衣飘飘，AR-45 作者选 B 版）· 窄轮廓 A 字版
+  subject: 主角（女）· 高魅力形象（白衣飘飘，AR-95 方案A 露额无瑕疵重构版）
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
-    project_id: 51dec492-a4b8-4bc1-9762-c74d9eeeb723
-    url: https://studio.tripo3d.ai/workspace/generate/51dec492-a4b8-4bc1-9762-c74d9eeeb723
-    generate_op: ab6d20f7-8104-4961-b6d3-dacfb578ca04（image_to_model）
-    rig_op: c69e441d-1a3c-4cd3-9b1e-a929f48c1bc2
+    project_id: 3c8054d1-fc84-48ff-b800-d622c201bbdb
+    url: https://studio.tripo3d.ai/workspace/generate/3c8054d1-fc84-48ff-b800-d622c201bbdb
+    generate_op: ac333b86-1282-4fa9-a86b-821af96846c5（image_to_model）
+    rig_op: 2d7786bd-84d2-4228-86db-4b376e01adad
     animation_ops:
-      idle: 3d82fa76-e7c5-45b8-ae9b-e987b39b4112
-      walk: 49c4592b-5d2b-460e-9de8-27d7d634193d
-      run: 53171017-b3d8-492a-b381-52d6176576e2
+      idle: 6145fc7e-a551-4b7e-a153-bdeb76f0c76c
+      walk: 7d9c8d8f-d4ef-44e1-989b-7fbc36cf5a6e
+      run: 37e7db50-0514-4f20-890d-aaa7edf7179f
+    replaces:
+      project_id: 51dec492-a4b8-4bc1-9762-c74d9eeeb723
+      commit: e7a7a18b7
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_charmhigh__202610050918/
   options:
     generate:
       ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
@@ -28,16 +32,11 @@
       generate_parts: false
       ai_complete: false
       visibility: private
-      input: 单图（窄轮廓 A 字参考）
+      input: 单图（A 字姿势全身参考）
     rig:
       rigging_type: Humanoid（biped）
       skeleton_preset: Mixamo（mixamorig:*）
       rig_model_version: v3.0-20260909
-    animation:
-      presets:
-      - preset:biped:idle
-      - preset:biped:walk
-      - preset:biped:run
     export:
       format: GLB
       texture_resolution: 2k
@@ -49,45 +48,46 @@
     export: 0
   references:
   - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_charmhigh_apose_slim.png
-    sha256: 03fb303d923325cf4e22d7dab040e6d746558276b42fe201442aaf3dec77c4c8
-    use: 单图生成输入（窄轮廓 A 字参考：束袖、直筒裙、空手，69828239）
+    sha256: 52dd1f21d4d8da8f30567abd1c17b3af59e650d59d3f8f3022b648718b7f5977
+    use: 单图生成输入（经方案A 2D露额体块化净化、降颅顶、下肢拉伸1.15倍的A字图）
   - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_charmhigh_base.png
     sha256: f97acc0e803a522c73a6cb42325afc7969c6ff4428fc4495a63def176f9c698f
-    use: 作者选定的高魅力 B 版 base 立绘（本模型未直接输入）
-  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_charmhigh_threeview.png
-    sha256: 77e014df790336fb6e474fc8138f477146ce97d936886eb47a08d447fc8532a9
-    use: 宽袖飘带三视图（未输入：宽袖 / 外扩裙会让自动绑骨判错，改用窄轮廓 A 字版）
-  sha256: a15c7661274fed90d8e8905e58624c2b59be71b40a8c7fc8acff4ab7477f1d17
-  size_bytes: 5467056
+    use: 作者选定的高魅力 B 版 base 立绘
+  sha256: 49ba9d7e1afffdcb247e806981121dcf7e6b047f820e3a640adaa5704a166c0e
+  size_bytes: 4958148
   joints: 65
-  triangles: 96916
-  vertices: 55755
+  triangles: 93954
+  vertices: 53819
   animations: []
   textures:
-  - image/jpeg 278550 B
-  - image/jpeg 1109702 B
-  - image/jpeg 574781 B
+  - image/jpeg 260720 B
+  - image/jpeg 843883 B
+  - image/jpeg 467833 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T17:28:00-07:00'
+  created: '2026-10-05T09:18:00-07:00'
   status: candidate
-  notes: 绑骨后基础模型（无动画，绑定姿势）。看图验收：正/左/右/背完整，白衣束袖直筒长裙 + 灰腰带 + 红色发饰，及腰长发深褐、无肉色块；自动绑骨一次成功（Hips y0.548、头顶骨端 0.995、双手外展 y0.52、脚 0.082）。说明：「白衣飘飘」的宽袖飘带在 3D 版收成了束袖（为了能绑骨），飘逸感需要靠引擎布料或另做配件补。
+  notes: 绑骨后基础模型（无动画）。看图验收：额头与耳廓干净无粘连，无悬浮薄片，颅顶紧致秀美，3D头身比 7.86（发髻顶7.11），下肢修长，跑步位移已平移归零。；关节体检（ingest.py）：髋 y0.576、头 y0.866、头顶骨端 y0.985、双手 y0.519/0.528 外展 0.158/0.158、脚 y0.09/0.09。
 - id: npc_zhujue__ch00_f_charmhigh__anim_idle_walk_run
   file: anim_idle_walk_run.glb
   category: model3d
   style: default
-  subject: 主角（女）· 高魅力形象（白衣飘飘，AR-45 作者选 B 版）· 窄轮廓 A 字版
+  subject: 主角（女）· 高魅力形象（白衣飘飘，AR-95 方案A 露额无瑕疵重构版）
   tool: tripo-studio-web
   model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
   tripo_model:
-    project_id: 51dec492-a4b8-4bc1-9762-c74d9eeeb723
-    url: https://studio.tripo3d.ai/workspace/generate/51dec492-a4b8-4bc1-9762-c74d9eeeb723
-    generate_op: ab6d20f7-8104-4961-b6d3-dacfb578ca04（image_to_model）
-    rig_op: c69e441d-1a3c-4cd3-9b1e-a929f48c1bc2
+    project_id: 3c8054d1-fc84-48ff-b800-d622c201bbdb
+    url: https://studio.tripo3d.ai/workspace/generate/3c8054d1-fc84-48ff-b800-d622c201bbdb
+    generate_op: ac333b86-1282-4fa9-a86b-821af96846c5（image_to_model）
+    rig_op: 2d7786bd-84d2-4228-86db-4b376e01adad
     animation_ops:
-      idle: 3d82fa76-e7c5-45b8-ae9b-e987b39b4112
-      walk: 49c4592b-5d2b-460e-9de8-27d7d634193d
-      run: 53171017-b3d8-492a-b381-52d6176576e2
+      idle: 6145fc7e-a551-4b7e-a153-bdeb76f0c76c
+      walk: 7d9c8d8f-d4ef-44e1-989b-7fbc36cf5a6e
+      run: 37e7db50-0514-4f20-890d-aaa7edf7179f
+    replaces:
+      project_id: 51dec492-a4b8-4bc1-9762-c74d9eeeb723
+      commit: e7a7a18b7
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_charmhigh__202610050918/
   options:
     generate:
       ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
@@ -102,7 +102,7 @@
       generate_parts: false
       ai_complete: false
       visibility: private
-      input: 单图（窄轮廓 A 字参考）
+      input: 单图（A 字姿势全身参考）
     rig:
       rigging_type: Humanoid（biped）
       skeleton_preset: Mixamo（mixamorig:*）
@@ -117,60 +117,60 @@
       texture_resolution: 2k
       export_skeleton: true
       animations:
+      - run
       - idle
       - walk
-      - run
       stay_in_place: true
   credits:
     animation_preset: 0
     export: 0
   references:
   - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_charmhigh_apose_slim.png
-    sha256: 03fb303d923325cf4e22d7dab040e6d746558276b42fe201442aaf3dec77c4c8
-    use: 单图生成输入（窄轮廓 A 字参考：束袖、直筒裙、空手，69828239）
+    sha256: 52dd1f21d4d8da8f30567abd1c17b3af59e650d59d3f8f3022b648718b7f5977
+    use: 单图生成输入（经方案A 2D露额体块化净化、降颅顶、下肢拉伸1.15倍的A字图）
   - path: assets/default/character/female/ch00/por_npc_zhujue__ch00_f_charmhigh_base.png
     sha256: f97acc0e803a522c73a6cb42325afc7969c6ff4428fc4495a63def176f9c698f
-    use: 作者选定的高魅力 B 版 base 立绘（本模型未直接输入）
-  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_charmhigh_threeview.png
-    sha256: 77e014df790336fb6e474fc8138f477146ce97d936886eb47a08d447fc8532a9
-    use: 宽袖飘带三视图（未输入：宽袖 / 外扩裙会让自动绑骨判错，改用窄轮廓 A 字版）
-  sha256: 0639be72eeb83bcd7d3ecff082f09454e6fe7bf22cd5d4f545525884a046edcb
-  size_bytes: 5945620
+    use: 作者选定的高魅力 B 版 base 立绘
+  sha256: 277c4e549718d7cd05614b0602d5a4340010090c022821ea1e3f02987380b35c
+  size_bytes: 5436692
   joints: 65
-  triangles: 96916
-  vertices: 55755
+  triangles: 93954
+  vertices: 53819
   animations:
+  - run (1.25s)
   - idle (15.333s)
   - walk (2.333s)
-  - run (1.25s)
   textures:
-  - image/jpeg 278550 B
-  - image/jpeg 1109702 B
-  - image/jpeg 574781 B
+  - image/jpeg 260720 B
+  - image/jpeg 843883 B
+  - image/jpeg 467833 B
   preview: preview.png
   visibility: private
-  created: '2026-10-03T17:28:00-07:00'
+  created: '2026-10-05T09:18:00-07:00'
   status: candidate
-  notes: 一个 GLB 内含三段动画（idle 15.333 s / walk 2.333 s / run 1.25 s），附带网格与骨架；Animation stay in Place 开。 2026-10-04 修跑步跳位（AR-85 同款，零点数）：Tripo 的原地 run 片段整段偏离原点（Hips 水平偏移 x -0.030 / z +0.530，约半个身高），切换动作会跳位；用
-    tools/model3d/fix_anim_offset.py 平移回原点，只改 Hips 平移通道的水平分量，高度起伏和其他片段不动。
+  notes: 动作单文件：一个 GLB 内含 run / idle / walk，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
 - id: npc_zhujue__ch00_f_charmhigh__preview
   file: preview.png
   category: model3d
   style: default
-  subject: 主角（女）· 高魅力形象（白衣飘飘，AR-45 作者选 B 版）· 窄轮廓 A 字版 · 3D 预览
+  subject: 主角（女）· 高魅力形象（白衣飘飘，AR-95 方案A 露额无瑕疵重构版） · 3D 预览
   tool: tripo-studio-web（Tripo 封面渲染）
   tripo_model:
-    project_id: 51dec492-a4b8-4bc1-9762-c74d9eeeb723
-    url: https://studio.tripo3d.ai/workspace/generate/51dec492-a4b8-4bc1-9762-c74d9eeeb723
-    generate_op: ab6d20f7-8104-4961-b6d3-dacfb578ca04（image_to_model）
-    rig_op: c69e441d-1a3c-4cd3-9b1e-a929f48c1bc2
+    project_id: 3c8054d1-fc84-48ff-b800-d622c201bbdb
+    url: https://studio.tripo3d.ai/workspace/generate/3c8054d1-fc84-48ff-b800-d622c201bbdb
+    generate_op: ac333b86-1282-4fa9-a86b-821af96846c5（image_to_model）
+    rig_op: 2d7786bd-84d2-4228-86db-4b376e01adad
     animation_ops:
-      idle: 3d82fa76-e7c5-45b8-ae9b-e987b39b4112
-      walk: 49c4592b-5d2b-460e-9de8-27d7d634193d
-      run: 53171017-b3d8-492a-b381-52d6176576e2
+      idle: 6145fc7e-a551-4b7e-a153-bdeb76f0c76c
+      walk: 7d9c8d8f-d4ef-44e1-989b-7fbc36cf5a6e
+      run: 37e7db50-0514-4f20-890d-aaa7edf7179f
+    replaces:
+      project_id: 51dec492-a4b8-4bc1-9762-c74d9eeeb723
+      commit: e7a7a18b7
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_charmhigh__202610050918/
   size: 600x778
-  sha256: 6d875f81b2ae5f3f80b040d596e119823bcfde157ea828f2e1efcf723d8d01dd
-  size_bytes: 105325
-  created: '2026-10-03T22:34:26-07:00'
+  sha256: b41767f45f135912d4448b24940ad0644ea506da8d181097e0eba4a61be35a64
+  size_bytes: 88022
+  created: '2026-10-05T09:18:00-07:00'
   status: candidate
   notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

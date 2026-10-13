@@ -1,0 +1,34 @@
+- id: dressup__prop__item_bamboo_hat
+  file: item_bamboo_hat.glb
+  category: model3d
+  kind: dressup-prop
+  template: tpl_f_medium
+  sha256: fd2922a17db87c87b0dbee96f7e34227576bc0a96a0c4bc788c88310fcec9271
+  size_bytes: 997268
+  triangles: 8568
+  report: report.json
+  status: candidate
+  tool: tools/model3d/dressup/ingest.py v1
+  created: '2026-10-08T04:34:19-07:00'
+  slot: head
+  fit: fit.json
+  fits:
+    tpl_f_medium:
+      file: item_bamboo_hat.glb
+      fit: fit.json
+      report: report.json
+      status: candidate
+    tpl_f2_medium:
+      file: item_bamboo_hat.tpl_f2_medium.glb
+      fit: fit.tpl_f2_medium.json
+      report: report.tpl_f2_medium.json
+      socketsCheck: sockets_check.tpl_f2_medium.json
+      status: draft
+      gateLevel: draft
+      sha256: cff39886abc03118759b4acf2b90c08a5421c2129a8d2e5835bbc2d06c879f2a
+      size_bytes: 915100
+      triangles: 4598
+  source:
+    directory: external-workdir
+    references: []
+  notes: validate level=approved；sockets_check level=approved；联合 level=approved，status=candidate。

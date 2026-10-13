@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_songmabuxie_nan",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/shoes/eq_songmabuxie_nan.png",
+  "generatedAt": "2026-10-07T21:33:56.289Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 181237,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/6574555e-7285-4795-87e8-75e46b2b850c/multiview_0_6574555e-7285-4795-87e8-75e46b2b850c.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 136739,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/6574555e-7285-4795-87e8-75e46b2b850c/multiview_1_6574555e-7285-4795-87e8-75e46b2b850c.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 137646,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/6574555e-7285-4795-87e8-75e46b2b850c/multiview_3_6574555e-7285-4795-87e8-75e46b2b850c.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 137444,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/6574555e-7285-4795-87e8-75e46b2b850c/multiview_2_6574555e-7285-4795-87e8-75e46b2b850c.jpeg"
+    }
+  }
+}

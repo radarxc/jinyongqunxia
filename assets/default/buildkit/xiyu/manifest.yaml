@@ -1,0 +1,388 @@
+schemaVersion: buildkit-layers.v1
+kit: xiyu
+status: candidate
+tool: procedural
+model: numpy+pillow
+created: '2026-10-11T00:00:00Z'
+command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+masterSize: [1024, 1024]
+layers:
+  - index: 0
+    id: mud_roof
+    file: layers/mud_roof.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · mud_roof，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：泥顶低频斑驳约 800×700 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2400, 2100]
+    scaleMm: [800, 700]
+    sha256: 695aa741d344759a21a74625f1e47f7df1598feeb8a38e3fdf0c9f5602722cca
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；泥顶低频斑驳约 800×700 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 1
+    id: parapet_coping
+    file: layers/parapet_coping.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · parapet_coping，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：女儿墙压顶 400×200 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1200, 1000]
+    scaleMm: [400, 200]
+    sha256: a3cdbe0a7c5611fe52d0f59d05ffbfce8d3960aaa155651ed4780e1d4378b049
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；女儿墙压顶 400×200 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 2
+    id: joist_soffit
+    file: layers/joist_soffit.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · joist_soffit，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：椽底条距 230 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [690, 1000]
+    scaleMm: [230, null]
+    sha256: a7d272ad18b6d5b99083dba958f040803a4e0f4eb87bd7046f7ea8c294568057
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；椽底条距 230 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 3
+    id: timber_carved
+    file: layers/timber_carved.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · timber_carved，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：雕木 250 mm 几何单元；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 1000]
+    scaleMm: [250, 250]
+    sha256: 6aae32fdcce7cf0adc68c6bbd13c17abb85d1e5977c915f5c2afd262b9900f3d
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；雕木 250 mm 几何单元；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 4
+    id: timber_raw
+    file: layers/timber_raw.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · timber_raw，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：原木板宽 230 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [920, 1000]
+    scaleMm: [230, null]
+    sha256: b170c1c0d3c1bc0a0c2033664661411ecab6426349419237cb70c838baddd610
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；原木板宽 230 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 5
+    id: mud_plaster_ochre
+    file: layers/mud_plaster_ochre.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · mud_plaster_ochre，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：赭泥低频斑驳约 800×650 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2400, 1950]
+    scaleMm: [800, 650]
+    sha256: f9fd31d846dc9360b6ed65ae935a8c83834a419b4cd62945101c3084043001f7
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；赭泥低频斑驳约 800×650 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 6
+    id: mud_plaster_limewash
+    file: layers/mud_plaster_limewash.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · mud_plaster_limewash，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：白灰泥低频斑驳约 900×700 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1800, 2100]
+    scaleMm: [900, 700]
+    sha256: 93993d89b8056caa5206a01c7316dca7c79ae85e79021757e8522e4c744bd0be
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；白灰泥低频斑驳约 900×700 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 7
+    id: brick_fired
+    file: layers/brick_fired.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · brick_fired，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：烧砖占位 300×150 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [900, 1050]
+    scaleMm: [300, 150]
+    sha256: b90d04cde0cf00effd853b02ae8a1338846c3890a2bf8f5e4b02b039788edcdb
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；烧砖占位 300×150 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 8
+    id: adobe_brick
+    file: layers/adobe_brick.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · adobe_brick，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：土坯砖 400×200×100 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2000, 2000]
+    scaleMm: [400, 200]
+    sha256: f68f69913346a95f7a942b0b78abd86bd589c032b21e23d4b5d50259f9a6fec9
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；土坯砖 400×200×100 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 9
+    id: brick_lattice
+    file: layers/brick_lattice.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · brick_lattice，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：晾房镂空棋盘 200 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 1000]
+    scaleMm: [200, 200]
+    sha256: 8cd08773940568a8df55a6df45faf88420775ace0e15a79ee7483fdfb2d6ecbf
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；晾房镂空棋盘 200 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 10
+    id: lattice_wood
+    file: layers/lattice_wood.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · lattice_wood，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：木花格间距 70 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [980, 980]
+    scaleMm: [70, 70]
+    sha256: abbb74ea87c736fdae075777261d1b68f875d81c17efab05f7e5472c201f8158
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；木花格间距 70 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 11
+    id: door_carved
+    file: layers/door_carved.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · door_carved，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：雕门 250 mm 几何单元；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1000, 2000]
+    scaleMm: [250, 250]
+    sha256: 09878bb11f1c6aac4e0f468cfe7e98eac78959ab6dc6cf134a6a97f92bcd0b95
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；雕门 250 mm 几何单元；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 12
+    id: floor_earth
+    file: layers/floor_earth.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · floor_earth，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：夯土地表颗粒团约 500×450 mm；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2000, 1800]
+    scaleMm: [500, 450]
+    sha256: 432ff8130da6047ca9ec44147830e9cf197fa4f9259603fdb66bc35818fbb981
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；夯土地表颗粒团约 500×450 mm；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 13
+    id: carpet_kilim
+    file: layers/carpet_kilim.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · carpet_kilim，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：毡毯 400 mm 几何纹；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [2000, 2000]
+    scaleMm: [400, 400]
+    sha256: 363c82072be62cc84cf1835738a689dbfdac1c4f82048f72b5f5f31cb44bbf1d
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；毡毯 400 mm 几何纹；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 14
+    id: dome_plaster
+    file: layers/dome_plaster.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · dome_plaster，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：穹顶灰低频斑驳约 900×700 mm（唐式禁用但保槽）；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [1800, 2100]
+    scaleMm: [900, 700]
+    sha256: 4c5733d8aaadafea4c88583ef89ed24ea2fe7ed3e21a8a0cd5b472a00db68d7f
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；穹顶灰低频斑驳约 900×700 mm（唐式禁用但保槽）；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+  - index: 15
+    id: canvas_awning
+    file: layers/canvas_awning.png
+    category: buildkit_layer
+    style: default
+    subject: 'xiyu · canvas_awning，程序化真实尺度占位贴图'
+    prompt: '程序化生成；尺度依据：帆布经纬约 12 mm（占位可读性放大）；平光、正交、无缝。'
+    negative: '无透视、无投影、无文字、无标志、无物件、无墙脚阴影。'
+    references: []
+    tool: procedural
+    model: numpy+pillow
+    effort: deterministic
+    command: 'python3 tools/buildgen/make_placeholder_layers.py --all'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/make_placeholder_layers.py
+    size: 1024x1024
+    repeatMm: [996, 996]
+    scaleMm: [12, 12]
+    sha256: 3464143e99c34d2aced54b41a59c3af4d3152509685bf4d750a38ceea379ad23
+    status: candidate
+    notes: '母版恰覆盖 repeatMm；帆布经纬约 12 mm（占位可读性放大）；正式图须保持槽位、尺寸、平铺原点与 repeatMm。'
+strips:
+  - id: xiyu_strip_512
+    file: strip_512.webp
+    category: buildkit_strip
+    style: default
+    subject: 'xiyu 程序化占位贴图按层下标纵向条带'
+    prompt: '由 1024x1024 母版按 manifest 层序缩至 512x512 后纵向拼接。'
+    negative: '不重排、不裁切、不加边距、不改平铺原点。'
+    references: []
+    tool: procedural
+    model: pillow-webp
+    effort: deterministic
+    command: 'python3 tools/buildgen/build_layer_strips.py --all --check'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/build_layer_strips.py
+    size: 512x8192
+    layerSize: 512
+    layerCount: 16
+    order: [mud_roof, parapet_coping, joist_soffit, timber_carved, timber_raw, mud_plaster_ochre, mud_plaster_limewash, brick_fired, adobe_brick, brick_lattice, lattice_wood, door_carved, floor_earth, carpet_kilim, dome_plaster, canvas_awning]
+    sha256: 52fb0521798a495fece2685e1903ce70209072a457760b85c2c83501cf52106d
+    status: candidate
+    notes: 'WebP quality 85；层下标从上到下 0..15。'
+  - id: xiyu_strip_256
+    file: strip_256.webp
+    category: buildkit_strip
+    style: default
+    subject: 'xiyu 程序化占位贴图按层下标纵向条带'
+    prompt: '由 1024x1024 母版按 manifest 层序缩至 256x256 后纵向拼接。'
+    negative: '不重排、不裁切、不加边距、不改平铺原点。'
+    references: []
+    tool: procedural
+    model: pillow-webp
+    effort: deterministic
+    command: 'python3 tools/buildgen/build_layer_strips.py --all --check'
+    created: '2026-10-11T00:00:00Z'
+    source_path: tools/buildgen/build_layer_strips.py
+    size: 256x4096
+    layerSize: 256
+    layerCount: 16
+    order: [mud_roof, parapet_coping, joist_soffit, timber_carved, timber_raw, mud_plaster_ochre, mud_plaster_limewash, brick_fired, adobe_brick, brick_lattice, lattice_wood, door_carved, floor_earth, carpet_kilim, dome_plaster, canvas_awning]
+    sha256: 83216fc818972231bb981cbb0ac7a0087c073f06d4f2afdb43b90383724ed04a
+    status: candidate
+    notes: 'WebP quality 85；层下标从上到下 0..15。'

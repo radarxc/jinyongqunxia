@@ -1,8 +1,8 @@
-import type { DomainEvent, EventPresentationAction } from '@tianshu/core';
+import type { DomainEvent, PresentationStep } from '@tianshu/core';
 
 export interface PresentedEvent {
   readonly eventId: string;
-  readonly steps: readonly EventPresentationAction[];
+  readonly steps: readonly PresentationStep[];
 }
 
 function record(value: unknown): value is Readonly<Record<string, unknown>> {
@@ -12,7 +12,7 @@ function stringAt(value: Readonly<Record<string, unknown>>, key: string): boolea
   return typeof value[key] === 'string' && value[key].length > 0;
 }
 
-function presentationStep(value: unknown): value is EventPresentationAction {
+function presentationStep(value: unknown): value is PresentationStep {
   if (!record(value) || typeof value['op'] !== 'string') return false;
   switch (value['op']) {
     case 'battle/start':
@@ -39,6 +39,8 @@ function presentationStep(value: unknown): value is EventPresentationAction {
       return (
         stringAt(value, 'regionId') && stringAt(value, 'sceneId') && stringAt(value, 'spawnId')
       );
+    case 'shop/open':
+      return stringAt(value, 'shopKey');
     default:
       return false;
   }

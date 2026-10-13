@@ -2,10 +2,10 @@ import { isNode, LineCounter, parseAllDocuments, visit } from 'yaml';
 import type { ZodType } from 'zod';
 import {
   AcupointDefSchema,
-  BuffDefSchema,
   ChapterDefSchema,
   CharacterTemplateSchema,
   EventDefSchema,
+  FacilityDialogueSchema,
   ItemDefSchema,
   MartialArtDefSchema,
   MeridianDefSchema,
@@ -13,6 +13,8 @@ import {
   NpcDefSchema,
   SectCatalogSchema,
   ShopDefSchema,
+  ShopTemplateSchema,
+  PriceTableSchema,
   MoveDefSchema,
   QuestDefSchema,
   RegionDialogueBindingSchema,
@@ -20,13 +22,14 @@ import {
   RegionLootBindingSchema,
   StoryLineSchema,
   TownRuntimeSchema,
+  TownFacilitiesSchema,
   WorldMapRegistrationSchema,
   RoleSlotDefSchema,
   type AcupointDef,
-  type BuffDef,
   type ChapterDef,
   type CharacterTemplate,
   type EventDef,
+  type FacilityDialogueDef,
   type ItemDef,
   type MartialArtDef,
   type MeridianDef,
@@ -36,8 +39,11 @@ import {
   type MoveDef,
   type QuestDef,
   type ShopDef,
+  type ShopTemplateDef,
+  type PriceTableDef,
   type StoryLine,
   type TownRuntimeDefinition,
+  type TownFacilitiesDef,
   type RoleSlotDef,
   type RegionDialogueBindingDef,
   type RegionGateBindingDef,
@@ -50,12 +56,15 @@ export type ContentKind =
   | 'characterTemplate'
   | 'martialArt'
   | 'move'
-  | 'buff'
   | 'quest'
   | 'meridian'
   | 'acupoint'
   | 'item'
   | 'shop'
+  | 'shopTemplate'
+  | 'priceTable'
+  | 'townFacility'
+  | 'facilityDialogue'
   | 'story'
   | 'event'
   | 'bookWorld'
@@ -72,12 +81,17 @@ export interface ContentFile {
 }
 export interface ContentEntry {
   readonly path: string;
-  readonly kind: ContentKind;
+  readonly kind: RegisteredContentKind;
   readonly value: unknown;
 }
 export interface ContentSourcePosition {
   readonly line: number;
   readonly column: number;
+}
+export interface ShopFacilityReferenceContext {
+  readonly inks?: readonly { readonly storyId: string; readonly structure: {
+    readonly chapter: string; readonly entryKnots: readonly string[];
+  } }[];
 }
 export interface ParsedYamlFile {
   readonly value: unknown;
@@ -98,13 +112,16 @@ const SCHEMAS: Readonly<Record<RegisteredContentKind, ZodType>> = {
   characterTemplate: CharacterTemplateSchema,
   martialArt: MartialArtDefSchema,
   move: MoveDefSchema,
-  buff: BuffDefSchema,
   quest: QuestDefSchema,
   encounter: EncounterDefSchema,
   meridian: MeridianDefSchema,
   acupoint: AcupointDefSchema,
   item: ItemDefSchema,
   shop: ShopDefSchema,
+  shopTemplate: ShopTemplateSchema,
+  priceTable: PriceTableSchema,
+  townFacility: TownFacilitiesSchema,
+  facilityDialogue: FacilityDialogueSchema,
   story: StoryLineSchema,
   event: EventDefSchema,
   bookWorld: ChapterDefSchema,
@@ -120,13 +137,16 @@ const KIND_ORDER: readonly RegisteredContentKind[] = [
   'roleSlot',
   'martialArt',
   'move',
-  'buff',
   'encounter',
   'quest',
   'meridian',
   'acupoint',
   'item',
   'shop',
+  'shopTemplate',
+  'priceTable',
+  'townFacility',
+  'facilityDialogue',
   'story',
   'event',
   'bookWorld',
@@ -226,11 +246,14 @@ export function identifyContentKind(value: unknown, path: string): RegisteredCon
     'meridian.v1': 'meridian',
     'acupoint.v2': 'acupoint',
     'move.v1': 'move',
-    'buff.v1': 'buff',
     'quest.v1': 'quest',
     'encounter.v1': 'encounter',
     'item.v1': 'item',
     'shop.v1': 'shop',
+    'shop-template.v1': 'shopTemplate',
+    'price-table.v1': 'priceTable',
+    'town-facilities.v1': 'townFacility',
+    'facility-dialogue.v1': 'facilityDialogue',
     'story.v1': 'story',
     'event.v1': 'event',
     'meridian-topology.v1': 'event',
@@ -270,19 +293,80 @@ export function contentKindOrder(kind: RegisteredContentKind): number {
   return KIND_ORDER.indexOf(kind);
 }
 
+/** Cross-file checks shared by the loader and focused schema tooling. */
+export function validateShopFacilityReferences(
+  entries: readonly ContentEntry[], context: ShopFacilityReferenceContext = {},
+): void {
+  const itemIds = new Set(entries.filter((entry) => entry.kind === 'item')
+    .map((entry) => (entry.value as ItemDef).id));
+  const templateKeys = new Set(entries.filter((entry) =>
+    (entry.value as { schemaVersion?: string }).schemaVersion === 'shop-template.v1')
+    .map((entry) => (entry.value as ShopTemplateDef).key));
+  const townsByLayout = new Map<string, TownRuntimeDefinition>(
+    entries.filter((entry) => entry.kind === 'town')
+    .map((entry) => {
+      const town = entry.value as TownRuntimeDefinition;
+      return [`${town.cityId}__${town.chapterId}`, town] as const;
+    }),
+  );
+  const inkStories = context.inks === undefined ? undefined :
+    new Map(context.inks.map((ink) => [ink.storyId, ink.structure]));
+  for (const entry of entries) {
+    const version = (entry.value as { schemaVersion?: string }).schemaVersion;
+    if (version === 'shop-template.v1') {
+      const template = entry.value as ShopTemplateDef;
+      for (const row of template.supply) if (!itemIds.has(row.itemId))
+        throw new TypeError(`CONTENT_REF:${entry.path}:item:${row.itemId}`);
+    }
+    if (version === 'town-facilities.v1') {
+      const facilities = entry.value as TownFacilitiesDef;
+      const runtime = townsByLayout.get(facilities.layoutKey);
+      const buildingIds = runtime === undefined ? undefined :
+        new Set(runtime.buildings.map((building) => building.id));
+      for (const facility of facilities.facilities) {
+        if (facility.shop !== null && !templateKeys.has(facility.shop.templateRef))
+          throw new TypeError(
+            `CONTENT_REF:${entry.path}:shopTemplate:${facility.shop.templateRef}`,
+          );
+        if (buildingIds !== undefined && !buildingIds.has(facility.buildingId))
+          throw new TypeError(
+            `FACILITY_BUILDING_UNKNOWN:${facilities.layoutKey}:${facility.buildingId}`,
+          );
+      }
+    }
+    if (version === 'facility-dialogue.v1' && inkStories !== undefined) {
+      const dialogue = entry.value as FacilityDialogueDef;
+      for (const binding of dialogue.bindings) {
+        const story = inkStories.get(binding.storyId);
+        if (story === undefined)
+          throw new TypeError(`CONTENT_REF:${entry.path}:inkStory:${binding.storyId}`);
+        if (binding.chapter !== 'common' && story.chapter !== binding.chapter)
+          throw new TypeError(
+            `CONTENT_REF:${entry.path}:inkChapter:${binding.storyId}:${binding.chapter}`,
+          );
+        if (!story.entryKnots.includes(binding.entryKey))
+          throw new TypeError(`CONTENT_REF:${entry.path}:inkKnot:${binding.storyId}:${binding.entryKey}`);
+      }
+    }
+  }
+}
+
 export interface ContentValues {
   readonly npcs: readonly NpcDef[];
   readonly characterTemplates: readonly CharacterTemplate[];
   readonly martialArts: readonly MartialArtDef[];
   readonly meridians: readonly MeridianDef[];
   readonly moves: readonly MoveDef[];
-  readonly buffs: readonly BuffDef[];
   readonly quests: readonly QuestDef[];
   readonly encounters: readonly EncounterDef[];
   readonly roleSlots: readonly RoleSlotDef[];
   readonly acupoints: readonly AcupointDef[];
   readonly items: readonly ItemDef[];
   readonly shops: readonly ShopDef[];
+  readonly shopTemplates: readonly ShopTemplateDef[];
+  readonly priceTables: readonly PriceTableDef[];
+  readonly townFacilities: readonly TownFacilitiesDef[];
+  readonly facilityDialogues: readonly FacilityDialogueDef[];
   readonly stories: readonly StoryLine[];
   readonly events: readonly (EventDef | MeridianTopologyCatalog | SectCatalog)[];
   readonly bookWorlds: readonly ChapterDef[];

@@ -1,0 +1,17 @@
+test_alpha_is_opaque_inside_and_partial_only_at_3d_boundary (__main__.TextureLayerTests.test_alpha_is_opaque_inside_and_partial_only_at_3d_boundary) ... ok
+test_gutter_expands_rgb_and_alpha_exactly_eight_pixels (__main__.TextureLayerTests.test_gutter_expands_rgb_and_alpha_exactly_eight_pixels) ... ok
+test_nearest_surface_and_bilinear_color (__main__.TextureLayerTests.test_nearest_surface_and_bilinear_color) ... ok
+test_plate_classifier_learns_samples_without_color_constants (__main__.TextureLayerTests.test_plate_classifier_learns_samples_without_color_constants) ... ok
+test_ray_miss_falls_back_and_counts (__main__.TextureLayerTests.test_ray_miss_falls_back_and_counts) ... ok
+test_ray_selects_outermost_nested_sleeve (__main__.TextureLayerTests.test_ray_selects_outermost_nested_sleeve) ... ok
+test_ray_skips_outer_grazing_hit_for_next_facing_hit (__main__.TextureLayerTests.test_ray_skips_outer_grazing_hit_for_next_facing_hit) ... ok
+test_region_constraint_feather_and_padding (__main__.TextureLayerTests.test_region_constraint_feather_and_padding) ... ok
+test_shared_uv_rejects_single_changed_value (__main__.TextureLayerTests.test_shared_uv_rejects_single_changed_value) ... ok
+test_signed_distance_feather_is_exactly_one_point_five_pixels (__main__.TextureLayerTests.test_signed_distance_feather_is_exactly_one_point_five_pixels) ... ok
+test_uv_raster_covers_cylinder_and_interpolates (__main__.TextureLayerTests.test_uv_raster_covers_cylinder_and_interpolates) ... ok
+test_welded_uv_seam_gets_identical_smoothed_score (__main__.TextureLayerTests.test_welded_uv_seam_gets_identical_smoothed_score) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.114s
+
+OK

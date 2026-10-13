@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_kunming
 chapter_id: ch01
 book_world: ch01_tianlong
-display_name: 鄯阐府（大理国）
+display_name: 鄯阐府（大理国东都）
 historical_year: 1093
 era_kit: song_dali
 seed: 1222772113

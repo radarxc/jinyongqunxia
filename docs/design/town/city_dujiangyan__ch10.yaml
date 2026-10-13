@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_dujiangyan"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "镇静军·灌口聚落（702年推定）"
+display_name: 导江县（彭州）
 historical_year: 702
 era_kit: "tang"
 seed: 3943644316

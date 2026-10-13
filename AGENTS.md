@@ -1,6 +1,6 @@
 # AGENTS.md：天书录多代理协作入口
 
-工程约定见 `CLAUDE.md`；作者需求见 `docs/decisions/author-requirements.md`，开头有完成状态速查；现状和下一步见 `TODO.md`；**代码开发规格（架构、渲染、战斗、素材路径、内容参数）见 `docs/tech/DEV-SPEC.md`**；本地 `.agents/coord` 已于 10-04 清理，下文命令用到的脚本存档在远端分支 `archive/local-20261004`（恢复方法见该分支 `.agents/coord/README-archive.md`）；流水账见 `tools/agents/HANDOFF.md`。
+工程约定见 `CLAUDE.md`；作者需求见 `docs/decisions/author-requirements.md`，开头有完成状态速查；现状和下一步见 `TODO.md`；流水账见 `tools/agents/HANDOFF.md`。
 
 ## 0. 角色与执行器（AR-65 / AR-66）
 - **协调者（Claude）**：只定目标、判结果，把作者原话逐字记进 AR。
@@ -59,5 +59,7 @@
 
 ## 4. 规矩摘要
 - 作者原话逐字记进 AR。原著能定的不问作者；工程上有先例就照先例。
+- **浏览器持久连接（AR-100 铁律）**：保持连接操作browser，不要反复启动反复让我批准。常驻单连接管道，任务走本地队列调度，严禁反复断开重连。
+- **物品图片生成**：物品的图片生成，要参考历史记载（如果有，找到文字和图片参考）和小说描述（AR-92）。
 - 门禁不放宽，测试不加「高负载跳过」。功能用例可以给固定超时（先例 ENG-waitfor-timeout）；计时断言挪到 `check:perf`。
 - 在 `_prod` 改了文件就立即按路径提交，不 push，不读 `.env`。对外请求用通用 UA（TianshuBot/1.0），不带作者的任何标识。

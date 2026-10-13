@@ -3,7 +3,7 @@ id: it_miji_jinshejian
 name: 金蛇秘笈原本
 kind: manual
 sub: original
-grade: 10
+grade: 9
 stack: 1
 chapters: any
 origin: canon
@@ -25,6 +25,6 @@ extension:
     attributes:
       version: 2
       skillRef: sk_jinshejian
-      readWis: 60
+      readWis: 55
       maxLayer: 10
-      cultivation: 4000
+      cultivation: 3500

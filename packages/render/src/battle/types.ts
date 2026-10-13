@@ -48,6 +48,7 @@ export interface BattleHighlights {
   readonly selected: string | null;
   readonly ready: string | null;
   readonly reachable: readonly string[];
+  readonly attackReachable?: readonly string[];
   readonly area: readonly string[];
   readonly path: readonly string[];
   readonly ghost: string | null;
@@ -91,6 +92,7 @@ export interface BattleRenderer {
   snapshot(id: string): BattleSnapshot | undefined;
   setTimeOfDay(hours: number): void;
   pick(x: number, y: number): BattleCell | null;
+  playStrike?(actorId: string, targetId?: string): void;
   dispose(): void;
 }
 export interface BattleRendererOptions {

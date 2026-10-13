@@ -1,0 +1,94 @@
+{
+  "animated": {
+    "distanceMethod": "strict nearest-triangle signed distance for every selected vertex",
+    "insideRatio": 0.01789060939828256,
+    "insideVertexCount": {
+      "max": 2158,
+      "median": 0.0,
+      "min": 0,
+      "samples": 72,
+      "verticesPerFrame": 7233
+    },
+    "insideVertexTotal": 9317,
+    "level": "draft",
+    "minSignedDistanceMm": {
+      "median": 72.16312973885707,
+      "min": -58.28096001232173
+    },
+    "surface": "full body triangles"
+  },
+  "bind": {
+    "bladeAngleDeg": 5.263014220319208e-06,
+    "fingerDirectionDot": 0.8133987860158118,
+    "gripDistanceMm": 0.0
+  },
+  "class": "weapon",
+  "failures": [],
+  "id": "eq_longquanjian",
+  "level": "draft",
+  "pass": true,
+  "schema": "tianshu-dressup-sockets-check.v1",
+  "selectionOverride": {
+    "basis": "2026-10-12 coordinator ruling 6: runtime photos show 60 deg correct; 0 deg crosses torso and its minimum signed distance is a false-sign outlier",
+    "candidateInsideRatio": 0.01789060939828256,
+    "candidateLevel": "draft",
+    "selectedRestTiltDeg": 60.0
+  },
+  "template": "tpl_f2_medium",
+  "testedGeometry": {
+    "bladeSegmentVertices": 7233,
+    "handleEnd": "min",
+    "handleSegmentVertices": 956,
+    "peakAxialMu": 0.112399786,
+    "peakFraction": 0.268852587,
+    "source": "fit.handleDetection",
+    "totalVertices": 8189,
+    "verticesPerFrame": 7233
+  },
+  "tiltSweep": [
+    {
+      "candidate": "0",
+      "insideRatio": 0.01143101832649738,
+      "insideVertexTotal": 5953,
+      "level": "draft",
+      "minSignedDistanceMm": {
+        "median": 93.03808154381201,
+        "min": -346.0590116846262
+      },
+      "restTiltDeg": -0.0
+    },
+    {
+      "candidate": "20",
+      "insideRatio": 0.039492987388051674,
+      "insideVertexTotal": 20567,
+      "level": "fail",
+      "minSignedDistanceMm": {
+        "median": 113.94492969101944,
+        "min": -363.3989656551241
+      },
+      "restTiltDeg": 20.0
+    },
+    {
+      "candidate": "40",
+      "insideRatio": 0.040965789514109716,
+      "insideVertexTotal": 21334,
+      "level": "fail",
+      "minSignedDistanceMm": {
+        "median": 86.46069444109507,
+        "min": -68.26978584763052
+      },
+      "restTiltDeg": 40.0
+    },
+    {
+      "candidate": "60",
+      "insideRatio": 0.01789060939828256,
+      "insideVertexTotal": 9317,
+      "level": "draft",
+      "minSignedDistanceMm": {
+        "median": 72.16312970490728,
+        "min": -58.280960022933435
+      },
+      "restTiltDeg": 60.0
+    }
+  ]
+}

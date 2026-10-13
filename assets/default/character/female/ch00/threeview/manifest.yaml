@@ -124,3 +124,287 @@
   previous_revision:
     png: .agents/coord/_lines/novel-fix-1/before/02_por_npc_aqing__ch00_youth_apose_slim.png
     sha256: a62f5311f341f0c70f3d77acce9100b229d2edf75d5889d0cc88b6eae5cb18fe
+- id: por_npc_zhujue__ch00_f_bald_base_body_apose
+  file: por_npc_zhujue__ch00_f_bald_base_body_apose.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体基底 A 字全身参考（上臂约 41°；现素体 Tripo 输入，AR-97 / AR-99）
+  tool: not-recorded（Antigravity generate_image，2026-10-06 前后；溯源未登记）
+  model: not-recorded
+  source_path: not-recorded
+  size: 1024x1536
+  sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
+  status: approved
+  created: '2026-10-07T15:49:51-07:00'
+  notes: 补登记。作者认可的光头素体底图（光头、裸足、薄透裹胸、高叉三角裤、猎豹腿），是现素体 npc_zhujue__ch00_f_bald_base_body 的 Tripo 单图输入；2D 量得上臂 41.5° / 41.4°、头身比 8.94、髋高比 0.496。AR-105 后不再作模板输入，模板改用 _apose_narrow。
+- id: por_npc_zhujue__ch00_f_bald_base_body_apose_narrow
+  file: por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体 窄 A 字全身参考（上臂 25°，换装模板 tpl_f_medium 的唯一底图，AR-104 / AR-105）
+  prompt: 'You have an image generation tool. Use it exactly once to EDIT the reference image ./ref_bald_apose.png (pass it as the reference/input image). Edit instruction for the image tool: Lower both arms a little compared with the reference so that the FINGERTIPS end EXACTLY level with the crotch (not above it, not below it). The arms stay spread away from the body in a narrow A-pose (upper arm about 30 degrees from vertical): the distance from one fingertip to the other is about HALF of the body height, and each hand is about two thigh-widths outside the thigh, never touching or hanging close to the body. Arms straight with elbows only very slightly bent, palms facing inward toward the body, fingers together and relaxed, empty hands, symmetric left and right. Keep EVERYTHING else identical to the reference: the same face and features, the same bald head and head size, the same body proportions, torso, legs and bare feet, the same sheer bandeau and high-cut briefs, the same standing pose, the same plain beige background, the same full-body framing with head and feet fully visible. Do not add hair, clothes, shoes, jewelry, text or watermark. After the tool returns, copy the generated image file into ./out/plate30_r4 with its original extension. Do not modify ./ref_bald_apose.png and do not write or run any code that alters pixels. Reply with only the output file path.'
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
+    sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
+    use: 唯一参考：同一人、同比例，只改手臂姿态
+  tool: agy CLI（Antigravity generate_image 图像编辑；agy --model gemini-3.1-pro-high --sandbox -p）
+  model: Antigravity 图像工具（对话模型 gemini-3.1-pro-high）
+  effort: n/a
+  source_path: .agents/coord/_dressup_review/plate_narrow_r4_source.jpg
+  source_size: 848x1264
+  size: 1024x1536
+  sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+  normalization: 整图 LANCZOS 缩放 ×1.2068 使人物高与底图同为 1377 px，脚底对齐 y=1475、肩中点对齐，背景色 RGB(219,212,195) 补边；无局部改动
+  check_plate:
+    target_arm_angle_deg: 25
+    tolerance_deg: 3
+    left_arm_angle_deg: 24.961
+    right_arm_angle_deg: 24.86
+    face_iou: 0.972487
+    hips_ratio_delta: 0.002179
+    arm_span_ratio: 0.467683
+    head_to_body_ratio: 9.059211
+    pass: true
+  rounds: 8（上臂角依次 12.8 / 21.5 / 39.4 / 25.0 / 39.6 / 19.2 / 25.1 / 12.2°，取第 4 轮）
+  status: approved
+  created: '2026-10-07T15:49:51-07:00'
+  notes: 作者 2026-10-07 选定（AR-105「接受25度」）。Codex 账号出图 400、Gemini 网页版出不了素体，按作者指示改用 agy CLI 出图（AR-105）。图像模型不认精确角度，8 轮里没有落在 30° ± 3° 的，作者接受 25° 为规范窄 A；脸区 IoU 0.972、髋高比差 0.002、头身比 9.06（底图 8.94）。
+- id: por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front
+  file: por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体穿「江湖劲装」eq_jinzhuang 的窄 A 字全身衣图底板（换装阶段 E 首件；Tripo 整身生成与绑骨的输入）
+  prompt: 'You have an image generation tool. Use it exactly once, passing BOTH reference images: ./ref_narrow.png (the woman, pose and framing to keep) and ./jinzhuang.png (the garment to put on her). Instruction for the image tool: Dress the woman from ./ref_narrow.png in the jacket shown in ./jinzhuang.png: the same dark blue-grey cotton cross-collar wrap jacket (Han style, the wearer''s left panel over the right), the same tied fabric belt at the waist with the knot and hanging ends, the same narrow long sleeves ending at the wrists with turned-back cuffs, hem at hip length. The jacket fits the body closely like a martial outfit; the collar stays at the base of the neck and does not cover the neck. Keep EVERYTHING else identical to ./ref_narrow.png: the same face and features, the same bald head and head size, the same arm pose (arms spread away from the body in the same narrow A-pose, hands empty and fully visible outside the cuffs), the same body proportions, the same bare legs and bare feet, the same briefs where visible below the hem, the same standing pose, the same plain beige background and the same full-body framing with head and feet fully visible. Do not add hair, hat, shoes, trousers, jewelry, text or watermark. After the tool returns, copy the generated image file into ./out/garment_jinzhuang_r1 with its original extension. Do not modify the references and do not write or run any code that alters pixels. Reply with only the output file path.'
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+    use: 人物、姿态与构图底板（只加衣服，其余不变）
+  - path: assets/default/item/clothing/eq_jinzhuang.png
+    sha256: c2b7f6a0a0f10cc3e7cc6e8010532a791618363959ee092f0dcdf733a58d7348
+    use: 衣服款式、颜色、腰带与翻袖口
+  tool: agy CLI（Antigravity generate_image 图像编辑；agy --model gemini-3.1-pro-high --sandbox -p）
+  model: Antigravity 图像工具（对话模型 gemini-3.1-pro-high）
+  effort: n/a
+  source_path: .agents/coord/_dressup_review/garment_jinzhuang_r1_source.jpg
+  source_size: 848x1264
+  size: 1024x1536
+  sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
+  normalization: 整图 LANCZOS 缩放 ×1.20614 使人物高与底图同为 1375 px，脚底对齐 y=1474、头顶冠带中心对齐 x=511.9，背景色 RGB(219,212,195) 补边；无局部改动
+  check_plate:
+    target_arm_angle_deg: 25
+    tolerance_deg: 3
+    left_arm_angle_deg: 26.781
+    right_arm_angle_deg: 26.759
+    face_iou: 0.965776
+    hips_ratio_delta: 0.001094
+    arm_span_ratio_delta: 0.001329
+    head_top_delta_ratio: 0.000726
+    feet_bottom_delta_ratio: 0.0
+    pass: true
+  rounds: 2（取第 1 轮；第 2 轮只是加强三角裤可见度，作者看过第 1 轮说三角裤被衣摆遮住、不缺）
+  status: candidate
+  created: '2026-10-08T01:45:00-07:00'
+  notes: 协调者按 AR-105 用 agy 出图（素体衣图底板）。作者 2026-10-08 同意贴图 / 网格两条路同时试（「同时试试吧」），本图是两条路共用的 Tripo 整身输入。
+- id: por_npc_zhujue__ch00_f_dressup_eq_buyi_front
+  file: por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体穿「粗布短褐」eq_buyi 的窄 A 字全身衣图底板（同版型换色变体）
+  status: candidate
+  created: '2026-10-08T14:21:00-07:00'
+  notes: 变体，粗麻质地，带同色腰带。
+  sha256: 3f1881b361bb2ca696da6f2abb338748b6896a4d2b9c9727da6653e317f1fc5c
+  prompt: 'Replace the dark blue-grey jacket with the coarse hemp short jacket shown in eq_buyi.png. The new jacket should have a grey-brown color (灰褐粗麻), coarse woven texture, and un-dyed ties. The tied fabric belt at the waist MUST keep its exact shape but change to match the clothing color. Keep EVERYTHING else identical to por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png: the contour, the cross-collar line, the sleeve length, the hemline, the same face and features, the same bald head, the same arm pose, the same body proportions, the same bare legs and feet, the same background and the same full-body framing. Do not add hair, hat, shoes, trousers, jewelry, text or watermark.'
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_jinzhuang_front.png
+    sha256: 3008a4b11962a12913ea5ad6d235c9e549f041dc0a5dbecd4abe5210ffa85369
+  - path: assets/default/item/clothing/eq_buyi.png
+  normalization: 整图缩放 1.2072、偏移 (0, 5)、背景色补边
+  check_plate:
+    target_arm_angle_deg: 25
+    tolerance_deg: 3
+    left_arm_angle_deg: 26.673
+    right_arm_angle_deg: 26.616
+    face_iou: 0.963193
+    hips_ratio_delta: 0.001452
+    arm_span_ratio_delta: 0.001669
+    head_top_delta_ratio: 0.000726
+    feet_bottom_delta_ratio: 0.000726
+    pass: true
+  clothes_iou:
+    threshold_25: 0.956281
+    threshold_40: 0.922671
+    threshold_60: 0.783253
+- id: por_npc_zhujue__ch00_f_bald_base_body_apose_v2
+  file: por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 光头素体 v2（T4）：以窄 A 底板为底只改形体——颈更长、斜方肌低平、一字肩、手臂更细；脸、光头、25° 窄 A、抹胸与高叉三角裤、赤足不变。换装模板 tpl_f2_medium 的 Tripo 单图输入（替换 tpl_f_* 的候选）
+  prompt: |-
+    图像编辑：以第 1 张图为底，只改身体的形体，让她成为一具更好看的女性素体，其余保持不变。
+
+    【要改】颈部更修长（天鹅颈）；颈根到肩膀的线条低而平缓，斜方肌不隆起（不要从耳下就鼓起来的肩颈肌肉，侧面的颈肩线要平顺下滑）；肩膀平直舒展（一字肩），锁骨清晰秀气；手臂纤细修长；胸型自然饱满；腰更细，腰臀曲线柔和；双腿修长笔直，大腿匀称，小腿纤细；整体纤秀优雅、比例高挑（约 8.5 头身）。
+
+    【不变】脸、光头、五官、表情、肤色；肤色贴身抹胸和高叉三角裤的样式；姿势（正面站立，双臂伸直向身体两侧张开约 25 度的窄 A 字，手掌朝内，五指并拢，赤足，两脚间距不变）；人物在画面中的位置和大小、头顶和脚底的位置；浅暖灰米色纯色背景；写实手绘插画画风。
+
+    【不要】头发、饰物、衣服、鞋；肌肉感过强的肩颈和背、粗壮的手臂；文字、水印；第二个人；地面、投影。
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    sha256: 883f896e1e0bcc767f41a998bbbcecedee154071cb01a0b3f64b085bb1546a45
+    use: 上传第 1 张（临时件 f_plate.png，与底板逐字节相同）：图像编辑的底图，只改形体
+  tool: Gemini 网页 · Create image（作者 Chrome，Pro 模式）图像编辑一次出图，经 9223 常驻进程驱动；未做任何局部合成或修图
+  model: Gemini 网页 Pro（gemini.google.com）
+  effort: n/a
+  created: '2026-10-11T01:49:57-07:00'
+  source_path: /Users/bytedance/Downloads/gemini__tplf_body_g1.jpeg
+  source_sha256: 0ee347e662993153eb27fcae94cc61277989c3440bec66374e0fe807f1aa7766
+  source_size: 1686x2528
+  size: 1686x2528
+  sha256: 6cafc10b4f1be788c294b328f7047f532237b84e8ae01d7c96f5ed3d28268557
+  normalization: JPEG 解码后原样存 PNG（与下载件逐像素一致）；无缩放、无裁切、无局部改动
+  check_plate:
+    command: python3 tools/model3d/dressup/check_plate.py --plate <主角窄 A 底板 Lanczos 等比放大到 1686×2528 的临时副本> --image assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png --arm-angle-deg 25 --json
+    plateTemp:
+      path: /private/tmp/claude-501/-Users-bytedance-Projects-jinyongqunxia/0b7a01c3-1b14-4d0d-8083-376263e4da79/scratchpad/hr/plate/zhujue_narrow_1686x2528.png
+      sha256: 651aeffcccb2b508fefb1cf1e1a61836b4a14840714a558aa15f3069fce34410
+      from: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png
+    leftArmAngleDeg: 23.16
+    rightArmAngleDeg: 23.092
+    armSpanRatioDelta: 0.004892
+    feetBottomDeltaRatio: 0.0
+    headTopDeltaRatio: 0.000441
+    hipsRatioDelta: 0.00375
+    faceIou: 0.930907
+    headToBodyRatio2d: 9.4375
+    shoulderRatio2d: 0.185766
+    pass: true
+  selection: 作者 2026-10-11 在女性候选 A（g1）/ B（g2）中选 A，并同意上 Tripo（85 点）
+  status: candidate
+  notes: 作者 2026-10-11「基础素体要更美观，现在的素体斜方肌太明显了，很难看」。同一提示词出 g1 / g2 两张，均为一次出图。check_plate 全过：上臂 23.16° / 23.09°（25° ± 3°）、脸区 IoU 0.931、头顶 / 脚底对齐、髋高比差 0.004；2D 肩宽比 0.186（底板 0.182）。
+- id: por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front
+  file: por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 新素体（tpl_f2）穿「江湖劲装」eq_jinzhuang 的窄 A 字全身衣图底板（R3：按新素体重新生成劲装的 Tripo 整身生成与绑骨输入）
+  prompt: 'You have an image generation tool. Use it exactly once, passing BOTH reference images: ./ref_body.png (the woman,
+    pose and framing to keep) and ./ref_garment.png (the jacket alone, no person). Instruction for the image tool: Dress the
+    woman from ./ref_body.png in exactly the same jacket that is shown in ./ref_garment.png: the same dark blue-grey cotton
+    cross-collar wrap jacket (Han style, the wearer''s left panel over the right), the same tied fabric belt at the waist
+    with the knot and hanging ends, the same narrow long sleeves ending at the wrists with turned-back cuffs, hem at hip length.
+    The jacket is fitted to her figure: it follows her full, rounded bust and narrow waist exactly as her body in ./ref_body.png,
+    with the belt at her natural waist; her shoulder width, bust, waist, hips and legs must stay exactly as in ./ref_body.png.
+    The collar is a flat cross-collar (wrap collar) lying on the collarbones and around the base of the neck; it is not a
+    standing collar and does not rise up the neck; the whole neck from chin to collarbones stays bare. The chest is fully
+    covered, no bare shoulders, no cleavage, no off-shoulder neckline. Keep EVERYTHING else identical to ./ref_body.png: the
+    same face and features, the same bald head and head size, the same long neck and flat shoulder line, the same arm pose
+    (arms spread away from the body in the same narrow A-pose, hands empty and fully visible outside the cuffs), the same
+    body proportions, the same bare legs and bare feet, the same briefs where visible below the hem, the same standing pose,
+    the same plain light background and the same full-body framing with head and feet fully visible. Do not add hair, hat,
+    shoes, trousers, jewelry, text or watermark. After the tool returns, copy the generated image file into ./out/jinzhuang
+    with its original extension. Do not modify the references and do not write or run any code that alters pixels. Reply with
+    only the output file path.'
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png
+    sha256: 6cafc10b4f1be788c294b328f7047f532237b84e8ae01d7c96f5ed3d28268557
+    use: 人物、姿势、构图与身材底板（只加衣服，其余不变）
+  - path: assets/default/item/clothing/eq_jinzhuang.png
+    sha256: c2b7f6a0a0f10cc3e7cc6e8010532a791618363959ee092f0dcdf733a58d7348
+    use: 衣服款式、颜色、腰带与翻袖口（只有衣服、没有人）
+  tool: agy CLI（Antigravity 图像工具；agy --model gemini-3.1-pro-high --sandbox -p），由 Opus 子代理执行
+  model: Antigravity 图像工具（对话模型 gemini-3.1-pro-high）
+  effort: n/a
+  created: '2026-10-12T09:02:25-07:00'
+  source_path: .agents/coord/_dressup_review/r3_plates/jinzhuang_f2_jz7_source.jpg
+  source_sha256: 9ba9a8a4ef5d2a83a815fc72dd310e0a72c96677fd0ba189bda67183bcfad456
+  source_size: 848x1264
+  size: 1686x2528
+  sha256: d5504ba037bcb8654c7fa8c21e3d598a85b25526344d55eef1b7d22c5a43559d
+  normalization: 整图 LANCZOS 等比缩放 ×1.985101（人物头顶到脚底与新素体底图同高）、偏移 (1, 9)、脚底与水平中心对齐、底图背景色 RGB(222, 213, 196) 补边，输出 1686×2528
+  check_plate:
+    command: python3 tools/model3d/dressup/check_plate.py --plate assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png
+      --image assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png --arm-angle-deg
+      25 --json
+    pass: true
+    faceIou: 0.938059
+    leftArmAngleDeg: 25.284
+    rightArmAngleDeg: 25.229
+    hipsRatioDelta: 0.000443
+    armSpanRatioDelta: 0.020881
+    shoulderRatioReportOnly: 0.202931
+  body_gate:
+    shoulderRowsMaxDiffPx: 8
+    shoulderRows:
+    - 540
+    - 640
+    shoulderTolerancePx: 15
+    waistRatio: 1.0677
+    waistRowY: 917
+    waistThreshold: 1.15
+    legsIou: 0.9766
+    legsThreshold: 0.95
+    pass: true
+  selection: 第二轮 7 张里唯一胸型饱满、收腰、肩腿与新素体一致者（jz7）；第一轮 10 张以旧劲装底板作衣服参考，出图工具把旧身材连同平胸方筒照抄，全废
+  status: candidate
+  notes: 作者 2026-10-12「按新素体重新生成」。领子立在颈后是物品图款式（旧劲装底板领子更高，下巴下 11 px，也走通了全流程），不作阻断。
+- id: por_npc_zhujue__ch00_f2_dressup_eq_buyi_front
+  file: por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png
+  category: character/female/threeview
+  style: default
+  subject: 主角·女 新素体（tpl_f2）穿「粗布短褐」eq_buyi 的窄 A 字全身衣图底板（同版型换色变体，R3）
+  prompt: 'You have an image generation tool. Use it exactly once, passing BOTH reference images: ./ref_base.png (the image
+    to edit) and ./ref_color.png (the jacket alone, no person). Instruction for the image tool: Replace the dark blue-grey
+    jacket in ./ref_base.png with the coarse grey-brown hemp short jacket shown in ./ref_color.png: grey-brown color, coarse
+    woven hemp texture, un-dyed ties. The tied fabric belt at the waist must keep its exact shape and position but change
+    to match the jacket color. Keep EVERYTHING else identical to ./ref_base.png: the jacket contour and silhouette, the cross-collar
+    line, the sleeve length and cuffs, the hemline, the same face and features, the same bald head, the same neck, the same
+    arm pose, the same body proportions, the same bare legs and feet, the same background and the same full-body framing.
+    Do not add hair, hat, shoes, trousers, jewelry, text or watermark. After the tool returns, copy the generated image file
+    into ./out/buyi with its original extension. Do not modify the references and do not write or run any code that alters
+    pixels. Reply with only the output file path.'
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png
+    sha256: d5504ba037bcb8654c7fa8c21e3d598a85b25526344d55eef1b7d22c5a43559d
+    use: 被编辑的劲装底板（只换颜色质地，轮廓不变）
+  - path: assets/default/item/clothing/eq_buyi.png
+    sha256: 766875b36e6ad185022ee0f7eea241936928ebd64bd8e14e33370303808cdb32
+    use: 布衣颜色与麻布质地（只有衣服、没有人）
+  tool: agy CLI（Antigravity 图像工具；agy --model gemini-3.1-pro-high --sandbox -p），由 Opus 子代理执行
+  model: Antigravity 图像工具（对话模型 gemini-3.1-pro-high）
+  effort: n/a
+  created: '2026-10-12T09:02:25-07:00'
+  source_path: .agents/coord/_dressup_review/r3_plates/buyi_f2_by2_source.jpg
+  source_sha256: 149d578fcbeabdfd943332e9f068e375e5d7914e6a18da0ff988522227e0461f
+  source_size: 848x1264
+  size: 1686x2528
+  sha256: e1e621ced87cbe6206b54f103877c1433147d66cae16c7ad3c38ee3cb02d8546
+  normalization: 整图 LANCZOS 等比缩放 ×1.988586（人物头顶到脚底与新素体底图同高）、偏移 (1, 6)、脚底与水平中心对齐、底图背景色 RGB(222, 213, 196) 补边，输出 1686×2528
+  check_plate:
+    command: python3 tools/model3d/dressup/check_plate.py --plate assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png
+      --image assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png --arm-angle-deg
+      25 --json
+    pass: true
+    faceIou: 0.966617
+    leftArmAngleDeg: 25.188
+    rightArmAngleDeg: 25.194
+    hipsRatioDelta: 0.002204
+    armSpanRatioDelta: 0.021703
+    shoulderRatioReportOnly: 0.203147
+  body_gate:
+    shoulderRowsMaxDiffPx: 9
+    shoulderRows:
+    - 540
+    - 640
+    shoulderTolerancePx: 15
+    waistRatio: 1.0797
+    waistRowY: 917
+    waistThreshold: 1.15
+    legsIou: 0.9625
+    legsThreshold: 0.95
+    pass: true
+  selection: 第 2 次（by2）；第 1 次以旧布衣底板取色，把旧身材与侧边蝴蝶结抄回（腰宽比 1.211、腿 IoU 0.940、衣服轮廓 IoU 0.862），弃用
+  status: candidate
+  notes: 作者 2026-10-12「按新素体重新生成」，布衣作为换色版 0 点跟上。
+  garment_iou_vs_jinzhuang:
+    value: 0.9762
+    threshold: 0.95
+    mask: 前景（check_plate 同款 foreground_mask）∧ 非肤色（Lab L* ≥ 60 且 a* ≥ 4 判为皮肤 / 三角裤），7×7 开运算、留面积 ≥ 2000 px 连通块、填洞

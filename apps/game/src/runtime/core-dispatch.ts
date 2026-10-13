@@ -23,16 +23,25 @@ const chapterHandlers = () => load('chapter', async () => ({
   'chapter/bookSleep': (await import('@tianshu/core/chapter')).bookSleepHandler as CommandHandler,
 }));
 function commandFamily(command: Command): string {
+  if (command.t.startsWith('shop/')) return 'SHOP';
+  if (command.t === 'world/travelTo' || command.t === 'world/steer' ||
+      command.t === 'world/stop' || command.t === 'world/meditate') return 'EXPLORE';
   if (command.t === 'world/mountRegion' || command.t === 'world/walkTo' ||
       command.t === 'world/interact') return 'REGION';
   return command.t.split('/')[0]!.toUpperCase();
 }
 
-async function commandHandlers(command: Command): Promise<HandlerMap> {
+async function commandHandlers(command: Command, state: Readonly<GameState>): Promise<HandlerMap> {
   try {
-    if (command.t === 'world/tick') return await load('clock', async () => ({
-      'world/tick': (await import('@tianshu/core/clock')).worldTickHandler as CommandHandler,
-    }));
+    if (command.t === 'world/tick') {
+      if (state.world.navigation.mountedRegion?.walk) {
+        try { await load('explore', exploreHandlers); }
+        catch (error) { throw unavailable('EXPLORE_SUBSYSTEM_UNAVAILABLE', error); }
+      }
+      return await load('clock', async () => ({
+        'world/tick': (await import('@tianshu/core/clock')).worldTickHandler as CommandHandler,
+      }));
+    }
     if (command.t.startsWith('worldmap/')) return await load('worldmap', async () => {
       const { worldMapHandler } = await import('@tianshu/core/worldmap');
       return Object.fromEntries(['travel', 'step', 'cancel', 'resume', 'enter', 'leave']
@@ -59,10 +68,17 @@ async function commandHandlers(command: Command): Promise<HandlerMap> {
       'rules/setDifficulty': (await import('@tianshu/core/difficulty')).difficultyHandler as CommandHandler,
     }));
     if (command.t === 'chapter/bookSleep') return await chapterHandlers();
+    if (command.t.startsWith('shop/')) return await load('shop', async () => {
+      const { shopHandler } = await import('@tianshu/core/shop-command');
+      return { 'shop/buy': shopHandler as CommandHandler,
+        'shop/sell': shopHandler as CommandHandler };
+    });
+    if (command.t === 'world/travelTo' || command.t === 'world/steer' ||
+        command.t === 'world/stop' || command.t === 'world/meditate')
+      return await load('explore', exploreHandlers);
     if (command.t.startsWith('battle/')) return await load('battle', async () => {
       const { battleHandler } = await import('@tianshu/core/battle');
-      return Object.fromEntries(['enter', 'act', 'setAuto', 'retry', 'concede', 'subdue', 'demonstration',
-        'finalize', 'leave']
+      return Object.fromEntries(['enter', 'act', 'setAuto', 'retry', 'finalize', 'leave']
         .map((name) => [`battle/${name}`, battleHandler as CommandHandler]));
     });
     if (command.t === 'world/mountRegion' || command.t === 'world/walkTo' ||
@@ -74,8 +90,16 @@ async function commandHandlers(command: Command): Promise<HandlerMap> {
     });
     return {};
   } catch (error) {
+    if (error instanceof Error && error.message.endsWith('_SUBSYSTEM_UNAVAILABLE')) throw error;
     throw unavailable(`${commandFamily(command)}_SUBSYSTEM_UNAVAILABLE`, error);
   }
+}
+async function exploreHandlers(): Promise<HandlerMap> {
+  const { exploreHandler } = await import('@tianshu/core/explore-command');
+  return { 'world/travelTo': exploreHandler as CommandHandler,
+    'world/steer': exploreHandler as CommandHandler,
+    'world/stop': exploreHandler as CommandHandler,
+    'world/meditate': exploreHandler as CommandHandler };
 }
 function rejection(reason: string, at?: string): DispatchResult {
   return at === undefined ? { ok: false, reason: reason as never }
@@ -123,7 +147,7 @@ readonly CommittedDomainEvent[] {
 /** Same seven-step transaction as core dispatch, with the handler family loaded first. */
 export async function dispatchCoreCommand(state: GameState, command: Command,
   content: CoreContent = {}): Promise<DispatchResult> {
-  const loaded = await commandHandlers(command); const handler = loaded[command.t];
+  const loaded = await commandHandlers(command, state); const handler = loaded[command.t];
   if (!handler) return rejection('COMMAND_UNKNOWN', 't');
   const invalid = handler.validate(state, command, content);
   if (invalid) return rejection(invalid);
@@ -131,7 +155,9 @@ export async function dispatchCoreCommand(state: GameState, command: Command,
     return { ok: true, stateVersion: state.meta.stateVersion, events: [] };
   const tx = new MutableCoreTransaction(state, content);
   try {
-    handler.apply(tx, command); assertPendingEvents(tx); tx.commitRng();
+    handler.apply(tx, command);
+    if (command.t === 'chapter/bookSleep') tx.set(['world', 'sceneMemory'], []);
+    assertPendingEvents(tx); tx.commitRng();
     const version = state.meta.stateVersion + 1;
     if (!Number.isSafeInteger(version)) throw new RangeError('STATE_VERSION_OVERFLOW');
     const ordinal = state.meta.nextRuntimeOrdinal; const events = envelope(state, tx, version, ordinal);

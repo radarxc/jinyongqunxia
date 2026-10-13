@@ -2,6 +2,7 @@
 import type { BattleEvent } from '@tianshu/core';
 import type { BattleMarker } from '@tianshu/render/battle';
 import type { BattleVfxStage, VfxAccent, VfxPlayRequest } from '@tianshu/render/vfx';
+import { defaultAudioManager } from '@tianshu/platform';
 import type { BattleController } from './controller';
 
 export interface BattleVfxBridgeOptions {
@@ -53,6 +54,22 @@ export function bindBattleVfx(controller: BattleController, canvas: HTMLCanvasEl
     const nature = from.qiNature; const reducedMotion = options.reducedMotion?.();
     const actorSnapshot = options.snapshotActor ? () => options.snapshotActor!(from.id) : undefined;
     options.onPending?.();
+
+    // 1. Play martial art skill signature sound effect
+    defaultAudioManager.playSkillSfx(moveId);
+
+    // 2. Play impact/hit/dodge sound effects
+    if (result.hpDamage > 0) {
+      const isCrit = result.events.some(e => e.t === 'qi.fullCycleCrit' || e.t === 'battle/fullCirculationCritResolved');
+      setTimeout(() => {
+        defaultAudioManager.playSfx(isCrit ? 'crit_strike' : 'sword_clash');
+      }, 140);
+    } else if (targets.length > 0) {
+      setTimeout(() => {
+        defaultAudioManager.playSfx('dodge_whoosh');
+      }, 100);
+    }
+
     void load().then(value => value.play({ moveId, from, targets,
       accents: classifyVfxAccents(result.events, result.hpDamage),
       accentTargets: resolvedAccentTargets(result.events, [from, ...targets]),

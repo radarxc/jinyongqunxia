@@ -3,11 +3,11 @@ kind: CitySpec
 city_id: city_weihai
 chapter_id: ch10
 book_world: ch10_baima
-display_name: 威海卫
+display_name: 文登县北境海岸（未建城）
 historical_year: 702
 era_kit: tang
 seed: 818146718
-design_intent: {prosperity: generic_secondary, notes: [推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）, 依据：src_generic_layout, 复原依据：docs/design/town/history/city_weihai__tang_702.md, region=rg_qilu; band=tang_702；按同区域大城济南、青州与登州候选作一般格局参照。, tang建筑目录缺失；建筑显式使用song_southern基线，墙门与共通贴片由渲染器审计回退。]}
+design_intent: {prosperity: generic_secondary, notes: [推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）, 依据：src_generic_layout, 复原依据：docs/design/town/history/city_weihai__tang_702.md, region=rg_qilu; band=tang_702；按同区域大城济南、青州与登州候选作一般格局参照。, tang建筑目录缺失；建筑显式使用song_southern基线，墙门与共通贴片由渲染器审计回退。, "本章未开放（2026-10-11 地名档）：cities.yaml eras.ch10.open=false，当章显示名「文登县北境海岸（未建城）」；生成器不挂载本图，规格保留备用。"]}
 grid: {width: 96, height: 96, cell_m: 1, chunk_cells: 32}
 runtime_partition: {q_min: -48, r_min: 1, q_slot_count: 131, r_slot_count: 96, q_band_slots: [66, 65], r_band_slots: [96], formal_scene_refs: null}
 projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}

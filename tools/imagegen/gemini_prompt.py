@@ -19,22 +19,33 @@ ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / "assets/default/prompts"
 
 
+_PROMPT_CACHE: dict[str, Path] = {}
+
+
 def find_prompt(asset_id: str) -> Path:
-    # 立绘 / 情景图 / 路人（AR-30）也走 Gemini：先找物品、地图等，再找 characters/ 与 scenes/
-    later = []
-    for f in BASE.rglob("*.md"):
-        if f.name in ("INDEX.md", "GUIDE.md", "REDO.md"):
-            continue
-        if "characters" in f.parts:
-            later.append(f)
-            continue
-        t = f.read_text(encoding="utf-8")
-        if t.startswith("---\n") and f"asset_id: {asset_id}\n" in t[: t.find("\n---\n", 4) + 1]:
-            return f
-    for f in later:
-        t = f.read_text(encoding="utf-8")
-        if t.startswith("---\n") and f"asset_id: {asset_id}\n" in t[: t.find("\n---\n", 4) + 1]:
-            return f
+    if not _PROMPT_CACHE:
+        later = []
+        for f in BASE.rglob("*.md"):
+            if f.name in ("INDEX.md", "GUIDE.md", "REDO.md"):
+                continue
+            if "characters" in f.parts:
+                later.append(f)
+                continue
+            t = f.read_text(encoding="utf-8")
+            if t.startswith("---\n"):
+                header = t[: t.find("\n---\n", 4) + 1]
+                m = re.search(r"^asset_id:\s*([^\s]+)", header, re.M)
+                if m:
+                    _PROMPT_CACHE[m.group(1)] = f
+        for f in later:
+            t = f.read_text(encoding="utf-8")
+            if t.startswith("---\n"):
+                header = t[: t.find("\n---\n", 4) + 1]
+                m = re.search(r"^asset_id:\s*([^\s]+)", header, re.M)
+                if m and m.group(1) not in _PROMPT_CACHE:
+                    _PROMPT_CACHE[m.group(1)] = f
+    if asset_id in _PROMPT_CACHE:
+        return _PROMPT_CACHE[asset_id]
     raise SystemExit(f"找不到 asset_id={asset_id} 的提示词文件")
 
 

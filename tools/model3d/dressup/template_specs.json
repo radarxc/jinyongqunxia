@@ -1,0 +1,11 @@
+{
+  "schema": "tianshu.dressup-template-specs.v1",
+  "templates": [
+    {"id": "tpl_f_small", "gender": "female", "heightM": 1.58, "hipsRatio": 0.545, "shoulderRatio": 0.150, "source": "tpl_f_medium"},
+    {"id": "tpl_f_medium", "gender": "female", "heightM": 1.66, "hipsRatio": 0.565, "shoulderRatio": 0.156, "source": "tpl_f_medium"},
+    {"id": "tpl_f_tall", "gender": "female", "heightM": 1.72, "hipsRatio": 0.585, "shoulderRatio": 0.160, "source": "tpl_f_medium"},
+    {"id": "tpl_m_lean", "gender": "male", "heightM": 1.76, "hipsRatio": 0.535, "shoulderRatio": 0.195, "source": "tpl_m_medium"},
+    {"id": "tpl_m_medium", "gender": "male", "heightM": 1.81, "hipsRatio": 0.540, "shoulderRatio": 0.200, "source": "tpl_m_medium"},
+    {"id": "tpl_m_bulk", "gender": "male", "heightM": 1.86, "hipsRatio": 0.525, "shoulderRatio": 0.215, "source": "tpl_m_medium"}
+  ]
+}

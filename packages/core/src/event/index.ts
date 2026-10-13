@@ -1,12 +1,14 @@
 import { compareCodePoints, type JsonValue } from '@tianshu/shared';
 import type { EventPresentationAction } from '@tianshu/data/schemas';
-export { executeDialogueActions, executeEvent } from './event-executor';
+export { executeAction, executeActions, executeEvent, type ActionExecutionContext } from './event-executor';
 export type { EventPresentationAction };
+export type PresentationStep = EventPresentationAction |
+  { readonly op: 'shop/open'; readonly shopKey: string };
 
 /** Presentation boundary consumed by the game UI; core never performs these steps. */
 export interface EventPresentedPayload {
   readonly eventId: string;
-  readonly steps: readonly EventPresentationAction[];
+  readonly steps: readonly PresentationStep[];
 }
 
 /** Committed core facts share one causal envelope; localized text never enters it. */

@@ -1,0 +1,7 @@
+schemaVersion: inkmeta.v1
+storyId: story_ch10_facility
+chapter: ch10_baima
+entryKnots: [yaopu_keeper, zahuo_keeper, kedian_keeper, tiejiang_keeper, chengyi_keeper, mashi_keeper, shitan_vendor]
+readFlags: []
+commands: [dialogue/speaker, facility/openShop]
+npcs: []

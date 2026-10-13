@@ -1,0 +1,33 @@
+- id: dressup__template__tpl_f_small
+  file: body.glb
+  category: model3d
+  kind: dressup-template
+  template: tpl_f_small
+  gender: female
+  archetype: small
+  derivedFrom:
+    template: tpl_f_medium
+    file: ../tpl_f_medium/body.glb
+    sha256: 1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f
+  heightM: 1.58
+  heightMu: 0.93286875
+  heightRatio: 0.95180721
+  mPerMu: 1.69370022
+  hipsRatio: 0.54500001
+  shoulderRatio: 0.15
+  skeleton: skeleton.json
+  skeletonSha: 6af90881fff483b6b9da88d7ffc0acfcec0abdf7f3db7e11d1e7d4eccb427fae
+  ringSha: 08242cd8906b79f4d427725076bd6ee370d3383fa84e58ca87f0cf2536250ef7
+  regions: regions.npy
+  regionsSha: 3f73cf8c2fee98bdc2b3a916eba78208f7735043597268b7543766b46d9830fa
+  skullProfile: skull_profile.json
+  skullProfileSha: f2fa372717aedde774e44a6aa4beea44b9545327a4205ed7fef6f55e18266444
+  derive: derive.json
+  deriveSha: bb48c36c8a29805dca1afd7babafc06af25660da92a3f017400b900b64db1903
+  sha256: d4be619754d82b16b04ef10644cec819e2581460741f8fb103de4205de66e297
+  size_bytes: 9596296
+  vertices: 105082
+  triangles: 196022
+  joints: 65
+  status: draft
+  notes: AR-104 / AR-105 25° 当前正本派生；路 A 共拓扑、0 点；A6 已按 tech/11 §4 重导插槽帧；源正本变化后须重派生

@@ -1,8 +1,7 @@
 import { addInventory } from '../economy';
 import { dialogueHandler } from './story-handlers';
 import { executeEvent } from '../event';
-import { hexDistance } from '../hex';
-import { decodeRegionMap, objectGate, previewRegionPath, queryRegionPath, regionMap, regionObjects,
+import { decodeRegionMap, distanceToAnchor, evaluateGate, objectGate, previewRegionPath, queryRegionPath, regionMap, regionObjects,
   projectRegionDynamic, regionRuntimeForState, reachedRegionTriggers,
   consumeRegionEntity } from '../world';
 import type { GameState } from '../state';
@@ -63,7 +62,7 @@ function interact(state: Readonly<GameState>,
   if (!anchor) throw new Error('REGION_ANCHOR_UNKNOWN');
   if (mounted(state).entities.find((entry) => entry.anchorId === anchor.id)?.active === false)
     throw new Error('REGION_ANCHOR_UNKNOWN');
-  if (hexDistance(mounted(state).playerHex, anchor) > 1) throw new Error('REGION_ANCHOR_OUT_OF_RANGE');
+  if (distanceToAnchor(mounted(state).playerHex, anchor) > 1) throw new Error('REGION_ANCHOR_OUT_OF_RANGE');
   if (mounted(state).entities.find((entry) => entry.anchorId === anchor.id)?.consumed)
     throw new Error('REGION_ANCHOR_CONSUMED');
   if (!projectRegionDynamic(state, runtime)?.interactableAnchors.some((entry) =>
@@ -92,12 +91,16 @@ function interact(state: Readonly<GameState>,
     if (!event) throw new Error('REGION_EVENT_UNKNOWN');
     if (event.chapterId !== state.chapter.chapterId) throw new Error('REGION_EVENT_CHAPTER');
   }
-  if (anchor.class === 'NpcSpawn') {
-    const binding = runtime.dialogues?.find((entry) => entry.sceneId === state.world.navigation.locationId &&
-      entry.anchorId === anchor.id);
-    if (!binding) throw new Error('REGION_INTERACTION_UNSUPPORTED');
-    const invalid = dialogueHandler.validate(state, { t: 'dialogue/start', storyId: binding.storyId,
-      entryKey: binding.entryKey }, content); if (invalid) throw new Error(invalid);
+  const dialogueBinding = runtime.dialogues?.find((entry) => entry.sceneId === state.world.navigation.locationId &&
+    entry.anchorId === anchor.id);
+  if (anchor.class === 'NpcSpawn' || (anchor.class === 'Trigger' && (anchor.action === 'dialogue/start' || dialogueBinding !== undefined))) {
+    if (!dialogueBinding) throw new Error('REGION_INTERACTION_UNSUPPORTED');
+    if (dialogueBinding.condition) {
+      const evaluation = evaluateGate(dialogueBinding.condition, runtime.gateFacts);
+      if (!evaluation.allowed) throw new Error(evaluation.reason ?? 'REGION_INTERACTION_UNSUPPORTED');
+    }
+    const invalid = dialogueHandler.validate(state, { t: 'dialogue/start', storyId: dialogueBinding.storyId,
+      entryKey: dialogueBinding.entryKey }, content); if (invalid) throw new Error(invalid);
   }
 }
 
@@ -160,7 +163,7 @@ function applyInteract(tx: CoreTransaction, command: Extract<RegionCommand, { t:
     const binding = runtime.dialogues!.find((entry) => entry.sceneId === sceneId &&
       entry.anchorId === anchor.id)!;
     dialogueHandler.apply(tx, { t: 'dialogue/start', storyId: binding.storyId,
-      entryKey: binding.entryKey, anchorId: anchor.id }); return;
+      entryKey: binding.entryKey }); return;
   }
   if (anchor.class === 'Chest') {
     const loot = runtime.loot!.find((entry) => entry.lootRef === anchor.lootRef)!;
@@ -186,7 +189,14 @@ function applyInteract(tx: CoreTransaction, command: Extract<RegionCommand, { t:
       sceneId: anchor.to.scene, spawnId: null, targetHex: anchor.to.cell } }); return;
   }
   if (anchor.class === 'Trigger') {
-    trigger(tx, anchor); return;
+    trigger(tx, anchor);
+    const binding = runtime.dialogues?.find((entry) => entry.sceneId === sceneId &&
+      entry.anchorId === anchor.id);
+    if (binding && (anchor.action === 'dialogue/start' || !anchor.eventId)) {
+      dialogueHandler.apply(tx, { t: 'dialogue/start', storyId: binding.storyId,
+        entryKey: binding.entryKey });
+    }
+    return;
   }
   if (anchor.class !== 'BattleArena') throw new TypeError('REGION_INTERACTION_INVARIANT');
   tx.emit({ t: 'world/battleRequested', payload: { anchorId: anchor.id,

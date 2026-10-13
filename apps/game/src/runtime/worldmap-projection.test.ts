@@ -39,8 +39,8 @@ describe('world-map transport projection', () => {
     } | null };
     const geometry = projected.worldmapStatic ?? { map: legacy!.map!,
       mapTextureUrl: legacy!.mapTextureUrl ?? null };
-    expect(geometry.map.nodes).toHaveLength(201);
-    expect(geometry.map.roads).toHaveLength(90);
+    expect(geometry.map.nodes).toHaveLength(202);
+    expect(geometry.map.roads).toHaveLength(94);
     expect(initial.worldmap).not.toHaveProperty('map');
     expect(initial.worldmap).not.toHaveProperty('mapTextureUrl');
 

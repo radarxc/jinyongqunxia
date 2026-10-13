@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_nansongxuanxiuyuanbianlanshan_nan",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/clothing/eq_nansongxuanxiuyuanbianlanshan_nan.png",
+  "generatedAt": "2026-10-07T18:49:39.435Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 128782,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/50d7879d-f497-463a-8cde-c84c10d7320f/multiview_0_50d7879d-f497-463a-8cde-c84c10d7320f.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 89173,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/50d7879d-f497-463a-8cde-c84c10d7320f/multiview_1_50d7879d-f497-463a-8cde-c84c10d7320f.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 87706,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/50d7879d-f497-463a-8cde-c84c10d7320f/multiview_3_50d7879d-f497-463a-8cde-c84c10d7320f.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 114582,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/50d7879d-f497-463a-8cde-c84c10d7320f/multiview_2_50d7879d-f497-463a-8cde-c84c10d7320f.jpeg"
+    }
+  }
+}

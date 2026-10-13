@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_qingtongtiedi",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_qingtongtiedi.png",
+  "generatedAt": "2026-10-07T16:31:20.566Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 92153,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e20ef8a6-8662-4395-b7ab-3827d47ddda0/multiview_0_e20ef8a6-8662-4395-b7ab-3827d47ddda0.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 90912,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e20ef8a6-8662-4395-b7ab-3827d47ddda0/multiview_1_e20ef8a6-8662-4395-b7ab-3827d47ddda0.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 76164,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e20ef8a6-8662-4395-b7ab-3827d47ddda0/multiview_3_e20ef8a6-8662-4395-b7ab-3827d47ddda0.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 93123,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e20ef8a6-8662-4395-b7ab-3827d47ddda0/multiview_2_e20ef8a6-8662-4395-b7ab-3827d47ddda0.jpeg"
+    }
+  }
+}

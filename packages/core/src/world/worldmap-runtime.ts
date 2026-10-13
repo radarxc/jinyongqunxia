@@ -4,13 +4,14 @@ import { canEnterNormalCityGate, checkUniformExposure } from '../economy';
 import { EventAnchorRegistry } from '../event';
 import { advanceTravel, type GameState } from '../state';
 import { RoadPathfinder } from './worldmap-pathfinder';
-import { createSceneEntry, worldMapPositionForJourney } from './worldmap-state';
+import { createInitialWorldMapState, createSceneEntry, worldMapPositionForJourney } from './worldmap-state';
 import type { WorldMapCommand, WorldMapContext, WorldMapFact, WorldMapState } from './worldmap-types';
 
 export interface WorldMapDispatchResult {
   readonly state: GameState; readonly events: readonly WorldMapFact[];
 }
 export interface WorldMapRuntime {
+  readonly map: WorldMapRuntimeDefinition;
   dispatch(state: GameState, command: WorldMapCommand): WorldMapDispatchResult;
 }
 
@@ -23,8 +24,8 @@ export function createWorldMapRuntime(context: WorldMapContext): WorldMapRuntime
   const nodes = new Map(map.nodes.map((node) => [node.id, node]));
 
   const dispatch = (state: GameState, command: WorldMapCommand): WorldMapDispatchResult => {
-    const original = state.chapter.worldMap;
-    if (!original || state.chapter.chapterId !== map.chapterId) throw new Error('MAP_UNAVAILABLE');
+    const original = state.chapter.worldMap ?? createInitialWorldMapState(map);
+    if (state.chapter.chapterId !== map.chapterId && state.chapter.chapterId !== 'ch00' && !state.chapter.chapterId.startsWith('ch00')) throw new Error('MAP_UNAVAILABLE');
     let next = original; let game = state; const events: WorldMapFact[] = [];
     const fact = (t: string, payload: Record<string, JsonValue> = {}) =>
       events.push({ t, ...payload });
@@ -130,7 +131,7 @@ export function createWorldMapRuntime(context: WorldMapContext): WorldMapRuntime
   if (events.length === 0) throw new Error('MAP_COMMAND_UNKNOWN');
   return { state: { ...game, chapter: { ...game.chapter, worldMap: next } }, events };
   };
-  return { dispatch };
+  return { map, dispatch };
 }
 
 export function worldMapLocation(state: WorldMapState, map: WorldMapRuntimeDefinition): string {

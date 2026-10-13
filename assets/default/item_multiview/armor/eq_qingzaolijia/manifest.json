@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_qingzaolijia",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/armor/eq_qingzaolijia.png",
+  "generatedAt": "2026-10-07T14:34:05.463Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 192410,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/67ac7c81-452f-413d-8994-89b34bbd51df/multiview_0_67ac7c81-452f-413d-8994-89b34bbd51df.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 131684,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/67ac7c81-452f-413d-8994-89b34bbd51df/multiview_1_67ac7c81-452f-413d-8994-89b34bbd51df.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 128100,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/67ac7c81-452f-413d-8994-89b34bbd51df/multiview_3_67ac7c81-452f-413d-8994-89b34bbd51df.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 162151,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/67ac7c81-452f-413d-8994-89b34bbd51df/multiview_2_67ac7c81-452f-413d-8994-89b34bbd51df.jpeg"
+    }
+  }
+}

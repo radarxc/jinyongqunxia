@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_kuqa"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "龟兹故城·安西都护府（702年推定）"
+display_name: 安西都护府（龟兹）
 historical_year: 702
 era_kit: "xiyu"
 seed: 3669574997

@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_qujing
 chapter_id: ch01
 book_world: ch01_tianlong
-display_name: 石城郡 / 东川一带（待考）
+display_name: 石城郡（大理国）
 historical_year: 1093
 era_kit: song_dali
 seed: 4176790488

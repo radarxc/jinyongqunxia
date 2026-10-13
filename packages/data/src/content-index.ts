@@ -1,6 +1,8 @@
 import { compareCodePoints } from '@tianshu/shared';
 import type { ContentEntry, ContentFile, ContentValues, RegisteredContentKind } from './content-registry';
-import { contentKindOrder, parseContentFile } from './content-registry';
+import {
+  contentKindOrder, parseContentFile, validateShopFacilityReferences,
+} from './content-registry';
 
 type Identified = { readonly id?: string; readonly key?: string; readonly chapterId?: string;
   readonly lineId?: string; readonly cityId?: string; readonly chapter?: string;
@@ -187,9 +189,6 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
       const move = entry.value as ContentValues['moves'][number];
       if (!has('martialArt', move.skillId))
         throw new TypeError(`CONTENT_REF:${entry.path}:martialArt:${move.skillId}`);
-      for (const application of move.onHit?.applyBuffs ?? [])
-        if (!has('buff', application.buffId))
-          throw new TypeError(`CONTENT_REF:${entry.path}:move:${move.id}:buff:${application.buffId}`);
     }
     if (entry.kind === 'quest') {
       const quest = entry.value as ContentValues['quests'][number];
@@ -262,27 +261,6 @@ function validateReferences(entries: readonly ContentEntry[], lookup: Map<string
           && !has('characterTemplate', participant.source.templateId))
           throw new TypeError(`CONTENT_REF:${entry.path}:characterTemplate:${participant.source.templateId}`);
       }
-      if (encounter.settlement !== undefined) {
-        const actions = [encounter.settlement.onWin, encounter.settlement.onLose,
-          encounter.settlement.onConcede, encounter.settlement.onAssisted].flat();
-        for (const action of actions) {
-          if (action.op === 'flag/set' && !flags.has(action.flagId))
-            throw new TypeError(`CONTENT_REF:${entry.path}:flag:${action.flagId}`);
-          if (action.op === 'quest/advance' && !has('quest', action.quest))
-            throw new TypeError(`CONTENT_REF:${entry.path}:quest:${action.quest}`);
-          if (action.op === 'dialogue/start') {
-            const story = inkStories.get(action.storyId);
-            if (story === undefined)
-              throw new TypeError(`CONTENT_REF:${entry.path}:inkStory:${action.storyId}`);
-            if (story.chapter !== encounter.chapterId)
-              throw new TypeError(`CONTENT_REF:${entry.path}:inkChapter:${action.storyId}:${encounter.chapterId}`);
-            if (!story.entryKnots.includes(action.knot))
-              throw new TypeError(`CONTENT_REF:${entry.path}:inkKnot:${action.storyId}:${action.knot}`);
-          }
-        }
-        for (const flag of encounter.settlement.lossFlags) if (!flags.has(flag))
-          throw new TypeError(`CONTENT_REF:${entry.path}:flag:${flag}`);
-      }
     }
     if (entry.kind === 'shop') {
       const shop = entry.value as ContentValues['shops'][number];
@@ -340,6 +318,7 @@ export function loadContent(files: readonly ContentFile[], context: ContentRefer
     lookup.set(key, entry.value);
   }
   validateReferences(entries, lookup, context);
+  validateShopFacilityReferences(entries, context);
   entries.sort((left, right) => contentKindOrder(left.kind) - contentKindOrder(right.kind) || compareCodePoints(identity(left.kind, left.value as Identified), identity(right.kind, right.value as Identified)));
   const values = (kind: RegisteredContentKind): readonly unknown[] => entries.filter((entry) => entry.kind === kind).map((entry) => entry.value);
   const roleSlots = values('roleSlot') as ContentValues['roleSlots'];
@@ -352,11 +331,16 @@ export function loadContent(files: readonly ContentFile[], context: ContentRefer
   const registry: ContentRegistry = {
     entries, npcs: values('npc') as ContentValues['npcs'], characterTemplates: values('characterTemplate') as ContentValues['characterTemplates'],
     martialArts: values('martialArt') as ContentValues['martialArts'], meridians: values('meridian') as ContentValues['meridians'],
-    moves: values('move') as ContentValues['moves'], buffs: values('buff') as ContentValues['buffs'],
-    encounters: values('encounter') as ContentValues['encounters'], roleSlots,
+    moves: values('move') as ContentValues['moves'], encounters: values('encounter') as ContentValues['encounters'],
+    roleSlots,
     quests: values('quest') as ContentValues['quests'],
     acupoints: values('acupoint') as ContentValues['acupoints'], items: values('item') as ContentValues['items'],
-    shops: values('shop') as ContentValues['shops'], stories: values('story') as ContentValues['stories'],
+    shops: values('shop') as ContentValues['shops'],
+    shopTemplates: values('shopTemplate') as ContentValues['shopTemplates'],
+    priceTables: values('priceTable') as ContentValues['priceTables'],
+    townFacilities: values('townFacility') as ContentValues['townFacilities'],
+    facilityDialogues: values('facilityDialogue') as ContentValues['facilityDialogues'],
+    stories: values('story') as ContentValues['stories'],
     events: values('event') as ContentValues['events'], bookWorlds: values('bookWorld') as ContentValues['bookWorlds'],
     chapters: values('bookWorld') as ContentValues['chapters'],
     towns: values('town') as ContentValues['towns'],

@@ -1,0 +1,59 @@
+{
+  "schema": "tianshu.dressup-template-derive.v1",
+  "source": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+    "templateId": "tpl_f_medium"
+  },
+  "targetId": "tpl_f_tall",
+  "gender": "female",
+  "heightM": 1.72,
+  "scale": {
+    "leg": 1.119332092567424,
+    "spine": 0.9286245567682352,
+    "shoulder": 1.0312263729281852,
+    "arm": 1.036144578313253
+  },
+  "measured": {
+    "heightMu": 1.0155279636383057,
+    "floorYMu": -0.05619272589683533,
+    "hipsRatio": 0.5850000164341123,
+    "shoulderRatio": 0.16000000475203244,
+    "heightM": 1.7199999862067483,
+    "heightRatio": 1.0361445475395499,
+    "mPerMu": 1.69370027,
+    "maxVertexDisplacementMu": 0.05547525938056601,
+    "maxVertexDisplacementLimitMu": 0.07085079026509478,
+    "sourceFloorYMu": -4.060348146595061e-08,
+    "targetFloorYMu": -0.05619272589683533,
+    "containsNaN": false
+  },
+  "target": {
+    "heightM": 1.72,
+    "heightMu": 1.0155279937996922,
+    "heightRatio": 1.036144578313253,
+    "hipsRatio": 0.585,
+    "shoulderRatio": 0.16
+  },
+  "error": {
+    "heightM": -1.3793251651961214e-08,
+    "heightRatio": -3.0773703141306896e-08,
+    "hipsRatio": 1.6434112293239878e-08,
+    "shoulderRatio": 4.752032434218734e-09
+  },
+  "validation": {
+    "topologyUnchanged": true,
+    "uvUnchanged": true,
+    "skinWeightsUnchanged": true,
+    "materialTexturesUnchanged": true,
+    "jointOrderUnchanged": true,
+    "restBindMaxDiff": 6.248148842757928e-08,
+    "rotationTracksUnchanged": true,
+    "hipsTranslationTracksScaled": 3,
+    "hipsTranslationScale": 1.119332092567424,
+    "canonicalFloorYMu": 0.0,
+    "nan": false
+  },
+  "elapsedSec": 0.9942667500581592,
+  "outputSha256": "fc6772d64fb84a26f87346d9043e8e7cf508395dcb4658e92a0aa60e75da907d"
+}

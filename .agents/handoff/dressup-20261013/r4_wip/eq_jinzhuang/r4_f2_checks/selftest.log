@@ -1,0 +1,8 @@
+自测通过：7 项
+- glb_round_trip_skin_copy_animation
+- accessor_stride_normalized
+- lbs
+- nearest_point
+- umeyama_transforms_pca
+- signed_distance_sphere
+- topology_smoothing

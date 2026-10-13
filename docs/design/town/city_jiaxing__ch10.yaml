@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_jiaxing"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "苏州属·嘉兴县治（702年推定）"
+display_name: 嘉兴县（苏州）
 historical_year: 702
 era_kit: "tang"
 seed: 299739885

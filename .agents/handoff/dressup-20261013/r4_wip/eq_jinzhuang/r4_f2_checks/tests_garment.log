@@ -1,0 +1,133 @@
+Traceback (most recent call last):
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/tests_garment.py", line 1141, in main
+    test(); print(f"PASS {test.__name__}")
+    ^^^^^^
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/tests_garment.py", line 834, in test_delivered_variant_skin_provenance
+    provenance, covered, _ = _variant_provenance(root)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/tests_garment.py", line 818, in _variant_provenance
+    base = load_glb(garments / "eq_jinzhuang/eq_jinzhuang.glb"); mesh = base.mesh()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/glb_io.py", line 366, in load_glb
+    raise RuntimeError(f"meshopt 解压失败（exit {result.returncode}）: {detail}")
+RuntimeError: meshopt 解压失败（exit 1）: node:internal/modules/cjs/loader:1383
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'three/examples/jsm/libs/meshopt_decoder.module.js'
+Require stack:
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/packages/render/package.json
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+    at Function.resolve (node:internal/modules/helpers:157:19)
+    at file:///Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/meshopt_decode.mjs:15:48
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/packages/render/package.json'
+  ]
+}
+
+Node.js v22.22.1
+Traceback (most recent call last):
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/tests_garment.py", line 1141, in main
+    test(); print(f"PASS {test.__name__}")
+    ^^^^^^
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/tests_garment.py", line 855, in test_variant_base_keeps_non_target_texels_of_real_base
+    base = load_glb(garments / "eq_jinzhuang/eq_jinzhuang.glb"); mesh = base.mesh(); faces = mesh.indices.reshape(-1, 3)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/glb_io.py", line 366, in load_glb
+    raise RuntimeError(f"meshopt 解压失败（exit {result.returncode}）: {detail}")
+RuntimeError: meshopt 解压失败（exit 1）: node:internal/modules/cjs/loader:1383
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'three/examples/jsm/libs/meshopt_decoder.module.js'
+Require stack:
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/packages/render/package.json
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+    at Function.resolve (node:internal/modules/helpers:157:19)
+    at file:///Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/meshopt_decode.mjs:15:48
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/packages/render/package.json'
+  ]
+}
+
+Node.js v22.22.1
+Traceback (most recent call last):
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/tests_garment.py", line 1141, in main
+    test(); print(f"PASS {test.__name__}")
+    ^^^^^^
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/tests_garment.py", line 1111, in test_delivered_garments_dynamic_topology
+    growth, collapsed = _dynamic_topology(root / "assets/default/model3d/dressup/templates" / template,
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/tests_garment.py", line 1073, in _dynamic_topology
+    body = load_glb(template / "body.glb"); asset = load_glb(garment)
+                                                    ^^^^^^^^^^^^^^^^^
+  File "/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/glb_io.py", line 366, in load_glb
+    raise RuntimeError(f"meshopt 解压失败（exit {result.returncode}）: {detail}")
+RuntimeError: meshopt 解压失败（exit 1）: node:internal/modules/cjs/loader:1383
+  const err = new Error(message);
+              ^
+
+Error: Cannot find module 'three/examples/jsm/libs/meshopt_decoder.module.js'
+Require stack:
+- /Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/packages/render/package.json
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+    at Function.resolve (node:internal/modules/helpers:157:19)
+    at file:///Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/tools/model3d/dressup/meshopt_decode.mjs:15:48
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/bytedance/Projects/jinyongqunxia/.agents/wt/_dressup/.agents/wt/ENG-dressup-r4-jinzhuang-f2-fit/packages/render/package.json'
+  ]
+}
+
+Node.js v22.22.1
+PASS test_weight_transfer_and_filter
+PASS test_edge_template_weights_blend_thirty_mm
+PASS test_full_template_weight_transfer_is_normalized
+PASS test_edge_refit_clears_bind_penetration
+PASS test_surface_query_is_geometric_nearest
+PASS test_legacy_normal_selected_output_has_real_residual
+PASS test_push_out
+PASS test_hide_regions
+PASS test_refit_identity
+PASS test_refit_changed_bone_lengths
+PASS test_fixture_strict_fit
+PASS test_align_none_uses_template_weights
+{"align":{"bodySpaceIdentity":false,"determinant":1.0,"landmarks":0,"method":"landmarks","mirrored":false,"residualMu":{"feetMu":0.287083417,"neckTopMu":0.011276602},"scale":1.0,"translationMu":[0.0,0.0,0.0],"yawDeg":0.094854582},"body":{"file":"assets/default/model3d/dressup/garments/_fixture_bodysuit/refit_nonidentity/template/body.glb","sha256":"1d6eb353458858a03f21fea73bf2e2e925c5ff26e8bf5dce1e1bad41bc53db71","skeleton":"assets/default/model3d/dressup/garments/_fixture_bodysuit/refit_nonidentity/template/skeleton.json","skeletonSha256":"8a0b196f274478fd70062e866c4326fedd704c6cd8b24878a41918517f1e0a63"},"coverage":0.65,"coverageByRegion":{"footL":0.0,"footR":0.0,"forearmL":0.0,"forearmR":0.0,"handL":0.0,"handR":0.0,"head":0.0,"hips":0.987805063,"neck":0.0,"shinL":0.0,"shinR":0.0,"thighL":0.980551642,"thighR":0.981793988,"torsoLower":0.995292075,"torsoUpper":0.910647859,"upperArmL":0.0,"upperArmR":0.0},"fitVersion":1,"fixtureInput":{"aggregationVoxelMu":0.014,"baseOffsetMm":4.0,"noiseAmplitudeMm":3.0,"noiseComponentRangeMm":[-2.989528548,2.98910723],"noiseVectorMaxMm":2.999969894,"prefitInsideFraction":0.023529412,"seed":102},"hideRegions":["torsoUpper","torsoLower","hips","thighL","thighR"],"id":"_fixture_bodysuit","kind":"garment","neverHide":["neck","handL","handR","footL","footR"],"pushOut":{"centroidDriftMu":4e-09,"clearancePassed":true,"degenerateTriangles":0,"draft":false,"flippedTriangles":0,"insufficientMargin":0,"iters":80,"minimumDistanceMu":0.001771106,"movedVertices":12,"passed":true,"preserveShape":false,"pushMm":3.0,"pushMu":0.00177127,"residual":0,"rounds":[{"afterInside":0,"afterInsufficientMargin":0,"inside":0,"insufficientMargin":2,"maximumCorrectionMu":9.024e-06,"minimumDistanceMu":0.001767423,"moved":12,"topologyStepHalvings":0}],"stretchOutliers":0,"stretchWithinRatio":1.0,"topologyPassed":true},"refitFrom":{"body":"assets/default/model3d/dressup/templates/tpl_f_medium/body.glb","bodySha256":"1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f","boneLengthScale":{"mixamorig:Head":1.0,"mixamorig:HeadTop_End":1.0,"mixamorig:Hips":1.0,"mixamorig:LeftArm":1.0,"mixamorig:LeftFoot":0.991994623,"mixamorig:LeftForeArm":1.0,"mixamorig:LeftHand":1.0,"mixamorig:LeftHandIndex1":1.0,"mixamorig:LeftHandIndex2":1.0,"mixamorig:LeftHandIndex3":1.0,"mixamorig:LeftHandIndex4":1.0,"mixamorig:LeftHandMiddle1":1.0,"mixamorig:LeftHandMiddle2":1.0,"mixamorig:LeftHandMiddle3":1.0,"mixamorig:LeftHandMiddle4":1.0,"mixamorig:LeftHandPinky1":1.0,"mixamorig:LeftHandPinky2":1.0,"mixamorig:LeftHandPinky3":1.0,"mixamorig:LeftHandPinky4":1.0,"mixamorig:LeftHandRing1":1.0,"mixamorig:LeftHandRing2":1.0,"mixamorig:LeftHandRing3":1.0,"mixamorig:LeftHandRing4":1.0,"mixamorig:LeftHandThumb1":1.0,"mixamorig:LeftHandThumb2":1.0,"mixamorig:LeftHandThumb3":1.0,"mixamorig:LeftHandThumb4":1.0,"mixamorig:LeftLeg":1.001898395,"mixamorig:LeftShoulder":1.0,"mixamorig:LeftToeBase":1.0,"mixamorig:LeftToe_End":1.0,"mixamorig:LeftUpLeg":1.002,"mixamorig:Neck":1.0,"mixamorig:RightArm":1.0,"mixamorig:RightFoot":0.991994627,"mixamorig:RightForeArm":1.0,"mixamorig:RightHand":1.0,"mixamorig:RightHandIndex1":1.0,"mixamorig:RightHandIndex2":1.0,"mixamorig:RightHandIndex3":1.0,"mixamorig:RightHandIndex4":1.0,"mixamorig:RightHandMiddle1":1.0,"mixamorig:RightHandMiddle2":1.0,"mixamorig:RightHandMiddle3":1.0,"mixamorig:RightHandMiddle4":1.0,"mixamorig:RightHandPinky1":1.0,"mixamorig:RightHandPinky2":1.0,"mixamorig:RightHandPinky3":1.0,"mixamorig:RightHandPinky4":1.0,"mixamorig:RightHandRing1":1.0,"mixamorig:RightHandRing2":1.0,"mixamorig:RightHandRing3":1.0,"mixamorig:RightHandRing4":1.0,"mixamorig:RightHandThumb1":1.0,"mixamorig:RightHandThumb2":1.0,"mixamorig:RightHandThumb3":1.0,"mixamorig:RightHandThumb4":1.0,"mixamorig:RightLeg":1.001898395,"mixamorig:RightShoulder":1.0,"mixamorig:RightToeBase":1.0,"mixamorig:RightToe_End":1.0,"mixamorig:RightUpLeg":1.002,"mixamorig:Spine":1.0,"mixamorig:Spine1":1.0,"mixamorig:Spine2":1.0},"garment":"assets/default/model3d/dressup/garments/_fixture_bodysuit/_fixture_bodysuit.glb","garmentSha256":"a6e22eef30ac004f441836caf7b102ace1fdb2ed748e0c155610fce71a14416d","maxVertexDeltaMu":0.000471801,"method":"inverse-source-bone-local+target-bind-effective-child-axis","skeleton":"assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json","skeletonSha256":"5f516445505069b98f9c9a32e841c6c862c4d7f5da99b1c9a4f5352f218e580e"},"schema":"tianshu-dressup-fit.v1","slot":"body","source":{"file":"assets/default/model3d/dressup/garments/_fixture_bodysuit/_fixture_bodysuit_raw.glb","sha256":"7a3a251860dea7f6b88d5ac44e2d45fff78f88fd82620255d39a9bee50ba7fbc"},"spring":null,"stats":{"boundaryEdges":208,"elapsedSec":0.680339041,"fileBytes":141720,"nonManifoldEdges":140,"peakMemoryMiB":445.84375,"primitiveCount":1,"triangles":3668,"vertices":1870},"status":"fitted","weights":{"diffusedVertices":0,"directConfidenceVertices":1843,"directUsableVertices":1843,"farFallbackThresholdMm":100.0,"farSemanticFallbackVertices":0,"filteredVertices":1,"highConfidence":0.985561497,"highConfidenceVertices":1843,"jointsAllowed":["mixamorig:Hips","mixamorig:LeftUpLeg","mixamorig:LeftLeg","mixamorig:RightUpLeg","mixamorig:RightLeg","mixamorig:Spine","mixamorig:Spine1","mixamorig:Spine2","mixamorig:LeftShoulder","mixamorig:LeftArm","mixamorig:LeftForeArm","mixamorig:LeftHand","mixamorig:Neck","mixamorig:RightShoulder","mixamorig:RightArm","mixamorig:RightForeArm","mixamorig:RightHand"],"lowConfidenceVertices":27,"maxBones":4,"method":"nearest-triangle-barycentric+low-confidence-joint-segment","normalizedVertices":1870,"semanticFallbackVertices":27}}
+PASS test_file_nonidentity_refit
+PASS test_units_skull_and_regions
+PASS test_alignment_no_mirror
+PASS test_alignment_continuous_pca_yaw
+PASS test_joint_alignment_mirror_detection
+PASS test_joint_alignment_bone_length_scale
+PASS test_push_gate_failure
+PASS test_push_draft_is_explicit
+PASS test_preserve_shape_prevents_fold_and_stretch
+PASS test_volume_push_keeps_layers
+PASS test_pseudo_normal_sign_on_concave_mesh
+PASS test_validate_maps_compacted_garment_to_source
+PASS test_validate_parity_confirms_a1_inside
+PASS test_skin_texture_cleanup_island_scope
+PASS test_skin_cleanup_survives_jpeg_encoding
+PASS test_validate_refit_source_requires_matching_sha
+PASS test_untangle_flips_diagonal_of_flipped_sliver
+PASS test_untangle_writes_indices_in_place
+PASS test_reference_repair_only_touches_contaminated_texels
+PASS test_variant_base_replaces_image_losslessly
+FAIL test_delivered_variant_skin_provenance
+FAIL test_variant_base_keeps_non_target_texels_of_real_base
+PASS test_file_identity_and_region
+PASS test_arm_abduction_rotates_arm_subtrees_about_model_forward
+PASS test_pose_skin_solver_local_tear_and_collision
+FAIL test_delivered_garments_dynamic_topology
+35/38 tests passed

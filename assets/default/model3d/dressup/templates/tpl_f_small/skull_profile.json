@@ -1,0 +1,176 @@
+{
+  "schema": "tianshu-dressup-skull-profile.v1",
+  "unit": "mu",
+  "bone": "mixamorig:Head",
+  "stepMu": 0.005,
+  "rows": [
+    {
+      "yMu": -0.02409219,
+      "centerXMu": 0.04222962,
+      "centerZMu": -0.00255518,
+      "radiusXMu": 0.01367075,
+      "radiusZMu": 0.01049135
+    },
+    {
+      "yMu": -0.01909219,
+      "centerXMu": 0.04402353,
+      "centerZMu": -0.0048541,
+      "radiusXMu": 0.01802138,
+      "radiusZMu": 0.02041937
+    },
+    {
+      "yMu": -0.01409219,
+      "centerXMu": 0.03935627,
+      "centerZMu": -0.00255079,
+      "radiusXMu": 0.02203789,
+      "radiusZMu": 0.02512381
+    },
+    {
+      "yMu": -0.00909219,
+      "centerXMu": 0.03433281,
+      "centerZMu": -0.00103226,
+      "radiusXMu": 0.06108895,
+      "radiusZMu": 0.02759636
+    },
+    {
+      "yMu": -0.00409219,
+      "centerXMu": 0.01490108,
+      "centerZMu": -0.00053974,
+      "radiusXMu": 0.04721387,
+      "radiusZMu": 0.03088368
+    },
+    {
+      "yMu": 0.00090781,
+      "centerXMu": 0.0064024,
+      "centerZMu": 0.00128321,
+      "radiusXMu": 0.05060326,
+      "radiusZMu": 0.03154613
+    },
+    {
+      "yMu": 0.00590781,
+      "centerXMu": -0.00136454,
+      "centerZMu": 0.00277765,
+      "radiusXMu": 0.05787557,
+      "radiusZMu": 0.03697202
+    },
+    {
+      "yMu": 0.01090781,
+      "centerXMu": -0.00298188,
+      "centerZMu": 0.00332777,
+      "radiusXMu": 0.0604854,
+      "radiusZMu": 0.04145479
+    },
+    {
+      "yMu": 0.01590781,
+      "centerXMu": -0.00249799,
+      "centerZMu": 0.00121381,
+      "radiusXMu": 0.06189928,
+      "radiusZMu": 0.0446968
+    },
+    {
+      "yMu": 0.02090781,
+      "centerXMu": -0.00248433,
+      "centerZMu": 0.00778888,
+      "radiusXMu": 0.05768611,
+      "radiusZMu": 0.04574856
+    },
+    {
+      "yMu": 0.02590781,
+      "centerXMu": -0.00495716,
+      "centerZMu": 0.01391285,
+      "radiusXMu": 0.05509711,
+      "radiusZMu": 0.05254006
+    },
+    {
+      "yMu": 0.03090781,
+      "centerXMu": -0.00162002,
+      "centerZMu": 0.00652502,
+      "radiusXMu": 0.05345296,
+      "radiusZMu": 0.04760576
+    },
+    {
+      "yMu": 0.03590781,
+      "centerXMu": 0.00149128,
+      "centerZMu": 0.00333229,
+      "radiusXMu": 0.0571008,
+      "radiusZMu": 0.0452727
+    },
+    {
+      "yMu": 0.04090781,
+      "centerXMu": 0.00443117,
+      "centerZMu": 0.00032055,
+      "radiusXMu": 0.06224912,
+      "radiusZMu": 0.04533449
+    },
+    {
+      "yMu": 0.04590781,
+      "centerXMu": 0.00706127,
+      "centerZMu": 0.00189477,
+      "radiusXMu": 0.06445513,
+      "radiusZMu": 0.04447041
+    },
+    {
+      "yMu": 0.05090781,
+      "centerXMu": -0.00364204,
+      "centerZMu": 0.00272112,
+      "radiusXMu": 0.0543946,
+      "radiusZMu": 0.04350849
+    },
+    {
+      "yMu": 0.05590781,
+      "centerXMu": -0.01125278,
+      "centerZMu": 0.00550032,
+      "radiusXMu": 0.05925473,
+      "radiusZMu": 0.04273984
+    },
+    {
+      "yMu": 0.06090781,
+      "centerXMu": -0.00689021,
+      "centerZMu": 0.00910563,
+      "radiusXMu": 0.05346398,
+      "radiusZMu": 0.0449472
+    },
+    {
+      "yMu": 0.06590781,
+      "centerXMu": -0.0079763,
+      "centerZMu": 0.00776704,
+      "radiusXMu": 0.05243117,
+      "radiusZMu": 0.04227393
+    },
+    {
+      "yMu": 0.07090781,
+      "centerXMu": -0.00676963,
+      "centerZMu": 0.00550799,
+      "radiusXMu": 0.04754541,
+      "radiusZMu": 0.03838024
+    },
+    {
+      "yMu": 0.07590781,
+      "centerXMu": -0.00114631,
+      "centerZMu": -0.00045592,
+      "radiusXMu": 0.045487,
+      "radiusZMu": 0.03784443
+    },
+    {
+      "yMu": 0.08090781,
+      "centerXMu": -0.00653026,
+      "centerZMu": 0.00608234,
+      "radiusXMu": 0.03864655,
+      "radiusZMu": 0.03150058
+    },
+    {
+      "yMu": 0.08590781,
+      "centerXMu": -0.01121382,
+      "centerZMu": 0.00060879,
+      "radiusXMu": 0.03402749,
+      "radiusZMu": 0.02656369
+    },
+    {
+      "yMu": 0.09090781,
+      "centerXMu": -0.00868618,
+      "centerZMu": 0.00362399,
+      "radiusXMu": 0.02397905,
+      "radiusZMu": 0.01738456
+    }
+  ]
+}

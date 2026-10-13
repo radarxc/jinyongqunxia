@@ -1,0 +1,29 @@
+test_duplicate_uv_island_vertices_stay_consistent (__main__.HideMaskTests.test_duplicate_uv_island_vertices_stay_consistent) ... ok
+test_eighty_mm_oblique_ray_hits_when_normal_misses (__main__.HideMaskTests.test_eighty_mm_oblique_ray_hits_when_normal_misses) ... ok
+test_final_png_matches_along_split_seam_edge_interior (__main__.HideMaskTests.test_final_png_matches_along_split_seam_edge_interior) ... ok
+test_first_hit_uses_its_own_opening_ring_geodesic (__main__.HideMaskTests.test_first_hit_uses_its_own_opening_ring_geodesic) ... ok
+test_jinzhuang_reports_have_zero_visible_bind_on_all_templates (__main__.HideMaskTests.test_jinzhuang_reports_have_zero_visible_bind_on_all_templates) ... ok
+test_never_hide_region_is_not_hidden (__main__.HideMaskTests.test_never_hide_region_is_not_hidden) ... ok
+test_opening_margin_fifteen_mm_is_not_hidden (__main__.HideMaskTests.test_opening_margin_fifteen_mm_is_not_hidden) ... ok
+test_opening_margin_wins_over_bind_penetration_patch (__main__.HideMaskTests.test_opening_margin_wins_over_bind_penetration_patch) ... ok
+test_overlapping_free_edge_keeps_inner_layer_covered (__main__.HideMaskTests.test_overlapping_free_edge_keeps_inner_layer_covered) ... ok
+test_sleeve_covered_segment_is_hidden (__main__.HideMaskTests.test_sleeve_covered_segment_is_hidden) ... ok
+test_validate_mask_file_and_legacy_absence (__main__.HideMaskTests.test_validate_mask_file_and_legacy_absence) ... ok
+test_validate_visible_penetration_counts_only_unhidden_surface (__main__.HideMaskTests.test_validate_visible_penetration_counts_only_unhidden_surface) ... ok
+test_depth_maps_converge_at_256_and_512 (__main__.TriangleRasterTests.test_depth_maps_converge_at_256_and_512) ... ok
+test_large_oblique_triangle_covers_inside_not_bbox_outside (__main__.TriangleRasterTests.test_large_oblique_triangle_covers_inside_not_bbox_outside) ... ok
+test_thirty_mm_opening_survives_at_256_and_512 (__main__.TriangleRasterTests.test_thirty_mm_opening_survives_at_256_and_512) ... ok
+test_camera_band_hides_torso_and_preserves_skin_below_hem (__main__.VisibilityMaskTests.test_camera_band_hides_torso_and_preserves_skin_below_hem) ... ok
+test_face_center_mask_hole_is_reported_when_vertices_are_clear (__main__.VisibilityMaskTests.test_face_center_mask_hole_is_reported_when_vertices_are_clear) ... ok
+test_fibonacci_is_uniform_in_camera_reachable_band (__main__.VisibilityMaskTests.test_fibonacci_is_uniform_in_camera_reachable_band) ... ok
+test_fully_enclosed_tube_body_is_hidden (__main__.VisibilityMaskTests.test_fully_enclosed_tube_body_is_hidden) ... ok
+test_hidden_body_with_garment_behind_is_not_a_background_hole (__main__.VisibilityMaskTests.test_hidden_body_with_garment_behind_is_not_a_background_hole) ... ok
+test_short_skirt_hem_below_body_stays_visible (__main__.VisibilityMaskTests.test_short_skirt_hem_below_body_stays_visible) ... ok
+test_synthetic_hole_count_is_zero (__main__.VisibilityMaskTests.test_synthetic_hole_count_is_zero) ... ok
+test_unhidden_backface_does_not_fill_front_body_hole (__main__.VisibilityMaskTests.test_unhidden_backface_does_not_fill_front_body_hole) ... ok
+test_walk_body_piercing_front_stays_hidden_below_hem_stays_visible (__main__.VisibilityMaskTests.test_walk_body_piercing_front_stays_hidden_below_hem_stays_visible) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 41.396s
+
+OK

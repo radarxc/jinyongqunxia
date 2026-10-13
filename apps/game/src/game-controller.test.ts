@@ -56,6 +56,31 @@ describe('game controller engine failure boundary', () => {
   });
 });
 
+describe('game controller world tick holds', () => {
+  it('counts same-reason holds independently and makes each release idempotent', () => {
+    const controller = createGameController(failingHost(), useUiStore(createPinia()));
+    controller.loading.value = false; controller.setSceneRunsWorldTicks(true);
+    expect(controller.canRunWorldTicks()).toBe(true);
+    const releaseFirst = controller.holdWorldTicks('areaMap');
+    const releaseSecond = controller.holdWorldTicks('areaMap');
+    expect(controller.canRunWorldTicks()).toBe(false);
+    releaseFirst(); releaseFirst();
+    expect(controller.canRunWorldTicks()).toBe(false);
+    releaseSecond();
+    expect(controller.canRunWorldTicks()).toBe(true);
+    controller.dispose();
+  });
+
+  it('clears all holds on dispose and late release remains safe', () => {
+    const controller = createGameController(failingHost(), useUiStore(createPinia()));
+    controller.loading.value = false; controller.setSceneRunsWorldTicks(true);
+    const release = controller.holdWorldTicks('areaMap');
+    controller.dispose();
+    expect(controller.canRunWorldTicks()).toBe(false);
+    expect(() => { release(); release(); }).not.toThrow();
+  });
+});
+
 describe('game controller battle loading lifecycle', () => {
   it('discards a late load and lets the replacement host create the battle controller', async () => {
     const create = vi.fn((host: GameHost) => createBattleController(host, {

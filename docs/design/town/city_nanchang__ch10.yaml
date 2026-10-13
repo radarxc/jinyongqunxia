@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_nanchang"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "洪州·南昌县治（702年推定）"
+display_name: 洪州（豫章县）
 historical_year: 702
 era_kit: "tang"
 seed: 2212516681

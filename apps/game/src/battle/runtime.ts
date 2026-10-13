@@ -1,6 +1,5 @@
-import { createBattleSession, peekReadyUnitId, projectBattleRewards, queryBattleSubdue,
-  type BattleEvent, type BattleSessionState, type BattleState, type EncounterBuildContext,
-  type EncounterBuildResult } from '@tianshu/core/battle';
+import { createBattleSession, peekReadyUnitId, projectBattleRewards, type BattleEvent, type BattleSessionState,
+  type BattleState, type EncounterBuildContext, type EncounterBuildResult } from '@tianshu/core/battle';
 import type { BattleBusActCommand, BattleSetAutoBusCommand } from '@tianshu/core';
 import type { BattleLaunch, BattlePacket, BattleUiCommand, BattleUnitView, MovePlayback } from './contracts';
 import type { GameContent } from '../runtime/content';
@@ -89,13 +88,6 @@ export class BattleRuntime {
       units: full ? [...this.views.values()] : changed, actorId,
       tick: battle.tick, round: battle.round, actionNo: battle.actionNo,
       timeline: queryTimeline(battle), auto: this.session.auto, preview: this.preview, result: battle.result,
-      demonstrationReplayId: [...battle.events].reverse().find((event) =>
-        event.t === 'battle/demonstrationOffered')?.message ?? null,
-      subdueActorId: battle.units.find((unit) => unit.active && unit.control === 'player')?.id ?? null,
-      subdueTargetIds: this.session.battle.units.filter((target) => {
-        const actor = battle.units.find((unit) => unit.active && unit.control === 'player')?.id;
-        return actor !== undefined && queryBattleSubdue(this.session!, actor, target.id).enabled;
-      }).map((target) => target.id),
       rewards: rewards === null ? null : { ...rewards, martial: null,
         cycles: rewards.fullCirculations.reduce((sum, entry) => sum + entry.count, 0) },
       ...(resolved ? { resolved } : {}) };
@@ -109,9 +101,13 @@ export class BattleRuntime {
     const localEvents = this.session.battle.events.slice(eventOffset);
     const actor = move && action?.t === 'battle/act'
       ? this.session.battle.units.find(unit => unit.id === action.actor) : undefined;
-    const targets = move ? localEvents.filter(event =>
+    const targetUnitId = typeof move?.target === 'string' ? move.target : undefined;
+    let targets = move ? localEvents.filter(event =>
       event.t === 'battle/damageResolved' && event.target).flatMap(event =>
       this.session!.battle.units.filter(unit => unit.id === event.target)) : [];
+    if (targets.length === 0 && targetUnitId) {
+      targets = this.session!.battle.units.filter(unit => unit.id === targetUnitId);
+    }
     const resolved = move && actor ? { moveId: move.move, from: projectBattleUnit(actor, this.launch),
       to: targets.map(unit => projectBattleUnit(unit, this.launch)), result: {
         actionNo: this.session.battle.actionNo, hpDamage: localEvents.filter(event =>
@@ -149,38 +145,25 @@ export class BattleRuntime {
   }
 
   coreCommand(input: Exclude<BattleUiCommand, { t: 'battle/enter' | 'battle/demo' |
-    'battle/leave' | 'battle/preview' }>): BattleBusActCommand | BattleSetAutoBusCommand |
-      { readonly t: 'battle/retry'; readonly option: 'restart'; readonly expectedRevision: number } |
-      { readonly t: 'battle/concede'; readonly expectedRevision: number } |
-      { readonly t: 'battle/subdue'; readonly actor: string; readonly target: string;
-        readonly expectedRevision: number } |
-      { readonly t: 'battle/demonstration'; readonly replayId: string; readonly expectedRevision: number } {
+    'battle/leave' | 'battle/preview' }>): BattleBusActCommand | BattleSetAutoBusCommand {
     if (this.session === null) throw new Error('BATTLE_NOT_ACTIVE');
     if (input.t === 'battle/auto') return { t: 'battle/setAuto',
       mode: input.enabled ? 'auto' : 'manual', expectedRevision: this.session.revision };
     if (input.t === 'battle/step') return { t: 'battle/act', automatic: true,
-      expectedRevision: input.revision };
-    if (input.t === 'battle/retry') return { t: 'battle/retry', option: 'restart',
-      expectedRevision: input.revision };
-    if (input.t === 'battle/concede') return { t: 'battle/concede',
-      expectedRevision: input.revision };
-    if (input.t === 'battle/subdue') return { t: 'battle/subdue', actor: input.actor,
-      target: input.target, expectedRevision: input.revision };
-    if (input.t === 'battle/demonstration') return { t: 'battle/demonstration',
-      replayId: input.replayId, expectedRevision: input.revision };
+      expectedRevision: input.revision ?? this.session.revision };
     if (input.t === 'battle/wait') return { t: 'battle/act', actor: input.actor,
       action: { t: 'wait' }, ...(input.walkTo === undefined ? {} : { walkTo: input.walkTo }),
-      expectedRevision: input.revision };
+      expectedRevision: input.revision ?? this.session.revision };
     if (input.t === 'battle/move') return { t: 'battle/act', actor: input.actor,
-      walkTo: input.destination, action: { t: 'wait' }, expectedRevision: input.revision };
+      walkTo: input.destination, action: { t: 'wait' }, expectedRevision: input.revision ?? this.session.revision };
     if (input.t === 'battle/item') return { t: 'battle/act', actor: input.actor,
       action: { t: 'item', item: input.itemId, target: input.targetId },
-      ...(input.walkTo === undefined ? {} : { walkTo: input.walkTo }), expectedRevision: input.revision };
+      ...(input.walkTo === undefined ? {} : { walkTo: input.walkTo }), expectedRevision: input.revision ?? this.session.revision };
     if (input.t === 'battle/defend') return { t: 'battle/act', actor: input.actor,
       action: { t: 'guard' }, ...(input.walkTo === undefined ? {} : { walkTo: input.walkTo }),
-      expectedRevision: input.revision };
+      expectedRevision: input.revision ?? this.session.revision };
     if (input.t === 'battle/gather') return { t: 'battle/act', actor: input.actor,
-      action: { t: 'acuteQiGather', routeRef: input.routeId }, expectedRevision: input.revision };
+      action: { t: 'acuteQiGather', routeRef: input.routeId }, expectedRevision: input.revision ?? this.session.revision };
     const preview = input.preview;
     if (preview.revision !== this.session.revision || this.preview?.requestId !== preview.requestId)
       throw new Error('BATTLE_STALE_PREVIEW');
@@ -191,7 +174,7 @@ export class BattleRuntime {
     const anchorUnit = this.session.battle.units.find(unit => unit.pos.q === area.anchor.q
       && unit.pos.r === area.anchor.r);
     const target = move?.target === 'tile' ? area.anchor : move?.target === 'self'
-      ? actor?.id : anchorUnit?.id;
+      ? actor?.id : (anchorUnit?.id ?? area.targetIds[0]);
     if (actor === undefined || move === undefined || target === undefined)
       throw new Error('BATTLE_TARGET_INVALID');
     return { t: 'battle/act', actor: actor.id,

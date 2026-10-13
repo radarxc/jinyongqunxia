@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_nanning"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "邕州·宣化旧治候选（702年推定）"
+display_name: 邕州（宣化县）
 historical_year: 702
 era_kit: "tang"
 seed: 1680955418

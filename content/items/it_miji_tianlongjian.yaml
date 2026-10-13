@@ -3,7 +3,7 @@ id: it_miji_tianlongjian
 name: 天龙门剑谱原本
 kind: manual
 sub: original
-grade: 6
+grade: 5
 stack: 1
 chapters: any
 origin: canon
@@ -25,6 +25,6 @@ extension:
     attributes:
       version: 2
       skillRef: sk_tianlongjian
-      readWis: 40
+      readWis: 35
       maxLayer: 10
-      cultivation: 2000
+      cultivation: 1600

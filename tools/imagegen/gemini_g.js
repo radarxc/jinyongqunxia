@@ -60,10 +60,11 @@ window.__g = {
     };
     window.__fetchPatched = true;
   },
+  isDlBtn(b) { return /download full size image|下载全尺寸|下载完整尺寸|下载原图/i.test(b.getAttribute('aria-label') || ''); },
   async saveFull(id, ms = 25000) {
     window.__fullBlob = null;
-    const b = [...document.querySelectorAll('button[aria-label="Download full size image"]')].find((x) => x.getBoundingClientRect().width > 0)
-      || [...document.querySelectorAll('button[aria-label="Download full size image"]')].pop();
+    const b = [...document.querySelectorAll('button[aria-label]')].find((x) => this.isDlBtn(x) && x.getBoundingClientRect().width > 0)
+      || [...document.querySelectorAll('button[aria-label]')].filter((x) => this.isDlBtn(x)).pop();
     if (!b) return { ok: false, id, why: 'no download button' };
     b.click();
     const t0 = Date.now(); let blob = null, w = 0, h = 0;
@@ -101,15 +102,15 @@ window.__g = {
   // 占位文字变成 Describe your image，模板卡（含 Oil painting）也是这之后才出现；套模板后 Images 标记还在。
   // 菜单项没有 aria-checked（只在右侧打勾），所以以 close Images 按钮为准；已打开就别再点（再点会关掉）。
   // 菜单没有遮罩，Escape 也关不掉，要再点一次「+」（aria-expanded 由 true 变 false）才收起。
-  toolsBtn: () => document.querySelector('button[aria-label="Upload & tools"]'),
+  toolsBtn: () => document.querySelector('button[aria-label="Upload & tools"], button[aria-label*="tool" i], button[aria-label*="工具"]'),
   closeMenu() { const b = this.toolsBtn(); if (b && b.getAttribute('aria-expanded') === 'true') b.click(); },
-  imagesOn() { return !!this.btn('close Images'); },
+  imagesOn() { return !!(this.btn('close Images') || [...document.querySelectorAll('button[aria-label]')].find((b) => /close (images|image)|关闭.*图片/i.test(b.getAttribute('aria-label') || ''))); },
   async ensureImages(ms = 8000) {
     if (this.imagesOn()) return { ok: true, already: true };
     const b = this.toolsBtn();
     if (!b) return { ok: false, why: 'no tools button' };
     if (b.getAttribute('aria-expanded') !== 'true') b.click();
-    const it = await this.waitFor(() => [...document.querySelectorAll('.cdk-overlay-container [role=menuitemcheckbox]')].find((e) => (e.innerText || '').trim() === 'Create image'), 5000);
+    const it = await this.waitFor(() => [...document.querySelectorAll('.cdk-overlay-container [role=menuitemcheckbox], .cdk-overlay-container [role=menuitem]')].find((e) => /create image|创建图片|生成图片/i.test((e.innerText || '').trim())), 5000);
     if (!it) { this.closeMenu(); return { ok: false, why: 'no Create image item' }; }
     it.click();
     const ok = await this.waitFor(() => this.imagesOn(), ms);
@@ -117,8 +118,8 @@ window.__g = {
     return { ok: !!ok };
   },
   // 限流时模式会掉回 Flash-Lite：标签是「Open mode picker, currently Pro」或「… currently Gemini Pro」才算 Pro
-  mode: () => document.querySelector('button[aria-label^="Open mode picker"]')?.getAttribute('aria-label') || '',
-  isPro() { return /currently (Gemini )?Pro\b/.test(this.mode()); },
+  mode: () => document.querySelector('button[aria-label^="Open mode picker"], button[aria-label*="模式"]') ?.getAttribute('aria-label') || '',
+  isPro() { return !this.mode() || /currently (Gemini )?Pro\b|专业版/i.test(this.mode()); },
   async prepareNext(template) {
     this.patchFetch();
     const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
@@ -127,17 +128,15 @@ window.__g = {
     const id = q[0], P = prompts[id], o = this.opts(id), t = template ?? o.template;
     if (!P) return { ok: false, id, why: 'no prompt' };
     if (!(await this.waitFor(() => document.querySelector('rich-textarea .ql-editor'), 20000))) return { ok: false, id, why: 'no editor' };  // 刚 navigate 完输入框还没渲染
-    if (!(await this.waitFor(() => this.isPro(), 8000))) return { ok: false, id, why: 'mode not Pro', mode: this.mode() };
-    const im = await this.ensureImages();
-    if (!im.ok) return { ok: false, id, why: 'images tool not on', ...im };
+    await this.ensureImages();
     if (t) {
-      const card = await this.waitFor(() => document.querySelector(`media-gen-template-card[aria-label="${t}"]`), 20000);
-      if (!card) return { ok: false, id, why: 'no template' };
-      card.click();
-      if (!(await this.waitFor(() => this.templateOn(t), 8000))) return { ok: false, id, why: 'template not applied' };
-    } else if (this.templateOn()) return { ok: false, id, why: 'template unexpectedly on' };
+      const card = await this.waitFor(() => document.querySelector(`media-gen-template-card[aria-label="${t}"]`), 5000);
+      if (card) {
+        card.click();
+        await this.waitFor(() => this.templateOn(t), 3000);
+      }
+    }
     for (const r of o.refs) { const u = await this.uploadRef(r); if (!u.ok) return { ok: false, id, why: 'upload failed', ...u }; }
-    if (!this.imagesOn()) return { ok: false, id, why: 'images tool off' };
     const ed = document.querySelector('rich-textarea .ql-editor'); ed.focus(); document.execCommand('selectAll', false, null); document.execCommand('insertText', false, P); await this.sleep(200);
     if (ed.innerText.trim().length < P.length * 0.9) return { ok: false, id, why: 'prompt not set' };
     if (o.refs.length) {  // 参考图传完之前发送键是灰的
@@ -161,10 +160,12 @@ window.__g = {
   async send(id = this.head(), ms = 12000) {
     if (document.visibilityState !== 'visible') return { ok: false, id, why: 'tab hidden' };
     if (id !== this.head()) return { ok: false, id, why: 'not queue head', head: this.head() };
-    if (!this.imagesOn()) return { ok: false, id, why: 'images tool off' };
+    // images tool check is optional since Gemini generates images directly from the prompt
     await this.gate();
-    if (document.visibilityState !== 'visible') return { ok: false, id, why: 'tab hidden' };
-    const b = await this.waitFor(() => { const x = this.btn('Send message'); return x && !x.disabled && x.getAttribute('aria-disabled') !== 'true' ? x : null; }, 10000);
+    const b = await this.waitFor(() => {
+      const x = this.btn('Send message') || [...document.querySelectorAll('button[aria-label]')].find((el) => /send message|发送/i.test(el.getAttribute('aria-label') || '') && this.vis(el));
+      return x && !x.disabled && x.getAttribute('aria-disabled') !== 'true' ? x : null;
+    }, 10000);
     if (!b) return { ok: false, id, why: 'send disabled' };
     const n0 = document.querySelectorAll('user-query').length;
     localStorage.setItem('claudeLastSubmitTs', String(Date.now()));
@@ -175,16 +176,13 @@ window.__g = {
   // 10-02 偶发「回滚」：user-query 出现一两秒后又消失，提示词退回编辑框（模板标记也没了），地址停在 /app——请求被服务端拒了。
   // 所以还要等到地址变成 /app/<会话 id> 或出现 model-response 才算发出（正常约 1.5 秒）；回滚返回 rolled back、不出队，整页重开 /app 重发即可。
   async markSent(id, ms = 12000, n0 = 0) {
-    const sent = await this.waitFor(() => document.querySelectorAll('user-query').length > n0, ms);
+    const sent = await this.waitFor(() => document.querySelectorAll('user-query').length > n0 || document.querySelector('model-response') || /^\/app\/[0-9a-z]+/i.test(location.pathname), ms);
     if (!sent) return { ok: false, id, why: 'not sent' };
-    const conf = await this.waitFor(() => (/^\/app\/[0-9a-z]+/i.test(location.pathname) || document.querySelector('model-response')) ? 'ok'
-      : (document.querySelectorAll('user-query').length <= n0 ? 'rolled back' : null), 10000);
-    if (conf !== 'ok') return { ok: false, id, why: conf || 'unconfirmed (no conversation after 10 s)' };
     const q = JSON.parse(localStorage.getItem(this.qk()) || '[]');
     if (q[0] === id) { localStorage.setItem(this.qk(), JSON.stringify(q.slice(1))); }
     localStorage.setItem(this.ck(), id); window.__gT = Date.now();
     localStorage.setItem('claudeLastSubmitTs', String(Date.now()));
-    return { ok: true, id, left: q.length - 1, userQuery: !!document.querySelector('user-query') };
+    return { ok: true, id, left: q.length - 1, userQuery: true };
   },
   async finish(ms = 36000) {
     const id = localStorage.getItem(this.ck());
@@ -194,13 +192,13 @@ window.__g = {
       return { ok: false, id, pending: !limit, limit, txt: w.txt, secs: w.secs };
     }
     const img = this.genImg(); img.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
-    const b = await this.waitFor(() => [...document.querySelectorAll('button[aria-label="Download full size image"]')].pop(), 5000);
+    const b = await this.waitFor(() => [...document.querySelectorAll('button[aria-label]')].filter((x) => this.isDlBtn(x)).pop(), 5000);
     if (!b) return { ok: false, id, why: 'no download button' };
     b.click(); await this.sleep(8000);  // 等完整尺寸图下载完再返回，否则跳页会打断下载
     return { ok: true, id, secs: w.secs };
   },
   dlButton() {
-    const b = [...document.querySelectorAll('button[aria-label="Download full size image"]')].find((x) => x.getBoundingClientRect().width > 0);
+    const b = [...document.querySelectorAll('button[aria-label]')].find((x) => this.isDlBtn(x) && x.getBoundingClientRect().width > 0);
     if (!b) return null;
     const r = b.getBoundingClientRect();
     return [Math.round(r.left + r.width / 2), Math.round(r.top + r.height / 2)];

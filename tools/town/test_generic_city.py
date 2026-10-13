@@ -74,7 +74,8 @@ class GenericCityTests(unittest.TestCase):
         self.assert_generates(spec)
 
     def test_tubo_uses_regional_buddhist_hall(self):
-        spec = self.spec("city_yushu", "northern_song")
+        # Yushu has no town in 1093 (docs/design/map/history/northern_song.md); its Ming chapters are open.
+        spec = self.spec("city_yushu", "ming")
         self.assertEqual(spec["era_kit"], "tubo")
         self.assertIn("bld_kit_tubo_temple_hall",
                       {q["type"] for q in spec["building_quotas"]})

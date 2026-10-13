@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { Ray, Vector3 } from 'three';
+import { OrthographicCamera, Ray, Vector3 } from 'three';
 import { createTownHeightPicker, planningCellCenterToTownWorld, planningToTownPixels, planningToTownWorld,
-  townCameraOffset, townHexToWorld, townWorldToHex, townWorldToPlanningCell } from './projection';
+  townCameraOffset, townHexToWorld, townWorldToHex, townWorldToPlanningCell,
+  writeCameraGroundQuad } from './projection';
 
 describe('town 45 degree projection', () => {
   it('matches the offline renderer formula including elevation displacement', () => {
@@ -48,5 +49,27 @@ describe('town 45 degree projection', () => {
     const horizontal = Math.hypot(offset.x, offset.z);
     expect(Math.atan2(offset.y, horizontal) * 180 / Math.PI).toBeCloseTo(30);
     expect(offset.x).toBe(offset.z);
+  });
+
+  it('writes orthographic viewport intersections into the caller buffer without replacing it', () => {
+    const camera = new OrthographicCamera(-2, 2, 1, -1, 0.1, 200);
+    camera.position.copy(townCameraOffset(42, new Vector3()));
+    camera.lookAt(0, 0, 0); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
+    const out = new Float32Array(8); const identity = out;
+    expect(writeCameraGroundQuad(camera, 0, out)).toBe(true);
+    expect(out).toBe(identity);
+    const root2 = Math.sqrt(2);
+    const expected = [-2 * root2, 0, 0, -2 * root2, 2 * root2, 0, 0, 2 * root2];
+    expected.forEach((value, index) => expect(out[index]).toBeCloseTo(value, 6));
+    const first = Array.from(out);
+    expect(writeCameraGroundQuad(camera, 0, out)).toBe(true);
+    expect(Array.from(out)).toEqual(first);
+  });
+
+  it('rejects a ray plane that is parallel or faces away from the ground', () => {
+    const camera = new OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+    camera.position.set(0, 2, 0); camera.lookAt(0, 2, -1);
+    camera.updateProjectionMatrix(); camera.updateMatrixWorld();
+    expect(writeCameraGroundQuad(camera, 0, new Float32Array(8))).toBe(false);
   });
 });

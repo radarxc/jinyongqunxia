@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_tangcaolvsucairuqun_nv",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/clothing/eq_tangcaolvsucairuqun_nv.png",
+  "generatedAt": "2026-10-07T19:25:05.478Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 131980,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/c7227671-9c41-482b-abe0-3bca02707cf8/multiview_0_c7227671-9c41-482b-abe0-3bca02707cf8.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 105536,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/c7227671-9c41-482b-abe0-3bca02707cf8/multiview_1_c7227671-9c41-482b-abe0-3bca02707cf8.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 108409,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/c7227671-9c41-482b-abe0-3bca02707cf8/multiview_3_c7227671-9c41-482b-abe0-3bca02707cf8.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 120830,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/c7227671-9c41-482b-abe0-3bca02707cf8/multiview_2_c7227671-9c41-482b-abe0-3bca02707cf8.jpeg"
+    }
+  }
+}

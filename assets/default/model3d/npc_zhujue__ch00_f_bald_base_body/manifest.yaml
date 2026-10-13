@@ -1,0 +1,170 @@
+- id: npc_zhujue__ch00_f_bald_base_body__model_rig
+  file: model_rig.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 0e8cd219-a69e-48cd-83dc-0199e5037404
+    url: https://studio.tripo3d.ai/workspace/generate/0e8cd219-a69e-48cd-83dc-0199e5037404
+    generate_op: f45ac1c2-c292-48a8-a420-025cd3469c26（image_to_model）
+    rig_op: 6f1f9dea-19fb-4206-8f13-e3abe61fd73e
+    animation_ops:
+      idle: db124f9e-12ac-49eb-83c4-38e8b266e977
+      walk: 4de828c0-52d2-474f-af27-83bcd6627dba
+      run: d07f8c08-7ad9-4fbc-adda-a32082325fed
+    replaces:
+      project_id: 80466684-cc15-425d-90ff-3ac7f55b4e8d
+      commit: fd4d53f5d
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610061108/
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations: 0
+  credits:
+    generate: 65
+    rig: 20
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
+    sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
+    use: 单图生成输入（A 字姿势全身参考）
+  sha256: c115335fd7d5a06f5bf3f320b9a402b1dbe563929a446434de42ef786bf655c1
+  size_bytes: 8972700
+  joints: 65
+  triangles: 194876
+  vertices: 104219
+  animations: []
+  textures:
+  - image/jpeg 235017 B
+  - image/jpeg 554249 B
+  - image/jpeg 401945 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-06T11:08:02-07:00'
+  status: candidate
+  notes: 绑骨后基础模型（无动画）。单图A-pose无发素体；瓷白无眼影眼眸消除3D挑棚；8.77头身；薄透抹胸三角裤；猎豹腿；Mixamo 65关节；修跑步跳位；关节体检（ingest.py）：髋 y0.561、头 y0.894、头顶骨端 y1.031、双手 y0.614/0.616 外展 0.249/0.249、脚 y0.075/0.075。
+- id: npc_zhujue__ch00_f_bald_base_body__anim_idle_walk_run
+  file: anim_idle_walk_run.glb
+  category: model3d
+  style: default
+  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚）
+  tool: tripo-studio-web
+  model_version: v3.1-20260211（生成）/ v3.0-20260909（绑骨）
+  tripo_model:
+    project_id: 0e8cd219-a69e-48cd-83dc-0199e5037404
+    url: https://studio.tripo3d.ai/workspace/generate/0e8cd219-a69e-48cd-83dc-0199e5037404
+    generate_op: f45ac1c2-c292-48a8-a420-025cd3469c26（image_to_model）
+    rig_op: 6f1f9dea-19fb-4206-8f13-e3abe61fd73e
+    animation_ops:
+      idle: db124f9e-12ac-49eb-83c4-38e8b266e977
+      walk: 4de828c0-52d2-474f-af27-83bcd6627dba
+      run: d07f8c08-7ad9-4fbc-adda-a32082325fed
+    replaces:
+      project_id: 80466684-cc15-425d-90ff-3ac7f55b4e8d
+      commit: fd4d53f5d
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610061108/
+  options:
+    generate:
+      ai_model: HD Model · H3.1 Best Quality (v3.1-20260211)
+      geometry_quality: detailed（Ultra Mesh Quality）
+      texture: true
+      texture_quality: extreme（8K 生成）
+      pbr: true
+      delight: true
+      topology: triangle
+      face_limit: 100000
+      texture_alignment: original_image
+      generate_parts: false
+      ai_complete: false
+      visibility: private
+      input: 单图（A 字姿势全身参考）
+    rig:
+      rigging_type: Humanoid（biped）
+      skeleton_preset: Mixamo（mixamorig:*）
+      rig_model_version: v3.0-20260909
+    animation:
+      presets:
+      - preset:biped:idle
+      - preset:biped:walk
+      - preset:biped:run
+    export:
+      format: GLB
+      texture_resolution: 2k
+      export_skeleton: true
+      animations:
+      - walk
+      - run
+      - idle
+      stay_in_place: true
+  credits:
+    animation_preset: 0
+    export: 0
+  references:
+  - path: assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png
+    sha256: 494221a8b3d0df8790a9a9c38c4e06a0cf39aca1c75224d2a6ac2cd71582a23c
+    use: 单图生成输入（A 字姿势全身参考）
+  sha256: b755d8b618afd5018d0ff8a593e6f0a82826d117fe99331248648d306f9e4da1
+  size_bytes: 9452624
+  joints: 65
+  triangles: 194876
+  vertices: 104219
+  animations:
+  - walk (2.333s)
+  - run (1.25s)
+  - idle (15.333s)
+  textures:
+  - image/jpeg 235017 B
+  - image/jpeg 554249 B
+  - image/jpeg 401945 B
+  preview: preview.png
+  visibility: private
+  created: '2026-10-06T11:08:02-07:00'
+  status: candidate
+  notes: 动作单文件：一个 GLB 内含 walk / run / idle，同一套网格 + 65 关节骨架，原地（Animation stay in Place 开）。
+- id: npc_zhujue__ch00_f_bald_base_body__preview
+  file: preview.png
+  category: model3d
+  style: default
+  subject: 主角（女）· 光头素体基底版（AR-99 瓷白眼眸修复挑棚） · 3D 预览
+  tool: tripo-studio-web（Tripo 封面渲染）
+  tripo_model:
+    project_id: 0e8cd219-a69e-48cd-83dc-0199e5037404
+    url: https://studio.tripo3d.ai/workspace/generate/0e8cd219-a69e-48cd-83dc-0199e5037404
+    generate_op: f45ac1c2-c292-48a8-a420-025cd3469c26（image_to_model）
+    rig_op: 6f1f9dea-19fb-4206-8f13-e3abe61fd73e
+    animation_ops:
+      idle: db124f9e-12ac-49eb-83c4-38e8b266e977
+      walk: 4de828c0-52d2-474f-af27-83bcd6627dba
+      run: d07f8c08-7ad9-4fbc-adda-a32082325fed
+    replaces:
+      project_id: 80466684-cc15-425d-90ff-3ac7f55b4e8d
+      commit: fd4d53f5d
+      backup: .agents/coord/ART-3d-tripo-web/replaced/npc_zhujue__ch00_f_bald_base_body__202610061108/
+  size: 600x778
+  sha256: 57b903fb467a6f3114fddb0fcc8a6770328cb73d8fca48b243bbd8c9024afcf9
+  size_bytes: 84925
+  created: '2026-10-06T11:08:02-07:00'
+  status: candidate
+  notes: Tripo 绑骨后自带的封面渲染 studio_mesh（正面、白底、600×778），由 tripo_web.js preview() 取回，转 RGB PNG（长边 ≤ 1024）。

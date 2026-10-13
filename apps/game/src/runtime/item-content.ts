@@ -1,12 +1,12 @@
 import type { ContentSource } from '@tianshu/data';
 import type { JsonValue } from '@tianshu/shared';
 import { ChapterDefSchema, EventDefSchema, NpcAppearanceSchema, NpcIdSchema,
-  RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema,
+  QuestDefSchema, RegionBindingLeafSchema, RegionMapSchema, WorldMapDefinitionSchema,
   type ChapterDef, type EventDef, type QuestDef, type RegionMap,
-  type WorldMapRuntimeDefinition } from '@tianshu/data/item-content';
+  type WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { RegionDialogueBinding, RegionGateBinding, RegionLootBinding } from '@tianshu/core';
-import type { AssetMap, ChapterAssetLoader, ChapterRuntimeLeaf, GameBattleRow, GameContent,
-  GameEncounterDef, GameNpcDef, StaticGameContent } from './content';
+import type { AssetMap, ChapterAssetLoader, ChapterRuntimeLeaf, GameContent, GameEncounterDef, GameNpcDef,
+  StaticGameContent } from './content';
 
 export const ITEM_CONTENT_CHAPTER = 'ch00_yuenv';
 export const ITEM_TEXT_PLACEHOLDER = '正文载入中……';
@@ -35,19 +35,12 @@ function itemRuleName(name: string): boolean {
 function chapterRuleName(name: string, chapter: string): boolean {
   return name.startsWith(`${chapter.slice(0, 4)}.rules.base`) && name.endsWith('.json');
 }
-function commonRuleName(name: string): boolean {
-  return name.startsWith('common.rules.base') && name.endsWith('.json');
-}
-function roleRuleName(name: string, chapter: string): boolean {
-  return name.startsWith(`${chapter.slice(0, 4)}.rules.roles`) && name.endsWith('.json');
-}
 function worldRuleName(name: string, chapter: string): boolean {
   return name === `world.rules.era.${chapter.slice(0, 4)}.json`;
 }
 function chapterTextName(name: string, chapter: string): boolean {
-  return (name.startsWith(`${chapter.slice(0, 4)}.text.zh-Hans.base`) ||
-    name.startsWith('common.text.zh-Hans')) && name.endsWith('.json') &&
-    !itemTextName(name, 'zh-Hans');
+  return name.startsWith(`${chapter.slice(0, 4)}.text.zh-Hans.base`) &&
+    name.endsWith('.json');
 }
 function record(value: unknown, code: string): Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value))
@@ -57,12 +50,11 @@ function record(value: unknown, code: string): Record<string, unknown> {
 function chapterText(leaves: Readonly<Record<string, unknown>>): Readonly<Record<string, string>> {
   const text: Record<string, string> = {};
   for (const [name, leaf] of Object.entries(leaves)) {
-    if (!name.includes('.text.zh-Hans')) continue;
+    if (!name.includes('.text.zh-Hans.base')) continue;
     for (const [key, value] of Object.entries(record(leaf, 'CONTENT_CHAPTER_TEXT_INVALID'))) {
       // Compiled Ink JSON shares this leaf; only scalar display strings are runtime text.
       if (typeof value !== 'string') continue;
-      if (text[key] !== undefined && text[key] !== value)
-        throw new TypeError(`CONTENT_CHAPTER_TEXT_INVALID:${key}`);
+      if (text[key] !== undefined) throw new TypeError(`CONTENT_CHAPTER_TEXT_INVALID:${key}`);
       text[key] = value;
     }
   }
@@ -89,8 +81,7 @@ function chapterDefs(leaves: Readonly<Record<string, unknown>>): readonly Chapte
 }
 function eventDefs(leaves: Readonly<Record<string, unknown>>): readonly EventDef[] {
   return ruleRows(leaves).flatMap((entry) =>
-    entry.kind === 'event' && (entry.value as { schemaVersion?: unknown })?.schemaVersion === 'event.v1' &&
-      (entry.value as { event?: unknown })?.event !== 'world/mapRegistered'
+    entry.kind === 'event' && (entry.value as { event?: unknown })?.event !== 'world/mapRegistered'
       ? [EventDefSchema.parse(entry.value)] : []);
 }
 function runtimeNpc(value: unknown, text: Readonly<Record<string, string>>): GameNpcDef {
@@ -138,8 +129,12 @@ WorldMapRuntimeDefinition {
   const roads = Array.isArray(compiled['roads'])
     ? compiled['roads'].map((road) => ({ ...record(road, 'CONTENT_CHAPTER_WORLDMAP_INVALID'), note: '' }))
     : compiled['roads'];
+  const sects = Array.isArray(compiled['sects']) ? compiled['sects'].map((value) => {
+    const sect = record(value, 'CONTENT_CHAPTER_WORLDMAP_INVALID');
+    return { ...sect, name: textValue(sect['name'], text, true), siteName: textValue(sect['siteName'], text, true) };
+  }) : compiled['sects'];
   const parsed = WorldMapDefinitionSchema.parse({ ...compiled,
-    name: textValue(compiled['name'], text, true), nodes, roads,
+    name: textValue(compiled['name'], text, true), nodes, roads, ...(sects === undefined ? {} : { sects }),
     travel: { ...record(compiled['travel'], 'CONTENT_CHAPTER_WORLDMAP_INVALID'), note: '' },
     sources: [] });
   if (registration['chapterId'] !== parsed.chapterId ||
@@ -170,18 +165,9 @@ function chapterRuntime(leaves: Readonly<Record<string, unknown>>, chapter: stri
     throw new TypeError('CONTENT_CHAPTER_RUNTIME_MISMATCH');
   return { npcs, worldMaps };
 }
-function questDefs(leaves: Readonly<Record<string, unknown>>, chapter: string): readonly QuestDef[] {
-  const quests: QuestDef[] = []; const ids = new Set<string>();
-  for (const entry of ruleRows(leaves)) {
-    if (entry.kind !== 'quest') continue;
-    const value = record(entry.value, 'CONTENT_QUEST_ENVELOPE_INVALID');
-    const id = value['id'];
-    if (value['schemaVersion'] !== 'quest.v1' || typeof id !== 'string' ||
-        !/^q_[a-z0-9]+(?:_[a-z0-9]+)*$/u.test(id) || value['chapterId'] !== chapter || ids.has(id))
-      throw new TypeError(`CONTENT_QUEST_ENVELOPE_INVALID:${String(id)}`);
-    ids.add(id); quests.push(value as unknown as QuestDef);
-  }
-  return quests;
+function questDefs(leaves: Readonly<Record<string, unknown>>): readonly QuestDef[] {
+  return ruleRows(leaves).flatMap((entry) =>
+    entry.kind === 'quest' ? [QuestDefSchema.parse(entry.value)] : []);
 }
 function encounterDefs(leaves: Readonly<Record<string, unknown>>, chapter: string):
 readonly GameEncounterDef[] {
@@ -205,32 +191,6 @@ function validateEncounterReferences(quests: readonly QuestDef[],
   for (const quest of quests) for (const id of quest.encounterIds)
     if (!ids.has(id as `enc_${string}`))
       throw new TypeError(`CONTENT_ENCOUNTER_REF_MISSING:${quest.id}:${id}`);
-}
-/**
- * Encounter resolver inputs are battle-only (AR-64): like encounters, they stay build-validated
- * JSON here and `encounter-runtime.ts` runs the full schemas after a battle is requested. Load time
- * only settles ids, chapter ownership and display text (move names need the chapter text leaves).
- */
-function encounterResolverRows(leaves: Readonly<Record<string, unknown>>, chapter: string):
-Pick<GameContent, 'templates' | 'roleSlots' | 'moves'> {
-  const templates: GameBattleRow[] = []; const roleSlots: GameBattleRow[] = [];
-  const moves: GameBattleRow[] = [];
-  const text = chapterText(leaves);
-  for (const entry of ruleRows(leaves)) {
-    if (entry.kind !== 'characterTemplate' && entry.kind !== 'roleSlot' && entry.kind !== 'move')
-      continue;
-    const value = record(entry.value, 'CONTENT_ENCOUNTER_RUNTIME_INVALID');
-    const id = entry.kind === 'roleSlot' ? value['slotId'] : value['id'];
-    if (typeof id !== 'string') throw new TypeError('CONTENT_ENCOUNTER_RUNTIME_INVALID');
-    if (entry.kind === 'roleSlot') {
-      if (value['chapter'] !== chapter) throw new TypeError('CONTENT_ENCOUNTER_RUNTIME_MISMATCH');
-      roleSlots.push({ id, value: value as JsonValue });
-    } else if (entry.kind === 'move') {
-      moves.push({ id, value: { ...value, name: textValue(value['name'], text, true) } as JsonValue });
-    } else templates.push({ id, value: value as JsonValue });
-  }
-  return { ...(templates.length === 0 ? {} : { templates }),
-    ...(roleSlots.length === 0 ? {} : { roleSlots }), ...(moves.length === 0 ? {} : { moves }) };
 }
 function inkStories(leaves: Readonly<Record<string, unknown>>): NonNullable<GameContent['inkStories']> {
   return ruleRows(leaves).flatMap((entry) => {
@@ -270,7 +230,6 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     const pack = await loadChapterPackLeaves(source, chapter, (leaf) =>
       leaf.kind === 'text' ? chapterTextName(leaf.logicalName, chapter) :
         itemRuleName(leaf.logicalName) || chapterRuleName(leaf.logicalName, chapter) ||
-        commonRuleName(leaf.logicalName) || roleRuleName(leaf.logicalName, chapter) ||
         worldRuleName(leaf.logicalName, chapter));
     const names = pack.manifest.leaves.filter((leaf) => itemRuleName(leaf.logicalName))
       .map((leaf) => leaf.logicalName);
@@ -286,7 +245,7 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
     const items = parseItemRuleLeaves(itemLeaves);
     const chapters = chapterDefs(pack.leaves);
     const events = eventDefs(pack.leaves);
-    const quests = questDefs(pack.leaves, chapter);
+    const quests = questDefs(pack.leaves);
     const encounters = encounterDefs(pack.leaves, chapter);
     validateEncounterReferences(quests, encounters);
     const stories = inkStories(pack.leaves);
@@ -307,8 +266,7 @@ export async function loadGameContent(base: StaticGameContent, source: ContentSo
       throw loadError('CHAPTER_ASSETS_UNAVAILABLE', error);
     }
     const runtime = chapterRuntime(pack.leaves, chapter, mapText);
-    const resolverRows = encounterResolverRows(pack.leaves, chapter);
-    return { ...base, ...runtime, ...resolverRows, ...(assets ? { assets } : {}),
+    return { ...base, ...runtime, ...(assets ? { assets } : {}),
       ...(battleModels ? { battleModels } : {}),
       items: items as GameContent['items'], chapters, events, quests,
       ...(encounters.length === 0 ? {} : { encounters }),
@@ -364,7 +322,8 @@ export async function loadRegionContent(source: ContentSource, chapter: string,
         expression: binding.value.expression });
       if (binding.kind === 'regionDialogue' && binding.value.noDialogue !== true)
         dialogues.push({ sceneId: binding.value.sceneId, anchorId: binding.value.anchorId,
-          storyId: binding.value.storyId!, entryKey: binding.value.entryKey! });
+          storyId: binding.value.storyId!, entryKey: binding.value.entryKey!,
+          ...(binding.value.condition ? { condition: binding.value.condition } : {}) });
       if (binding.kind === 'regionLoot') loot.push({ lootRef: binding.value.lootRef,
         items: binding.value.items });
     }
@@ -399,6 +358,7 @@ export class ItemTextCache {
       if (typeof value !== 'object' || value === null || Array.isArray(value))
         throw new TypeError('CONTENT_ITEM_TEXT_LEAF_INVALID');
       for (const [key, text] of Object.entries(value)) {
+        if (!key.startsWith('item.')) continue;
         const match = key.match(/^item\.([a-z0-9_]+)\.text\.(desc|lore|short)$/u);
         if (!match || typeof text !== 'string') throw new TypeError(`CONTENT_ITEM_TEXT_INVALID:${key}`);
         if (fields.has(key)) throw new TypeError(`CONTENT_ITEM_TEXT_DUPLICATE:${key}`);

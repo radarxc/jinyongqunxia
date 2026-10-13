@@ -3,6 +3,7 @@ import { Story } from 'inkjs/engine/Story';
 import { decodeInkAction } from '../../../data/src/build/ink';
 import type { GameState, StoryLineState } from '../state';
 export * from './state';
+export * from './facility';
 
 export interface DialogueLine { readonly speakerId: string; readonly textKey: string; }
 export interface DialogueChoice { readonly key: string; readonly textKey: string; }

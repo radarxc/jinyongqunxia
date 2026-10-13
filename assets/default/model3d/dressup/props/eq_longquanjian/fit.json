@@ -1,0 +1,182 @@
+{
+  "allowReverse": false,
+  "anchor": "grip",
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "sha256": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
+  },
+  "class": "weapon",
+  "diagnostics": {
+    "anchorPositionMu": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "anchorSourceMu": [
+      0.397576688,
+      0.089767084,
+      0.336433106
+    ],
+    "componentsInput": 1,
+    "componentsOutput": 1,
+    "handleEndEvidence": {
+      "candidates": [
+        {
+          "bin": 10,
+          "binCenterFraction": 0.2625,
+          "binFractionRange": [
+            0.25,
+            0.275
+          ],
+          "distanceFromEndFraction": 0.268852587,
+          "distanceFromEndRange": [
+            0.25,
+            0.275
+          ],
+          "fraction": 0.268852587,
+          "leftMedianMu": 0.121981879,
+          "peakAxialMu": -0.265529642,
+          "peakRatio": 1.504403427,
+          "rightMedianMu": 0.073431995,
+          "selectedEnd": "low",
+          "widthMu": 0.183509957
+        }
+      ],
+      "chosen": {
+        "bin": 10,
+        "binCenterFraction": 0.2625,
+        "binFractionRange": [
+          0.25,
+          0.275
+        ],
+        "distanceFromEndFraction": 0.268852587,
+        "distanceFromEndRange": [
+          0.25,
+          0.275
+        ],
+        "fraction": 0.268852587,
+        "leftMedianMu": 0.121981879,
+        "peakAxialMu": -0.265529642,
+        "peakRatio": 1.504403427,
+        "rightMedianMu": 0.073431995,
+        "selectedEnd": "low",
+        "widthMu": 0.183509957
+      },
+      "method": "guard-peak",
+      "selectedEnd": "low",
+      "selectedEndBeforeFlip": "low"
+    },
+    "keep": "all",
+    "profileWidthsMu": [
+      0.118678041,
+      0.125285717,
+      0.089526571,
+      0.063300734,
+      0.067072857,
+      0.069807262,
+      0.070679135,
+      0.06983843,
+      0.070265634,
+      0.136346112,
+      0.183509957,
+      0.180118961,
+      0.08448512,
+      0.082097254,
+      0.080468079,
+      0.078978934,
+      0.077568732,
+      0.076319944,
+      0.075032586,
+      0.074204184,
+      0.073839233,
+      0.073024757,
+      0.071986586,
+      0.071698468,
+      0.071876796,
+      0.07169779,
+      0.071496759,
+      0.07126336,
+      0.070488994,
+      0.069372237,
+      0.067976258,
+      0.067197531,
+      0.066534385,
+      0.06615922,
+      0.066237253,
+      0.066114493,
+      0.065274272,
+      0.064240914,
+      0.052773722,
+      0.028670217
+    ],
+    "selectedEnd": "low"
+  },
+  "forward": "+Z",
+  "gripAdjust": {
+    "pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "quat": [
+      0.0,
+      0.0,
+      0.5,
+      0.866025404
+    ]
+  },
+  "handleDetection": {
+    "bladeSegmentVertices": 7279,
+    "handleEnd": "min",
+    "handleSegmentVertices": 926,
+    "method": "guard-peak",
+    "peakAxialMu": 0.111497291,
+    "peakFraction": 0.268852587
+  },
+  "id": "eq_longquanjian",
+  "kind": "prop",
+  "mPerMu": 1.69370027,
+  "measuredLengthMu": 1.563119776,
+  "realSizeM": 0.95,
+  "restTiltDeg": 60.0,
+  "scaleApplied": 0.35846724,
+  "schema": "tianshu-dressup-fit.v1",
+  "sizeAxis": "length",
+  "socket": "gripR",
+  "source": {
+    "file": "apps/game/public/models/props/eq_longquanjian_raw.glb",
+    "sha256": "d75b051dee5a4606b7f8c329c35a7958efbdeb86e28dcfc394075cdfa10526ac"
+  },
+  "stats": {
+    "boundaryEdges": 0,
+    "components": 1,
+    "fileBytes": 7066848,
+    "nonManifoldEdges": 0,
+    "triangles": 191578,
+    "vertices": 107644
+  },
+  "template": "tpl_f_medium",
+  "tiltSweep": [
+    {
+      "insideRatio": 0.01991268641907466,
+      "level": "draft",
+      "restTiltDeg": 0.0
+    },
+    {
+      "insideRatio": 0.037188411106531725,
+      "level": "fail",
+      "restTiltDeg": 20.0
+    },
+    {
+      "insideRatio": 0.006359618995283235,
+      "level": "draft",
+      "restTiltDeg": 40.0
+    },
+    {
+      "insideRatio": 0.00026903878737921877,
+      "level": "approved",
+      "restTiltDeg": 60.0
+    }
+  ],
+  "up": "+Y"
+}

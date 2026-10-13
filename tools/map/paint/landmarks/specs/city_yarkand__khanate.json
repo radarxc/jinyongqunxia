@@ -1,0 +1,514 @@
+{
+ "schema": "tianshu.landmark-spec.v1",
+ "id": "map_landmark_city_yarkand__khanate",
+ "node": "city_yarkand",
+ "era": "khanate",
+ "chapters": [
+  "ch06",
+  "ch07"
+ ],
+ "title": "叶尔羌（叶尔羌汗国都城与王陵，1582 / 1644；城郭形制待考）",
+ "years": [
+  1560,
+  1680
+ ],
+ "kit": "xiyu",
+ "tile_kit": "xiyu",
+ "seed": 1582,
+ "footprint_grid": 8,
+ "frame": {
+  "origin": "城心：城中心（推定）",
+  "origin_lonlat": [
+   77.2397,
+   38.4152
+  ],
+  "unit": "km",
+  "axes": "x 向东、y 向北",
+  "lonlat_to_km": "x=(lon−lon0)·111.32·cos(lat0)，y=(lat−lat0)·110.57；折点按现代地名 / 遗址线推定，精度约 ±150 m"
+ },
+ "view": {
+  "x": [
+   -1.325,
+   1.375
+  ],
+  "y": [
+   -1.225,
+   1.125
+  ]
+ },
+ "top_px": 46,
+ "manifest_v": 3,
+ "ref_use": {
+  "bld_lm_ch01_chongshengsi_pagoda": "作者已审基线方形密檐砖塔件（东西寺塔代用）",
+  "/baseline/building-map/bld_kit_": "作者已审基线建筑套件件（墨化后摆放）",
+  "city_gate": "城门楼件（看楼、双阙、对峙楼、钟鼓楼、凤凰楼、承运门等楼阁代用）",
+  "tree_cluster": "树丛件（林带、林卡、果园）",
+  "shrub__": "灌丛件（草原、河岸）",
+  "grass_tuft": "草丛件（草原）",
+  "grape_arbor": "葡萄架件（绿洲果园）",
+  "reed__": "芦苇件（江岸）",
+  "/map/kit/": "地图 kit 山形件（山、丘陵；未墨化）"
+ },
+ "walls": [
+  {
+   "id": "city",
+   "role": "city",
+   "name": "叶尔羌城",
+   "polygon": [
+    [
+     -0.725,
+     -0.625
+    ],
+    [
+     0.725,
+     -0.625
+    ],
+    [
+     0.725,
+     0.625
+    ],
+    [
+     -0.725,
+     0.625
+    ]
+   ],
+   "style": "city_earth",
+   "tower": "flat",
+   "corner_towers": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "src": [
+    "src_yarkand_kh",
+    "src_shache"
+   ],
+   "basis": "城郭形制待考",
+   "thickness_px": 7.0,
+   "height_px": 12.0,
+   "corner_size_px": 16.0
+  },
+  {
+   "id": "tombs",
+   "role": "palace",
+   "name": "叶尔羌汗国王陵（阿勒屯麻扎）",
+   "polygon": [
+    [
+     -0.635,
+     0.155
+    ],
+    [
+     -0.195,
+     0.155
+    ],
+    [
+     -0.195,
+     0.495
+    ],
+    [
+     -0.635,
+     0.495
+    ]
+   ],
+   "style": "city_earth",
+   "crenel": false,
+   "ground": true,
+   "ground_tone": "palace",
+   "src": [
+    "src_altyn",
+    "src_amannisa"
+   ],
+   "basis": "阿勒屯（阿尔丁）清真寺后方为叶尔羌汗国可汗家族墓地；阿曼尼莎汗（1560 年卒）破例葬入",
+   "thickness_px": 2.0,
+   "height_px": 3.0
+  }
+ ],
+ "gates": [
+  {
+   "id": "e",
+   "name": "东门",
+   "wall": "city",
+   "side": "E",
+   "at": [
+    0.725,
+    -0.025
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  },
+  {
+   "id": "w",
+   "name": "西门",
+   "wall": "city",
+   "side": "W",
+   "at": [
+    -0.725,
+    -0.025
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  },
+  {
+   "id": "s",
+   "name": "南门",
+   "wall": "city",
+   "side": "S",
+   "at": [
+    0.075,
+    -0.625
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 19
+  },
+  {
+   "id": "n",
+   "name": "北门",
+   "wall": "city",
+   "side": "N",
+   "at": [
+    0.075,
+    0.625
+   ],
+   "eaves": 1,
+   "src": [],
+   "tower": "flat",
+   "basis": "门数、门位待考",
+   "size_px": 16
+  }
+ ],
+ "streets": [
+  {
+   "id": "ns",
+   "points": [
+    [
+     0.075,
+     -0.625
+    ],
+    [
+     0.075,
+     0.625
+    ]
+   ],
+   "width_px": 3.6
+  },
+  {
+   "id": "ew",
+   "points": [
+    [
+     -0.725,
+     -0.025
+    ],
+    [
+     0.725,
+     -0.025
+    ]
+   ],
+   "width_px": 3.6
+  }
+ ],
+ "water": [
+  {
+   "id": "yarkand_r",
+   "kind": "river",
+   "name": "叶尔羌河（距离压缩）",
+   "points": [
+    [
+     0.825,
+     -1.225
+    ],
+    [
+     1.005,
+     -0.525
+    ],
+    [
+     1.045,
+     0.325
+    ],
+    [
+     1.225,
+     1.025
+    ]
+   ],
+   "width_px": 16.0,
+   "foot": true,
+   "foot_px": 6,
+   "src": [
+    "src_shache"
+   ],
+   "basis": "城东南隔叶尔羌河与泽普、叶城相望（距离压缩）"
+  }
+ ],
+ "regions": [
+  {
+   "id": "tb_r",
+   "polygon": [
+    [
+     -0.635,
+     0.155
+    ],
+    [
+     -0.195,
+     0.155
+    ],
+    [
+     -0.195,
+     0.495
+    ],
+    [
+     -0.635,
+     0.495
+    ]
+   ]
+  }
+ ],
+ "landmarks": [
+  {
+   "id": "palace",
+   "name": "叶尔羌汗王宫（待考）",
+   "sprite": "palace",
+   "at": [
+    0.345,
+    0.275
+   ],
+   "size_px": 62,
+   "clear": 0.16,
+   "src": [
+    "src_yarkand_kh"
+   ],
+   "basis": "1514 年赛义德汗建国、都叶尔羌；宫室形制待考"
+  },
+  {
+   "id": "mosque",
+   "name": "大礼拜寺（加满清真寺，待考）",
+   "sprite": "temple_hall",
+   "at": [
+    0.325,
+    -0.325
+   ],
+   "size_px": 44,
+   "clear": 0.12,
+   "src": [
+    "src_shache"
+   ]
+  },
+  {
+   "id": "minaret",
+   "name": "邦克楼",
+   "sprite": "pagoda",
+   "at": [
+    0.545,
+    -0.145
+   ],
+   "size_px": 34,
+   "clear": 0.05
+  },
+  {
+   "id": "bazaar",
+   "name": "巴扎",
+   "sprite": "market",
+   "at": [
+    -0.275,
+    -0.345
+   ],
+   "size_px": 24,
+   "clear": 0.06
+  },
+  {
+   "id": "altyn",
+   "name": "阿勒屯清真寺",
+   "sprite": "temple_hall",
+   "at": [
+    -0.415,
+    0.195
+   ],
+   "size_px": 36,
+   "clear": 0.05,
+   "src": [
+    "src_altyn"
+   ]
+  },
+  {
+   "id": "tomb1",
+   "name": "汗王陵墓",
+   "sprite": "bld:xiyu/temple_hall",
+   "at": [
+    -0.535,
+    0.395
+   ],
+   "size_px": 24,
+   "clear": 0.0,
+   "squash": 0.9,
+   "src": [
+    "src_altyn"
+   ]
+  },
+  {
+   "id": "tomb2",
+   "name": "阿曼尼莎汗陵",
+   "sprite": "bld:xiyu/temple_hall",
+   "at": [
+    -0.305,
+    0.405
+   ],
+   "size_px": 22,
+   "clear": 0.0,
+   "squash": 0.9,
+   "src": [
+    "src_amannisa"
+   ]
+  }
+ ],
+ "groves": [
+  {
+   "id": "orch_w",
+   "polygon": [
+    [
+     -1.225,
+     -0.825
+    ],
+    [
+     -0.895,
+     -0.825
+    ],
+    [
+     -0.895,
+     0.825
+    ],
+    [
+     -1.225,
+     0.825
+    ]
+   ],
+   "trees": [
+    "tex_town_xiyu_tree_cluster__huyang_v01",
+    "tex_town_xiyu_grape_arbor__w4_l3_r000_v01"
+   ],
+   "size_px": 22,
+   "foot": true,
+   "kit": "xiyu",
+   "spacing_px": 44.7
+  },
+  {
+   "id": "orch_n",
+   "polygon": [
+    [
+     -0.675,
+     0.775
+    ],
+    [
+     0.725,
+     0.775
+    ],
+    [
+     0.725,
+     0.975
+    ],
+    [
+     -0.675,
+     0.975
+    ]
+   ],
+   "trees": [
+    "tex_town_xiyu_tree_cluster__huyang_v01",
+    "tex_town_xiyu_grape_arbor__w4_l3_r000_v01"
+   ],
+   "size_px": 22,
+   "foot": true,
+   "kit": "xiyu",
+   "spacing_px": 44.7
+  }
+ ],
+ "fill": [
+  {
+   "id": "fill",
+   "clip": "city",
+   "exclude": [
+    "tb_r"
+   ],
+   "bbox": [
+    -0.725,
+    0.725,
+    -0.625,
+    0.625
+   ],
+   "sprites": [
+    [
+     "house_small",
+     4
+    ],
+    [
+     "house_large",
+     3
+    ],
+    [
+     "courtyard",
+     3
+    ],
+    [
+     "shop_1f",
+     2
+    ],
+    [
+     "shop_2f",
+     1
+    ],
+    [
+     "tree:grape_arbor__w4_l3_r000_v01",
+     1.0
+    ],
+    [
+     "tree:tree_cluster__huyang_v01",
+     0.5
+    ]
+   ],
+   "size_px": 10,
+   "density": 0.95,
+   "jitter": 0.24,
+   "spacing_px": [
+    12.0,
+    9.5
+   ]
+  }
+ ],
+ "notes": [
+  "待考：城郭、宫室形制无可据史料，只画夯土城、王宫、礼拜寺、巴扎与叶尔羌河地望；西域套件 xiyu",
+  "交付图比例约 244.6 px/km（城墙、门楼、街宽、胡同间距按交付图像素给定，见 *_px 字段）"
+ ],
+ "sources": {
+  "src_altyn": {
+   "title": "维基百科（中文）《阿爾丁清真寺》",
+   "url": "https://zh.wikipedia.org/wiki/%E9%98%BF%E7%88%BE%E4%B8%81%E6%B8%85%E7%9C%9F%E5%AF%BA",
+   "accessed": "2026-10-11",
+   "supports": "莎车县清真寺，阿曼尼莎汗之墓；清真寺后方为叶尔羌汗国可汗家族墓地"
+  },
+  "src_amannisa": {
+   "title": "维基百科（中文）《阿曼尼莎汗》",
+   "url": "https://zh.wikipedia.org/wiki/%E9%98%BF%E6%9B%BC%E5%B0%BC%E8%8E%8E%E6%B1%97",
+   "accessed": "2026-10-11",
+   "supports": "1526–1560；叶尔羌汗国时期女性不入王陵，拉失德汗破例以王妃身份将其葬入叶尔羌汗国王陵"
+  },
+  "src_shache": {
+   "title": "维基百科（中文）《莎车县》",
+   "url": "https://zh.wikipedia.org/wiki/%E8%8E%8E%E8%BD%A6%E5%8E%BF",
+   "accessed": "2026-10-11",
+   "supports": "叶尔羌，县东南隔叶尔羌河与泽普、叶城相望"
+  },
+  "src_yarkand_kh": {
+   "title": "维基百科（中文）《葉爾羌汗國》",
+   "url": "https://zh.wikipedia.org/wiki/%E8%91%89%E7%88%BE%E7%BE%8C%E6%B1%97%E5%9C%8B",
+   "accessed": "2026-10-11",
+   "supports": "1514 年苏丹萨亦德建国，信奉伊斯兰教，1680 年为准噶尔所并"
+  }
+ },
+ "halo_px": 26.0
+}

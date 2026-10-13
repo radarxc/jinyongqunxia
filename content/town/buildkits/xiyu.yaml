@@ -1,0 +1,71 @@
+schemaVersion: buildkit.v1
+id: xiyu
+style: adobe
+profile: song_zhe
+dims:
+  vernacular: { platform: 150, column: 3200, diaRatio: 14, beam: 300, eave: 0, rise: 200, lift: [0, 0] }
+  shop: { platform: 150, column: 3300, diaRatio: 14, beam: 300, eave: 0, rise: 200, lift: [0, 0] }
+  middle: { platform: 150, column: 3400, diaRatio: 14, beam: 300, eave: 0, rise: 200, lift: [0, 0], upperStorey: 2600 }
+  hall: { platform: 150, column: 3400, diaRatio: 14, beam: 300, eave: 0, rise: 200, lift: [0, 0] }
+door: { clearH: 2200, single: 1000, double: 1200, threshold: 100, frame: 120 }
+window: { sill: 1400, head: 2000, width: 600, pattern: [lattice_wood, brick_lattice] }
+walls:
+  gable: { layer: mud_plaster_ochre, t: 600, dado: { layer: brick_fired, h: 900 } }
+  back: { layer: mud_plaster_ochre, t: 600, dado: { layer: brick_fired, h: 900 } }
+  front: { layer: mud_plaster_limewash, t: 450, dado: { layer: brick_fired, h: 400 } }
+  enclosure: { layer: adobe_brick, t: 500, h: 2400, coping: parapet_coping }
+ridge: { h: 0, ends: none, hallEnds: tang_stupa }
+palette:
+  timber: ['#76513a', [300, 600]]
+  plaster: ['#b88a58', [500, 1000, 1500]]
+  limewash: ['#ddd3bc', [600, 1200]]
+  brick: ['#9a6545', [400, 800]]
+layers:
+  - { id: mud_roof, repeatMm: [2400, 2100] }
+  - { id: parapet_coping, repeatMm: [1200, 1000] }
+  - { id: joist_soffit, repeatMm: [690, 1000] }
+  - { id: timber_carved, repeatMm: [1000, 1000] }
+  - { id: timber_raw, repeatMm: [920, 1000] }
+  - { id: mud_plaster_ochre, repeatMm: [2400, 1950] }
+  - { id: mud_plaster_limewash, repeatMm: [1800, 2100] }
+  - { id: brick_fired, repeatMm: [900, 1050] }
+  - { id: adobe_brick, repeatMm: [2000, 2000] }
+  - { id: brick_lattice, repeatMm: [1000, 1000] }
+  - { id: lattice_wood, repeatMm: [980, 980] }
+  - { id: door_carved, repeatMm: [1000, 2000] }
+  - { id: floor_earth, repeatMm: [2000, 1800] }
+  - { id: carpet_kilim, repeatMm: [2000, 2000] }
+  - { id: dome_plaster, repeatMm: [1800, 2100] }
+  - { id: canvas_awning, repeatMm: [996, 996] }
+archetypes:
+  guardhouse: { recipe: adobe, size: shop, roof: flat, facility: guardhouse, front: tang_wood_eave }
+  house_large: { recipe: adobe, size: middle, roof: flat, facility: residence }
+  house_small: { alias: house }
+  inn: { recipe: adobe, size: middle, roof: flat, storeys: 2, facility: inn, signage: plaque, balcony: true }
+  market_stall: { recipe: stall, roof: canopy, facility: stall_goods }
+  shop_1f: { alias: shop }
+  shop_2f: { recipe: adobe, size: middle, roof: flat, storeys: 2, facility: general_store, signage: plaque }
+  stable: { recipe: adobe, size: middle, roof: flat, facility: stable }
+  temple_hall: { recipe: adobe, size: hall, roof: cuanjian, facility: temple, front: tang_wood_eave }
+  wangfu: { recipe: compound, size: hall, roof: flat, facility: residence, layout: xiyu_courtyard, screenWall: true }
+  warehouse: { recipe: adobe, size: middle, roof: flat, facility: storehouse, front: brick_lattice }
+  yamen: { recipe: compound, size: hall, roof: cuanjian, facility: office, layout: xiyu_yamen, front: tang_wood_eave }
+  biaoju: { recipe: compound, size: middle, roof: flat, facility: escort, layout: xiyu_courtyard, signage: plaque }
+  casino: { recipe: adobe, size: middle, roof: flat, facility: casino, signage: plaque }
+  courtyard: { recipe: compound, size: vernacular, roof: flat, facility: residence, layout: xiyu_courtyard, screenWall: true }
+  house: { recipe: adobe, size: vernacular, roof: flat, facility: residence }
+  manor: { recipe: compound, size: middle, roof: flat, facility: residence, layout: xiyu_manor, screenWall: true }
+  restaurant: { recipe: adobe, size: middle, roof: flat, storeys: 2, facility: tavern, signage: flag, balcony: true }
+  shop: { recipe: adobe, size: shop, roof: flat, facility: general_store, signage: plaque, front: carved_shopfront }
+  shrine: { recipe: adobe, size: vernacular, roof: cuanjian, facility: temple, front: tang_wood_eave }
+  pagoda: { recipe: pagoda_oct, size: hall, roof: cuanjian, storeys: 3, material: mud_plaster_limewash }
+  palace_hall: { recipe: adobe, size: hall, roof: cuanjian, facility: office, front: tang_wood_eave }
+  wharf: { unsupported: no_waterfront_recipe }
+  market: { recipe: adobe, size: shop, roof: flat, facility: stall_goods, front: carved_shopfront }
+  palace: { recipe: adobe, size: hall, roof: cuanjian, facility: office, front: tang_wood_eave }
+variants: { parapetMm: 450, joistSpacingMm: 600, joistOverhangMm: 300, trellisClearanceMm: 2300 }
+variantSets:
+  tang_buddhist: { forbid: [dome, pointed_arch], finial: tang_stupa }
+landmarks: {}
+cityWall: { h: 6000, top: 4000, batter: 1667, merlon: [1800, 1200, 500], gate: { opening: lintel, w: 4500, h: 5200 } }
+preferSouthHall: true

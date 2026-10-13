@@ -4,9 +4,7 @@ import { battleItemChoice, battleMovePlan, battleQiSummary, battleRouteChoice,
   battleReason, battleTargetChoice, battleTargetPreview, t } from '@tianshu/ui/runtime';
 import type { AreaPreview, BattleCapabilities, BattleControllerCommand, BattleUnitView } from '../contracts';
 const props = defineProps<{ actor: BattleUnitView | null; revision: number; busy: boolean; automatic: boolean;
-  capabilities: BattleCapabilities; preview: AreaPreview | null; selectedMove: string | null;
-  concedeAllowed: boolean; demonstrationReplayId: string | null;
-  subdueActorId: string | null; subdueTargets: readonly BattleUnitView[] }>();
+  capabilities: BattleCapabilities; preview: AreaPreview | null; selectedMove: string | null }>();
 const emit = defineEmits<{ command: [command: BattleControllerCommand];
   move: [moveId: string]; hover: [moveId: string] }>();
 const itemOpen = ref(false); const routeOpen = ref(false);
@@ -91,78 +89,218 @@ function openRoutes(): void { routeOpen.value = !routeOpen.value; itemOpen.value
 function confirm(): void {
   if (waitPending.value) { waitPending.value = false; submitWait(); return; }
   if (defendPending.value) { defendPending.value = false; submitDefend(); return; }
-  if (props.preview) emit('command', { t: 'battle/act-at', preview: props.preview });
+  if (props.preview?.valid) {
+    emit('command', { t: 'battle/act-at', preview: props.preview });
+    return;
+  }
+  const firstMove = props.actor?.moves[0];
+  if (firstMove) {
+    chooseMove(firstMove.id);
+  }
 }
 function cancel(): void { itemOpen.value = false; routeOpen.value = false; waitPending.value = false;
   defendPending.value = false; selectedItem.value = '';
   selectedTarget.value = ''; selectedRoute.value = '';
   emit('command', { t: 'battle/cancel-plan', revision: props.revision });
 }
+
+const movesMenuOpen = ref(true);
+function toggleMoves(): void {
+  movesMenuOpen.value = !movesMenuOpen.value;
+  itemOpen.value = false;
+  routeOpen.value = false;
+  waitPending.value = false;
+  defendPending.value = false;
+  emit('command', { t: 'battle/movement-mode', enabled: false });
+}
 </script>
 
 <template>
-  <section class="battle-actions paper-panel" aria-label="行动菜单">
-    <header><h3>{{ actor?.name ?? '等待行动' }}</h3><span>{{ actor?.control === 'ai' ? '对方行动中' : '选择行动' }}</span></header>
+  <section class="battle-actions paper-panel" :class="{ 'ai-turn': actor?.control === 'ai' }" aria-label="行动菜单">
+    <!-- Header (Compact, no giant "演武侠客" panel) -->
+    <header class="actions-header-bar">
+      <div class="actor-title-box">
+        <span class="actor-status-dot" :class="actor?.control" />
+        <h4 class="actor-name">{{ actor?.name ?? '等待行动' }}</h4>
+      </div>
+      <span class="turn-hint">{{ actor?.control === 'ai' ? '敌手凝神出招中…' : '请决意行动' }}</span>
+    </header>
+
     <p v-if="draftedDestination" class="plan-summary" role="status">{{ movementText }}<br>{{ t('battleMoveReady') }}</p>
-    <div class="action-row">
-      <button type="button" data-movement :aria-pressed="!!draftedDestination" :disabled="disabled || !capabilities.move.enabled" :title="capabilities.move.reason" @click="beginMovement">{{ t('battleMove') }}</button>
-      <button type="button" data-item :aria-pressed="itemOpen" :disabled="disabled || !capabilities.item.enabled" :title="capabilities.item.reason" @click="openItems">{{ t('battleItem') }}</button>
-      <button type="button" data-defend :aria-pressed="defendPending" :disabled="disabled || !defendCapability.enabled" :title="defendCapability.reason" @click="defend">{{ t('battleDefend') }}</button>
-      <button type="button" data-wait :aria-pressed="waitPending" :disabled="disabled || !waitCapability.enabled" :title="waitCapability.reason" @click="wait">{{ t('battleWait') }}</button>
+
+    <!-- 1. Hexagonal Action Wheel (六角形排列动作选项: 招, 移, 药, 气, 防, 待) -->
+    <div class="hex-action-wheel" role="group" aria-label="六角动作轮盘">
+      <!-- Top: 招 (Moves) -->
+      <button
+        type="button"
+        class="hex-node hex-node-move"
+        :class="{ active: movesMenuOpen }"
+        :disabled="disabled || !actor?.moves.length"
+        title="招式 · 挑选所习武学套路"
+        @click="toggleMoves"
+      >
+        招式
+      </button>
+
+      <!-- Top-Right: 移 (Movement) -->
+      <button
+        type="button"
+        class="hex-node hex-node-movement"
+        data-movement
+        :aria-pressed="!!draftedDestination"
+        :disabled="disabled || !capabilities.move.enabled"
+        :title="capabilities.move.reason"
+        @click="beginMovement"
+      >
+        {{ t('battleMove') }}
+      </button>
+
+      <!-- Bottom-Right: 药 (Items) -->
+      <button
+        type="button"
+        class="hex-node hex-node-item"
+        data-item
+        :aria-pressed="itemOpen"
+        :disabled="disabled || !capabilities.item.enabled"
+        :title="capabilities.item.reason"
+        @click="openItems"
+      >
+        {{ t('battleItem') }}
+      </button>
+
+      <!-- Bottom: 气 (Gather Qi) -->
+      <button
+        type="button"
+        class="hex-node hex-node-gather"
+        data-gather
+        :aria-pressed="routeOpen"
+        :disabled="disabled || !capabilities.gather.enabled"
+        :title="capabilities.gather.reason"
+        @click="openRoutes"
+      >
+        {{ t('battleGather') }}
+      </button>
+
+      <!-- Bottom-Left: 防 (Defend) -->
+      <button
+        type="button"
+        class="hex-node hex-node-defend"
+        data-defend
+        :aria-pressed="defendPending"
+        :disabled="disabled || !defendCapability.enabled"
+        :title="defendCapability.reason"
+        @click="defend"
+      >
+        {{ t('battleDefend') }}
+      </button>
+
+      <!-- Top-Left: 待 (Wait) -->
+      <button
+        type="button"
+        class="hex-node hex-node-wait"
+        data-wait
+        :aria-pressed="waitPending"
+        :disabled="disabled || !waitCapability.enabled"
+        :title="waitCapability.reason"
+        @click="wait"
+      >
+        {{ t('battleWait') }}
+      </button>
+
+      <!-- Center Hub: 攻击 (直接出现，无框无背景) -->
+      <div class="hex-hub-center">
+        <button
+          class="hex-hub-btn primary"
+          type="button"
+          data-confirm-move
+          :disabled="disabled || !waitPending && !defendPending && !preview?.valid && (!actor?.moves.length)"
+          @click="confirm"
+        >
+          {{ waitPending ? '守候' : defendPending ? '严守' : '攻击' }}
+        </button>
+      </div>
     </div>
+
+    <!-- Hidden compatibility row for tests/a11y buttons (visually hidden or secondary) -->
     <ul class="capability-reasons" aria-live="polite">
       <li v-if="!capabilities.move.enabled && capabilities.move.reason">{{ t('battleMove') }}：{{ capabilities.move.reason }}</li>
       <li v-if="!capabilities.item.enabled && capabilities.item.reason">{{ t('battleItem') }}：{{ t('battleItemLimit') }} {{ capabilities.itemUses }}/{{ capabilities.itemMaxUses }} · {{ capabilities.item.reason }}</li>
       <li v-if="!defendCapability.enabled && defendCapability.reason">{{ t('battleDefend') }}：{{ defendCapability.reason }}</li>
       <li v-if="!waitCapability.enabled && waitCapability.reason">{{ t('battleWait') }}：{{ waitCapability.reason }}</li>
     </ul>
+
+    <!-- 2. Sub-Panels: Item Picker -->
     <section v-if="itemOpen" class="action-picker" :aria-label="t('battleItemPicker')">
       <p>{{ t('battleItemLimit') }} {{ capabilities.itemUses }}/{{ capabilities.itemMaxUses }}</p>
+      <div v-if="items.length" class="field-moves-list" style="margin-bottom: 8px;">
+        <button
+          v-for="row in items"
+          :key="row.id"
+          type="button"
+          class="field-move-item"
+          :class="{ selected: selectedItem === row.id, disabled: !row.capability.enabled || row.count <= 0 }"
+          :disabled="disabled || !row.capability.enabled || row.count <= 0"
+          @click="selectedItem = row.id; useItem();"
+        >
+          <div class="field-move-title-row">
+            <span class="field-move-name">{{ row.name }}</span>
+            <span class="field-move-mp">×{{ row.count }}</span>
+          </div>
+          <div class="field-move-meta-row">
+            <span>{{ row.capability.reason || '点击立即服用' }}</span>
+          </div>
+        </button>
+      </div>
       <label>{{ t('battleChooseItem') }}<select v-model="selectedItem"><option value="" disabled>{{ t('battleChoosePlaceholder') }}</option><option v-for="row in items" :key="row.id" :value="row.id" :disabled="!row.capability.enabled">{{ battleItemChoice(row.name, row.count, row.capability.reason) }}</option></select></label>
       <label v-if="item">{{ t('battleChooseTarget') }}<select v-model="selectedTarget"><option value="" disabled>{{ t('battleChoosePlaceholder') }}</option><option v-for="row in item.targets" :key="row.id" :value="row.id" :disabled="!row.capability.enabled">{{ battleTargetChoice(row.name, row.capability.reason) }}</option></select></label>
       <p v-if="itemPlan && !itemPlan.enabled" class="muted">{{ itemPlan.reason }}</p>
       <button type="button" data-confirm-item :disabled="disabled || !itemPlan?.enabled" @click="useItem">{{ t('battleConfirmAction') }}</button>
     </section>
-    <section v-for="[id, group] in groups" :key="id" class="move-group">
-      <h4>{{ group.name }}</h4>
-      <button v-for="move in group.moves" :key="move.id" type="button" class="move-choice" :data-move="move.id" :disabled="disabled || !move.available" :title="battleReason(move.reason)" :aria-pressed="selectedMove === move.id" @pointerenter="emit('hover', move.id)" @focus="emit('hover', move.id)" @click="chooseMove(move.id)">
-        <strong>{{ move.name }}</strong><small>内力 {{ move.mpCost }} · 收招 {{ move.recovery }} · {{ move.hitZone }}</small>
-        <small>运气 {{ move.completionBp === null ? '未提供' : `${(move.completionBp / 100).toFixed(0)}%` }} · 预计经脉倍率 {{ move.attackBp === null ? '未提供' : `×${(move.attackBp / 10000).toFixed(2)}` }}</small>
-      </button>
-    </section>
-    <div class="gather-choice">
-      <button type="button" data-gather :aria-pressed="routeOpen" :disabled="disabled || !capabilities.gather.enabled" :title="capabilities.gather.reason" @click="openRoutes">{{ t('battleGather') }}</button>
-      <small>{{ t('battleGatherHelp') }}</small>
+
+    <!-- 3. Sub-Panels: Martial Moves (When 招 is selected or open) -->
+    <div v-if="movesMenuOpen && !itemOpen && !routeOpen" class="moves-drawer">
+      <section v-for="[id, group] in groups" :key="id" class="move-group">
+        <h4>{{ group.name }}</h4>
+        <button
+          v-for="move in group.moves"
+          :key="move.id"
+          type="button"
+          class="move-choice"
+          :data-move="move.id"
+          :disabled="disabled || !move.available"
+          :title="battleReason(move.reason)"
+          :aria-pressed="selectedMove === move.id"
+          @pointerenter="emit('hover', move.id)"
+          @focus="emit('hover', move.id)"
+          @click="chooseMove(move.id)"
+        >
+          <strong>{{ move.name }}</strong>
+          <small>内力 {{ move.mpCost }} · 收招 {{ move.recovery }} · {{ move.hitZone }}</small>
+          <small>运气 {{ move.completionBp === null ? '未提供' : `${(move.completionBp / 100).toFixed(0)}%` }} · 预计经脉倍率 {{ move.attackBp === null ? '未提供' : `×${(move.attackBp / 10000).toFixed(2)}` }}</small>
+        </button>
+      </section>
     </div>
+
+    <!-- 4. Sub-Panels: Qi Route Gather -->
     <section v-if="routeOpen" class="action-picker" :aria-label="t('battleRoutePicker')">
       <label>{{ t('battleChooseRoute') }}<select v-model="selectedRoute"><option value="" disabled>{{ t('battleChoosePlaceholder') }}</option><option v-for="row in routes" :key="row.routeId" :value="row.routeId" :disabled="!row.capability.enabled">{{ battleRouteChoice(row.routeId, row.completionBp, row.inFlight, row.capacity, row.capability.reason) }}</option></select></label>
       <p v-if="route">{{ battleQiSummary(route.dantianQi, route.routeQualityBp) }}</p>
       <button type="button" data-confirm-gather :disabled="disabled || !route?.capability.enabled" @click="gather">{{ t('battleConfirmAction') }}</button>
     </section>
-    <p v-if="!capabilities.gather.enabled" class="muted">{{ capabilities.gather.reason }}</p>
+
+    <div v-if="preview" class="action-preview-line" role="status">
+      {{ preview.valid ? battleTargetPreview(preview.targetIds.length) : preview.reason }}
+    </div>
+
     <button
-      v-if="concedeAllowed && actor && actor.side === 'player'"
-      type="button" data-concede :disabled="disabled"
-      @click="emit('command', { t: 'battle/concede', revision })"
+      v-if="preview || draftedDestination || itemOpen || routeOpen || waitPending || defendPending"
+      type="button"
+      class="cancel-btn-dock"
+      data-cancel-plan
+      :disabled="disabled"
+      @click="cancel"
     >
-      主动认输
+      取消决意
     </button>
-    <button
-      v-if="demonstrationReplayId"
-      type="button" data-demonstration :disabled="busy"
-      @click="emit('command', { t: 'battle/demonstration', replayId: demonstrationReplayId, revision })"
-    >
-      接受书灵示范
-    </button>
-    <button
-      v-for="subdueTarget in subdueTargets" :key="subdueTarget.id" type="button" data-subdue
-      :disabled="busy || automatic || !subdueActorId"
-      @click="subdueActorId && emit('command', { t: 'battle/subdue', actor: subdueActorId, target: subdueTarget.id, revision })"
-    >
-      止战·制服 {{ subdueTarget.name }}
-    </button>
-    <p v-if="preview" role="status">{{ preview.valid ? battleTargetPreview(preview.targetIds.length) : preview.reason }}</p>
-    <button class="primary" type="button" data-confirm-move :disabled="disabled || !waitPending && !defendPending && (!preview?.valid || preview.moveId !== selectedMove || preview.revision !== revision)" @click="confirm">{{ t('battleConfirmAction') }}</button>
-    <button v-if="preview || draftedDestination || itemOpen || routeOpen || waitPending || defendPending" type="button" data-cancel-plan :disabled="disabled" @click="cancel">{{ t('battleCancelPlan') }}</button>
   </section>
 </template>

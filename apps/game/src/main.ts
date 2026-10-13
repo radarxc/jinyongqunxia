@@ -1,10 +1,10 @@
 import { createPinia } from 'pinia';
 import { createApp, defineComponent, h, reactive, shallowRef,
   type App as VueApp, type Component } from 'vue';
-import type { SaveSlotSummary, TianshuStorage } from '@tianshu/platform';
+import { defaultAudioManager, type SaveSlotSummary, type TianshuStorage } from '@tianshu/platform';
 import { useUiStore } from '@tianshu/ui/runtime';
 import { flowT } from '@tianshu/ui/runtime';
-import { defaultGameSettings, silentAudioSettingsPort,
+import { defaultGameSettings,
   type GameSettingKey, type GameSettings } from './settings';
 import type { GameController } from './game-controller';
 import './style.css';
@@ -62,9 +62,12 @@ async function createSession(demo = false): Promise<GameController> {
   const host = await createGameCoreHost({ demo });
   const current = createGameController(host, useUiStore(pinia), {
     ...(demo || !startup.storage ? {} : { storage: startup.storage }), settings,
-    audio: silentAudioSettingsPort, setQuality: quality, onFatal: error => { void renderRecovery(error); },
+    audio: defaultAudioManager, setQuality: quality, onFatal: error => { void renderRecovery(error); },
   });
-  controller = current; await current.initialize(); await attachLifecycle(current); return current;
+  controller = current;
+  (window as unknown as { __gameController?: GameController }).__gameController = current;
+  (window as unknown as { __audioManager?: typeof defaultAudioManager }).__audioManager = defaultAudioManager;
+  await current.initialize(); await attachLifecycle(current); return current;
 }
 async function beginSession(input: { slot?: string; recoveredAt?: number; demo?: boolean; fresh?: boolean }): Promise<boolean> {
   try {
@@ -127,11 +130,22 @@ async function showTitle(status = ''): Promise<void> {
     continueSummary: save ? `${save.meta.summary['name'] ?? flowT('defaultHero')} · ${new Date(save.savedAt).toLocaleString('zh-CN')}` : undefined,
     newGameAvailable: true, demoAvailable: import.meta.env.DEV, status,
     onContinue: () => { if (save) void beginSession({ slot: save.slot }); },
-    onNewGame: () => { void beginSession({ fresh: true }); }, onSettings: showSettings,
+    onNewGame: () => {
+      void beginSession({ fresh: true });
+    }, onSettings: showSettings,
     onDemo: () => { if (import.meta.env.DEV) void beginSession({ demo: true }); },
   }));
 }
 async function start(): Promise<void> {
+  if (import.meta.env.DEV && (
+    location.pathname === '/character-3d' || location.pathname === '/character-3d/' ||
+    location.pathname === '/model3d' || location.pathname === '/model3d/' ||
+    location.search.includes('character-3d')
+  )) {
+    const { default: Character3dPage } = await import('./pages/Character3dPage.vue');
+    mount(Character3dPage, {});
+    return;
+  }
   if (import.meta.env.DEV && (location.pathname === '/rig-demo' || location.pathname === '/rig-demo/')) {
     const canvas = document.createElement('canvas'); canvas.id = 'scene'; root!.append(canvas);
     const { mountRigDemo } = await import('./rig-demo');
@@ -144,6 +158,13 @@ async function start(): Promise<void> {
   ]);
   startup = await prepareStartup(); settings.value = startup.settings;
   if (startup.error) { await renderRecovery(startup.error); return; }
+  if (import.meta.env.DEV && import.meta.env.MODE !== 'test' && !location.search.includes('title')) {
+    await beginSession({ demo: true });
+    schedulePwaRegistration();
+    return;
+  }
+  (window as unknown as Record<string, unknown>)['__beginSession'] = beginSession;
+  (window as unknown as Record<string, unknown>)['__showTitle'] = showTitle;
   await showTitle(); schedulePwaRegistration();
 }
 export const gameReady = start().catch(error => { console.error('Game initialization failed', error);

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "hair_ponytail",
+    "name": "女侠高马尾发型",
+    "type": "hair",
+    "pid": "07f4915e-c9ea-4aa7-935d-4f2309aeaf8e",
+    "op": "0d838848-5a72-411a-ac4b-273ad6ec52e6",
+    "outGlb": "/Users/bytedance/Projects/jinyongqunxia/apps/game/public/models/props/hair_ponytail.glb"
+  },
+  {
+    "id": "hair_long_flow",
+    "name": "温婉长发发型",
+    "type": "hair",
+    "pid": "1038e75b-22db-4e43-9ae2-3a19be9c3bfe",
+    "op": "f9d00292-1767-42b0-ab29-c29f83c080da",
+    "outGlb": "/Users/bytedance/Projects/jinyongqunxia/apps/game/public/models/props/hair_long_flow.glb"
+  },
+  {
+    "id": "hair_bun_fairy",
+    "name": "飞仙流云髻发型",
+    "type": "hair",
+    "pid": "6d0755b1-65df-49df-9279-c734adf15534",
+    "op": "101f78c4-56c9-45ba-816d-3a99d02c6fdc",
+    "outGlb": "/Users/bytedance/Projects/jinyongqunxia/apps/game/public/models/props/hair_bun_fairy.glb"
+  },
+  {
+    "id": "item_qingfeng_sword",
+    "name": "青锋宝剑带鞘",
+    "type": "weapon",
+    "pid": "2285337f-7651-4659-971b-cbd44c9f520f",
+    "op": "e1bc5e48-54d4-48c3-8885-c488fbce30bc",
+    "outGlb": "/Users/bytedance/Projects/jinyongqunxia/apps/game/public/models/props/item_qingfeng_sword.glb"
+  },
+  {
+    "id": "luxury_jade_pendant",
+    "name": "羊脂白玉双龙配",
+    "type": "luxury",
+    "pid": "8cb065ca-2528-4a39-8dad-b7872c3e71c9",
+    "op": "ac81a50f-f02a-4f9d-9e46-d8ab5730d96b",
+    "outGlb": "/Users/bytedance/Projects/jinyongqunxia/apps/game/public/models/props/luxury_jade_pendant.glb"
+  },
+  {
+    "id": "luxury_gold_pomander",
+    "name": "玲珑嵌宝金香囊",
+    "type": "luxury",
+    "pid": "5744ae6c-7c0b-4def-b931-9759de8fca13",
+    "op": "d552c4a6-98df-40bc-a14f-b3fa6d4568f7",
+    "outGlb": "/Users/bytedance/Projects/jinyongqunxia/apps/game/public/models/props/luxury_gold_pomander.glb"
+  },
+  {
+    "id": "cloth_xianxia_dress",
+    "name": "仙侠刺绣长袍裙",
+    "type": "clothing",
+    "pid": "671a9fc4-9c17-4737-98aa-e4353da92ee3",
+    "op": "77a5c8c2-4e47-4a07-896a-bdda95e167df",
+    "outGlb": "/Users/bytedance/Projects/jinyongqunxia/apps/game/public/models/props/cloth_xianxia_dress.glb"
+  }
+]

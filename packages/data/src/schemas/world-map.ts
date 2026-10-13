@@ -1,16 +1,27 @@
 import { z } from 'zod';
+import { RegionIdSchema, RegionSceneIdSchema } from './region-map';
 
 const EraSchema = z.string().regex(/^ch(?:0[1-9]|1[0-4])$/);
 const MapNodeIdSchema = z.string().regex(/^(?:city|rs|poi)_[a-z0-9_]+$/);
 const CoordinateSchema = z.number().int().min(0).max(4096);
 export const MapPointSchema = z.tuple([CoordinateSchema, CoordinateSchema]);
+/** Display-only road geometry (tech/13 §5.1): grid units, may be fractional; rules keep `points`. */
+const PathCoordinateSchema = z.number().finite().min(0).max(4096);
+export const MapPathSchema = z.array(z.tuple([PathCoordinateSchema, PathCoordinateSchema])).min(2).max(4096);
+/** Map label / icon tier and icon family (tech/13 §5.2); presentation only, never read by rules. */
+export const MapTierSchema = z.enum(['capital', 'major', 'minor', 'site']);
+export const MapMarkerSchema = z.enum(['city_large', 'city_prefecture', 'city_county', 'village', 'pass',
+  'ruin', 'sect', 'temple', 'daoist']);
 
-const MapEntrySchema = z.strictObject({
+export const MapEntrySchema = z.strictObject({
   sceneId: z.string().min(1),
   townSpec: z.string().regex(/^docs\/design\/town\/city_[a-z0-9]+__ch[0-9]{2}\.yaml$/).nullable(),
   templateYear: z.number().int().min(1).max(9999).nullable(),
   gateId: z.string().min(1).nullable(),
   spawn: MapPointSchema.nullable(),
+  scene: z.strictObject({
+    regionId: RegionIdSchema, sceneId: RegionSceneIdSchema,
+  }).nullable().optional(),
   accessNote: z.string(),
 });
 
@@ -22,6 +33,14 @@ export const WorldMapNodeSchema = z.strictObject({
     z.number().int().min(1).max(100)]).nullable(),
   levelNote: z.string(), entry: MapEntrySchema, coordinateNote: z.string(),
   accessNote: z.string().optional(),
+  tier: MapTierSchema.optional(), marker: MapMarkerSchema.optional(),
+});
+
+/** Sect seat drawn on the map for one chapter (book geography; tech/13 §5.4). Presentation only. */
+export const MapSectSchema = z.strictObject({
+  id: z.string().regex(/^sect_[a-z0-9_]+$/), name: z.string().min(1), siteName: z.string(),
+  kind: z.string().min(1), point: MapPointSchema, status: z.enum(['O', 'H', 'P', 'M']),
+  marker: z.enum(['sect', 'temple', 'daoist']), cityId: MapNodeIdSchema.nullable(),
 });
 
 export const WorldMapRoadSchema = z.strictObject({
@@ -30,6 +49,7 @@ export const WorldMapRoadSchema = z.strictObject({
   points: z.array(MapPointSchema).min(2).max(4096),
   sourceHours: z.number().int().positive(), kind: z.string().min(1),
   eras: z.array(EraSchema), note: z.string(),
+  path: MapPathSchema.optional(),
 });
 
 interface GraphMap {
@@ -58,10 +78,15 @@ function validateGraph(map: GraphMap, context: z.RefinementCtx): void {
       context.addIssue({ code: 'custom', path: ['roads'], message: 'road distance mismatch' });
     if (start && !samePoint(road.points[0], start.point) || end && !samePoint(road.points.at(-1), end.point))
       context.addIssue({ code: 'custom', path: ['roads'], message: 'road geometry mismatch' });
+    if (road.path && (start && !nearPoint(road.path[0], start.point) || end && !nearPoint(road.path.at(-1), end.point)))
+      context.addIssue({ code: 'custom', path: ['roads'], message: 'road path endpoint mismatch' });
   }
 }
 function samePoint(left: readonly number[] | undefined, right: readonly number[]): boolean {
   return left !== undefined && left[0] === right[0] && left[1] === right[1];
+}
+function nearPoint(left: readonly number[] | undefined, right: readonly number[]): boolean {
+  return left !== undefined && Math.abs(left[0]! - right[0]!) <= 1e-6 && Math.abs(left[1]! - right[1]!) <= 1e-6;
 }
 
 const TerrainLineSchema = z.array(MapPointSchema).min(2).max(16_384);
@@ -77,6 +102,7 @@ export const WorldMapDefinitionSchema = z.strictObject({
     stepLi: z.number().int().min(1).max(10_000), note: z.string() }),
   startNodeId: MapNodeIdSchema, nodes: z.array(WorldMapNodeSchema).min(1).max(4096),
   roads: z.array(WorldMapRoadSchema).max(16_384),
+  sects: z.array(MapSectSchema).max(512).optional(),
   terrain: z.strictObject({ land: z.array(TerrainLineSchema.min(3)).max(4096),
     rivers: z.array(TerrainLineSchema).max(4096), mountains: z.array(TerrainLineSchema).max(4096) }),
   sources: z.array(z.string()),
@@ -85,9 +111,20 @@ export const WorldMapDefinitionSchema = z.strictObject({
   if (map.years[0] > map.years[1]) context.addIssue({ code: 'custom', path: ['years'], message: 'year range order' });
   if (map.travel.stepLi !== map.travel.liPerHour) context.addIssue({ code: 'custom', path: ['travel'], message: 'one-hour step required' });
   validateGraph(map, context);
+  const sectIds = new Set<string>(); const nodeIds = new Set(map.nodes.map((node) => node.id));
+  for (const sect of map.sects ?? []) {
+    if (sectIds.has(sect.id)) context.addIssue({ code: 'custom', path: ['sects'], message: 'duplicate sect id' });
+    sectIds.add(sect.id);
+    if (sect.cityId !== null && !nodeIds.has(sect.cityId))
+      context.addIssue({ code: 'custom', path: ['sects'], message: 'sect city unknown' });
+  }
 });
 
 export type MapPoint = z.output<typeof MapPointSchema>;
+export type MapPath = z.output<typeof MapPathSchema>;
+export type MapTier = z.output<typeof MapTierSchema>;
+export type MapMarker = z.output<typeof MapMarkerSchema>;
+export type MapSect = z.output<typeof MapSectSchema>;
 export type MapEntry = z.output<typeof MapEntrySchema>;
 export type MapNode = z.output<typeof WorldMapNodeSchema>;
 export type MapRoad = z.output<typeof WorldMapRoadSchema>;

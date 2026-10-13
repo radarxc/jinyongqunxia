@@ -1,0 +1,20 @@
+{
+  "key": "male",
+  "model": "assets/default/model3d/npc_zhujue__ch00_m/anim_idle_walk_run.glb",
+  "modelSha256": "d53b0e4064dda0a8ceeef4843660c6529caf5dcb2dce7a95bad913720bb24797",
+  "harness": "tools/map/hero/render_hero.html",
+  "harnessSha256": "a6d856b5715d92f9a68063bd166daeaa76091bedf44383d3057e9f7c12848ad6",
+  "size": 512,
+  "yaw": -70,
+  "elevation": 12,
+  "frames": 12,
+  "cycleSeconds": {
+    "walk": 1.1667,
+    "run": 0.625
+  },
+  "anchor": [
+    256,
+    455.1145065239732
+  ],
+  "created": "2026-10-11T22:53:35Z"
+}

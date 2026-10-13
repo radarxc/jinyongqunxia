@@ -1,0 +1,71 @@
+schemaVersion: buildkit.v1
+id: song_dali
+style: timber
+profile: song_zhe
+dims:
+  vernacular: { platform: 300, column: 2800, diaRatio: 11, beam: 350, eave: 700, rise: 2625, lift: [180, 120], verge: 400 }
+  shop: { platform: 150, column: 3000, diaRatio: 11, beam: 350, eave: 800, rise: 2625, lift: [180, 120], verge: 500 }
+  middle: { platform: 300, column: 3200, diaRatio: 11, beam: 350, eave: 900, rise: 2700, lift: [300, 220], verge: 700, upperStorey: 2700 }
+  hall: { platform: 900, column: 4200, diaRatio: 10, beam: 900, eave: 1300, rise: 3330, lift: [480, 360] }
+door: { clearH: 2150, single: 900, double: 1400, threshold: 120, frame: 100 }
+window: { sill: 900, head: 2050, width: 1000, pattern: [zhileng, fangge] }
+walls:
+  gable: { layer: earth_plaster, t: 350, dado: { layer: stone_rubble, h: 800 } }
+  back: { layer: earth_plaster, t: 350, dado: { layer: stone_rubble, h: 800 } }
+  front: { layer: timber_raw, t: 120 }
+  enclosure: { layer: plaster_lime, t: 300, h: 2400, coping: tile }
+ridge: { h: 550, ends: dali_square, hallEnds: chiwei }
+palette:
+  timber: ['#6e4b39', [300, 600, 800]]
+  plaster: ['#e3dccb', [3500]]
+  tile: ['#55585b', [0, 300, 600]]
+  stone: ['#8d877c']
+layers:
+  - { id: tile_roof, repeatMm: [2070, 1920] }
+  - { id: ridge_tiles, repeatMm: [920, 990] }
+  - { id: eave_soffit, repeatMm: [920, 1000] }
+  - { id: timber_lacquer, repeatMm: [1100, 1000] }
+  - { id: timber_raw, repeatMm: [920, 1000] }
+  - { id: plaster_lime, repeatMm: [1800, 2100] }
+  - { id: earth_plaster, repeatMm: [2400, 1950] }
+  - { id: stone_rubble, repeatMm: [2000, 2000] }
+  - { id: stone_ashlar, repeatMm: [2000, 2000] }
+  - { id: brick_grey, repeatMm: [1230, 1000] }
+  - { id: lattice_window, repeatMm: [980, 980] }
+  - { id: door_planks, repeatMm: [900, 2000] }
+  - { id: floor_pavers, repeatMm: [2000, 2000] }
+  - { id: floor_wood, repeatMm: [2000, 2000] }
+  - { id: painted_band, repeatMm: [1000, 1000] }
+  - { id: cloth_awning, repeatMm: [996, 996] }
+archetypes:
+  guardhouse: { recipe: hall, size: shop, roof: xuanshan, facility: guardhouse }
+  house_large: { recipe: hall, size: middle, roof: xuanshan, facility: residence }
+  house_small: { alias: house }
+  inn: { recipe: storeyed, size: middle, roof: xieshan, storeys: 2, facility: inn, signage: plaque, balcony: true }
+  market_stall: { recipe: stall, roof: canopy, facility: stall_goods }
+  shop_1f: { alias: shop }
+  shop_2f: { recipe: storeyed, size: middle, roof: xieshan, storeys: 2, facility: general_store, signage: plaque, balcony: true }
+  stable: { recipe: hall, size: middle, roof: yingshan, facility: stable }
+  temple_hall: { recipe: hall, size: hall, roof: xieshan, facility: temple, brackets: true }
+  wangfu: { recipe: compound, size: hall, roof: xieshan, facility: residence, layout: wangfu, screenWall: true }
+  warehouse: { recipe: hall, size: middle, roof: yingshan, facility: storehouse }
+  yamen: { recipe: compound, size: hall, roof: xieshan, facility: office, layout: yamen, screenWall: true }
+  biaoju: { recipe: compound, size: middle, roof: xuanshan, facility: escort, layout: biaoju, signage: plaque }
+  casino: { recipe: hall, size: middle, roof: xieshan, facility: casino, signage: plaque }
+  courtyard: { recipe: compound, size: vernacular, roof: xuanshan, facility: residence, layout: hall_wing_gate, screenWall: true }
+  house: { recipe: hall, size: vernacular, roof: yingshan, facility: residence, bays: odd }
+  manor: { recipe: compound, size: middle, roof: xieshan, facility: residence, layout: manor, screenWall: true }
+  restaurant: { recipe: storeyed, size: middle, roof: xieshan, storeys: 2, facility: tavern, signage: flag, balcony: true }
+  shop: { recipe: hall, size: shop, roof: xuanshan, front: shopfront, facility: general_store, signage: plaque, bays: odd }
+  shrine: { recipe: hall, size: vernacular, roof: xuanshan, facility: temple }
+  pagoda: { recipe: pagoda_oct, size: hall, roof: cuanjian, storeys: 3, material: plaster_white }
+  palace_hall: { recipe: hall, size: hall, roof: wudian, facility: office, brackets: true }
+  wharf: { unsupported: no_wharf_recipe }
+  market: { alias: market_stall }
+  palace: { recipe: compound, size: hall, roof: wudian, facility: office, layout: palace, screenWall: true }
+variants: { doorColour: [natural, vermilion_if_official], awning: 4000, lanterns: 6000 }
+landmarks:
+  bld_lm_ch01_chongshengsi_pagoda: { recipe: pagoda_dense, eaves: 16, heightM: 30, material: plaster_white }
+  bld_lm_ch01_chongshengsi_pagoda_small: { recipe: pagoda_oct, storeys: 3, eaves: 10, heightM: 16, material: plaster_white }
+cityWall: { h: 6000, top: 4000, batter: 1667, merlon: [1800, 1200, 500], gate: { opening: trapezoid, w: 4500, h: 5200 } }
+preferSouthHall: true

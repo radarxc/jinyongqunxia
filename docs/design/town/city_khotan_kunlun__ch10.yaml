@@ -3,11 +3,11 @@ kind: CitySpec
 city_id: city_khotan_kunlun
 chapter_id: ch10
 book_world: ch10_baima
-display_name: 昆仑山道（待考）
+display_name: 昆仑山道（于阗南山，通吐蕃）
 historical_year: 702
 era_kit: xiyu
 seed: 1392742237
-design_intent: {prosperity: generic_site, notes: [推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）, 依据：src_generic_layout, 复原依据：docs/design/town/history/city_khotan_kunlun__tang_702.md, region=rg_xiyu_nanjiang; band=tang_702；按同区域大城和田、喀什与库车候选作一般格局参照。]}
+design_intent: {prosperity: generic_site, notes: [推定格局（作者 2026-09-30：小城 / 遗址不做史料复原）, 依据：src_generic_layout, 复原依据：docs/design/town/history/city_khotan_kunlun__tang_702.md, region=rg_xiyu_nanjiang; band=tang_702；按同区域大城和田、喀什与库车候选作一般格局参照。, "本章未开放（2026-10-11 地名档）：cities.yaml eras.ch10.open=false，当章显示名「昆仑山道（于阗南山，通吐蕃）」；生成器不挂载本图，规格保留备用。"]}
 grid: {width: 64, height: 64, cell_m: 1, chunk_cells: 32}
 runtime_partition: {q_min: -32, r_min: 1, q_slot_count: 87, r_slot_count: 64, q_band_slots: [87], r_band_slots: [64], formal_scene_refs: null}
 projection: {tile_px: [64, 32], pitch_deg: 30, yaw_deg: 45}

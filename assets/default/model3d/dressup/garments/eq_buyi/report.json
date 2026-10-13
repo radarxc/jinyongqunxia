@@ -1,0 +1,422 @@
+{
+  "schema": "tianshu-dressup-report.v1",
+  "level": "draft",
+  "template": "tpl_f_medium",
+  "subject": {
+    "kind": "garment",
+    "id": "eq_buyi"
+  },
+  "inputs": {
+    "asset": {
+      "sha256": "54e3753c64a8b7bbfdc81bd8a3f2473d08ee48a45c3476fb37192c327a696eca",
+      "sizeBytes": 1242128
+    },
+    "fit": {
+      "sha256": "63b4bdd1a142c901c92529514bb663323e1e914f85b716cb4e35e4431599eca1",
+      "sizeBytes": 25602
+    }
+  },
+  "checks": [
+    {
+      "name": "binding.skeletonSchema",
+      "pass": true,
+      "value": "tianshu-dressup-skeleton.v1",
+      "threshold": "tianshu-dressup-skeleton.v1"
+    },
+    {
+      "name": "binding.skeletonRequired",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "binding.skeletonBodySha",
+      "pass": true,
+      "value": {
+        "recorded": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+        "actual": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
+      },
+      "threshold": "equal"
+    },
+    {
+      "name": "binding.skeletonUnits",
+      "pass": true,
+      "value": {
+        "unit": "mu",
+        "recorded": 1.69370027,
+        "calculated": 1.6937002655375113,
+        "tolerance": 1e-06
+      },
+      "threshold": "abs error <= 1e-6"
+    },
+    {
+      "name": "binding.fitSchema",
+      "pass": true,
+      "value": "tianshu-dressup-fit.v1",
+      "threshold": "tianshu-dressup-fit.v1"
+    },
+    {
+      "name": "binding.fitRequired",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "binding.fitBodySha",
+      "pass": true,
+      "value": {
+        "recorded": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f",
+        "actual": "1be19e87badf72ddc0b46c32cf9d993a11458d12f20b0bedb3e4b111265e066f"
+      },
+      "threshold": "equal"
+    },
+    {
+      "name": "binding.fitTemplate",
+      "pass": true,
+      "value": {
+        "body": "tpl_f_medium",
+        "skeleton": "tpl_f_medium",
+        "fit": "tpl_f_medium",
+        "explicit": "tpl_f_medium"
+      },
+      "threshold": "same templates/<id>/body.glb"
+    },
+    {
+      "name": "binding.fitMPerMu",
+      "pass": true,
+      "value": {
+        "fit": 1.69370027,
+        "skeleton": 1.69370027,
+        "tolerance": 1e-06
+      },
+      "threshold": "abs error <= 1e-6"
+    },
+    {
+      "name": "fit.kind",
+      "pass": true,
+      "value": "garment",
+      "threshold": [
+        "garment",
+        "hair",
+        "head",
+        "prop",
+        "template"
+      ]
+    },
+    {
+      "name": "weights.onlySet0",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "skeleton.skinCount",
+      "pass": true,
+      "value": 1,
+      "threshold": 1
+    },
+    {
+      "name": "skeleton.joints",
+      "pass": true,
+      "value": {
+        "asset": 65,
+        "body": 65
+      },
+      "threshold": "名单逐项相同"
+    },
+    {
+      "name": "skeleton.ibmMaxAbs",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "< 1e-5"
+    },
+    {
+      "name": "weights.jointsAllowedPresent",
+      "pass": true,
+      "value": [
+        "mixamorig:Hips",
+        "mixamorig:LeftUpLeg",
+        "mixamorig:LeftLeg",
+        "mixamorig:RightUpLeg",
+        "mixamorig:RightLeg",
+        "mixamorig:Spine",
+        "mixamorig:Spine1",
+        "mixamorig:Spine2",
+        "mixamorig:LeftShoulder",
+        "mixamorig:LeftArm",
+        "mixamorig:LeftForeArm",
+        "mixamorig:LeftHand",
+        "mixamorig:Neck",
+        "mixamorig:RightShoulder",
+        "mixamorig:RightArm",
+        "mixamorig:RightForeArm",
+        "mixamorig:RightHand"
+      ],
+      "threshold": "非空数组"
+    },
+    {
+      "name": "weights.finite",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "weights.sumMaxError",
+      "pass": true,
+      "value": 1.1920928955078125e-07,
+      "threshold": "<= 1e-3"
+    },
+    {
+      "name": "weights.maxBones",
+      "pass": true,
+      "value": 4,
+      "threshold": "<= 4"
+    },
+    {
+      "name": "weights.jointIndices",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "weights.jointsAllowed",
+      "pass": true,
+      "value": [
+        "mixamorig:Hips",
+        "mixamorig:LeftArm",
+        "mixamorig:LeftForeArm",
+        "mixamorig:LeftHand",
+        "mixamorig:LeftShoulder",
+        "mixamorig:LeftUpLeg",
+        "mixamorig:Neck",
+        "mixamorig:RightArm",
+        "mixamorig:RightForeArm",
+        "mixamorig:RightHand",
+        "mixamorig:RightShoulder",
+        "mixamorig:RightUpLeg",
+        "mixamorig:Spine",
+        "mixamorig:Spine1",
+        "mixamorig:Spine2"
+      ],
+      "threshold": [
+        "mixamorig:Hips",
+        "mixamorig:LeftArm",
+        "mixamorig:LeftForeArm",
+        "mixamorig:LeftHand",
+        "mixamorig:LeftLeg",
+        "mixamorig:LeftShoulder",
+        "mixamorig:LeftUpLeg",
+        "mixamorig:Neck",
+        "mixamorig:RightArm",
+        "mixamorig:RightForeArm",
+        "mixamorig:RightHand",
+        "mixamorig:RightLeg",
+        "mixamorig:RightShoulder",
+        "mixamorig:RightUpLeg",
+        "mixamorig:Spine",
+        "mixamorig:Spine1",
+        "mixamorig:Spine2"
+      ]
+    },
+    {
+      "name": "penetration.bindVertices.all",
+      "pass": true,
+      "value": 0,
+      "threshold": "report only"
+    },
+    {
+      "name": "penetration.bindVertices.visible",
+      "pass": true,
+      "value": 0,
+      "threshold": 0
+    },
+    {
+      "name": "penetration.idle.all",
+      "pass": true,
+      "value": 0.0037970106075216974,
+      "threshold": "report only",
+      "frames": 24,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "penetration.idle.visible",
+      "pass": true,
+      "value": 0.0028326904532304724,
+      "threshold": "<= 0.02",
+      "frames": 24,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "penetration.walk.all",
+      "pass": true,
+      "value": 0.0019286403085824494,
+      "threshold": "report only",
+      "frames": 24,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "penetration.walk.visible",
+      "pass": true,
+      "value": 0.0019286403085824494,
+      "threshold": "<= 0.02",
+      "frames": 24,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "penetration.run.all",
+      "pass": true,
+      "value": 0.011632111861137898,
+      "threshold": "report only",
+      "frames": 24,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "penetration.run.visible",
+      "pass": true,
+      "value": 0.006750241080038573,
+      "threshold": "<= 0.02",
+      "frames": 24,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "holes.bind.visible",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "= 0 (tolerance <= 0.0005)",
+      "frames": 1,
+      "views": 8
+    },
+    {
+      "name": "holes.idle.visible",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "= 0 (tolerance <= 0.0005)",
+      "frames": 24,
+      "views": 8,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "holes.walk.visible",
+      "pass": true,
+      "value": 0.0,
+      "threshold": "= 0 (tolerance <= 0.0005)",
+      "frames": 24,
+      "views": 8,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "holes.run.visible",
+      "pass": true,
+      "value": 0.00013048868010700072,
+      "threshold": "= 0 (tolerance <= 0.0005)",
+      "frames": 24,
+      "views": 8,
+      "armAbductionDeg": 6.0
+    },
+    {
+      "name": "mask.knownRegions",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "mask.neverHide",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "mask.forbidden",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "geometry.flippedTriangles",
+      "pass": true,
+      "value": 0,
+      "threshold": 0
+    },
+    {
+      "name": "geometry.edgeRatioInRange",
+      "pass": true,
+      "value": 0.9926846261031119,
+      "threshold": ">= 0.99"
+    },
+    {
+      "name": "geometry.maxResidualMu",
+      "pass": true,
+      "value": 0.03835619574523208,
+      "threshold": "finite"
+    },
+    {
+      "name": "geometry.closeFitP90DeltaMm",
+      "pass": true,
+      "value": 1.61830928701491,
+      "threshold": "< 5",
+      "sourceP90Mm": 32.150676230160286,
+      "finalP90Mm": 33.768985517175196
+    },
+    {
+      "name": "regions.u8Scalar",
+      "pass": true,
+      "value": [
+        {
+          "componentType": 5121,
+          "type": "SCALAR"
+        }
+      ],
+      "threshold": "u8 SCALAR"
+    },
+    {
+      "name": "budget.triangles",
+      "pass": true,
+      "value": 25836,
+      "threshold": "<= 30000"
+    },
+    {
+      "name": "budget.textureMaxDimension",
+      "pass": true,
+      "value": 2048,
+      "threshold": "<= 2048",
+      "images": [
+        [
+          2048,
+          2048
+        ]
+      ]
+    },
+    {
+      "name": "material.unlit",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "material.onlyBaseColorTexture",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "material.doubleSided",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "asset.meshNodeCount",
+      "pass": true,
+      "value": 1,
+      "threshold": 1
+    },
+    {
+      "name": "asset.materialReferences",
+      "pass": true,
+      "value": [
+        0
+      ],
+      "threshold": "0..0"
+    }
+  ]
+}

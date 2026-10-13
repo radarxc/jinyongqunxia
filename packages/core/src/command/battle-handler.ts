@@ -1,68 +1,10 @@
 import { addInventoryItem, cloneJsonValue, type CharacterState, type GameState } from '../state';
 import { createBattleSession, actBattleSession, retryBattleSession, setBattleAuto,
   stepBattleSession, computeBattleRewards, forkBattleSession, peekReadyUnitId,
-  concedeBattleSession, acceptBattleDemonstration, encounterRetryAllowed,
-  queryBattleSubdue, subdueBattleUnit, type BattleSessionState } from '../battle';
+  type BattleSessionState } from '../battle';
 import type { BattleBusCommand, CommandHandler, CoreTransaction, RejectReason } from '.';
 import { mergeBattleTraining } from '../battle/rewards/settlement';
 import { freezeJsonTree, trackAppendOnlyJson } from '../state/immutable-json';
-import { executeActionBatch, type EventFailureReasons } from '../event/event-executor';
-import type { EncounterSettlementAction } from '@tianshu/data/schemas';
-
-// Settlement actions run with source-event rejects; sourceId is the encounter id, no anchor.
-const SETTLEMENT_FAILURES: EventFailureReasons = { condition: 'SOURCE_EVENT_CONDITION',
-  action: 'SOURCE_EVENT_ACTION', reference: 'SOURCE_EVENT_REFERENCE',
-  inventory: 'SOURCE_EVENT_INVENTORY', quest: 'SOURCE_EVENT_ACTION', battle: 'SOURCE_EVENT_ACTION' };
-function settlementActions(tx: CoreTransaction, assisted = false): readonly EncounterSettlementAction[] {
-  const session = tx.state.battle!;
-  const definition = tx.content.encounters?.find((row) =>
-    row.id === session.battle.setup.encounterId);
-  const settlement = definition?.settlement;
-  if (!settlement) return [];
-  if (assisted) return settlement.onAssisted;
-  const conceded = session.battle.events.some((event) => event.t === 'battle/conceded');
-  return conceded ? settlement.onConcede : session.battle.result === 'win'
-    ? settlement.onWin : settlement.onLose;
-}
-function executeSettlement(tx: CoreTransaction, assisted = false): void {
-  const session = tx.state.battle!;
-  const definition = tx.content.encounters?.find((row) => row.id === session.battle.setup.encounterId);
-  const actions = [...settlementActions(tx, assisted)];
-  if ((assisted || session.battle.result === 'win') && definition?.settlement?.resetLossOnWin)
-    actions.push(...definition.settlement.lossFlags.map((flagId) =>
-      ({ op: 'flag/set' as const, flagId, value: false })));
-  const sourceId = session.battle.setup.encounterId;
-  for (const action of actions) {
-    if (action.op === 'quest/advance') {
-      const line = tx.state.chapter.story.lines.find((row) => row.lineId === action.quest);
-      const current = line?.activeNodeIds[0];
-      const definition = tx.content.quests?.find((row) => row.id === action.quest);
-      if (current === action.stage || definition?.stages.find((row) => row.id === current)
-        ?.transitions.some((edge) => edge.to === action.stage) === true)
-        executeActionBatch(tx, [action], sourceId, null, SETTLEMENT_FAILURES);
-    } else executeActionBatch(tx, [action], sourceId, null, SETTLEMENT_FAILURES);
-  }
-}
-function lossFlags(tx: CoreTransaction): readonly string[] {
-  const encounterId = tx.state.battle?.battle.setup.encounterId;
-  return tx.content.encounters?.find((row) => row.id === encounterId)?.settlement?.lossFlags ?? [];
-}
-function storedLossStreak(tx: CoreTransaction, flags: readonly string[]): number {
-  const switches = tx.state.profile.replayRules?.switches ?? {};
-  let count = 0;
-  for (let index = 0; index < flags.length; index += 1)
-    if (switches[flags[index]!] === true) count = index + 1;
-  return count;
-}
-function persistAttemptLoss(tx: CoreTransaction, attemptedLosses: number): void {
-  const flags = lossFlags(tx); if (flags.length === 0) return;
-  const base = tx.state.battle?.opening.setup.scriptContext?.lossStreak ?? storedLossStreak(tx, flags);
-  const count = Math.min(flags.length, Math.max(storedLossStreak(tx, flags), base + attemptedLosses));
-  const actions = flags.map((flagId, index) => ({ op: 'flag/set' as const, flagId,
-    value: index < count }));
-  executeActionBatch(tx, actions, tx.state.battle!.battle.setup.encounterId, null,
-    SETTLEMENT_FAILURES);
-}
 
 function receiptKey(command: { readonly battleId: string; readonly outcomeSeq: number }): string {
   return `${command.battleId}/${command.outcomeSeq}`;
@@ -92,37 +34,16 @@ function preflight(state: Readonly<GameState>, command: BattleBusCommand): Rejec
     return command.mode === 'auto' && session.battle.setup.rules.noAuto
       ? 'BATTLE_AUTO_FORBIDDEN' : null;
   }
-  if (command.t === 'battle/retry') {
-    if (session.battle.phase !== 'ended') return 'BATTLE_NOT_ENDED';
-    return session.battle.result === 'lose' && encounterRetryAllowed(session.battle.setup)
-      ? null : 'BATTLE_ACTION_REJECTED';
-  }
-  if (command.t === 'battle/concede') return session.battle.phase === 'ended'
-    ? 'BATTLE_ENDED' : session.battle.setup.end.concede === undefined ||
-      session.battle.setup.end.concede === 'forbidden' ? 'BATTLE_ACTION_REJECTED' : null;
-  if (command.t === 'battle/subdue')
-    return queryBattleSubdue(session, command.actor, command.target).enabled
-      ? null : 'BATTLE_ACTION_REJECTED';
-  if (command.t === 'battle/demonstration') {
-    if (session.battle.phase === 'ended') return 'BATTLE_ENDED';
-    return session.battle.events.some((event) => event.t === 'battle/demonstrationOffered'
-      && event.message === command.replayId) ? null : 'BATTLE_ACTION_REJECTED';
-  }
+  if (command.t === 'battle/retry') return session.battle.phase === 'ended'
+    ? null : 'BATTLE_NOT_ENDED';
   if (session.battleId !== command.battleId || session.outcomeSeq !== command.outcomeSeq)
     return 'BATTLE_RECEIPT_MISMATCH';
   return session.battle.phase === 'ended' ? null : 'BATTLE_NOT_ENDED';
 }
 
-function participantRef(session: BattleSessionState, character: CharacterState,
-  protagonist: boolean): string {
-  const characterRef = protagonist ? 'protagonist' : `companion:${character.characterId}`;
-  return session.battle.setup.participants.find((row) => row.characterRef === characterRef)?.unitRef
-    ?? character.characterId;
-}
-function settleCharacter(character: CharacterState, session: BattleSessionState,
-  unitRef: string): CharacterState {
+function settleCharacter(character: CharacterState, session: BattleSessionState): CharacterState {
   if (session.battle.setup.returnContext.recovery !== 'preserve') return character;
-  const unit = session.battle.units.find((row) => row.id === unitRef);
+  const unit = session.battle.units.find((row) => row.id === character.characterId);
   if (unit === undefined) return character;
   return { ...character, resources: { hp: Math.min(unit.hp, character.stats.hpMax),
     mp: Math.min(unit.mp, character.stats.mpMax) },
@@ -132,7 +53,6 @@ function settleCharacter(character: CharacterState, session: BattleSessionState,
 
 function finalize(tx: CoreTransaction): void {
   const session = tx.state.battle!;
-  if (session.battle.result === 'lose') persistAttemptLoss(tx, session.retryCount + 1);
   const grantsDrops = session.battle.result === 'win' && session.battle.setup.rules.mode !== 'spar';
   const computed = computeBattleRewards(session.battle, grantsDrops ? tx.rng('loot') : undefined,
     { includeDrops: grantsDrops });
@@ -148,19 +68,13 @@ function finalize(tx: CoreTransaction): void {
       throw error;
     }
   }
-  const protagonistRef = tx.state.profile.protagonist === null ? null
-    : participantRef(session, tx.state.profile.protagonist, true);
-  const companionRefs = tx.state.profile.companions.map((row) => participantRef(session, row, false));
   const protagonist = tx.state.profile.protagonist === null ? null
-    : settleCharacter(tx.state.profile.protagonist, session, protagonistRef!);
-  const companions = tx.state.profile.companions.map((row, index) =>
-    settleCharacter(row, session, companionRefs[index]!));
+    : settleCharacter(tx.state.profile.protagonist, session);
+  const companions = tx.state.profile.companions.map((row) => settleCharacter(row, session));
   const receipt = { battleId: session.battleId, outcomeSeq: session.outcomeSeq };
-  const recipients = new Set([protagonistRef, ...companionRefs]
+  const recipients = new Set([protagonist?.characterId, ...companions.map((row) => row.characterId)]
     .filter((id): id is string => id !== undefined));
   const training = mergeBattleTraining(tx.state.profile.battleTraining, session.battle.rewardStats, recipients);
-  executeSettlement(tx, session.battle.events.some((event) =>
-    event.t === 'battle/demonstrationAccepted'));
   tx.set(['party', 'inventory'], inventory);
   if (session.battle.itemChapterUses !== undefined)
     tx.set(['chapter', 'itemChapterUses'], { ...session.battle.itemChapterUses });
@@ -206,18 +120,7 @@ function apply(tx: CoreTransaction, command: BattleBusCommand): void {
       : actBattleSession(session, command, true);
     if (!result.accepted) tx.abort('BATTLE_ACTION_REJECTED', result.error);
   } else if (command.t === 'battle/setAuto') setBattleAuto(session, command.mode === 'auto');
-  else if (command.t === 'battle/retry') {
-    persistAttemptLoss(tx, session.retryCount + 1); retryBattleSession(session);
-  }
-  else if (command.t === 'battle/concede') {
-    concedeBattleSession(session);
-  }
-  else if (command.t === 'battle/subdue') {
-    subdueBattleUnit(session, command.actor, command.target);
-  }
-  else if (command.t === 'battle/demonstration') {
-    acceptBattleDemonstration(session, command.replayId);
-  }
+  else if (command.t === 'battle/retry') retryBattleSession(session);
   else if (command.t === 'battle/finalize') { finalize(tx); return; }
   else { finalize(tx); tx.emit({ t: 'battle/left', payload: { battleId: command.battleId,
     outcomeSeq: command.outcomeSeq } }); return; }

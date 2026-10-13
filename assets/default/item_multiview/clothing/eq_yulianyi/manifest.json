@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_yulianyi",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/clothing/eq_yulianyi.png",
+  "generatedAt": "2026-10-07T20:01:52.551Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 124823,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/68704848-ef40-4d60-ae62-79db9a1b34ba/multiview_0_68704848-ef40-4d60-ae62-79db9a1b34ba.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 95112,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/68704848-ef40-4d60-ae62-79db9a1b34ba/multiview_1_68704848-ef40-4d60-ae62-79db9a1b34ba.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 97343,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/68704848-ef40-4d60-ae62-79db9a1b34ba/multiview_3_68704848-ef40-4d60-ae62-79db9a1b34ba.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 105152,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/68704848-ef40-4d60-ae62-79db9a1b34ba/multiview_2_68704848-ef40-4d60-ae62-79db9a1b34ba.jpeg"
+    }
+  }
+}

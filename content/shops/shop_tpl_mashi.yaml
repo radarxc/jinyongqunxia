@@ -1,0 +1,11 @@
+schemaVersion: shop-template.v1
+key: shop_tpl_mashi
+nameKey: shop.template.mashi.name
+facilitySub: mashi
+# （原创扩展）本货单只作三城试点公共供货，不宣称原著店铺曾售这些物品。
+# 【建议值】库内暂无 mount / 唐代索具，缩为唐前已有的草料与行旅补给；三日补货。
+supply:
+  - { itemId: it_dadou, maxGrade: 3, baseStock: 8, restockEveryDays: 3, restockAmount: 4, priceBp: 10000 }
+  - { itemId: it_xiaomi, maxGrade: 2, baseStock: 8, restockEveryDays: 3, restockAmount: 4, priceBp: 10000 }
+  - { itemId: it_yan, maxGrade: 2, baseStock: 5, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }
+  - { itemId: it_hongzao, maxGrade: 2, baseStock: 4, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }

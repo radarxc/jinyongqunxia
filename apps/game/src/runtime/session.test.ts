@@ -5,7 +5,9 @@ import { createGameSession } from './session';
 import { createPreviewSession } from './bootstrap';
 import { fixtureContent } from './test-fixture';
 import { createNewGameState, FIRST_SLEEP_RULE } from '@tianshu/core';
+import { projectDialogue } from '@tianshu/core/dialogue-projection';
 import { regionFixtureMap } from './region-test-fixture';
+import { FacilityDialogueSchema, TownFacilitiesSchema } from '@tianshu/data/schemas';
 
 describe('Worker session command adapter', () => {
   const content = fixtureContent();
@@ -331,10 +333,29 @@ describe('Worker session command adapter', () => {
   });
 
   it('moves through core, resolves location anchors, and enters a selected shared door', async () => {
-    const local = { ...content, townEventAnchors: [{ id: 'anchor_test_enter', kind: 'location' as const,
+    const townFacilities = TownFacilitiesSchema.parse({ schemaVersion: 'town-facilities.v1',
+      layoutKey: 'city_dali__ch01', facilities: [{ key: 'dufang_01', kind: 'casino',
+        sub: 'dufang', buildingId: 'bi_0020', nameKey: 'town.city_dali.dufang.name',
+        shop: { templateRef: 'shop_tpl_dufang', kind: 'normal' }, roles: ['keeper'] }] });
+    const facilityDialogues = FacilityDialogueSchema.parse({
+      schemaVersion: 'facility-dialogue.v1', bindings: [{
+        chapter: 'ch01_tianlong', kind: 'casino', sub: 'dufang', roleKey: 'keeper',
+        storyId: 'story_test_facility', entryKey: 'opening',
+      }] });
+    const local = { ...content, townFacilities: [townFacilities],
+      facilityDialogues: [facilityDialogues],
+      inkStories: [{ storyId: 'story_test_facility', storyHash: '4'.repeat(64),
+        storyJson: '{"inkVersion":21,"root":[[["done",{"#n":"g-0"}],null],"done",{"opening":["#","^ts:dialogue/speaker speaker=interlocutor","/#","^fixture.facility.hello","\\n","end",null]}],"listDefs":{}}' }],
+      townEventAnchors: [{ id: 'anchor_test_enter', kind: 'location' as const,
       sceneId: 'city_dali', trigger: 'enter' as const, lineId: 'sl_test', nodeId: 'arrive',
       point: { q: 6, r: 88 } }] };
-    const core = createGameSession(local); await core.dispatch({ t: 'worldmap/enter' });
+    let dialogueProjectionLoads = 0;
+    const core = createGameSession(local, undefined, undefined, {
+      subsystemLoaders: { dialogueProjection: async () => {
+        dialogueProjectionLoads += 1; return projectDialogue;
+      } },
+    });
+    await core.dispatch({ t: 'worldmap/enter' });
     const moved = await core.dispatch({ t: 'town/move', destination: [6, 88] });
     expect(moved.accepted).toBe(true);
     expect(moved.changes.town?.scene.actor.point).toEqual([6, 88]);
@@ -345,8 +366,23 @@ describe('Worker session command adapter', () => {
     expect(entering.changes.town?.scene).toMatchObject({
       activeBuildingId: 'bi_0020', buildingPhase: 'fading-in' });
     await core.dispatch({ t: 'town/settle-building' });
-    const shop = await core.dispatch({ t: 'town/interact' });
-    expect(shop.events.some((event) => event.t === 'town/shopRequested')).toBe(true);
+    const dialogue = await core.dispatch({ t: 'town/interact' });
+    const context = { kind: 'facility', sceneId: 'city_dali', facilityKey: 'dufang_01',
+      roleKey: 'keeper', shopKey: 'city_dali__ch01/dufang_01',
+      interlocutorNameKey: 'town.city_dali.dufang.name' };
+    expect(dialogue.accepted).toBe(true);
+    expect(dialogue.events.find((event) => event.t === 'dialogue/started')?.payload)
+      .toMatchObject({ context });
+    expect(dialogue.events.some((event) => event.t === 'town/shopRequested')).toBe(false);
+    expect(dialogueProjectionLoads).toBe(1);
+    expect(dialogue.changes.dialogue).toMatchObject({ speakerId: 'interlocutor', context,
+      interlocutor: { facilityKey: 'dufang_01', roleKey: 'keeper',
+        nameKey: 'town.city_dali.dufang.name' } });
+    const mergedProjection = { dialogue: null, ...dialogue.changes };
+    expect(mergedProjection.dialogue).toMatchObject({ speakerId: 'interlocutor', context });
+    expect(() => core.snapshot()).toThrow('DIALOGUE_SAVE_UNAVAILABLE');
+    const completed = await core.dispatch({ t: 'dialogue/continue' });
+    expect(completed.changes.dialogue).toBeNull();
     await core.dispatch({ t: 'town/exit-building' });
     await core.dispatch({ t: 'town/settle-building' });
     expect((await core.snapshot()).chapter.town?.buildingPhase).toBe('outside');

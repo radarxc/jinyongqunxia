@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_aksu"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "拨换城·跋禄迦故都（702年推定）"
+display_name: 拨换城（姑墨州）
 historical_year: 702
 era_kit: "xiyu"
 seed: 1776430065

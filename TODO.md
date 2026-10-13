@@ -43,9 +43,14 @@
   - ERROR：`ART-item-hidden-weapons`。
 
 ## 3. 素材
-- **大地图**（AR-83）：地形和贴片都已合入。
-  - `TOOL-map-compose` 第一版画风不合格：块状像素、没有山形、河流带刺，已拦下。
-  - 按 `devsup_note_style.md` 的 7 条返修完了，停在 HOLD-REVIEWS，等协调者看 `assets/default/map/composed/sample/*_vs_approved*` 对照图，看过才进审核。
+- **大地图**（AR-111，10-10 起，取代 AR-83 的程序拼图路线）：整张水墨底图 + 2D 叠路径 / 城镇坐标，契约 `docs/tech/13-worldmap-painted.md`。
+  - 运行时（AR-111 / AR-113）：**已提交** 88c3b64b2——整图 2D 页、曲线道路、主角沿路插值、分档城镇、名城小景、门派驻地（GPT-5.6-Sol 三轮，r3 PASS），已合进 claude/town-v2（1a40799de）。`packages/render/src/worldmap/**` 已不被页面使用，待清理任务删除并改 render CLAUDE.md 的 ENG-08 段。
+  - 底图 `ART-worldmap-painted`：GIS + 仓库水墨贴图确定性合成 4096×3072（ace71dd37 起，`compose_world.py --deliver` 可逐字节复现）；渭河 / 汾河已补、道路真实走向（c27c2e77b），青藏高原面按 GIS 突起量摆山（b6fb29722）。`TOOL-map-compose`（AR-83）停用，工具留档。
+  - 数据：历史朝代地名七档（7c6ed45f2、e0a8c1064）、门派按书中地望上图（f18f01c01）、地名与设计文档同步（aa4cd39fb）、庭州 / 北庭并入（a4332dd92，190 城、55 路线；ch14 开放济木萨恺安城）。14 章 revision 已变，旧正式存档的大地图状态需开新档。
+  - 名城小景：**53 张全部提交**（4f66ad895、bb32b8a35、14c85a141），覆盖 cities.yaml 全部都城（城, 章）组合；喀什、叶尔羌、阿力麻里、青唐、江州、金中京等 7 张标「待考」。
+  - **AR-115（10-11 09:10）城镇贴图与山川同分辨率、随缩放**：城镇图与小景改为画进地图——与底图同一变换、按底图像素密度重采样、四周留白；城名、点击区、主角放只平移的叠加层，拖动不重排（契约 tech/13 §5.5）。底图最大缩放时整体偏软，要更清楚需高清分块底图，另议。
+  - **AR-116（10-11 14:30）主角走路动作 + 速度翻倍**：主角按性别用 3D 模型离线渲染的 walk / run / idle 帧条（`assets/default/map/hero/`，工具 `tools/map/hero/`），行走逐帧、疾行跑步、停步站立；行进改为固定节拍 25 ms 一步（原约 51 ms），疾行 12 ms。
+  - 待办：①ch01 / ch10 城图规格与关闭城市、显示名对齐（见 history 笔记 §8）；②门派主驻地挂在关闭城市上（蒙古 ch01/05/06、白云城 ch08–14）待 design/17 定；③`tools/map/migrate_regions_v2.py` 仍断言 189 城，复跑前改成 190。（原④顶栏「天书录」晕染底透字：城镇线 b1b18440b 已修，b8bd92bea 并入主干，已关。）
 - **城图**：202 / 1172，city_scheduler 自己在推；`CITY-layouts-ch01-b` 审核没过，正在返修。
 - **插图**：26 份提示词还没出图，清单在 `.agents/coord/_lines/title-audit/missing_plates.tsv`。
 - **衣物与护甲出图**（AR-77 / AR-91 记入 TODO）：数据 8 批已合入，565 件待 Gemini 出图。作者方便时，先开两个 Gemini 标签页（窗口要在前台），出一组样图给作者看，再批量出。同款先出底图，其他颜色上传底图只改主色（换色件带 `edit_from`），入口见 AGENTS.md §3。
@@ -72,3 +77,9 @@
   python3 .agents/coord/_handoff/detach_launch.py .agents/coord/ENG-ch00-encounter-wiring/supervise.out "$PWD" -- python3 -u tools/agents/supervise.py ENG-ch00-encounter-wiring --max-reviews 1 --max-runs 1 --auto-merge --worker --model GPT-5.6-Sol --effort max --checks .agents/coord/PROD/review_checks_eng.md --from start
   ```
 - 其余见 `AGENTS.md` §2。
+
+## 6. 换装线（3D 纸娃娃，2026-10-13）
+- 现状、作者决定、进行中任务与待办见 `docs/tech/12a-dressup-status.md`（接手入口）。换机器接手先照 `.agents/handoff/dressup-20261013/README.md` 还原协调目录。
+- 10-13 已合入并主干：R2 道具 × tpl_f2_medium、R3 新劲装源件（作者豁免 agy 超额一次）。
+- **R4 新劲装贴合：作者 10-13 叫停，暂不做**。已做的抽衣壳与 medium 贴合已复制进交接包 `.agents/handoff/dressup-20261013/r4_wip/`；重启方法见状态文档 §3。
+- 之后依次：R4 重启（等作者说）→ 换装页默认素体切到 tpl_f2_medium（作者 10-12「衣物到位后再切」）→ W1 前问作者男素体衣物 / 头与点数。

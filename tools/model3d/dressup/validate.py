@@ -1,0 +1,1356 @@
+#!/usr/bin/env python3
+"""校验 3D 纸娃娃资产，并写出 tech/11 §6 的 report.json。"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import re
+import sys
+from typing import Any, Sequence
+
+import numpy as np
+from PIL import Image
+from scipy.spatial import cKDTree
+
+# 直接执行时允许导入同目录基础库，同时避开 inspect.py 遮蔽标准库的问题。
+_HERE = Path(__file__).resolve().parent
+if str(_HERE) not in sys.path:
+    sys.path.insert(0, str(_HERE))
+from common import (closest_point_on_triangle, compose_matrix, lbs, pca,
+                    signed_distance, umeyama)  # noqa: E402
+from fit_garment import SurfaceIndex  # noqa: E402
+from glb_io import GLB, Mesh, load_glb  # noqa: E402
+from bake_hide_mask import (orthographic_frame, rasterize_triangles)  # noqa: E402
+
+SCHEMA = "tianshu-dressup-report.v1"
+FORBIDDEN_HIDE = {"neck", "handL", "handR", "footL", "footR"}
+TRIANGLE_LIMITS = {"template": 80_000, "garment": 30_000, "hair": 20_000,
+                   "prop": 10_000, "head": 30_000}
+REPO = Path(__file__).resolve().parents[3]
+SKELETON_SCHEMA = "tianshu-dressup-skeleton.v1"
+FIT_SCHEMA = "tianshu-dressup-fit.v1"
+UNIT_TOLERANCE = 1e-6
+HOLE_TOLERANCE = 0.0005
+HOLE_VIEWS = np.asarray([
+    [0., 0., 1.], [0., 0., -1.], [1., 0., 0.], [-1., 0., 0.],
+    [0., 1., 1.], [0., 1., -1.], [1., 1., 0.], [-1., 1., 0.],
+], dtype=np.float64)
+HOLE_VIEWS /= np.linalg.norm(HOLE_VIEWS, axis=1)[:, None]
+# 衣物 poseOffset：左右 Arm 绕模型 +Z 的转向符号（+Z 朝前、左臂在 +X）
+ARM_ABDUCTION_JOINTS = (("LeftArm", 1.0), ("RightArm", -1.0))
+ARM_ABDUCTION_MAX_DEG = 20.0
+
+
+def _fail(message: str) -> int:
+    print(f"错误：{message}", file=sys.stderr)
+    return 2
+
+
+def _joint_names(glb: GLB, skin_index: int = 0) -> list[str]:
+    skin = glb.skin(skin_index)
+    return [glb.json["nodes"][node].get("name", f"node_{node}") for node in skin.joints]
+
+
+def _mesh(glb: GLB) -> Mesh:
+    meshes = glb.meshes()
+    if not meshes:
+        raise ValueError(f"{glb.path}: 没有 mesh")
+    if len(meshes) != 1:
+        raise ValueError(f"{glb.path}: 门禁要求单一 mesh，实际 {len(meshes)}")
+    return meshes[0]
+
+
+def _faces(mesh: Mesh) -> np.ndarray:
+    return np.asarray(mesh.indices, dtype=np.int64).reshape(-1, 3)
+
+
+def _result(fit: dict[str, Any], asset_path: Path, fit_path: Path,
+            checks: list[dict[str, Any]], requested: str) -> dict[str, Any]:
+    passed = all(check["pass"] for check in checks)
+    result: dict[str, Any] = {
+        "schema": SCHEMA, "level": requested if passed else "fail",
+        "template": fit.get("template"),
+        "subject": {"kind": fit.get("kind"), "id": fit.get("id")},
+        "inputs": {"asset": _input_record(asset_path), "fit": _input_record(fit_path)},
+        "checks": checks}
+    waivers = [str(check["name"]) for check in checks if check.get("waived") is True]
+    if waivers:
+        result["waivers"] = waivers
+    return result
+
+
+def _world_mesh(glb: GLB) -> Mesh:
+    positions: list[np.ndarray] = []; indices: list[np.ndarray] = []; uvs: list[np.ndarray] = []
+    joints: list[np.ndarray] = []; weights: list[np.ndarray] = []; regions: list[np.ndarray] = []
+    vertex_start = 0; has_uv = has_skin = has_region = True
+    for node_index, node in enumerate(glb.json.get("nodes", [])):
+        if "mesh" not in node: continue
+        mesh = glb.mesh(int(node["mesh"])); matrix = glb.world_matrix(node_index)
+        homogeneous = np.column_stack((mesh.positions, np.ones(len(mesh.positions))))
+        positions.append((homogeneous @ matrix.T)[:, :3]); indices.append(mesh.indices + vertex_start)
+        if mesh.uvs is None: has_uv = False
+        else: uvs.append(mesh.uvs)
+        if mesh.joints is None or mesh.weights is None: has_skin = False
+        else: joints.append(mesh.joints); weights.append(mesh.weights)
+        if mesh.regions is None: has_region = False
+        else: regions.append(mesh.regions)
+        vertex_start += len(mesh.positions)
+    if not positions: raise ValueError(f"{glb.path}: 场景没有 mesh 节点")
+    return Mesh(np.concatenate(positions), np.concatenate(indices),
+                uvs=np.concatenate(uvs) if has_uv else None,
+                joints=np.concatenate(joints) if has_skin else None,
+                weights=np.concatenate(weights) if has_skin else None,
+                regions=np.concatenate(regions) if has_region else None)
+
+
+def _resolve_recorded(path: str, fit_path: Path) -> Path:
+    recorded = Path(path)
+    candidates = [recorded] if recorded.is_absolute() else [fit_path.parent / recorded, REPO / recorded]
+    git_file = REPO / ".git"
+    if not recorded.is_absolute() and git_file.is_file():
+        git_dir = Path(git_file.read_text(encoding="utf-8").strip().removeprefix("gitdir: "))
+        candidates.extend(parent.parent / recorded for parent in git_dir.parents
+                          if parent.parent.name == "jinyongqunxia" and parent.name == ".git")
+    source_root = os.environ.get("TIANSHU_SOURCE_ROOT")
+    if not recorded.is_absolute() and source_root: candidates.append(Path(source_root) / recorded)
+    found = next((value.resolve() for value in candidates if value.is_file()), None)
+    if found is None: raise ValueError(f"找不到 fit 记录的真实源几何：{path}")
+    return found
+
+
+def _verified_source(fit: dict[str, Any], fit_path: Path, field: str = "source") -> Path:
+    info = fit.get(field, {}); path = _resolve_recorded(info["file"], fit_path)
+    expected = info.get("sha256")
+    if expected:
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if digest != expected: raise ValueError(f"{field}.sha256 与真实文件不符")
+    return path
+
+
+def _vertex_normals(vertices: np.ndarray, faces: np.ndarray) -> np.ndarray:
+    normal = np.zeros_like(vertices, dtype=np.float64)
+    tri = vertices[faces]
+    face_normal = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
+    for corner in range(3):
+        np.add.at(normal, faces[:, corner], face_normal)
+    length = np.linalg.norm(normal, axis=1, keepdims=True)
+    return np.divide(normal, length, out=np.zeros_like(normal), where=length > 1e-12)
+
+
+def _surface_distances(points: np.ndarray, vertices: np.ndarray, faces: np.ndarray,
+                       normals: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """用向量化严格最近面索引返回带符号距离、面号与重心。"""
+    if len(points) <= 8:
+        triangles = np.asarray(vertices)[faces]
+        query = np.asarray(points)[:, None, :]
+        nearest, bary = closest_point_on_triangle(
+            query, triangles[None, :, 0], triangles[None, :, 1], triangles[None, :, 2])
+        distance2 = np.sum((nearest - query) ** 2, axis=2)
+        face_ids = np.argmin(distance2, axis=1); rows = np.arange(len(points))
+        chosen = nearest[rows, face_ids]; chosen_bary = bary[rows, face_ids]
+        interpolated = np.einsum("ni,nij->nj", chosen_bary, normals[faces[face_ids]])
+        length = np.linalg.norm(interpolated, axis=1, keepdims=True)
+        interpolated = np.divide(interpolated, length, out=np.zeros_like(interpolated),
+                                 where=length > 1e-12)
+        sign = np.sign(np.einsum("ij,ij->i", np.asarray(points) - chosen, interpolated))
+        sign[sign == 0.0] = 1.0
+        return sign * np.sqrt(distance2[rows, face_ids]), face_ids, chosen_bary
+    surface = SurfaceIndex(vertices, faces, normals, k=16)
+    nearest, bary, face_ids, unsigned = surface.query(points)
+    interpolated = np.einsum("ni,nij->nj", bary, normals[faces[face_ids]])
+    length = np.linalg.norm(interpolated, axis=1, keepdims=True)
+    interpolated = np.divide(interpolated, length, out=np.zeros_like(interpolated),
+                             where=length > 1e-12)
+    sign = np.sign(np.einsum("ij,ij->i", np.asarray(points) - nearest, interpolated))
+    sign[sign == 0.0] = 1.0
+    return sign * unsigned, face_ids, bary
+
+
+def _signed_distances(points: np.ndarray, vertices: np.ndarray, faces: np.ndarray,
+                      normals: np.ndarray, k: int = 16) -> np.ndarray:
+    """分块调用基础库的严格最近三角带符号距离，覆盖全部查询点。"""
+    output = np.empty(len(points), dtype=np.float64)
+    for start in range(0, len(points), 4096):
+        block = np.asarray(points[start:start + 4096], dtype=np.float64)
+        output[start:start + len(block)] = signed_distance(
+            block, vertices, faces, normals, k=k).distances_mu
+    return output
+
+
+def _load_hide_mask(fit: dict[str, Any], fit_path: Path, body_mesh: Mesh) -> np.ndarray | None:
+    """读取与模板共 UV 的 L8 遮罩；无遮罩返回 None，保持旧件行为不变。"""
+    spec = fit.get("hideMask")
+    if spec is None:
+        return None
+    if not isinstance(spec, dict) or not isinstance(spec.get("file"), str):
+        raise ValueError("hideMask 必须含 file")
+    size = spec.get("size")
+    if not isinstance(size, int) or size <= 0:
+        raise ValueError("hideMask.size 必须是正整数")
+    if body_mesh.uvs is None:
+        raise ValueError("hideMask 需要模板 TEXCOORD_0")
+    recorded = Path(spec["file"]); path = recorded if recorded.is_absolute() else fit_path.parent / recorded
+    if not path.is_file() and not recorded.is_absolute():
+        path = REPO / recorded
+    if not path.is_file():
+        raise ValueError(f"找不到 hideMask：{path}")
+    with Image.open(path) as image:
+        if image.mode != "L" or image.size != (size, size):
+            raise ValueError(f"hideMask 必须是 {size}x{size} L8 PNG")
+        return np.asarray(image, dtype=np.float32) / 255.0
+
+
+def _sample_hide_mask(mask: np.ndarray, uvs: np.ndarray) -> np.ndarray:
+    """按本管线 glTF 左上 UV 约定双线性采样身体遮罩。"""
+    coords = np.asarray(uvs, dtype=np.float64); height, width = mask.shape
+    x = np.clip(coords[:, 0], 0, 1) * (width - 1)
+    y = np.clip(coords[:, 1], 0, 1) * (height - 1)
+    x0, y0 = np.floor(x).astype(np.int64), np.floor(y).astype(np.int64)
+    x1, y1 = np.minimum(x0 + 1, width - 1), np.minimum(y0 + 1, height - 1)
+    wx, wy = x - x0, y - y0
+    return ((1 - wy) * ((1 - wx) * mask[y0, x0] + wx * mask[y0, x1])
+            + wy * ((1 - wx) * mask[y1, x0] + wx * mask[y1, x1]))
+
+
+def _distances_and_visibility(points: np.ndarray, body_vertices: np.ndarray,
+                              body_mesh: Mesh, body_normals: np.ndarray,
+                              mask: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """返回带符号距离及最近体表点是否未隐藏；每帧重算最近三角。"""
+    faces = _faces(body_mesh); distances = np.empty(len(points), np.float64)
+    visible = np.empty(len(points), bool)
+    assert body_mesh.uvs is not None
+    for start in range(0, len(points), 4096):
+        block = np.asarray(points[start:start + 4096], dtype=np.float64)
+        values, face_ids, bary = _surface_distances(
+            block, body_vertices, faces, body_normals)
+        distances[start:start + len(block)] = values
+        tri = faces[face_ids]
+        uv = np.einsum("ni,nij->nj", bary, body_mesh.uvs[tri])
+        visible[start:start + len(block)] = _sample_hide_mask(mask, uv) < 0.5
+    return distances, visible
+
+
+def _check(name: str, passed: bool, value: Any, threshold: Any, **extra: Any) -> dict[str, Any]:
+    return {"name": name, "pass": bool(passed), "value": value,
+            "threshold": threshold, **extra}
+
+
+def _input_record(path: Path) -> dict[str, Any]:
+    data = path.read_bytes()
+    return {"sha256": hashlib.sha256(data).hexdigest(), "sizeBytes": len(data)}
+
+
+def _positive_number(value: Any) -> float | None:
+    if isinstance(value, bool):
+        return None
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    return number if math.isfinite(number) and number > 0 else None
+
+
+def _present(value: Any) -> bool:
+    return value is not None and value != "" and value != [] and value != {}
+
+
+def _axis_check_waiver(fit: dict[str, Any]) -> dict[str, Any] | None:
+    waiver = fit.get("axisCheckWaiver")
+    if waiver is None:
+        return None
+    if not isinstance(waiver, dict):
+        raise ValueError("axisCheckWaiver 必须是对象")
+    missing = [name for name in ("reason", "approvedBy", "date", "evidence")
+               if not _present(waiver.get(name))]
+    if missing:
+        raise ValueError(f"axisCheckWaiver 缺少必填字段：{', '.join(missing)}")
+    if not all(isinstance(waiver[name], str) for name in ("reason", "approvedBy", "date")):
+        raise ValueError("axisCheckWaiver reason/approvedBy/date 必须是非空字符串")
+    if not isinstance(waiver["evidence"], dict):
+        raise ValueError("axisCheckWaiver.evidence 必须是非空对象")
+    return waiver
+
+
+def _prop_main_axis_check(fit: dict[str, Any], alignment: float,
+                          axis_details: dict[str, Any],
+                          waiver: dict[str, Any] | None) -> dict[str, Any]:
+    value = {"up": fit.get("up"), "alignment": alignment}
+    if waiver is not None and "fullBladeAlignment" in axis_details:
+        value["fullBladeAlignment"] = axis_details["fullBladeAlignment"]
+    passed = fit.get("up") == "+Y" and alignment >= 0.999
+    extra = {"waived": True, "waiver": waiver} if waiver is not None else {}
+    return _check("prop.mainAxisY", passed or waiver is not None, value,
+                  "+Y and >= 0.999", **extra)
+
+
+def _recorded_template(path: Any) -> str | None:
+    if not isinstance(path, str) or not path:
+        return None
+    parts = Path(path.replace("\\", "/")).parts
+    if len(parts) < 3 or parts[-3] != "templates" or parts[-1] != "body.glb":
+        return None
+    return parts[-2]
+
+
+def _binding_checks(body_path: Path, skeleton: dict[str, Any],
+                    fit: dict[str, Any]) -> list[dict[str, Any]]:
+    """把正本身份、模板归属与 mu→m 换算纳入可审计门禁。"""
+    actual_sha = _input_record(body_path)["sha256"]
+    skeleton_source = skeleton.get("source")
+    skeleton_source = skeleton_source if isinstance(skeleton_source, dict) else {}
+    fit_body = fit.get("body")
+    fit_body = fit_body if isinstance(fit_body, dict) else {}
+    fit_source = fit.get("source")
+    fit_source = fit_source if isinstance(fit_source, dict) else {}
+
+    skeleton_missing = [name for name, value in {
+        "source.file": skeleton_source.get("file"),
+        "source.sha256": skeleton_source.get("sha256"),
+        "unit": skeleton.get("unit"), "heightMu": skeleton.get("heightMu"),
+        "defaultHeightM": skeleton.get("defaultHeightM"),
+        "mPerMu": skeleton.get("mPerMu"), "joints": skeleton.get("joints"),
+    }.items() if not _present(value)]
+    fit_missing = [name for name, value in {
+        "id": fit.get("id"), "kind": fit.get("kind"),
+        "source.file": fit_source.get("file"),
+        "source.sha256": fit_source.get("sha256"),
+        "body.file": fit_body.get("file"),
+        "body.sha256": fit_body.get("sha256"), "template": fit.get("template"),
+        "mPerMu": fit.get("mPerMu"),
+    }.items() if not _present(value)]
+
+    height_mu = _positive_number(skeleton.get("heightMu"))
+    default_height_m = _positive_number(skeleton.get("defaultHeightM"))
+    skeleton_m_per_mu = _positive_number(skeleton.get("mPerMu"))
+    calculated = (default_height_m / height_mu
+                  if default_height_m is not None and height_mu is not None else None)
+    skeleton_units_ok = (skeleton.get("unit") == "mu" and calculated is not None and
+                         skeleton_m_per_mu is not None and
+                         abs(skeleton_m_per_mu - calculated) <= UNIT_TOLERANCE)
+    fit_m_per_mu = _positive_number(fit.get("mPerMu"))
+    fit_units_ok = (fit_m_per_mu is not None and skeleton_m_per_mu is not None and
+                    abs(fit_m_per_mu - skeleton_m_per_mu) <= UNIT_TOLERANCE)
+
+    skeleton_file = skeleton_source.get("file")
+    fit_file = fit_body.get("file")
+    skeleton_template = _recorded_template(skeleton_file)
+    fit_template = _recorded_template(fit_file)
+    body_template = _recorded_template(body_path.as_posix())
+    explicit_template = fit.get("template")
+    template_ok = (skeleton_template is not None and fit_template == skeleton_template and
+                   (body_template is None or body_template == skeleton_template) and
+                   explicit_template == skeleton_template)
+    return [
+        _check("binding.skeletonSchema", skeleton.get("schema") == SKELETON_SCHEMA,
+               skeleton.get("schema"), SKELETON_SCHEMA),
+        _check("binding.skeletonRequired", not skeleton_missing, skeleton_missing, []),
+        _check("binding.skeletonBodySha", skeleton_source.get("sha256") == actual_sha,
+               {"recorded": skeleton_source.get("sha256"), "actual": actual_sha}, "equal"),
+        _check("binding.skeletonUnits", skeleton_units_ok,
+               {"unit": skeleton.get("unit"), "recorded": skeleton_m_per_mu,
+                "calculated": calculated, "tolerance": UNIT_TOLERANCE}, "abs error <= 1e-6"),
+        _check("binding.fitSchema", fit.get("schema") == FIT_SCHEMA, fit.get("schema"), FIT_SCHEMA),
+        _check("binding.fitRequired", not fit_missing, fit_missing, []),
+        _check("binding.fitBodySha", fit_body.get("sha256") == actual_sha,
+               {"recorded": fit_body.get("sha256"), "actual": actual_sha}, "equal"),
+        _check("binding.fitTemplate", template_ok,
+               {"body": body_template, "skeleton": skeleton_template,
+                "fit": fit_template, "explicit": explicit_template},
+               "same templates/<id>/body.glb"),
+        _check("binding.fitMPerMu", fit_units_ok,
+               {"fit": fit_m_per_mu, "skeleton": skeleton_m_per_mu,
+                "tolerance": UNIT_TOLERANCE}, "abs error <= 1e-6"),
+    ]
+
+
+def _quat_slerp(left: np.ndarray, right: np.ndarray, alpha: float) -> np.ndarray:
+    a, b = left.astype(np.float64), right.astype(np.float64)
+    dot = float(np.dot(a, b))
+    if dot < 0:
+        b, dot = -b, -dot
+    if dot > 0.9995:
+        value = a + alpha * (b - a)
+        return value / np.linalg.norm(value)
+    angle = math.acos(max(-1.0, min(1.0, dot)))
+    return (math.sin((1 - alpha) * angle) * a + math.sin(alpha * angle) * b) / math.sin(angle)
+
+
+def _sample(glb: GLB, sampler: dict[str, Any], time: float, rotation: bool) -> np.ndarray:
+    interpolation = sampler.get("interpolation", "LINEAR")
+    if interpolation == "CUBICSPLINE":
+        raise ValueError("动画 sampler CUBICSPLINE 不支持；门禁只接受 LINEAR")
+    if interpolation not in ("LINEAR", "STEP"):
+        raise ValueError(f"动画 sampler {interpolation} 不支持")
+    times = np.asarray(glb.accessor(sampler["input"]), dtype=np.float64).reshape(-1)
+    values = np.asarray(glb.accessor(sampler["output"]), dtype=np.float64)
+    if len(times) != len(values) or not len(times):
+        raise ValueError("动画 sampler 输入/输出数量不符")
+    if time <= times[0]: return values[0]
+    if time >= times[-1]: return values[-1]
+    right = int(np.searchsorted(times, time, side="right")); left = right - 1
+    if interpolation == "STEP": return values[left]
+    alpha = float((time - times[left]) / (times[right] - times[left]))
+    return _quat_slerp(values[left], values[right], alpha) if rotation else values[left] * (1 - alpha) + values[right] * alpha
+
+
+def arm_abduction_deg(fit: dict[str, Any] | None) -> float:
+    """衣物 fit.json `poseOffset.armAbductionDeg`（度）；头 / 道具 / 无该字段的衣物为 0。"""
+    if not isinstance(fit, dict) or fit.get("kind") != "garment" or "poseOffset" not in fit:
+        return 0.0
+    offset = fit["poseOffset"]
+    value = offset.get("armAbductionDeg", 0.0) if isinstance(offset, dict) else None
+    if (isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value)
+            or not 0.0 <= value <= ARM_ABDUCTION_MAX_DEG):
+        raise ValueError(f"poseOffset.armAbductionDeg 须为 0..{ARM_ABDUCTION_MAX_DEG:g} 度")
+    return float(value)
+
+
+def apply_arm_abduction(glb: GLB, world: np.ndarray, degrees: float) -> np.ndarray:
+    """左右 Arm 骨连同子骨在肩关节处绕模型 +Z（身体前向，离线归一保证）向外转 degrees 度。
+
+    world 为全部节点的世界矩阵。validate 动态门、bake_hide_mask 动作采样、fit_garment 姿势蒙皮
+    与运行时 actor（packages/render/src/dressup/actor.ts）同一口径；0 度原样返回。"""
+    if degrees == 0.0:
+        return world
+    names = [str(node.get("name", "")).rsplit(":", 1)[-1] for node in glb.json.get("nodes", [])]
+    children: dict[int, list[int]] = {}
+    for child, parent in glb.parents.items():
+        children.setdefault(parent, []).append(child)
+    result = world.copy()
+    for joint, sign in ARM_ABDUCTION_JOINTS:
+        found = [index for index, name in enumerate(names) if name == joint]
+        if len(found) != 1:
+            raise ValueError(f"手臂外展需要唯一的 {joint} 节点，实际 {len(found)} 个")
+        angle = math.radians(sign * degrees); cos, sin = math.cos(angle), math.sin(angle)
+        rotate = np.eye(4); rotate[:2, :2] = [[cos, -sin], [sin, cos]]
+        pivot = world[found[0]][:3, 3]; rotate[:3, 3] = pivot - rotate[:3, :3] @ pivot
+        stack = [found[0]]
+        while stack:
+            index = stack.pop(); result[index] = rotate @ world[index]
+            stack.extend(children.get(index, ()))
+    return result
+
+
+def _world_matrices(glb: GLB, animation: dict[str, Any], time: float,
+                    arm_abduction: float = 0.0) -> np.ndarray:
+    local = [glb.local_matrix(index) for index in range(len(glb.json.get("nodes", [])))]
+    animated: dict[int, dict[str, Any]] = {}
+    for channel in animation.get("channels", []):
+        target = channel.get("target", {}); path = target.get("path")
+        if path not in ("translation", "rotation", "scale"):
+            if path == "weights": continue
+            raise ValueError(f"不支持动画 target.path={path}")
+        sampler = animation["samplers"][channel["sampler"]]
+        node_index = int(target["node"]); node = glb.json["nodes"][node_index]
+        if "matrix" in node:
+            raise ValueError(f"动画节点 {node_index} 不得使用 matrix")
+        state = animated.setdefault(node_index, {
+            "translation": node.get("translation", [0, 0, 0]),
+            "rotation": node.get("rotation", [0, 0, 0, 1]),
+            "scale": node.get("scale", [1, 1, 1]),
+        })
+        sampled = _sample(glb, sampler, time, path == "rotation")
+        state[path] = sampled
+    for node_index, state in animated.items():
+        local[node_index] = compose_matrix(
+            state["translation"], state["rotation"], state["scale"])
+    world = np.empty((len(local), 4, 4), dtype=np.float64)
+    pending = set(range(len(local)))
+    while pending:
+        progressed = False
+        for index in tuple(pending):
+            parent = glb.parents.get(index)
+            if parent is None or parent not in pending:
+                world[index] = local[index] if parent is None else world[parent] @ local[index]
+                pending.remove(index); progressed = True
+        if not progressed: raise ValueError("节点层级含环")
+    return apply_arm_abduction(glb, world, arm_abduction)
+
+
+def _is_closed(vertices: np.ndarray, faces: np.ndarray) -> bool:
+    """按位置焊接后每条边恰被两个三角共用（UV 缝的重复点不算开口）。"""
+    _, inverse = np.unique(np.asarray(vertices, dtype=np.float32), axis=0, return_inverse=True)
+    welded = inverse.reshape(-1)[np.asarray(faces, dtype=np.int64)]
+    edges = np.sort(np.concatenate((welded[:, [0, 1]], welded[:, [1, 2]], welded[:, [2, 0]])), axis=1)
+    edges = edges[edges[:, 0] != edges[:, 1]]
+    if not len(edges): return False
+    _, counts = np.unique(edges, axis=0, return_counts=True)
+    return bool(np.all(counts == 2))
+
+
+def _parity_inside(points: np.ndarray, vertices: np.ndarray, faces: np.ndarray) -> np.ndarray:
+    """封闭网格的射线奇偶判内：沿 +x / +y / +z 三条轴向射线各数穿越次数，奇数为内，三票取多数。
+    与三角朝向、顶点法向无关，用于复核 A1 带符号距离判为"体内"的点：A1 以重心插值顶点法向定符号，模板胸下
+    倒置面（三模板各 26–31 个与着色法向相反的面）附近会把体外 2–5 cm 的衣物垂坠点判成体内（E2b 实测）。
+    三角按投影平面上的包围盒分桶，每个查询点只测所在格子里的三角。"""
+    points = np.asarray(points, dtype=np.float64)
+    if not len(points): return np.zeros(0, bool)
+    triangles = np.asarray(vertices, dtype=np.float64)[np.asarray(faces, dtype=np.int64)]
+    votes = np.zeros(len(points), dtype=np.int64)
+    for axis in range(3):
+        u, v = (axis + 1) % 3, (axis + 2) % 3
+        plane = triangles[:, :, [u, v]]; depth = triangles[:, :, axis]
+        low, high = plane.min(axis=1), plane.max(axis=1)
+        cell = max(float(np.median(np.max(high - low, axis=1))) * 2.0, 1e-12)
+        start, stop = np.floor(low / cell).astype(np.int64), np.floor(high / cell).astype(np.int64)
+        spans = (stop - start + 1)
+        owners = np.repeat(np.arange(len(triangles)), spans[:, 0] * spans[:, 1])
+        offsets = np.arange(len(owners)) - np.repeat(np.cumsum(spans[:, 0] * spans[:, 1]) - spans[:, 0] * spans[:, 1],
+                                                      spans[:, 0] * spans[:, 1])
+        cells_u = start[owners, 0] + offsets // spans[owners, 1]; cells_v = start[owners, 1] + offsets % spans[owners, 1]
+        keys = cells_u * 1_000_003 + cells_v
+        order = np.argsort(keys, kind="stable"); keys, owners = keys[order], owners[order]
+        query = np.floor(points[:, [u, v]] / cell).astype(np.int64)
+        query_keys = query[:, 0] * 1_000_003 + query[:, 1]
+        first, last = np.searchsorted(keys, query_keys, "left"), np.searchsorted(keys, query_keys, "right")
+        counts = last - first
+        pair_points = np.repeat(np.arange(len(points)), counts)
+        pair_tris = owners[np.concatenate([np.arange(a, b) for a, b in zip(first, last)]) if counts.sum() else
+                           np.zeros(0, np.int64)]
+        if not len(pair_points): continue
+        p = points[pair_points][:, [u, v]]; t = plane[pair_tris]; z = depth[pair_tris]
+        d1, d2 = t[:, 1] - t[:, 0], t[:, 2] - t[:, 0]; dp = p - t[:, 0]
+        det = d1[:, 0] * d2[:, 1] - d1[:, 1] * d2[:, 0]
+        ok = np.abs(det) > 1e-20
+        safe = np.where(ok, det, 1.0)
+        beta = (dp[:, 0] * d2[:, 1] - dp[:, 1] * d2[:, 0]) / safe
+        gamma = (d1[:, 0] * dp[:, 1] - d1[:, 1] * dp[:, 0]) / safe
+        alpha = 1.0 - beta - gamma
+        inside = ok & (alpha >= 0) & (beta >= 0) & (gamma >= 0)
+        hit_depth = alpha * z[:, 0] + beta * z[:, 1] + gamma * z[:, 2]
+        crossing = inside & (hit_depth > points[pair_points, axis])
+        parity = np.zeros(len(points), dtype=np.int64)
+        np.add.at(parity, pair_points[crossing], 1)
+        votes += parity % 2
+    return votes >= 2
+
+
+def _confirm_inside(penetrating: np.ndarray, points: np.ndarray, vertices: np.ndarray,
+                    faces: np.ndarray, closed: bool) -> np.ndarray:
+    """A1 判为穿入的点再以射线奇偶复核（仅封闭身体；开口网格无内外，保持 A1 口径）。"""
+    if not closed or not np.any(penetrating): return penetrating
+    confirmed = penetrating.copy()
+    confirmed[penetrating] = _parity_inside(points[penetrating], vertices, faces)
+    return confirmed
+
+
+def _dynamic_penetration(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
+                         m_per_mu: float, hide_mask: np.ndarray | None = None,
+                         arm_abduction: float = 0.0) -> dict[str, float | dict[str, float]]:
+    if asset_mesh.joints is None or asset_mesh.weights is None or body_mesh.joints is None or body_mesh.weights is None:
+        return {}
+    by_name = {str(item.get("name", "")).lower(): item for item in body.json.get("animations", [])}
+    result: dict[str, float | dict[str, float]] = {}; body_skin = body.skin(); asset_skin = asset.skin()
+    closed = _is_closed(body_mesh.positions, _faces(body_mesh))
+    for clip in ("idle", "walk", "run"):
+        animation = next((value for name, value in by_name.items() if clip in name), None)
+        if animation is None: raise ValueError(f"正本缺 {clip} 动画")
+        ends = [float(np.asarray(body.accessor(s["input"])).max(initial=0)) for s in animation.get("samplers", [])]
+        duration = max(ends, default=0.0)
+        worst_all = 0.0; worst_visible = 0.0
+        for time in np.linspace(0.0, duration, 24, endpoint=False):
+            world = _world_matrices(body, animation, float(time), arm_abduction)
+            body_world = world[np.asarray(body_skin.joints)]
+            asset_world = world[np.asarray(body_skin.joints)]
+            body_pos = lbs(body_mesh.positions, body_mesh.joints, body_mesh.weights, body_world, body_skin.inverse_bind_matrices)
+            asset_pos = lbs(asset_mesh.positions, asset_mesh.joints, asset_mesh.weights,
+                            asset_world, asset_skin.inverse_bind_matrices)
+            body_normals = _vertex_normals(body_pos, _faces(body_mesh))
+            if hide_mask is None:
+                distances = _signed_distances(
+                    asset_pos, body_pos, _faces(body_mesh), body_normals) * m_per_mu
+                penetrating = _confirm_inside(distances < -0.001, asset_pos, body_pos, _faces(body_mesh), closed)
+                worst_all = max(worst_all, float(np.count_nonzero(penetrating) / len(distances)))
+                continue
+            distances, face_ids, bary = _surface_distances(
+                asset_pos, body_pos, _faces(body_mesh), body_normals)
+            unhidden = None
+            if hide_mask is not None:
+                assert body_mesh.uvs is not None
+                uv = np.einsum("ni,nij->nj", bary, body_mesh.uvs[_faces(body_mesh)[face_ids]])
+                unhidden = _sample_hide_mask(hide_mask, uv) < 0.5
+            penetrating = _confirm_inside(distances * m_per_mu < -0.001, asset_pos, body_pos,
+                                          _faces(body_mesh), closed)
+            worst_all = max(worst_all, float(np.count_nonzero(penetrating) / len(distances)))
+            if unhidden is not None:
+                worst_visible = max(worst_visible, float(np.count_nonzero(penetrating & unhidden)
+                                                        / len(distances)))
+        result[clip] = worst_all if hide_mask is None else {"all": worst_all, "visible": worst_visible}
+    return result
+
+
+def _penetration_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
+                       m_per_mu: float, hide_mask: np.ndarray | None = None,
+                       arm_abduction: float = 0.0
+                       ) -> tuple[int | dict[str, int], dict[str, float | dict[str, float]]]:
+    """独立计算 bind 与三段 clip 穿透；供门禁与合成回归共用。"""
+    body_faces = _faces(body_mesh)
+    body_normals = (body_mesh.normals if body_mesh.normals is not None
+                    else _vertex_normals(body_mesh.positions, body_faces))
+    closed = _is_closed(body_mesh.positions, body_faces)
+    if hide_mask is None:
+        bind = _signed_distances(asset_mesh.positions, body_mesh.positions,
+                                 body_faces, body_normals) * m_per_mu
+        static: int | dict[str, int] = int(np.count_nonzero(_confirm_inside(
+            bind < -1e-9, asset_mesh.positions, body_mesh.positions, body_faces, closed)))
+    else:
+        bind, unhidden = _distances_and_visibility(asset_mesh.positions, body_mesh.positions,
+                                                   body_mesh, body_normals, hide_mask)
+        penetrating = _confirm_inside(bind * m_per_mu < -1e-9, asset_mesh.positions, body_mesh.positions,
+                                      body_faces, closed)
+        static = {"all": int(np.count_nonzero(penetrating)),
+                  "visible": int(np.count_nonzero(penetrating & unhidden))}
+    return static, _dynamic_penetration(body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask,
+                                        arm_abduction)
+
+
+def _hole_view(body_positions: np.ndarray, body_faces: np.ndarray, body_uvs: np.ndarray,
+               garment_positions: np.ndarray, garment_faces: np.ndarray,
+               hide_mask: np.ndarray, direction: np.ndarray, tolerance_mu: float,
+               size: int = 192) -> tuple[int, int, np.ndarray]:
+    """光栅完整身体/隐藏身体/衣物，找最前方直接暴露的隐藏片元。"""
+    frame = orthographic_frame((body_positions, garment_positions), direction, size)
+    body_depth, fragments = rasterize_triangles(
+        body_positions, body_faces, frame, fragments=True)
+    garment_depth, _ = rasterize_triangles(garment_positions, garment_faces, frame)
+    assert fragments is not None
+    fragment_uv = np.einsum(
+        "ni,nij->nj", fragments.barycentric, body_uvs[body_faces[fragments.faces]])
+    triangles = body_positions[body_faces]
+    face_normals = np.cross(triangles[:, 1] - triangles[:, 0],
+                            triangles[:, 2] - triangles[:, 0])
+    front_facing = face_normals @ direction > 0.0
+    rendered_body = front_facing[fragments.faces]
+    hidden = _sample_hide_mask(hide_mask, fragment_uv) >= .5
+    hidden_depth = np.full(size * size, -np.inf, np.float64)
+    visible_body_depth = np.full(size * size, -np.inf, np.float64)
+    np.maximum.at(hidden_depth, fragments.pixels[hidden & rendered_body],
+                  fragments.depths[hidden & rendered_body])
+    np.maximum.at(visible_body_depth, fragments.pixels[~hidden & rendered_body],
+                  fragments.depths[~hidden & rendered_body])
+    body_flat, garment_flat = body_depth.ravel(), garment_depth.ravel()
+    remaining_depth = np.maximum(visible_body_depth, garment_flat)
+    holes = (np.isfinite(hidden_depth)
+             & (hidden_depth >= body_flat - tolerance_mu)
+             & ~np.isfinite(remaining_depth))
+    silhouette = np.isfinite(np.maximum(body_flat, garment_flat))
+    preview = silhouette.astype(np.uint8); preview[holes] = 2
+    return int(holes.sum()), int(silhouette.sum()), preview.reshape(size, size)
+
+
+def _holes_for_pose(body_positions: np.ndarray, garment_positions: np.ndarray,
+                    body_mesh: Mesh, garment_mesh: Mesh, hide_mask: np.ndarray,
+                    m_per_mu: float, size: int = 192) -> tuple[float, list[np.ndarray]]:
+    assert body_mesh.uvs is not None
+    body_faces, garment_faces = _faces(body_mesh), _faces(garment_mesh)
+    worst = 0.0; views: list[np.ndarray] = []
+    for direction in HOLE_VIEWS:
+        holes, silhouette, image = _hole_view(
+            body_positions, body_faces, body_mesh.uvs, garment_positions, garment_faces,
+            hide_mask, direction, .002 / m_per_mu, size)
+        worst = max(worst, holes / silhouette if silhouette else 0.0); views.append(image)
+    return worst, views
+
+
+def _hole_rates(body: GLB, asset: GLB, body_mesh: Mesh, asset_mesh: Mesh,
+                hide_mask: np.ndarray, m_per_mu: float, arm_abduction: float = 0.0
+                ) -> tuple[dict[str, float], list[np.ndarray]]:
+    rates: dict[str, float] = {}; preview: list[np.ndarray] = []
+    bind_rate, bind_views = _holes_for_pose(body_mesh.positions, asset_mesh.positions, body_mesh,
+                                            asset_mesh, hide_mask, m_per_mu)
+    preview_indices = (0, 2, 1)
+    rates["bind"] = bind_rate; preview = [bind_views[index] for index in preview_indices]
+    preview_holes = [int(np.count_nonzero(image == 2)) for image in preview]
+    by_name = {str(item.get("name", "")).lower(): item for item in body.json.get("animations", [])}
+    body_skin, asset_skin = body.skin(), asset.skin()
+    for clip in ("idle", "walk", "run"):
+        animation = next((value for name, value in by_name.items() if clip in name), None)
+        if animation is None: raise ValueError(f"正本缺 {clip} 动画")
+        ends = [float(np.asarray(body.accessor(s["input"])).max(initial=0))
+                for s in animation.get("samplers", [])]
+        duration = max(ends, default=0.0); worst = 0.0
+        for sample_time in np.linspace(0.0, duration, 24, endpoint=False):
+            world = _world_matrices(body, animation, float(sample_time), arm_abduction)
+            body_positions = lbs(body_mesh.positions, body_mesh.joints, body_mesh.weights,
+                                 world[np.asarray(body_skin.joints)], body_skin.inverse_bind_matrices)
+            garment_positions = lbs(asset_mesh.positions, asset_mesh.joints, asset_mesh.weights,
+                                    world[np.asarray(body_skin.joints)], asset_skin.inverse_bind_matrices)
+            rate, images = _holes_for_pose(body_positions, garment_positions, body_mesh, asset_mesh,
+                                           hide_mask, m_per_mu)
+            worst = max(worst, rate)
+            for slot, view_index in enumerate(preview_indices):
+                count = int(np.count_nonzero(images[view_index] == 2))
+                if count > preview_holes[slot]:
+                    preview_holes[slot] = count; preview[slot] = images[view_index]
+        rates[clip] = worst
+    return rates, preview
+
+
+def _save_holes_preview(path: Path, views: list[np.ndarray]) -> None:
+    panels: list[Image.Image] = []
+    for surface in views:
+        pixels = np.full((*surface.shape, 3), [226, 220, 205], np.uint8)
+        pixels[surface == 1] = [115, 108, 101]
+        pixels[surface == 2] = [255, 0, 180]
+        panels.append(Image.fromarray(np.flipud(pixels), "RGB").resize(
+            (384, 384), Image.Resampling.NEAREST))
+    canvas = Image.new("RGB", (384 * len(panels), 384), (226, 220, 205))
+    for index, panel in enumerate(panels): canvas.paste(panel, (384 * index, 0))
+    canvas.save(path, optimize=True)
+
+
+def _texture_sizes(glb: GLB) -> list[list[int]]:
+    sizes: list[list[int]] = []
+    for index in range(len(glb.json.get("images", []))):
+        import io
+        with Image.open(io.BytesIO(glb.image(index).data)) as image:
+            sizes.append([int(image.width), int(image.height)])
+    return sizes
+
+
+def _material_checks(glb: GLB, kind: str) -> list[dict[str, Any]]:
+    materials = glb.json.get("materials", [])
+    refs: list[tuple[str, int]] = []
+    for material in materials:
+        pbr = material.get("pbrMetallicRoughness", {})
+        if isinstance(pbr.get("baseColorTexture"), dict):
+            refs.append(("baseColorTexture", int(pbr["baseColorTexture"]["index"])))
+        for name in ("normalTexture", "occlusionTexture", "emissiveTexture"):
+            if isinstance(material.get(name), dict): refs.append((name, int(material[name]["index"])))
+        value = pbr.get("metallicRoughnessTexture")
+        if isinstance(value, dict): refs.append(("metallicRoughnessTexture", int(value["index"])))
+    non_base = [name for name, _ in refs if name != "baseColorTexture"]
+    unlit = "KHR_materials_unlit" in glb.json.get("extensionsUsed", []) and bool(materials) and all(
+        "KHR_materials_unlit" in material.get("extensions", {}) for material in materials)
+    checks = [
+        _check("material.unlit", unlit, unlit, True),
+        _check("material.onlyBaseColorTexture", not non_base, non_base, []),
+    ]
+    if kind in ("garment", "hair"):
+        double_sided = bool(materials) and all(material.get("doubleSided") is True for material in materials)
+        checks.append(_check("material.doubleSided", double_sided, double_sided, True))
+    return checks
+
+
+def _mask_checks(fit: dict[str, Any], skeleton: dict[str, Any]) -> list[dict[str, Any]]:
+    hide = set(fit.get("hideRegions", [])); never = set(fit.get("neverHide", []))
+    region_ids = set(skeleton.get("regions", {}).get("ids", {}))
+    return [_check("mask.knownRegions", hide <= region_ids, sorted(hide - region_ids), []),
+            _check("mask.neverHide", not (hide & never), sorted(hide & never), []),
+            _check("mask.forbidden", not (hide & FORBIDDEN_HIDE), sorted(hide & FORBIDDEN_HIDE), [])]
+
+
+def _skinning_checks(body: GLB, asset: GLB, asset_mesh: Mesh,
+                     skeleton: dict[str, Any], fit: dict[str, Any]) -> list[dict[str, Any]]:
+    checks: list[dict[str, Any]] = []
+    extra_sets = sorted({semantic for mesh in asset.json.get("meshes", [])
+                         for primitive in mesh.get("primitives", [])
+                         for semantic in primitive.get("attributes", {})
+                         if re.fullmatch(r"(?:JOINTS|WEIGHTS)_[1-9][0-9]*", semantic)})
+    checks.append(_check("weights.onlySet0", not extra_sets, extra_sets, []))
+    has_skin = len(asset.json.get("skins", [])) == 1
+    checks.append(_check("skeleton.skinCount", has_skin, len(asset.json.get("skins", [])), 1))
+    if not has_skin: return checks
+    body_names = _joint_names(body)
+    asset_spec = asset.json["skins"][0]
+    asset_names = [asset.json["nodes"][int(node)].get("name", f"node_{node}")
+                   for node in asset_spec.get("joints", [])]
+    expected_names = list(skeleton.get("joints", body_names))
+    checks.append(_check("skeleton.joints", asset_names == body_names == expected_names,
+                         {"asset": len(asset_names), "body": len(body_names)}, "名单逐项相同"))
+    body_ibm = body.skin().inverse_bind_matrices
+    try:
+        asset_ibm = asset.skin().inverse_bind_matrices
+        delta = (float(np.max(np.abs(body_ibm - asset_ibm)))
+                 if body_ibm.shape == asset_ibm.shape else math.inf)
+    except (ValueError, KeyError, IndexError, TypeError):
+        delta = math.inf
+    checks.append(_check("skeleton.ibmMaxAbs", delta < 1e-5,
+                         delta if math.isfinite(delta) else "infinity", "< 1e-5"))
+    joints, weights = asset_mesh.joints, asset_mesh.weights
+    allowed = fit.get("weights", {}).get("jointsAllowed")
+    evidence = isinstance(allowed, list) and bool(allowed)
+    checks.append(_check("weights.jointsAllowedPresent", evidence, allowed, "非空数组"))
+    if joints is None or weights is None:
+        return checks + [_check("weights.attributes", False, False, True)]
+    sums = weights.sum(axis=1); finite = bool(np.isfinite(weights).all())
+    active_max = int(np.count_nonzero(weights > 1e-8, axis=1).max(initial=0))
+    valid_indices = bool(np.all(joints[weights > 1e-8] < len(asset_names)))
+    used = {asset_names[int(value)] for value in joints[weights > 1e-8]} if valid_indices else set()
+    allowed_ok = evidence and valid_indices and used <= set(allowed)
+    return checks + [_check("weights.finite", finite, finite, True),
+        _check("weights.sumMaxError", float(np.max(np.abs(sums - 1.0))) <= 1e-3,
+               float(np.max(np.abs(sums - 1.0))), "<= 1e-3"),
+        _check("weights.maxBones", active_max <= 4, active_max, "<= 4"),
+        _check("weights.jointIndices", valid_indices, valid_indices, True),
+        _check("weights.jointsAllowed", allowed_ok, sorted(used), sorted(allowed) if evidence else [])]
+
+
+def _close_fit_checks(fit: dict[str, Any]) -> list[dict[str, Any]]:
+    refit = fit.get("refit", {})
+    has_p90 = isinstance(refit, dict) and all(
+        name in refit for name in ("distanceP90Mm", "sourceDistanceP90Mm"))
+    delta = (abs(float(refit["distanceP90Mm"]) - float(refit["sourceDistanceP90Mm"]))
+             if has_p90 else None)
+    return [_check("geometry.closeFitP90Evidence", has_p90,
+                   sorted(refit.keys()) if isinstance(refit, dict) else None,
+                   ["distanceP90Mm", "sourceDistanceP90Mm"]),
+            _check("geometry.closeFitP90DeltaMm", has_p90 and delta < 5, delta, "< 5")]
+
+
+def _similarity_quality(source: np.ndarray, final: np.ndarray, faces: np.ndarray) -> tuple[int, float, float]:
+    if source.shape != final.shape: raise ValueError("源几何与最终几何顶点数不同，无法独立核算")
+    transform = umeyama(source, final, allow_mirror=False)
+    fitted = transform.scale * (source @ transform.rotation.T) + transform.translation
+    old = fitted[faces]; new = final[faces]
+    old_edges = np.linalg.norm(old[:, [1, 2, 0]] - old, axis=2)
+    new_edges = np.linalg.norm(new[:, [1, 2, 0]] - new, axis=2)
+    ratios = np.divide(new_edges, old_edges, out=np.ones_like(new_edges), where=old_edges > 1e-12)
+    old_n = np.cross(old[:, 1] - old[:, 0], old[:, 2] - old[:, 0])
+    new_n = np.cross(new[:, 1] - new[:, 0], new[:, 2] - new[:, 0])
+    flipped = int(np.count_nonzero(np.einsum("ij,ij->i", old_n, new_n) <= 0))
+    good = float(np.mean(np.all((ratios >= 0.7) & (ratios <= 1.4), axis=1)))
+    residual = float(np.max(np.linalg.norm(fitted - final, axis=1), initial=0))
+    return flipped, good, residual
+
+
+def _source_geometry(fit: dict[str, Any], fit_path: Path) -> np.ndarray:
+    source = fit.get("source", {})
+    if not isinstance(source, dict) or not isinstance(source.get("file"), str):
+        raise ValueError("fit.source.file 缺失，无法独立核算几何")
+    return _world_mesh(load_glb(_verified_source(fit, fit_path))).positions
+
+
+def _expanded_source(source: np.ndarray, final: np.ndarray) -> np.ndarray:
+    if len(source) == len(final): return source
+    if len(source) > len(final): raise ValueError("最终几何顶点少于真实源几何")
+    distances, duplicate = cKDTree(final[:len(source)]).query(final[len(source):])
+    if np.any(distances > 1e-9): raise ValueError("新增顶点不是区域拆点的逐字节副本")
+    return np.concatenate((source, source[duplicate]))
+
+
+def _landmark_source(source: np.ndarray, fit: dict[str, Any],
+                     skeleton: dict[str, Any]) -> np.ndarray:
+    align = fit.get("align", {})
+    scale = float(align.get("scale", math.nan))
+    yaw = math.radians(float(align.get("yawDeg", math.nan)))
+    if not math.isfinite(scale) or scale <= 0 or not math.isfinite(yaw):
+        raise ValueError("fit.align scale/yawDeg 缺失或无效")
+    quantile = 0.995
+    if fit.get("kind") == "hair":
+        head_center = align.get("headCenter", {})
+        target = np.asarray(head_center.get("worldMu", []), dtype=float)
+        skull = align.get("skullFit", {})
+        profile_width = float(skull.get("profileWidthMu", math.nan))
+        source_width = float(skull.get("sourceInnerWidthMu", math.nan))
+        if target.shape != (3,) or not np.all(np.isfinite(target)):
+            raise ValueError("hair fit.align.headCenter.worldMu 缺失或无效")
+        expected_scale = profile_width / source_width if source_width > 0 else math.nan
+        if not math.isfinite(expected_scale) or not math.isclose(scale, expected_scale, rel_tol=1e-6):
+            raise ValueError("hair fit.align.scale 与颅骨宽度缩放不符")
+        quantile = 0.92
+    else:
+        target = np.asarray(skeleton["neckRing"]["centerMu"], dtype=float)
+    c, s = math.cos(yaw), math.sin(yaw)
+    rotation = np.array([[c, 0, s], [0, 1, 0], [-s, 0, c]])
+    aligned = scale * (source @ rotation.T)
+    cap = aligned[aligned[:, 1] >= np.quantile(aligned[:, 1], quantile)]
+    if not len(cap): raise ValueError("源几何没有可用于语义锚定的顶点")
+    return aligned + target - cap.mean(axis=0)
+
+
+def _joint_source(source_glb: GLB, source_mesh: Mesh, skeleton: dict[str, Any]) -> np.ndarray:
+    if source_mesh.joints is None or source_mesh.weights is None:
+        raise ValueError("fit.align.method=joints 但真实源几何缺蒙皮属性")
+    skin = source_glb.skin(); names = _joint_names(source_glb)
+    target_names = skeleton["joints"]; target_index = {name: i for i, name in enumerate(target_names)}
+    mapping = np.asarray([target_index.get(name, -1) for name in names], dtype=np.int64)
+    stems = {"Hips", "Spine", "Spine1", "Spine2", "Neck", "LeftArm",
+             "RightArm", "LeftUpLeg", "RightUpLeg"}
+    common = [name for name in target_names if name.split(":")[-1] in stems and name in names]
+    required = {"LeftArm", "RightArm", "LeftUpLeg", "RightUpLeg"}
+    if len(common) < 6 or not required <= {name.split(":")[-1] for name in common}:
+        raise ValueError("joints 对齐缺少至少六个躯干关节或左右肢体")
+    source_nodes = {source_glb.json["nodes"][node].get("name", ""): node for node in skin.joints}
+    source_points = np.asarray([source_glb.world_matrix(source_nodes[name])[:3, 3] for name in common])
+    target_points = np.asarray([np.asarray(skeleton["bindWorld"][name]).reshape(4, 4).T[:3, 3]
+                                for name in common])
+    fit = umeyama(source_points, target_points, allow_mirror=False)
+    coarse = np.eye(4); coarse[:3, :3] = fit.scale * fit.rotation; coarse[:3, 3] = fit.translation
+    aligned = np.column_stack((source_mesh.positions, np.ones(len(source_mesh.positions)))) @ coarse.T
+    transforms = np.repeat(np.eye(4)[None, :, :], len(names), axis=0)
+    for source_slot, target_slot in enumerate(mapping):
+        if target_slot >= 0:
+            target_world = np.asarray(skeleton["bindWorld"][target_names[target_slot]]).reshape(4, 4).T
+            transforms[source_slot] = target_world @ np.linalg.inv(
+                coarse @ source_glb.world_matrix(int(skin.joints[source_slot])))
+    used = source_mesh.weights > 1e-8
+    if np.any(mapping[source_mesh.joints[used]] < 0):
+        raise ValueError("真实源几何权重引用目标骨架不存在的关节")
+    posed = np.einsum("nkij,nj->nki", transforms[source_mesh.joints], aligned)[:, :, :3]
+    return np.einsum("nk,nki->ni", source_mesh.weights, posed)
+
+
+def _garment_source(fit: dict[str, Any], fit_path: Path, skeleton: dict[str, Any],
+                     final: Mesh, rows: np.ndarray | None = None) -> np.ndarray:
+    """回指真实源几何（对齐到模板）。rows 为 pack_glb 压紧时写入的 ``tianshuSourceVertexAccessor``：
+    最终第 i 个顶点 = 贴合输出（fit.stats.vertices 个顶点）第 rows[i] 个，与道具同一口径。"""
+    source_glb = load_glb(_verified_source(fit, fit_path)); source_mesh = _world_mesh(source_glb)
+    method = fit.get("align", {}).get("method")
+    if method == "landmarks":
+        aligned = _landmark_source(source_mesh.positions, fit, skeleton)
+    elif method == "joints":
+        aligned = _joint_source(source_glb, source_mesh, skeleton)
+    else:
+        raise ValueError("fit.align.method 必须是 landmarks 或 joints")
+    expected = int(fit.get("stats", {}).get("vertices", len(final.positions)))
+    if rows is not None:
+        if len(aligned) != expected:
+            raise ValueError("压紧件的真实源须与贴合输出同顶点数（不支持删面后再压紧）")
+        if (len(rows) != len(final.positions) or len(np.unique(rows)) != len(rows) or
+                (len(rows) and (int(rows.min()) < 0 or int(rows.max()) >= expected))):
+            raise ValueError("压紧顶点源映射数量、唯一性或边界无效")
+        return aligned[rows]
+    if len(aligned) == expected:
+        base = aligned
+    else:
+        if len(aligned) < expected: raise ValueError("源几何顶点少于最终几何")
+        # A4 remove-body-stub 保持顶点顺序、只删未使用点并压紧；以 UV 子序列回指。
+        if source_mesh.uvs is None or final.uvs is None: raise ValueError("删面资产缺 UV，无法回指真实源顶点")
+        selected: list[int] = []; cursor = 0
+        for uv in final.uvs[:expected]:
+            found = next((index for index in range(cursor, len(source_mesh.uvs))
+                          if np.array_equal(source_mesh.uvs[index], uv)), None)
+            if found is None: raise ValueError("最终 UV 顺序不能回指真实源几何")
+            selected.append(found); cursor = found + 1
+        base = aligned[np.asarray(selected)]
+    if len(final.positions) == expected: return base
+    distances, duplicate = cKDTree(final.positions[:expected]).query(final.positions[expected:])
+    if np.any(distances > 1e-9): raise ValueError("区域拆点不是原顶点的逐字节副本")
+    return np.concatenate((base, base[duplicate]))
+
+
+def _refit_source(fit: dict[str, Any], fit_path: Path, target: dict[str, Any]) -> np.ndarray:
+    info = fit["refitFrom"]; garment_path = _resolve_recorded(info["garment"], fit_path)
+    expected = info.get("garmentSha256")
+    if expected and hashlib.sha256(garment_path.read_bytes()).hexdigest() != expected:
+        # 母版重生成后旧 refit 件会悄悄拿新母版当源（E2b 查明 G1 / G1b 的 small / tall 几何数字即如此）
+        raise ValueError("refitFrom.garmentSha256 与真实文件不符")
+    source_mesh = _mesh(load_glb(garment_path))
+    source = json.loads(_resolve_recorded(info["skeleton"], fit_path).read_text(encoding="utf-8"))
+    if source_mesh.joints is None or source_mesh.weights is None: raise ValueError("refit 源件缺蒙皮属性")
+    source_world = np.asarray([np.asarray(source["bindWorld"][name]).reshape(4, 4).T
+                               for name in source["joints"]])
+    target_world = np.asarray([np.asarray(target["bindWorld"][name]).reshape(4, 4).T
+                               for name in target["joints"]])
+    target_by_name = {name: index for index, name in enumerate(target["joints"])}
+    mapping = np.asarray([target_by_name[name] for name in source["joints"]])
+    def lengths(data: dict[str, Any], world: np.ndarray) -> np.ndarray:
+        parents = np.asarray(data["parents"]); points = world[:, :3, 3]; result = np.ones(len(points))
+        valid = parents >= 0; result[valid] = np.linalg.norm(points[valid] - points[parents[valid]], axis=1)
+        for index in np.flatnonzero(~valid):
+            children = np.flatnonzero(parents == index)
+            if len(children): result[index] = np.mean(np.linalg.norm(points[children] - points[index], axis=1))
+        return result
+    ratios = lengths(target, target_world)[mapping] / lengths(source, source_world)
+    transforms = np.asarray([target_world[mapping[i]] @ np.diag([ratios[i]] * 3 + [1]) @
+                             np.linalg.inv(source_world[i]) for i in range(len(mapping))])
+    homogeneous = np.column_stack((source_mesh.positions, np.ones(len(source_mesh.positions))))
+    moved = np.einsum("nkij,nj->nki", transforms[source_mesh.joints], homogeneous)[..., :3]
+    return np.einsum("nk,nki->ni", source_mesh.weights, moved)
+
+
+def _region_check(asset: GLB, asset_mesh: Mesh, required: bool) -> dict[str, Any]:
+    primitive_count = sum(len(mesh.get("primitives", [])) for mesh in asset.json.get("meshes", []))
+    specs = [asset.json["accessors"][primitive["attributes"]["_REGION"]]
+             for mesh in asset.json.get("meshes", []) for primitive in mesh.get("primitives", [])
+             if "_REGION" in primitive.get("attributes", {})]
+    valid = len(specs) == primitive_count and asset_mesh.regions is not None and all(
+        spec.get("componentType") == 5121 and spec.get("type") == "SCALAR" and not spec.get("normalized")
+        for spec in specs)
+    return _check("regions.u8Scalar", valid if required else not specs or valid,
+                  [{"componentType": x.get("componentType"), "type": x.get("type")} for x in specs],
+                  "u8 SCALAR" if required else "若存在则 u8 SCALAR")
+
+
+def _geometry_checks(source: np.ndarray, final: Mesh, body: Mesh | None,
+                     m_per_mu: float) -> list[dict[str, Any]]:
+    faces = _faces(final); flipped, ratio_in, residual = _similarity_quality(source, final.positions, faces)
+    checks = [_check("geometry.flippedTriangles", flipped == 0, flipped, 0),
+              _check("geometry.edgeRatioInRange", ratio_in >= 0.99, ratio_in, ">= 0.99"),
+              _check("geometry.maxResidualMu", math.isfinite(residual), residual, "finite")]
+    if body is not None:
+        body_faces = _faces(body); normals = body.normals if body.normals is not None else _vertex_normals(body.positions, body_faces)
+        samples = np.unique(faces)
+        before = np.abs(_signed_distances(source[samples], body.positions, body_faces, normals) * m_per_mu)
+        after = np.abs(_signed_distances(final.positions[samples], body.positions, body_faces, normals) * m_per_mu)
+        close = before < 0.05
+        before_p90 = float(np.quantile(before[close], .9)) if np.any(close) else math.inf
+        after_p90 = float(np.quantile(after[close], .9)) if np.any(close) else math.inf
+        delta_mm = abs(after_p90 - before_p90) * 1000
+        checks.append(_check("geometry.closeFitP90DeltaMm", delta_mm < 5, delta_mm, "< 5",
+                             sourceP90Mm=before_p90 * 1000, finalP90Mm=after_p90 * 1000))
+    return checks
+
+
+def _prop_axis_and_anchor(vertices: np.ndarray, fit: dict[str, Any],
+                          faces: np.ndarray | None = None,
+                          axis_details: dict[str, Any] | None = None
+                          ) -> tuple[float, np.ndarray, float]:
+    def surface_axes(surface: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        """Return exact area-weighted surface centroid and PCA axes."""
+        cross = np.cross(surface[:, 1] - surface[:, 0], surface[:, 2] - surface[:, 0])
+        twice_area = np.linalg.norm(cross, axis=1)
+        keep = twice_area > np.finfo(np.float64).eps
+        surface, areas = surface[keep], twice_area[keep] * .5
+        if not len(surface):
+            raise ValueError("faces 没有非退化三角")
+        summed = surface.sum(axis=1); total_area = float(areas.sum())
+        center = np.einsum("n,ni->i", areas, summed / 3.0) / total_area
+        diagonal = np.einsum("n,nki,nkj->ij", areas, surface, surface)
+        summed_outer = np.einsum("n,ni,nj->ij", areas, summed, summed)
+        covariance = (diagonal + summed_outer) / (12.0 * total_area) - np.outer(center, center)
+        values, vectors = np.linalg.eigh(covariance)
+        return center, vectors[:, np.argsort(values)[::-1]].T
+
+    prop_class = fit.get("class")
+    triangles = None
+    if faces is None:
+        axes = pca(vertices)[2]
+    else:
+        face_indices = np.asarray(faces, dtype=np.int64)
+        if face_indices.size % 3:
+            raise ValueError("faces 必须可重排为 N×3 三角索引")
+        triangles = np.asarray(vertices, dtype=np.float64)[face_indices.reshape(-1, 3)]
+        _, axes = surface_axes(triangles)
+        if prop_class == "hat":
+            cross = np.cross(triangles[:, 1] - triangles[:, 0],
+                             triangles[:, 2] - triangles[:, 0])
+            twice_area = np.linalg.norm(cross, axis=1)
+            values = np.asarray(vertices)
+            crown_cutoff = values[:, 1].max() - .01 * np.ptp(values[:, 1])
+            crown_center = values[values[:, 1] >= crown_cutoff].mean(axis=0)
+            radius = np.linalg.norm(values[:, (0, 2)] - crown_center[[0, 2]], axis=1)
+            outer = radius >= np.quantile(radius, .95)
+            outer_faces = np.all(outer[face_indices.reshape(-1, 3)], axis=1)
+            normals = np.divide(cross, twice_area[:, None],
+                                out=np.zeros_like(cross), where=twice_area[:, None] > 0)
+            flat_outer = outer_faces & (np.abs(normals[:, 1]) >= .7)
+            if not np.any(flat_outer):
+                raise ValueError("hat 没有可拟合帽檐外圈平面的三角")
+            oriented = normals[flat_outer] * np.where(
+                normals[flat_outer, 1:2] < 0.0, -1.0, 1.0)
+            axis = np.einsum("n,ni->i", twice_area[flat_outer], oriented)
+            axis /= np.linalg.norm(axis)
+        elif prop_class == "weapon" and isinstance(fit.get("handleDetection"), dict):
+            detection = fit["handleDetection"]; peak = _positive_number(detection.get("peakAxialMu"))
+            handle_end = detection.get("handleEnd")
+            if peak is None or handle_end not in ("min", "max"):
+                raise ValueError("weapon handleDetection 缺少有效刃段边界")
+            centers = triangles.mean(axis=1)
+            blade = centers[:, 1] > peak if handle_end == "min" else centers[:, 1] < peak
+            blade_triangles = triangles[blade]
+            if not len(blade_triangles):
+                # 镜像反例会故意令既有分段失效；整面轴仅供其继续推导锚点，
+                # 正式门禁仍会由 prop.semanticDirection 的空刃段明确判失败。
+                axis = axes[0]
+                blade_triangles = None
+            if blade_triangles is not None:
+                _, full_axes = surface_axes(blade_triangles)
+                full_axis = full_axes[0]
+                # 完整刃段 PCA 只确定投影方向和两端。护手附近的穗子不进入
+                # 两端各 2% 截片，因此不会把剑身语义轴拉向一侧。
+                WEAPON_END_SLICE_FRACTION = .02
+                centers = blade_triangles.mean(axis=1)
+                areas = np.linalg.norm(np.cross(
+                    blade_triangles[:, 1] - blade_triangles[:, 0],
+                    blade_triangles[:, 2] - blade_triangles[:, 0]), axis=1) * .5
+                projections = centers @ full_axis
+                projection_min = float(projections.min())
+                projection_max = float(projections.max())
+                slice_width = (projection_max - projection_min) * WEAPON_END_SLICE_FRACTION
+                low = projections <= projection_min + slice_width
+                high = projections >= projection_max - slice_width
+                if not np.any(low) or not np.any(high) or slice_width <= 0:
+                    raise ValueError("weapon 刃段无法形成两端 2% 截片")
+                low_center = np.einsum("n,ni->i", areas[low], centers[low]) / areas[low].sum()
+                high_center = np.einsum("n,ni->i", areas[high], centers[high]) / areas[high].sum()
+                axis = high_center - low_center
+                axis_norm = float(np.linalg.norm(axis))
+                if axis_norm <= np.finfo(np.float64).eps:
+                    raise ValueError("weapon 刃段两端质心重合")
+                axis /= axis_norm
+                if axis_details is not None:
+                    axis_details.update({
+                        "method": "end-to-end-area-weighted-blade-axis",
+                        "fullBladeAlignment": abs(float(np.dot(full_axis, [0, 1, 0]))),
+                        "endSliceFraction": WEAPON_END_SLICE_FRACTION,
+                        "bladeTriangles": int(len(blade_triangles)),
+                        "lowEndTriangles": int(np.count_nonzero(low)),
+                        "highEndTriangles": int(np.count_nonzero(high)),
+                    })
+        else:
+            axis = axes[0]
+    if faces is None:
+        axis = axes[0] if prop_class != "hat" else max(axes, key=lambda value: abs(float(value[1])))
+    alignment = abs(float(np.dot(axis, [0, 1, 0])))
+    # 语义锚点与尺寸必须来自最终受检表面；源模型只用于上游逐字节几何核验。
+    measured_vertices = np.asarray(vertices)
+    if prop_class == "weapon":
+        span = float(np.ptp(measured_vertices[:, 1])); ratio = float(fit.get("gripRatio") or 0.07)
+        detection = fit.get("handleDetection", {})
+        handle_end = detection.get("handleEnd") if isinstance(detection, dict) else None
+        if handle_end not in (None, "min", "max"):
+            raise ValueError("weapon handleDetection.handleEnd 必须为 min 或 max")
+        end = float(measured_vertices[:, 1].max() if handle_end == "max"
+                    else measured_vertices[:, 1].min())
+        grip_y = end - ratio * span if handle_end == "max" else end + ratio * span
+        anchor = np.array([0.0, grip_y, 0.0])
+    elif prop_class == "hat":
+        cutoff = measured_vertices[:, 1].max() - .01 * np.ptp(measured_vertices[:, 1])
+        anchor = measured_vertices[measured_vertices[:, 1] >= cutoff].mean(axis=0)
+        anchor[1] = measured_vertices[:, 1].max()
+    elif prop_class in ("pendant", "pouch"):
+        cutoff = measured_vertices[:, 1].max() - .01 * np.ptp(measured_vertices[:, 1])
+        anchor = measured_vertices[measured_vertices[:, 1] >= cutoff].mean(axis=0)
+    else: anchor = (measured_vertices.min(axis=0) + measured_vertices.max(axis=0)) / 2
+    spans = np.ptp(measured_vertices, axis=0); size_axis = fit.get("sizeAxis", "length")
+    dimension = max(float(spans[0]), float(spans[2])) if size_axis == "width" else float(spans[1])
+    return alignment, anchor, dimension
+
+
+def _terminal_width(vertices: np.ndarray, high: bool) -> float:
+    y = vertices[:, 1]; cutoff = (y.max() - .05 * np.ptp(y) if high else y.min() + .05 * np.ptp(y))
+    points = vertices[y >= cutoff] if high else vertices[y <= cutoff]
+    return max(float(np.ptp(points[:, 0])), float(np.ptp(points[:, 2])))
+
+
+def _guard_peak_direction(vertices: np.ndarray, anchor: np.ndarray,
+                          detection: dict[str, Any]) -> tuple[bool, dict[str, Any]]:
+    """用护手分隔柄/刃；剑尖比柄窄时不能再以端宽猜柄端。"""
+    y = np.asarray(vertices[:, 1], dtype=float)
+    peak = _positive_number(detection.get("peakAxialMu"))
+    handle_end = detection.get("handleEnd")
+    if peak is None or handle_end not in ("min", "max"):
+        return False, {"method": "guard-peak", "error": "invalid handle detection"}
+    tolerance = 1e-7
+    # 顶点计数严格复现 normalize_prop 的 1e-9 分割；较宽容差只用于
+    # float32 锚点落在护手柄侧的判断。
+    handle = y <= peak + 1e-9 if handle_end == "min" else y >= peak - 1e-9
+    blade = ~handle
+    grip_y = float(anchor[1])
+    grip_on_handle = grip_y <= peak + tolerance if handle_end == "min" else grip_y >= peak - tolerance
+    handle_count = int(np.count_nonzero(handle)); blade_count = int(np.count_nonzero(blade))
+    recorded_handle = detection.get("handleSegmentVertices")
+    recorded_blade = detection.get("bladeSegmentVertices")
+    # peakAxialMu 按 fit 的 9 位小数落盘；恰在护手切面上的一个 float32
+    # 顶点可能跨过 1e-9 边界，允许总量不变前提下两段各差一个。
+    handle_delta = (0 if recorded_handle is None else handle_count - int(recorded_handle))
+    blade_delta = (0 if recorded_blade is None else blade_count - int(recorded_blade))
+    counts_match = (abs(handle_delta) <= 1 and abs(blade_delta) <= 1 and
+                    handle_delta + blade_delta == 0)
+    value = {"method": "guard-peak", "handleEnd": handle_end,
+             "peakAxialMu": peak, "gripAxialMu": grip_y,
+             "gripOnHandleSide": grip_on_handle,
+             "handleSegmentVertices": handle_count, "bladeSegmentVertices": blade_count,
+             "recordedCountDelta": {"handle": handle_delta, "blade": blade_delta},
+             "recordedCountsMatch": counts_match}
+    return grip_on_handle and handle_count > 0 and blade_count > 0 and counts_match, value
+
+
+def _prop_semantic_direction(vertices: np.ndarray, prop_class: str | None,
+                             anchor: np.ndarray, fit: dict[str, Any] | None = None
+                             ) -> tuple[bool, Any]:
+    if prop_class == "weapon":
+        detection = (fit or {}).get("handleDetection")
+        if isinstance(detection, dict) and detection.get("method") == "guard-peak":
+            return _guard_peak_direction(vertices, anchor, detection)
+        # 没有合格护手证据的历史道具继续使用旧“窄端=柄”规则。
+        low = _terminal_width(vertices, False); high = _terminal_width(vertices, True)
+        return high >= low, {"lowWidthMu": low, "highWidthMu": high}
+    if prop_class == "hat":
+        low = _terminal_width(vertices, False); high = _terminal_width(vertices, True)
+        return high <= low, {"lowWidthMu": low, "highWidthMu": high}
+    if prop_class in ("pendant", "pouch"):
+        norm = float(np.linalg.norm(anchor)); median_y = float(np.median(vertices[:, 1]))
+        return norm < 1e-4 and median_y < 0, {"anchorNormMu": norm, "medianYMu": median_y}
+    return True, "n/a"
+
+
+def validate(body_path: Path, skeleton_path: Path, asset_path: Path, fit_path: Path, requested: str) -> dict[str, Any]:
+    body, asset = load_glb(body_path), load_glb(asset_path)
+    skeleton = json.loads(skeleton_path.read_text(encoding="utf-8"))
+    fit = json.loads(fit_path.read_text(encoding="utf-8"))
+    axis_waiver = _axis_check_waiver(fit)
+    abduction = arm_abduction_deg(fit)
+    pose_extra = {"armAbductionDeg": abduction} if abduction else {}
+    body_mesh, asset_mesh = _mesh(body), _mesh(asset)
+    checks = _binding_checks(body_path, skeleton, fit)
+    kind = fit.get("kind")
+    kind_valid = kind in TRIANGLE_LIMITS
+    checks.append(_check("fit.kind", kind_valid, kind, sorted(TRIANGLE_LIMITS)))
+    if not all(check["pass"] for check in checks):
+        return _result(fit, asset_path, fit_path, checks, requested)
+    skinned = kind in ("template", "garment", "hair", "head")
+    if skinned:
+        checks.extend(_skinning_checks(body, asset, asset_mesh, skeleton, fit))
+    elif kind == "prop":
+        skin_count = len(asset.json.get("skins", []))
+        rigid = skin_count == 0 and asset_mesh.joints is None and asset_mesh.weights is None
+        checks.append(_check("prop.noSkin", rigid, {"skins": skin_count,
+                             "vertexSkinAttributes": asset_mesh.joints is not None or asset_mesh.weights is not None},
+                             {"skins": 0, "vertexSkinAttributes": False}))
+    if not all(check["pass"] for check in checks):
+        return _result(fit, asset_path, fit_path, checks, requested)
+
+    body_faces, asset_faces = _faces(body_mesh), _faces(asset_mesh)
+    m_per_mu = _positive_number(skeleton.get("mPerMu")) or 1.0
+    body_normals = body_mesh.normals if body_mesh.normals is not None else _vertex_normals(body_mesh.positions, body_faces)
+    if skinned:
+        hide_mask = _load_hide_mask(fit, fit_path, body_mesh)
+        static_inside, dynamic = _penetration_rates(
+            body, asset, body_mesh, asset_mesh, m_per_mu, hide_mask, abduction)
+        threshold = 0.005 if requested == "approved" else 0.02
+        if hide_mask is None:
+            checks.append(_check("penetration.bindVertices", static_inside == 0, static_inside, 0))
+            for clip in ("idle", "walk", "run"):
+                present = clip in dynamic; value = dynamic.get(clip)
+                checks.append(_check(f"penetration.{clip}", present and value <= threshold, value,
+                                     f"<= {threshold}", frames=24, **pose_extra))
+        else:
+            assert isinstance(static_inside, dict)
+            checks.append(_check("penetration.bindVertices.all", True, static_inside["all"], "report only"))
+            checks.append(_check("penetration.bindVertices.visible", static_inside["visible"] == 0,
+                                 static_inside["visible"], 0))
+            for clip in ("idle", "walk", "run"):
+                values = dynamic.get(clip); present = isinstance(values, dict)
+                assert not present or isinstance(values, dict)
+                all_value = values.get("all") if present else None
+                visible_value = values.get("visible") if present else None
+                checks.append(_check(f"penetration.{clip}.all", True, all_value,
+                                     "report only", frames=24, **pose_extra))
+                checks.append(_check(f"penetration.{clip}.visible",
+                                     present and visible_value is not None and visible_value <= threshold,
+                                     visible_value, f"<= {threshold}", frames=24, **pose_extra))
+            holes, preview_views = _hole_rates(
+                body, asset, body_mesh, asset_mesh, hide_mask, m_per_mu, abduction)
+            for clip in ("bind", "idle", "walk", "run"):
+                value = holes[clip]
+                checks.append(_check(f"holes.{clip}.visible", value <= HOLE_TOLERANCE, value,
+                                     f"= 0 (tolerance <= {HOLE_TOLERANCE})",
+                                     frames=1 if clip == "bind" else 24, views=8,
+                                     **({} if clip == "bind" else pose_extra)))
+            template = str(fit.get("template", ""))
+            preview_name = ("holes_preview.png" if template == "tpl_f_medium"
+                            else f"holes_preview.{template}.png")
+            _save_holes_preview(fit_path.with_name(preview_name), preview_views)
+
+        checks.extend(_mask_checks(fit, skeleton))
+
+    if kind in ("garment", "hair"):
+        primitive = asset.json.get("meshes", [{}])[0].get("primitives", [{}])[0]
+        accessor = primitive.get("extras", {}).get("tianshuSourceVertexAccessor")
+        rows = None if accessor is None else np.asarray(asset.accessor(int(accessor)), dtype=np.int64).reshape(-1)
+        if rows is not None and "refitFrom" in fit:
+            raise ValueError("refit 件不支持压紧顶点源映射")
+        source = (_refit_source(fit, fit_path, skeleton) if "refitFrom" in fit
+                  else _garment_source(fit, fit_path, skeleton, asset_mesh, rows))
+        source = _expanded_source(source, asset_mesh.positions)
+        checks.extend(_geometry_checks(source, asset_mesh, body_mesh, m_per_mu))
+    elif kind == "prop":
+        full_source = _source_geometry(fit, fit_path)
+        primitive = asset.json.get("meshes", [{}])[0].get("primitives", [{}])[0]
+        accessor = primitive.get("extras", {}).get("tianshuSourceVertexAccessor")
+        if accessor is None:
+            source = _expanded_source(full_source, asset_mesh.positions)
+        else:
+            rows = np.asarray(asset.accessor(int(accessor)), dtype=np.int64).reshape(-1)
+            if (len(rows) != len(asset_mesh.positions) or len(np.unique(rows)) != len(rows) or
+                    (len(rows) and (int(rows.min()) < 0 or int(rows.max()) >= len(full_source)))):
+                raise ValueError("压紧顶点源映射数量、唯一性或边界无效")
+            source = full_source[rows]
+        checks.extend(_geometry_checks(source, asset_mesh, None, m_per_mu))
+    checks.append(_region_check(asset, asset_mesh, skinned))
+
+    triangles = len(asset_mesh.indices) // 3
+    limit = TRIANGLE_LIMITS.get(kind, 30_000)
+    checks.append(_check("budget.triangles", triangles <= limit, triangles, f"<= {limit}"))
+    sizes = _texture_sizes(asset); largest = max((max(size) for size in sizes), default=0)
+    checks.append(_check("budget.textureMaxDimension", largest <= 2048, largest, "<= 2048", images=sizes))
+    checks.extend(_material_checks(asset, str(kind)))
+    mesh_nodes = [node for node in asset.json.get("nodes", []) if "mesh" in node]
+    material_refs = [primitive.get("material") for mesh in asset.json.get("meshes", [])
+                     for primitive in mesh.get("primitives", [])]
+    material_count = len(asset.json.get("materials", []))
+    checks += [_check("asset.meshNodeCount", len(mesh_nodes) == 1, len(mesh_nodes), 1),
+               _check("asset.materialReferences", bool(material_refs) and all(
+                   isinstance(value, int) and 0 <= value < material_count for value in material_refs),
+                   material_refs, f"0..{material_count - 1}")]
+
+    if kind == "prop":
+        transform_keys = sorted({key for node in asset.json.get("nodes", []) for key in
+                                 ("matrix", "translation", "rotation", "scale") if key in node})
+        anchor_spec = fit.get("diagnostics", {}).get("anchorPositionMu")
+        anchor_ok = isinstance(anchor_spec, list) and len(anchor_spec) == 3
+        axis_details: dict[str, Any] = {}
+        axis_alignment, computed_anchor, axis_length_mu = _prop_axis_and_anchor(
+            asset_mesh.positions, fit, _faces(asset_mesh), axis_details)
+        anchor = computed_anchor if anchor_ok else np.full(3, math.inf)
+        recorded_anchor = np.asarray(anchor_spec if anchor_ok else [math.inf] * 3, dtype=float)
+        size_ok = all(name in fit for name in ("measuredLengthMu", "scaleApplied", "realSizeM"))
+        measured = float(fit.get("measuredLengthMu", math.nan))
+        scale = float(fit.get("scaleApplied", math.nan)); real_m = float(fit.get("realSizeM", math.nan))
+        actual_m = axis_length_mu * m_per_mu
+        declared_length_mu = measured * scale
+        size_error = abs(actual_m - real_m) / real_m if size_ok and real_m > 0 else math.inf
+        prop_class = fit.get("class")
+        direction_ok, direction_value = _prop_semantic_direction(
+            asset_mesh.positions, prop_class, anchor, fit)
+        checks += [_check("prop.noNodeTransform", not transform_keys, transform_keys, []),
+                   _check("prop.anchorEvidence", anchor_ok, anchor_ok, True),
+                   _check("prop.anchorMu", anchor_ok and float(np.linalg.norm(anchor)) < 1e-4 and
+                          np.allclose(recorded_anchor, anchor, atol=1e-7),
+                          {"computed": anchor.tolist(), "recorded": recorded_anchor.tolist()}, "norm < 1e-4 and match"),
+                   _prop_main_axis_check(fit, axis_alignment, axis_details, axis_waiver),
+                   _check("prop.semanticDirection", direction_ok, direction_value,
+                          "weapon body +Y; hat opening -Y; pendant/pouch string top y=0"),
+                   _check("prop.realSizeEvidence", size_ok, size_ok, True),
+                   _check("prop.declaredLengthMu", size_ok and abs(axis_length_mu - declared_length_mu) <= 1e-4,
+                          {"mesh": axis_length_mu, "declared": declared_length_mu}, "差 <= 1e-4 mu"),
+                   _check("prop.realSizeError", size_error <= 0.02, size_error, "<= 0.02")]
+        if prop_class == "weapon" and "fullBladeAlignment" in axis_details:
+            checks.append(_check("prop.fullBladeMainAxisY", True, axis_details, "report only"))
+
+    return _result(fit, asset_path, fit_path, checks, requested)
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--body", required=True, type=Path, help="带 idle/walk/run 的素体正本 GLB")
+    parser.add_argument("--skeleton", required=True, type=Path, help="正本 skeleton.json")
+    parser.add_argument("--asset", required=True, type=Path, help="待校验装备 GLB")
+    parser.add_argument("--fit", required=True, type=Path, help="待校验 fit.json")
+    parser.add_argument("--out", required=True, type=Path, help="report.json 输出路径")
+    parser.add_argument("--level", choices=("draft", "approved"), default="approved", help="申请门禁等级（默认 approved）")
+    parser.add_argument("--json", action="store_true", help="stdout 只打印 report JSON")
+    args = parser.parse_args(argv)
+    try:
+        for path in (args.body, args.skeleton, args.asset, args.fit):
+            if not path.is_file(): raise ValueError(f"文件不存在：{path}")
+        report = validate(args.body, args.skeleton, args.asset, args.fit, args.level)
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        if args.json: print(json.dumps(report, ensure_ascii=False))
+        else: print(f"{args.asset}: {report['level']}（{sum(c['pass'] for c in report['checks'])}/{len(report['checks'])} checks）")
+        return 3 if report["level"] == "fail" else 0
+    except (OSError, ValueError, KeyError, IndexError, TypeError) as exc:
+        return _fail(str(exc))
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

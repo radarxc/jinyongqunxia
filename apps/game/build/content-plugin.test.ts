@@ -1,11 +1,20 @@
-import { readFile } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { InkJsDialogueBridge } from '@tianshu/core';
 import { compileInk } from '@tianshu/data/build';
-import { describe, expect, it } from 'vitest';
-import { battleModelLazyChunk, configureBattleModelChunks, gameContentPlugin } from './content-plugin';
+import { afterEach, describe, expect, it } from 'vitest';
+import {
+  battleModelLazyChunk, configureBattleModelChunks, dressupLazyChunk, gameContentPlugin,
+  offlineEligibleAssets, publishRuntimeAssets,
+} from './content-plugin';
 
-describe('battle model chunk isolation', () => {
+const temporaryRoots: string[] = [];
+afterEach(async () => {
+  await Promise.all(temporaryRoots.splice(0).map(path => rm(path, { recursive: true, force: true })));
+});
+
+describe('render lazy chunk isolation', () => {
   it('keeps runtime GLTF loading and skeleton cloning behind one lazy chunk', () => {
     expect(battleModelLazyChunk('/repo/packages/render/src/battle/model-stage.ts'))
       .toBe('battle-model3d');
@@ -13,6 +22,15 @@ describe('battle model chunk isolation', () => {
     expect(battleModelLazyChunk('/repo/node_modules/three/examples/jsm/loaders/GLTFLoader.js'))
       .toBe('battle-model3d');
     expect(battleModelLazyChunk('/repo/node_modules/three/build/three.module.js')).toBeUndefined();
+  });
+
+  it('keeps dressup sources separate while sharing battle model loader dependencies', () => {
+    expect(dressupLazyChunk('/repo/packages/render/src/dressup/runtime.ts'))
+      .toBe('render-dressup');
+    expect(dressupLazyChunk('/repo/packages/render/src/dressup/actor.ts')).toBe('render-dressup');
+    expect(dressupLazyChunk('/repo/packages/render/src/index.ts')).toBeUndefined();
+    expect(dressupLazyChunk('/repo/node_modules/three/examples/jsm/loaders/GLTFLoader.js'))
+      .toBeUndefined();
   });
 
   it('uses an explicit lazy group without recursively capturing Three dependencies', () => {
@@ -30,8 +48,71 @@ describe('battle model chunk isolation', () => {
     expect(group.includeDependenciesRecursively).toBe(false);
     expect(group.name('/repo/packages/render/src/battle/model-stage.ts', context))
       .toBe('battle-model3d');
+    expect(group.name('/repo/packages/render/src/dressup/runtime.ts', context))
+      .toBe('render-dressup');
+    expect(group.name('/repo/node_modules/three/examples/jsm/loaders/GLTFLoader.js', context))
+      .toBe('battle-model3d');
     expect(group.name('/repo/node_modules/three/build/three.module.js', context))
       .toBe('render');
+  });
+});
+
+describe('runtime asset publishing integration', () => {
+  it('emits the public dressup entry only when the build instance enables it', async () => {
+    const plugin = gameContentPlugin({ copyAssets: false });
+    const emitted: unknown[] = [];
+    const context = { emitFile: (value: unknown) => { emitted.push(value); return 'dressup'; } };
+    await plugin.buildStart?.call(context as never, {} as never);
+    expect(emitted).toContainEqual({
+      type: 'chunk', id: '@tianshu/render/dressup', name: 'render-dressup',
+      preserveSignature: 'strict',
+    });
+
+    const workerPlugin = gameContentPlugin({ copyAssets: false, emitDressupEntry: false });
+    const workerEmitted: unknown[] = [];
+    const workerContext = {
+      emitFile: (value: unknown) => { workerEmitted.push(value); return 'worker'; },
+    };
+    await workerPlugin.buildStart?.call(workerContext as never, {} as never);
+    expect(workerEmitted).toEqual([]);
+  }, 180_000); // 整次构建在高负载下可超过 60 s；功能用例的显式超时（10-03 协调者裁定），不是性能门
+
+  it('publishes non-rejected dressup triplets beside VFX and skips rejected rows', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'tianshu-runtime-assets-'));
+    temporaryRoots.push(root);
+    const directory = join(root, 'assets/default/model3d/dressup/garments/fixture');
+    await mkdir(join(root, 'content/vfx'), { recursive: true });
+    await mkdir(directory, { recursive: true });
+    await writeFile(join(root, 'content/vfx/runtime-files.json'), JSON.stringify({
+      schemaVersion: 'event.v1',
+      actions: [{ payload: { schema: 'tianshu-vfx-runtime.v1', files: [] } }],
+    }));
+    for (const name of ['kept.glb', 'fit.json', 'report.json', 'rejected.glb',
+      'rejected-fit.json', 'rejected-report.json']) {
+      await writeFile(join(directory, name), name.endsWith('fit.json') ? '{}' : name);
+    }
+    await writeFile(join(directory, 'manifest.yaml'), `- id: dressup__garment__kept
+  file: kept.glb
+  fit: fit.json
+  report: report.json
+  status: candidate
+- id: dressup__garment__rejected
+  file: rejected.glb
+  fit: rejected-fit.json
+  report: rejected-report.json
+  status: rejected
+`);
+    const copied = new Set<string>(); const references = new Map<string, Set<string>>();
+    await publishRuntimeAssets(root, true, copied, references);
+    const prefix = 'assets/default/model3d/dressup/garments/fixture/';
+    expect(copied).toEqual(new Set([prefix + 'fit.json', prefix + 'kept.glb',
+      prefix + 'report.json']));
+    await expect(access(join(root, 'apps/game/public', prefix, 'kept.glb'))).resolves.toBeUndefined();
+    await expect(access(join(root, 'apps/game/public', prefix, 'rejected.glb'))).rejects.toThrow();
+    expect(references.get(prefix + 'manifest.yaml'))
+      .toEqual(new Set([prefix + 'fit.json', prefix + 'kept.glb', prefix + 'report.json']
+        .map(path => '/' + path)));
+    expect(offlineEligibleAssets(copied)).toEqual([]);
   });
 });
 
@@ -61,7 +142,7 @@ describe('game content plugin town integration', () => {
     expect(chapter).not.toEqual(expect.stringContaining('npc_duanyu'));
     expect(leaf.mapText).toMatchObject({
       'event.ev_10_ditu.actions.0.map.name': '白马啸西风',
-      'event.ev_10_ditu.actions.0.map.nodes.26.name': '大理府',
+      'event.ev_10_ditu.actions.0.map.nodes.26.name': '洱海河蛮城邑（羁縻曾州，待考）',
       'event.ev_10_ditu.actions.0.map.nodes.26.levelNote': '尚无区域强度配置',
       'event.ev_10_ditu.actions.0.map.nodes.26.entry.accessNote':
         '城门进入；内部场景由 ENG-09 装配',
@@ -82,7 +163,7 @@ describe('game content plugin town integration', () => {
       undefined, {} as never);
     const town = await plugin.load?.call({} as never, townId as string);
     expect(town).toEqual(expect.stringContaining('town-runtime.v1'));
-  }, 60_000);
+  }, 180_000); // 整次构建在高负载下可超过 60 s；功能用例的显式超时（10-03 协调者裁定），不是性能门
 });
 
 describe('content compiler bridge', () => {

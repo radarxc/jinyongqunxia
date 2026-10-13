@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_pijia",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/armor/eq_pijia.png",
+  "generatedAt": "2026-10-07T14:32:47.496Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 190890,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/d169279d-dc67-4e6a-8f18-c85f8df51cd0/multiview_0_d169279d-dc67-4e6a-8f18-c85f8df51cd0.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 174921,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/d169279d-dc67-4e6a-8f18-c85f8df51cd0/multiview_1_d169279d-dc67-4e6a-8f18-c85f8df51cd0.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 163019,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/d169279d-dc67-4e6a-8f18-c85f8df51cd0/multiview_3_d169279d-dc67-4e6a-8f18-c85f8df51cd0.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 176922,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/d169279d-dc67-4e6a-8f18-c85f8df51cd0/multiview_2_d169279d-dc67-4e6a-8f18-c85f8df51cd0.jpeg"
+    }
+  }
+}

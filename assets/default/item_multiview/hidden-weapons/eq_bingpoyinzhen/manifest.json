@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_bingpoyinzhen",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/hidden-weapons/eq_bingpoyinzhen.png",
+  "generatedAt": "2026-10-07T20:04:43.533Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 157509,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/20226107-5324-443f-8a60-a48ece7f0927/multiview_0_20226107-5324-443f-8a60-a48ece7f0927.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 130209,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/20226107-5324-443f-8a60-a48ece7f0927/multiview_1_20226107-5324-443f-8a60-a48ece7f0927.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 96954,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/20226107-5324-443f-8a60-a48ece7f0927/multiview_3_20226107-5324-443f-8a60-a48ece7f0927.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 102780,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/20226107-5324-443f-8a60-a48ece7f0927/multiview_2_20226107-5324-443f-8a60-a48ece7f0927.jpeg"
+    }
+  }
+}

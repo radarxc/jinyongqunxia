@@ -6,6 +6,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./host": "./src/host/index.ts",
+    "./input": "./src/input/index.ts",
     "./offline": "./src/offline/index.ts",
     "./pwa": "./src/pwa/index.ts"
   },

@@ -1,0 +1,70 @@
+{
+  "schema": "tianshu.dressup-template-derive.v1",
+  "source": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+    "sha256": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94",
+    "templateId": "tpl_f2_medium"
+  },
+  "targetId": "tpl_f2_tall",
+  "gender": "female",
+  "heightM": 1.72,
+  "scale": {
+    "leg": 1.0845349120056251,
+    "spine": 0.9874790951283742,
+    "shoulder": 1.0296746718001073,
+    "arm": 1.036144578313253
+  },
+  "foldRepair": {
+    "before": 0,
+    "after": 0,
+    "iterations": 0,
+    "maxCorrectionMm": 0.0,
+    "method": "two-ring-constrained-biharmonic"
+  },
+  "measured": {
+    "heightMu": 1.0240662097930908,
+    "floorYMu": -0.0394601933658123,
+    "hipsRatio": 0.5560000178976985,
+    "shoulderRatio": 0.1740000053687836,
+    "heightM": 1.719999916246152,
+    "heightRatio": 1.036144546342932,
+    "mPerMu": 1.67957882,
+    "maxVertexDisplacementMu": 0.03928110880308092,
+    "maxVertexDisplacementLimitMu": 0.07144648195749292,
+    "sourceFloorYMu": -1.9854633137583733e-07,
+    "targetFloorYMu": -0.0394601933658123,
+    "containsNaN": false
+  },
+  "target": {
+    "heightM": 1.72,
+    "heightMu": 1.0240662413907338,
+    "heightRatio": 1.036144578313253,
+    "hipsRatio": 0.556,
+    "shoulderRatio": 0.174
+  },
+  "error": {
+    "heightM": -8.375384807912667e-08,
+    "heightRatio": -3.1970321057173123e-08,
+    "hipsRatio": 1.789769843441036e-08,
+    "shoulderRatio": 5.3687836121252275e-09
+  },
+  "validation": {
+    "topologyUnchanged": true,
+    "uvUnchanged": true,
+    "skinWeightsUnchanged": true,
+    "materialTexturesUnchanged": true,
+    "jointOrderUnchanged": true,
+    "restBindMaxDiff": 7.284543968033574e-08,
+    "rotationTracksUnchanged": true,
+    "hipsTranslationTracksScaled": 3,
+    "hipsTranslationScale": 1.0845349120056251,
+    "canonicalFloorYMu": 0.0,
+    "nan": false,
+    "flippedFaces": 0,
+    "sourceNegativeFaces": 0,
+    "negativeFaces": 0,
+    "newNegativeFaces": 0
+  },
+  "elapsedSec": 1.8669280000030994,
+  "outputSha256": "6a7b9f7a7298f657407dfffe25abdb4b119cd62dd299fadce86f4fecc531fef5"
+}

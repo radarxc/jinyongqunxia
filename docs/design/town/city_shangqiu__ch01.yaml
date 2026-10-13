@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_shangqiu
 chapter_id: ch01
 book_world: ch01_tianlong
-display_name: 应天府南京
+display_name: 南京应天府
 historical_year: 1093
 era_kit: song_north
 seed: 272687464

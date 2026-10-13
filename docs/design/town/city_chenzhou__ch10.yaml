@@ -3,7 +3,7 @@ kind: CitySpec
 city_id: city_chenzhou
 chapter_id: ch10
 book_world: ch10_baima
-display_name: 郴州
+display_name: 郴州（郴县）
 historical_year: 702
 era_kit: tang
 seed: 3923879334

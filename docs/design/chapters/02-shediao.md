@@ -131,20 +131,20 @@
 | 3 | `city_wuxi` | 无锡县·路府州县 | `rg_jiangnan_taihu` | 丐帮旧踪、码头 | 1 |
 | 4 | `city_jiaxing` | 嘉兴府·路府州县 | `rg_jiangnan_taihu` | 牛家村、醉仙楼、铁枪庙 | 2 |
 | 5 | `city_shaoxing` | 绍兴府·路府州县 | `rg_jiangnan_taihu` | 越地剑迹与丝茶支路 | 1 |
-| 6 | `city_beijing` | 中都故城 / 燕京·路府州县 | `rg_yanjing_zhili` | 赵王府与比武招亲；小说舞台与 1217 历史状态并置 **（待考）** | 3 |
-| 7 | `city_zhangjiakou` | 野狐岭 / 宣德州北境·边关 **（待考）** | `rg_yanjing_zhili` | 南归会合、军商关口 | 1 |
-| 8 | `city_baoding` | 顺天军 / 保州·路府州县 **（待考）** | `rg_yanjing_zhili` | 南北交通与王府外庄 | 1 |
-| 9 | `city_kaifeng` | 南京开封府 / 汴京·都城 | `rg_zhongyuan` | 金境旧都、商路消息 | 2 |
-| 10 | `city_luoyang` | 河南府·路府州县 | `rg_zhongyuan` | 丐帮分舵与中转 | 1 |
+| 6 | `city_beijing` | 燕京（燕京路大兴府）·路府州县 | `rg_yanjing_zhili` | 赵王府与比武招亲；小说舞台与 1217 历史状态并置 **（待考）** | 3 |
+| 7 | `city_zhangjiakou` | 张家口（原著地名，金宣德州北境）·边关 | `rg_yanjing_zhili` | 南归会合、军商关口 | 1 |
+| 8 | `city_baoding` | 保州（顺天军）·路府州县 | `rg_yanjing_zhili` | 南北交通与王府外庄 | 1 |
+| 9 | `city_kaifeng` | 南京开封府（汴京）·都城 | `rg_zhongyuan` | 金境旧都、商路消息 | 2 |
+| 10 | `city_luoyang` | 中京金昌府（河南府）·都城 | `rg_zhongyuan` | 丐帮分舵与中转 | 1 |
 | 11 | `city_dengfeng` | 登封县·路府州县 | `rg_zhongyuan` | 少林有限入门 | 1 |
 | 12 | `city_xian` | 京兆府·路府州县 | `rg_guanzhong` | 终南山补给 | 1 |
 | 13 | `city_huayin` | 华阴县·路府州县 | `rg_guanzhong` | 华山论剑入口 | 1 |
 | 14 | `city_yueyang` | 岳州·路府州县 | `rg_huxiang` | 君山丐帮大会 | 1 |
 | 15 | `city_changsha` | 潭州·路府州县 | `rg_huxiang` | 湖湘商路与医药补给 | — |
 | 16 | `city_chenzhou_yuanling` | 辰州·路府州县 | `rg_huxiang` | 铁掌峰北向入口 | — |
-| 17 | `city_kashgar` | 喀什噶尔·商埠 **（待考）** | `rg_xiyu_nanjiang` | 白驼商队与毒材 | 1 |
-| 18 | `city_hotan` | 和阗·商埠 **（待考）** | `rg_xiyu_nanjiang` | 玉石、驼队与昆仑支线 | — |
-| 19 | `city_karakorum` | 和林 / 哈拉和林·都城 | `rg_mobei` | 蒙古行营与西征专线 | 1 |
+| 17 | `city_kashgar` | 喀什噶尔（西辽，屈出律据）·商埠 | `rg_xiyu_nanjiang` | 白驼商队与毒材 | 1 |
+| 18 | `city_hotan` | 和阗（西辽，屈出律据）·商埠 | `rg_xiyu_nanjiang` | 玉石、驼队与昆仑支线 | — |
+| 19 | `city_karakorum` | 和林（大汗斡耳朵）·都城 | `rg_mobei` | 蒙古行营与西征专线 | 1 |
 | 20 | `city_taohuadao` | 桃花岛（小说）·未建或废弃 | `rg_donghai_islands` | `eras.ch02.open=true` 的小说地点，不冒充历史城市；桃花岛门派、A4、九阴 | — |
 
 合计 `3+3+1+2+1+3+1+1+2+1+1+1+1+1+0+0+1+0+1+0=24` 个营生实例。桃花岛、和阗、潭州、辰州没有常设三类营生，不用虚构赌场或镖局凑“每城齐全”；其职位需求由相邻开放城市承接。

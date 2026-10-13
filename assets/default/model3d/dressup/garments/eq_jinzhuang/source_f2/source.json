@@ -1,0 +1,393 @@
+{
+ "schema": "tianshu-dressup-source.v1",
+ "id": "eq_jinzhuang",
+ "kind": "dressed-body",
+ "template": "tpl_f2_medium",
+ "item": "eq_jinzhuang",
+ "tripo": {
+  "project_id": "8421bc50-53c1-4987-a468-9d3776bd6f7b",
+  "generate_op": "c427ee0d-5a7f-491b-ac81-e0c91679f2a6",
+  "rig_op": "af8b240f-4bf7-42b9-b796-b6e4530bf387",
+  "export_op": "0fa16d2f-7d72-40c8-ab14-5772adbbb8b7",
+  "image_audit": "nsfw",
+  "nsfw_flag": true
+ },
+ "options": {
+  "generate": {
+   "mode": "image_to_model",
+   "ai_model": "H3.1 Best Quality",
+   "model_version": "v3.1-20260211",
+   "geometry_quality": "detailed",
+   "texture": true,
+   "texture_quality": "extreme",
+   "pbr": true,
+   "delight": true,
+   "topology": "triangle",
+   "face_limit": 200000,
+   "texture_alignment": "original_image",
+   "generate_parts": false,
+   "smart_poly": false,
+   "enable_image_autofix": true,
+   "visibility": "private"
+  },
+  "rig": {
+   "rig_type": "biped",
+   "skeleton_preset": "mixamo",
+   "model_version": "v3.0-20260909",
+   "source": "tools/model3d/tripo_web.js RIG 常量（rigging_model 请求体），与 T4 女素体相同"
+  },
+  "export": {
+   "format": "gltf",
+   "texture_size": 2048,
+   "with_animation": true,
+   "animations": [],
+   "animate_in_place": true,
+   "export_orientation": "-y"
+  }
+ },
+ "credits": {
+  "generate": 65,
+  "rig": 20,
+  "before": 16665,
+  "after": 16580
+ },
+ "plate": {
+  "path": "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+  "sha256": "d5504ba037bcb8654c7fa8c21e3d598a85b25526344d55eef1b7d22c5a43559d"
+ },
+ "glb": {
+  "file": "tripo_dressed_rig.glb",
+  "sha256": "8b150b8e229d0ce6878ce035881219672cb888284a6ea7e4fda884d948919777",
+  "size_bytes": 8111468,
+  "vertices": 103318,
+  "triangles": 192581,
+  "joints": 65
+ },
+ "inspect": {
+  "height_mu": 0.9805298360442976,
+  "rest_bind_max_diff": 5.543944832431258e-06,
+  "arm_angle_deg": 23.99294523020022,
+  "forearm_angle_deg": 29.132164314029016,
+  "heads_ratio": 8.27,
+  "hips_ratio": 0.541,
+  "connected_components": 135,
+  "boundary_edges": 13785,
+  "non_manifold_edges": 0,
+  "world_bounds_mu": {
+   "min": [
+    -0.23867815732955933,
+    6.832124199718237e-08,
+    -0.08678396046161652
+   ],
+   "max": [
+    0.2386780083179474,
+    0.9805299043655396,
+    0.08678436279296875
+   ]
+  },
+  "source_size_bytes": 9331076,
+  "base_color": {
+   "width_px": 2048,
+   "height_px": 2048,
+   "mime_type": "image/jpeg",
+   "quality": 85
+  },
+  "pbr_textures_removed": [
+   "normal"
+  ],
+  "material": "KHR_materials_unlit"
+ },
+ "joints_check": {
+  "ok": true,
+  "chk": {
+   "joints": true,
+   "hips": true,
+   "head": true,
+   "top": true,
+   "feet": true,
+   "hands": true
+  },
+  "n": 65,
+  "Hips": [
+   0.002,
+   0.53,
+   -0.002
+  ],
+  "Head": [
+   0.002,
+   0.887,
+   -0.002
+  ],
+  "HeadTop_End": [
+   0.029,
+   1.005,
+   -0.002
+  ],
+  "LeftHand": [
+   -0.006,
+   0.548,
+   -0.193
+  ],
+  "RightHand": [
+   -0.007,
+   0.552,
+   0.188
+  ],
+  "handOut": [
+   0.191,
+   0.19
+  ],
+  "LeftFoot": [
+   -0.048,
+   0.067,
+   -0.082
+  ],
+  "RightFoot": [
+   -0.048,
+   0.067,
+   0.079
+  ],
+  "meshY": [
+   0,
+   0.98
+  ]
+ },
+ "joints_vs_template": [
+  {
+   "joint": "Hips",
+   "dressed": [
+    0.002,
+    0.541,
+    0.002
+   ],
+   "tpl_f2_medium": [
+    0.0019,
+    0.5362,
+    -0.0058
+   ],
+   "diffPctH": [
+    0.0,
+    0.48,
+    0.78
+   ]
+  },
+  {
+   "joint": "Spine",
+   "dressed": [
+    0.002,
+    0.5918,
+    0.0059
+   ],
+   "tpl_f2_medium": [
+    0.0019,
+    0.5904,
+    0.0019
+   ],
+   "diffPctH": [
+    0.0,
+    0.14,
+    0.39
+   ]
+  },
+  {
+   "joint": "Spine1",
+   "dressed": [
+    0.002,
+    0.6855,
+    0.0098
+   ],
+   "tpl_f2_medium": [
+    0.0019,
+    0.633,
+    0.0097
+   ],
+   "diffPctH": [
+    0.0,
+    5.26,
+    0.01
+   ]
+  },
+  {
+   "joint": "Spine2",
+   "dressed": [
+    0.002,
+    0.7558,
+    0.0098
+   ],
+   "tpl_f2_medium": [
+    0.0019,
+    0.7065,
+    0.0058
+   ],
+   "diffPctH": [
+    0.0,
+    4.93,
+    0.4
+   ]
+  },
+  {
+   "joint": "Neck",
+   "dressed": [
+    0.002,
+    0.8535,
+    -0.0098
+   ],
+   "tpl_f2_medium": [
+    0.0019,
+    0.8381,
+    -0.0174
+   ],
+   "diffPctH": [
+    0.0,
+    1.54,
+    0.77
+   ]
+  },
+  {
+   "joint": "LeftArm",
+   "dressed": [
+    0.0801,
+    0.8027,
+    -0.0176
+   ],
+   "tpl_f2_medium": [
+    0.0871,
+    0.7955,
+    -0.0213
+   ],
+   "diffPctH": [
+    -0.7,
+    0.72,
+    0.37
+   ]
+  },
+  {
+   "joint": "RightArm",
+   "dressed": [
+    -0.0762,
+    0.8027,
+    -0.0176
+   ],
+   "tpl_f2_medium": [
+    -0.0832,
+    0.7955,
+    -0.0213
+   ],
+   "diffPctH": [
+    0.71,
+    0.72,
+    0.37
+   ]
+  },
+  {
+   "joint": "LeftUpLeg",
+   "dressed": [
+    0.0527,
+    0.5332,
+    0.002
+   ],
+   "tpl_f2_medium": [
+    0.06,
+    0.5284,
+    -0.0058
+   ],
+   "diffPctH": [
+    -0.73,
+    0.48,
+    0.78
+   ]
+  },
+  {
+   "joint": "RightUpLeg",
+   "dressed": [
+    -0.0488,
+    0.5332,
+    0.002
+   ],
+   "tpl_f2_medium": [
+    -0.0561,
+    0.5284,
+    -0.0058
+   ],
+   "diffPctH": [
+    0.73,
+    0.48,
+    0.78
+   ]
+  },
+  {
+   "joint": "LeftHand",
+   "dressed": [
+    0.1973,
+    0.5594,
+    -0.0064
+   ],
+   "tpl_f2_medium": [
+    0.1916,
+    0.5684,
+    0.0063
+   ],
+   "diffPctH": [
+    0.57,
+    -0.9,
+    -1.27
+   ]
+  },
+  {
+   "joint": "RightHand",
+   "dressed": [
+    -0.1913,
+    0.5626,
+    -0.0067
+   ],
+   "tpl_f2_medium": [
+    -0.191,
+    0.5702,
+    0.0067
+   ],
+   "diffPctH": [
+    -0.03,
+    -0.76,
+    -1.34
+   ]
+  },
+  {
+   "joint": "LeftFoot",
+   "dressed": [
+    0.084,
+    0.0684,
+    -0.0488
+   ],
+   "tpl_f2_medium": [
+    0.0794,
+    0.0639,
+    -0.0213
+   ],
+   "diffPctH": [
+    0.46,
+    0.45,
+    -2.75
+   ]
+  },
+  {
+   "joint": "RightFoot",
+   "dressed": [
+    -0.0801,
+    0.0684,
+    -0.0488
+   ],
+   "tpl_f2_medium": [
+    -0.0755,
+    0.0639,
+    -0.0213
+   ],
+   "diffPctH": [
+    -0.46,
+    0.45,
+    -2.75
+   ]
+  }
+ ],
+ "qc": "封面质检通过：交领右衽、腰带结与垂带、翻袖口、衣摆到髋与底板一致；胸型饱满、衣服贴身；脸、光头、双耳、手脚完整；臂张角与底板一致（3D 上臂 24.0°）；无大片粘连或破洞。Tripo 自动审核标 nsfw（底板露腿、可见三角裤），与 E1（b01f6451，同类底板）相同，生成与绑骨正常。",
+ "created": "2026-10-12T09:10:03-07:00"
+}

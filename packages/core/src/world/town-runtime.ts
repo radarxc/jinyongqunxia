@@ -1,4 +1,4 @@
-import type { TownBuilding, TownRuntimeDefinition } from '@tianshu/data/schemas';
+import type { TownBuilding, TownFacilitiesDef, TownRuntimeDefinition } from '@tianshu/data/schemas';
 import { ceilDivInt } from '@tianshu/shared';
 import type { BattleParticipantInput } from '../battle';
 import { createMeditationAmbushBattleSetup, type BattleSetup } from '../battle';
@@ -28,8 +28,10 @@ export type TownCommand =
 export interface TownAnchorRequest { readonly lineId: string; readonly nodeId: string }
 export interface TownCommandResult {
   readonly state: TownSessionState; readonly path?: TownPath;
-  readonly anchors?: readonly TownAnchorRequest[]; readonly action?: 'shop' | 'dialogue' | 'meditate';
+  readonly anchors?: readonly TownAnchorRequest[];
+  readonly action?: 'facility-dialogue' | 'dialogue' | 'meditate';
   readonly ref?: string | null;
+  readonly facility?: { readonly facilityKey: string; readonly roleKey: string };
 }
 
 const DIRECTIONS: readonly TownPoint[] = [[1, 0], [0, 1], [-1, 1], [-1, 0], [0, -1], [1, -1]];
@@ -124,6 +126,7 @@ function requireMeditationAnchor(town: TownRuntimeDefinition, state: TownSession
 
 export interface TownRuntimeContext {
   readonly town: TownRuntimeDefinition; readonly eventAnchors?: readonly EventAnchor[];
+  readonly facilities?: TownFacilitiesDef;
   readonly npcWorld?: NpcWorldState; readonly eraLayer?: string;
   readonly npcAnchors?: readonly { readonly npcId: string; readonly sceneId: string;
     readonly eraLayer: string; readonly point: TownPoint }[];
@@ -176,10 +179,14 @@ export function createTownRuntime(context: TownRuntimeContext): TownRuntime {
       sceneId: context.town.sceneId, trigger: 'interact', npcId: command.npcId }) };
   }
   if (command.t === 'town/interact') {
+    if (state.buildingPhase !== 'inside') throw new Error('TOWN_NOT_AT_SHOP');
     const building = context.town.buildings.find((row) => row.id === state.buildingId);
-    if (!building || building.interiorKind !== 'shop' || building.businessRef === null)
+    const facility = context.facilities?.facilities.find((row) =>
+      row.buildingId === building?.id);
+    if (!building || facility === undefined)
       throw new Error('TOWN_NOT_AT_SHOP');
-    return { state, action: 'shop', ref: building.businessRef };
+    return { state, action: 'facility-dialogue', facility: { facilityKey: facility.key,
+      roleKey: facility.roles[0]! } };
   }
   const anchor = requireMeditationAnchor(context.town, state, command);
   return { state, action: 'meditate', ref: anchor.id };

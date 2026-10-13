@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_hupiyi",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/clothing/eq_hupiyi.png",
+  "generatedAt": "2026-10-07T17:49:50.442Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 199944,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e2cf73bf-7d6a-40b3-886a-ce7d134b0068/multiview_0_e2cf73bf-7d6a-40b3-886a-ce7d134b0068.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 144544,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e2cf73bf-7d6a-40b3-886a-ce7d134b0068/multiview_1_e2cf73bf-7d6a-40b3-886a-ce7d134b0068.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 143614,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e2cf73bf-7d6a-40b3-886a-ce7d134b0068/multiview_3_e2cf73bf-7d6a-40b3-886a-ce7d134b0068.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 211083,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e2cf73bf-7d6a-40b3-886a-ce7d134b0068/multiview_2_e2cf73bf-7d6a-40b3-886a-ce7d134b0068.jpeg"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_duling",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/hidden-weapons/eq_duling.png",
+  "generatedAt": "2026-10-07T20:06:27.628Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 199658,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/727ceb8a-991d-49c8-9172-0a2bffcfa1dc/multiview_0_727ceb8a-991d-49c8-9172-0a2bffcfa1dc.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 167461,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/727ceb8a-991d-49c8-9172-0a2bffcfa1dc/multiview_1_727ceb8a-991d-49c8-9172-0a2bffcfa1dc.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 134476,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/727ceb8a-991d-49c8-9172-0a2bffcfa1dc/multiview_3_727ceb8a-991d-49c8-9172-0a2bffcfa1dc.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 162336,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/727ceb8a-991d-49c8-9172-0a2bffcfa1dc/multiview_2_727ceb8a-991d-49c8-9172-0a2bffcfa1dc.jpeg"
+    }
+  }
+}

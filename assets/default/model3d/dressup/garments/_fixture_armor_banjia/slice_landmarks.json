@@ -1,0 +1,145 @@
+{
+  "schema": "tianshu-dressup-slice-landmarks.v1",
+  "kind": "garment",
+  "id": "_fixture_armor_banjia",
+  "class": "armor",
+  "armorType": "banjia",
+  "label": "板甲",
+  "elasticity": 0.0,
+  "clearanceMm": 1.0,
+  "rigid": true,
+  "legs": "tube",
+  "unit": "mu",
+  "up": "+Y",
+  "front": "+Z",
+  "frame": "测试件 GLB 原坐标（设计体 = tpl_f_medium 按 design.scale / offset 变形）；levels 为设计体标注面，collar / hem / 袖口锚点从生成的几何量出，target 为设计体上的目标面",
+  "design": {
+    "base": "tpl_f_medium",
+    "scale": [
+      1.1,
+      1.06,
+      1.12
+    ],
+    "offsetMu": [
+      0.012,
+      -0.02,
+      -0.01
+    ],
+    "pivotYMu": 0.537891,
+    "thicknessMm": 3.0,
+    "standoffMm": 6.0
+  },
+  "levels": {
+    "neckBase": {
+      "yMu": 0.830677
+    },
+    "shoulder": {
+      "yMu": 0.807991
+    },
+    "armpit": {
+      "yMu": 0.7368
+    },
+    "bust": {
+      "yMu": 0.725065
+    },
+    "underBust": {
+      "yMu": 0.682821
+    },
+    "waist": {
+      "yMu": 0.629623
+    },
+    "navel": {
+      "yMu": 0.596904
+    },
+    "pelvis": {
+      "yMu": 0.517891
+    },
+    "hip": {
+      "yMu": 0.473161
+    },
+    "crotch": {
+      "yMu": 0.455168
+    },
+    "belowHip": {
+      "yMu": 0.432481
+    },
+    "midThigh": {
+      "yMu": 0.354641
+    },
+    "aboveKnee": {
+      "yMu": 0.304377
+    },
+    "knee": {
+      "yMu": 0.254114
+    },
+    "calf": {
+      "yMu": 0.183503
+    },
+    "aboveAnkle": {
+      "yMu": 0.05405
+    },
+    "ankle": {
+      "yMu": 0.018744
+    }
+  },
+  "alignLevels": [
+    "neckBase",
+    "navel"
+  ],
+  "anchorRule": {
+    "sectorDeg": 90.0,
+    "binDeg": 2.5,
+    "cuffBinDeg": 10.0,
+    "cuffNeighborhood": 2.0,
+    "toleranceMm": 10.0,
+    "minKnotGapMm": 40.0
+  },
+  "collar": {
+    "anchor": {
+      "method": "backSectorUpperEnvelopeMedian",
+      "yMu": 0.834255,
+      "p10YMu": 0.793515,
+      "p90YMu": 0.834255,
+      "bins": 36,
+      "centerMu": [
+        0.011356,
+        0.000712
+      ]
+    },
+    "target": {
+      "level": "neckBase"
+    },
+    "designTargetYMu": 0.830677,
+    "anchorMinusDesignTargetMm": 6.059686
+  },
+  "hem": {
+    "anchor": {
+      "method": "backSectorLowerEnvelopeMedian",
+      "yMu": 0.596904,
+      "p10YMu": 0.596904,
+      "p90YMu": 0.648271,
+      "bins": 36,
+      "centerMu": [
+        0.011356,
+        0.000712
+      ]
+    },
+    "target": {
+      "level": "navel"
+    },
+    "designTargetYMu": 0.596904,
+    "anchorMinusDesignTargetMm": 0.0
+  },
+  "sleeves": null,
+  "note": "板甲测试件：胸背一体整片到肚脐、两侧开袖窿，r = 0（整件相似）；按宽 1.10 / 高 1.06 / 厚 1.12 倍的体型制作并错位 (+20, −34, −17) mm，用来检验缩小对齐。",
+  "source": {
+    "file": "assets/default/model3d/dressup/garments/_fixture_armor_banjia/_fixture_armor_banjia.glb",
+    "sha256": "f624900bd35c1671073faa45c93fd1f8109655f658ca2a63a68993218f1e2a84",
+    "generator": "tools/model3d/dressup/slice_fit.py armor-fixture --kind banjia"
+  },
+  "stats": {
+    "vertices": 10360,
+    "triangles": 20720,
+    "components": 1
+  }
+}

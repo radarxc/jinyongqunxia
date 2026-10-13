@@ -1,0 +1,181 @@
+- id: map_world_jianghu__base01
+  file: map_world_jianghu__base01.webp
+  category: map
+  style: default
+  subject: 江湖大地图整张底图（AR-111）：金庸世界范围 = 内容大地图网格 512×384 全幅（Albers 25N/47N/105E，tools/map/render_map.py::CanvasProjection(512, 384, margin=18)），北上东右，图上无字、不画城镇与道路（运行时叠加）；GIS 海陆 / 湖河 / 高程 + 仓库水墨贴图确定性合成。
+  extent_grid: [0, 0, 512, 384]
+  prompt: （无：程序合成，未调用出图模型；画法与全部参数见 tools/map/paint/README.md、config.json）
+  negative: （程序不生成文字、城镇、道路、国界；只用 references 所列素材）
+  references:
+  - path: assets/default/baseline/map/ref_map_jianghu__ch01_base01.png
+    sha256: 60e4ba98f5f5a742b7e393350412c3c560123699495b5c49152e83d46563191c
+    use: 作者已审江湖总图：只从其平原里按纸色抠树丛印章（40 个，程序判据见 sprites.baseline_tree_stamps），零星点在平原
+  - path: assets/default/map/kit/map_kit_haimian_01.png
+    sha256: e5682ab94b49e62cfde5b8d73f8e9e7dfffca95ca92b7e22cbb9dd8e970afe82
+    use: 近岸海面小景（只摆在离岸 ≤110 px 内，低透明）
+  - path: assets/default/map/kit/map_kit_haimian_02.png
+    sha256: 88911a2bb67a04e7d62004ac6f19077840cd020974de309b55b25fd92f518dca
+    use: 近岸海面小景（只摆在离岸 ≤110 px 内，低透明）
+  - path: assets/default/map/kit/map_kit_haimian_03.png
+    sha256: cf268484a19ccd9ab25c4b8ddf087eec8b6cec825315c0ff0c7501fec53aa11c
+    use: 近岸海面小景（只摆在离岸 ≤110 px 内，低透明）
+  - path: assets/default/map/kit/map_kit_pendi_01.png
+    sha256: 1f4fd656d59544df19cc0051fe3ef6f9b7e5d1891c00e809767feb8a4d7c2b27
+    use: 平原 / 盆地小景，极低密度当田畴点缀（低透明）
+  - path: assets/default/map/kit/map_kit_pendi_02.png
+    sha256: b0aa0e5396a9a9d8d5d70e931ab5593fba20a0101f08318ddcb3072f7641d70e
+    use: 平原 / 盆地小景，极低密度当田畴点缀（低透明）
+  - path: assets/default/map/kit/map_kit_pingyuan_01.png
+    sha256: 9c2cb5e64655b84833162a5f1321f98b96910f7eeb34f874e0a695f682909108
+    use: 平原 / 盆地小景，极低密度当田畴点缀（低透明）
+  - path: assets/default/map/kit/map_kit_pingyuan_02.png
+    sha256: a29146d551d67b42dae520025b0758e9c57cb4f8a8a9d78da14b3246b41ab5e7
+    use: 平原 / 盆地小景，极低密度当田畴点缀（低透明）
+  - path: assets/default/map/kit/map_kit_qiuling_01.png
+    sha256: b5884b529a7b989940f11a88a9d017c64dbd23085bd33d982c28a3284b59cced
+    use: 中低丘陵（起伏 320–480 m、非盆地底部），淡化到 55% 不透明
+  - path: assets/default/map/kit/map_kit_qiuling_02.png
+    sha256: 9701e31fb30e7da5af907c08f31d7f04aebbb044222265a32776507d7502a83e
+    use: 中低丘陵（起伏 320–480 m、非盆地底部），淡化到 55% 不透明
+  - path: assets/default/map/kit/map_kit_qiuling_03.png
+    sha256: d42433e5c22422ab46908865775dd0217a33b8774c2b62568a84add9ab089a89
+    use: 中低丘陵（起伏 320–480 m、非盆地底部），淡化到 55% 不透明
+  - path: assets/default/map/kit/map_kit_qiuling_04.png
+    sha256: 8d2cf33dd86a202087dcc71a63200dc7711900c3c5e6c08d8a0f809f8bdd134e
+    use: 中低丘陵（起伏 320–480 m、非盆地底部），淡化到 55% 不透明
+  - path: assets/default/map/kit/map_kit_shanfeng_01.png
+    sha256: 9959df72d66173ad5ae788f04f561a907324566b066d8721673daa798c38e8a5
+    use: 山峰件（起伏 ≥480 m；窄岛上按陆地长度收缩或换瘦高件）；小号作干旱 / 高原小石山
+  - path: assets/default/map/kit/map_kit_shanfeng_02.png
+    sha256: 1e33f23f04e687032164013f9c56d31e2f1f81072227596b057a341362fba91d
+    use: 山峰件（起伏 ≥480 m；窄岛上按陆地长度收缩或换瘦高件）；小号作干旱 / 高原小石山
+  - path: assets/default/map/kit/map_kit_shanfeng_03.png
+    sha256: a27651f38aedb7674fb7dea875bdb4a6863e1df21e00ad7849aa0baf4576731f
+    use: 山峰件（起伏 ≥480 m；窄岛上按陆地长度收缩或换瘦高件）；小号作干旱 / 高原小石山
+  - path: assets/default/map/kit/map_kit_shanfeng_04.png
+    sha256: 0fe95c7afa482a0657cd562438df52b716a5da539111ad390c32ca394b0150a3
+    use: 山峰件（起伏 ≥480 m；窄岛上按陆地长度收缩或换瘦高件）；小号作干旱 / 高原小石山
+  - path: assets/default/map/kit/map_kit_shanfeng_05.png
+    sha256: 3e302d0b8186a47fc5e057351bc529ebe6b12fa3aa49451e4a237c018662f6c5
+    use: 山峰件（起伏 ≥480 m；窄岛上按陆地长度收缩或换瘦高件）；小号作干旱 / 高原小石山
+  - path: assets/default/map/kit/map_kit_shanfeng_06.png
+    sha256: cc8a32f6f67493871c6d504c9f1e49f061daf8994c63e6e2fc3c9c4ddb069c14
+    use: 山峰件（起伏 ≥480 m；窄岛上按陆地长度收缩或换瘦高件）；小号作干旱 / 高原小石山
+  - path: assets/default/map/kit/map_kit_shanmai_02.png
+    sha256: 2f4d7fdc1015c0c26e9d86b78962dbc3feda97cdcc4aed1a32849d28b8d17078
+    use: 山脉件，按 DEM 结构张量的山脊走向选朝向变体，高起伏带放大
+  - path: assets/default/map/kit/map_kit_shanmai_03.png
+    sha256: 4f675d13ad8ec0522940498b36576674dae269cc2be2f5c06c5c086906d27daf
+    use: 山脉件，按 DEM 结构张量的山脊走向选朝向变体，高起伏带放大
+  - path: assets/default/map/kit/map_kit_shanmai_04.png
+    sha256: db4e1e0c0fdb905bb8c073b6cfaa9000f4286a3925bdf1b3a0d75c06747be5dd
+    use: 山脉件，按 DEM 结构张量的山脊走向选朝向变体，高起伏带放大
+  - path: assets/default/map/kit/map_kit_shanmai_05.png
+    sha256: 5f75fc7af8c8bcae6635427340d3bf5d6123d0f350617503f827bcde64490f5a
+    use: 山脉件，按 DEM 结构张量的山脊走向选朝向变体，高起伏带放大
+  - path: assets/default/map/kit/map_kit_shanmai_06.png
+    sha256: 92c5971fdab632f93cdba16ce2ea7c2114fa1be42dd1c6a1b17d493dd3bbe045
+    use: 山脉件，按 DEM 结构张量的山脊走向选朝向变体，高起伏带放大
+  - path: assets/default/map/kit/map_kit_shanmai_dongxi_01.png
+    sha256: 3f9f7ed362a7280a4a678683034e1c3421fea7a8d9a03beb209778371684cc6c
+    use: 山脉件，按 DEM 结构张量的山脊走向选朝向变体，高起伏带放大
+  - path: assets/default/map/kit/map_kit_xueshan_02.png
+    sha256: 6f8b19ce853cbe52b251e4c517e1e7bf5e4044f5c16e491ad0e460ee36a801e1
+    use: 雪山件（落点海拔 ≥4000 m），唯一保留白顶的山件
+  - path: assets/default/map/kit/map_kit_xueshan_03.png
+    sha256: 27dae7945ee79d192b9ea6a0f70ffe282da8a5d1c6f63ff71b5587cfb7856226
+    use: 雪山件（落点海拔 ≥4000 m），唯一保留白顶的山件
+  - path: assets/default/map/kit/map_kit_xueshan_04.png
+    sha256: ba9ad8e4cfc78b7db9713763fdb809a6aaddd029970af11cb072419ae7a1bae5
+    use: 雪山件（落点海拔 ≥4000 m），唯一保留白顶的山件
+  - path: assets/default/map/kit/map_kit_xueshan_xibei_01.png
+    sha256: 50dcf11ffc57fe92ec1ba2888c953bf419120db96bbf8fd75f05efec8cc28ede
+    use: 雪山件（落点海拔 ≥4000 m），唯一保留白顶的山件
+  - path: assets/default/map/tiles/map_strip_haian_cu_01.png
+    sha256: 4a136b6a18624c46065ca7969d8caec0cc474f966d68ea53c2ec54a4ca0816f2
+    use: 海岸笔触条（水侧宽、陆侧窄；小岛用细条）
+  - path: assets/default/map/tiles/map_strip_haian_xi_01.png
+    sha256: 1df8a820ab4817c324915ba4b07a3fbf6c0fbc96f3882dde572dac2a4ca511a2
+    use: 海岸笔触条（水侧宽、陆侧窄；小岛用细条）
+  - path: assets/default/map/tiles/map_strip_heliu_cu_01.png
+    sha256: 3a9e083cf87200ed85a18ed7893732e5cbe959cebf1d622c07b6033d3d7382f6
+    use: 大河笔触条（scalerank ≤4 及点名大河，加宽加深）
+  - path: assets/default/map/tiles/map_strip_heliu_xi_01.png
+    sha256: abe2cf95617b6d15919dd39bf1cd5fb968f93cfc41ecaac24a46e64d5774ebd2
+    use: 支流笔触条（scalerank 5–7）
+  - path: assets/default/map/tiles/map_strip_huan_xi_01.png
+    sha256: 26232702a4742c53122b261c63c609dcebc6159fc3d635541725959ea6f2fb97
+    use: 湖岸笔触条
+  - path: assets/default/map/tiles/map_tile_caoyuan_01.png
+    sha256: 8057a89c2566d81987ac59ef6020128b42268c0cc12eaf6edb0f988a2693587f
+    use: 草原平铺（草原分区）
+  - path: assets/default/map/tiles/map_tile_caoyuan_02.png
+    sha256: 294277e204dd1565f78b16d98dbdc46543f499b0424641eb4198569f3e8eb956
+    use: 草原平铺（草原分区）
+  - path: assets/default/map/tiles/map_tile_gaoyuan_01.png
+    sha256: d3234afc126e0c1e3091c4a2fe19028d88a7d8aa00bb47487e1445c898d2e837
+    use: 高原平铺（海拔 2700–3500 m 起渐入）
+  - path: assets/default/map/tiles/map_tile_gaoyuan_02.png
+    sha256: e2ae1a603aa40be032782f2f07cc1f6348b4672e09378583aed7adfe7549a5e3
+    use: 高原平铺（海拔 2700–3500 m 起渐入）
+  - path: assets/default/map/tiles/map_tile_humian_01.png
+    sha256: 800a2a2d6086b969870ca73d9ca3fb70d81157909334f91e7c9509c521873c74
+    use: 湖面平铺
+  - path: assets/default/map/tiles/map_tile_humian_02.png
+    sha256: f7585898d07ed206d6c89a5367e45f24318bd596d2e77d4a5b5a272933578e46
+    use: 湖面平铺
+  - path: assets/default/map/tiles/map_tile_pingyuan_01.png
+    sha256: aa11df980bf40f3d27a043fdc346067c4ea77b71156fecfd33351a8b6bf4b13b
+    use: 平原平铺（默认地表）
+  - path: assets/default/map/tiles/map_tile_pingyuan_02.png
+    sha256: 44229bc4226be4f27cc57219fd9c1efad47e0286541fc0e7d4ca820adb47194d
+    use: 平原平铺（默认地表）
+  - path: assets/default/map/tiles/map_tile_shamo_01.png
+    sha256: 64f76ec1781fc6f630559f772474e3f7c549374f0b8609b1c1a7ad1a62b6c4f0
+    use: 沙漠平铺（NE 沙漠区 + 盆地底部规则 + 补充沙漠多边形）
+  - path: assets/default/map/tiles/map_tile_shamo_02.png
+    sha256: 6aeb1e92a0a5a931576f0c6a3ee84459d704cbe65ba9705a78ab752ecf942849
+    use: 沙漠平铺（NE 沙漠区 + 盆地底部规则 + 补充沙漠多边形）
+  - path: assets/default/map/tiles/map_tile_shuimian_01.png
+    sha256: 0566cdd3e1a44f4f79aab914c10efff872fd89d738cde4c71bb14b90e25d0e42
+    use: 海面平铺
+  - path: assets/default/map/tiles/map_tile_shuimian_02.png
+    sha256: 10f4a7842628374483ee15efe2d3886a6d2d8c0dda34395056a36709f2f71f0c
+    use: 海面平铺
+  - path: .agents/coord/geodata/etopo2022_60s/etopo2022_60s_surface_mosaic.npy
+    sha256: 7604138131e120385727d49a3db2a5285b39caa7acd5dd5fd68ef2516c6bb93a
+    use: ETOPO 2022 60″ 地表高程拼接（NOAA，CC0）：山势、晕渲、雪线；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+  - path: .agents/coord/geodata/ne_10m_geography_regions_polys/ne_10m_geography_regions_polys.zip
+    sha256: cb7b9db200284ed1551f20eacc7f3333e9b5f311c19f7cb2670694529f688682
+    use: 沙漠 / 盆地 / 草原分区；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+  - path: .agents/coord/geodata/ne_10m_lakes/ne_10m_lakes.zip
+    sha256: 0803a06f9c3cb4671d89b68c48b142aad9366ba40f665245e12a913fbc61722a
+    use: 湖泊（剔除现代水库类，保留斋桑泊）；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+  - path: .agents/coord/geodata/ne_10m_lakes_historic/ne_10m_lakes_historic.zip
+    sha256: f82fb212a4e472fcfd43afb78b37b20792987cda4aa239aab6818e4b0fb713ac
+    use: 咸海、罗布泊历史湖面；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+  - path: .agents/coord/geodata/ne_10m_land/ne_10m_land.zip
+    sha256: e547d749445eaa0964aba76738090ec88f5e63c4585122170f98c67a7ea922dc
+    use: 海陆（Natural Earth 10m，public domain）；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+  - path: .agents/coord/geodata/ne_10m_minor_islands/ne_10m_minor_islands.zip
+    sha256: 47c0b3ce26df7b4dbabdbb251023918cb2f5c83462a426288f1f253da7284db2
+    use: 小岛；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+  - path: .agents/coord/geodata/ne_10m_rivers_lake_centerlines/ne_10m_rivers_lake_centerlines.zip
+    sha256: ded71b01870855ccfe19b51f2ec14c9bb48fae23c0e9f3c11974d426433b5c38
+    use: 河流中心线（scalerank ≤7 + 点名大河加粗；渭河、汾河、泾河按名补入画支流档）；仓库外原始数据，来源 / 日期见 .agents/coord/geodata/README.md
+  - path: tools/map/paint/rivers_supplement.json
+    sha256: fa694d4d538395dc9d8a28cfa9bb01b2121d8611d81e86675c6fdfc770ecb1dd
+    use: NE 缺失河段（湟水、北洛河、洛河、伊河、岷江松潘—乐山）：tools/map/paint/trace_rivers.py 由 ETOPO 2022 填洼 D8 / 谷底最小代价路径导出，途经点取 GeoNames（CC BY 4.0）沿河县城与河口点，逐点偏差 ≤3 km
+  - path: .agents/coord/geodata/geonames/CN.zip
+    sha256: f33da19df85bef1650f4a456764753ae5e2502ec323aae297646c80258da005f
+    use: GeoNames 中国全量（CC BY 4.0，2026-10-11 下载）：只取补河用的县城 / 河口点坐标，已抄进 trace_rivers.py（含 geonameid）
+  tool: python3 确定性合成（tools/map/paint/compose_world.py；numpy / Pillow / scipy），非 AI 出图
+  model: 无（程序合成，未调用任何模型）
+  effort: 无
+  created: 2026-10-11T03:45:00-0700
+  source_path: .agents/coord/ART-worldmap-painted/full/compose_full_4096.png
+  source_sha256: b63fe955a8896627326611ef4ad600e7d538cca0a5e1c3aec25a1df10793248c
+  size: 4096x3072
+  sha256: 132270420bdb236a7e5be39105f66920de2326451d3240849f87f707efbd9e71
+  status: candidate
+  notes: AR-111 正式底图；10-11 按 AR-113 重出（补河 + 山体收进起伏带），同日按作者「青藏高原中部山按照GIS数据来」再重出（高原面按 GIS 突起量摆山）。确定性合成，未调用任何出图模型：Natural Earth 10m 海陆 / 小岛 / 湖泊 / 河流 + ETOPO 2022 60″ 高程，在 CanvasProjection(4096, 3072, 144)（= 内容网格 CanvasProjection(512,384,18) ×8）上直接画；笔墨全部取自仓库现有水墨贴图（references 逐件列出）。命令 python3 tools/map/paint/compose_world.py --deliver；参数 tools/map/paint/config.json（sha256 3d7affd330d0f48ac6b97c8991e107259dac9d52cd236e135c3e5cb5ec274d24），种子 20261011；compose.lock.json 记输入、素材与输出哈希，--check 通过，独立重渲染全图与母版逐字节一致。像素 = 网格 × 8。无放大，4096 原生渲染；WebP q85 method 6。另有 map_world_jianghu__base01_preview.webp（1024×768，同源缩小，未单独登记）。AR-113 新增河流：渭河、汾河、泾河（Natural Earth 按名补入，原等级超阈值），湟水、北洛河、洛河、伊河、岷江松潘—乐山段（NE 缺，tools/map/paint/trace_rivers.py 由 ETOPO 导出，rivers_supplement.json）；均画支流档、山体避让；核对已在图上：汉水上游、嘉陵江、大渡河、赣江、湘江、闽江、钱塘江（富春江 / 新安江）。AR-113 山体：每件山限制在所立起伏带（15 km 起伏 ≥220 m 的连片带）的南北 / 东西范围内（高度 ≤ 带厚 ×1.15，超出部分南北各半），并在不压大河的前提下上下微移，避免山体越出山脉盖住北侧谷地（河西走廊、渭河谷地、天山南北麓），与 docs/design/map/road_paths.json 的道路走向一致。高原（作者 10-11「青藏高原中部山按照GIS数据来」）：高原面 = 25 km 平滑高程 ≥2700 m 且 20 km 平滑起伏 <950 m 的连片区（青藏高原腹地、羌塘、可可西里、帕米尔高原面）；全图通用摆法照旧（高原外的山件逐件不变），高原面上原有的 31 件撤掉、边缘伸入高原超过 30% 的 6 件原地缩小，再按 GIS 补山：山脊高程（1′ DEM 9 km 窗口最大值）减 70 km 窗口 20% 分位基准面得突起量，突起 ≥330 m 的连片带取骨架线作山脊，沿脊线按突起量落山（≥560 m 山脉 / 山峰，走向取高程结构张量；330–560 m 淡低岭；山脊 ≥5000 m 且突起 ≥500 m 用雪山件），山体高度收在突起 ≥300 m 的山带内，宽谷与湖盆留平。对齐指标：陆地 IoU 按构造 = 1（画面海陆即 GIS 掩膜），岸线偏差 0；开放节点（14 章合计 2330）2321 个在陆上，其余 9 个均为秦皇岛 [351,166] 离岸 1 px@1024，按 ≤1 网格单位岸线容差计 2330/2330；河流关键点离画出河道（px@1024）：兰州 0.24、武昌 0.38、南京 1.11、重庆 0.08、开封北黄河 0.22。山件 775（上一版 745）：山脉 354、山峰 242、小石山 81、丘陵 / 淡低岭 49、雪山 49；树丛 585、平原小景 29、近岸海面小景 37；大河 143 段、支流 227 段。已知瑕疵：高原面上的山件比全图其余处小（按 GIS 山带宽度收住），看全图时偏碎；窄岛与窄山带上的山件偏小；平原没有田畴线；岸线笔触条全线等宽；小于约 2 px 的岛只有岸线；河道为现代河道（黄河下游今道），其余支流按 scalerank ≤7 取舍。质检：.agents/coord/ART-worldmap-painted/qa/（metrics.json、tibet_dem_old_new.jpg、full_old_new_plateau.jpg、rivers_added.jpg、roads_*.jpg、各区局部、节点与道路叠图、新旧对照）。

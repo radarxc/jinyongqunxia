@@ -209,9 +209,12 @@
   source_path: .agents/coord/gemini_originals/por_npc_axiu__ch06_youth_scene_ziyan.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 1ba9d1c7fa7c58d921b85f93adf34414ac11c3b791be44bef4b64eeeb4f4eddc
+  sha256: 4006260ec77372d80d28d08cb5ca31a49c6934c9c6f2a6320a562ef6d8a760b9
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。
+  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_axiu__ch06_youth_ziyan_base（消除磨皮幼态AI假脸，恢复定稿端庄成年闺秀面貌），保留原场景服饰、姿态与水墨景物，蒙版外零漂移
+  previous_revision:
+    png: .agents/coord/_lines/axiu-align-ar98/backup/por_npc_axiu__ch06_youth_scene_ziyan.1ba9d1c7.png
+    sha256: 1ba9d1c7fa7c58d921b85f93adf34414ac11c3b791be44bef4b64eeeb4f4eddc
 - id: por_npc_axiu__ch06_youth_scene_pangqiao
   file: por_npc_axiu__ch06_youth_scene_pangqiao.png
   category: character/female
@@ -251,9 +254,12 @@
   source_path: .agents/coord/gemini_originals/por_npc_axiu__ch06_youth_scene_pangqiao.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 821edb7af2a72ff107da2c9b873c2a3baa43d3a8ed0a19aa721fc7375147e35c
+  sha256: 211e97cb8336214be39b986e665ba5c4e9e03d4ec74823297a7a9775f0a3597c
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。
+  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_axiu__ch06_youth_ziyan_base（消除磨皮幼态AI假脸，恢复定稿端庄成年闺秀面貌），保留原场景服饰、姿态与水墨景物，蒙版外零漂移
+  previous_revision:
+    png: .agents/coord/_lines/axiu-align-ar98/backup/por_npc_axiu__ch06_youth_scene_pangqiao.821edb7a.png
+    sha256: 821edb7acb5a6c31bfaf90cffad4cf4e7cba8b31a81414441589139f37c76891
 - id: por_npc_axiu__ch06_youth_scene_lingxiao
   file: por_npc_axiu__ch06_youth_scene_lingxiao.png
   category: character/female
@@ -293,9 +299,12 @@
   source_path: .agents/coord/gemini_originals/por_npc_axiu__ch06_youth_scene_lingxiao.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: fa1c4f451cc8e77ef7c6e6cfffffd7b4f74deda33d528d301d6007b42653a574
+  sha256: 5357f18b188c005fbc35a09289291f422961d5635cb2ff6b1424bf78028ff9a7
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。
+  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_axiu__ch06_youth_ziyan_base（消除磨皮幼态AI假脸，恢复定稿端庄成年闺秀面貌），保留原场景服饰、姿态与水墨景物，蒙版外零漂移
+  previous_revision:
+    png: .agents/coord/_lines/axiu-align-ar98/backup/por_npc_axiu__ch06_youth_scene_lingxiao.fa1c4f45.png
+    sha256: fa1c4f452ba265eb63ae124ca6ea6c3239a73e65421d5565342a3f7ffec81d37
 - id: por_npc_axiu__ch06_youth_scene_songhai
   file: por_npc_axiu__ch06_youth_scene_songhai.png
   category: character/female
@@ -335,9 +344,12 @@
   source_path: .agents/coord/gemini_originals/por_npc_axiu__ch06_youth_scene_songhai.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: de35dffc960bd7e9d54eeeac0f316d165bb794b7d82b959271e75fe4c1fe7d2a
+  sha256: baaef21c8ba920f3e82d70fa7270b22031fc0f074d0938ff5d5a71142544c062
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。
+  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_axiu__ch06_youth_ziyan_base（消除磨皮幼态AI假脸，恢复定稿端庄成年闺秀面貌），保留原场景服饰、姿态与水墨景物，蒙版外零漂移
+  previous_revision:
+    png: .agents/coord/_lines/axiu-align-ar98/backup/por_npc_axiu__ch06_youth_scene_songhai.de35dffc.png
+    sha256: de35dffc32ef0fbe696c7385ebceec75eb37936a0e698889163012920f065a7e
 - id: por_npc_axiu__ch06_youth_scene_guihang
   file: por_npc_axiu__ch06_youth_scene_guihang.png
   category: character/female
@@ -377,9 +389,12 @@
   source_path: .agents/coord/gemini_originals/por_npc_axiu__ch06_youth_scene_guihang.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: ea03216d888a65a7e568298c86410e8abf2eaf06a9be391c324828ee8dfa95ad
+  sha256: 6598eb6daba5d3fdb904128f615467dbb5c2763f044bb743384260f854a86470
   status: candidate
-  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。
+  notes: 立绘重审重出（AR-30）；现图是磨皮网红脸、偏低龄，五张都由首张场景图衍生；以新出的阿绣基础立绘为身份参考重画。；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_axiu__ch06_youth_ziyan_base（消除磨皮幼态AI假脸，恢复定稿端庄成年闺秀面貌），保留原场景服饰、姿态与水墨景物，蒙版外零漂移
+  previous_revision:
+    png: .agents/coord/_lines/axiu-align-ar98/backup/por_npc_axiu__ch06_youth_scene_guihang.ea03216d.png
+    sha256: ea03216d7aae8e26dd18c991ee738734fbbe8159b34208a049d53c3066cbb411
 - id: por_npc_zhujue__ch06_f_base
   file: por_npc_zhujue__ch06_f_base.png
   category: character/female

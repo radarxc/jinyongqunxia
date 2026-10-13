@@ -165,9 +165,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.e2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: d34a42e9489ad877df9fe42145f03bdfa678218187119396f9b98a3d4e430078
+  sha256: 86a69a15fbd6629a07d3f390957860a34743965ac1aec6cb19616ff2d3114bdb
   status: candidate
-  notes: 立绘重审重出（AR-30）；黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base
+  notes: 立绘重审重出（AR-30）；黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_huangrong__ch02_youth_bangzhu_base（消除脱节AI假脸/韩偶脸，恢复定稿李一桐骨相），保留原场景服饰、姿态与水墨景物，蒙版外零漂移
   effort: ultra
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_huangrong__ch02_youth_scene_cooking_meets_hongqigong.55f7e5d4.png
@@ -275,9 +275,9 @@
   source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_15_r2.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 10735056f314ca292b81a70335f52adede65deffbde460a00af9dde77f2e0632
+  sha256: 669109b0d0a118b48393a94161e03cfd1f2661e34b47598dcdabf55624e289d4
   status: candidate
-  notes: 立绘重审重出（AR-30）；黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-82 原著核对返修：黄蓉一灯疗伤改坐地面蒲团
+  notes: 立绘重审重出（AR-30）；黄蓉基础立绘整体重出（新面容），本场景随之重出以保持同一张脸；场景内容沿用原设定；codex 出图（1 号出图员，AR-31）；情景图：上传本轮新出的基础立绘作身份参考；沿用审核组提示词，补去 AI 味一句；AR-44 对脸精修，基线 = por_npc_huangrong__ch02_youth_bangzhu_base；AR-82 原著核对返修：黄蓉一灯疗伤改坐地面蒲团；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_huangrong__ch02_youth_bangzhu_base（消除脱节AI假脸/韩偶脸，恢复定稿李一桐骨相），保留原场景服饰、姿态与水墨景物，蒙版外零漂移
   effort: ultra
   previous_revision:
     png: .agents/coord/_lines/novel-fix-1/before/15_por_npc_huangrong__ch02_youth_scene_yideng_heals_iron_palm_wound.png

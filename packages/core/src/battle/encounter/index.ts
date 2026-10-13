@@ -44,7 +44,6 @@ export interface BattleSetupInput {
   readonly mode?: BattleSetup['rules']['mode']; readonly noAuto?: boolean; readonly noRetreat?: boolean;
   readonly noItems?: boolean; readonly mercyAllowed?: boolean; readonly lethalIntent?: boolean;
   readonly friendlyFire?: boolean; readonly roundLimit?: number; readonly boss?: boolean;
-  readonly ringOut?: boolean;
   readonly winCond?: readonly BattleCondition[]; readonly loseCond?: readonly BattleCondition[];
   readonly drawCond?: readonly BattleCondition[]; readonly meditationUnitRefs?: readonly string[];
   readonly onDefeat?: BattleSetup['end']['onDefeat'];
@@ -56,17 +55,10 @@ export interface BattleSetupInput {
   readonly rewards?: Partial<BattleSetup['rewards']>;
   readonly grid?: readonly {
     readonly q: number; readonly r: number; readonly height: number; readonly moveCost: number;
-    readonly terrainId?: string;
     readonly canopy?: number; readonly los?: 'none' | 'partial' | 'full';
     readonly standable?: boolean; readonly narrow?: boolean; readonly dangerous?: boolean;
     readonly terrainDealtBp?: number; readonly terrainTakenBp?: number;
-    readonly terrainDealtBySubTypeBp?: Readonly<Record<string, number>>;
-    readonly landMulBp?: number;
-    readonly displacementExits?: readonly { readonly direction: HexDir;
-      readonly kind: 'wall' | 'void' | 'water' | 'fall'; readonly landingHeight?: number;
-      readonly landMulBp?: number }[];
     readonly cover?: { readonly vs: readonly ('projectile' | 'ranged')[]; readonly hit: number;
-      readonly hitByDelivery?: Readonly<Partial<Record<'projectile' | 'ranged', number>>>;
       readonly damageBp: number; readonly sourceDirs?: readonly HexDir[] } | null;
   }[];
   readonly initialUnits?: readonly { readonly unitRef: string; readonly pos: HexCoord; readonly facing: HexDir }[];
@@ -83,7 +75,6 @@ function validGridCell(cell: NonNullable<BattleSetupInput['grid']>[number]): boo
   return Number.isSafeInteger(cell.q) && Number.isSafeInteger(cell.r)
     && Number.isSafeInteger(cell.height) && cell.height >= 0 && cell.height <= 10
     && Number.isSafeInteger(cell.moveCost) && cell.moveCost >= 1
-    && (cell.terrainId === undefined || /^tr_[a-z0-9_]+$/u.test(cell.terrainId))
     && (cell.canopy === undefined || Number.isSafeInteger(cell.canopy) && cell.canopy >= 0)
     && (cell.los === undefined || cell.los === 'none' || cell.los === 'partial' || cell.los === 'full')
     && (cell.standable === undefined || typeof cell.standable === 'boolean')
@@ -91,24 +82,10 @@ function validGridCell(cell: NonNullable<BattleSetupInput['grid']>[number]): boo
     && (cell.dangerous === undefined || typeof cell.dangerous === 'boolean')
     && (cell.terrainDealtBp === undefined || Number.isSafeInteger(cell.terrainDealtBp))
     && (cell.terrainTakenBp === undefined || Number.isSafeInteger(cell.terrainTakenBp))
-    && (cell.terrainDealtBySubTypeBp === undefined
-      || Object.entries(cell.terrainDealtBySubTypeBp).every(([subType, value]) =>
-        /^[a-z][a-z0-9_]*$/u.test(subType) && Number.isSafeInteger(value)))
-    && (cell.landMulBp === undefined || Number.isSafeInteger(cell.landMulBp)
-      && cell.landMulBp >= 0 && cell.landMulBp <= 20_000)
-    && (cell.displacementExits === undefined || cell.displacementExits.every((exit) =>
-      validFacing(exit.direction) && ['wall', 'void', 'water', 'fall'].includes(exit.kind)
-      && (exit.landingHeight === undefined || Number.isSafeInteger(exit.landingHeight)
-        && exit.landingHeight >= 0 && exit.landingHeight <= 10)
-      && (exit.landMulBp === undefined || Number.isSafeInteger(exit.landMulBp)
-        && exit.landMulBp >= 0 && exit.landMulBp <= 20_000)))
     && (cover === undefined || cover === null || Array.isArray(cover.vs)
       && cover.vs.length > 0 && new Set(cover.vs).size === cover.vs.length
       && cover.vs.every((delivery) => delivery === 'projectile' || delivery === 'ranged')
       && Number.isSafeInteger(cover.hit) && Number.isSafeInteger(cover.damageBp)
-      && (cover.hitByDelivery === undefined || Object.entries(cover.hitByDelivery).every(
-        ([delivery, value]) => (delivery === 'projectile' || delivery === 'ranged')
-          && Number.isSafeInteger(value)))
       && (cover.sourceDirs === undefined || Array.isArray(cover.sourceDirs)
         && cover.sourceDirs.length > 0 && new Set(cover.sourceDirs).size === cover.sourceDirs.length
         && cover.sourceDirs.every(validFacing)));
@@ -174,15 +151,8 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
     .map((cell) => ({ ...cell, canopy: cell.canopy ?? 0, los: cell.los ?? 'none' as const,
       standable: cell.standable ?? true, narrow: cell.narrow ?? false,
       dangerous: cell.dangerous ?? false, terrainDealtBp: cell.terrainDealtBp ?? 0,
-      terrainTakenBp: cell.terrainTakenBp ?? 0,
-      ...(cell.terrainDealtBySubTypeBp === undefined ? {} : {
-        terrainDealtBySubTypeBp: Object.fromEntries(
-          Object.entries(cell.terrainDealtBySubTypeBp).sort(([left], [right]) =>
-            compareCodePoints(left, right))),
-      }), cover: cell.cover === undefined || cell.cover === null
+      terrainTakenBp: cell.terrainTakenBp ?? 0, cover: cell.cover === undefined || cell.cover === null
         ? null : { ...cell.cover, vs: [...cell.cover.vs].sort(compareCodePoints),
-          ...(cell.cover.hitByDelivery === undefined ? {} : {
-            hitByDelivery: { ...cell.cover.hitByDelivery } }),
           ...(cell.cover.sourceDirs === undefined ? {}
             : { sourceDirs: [...cell.cover.sourceDirs].sort((left, right) => left - right) }) } }));
   const qValues = grid.map((cell) => cell.q); const rValues = grid.map((cell) => cell.r);
@@ -227,7 +197,6 @@ export function createBattleSetup(input: BattleSetupInput): BattleSetup {
       mercyAllowed: input.mercyAllowed ?? true, lethalIntent: input.lethalIntent ?? false,
       roundLimit: input.roundLimit ?? (input.boss === true ? 60 : 30),
       friendlyFire: input.friendlyFire ?? false, boss: input.boss ?? false,
-      ...(input.ringOut === true ? { ringOut: true as const } : {}),
       ...(input.retryAllowed === undefined ? {} : { retryAllowed: input.retryAllowed }),
       ...(input.skippable === undefined ? {} : { skippable: input.skippable }) },
     ...(input.scriptBeats === undefined ? {} : { scriptBeats: cloneSetupValue(input.scriptBeats),
@@ -283,19 +252,9 @@ function cloneUnitSeed(seed: BattleUnitSeed, participant: BattleParticipant, ct:
         battleUses: { ...seed.itemState.battleUses },
         lastBattleUseTurns: { ...seed.itemState.lastBattleUseTurns } } };
 }
-function assertMoveSourceGrades(seed: BattleUnitSeed): void {
-  for (const move of seed.moves) {
-    if ((move.onHit?.applyBuffs?.length ?? 0) === 0) continue;
-    if (!Number.isSafeInteger(move.sourceGrade) || move.sourceGrade! < 1 || move.sourceGrade! > 12)
-      throw new TypeError(`BATTLE_MOVE_SOURCE_GRADE_REQUIRED:${seed.id}:${move.id}`);
-  }
-}
 export function createBattleState(setup: BattleSetup, seeds: readonly BattleUnitSeed[]): BattleState {
   let nextBuffIid = 1;
-  for (const seed of seeds) {
-    assertMoveSourceGrades(seed);
-    for (const buff of seed.buffs) nextBuffIid = Math.max(nextBuffIid, buff.iid + 1);
-  }
+  for (const seed of seeds) for (const buff of seed.buffs) nextBuffIid = Math.max(nextBuffIid, buff.iid + 1);
   const units = setup.participants.map((participant) => {
     const seed = seeds.find((candidate) => candidate.id === participant.unitRef);
     if (seed === undefined) throw new RangeError('BATTLE_UNIT_MISSING');

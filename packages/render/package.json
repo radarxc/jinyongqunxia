@@ -10,7 +10,12 @@
     "./worldmap": "./src/worldmap/index.ts",
     "./vfx": "./src/vfx/index.ts",
     "./town": "./src/town/index.ts",
-    "./region": "./src/region/index.ts"
+    "./region": "./src/region/index.ts",
+    "./buildgen": "./src/buildgen/index.ts",
+    "./buildgen/types": "./src/buildgen/types.ts",
+    "./actor3d": "./src/actor3d/index.ts",
+    "./character-viewer": "./src/character-viewer/index.ts",
+    "./dressup": "./src/dressup/runtime.ts"
   },
   "scripts": {
     "test": "vitest run src",

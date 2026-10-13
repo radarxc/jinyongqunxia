@@ -1,0 +1,16 @@
+{
+  "method": "read-only reproduction of default hand-weight sampling and existing plate classifier",
+  "handWeightedSamples": 1306,
+  "classifiedClothSamples": 777,
+  "classifiedClothFraction": 0.5949464012251149,
+  "defaultSkinLabMean": [
+    36.76879515210434,
+    1.7859135673814337,
+    -3.2533892910524775
+  ],
+  "textureLayerTemplatePreflight": {
+    "status": "error",
+    "message": "输入 body 不是 tpl_f_medium 的逐位相同 UV/索引",
+    "scope": "verify_templates only; full baking not run"
+  }
+}

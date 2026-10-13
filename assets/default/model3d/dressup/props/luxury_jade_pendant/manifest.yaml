@@ -1,0 +1,34 @@
+- id: dressup__prop__luxury_jade_pendant
+  file: luxury_jade_pendant.glb
+  category: model3d
+  kind: dressup-prop
+  template: tpl_f_medium
+  sha256: 759f2cf9a69c3c9876ad85c869d74cc250b4eb86acad5527fcb25aa85efdaad2
+  size_bytes: 876260
+  triangles: 8580
+  report: report.json
+  status: candidate
+  tool: tools/model3d/dressup/ingest.py v1
+  created: '2026-10-08T03:56:08-07:00'
+  slot: accessory
+  fit: fit.json
+  fits:
+    tpl_f_medium:
+      file: luxury_jade_pendant.glb
+      fit: fit.json
+      report: report.json
+      status: candidate
+    tpl_f2_medium:
+      file: luxury_jade_pendant.tpl_f2_medium.glb
+      fit: fit.tpl_f2_medium.json
+      report: report.tpl_f2_medium.json
+      socketsCheck: sockets_check.tpl_f2_medium.json
+      status: draft
+      gateLevel: draft
+      sha256: 9ec97042959b52300a84796d382cf391092aeefebca2e4145e13b93f216cf37e
+      size_bytes: 877164
+      triangles: 8580
+  source:
+    directory: external-workdir
+    references: []
+  notes: validate level=approved；sockets_check level=approved；联合 level=approved，status=candidate。

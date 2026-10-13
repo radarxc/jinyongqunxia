@@ -1182,9 +1182,9 @@
   source_path: .agents/coord/_handoff/gem/codex_w17/out/por_npc_duanyu__ch01_youth_scene_langhuan_scroll.e1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 06076c8fa615cd165478e14038f566c69a329c5c9337af019df66a984fec3c53
+  sha256: b9ad3ae49aa6d52abcf812e83707cbe1819cd02e904b9bbc115b27c10cd42422
   status: candidate
-  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-44 对脸精修，基线 = por_npc_duanyu__ch01_youth_shizi_base
+  notes: 立绘重审重出（AR-30）；作者 10-02 晚：复合基线风格精修；作者10-02晚复合精修；本轮第3次运行补全；视觉核验合格，视觉重出0。；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_duanyu__ch01_youth_shizi_base（消除韩式爱豆尖下巴假脸，恢复林志颖2003天龙温润贵公子五官），保留琅嬛福地低头读卷目光、长卷道具与道袍衣褶，蒙版外零漂移
   previous_revision:
     png: .agents/coord/_handoff/gem/codex_w17/replaced/por_npc_duanyu__ch01_youth_scene_langhuan_scroll.d5622ec8.png
     sha256: d5622ec80ab2d5c45ad5dea680b02e0bf2ea412efe5e0373736826224453f6eb

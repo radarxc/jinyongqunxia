@@ -4,6 +4,9 @@ import type { BattleLaunch, BattleUnitView, MeridianPointView } from './contract
 const STATUS: Readonly<Record<string, string>> = {
   bf_zhongdu: '中毒', bf_liuxue: '流血', bf_neishang: '内伤', bf_xuanyun: '眩晕',
   bf_chaqi: '岔气', bf_xueweishoufeng: '穴位受封', bf_dantianshousun: '丹田受损',
+  bf_jiangu: '坚骨', bf_xieli: '卸力', bf_dunzou: '遁走', bf_yinshen: '隐身',
+  bf_tingfeng: '听风', bf_zhasi: '诈死', bf_bingdong: '冰冻', bf_hunmi: '昏迷',
+  bf_hunshui: '昏睡', bf_dianxue: '点穴', bf_kongju: '恐惧', bf_shouqin: '受擒',
 };
 const POINTS: Readonly<Record<string, string>> = {
   ap_renmai_danzhong: '膻中', ap_shouyangming_hegu: '合谷', ap_zuyangming_zusanli: '足三里',
@@ -26,11 +29,15 @@ export function projectBattleUnit(unit: BattleUnit, launch: BattleLaunch,
   const activeRoute = state?.meridianByUnit.find(row => row.unitId === unit.id)?.flow.activeRouteId ?? null;
   // Core has no qiNature field yet: omit it instead of leaking the static launch marker into live VFX.
   return { id: marker.id, index: marker.index, name: marker.name, equipment: marker.equipment,
+    model: marker.model ?? null,
+    ...(marker.portraitUrl ? { portraitUrl: marker.portraitUrl } : {}),
+    pos: { q: unit.pos.q, r: unit.pos.r },
     q: unit.pos.q, r: unit.pos.r, height: cell?.height ?? marker.height,
     facing: unit.facing, active: unit.active, side: unit.side, control: unit.control,
     hp: unit.hp, hpMax: unit.hpMax, mp: unit.mp, mpMax: unit.mpMax, ct: unit.ct, spd: unit.spd,
     state: unit.state, statuses: unit.buffs.map(buff => ({ id: String(buff.iid),
-      label: STATUS[buff.def] ?? '状态效果', detail: `${buff.stacks} 层 · 剩余 ${buff.turnsLeft} 次自身行动` })),
+      label: STATUS[buff.def] ?? (buff.def.startsWith('bf_') ? buff.def.slice(3) : buff.def),
+      detail: `${buff.stacks} 层 · 剩余 ${buff.turnsLeft} 次自身行动` })),
     moves: unit.moves.flatMap(move => {
       const visual = launch.moves.find(row => row.id === move.id);
       return visual ? [{ ...visual, mpCost: move.mpCost, recovery: move.recovery,

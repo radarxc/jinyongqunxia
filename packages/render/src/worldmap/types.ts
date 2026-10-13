@@ -65,6 +65,15 @@ export interface WorldMapScene {
   setDestination(nodeId: string | null): void;
   setTimeOfDay(hours: number): void;
   setZoom(zoom: number): void;
+  setYaw?(deg: number): void;
+  rotate?(deltaDeg: number): void;
+  getYaw?(): number;
+  focusActor?(): void;
+  panBy?(deltaScreenX: number, deltaScreenY: number, screenWidth: number, screenHeight: number): void;
+  getPanTarget?(): readonly [number, number];
   pickNode(clientX: number, clientY: number, bounds: DOMRect): MapNodeView | null;
+  projectNodes?(bounds: DOMRect): Array<{ id: string; name: string; kind: 'town' | 'ruin'; x: number; y: number; visible: boolean }>;
+  readonly scene?: unknown;
+  readonly camera?: unknown;
   dispose(): void;
 }

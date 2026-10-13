@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_podao",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_podao.png",
+  "generatedAt": "2026-10-07T16:21:57.030Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 75435,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e85586d2-2bf6-406c-9202-a13233352775/multiview_0_e85586d2-2bf6-406c-9202-a13233352775.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 61130,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e85586d2-2bf6-406c-9202-a13233352775/multiview_1_e85586d2-2bf6-406c-9202-a13233352775.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 60038,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e85586d2-2bf6-406c-9202-a13233352775/multiview_3_e85586d2-2bf6-406c-9202-a13233352775.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 78898,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/e85586d2-2bf6-406c-9202-a13233352775/multiview_2_e85586d2-2bf6-406c-9202-a13233352775.jpeg"
+    }
+  }
+}

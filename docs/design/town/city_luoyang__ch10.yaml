@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_luoyang"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "神都·洛阳（702年水门候选）"
+display_name: 神都（洛州）
 historical_year: 702
 era_kit: "tang"
 seed: 1815408978

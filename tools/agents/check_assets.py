@@ -7,7 +7,8 @@
 检查：
 - 目录下有 manifest.yaml（顶层为列表，或 {assets: [...]}）；
 - 图片条目数在 [min, max] 之间（按 file 扩展名 png/jpg/jpeg/webp 计，代码类附件不计）；
-- 每条都有必填字段且非空；file 存在、确为 PNG/JPEG/WebP、短边 ≥ 512 像素、size 与实际一致、sha256 一致；
+- 每条都有必填字段且非空；file 存在、确为 PNG/JPEG/WebP、短边 ≥ min-side、size 与实际一致、sha256 一致；
+- 默认 1–2 张、短边 ≥ 512（基线口径）；map/world、map/markers、map/landmark、map/hero 按 PATH_DEFAULTS 取各自口径，命令行参数优先；
 - status 为 candidate / approved / rejected 之一；
 - 条目声明了 code（如招式的可运行效果代码）时，该路径存在。
 """
@@ -33,14 +34,36 @@ def load_entries(manifest: Path) -> list:
     return data
 
 
+# 基线目录默认 1–2 张、短边 ≥ 512；大地图叠加素材有自己的口径（docs/tech/13 §2 / §5）：
+# 整张底图 1–2 张且短边 ≥ 1024；城镇分档图集 1 张 128 格图集；名城小景按城 × 年代成批、按内容裁边。
+PATH_DEFAULTS = (
+    ("map/world", {"min": 1, "max": 2, "min_side": 1024}),
+    ("map/markers", {"min": 1, "max": 1, "min_side": 128}),
+    ("map/landmark", {"min": 1, "max": 1000, "min_side": 256}),
+    ("map/hero", {"min": 1, "max": 8, "min_side": 160}),
+)
+
+
+def path_defaults(directory: Path) -> dict:
+    text = directory.resolve().as_posix()
+    for suffix, values in PATH_DEFAULTS:
+        if text.endswith("/" + suffix):
+            return values
+    return {"min": 1, "max": 2, "min_side": 512}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("dir")
-    ap.add_argument("--min", type=int, default=1)
-    ap.add_argument("--max", type=int, default=2)
-    ap.add_argument("--min-side", type=int, default=512)
+    ap.add_argument("--min", type=int, default=None)
+    ap.add_argument("--max", type=int, default=None)
+    ap.add_argument("--min-side", type=int, default=None)
     a = ap.parse_args()
     d = Path(a.dir)
+    defaults = path_defaults(d)
+    a.min = defaults["min"] if a.min is None else a.min
+    a.max = defaults["max"] if a.max is None else a.max
+    a.min_side = defaults["min_side"] if a.min_side is None else a.min_side
     manifest = d / "manifest.yaml"
     if not manifest.is_file():
         print(f"缺少 {manifest}")

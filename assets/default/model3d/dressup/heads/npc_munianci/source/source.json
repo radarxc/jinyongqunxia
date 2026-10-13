@@ -1,0 +1,289 @@
+{
+  "schema": "tianshu-dressup-source.v1",
+  "id": "npc_munianci",
+  "kind": "generated-head-source",
+  "reference_kind": "base_body",
+  "template": "tpl_f_medium",
+  "tripo": {
+    "project_id": "e7ffcf53-5260-488d-8a22-c34804b882bb",
+    "generate_op": "5c0bc087-f347-4f91-994f-53066e8757ba",
+    "rig_op": "5f717f9d-fdd2-4933-a83f-493876af27fc",
+    "export_op": "61475d52-7625-4e4c-a84f-1bed9e3f4109",
+    "generate_elapsed_seconds_observed": 128,
+    "rig_elapsed_seconds_observed": 20,
+    "export_elapsed_seconds_observed": 20,
+    "nsfw": false
+  },
+  "options": {
+    "generate": {
+      "mode": "image_to_model",
+      "ai_model": "H3.1 Best Quality",
+      "model_version": "v3.1-20260211",
+      "geometry_quality": "detailed",
+      "texture": true,
+      "texture_quality": "extreme",
+      "pbr": true,
+      "delight": true,
+      "topology": "triangle",
+      "face_limit": 200000,
+      "texture_alignment": "original_image",
+      "generate_parts": false,
+      "smart_poly": false,
+      "enable_image_autofix": true,
+      "visibility": "private"
+    },
+    "rig": {
+      "rig_type": "biped",
+      "skeleton_preset": "mixamo",
+      "model_version": "v3.0-20260909"
+    },
+    "export": {
+      "format": "gltf",
+      "texture_size": 2048,
+      "with_animation": true,
+      "animations": [],
+      "animate_in_place": true,
+      "export_orientation": "-y"
+    }
+  },
+  "credits": {
+    "generate": 65,
+    "rig": 20,
+    "before": 17090,
+    "after": 17005,
+    "spent": 85
+  },
+  "reference": {
+    "path": "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_base_body_apose.png",
+    "sha256": "19be74504936639d7ae06437f7717b826a2eee8cbf08f6b3bdbc8264b7f55ef0",
+    "width_px": 1024,
+    "height_px": 1536,
+    "upload_audit": "pass"
+  },
+  "glb": {
+    "file": "tripo_rig.glb",
+    "sha256": "a316e62a880df42897b5d433b788bdd8e44b18434ffbcac43875a81b34da1b2e",
+    "size_bytes": 7840380,
+    "raw_size_bytes": 8813104,
+    "raw_sha256": "0f9f14983aacc3154275dcdf3374573782665dc4a9485b365fd86acf5096f785",
+    "vertices": 100785,
+    "triangles": 189024,
+    "joints": 65
+  },
+  "inspect": {
+    "world_bounds_mu": {
+      "min": [
+        -0.234283447265625,
+        -1.3109820429235697e-07,
+        -0.08356471359729767
+      ],
+      "max": [
+        0.23429882526397705,
+        0.9803465604782104,
+        0.08356475830078125
+      ]
+    },
+    "rest_bind_max_diff": 5.079673773833449e-07,
+    "arm_angle_deg": 24.35932363786905,
+    "forearm_angle_deg": 30.05624620452421,
+    "connected_components": 103,
+    "boundary_edges": 12340,
+    "non_manifold_edges": 0,
+    "weight_sum_range": [
+      0.9999998807907104,
+      1.0
+    ],
+    "base_color": {
+      "width_px": 2048,
+      "height_px": 2048,
+      "mime_type": "image/jpeg",
+      "quality": 85
+    },
+    "pbr_textures_removed": [
+      "normal",
+      "metallicRoughness"
+    ],
+    "material": "KHR_materials_unlit",
+    "geometry_uv_skin_unchanged_after_texture_processing": true
+  },
+  "joints_check": {
+    "ok": true,
+    "checks": {
+      "joints": true,
+      "hips": true,
+      "head": true,
+      "top": true,
+      "feet": true,
+      "hands": true
+    },
+    "count": 65,
+    "extra": [],
+    "Hips": [
+      -0.006,
+      0.523,
+      -0.002
+    ],
+    "Head": [
+      -0.006,
+      0.867,
+      -0.002
+    ],
+    "HeadTop_End": [
+      0.022,
+      0.995,
+      -0.002
+    ],
+    "LeftHand": [
+      -0.002,
+      0.549,
+      -0.183
+    ],
+    "RightHand": [
+      -0.002,
+      0.552,
+      0.18
+    ],
+    "hand_out": [
+      0.181,
+      0.182
+    ],
+    "LeftFoot": [
+      -0.025,
+      0.071,
+      -0.079
+    ],
+    "RightFoot": [
+      -0.025,
+      0.071,
+      0.075
+    ],
+    "mesh_y": [
+      0,
+      0.98
+    ]
+  },
+  "cover": {
+    "file": "cover.png",
+    "sha256": "3cc778af2aa9551946de415ffcc658b973785207b7bc9db7a378f2f68327dccc",
+    "width_px": 600,
+    "height_px": 778,
+    "mode": "RGB"
+  },
+  "qc": {
+    "result": "pass",
+    "forehead_lump": "none visible",
+    "eyelid_tear": "none visible",
+    "preauricular_floating_sheet": "none visible (cover and runtime ear shots)",
+    "temple_or_cheek_cut": "none visible",
+    "lip_split": "none visible",
+    "helmet_like_crown": "none obvious; compact bun",
+    "subauricular_lump": "none: runtime ear shots shots/ears.tpl_f_{medium,tall,small}.jpg (front, left side, both neck sides; bind/idle/walk/run) show complete lobes with nothing below them",
+    "baked_hair_accessory": "none visible",
+    "earrings": "none",
+    "limitation": "Tripo cover is a single 600x778 three-quarter front view; ears and nape are judged on runtime shots (shots/).",
+    "nape_hairline_note": "a small pale patch sits at the centre of the nape hairline under the bun (Tripo texture, not the seam)"
+  },
+  "cut_source": {
+    "file": "tripo_rig_s07.glb",
+    "sha256": "647778dbff5fbf41cc6899f2a6082d52a591692eb59268eec15ea9295dc875f3",
+    "size_bytes": 5967876,
+    "derived_from": "tripo_rig.glb",
+    "command": "node tools/model3d/dressup/pack_glb.mjs tripo_rig.glb tripo_rig_s07.glb --simplify 0.7 --no-meshopt",
+    "reproducible": "re-run 2026-10-10 is byte-identical (same sha256)",
+    "reason": "V4 head budget <= 30,000 triangles for head + neck patch. A base-body source spends most triangles on the bare body: simplify 0.45 (~85k, the dressed-source rule) leaves the head 13,848 + patch 10,077 = 23,925; 0.9 gives 30,601 (over budget); 0.7 is the largest tried ratio within budget: head 18,416, total 28,493 (medium).",
+    "triangles_before": 189024,
+    "triangles_after": 132316,
+    "vertices_before": 100785,
+    "vertices_after": 72297,
+    "locked_vertices": 1643,
+    "inspect": {
+      "joints": 65,
+      "rest_bind_max_diff": 5.079673773833449e-07,
+      "connected_components": 103,
+      "boundary_edges": 12072,
+      "non_manifold_edges": 2,
+      "weight_sum_range": [
+        0.9999998807907104,
+        1.0
+      ],
+      "world_bounds_mu": {
+        "min": [
+          -0.234283447265625,
+          -1.3109820429235697e-07,
+          -0.08356471359729767
+        ],
+        "max": [
+          0.23429882526397705,
+          0.9803465604782104,
+          0.08354949951171875
+        ]
+      },
+      "non_manifold_note": "2 non-manifold edges created by the 0.7 decimation (raw and 0.45 have 0): upper back (dominant bone Spine2, height 72% of the model) and left hip (LeftUpLeg, 56%); both are body faces discarded by the cut (the neck ring centre is at 84%; the head is cut above it)."
+    },
+    "ratios_tried": {
+      "0.45": {
+        "source_triangles": 85058,
+        "cut_total_medium": 23925,
+        "head_medium": 13848
+      },
+      "0.7": {
+        "source_triangles": 132316,
+        "cut_total_medium": 28493,
+        "head_medium": 18416
+      },
+      "0.9": {
+        "source_triangles": 170120,
+        "cut_total_medium": 30601,
+        "head_medium": 20524
+      }
+    }
+  },
+  "history": [
+    {
+      "attempt": 1,
+      "project_id": "98c3372a-9420-434c-bf48-0abc5c39cd31",
+      "generate_op": "7a598801-4b85-492b-b9fd-9ed354c93d1a",
+      "rig_op": "d94cbed1-d141-4f25-ad5f-67b8760ded0d",
+      "export_op": "de897f5c-264e-4378-8ef8-8b3bb5148985",
+      "reference_sha256": "f08be8817662f0ebe63321f087753ce23f0954bb502133353b6c7063e0c6c4ea",
+      "credits": {
+        "before": 17260,
+        "after": 17175,
+        "spent": 85
+      },
+      "result": "source-neck-floor-detection failed: front 78-106 degrees was covered by the white collar; maximum skin coverage 91.94% below 97%, so no continuous 6 mm neck band."
+    },
+    {
+      "attempt": 2,
+      "project_id": "1cd0ade0-0300-4d60-9275-a96aa6277e59",
+      "generate_op": "ec88835d-5f77-4fdb-9cc9-d34695ac6aaa",
+      "rig_op": "39b02cd7-4544-4e67-b80b-3c4fc260a1ea",
+      "export_op": "a102420e-8928-439b-a96a-86aef2fa9642",
+      "reference_sha256": "ded507cd840e6281c1798223bfaf456f72fa8d80c829be755a05c76c3db5e1d6",
+      "credits": {
+        "before": 17175,
+        "after": 17090,
+        "spent": 85
+      },
+      "glb_sha256": "4d8e0f492c8ca0b17f1fd81e3c47aed7ad36f9382d79b97ad9d5b27de9517989",
+      "cut_source_sha256": "7d64b56d7f4dbfe7e7a872cf181ecd19224ab2d9326b2d5fd5dd5bd358b3fb14",
+      "result": "Dressed reference v2 (low collar). Face QC and joints passed and, after the cut_head fixes (decimation, hair colours, monotone neck fit, collar-remnant cleanup, seam tone levelling), all three templates passed V4; GPT review r2 failed the ears: one thin hair strand left in front of each ear in the reference was rebuilt as a flat light block behind the ear lobe plus a pearl-like bump (tripo-web 1.4 rule 6), fused into the lobe surface, so it could not be removed without opening the ear. Author chose a base-body (bandeau + briefs) reference for attempt 3."
+    }
+  ],
+  "created": "2026-10-10T08:53:00-07:00",
+  "extra_exports": [
+    {
+      "op": "dadf81fa-5c1d-458c-a3c4-e4e70050ef81",
+      "texture_size": 8192,
+      "credits_spent": 0,
+      "wallet_before_after": [
+        17005,
+        17005
+      ],
+      "size_bytes": 18187444,
+      "sha256": "1b907a8fba2cb08fe9777305d4a136a8797e15fa2ca154f8beadf1f754d893d8",
+      "stored": false,
+      "purpose": "head-clarity evaluation for the author's per-character base-body proposal: Tripo's native texture is 8K, the cut source uses the 2K export; the face (front half of Head-weighted faces) covers 458^2 texels at 2K vs 1834^2 at 8K. Not used by the cut."
+    }
+  ]
+}

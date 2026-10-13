@@ -253,20 +253,25 @@ export const slotLabels: Readonly<Record<EquipmentSlot, string>> = {
   accessory: '佩饰',
 };
 export function gradeLabel(grade: number | null): string {
-  return grade === null
-    ? '无品阶'
-    : ([
-        '黄下',
-        '黄中',
-        '黄上',
-        '玄下',
-        '玄中',
-        '玄上',
-        '地下',
-        '地中',
-        '地上',
-        '天下',
-        '天中',
-        '天上',
-      ][grade - 1] ?? '未定');
+  if (grade === null) return '无品阶';
+  const labels = [
+    '日常 · 黄阶下',
+    '日常 · 黄阶中',
+    '日常 · 黄阶上',
+    '良品 · 玄阶下',
+    '良品 · 玄阶中',
+    '良品 · 玄阶上',
+    '佳品 · 地阶下',
+    '佳品 · 地阶中',
+    '佳品 · 地阶上',
+    '极品 · 天阶下',
+    '极品 · 天阶中',
+    '极品 · 天阶上',
+  ];
+  if (grade >= 1 && grade <= 12) {
+    return labels[grade - 1]!;
+  }
+  if (grade > 12) return '极品 · 天阶上';
+  return '日常 · 黄阶下';
 }
+

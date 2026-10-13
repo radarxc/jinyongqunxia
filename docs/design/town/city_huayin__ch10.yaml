@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_huayin"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "太州·仙掌县（702年推定）"
+display_name: 仙掌县（太州）
 historical_year: 702
 era_kit: "tang"
 seed: 1883394427

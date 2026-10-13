@@ -1,5 +1,39 @@
-import { hexDisk, type BattleUnitSeed, type MeridianFlowInput } from '@tianshu/core';
+import { hexDisk, type BattleMove, type BattleUnitSeed, type MeridianFlowInput } from '@tianshu/core';
 import type { EncounterDef, ItemDef } from '@tianshu/data/schemas';
+
+/** Literal ENG-04 combat-fixture values, kept as demo content input. */
+export const HERO_EXTRA_MOVES: BattleMove[] = [
+  {
+    id: 'mv_yuenv_fuliu', powerBp: 10_000, referencePowerBp: 10_000,
+    skillId: 'sk_basic', meridianRouteRef: 'mfr_fixture_basic', wInBp: 4500,
+    recovery: 950, mpCost: 20, hitZone: 'body', autoTargetCap: 1, range: { min: 1, max: 2 },
+    delivery: 'melee', shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy',
+  },
+  {
+    id: 'mv_yuenv_liuxing', powerBp: 10_000, referencePowerBp: 10_000,
+    skillId: 'sk_basic', meridianRouteRef: 'mfr_fixture_basic', wInBp: 5500,
+    recovery: 1100, mpCost: 35, hitZone: 'body', autoTargetCap: 1, range: { min: 1, max: 3 },
+    delivery: 'projectile', shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy',
+  },
+  {
+    id: 'mv_yuenv_jianqi', powerBp: 10_000, referencePowerBp: 10_000,
+    skillId: 'sk_basic', meridianRouteRef: 'mfr_fixture_basic', wInBp: 6500,
+    recovery: 1300, mpCost: 50, hitZone: 'body', autoTargetCap: 1, range: { min: 1, max: 2 },
+    delivery: 'melee', shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy',
+  },
+  {
+    id: 'mv_anqi_feishi', powerBp: 9_500, referencePowerBp: 9_500,
+    skillId: 'sk_anqi', meridianRouteRef: 'mfr_fixture_basic', wInBp: 2500,
+    recovery: 850, mpCost: 15, hitZone: 'body', autoTargetCap: 1, range: { min: 1, max: 4 },
+    delivery: 'projectile', shape: { tpl: 'aoe_single' }, hTol: 3, target: 'enemy',
+  },
+  {
+    id: 'mv_anqi_mantianhuayu', powerBp: 11_000, referencePowerBp: 11_000,
+    skillId: 'sk_anqi', meridianRouteRef: 'mfr_fixture_basic', wInBp: 3500,
+    recovery: 1100, mpCost: 35, hitZone: 'body', autoTargetCap: 3, range: { min: 1, max: 3 },
+    delivery: 'projectile', shape: { tpl: 'aoe_disk', r: 1 }, hTol: 3, target: 'enemy',
+  },
+];
 
 /** Literal ENG-04 combat-fixture values, kept as demo content input. */
 export function demoSeed(id: string): BattleUnitSeed {
@@ -8,10 +42,12 @@ export function demoSeed(id: string): BattleUnitSeed {
     stats: { level: 35, atkOut: 240, atkIn: 220, defOut: 180, defIn: 170, aptitude: 50,
       aptitudeInner: 50, critDamagePct: 150, hit: 100, eva: -100, parry: -100, pierce: 100,
       crit: -100, tough: 40, strength: 50 },
-    moves: [{ id: 'mv_basic_strike', powerBp: 10_000, referencePowerBp: 10_000,
+    moves: [{
+      id: 'mv_basic_strike', powerBp: 10_000, referencePowerBp: 10_000,
       skillId: 'sk_basic', meridianRouteRef: 'mfr_fixture_basic', wInBp: 3500,
       recovery: 900, mpCost: 0, hitZone: 'body', autoTargetCap: 1, range: { min: 1, max: 1 },
-      delivery: 'melee', shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy' }],
+      delivery: 'melee', shape: { tpl: 'aoe_single' }, hTol: 2, target: 'enemy',
+    }],
     zoneGuards: {
       body: { qi: 0, carryCapacity: 100, strengthBp: 10_000, flowRatioBp: 10_000, breakGuardBp: 0 },
       hand: { qi: 0, carryCapacity: 100, strengthBp: 10_000, flowRatioBp: 10_000, breakGuardBp: 0 },
@@ -64,6 +100,14 @@ export const COMBAT_DEMO_MEDICINE: ItemDef = { schemaVersion: 'item.v1',
     { op: 'healPct', params: { valueBp: 500 } },
     { op: 'dispel', params: { tags: ['bleed'], grade: 1 } },
   ] }, assets: { icon: 'item/jinchuangyao' }, text: { desc: '演示战斗背包副本。' },
+  extension: { type: 'generic', value: {} } };
+
+export const COMBAT_DEMO_YANGQI: ItemDef = { schemaVersion: 'item.v1',
+  id: 'it_zixiaoyangqidan', name: '紫霞养气丹', kind: 'pill', sub: 'medicine', grade: 6, stack: 20,
+  chapters: 'any', origin: 'expanded', price: 'auto', flags: [],
+  use: { context: 'both', action: 'consume', target: 'self', effects: [
+    { op: 'mpPct', params: { valueBp: 2000 } },
+  ] }, assets: { icon: 'item/zixiaoyangqidan' }, text: { desc: '温养内息、回补内力的灵丹。' },
   extension: { type: 'generic', value: {} } };
 
 export function combatDemoSources() {

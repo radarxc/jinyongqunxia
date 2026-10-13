@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_feidaoxia",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/hidden-weapons/eq_feidaoxia.png",
+  "generatedAt": "2026-10-07T20:07:36.798Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 197797,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/4afbe481-69af-485f-9094-c0de6ac9b7f0/multiview_0_4afbe481-69af-485f-9094-c0de6ac9b7f0.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 197418,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/4afbe481-69af-485f-9094-c0de6ac9b7f0/multiview_1_4afbe481-69af-485f-9094-c0de6ac9b7f0.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 131729,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/4afbe481-69af-485f-9094-c0de6ac9b7f0/multiview_3_4afbe481-69af-485f-9094-c0de6ac9b7f0.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 120261,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/4afbe481-69af-485f-9094-c0de6ac9b7f0/multiview_2_4afbe481-69af-485f-9094-c0de6ac9b7f0.jpeg"
+    }
+  }
+}

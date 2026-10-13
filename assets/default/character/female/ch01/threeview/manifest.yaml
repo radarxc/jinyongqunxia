@@ -26,12 +26,12 @@
   source_path: .agents/coord/_lines/novel-fix-1/prepared/ar82_nf1_10_r1.png
   source_size: 1024x1536
   size: 1024x1536
-  sha256: 8503c4758c2b9aba490f4f22d0c7ccae9141e0317c0522c5570093d8d84a8222
+  sha256: 8b4b2bd1a0d48c211299ac1798c2fe997bce42c108dede20628724b5e1756a53
   status: candidate
-  notes: 绑骨用的窄轮廓空手 A 字参考（AR-56：作者 17:02 定基线后 Tripo 要求兵器道具全去掉、双臂离身约 30°、宽袖收窄）；依据 por_npc_wangyuyan__ch01_youth_mantuo_base（同脸同服色）；AR-82 原著核对返修：王语嫣曼陀长发补银色丝带
+  notes: 绑骨用的窄轮廓空手 A 字参考（AR-56：作者 17:02 定基线后 Tripo 要求兵器道具全去掉、双臂离身约 30°、宽袖收窄）；依据 por_npc_wangyuyan__ch01_youth_mantuo_base（同脸同服色）；AR-82 原著核对返修：王语嫣曼陀长发补银色丝带；AR-98 主角立绘全量一致性对齐：面部五官与骨相严格对齐 por_npc_wangyuyan__ch01_youth_mantuo_base（2003 刘亦菲版去婴儿肥清雅骨相），蒙版外零漂移
   previous_revision:
-    png: .agents/coord/_lines/novel-fix-1/before/10_por_npc_wangyuyan__ch01_youth_mantuo_apose_slim.png
-    sha256: f0a56daf42884fc13fc13ca7cebfd4f23d4f4a61e39d7b619d2207070413b8ff
+    png: .agents/coord/_lines/wyy-align-ar98/backup/por_npc_wangyuyan__ch01_youth_mantuo_apose_slim.8503c475.png
+    sha256: 8503c4758c2b9aba490f4f22d0c7ccae9141e0317c0522c5570093d8d84a8222
 - id: por_npc_azhu__ch01_youth_alive_apose_slim
   file: por_npc_azhu__ch01_youth_alive_apose_slim.png
   category: character/female/tripo_ref

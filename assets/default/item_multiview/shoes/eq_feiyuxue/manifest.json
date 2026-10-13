@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_feiyuxue",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/shoes/eq_feiyuxue.png",
+  "generatedAt": "2026-10-07T20:53:38.553Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 170413,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/786ade7c-6495-41ee-930b-36700ea0aede/multiview_0_786ade7c-6495-41ee-930b-36700ea0aede.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 166746,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/786ade7c-6495-41ee-930b-36700ea0aede/multiview_1_786ade7c-6495-41ee-930b-36700ea0aede.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 147479,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/786ade7c-6495-41ee-930b-36700ea0aede/multiview_3_786ade7c-6495-41ee-930b-36700ea0aede.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 153053,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261008/786ade7c-6495-41ee-930b-36700ea0aede/multiview_2_786ade7c-6495-41ee-930b-36700ea0aede.jpeg"
+    }
+  }
+}

@@ -20,17 +20,17 @@ describe('world map scene geometry', () => {
   it('builds batched static layers and instances only visible era nodes', () => {
     const geometry = createWorldMapGeometry(map);
     expect(geometry.group.children.map(child => child.name)).toEqual([
-      'terrain-heightmap', 'road-network', 'river-layer', 'mountain-layer', 'map-node-instances',
+      'terrain-ground-skirt', 'terrain-heightmap', 'road-network', 'river-layer', 'mountain-layer', 'map-node-instances',
     ]);
-    expect(geometry).toMatchObject({ nodeInstances: 2, roadSegments: 2, staticDrawCalls: 5 });
+    expect(geometry).toMatchObject({ nodeInstances: 2, roadSegments: 2, staticDrawCalls: 6 });
     expect(geometry.nodes.count).toBe(2);
     geometry.dispose();
     expect(geometry.group.children).toHaveLength(0);
   });
 
   it('projects integer map points deterministically onto a raised 2.5D surface', () => {
-    expect(mapPointToWorld(map, [0, 0])).toEqual([-10, terrainHeight(map, [0, 0]), 5]);
-    expect(mapPointToWorld(map, [100, 50])).toEqual([10, terrainHeight(map, [100, 50]), -5]);
+    expect(mapPointToWorld(map, [0, 0])).toEqual([-10, terrainHeight(map, [0, 0]), -5]);
+    expect(mapPointToWorld(map, [100, 50])).toEqual([10, terrainHeight(map, [100, 50]), 5]);
     expect(terrainHeight(map, [50, 15])).toBeGreaterThan(terrainHeight(map, [0, 49]));
   });
 });

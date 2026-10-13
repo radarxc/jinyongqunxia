@@ -1,7 +1,7 @@
-import { InkJsDialogueBridge, dialogueStateFromSession,
-  inkExternalQuery, sessionFromDialogue } from '../dialogue';
-import { authorizedDialogueIntents, dialogueQuests } from '../dialogue/intent-actions';
-import { executeDialogueActions } from '../event';
+import { InkJsDialogueBridge, authorizedDialogueIntents, dialogueStateFromSession,
+  inkExternalQuery, resolveFacilityDialogue, sessionFromDialogue,
+  type FacilityDialogueTarget } from '../dialogue';
+import { executeActions } from '../event';
 import type { GameState } from '../state';
 import type { CommandHandler, CoreContent, DialogueCommand,
   QuestChoiceCommand, RulesCommand } from '.';
@@ -26,7 +26,7 @@ function bridge(content: CoreContent, state: Readonly<GameState>): InkJsDialogue
     const entry = story(content, storyId);
     if (!entry) throw new Error('DIALOGUE_STORY_UNKNOWN');
     return entry.storyJson;
-  }, inkExternalQuery(state, dialogueQuests(content)));
+  }, inkExternalQuery(state, content.quests));
 }
 function history(state: NonNullable<GameState['dialogue']>) {
   const previous = state.history ?? []; const textKey = state.textKey ?? null;
@@ -36,6 +36,13 @@ function history(state: NonNullable<GameState['dialogue']>) {
 function assertStoryHash(state: NonNullable<GameState['dialogue']>, content: CoreContent): void {
   if (story(content, state.storyId)?.storyHash !== state.storyHash)
     throw new TypeError('DIALOGUE_STORY_HASH');
+}
+function assertInterlocutorContext(state: NonNullable<GameState['dialogue']>): void {
+  if (state.speakerId === 'interlocutor' &&
+      (state.context === undefined ||
+        typeof state.context.interlocutorNameKey !== 'string' ||
+        state.context.interlocutorNameKey.length === 0))
+    throw new TypeError('DIALOGUE_INTERLOCUTOR_CONTEXT');
 }
 function commitDialogueIntents(tx: Parameters<typeof dialogueHandler.apply>[0],
   state: NonNullable<GameState['dialogue']>): readonly string[] {
@@ -48,10 +55,39 @@ function commitDialogueIntents(tx: Parameters<typeof dialogueHandler.apply>[0],
   if (pending.length === 0) return [...consumed];
   const actions = pending.map((intent) => intent.action).filter((action) =>
     action.op !== 'dialogue/speaker');
-  if (actions.length > 0) executeDialogueActions(tx, actions, `dialogue:${state.storyId}`,
-    state.anchorId ?? 'dialogue');
+  if (actions.length > 0) executeActions(tx, actions, {
+    sourceId: `dialogue:${state.storyId}`, anchorId: 'dialogue',
+    allowDialogueAutosave: true, reject: { action: 'DIALOGUE_INTENT_ACTION',
+      condition: 'DIALOGUE_INTENT_ACTION',
+      reference: 'DIALOGUE_INTENT_REFERENCE', inventory: 'DIALOGUE_INTENT_INVENTORY',
+      quest: 'DIALOGUE_INTENT_QUEST', battle: 'DIALOGUE_INTENT_BATTLE' } });
   for (const intent of pending) consumed.add(intent.key);
   return [...consumed];
+}
+function startDialogue(tx: Parameters<typeof dialogueHandler.apply>[0], storyId: string,
+  entryKey: string, context?: NonNullable<GameState['dialogue']>['context']): void {
+  const definition = story(tx.content, storyId);
+  if (!definition) throw new TypeError('DIALOGUE_STORY_UNKNOWN');
+  const randomSeed = tx.rng('world').nextU32();
+  const session = bridge(tx.content, tx.state).start(storyId, entryKey, randomSeed);
+  const next = dialogueStateFromSession({ storyId, storyHash: definition.storyHash,
+    entryKey, randomSeed, session, ...(context ? { context } : {}) });
+  assertInterlocutorContext(next);
+  tx.set(['dialogue'], next);
+  tx.emit({ t: 'dialogue/started', payload: { storyId, entryKey,
+    ...(context ? { context } : {}) } });
+  const consumedTagKeys = commitDialogueIntents(tx, next);
+  tx.set(['dialogue', 'pendingIntents'], []);
+  tx.set(['dialogue', 'consumedTagKeys'], consumedTagKeys);
+}
+
+/** Internal transaction entry shared by v1 and v2 facility interactions. */
+export function startFacilityDialogue(
+  tx: Parameters<typeof dialogueHandler.apply>[0], target: FacilityDialogueTarget,
+): void {
+  if (tx.state.dialogue !== null) throw new TypeError('DIALOGUE_ACTIVE');
+  const resolved = resolveFacilityDialogue(tx.state, tx.content, target);
+  startDialogue(tx, resolved.storyId, resolved.entryKey, resolved.context);
 }
 
 export const difficultyHandler: CommandHandler<RulesCommand> = {
@@ -94,19 +130,7 @@ export const dialogueHandler: CommandHandler<DialogueCommand> = {
   apply(tx, command) {
     const adapter = bridge(tx.content, tx.state);
     if (command.t === 'dialogue/start') {
-      const definition = story(tx.content, command.storyId)!;
-      const randomSeed = tx.rng('world').nextU32();
-      const session = adapter.start(command.storyId, command.entryKey, randomSeed);
-      const next = dialogueStateFromSession({ storyId: command.storyId,
-        storyHash: definition.storyHash, entryKey: command.entryKey, randomSeed, session,
-        ...(command.anchorId === undefined ? {} : { anchorId: command.anchorId }) });
-      tx.set(['dialogue'], next);
-      tx.emit({ t: 'dialogue/started', payload: { storyId: command.storyId,
-        entryKey: command.entryKey } });
-      const consumedTagKeys = commitDialogueIntents(tx, next);
-      tx.set(['dialogue', 'pendingIntents'], []);
-      tx.set(['dialogue', 'consumedTagKeys'], consumedTagKeys);
-      return;
+      startDialogue(tx, command.storyId, command.entryKey); return;
     }
     const current = tx.state.dialogue!;
     const restored = sessionFromDialogue(current);
@@ -122,9 +146,9 @@ export const dialogueHandler: CommandHandler<DialogueCommand> = {
     const complete = !next.canContinue && next.choices.length === 0 && next.lines.length === 0;
     const projected = dialogueStateFromSession({ storyId: current.storyId,
       storyHash: current.storyHash, entryKey: current.entryKey, randomSeed: current.randomSeed,
-      ...(current.anchorId === undefined ? {} : { anchorId: current.anchorId }),
       session: next, history: history(current), pendingIntents: current.pendingIntents,
-      consumedTagKeys: current.consumedTagKeys });
+      consumedTagKeys: current.consumedTagKeys, ...(current.context ? { context: current.context } : {}) });
+    assertInterlocutorContext(projected);
     tx.set(['dialogue'], projected);
     if (command.t === 'dialogue/choose')
       tx.emit({ t: 'dialogue/choiceCommitted', payload: { storyId: current.storyId,

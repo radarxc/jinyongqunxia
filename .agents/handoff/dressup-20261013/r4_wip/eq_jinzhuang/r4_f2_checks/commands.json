@@ -1,0 +1,76 @@
+[
+  {
+    "name": "tests_garment",
+    "command": [
+      "python3",
+      "tools/model3d/dressup/tests_garment.py"
+    ],
+    "exitCode": 1,
+    "elapsedSec": 10.539,
+    "log": "tests_garment.log"
+  },
+  {
+    "name": "tests_hidemask",
+    "command": [
+      "python3",
+      "tools/model3d/dressup/tests_hidemask.py"
+    ],
+    "exitCode": 0,
+    "elapsedSec": 42.265,
+    "log": "tests_hidemask.log"
+  },
+  {
+    "name": "tests_variant",
+    "command": [
+      "python3",
+      "tools/model3d/dressup/tests_variant.py"
+    ],
+    "exitCode": 0,
+    "elapsedSec": 5.217,
+    "log": "tests_variant.log"
+  },
+  {
+    "name": "tests_texlayer",
+    "command": [
+      "python3",
+      "tools/model3d/dressup/tests_texlayer.py"
+    ],
+    "exitCode": 0,
+    "elapsedSec": 0.89,
+    "log": "tests_texlayer.log"
+  },
+  {
+    "name": "selftest",
+    "command": [
+      "python3",
+      "tools/model3d/dressup/selftest.py"
+    ],
+    "exitCode": 0,
+    "elapsedSec": 3.897,
+    "log": "selftest.log"
+  },
+  {
+    "name": "install",
+    "command": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "exitCode": 0,
+    "elapsedSec": 5.585,
+    "log": "install.log"
+  },
+  {
+    "name": "check",
+    "command": [
+      "python3",
+      "tools/agents/check_semaphore.py",
+      "--",
+      "pnpm",
+      "check"
+    ],
+    "exitCode": 1,
+    "elapsedSec": 0.22,
+    "log": "check.log"
+  }
+]

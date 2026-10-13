@@ -1,4 +1,4 @@
-import { DAYS_PER_MONTH, MONTHS_PER_YEAR, projectWorldMap,
+import { createInitialWorldMapState, DAYS_PER_MONTH, MONTHS_PER_YEAR, projectWorldMap,
   projectWorldMapStatic } from '@tianshu/core/projection';
 import type { UiProjection } from '@tianshu/ui';
 import type { EquipmentVisuals } from '@tianshu/render/rig';
@@ -8,6 +8,7 @@ import { projectCharacters } from '../selectors/characters';
 import { projectItem } from '../selectors/items';
 import { ALL_VIEWS, type DirtyView, type GameProjection, type SessionSnapshot } from './contracts';
 import type { GameContent } from './content';
+import { worldMapTexture } from './worldmap-texture';
 
 function projectHud(session: SessionSnapshot, content?: GameContent): UiProjection['hud'] {
   const player = session.profile.protagonist; const clock = session.chapter.clock;
@@ -77,9 +78,12 @@ export function createSessionSelectors(content: GameContent,
   function update(session: SessionSnapshot, dirty: readonly DirtyView[], status = '',
     dynamicOnly = false): Partial<GameProjection> {
     const marked = new Set(view ? dirty : ALL_VIEWS);
-    const map = marked.has('worldmap') && session.chapter.worldMap && content.worldMaps
-      ? content.worldMaps.find((entry) => entry.chapterId === session.chapter.chapterId)! : undefined;
-    const texture = map ? content.assets?.[`ref_map_jianghu__${map.era}_base01`]?.map ?? null : null;
+    const map = marked.has('worldmap') && content.worldMaps
+      ? (content.worldMaps.find((entry) => entry.chapterId === session.chapter.chapterId)
+        ?? content.worldMaps.find((entry) => entry.chapterId === 'ch01')
+        ?? content.worldMaps[0]) : undefined;
+    const activeWorldMap = session.chapter.worldMap ?? (map ? createInitialWorldMapState(map) : null);
+    const texture = map ? worldMapTexture(content, map.era) : null;
     const staticChanged = marked.has('worldmap') && (!view || (map
       ? view.worldmapStatic?.map !== map : view.worldmapStatic !== null));
     const changes: Partial<GameProjection> = { title: '天书录', coreVersion: session.meta.coreVersion,
@@ -95,13 +99,13 @@ export function createSessionSelectors(content: GameContent,
       ...(marked.has('quests') ? { quests: session.chapter.story.lines.filter((line) =>
         line.status !== 'locked').map((line) => ({ id: line.lineId, name: line.lineId,
           status: line.status })) } : {}),
-      ...(marked.has('worldmap') ? { worldmap: map && session.chapter.worldMap
-        ? projectWorldMap(map, session.chapter.worldMap) : null } : {}),
+      ...(marked.has('worldmap') ? { worldmap: map && activeWorldMap
+        ? projectWorldMap(map, activeWorldMap) : null } : {}),
       ...(staticChanged ? { worldmapStatic: map ? projectWorldMapStatic(map, texture) : null } : {}),
       ...(marked.has('town') ? { town: projectTown(session, content, selectedTown()) } : {}),
       ...(marked.has('townRuntime') ? { townRuntime: session.chapter.town
         ? selectedTown() ?? content.towns?.find((entry) =>
-          entry.sceneId === session.chapter.town?.sceneId) ?? null : null } : {}) };
+          entry.sceneId === session.chapter.town?.sceneId) ?? content.towns?.[0] ?? null : null } : {}) };
     view = { ...view, ...changes } as GameProjection;
     if (!dynamicOnly || changes.worldmap === undefined) return changes;
     const full = changes.worldmap; return { ...changes, worldmap: full ? { point: full.point,

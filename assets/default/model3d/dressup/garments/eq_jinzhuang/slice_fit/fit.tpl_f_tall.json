@@ -1,0 +1,520 @@
+{
+  "align": {
+    "bodySpaceIdentity": true,
+    "determinant": 1.0,
+    "landmarks": 0,
+    "method": "landmarks",
+    "mirrored": false,
+    "requestedMode": "none",
+    "residualMu": {
+      "feetMu": 0.0,
+      "neckTopMu": 0.0
+    },
+    "scale": 1.0,
+    "translationMu": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "yawDeg": 0.0
+  },
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f_tall/body.glb",
+    "sha256": "fc6772d64fb84a26f87346d9043e8e7cf508395dcb4658e92a0aa60e75da907d",
+    "skeleton": "assets/default/model3d/dressup/templates/tpl_f_tall/skeleton.json",
+    "skeletonSha256": "9db4ecb73b04c8b9dd189f520480cc2b2ab222e5abbac0fb58094adacac7e9f5"
+  },
+  "coverage": 0.65,
+  "coverageByRegion": {
+    "footL": 0.000774866,
+    "footR": 0.001408911,
+    "forearmL": 0.807997644,
+    "forearmR": 0.759372843,
+    "handL": 0.101036436,
+    "handR": 0.00018483,
+    "head": 0.000347867,
+    "hips": 0.268825041,
+    "neck": 0.100805358,
+    "shinL": 0.001463665,
+    "shinR": 0.00293375,
+    "thighL": 0.056842053,
+    "thighR": 0.067408302,
+    "torsoLower": 0.353784234,
+    "torsoUpper": 0.533530066,
+    "upperArmL": 0.653484985,
+    "upperArmR": 0.69887796
+  },
+  "fitVersion": 1,
+  "hideRegions": [
+    "upperArmL",
+    "upperArmR",
+    "forearmL",
+    "forearmR"
+  ],
+  "id": "eq_jinzhuang",
+  "kind": "garment",
+  "mPerMu": 1.69370023,
+  "neverHide": [
+    "neck",
+    "handL",
+    "handR",
+    "footL",
+    "footR"
+  ],
+  "pushOut": {
+    "centroidDriftMu": 0.000179234,
+    "clearancePassed": true,
+    "degenerateTriangles": 0,
+    "draft": false,
+    "drape": [
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      },
+      {
+        "frozenVertices": 0,
+        "iterations": 4,
+        "stretchWithinRatio": 1.0
+      }
+    ],
+    "flippedTriangles": 0,
+    "insufficientMargin": 0,
+    "iters": 3,
+    "minimumDistanceMu": 0.001771136,
+    "mode": "volume",
+    "movedVertices": 56853,
+    "nodes": 28290,
+    "passed": true,
+    "pushMm": 3.0,
+    "pushMu": 0.00177127,
+    "residual": 0,
+    "rounds": [
+      {
+        "dampedVertices": 0,
+        "hotNodes": 4179,
+        "inside": 0,
+        "insufficientMargin": 7268,
+        "maximumDemandMu": 0.001184717,
+        "maximumMoveMu": 0.000692014,
+        "minimumDistanceMu": 0.000591729,
+        "sigmaMm": 40.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 3862,
+        "inside": 0,
+        "insufficientMargin": 6084,
+        "maximumDemandMu": 0.00116527,
+        "maximumMoveMu": 0.000547694,
+        "minimumDistanceMu": 0.000611177,
+        "sigmaMm": 28.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 3490,
+        "inside": 0,
+        "insufficientMargin": 4747,
+        "maximumDemandMu": 0.0010687,
+        "maximumMoveMu": 0.000433593,
+        "minimumDistanceMu": 0.000707747,
+        "sigmaMm": 19.6,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 3045,
+        "inside": 0,
+        "insufficientMargin": 3000,
+        "maximumDemandMu": 0.00084083,
+        "maximumMoveMu": 0.000334218,
+        "minimumDistanceMu": 0.000935616,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 2551,
+        "inside": 0,
+        "insufficientMargin": 1774,
+        "maximumDemandMu": 0.000585176,
+        "maximumMoveMu": 0.000198959,
+        "minimumDistanceMu": 0.001191271,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1978,
+        "inside": 0,
+        "insufficientMargin": 966,
+        "maximumDemandMu": 0.000421388,
+        "maximumMoveMu": 0.00012182,
+        "minimumDistanceMu": 0.001355059,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1684,
+        "inside": 0,
+        "insufficientMargin": 611,
+        "maximumDemandMu": 0.000313008,
+        "maximumMoveMu": 7.5737e-05,
+        "minimumDistanceMu": 0.001463439,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1401,
+        "inside": 0,
+        "insufficientMargin": 438,
+        "maximumDemandMu": 0.000240588,
+        "maximumMoveMu": 5.4477e-05,
+        "minimumDistanceMu": 0.001535859,
+        "sigmaMm": 16.0,
+        "stage": "push",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1197,
+        "inside": 0,
+        "insufficientMargin": 308,
+        "maximumDemandMu": 0.000188897,
+        "maximumMoveMu": 4.0963e-05,
+        "minimumDistanceMu": 0.00158755,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 1088,
+        "inside": 0,
+        "insufficientMargin": 231,
+        "maximumDemandMu": 0.000148811,
+        "maximumMoveMu": 3.1691e-05,
+        "minimumDistanceMu": 0.001627636,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 959,
+        "inside": 0,
+        "insufficientMargin": 176,
+        "maximumDemandMu": 0.000117797,
+        "maximumMoveMu": 2.4989e-05,
+        "minimumDistanceMu": 0.00165865,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 872,
+        "inside": 0,
+        "insufficientMargin": 148,
+        "maximumDemandMu": 9.331e-05,
+        "maximumMoveMu": 1.9819e-05,
+        "minimumDistanceMu": 0.001683137,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 792,
+        "inside": 0,
+        "insufficientMargin": 124,
+        "maximumDemandMu": 7.3914e-05,
+        "maximumMoveMu": 1.5704e-05,
+        "minimumDistanceMu": 0.001702533,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 711,
+        "inside": 0,
+        "insufficientMargin": 109,
+        "maximumDemandMu": 5.8526e-05,
+        "maximumMoveMu": 1.2436e-05,
+        "minimumDistanceMu": 0.001717921,
+        "sigmaMm": 16.0,
+        "stage": "drape0",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 559,
+        "inside": 0,
+        "insufficientMargin": 86,
+        "maximumDemandMu": 4.7166e-05,
+        "maximumMoveMu": 9.837e-06,
+        "minimumDistanceMu": 0.001729281,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 425,
+        "inside": 0,
+        "insufficientMargin": 69,
+        "maximumDemandMu": 3.8465e-05,
+        "maximumMoveMu": 7.804e-06,
+        "minimumDistanceMu": 0.001737982,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 371,
+        "inside": 0,
+        "insufficientMargin": 60,
+        "maximumDemandMu": 3.1367e-05,
+        "maximumMoveMu": 6.194e-06,
+        "minimumDistanceMu": 0.001745079,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 295,
+        "inside": 0,
+        "insufficientMargin": 47,
+        "maximumDemandMu": 2.5578e-05,
+        "maximumMoveMu": 5.047e-06,
+        "minimumDistanceMu": 0.001750868,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 179,
+        "inside": 0,
+        "insufficientMargin": 30,
+        "maximumDemandMu": 2.0857e-05,
+        "maximumMoveMu": 4.115e-06,
+        "minimumDistanceMu": 0.00175559,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 151,
+        "inside": 0,
+        "insufficientMargin": 26,
+        "maximumDemandMu": 1.7005e-05,
+        "maximumMoveMu": 3.352e-06,
+        "minimumDistanceMu": 0.001759442,
+        "sigmaMm": 16.0,
+        "stage": "drape1",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 129,
+        "inside": 0,
+        "insufficientMargin": 22,
+        "maximumDemandMu": 1.3867e-05,
+        "maximumMoveMu": 2.741e-06,
+        "minimumDistanceMu": 0.00176258,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 81,
+        "inside": 0,
+        "insufficientMargin": 15,
+        "maximumDemandMu": 1.1302e-05,
+        "maximumMoveMu": 2.233e-06,
+        "minimumDistanceMu": 0.001765145,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 74,
+        "inside": 0,
+        "insufficientMargin": 14,
+        "maximumDemandMu": 9.403e-06,
+        "maximumMoveMu": 1.819e-06,
+        "minimumDistanceMu": 0.001767044,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 44,
+        "inside": 0,
+        "insufficientMargin": 9,
+        "maximumDemandMu": 7.853e-06,
+        "maximumMoveMu": 1.487e-06,
+        "minimumDistanceMu": 0.001768594,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 19,
+        "inside": 0,
+        "insufficientMargin": 3,
+        "maximumDemandMu": 6.563e-06,
+        "maximumMoveMu": 1.216e-06,
+        "minimumDistanceMu": 0.001769884,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      },
+      {
+        "dampedVertices": 0,
+        "hotNodes": 5,
+        "inside": 0,
+        "insufficientMargin": 1,
+        "maximumDemandMu": 5.481e-06,
+        "maximumMoveMu": 9.13e-07,
+        "minimumDistanceMu": 0.001770966,
+        "sigmaMm": 16.0,
+        "stage": "drape2",
+        "stepHalvings": 0
+      }
+    ],
+    "stretchOutliers": 0,
+    "stretchWithinRatio": 1.0,
+    "topologyPassed": true,
+    "volume": {
+      "decay": 0.7,
+      "drapeAnchor": 0.001,
+      "drapeCycles": 6,
+      "drapePushRounds": 6,
+      "drapeRelaxIters": 4,
+      "farMm": 80.0,
+      "nearMm": 40.0,
+      "nodeMm": 8.0,
+      "roundsLimit": 8,
+      "sigmaMinMm": 16.0,
+      "sigmaMm": 40.0,
+      "stepSigma": 1.0,
+      "strainRange": [
+        0.75,
+        1.3
+      ]
+    }
+  },
+  "schema": "tianshu-dressup-fit.v1",
+  "slot": "body",
+  "source": {
+    "file": "assets/default/model3d/dressup/garments/eq_jinzhuang/slice_fit/_work/tpl_f_tall/eq_jinzhuang.tpl_f_tall.slice_fit.glb",
+    "sha256": "b1626100dc445583087a98dd1a155130883ba30526dd4e91eca1a911a42af532"
+  },
+  "spring": null,
+  "stats": {
+    "boundaryEdges": 10126,
+    "elapsedSec": 153.334456416,
+    "fileBytes": 4528760,
+    "nearestTriangleCandidates": 16,
+    "nonManifoldEdges": 0,
+    "peakMemoryMiB": 1179.515625,
+    "primitiveCount": 1,
+    "removedStubTriangles": 0,
+    "triangles": 103356,
+    "vertices": 56853
+  },
+  "status": "fitted",
+  "template": "tpl_f_tall",
+  "textureCleanup": {
+    "deltaEThreshold": 18.0,
+    "encodeAttempts": 5,
+    "encodedSkinRatioAfter": 0.0,
+    "encodedSkinTexelsAfter": 0,
+    "encoding": "image/jpeg q95",
+    "method": "CIE-Lab-mean-deltaE+same-uv-island-nearest",
+    "referencedTexels": 1521131,
+    "replacedTexels": 25545,
+    "replacementMarginDeltaE": 6.0,
+    "skinLabMean": [
+      72.819651453,
+      5.673477939,
+      11.047522433
+    ],
+    "skinRatioAfter": 0.0,
+    "skinRatioBefore": 0.016756611,
+    "skinTexelsAfter": 0,
+    "skinTexelsBefore": 25489
+  },
+  "weights": {
+    "distanceMm": {
+      "p50": 10.482058779,
+      "p90": 23.440062042
+    },
+    "filteredVertices": 429,
+    "jointsAllowed": [
+      "mixamorig:Hips",
+      "mixamorig:LeftUpLeg",
+      "mixamorig:LeftLeg",
+      "mixamorig:RightUpLeg",
+      "mixamorig:RightLeg",
+      "mixamorig:Spine",
+      "mixamorig:Spine1",
+      "mixamorig:Spine2",
+      "mixamorig:LeftShoulder",
+      "mixamorig:LeftArm",
+      "mixamorig:LeftForeArm",
+      "mixamorig:LeftHand",
+      "mixamorig:Neck",
+      "mixamorig:RightShoulder",
+      "mixamorig:RightArm",
+      "mixamorig:RightForeArm",
+      "mixamorig:RightHand"
+    ],
+    "maxBones": 4,
+    "method": "template-nearest-triangle-barycentric+topology-smooth",
+    "semanticFallbackVertices": 0,
+    "smoothRounds": 3,
+    "templateVertices": 56853
+  }
+}

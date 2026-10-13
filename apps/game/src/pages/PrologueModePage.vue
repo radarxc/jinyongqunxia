@@ -11,7 +11,12 @@ const choices: readonly FlowChoiceView[] = [
 ];
 async function confirm(value: string): Promise<void> {
   const mode = value as PrologueMode;
-  if (await controller.choosePrologueMode(mode)) controller.setFlowStage(stageAfterMode(mode));
+  if (await controller.choosePrologueMode(mode)) {
+    if (mode === 'full') {
+      await controller.mountRegion('rg_jiangnan_taihu', 'sc_00_zhulin', 'bookfall');
+    }
+    controller.setFlowStage(stageAfterMode(mode));
+  }
 }
 </script>
 <template><TxFlowChoice title="如何走过序章" lead="三条路径抵达同一初眠配点与白马入口。" :choices="choices" :busy="controller.busy.value" @confirm="confirm" /></template>

@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_qingzhou"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "青州·北海县（702年推定）"
+display_name: 青州（益都县）
 historical_year: 702
 era_kit: "tang"
 seed: 323192299

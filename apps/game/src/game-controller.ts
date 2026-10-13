@@ -6,7 +6,7 @@ import type {
   WorldMapCommand,
   WorldMapProjection,
 } from '@tianshu/core';
-import { createIndexedDbStorage, downloadBytes, type TianshuStorage } from '@tianshu/platform';
+import { createIndexedDbStorage, downloadBytes, defaultAudioManager, type TianshuStorage } from '@tianshu/platform';
 import {
   flowT,
   recoveredAutosaveText,
@@ -21,8 +21,10 @@ import type {
   GameProjection,
   GameUpdate,
   NewGameRequest,
+  ShopTradeCommand,
   TownProjection,
 } from './runtime/contracts';
+import type { ShopView } from '@tianshu/core/shop-command';
 import type { TownRuntimeDefinition } from '@tianshu/data/schemas';
 import type { ContentSource } from '@tianshu/data';
 import type { BattleController, createBattleController } from './battle/controller';
@@ -30,6 +32,7 @@ import type { createSaveService } from './storage/save-service';
 import { slotViews } from './storage/slot-views';
 import { presentedEvent, type PresentedEvent } from './flow/event-presentation';
 import { presentationText } from './flow/content-text';
+import { shopOpenPresentation } from './flow/presentation';
 import {
   defaultGameSettings,
   loadGameSettings,
@@ -128,6 +131,8 @@ export function createGameController(
   const flowStage = shallowRef<M1FlowStage>('game');
   const coldEntryStage = shallowRef<ColdEntryStage>('inactive');
   const presentationNotice = shallowRef('');
+  const shopRequest = shallowRef<{ readonly shopKey: string; readonly nonce: number } | null>(null);
+  let shopRequestNonce = 0;
   const townRuntime = shallowRef<TownRuntimeDefinition | null>(null);
   const town = shallowRef<TownProjection | null>(null);
   let storage: TianshuStorage | undefined = options.storage;
@@ -135,6 +140,8 @@ export function createGameController(
   let pendingAutosave: { trigger: string; force: boolean } | undefined;
   let autosaveTask: Promise<void> | undefined;
   let bookSleepActive = false;
+  const worldTickHolds = new Map<string, number>();
+  let worldTickHoldCount = 0;
   let queuedForeground = 0;
   let commandQueue: Promise<unknown> = Promise.resolve();
   let lastGoodProjection: GameProjection | null = null;
@@ -148,7 +155,6 @@ export function createGameController(
   let domainAutosavePending: { reason: string; coldEntry: boolean } | undefined;
   let arrivalCutsceneReady = false;
   let presentationTask: Promise<void> = Promise.resolve();
-  const pendingDialogueSteps: PresentedEvent['steps'][number][] = [];
   async function refresh(): Promise<void> {
     if (!saves) return;
     const listed = await saves.list();
@@ -280,12 +286,16 @@ export function createGameController(
     await autosave(pending.reason, true);
   }
   async function performPresentationStep(step: PresentedEvent['steps'][number]): Promise<void> {
+    const shop = shopOpenPresentation(step);
+    if (shop) {
+      shopRequest.value = { shopKey: shop.shopKey, nonce: ++shopRequestNonce };
+      return;
+    }
     if (step.op === 'ui/showText' || step.op === 'ui/revealText') {
       await showTextStep(step);
       return;
     }
     if (step.op === 'dialogue/start') {
-      if (ui.projection.dialogue) { pendingDialogueSteps.push(step); return; }
       if (step.presentation !== 'text_stills')
         await run(async () => {
           await dispatchCoreCommand({
@@ -314,11 +324,6 @@ export function createGameController(
       await flushDomainAutosave();
       if (!domainAutosavePending) showTitleCard(step.card);
     }
-  }
-  function flushPendingDialogueStep(): void {
-    if (ui.projection.dialogue || pendingDialogueSteps.length === 0) return;
-    const step = pendingDialogueSteps.shift()!;
-    queuePresentation([step]);
   }
   function queuePresentation(steps: readonly PresentedEvent['steps'][number][]): void {
     const foreground = commandQueue;
@@ -381,8 +386,10 @@ export function createGameController(
           : undefined;
       if (event.t === 'world/eraChanged' && typeof payload?.['worldYear'] === 'number')
         wakeYear.value = payload['worldYear'];
-      if (event.t === 'chapter/woke' && typeof payload?.['chapterId'] === 'string')
+      if (event.t === 'chapter/woke' && typeof payload?.['chapterId'] === 'string') {
         chapterId.value = payload['chapterId'];
+        defaultAudioManager.playRandomByBook(payload['chapterId']);
+      }
       const presentation = presentedEvent(event);
       if (presentation) consumePresentation(presentation);
       if (
@@ -393,6 +400,12 @@ export function createGameController(
       ) {
         coldEntryStage.value = 'movement';
         flowStage.value = 'game';
+        defaultAudioManager.playRandomByBook('白马啸西风');
+      } else if (event.t === 'world/regionMounted' && typeof payload?.['regionId'] === 'string') {
+        const rid = payload['regionId'];
+        if (rid.includes('taihu')) defaultAudioManager.playRandomByBook('越女剑');
+        else if (rid.includes('beijiang') || rid.includes('xiyu')) defaultAudioManager.playRandomByBook('白马啸西风');
+        else if (rid.includes('dali')) defaultAudioManager.playRandomByBook('天龙八部');
       }
       if (
         event.t === 'dialogue/started' &&
@@ -409,7 +422,6 @@ export function createGameController(
         };
       }
     }
-    flushPendingDialogueStep();
     if (update.changes.battle !== undefined) {
       battleActive.value = update.changes.battle !== null;
       if (!battle.value) {
@@ -448,7 +460,15 @@ export function createGameController(
     }
     try {
       const result = await host.dispatch(command);
-      if (!result.accepted) throw new GameplayRejection(result.error);
+      if (!result.accepted) {
+        console.error('[CORE_DISPATCH_REJECTED]', result.error, command);
+        throw new GameplayRejection(result.error);
+      }
+      if (command.t === 'inventory/use') {
+        defaultAudioManager.playItemSfx(command.itemId);
+      } else if (command.t === 'inventory/equip') {
+        defaultAudioManager.playSfx('sword_clash');
+      }
       if (firstSleep) {
         await saves!.checkpoint('save_wake_ch10');
         savedRevision = dirtyRevision;
@@ -695,6 +715,16 @@ export function createGameController(
   async function dialogueChoose(choiceIndex: number): Promise<boolean> {
     return (await flowCommand({ t: 'dialogue/choose', choiceIndex })) !== undefined;
   }
+  async function queryShop(shopKey: string): Promise<{ readonly view: ShopView;
+    readonly items: NonNullable<GameProjection['shopItems']> }> {
+    const result = await host.dispatch({ t: 'shop/query', shopKey });
+    if (!result.accepted || !result.changes.shopQuery)
+      throw new GameplayRejection(result.error ?? 'SHOP_QUERY_UNAVAILABLE');
+    return { view: result.changes.shopQuery, items: result.changes.shopItems ?? [] };
+  }
+  async function shopCommand(command: ShopTradeCommand): Promise<GameUpdate> {
+    return host.dispatch(command);
+  }
   function planId(): string {
     if (firstSleepPlanId) return firstSleepPlanId;
     firstSleepPlanId = globalThis.crypto.randomUUID();
@@ -763,6 +793,20 @@ export function createGameController(
   function setSceneRunsWorldTicks(value: boolean): void {
     sceneRunsWorldTicks.value = value;
   }
+  function holdWorldTicks(reason: string): () => void {
+    if (disposed) return () => undefined;
+    worldTickHoldCount += 1;
+    worldTickHolds.set(reason, (worldTickHolds.get(reason) ?? 0) + 1);
+    let released = false;
+    return () => {
+      if (released) return;
+      released = true;
+      const count = worldTickHolds.get(reason) ?? 0;
+      if (count <= 1) worldTickHolds.delete(reason);
+      else worldTickHolds.set(reason, count - 1);
+      worldTickHoldCount = Math.max(0, worldTickHoldCount - 1);
+    };
+  }
   async function worldMapCommand(command: WorldMapCommand): Promise<void> {
     await run(async () => {
       const result = await host.dispatch(command);
@@ -780,8 +824,60 @@ export function createGameController(
     }, true);
     return update;
   }
+  async function mountRegion(regionId: string, sceneId: string, spawnId: string): Promise<boolean> {
+    let update: GameUpdate | undefined;
+    await run(async () => {
+      const result = await host.dispatch({
+        t: 'world/mountRegion',
+        regionId,
+        sceneId,
+        spawnId,
+      });
+      if (result.accepted) {
+        notice.value = '';
+        update = result;
+      }
+    }, true);
+    return update?.accepted ?? false;
+  }
+  async function startDemoBattle(source: 'world' | 'town' = 'world'): Promise<boolean> {
+    let update: GameUpdate | undefined;
+    await run(async () => {
+      const result = await host.dispatch({ t: 'battle/demo', source });
+      if (result.accepted) {
+        notice.value = '';
+        update = result;
+      }
+    }, true);
+    return update?.accepted ?? false;
+  }
+  async function enterTown(_nodeId?: string): Promise<boolean> {
+    let update: GameUpdate | undefined;
+    await run(async () => {
+      if (town.value && townRuntime.value) {
+        return;
+      }
+      if (worldmap.value?.journey) {
+        return;
+      }
+      try {
+        if (worldmap.value?.scene?.kind === 'town') {
+          await host.dispatch({ t: 'worldmap/leave' });
+        }
+        const result = await host.dispatch({ t: 'worldmap/enter' });
+        if (result.accepted) {
+          notice.value = '';
+          update = result;
+        }
+      } catch (err) {
+        console.warn('enterTown dispatch error ignored', err);
+      }
+    }, true);
+    return update?.accepted ?? false;
+  }
   return {
     busy,
+    enterTown,
     slots,
     storageAvailable,
     saveStatus,
@@ -803,12 +899,14 @@ export function createGameController(
     playing,
     pendingCreation,
     firstSleepAllocation,
+    host,
     wakeYear,
     chapterId,
     trackedQuestId,
     flowStage,
     coldEntryStage,
     presentationNotice,
+    shopRequest,
     flowTextSource: options.flowTextSource,
     ensureBattle,
     initialize,
@@ -818,11 +916,16 @@ export function createGameController(
     startNewGame,
     choosePrologueMode,
     settlePrologueMode,
+    mountRegion,
+    startDemoBattle,
     dialogueContinue,
     dialogueChoose,
+    queryShop,
+    shopCommand,
     commitFirstSleep,
     setSetting,
     setSceneRunsWorldTicks,
+    holdWorldTicks,
     autosave,
     setTrackedQuest(questId: string | null) {
       trackedQuestId.value = trackedQuestId.value === questId ? null : questId;
@@ -849,18 +952,22 @@ export function createGameController(
       !bookSleepActive,
     tick: () => host.dispatch({ t: 'world/tick' }),
     canRunWorldTicks: () =>
+      !disposed &&
       !sessionFailed.value &&
       sceneRunsWorldTicks.value &&
       !busy.value &&
       !loading.value &&
       !saving.value &&
       !battleActive.value &&
-      !worldPaused.value,
+      !worldPaused.value &&
+      worldTickHoldCount === 0,
     reportInternalError,
     worldMapCommand,
     townCommand,
     dispose() {
       disposed = true;
+      worldTickHolds.clear();
+      worldTickHoldCount = 0;
       hostGeneration += 1;
       battleLoading = undefined;
       battle.value?.dispose();

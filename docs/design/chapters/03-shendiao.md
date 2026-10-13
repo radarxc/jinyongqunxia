@@ -209,22 +209,22 @@ AR-10 已把身份锁为行脚采药人，优先于基准 §17 的“2–3 个�
 | 2 | `city_hangzhou` | 临安府（行在） | `rg_jiangnan_taihu` | 南宋行在；商路、文书与大型营生结算点 | 开局后 |
 | 3 | `city_suzhou` | 平江府 | `rg_jiangnan_taihu` | 太湖水路与姑苏旧迹；前代慕容残本接口 | 开局后 |
 | 4 | `city_wuxi` | 无锡县 | `rg_jiangnan_taihu` | 丐帮旧会点与水镖中转 | 第一锚点后 |
-| 5 | `city_huzhou` | 安吉州／湖州**（待考）** | `rg_jiangnan_taihu` | 丝茶、山庄与避雨驿路 | 第一锚点后 |
+| 5 | `city_huzhou` | 安吉州 | `rg_jiangnan_taihu` | 丝茶、山庄与避雨驿路 | 第一锚点后 |
 | 6 | `city_taohuadao` | 桃花岛（小说） | `rg_donghai_islands` | 黄药师本岛；桃林阵与药圃，不设普通城市营生 | 程英／黄蓉引路或解航图 |
 | 7 | `city_xian` | 京兆府 | `rg_guanzhong` | 终南门户、北南驿路、全真外务 | 主线北上 |
 | 8 | `city_huayin` | 华阴县 | `rg_guanzhong` | 华山脚补给；雪峰双绝与终局重逢 | 第一锚点后；雪峰需 qg3 |
-| 9 | `city_kaifeng` | 南京开封府／汴京 | `rg_zhongyuan` | 金境都城与南北情报市场；政治地位按时代层显示 | 取得边境文牒 |
-| 10 | `city_luoyang` | 河南府 | `rg_zhongyuan` | 驿路枢纽、丐帮流动联络与镖业 | 第一锚点后 |
+| 9 | `city_kaifeng` | 汴梁（蒙古南京路） | `rg_zhongyuan` | 金境都城与南北情报市场；政治地位按时代层显示 | 取得边境文牒 |
+| 10 | `city_luoyang` | 河南府（蒙古河南府路） | `rg_zhongyuan` | 驿路枢纽、丐帮流动联络与镖业 | 第一锚点后 |
 | 11 | `city_dengfeng` | 登封县 | `rg_zhongyuan` | 少室山门；少林背景、寺外挂单和碑墨拓印 | 中段开放；藏经阁不可自由进入 |
 | 12 | `city_xiangyang` | 襄阳府 | `rg_jingxiang` | 南宋军镇；郭家、丐帮分舵与守城主场 | 大胜关后 |
 | 13 | `city_jingzhou` | 江陵府 | `rg_jingxiang` | 长江粮运、伤员后送与商旅避战 | 大胜关后 |
-| 14 | `city_wuhan` | 鄂州／汉阳军 | `rg_jingxiang` | 汉水商埠；船镖与撤离线中继 | 大胜关后 |
+| 14 | `city_wuhan` | 鄂州 / 汉阳军 | `rg_jingxiang` | 汉水商埠；船镖与撤离线中继 | 大胜关后 |
 | 15 | `city_yueyang` | 岳州 | `rg_huxiang` | 洞庭渡口、丐帮旧迹与铁掌传闻 | 湖湘支线开启 |
 | 16 | `city_changsha` | 潭州 | `rg_huxiang` | 茶货、赌局与百花谷补给中转 | 湖湘支线开启 |
-| 17 | `city_dali` | 蒙古辖大理城 | `rg_dali_cangshan` | 1253 后政权状态；段氏只保留武林与家族支脉 | 一灯／武三通线 |
+| 17 | `city_dali` | 大理（蒙古辖，段氏总管） | `rg_dali_cangshan` | 1253 后政权状态；段氏只保留武林与家族支脉 | 一灯／武三通线 |
 | 18 | `city_lijiang` | 丽江路前身**（待考）** | `rg_dali_cangshan` | 山路、马帮与前代线索转运 | 大理商路开放 |
 | 19 | `city_lhasa` | 拉萨**（待考）** | `rg_qingzang` | 密宗与商队节点；现实宗教职衔不由游戏职级外推 | 密宗／商队专线 |
-| 20 | `city_karakorum` | 和林／哈拉和林 | `rg_mobei` | 蒙古都城与幕府；只开放任务街区，不复制整座都城 | 邪线文牒或侦察线 |
+| 20 | `city_karakorum` | 和林（蒙古都城） | `rg_mobei` | 蒙古都城与幕府；只开放任务街区，不复制整座都城 | 邪线文牒或侦察线 |
 
 ### 3.5 关键场景与轻功门禁
 

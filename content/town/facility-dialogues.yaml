@@ -1,0 +1,19 @@
+schemaVersion: facility-dialogue.v1
+# （原创扩展）以下系统入口绑定服务试点流程，不对应原著固定对白。
+bindings:
+  - { chapter: ch01_tianlong, kind: shop, sub: yaopu, roleKey: keeper, storyId: story_ch01_facility, entryKey: yaopu_keeper }
+  - { chapter: ch01_tianlong, kind: shop, sub: zahuo, roleKey: keeper, storyId: story_ch01_facility, entryKey: zahuo_keeper }
+  - { chapter: ch01_tianlong, kind: inn, sub: kedian, roleKey: keeper, storyId: story_ch01_facility, entryKey: kedian_keeper }
+  - { chapter: ch01_tianlong, kind: shop, sub: tiejiang, roleKey: keeper, storyId: story_ch01_facility, entryKey: tiejiang_keeper }
+  - { chapter: ch01_tianlong, kind: shop, sub: chengyi, roleKey: keeper, storyId: story_ch01_facility, entryKey: chengyi_keeper }
+  - { chapter: ch01_tianlong, kind: stall, sub: mashi, roleKey: keeper, storyId: story_ch01_facility, entryKey: mashi_keeper }
+  - { chapter: ch01_tianlong, kind: stall, sub: shitan, roleKey: vendor, storyId: story_ch01_facility, entryKey: shitan_vendor }
+  - { chapter: ch10_baima, kind: shop, sub: yaopu, roleKey: keeper, storyId: story_ch10_facility, entryKey: yaopu_keeper }
+  - { chapter: ch10_baima, kind: shop, sub: zahuo, roleKey: keeper, storyId: story_ch10_facility, entryKey: zahuo_keeper }
+  - { chapter: ch10_baima, kind: inn, sub: kedian, roleKey: keeper, storyId: story_ch10_facility, entryKey: kedian_keeper }
+  - { chapter: ch10_baima, kind: shop, sub: tiejiang, roleKey: keeper, storyId: story_ch10_facility, entryKey: tiejiang_keeper }
+  - { chapter: ch10_baima, kind: shop, sub: chengyi, roleKey: keeper, storyId: story_ch10_facility, entryKey: chengyi_keeper }
+  - { chapter: ch10_baima, kind: stall, sub: tiejiang, roleKey: keeper, storyId: story_ch10_facility, entryKey: tiejiang_keeper }
+  - { chapter: ch10_baima, kind: stall, sub: chengyi, roleKey: keeper, storyId: story_ch10_facility, entryKey: chengyi_keeper }
+  - { chapter: ch10_baima, kind: stall, sub: mashi, roleKey: keeper, storyId: story_ch10_facility, entryKey: mashi_keeper }
+  - { chapter: ch10_baima, kind: stall, sub: shitan, roleKey: vendor, storyId: story_ch10_facility, entryKey: shitan_vendor }

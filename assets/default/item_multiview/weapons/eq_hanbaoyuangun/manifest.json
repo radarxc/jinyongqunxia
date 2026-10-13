@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_hanbaoyuangun",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/weapons/eq_hanbaoyuangun.png",
+  "generatedAt": "2026-10-07T15:23:54.684Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 96616,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/ca0287fe-9d87-4d88-b25f-9cf4b75662e4/multiview_0_ca0287fe-9d87-4d88-b25f-9cf4b75662e4.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 73448,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/ca0287fe-9d87-4d88-b25f-9cf4b75662e4/multiview_1_ca0287fe-9d87-4d88-b25f-9cf4b75662e4.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 76229,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/ca0287fe-9d87-4d88-b25f-9cf4b75662e4/multiview_3_ca0287fe-9d87-4d88-b25f-9cf4b75662e4.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 102516,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/ca0287fe-9d87-4d88-b25f-9cf4b75662e4/multiview_2_ca0287fe-9d87-4d88-b25f-9cf4b75662e4.jpeg"
+    }
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "anchor": "grip",
+  "axisCheckWaiver": {
+    "approvedBy": "coordinator",
+    "date": "2026-10-09",
+    "evidence": {
+      "endToEnd": 0.96107949,
+      "maxLateralDevMu": 0.044,
+      "sliceCentroidLine": 0.9976
+    },
+    "reason": "剑鞘旁顺挂长穗绳，几何主轴估计不可靠；朝向已在 5173 waistL 实测端正"
+  },
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+    "sha256": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94"
+  },
+  "class": "weapon",
+  "diagnostics": {
+    "anchorPositionMu": [
+      0.0,
+      8.940696724635266e-10,
+      0.0
+    ],
+    "anchorSourceMu": [
+      -0.212185563,
+      0.334857819,
+      0.475885703
+    ],
+    "componentsInput": 1,
+    "componentsOutput": 1,
+    "handleEndEvidence": {
+      "candidates": [
+        {
+          "bin": 22,
+          "binCenterFraction": 0.5625,
+          "binFractionRange": [
+            0.55,
+            0.575
+          ],
+          "distanceFromEndFraction": 0.425236858,
+          "distanceFromEndRange": [
+            0.425,
+            0.45
+          ],
+          "fraction": 0.574763142,
+          "leftMedianMu": 0.098024351,
+          "peakAxialMu": -0.014549,
+          "peakRatio": 1.635354597,
+          "rightMedianMu": 0.275876198,
+          "selectedEnd": "high",
+          "widthMu": 0.451155408
+        },
+        {
+          "bin": 27,
+          "binCenterFraction": 0.6875,
+          "binFractionRange": [
+            0.675,
+            0.7
+          ],
+          "distanceFromEndFraction": 0.323316028,
+          "distanceFromEndRange": [
+            0.3,
+            0.325
+          ],
+          "fraction": 0.676683972,
+          "leftMedianMu": 0.144466617,
+          "peakAxialMu": 0.132322268,
+          "peakRatio": 2.803549888,
+          "rightMedianMu": 0.158791703,
+          "selectedEnd": "high",
+          "widthMu": 0.445180461
+        }
+      ],
+      "chosen": {
+        "bin": 27,
+        "binCenterFraction": 0.6875,
+        "binFractionRange": [
+          0.675,
+          0.7
+        ],
+        "distanceFromEndFraction": 0.323316028,
+        "distanceFromEndRange": [
+          0.3,
+          0.325
+        ],
+        "fraction": 0.676683972,
+        "leftMedianMu": 0.144466617,
+        "peakAxialMu": 0.132322268,
+        "peakRatio": 2.803549888,
+        "rightMedianMu": 0.158791703,
+        "selectedEnd": "high",
+        "widthMu": 0.445180461
+      },
+      "method": "guard-peak",
+      "selectedEnd": "high",
+      "selectedEndBeforeFlip": "high"
+    },
+    "keep": "all",
+    "profileWidthsMu": [
+      0.09477945,
+      0.104507112,
+      0.105819916,
+      0.10620451,
+      0.104709301,
+      0.093828924,
+      0.094092128,
+      0.095232554,
+      0.096068809,
+      0.096970795,
+      0.097717099,
+      0.098331603,
+      0.098894721,
+      0.098969119,
+      0.099446474,
+      0.148249214,
+      0.157369254,
+      0.144501401,
+      0.144431833,
+      0.401864184,
+      0.416221271,
+      0.444441792,
+      0.451155408,
+      0.406029257,
+      0.407785102,
+      0.406017302,
+      0.385215095,
+      0.445180461,
+      0.435304675,
+      0.367945794,
+      0.333966625,
+      0.307584694,
+      0.278523395,
+      0.26931126,
+      0.273229001,
+      0.191752062,
+      0.168025716,
+      0.158791703,
+      0.130551194,
+      0.072613218
+    ],
+    "selectedEnd": "high"
+  },
+  "forward": "+Z",
+  "gripAdjust": {
+    "pos": [
+      0.042871588,
+      0.012869511,
+      -0.003748693
+    ],
+    "quat": [
+      -0.887010833,
+      -0.0,
+      -0.0,
+      0.461748613
+    ]
+  },
+  "handleDetection": {
+    "bladeSegmentVertices": 3996,
+    "handleEnd": "min",
+    "handleSegmentVertices": 3269,
+    "method": "guard-peak",
+    "peakAxialMu": 0.135724498,
+    "peakFraction": 0.323316028
+  },
+  "id": "item_qingfeng_sword",
+  "kind": "prop",
+  "mPerMu": 1.67957882,
+  "measuredLengthMu": 1.440883165,
+  "offsetMm": 75.443757445,
+  "realSizeM": 0.9,
+  "scaleApplied": 0.371850376,
+  "schema": "tianshu-dressup-fit.v1",
+  "sheatheAngleDeg": 35.0,
+  "sheathed": true,
+  "sizeAxis": "length",
+  "socket": "waistL",
+  "source": {
+    "file": "apps/game/public/models/props/item_qingfeng_sword_raw.glb",
+    "sha256": "376aff1fbc26a59a73bf20d4b88d4143d762384a868a4a2b5df107bad3c082d0"
+  },
+  "stats": {
+    "boundaryEdges": 0,
+    "components": 1,
+    "fileBytes": 20797320,
+    "nonManifoldEdges": 0,
+    "triangles": 289300,
+    "vertices": 157844
+  },
+  "template": "tpl_f2_medium",
+  "up": "+Y"
+}

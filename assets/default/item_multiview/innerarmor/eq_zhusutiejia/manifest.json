@@ -1,0 +1,27 @@
+{
+  "itemId": "eq_zhusutiejia",
+  "sourceFile": "/Users/bytedance/Projects/jinyongqunxia/assets/default/item/innerarmor/eq_zhusutiejia.png",
+  "generatedAt": "2026-10-07T14:48:44.529Z",
+  "views": {
+    "front": {
+      "file": "front.jpg",
+      "size": 246609,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/866e21df-aaac-4e9a-9d6d-43fbd30ac01a/multiview_0_866e21df-aaac-4e9a-9d6d-43fbd30ac01a.jpeg"
+    },
+    "left": {
+      "file": "left.jpg",
+      "size": 201026,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/866e21df-aaac-4e9a-9d6d-43fbd30ac01a/multiview_1_866e21df-aaac-4e9a-9d6d-43fbd30ac01a.jpeg"
+    },
+    "back": {
+      "file": "back.jpg",
+      "size": 212597,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/866e21df-aaac-4e9a-9d6d-43fbd30ac01a/multiview_3_866e21df-aaac-4e9a-9d6d-43fbd30ac01a.jpeg"
+    },
+    "right": {
+      "file": "right.jpg",
+      "size": 242411,
+      "remoteUrl": "https://tripo-data.rg1.data.tripo3d.com/tripo-studio/20261007/866e21df-aaac-4e9a-9d6d-43fbd30ac01a/multiview_2_866e21df-aaac-4e9a-9d6d-43fbd30ac01a.jpeg"
+    }
+  }
+}

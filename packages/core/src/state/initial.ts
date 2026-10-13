@@ -3,7 +3,7 @@ import { createEmptyEquipment } from './equipment';
 import { createGameClock } from './clock';
 import type { DifficultyId, GameState, ProtagonistIdentity } from './models';
 
-export const SAVE_SCHEMA = 3;
+export const SAVE_SCHEMA = 4;
 export const RULES_PROTOCOL = 3;
 export const CONTENT_HASH_PLACEHOLDER = '0'.repeat(64);
 
@@ -46,7 +46,7 @@ export function createInitialGameState(input: InitialGameStateInput): GameState 
     party: { inventory: { stacks: [] }, equipment: createEmptyEquipment(), money: 0 },
     world: { navigation: { locationId: input.locationId ?? 'city_dali',
       selectedDestinationId: null, pendingMount: null, mountedRegion: null },
-      pendingTimeAdvance: null },
+      pendingTimeAdvance: null, sceneMemory: [] },
     battle: null, dialogue: null,
   };
 }

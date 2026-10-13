@@ -3,7 +3,7 @@ id: it_miji_gumuxinfa
 name: 古墓心法抄本
 kind: manual
 sub: copy
-grade: 3
+grade: 5
 stack: 1
 chapters: any
 origin: expanded
@@ -24,6 +24,6 @@ extension:
     attributes:
       version: 2
       skillRef: sk_gumuxinfa
-      readBre: 30
+      readBre: 35
       maxLayer: 8
-      cultivation: 800
+      cultivation: 1280

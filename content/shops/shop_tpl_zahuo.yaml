@@ -1,0 +1,16 @@
+schemaVersion: shop-template.v1
+key: shop_tpl_zahuo
+nameKey: shop.template.zahuo.name
+facilitySub: zahuo
+# （原创扩展）本货单只作三城试点公共供货，不宣称原著店铺曾售这些物品。
+# 【建议值】杂货类目较广、单行库存较低；普通店三日补货。
+supply:
+  - { itemId: it_yan, maxGrade: 2, baseStock: 8, restockEveryDays: 3, restockAmount: 4, priceBp: 10000 }
+  - { itemId: it_xiaomi, maxGrade: 2, baseStock: 8, restockEveryDays: 3, restockAmount: 4, priceBp: 10000 }
+  - { itemId: it_cumian, maxGrade: 3, baseStock: 6, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }
+  - { itemId: it_qiaomai, maxGrade: 2, baseStock: 6, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }
+  - { itemId: it_dadou, maxGrade: 3, baseStock: 5, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }
+  - { itemId: it_shengjiang, maxGrade: 2, baseStock: 4, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }
+  - { itemId: it_cong, maxGrade: 1, baseStock: 5, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }
+  - { itemId: it_hongzao, maxGrade: 2, baseStock: 4, restockEveryDays: 3, restockAmount: 2, priceBp: 10000 }
+  - { itemId: it_ganliang, maxGrade: 3, baseStock: 5, restockEveryDays: 3, restockAmount: 3, priceBp: 10000 }

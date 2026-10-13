@@ -37,6 +37,10 @@
   },
   "slot_pool_overrides": [
    [
+    "^TOOL-dressup-",
+    "assets"
+   ],
+   [
     "^TOOL-(map|rig|ingest|assets)-",
     "assets"
    ]
@@ -29089,6 +29093,3806 @@
    "full_checkout": true
   },
   {
+   "id": "ENG-town2-input-port",
+   "title": "城镇探索 v2 · P1 · 平台输入层 @tianshu/platform/input（按住键、按键沿、滚轮归一、捏合、点按 vs 拖动）",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-town2-input-port.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/platform/src/input/**",
+    "packages/platform/package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/platform/src/input/index.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/platform/src/input",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-txminimap",
+   "title": "城镇探索 v2 · P1 · 右上小地图 TxMinimap + 交互条 TxContextActions + 小地图数学",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-town2-txminimap.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/ui/src/components/explore/TxMinimap*",
+    "packages/ui/src/components/explore/TxContextActions*",
+    "packages/ui/src/explore/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/ui/src/components/explore/TxMinimap.vue",
+     "packages/ui/src/components/explore/TxContextActions.vue",
+     "packages/ui/src/explore/minimap-math.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-shop-schema",
+   "title": "城镇探索 v2 · P1 · 设施 / 店铺模板 / 价目 / 设施对话 schema + Ink 动作 facility/openShop",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-town2-shop-schema.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/schemas/shop.ts",
+    "packages/data/src/schemas/facility.ts",
+    "packages/data/src/schemas/event-actions.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/content-registry.ts",
+    "packages/data/src/build/discover.ts",
+    "packages/data/src/shop-facility.test.ts",
+    "packages/data/src/content-index.ts",
+    "packages/data/src/build/field-registry.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/shop.ts",
+     "packages/data/src/schemas/facility.ts",
+     "packages/data/src/shop-facility.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "test"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-txshop",
+   "title": "城镇探索 v2 · P1 · 店铺界面 TxShop（买 / 卖、步进、价格与禁用原因，只发意图）",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-town2-txshop.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/ui/src/components/explore/TxShop*",
+    "packages/ui/src/explore/money*"
+   ],
+   "validate": {
+    "exists": [
+     "packages/ui/src/components/explore/TxShop.vue",
+     "packages/ui/src/explore/money.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-buildgen-p0-scaffold",
+   "title": "城镇 3D 古建 · 规划器骨架 town-plan（类型、坐标框、类型解析、rng、家具目录、全部桩）",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p0-scaffold.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/**",
+    "packages/data/package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/index.ts",
+     "packages/data/src/build/town-plan/types.ts",
+     "packages/data/src/build/town-plan/frame.ts",
+     "packages/data/src/build/town-plan/archetype.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-buildgen-r0-core",
+   "title": "城镇 3D 古建 · 网格器骨架 buildgen（类型、构建器、图元、开洞、检查、哈希、配方注册与桩）",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r0-core.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/index.ts",
+    "packages/render/src/buildgen/types.ts",
+    "packages/render/src/buildgen/mesher/core/**",
+    "packages/render/src/buildgen/mesher/recipes/**",
+    "packages/render/src/buildgen/mesher/roof/index.ts",
+    "packages/render/src/buildgen/mesher/generate.ts",
+    "packages/render/src/buildgen/three/layer.ts",
+    "packages/render/src/buildgen/testing/mini-plans.ts",
+    "packages/render/src/buildgen/**/*.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/types.ts",
+     "packages/render/src/buildgen/mesher/core/buffer.ts",
+     "packages/render/src/buildgen/mesher/core/openings.ts",
+     "packages/render/src/buildgen/mesher/generate.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "DES-town2-docsync",
+   "title": "城镇探索 v2 · 文档同步：AR-114 与 tech/14–16 的口径落进 design/26、22、11 与 tech/01、02、03、05、章节文档",
+   "phase": "TOWN2",
+   "wave": 50,
+   "kind": "draft",
+   "prompt": "DES-town2-docsync.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114；执行 traex GPT-5.6-Sol xhigh（作者 10-11）",
+   "writes": [
+    "docs/design/26-immersive-ui.md",
+    "docs/design/22-town-layout-and-generation.md",
+    "docs/design/11-open-world.md",
+    "docs/tech/01-architecture.md",
+    "docs/tech/02-rendering.md",
+    "docs/tech/03-mobile-performance.md",
+    "docs/tech/05-gameplay-engine.md",
+    "docs/design/chapters/01-tianlong.md",
+    "docs/design/chapters/10-baima.md"
+   ],
+   "validate": {
+    "exists": [
+     "docs/design/26-immersive-ui.md"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-heights",
+   "title": "城镇探索 v2 · P1 · 人物按身高数据缩放（去 3.4 m、按头顶骨骼量身高、GLB 就绪后隐去重叠 2D rig）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-town2-heights.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/actors/**",
+    "packages/render/src/gltf/load.ts",
+    "packages/render/src/gltf/load.test.ts",
+    "packages/render/src/town/scene.ts",
+    "packages/render/src/town/types.ts",
+    "packages/render/src/region/scene.ts",
+    "packages/render/src/region/types.ts",
+    "packages/render/src/town/*.test.ts",
+    "packages/render/src/region/*.test.ts",
+    "apps/game/src/pages/TownPage.vue",
+    "apps/game/src/pages/RegionPage.vue"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/actors/heights.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/actors",
+      "packages/render/src/gltf",
+      "packages/render/src/town",
+      "packages/render/src/region",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-actionmap",
+   "title": "城镇探索 v2 · P1 · 应用输入映射 ActionMap + 缩放控制器 ZoomController（缩放快捷键）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-town2-actionmap.md",
+   "deps": [
+    "ENG-town2-input-port"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/input/**",
+    "apps/game/src/App.vue",
+    "apps/game/src/app-flow.test.ts",
+    "packages/platform/src/input/pointer.ts",
+    "packages/platform/src/input/pointer.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/input/action-map.ts",
+     "apps/game/src/input/zoom.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/input",
+      "apps/game/src/app-flow.test.ts",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-kernel-prep",
+   "title": "城镇探索 v2 · core 内核准备（探索 / 店铺命令与拒绝码、处理器桩、行走 tick 钩子、存档 schema 4、懒加载族）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-town2-kernel-prep.md",
+   "deps": [
+    "ENG-town2-shop-schema"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/command/index.ts",
+    "packages/core/src/command/bus.ts",
+    "packages/core/src/command/handlers.ts",
+    "packages/core/src/command/shop-handler.ts",
+    "packages/core/src/command/explore-handler.ts",
+    "packages/core/src/economy/shop-types.ts",
+    "packages/core/src/world/explore/types.ts",
+    "packages/core/src/world/explore/tick.ts",
+    "packages/core/src/world/explore/tick-hook.ts",
+    "packages/core/src/world/explore/walk-validate.ts",
+    "packages/core/src/dialogue/context-validate.ts",
+    "packages/core/src/state/**",
+    "packages/core/src/entries/shop-command.ts",
+    "packages/core/src/entries/explore-command.ts",
+    "packages/core/package.json",
+    "packages/core/src/**/*.golden.json",
+    "packages/core/src/**/*.test.ts",
+    "apps/game/src/runtime/core-dispatch.ts",
+    "apps/game/src/runtime/*.test.ts",
+    "apps/game/src/storage/*.test.ts",
+    "apps/game/src/storage/save-service.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/types.ts",
+     "packages/core/src/economy/shop-types.ts",
+     "packages/core/src/entries/explore-command.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/runtime",
+      "apps/game/src/storage",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "DES-town2-pilot-content",
+   "title": "城镇探索 v2 · 试点内容（价目表、6 类店铺货单、三城设施绑定与店名、设施对话 Ink）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "DES-town2-pilot-content.md",
+   "deps": [
+    "ENG-town2-shop-schema"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "content/common/economy/**",
+    "content/shops/**",
+    "content/town/facilities/**",
+    "content/town/facility-dialogues.yaml",
+    "content/story/ch01/story_ch01_facility.*",
+    "content/story/ch10/story_ch10_facility.*",
+    "content/locales/zh-Hans/town-facilities.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "content/common/economy/price-table.yaml",
+     "content/town/facilities/city_dali__ch01.yaml",
+     "content/town/facility-dialogues.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "pnpm",
+      "content:compile-story"
+     ],
+     [
+      "pnpm",
+      "content:test-compile-story"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-buildgen-p1-kits",
+   "title": "城镇 3D 古建 · 年代套件 schema 与编译 + song_dali / xiyu（唐代佛教变体）+ 按城套件表",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p1-kits.md",
+   "deps": [
+    "ENG-buildgen-p0-scaffold",
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/kit/**",
+    "packages/data/src/build/town-plan/types.ts",
+    "packages/data/src/build/town-plan/__tests__/kits.test.ts",
+    "content/town/buildkits/**",
+    "packages/data/src/build/discover.ts",
+    "packages/data/src/build/town-plan/testing/index.ts",
+    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
+    "apps/game/src/town-contract.test.ts",
+    "packages/render/package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/kit/compile.ts",
+     "content/town/buildkits/song_dali.yaml",
+     "content/town/buildkits/xiyu.yaml",
+     "content/town/buildkits/city-kits.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r1-hall-body",
+   "title": "城镇 3D 古建 · hall 配方屋身（台基、台阶、柱网、梁、墙与门窗、斗拱、陈设）+ INV-2 / INV-4",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r1-hall-body.md",
+   "deps": [
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/parts/platform.ts",
+    "packages/render/src/buildgen/mesher/parts/steps.ts",
+    "packages/render/src/buildgen/mesher/parts/columns.ts",
+    "packages/render/src/buildgen/mesher/parts/beams.ts",
+    "packages/render/src/buildgen/mesher/parts/walls.ts",
+    "packages/render/src/buildgen/mesher/parts/frames.ts",
+    "packages/render/src/buildgen/mesher/parts/brackets.ts",
+    "packages/render/src/buildgen/mesher/parts/dressing.ts",
+    "packages/render/src/buildgen/mesher/recipes/hall.ts",
+    "packages/render/src/buildgen/mesher/core/inspect.ts",
+    "packages/render/src/buildgen/__tests__/hall.test.ts",
+    "packages/render/src/buildgen/stubs.test.ts",
+    "packages/render/src/buildgen/testing/mini-plans.ts",
+    "packages/render/src/buildgen/generate.test.ts",
+    "packages/render/src/buildgen/inspect.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/recipes/hall.ts",
+     "packages/render/src/buildgen/__tests__/hall.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r2-roof-a",
+   "title": "城镇 3D 古建 · 屋顶（一）举折 / 举架、坡面、硬山 / 悬山 / 平顶 / 布棚、屋脊、屋面壳",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r2-roof-a.md",
+   "deps": [
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/roof/index.ts",
+    "packages/render/src/buildgen/mesher/roof/profile.ts",
+    "packages/render/src/buildgen/mesher/roof/patch.ts",
+    "packages/render/src/buildgen/mesher/roof/gable.ts",
+    "packages/render/src/buildgen/mesher/roof/flat.ts",
+    "packages/render/src/buildgen/mesher/roof/canopy.ts",
+    "packages/render/src/buildgen/mesher/roof/ridge.ts",
+    "packages/render/src/buildgen/mesher/roof/shell.ts",
+    "packages/render/src/buildgen/__tests__/roof-a.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/roof/profile.ts",
+     "packages/render/src/buildgen/__tests__/roof-a.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-buildgen-t1-placeholders",
+   "title": "城镇 3D 古建 · 程序化占位贴图（每套件 16 层 + 道具 8 层，真实尺度、可复现）与按档条带",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "TOOL-buildgen-t1-placeholders.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/buildgen/common.py",
+    "tools/buildgen/make_placeholder_layers.py",
+    "tools/buildgen/build_layer_strips.py",
+    "tools/buildgen/tests/test_layers.py",
+    "assets/default/buildkit/song_dali/**",
+    "assets/default/buildkit/xiyu/**",
+    "assets/default/buildkit/props/**",
+    "content/town/buildkits/song_dali.yaml",
+    "content/town/buildkits/xiyu.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "tools/buildgen/make_placeholder_layers.py",
+     "assets/default/buildkit/song_dali/manifest.yaml",
+     "assets/default/buildkit/xiyu/manifest.yaml",
+     "assets/default/buildkit/props/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/buildgen/make_placeholder_layers.py",
+      "--all"
+     ],
+     [
+      "{python}",
+      "tools/buildgen/build_layer_strips.py",
+      "--all",
+      "--check"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/buildgen/tests",
+      "-p",
+      "test_*.py"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-chunks",
+   "title": "城镇探索 v2 · 分块与预算（区域 / 城镇 / 古建 / 人物 / meshopt 懒块与预算、perf 按文件名注册、新素材目录进包、类型契约测试）",
+   "phase": "TOWN2",
+   "wave": 51,
+   "kind": "draft",
+   "prompt": "ENG-town2-chunks.md",
+   "deps": [
+    "ENG-buildgen-p0-scaffold",
+    "ENG-buildgen-r0-core",
+    "ENG-buildgen-p1-kits"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/vite.config.ts",
+    "apps/game/build/town-chunks.ts",
+    "apps/game/build/town-chunks.test.ts",
+    "apps/game/build/town-assets.ts",
+    "apps/game/build/town-assets.test.ts",
+    "apps/game/build/size-groups-plugin.ts",
+    "apps/game/build/size-groups-plugin.test.ts",
+    "tools/perf/budgets.json",
+    "tools/perf/check_size.mjs",
+    "tools/perf/check_size.test.mjs",
+    "tools/perf/README.md",
+    "packages/render/package.json",
+    "vitest.config.ts",
+    "package.json",
+    "apps/game/src/town-contract.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "tools/perf/budgets.json",
+     "apps/game/build/town-chunks.ts",
+     "apps/game/build/town-assets.ts",
+     "apps/game/src/town-contract.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/build",
+      "tools/perf",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-regionmap-ext",
+   "title": "城镇探索 v2 · 区域地图增量 schema（chunk 三层、town-scene.v1、FacilityNpc / Exit / MeditationSpot、MapEntry.scene）+ core 解码",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-town2-regionmap-ext.md",
+   "deps": [
+    "ENG-town2-shop-schema"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15 §2",
+   "writes": [
+    "packages/data/src/schemas/region-map.ts",
+    "packages/data/src/schemas/town-scene.ts",
+    "packages/data/src/schemas/world-map.ts",
+    "packages/data/src/schemas/index.ts",
+    "packages/data/src/region-map-town.test.ts",
+    "packages/core/src/world/region-codec.ts",
+    "packages/core/src/world/region-codec.test.ts",
+    "packages/data/src/schemas/facility.ts",
+    "packages/data/src/schemas/gate-expr.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/town-scene.ts",
+     "packages/data/src/region-map-town.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/region-map-town.test.ts",
+      "packages/data/src/schemas",
+      "packages/core/src/world",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-buildgen-p2-plan-hall",
+   "title": "城镇 3D 古建 · 单体规划 planBuilding（尺寸档、开间、门、屋顶标高、可走面；hall / storeyed / stall / adobe）",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p2-plan-hall.md",
+   "deps": [
+    "ENG-buildgen-p1-kits"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 AR-114；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/16 §3–4",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ],
+   "writes": [
+    "packages/data/src/build/town-plan/dims.ts",
+    "packages/data/src/build/town-plan/doors.ts",
+    "packages/data/src/build/town-plan/plan-hall.ts",
+    "packages/data/src/build/town-plan/testing/**",
+    "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts",
+    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
+    "packages/data/src/build/town-plan/types.ts",
+    "packages/data/src/schemas/town-scene.ts",
+    "packages/data/src/region-map-town.test.ts",
+    "packages/render/src/buildgen/types.ts",
+    "apps/game/src/town-plan-contract.test.ts",
+    "packages/data/src/build/town-plan/index.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/testing/pilot-buildings.json",
+     "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-town2-shop-core",
+   "title": "城镇探索 v2 · core 店铺结算（shop/buy|sell、定价上下文、店铺查询、补货、ShopLocator v1）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-town2-shop-core.md",
+   "deps": [
+    "ENG-town2-kernel-prep"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/economy/shop-pricing.ts",
+    "packages/core/src/economy/shop-query.ts",
+    "packages/core/src/economy/shop-locator.ts",
+    "packages/core/src/economy/shop-types.ts",
+    "packages/core/src/economy/shop-*.test.ts",
+    "packages/core/src/economy/__fixtures__/**",
+    "packages/core/src/command/shop-handler.ts",
+    "packages/core/src/command/shop-handler.test.ts",
+    "packages/core/src/entries/shop-command.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/economy/shop-pricing.ts",
+     "packages/core/src/economy/shop-query.ts",
+     "packages/core/src/command/shop-handler.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-dialogue-facility",
+   "title": "城镇探索 v2 · core 设施对话（对话上下文、facility/openShop 呈现步、interlocutor、v1 town/interact 改走设施对话）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-town2-dialogue-facility.md",
+   "deps": [
+    "ENG-town2-kernel-prep"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/dialogue/**",
+    "packages/core/src/event/event-executor.ts",
+    "packages/core/src/event/*.test.ts",
+    "packages/core/src/command/story-handlers.ts",
+    "packages/core/src/command/handlers.ts",
+    "packages/core/src/command/handlers.test.ts",
+    "packages/core/src/command/dialogue-intents.test.ts",
+    "packages/core/src/command/new-run-dialogue.test.ts",
+    "packages/core/src/command/facility-dialogue.test.ts",
+    "packages/core/src/world/town-runtime.ts",
+    "packages/core/src/world/town-runtime.test.ts",
+    "apps/game/src/runtime/session.test.ts",
+    "packages/core/src/event/index.ts",
+    "apps/game/src/flow/event-presentation.ts",
+    "apps/game/src/flow/event-presentation.test.ts",
+    "packages/core/src/state/models.ts",
+    "packages/core/src/state/state.test.ts",
+    "packages/data/src/schemas/facility.ts",
+    "packages/data/src/shop-facility.test.ts",
+    "apps/game/src/runtime/session.ts",
+    "apps/game/src/runtime/content.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/command/facility-dialogue.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r9-layer",
+   "title": "城镇 3D 古建 · 建筑层 BuildingLayer（分格合批、static-lit 材质、状态纹理、剖切三态、透视圈、门扇、招牌、室内 LRU、暗角、拾取、恢复 / 释放）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r9-layer.md",
+   "deps": [
+    "ENG-buildgen-r0-core",
+    "ENG-buildgen-r1-hall-body",
+    "ENG-buildgen-r2-roof-a"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/three/**",
+    "packages/render/src/materials/static-lit/**",
+    "packages/render/src/buildgen/types.ts",
+    "packages/render/src/buildgen/stubs.test.ts",
+    "packages/render/src/buildgen/mesher/core/buffer.ts",
+    "packages/render/src/buildgen/index.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/three/cutaway.ts",
+     "packages/render/src/buildgen/three/layer.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "packages/render/src/materials",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r3-roof-b",
+   "title": "城镇 3D 古建 · 屋顶（二）歇山、庑殿、攒尖、卷棚、穹顶、翼角、脊饰",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r3-roof-b.md",
+   "deps": [
+    "ENG-buildgen-r2-roof-a"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/roof/hip.ts",
+    "packages/render/src/buildgen/mesher/roof/xieshan.ts",
+    "packages/render/src/buildgen/mesher/roof/pyramid.ts",
+    "packages/render/src/buildgen/mesher/roof/rolled.ts",
+    "packages/render/src/buildgen/mesher/roof/dome.ts",
+    "packages/render/src/buildgen/mesher/roof/corner.ts",
+    "packages/render/src/buildgen/mesher/roof/ornaments.ts",
+    "packages/render/src/buildgen/mesher/roof/index.ts",
+    "packages/render/src/buildgen/__tests__/roof-b.test.ts",
+    "packages/render/src/buildgen/mesher/recipes/hall.ts",
+    "packages/render/src/buildgen/__tests__/hall.test.ts",
+    "packages/render/src/buildgen/generate.test.ts",
+    "packages/render/src/buildgen/__tests__/roof-a.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/roof/corner.ts",
+     "packages/render/src/buildgen/mesher/roof/xieshan.ts",
+     "packages/render/src/buildgen/__tests__/roof-b.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r4-storeyed-stall",
+   "title": "城镇 3D 古建 · 两层楼（腰檐、平座、上层）与摊位配方",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r4-storeyed-stall.md",
+   "deps": [
+    "ENG-buildgen-r1-hall-body",
+    "ENG-buildgen-r2-roof-a"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/recipes/storeyed.ts",
+    "packages/render/src/buildgen/mesher/recipes/stall.ts",
+    "packages/render/src/buildgen/mesher/recipes/index.ts",
+    "packages/render/src/buildgen/mesher/parts/balcony.ts",
+    "packages/render/src/buildgen/mesher/parts/pent-eave.ts",
+    "packages/render/src/buildgen/mesher/parts/awning.ts",
+    "packages/render/src/buildgen/__tests__/storeyed.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/parts/pent-eave.ts",
+     "packages/render/src/buildgen/__tests__/storeyed.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-interior-i1-core",
+   "title": "城镇 3D 古建 · 室内摆放求解器 + 七类模板（杂货、药铺、客栈、酒肆、住宅、铁匠、货摊）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-interior-i1-core.md",
+   "deps": [
+    "ENG-buildgen-p2-plan-hall"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/interiors/solver.ts",
+    "packages/data/src/build/town-plan/interiors/hexes.ts",
+    "packages/data/src/build/town-plan/interiors/general-store.ts",
+    "packages/data/src/build/town-plan/interiors/pharmacy.ts",
+    "packages/data/src/build/town-plan/interiors/inn.ts",
+    "packages/data/src/build/town-plan/interiors/tavern.ts",
+    "packages/data/src/build/town-plan/interiors/residence.ts",
+    "packages/data/src/build/town-plan/interiors/smithy.ts",
+    "packages/data/src/build/town-plan/interiors/stall.ts",
+    "packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts",
+    "packages/data/src/build/town-plan/plan-hall.ts",
+    "packages/data/src/build/town-plan/__tests__/stubs.test.ts",
+    "packages/data/src/build/town-plan/__tests__/plan-hall.test.ts",
+    "packages/data/src/build/town-plan/__tests__/plan-building.test.ts",
+    "packages/data/src/build/town-plan/fixtures.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/interiors/pharmacy.ts",
+     "packages/data/src/build/town-plan/__tests__/interiors-i1.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-explore-graph",
+   "title": "城镇探索 v2 · core 探索图与 A*（类型化数组图缓存、二叉堆、多目标、吸附）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-graph.md",
+   "deps": [
+    "ENG-town2-regionmap-ext",
+    "ENG-town2-kernel-prep"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/world/explore/graph.ts",
+    "packages/core/src/world/explore/heap.ts",
+    "packages/core/src/world/explore/astar.ts",
+    "packages/core/src/world/explore/snap.ts",
+    "packages/core/src/world/explore/__fixtures__/**",
+    "packages/core/src/world/explore/*.test.ts",
+    "packages/core/src/world/region-runtime.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/astar.ts",
+     "packages/core/src/world/explore/graph.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-town2-compiler-core",
+   "title": "城镇探索 v2 · 城镇编译器 v2 核心（布局 → 区域场景、门、城墙城门、设施店员、I1–I6）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "TOOL-town2-compiler-core.md",
+   "deps": [
+    "ENG-town2-regionmap-ext",
+    "ENG-buildgen-p0-scaffold"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town/invariants.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-render-core",
+   "title": "城镇探索 v2 · render 区域场景扩展（px 缩放、弹簧跟随、航位推算、路线带、基向量与视野四边形）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-render-core.md",
+   "deps": [
+    "ENG-town2-chunks",
+    "ENG-town2-heights",
+    "ENG-town2-regionmap-ext"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/region/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/region/scene.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/region",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-interior-r8-props",
+   "title": "城镇 3D 古建 · 室内家具道具库（≥ 36 件）+ 室内拼装与灯光烘焙",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-interior-r8-props.md",
+   "deps": [
+    "ENG-buildgen-r0-core",
+    "ENG-buildgen-p0-scaffold"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/fixtures/**",
+    "packages/render/src/buildgen/__tests__/props.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/fixtures/dsl.ts",
+     "packages/render/src/buildgen/mesher/fixtures/interior.ts",
+     "packages/render/src/buildgen/__tests__/props.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-actor3d-a1-core",
+   "title": "城镇 3D 人物 · 运行时骨架 actor3d（类型、资产目录、步态与播放率、身高缩放）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-actor3d-a1-core.md",
+   "deps": [
+    "ENG-town2-heights"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/actor3d/index.ts",
+    "packages/render/src/actor3d/types.ts",
+    "packages/render/src/actor3d/catalog.ts",
+    "packages/render/src/actor3d/gait.ts",
+    "packages/render/src/actor3d/stature.ts",
+    "packages/render/src/actor3d/*.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/actor3d/gait.ts",
+     "packages/render/src/actor3d/types.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/actor3d",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "DES-interior-01-facilities",
+   "title": "城镇 3D 古建 · 试点城设施绑定补全（每栋可进建筑的设施类与招牌文字键）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "DES-interior-01-facilities.md",
+   "deps": [
+    "DES-town2-pilot-content"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "content/town/facilities/city_dali__ch01.yaml",
+    "content/town/facilities/city_dali__ch10.yaml",
+    "content/town/facilities/city_turpan__ch10.yaml",
+    "content/locales/zh-Hans/town-facilities.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "content/town/facilities/city_turpan__ch10.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "{python}",
+      "tools/lint/check_ids.py",
+      "--strict"
+     ]
+    ]
+   },
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-shop-wire",
+   "title": "城镇探索 v2 · P1 · 店铺接线（会话 shop/query 与买卖命令、shop/open → ShopLayer、银两挪顶栏、城镇投影挪进 explore-projection）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-shop-wire.md",
+   "deps": [
+    "ENG-town2-shop-core",
+    "ENG-town2-dialogue-facility",
+    "ENG-town2-txshop",
+    "DES-town2-pilot-content",
+    "ENG-town2-actionmap"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/runtime/session.ts",
+    "apps/game/src/runtime/contracts.ts",
+    "apps/game/src/runtime/explore-projection.ts",
+    "apps/game/src/runtime/*.test.ts",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/pages/ShopLayer.vue",
+    "apps/game/src/pages/ShopLayer.strings.ts",
+    "apps/game/src/pages/ShopLayer.test.ts",
+    "apps/game/src/App.vue",
+    "apps/game/src/style.css",
+    "apps/game/src/flow/presentation.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/ShopLayer.vue",
+     "apps/game/src/runtime/explore-projection.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-v1-minimap",
+   "title": "城镇探索 v2 · P1 · 现有城镇页先接新小地图与缩放快捷键（右上 TxMinimap 点击寻路、跟镜头转 / 上北下南、M 全城图、=/-/0 与滚轮）",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-town2-v1-minimap.md",
+   "deps": [
+    "ENG-town2-txminimap",
+    "ENG-town2-actionmap",
+    "ENG-town2-heights"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；作者 10-11「现在小地图还是老的」→ 从 v1-page 拆出先做、尽快并主干；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "apps/game/src/pages/TownPage.vue",
+    "apps/game/src/pages/town-input.ts",
+    "apps/game/src/pages/town-input.test.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/settings.ts",
+    "apps/game/src/settings.test.ts",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/game-controller.test.ts",
+    "packages/render/src/town/scene.ts",
+    "packages/render/src/town/types.ts",
+    "packages/render/src/town/projection.ts",
+    "packages/render/src/town/scene.test.ts",
+    "packages/render/src/town/projection.test.ts",
+    "packages/ui/src/components/TxSettingsPanel.vue",
+    "packages/ui/src/components/TxSettingsPanel.test.ts",
+    "packages/ui/src/projections.ts",
+    "packages/ui/src/i18n-flow.ts",
+    "packages/render/CLAUDE.md"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/explore/v1-minimap.ts",
+     "apps/game/src/explore/v1-zoom.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-minimap-art",
+   "title": "城镇探索 v2 · 小地图改版（AR-117）：微缩城镇图底图 + 关键建筑标记 + 竖直缩放条 + 司南示南北",
+   "phase": "TOWN2",
+   "wave": 52,
+   "kind": "draft",
+   "prompt": "ENG-town2-minimap-art.md",
+   "deps": [
+    "ENG-town2-chunks",
+    "ENG-town2-v1-minimap"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-117（2026-10-11）「这个太丑了，参考逆水寒给一个微缩小地图（标记关键建筑）而不是抽象图。缩放给一个竖直的bar，南北用司南或者指北针的形象来表达」；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "tools/town/make_minimap.py",
+    "tools/town/tests/test_make_minimap.py",
+    "assets/default/town-minimap/**",
+    "apps/game/build/town-assets.ts",
+    "apps/game/build/town-assets.test.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/pages/TownPage.vue",
+    "packages/ui/src/components/explore/TxMinimap.vue",
+    "packages/ui/src/components/explore/TxMinimap.strings.ts",
+    "packages/ui/src/components/explore/TxMinimap.test.ts",
+    "packages/ui/src/components/explore/TxSinan.vue",
+    "packages/ui/src/components/explore/TxSinan.strings.ts",
+    "packages/ui/src/components/explore/TxSinan.test.ts",
+    "packages/ui/src/explore/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/town/make_minimap.py",
+     "apps/game/src/explore/v1-minimap.ts",
+     "packages/ui/src/components/explore/TxSinan.vue"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "python3",
+      "tools/town/make_minimap.py",
+      "--check"
+     ],
+     [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/town/tests",
+      "-p",
+      "test_make_minimap.py"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/explore",
+      "apps/game/build",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui/src/components/explore",
+      "packages/ui/src/explore",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.preview.png",
+    "assets/default/baseline/town/town_dali__ch01.preview.render.json",
+    "assets/default/baseline/town/town_dali__ch01.overlay.svg",
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/baseline/town/town_hangzhou__ch02.preview.png",
+    "assets/default/baseline/town/town_hangzhou__ch02.preview.render.json",
+    "assets/default/baseline/town/town_hangzhou__ch02.overlay.svg",
+    "assets/default/baseline/town/town_hangzhou__ch02.layout.yaml",
+    "assets/default/town-minimap"
+   ]
+  },
+  {
+   "id": "ENG-town2-minimap-fit",
+   "title": "城镇探索 v2 · 小地图返修（AR-117）：缩影按缩影图自身投影等比绘制（不拉伸不剪切）、缩影模式司南只指南、全城图按图适配 + 标签避让 + 不被顶栏遮、高清屏",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-town2-minimap-fit.md",
+   "deps": [
+    "ENG-town2-minimap-art"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "协调者 2026-10-12 在 5173 实测 AR-117 改版：缩影纵向拉长 2 倍、上北下南剪切、全城图空白大且标签压盖、顶栏遮挡、DPR 2 发虚；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "packages/ui/src/components/explore/TxMinimap.vue",
+    "packages/ui/src/components/explore/TxMinimap.strings.ts",
+    "packages/ui/src/components/explore/TxMinimap.test.ts",
+    "packages/ui/src/components/explore/TxSinan.vue",
+    "packages/ui/src/components/explore/TxSinan.strings.ts",
+    "packages/ui/src/components/explore/TxSinan.test.ts",
+    "packages/ui/src/explore/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/ui/src/components/explore/TxMinimap.vue",
+     "packages/ui/src/explore/minimap-math.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/ui/src/components/explore",
+      "packages/ui/src/explore",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "ui"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/explore",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/town-minimap"
+   ]
+  },
+  {
+   "id": "ENG-town2-facility-key",
+   "title": "城镇探索 v2 · 城镇设施键统一为城镇定义的 cityId__chapterId（借用布局的城镇也能找到店员与店铺）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-facility-key.md",
+   "deps": [
+    "ENG-town2-v1-page"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "协调者 2026-10-12 G0 实测：卷十借用大理布局的城镇进药铺没有「交谈」（界面投影与设施对话的设施键按存档章节拼）；执行 traex GPT-5.6-Sol xhigh",
+   "writes": [
+    "packages/core/src/dialogue/**",
+    "apps/game/src/runtime/explore-projection.ts",
+    "apps/game/src/runtime/explore-projection.test.ts",
+    "packages/core/src/economy/shop-locator.ts",
+    "packages/core/src/economy/shop-locator.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/dialogue/facility.ts",
+     "apps/game/src/runtime/explore-projection.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/core/src/dialogue",
+      "packages/core/src/economy",
+      "apps/game/src/runtime",
+      "apps/game/src/explore",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": []
+  },
+  {
+   "id": "ENG-town2-v1-page",
+   "title": "城镇探索 v2 · P1 · 现有城镇页收尾（删模拟店铺与对话、交互条、经店员对话真实购买）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-town2-v1-page.md",
+   "deps": [
+    "ENG-town2-txminimap",
+    "ENG-town2-actionmap",
+    "ENG-town2-heights",
+    "ENG-town2-shop-wire",
+    "ENG-town2-v1-minimap",
+    "ENG-town2-minimap-art"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/pages/TownPage.vue",
+    "apps/game/src/pages/town-input.ts",
+    "apps/game/src/pages/town-input.test.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/settings.ts",
+    "apps/game/src/settings.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/TownPage.vue"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ],
+    "shrink_exempt": [
+     "apps/game/src/pages/TownPage.vue"
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-explore-walk",
+   "title": "城镇探索 v2 · core 逐 tick 行走（travelTo / steer / stop、触发器、进出建筑、交互列表、previewTravel、读档纠偏）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-walk.md",
+   "deps": [
+    "ENG-town2-kernel-prep",
+    "ENG-town2-explore-graph"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/world/explore/walk.ts",
+    "packages/core/src/world/explore/tick.ts",
+    "packages/core/src/world/explore/interactables.ts",
+    "packages/core/src/world/explore/reconcile.ts",
+    "packages/core/src/world/explore/walk-validate.ts",
+    "packages/core/src/world/explore/types.ts",
+    "packages/core/src/world/explore/astar.ts",
+    "packages/core/src/world/explore/*.test.ts",
+    "packages/core/src/world/region-runtime.ts",
+    "packages/core/src/world/region-types.ts",
+    "packages/core/src/command/explore-handler.ts",
+    "packages/core/src/command/explore-handler.test.ts",
+    "packages/core/src/entries/explore-command.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/walk.ts",
+     "packages/core/src/world/explore/reconcile.ts",
+     "packages/core/src/world/explore/interactables.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-town2-sources-pipeline",
+   "title": "城镇探索 v2 · 城镇源文件与构建管线（三座试点城 town-source.v1、buildContent 编成区域场景叶子、缓存）",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "TOOL-town2-sources-pipeline.md",
+   "deps": [
+    "TOOL-town2-compiler-core",
+    "DES-town2-pilot-content",
+    "ENG-buildgen-p1-kits"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-sources.ts",
+    "packages/data/src/build/town-sources.test.ts",
+    "content/world/towns/**",
+    "content/locales/zh-Hans/towns.yaml",
+    "packages/data/src/build/pipeline.ts",
+    "packages/data/src/build/discover.ts",
+    "packages/data/src/build/types.ts",
+    "packages/data/src/build/*.test.ts",
+    "packages/data/scripts/**"
+   ],
+   "validate": {
+    "exists": [
+     "content/world/towns/city_turpan__ch10.yaml",
+     "packages/data/src/build/town-sources.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml",
+    "docs/design/town/cities.yaml",
+    "docs/design/town/city_dali__ch01.yaml",
+    "docs/design/town/city_dali__ch10.yaml",
+    "docs/design/town/city_turpan__ch10.yaml"
+   ]
+  },
+  {
+   "id": "ENG-town2-render-ports",
+   "title": "城镇探索 v2 · render 两个端口的占位实现（盒子壳 + 剖切三态、试点 GLB 真实身高）并接进区域场景",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-town2-render-ports.md",
+   "deps": [
+    "ENG-town2-render-core",
+    "ENG-buildgen-r0-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/region/ports/**",
+    "packages/render/src/region/scene.ts",
+    "packages/render/src/region/types.ts",
+    "packages/render/src/region/*.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/region/ports/placeholder-buildings.ts",
+     "packages/render/src/region/ports/placeholder-actors.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/region",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-p3-compound",
+   "title": "城镇 3D 古建 · 院落规划 planCompound（院落、衙门、王府、庄园、镖局、寺院、西域院落）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p3-compound.md",
+   "deps": [
+    "ENG-buildgen-p2-plan-hall",
+    "ENG-interior-i1-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/plan-compound.ts",
+    "packages/data/src/build/town-plan/compound/**",
+    "packages/data/src/build/town-plan/__tests__/plan-compound.test.ts",
+    "packages/data/src/build/town-plan/plan-hall.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/compound/residence.ts",
+     "packages/data/src/build/town-plan/__tests__/plan-compound.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml"
+   ]
+  },
+  {
+   "id": "ENG-buildgen-p4-invariants",
+   "title": "城镇 3D 古建 · 方案不变式 checkPlan + 试点方案导出夹具 + 新鲜度测试",
+   "phase": "TOWN2",
+   "wave": 56,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-p4-invariants.md",
+   "deps": [
+    "ENG-buildgen-p2-plan-hall",
+    "ENG-buildgen-p3-compound",
+    "ENG-interior-i1-core"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/invariants.ts",
+    "packages/data/src/build/town-plan/export-fixtures.ts",
+    "packages/data/src/build/town-plan/__tests__/invariants.test.ts",
+    "packages/data/src/build/town-plan/__tests__/fixtures-fresh.test.ts",
+    "packages/render/src/buildgen/testing/pilot-plans.json",
+    "packages/render/src/buildgen/testing/pilot-kits.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/testing/pilot-plans.json",
+     "packages/render/src/buildgen/testing/pilot-kits.json",
+     "packages/data/src/build/town-plan/__tests__/fixtures-fresh.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r5-adobe",
+   "title": "城镇 3D 古建 · 西域土坯配方 adobe（含唐西州 tang_buddhist 变体）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r5-adobe.md",
+   "deps": [
+    "ENG-buildgen-r1-hall-body",
+    "ENG-buildgen-r2-roof-a",
+    "ENG-buildgen-r3-roof-b",
+    "ENG-buildgen-p1-kits",
+    "ENG-buildgen-p2-plan-hall"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/recipes/adobe.ts",
+    "packages/render/src/buildgen/mesher/parts/parapet.ts",
+    "packages/render/src/buildgen/mesher/parts/joists.ts",
+    "packages/render/src/buildgen/mesher/parts/iwan.ts",
+    "packages/render/src/buildgen/mesher/parts/trellis.ts",
+    "packages/render/src/buildgen/mesher/parts/brick-lattice.ts",
+    "packages/render/src/buildgen/__tests__/adobe.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/parts/parapet.ts",
+     "packages/render/src/buildgen/__tests__/adobe.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r6-compound",
+   "title": "城镇 3D 古建 · 院落配方 compound（院墙、门楼、正房 / 厢房、廊、照壁）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r6-compound.md",
+   "deps": [
+    "ENG-buildgen-r1-hall-body",
+    "ENG-buildgen-r2-roof-a",
+    "ENG-buildgen-r4-storeyed-stall",
+    "ENG-buildgen-p4-invariants"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/recipes/compound.ts",
+    "packages/render/src/buildgen/mesher/parts/enclosure.ts",
+    "packages/render/src/buildgen/mesher/parts/gatehouse.ts",
+    "packages/render/src/buildgen/mesher/parts/gallery.ts",
+    "packages/render/src/buildgen/mesher/parts/screen-wall.ts",
+    "packages/render/src/buildgen/__tests__/compound.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/mesher/parts/enclosure.ts",
+     "packages/render/src/buildgen/__tests__/compound.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r7-special",
+   "title": "城镇 3D 古建 · 特殊建筑配方（密檐塔、八角塔、城墙、城门）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r7-special.md",
+   "deps": [
+    "ENG-buildgen-r2-roof-a",
+    "ENG-buildgen-r3-roof-b"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/mesher/recipes/pagoda-dense.ts",
+    "packages/render/src/buildgen/mesher/recipes/pagoda-oct.ts",
+    "packages/render/src/buildgen/mesher/recipes/citywall.ts",
+    "packages/render/src/buildgen/mesher/recipes/gate.ts",
+    "packages/render/src/buildgen/__tests__/special.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/__tests__/special.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-townlab-l1",
+   "title": "城镇 3D 古建 · 实验页 /town-lab（目录 / 城市模式、人台标尺、手绘对照、HUD、__townLab、serve 插件）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-townlab-l1.md",
+   "deps": [
+    "ENG-buildgen-r9-layer",
+    "ENG-buildgen-p4-invariants",
+    "TOOL-buildgen-t1-placeholders",
+    "ENG-town2-chunks"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/dev/town-lab/**",
+    "apps/game/build/town-lab-plugin.ts",
+    "apps/game/build/town-lab-plugin.test.ts",
+    "apps/game/src/main.ts",
+    "apps/game/vite.config.ts",
+    "apps/game/scripts/check-dev-chunks.mjs"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/build/town-lab-plugin.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/dev",
+      "apps/game/build",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code",
+   "sparse_include": [
+    "assets/default/baseline/town/town_dali__ch01.layout.yaml",
+    "assets/default/town/city_dali__ch10/layout.yaml",
+    "assets/default/town/city_turpan__ch10/layout.yaml",
+    "assets/default/building-map/xiyu/manifest.yaml"
+   ]
+  },
+  {
+   "id": "TOOL-buildgen-t3-capture",
+   "title": "城镇 3D 古建 · 闸门 A 一条命令出全套（实验页截图、联系表、数字核对）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "prompt": "TOOL-buildgen-t3-capture.md",
+   "deps": [
+    "ENG-townlab-l1"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/buildgen/capture_town_lab.mjs",
+    "tools/buildgen/capture_town_lab.test.mjs",
+    "tools/buildgen/review_numbers.py",
+    "tools/buildgen/contact_sheet.py",
+    "tools/buildgen/gate_a.sh",
+    "tools/buildgen/tests/test_review_numbers.py",
+    "tools/buildgen/tests/test_contact_sheet.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/buildgen/capture_town_lab.mjs",
+     "tools/buildgen/review_numbers.py",
+     "tools/buildgen/contact_sheet.py"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "node",
+      "--test",
+      "tools/buildgen/capture_town_lab.test.mjs"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/buildgen/tests",
+      "-p",
+      "test_*.py"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-explore-facility",
+   "title": "城镇探索 v2 · core 设施 / 出口 / 打坐 / 进出城（店员对话、场景记忆、打坐移植、v2 入城挂载、ShopLocator v2）",
+   "phase": "TOWN2",
+   "wave": 56,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-facility.md",
+   "deps": [
+    "ENG-town2-shop-core",
+    "ENG-town2-dialogue-facility",
+    "ENG-town2-explore-walk"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/src/world/explore/facility.ts",
+    "packages/core/src/world/explore/exit.ts",
+    "packages/core/src/world/explore/meditation.ts",
+    "packages/core/src/world/explore/facility.test.ts",
+    "packages/core/src/world/explore/exit.test.ts",
+    "packages/core/src/world/explore/meditation.test.ts",
+    "packages/core/src/command/explore-handler.ts",
+    "packages/core/src/command/handlers.ts",
+    "packages/core/src/command/*.test.ts",
+    "packages/core/src/world/worldmap-runtime.ts",
+    "packages/core/src/world/worldmap.test.ts",
+    "packages/core/src/economy/shop-locator.ts",
+    "packages/core/src/economy/shop-locator.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/src/world/explore/facility.ts",
+     "packages/core/src/world/explore/exit.ts",
+     "packages/core/src/world/explore/meditation.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "lint"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/core",
+      "test"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-perf-gates",
+   "title": "城镇探索 v2 · 引擎侧性能门（寻路、行走 tick、区域场景帧更新；world-tick 计时测试挪进 perf）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-town2-perf-gates.md",
+   "deps": [
+    "ENG-town2-explore-graph",
+    "ENG-town2-explore-walk",
+    "ENG-town2-render-core",
+    "ENG-town2-render-ports"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/core/bench/explore-*.ts",
+    "packages/core/bench/world-tick*.ts",
+    "packages/core/bench/perf-registration.test.ts",
+    "packages/render/src/region/explore.performance.test.ts",
+    "vitest.config.ts",
+    "package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/core/bench/explore-path.performance.test.ts",
+     "packages/core/bench/explore-tick.performance.test.ts",
+     "packages/render/src/region/explore.performance.test.ts",
+     "packages/core/bench/world-tick.performance.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/core/bench/perf-registration.test.ts",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-town2-worldmap-pilot",
+   "title": "城镇探索 v2 · 大地图试点接线（覆盖文件 entry_overrides.yaml 写三座试点城的 entry.scene / gateId，生成器重出 map.yaml）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "TOOL-town2-worldmap-pilot.md",
+   "deps": [
+    "TOOL-town2-sources-pipeline",
+    "ENG-town2-regionmap-ext"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/content/town_scene_overrides.py",
+    "tools/content/test_town_scene_overrides.py",
+    "docs/design/map/entry_overrides.yaml",
+    "content/world/ch*/map.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "tools/content/town_scene_overrides.py",
+     "docs/design/map/entry_overrides.yaml"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools/content/test_town_scene_overrides.py",
+      "tools/content/test_worldmap_from_towns.py"
+     ],
+     [
+      "{python}",
+      "tools/content/worldmap_from_towns.py",
+      "--check"
+     ],
+     [
+      "{python}",
+      "tools/content/worldmap_enrich.py",
+      "--check"
+     ],
+     [
+      "pnpm",
+      "content:build"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-session-v2",
+   "title": "城镇探索 v2 · 会话层接线（townEngine 开关、预载 v2 场景、行走脏视图、previewTravel、读档纠偏、exploreCommand）",
+   "phase": "TOWN2",
+   "wave": 57,
+   "kind": "draft",
+   "prompt": "ENG-town2-session-v2.md",
+   "deps": [
+    "ENG-town2-explore-facility",
+    "TOOL-town2-sources-pipeline",
+    "TOOL-town2-worldmap-pilot",
+    "ENG-town2-shop-wire"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/runtime/**",
+    "apps/game/src/game-controller.ts",
+    "apps/game/src/region/commands.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/runtime/session.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src/runtime",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-town2-explore-page",
+   "title": "城镇探索 v2 · 探索页 ExplorePage（v2 城镇 + 遗迹：按住走、点地 / 人 / 楼、Q/E、缩放、F、M、跟镜头转小地图）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "prompt": "ENG-town2-explore-page.md",
+   "deps": [
+    "ENG-town2-session-v2",
+    "ENG-town2-render-ports",
+    "ENG-town2-v1-page"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "apps/game/src/pages/ExplorePage.vue",
+    "apps/game/src/pages/ExplorePage.test.ts",
+    "apps/game/src/pages/ExplorePage.strings.ts",
+    "apps/game/src/explore/**",
+    "apps/game/src/App.vue"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/ExplorePage.vue",
+     "apps/game/src/explore/v2-minimap.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/src",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-actor3d-d1-schema",
+   "title": "城镇 3D 人物 · 身高数据 schema（NpcAppearance.body、CharacterTemplate.body、pickTemplateHeightCm）",
+   "phase": "TOWN2",
+   "wave": 53,
+   "kind": "draft",
+   "prompt": "ENG-actor3d-d1-schema.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/schemas/character.ts",
+    "packages/data/src/schemas/character.test.ts",
+    "packages/data/src/character-body.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/schemas/character.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/schemas",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "content:validate"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-actor3d-t1-lod",
+   "title": "城镇 3D 人物 · 城镇减面工具链 town_lod.py + measure_gait.mjs；首批六个模型 LOD0 / LOD1",
+   "phase": "TOWN2",
+   "wave": 54,
+   "kind": "draft",
+   "prompt": "TOOL-actor3d-t1-lod.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/model3d/town_lod.py",
+    "tools/model3d/measure_gait.mjs",
+    "tools/model3d/measure_gait.test.mjs",
+    "tools/model3d/tests_town_lod.py",
+    "assets/default/model3d/npc_generic_m/town/**",
+    "assets/default/model3d/npc_generic_f/town/**",
+    "assets/default/model3d/npc_zhujue__ch00_m/town/**",
+    "assets/default/model3d/npc_zhujue__ch00_f/town/**",
+    "assets/default/model3d/npc_duanyu/town/**",
+    "assets/default/model3d/npc_liwenxiu__ch10_youth/town/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/town_lod.py",
+     "tools/model3d/measure_gait.mjs",
+     "assets/default/model3d/npc_generic_m/town/town.json",
+     "assets/default/model3d/npc_generic_f/town/town.json",
+     "assets/default/model3d/npc_zhujue__ch00_m/town/town.json",
+     "assets/default/model3d/npc_zhujue__ch00_f/town/town.json",
+     "assets/default/model3d/npc_duanyu/town/town.json",
+     "assets/default/model3d/npc_liwenxiu__ch10_youth/town/town.json"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools/model3d/tests_town_lod.py"
+     ],
+     [
+      "node",
+      "--test",
+      "tools/model3d/measure_gait.test.mjs"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-buildgen-r10-worker",
+   "title": "城镇 3D 古建 · 网格生成进 Worker（消息协议、客户端与回退、形体模板缓存、时间切片；主线程 / Worker 哈希一致）",
+   "phase": "TOWN2",
+   "wave": 58,
+   "kind": "draft",
+   "prompt": "ENG-buildgen-r10-worker.md",
+   "deps": [
+    "ENG-buildgen-r9-layer",
+    "ENG-buildgen-p4-invariants",
+    "ENG-town2-chunks",
+    "ENG-interior-r8-props"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/render/src/buildgen/worker/**",
+    "packages/render/src/buildgen/mesher/shape-cache.ts",
+    "packages/render/src/buildgen/mesher/generate.ts",
+    "packages/render/src/buildgen/three/layer.ts",
+    "packages/render/src/buildgen/__tests__/worker-parity.test.ts",
+    "packages/render/src/buildgen/__tests__/shape-cache.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/buildgen/worker/buildgen.worker.ts",
+     "packages/render/src/buildgen/worker/client.ts",
+     "packages/render/src/buildgen/mesher/shape-cache.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/buildgen",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "ENG-interior-i2-more",
+   "title": "城镇 3D 古建 · 室内模板（二）12 类（布庄、书肆、当铺、钱庄、镖局、武馆、寺庙、公堂、赌坊、厩、仓、哨所）",
+   "phase": "TOWN2",
+   "wave": 56,
+   "kind": "draft",
+   "prompt": "ENG-interior-i2-more.md",
+   "deps": [
+    "ENG-interior-i1-core",
+    "DES-interior-01-facilities"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "packages/data/src/build/town-plan/interiors/cloth.ts",
+    "packages/data/src/build/town-plan/interiors/books.ts",
+    "packages/data/src/build/town-plan/interiors/pawnshop.ts",
+    "packages/data/src/build/town-plan/interiors/bank.ts",
+    "packages/data/src/build/town-plan/interiors/escort.ts",
+    "packages/data/src/build/town-plan/interiors/school.ts",
+    "packages/data/src/build/town-plan/interiors/temple.ts",
+    "packages/data/src/build/town-plan/interiors/office.ts",
+    "packages/data/src/build/town-plan/interiors/casino.ts",
+    "packages/data/src/build/town-plan/interiors/stable.ts",
+    "packages/data/src/build/town-plan/interiors/storehouse.ts",
+    "packages/data/src/build/town-plan/interiors/guardhouse.ts",
+    "packages/data/src/build/town-plan/interiors/solver.ts",
+    "packages/data/src/build/town-plan/__tests__/interiors-i2.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/data/src/build/town-plan/interiors/temple.ts",
+     "packages/data/src/build/town-plan/interiors/pawnshop.ts",
+     "packages/data/src/build/town-plan/__tests__/interiors-i2.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/data/src/build/town-plan",
+      "--config",
+      "vitest.config.ts",
+      "--project",
+      "node"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/data",
+      "typecheck"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
+   "id": "TOOL-buildgen-t4-seamless",
+   "title": "城镇 3D 古建 · 贴图层后处理 make_seamless.py（去接缝、尺度归一、对色、3×3 预览、FFT 查重复）",
+   "phase": "TOWN2",
+   "wave": 55,
+   "kind": "draft",
+   "prompt": "TOOL-buildgen-t4-seamless.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "作者 AR-114（2026-10-10）；执行 traex GPT-5.6-Sol xhigh（作者 10-11）；契约 docs/tech/15、16",
+   "writes": [
+    "tools/buildgen/make_seamless.py",
+    "tools/buildgen/tests/test_seamless.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/buildgen/make_seamless.py",
+     "tools/buildgen/tests/test_seamless.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-m",
+      "unittest",
+      "tools/buildgen/tests/test_seamless.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "env",
+      "TIANSHU_VITEST_MAX_WORKERS=2",
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "profile": "code"
+  },
+  {
    "id": "ENG-10-battle-ui",
    "title": "游戏工程 · 战斗界面（六角战旗 / 速度条 / 行动与聚气 / 范围预览 / 自动战斗 / 提示文案）",
    "phase": "PROD",
@@ -50269,6 +54073,3211 @@
     "tools/perf/README.md",
     "CLAUDE.md"
    ]
+  },
+  {
+   "id": "ENG-dressup-a1-glbio",
+   "title": "3D 纸娃娃换装 · A1 · 离线基础库 glb_io / common / meshopt_decode / inspect / selftest（AR-102）",
+   "phase": "PROD",
+   "wave": 30,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a1-glbio.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/glb_io.py",
+    "tools/model3d/dressup/common.py",
+    "tools/model3d/dressup/meshopt_decode.mjs",
+    "tools/model3d/dressup/inspect.py",
+    "tools/model3d/dressup/selftest.py",
+    "tools/model3d/dressup/README.md"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/glb_io.py",
+     "tools/model3d/dressup/common.py",
+     "tools/model3d/dressup/meshopt_decode.mjs",
+     "tools/model3d/dressup/inspect.py",
+     "tools/model3d/dressup/selftest.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）",
+   "profile": "code",
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh"
+  },
+  {
+   "id": "ENG-dressup-a2-skeleton",
+   "title": "3D 纸娃娃换装 · A2 · 正本预处理 normalize_rig.py 与骨架帧导出 export_skeleton.py（插槽 / 尺寸 / 颈环 / 颅骨表 / 区域 / 握拳）",
+   "phase": "PROD",
+   "wave": 31,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a2-skeleton.md",
+   "deps": [
+    "ENG-dressup-a1-glbio"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/normalize_rig.py",
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/regions.npy",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/skull_profile.json",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/manifest.yaml"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/normalize_rig.py",
+     "tools/model3d/dressup/export_skeleton.py",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/skull_profile.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）",
+   "profile": "code",
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh"
+  },
+  {
+   "id": "ENG-dressup-a3-prop",
+   "title": "3D 纸娃娃换装 · A3 · 刚性道具归一化 normalize_prop.py（剑 / 斗笠 / 玉佩实跑）",
+   "phase": "PROD",
+   "wave": 31,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a3-prop.md",
+   "deps": [
+    "ENG-dressup-a1-glbio"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/normalize_prop.py",
+    "tools/model3d/dressup/tests_prop.py",
+    "assets/default/model3d/dressup/props/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/normalize_prop.py",
+     "assets/default/model3d/dressup/props/item_qingfeng_sword/fit.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_prop.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）",
+   "profile": "code",
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh"
+  },
+  {
+   "id": "ENG-dressup-a4-garment",
+   "title": "3D 纸娃娃换装 · A4 · 衣物 / 发型贴合 fit_garment.py 与跨模板 refit_template.py（流仙裙 / 夜行衣 / 马尾实跑）",
+   "phase": "PROD",
+   "wave": 32,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a4-garment.md",
+   "deps": [
+    "ENG-dressup-a1-glbio",
+    "ENG-dressup-a2-skeleton"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/refit_template.py",
+    "tools/model3d/dressup/tests_garment.py",
+    "assets/default/model3d/dressup/garments/**",
+    "assets/default/model3d/dressup/hair/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/fit_garment.py",
+     "tools/model3d/dressup/refit_template.py",
+     "assets/default/model3d/dressup/garments/cloth_xianxia_dress/fit.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）",
+   "profile": "code",
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh"
+  },
+  {
+   "id": "ENG-dressup-a5-gate",
+   "title": "3D 纸娃娃换装 · A5 · 门禁与进包 validate / textures / pack_glb / ingest / dressup-assets",
+   "phase": "PROD",
+   "wave": 31,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a5-gate.md",
+   "deps": [
+    "ENG-dressup-a1-glbio"
+   ],
+   "review": false,
+   "web": true,
+   "writes": [
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/textures.py",
+    "tools/model3d/dressup/pack_glb.mjs",
+    "tools/model3d/dressup/ingest.py",
+    "apps/game/build/dressup-assets.ts",
+    "apps/game/build/dressup-assets.test.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "assets/default/model3d/dressup/**/manifest.yaml",
+    "assets/default/model3d/dressup/**/report.json",
+    "assets/default/model3d/dressup/props/**"
+   ],
+   "vars": {},
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/validate.py",
+     "tools/model3d/dressup/textures.py",
+     "tools/model3d/dressup/pack_glb.mjs",
+     "tools/model3d/dressup/ingest.py",
+     "apps/game/build/dressup-assets.ts",
+     "apps/game/build/dressup-assets.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   },
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "note": "AR-102/AR-103：执行模型 GPT-5.6-Sol，推理 xhigh（supervise.py --model GPT-5.6-Sol --effort xhigh）",
+   "profile": "code",
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh"
+  },
+  {
+   "phase": "PROD",
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "AR-104 阶段 T；执行 GPT-5.6-Sol xhigh（AR-103）",
+   "id": "TOOL-dressup-t0-plate",
+   "title": "3D 纸娃娃换装 · T0 · 模板板工具 make_template_plate.py 与 2D 门禁 check_plate.py（AR-104）",
+   "wave": 31,
+   "prompt": "TOOL-dressup-t0-plate.md",
+   "deps": [],
+   "profile": "code",
+   "writes": [
+    "tools/model3d/dressup/make_template_plate.py",
+    "tools/model3d/dressup/check_plate.py",
+    "tools/model3d/dressup/tests_plate.py"
+   ],
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview/*.png"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/make_template_plate.py",
+     "tools/model3d/dressup/check_plate.py",
+     "tools/model3d/dressup/tests_plate.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_plate.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/make_template_plate.py",
+      "measure",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png",
+      "--json"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "AR-104 阶段 T；执行 GPT-5.6-Sol xhigh（AR-103）",
+   "id": "ART-dressup-t1-plate30-f",
+   "title": "3D 纸娃娃换装 · T1 · 女光头素体 30° 窄 A 底图（Codex 图像编辑 + check_plate 门禁，AR-104）",
+   "wave": 32,
+   "prompt": "ART-dressup-t1-plate30-f.md",
+   "deps": [
+    "TOOL-dressup-t0-plate"
+   ],
+   "profile": "assets",
+   "writes": [
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose30.png",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose30_overlay.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose30.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose30.png",
+      "--arm-angle-deg",
+      "30",
+      "--arm-tol-deg",
+      "3"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "note": "AR-104 阶段 T；执行 GPT-5.6-Sol xhigh（AR-103）",
+   "id": "ENG-dressup-t3-derive",
+   "title": "3D 纸娃娃换装 · T3 · 路 A 体型派生 derive_template.py（中等 → 娇小 / 修长，AR-104）",
+   "wave": 33,
+   "prompt": "ENG-dressup-t3-derive.md",
+   "deps": [
+    "ENG-dressup-a1-glbio",
+    "ENG-dressup-a2-skeleton"
+   ],
+   "profile": "code",
+   "writes": [
+    "tools/model3d/dressup/template_specs.json",
+    "tools/model3d/dressup/derive_template.py",
+    "tools/model3d/dressup/tests_derive.py",
+    "assets/default/model3d/dressup/templates/tpl_f_small/**",
+    "assets/default/model3d/dressup/templates/tpl_f_tall/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/derive_template.py",
+     "tools/model3d/dressup/template_specs.json",
+     "assets/default/model3d/dressup/templates/tpl_f_small/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f_tall/body.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_derive.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f_small/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f_tall/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-t2-tpl-f-medium",
+   "title": "3D 纸娃娃换装 · T2 · 女中等模板 tpl_f_medium 新正本（Tripo 生成 + 绑骨 + 动作 → 规范化 → 骨架帧，85 点，AR-104 / AR-105）",
+   "phase": "PROD",
+   "wave": 33,
+   "kind": "draft",
+   "prompt": "ART-dressup-t2-tpl-f-medium.md",
+   "deps": [
+    "ENG-dressup-a2-skeleton",
+    "ART-dressup-t1-plate30-f"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "AR-104 / AR-105；经 tri_pipeline_runner /open /eval 驱动 Tripo，不用 /tripo/task 队列",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/templates/tpl_f_medium/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/preview.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-b1a-runtime",
+   "title": "3D 纸娃娃换装 · B1a · three.js 运行时核心 packages/render/src/dressup（共享骨架 / 插槽 / unlit / 区域遮罩）",
+   "phase": "PROD",
+   "wave": 34,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b1a-runtime.md",
+   "deps": [
+    "ENG-dressup-a5-gate",
+    "ART-dressup-t2-tpl-f-medium"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "writes": [
+    "packages/render/src/dressup/**"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/runtime.ts",
+     "packages/render/src/dressup/actor.ts",
+     "packages/render/src/dressup/materials.ts",
+     "packages/render/src/dressup/skeleton-frame.ts",
+     "packages/render/src/dressup/types.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-b1b-chunk",
+   "title": "3D 纸娃娃换装 · B1b · 换装运行时独立懒加载块 render-dressup、体积预算、构建期发布接线与性能门",
+   "phase": "PROD",
+   "wave": 35,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b1b-chunk.md",
+   "deps": [
+    "ENG-dressup-b1a-runtime",
+    "ENG-dressup-a5-gate"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "writes": [
+    "apps/game/build/content-plugin.ts",
+    "apps/game/build/content-plugin.test.ts",
+    "apps/game/vite.config.ts",
+    "packages/render/package.json",
+    "packages/render/src/index.ts",
+    "packages/render/src/dressup/performance.test.ts",
+    "packages/render/CLAUDE.md",
+    "tools/perf/budgets.json",
+    "tools/perf/check_size.mjs",
+    "tools/perf/check_size.test.mjs",
+    "vitest.config.ts",
+    "package.json"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/performance.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-b2-preview",
+   "title": "3D 纸娃娃换装 · B2 · /character-3d 预览页「换装 v2」面板（导入预览页基线、素材索引、unlit、实穿）",
+   "phase": "PROD",
+   "wave": 36,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b2-preview.md",
+   "deps": [
+    "ENG-dressup-b1b-chunk"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "writes": [
+    "apps/game/src/pages/Character3dPage.vue",
+    "packages/render/src/character-viewer/**",
+    "packages/render/package.json",
+    "apps/game/src/main.ts",
+    "apps/game/build/dressup-assets.ts",
+    "apps/game/build/dressup-assets.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/src/pages/Character3dPage.vue",
+     "packages/render/src/character-viewer/scene.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-e1-garment-gen",
+   "title": "3D 纸娃娃换装 · E1 · 江湖劲装整身生成（Tripo 生成 + 绑骨 → 源件，85 点；贴图层 / 网格层共用）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ART-dressup-e1-garment-gen.md",
+   "deps": [
+    "ART-dressup-t2-tpl-f-medium"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-08「同时试试吧」：贴图层与网格层同时试；经 tri_pipeline_runner /open /eval 驱动 Tripo",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/source/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source/tripo_dressed_rig.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source/source.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source/cover.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/garments/eq_jinzhuang/source/tripo_dressed_rig.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-e2-extract",
+   "title": "3D 纸娃娃换装 · E2 · 网格层：劲装整身抽衣壳 → 贴合（两种权重来源对比）→ 门禁 → 入库 + 娇小 / 修长重贴合",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ENG-dressup-e2-extract.md",
+   "deps": [
+    "ART-dressup-e1-garment-gen",
+    "ENG-dressup-a4-garment",
+    "ENG-dressup-a5-gate"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 2026-10-08「同时试试吧」：网格层",
+   "writes": [
+    "tools/model3d/dressup/extract_garment.py",
+    "tools/model3d/dressup/tests_extract.py",
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/tests_garment.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/extract_garment.py",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/manifest.yaml",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/fit.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/report.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_extract.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-e3-texlayer",
+   "title": "3D 纸娃娃换装 · E3 · 贴图层：劲装颜色烘焙到模板 UV（三模板共用层贴图）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ENG-dressup-e3-texlayer.md",
+   "deps": [
+    "ART-dressup-e1-garment-gen"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 2026-10-08「同时试试吧」：贴图层",
+   "writes": [
+    "tools/model3d/dressup/bake_texture_layer.py",
+    "tools/model3d/dressup/tests_texlayer.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/bake_texture_layer.py",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/eq_jinzhuang.layer.png",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/layer.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_texlayer.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-b3-layers",
+   "title": "3D 纸娃娃换装 · B3 · 运行时贴图层叠加 + 预览页「贴图层」开关",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b3-layers.md",
+   "deps": [
+    "ENG-dressup-b2-preview"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 2026-10-08「同时试试吧」：贴图层运行时",
+   "writes": [
+    "packages/render/src/dressup/types.ts",
+    "packages/render/src/dressup/actor.ts",
+    "packages/render/src/dressup/runtime.ts",
+    "packages/render/src/dressup/*.test.ts",
+    "packages/render/CLAUDE.md",
+    "apps/game/build/dressup-assets.ts",
+    "apps/game/build/dressup-assets.test.ts",
+    "apps/game/src/pages/Character3dPage.vue",
+    "tools/model3d/dressup/ingest.py",
+    "apps/game/src/pages/*.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/actor.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-a6-sockets",
+   "title": "3D 纸娃娃换装 · A6 · 插槽坐标系约定修正 + 道具默认 gripAdjust（剑进手、斗笠戴正、挂件贴胸）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ENG-dressup-a6-sockets.md",
+   "deps": [
+    "ENG-dressup-b2-preview"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "协调者 10-08 5173 实测：插槽位置对、朝向错（spec §4 补约定）",
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "tools/model3d/dressup/normalize_prop.py",
+    "tools/model3d/dressup/tests_prop.py",
+    "tools/model3d/dressup/check_sockets.py",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/skeleton.json",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/manifest.yaml",
+    "assets/default/model3d/dressup/templates/tpl_f_small/skeleton.json",
+    "assets/default/model3d/dressup/templates/tpl_f_small/manifest.yaml",
+    "assets/default/model3d/dressup/templates/tpl_f_tall/skeleton.json",
+    "assets/default/model3d/dressup/templates/tpl_f_tall/manifest.yaml",
+    "assets/default/model3d/dressup/props/**",
+    "apps/game/build/dressup-assets.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/check_sockets.py",
+     "assets/default/model3d/dressup/props/item_qingfeng_sword/sockets_check.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_prop.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_sockets.py",
+      "--template",
+      "assets/default/model3d/dressup/templates/tpl_f_medium",
+      "--props",
+      "assets/default/model3d/dressup/props/item_qingfeng_sword",
+      "assets/default/model3d/dressup/props/item_bamboo_hat",
+      "assets/default/model3d/dressup/props/luxury_jade_pendant"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-e4-sword-held",
+   "title": "3D 纸娃娃换装 · E4 · 出鞘持剑：龙泉剑（Tripo 生成 → 归一化 → 握右手 → 门禁 → 入库，AR-107）",
+   "phase": "PROD",
+   "wave": 37,
+   "kind": "draft",
+   "prompt": "ART-dressup-e4-sword-held.md",
+   "deps": [
+    "ENG-dressup-a6-sockets"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-08：手里拿出鞘剑、带鞘剑挂腰（AR-107）",
+   "sparse_include": [
+    "assets/default/item/weapons/eq_longquanjian.png",
+    "assets/default/item/weapons/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/props/eq_longquanjian/**",
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/tests_prop.py",
+    "tools/model3d/dressup/check_sockets.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/props/eq_longquanjian/eq_longquanjian.glb",
+     "assets/default/model3d/dressup/props/eq_longquanjian/fit.json",
+     "assets/default/model3d/dressup/props/eq_longquanjian/report.json",
+     "assets/default/model3d/dressup/props/eq_longquanjian/manifest.yaml"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/check_sockets.py",
+      "--template",
+      "assets/default/model3d/dressup/templates/tpl_f_medium",
+      "--props",
+      "assets/default/model3d/dressup/props/eq_longquanjian"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-g1-hidemask",
+   "title": "3D 纸娃娃换装 · G1 · 身体遮罩离线烘焙 + validate 可见穿透（AR-108 V2）",
+   "prompt": "ENG-dressup-g1-hidemask.md",
+   "deps": [
+    "ENG-dressup-e2-extract"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/bake_hide_mask.py",
+    "tools/model3d/dressup/tests_hidemask.py",
+    "tools/model3d/dressup/validate.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/tests_garment.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/bake_hide_mask.py",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/hidemask.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "AGY-dressup-b4-hidemap",
+   "title": "3D 纸娃娃换装 · B4 · 运行时身体遮罩 + 挂头 + 预览开关（agy；AR-108 V2 / V4）",
+   "prompt": "AGY-dressup-b4-hidemap.md",
+   "deps": [
+    "ENG-dressup-a6-sockets"
+   ],
+   "model": "gemini-3.1-pro-high",
+   "note": "agy 执行器：supervise --bin tools/agents/agy_exec.py",
+   "writes": [
+    "packages/render/src/dressup/types.ts",
+    "packages/render/src/dressup/materials.ts",
+    "packages/render/src/dressup/actor.ts",
+    "packages/render/src/dressup/runtime.ts",
+    "packages/render/src/dressup/*.test.ts",
+    "packages/render/CLAUDE.md",
+    "apps/game/build/dressup-assets.ts",
+    "apps/game/build/dressup-assets.test.ts",
+    "apps/game/src/pages/Character3dPage.vue",
+    "apps/game/build/content-plugin.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/materials.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "check"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "./apps/game",
+      "build"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "AGY-dressup-v3-variant",
+   "title": "3D 纸娃娃换装 · V3 · 贴图变体：粗布短褐（同版型改图 + 烘焙，0 点；agy；AR-108 V3）",
+   "prompt": "AGY-dressup-v3-variant.md",
+   "deps": [
+    "ENG-dressup-e2-extract"
+   ],
+   "model": "gemini-3.1-pro-high",
+   "note": "agy 执行器：supervise --bin tools/agents/agy_exec.py",
+   "writes": [
+    "tools/model3d/dressup/retexture_variant.py",
+    "tools/model3d/dressup/tests_variant.py",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/retexture_variant.py",
+     "assets/default/model3d/dressup/garments/eq_buyi/manifest.yaml",
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_narrow.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_dressup_eq_buyi_front.png",
+      "--arm-angle-deg",
+      "25"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "AGY-dressup-d1-cuthead",
+   "title": "3D 纸娃娃换装 · D1 · 切头：黄蓉（规范颈环、肤色匹配，0 点；agy；AR-108 V4）",
+   "prompt": "AGY-dressup-d1-cuthead.md",
+   "deps": [
+    "ART-dressup-t2-tpl-f-medium"
+   ],
+   "model": "gemini-3.1-pro-high",
+   "note": "agy 执行器：supervise --bin tools/agents/agy_exec.py",
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/cut_head.py",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-d1b-neck-splice",
+   "title": "3D 纸娃娃换装 · D1b · 头颈拼接标准工具（运行时截图工具 + 模板颈片双调和变形 + 精确裁头 + 两端重叠接缝；Claude 直接实现，AR-110）",
+   "prompt": "ENG-dressup-d1b-neck-splice.md",
+   "deps": [
+    "AGY-dressup-d1-cuthead"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "tools/model3d/dressup/shoot_head.mjs",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/shoot_head.mjs",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-d1c-head-templates",
+   "title": "3D 纸娃娃换装 · D1c · 头按体型出变体（tall / small）+ 颈片保流形 / 底带原顶点 / 顶带内收与权重修正（Claude 直接实现，AR-110）",
+   "prompt": "ENG-dressup-d1c-head-templates.md",
+   "deps": [
+    "ENG-dressup-d1b-neck-splice"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "tools/model3d/dressup/shoot_head.mjs",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_small.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "high",
+   "profile": "code",
+   "id": "ENG-dressup-alloc-steady",
+   "title": "3D 纸娃娃换装 · actor 分配采样用例改为等到稳态（JIT 过渡期误报）",
+   "prompt": "ENG-dressup-alloc-steady.md",
+   "deps": [
+    "ENG-dressup-b3-layers"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "packages/render/src/dressup/actor-runtime.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/actor-runtime.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup/actor-runtime.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup/actor-runtime.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/render/src/dressup/actor-runtime.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "high",
+   "profile": "code",
+   "id": "AGY-dressup-pytimeouts",
+   "title": "3D 纸娃娃换装 · dressup-assets 调 Python 用例超时改 300 s（负载误报）",
+   "prompt": "AGY-dressup-pytimeouts.md",
+   "deps": [
+    "ENG-dressup-alloc-steady"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "apps/game/build/dressup-assets.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "apps/game/build/dressup-assets.test.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/game/build/dressup-assets.test.ts",
+      "--config",
+      "vitest.workspace.ts"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-g1b-visibility",
+   "title": "3D 纸娃娃换装 · G1b · 身体遮罩改按可见性判定（消除衣摆 / 开口黑洞）",
+   "prompt": "ENG-dressup-g1b-visibility.md",
+   "deps": [
+    "ENG-dressup-g1-hidemask"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/bake_hide_mask.py",
+    "tools/model3d/dressup/tests_hidemask.py",
+    "tools/model3d/dressup/validate.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/hidemask.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-pack-compact",
+   "title": "3D 纸娃娃换装 · 打包压缩未引用顶点 + 重打包四件道具",
+   "prompt": "ENG-dressup-pack-compact.md",
+   "deps": [
+    "ART-dressup-e4-sword-held"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/pack_glb.mjs",
+    "apps/game/build/dressup-assets.test.ts",
+    "assets/default/model3d/dressup/props/**",
+    "tools/model3d/dressup/validate.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/pack_glb.mjs"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_sockets.py",
+      "--template",
+      "assets/default/model3d/dressup/templates/tpl_f_medium",
+      "--props",
+      "assets/default/model3d/dressup/props/item_qingfeng_sword",
+      "assets/default/model3d/dressup/props/item_bamboo_hat",
+      "assets/default/model3d/dressup/props/luxury_jade_pendant",
+      "assets/default/model3d/dressup/props/eq_longquanjian"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-e2b-cleanup",
+   "title": "3D 纸娃娃换装 · E2b · 劲装版型件清理 + 重打包 + 重烘遮罩 + 重生成布衣变体",
+   "prompt": "ENG-dressup-e2b-cleanup.md",
+   "deps": [
+    "ENG-dressup-g1b-visibility",
+    "ENG-dressup-pack-compact"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/tests_garment.py",
+    "tools/model3d/dressup/extract_garment.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**",
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/untangle_glb.py",
+    "tools/model3d/dressup/variant_base.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/hidemask.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ],
+    "shrink_exempt": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/fit*.json"
+    ]
+   }
+  },
+  {
+   "phase": "PROD",
+   "wave": 38,
+   "kind": "draft",
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "effort": "xhigh",
+   "profile": "code",
+   "id": "ENG-dressup-e2c-skinning",
+   "title": "3D 纸娃娃换装 · E2c · 劲装动画穿插（宽袖 / 下摆按姿势蒙皮）+ 模板胸下倒置面",
+   "prompt": "ENG-dressup-e2c-skinning.md",
+   "deps": [
+    "ENG-dressup-e2b-cleanup"
+   ],
+   "model": "GPT-5.6-Sol",
+   "writes": [
+    "tools/model3d/dressup/fit_garment.py",
+    "tools/model3d/dressup/tests_garment.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/model3d/dressup/garments/_fixture_bodysuit/**",
+    "tools/model3d/dressup/validate.py",
+    "tools/model3d/dressup/bake_hide_mask.py",
+    "packages/render/src/dressup/actor.ts",
+    "packages/render/src/dressup/types.ts",
+    "packages/render/src/dressup/actor-pose-offset.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/hidemask.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-b6-cull",
+   "title": "3D 纸娃娃换装 · B6 · 运行时蒙皮网格视锥剔除修复（动作中头 / 衣物被整块剔掉）",
+   "phase": "PROD",
+   "wave": 39,
+   "kind": "draft",
+   "prompt": "ENG-dressup-b6-cull.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "协调者 2026-10-09 D1b 实测发现；作者 2026-10-10「继续做」",
+   "writes": [
+    "packages/render/src/dressup/*.ts",
+    "packages/render/CLAUDE.md"
+   ],
+   "validate": {
+    "exists": [
+     "packages/render/src/dressup/actor.ts"
+    ],
+    "cmd": [
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "--filter",
+      "@tianshu/render",
+      "test"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-d2-head-gen",
+   "title": "3D 纸娃娃换装 · D2 · 生成头样例：穆念慈（Tripo 生成 + 绑骨 → 三体型切头；V4 闸门；约 85 点）",
+   "phase": "PROD",
+   "wave": 40,
+   "kind": "draft",
+   "prompt": "ART-dressup-d2-head-gen.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10 选定穆念慈并批准花点；经 tri_pipeline_runner /open /eval 驱动 Tripo",
+   "sparse_include": [
+    "assets/default/character/female/ch02/threeview/*.png",
+    "assets/default/character/female/ch02/threeview/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/heads/npc_munianci/**",
+    "assets/default/model3d/dressup/credits_ledger.jsonl",
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_munianci/source/tripo_rig.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/source/source.json",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_munianci/report.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/heads/npc_munianci/source/tripo_rig.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-d2b-huangrong-recut",
+   "title": "3D 纸娃娃换装 · D2b · 黄蓉三体型用新工具重切（方案 2：身体染色对准切口颈色）",
+   "phase": "PROD",
+   "wave": 40,
+   "kind": "draft",
+   "prompt": "ART-dressup-d2b-huangrong-recut.md",
+   "deps": [
+    "ART-dressup-d2-head-gen"
+   ],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10 方案 2；D2 第 10 条约定库内黄蓉随后重切；Claude 直接执行（AR-110），supervise --from validate + GPT 审核",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/model3d/npc_huangrong"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_small.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_huangrong/report.json",
+     "assets/default/model3d/dressup/heads/npc_huangrong/shots/recut.tpl_f_medium.jpg"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-d2c-head-align",
+   "title": "3D 纸娃娃换装 · D2c · 拼头对位与下接缝配色（颈子截面对中 + 身体染色对准下接缝）→ 重切穆念慈 / 黄蓉三体型",
+   "phase": "PROD",
+   "wave": 40,
+   "kind": "draft",
+   "prompt": "ART-dressup-d2c-head-align.md",
+   "deps": [
+    "ART-dressup-d2b-huangrong-recut"
+   ],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10：穆念慈颈部错开 → 修对位把拼头做完美；身体颜色对齐脖子下接缝附近颜色。Claude 直接执行（AR-110）",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/model3d/npc_huangrong"
+   ],
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "assets/default/model3d/dressup/heads/npc_munianci/**",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_munianci/head.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f_small.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_munianci/shots/align.tpl_f_medium.jpg",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_small.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_huangrong/shots/align.tpl_f_medium.jpg"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-o1a-plates",
+   "title": "3D 纸娃娃换装 · 方案 1 试点 · O1a · 黄蓉 / 穆念慈超高清整人素体图 + 同画布出场服装图",
+   "phase": "PROD",
+   "wave": 42,
+   "kind": "draft",
+   "prompt": "ART-dressup-o1a-plates.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10：方案 1（整人素体，不拼头）先做黄蓉、穆念慈并补出场服装；本任务只出 Tripo 输入图，不花点。Claude 起 Opus 子代理执行（出图）",
+   "sparse_include": [
+    "assets/default/character/female/ch02/threeview/**",
+    "assets/default/character/female/ch02/*.png",
+    "assets/default/character/female/ch00/threeview/**"
+   ],
+   "writes": [
+    "assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_base_body_apose_hd.png",
+    "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_base_body_apose_hd.png",
+    "assets/default/character/female/ch02/threeview/manifest.yaml"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/character/female/ch02/threeview/por_npc_huangrong__ch02_youth_base_body_apose_hd.png",
+     "assets/default/character/female/ch02/threeview/por_npc_munianci__ch02_youth_base_body_apose_hd.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-c",
+      "import hashlib,sys,yaml; from PIL import Image; from pathlib import Path; d=Path('assets/default/character/female/ch02/threeview'); m={e['file']:e for e in yaml.safe_load((d/'manifest.yaml').read_text())}; n=['por_npc_huangrong__ch02_youth_base_body_apose_hd.png','por_npc_munianci__ch02_youth_base_body_apose_hd.png']; s={x:Image.open(d/x).size for x in n}; bad=[x for x in n if s[x][0]<1600 or s[x][1]<2400 or abs(s[x][0]*3-s[x][1]*2)>6 or x not in m or m[x].get('sha256')!=hashlib.sha256((d/x).read_bytes()).hexdigest()]; bad+=[k for k in ('por_npc_huangrong__ch02_youth_base_body_apose_uhd.png','por_npc_munianci__ch02_youth_base_body_apose_uhd.png','por_npc_huangrong__ch02_youth_dressup_baiyi_front_uhd.png','por_npc_munianci__ch02_youth_dressup_hongyi_front_uhd.png') if k in m or (d/k).exists()]; print('bad:',bad) if bad else print('ok',s); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-g1-slice-fit",
+   "title": "3D 纸娃娃换装 · G1 · 衣物 / 盔甲 Z 向切片贴合数值方案：评估 → ADR → 原型 → 打标 → 效果图",
+   "phase": "PROD",
+   "wave": 43,
+   "kind": "draft",
+   "prompt": "ENG-dressup-g1-slice-fit.md",
+   "deps": [],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 2026-10-10 提出切片贴合方案，要求开子代理评估、写 ADR、实现并打标出效果图；Claude 起 Opus 子代理执行",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "docs/adr/0002-dressup-slice-fit.md",
+    "tools/model3d/dressup/slice_fit.py",
+    "tools/model3d/dressup/tests_slice_fit.py",
+    "assets/default/model3d/dressup/templates/tpl_f_medium/slice_landmarks.json",
+    "assets/default/model3d/dressup/templates/tpl_f_tall/slice_landmarks.json",
+    "assets/default/model3d/dressup/templates/tpl_f_small/slice_landmarks.json",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/slice_landmarks.json",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/shots/slice_fit.*",
+    "assets/default/model3d/dressup/garments/_fixture_armor_banjia/**",
+    "assets/default/model3d/dressup/garments/_fixture_armor_mingguang/**",
+    "assets/default/model3d/dressup/garments/_fixture_armor_suozi/**",
+    "tools/model3d/dressup/slice_fit_*.py",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/slice_fit/**"
+   ],
+   "validate": {
+    "exists": [
+     "docs/adr/0002-dressup-slice-fit.md",
+     "tools/model3d/dressup/slice_fit.py",
+     "tools/model3d/dressup/tests_slice_fit.py",
+     "assets/default/model3d/dressup/templates/tpl_f_medium/slice_landmarks.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/slice_landmarks.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_slice_fit.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-o1b-tripo",
+   "title": "3D 纸娃娃换装 · 方案 1 试点 · O1b · 黄蓉 / 穆念慈整人素体 Tripo 生成与绑骨（2 × 85 = 170 点）",
+   "phase": "PROD",
+   "wave": 44,
+   "kind": "draft",
+   "prompt": "ART-dressup-o1b-tripo.md",
+   "deps": [
+    "ART-dressup-o1a-plates"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-10 批准约 340 点、当晚定每人只做素体；Claude 经 tri_pipeline_runner 9223 执行（同 D2 第三版），产物仍走 supervise 校验与 GPT 审核",
+   "sparse_include": [
+    "assets/default/character/female/ch02/threeview/*.png",
+    "assets/default/character/female/ch02/threeview/manifest.yaml",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/pilot_o1/**",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/pilot_o1/npc_huangrong/source/tripo_body_rig.glb",
+     "assets/default/model3d/dressup/pilot_o1/npc_huangrong/source/source.json",
+     "assets/default/model3d/dressup/pilot_o1/npc_munianci/source/tripo_body_rig.glb",
+     "assets/default/model3d/dressup/pilot_o1/npc_munianci/source/source.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "-c",
+      "import json,subprocess,sys; bad=[]\nfor n in ('npc_huangrong','npc_munianci'):\n    p=f'assets/default/model3d/dressup/pilot_o1/{n}/source/tripo_body_rig.glb'\n    r=subprocess.run([sys.executable,'tools/model3d/dressup/inspect.py','--json',p],capture_output=True,text=True)\n    j=(json.loads(r.stdout or '{}').get('skeleton') or {}).get('joints')\n    if r.returncode or j!=65: bad.append((n,r.returncode,j))\nprint('bad:',bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-t4-bodies-v2",
+   "title": "3D 纸娃娃换装 · T4 · 新女性素体 tpl_f2_medium + 新男性素体 tpl_m_medium（Tripo 生成 / 绑骨 / 动作 → 规范化 → 骨架帧；2 × 85 点）",
+   "phase": "PROD",
+   "wave": 45,
+   "kind": "draft",
+   "prompt": "ART-dressup-t4-bodies-v2.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "assets",
+   "note": "作者 2026-10-11 要求重做好看的女性素体与帅气的男性素体并选定候选；Claude 经 9223 执行 Tripo，产物走 supervise 校验与 GPT 审核",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview",
+    "assets/default/character/male/ch00",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_m_medium/**",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose.png",
+    "assets/default/character/male/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/skeleton.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-t5-bodies-v2-derive",
+   "title": "3D 纸娃娃换装 · T5 · 新素体准备：tpl_f2 / tpl_m 倒置面翻正 + 三体型派生（女 small / tall、男 lean / bulk；0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-t5-bodies-v2-derive.md",
+   "deps": [
+    "ART-dressup-t4-bodies-v2",
+    "ART-dressup-t4b-neck-v3"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "作者 10-11 选定新素体后的派生准备；规格以新中等实测为基准（保留一字肩、长腿），旧 tpl_f_* 不动",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "tools/model3d/dressup/fix_inverted_faces.py",
+    "tools/model3d/dressup/tests_fix_faces.py",
+    "tools/model3d/dressup/template_specs_v2.json",
+    "tools/model3d/dressup/tests_derive.py",
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_small/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_tall/**",
+    "assets/default/model3d/dressup/templates/tpl_m_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_m_lean/**",
+    "assets/default/model3d/dressup/templates/tpl_m_bulk/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f2_small/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f2_tall/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_lean/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_bulk/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_small/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_tall/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_m_lean/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_m_bulk/skeleton.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_fix_faces.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/fix_inverted_faces.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/fix_inverted_faces.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_small/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_tall/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_lean/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_lean"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_bulk/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_bulk"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_derive.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-h1-head-density",
+   "title": "3D 纸娃娃换装 · H1 · 拼头头部贴图精细化（8K 源贴图 + 头部 UV 岛独立排图集；黄蓉 / 穆念慈 × 三体型重切；0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-h1-head-density.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-11「拼头的头像素密度可以做的更好更精细」；AR-110 由 Claude 直接实现，走校验 + GPT 审核",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/model3d/npc_huangrong"
+   ],
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**",
+    "assets/default/model3d/dressup/heads/npc_munianci/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f_small.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_huangrong/shots/density.tpl_f_medium.jpg",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f_small.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/manifest.yaml",
+     "assets/default/model3d/dressup/heads/npc_munianci/shots/density.tpl_f_medium.jpg"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-t4b-neck-v3",
+   "title": "3D 纸娃娃换装 · T4b · 颈肩改版：女 tpl_f2_medium 平滑雕塑（颈加长 + 收细）+ 男 tpl_m_medium 按新素体图重生成（85 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ART-dressup-t4b-neck-v3.md",
+   "deps": [],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-11：男女脖子太粗、参考逆水寒；雕塑要平滑；不行就换素体。作者定：女按平滑雕塑 v3、男用新图 B（g2）重上 Tripo（85 点）。Claude 执行",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/character/male/ch00"
+   ],
+   "writes": [
+    "tools/model3d/dressup/sculpt_neck.py",
+    "tools/model3d/dressup/tests_sculpt.py",
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_m_medium/**",
+    "assets/default/character/male/ch00/threeview/por_npc_zhujue__ch00_m_bald_base_body_apose_v2.png",
+    "assets/default/character/male/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+     "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_sculpt.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/normalize_rig.py",
+      "--check",
+      "--body",
+      "assets/default/model3d/dressup/templates/tpl_m_medium/body.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-t5b-ring-fold",
+   "title": "3D 纸娃娃换装 · T5b · 派生前置修复：颈环改按实际颈截面 + 派生防折叠 / 法线一致（只改工具与测试；0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-t5b-ring-fold.md",
+   "deps": [
+    "ART-dressup-t4b-neck-v3"
+   ],
+   "review": false,
+   "web": false,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "T5 审核 r1：派生四体颈环差 2.4–6.3 mm（取环只用 Neck ≥ 0.5 权重点、半圈弧拟椭圆不稳）、f2_small 73 个派生折叠三角；先修工具，T5 再重派生",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/derive_template.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "tools/model3d/dressup/tests_derive.py"
+   ],
+   "validate": {
+    "exists": [
+     "tools/model3d/dressup/export_skeleton.py"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_derive.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-r1-heads-f2",
+   "title": "3D 纸娃娃换装 · R1 · 新素体切头：黄蓉 / 穆念慈 × tpl_f2 三体型（--texture 8K）+ 换装页变体只在同一套素体内回退（0 点）",
+   "phase": "PROD",
+   "wave": 46,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r1-heads-f2.md",
+   "deps": [
+    "ENG-dressup-t5-bodies-v2-derive",
+    "ENG-dressup-h1-head-density"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-11：六个素体可以，但换黄蓉头后有问题（跨素体回退旧头 → 黑洞 + 光头互穿）；AR-110 Claude 直接实现",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/model3d/npc_huangrong"
+   ],
+   "writes": [
+    "tools/model3d/dressup/cut_head.py",
+    "tools/model3d/dressup/tests_head.py",
+    "assets/default/model3d/dressup/heads/npc_huangrong/**",
+    "assets/default/model3d/dressup/heads/npc_munianci/**",
+    "apps/game/src/pages/Character3dPage.vue",
+    "apps/game/src/pages/useDressupIndex.ts",
+    "apps/game/src/pages/useDressupIndex.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_huangrong/head.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/heads/npc_munianci/head.tpl_f2_small.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_huangrong'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small', '.tpl_f2_medium', '.tpl_f2_tall', '.tpl_f2_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; d=Path('assets/default/model3d/dressup/heads/npc_munianci'); bad=[s or 'medium' for s in ('', '.tpl_f_tall', '.tpl_f_small', '.tpl_f2_medium', '.tpl_f2_tall', '.tpl_f2_small') if json.loads((d/f'report{s}.json').read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-r2-refit-f2",
+   "title": "3D 纸娃娃换装 · R2 · 现有衣物 / 贴图层 / 道具重贴合到 tpl_f2 三体型 + 换装页默认素体切到 tpl_f2_medium（0 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r2-refit-f2.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "作者 10-11 定新素体；R1 头已切到 tpl_f2 并按套回退（a68ea9864）。衣物 / 贴图层 / 道具重贴合后切默认模板",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/character/female/ch00/threeview"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "assets/default/model3d/dressup/props/eq_longquanjian/**",
+    "assets/default/model3d/dressup/props/item_bamboo_hat/**",
+    "assets/default/model3d/dressup/props/item_qingfeng_sword/**",
+    "assets/default/model3d/dressup/props/luxury_jade_pendant/**",
+    "tools/model3d/dressup/tests_garment.py",
+    "apps/game/src/pages/Character3dPage.vue",
+    "tools/model3d/dressup/tests_prop.py",
+    "apps/game/build/dressup-assets.test.ts"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/props/eq_longquanjian/eq_longquanjian.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/item_bamboo_hat/item_bamboo_hat.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/item_qingfeng_sword/item_qingfeng_sword.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/props/luxury_jade_pendant/luxury_jade_pendant.tpl_f2_medium.glb"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_prop.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; P=Path('assets/default/model3d/dressup/props'); paths=[P/p/'report.tpl_f2_medium.json' for p in ('eq_longquanjian','item_bamboo_hat','item_qingfeng_sword','luxury_jade_pendant')]; bad=[str(x) for x in paths if not x.is_file() or json.loads(x.read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-t6-sockets-f2",
+   "title": "3D 纸娃娃换装 · T6 · tpl_f2 女素体插槽修正（腰 / 胸）：export_skeleton 加 --socket-mode waist-band，重导 tpl_f2 三体型 skeleton（0 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ENG-dressup-t6-sockets-f2.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "R2 实拍：tpl_f2 腰插槽落在后腰（佩剑飘臀后）、胸插槽在右胸；tpl_f / tpl_m 正常",
+   "sparse_include": [
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "tools/model3d/dressup/export_skeleton.py",
+    "tools/model3d/dressup/tests_skeleton.py",
+    "assets/default/model3d/dressup/templates/tpl_f2_medium/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_tall/**",
+    "assets/default/model3d/dressup/templates/tpl_f2_small/**"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/templates/tpl_f2_small/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_medium/skeleton.json",
+     "assets/default/model3d/dressup/templates/tpl_f2_tall/skeleton.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_skeleton.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_small"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_f2_tall"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_lean"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_medium"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/export_skeleton.py",
+      "--check",
+      "--out",
+      "assets/default/model3d/dressup/templates/tpl_m_bulk"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; d=[json.load(open(f'assets/default/model3d/dressup/templates/{t}/skeleton.json')).get('socketMode') for t in ('tpl_f2_small','tpl_f2_medium','tpl_f2_tall')]; print(d); sys.exit(0 if d==['waist-band']*3 else 1)"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_head.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ART-dressup-r3-jinzhuang-f2-gen",
+   "title": "3D 纸娃娃换装 · R3 · 劲装按新素体重新生成：tpl_f2 衣图底板（劲装 / 布衣）+ Tripo 整身生成与绑骨 → 源件入库（85 点）",
+   "phase": "PROD",
+   "wave": 47,
+   "kind": "draft",
+   "prompt": "ART-dressup-r3-jinzhuang-f2-gen.md",
+   "deps": [
+    "ENG-dressup-r1-heads-f2"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-5.6-Sol",
+   "effort": "xhigh",
+   "profile": "code",
+   "note": "作者 10-12「按新素体重新生成」（约 85 点）、「衣物到位后再切」默认素体；Claude 经 9223 执行 Tripo，产物走 supervise 校验与 GPT 审核",
+   "sparse_include": [
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/item/clothing/*.png",
+    "assets/default/model3d/dressup"
+   ],
+   "writes": [
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+    "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/**",
+    "assets/default/model3d/dressup/credits_ledger.jsonl"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/tripo_dressed_rig.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/source.json",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/cover.png",
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+     "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/inspect.py",
+      "--json",
+      "assets/default/model3d/dressup/garments/eq_jinzhuang/source_f2/tripo_dressed_rig.glb"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_jinzhuang_front.png",
+      "--arm-angle-deg",
+      "25",
+      "--json"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/check_plate.py",
+      "--plate",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f_bald_base_body_apose_v2.png",
+      "--image",
+      "assets/default/character/female/ch00/threeview/por_npc_zhujue__ch00_f2_dressup_eq_buyi_front.png",
+      "--arm-angle-deg",
+      "25",
+      "--json"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "ENG-dressup-r4-jinzhuang-f2-fit",
+   "title": "3D 纸娃娃换装 · R4 · 新劲装贴到新女素体：抽衣壳 + tpl_f2 三体型贴合（P2 + E2c）+ 布衣（P3）+ 贴图层重烘（0 点）",
+   "phase": "PROD",
+   "wave": 48,
+   "kind": "draft",
+   "prompt": "ENG-dressup-r4-jinzhuang-f2-fit.md",
+   "deps": [
+    "ART-dressup-r3-jinzhuang-f2-gen"
+   ],
+   "review": false,
+   "web": true,
+   "vars": {},
+   "agent_args": [
+    "-c",
+    "sandbox_workspace_write.writable_roots=[\"/Users/bytedance/Library/pnpm\",\"/Users/bytedance/Library/Caches/pnpm\",\"/Users/bytedance/.cache\"]"
+   ],
+   "model": "GPT-6-Astra",
+   "effort": "max",
+   "profile": "code",
+   "note": "作者 10-12「按新素体重新生成」劲装、「衣物到位后再切」默认素体；R3 源件 source_f2",
+   "sparse_include": [
+    "assets/default/model3d/dressup",
+    "assets/default/character/female/ch00/threeview/*.png",
+    "assets/default/character/female/ch00/threeview/manifest.yaml"
+   ],
+   "writes": [
+    "assets/default/model3d/dressup/garments/eq_jinzhuang/**",
+    "assets/default/model3d/dressup/garments/eq_buyi/**",
+    "assets/default/model3d/dressup/garments/eq_jinzhuang_tex/**",
+    "assets/default/model3d/dressup/garments/eq_buyi_tex/**",
+    "tools/model3d/dressup/tests_garment.py"
+   ],
+   "validate": {
+    "exists": [
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/eq_jinzhuang.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_medium.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_tall.glb",
+     "assets/default/model3d/dressup/garments/eq_buyi/eq_buyi.tpl_f2_small.glb",
+     "assets/default/model3d/dressup/garments/eq_jinzhuang/extract_run_f2/extract.json"
+    ],
+    "cmd": [
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_garment.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_hidemask.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_variant.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/tests_texlayer.py"
+     ],
+     [
+      "{python}",
+      "tools/model3d/dressup/selftest.py"
+     ],
+     [
+      "{python}",
+      "-c",
+      "import json,sys; from pathlib import Path; G=Path('assets/default/model3d/dressup/garments'); paths=[G/g/f'report.{t}.json' for g in ('eq_jinzhuang','eq_buyi') for t in ('tpl_f2_medium','tpl_f2_tall','tpl_f2_small')]; bad=[str(x) for x in paths if not x.is_file() or json.loads(x.read_text())['level']=='fail']; print('fail:', bad) if bad else print('ok'); sys.exit(1 if bad else 0)"
+     ],
+     [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+     ],
+     [
+      "pnpm",
+      "check"
+     ]
+    ]
+   }
   }
  ]
 }

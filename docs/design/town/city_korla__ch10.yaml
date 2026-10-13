@@ -3,7 +3,7 @@ kind: "CitySpec"
 city_id: "city_korla"
 chapter_id: "ch10"
 book_world: "ch10_baima"
-display_name: "焉耆都督府·博格达沁故城（702年推定）"
+display_name: 焉耆都督府
 historical_year: 702
 era_kit: "xiyu"
 seed: 338054295

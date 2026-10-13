@@ -6,7 +6,8 @@ import { battleSeed, combatFixture } from '../testing/combat-fixture';
 import {
   advanceBattle, advanceGameClock, advanceInnRest, advanceMeditation, advanceTravel,
   createEmptyEquipment, createGameClock, createInitialGameState, parseGameState,
-  migrateBookSleepV2, migrateUiSessionV1, RULES_PROTOCOL, SAVE_SCHEMA,
+  assertCanonicalGameState, migrateBookSleepV2, migrateExploreV3, migrateUiSessionV1,
+  RULES_PROTOCOL, SAVE_SCHEMA,
   TICKS_PER_DAY, TICKS_PER_HOUR,
 } from '.';
 
@@ -40,7 +41,7 @@ describe('GameState JSON boundary', () => {
     expect(() => parseGameState({ ...state, meta: metaWithoutProtocol })).toThrow('STATE_SHAPE');
   });
 
-  it('preserves schema-3 bytes before the first receipt and rejects malformed sessions', () => {
+  it('preserves schema-4 bytes before the first receipt and rejects malformed sessions', () => {
     const state = initialState();
     const legacyWorld = Object.fromEntries(Object.entries(state.world)
       .filter(([key]) => key !== 'battleReceipts'));
@@ -62,7 +63,7 @@ describe('GameState JSON boundary', () => {
     const mountedRegion = { regionId: 'rg_fixture', spawnId: 'entry',
       playerHex: { q: 0, r: 0 }, facing: 0,
       dynamicTiles: [{ q: 0, r: 0, terrainId: 'tr_not_registered', height: 0 }],
-      entities: [] };
+      entities: [], walk: null };
     expect(() => parseGameState({ ...state, world: { ...state.world, navigation: {
       ...state.world.navigation, mountedRegion,
     } } })).toThrow('STATE_SHAPE');
@@ -75,6 +76,21 @@ describe('GameState JSON boundary', () => {
     expect(parseGameState({ ...state, chapter: { ...state.chapter, town } }).chapter.town).toEqual(town);
     expect(() => parseGameState({ ...state, chapter: { ...state.chapter,
       town: { ...town, buildingPhase: 'inside' } } })).toThrow('STATE_SHAPE');
+  });
+
+  it('strictly validates an optional facility dialogue context', () => {
+    const state = initialState();
+    const dialogue = { storyId: 'story_fixture', storyHash: '0'.repeat(64), entryKey: 'start',
+      storyJsonState: '{}', randomSeed: 1, pendingIntents: [], consumedTagKeys: [],
+      context: { kind: 'facility' as const, sceneId: 'sc_fixture', facilityKey: 'clinic',
+        roleKey: 'doctor', shopKey: null, interlocutorNameKey: 'facility.clinic.doctor.name' } };
+    expect(parseGameState({ ...state, dialogue }).dialogue?.context).toEqual(dialogue.context);
+    const fiveFieldContext = { kind: 'facility' as const, sceneId: 'sc_fixture',
+      facilityKey: 'clinic', roleKey: 'doctor', shopKey: null };
+    expect(() => parseGameState({ ...state, dialogue: { ...dialogue,
+      context: fiveFieldContext } })).toThrow('STATE_SHAPE');
+    expect(() => parseGameState({ ...state, dialogue: { ...dialogue,
+      context: { ...dialogue.context, extra: true } } })).toThrow('STATE_SHAPE');
   });
 
   it('rejects stale derived clock caches', () => {
@@ -96,8 +112,48 @@ describe('GameState JSON boundary', () => {
     expect(state).not.toHaveProperty('transient');
     expect(state.world).toEqual({ navigation: { locationId: 'city_dali',
       selectedDestinationId: null, pendingMount: null, mountedRegion: null },
-      pendingTimeAdvance: null });
+      pendingTimeAdvance: null, sceneMemory: [] });
     expect(state).toMatchObject({ battle: null, dialogue: null });
+  });
+
+  it('migrates schema 3 exploration state to schema 4 and is idempotent', () => {
+    const current = initialState();
+    const mounted = { regionId: 'rg_fixture', spawnId: 'entry', playerHex: { q: 0, r: 0 },
+      facing: 0, dynamicTiles: [], entities: [] };
+    const legacy = { ...current, meta: { ...current.meta, saveSchema: 3 }, world: {
+      navigation: { ...current.world.navigation, mountedRegion: mounted },
+      pendingTimeAdvance: null } } as unknown as JsonValue;
+    const context = { fromContentHash: current.meta.contentHash, targetSchema: 4,
+      remapVersion: 'none' };
+    const migrated = migrateExploreV3(legacy, context) as unknown as ReturnType<typeof initialState>;
+    expect(migrated.world.navigation.mountedRegion).toEqual({ ...mounted, walk: null });
+    expect(migrated.world.sceneMemory).toEqual([]);
+    expect(() => assertCanonicalGameState(migrated)).not.toThrow();
+    expect(parseGameState(migrated)).toEqual(migrated);
+    expect(migrateExploreV3(migrated as unknown as JsonValue, context)).toEqual(migrated);
+    const unmountedLegacy = { ...current, meta: { ...current.meta, saveSchema: 3 }, world: {
+      navigation: { ...current.world.navigation, mountedRegion: null },
+      pendingTimeAdvance: null } } as unknown as JsonValue;
+    const unmounted = migrateExploreV3(unmountedLegacy, context) as unknown as
+      ReturnType<typeof initialState>;
+    expect(unmounted.world.navigation.mountedRegion).toBeNull();
+  });
+
+  it('enforces walk origin plus sorted, bounded scene memory', () => {
+    const current = initialState();
+    const walk = { path: [{ q: 1, r: 0 }], progressMm: 0, pace: 'walk' as const,
+      steer: null, goal: { kind: 'hex' as const } };
+    const mountedRegion = { regionId: 'rg_fixture', spawnId: 'entry',
+      playerHex: { q: 0, r: 0 }, facing: 0, dynamicTiles: [], entities: [], walk };
+    expect(() => parseGameState({ ...current, world: { ...current.world, navigation: {
+      ...current.world.navigation, mountedRegion } } })).toThrow('STATE_SHAPE');
+    const entry = { entities: [], dynamicTiles: [] };
+    expect(() => parseGameState({ ...current, world: { ...current.world,
+      sceneMemory: [{ sceneId: 'sc_b', ...entry }, { sceneId: 'sc_a', ...entry }] } }))
+      .toThrow('STATE_SHAPE');
+    expect(() => parseGameState({ ...current, world: { ...current.world,
+      sceneMemory: Array.from({ length: 17 }, (_, index) => ({
+        sceneId: `sc_${String(index).padStart(2, '0')}`, ...entry })) } })).toThrow('STATE_SHAPE');
   });
 
   it('migrates every ui-session.v1 sidecar field without keeping the envelope', () => {
@@ -128,8 +184,11 @@ describe('GameState JSON boundary', () => {
     const sourceContentHash = 'a'.repeat(64);
     const schema2 = migrateUiSessionV1(JSON.parse(JSON.stringify(old)), {
       fromContentHash: sourceContentHash, targetSchema: 2, remapVersion: 'none' }) as unknown as ReturnType<typeof initialState>;
-    const migrated = migrateBookSleepV2(schema2 as unknown as JsonValue, {
+    const schema3 = migrateBookSleepV2(schema2 as unknown as JsonValue, {
       fromContentHash: sourceContentHash, targetSchema: 3, remapVersion: 'none'
+    }) as unknown as ReturnType<typeof initialState>;
+    const migrated = migrateExploreV3(schema3 as unknown as JsonValue, {
+      fromContentHash: sourceContentHash, targetSchema: 4, remapVersion: 'none'
     }) as unknown as ReturnType<typeof initialState>;
     expect(migrated.chapter.npcs[0]).toMatchObject({
       npcId: 'npc_duanyu', relationship: 'met', affinity: 2,

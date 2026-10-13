@@ -1,5 +1,4 @@
-import type { ChapterDef, EncounterDef, EventDef, ItemDef, QuestDef, TownRuntimeDefinition,
-  WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
+import type { ChapterDef, EventDef, ItemDef, QuestDef, TownRuntimeDefinition, WorldMapRuntimeDefinition } from '@tianshu/data/schemas';
 import type { JsonValue } from '@tianshu/shared';
 import type { EquipmentRule } from '../economy';
 import type { PendingDomainEvent } from '../event';
@@ -13,6 +12,8 @@ import type { DifficultyId } from '../state';
 import type { BookSleepPlan } from '../progression';
 import type { RegionCommand, RegionRuntimeContent } from '../world/region-types';
 import type { BattleActCommand, BattleSetup, BattleUnitSeed } from '../battle';
+import type { ShopCommand } from '../economy/shop-types';
+import type { ExploreCommand } from '../world/explore/types';
 
 export interface WorldTickCommand { readonly t: 'world/tick' }
 export type InventoryCommand =
@@ -20,8 +21,7 @@ export type InventoryCommand =
   | { readonly t: 'inventory/unequip'; readonly slot: GameState['party']['equipment']['entries'][number]['slot'] }
   | { readonly t: 'inventory/use'; readonly itemId: string; readonly targetId: string };
 export type DialogueCommand =
-  | { readonly t: 'dialogue/start'; readonly storyId: string; readonly entryKey: string;
-      readonly anchorId?: string }
+  | { readonly t: 'dialogue/start'; readonly storyId: string; readonly entryKey: string }
   | { readonly t: 'dialogue/continue' }
   | { readonly t: 'dialogue/choose'; readonly choiceIndex: number };
 export type QuestChoiceCommand = { readonly t: 'quest/choose'; readonly questId: string;
@@ -38,21 +38,14 @@ export interface BattleSetAutoBusCommand { readonly t: 'battle/setAuto'; readonl
   readonly expectedRevision?: number }
 export interface BattleRetryBusCommand { readonly t: 'battle/retry'; readonly option: 'restart';
   readonly expectedRevision?: number }
-export interface BattleConcedeBusCommand { readonly t: 'battle/concede'; readonly expectedRevision?: number }
-export interface BattleSubdueBusCommand { readonly t: 'battle/subdue'; readonly actor: string;
-  readonly target: string; readonly expectedRevision?: number }
-export interface BattleDemonstrationBusCommand { readonly t: 'battle/demonstration';
-  readonly replayId: string; readonly expectedRevision?: number }
 export interface BattleReceiptCommand { readonly battleId: string; readonly outcomeSeq: number }
 export type BattleFinalizeCommand = BattleReceiptCommand & { readonly t: 'battle/finalize' };
 export type BattleLeaveCommand = BattleReceiptCommand & { readonly t: 'battle/leave' };
 export type BattleBusCommand = BattleEnterCommand | BattleBusActCommand | BattleSetAutoBusCommand
-  | BattleRetryBusCommand | BattleConcedeBusCommand | BattleSubdueBusCommand
-  | BattleDemonstrationBusCommand |
-  BattleFinalizeCommand | BattleLeaveCommand;
+  | BattleRetryBusCommand | BattleFinalizeCommand | BattleLeaveCommand;
 export type Command = WorldTickCommand | WorldMapCommand | TownCommand | InventoryCommand
   | DialogueCommand | QuestChoiceCommand | RulesCommand | ChapterCommand | RegionCommand
-  | BattleBusCommand;
+  | BattleBusCommand | ExploreCommand | ShopCommand;
 
 export type RejectReason =
   | 'COMMAND_UNKNOWN' | 'WORLD_PAUSED' | 'MAP_UNAVAILABLE' | 'MAP_STILL_TRAVELLING'
@@ -80,6 +73,7 @@ export type RejectReason =
   | 'BOOK_SLEEP_CONTENT_UNAVAILABLE' | 'REGION_UNAVAILABLE' | 'REGION_CONTENT_MISMATCH'
   | 'REGION_SPAWN_UNKNOWN' | 'REGION_NOT_MOUNTED' | 'REGION_PATH_NOT_STANDABLE'
   | 'REGION_PATH_BLOCKED' | 'REGION_PATH_HEIGHT' | 'REGION_PATH_QINGGONG'
+  | 'REGION_PATH_UNREACHABLE'
   | 'REGION_ANCHOR_UNKNOWN' | 'REGION_ANCHOR_OUT_OF_RANGE' | 'REGION_ANCHOR_NOT_VISIBLE'
   | 'REGION_ANCHOR_CONSUMED' | 'REGION_INTERACTION_UNSUPPORTED'
   | 'REGION_LOOT_UNKNOWN' | 'REGION_LOOT_CAPACITY' | 'REGION_EXIT_PENDING'
@@ -94,7 +88,10 @@ export type RejectReason =
   | 'BATTLE_ENDED'
   | 'BATTLE_STALE_REVISION' | 'BATTLE_AUTO_FORBIDDEN' | 'BATTLE_AUTO_ACTIVE'
   | 'BATTLE_MANUAL_TURN' | 'BATTLE_NOT_MANUAL_TURN' | 'BATTLE_ACTION_REJECTED'
-  | 'BATTLE_RECEIPT_MISMATCH' | 'BATTLE_REWARD_ITEM_UNKNOWN' | 'BATTLE_REWARD_CAPACITY';
+  | 'BATTLE_RECEIPT_MISMATCH' | 'BATTLE_REWARD_ITEM_UNKNOWN' | 'BATTLE_REWARD_CAPACITY'
+  | 'SHOP_UNKNOWN' | 'SHOP_NOT_HERE' | 'SHOP_CLOSED' | 'SHOP_ITEM_UNAVAILABLE'
+  | 'SHOP_STOCK_INSUFFICIENT' | 'SHOP_MONEY_INSUFFICIENT' | 'SHOP_PRICE_STALE'
+  | 'SHOP_INVENTORY_FULL' | 'SHOP_BUSY';
 
 export interface InkStoryContent { readonly storyId: string; readonly storyHash: string;
   readonly storyJson: string | Readonly<Record<string, unknown>> }
@@ -111,7 +108,6 @@ export interface CoreContent {
   readonly inkStories?: readonly InkStoryContent[];
   readonly chapters?: readonly ChapterDef[]; readonly targetContentHash?: string;
   readonly events?: readonly EventDef[]; readonly quests?: readonly QuestDef[];
-  readonly encounters?: readonly EncounterDef[];
   readonly region?: RegionRuntimeContent;
 }
 export type StatePath = readonly (string | number)[];

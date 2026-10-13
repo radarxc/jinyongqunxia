@@ -3,16 +3,27 @@
   "chunks": {
     "entry": 170,
     "session": 110,
-    "render": 180,
+    "render": 170,
     "render-rig": 20,
     "render-model3d": 24,
+    "render-dressup": 24,
+    "render-explore": 32,
+    "render-town-legacy": 14,
+    "render-buildgen": 40,
+    "render-buildgen-worker": 24,
+    "render-actor3d": 16,
+    "render-meshopt": 8,
+    "explore-ui": 45,
+    "core-explore": 24,
+    "core-shop": 8,
     "render-webgpu": 300,
     "basis": 255,
     "devtools": 130
   },
   "routes": {
     "webglEntryAndRender": 350,
-    "webgpuEntryAndRender": 470
+    "webgpuEntryAndRender": 470,
+    "webglExploreRoute": 420
   },
   "content": {
     "chapterRulesAndLocale": 1536
