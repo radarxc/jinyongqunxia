@@ -1,0 +1,255 @@
+{
+  "schema": "tianshu-dressup-report.v1",
+  "level": "draft",
+  "template": "tpl_f2_medium",
+  "subject": {
+    "kind": "prop",
+    "id": "item_bamboo_hat"
+  },
+  "inputs": {
+    "asset": {
+      "sha256": "cff39886abc03118759b4acf2b90c08a5421c2129a8d2e5835bbc2d06c879f2a",
+      "sizeBytes": 915100
+    },
+    "fit": {
+      "sha256": "37d95bd86deda3ab3322cf1265879dab9940e489ac32fb56815ae11446816a13",
+      "sizeBytes": 1796
+    }
+  },
+  "checks": [
+    {
+      "name": "binding.skeletonSchema",
+      "pass": true,
+      "value": "tianshu-dressup-skeleton.v1",
+      "threshold": "tianshu-dressup-skeleton.v1"
+    },
+    {
+      "name": "binding.skeletonRequired",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "binding.skeletonBodySha",
+      "pass": true,
+      "value": {
+        "recorded": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94",
+        "actual": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94"
+      },
+      "threshold": "equal"
+    },
+    {
+      "name": "binding.skeletonUnits",
+      "pass": true,
+      "value": {
+        "unit": "mu",
+        "recorded": 1.67957882,
+        "calculated": 1.679578816674397,
+        "tolerance": 1e-06
+      },
+      "threshold": "abs error <= 1e-6"
+    },
+    {
+      "name": "binding.fitSchema",
+      "pass": true,
+      "value": "tianshu-dressup-fit.v1",
+      "threshold": "tianshu-dressup-fit.v1"
+    },
+    {
+      "name": "binding.fitRequired",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "binding.fitBodySha",
+      "pass": true,
+      "value": {
+        "recorded": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94",
+        "actual": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94"
+      },
+      "threshold": "equal"
+    },
+    {
+      "name": "binding.fitTemplate",
+      "pass": true,
+      "value": {
+        "body": "tpl_f2_medium",
+        "skeleton": "tpl_f2_medium",
+        "fit": "tpl_f2_medium",
+        "explicit": "tpl_f2_medium"
+      },
+      "threshold": "same templates/<id>/body.glb"
+    },
+    {
+      "name": "binding.fitMPerMu",
+      "pass": true,
+      "value": {
+        "fit": 1.67957882,
+        "skeleton": 1.67957882,
+        "tolerance": 1e-06
+      },
+      "threshold": "abs error <= 1e-6"
+    },
+    {
+      "name": "fit.kind",
+      "pass": true,
+      "value": "prop",
+      "threshold": [
+        "garment",
+        "hair",
+        "head",
+        "prop",
+        "template"
+      ]
+    },
+    {
+      "name": "prop.noSkin",
+      "pass": true,
+      "value": {
+        "skins": 0,
+        "vertexSkinAttributes": false
+      },
+      "threshold": {
+        "skins": 0,
+        "vertexSkinAttributes": false
+      }
+    },
+    {
+      "name": "geometry.flippedTriangles",
+      "pass": true,
+      "value": 0,
+      "threshold": 0
+    },
+    {
+      "name": "geometry.edgeRatioInRange",
+      "pass": true,
+      "value": 1.0,
+      "threshold": ">= 0.99"
+    },
+    {
+      "name": "geometry.maxResidualMu",
+      "pass": true,
+      "value": 1.830448220208311e-08,
+      "threshold": "finite"
+    },
+    {
+      "name": "regions.u8Scalar",
+      "pass": true,
+      "value": [],
+      "threshold": "若存在则 u8 SCALAR"
+    },
+    {
+      "name": "budget.triangles",
+      "pass": true,
+      "value": 4598,
+      "threshold": "<= 10000"
+    },
+    {
+      "name": "budget.textureMaxDimension",
+      "pass": true,
+      "value": 2048,
+      "threshold": "<= 2048",
+      "images": [
+        [
+          2048,
+          2048
+        ]
+      ]
+    },
+    {
+      "name": "material.unlit",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "material.onlyBaseColorTexture",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "asset.meshNodeCount",
+      "pass": true,
+      "value": 1,
+      "threshold": 1
+    },
+    {
+      "name": "asset.materialReferences",
+      "pass": true,
+      "value": [
+        0
+      ],
+      "threshold": "0..0"
+    },
+    {
+      "name": "prop.noNodeTransform",
+      "pass": true,
+      "value": [],
+      "threshold": []
+    },
+    {
+      "name": "prop.anchorEvidence",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "prop.anchorMu",
+      "pass": true,
+      "value": {
+        "computed": [
+          -1.347966877007778e-10,
+          0.0,
+          9.803395595309183e-11
+        ],
+        "recorded": [
+          -1.4705093283402292e-10,
+          0.0,
+          1.2254244402835243e-10
+        ]
+      },
+      "threshold": "norm < 1e-4 and match"
+    },
+    {
+      "name": "prop.mainAxisY",
+      "pass": true,
+      "value": {
+        "up": "+Y",
+        "alignment": 0.9990894558369483
+      },
+      "threshold": "+Y and >= 0.999"
+    },
+    {
+      "name": "prop.semanticDirection",
+      "pass": true,
+      "value": {
+        "lowWidthMu": 0.08220630139112473,
+        "highWidthMu": 0.02442500740289688
+      },
+      "threshold": "weapon body +Y; hat opening -Y; pendant/pouch string top y=0"
+    },
+    {
+      "name": "prop.realSizeEvidence",
+      "pass": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "name": "prop.declaredLengthMu",
+      "pass": true,
+      "value": {
+        "mesh": 0.26709675788879395,
+        "declared": 0.2670967579981769
+      },
+      "threshold": "差 <= 1e-4 mu"
+    },
+    {
+      "name": "prop.realSizeError",
+      "pass": true,
+      "value": 0.003088761242919544,
+      "threshold": "<= 0.02"
+    }
+  ]
+}

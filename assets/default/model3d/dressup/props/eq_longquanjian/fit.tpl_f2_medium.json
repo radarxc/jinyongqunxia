@@ -1,0 +1,160 @@
+{
+  "allowReverse": false,
+  "anchor": "grip",
+  "body": {
+    "file": "assets/default/model3d/dressup/templates/tpl_f2_medium/body.glb",
+    "sha256": "f7c6cfb1f7826f71610bfcf6d3af18e25afbcc3a4edf1149b365f03023782a94"
+  },
+  "class": "weapon",
+  "diagnostics": {
+    "anchorPositionMu": [
+      0.0,
+      -7.450580569168253e-10,
+      0.0
+    ],
+    "anchorSourceMu": [
+      0.397576688,
+      0.089767084,
+      0.336433106
+    ],
+    "componentsInput": 1,
+    "componentsOutput": 1,
+    "handleEndEvidence": {
+      "candidates": [
+        {
+          "bin": 10,
+          "binCenterFraction": 0.2625,
+          "binFractionRange": [
+            0.25,
+            0.275
+          ],
+          "distanceFromEndFraction": 0.268852587,
+          "distanceFromEndRange": [
+            0.25,
+            0.275
+          ],
+          "fraction": 0.268852587,
+          "leftMedianMu": 0.121981879,
+          "peakAxialMu": -0.265529642,
+          "peakRatio": 1.504403427,
+          "rightMedianMu": 0.073431995,
+          "selectedEnd": "low",
+          "widthMu": 0.183509957
+        }
+      ],
+      "chosen": {
+        "bin": 10,
+        "binCenterFraction": 0.2625,
+        "binFractionRange": [
+          0.25,
+          0.275
+        ],
+        "distanceFromEndFraction": 0.268852587,
+        "distanceFromEndRange": [
+          0.25,
+          0.275
+        ],
+        "fraction": 0.268852587,
+        "leftMedianMu": 0.121981879,
+        "peakAxialMu": -0.265529642,
+        "peakRatio": 1.504403427,
+        "rightMedianMu": 0.073431995,
+        "selectedEnd": "low",
+        "widthMu": 0.183509957
+      },
+      "method": "guard-peak",
+      "selectedEnd": "low",
+      "selectedEndBeforeFlip": "low"
+    },
+    "keep": "all",
+    "profileWidthsMu": [
+      0.118678041,
+      0.125285717,
+      0.089526571,
+      0.063300734,
+      0.067072857,
+      0.069807262,
+      0.070679135,
+      0.06983843,
+      0.070265634,
+      0.136346112,
+      0.183509957,
+      0.180118961,
+      0.08448512,
+      0.082097254,
+      0.080468079,
+      0.078978934,
+      0.077568732,
+      0.076319944,
+      0.075032586,
+      0.074204184,
+      0.073839233,
+      0.073024757,
+      0.071986586,
+      0.071698468,
+      0.071876796,
+      0.07169779,
+      0.071496759,
+      0.07126336,
+      0.070488994,
+      0.069372237,
+      0.067976258,
+      0.067197531,
+      0.066534385,
+      0.06615922,
+      0.066237253,
+      0.066114493,
+      0.065274272,
+      0.064240914,
+      0.052773722,
+      0.028670217
+    ],
+    "selectedEnd": "low"
+  },
+  "forward": "+Z",
+  "gripAdjust": {
+    "pos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "quat": [
+      0.0,
+      0.0,
+      0.5,
+      0.866025404
+    ]
+  },
+  "handleDetection": {
+    "bladeSegmentVertices": 7233,
+    "handleEnd": "min",
+    "handleSegmentVertices": 956,
+    "method": "guard-peak",
+    "peakAxialMu": 0.112399786,
+    "peakFraction": 0.268852587
+  },
+  "id": "eq_longquanjian",
+  "kind": "prop",
+  "mPerMu": 1.67957882,
+  "measuredLengthMu": 1.564500926,
+  "realSizeM": 0.95,
+  "restTiltDeg": 60.0,
+  "scaleApplied": 0.361481136,
+  "schema": "tianshu-dressup-fit.v1",
+  "sizeAxis": "length",
+  "socket": "gripR",
+  "source": {
+    "file": "apps/game/public/models/props/eq_longquanjian_raw.glb",
+    "sha256": "d75b051dee5a4606b7f8c329c35a7958efbdeb86e28dcfc394075cdfa10526ac"
+  },
+  "stats": {
+    "boundaryEdges": 0,
+    "components": 1,
+    "fileBytes": 7066848,
+    "nonManifoldEdges": 0,
+    "triangles": 191578,
+    "vertices": 107644
+  },
+  "template": "tpl_f2_medium",
+  "up": "+Y"
+}

@@ -504,7 +504,8 @@ class NormalizePropTests(unittest.TestCase):
                 self.assertEqual(fit["stats"]["components"], len(components))
                 # fit 的边统计来自 pack 前完整拓扑；pack 只换索引，最终减面拓扑另由 report 校验。
                 anchor = normalize_prop._output_anchor(mesh.positions, fit["anchor"], 0.07)
-                self.assertTrue(np.array_equal(fit["diagnostics"]["anchorPositionMu"], anchor))
+                # pack-compact 重打包后 float32 解码复算的锚点带 1e-12–1e-9 mu 噪声：按 validate 同口径比较（R2 裁定 4）。
+                self.assertTrue(np.allclose(fit["diagnostics"]["anchorPositionMu"], anchor, atol=1e-7, rtol=0))
                 self.assertLess(np.linalg.norm(anchor), 1e-4)
 
     def test_weapon_handle_anchor_axis_and_scale(self) -> None:

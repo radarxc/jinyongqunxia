@@ -18,6 +18,16 @@
       fit: fit.json
       report: report.json
       status: candidate
+    tpl_f2_medium:
+      file: luxury_jade_pendant.tpl_f2_medium.glb
+      fit: fit.tpl_f2_medium.json
+      report: report.tpl_f2_medium.json
+      socketsCheck: sockets_check.tpl_f2_medium.json
+      status: draft
+      gateLevel: draft
+      sha256: 9ec97042959b52300a84796d382cf391092aeefebca2e4145e13b93f216cf37e
+      size_bytes: 877164
+      triangles: 8580
   source:
     directory: external-workdir
     references: []

@@ -18,6 +18,16 @@
       fit: fit.json
       report: report.json
       status: candidate
+    tpl_f2_medium:
+      file: item_bamboo_hat.tpl_f2_medium.glb
+      fit: fit.tpl_f2_medium.json
+      report: report.tpl_f2_medium.json
+      socketsCheck: sockets_check.tpl_f2_medium.json
+      status: draft
+      gateLevel: draft
+      sha256: cff39886abc03118759b4acf2b90c08a5421c2129a8d2e5835bbc2d06c879f2a
+      size_bytes: 915100
+      triangles: 4598
   source:
     directory: external-workdir
     references: []

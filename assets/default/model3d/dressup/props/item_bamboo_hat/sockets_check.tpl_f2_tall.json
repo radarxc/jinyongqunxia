@@ -1,0 +1,35 @@
+{
+  "animated": {
+    "distanceMethod": "strict nearest-triangle signed distance for every selected vertex",
+    "insideRatio": 0.0,
+    "insideVertexCount": {
+      "max": 0,
+      "median": 0.0,
+      "min": 0,
+      "samples": 72,
+      "verticesPerFrame": 5353
+    },
+    "insideVertexTotal": 0,
+    "level": "approved",
+    "minSignedDistanceMm": {
+      "median": 1.565897473769015,
+      "min": 0.8280963265993135
+    },
+    "surface": "regions=head triangles (vertex-majority)"
+  },
+  "bind": {
+    "clearanceMm": 2.9999985443300754,
+    "packedRayClearanceMm": {
+      "median": 90.92579270722628,
+      "min": 2.999904797716141
+    },
+    "upAngleDeg": 0.0
+  },
+  "class": "hat",
+  "failures": [],
+  "id": "item_bamboo_hat",
+  "level": "approved",
+  "pass": true,
+  "schema": "tianshu-dressup-sockets-check.v1",
+  "template": "tpl_f2_tall"
+}
